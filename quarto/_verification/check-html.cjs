@@ -1,0 +1,130 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const http = require('node:http');
+const assert = require('node:assert/strict');
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const root = path.resolve('_book');
+const prefix = '/statistics-for-psychology/';
+const files = fs.readdirSync(path.join(root, 'quarto')).filter(f => f.endsWith('.html'));
+const paths = ['index.html', ...files.map(f => `quarto/${f}`)];
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
+const server = http.createServer((req, res) => {
+  let route = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+  if (!route.startsWith(prefix)) { res.writeHead(404); return res.end(); }
+  route = route.slice(prefix.length) || 'index.html';
+  const file = path.resolve(root, route);
+  if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404); return res.end(); }
+  res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
+  fs.createReadStream(file).pipe(res);
+});
+(async () => {
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const base = `http://127.0.0.1:${server.address().port}${prefix}`;
+  const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
+  const page = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  page.on('response', r => { if (r.url().startsWith(base) && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
+  fs.mkdirSync('tmp/verification', { recursive: true });
+  const documents = {};
+  let solutionCount = 0;
+  try {
+    for (const file of paths) {
+      await page.goto(base + file, { waitUntil: 'networkidle' });
+      documents[file] = await page.evaluate(() => ({ ids: [...document.querySelectorAll('[id]')].map(x => x.id), links: [...document.querySelectorAll('a[href]')].map(x => x.getAttribute('href')) }));
+      const ids = documents[file].ids;
+      assert.equal(ids.length, new Set(ids).size, `Duplicate IDs: ${file}`);
+      assert.equal(await page.locator('pre.sourceCode.r, div.cell-output-stderr').count(), 0, `Leaked R: ${file}`);
+      if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), file.includes('kapitola') ? 0 : 1);
+      const solutions = page.locator('.callout[title="Ukázat řešení"]');
+      solutionCount += await solutions.count();
+      if (file === 'quarto/kapitola_01.html') assert.equal(await solutions.count(), 8, 'All eight exercises must have a solution');
+      for (let i = 0; i < await solutions.count(); i++) {
+        const item = solutions.nth(i);
+        const toggle = item.locator('[data-bs-toggle="collapse"]');
+        const body = item.locator('.callout-collapse');
+        assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+        assert.equal(await body.isVisible(), false, 'Solution must be initially hidden');
+        await toggle.focus(); await page.keyboard.press('Enter');
+        await body.waitFor({ state: 'visible' });
+        assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+        await page.waitForTimeout(400);
+        await toggle.click(); await body.waitFor({ state: 'hidden' });
+      }
+      await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-desktop.png` });
+      await page.setViewportSize({ width: 390, height: 844 });
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Mobile overflow: ${file}`);
+      if (await solutions.count()) {
+        const last = solutions.last();
+        await last.locator('[data-bs-toggle="collapse"]').click();
+        await last.locator('.callout-collapse').waitFor({ state: 'visible' });
+        await page.waitForTimeout(400);
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Open solution overflow: ${file}`);
+        await last.screenshot({ path: 'tmp/verification/solution-mobile.png' });
+        await last.locator('[data-bs-toggle="collapse"]').click();
+        await last.locator('.callout-collapse').waitFor({ state: 'hidden' });
+      }
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-mobile.png` });
+      await page.setViewportSize({ width: 1360, height: 1000 });
+    }
+    for (const [file, doc] of Object.entries(documents)) {
+      for (const href of doc.links) {
+        if (!href || /^(https?:|mailto:|tel:|javascript:)/.test(href)) continue;
+        const url = new URL(href, base + file);
+        assert(url.pathname.startsWith(prefix), `Link escapes site prefix: ${href}`);
+        const target = decodeURIComponent(url.pathname.slice(prefix.length)) || 'index.html';
+        assert(fs.existsSync(path.join(root, target)), `Missing target ${file}: ${href}`);
+        if (url.hash && documents[target]) assert(documents[target].ids.includes(decodeURIComponent(url.hash.slice(1))), `Missing anchor ${file}: ${href}`);
+      }
+    }
+    await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
+    const total = await page.locator('#glossary-table tbody tr').count();
+    if (total > 10) {
+      const visible = () => page.locator('#glossary-table tbody tr:visible').count();
+      assert.equal(await visible(), 10);
+      await page.getByRole('button', { name: 'Další', exact: true }).click();
+      assert.equal(await page.locator('#glossary-table tbody tr').first().isVisible(), false);
+      const lastId = await page.locator('#glossary-table tbody tr').last().getAttribute('id');
+      await page.locator('input[type=search]').last().fill('nenalezitelnypojem');
+      assert.equal(await visible(), 0);
+      await page.evaluate(id => { location.hash = id; }, lastId);
+      await page.locator(`#${lastId}`).waitFor({ state: 'visible' });
+      assert.equal(await page.locator('.ref-controls input').inputValue(), '');
+      // Direct entry must also reveal an item beyond the first page.
+      await page.goto(base + `quarto/slovnicek.html#${lastId}`, { waitUntil: 'networkidle' });
+      assert(await page.locator(`#${lastId}`).isVisible());
+      for (const size of ['25', '50', 'all', '10']) {
+        await page.locator('.ref-controls select').selectOption(size);
+        assert.equal(await visible(), Math.min(total, size === 'all' ? total : +size));
+      }
+      await page.locator('.ref-controls input').fill('measurement');
+      assert(await visible() > 0, 'English search');
+      await page.locator('.ref-controls input').fill('uroven mereni');
+      assert(await visible() > 0, 'Search without Czech diacritics');
+      await page.locator('.ref-controls input').fill('codebook');
+      assert.equal(await visible(), 1, 'Search must reach the last row, beyond the first page');
+      assert(await page.locator(`#${lastId}`).isVisible());
+      await page.locator('.ref-controls input').focus();
+      await page.keyboard.press('Tab');
+      assert.equal(await page.evaluate(() => document.activeElement.tagName), 'SELECT');
+    } else assert.equal(await page.locator('.ref-pagination button:not([disabled])').count(), 0);
+    for (const file of ['znaceni', 'excel']) {
+      await page.goto(base + `quarto/${file}.html`, { waitUntil: 'networkidle' });
+      if (!(await page.locator('tbody tr').count())) assert.equal(await page.locator('.ref-pagination button:not([disabled])').count(), 0);
+    }
+    assert(!fs.existsSync(path.join(root, 'sources')), 'Private sources copied to web');
+    assert(!fs.existsSync(path.join(root, 'quarto/README.md')), 'Author documentation copied to web');
+    const noScript = await browser.newContext({ javaScriptEnabled: false });
+    const plain = await noScript.newPage();
+    await plain.goto(base + 'quarto/slovnicek.html');
+    assert.equal(await plain.locator('tbody tr:visible').count(), total, 'All glossary rows readable without JavaScript');
+    if (solutionCount) {
+      await plain.goto(base + 'quarto/kapitola_01.html');
+      assert.equal(await plain.locator('.callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+    }
+    await noScript.close();
+    assert.deepEqual(errors, []);
+    console.log(JSON.stringify({ pages: paths.length, glossaryItems: total, internalLinks: 'passed', solutionCount, solutions: 'keyboard + hidden/open/closed passed', mobileWidth: 390, errors }, null, 2));
+  } finally { await browser.close(); server.close(); }
+})().catch(error => { console.error(error); server.close(); process.exitCode = 1; });

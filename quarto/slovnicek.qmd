@@ -1,0 +1,7 @@
+# Slovníček pojmů {.unnumbered}
+
+V prvním sloupci je vždy **termín používaný v této učebnici**. Vyhledávání zahrnuje i anglické názvy, alternativy a vysvětlení.
+
+::: {.reference-table}
+<table id="glossary-table"><caption>České a anglické statistické pojmy</caption><thead><tr><th scope="col">Používaný termín</th><th scope="col">Anglicky</th><th scope="col">Alternativy a související pojmy</th><th scope="col">Vysvětlení a výklad</th></tr></thead><tbody></tbody></table>
+:::
