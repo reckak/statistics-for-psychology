@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+sources/
+_book/
+.quarto/
+tmp/
+node_modules/
+
+/.quarto/
+**/*.quarto_ipynb

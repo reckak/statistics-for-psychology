@@ -1,0 +1,7 @@
+# Užitečné funkce Excelu {.unnumbered}
+
+Přehled obsahuje jen funkce již vysvětlené na konkrétních příkladech v učebnici. Dosud nebyla zavedena žádná funkce Excelu.
+
+::: {.reference-table}
+<table id="excel-table"><caption>Přehled zavedených funkcí Excelu</caption><thead><tr><th scope="col">Česky / anglicky</th><th scope="col">Účel a argumenty</th><th scope="col">Vrácený výsledek</th><th scope="col">Příklad s výsledkem</th><th scope="col">Výklad</th></tr></thead><tbody></tbody></table>
+:::

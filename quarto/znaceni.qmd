@@ -1,0 +1,7 @@
+# Matematické a statistické značení a vzorce {.unnumbered}
+
+Přehled obsahuje jen značení již vysvětlené v učebnici. Dosud nebylo zavedeno žádné matematické ani statistické značení nebo vzorec.
+
+::: {.reference-table}
+<table id="notation-table"><caption>Přehled zavedeného značení a vzorců</caption><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody></tbody></table>
+:::
