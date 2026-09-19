@@ -1,6 +1,23 @@
 /* Progressive enhancement: all rows remain readable without JavaScript. */
 (() => {
   'use strict';
+  document.querySelectorAll('.callout-header[data-bs-toggle="collapse"]').forEach(toggle => {
+    toggle.tabIndex = 0;
+    toggle.setAttribute('role', 'button');
+    const label = toggle.querySelector('.callout-title-container')?.textContent.replace('Poznámka', '').trim();
+    toggle.setAttribute('aria-label', label || 'Rozbalit nebo sbalit vysvětlení');
+    toggle.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+  document.querySelectorAll('.table-scroll').forEach(wrapper => {
+    wrapper.tabIndex = 0;
+    wrapper.setAttribute('role', 'region');
+    wrapper.setAttribute('aria-label', wrapper.querySelector('caption')?.textContent || 'Tabulka, kterou lze vodorovně posunout');
+  });
   const normalize = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('cs');
   document.querySelectorAll('.reference-table').forEach(region => {
     const table = region.querySelector('table');

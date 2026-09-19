@@ -4,6 +4,7 @@ main { line-height: 1.7; }
 h1, h2, h3 { color: #1b4b57; }
 a { color: #116372; text-underline-offset: .15em; }
 main p { margin-bottom: 1.15rem; }
+main a { overflow-wrap: anywhere; }
 .callout { border-radius: .3rem; }
 .worked-example { border-left: 3px solid #478690; padding: .2rem 1rem; margin: 1.5rem 0; background: #f4f8f8; }
 .worked-example > :last-child { margin-bottom: .7rem; }

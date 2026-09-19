@@ -27,6 +27,7 @@ const server = http.createServer((req, res) => {
   page.on('response', r => { if (r.url().startsWith(base) && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
   fs.mkdirSync('tmp/verification', { recursive: true });
   const documents = {};
+  let solutionCount = 0;
   try {
     for (const file of paths) {
       await page.goto(base + file, { waitUntil: 'networkidle' });
@@ -35,7 +36,9 @@ const server = http.createServer((req, res) => {
       assert.equal(ids.length, new Set(ids).size, `Duplicate IDs: ${file}`);
       assert.equal(await page.locator('pre.sourceCode.r, div.cell-output-stderr').count(), 0, `Leaked R: ${file}`);
       if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), file.includes('kapitola') ? 0 : 1);
-      const solutions = page.locator('.callout:has(.callout-title:text-is("Ukázat řešení"))');
+      const solutions = page.locator('.callout[title="Ukázat řešení"]');
+      solutionCount += await solutions.count();
+      if (file === 'quarto/kapitola_01.html') assert.equal(await solutions.count(), 8, 'All eight exercises must have a solution');
       for (let i = 0; i < await solutions.count(); i++) {
         const item = solutions.nth(i);
         const toggle = item.locator('[data-bs-toggle="collapse"]');
@@ -51,6 +54,17 @@ const server = http.createServer((req, res) => {
       await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-desktop.png` });
       await page.setViewportSize({ width: 390, height: 844 });
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Mobile overflow: ${file}`);
+      if (await solutions.count()) {
+        const last = solutions.last();
+        await last.locator('[data-bs-toggle="collapse"]').click();
+        await last.locator('.callout-collapse').waitFor({ state: 'visible' });
+        await page.waitForTimeout(400);
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Open solution overflow: ${file}`);
+        await last.screenshot({ path: 'tmp/verification/solution-mobile.png' });
+        await last.locator('[data-bs-toggle="collapse"]').click();
+        await last.locator('.callout-collapse').waitFor({ state: 'hidden' });
+      }
+      await page.evaluate(() => window.scrollTo(0, 0));
       await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-mobile.png` });
       await page.setViewportSize({ width: 1360, height: 1000 });
     }
@@ -88,6 +102,9 @@ const server = http.createServer((req, res) => {
       assert(await visible() > 0, 'English search');
       await page.locator('.ref-controls input').fill('uroven mereni');
       assert(await visible() > 0, 'Search without Czech diacritics');
+      await page.locator('.ref-controls input').fill('codebook');
+      assert.equal(await visible(), 1, 'Search must reach the last row, beyond the first page');
+      assert(await page.locator(`#${lastId}`).isVisible());
       await page.locator('.ref-controls input').focus();
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(() => document.activeElement.tagName), 'SELECT');
@@ -98,7 +115,16 @@ const server = http.createServer((req, res) => {
     }
     assert(!fs.existsSync(path.join(root, 'sources')), 'Private sources copied to web');
     assert(!fs.existsSync(path.join(root, 'quarto/README.md')), 'Author documentation copied to web');
+    const noScript = await browser.newContext({ javaScriptEnabled: false });
+    const plain = await noScript.newPage();
+    await plain.goto(base + 'quarto/slovnicek.html');
+    assert.equal(await plain.locator('tbody tr:visible').count(), total, 'All glossary rows readable without JavaScript');
+    if (solutionCount) {
+      await plain.goto(base + 'quarto/kapitola_01.html');
+      assert.equal(await plain.locator('.callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+    }
+    await noScript.close();
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ pages: paths.length, glossaryItems: total, internalLinks: 'passed', solutions: 'keyboard + hidden/open/closed passed', mobileWidth: 390, errors }, null, 2));
+    console.log(JSON.stringify({ pages: paths.length, glossaryItems: total, internalLinks: 'passed', solutionCount, solutions: 'keyboard + hidden/open/closed passed', mobileWidth: 390, errors }, null, 2));
   } finally { await browser.close(); server.close(); }
 })().catch(error => { console.error(error); server.close(); process.exitCode = 1; });
