@@ -121,6 +121,13 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   komentované řešené příklady.
 - Střídej výpočty, konceptuální otázky, volbu metody, interpretaci výsledků
   a rozpoznávání chybných argumentů. Obtížnost přiměřeně odstupňuj.
+- Soubor cvičení má pokrýt celý obsah kapitoly a její cíle učení bez
+  zbytečného opakování obdobných úloh. Opakování zařazuj jen tehdy, má-li
+  jasný didaktický účel.
+- Cvičení mají ověřovat především skutečné porozumění: schopnost vysvětlit
+  princip, zdůvodnit postup, použít poznatky v nové situaci a rozpoznat
+  chybnou interpretaci. Neomezuj je na memorování definic ani mechanické
+  dosazování do vzorců.
 - Zadání musí uvádět všechny potřebné vstupy a očekávané pomůcky a vycházet
   z již vysvětlených pojmů a postupů.
 - Ke každému cvičení připoj úplné vzorové nebo možné řešení, včetně
