@@ -52,16 +52,36 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 
 ## Didaktika a jazyk
 
+- Upřednostňuj konceptuální porozumění a přesné uvažování. Výpočetní postupy
+  používej k objasnění principů a k získání výsledků, které student dokáže
+  interpretovat; nezahlcuj text samoúčelným početním nácvikem.
 - Preferuj posloupnost: intuice → psychologický příklad → formální zápis
   → výpočet → interpretace a omezení. Používej ji smysluplně, nikoli jako
   povinné nadpisy každého oddílu.
+- Intuitivní vysvětlení a analogie propojuj s přesným uvažováním. Nesmějí
+  nahrazovat zdůvodnění závěru; upozorni na jejich meze tam, kde by mohly
+  vést k chybnému pochopení.
+- Přizpůsobuj podrobnost výkladu začátečníkům, ale zachovej význam pojmů
+  a logiku argumentace. Nepoužívej zjednodušení, která vytvářejí mylné
+  představy nebo by se studenti později museli odnaučovat. Pokud zjednodušení
+  podstatně omezuje platnost tvrzení, toto omezení vysvětli.
 - Nový statistický i matematický pojem vysvětli před použitím. U nového
   vzorce vysvětli všechny symboly, význam vztahu, dosazení a podstatné mezikroky.
   Přehledové kapitoly nenahrazují vysvětlení přímo ve výkladu.
+- Matematickou notaci používej střídmě a účelně. Každý vzorec má pomoci
+  pochopit vztah mezi veličinami, princip výpočtu nebo strukturu a předpoklady
+  modelu. Vedle vysvětlení symbolů vždy objasni, co vztah říká a proč jej
+  zavádíme.
 - Odvození zařazuj tam, kde podporuje porozumění; náročnější odvození může
   být nepovinným rozšířením. Nezahlcuj studenty mechanickými výpočty.
+- Alternativní interpretace a odborné spory uváděj tehdy, když ovlivňují
+  význam pojmu, volbu postupu nebo interpretaci výsledku. Pokročilé
+  podrobnosti, které pro daný cíl učení nejsou potřebné, přesuň do nepovinného
+  rozšíření.
 - Piš odbornou, přirozenou češtinou v souvislém výkladu. Výčty, tabulky
   a zvýrazněné bloky používej, když pomáhají porozumění.
+- Piš soustředěně a podpůrně. Pomáhej studentům vysvětlením obtížných míst
+  a běžných omylů; nenahrazuj odborný výklad obecnou motivační řečí.
 - Preferuj příklady z psychologie a jasně popiš proměnné, jednotky a kontext.
   U dat rozlišuj skutečná, upravená a simulovaná data.
 - Rozvíjej porozumění principům, volbu metody, výpočet, interpretaci
@@ -72,6 +92,9 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Rozlišuj popis dat, statistickou inferenci a kauzální závěry. Vysvětluj
   relevantní předpoklady a omezení metod; nezaměňuj statistickou významnost
   za praktickou důležitost. Nevymýšlej výsledky ani citace.
+- Při práci s modely rozlišuj pozorovaná data, model a jeho předpoklady.
+  Vysvětluj, které závěry závisejí na přijatých předpokladech; nepředstavuj
+  modelové uvažování jako oblast oddělenou od popisné a inferenční statistiky.
 
 ## Terminologie a značení
 
