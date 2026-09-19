@@ -1,0 +1,455 @@
+# Od psychologické otázky k datům {#sec-kapitola-01}
+
+Když se po krátkém spánku obtížně soustředíme, nabízí se vysvětlení: málo spánku zhoršuje naši schopnost učit se. Co bychom však potřebovali vědět, abychom takový závěr mohli obhájit? Museli bychom upřesnit, co rozumíme krátkým spánkem a učením, získat vhodné údaje a posoudit i jiná vysvětlení. Samotná přesvědčivost příběhu tuto práci nenahradí.
+
+V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Všechny studie, jednotlivé záznamy a zadání v kapitole jsou **autorské modelové příklady**. Uvedená čísla jsou smyšlená pro výuku; nedokládají skutečný vztah mezi spánkem a pamětí.
+
+::: {.callout-note title="Co budete po prostudování umět"}
+Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině. Určíte populaci, výběr, případy a proměnné. Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty. Nakonec sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
+:::
+
+## Proč psychologie potřebuje statistiku {#sec-proc-statistika}
+
+Představte si, že se chcete dozvědět, zda délka spánku souvisí s výkonem v paměťové úloze. Jedna spolužačka uvádí, že po šesti hodinách spánku funguje dobře, zatímco jiný spolužák potřebuje osm hodin. Také stejný člověk může po podobně dlouhém spánku podat pokaždé jiný výkon. Co si z toho odnést?
+
+Osobní zkušenosti mohou být podnětem k otázce, ale samy ještě neukazují, jak pravidelný je pozorovaný vztah. Snadno si vybavíme situace, které odpovídají našemu očekávání, a jiné přehlédneme. Navíc v každodenní situaci obvykle neměníme jen jednu věc: před náročnou zkouškou můžeme současně méně spát, více se učit a prožívat větší napětí. Potřebu systematických postupů při posuzování zkušeností zdůrazňuje také Navarro v úvodu své učebnice [@navarro, kap. 1].
+
+**Statistika (*statistics*)** zahrnuje postupy, které pomáhají plánovat získávání dat, data popisovat a na jejich základě zdůvodňovat závěry za nejistoty. Je užitečná při vlastním výzkumu i při čtení článků, posuzování psychologických doporučení nebo interpretaci výsledků vyšetření. Umožňuje klást přesnější otázky; nenahrazuje znalost toho, co a jak bylo měřeno.
+
+Nejistota není jen nepříjemnost, kterou by správný výpočet měl odstranit. Můžeme mít dobré důvody pro určitý závěr a současně připouštět, že další data naše poznání zpřesní nebo změní. Uvažování o síle a omezeních důkazů bude provázet celý kurz [@cumming, kap. 1–2].
+
+::: {.worked-example}
+**Od zkušenosti k otázce.** Výrok „Po krátkém spánku si nic nepamatuji“ obsahuje několik nejasností. Jak krátký spánek máme na mysli? Vzpomínání na osobní události, nebo zapamatování nového učiva? Jak a kdy budeme výkon posuzovat?
+
+Pro naši modelovou studii otázku zpřesníme: „Souvisí studentem uvedená doba spánku během předchozí noci s počtem slov, která si vybaví po předložení seznamu dvanácti slov?“ Tím jsme vytvořili zkoumatelnou otázku. Zatím jsme neprokázali, že zvolený údaj zachycuje všechny důležité stránky spánku a paměti, ani že případný vztah bude příčinný.
+:::
+
+## Od otázky k proměnným a hodnotám {#sec-promenne}
+
+Začněme tím, jak by vypadal záznam o jednom účastníkovi. Student označený P01 uvedl šest hodin spánku, po splnění paměťové úlohy správně vybavil pět slov a do laboratoře přišel dopoledne. Každý z těchto údajů má jiný význam.
+
+**Případ (*case*)** je jednotka, o níž v daném uspořádání vedeme soubor údajů. V naší jednoduché studii odpovídá jeden případ jednomu účastníkovi při jedné návštěvě. Případem ale může být i rodina, školní třída nebo konkrétní návštěva klienta. Vždy potřebujeme určit, co jeden případ představuje.
+
+**Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být číselné.
+
+Odlišíme **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu je užitečným základem výkladu i u Arona a spoluautorů [@aron, s. 3–5].
+
+**Data (*data*)** jsou zaznamenané údaje, s nimiž pracujeme. Výraz **pozorování (*observation*)** se používá pro jednotlivý záznam či měření, někdy také pro celý případ. Proto si vždy ujasníme jeho význam v konkrétním textu. Pokud každý účastník přijde dvakrát, máme více návštěv než účastníků; nelze bez vysvětlení zaměnit jejich počty.
+
+::: {.worked-example}
+**Stejné číslo, různé údaje.** Číslo 6 může znamenat šest hodin spánku, šest správných odpovědí nebo identifikační kód účastníka. Teprve znalost proměnné a pravidel záznamu umožní číslo interpretovat. Samotná podoba buňky tuto informaci neposkytuje.
+
+Pokud všichni účastníci v malém souboru přišli dopoledne, proměnná „část dne“ má v tomto souboru stejnou hodnotu. Přesto je srozumitelné ji sledovat: v jiném souboru nebo při další návštěvě může být její hodnota jiná.
+:::
+
+Přehled pojmů je dostupný ve [slovníčku](slovnicek.qmd#pojem-promenna). V dalším výkladu budeme vždy spojovat údaj s případem a s významem proměnné.
+
+## Co chceme zjistit a o kom chceme něco tvrdit {#sec-populace-vyber}
+
+Představme si, že nás zajímají všichni studenti bakalářského studia jedné fakulty v určitém akademickém roce. Právě tato skupina tvoří **populaci (*population*)** naší studie: soubor případů, ke kterému se vztahuje výzkumná otázka. Populace nemusí zahrnovat všechny lidi ani být mimořádně velká. Její vymezení závisí na tom, koho chceme poznat [@howell, kap. 1; @privitera, kap. 1].
+
+Nemůžeme-li získat údaje od všech, zkoumáme **výběr (*sample*)**, tedy část populace zahrnutou do studie. V psychologii se pro něj používá také označení výzkumný soubor. Závěry o výběru a závěry o populaci odpovídají na odlišné otázky.
+
+**Popisná statistika (*descriptive statistics*)** slouží k uspořádání a shrnutí získaných dat. Popis může být zcela správný pro zkoumané případy, a přesto nemusí vystihovat širší populaci. **Inferenční statistika (*inferential statistics*)** poskytuje postupy pro usuzování na základě dat za jejich bezprostřední rámec, například od výběru k populaci. Takové usuzování vyžaduje předpoklady o vzniku dat a zahrnuje nejistotu. Ve slovníčku najdete i alternativní označení [induktivní statistika](slovnicek.qmd#pojem-inferencni).
+
+::: {.worked-example}
+**Kdo se do studie dostal?** Chceme poznat všechny bakalářské studenty fakulty. Pozvánku však zveřejníme jen v jednom dobrovolném semináři a přihlásí se studenti, kterým vyhovuje dopolední termín.
+
+Populací zůstávají všichni vymezení studenti fakulty. Výběrem jsou účastníci, od nichž jsme získali údaje. Studenti mimo seminář neměli stejnou příležitost se přihlásit a studenti s určitým režimem spánku mohli častěji odmítnout dopolední termín. Získaná data lze popsat, ale jejich přenos na celou fakultu potřebuje další zdůvodnění.
+:::
+
+**Náhodný výběr (*random sampling*)** využívá náhodného mechanismu při určování, kdo bude vybrán. V jednoduchém příkladu bychom losovali ze seznamu všech studentů vymezené populace. „Náhodný“ zde neznamená „oslovili jsme, koho jsme zrovna potkali“. Ani řádné losování neřeší automaticky vše: pozvaní lidé nemusí odpovědět a i náhodně získané výběry se mezi sebou liší.
+
+Větší soubor poskytuje více údajů, ale sám o sobě nenapraví nevhodný způsob získávání účastníků. Tisíc dobrovolníků z jedné specifické skupiny není automaticky lepším podkladem pro tvrzení o všech studentech než menší, vhodně získaný soubor. Posouzení závisí také na výzkumné otázce a na tom, jak se skupiny věcně liší.
+
+## Souvislost a příčina {#sec-souvislost-pricina}
+
+Řekneme-li, že dvě proměnné **souvisejí (*association*)**, máme na mysli, že jejich hodnoty vykazují vztah: znalost jedné přináší určitou informaci o druhé. **Kauzální závěr (*causal conclusion*)** jde dále: tvrdí, že změna určité podmínky vyvolává změnu výsledku. Samotná souvislost takový závěr nezajišťuje.
+
+V naší studii necháváme studenty spát obvyklým způsobem a pouze zaznamenáme dobu spánku a následný výkon. I kdybychom později zjistili vztah, mohl by souviset například s tím, že studenti v náročném zkouškovém období méně spí a současně jsou při úloze více rozptýlení. To je možné alternativní vysvětlení, nikoli výsledek této modelové studie. Jeho smyslem je ukázat, proč musíme uvažovat o okolnostech vzniku dat [@navarro, kap. 2].
+
+Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně mění určitou podmínku a sleduje její důsledky. Pro ilustraci ponechme spánek stranou a zkoumejme, zda učení slov ovlivňují rušivé zvuky. Jedna skupina dostane seznam slov v tichu, druhá se zvukovou nahrávkou. Seznam, délka prezentace, instrukce a čas pro odpověď budou stejné.
+
+**Náhodné rozdělení do podmínek (*random assignment*)** znamená, že o zařazení účastníka rozhoduje náhodný mechanismus, například předem připravené losování. Omezuje tak systematické přiřazování určitých lidí do určité podmínky. Nezaručuje ovšem, že v konkrétním experimentu budou skupiny úplně stejné; rozdíly mohou vzniknout náhodou. Při vyhodnocení je nutné zohlednit i tuto nejistotu.
+
+Náhodný výběr a náhodné rozdělení řeší různé otázky:
+
+::: {.table-scroll}
+| Postup | O čem rozhoduje | Co nám pomáhá zdůvodnit |
+|---|---|---|
+| Náhodný výběr | Kdo se dostane z populace do výběru | Usuzování z výběru na vymezenou populaci |
+| Náhodné rozdělení | Do které podmínky zařadíme již získané účastníky | Srovnání podmínek při posuzování příčinného účinku |
+:::
+
+::: {.worked-example}
+**Losování uvnitř skupiny dobrovolníků.** Ze semináře získáme dobrovolníky a losem je rozdělíme do ticha a rušivých zvuků. Použili jsme náhodné rozdělení do podmínek. Nepoužili jsme tím zároveň náhodný výběr ze všech studentů fakulty.
+
+Dobře provedené srovnání může přispět k posouzení účinku zvuků v dané situaci, ale přenos výsledku na jiné lidi, úlohy či prostředí potřebuje další argumenty. Také musíme ověřit, zda se podmínky nelišily něčím jiným, například odlišnou místností nebo instrukcemi.
+:::
+
+Podrobná statistická analýza příčinu „nedodá“ tam, kde pro ni chybí opora v uspořádání studie a v relevantních předpokladech. Popis, usuzování na populaci a kauzální závěr je proto vhodné rozlišovat už při formulování otázky, ne až po výpočtu.
+
+## Co vlastně měříme {#sec-mereni}
+
+Psychologické otázky se často týkají paměti, úzkosti, motivace nebo důvěry. Takové teoreticky vymezené vlastnosti a procesy označujeme jako **konstrukty (*constructs*)**. Konstrukt není totéž co odpověď na jednu otázku nebo číslo v tabulce.
+
+**Měření (*measurement*)** spojuje podle stanovených pravidel vlastnost či její projev se zaznamenanou hodnotou. **Operacionalizace (*operationalization*)** převádí obecné vymezení toho, co chceme zkoumat, do konkrétních pozorovatelných postupů. Jejich přesný popis představuje **operacionální definici (*operational definition*)**. Pro smysluplné čtení dat potřebujeme vědět, co účastník dělal, v jakých podmínkách, kdy a podle jakého pravidla mu byla přiřazena hodnota [@navarro, kap. 2; @howell, kap. 1].
+
+V naší modelové úloze účastník jednu minutu čte seznam dvanácti běžných českých slov. Seznam poté odstraníme a účastník má jednu minutu na zapsání slov, která si vybaví. Započítáme každé správné slovo jednou; opakované uvedení stejného slova nepřidává další bod. Předem určíme, jak posoudíme drobné pravopisné odchylky. Tak získáme počet správně vybavených slov.
+
+Tento počet je **ukazatelem (*indicator*)** výkonu v dané úloze. Může přinášet informaci o určité stránce paměti, ale nepokrývá automaticky všechny její stránky. Rozpoznávání již viděných slov, vybavování bez nápovědy a subjektivní hodnocení vlastní paměti používají jiné postupy a mohou vést k jinému obrazu.
+
+::: {.worked-example}
+**Co znamená „spánek: 7“?** Bez dalšího popisu může číslo znamenat sedm hodin spánku, hodnocení kvality spánku na stupnici nebo čas vstávání. Pro naši studii stanovíme: „Účastníkem odhadnutá celková doba skutečného spánku během noci bezprostředně před návštěvou, v hodinách; dobu bdění nezapočítává.“
+
+Tím se údaj stává srozumitelnějším. Zůstává však odhadem účastníka a nepopisuje například přerušování nebo hloubku spánku. Přesná definice objasňuje význam záznamu; sama ještě nezaručuje jeho přesnost nebo vhodnost pro každou otázku.
+:::
+
+U odpovědních stupnic potřebujeme znát také znění otázky a význam jednotlivých možností. Odpověď 4 na otázku „Jsem odpočatý“ může znamenat něco jiného než odpověď 4 na otázku „Jsem unavený“. Vyšší číselná hodnota proto nemusí vždy znamenat více stejné psychologické vlastnosti. Bez znalosti obsahu a směru odpovědí nelze jednotlivá čísla interpretovat.
+
+## Úrovně měření a význam hodnot {#sec-urovne}
+
+Jaký význam má rozdíl mezi hodnotami 2 a 4? U počtu správných odpovědí to může být rozdíl dvou správných odpovědí. U kódu místnosti nemusí velikost rozdílu znamenat nic. **Úroveň měření (*level of measurement*)**, alternativně *škála měření*, vyjadřuje, které vztahy mezi hodnotami můžeme věcně interpretovat: odlišnost, pořadí, rozdíly a poměry.
+
+Úroveň měření neurčujeme jen podle názvu proměnné nebo vzhledu čísel. Zdůvodňujeme ji tím, jak hodnoty reprezentují sledovanou vlastnost. Někdy je zdůvodnění přímočaré, jindy stojí na předpokladech, které potřebují další oporu. Rozhodnutí nesmí být pouhou volbou toho, co se nám hodí pro zamýšlený výpočet.
+
+### Nominální úroveň {#sec-nominalni}
+
+Při **nominální úrovni měření (*nominal level of measurement*)** hodnoty rozlišují kategorie, ale nevyjadřují jejich pořadí podle množství sledované vlastnosti. U podmínky experimentu mohou být hodnotami „ticho“ a „rušivé zvuky“. Můžeme určit, zda byli dva účastníci ve stejné, nebo odlišné podmínce.
+
+Pokud kategorie zapíšeme čísly 1 a 2, jejich význam zůstává stejný. Dvojka nepředstavuje dvojnásobek jedničky. Mohli bychom kódy zaměnit nebo použít písmena, pokud zachováme jednoznačné přiřazení kategorií. Změna označení by neměla změnit věcný závěr o těchto kategoriích.
+
+### Ordinální úroveň {#sec-ordinalni}
+
+Při **ordinální úrovni měření (*ordinal level of measurement*)** hodnoty navíc vyjadřují pořadí. Zvažme odpovědi na otázku o odpočatosti: „vůbec“, „trochu“, „dosti“, „zcela“. Jestliže je účastníci chápou v zamýšleném pořadí, vyšší odpověď znamená vyšší hodnocení odpočatosti.
+
+Z tohoto pořadí však samo neplyne, že přechod z „vůbec“ na „trochu“ znamená stejně velkou změnu prožitku jako přechod z „dosti“ na „zcela“. Zápis kategorií čísly 1, 2, 3 a 4 tento problém neřeší. Čísla jsou od sebe stejně vzdálená; reprezentované úrovně prožitku takto vzdálené být nemusejí.
+
+### Intervalová úroveň {#sec-intervalova}
+
+Při **intervalové úrovni měření (*interval level of measurement*)** lze kromě pořadí interpretovat také rovnost rozdílů: stejný rozdíl hodnot představuje stejný rozdíl měřené veličiny. Nulový bod ovšem není pevně určen nepřítomností měřené veličiny.
+
+Pro oddělení těchto vlastností pomůže teplota ve stupních Celsia. Zvýšení z 10 na 15 stupňů představuje stejný teplotní rozdíl jako zvýšení z 20 na 25 stupňů. Nula na této stupnici je zvolený referenční bod. Výrok „20 stupňů Celsia je dvakrát taková teplota jako 10 stupňů Celsia“ proto nelze chápat jako věcný poměr samotné teploty. Při převodu na jinou teplotní stupnici se tento číselný poměr změní.
+
+Pokud s psychologickým ukazatelem zacházíme jako s intervalovým, předpokládáme obdobnou interpretovatelnost rozdílů vzhledem k určité vlastnosti. Stejné rozestupy čísel na formuláři nejsou důkazem. Potřebujeme argumenty o měření a o tom, co mají rozdíly vyjadřovat.
+
+### Poměrová úroveň {#sec-pomerova}
+
+Při **poměrové úrovni měření (*ratio level of measurement*)** mají význam také poměry. Kromě srovnatelných rozdílů máme věcně určený nulový bod. Osm hodin je dvojnásobná doba oproti čtyřem hodinám; po převodu na minuty tento poměr zůstane stejný. Nula hodin představuje nulovou dobu spánku ve vymezeném období.
+
+Podobně deset správně vybavených slov je dvojnásobný počet oproti pěti. **Nevyplývá z toho dvojnásobná paměťová schopnost.** Poměrová interpretace počtu správných odpovědí se automaticky nepřenáší na konstrukt, který pomocí úlohy zkoumáme.
+
+::: {.worked-example}
+**Zdůvodnění místo nálepky.** Výrok „Paměť je poměrová proměnná“ neříká dost. Přesnější je: „Počet různých správně vybavených slov v této úloze interpretujeme poměrově jako počet: nula znamená žádné správně vybavené slovo a deset je dvakrát tolik jako pět. Tím však nezdůvodňujeme poměrové měření obecné paměťové schopnosti.“
+
+Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psychické obtíže. Vlastnost záznamu nesmíme bez argumentu přenést na vlastnost člověka.
+:::
+
+::: {.table-scroll}
+| Úroveň měření | Co potřebujeme zdůvodnit | Co z toho samo neplyne |
+|---|---|---|
+| Nominální | Hodnoty rozlišují kategorie | Pořadí podle množství vlastnosti |
+| Ordinální | Hodnoty vyjadřují i pořadí | Rovnost rozdílů mezi kategoriemi |
+| Intervalová | Stejné rozdíly reprezentují stejné změny veličiny | Smysluplnost poměrů hodnot |
+| Poměrová | Rozdíly i poměry mají význam vzhledem k určenému nulovému bodu | Stejné vlastnosti u jiného konstruktu, který ukazatelem zkoumáme |
+:::
+
+Rozlišení úrovní měření je užitečné pro kontrolu významu tvrzení, nikoli jako automatický návod na výběr metody. Historická diskuse o číslech na sportovních dresech ukazuje, proč je podstatné určit, co čísla v dané otázce reprezentují. Číslo jako označení hráče a číslo jako výsledek číselného losovacího zařízení nevypovídají o téže vlastnosti [@lord; @scholten]. Nemusíme nyní rozebírat celou polemiku; její důsledek pro naši práci je konkrétní: ptejme se po významu vztahů mezi hodnotami.
+
+### Diskrétnost, spojitost a přesnost záznamu {#sec-diskretni-spojite}
+
+Jiné hledisko se týká možných hodnot. **Diskrétní proměnná (*discrete variable*)** nabývá oddělených hodnot, například celých počtů správných odpovědí. Mezi pěti a šesti správně vybavenými slovy v naší úloze není přípustná hodnota pět a půl.
+
+**Spojitá proměnná (*continuous variable*)** může v příslušném intervalu teoreticky nabývat kterékoli hodnoty. Takto můžeme chápat dobu trvání. Přístroj ji ovšem zaznamenává jen s určitou přesností. Doba reakce zapsaná v celých milisekundách proto neznamená, že skutečné trvání vzniká jen v celých milisekundách [@aron, s. 5; @navarro, kap. 2].
+
+Rozhodující není přítomnost desetinné čárky. Pokud úloha dovoluje jen hodnocení 0, 0,5 a 1 bod, zaznamenaný bodový výsledek je diskrétní i s desetinnou hodnotou. U doby spánku naopak celočíselný zápis může být jen důsledkem hrubého odhadu. Vždy upřesníme, zda mluvíme o sledované veličině, nebo o konkrétním způsobu jejího záznamu.
+
+## Rozdíly, chyba a nejistota {#sec-nejistota}
+
+Pokud dva studenti podají odlišný výkon, neznamená to samo o sobě, že měření obsahuje chybu. Rozdíly mohou být právě tím, co chceme studovat. Také výkon jednoho člověka se může měnit, protože se mění jeho stav nebo podmínky. Abychom mohli mluvit o chybě, potřebujeme určit, vůči čemu ji posuzujeme.
+
+**Chyba měření (*measurement error*)** označuje odchylku získaného údaje od hodnoty, kterou má daný postup podle svého vymezení zachycovat. Například účastník uvede dobu spánku, ale zamění ji za dobu strávenou v posteli. U psychologických konstruktů bývá obtížnější určit, jak by vypadalo zcela přesné měření. Nemůžeme proto každou nečekanou odpověď jednoduše označit za chybnou.
+
+**Systematické zkreslení (*bias*)** vzniká, když postup soustavně posouvá výsledky určitým směrem vůči tomu, co chceme zjistit. Přístroj může opakovaně přičítat stejnou dobu; výběr účastníků může soustavně vynechávat lidi s určitým režimem. Opakované měření nebo více účastníků samo takový problém neodstraní.
+
+Dalším zdrojem nejistoty je výběr: jiná skupina z téže populace by mohla poskytnout jiné údaje, i kdybychom měřili bezchybně a vybírali vhodným náhodným postupem. A nakonec se mohou objevit obyčejné **chyby záznamu (*data entry errors*)**, například přepis sedmi hodin jako sedmdesáti. Je důležité tyto situace odlišovat, protože vyžadují různá opatření.
+
+::: {.worked-example}
+**Stejná otázka, různé problémy.** Jeden účastník si nepamatuje, jak dlouho v noci bděl. Jiný odhadne dobu přesně, ale při přepisu vznikne překlep. Třetí student se vůbec nezúčastní, protože studii organizujeme v době, kdy pracuje.
+
+První problém se týká měření, druhý záznamu a třetí získávání účastníků. Překlep můžeme opravit podle původního formuláře. Nepřesnou vzpomínku tím neopravíme a údaje o nepřítomném studentovi z tabulky nezískáme. Přidání dalších dopoledních účastníků nemusí řešit vynechávání pracujících studentů.
+:::
+
+**Nejistota (*uncertainty*)** znamená omezení toho, co na základě dostupných informací víme. Nejde o jediné číslo ani o synonymum chyby. Výzkum může nejistotu zmenšit, aniž ji zcela odstraní. Při čtení každého výsledku si proto budeme klást otázky: Co by se při opakování mohlo změnit? Co mohlo závěr soustavně posunout? Jaké informace potřebujeme pro jeho posouzení? Tento přístup vychází z důrazu na nejistotu a transparentnost výzkumu u Cumminga a Calin-Jagemana [@cumming, kap. 1–2].
+
+Transparentnost má jednoduchou praktickou podobu: popíšeme pravidla měření, zaznamenáme způsob získání účastníků a uchováme vysvětlení provedených oprav. Další člověk pak může posoudit, jak jsme k výsledku dospěli.
+
+## Od záznamů k datové matici {#sec-datova-matice}
+
+**Datová matice (*data matrix*)** uspořádává údaje do řádků a sloupců. V základní podobě představuje jeden řádek jeden případ, jeden sloupec jednu proměnnou a jedna buňka její hodnotu pro daný případ. Záhlaví obsahuje názvy proměnných; samo není dalším případem [@dostal, oddíl 5.1].
+
+Vrátíme se ke studii spánku a vybavování slov. Každý student přichází jednou, takže jeden řádek představuje jednoho účastníka při jedné návštěvě. Všichni dostanou stejnou úlohu v tichu. Vedle doby spánku a výsledku zaznamenáme také část dne a hodnocení odpočatosti.
+
+::: {.table-scroll}
+| id | spanek_h | slova | cast_dne | odpocatost |
+|---|---:|---:|---|---:|
+| P01 | 6 | 5 | dopoledne | 2 |
+| P02 | 8 | 9 | odpoledne | 4 |
+| P03 | 7 | 8 | dopoledne | 3 |
+| P04 | 5 | 6 | odpoledne | 2 |
+| P05 |  | 7 | dopoledne | 3 |
+| P06 | 7 | 0 | odpoledne | 1 |
+:::
+
+Údaje jsou smyšlené. U P05 chybí odhad doby spánku. U P06 je naopak znám skutečný výsledek úlohy: účastník ji dokončil, ale nevybavil správně žádné slovo. **Chybějící údaj a nula nejsou zaměnitelné.** Z této malé tabulky nyní nebudeme vyvozovat vztah mezi spánkem a výkonem; slouží k porozumění struktuře záznamů.
+
+### Identifikátory, názvy a kódy {#sec-kodovani}
+
+**Identifikátor (*identifier*, ID)** jednoznačně označuje účastníka, případ nebo záznam podle stanoveného účelu. V naší tabulce `id` označuje účastníka a při jediné návštěvě zároveň celý řádek. Není to jeho pořadí v aktuálním zobrazení. Když tabulku seřadíme jinak, P01 zůstává P01. Identifikátor umožňuje spojit záznam s odpovídajícím původním formulářem; sám však nemusí uchovávat původní pořadí řádků.
+
+Při dvou návštěvách by se identifikátor účastníka opakoval a konkrétní záznam bychom mohli odlišit kombinací ID a čísla návštěvy. Dva řádky stejného člověka bychom pak nesměli vydávat za dva různé účastníky. Jejich společný původ musí zůstat dohledatelný.
+
+Pro názvy sloupců zvolíme jednoduchou konvenci: krátké a srozumitelné názvy, začátek písmenem, bez mezer a diakritiky, slova oddělená podtržítkem. Například `spanek_h` připomíná jednotku, zatímco přesné vysvětlení patří do přehledu proměnných. Jde o praktickou konvenci pro přenositelnost, nikoli o obecný zákon statistiky. U příbuzných položek můžeme použít názvy `stres_01`, `stres_02` a dále; stejná délka číselné části pomáhá při řazení.
+
+**Kódování (*coding*)** je přiřazování záznamů hodnotám podle stanovených pravidel. Kategorii „dopoledne“ můžeme ponechat jako text nebo jí přiřadit například kód 1 a kategorii „odpoledne“ kód 2. Obě podoby mohou být použitelné. Číselný zápis není povinnou vlastností datové matice a sám neznamená, že vyjadřuje množství. Potřebujeme především konzistenci a dostupné vysvětlení kódů.
+
+### Chybějící údaje a prostředí analýzy {#sec-chybejici}
+
+**Chybějící údaj (*missing value*)** znamená, že hodnotu nemáme k dispozici. Účastník mohl otázku přeskočit, nemuselo proběhnout měření nebo se záznam ztratil. Někdy je důležité zachovat i důvod chybění, protože může měnit naše porozumění datům.
+
+Při přepisu dat pro následné zpracování ve statistickém programu lze použít jednotný kód mimo přípustný rozsah, například −99. Jeho výhodou je, že vyplněný kód může znamenat: „Zkontrolovali jsme formulář a zjistili jsme, že odpověď chybí.“ Prázdná buňka může během přepisu znamenat i dosud nezkontrolované místo. Význam kódu proto předem stanovíme a zapíšeme.
+
+Pokud data následně zpracujeme v SPSS, JASP nebo R, **samotný export nestačí**. Musíme zajistit, aby program kód rozpoznal nebo aby byl převeden na chybějící údaj. Jinak je −99 obyčejným číslem a může vstoupit do výpočtu. Také musíme ověřit, že −99 nemůže být skutečnou hodnotou konkrétní proměnné. Není to univerzální kód vhodný pro všechna data.
+
+Pro výpočty přímo v Excelu budeme v této učebnici přednostně ponechávat chybějící číselné údaje v prázdných buňkách, jako u P05. Pokud potřebujeme rozlišovat důvody chybění nebo stav kontroly přepisu, přidáme samostatný sloupec. Tato volba sama nezajišťuje správný výsledek každého výpočtu: součet zcela prázdných buněk může v Excelu vrátit nulu. Ta pak není důkazem, že účastník získal nulový výsledek. U částečně chybějících odpovědí může vzniknout neúplný součet. Konkrétní výpočty proto později doplníme kontrolou, zda máme všechny potřebné údaje.
+
+::: {.worked-example}
+**Dvě různé situace.** Účastník A splnil úlohu, ale nevybavil žádné slovo: zaznamenáme 0. Účastník B k úloze vůbec nedostal příležitost, protože selhal počítač: výsledek chybí. Zapsat mu 0 by znamenalo vytvořit údaj o výkonu, který jsme nezměřili.
+
+Při přípravě pro statistický program může být druhý záznam označen kódem −99, při přímé práci v našem excelovém příkladu prázdnou buňkou a poznámkou o selhání měření v samostatném sloupci. Význam zůstává stejný, mění se způsob zápisu a navazující zacházení.
+:::
+
+Neexistuje jediný způsob zápisu vhodný pro všechny pracovní postupy. Praktická doporučení pro tabulková data se liší i v tom, zda preferovat prázdné buňky, nebo explicitní označení chybění. Shodným požadavkem je jednoznačný význam, konzistence a správné zacházení při analýze; Broman a Woo navíc upozorňují na riziko zapomenutých číselných kódů [@broman].
+
+### Přehled proměnných a jejich kódování {#sec-codebook}
+
+Samotná matice nestačí. **Přehled proměnných a jejich kódování (*codebook*)** vysvětluje, co každý sloupec znamená a jak byly jeho hodnoty získány. Název v přehledu musí přesně odpovídat názvu v matici. Pro náš příklad jej můžeme sestavit takto:
+
+::: {.table-scroll}
+| Název | Význam a pravidlo záznamu | Přípustné hodnoty a jednotky | Chybění |
+|---|---|---|---|
+| id | Stálé označení účastníka; každý přichází jednou | P01 až P06; jedinečné v této tabulce | Není přípustné |
+| spanek_h | Odhad skutečné doby spánku během noci před návštěvou; bdění se nezapočítává | Hodiny od 0 do 24; desetinné hodnoty jsou přípustné | Prázdná buňka |
+| slova | Počet různých správně vybavených slov z předloženého seznamu; jedna minuta na čtení, jedna na vybavení | Celá čísla od 0 do 12 | Prázdná buňka |
+| cast_dne | Část dne, kdy začalo měření | dopoledne = před 12:00; odpoledne = od 12:00 | Prázdná buňka |
+| odpocatost | Odpověď před úlohou na otázku „Jak odpočatě se právě cítíte?“ | 1 = vůbec, 2 = trochu, 3 = dosti, 4 = zcela | Prázdná buňka |
+:::
+
+Takto můžeme záznam interpretovat i s odstupem času. Údaj 3 v posledním sloupci znamená odpověď „dosti“ na přesně uvedenou otázku, nikoli obecnou míru únavy nebo třetí pořadí účastníka. Přípustný rozsah pomáhá odhalit zjevně neodpovídající hodnoty; hodnota uvnitř rozsahu však ještě není důkazem bezchybnosti. Překlep ze 7 na 8 může zůstat v přípustných mezích.
+
+### Sestavení a kontrola v Excelu {#sec-kontrola-matice}
+
+Pro zopakování příkladu otevřete prázdný list. Do buněk A1 až E1 napište názvy `id`, `spanek_h`, `slova`, `cast_dne` a `odpocatost`. Šest řádků dat z úvodní matice přepište do řádků 2 až 7. Buňku B6 pro P05 ponechte prázdnou, do C7 pro P06 zapište číselnou nulu. Přehled proměnných umístěte na samostatný list, aby se nepletl s daty.
+
+Do jedné buňky zapisujte jeden údaj. Jednotku nebo vysvětlující větu přesuňte do přehledu proměnných či samostatného sloupce. Nemíchejte například `7`, `7 hodin` a `asi sedm, nevím` v jednom číselném sloupci. Pokud je odhad nejistý, způsob zachycení nejistoty stanovte předem. Nevyplňujte opakující se hodnoty jen v prvním řádku a zbytek nenechávejte „domyslet“ podle sousedních buněk. Barva buňky také nesmí být jediným nositelem údaje.
+
+::: {.worked-example}
+**Oprava záznamu s oporou v podkladu.** V matici má P04 dobu spánku 50 hodin, ale původní formulář jednoznačně obsahuje 5 hodin. Opravíme překlep a zaznamenáme, co a podle čeho bylo opraveno. Pokud původní odpověď přečíst nelze, hodnotu 5 si nedomyslíme: označíme údaj jako chybějící a zachováme informaci o důvodu.
+
+U P05 je doba spánku nevyplněná, protože účastník odpověď neuvedl. Nedoplníme ji podle sousedního řádku. V naší matici pořadí účastníků neobsahuje informaci o jejich spánku.
+:::
+
+Před analýzou projdeme identifikátory, jednotky, přípustné hodnoty a chybění a porovnáme záznamy s původními podklady. Zachováme původní data a opravy provádíme dohledatelně. Správně uspořádaná matice není jen technická formalita: chrání význam údajů, na kterém bude pozdější analýza stát [@broman].
+
+## Shrnutí {#sec-shrnuti-01}
+
+Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem. Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
+
+Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, nejistota z výběru, chyba měření, systematické zkreslení a chyba záznamu nejsou stejný problém. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
+
+Nyní umíme připravit a číst jednotlivé záznamy. Dalším krokem bude hledat, jak jsou hodnoty v souboru zastoupeny a jak je přehledně zobrazit.
+
+## Cvičení {#sec-cviceni-01}
+
+Úlohy řešte vlastními slovy; kalkulačku nepotřebujete. U poslední úlohy lze tabulku sestavit na papíře nebo v Excelu. Všechny potřebné údaje jsou v zadání. U otázek vyžadujících zdůvodnění může existovat více dobrých formulací; porovnejte především logiku své odpovědi s řešením.
+
+### Úloha 1: Co tvoří jeden záznam {#sec-uloha-01-1}
+
+Čtyři studenti sedm večerů zaznamenávají, zda se ten den učili v knihovně, a dobu učení v minutách. Každý student každý večer odevzdá jeden úplný záznam. V tabulce představuje každý řádek jednoho studenta v jednom dni.
+
+a) Co představuje případ v této tabulce? Kolik obsahuje účastníků a kolik řádků dat?
+
+b) U údaje „učení v knihovně“ odlište proměnnou, možné hodnoty a konkrétní záznam „ano“.
+
+c) Proč by bylo chybné napsat, že jsme zkoumali 28 různých studentů? Jak zachováme informaci o společném původu záznamů?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Případ představuje konkrétního studenta v konkrétním dni. Účastníci jsou čtyři; každý poskytl sedm záznamů, takže tabulka obsahuje 28 řádků dat. Záhlaví se nepočítá jako záznam.
+
+Proměnnou je údaj, zda se student daný den učil v knihovně. Možné hodnoty jsou „ano“ a „ne“ podle stanoveného významu otázky. „Ano“ je zaznamenaná hodnota u určitého studenta v určitém dni.
+
+Číslo 28 vyjadřuje počet denních záznamů, nikoli různých lidí. Každý student má stálý identifikátor a řádek obsahuje také den. Můžeme tak odlišit návazné záznamy téhož člověka. Změnou počtu řádků nevznikli noví účastníci.
+:::
+
+### Úloha 2: Co nám řeknou dobrovolníci {#sec-uloha-01-2}
+
+Výzkumnice chce poznat zkušenosti všech studentů prvního ročníku jedné univerzity s adaptací na studium. Dotazník zveřejní v dobrovolné skupině zaměřené na zvládání studijního stresu. Odpoví 300 členů.
+
+a) Vymezte zamýšlenou populaci a skutečný výběr. Co musíme ověřit o členství odpovídajících lidí v populaci?
+
+b) Kolega tvrdí: „Máme 300 odpovědí, takže můžeme výsledek bezpečně vztáhnout na všechny prváky.“ Posuďte jeho argument.
+
+c) Jakou roli zde má statistika a co za nás samotný výpočet nevyřeší?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Populací jsou všichni studenti prvního ročníku dané univerzity ve vymezeném období. Skutečný soubor tvoří 300 odpovídajících členů skupiny. Je potřeba ověřit, zda skutečně všichni patří do prvního ročníku této univerzity; příslušnost ke skupině to sama nezaručuje.
+
+Počet odpovědí nezdůvodňuje způsob jejich získání. Členové skupiny mohou mít jiné zkušenosti než studenti mimo ni a z členů navíc odpověděli jen někteří. Nemusíme vědět, jakým směrem se liší, abychom rozpoznali mezeru v argumentu o zobecnění.
+
+Statistika pomůže získané údaje uspořádat a popsat a za odpovídajících předpokladů také posuzovat zobecnění a jeho nejistotu. Samotný výpočet však nezajistí, že jsme získali údaje od vhodného souboru. Potřebujeme informace o výběru a o tom, jaké skupiny zůstaly nezastoupené.
+:::
+
+### Úloha 3: Tři různé závěry {#sec-uloha-01-3}
+
+Předpokládejte, že je správně doložena souvislost mezi delší uvedenou dobou spánku a lepším výsledkem paměťové úlohy v jednom konkrétním souboru. Výzkumník spánek nijak neovlivňoval.
+
+a) Rozlište následující výroky: „V tomto souboru spolu údaje souvisejí.“ — „Podobný vztah očekáváme u všech studentů fakulty.“ — „Pokud studentům prodloužíme spánek, zlepšíme tím jejich výsledek.“
+
+b) Který výrok pouze popisuje uvedená data? Jakou další oporu potřebují zbývající dva?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+První výrok popisuje vztah v získaných datech; jeho správnost je součástí zadání. Druhý zobecňuje na populaci a vyžaduje zdůvodnění přenosu z výběru na studenty fakulty. Třetí je kauzální: předpovídá důsledek zásahu do spánku.
+
+Pro druhý výrok potřebujeme posoudit výběr účastníků a nejistotu zobecnění. Pro třetí potřebujeme oporu pro příčinnou interpretaci a vypořádání alternativních vysvětlení. Například studijní zátěž může souviset současně s délkou spánku a výkonem. Ani pravdivý popis souvislosti, ani dobré zastoupení populace samo o sobě neprokazuje účinek prodloužení spánku.
+:::
+
+### Úloha 4: Co zajistilo losování {#sec-uloha-01-4}
+
+Do studie přijde 40 dobrovolníků. Losem je rozdělíme na dvě stejně velké skupiny. Jedna se učí slova v tichu, druhá při zvukové nahrávce. Ostatní podmínky se snažíme zachovat stejné.
+
+a) Použili jsme náhodný výběr, náhodné rozdělení, nebo obojí?
+
+b) Je zaručeno, že obě skupiny mají stejné předchozí paměťové schopnosti?
+
+c) Asistent předloží jedné skupině těžší seznam slov. Proč by to změnilo interpretaci výsledku, přestože rozdělení proběhlo losem?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Použili jsme náhodné rozdělení již získaných dobrovolníků do podmínek. Zadání nepopisuje náhodný výběr z vymezené populace.
+
+Losování nezaručuje přesně stejné složení skupin. Omezuje systematické zařazování například zdatnějších účastníků do jedné podmínky, ale náhodné rozdíly mohou zůstat. Stejná velikost skupin také neznamená stejné schopnosti.
+
+Při různě obtížných seznamech by se současně měnil zvuk i obtížnost úlohy. Případný rozdíl ve výkonu bychom proto nemohli jednoznačně připsat zvuku. Losování účastníků neodstraňuje další rozdíly, které sami vytvoříme v podmínkách experimentu.
+:::
+
+### Úloha 5: Co je „dobrá paměť“ {#sec-uloha-01-5}
+
+Výzkumnice chce sledovat změnu paměti po studijním programu. Před začátkem položí otázku „Máte dobrou paměť?“ s možnostmi ano/ne. Po skončení nechá účastníky vybavovat slova ze seznamu a zaznamená počet správných slov. Oba sloupce nazve `pamet` a chce je přímo porovnat.
+
+Vysvětlete problém s odkazem na konstrukt, operacionalizaci a význam hodnot. Navrhněte vhodnější popis proměnných a jednu úpravu výzkumu. Není potřeba navrhovat statistickou metodu.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Konstrukt paměti je obecnější než jednotlivý ukazatel. První postup zachycuje vlastní hodnocení paměti, druhý výkon v konkrétní úloze. Použití stejného názvu sloupce nesjednotí jejich význam. „Ano“ a počet vybavených slov nejsou dvě srovnatelné hodnoty stejného měření.
+
+Názvy a popisy mají tento rozdíl zachovat, například vlastní hodnocení paměti a počet správně vybavených slov. Jednou úpravou je použít před programem i po něm srovnatelně vymezený postup a stejné pravidlo vyhodnocení. Musíme však zvážit, zda opakované setkání s úlohou samo nemění výkon. Ani tato úprava sama nedokazuje, že případnou změnu způsobil program; k tomu potřebujeme vhodné srovnání a další oporu.
+:::
+
+### Úloha 6: Co hodnoty opravňují tvrdit {#sec-uloha-01-6}
+
+Posuďte a zdůvodněte následující tvrzení. Uveďte, zda je lze obhájit z dostupných informací, nebo jaký předpoklad chybí.
+
+a) „Skupina označená 4 dostala dvakrát silnější zásah než skupina 2.“ Čísla byla přidělena jako libovolné názvy skupin.
+
+b) „Rozdíl mezi odpověďmi 1 a 2 je stejně velký jako mezi 3 a 4.“ Jde o hodnocení odpočatosti od „vůbec“ po „zcela“, bez dalších poznatků o měření.
+
+c) „Účastnice vybavila deset slov, účastník pět, takže má dvakrát lepší paměť.“ Oba dostali stejný seznam a stejné instrukce.
+
+d) „Doba zapsaná jako 7 hodin je diskrétní, protože neobsahuje desetinná místa.“
+
+e) „Na stupnici, jejíž nulový bod je jen zvolená reference, můžeme interpretovat rovné rozdíly, ale samotné poměry zapsaných hodnot nemusí mít věcný význam.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a) Tvrzení nelze obhájit. Kódy rozlišují kategorie nominálně; nevyjadřují dávku ani intenzitu zásahu. Poměr kódů nemá uvedený význam.
+
+b) Z pořadí odpovědí plyne nanejvýš ordinální interpretace. Rovnost rozdílů v odpočatosti by vyžadovala další argument pro intervalovou interpretaci. Stejná vzdálenost vytištěných čísel nestačí.
+
+c) Účastnice vybavila dvojnásobný počet slov. Poměrové tvrzení o počtu je oprávněné, ale přenos na paměťovou schopnost není doložen. Stejné instrukce tento rozdíl mezi ukazatelem a konstruktem neodstraňují.
+
+d) Zápis může být zaokrouhlením nebo hrubým odhadem spojité doby. Musíme odlišit možné hodnoty skutečné doby od přesnosti záznamu. Samotná absence desetinných míst nerozhoduje.
+
+e) Tvrzení vystihuje intervalovou úroveň, pokud je zároveň zdůvodněno, že rovné číselné rozdíly reprezentují rovné změny veličiny. Příkladem je teplota ve stupních Celsia. Zvolený nulový bod sám o sobě neprokazuje intervalovost; potřebujeme obě informace.
+:::
+
+### Úloha 7: Více údajů nevyřeší všechno {#sec-uloha-01-7}
+
+Rozlište, co se děje v následujících situacích, a navrhněte odpovídající opatření.
+
+a) Při přepisu doby spánku ze čitelného formuláře vznikne místo 8 hodnota 80.
+
+b) Účastníci do doby spánku pravidelně zahrnují i bdění v posteli, ačkoli chceme skutečnou dobu spánku.
+
+c) Ze stejné populace vhodně náhodně vybereme jinou skupinu a získáme poněkud odlišné údaje.
+
+d) Dva účastníci splní stejnou úlohu ve stejných podmínkách a vybaví různý počet slov.
+
+Pro které situace by nebylo odůvodněné jednoduše „opravit čísla, aby odpovídala očekávání“?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a) Jde o chybu záznamu. Oprava na 8 má oporu v původním formuláři a má být dohledatelná.
+
+b) Měření soustavně zachycuje jinou dobu, než zamýšlíme, a tím vzniká systematické zkreslení směrem k delší uvedené době. Potřebujeme zpřesnit instrukce a ověřit jejich pochopení; ze stávajících čísel nemusíme umět skutečnou dobu zpětně zjistit. Více stejně získaných odpovědí problém samo neodstraní.
+
+c) Jde o nejistotu související s výběrem. Rozdíl mezi dvěma výběry není sám důkaz chyby. Potřebujeme postupy, které tuto nejistotu zohlední, nikoli přepisovat naměřené hodnoty.
+
+d) Může jít o skutečný rozdíl výkonu. Bez další informace nemáme důvod pokládat jej za chybu měření.
+
+Úprava podle očekávání není oprávněná v žádné situaci. V a) neopravujeme podle očekávání, ale podle doloženého původního záznamu. V ostatních případech nám zadání neposkytuje podklad pro opravu konkrétní hodnoty.
+:::
+
+### Úloha 8: Opravte matici a zachovejte význam {#sec-uloha-01-8}
+
+Každý ze tří účastníků navštívil laboratoř jednou. Na původních formulářích stojí:
+
+- K01: doba spánku 6 hodin; paměťová úloha byla dokončena, správně vybaveno 0 slov.
+- K02: doba spánku neuvedena; správně vybaveno 8 slov.
+- K03: doba spánku 7 hodin; úloha neproběhla pro poruchu počítače.
+
+Přepsaná tabulka vypadá takto:
+
+::: {.table-scroll}
+| id | spanek | slova |
+|---|---|---|
+| K01 | 6 hodin | 0 |
+| K01 | −99 | 8 |
+| K03 | 7 | 0 |
+:::
+
+a) Připravte správnou matici pro přímé výpočty v Excelu podle konvence této kapitoly. Zachovejte i známý důvod chybění.
+
+b) Připojte krátký přehled proměnných včetně jednotek a přípustných hodnot. Paměťová úloha používá dvanáct slov a stejné pravidlo jako výklad.
+
+c) Jak by se zápis chybějících číselných údajů mohl změnit při přípravě pro statistický program a co by bylo nutné zajistit před analýzou?
+
+d) Proč není samotný nulový výsledek součtu prázdných buněk důkazem nulového výkonu?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Podle podkladů opravíme druhý identifikátor na K02. Číselný údaj zapíšeme bez jednotky v buňce. U K02 chybí doba spánku, u K03 výsledek úlohy. Naopak nulu u K01 zachováme jako skutečně zjištěný výsledek.
+
+::: {.table-scroll}
+| id | spanek_h | slova | duvod_chybeni |
+|---|---:|---:|---|
+| K01 | 6 | 0 | žádný údaj nechybí |
+| K02 |  | 8 | doba spánku neuvedena |
+| K03 | 7 |  | úloha neproběhla pro poruchu počítače |
+:::
+
+Přehled vysvětlí: `id` je stálý jedinečný identifikátor účastníka; `spanek_h` je odhad doby skutečného spánku během předchozí noci v hodinách, s přípustným rozsahem 0 až 24; `slova` je počet různých správně vybavených slov v předepsané úloze, celé číslo od 0 do 12. U obou číselných sloupců znamená prázdná buňka chybějící údaj. `duvod_chybeni` uchovává slovní vysvětlení podle původního záznamu.
+
+Při přípravě pro statistický program můžeme dvě prázdné číselné buňky nahradit například −99. Kód je mimo přípustné hodnoty těchto dvou proměnných. Musíme jej zdokumentovat a před analýzou označit nebo převést na chybějící údaj. Skutečná nula u K01 se nemění.
+
+Součet prázdných buněk může vrátit nulu jako výsledek pravidla výpočtu, přestože o výkonu nemáme žádný údaj. U K03 úloha neproběhla. Interpretovat výsledek takového výpočtu jako skutečně nulový výkon by zaměnilo chybění za pozorovanou hodnotu.
+:::
+
+## Literatura {.unnumbered}
+
+::: {#refs}
+:::

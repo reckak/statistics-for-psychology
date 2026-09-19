@@ -1,5 +1,7 @@
 # O učebnici {.unnumbered}
 
+Začněte kapitolou [Od psychologické otázky k datům](quarto/kapitola_01.qmd).
+
 Tato učebnice provází prvním kurzem statistiky pro studenty psychologie. Cílem je rozumět tomu, jak vznikají data, co z nich můžeme zjistit a jak zdůvodnit závěr. Výpočty budeme spojovat s jejich významem v psychologickém výzkumu.
 
 Předpokládáme matematiku na úrovni základní školy. Nové pojmy a potřebné matematické postupy vysvětlujeme průběžně. Ve výkladu najdete komentované příklady; samostatná cvičení jsou na konci kapitol. Nejdříve si zkuste odpověď zdůvodnit vlastními slovy a teprve potom otevřete **Ukázat řešení**.
