@@ -29,6 +29,7 @@ book:
 
 lang: cs
 bibliography: references.bib
+csl: styles/apa.csl
 execute:
   echo: false
   warning: false

@@ -167,3 +167,43 @@ Ověření:
   Kapitola neobsahuje matematické rovnice ani grafy.
 - Nová podoba veřejného webu není tímto lokálním ověřením potvrzena;
   bude publikována až po uživatelském sloučení a úspěšném nasazení.
+
+## Citování podle APA 7 (2026-09-20)
+
+Celá kniha používá `csl: styles/apa.csl` a společnou bibliografii
+`references.bib`. Jde o nezměněný styl **APA Style 7th edition** z projektu
+Citation Style Language, stažený 2026-09-20:
+https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl.
+Verze uvnitř souboru je datována 2026-02-07; SHA-256:
+`1ECE4FB3C295E66D04B4394E295AA58A87741CEEEF1658192437EB9953C2F13E`.
+Autoři a licence CC BY-SA 3.0 jsou zachováni v hlavičce souboru. Místní kopie
+umožňuje reprodukovatelné sestavení bez stahování stylu při renderování.
+Použití CSL v Quartu: https://quarto.org/docs/authoring/citations.html.
+
+V kapitole byly upraveny čtyři narativní citace: rok následuje přímo
+za autorem a jméno se znovu neopakuje v závorce. U Arona a spoluautorů
+se používá automatický zápis `Aron et al. (2014, s. 3–5)`. České lokátory
+zpracovává citační procesor; standardní CSL ponechává v bibliografii
+anglické označení vydání a chybějícího data (`ed.`, `n.d.`), zatímco
+v českých citacích v textu používá `b.r.`. Styl nebyl lokálně přepisován.
+
+Názvy v bibliografii byly převedeny na větnou velikost písmen se zachováním
+vlastních jmen a názvu R. Doplněny ověřené údaje:
+
+- Lord (1953): číslo 12 a DOI https://doi.org/10.1037/h0063675;
+  ročník 8 a strany 750–751 potvrzeny v metadatech Crossrefu
+  https://api.crossref.org/works/10.1037/h0063675.
+- Zand Scholten a Borsboom (2009): číslo 2, ověřeno u vydavatele
+  https://www.sciencedirect.com/science/article/pii/S0022249609000054.
+
+U revidované učebnice Navarro zůstává datum neuvedené, protože pro
+použitou verzi není doložené. Ostatní zdrojové údaje navazují na ověření
+při přípravě kapitoly popsané výše; nešlo o nové úplné bibliografické šetření.
+
+Ověření: úspěšný render všech pěti stránek v Quarto 1.9.38, kontrola HTML
+v Chrome včetně devíti bibliografických záznamů, reprezentativních citací
+APA, kurzivy názvu knihy, DOI, dosavadních odkazů, řešení, slovníčku
+a mobilního rozložení. Všech 12 citačních výskytů bylo prohlédnuto ve
+vykreslené podobě; seznam literatury také vizuálně na desktopu a mobilu.
+Číselné příklady ani řešení se neměnily, kontroly R a Excelu se neopakovaly.
+Publikace této změny bude následovat až po uživatelském sloučení a nasazení.

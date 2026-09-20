@@ -35,6 +35,17 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 
 ## Zdroje a jejich použití
 
+- Citace v textu i seznam literatury ve všech kapitolách formátuj podle
+  APA 7. Používej společný styl `styles/apa.csl` nastavený v `_quarto.yml`,
+  bibliografické údaje v `references.bib` a citační zápis Quarta; výsledné
+  citace ani bibliografii nesestavuj ručně. Zachovej českou lokalizaci
+  citačních popisků. Je-li autor součástí věty, rok připoj přímo za jeho
+  jméno a neopakuj jméno v závorce. U konkrétní pasáže uveď ověřenou
+  stránku, kapitolu či oddíl, u doslovné citace vždy dostupný lokátor.
+  Ověřuj úplnost záznamů včetně vydání, ročníku, čísla časopisu a DOI,
+  pokud existuje; chybějící údaje nevymýšlej. Po změně citací zkontroluj
+  vykreslené odkazy i seznam literatury, včetně iniciál, pořadí autorů,
+  letopočtů, kurzivy, velikosti písmen v názvech a funkčních DOI/URL.
 - Hlavní odbornou a didaktickou oporou i východiskem pořadí témat je Howellova
   učebnice v `sources/howell.pdf`. Před použitím ověř její přesný titul,
   vydání a bibliografické údaje; nevymýšlej čísla stran ani odkazy.

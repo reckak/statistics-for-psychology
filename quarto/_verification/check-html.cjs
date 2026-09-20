@@ -44,6 +44,14 @@ const server = http.createServer((req, res) => {
       }
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
+        const references = page.locator('#refs .csl-entry');
+        assert.equal(await references.count(), 9, 'All nine chapter sources are included');
+        const howell = await page.locator('#ref-howell').innerText();
+        assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
+        assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
+        assert.match(await page.locator('.citation[data-cites="aron"]').first().innerText(), /Aron et al\. \(2014, s\. 3–5\)/, 'APA narrative citation for three authors');
+        assert.match(await page.locator('.citation[data-cites="cumming"]').first().innerText(), /Cumming & Calin-Jageman, 2024/, 'APA parenthetical citation for two authors');
+        assert.equal(await page.locator('#ref-lord a').getAttribute('href'), 'https://doi.org/10.1037/h0063675');
         const links = page.locator('#TOC > ul > li > a');
         assert.equal(await links.count(), await page.locator('main > section.level2').count(), 'TOC covers chapter sections');
         for (const link of await links.all()) assert(await link.isVisible(), 'TOC link is visible');

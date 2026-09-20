@@ -12,7 +12,7 @@ Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, z
 
 Představte si, že se chcete dozvědět, zda délka spánku souvisí s výkonem v paměťové úloze. Jedna spolužačka uvádí, že po šesti hodinách spánku funguje dobře, zatímco jiný spolužák potřebuje osm hodin. Také stejný člověk může po podobně dlouhém spánku podat pokaždé jiný výkon. Co si z toho odnést?
 
-Osobní zkušenosti mohou být podnětem k otázce, ale samy ještě neukazují, jak pravidelný je pozorovaný vztah. Snadno si vybavíme situace, které odpovídají našemu očekávání, a jiné přehlédneme. Navíc v každodenní situaci obvykle neměníme jen jednu věc: před náročnou zkouškou můžeme současně méně spát, více se učit a prožívat větší napětí. Potřebu systematických postupů při posuzování zkušeností zdůrazňuje také Navarro v úvodu své učebnice [@navarro, kap. 1].
+Osobní zkušenosti mohou být podnětem k otázce, ale samy ještě neukazují, jak pravidelný je pozorovaný vztah. Snadno si vybavíme situace, které odpovídají našemu očekávání, a jiné přehlédneme. Navíc v každodenní situaci obvykle neměníme jen jednu věc: před náročnou zkouškou můžeme současně méně spát, více se učit a prožívat větší napětí. Potřebu systematických postupů při posuzování zkušeností zdůrazňuje také Navarro [-@navarro, kap. 1] v úvodu své učebnice.
 
 **Statistika (*statistics*)** zahrnuje postupy, které pomáhají plánovat získávání dat, data popisovat a na jejich základě zdůvodňovat závěry za nejistoty. Je užitečná při vlastním výzkumu i při čtení článků, posuzování psychologických doporučení nebo interpretaci výsledků vyšetření. Umožňuje klást přesnější otázky; nenahrazuje znalost toho, co a jak bylo měřeno.
 
@@ -32,7 +32,7 @@ Začněme tím, jak by vypadal záznam o jednom účastníkovi. Student označen
 
 **Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být číselné.
 
-Odlišíme **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu je užitečným základem výkladu i u Arona a spoluautorů [@aron, s. 3–5].
+Odlišíme **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu vysvětlují také @aron [s. 3–5].
 
 **Data (*data*)** jsou zaznamenané údaje, s nimiž pracujeme. Výraz **pozorování (*observation*)** se používá pro jednotlivý záznam či měření, někdy také pro celý případ. Proto si vždy ujasníme jeho význam v konkrétním textu. Pokud každý účastník přijde dvakrát, máme více návštěv než účastníků; nelze bez vysvětlení zaměnit jejich počty.
 
@@ -180,7 +180,7 @@ Dalším zdrojem nejistoty je výběr: jiná skupina z téže populace by mohla 
 První problém se týká měření, druhý záznamu a třetí získávání účastníků. Překlep můžeme opravit podle původního formuláře. Nepřesnou vzpomínku tím neopravíme a údaje o nepřítomném studentovi z tabulky nezískáme. Přidání dalších dopoledních účastníků nemusí řešit vynechávání pracujících studentů.
 :::
 
-**Nejistota (*uncertainty*)** znamená omezení toho, co na základě dostupných informací víme. Nejde o jediné číslo ani o synonymum chyby. Výzkum může nejistotu zmenšit, aniž ji zcela odstraní. Při čtení každého výsledku si proto budeme klást otázky: Co by se při opakování mohlo změnit? Co mohlo závěr soustavně posunout? Jaké informace potřebujeme pro jeho posouzení? Tento přístup vychází z důrazu na nejistotu a transparentnost výzkumu u Cumminga a Calin-Jagemana [@cumming, kap. 1–2].
+**Nejistota (*uncertainty*)** znamená omezení toho, co na základě dostupných informací víme. Nejde o jediné číslo ani o synonymum chyby. Výzkum může nejistotu zmenšit, aniž ji zcela odstraní. Při čtení každého výsledku si proto budeme klást otázky: Co by se při opakování mohlo změnit? Co mohlo závěr soustavně posunout? Jaké informace potřebujeme pro jeho posouzení? Tento přístup vychází z důrazu na nejistotu a transparentnost výzkumu u Cumminga a Calin-Jagemana [-@cumming, kap. 1–2].
 
 Transparentnost má jednoduchou praktickou podobu: popíšeme pravidla měření, zaznamenáme způsob získání účastníků a uchováme vysvětlení provedených oprav. Další člověk pak může posoudit, jak jsme k výsledku dospěli.
 
@@ -229,7 +229,7 @@ Pro výpočty přímo v Excelu budeme v této učebnici přednostně ponechávat
 Při přípravě pro statistický program může být druhý záznam označen kódem −99, při přímé práci v našem excelovém příkladu prázdnou buňkou a poznámkou o selhání měření v samostatném sloupci. Význam zůstává stejný, mění se způsob zápisu a navazující zacházení.
 :::
 
-Neexistuje jediný způsob zápisu vhodný pro všechny pracovní postupy. Praktická doporučení pro tabulková data se liší i v tom, zda preferovat prázdné buňky, nebo explicitní označení chybění. Shodným požadavkem je jednoznačný význam, konzistence a správné zacházení při analýze; Broman a Woo navíc upozorňují na riziko zapomenutých číselných kódů [@broman].
+Neexistuje jediný způsob zápisu vhodný pro všechny pracovní postupy. Praktická doporučení pro tabulková data se liší i v tom, zda preferovat prázdné buňky, nebo explicitní označení chybění. Shodným požadavkem je jednoznačný význam, konzistence a správné zacházení při analýze; Broman a Woo [-@broman] navíc upozorňují na riziko zapomenutých číselných kódů.
 
 ### Přehled proměnných a jejich kódování {#sec-codebook}
 
