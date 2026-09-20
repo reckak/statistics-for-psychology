@@ -18,7 +18,7 @@ book:
   site-url: https://reckak.github.io/statistics-for-psychology/
   repo-url: https://github.com/reckak/statistics-for-psychology
   sidebar:
-    style: docked
+    style: floating
     search: true
   chapters:
     - index.qmd
@@ -38,7 +38,10 @@ format:
     theme: cosmo
     css: assets/styles.css
     toc: true
+    toc-location: right
+    toc-title: "Obsah kapitoly"
     toc-depth: 2
+    toc-expand: 1
     number-sections: true
     code-copy: true
     include-after-body: assets/after-body.html

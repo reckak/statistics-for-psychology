@@ -132,3 +132,38 @@ rozlišení pojmů k posouzení argumentu a opravě konkrétního záznamu.
 - Přímý přenos do SPSS/JASP/R a živé nasazení na GitHub Pages nebyly
   provedeny. Text neobsahuje návod na konkrétní import; publikování
   čeká na uživatelské sloučení a konfiguraci Pages.
+
+## Vycentrování, pravý obsah a README (2026-09-20)
+
+Rozložení bylo porovnáno s místním projektem R101-textbook. Levý panel
+používá `style: floating`; stejně široké boční sloupce ponechávají hlavní
+text uprostřed okna. Pravá osnova má nadpis „Obsah kapitoly“ a zachovává
+dosavadní hloubku dvou úrovní nadpisů.
+
+Prázdná osnova byla reprodukována při přímém otevření vykresleného HTML
+přes `file://`: prohlížeč blokuje modulový skript Quarta a kořenový seznam
+obsahu zůstává ve výchozím stavu sbalený. Pravidlo `#TOC > ul` ve společném
+CSS udržuje hlavní odkazy viditelné i bez tohoto skriptu. Oprava nenahrazuje
+plnou funkčnost webu při přímém otevírání souborů; pro běžnou práci slouží
+`quarto preview`. Na mobilu zůstává pravý panel skrytý. Stránky bez
+podnadpisů samostatnou osnovu nevytvářejí.
+
+README nyní po vzoru R101 popisuje cílovou skupinu, aktuální obsah,
+strukturu projektu, sestavení, kontroly a publikování. Rozlišuje kontroly
+spouštěné v GitHub Actions od místních kontrol R a desktopového Excelu.
+
+Ověření:
+
+- Úplný render pěti stránek v Quarto 1.9.38 úspěšně dokončen.
+- `check-html.cjs` prošel v Google Chrome: vycentrování všech pěti stránek
+  při 1360 a 1920 px, zobrazení celé hlavní osnovy, přechod na oddíl
+  klávesnicí, viditelnost osnovy bez JavaScriptu i při otevření přes `file://`.
+- Zachováno ověření 36 položek slovníčku, hledání a stránkování, všech osmi
+  sbalených řešení, místních odkazů a absence chyb JavaScriptu přes HTTP.
+- Šířka 390 px bez přetékání celé stránky, včetně otevřeného řešení;
+  pravý panel na mobilu skrytý. Vizuálně prohlédnut úvod kapitoly
+  na desktopu a mobilu a slovníček na mobilu.
+- Obsah kapitoly ani data se neměnily; kontroly R a Excelu nebyly opakovány.
+  Kapitola neobsahuje matematické rovnice ani grafy.
+- Nová podoba veřejného webu není tímto lokálním ověřením potvrzena;
+  bude publikována až po uživatelském sloučení a úspěšném nasazení.

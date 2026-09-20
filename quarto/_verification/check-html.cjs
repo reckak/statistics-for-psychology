@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
 const assert = require('node:assert/strict');
+const { pathToFileURL } = require('node:url');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve('_book');
 const prefix = '/statistics-for-psychology/';
@@ -35,6 +36,23 @@ const server = http.createServer((req, res) => {
       const ids = documents[file].ids;
       assert.equal(ids.length, new Set(ids).size, `Duplicate IDs: ${file}`);
       assert.equal(await page.locator('pre.sourceCode.r, div.cell-output-stderr').count(), 0, `Leaked R: ${file}`);
+      for (const width of [1360, 1920]) {
+        await page.setViewportSize({ width, height: 1000 });
+        const layout = await page.locator('main').boundingBox();
+        assert(Math.abs(layout.x + layout.width / 2 - width / 2) < 2, `Centered content at ${width}px: ${file}`);
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Desktop overflow: ${file}`);
+      }
+      await page.setViewportSize({ width: 1360, height: 1000 });
+      if (file === 'quarto/kapitola_01.html') {
+        const links = page.locator('#TOC > ul > li > a');
+        assert.equal(await links.count(), await page.locator('main > section.level2').count(), 'TOC covers chapter sections');
+        for (const link of await links.all()) assert(await link.isVisible(), 'TOC link is visible');
+        const target = page.locator('#toc-sec-datova-matice');
+        await target.focus();
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#sec-datova-matice' && document.querySelector('#sec-datova-matice').getBoundingClientRect().top < 100);
+        await page.evaluate(() => window.scrollTo(0, 0));
+      }
       if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), file.includes('kapitola') ? 0 : 1);
       const solutions = page.locator('.callout[title="Ukázat řešení"]');
       solutionCount += await solutions.count();
@@ -51,8 +69,10 @@ const server = http.createServer((req, res) => {
         await page.waitForTimeout(400);
         await toggle.click(); await body.waitFor({ state: 'hidden' });
       }
+      await page.evaluate(() => window.scrollTo(0, 0));
       await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-desktop.png` });
       await page.setViewportSize({ width: 390, height: 844 });
+      assert.equal(await page.locator('#quarto-margin-sidebar').isVisible(), false, 'Mobile layout hides right sidebar');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Mobile overflow: ${file}`);
       if (await solutions.count()) {
         const last = solutions.last();
@@ -122,9 +142,18 @@ const server = http.createServer((req, res) => {
     if (solutionCount) {
       await plain.goto(base + 'quarto/kapitola_01.html');
       assert.equal(await plain.locator('.callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+      await plain.setViewportSize({ width: 1360, height: 1000 });
+      assert(await plain.locator('#toc-sec-datova-matice').isVisible(), 'TOC readable without JavaScript');
     }
     await noScript.close();
+    const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
+    await local.goto(pathToFileURL(path.join(root, 'quarto/kapitola_01.html')).href);
+    const localLink = local.locator('#toc-sec-datova-matice');
+    assert(await localLink.isVisible(), 'TOC readable via file://, where module scripts are blocked');
+    await localLink.click();
+    await local.waitForFunction(() => location.hash === '#sec-datova-matice');
+    await local.close();
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ pages: paths.length, glossaryItems: total, internalLinks: 'passed', solutionCount, solutions: 'keyboard + hidden/open/closed passed', mobileWidth: 390, errors }, null, 2));
+    console.log(JSON.stringify({ pages: paths.length, glossaryItems: total, internalLinks: 'passed', solutionCount, solutions: 'keyboard + hidden/open/closed passed', centeredWidths: [1360, 1920], toc: 'HTTP + keyboard + no JavaScript + file:// passed', mobileWidth: 390, errors }, null, 2));
   } finally { await browser.close(); server.close(); }
 })().catch(error => { console.error(error); server.close(); process.exitCode = 1; });
