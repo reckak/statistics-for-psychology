@@ -5,7 +5,7 @@ Když se po krátkém spánku obtížně soustředíme, nabízí se vysvětlení
 V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Všechny studie, jednotlivé záznamy a zadání v kapitole jsou **autorské modelové příklady**. Uvedená čísla jsou smyšlená pro výuku; nedokládají skutečný vztah mezi spánkem a pamětí.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
-Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině. Určíte populaci, výběr, případy a proměnné. Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty. Nakonec sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
+Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině. Určíte populaci, výběr, případy, proměnné a konstanty a vysvětlíte jejich závislost na otázce a souboru. Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty. Nakonec sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
 :::
 
 ## Proč psychologie potřebuje statistiku {#sec-proc-statistika}
@@ -32,6 +32,8 @@ Začněme tím, jak by vypadal záznam o jednom účastníkovi. Student označen
 
 **Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být číselné.
 
+**Konstanta (*constant*)** má ve vymezeném souboru nebo za vymezených podmínek stále stejnou hodnotu. Jestliže zkoumáme pouze studenty druhého ročníku, ročník studia je v tomto souboru konstantní. Přidáme-li studenty prvního a třetího ročníku, bude se tento údaj mezi případy lišit. **Konstantnost tedy posuzujeme vzhledem ke konkrétnímu souboru či podmínkám.** Sloupec můžeme nadále označovat jako proměnnou, přestože v určitém souboru obsahuje jen jednu hodnotu. Přehled nabízí také [heslo konstanta](slovnicek.qmd#pojem-konstanta).
+
 Odlišíme **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu vysvětlují také @aron [s. 3–5].
 
 **Data (*data*)** jsou zaznamenané údaje, s nimiž pracujeme. Výraz **pozorování (*observation*)** se používá pro jednotlivý záznam či měření, někdy také pro celý případ. Proto si vždy ujasníme jeho význam v konkrétním textu. Pokud každý účastník přijde dvakrát, máme více návštěv než účastníků; nelze bez vysvětlení zaměnit jejich počty.
@@ -50,6 +52,10 @@ Představme si, že nás zajímají všichni studenti bakalářského studia jed
 
 Nemůžeme-li získat údaje od všech, zkoumáme **výběr (*sample*)**, tedy část populace zahrnutou do studie. V psychologii se pro něj používá také označení výzkumný soubor. Závěry o výběru a závěry o populaci odpovídají na odlišné otázky.
 
+::: {.worked-example}
+**Stejní lidé, jiná výzkumná otázka.** Získáme údaje od všech studentů druhého ročníku psychologie jedné fakulty v daném akademickém roce. Chceme-li popsat právě tento ročník, máme údaje o celé vymezené populaci. Chceme-li však z těchto údajů usuzovat na všechny studenty psychologie v Česku, tatáž skupina představuje výběr z širší populace. Její složení ani způsob získání se nezměnily; změnila se otázka a rozsah zamýšleného závěru. Zobecnění na širší populaci vyžaduje další zdůvodnění. Populaci od výběru neodlišuje samotný počet lidí.
+:::
+
 **Popisná statistika (*descriptive statistics*)** slouží k uspořádání a shrnutí získaných dat. Popis může být zcela správný pro zkoumané případy, a přesto nemusí vystihovat širší populaci. **Inferenční statistika (*inferential statistics*)** poskytuje postupy pro usuzování na základě dat za jejich bezprostřední rámec, například od výběru k populaci. Takové usuzování vyžaduje předpoklady o vzniku dat a zahrnuje nejistotu. Ve slovníčku najdete i alternativní označení [induktivní statistika](slovnicek.qmd#pojem-inferencni).
 
 ::: {.worked-example}
@@ -59,6 +65,14 @@ Populací zůstávají všichni vymezení studenti fakulty. Výběrem jsou úča
 :::
 
 **Náhodný výběr (*random sampling*)** využívá náhodného mechanismu při určování, kdo bude vybrán. V jednoduchém příkladu bychom losovali ze seznamu všech studentů vymezené populace. „Náhodný“ zde neznamená „oslovili jsme, koho jsme zrovna potkali“. Ani řádné losování neřeší automaticky vše: pozvaní lidé nemusí odpovědět a i náhodně získané výběry se mezi sebou liší.
+
+**Příležitostný výběr (*convenience sampling*)** získává účastníky především podle jejich dostupnosti, například ze semináře, který výzkumnice vyučuje. Pokud se z oslovených přihlásí jen dobrovolníci, složení souboru dále ovlivní ochota zúčastnit se. Příležitostný výběr je jedním ze způsobů nenáhodného výběru, nikoli označením všech nenáhodných postupů. Oslovit lidi, které právě potkáme, není totéž jako losovat ze seznamu populace.
+
+V mnoha oblastech psychologického výzkumu jsou příležitostné výběry běžné. Dostupnost účastníků pomáhá výzkum uskutečnit, ale sama nezdůvodňuje přenos závěrů na ostatní lidi. Například @henrich [oddíl 2] upozorňují na úzké zastoupení lidských populací v části psychologického výzkumu. Z toho neplyne, že všechny takto získané výsledky jsou chybné; plyne z toho potřeba posuzovat, na koho se vztahují.
+
+Potřebné argumenty závisí na otázce. Chceme-li odhadnout podíl studentů s obtížemi se spánkem, nábor ve skupině věnované těmto obtížím může výsledek podstatně posunout. Chceme-li zkoumat účinek rušivých zvuků na učení, musíme navíc uvažovat, zda se účinek mění s věkem, jazykem nebo zkušenostmi. Přenos závěru podporuje věcné vysvětlení a ověření v dalších skupinách a podmínkách; pouhá víra, že by výsledek byl všude stejný, nestačí. Výzkumník má vymezit a zdůvodnit rozsah zobecnění [@simons, s. 1123].
+
+Náhodný výběr také není synonymem **reprezentativnosti (*representativeness*)**. Náhodnost označuje způsob výběru; otázka reprezentativnosti se týká toho, nakolik soubor vystihuje populaci v ohledech důležitých pro daný závěr. I původně náhodný výběr může být narušen tím, kdo nakonec odpoví.
 
 Větší soubor poskytuje více údajů, ale sám o sobě nenapraví nevhodný způsob získávání účastníků. Tisíc dobrovolníků z jedné specifické skupiny není automaticky lepším podkladem pro tvrzení o všech studentech než menší, vhodně získaný soubor. Posouzení závisí také na výzkumné otázce a na tom, jak se skupiny věcně liší.
 
@@ -71,6 +85,8 @@ V naší studii necháváme studenty spát obvyklým způsobem a pouze zaznamen�
 Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně mění určitou podmínku a sleduje její důsledky. Pro ilustraci ponechme spánek stranou a zkoumejme, zda učení slov ovlivňují rušivé zvuky. Jedna skupina dostane seznam slov v tichu, druhá se zvukovou nahrávkou. Seznam, délka prezentace, instrukce a čas pro odpověď budou stejné.
 
 **Náhodné rozdělení do podmínek (*random assignment*)** znamená, že o zařazení účastníka rozhoduje náhodný mechanismus, například předem připravené losování. Omezuje tak systematické přiřazování určitých lidí do určité podmínky. Nezaručuje ovšem, že v konkrétním experimentu budou skupiny úplně stejné; rozdíly mohou vzniknout náhodou. Při vyhodnocení je nutné zohlednit i tuto nejistotu.
+
+Smyslem tohoto uspořádání je, aby porovnávané skupiny systematicky odlišovala především podmínka, kterou záměrně měníme: zde přítomnost rušivých zvuků. Stejnými instrukcemi a stejným seznamem omezujeme rozdíly v provedení; náhodným rozdělením bráníme tomu, aby zařazení soustavně záviselo například na předchozí paměťové schopnosti. Případný rozdíl ve výsledku pak poskytuje oporu pro závěr o účinku zvuků. **Losování však nezaručuje, že každý zjištěný rozdíl způsobily právě zvuky:** část rozdílu může vzniknout náhodným složením skupin a další část nedodržením podmínek. Znáhodnění a kontrola provedení se proto doplňují.
 
 Náhodný výběr a náhodné rozdělení řeší různé otázky:
 
@@ -96,6 +112,19 @@ Psychologické otázky se často týkají paměti, úzkosti, motivace nebo dův�
 **Měření (*measurement*)** spojuje podle stanovených pravidel vlastnost či její projev se zaznamenanou hodnotou. **Operacionalizace (*operationalization*)** převádí obecné vymezení toho, co chceme zkoumat, do konkrétních pozorovatelných postupů. Jejich přesný popis představuje **operacionální definici (*operational definition*)**. Pro smysluplné čtení dat potřebujeme vědět, co účastník dělal, v jakých podmínkách, kdy a podle jakého pravidla mu byla přiřazena hodnota [@navarro, kap. 2; @howell, kap. 1].
 
 V naší modelové úloze účastník jednu minutu čte seznam dvanácti běžných českých slov. Seznam poté odstraníme a účastník má jednu minutu na zapsání slov, která si vybaví. Započítáme každé správné slovo jednou; opakované uvedení stejného slova nepřidává další bod. Předem určíme, jak posoudíme drobné pravopisné odchylky. Tak získáme počet správně vybavených slov.
+
+::: {.table-scroll}
+| Pojem v naší otázce | Konkrétní podoba v paměťové úloze |
+|---|---|
+| Konstrukt | Určitá stránka paměti, o níž chceme získat informaci |
+| Operacionalizace | Předložení seznamu 12 slov a následné bezprostřední vybavování |
+| Operacionální definice | Výše popsané časy, instrukce a pravidla započítávání slov |
+| Zaznamenaná proměnná | Počet správně vybavených různých slov |
+| Možné hodnoty | Celá čísla od 0 do 12 |
+| Hodnota u P01 | 5 správně vybavených slov |
+:::
+
+Operacionalizací není pouze samotné číslo. Zahrnuje postup, kterým je získáme. Výsledek zde popisuje výkon v úloze bezprostředního vybavování slov; bez dalšího zdůvodnění jej nelze považovat za čisté měření krátkodobé paměti oddělené od ostatních vlivů.
 
 Tento počet je **ukazatelem (*indicator*)** výkonu v dané úloze. Může přinášet informaci o určité stránce paměti, ale nepokrývá automaticky všechny její stránky. Rozpoznávání již viděných slov, vybavování bez nápovědy a subjektivní hodnocení vlastní paměti používají jiné postupy a mohou vést k jinému obrazu.
 
@@ -156,6 +185,41 @@ Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psyc
 
 Rozlišení úrovní měření je užitečné pro kontrolu významu tvrzení, nikoli jako automatický návod na výběr metody. Historická diskuse o číslech na sportovních dresech ukazuje, proč je podstatné určit, co čísla v dané otázce reprezentují. Číslo jako označení hráče a číslo jako výsledek číselného losovacího zařízení nevypovídají o téže vlastnosti [@lord; @scholten]. Nemusíme nyní rozebírat celou polemiku; její důsledek pro naši práci je konkrétní: ptejme se po významu vztahů mezi hodnotami.
 
+### Stejná vlastnost, různé údaje {#sec-stejna-vlastnost}
+
+Věk můžeme zachytit několika způsoby. Při změně otázky se mění informace, kterou uchováme, a tím i vztahy, které smíme z odpovědí vyvozovat.
+
+::: {.table-scroll}
+| Otázka nebo záznam | Úroveň a její zdůvodnění |
+|---|---|
+| Jaká doba uplynula od vašeho narození do okamžiku měření? | Poměrová: doba má věcnou nulu a můžeme interpretovat rozdíly i poměry. Dvojnásobný věk neznamená dvojnásobnou zralost. |
+| Do kterého pásma patří váš věk: méně než 20 let; alespoň 20 a méně než 30; 30 a více? | Ordinální: pásma lze seřadit, ale nezjišťujeme přesné věkové rozdíly jednotlivých lidí. |
+| Nacházíte se ve věku od 20 do 30 let včetně? Ano/ne. | Nominální: „ne“ zahrnuje mladší i starší lidi. Odpovědi proto nelze seřadit od nižšího věku k vyššímu. Hranicemi zde rozumíme přesný věk, nikoli počet dokončených let. |
+| Ve kterém kalendářním roce jste se narodili? | Intervalový kalendářní údaj: rozdíly roků mají význam, poměry letopočtů nikoli. Není to přímo věk; k jeho určení potřebujeme také okamžik měření a pro přesný věk celé datum narození. |
+:::
+
+Převodem přesného věku do kategorií část informace ztrácíme. Z odpovědi „ano“ na otázku o pásmu 20–30 let už nezjistíme, zda je člověku 22 nebo 28 let. Nominální kategorizace zde vznikla způsobem dotazování, nikoli tím, že bychom samotnou dobu života považovali za neuspořádanou.
+
+::: {.worked-example}
+**Počet slov a schopnost psát.** Dva lidé po dobu jedné minuty přepisují stejný text na stejné klávesnici podle stejných instrukcí. Započítáváme pouze celá slova přepsaná bez chyby, která předem vymezíme jako jednotky oddělené mezerami; velká písmena a diakritika musí odpovídat předloze. Jeden správně napíše 20 slov, druhý 40. Počet správně napsaných slov je poměrový údaj: druhý napsal dvakrát tolik. Při stejné době jde také o dvojnásobné tempo správného přepisu.
+
+Použijeme-li tento údaj jako ukazatel obecnější schopnosti psát na klávesnici, nemůžeme říci, že druhý má dvojnásobnou schopnost. Vyšší počet může podporovat pořadí podle schopnosti, pokud je doloženo, že ji úloha za srovnatelných podmínek zachycuje. Rovnost rozdílů nebo poměrů v této schopnosti tím ale doložena není. **Stejné hodnoty mohou opravňovat k různým závěrům podle toho, co mají reprezentovat.**
+:::
+
+Podobně teplota místnosti ve stupních Celsia měří teplotu, nikoli přímo teplotní pohodlí člověka. Stejná teplota může různým lidem vyhovovat různě. Pohodlí bychom museli zjišťovat zvlášť a úroveň měření zdůvodnit podle použité otázky. Samotná změna názvu sloupce z „teplota“ na „pohodlí“ měřenou vlastnost nezmění. Tento příklad rozvíjí Howellovo rozlišení fyzikální teploty a jejího použití jako ukazatele pohodlí [@howell, s. 7–8].
+
+### Psychologické skóry a přibližná intervalovost {#sec-kvaziintervalove}
+
+Testový skór (*test score*) je číselný výsledek získaný podle pravidel testu. U psychologických testů se dlouhodobě diskutuje, zda jejich skóry opravňují pouze k uspořádání lidí, nebo také k interpretaci stejně velkých rozdílů v měřeném rysu. Zápis výsledku číslem sám tuto otázku neřeší. Je třeba odlišit sestavení číselného ukazatele od doložení, že zachycuje množství určité vlastnosti [@michell, s. 355].
+
+Například rozdíl mezi IQ 100 a 105 je číselně stejný jako mezi IQ 105 a 110. Z toho samotného neplyne, že jde o stejně velké rozdíly v inteligenci. Nestačí ani prohlásit, že případná nerovnost je určitě zanedbatelná; potřebujeme oporu pro konkrétní test a účel použití.
+
+O **kvaziintervalovém měření (*quasi-interval measurement*)** budeme mluvit tehdy, když s rozdíly ve skórech pro určitý účel zacházíme jako s přibližně srovnatelnými. Nejde o pátou základní úroveň měření ani o obecné vyřešení sporu. Jde o přibližný předpoklad, jehož přiměřenost musíme zdůvodnit a jehož omezení máme přiznat. Přehled připomíná [heslo kvaziintervalové měření](slovnicek.qmd#pojem-kvaziintervalove).
+
+V této souvislosti se někdy argumentuje velkým počtem položek či odpovědních kategorií. Ty mohou umožnit jemnější rozlišení výsledků, ale samy nedokládají rovnost rozdílů v rysu. Stejně tak ji nedokládá tvar rozdělení skórů, tedy to, jak často se různé výsledky vyskytují. Ani shoda tohoto tvaru s předpokládaným rozdělením rysu není důkazem, že každý stejně velký krok ve skóru znamená stejnou změnu rysu.
+
+Samostatnou otázkou je, jak citlivý je konkrétní výpočet a závěr na přijaté přiblížení. Použitelnost určitého postupu ještě neprokazuje intervalovou povahu měření. Naopak zacházení s ordinálními výsledky jako s intervalovými může někdy změnit i směr zjištěného rozdílu [@liddell, oddíl 1]. Zatím si proto odnesme pravidlo: **jemnost stupnice, význam rozdílů a vhodnost analytického postupu jsou tři různé otázky.**
+
 ### Diskrétnost, spojitost a přesnost záznamu {#sec-diskretni-spojite}
 
 Jiné hledisko se týká možných hodnot. **Diskrétní proměnná (*discrete variable*)** nabývá oddělených hodnot, například celých počtů správných odpovědí. Mezi pěti a šesti správně vybavenými slovy v naší úloze není přípustná hodnota pět a půl.
@@ -164,15 +228,48 @@ Jiné hledisko se týká možných hodnot. **Diskrétní proměnná (*discrete v
 
 Rozhodující není přítomnost desetinné čárky. Pokud úloha dovoluje jen hodnocení 0, 0,5 a 1 bod, zaznamenaný bodový výsledek je diskrétní i s desetinnou hodnotou. U doby spánku naopak celočíselný zápis může být jen důsledkem hrubého odhadu. Vždy upřesníme, zda mluvíme o sledované veličině, nebo o konkrétním způsobu jejího záznamu.
 
+### Jak souvisejí úroveň měření a možné hodnoty {#sec-uroven-a-spojitost}
+
+Úroveň měření se ptá, co hodnoty znamenají; diskrétnost a spojitost se ptají, jakých hodnot může údaj nabývat. Jedno hledisko neurčuje druhé. Následující tabulka rozlišuje běžné kombinace a jejich meze.
+
+::: {.table-scroll}
+| Úroveň měření | Oddělené hodnoty nebo kategorie | Spojitý podklad |
+|---|---|---|
+| Nominální | Ano/ne u otázky na věkové pásmo; podmínka ticho/zvuky. Jde o oddělené kategorie, nikoli číselné množství. | Spojitost ve smyslu kterékoli číselné hodnoty v intervalu se na samotné nominální kategorie neuplatňuje. |
+| Ordinální | Odpočatost: vůbec, trochu, dosti, zcela. | Poloha značky na nečleněné úsečce od nejmenšího k největšímu prožitku může mít spojitý podklad. Pokud zdůvodníme jen pořadí prožitku, jeho měření zůstává ordinální. |
+| Intervalová | Kalendářní rok události zaznamenaný jako celé číslo. Jde o intervalový údaj s rozlišením jednoho roku. | Teplota ve stupních Celsia, uvažovaná jako spojitá veličina. |
+| Poměrová | Počet správně vybavených slov: 0, 1, 2 až 12. | Doba spánku nebo reakce, uvažovaná jako spojitá veličina. |
+:::
+
+U úsečky má fyzická vzdálenost značky od počátku jiné vlastnosti než prožitek, který jí vyjadřujeme. Dvojnásobná vzdálenost neznamená automaticky dvojnásobný prožitek. Navíc i spojitou polohu nakonec zaznamenáme s omezenou přesností, například v milimetrech. Podobně zápis teploty po desetinách stupně omezuje přesnost záznamu, nikoli možné hodnoty samotné teploty. Při zařazování vždy řekneme, zda posuzujeme vlastnost, ukazatel, nebo jeho záznam.
+
 ## Rozdíly, chyba a nejistota {#sec-nejistota}
 
 Pokud dva studenti podají odlišný výkon, neznamená to samo o sobě, že měření obsahuje chybu. Rozdíly mohou být právě tím, co chceme studovat. Také výkon jednoho člověka se může měnit, protože se mění jeho stav nebo podmínky. Abychom mohli mluvit o chybě, potřebujeme určit, vůči čemu ji posuzujeme.
 
 **Chyba měření (*measurement error*)** označuje odchylku získaného údaje od hodnoty, kterou má daný postup podle svého vymezení zachycovat. Například účastník uvede dobu spánku, ale zamění ji za dobu strávenou v posteli. U psychologických konstruktů bývá obtížnější určit, jak by vypadalo zcela přesné měření. Nemůžeme proto každou nečekanou odpověď jednoduše označit za chybnou.
 
+::: {.callout-note collapse="true" title="Podrobněji: vůči čemu posuzujeme chybu měření?" #chyba-mereni-podrobne}
+**Nepovinné rozšíření.** Představme si lidi se stejnou úrovní paměťové schopnosti, kterou chceme měřit. V úloze s českými slovy přesto nemusí dosáhnout stejného výsledku: liší se například znalostí češtiny. Rozdíl v počtu vybavených slov pak nemusí odrážet rozdíl v zamýšlené paměťové schopnosti.
+
+Jedním modelovým pohledem je porovnat výsledek člověka s průměrným výsledkem lidí se stejnou úrovní měřeného rysu. Odchylka od tohoto průměru zachycuje to, co v daném modelu nevysvětluje samotná úroveň rysu. Nejde však o univerzální definici všech chyb: záleží na tom, co model zahrnuje. Skutečnou úroveň rysu navíc obvykle neznáme, takže tuto skupinu nemůžeme jednoduše vyhledat a její průměr přímo spočítat. Ani její průměr nemusí být nezkresleným vyjádřením rysu; posun společný všem lidem se v odchylkách kolem průměru neprojeví.
+
+Opakování stejného testu u jednoho člověka samo tento problém neřeší. Vliv jeho znalosti jazyka může přetrvávat, a výsledek tak může být stabilní, přestože nezachycuje pouze zamýšlenou schopnost. Rozlišení mezi stabilitou výsledku testu a tím, co test skutečně měří, zdůrazňují Borsboom a Mellenbergh [-@borsboom2002, s. 507–510]. Pro další výklad stačí: **vždy určujeme, co chceme měřit a vůči čemu výsledek posuzujeme; opakovatelnost sama nezaručuje správné zachycení rysu.**
+:::
+
+Skutečnou změnu vlastnosti nezaměňujeme za chybu měření. Pokud člověk během noci opravdu spal kratší dobu, změnil se předmět našeho zjišťování. Pokud spal stejně dlouho, ale dobu nepřesně odhadl, problém se týká měření. U paměťové úlohy navíc potřebujeme vědět, zda nás zajímá aktuální výkon, nebo obecnější schopnost.
+
 **Systematické zkreslení (*bias*)** vzniká, když postup soustavně posouvá výsledky určitým směrem vůči tomu, co chceme zjistit. Přístroj může opakovaně přičítat stejnou dobu; výběr účastníků může soustavně vynechávat lidi s určitým režimem. Opakované měření nebo více účastníků samo takový problém neodstraní.
 
-Dalším zdrojem nejistoty je výběr: jiná skupina z téže populace by mohla poskytnout jiné údaje, i kdybychom měřili bezchybně a vybírali vhodným náhodným postupem. A nakonec se mohou objevit obyčejné **chyby záznamu (*data entry errors*)**, například přepis sedmi hodin jako sedmdesáti. Je důležité tyto situace odlišovat, protože vyžadují různá opatření.
+Dalším zdrojem nejistoty je výběr. **Výběrová variabilita (*sampling variability*)** znamená, že různé náhodné výběry z téže populace poskytují různé výsledky, i když měříme bezchybně a vybíráme vhodným postupem. Odlišujeme ji od **výběrového zkreslení (*sampling bias*)**, kdy způsob získávání účastníků soustavně zvýhodňuje určité složení souboru a tím posouvá závěr o populaci. Větší náhodný výběr zpravidla zmenšuje kolísání odhadů, například podílu; samotné zvětšování nevhodně získaného souboru však zkreslení neodstraní. Srovnejte také [heslo výběrové zkreslení](slovnicek.qmd#pojem-vyberove-zkresleni).
+
+::: {.worked-example}
+**Kdo odmítá odpovědět?** Chceme zjistit podporu určité politické strany: podíl lidí ve vymezené populaci, kteří ji podporují. Pozvané osoby řádně náhodně vybereme. V tomto modelovém příkladu však podporovatelé strany odmítají rozhovor častěji než ostatní. Pokud podíl spočítáme jen mezi odpovídajícími a tento rozdíl nezohledníme, bude mít postup sklon podporu strany podhodnocovat. Konkrétní výsledek může navíc kolísat náhodou.
+
+Jde o **zkreslení v důsledku neúčasti (*nonresponse bias*)**. Původní losování neochrání závěr před tím, že ochota odpovědět souvisí právě se zjišťovanou podporou. Samotná neúčast ještě neříká, jak velké zkreslení vzniklo; rozhoduje také, jak se neodpovídající liší od odpovídajících. Přesnější měření odpovědí ani přidání dalších stejně získaných respondentů tuto potíž samo nenapraví.
+:::
+
+A nakonec se mohou objevit obyčejné **chyby záznamu (*data entry errors*)**, například přepis sedmi hodin jako sedmdesáti. Je důležité tyto situace odlišovat, protože vyžadují různá opatření.
 
 ::: {.worked-example}
 **Stejná otázka, různé problémy.** Jeden účastník si nepamatuje, jak dlouho v noci bděl. Jiný odhadne dobu přesně, ale při přepisu vznikne překlep. Třetí student se vůbec nezúčastní, protože studii organizujeme v době, kdy pracuje.
@@ -265,7 +362,7 @@ Před analýzou projdeme identifikátory, jednotky, přípustné hodnoty a chyb�
 
 Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem. Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
 
-Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, nejistota z výběru, chyba měření, systematické zkreslení a chyba záznamu nejsou stejný problém. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
+Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Náhodný výběr a náhodné rozdělení do podmínek slouží odlišným účelům; ani jeden postup sám neřeší všechna omezení studie. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
 
 Nyní umíme připravit a číst jednotlivé záznamy. Dalším krokem bude hledat, jak jsou hodnoty v souboru zastoupeny a jak je přehledně zobrazit.
 
@@ -283,12 +380,16 @@ b) U údaje „učení v knihovně“ odlište proměnnou, možné hodnoty a kon
 
 c) Proč by bylo chybné napsat, že jsme zkoumali 28 různých studentů? Jak zachováme informaci o společném původu záznamů?
 
+d) Všichni čtyři studují druhý ročník. Jakou vlastnost má údaj „ročník“ v tomto souboru a co se změní, přidáme-li studenty prvního ročníku?
+
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Případ představuje konkrétního studenta v konkrétním dni. Účastníci jsou čtyři; každý poskytl sedm záznamů, takže tabulka obsahuje 28 řádků dat. Záhlaví se nepočítá jako záznam.
 
 Proměnnou je údaj, zda se student daný den učil v knihovně. Možné hodnoty jsou „ano“ a „ne“ podle stanoveného významu otázky. „Ano“ je zaznamenaná hodnota u určitého studenta v určitém dni.
 
 Číslo 28 vyjadřuje počet denních záznamů, nikoli různých lidí. Každý student má stálý identifikátor a řádek obsahuje také den. Můžeme tak odlišit návazné záznamy téhož člověka. Změnou počtu řádků nevznikli noví účastníci.
+
+Ročník je v původním souboru konstantní: všude má hodnotu druhý. Po přidání prváků bude nabývat různých hodnot. Nezměnil se význam údaje, ale soubor, v němž jeho proměnlivost posuzujeme.
 :::
 
 ### Úloha 2: Co nám řeknou dobrovolníci {#sec-uloha-01-2}
@@ -299,14 +400,18 @@ a) Vymezte zamýšlenou populaci a skutečný výběr. Co musíme ověřit o čl
 
 b) Kolega tvrdí: „Máme 300 odpovědí, takže můžeme výsledek bezpečně vztáhnout na všechny prváky.“ Posuďte jeho argument.
 
-c) Jakou roli zde má statistika a co za nás samotný výpočet nevyřeší?
+c) Jakou roli zde má statistika a co za nás samotný výpočet nevyřeší? Jak byste pojmenovali způsob získávání účastníků?
+
+d) Představte si jinou studii: odpověděli všichni studenti jedné konkrétní seminární skupiny prvního ročníku této univerzity. Kdy tato skupina tvoří populaci a kdy výběr?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Populací jsou všichni studenti prvního ročníku dané univerzity ve vymezeném období. Skutečný soubor tvoří 300 odpovídajících členů skupiny. Je potřeba ověřit, zda skutečně všichni patří do prvního ročníku této univerzity; příslušnost ke skupině to sama nezaručuje.
 
 Počet odpovědí nezdůvodňuje způsob jejich získání. Členové skupiny mohou mít jiné zkušenosti než studenti mimo ni a z členů navíc odpověděli jen někteří. Nemusíme vědět, jakým směrem se liší, abychom rozpoznali mezeru v argumentu o zobecnění.
 
-Statistika pomůže získané údaje uspořádat a popsat a za odpovídajících předpokladů také posuzovat zobecnění a jeho nejistotu. Samotný výpočet však nezajistí, že jsme získali údaje od vhodného souboru. Potřebujeme informace o výběru a o tom, jaké skupiny zůstaly nezastoupené.
+Statistika pomůže získané údaje uspořádat a popsat a za odpovídajících předpokladů také posuzovat zobecnění a jeho nejistotu. Samotný výpočet však nezajistí, že jsme získali údaje od vhodného souboru. Potřebujeme informace o výběru a o tom, jaké skupiny zůstaly nezastoupené. Nábor v dostupné skupině je příležitostný výběr; dále rozhoduje dobrovolná účast oslovených.
+
+Pokud chceme popsat právě všechny studenty dané seminární skupiny, jde o celou vymezenou populaci. Chceme-li usuzovat na všechny prváky univerzity, tvoří tatáž skupina výběr a přenos závěru vyžaduje oporu. Úplné pokrytí malé populace samo nezajišťuje vhodný výběr z větší populace.
 :::
 
 ### Úloha 3: Tři různé závěry {#sec-uloha-01-3}
@@ -333,12 +438,16 @@ b) Je zaručeno, že obě skupiny mají stejné předchozí paměťové schopnos
 
 c) Asistent předloží jedné skupině těžší seznam slov. Proč by to změnilo interpretaci výsledku, přestože rozdělení proběhlo losem?
 
+d) Vysvětlete vlastními slovy, jak se při posuzování příčiny doplňují náhodné rozdělení a stejné provedení úlohy.
+
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Použili jsme náhodné rozdělení již získaných dobrovolníků do podmínek. Zadání nepopisuje náhodný výběr z vymezené populace.
 
 Losování nezaručuje přesně stejné složení skupin. Omezuje systematické zařazování například zdatnějších účastníků do jedné podmínky, ale náhodné rozdíly mohou zůstat. Stejná velikost skupin také neznamená stejné schopnosti.
 
 Při různě obtížných seznamech by se současně měnil zvuk i obtížnost úlohy. Případný rozdíl ve výkonu bychom proto nemohli jednoznačně připsat zvuku. Losování účastníků neodstraňuje další rozdíly, které sami vytvoříme v podmínkách experimentu.
+
+Náhodné rozdělení brání systematickému zařazování lidí podle jejich vlastností; stejné provedení omezuje další rozdíly mezi podmínkami. Společně podporují připsání rozdílu účinku zvuků, ale nevylučují náhodné kolísání výsledku.
 :::
 
 ### Úloha 5: Co je „dobrá paměť“ {#sec-uloha-01-5}
@@ -367,6 +476,14 @@ d) „Doba zapsaná jako 7 hodin je diskrétní, protože neobsahuje desetinná 
 
 e) „Na stupnici, jejíž nulový bod je jen zvolená reference, můžeme interpretovat rovné rozdíly, ale samotné poměry zapsaných hodnot nemusí mít věcný význam.“
 
+f) „Otázka, zda je člověku od 20 do 30 let včetně, je ordinální, protože věk umíme seřadit.“ Odpovědi jsou pouze ano/ne a hranice označují přesný věk.
+
+g) „Kdo správně přepíše 40 slov za minutu, má dvakrát větší schopnost psát než člověk s 20 slovy.“ Oba přepisují stejný text za stejných podmínek.
+
+h) „Test má mnoho položek a jemně rozlišené výsledky, takže jeho skóry jistě měří rys intervalově.“
+
+i) „Poměrová proměnná musí být spojitá.“ Uvažujte o počtu slov a době spánku.
+
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a) Tvrzení nelze obhájit. Kódy rozlišují kategorie nominálně; nevyjadřují dávku ani intenzitu zásahu. Poměr kódů nemá uvedený význam.
 
@@ -377,6 +494,14 @@ c) Účastnice vybavila dvojnásobný počet slov. Poměrové tvrzení o počtu 
 d) Zápis může být zaokrouhlením nebo hrubým odhadem spojité doby. Musíme odlišit možné hodnoty skutečné doby od přesnosti záznamu. Samotná absence desetinných míst nerozhoduje.
 
 e) Tvrzení vystihuje intervalovou úroveň, pokud je zároveň zdůvodněno, že rovné číselné rozdíly reprezentují rovné změny veličiny. Příkladem je teplota ve stupních Celsia. Zvolený nulový bod sám o sobě neprokazuje intervalovost; potřebujeme obě informace.
+
+f) Ne. „Ne“ zahrnuje mladší i starší osoby, takže odpovědi nelze seřadit podle věku. Jde o nominální kategorizaci věku. Uspořádatelnost podkladové vlastnosti nezajišťuje, že ji zachoval tento záznam.
+
+g) Dvojnásobný je počet správně přepsaných slov a při stejné době i tempo správného přepisu. Dvojnásobnou obecnější schopnost tím nedokládáme; pro přenos vztahů mezi počty na vztahy mezi úrovněmi schopnosti potřebujeme další argumenty o měření.
+
+h) Počet položek a možných výsledků popisuje jemnost rozlišení. Nedokládá stejné vzdálenosti mezi úrovněmi rysu. Kvaziintervalové zacházení je zdůvodňované přiblížení pro určitý účel, nikoli automatický důsledek dlouhého testu.
+
+i) Nemusí. Počet slov je diskrétní a poměrový; doba spánku má spojitý podklad a poměrovou interpretaci. Úroveň měření a možné hodnoty představují dvě odlišná hlediska.
 :::
 
 ### Úloha 7: Více údajů nevyřeší všechno {#sec-uloha-01-7}
@@ -391,6 +516,8 @@ c) Ze stejné populace vhodně náhodně vybereme jinou skupinu a získáme pon�
 
 d) Dva účastníci splní stejnou úlohu ve stejných podmínkách a vybaví různý počet slov.
 
+e) Původně náhodně oslovení podporovatelé politické strany častěji odmítají rozhovor než ostatní. Podporu strany odhadneme pouze z odpovědí účastníků, kteří rozhovor dokončili.
+
 Pro které situace by nebylo odůvodněné jednoduše „opravit čísla, aby odpovídala očekávání“?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -401,6 +528,8 @@ b) Měření soustavně zachycuje jinou dobu, než zamýšlíme, a tím vzniká 
 c) Jde o nejistotu související s výběrem. Rozdíl mezi dvěma výběry není sám důkaz chyby. Potřebujeme postupy, které tuto nejistotu zohlední, nikoli přepisovat naměřené hodnoty.
 
 d) Může jít o skutečný rozdíl výkonu. Bez další informace nemáme důvod pokládat jej za chybu měření.
+
+e) Zkreslení v důsledku neúčasti má v popsané situaci sklon snižovat odhad podpory strany. Je třeba zkoumat, kdo neodpovídá, a upravit získávání účastníků tak, aby důvody neúčasti co nejvíce omezovalo. Případná oprava odhadu potřebuje další informace a předpoklady; nesmíme si vymyslet odpovědi chybějících lidí. Na rozdíl od c) zde nejde pouze o náhodné kolísání mezi výběry.
 
 Úprava podle očekávání není oprávněná v žádné situaci. V a) neopravujeme podle očekávání, ale podle doloženého původního záznamu. V ostatních případech nám zadání neposkytuje podklad pro opravu konkrétní hodnoty.
 :::

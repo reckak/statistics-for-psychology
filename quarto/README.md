@@ -1,5 +1,93 @@
 # Autorská dokumentace
 
+## Rozšíření pojmů v kapitole 1 (2026-09-20)
+
+Rozsah byl před psaním projednán a schválen: konstanta a závislost
+proměnlivosti na souboru; relativní vymezení populace a výběru;
+příležitostný výběr a argumenty pro zobecnění; účel náhodného rozdělení;
+konkrétní operacionalizace; různé úrovně zachycení věku; počet správně
+napsaných slov jako výkon versus schopnost; kvaziintervalové zacházení;
+úrovně měření versus diskrétnost a spojitost; výběrová variabilita,
+výběrové zkreslení a odmítání účasti.
+
+Podrobnější vysvětlení chyby měření je po dohodě nepovinný, výchozím
+stavem sbalený rámeček `chyba-mereni-podrobne`. Používá modelový pohled
+na lidi se stejnou úrovní rysu, ale netvrdí, že jejich průměr je automaticky
+nezkreslenou hodnotou konstruktu. Stabilní vliv znalosti jazyka může
+přetrvat při opakování; formální teorii pravého skóru nezavádíme.
+Na rámečku nezávisí povinná cvičení.
+
+Nové příklady jsou vlastní modelové situace, které vycházejí z dohody
+s autorem. Příklad teploty a pohodlí výslovně rozvíjí Howella (s. 7–8).
+Jeho bibliografické údaje byly znovu potvrzeny na titulní a copyrightové
+straně místního PDF: *Statistical Methods for Psychology*, 8. vydání,
+2013, Wadsworth/Cengage, ISBN 978-1-111-83548-4. Oddíl 1.3 (s. 6–8)
+zůstává oporou rozlišení významu čísel a měřené vlastnosti. Po dohodě
+nepřebíráme obecný závěr, že úroveň měření není pro volbu postupu důležitá;
+rozlišujeme interpretaci měření od přiměřenosti konkrétní analýzy.
+
+Odborné doplnění a ověřené lokátory:
+
+- Henrich, Heine a Norenzayan (2010), oddíl 2: úzké zastoupení populací;
+  nejde o doklad univerzálního procenta příležitostných výběrů v psychologii.
+- Simons, Shoda a Lindsay (2017), s. 1123: požadavek vymezit a zdůvodnit
+  populaci, na kterou závěr vztahujeme.
+- Michell (1997), s. 355: odlišení doložení kvantitativnosti vlastnosti
+  od konstrukce číselného měřicího postupu.
+- Liddell a Kruschke (2018), oddíl 1: rizika metrické analýzy ordinálních
+  výsledků; necitujeme je jako zákaz všech přibližných postupů.
+- Borsboom a Mellenbergh (2002), s. 507–510: rozdíl mezi pravým skórem
+  testu a konstruktem; vlastní jazykový příklad není převzatou studií.
+
+Metadata všech pěti článků (autoři, roky, ročníky, čísla, strany a DOI)
+ověřena přes `https://api.crossref.org/works/{DOI}` a vydavatelské záznamy;
+úplný podtitul Borsboomova článku ověřen v autorském PDF
+https://dennyborsboom.com/wp-content/uploads/2017/11/borsboomtruescores2002.pdf.
+Henrichův oddíl 2 ověřen v autorském PDF
+https://www2.psych.ubc.ca/~henrich/pdfs/WeirdPeople.pdf.
+Liddellův článek v ročníku 79 nemá v ověřených metadatech číslo časopisu;
+žádné není domýšleno. DOI jsou ve společné bibliografii, citace zpracovává
+dosavadní APA 7 CSL. Počáteční slova podtitulů jsou chráněna před
+nežádoucím převedením na malá písmena citačním procesorem.
+
+Slovníček doplněn o osm hesel (celkem 44); testový skór a reprezentativnost
+zachycují pojmy použité ve schváleném výkladu. Nové symboly, vzorce ani
+excelové funkce se nezavádějí, proto zůstávají příslušné přehledy beze změny.
+Rozšířeny úlohy 1, 2, 4, 6 a 7, včetně úplných řešení. Původních osm
+identifikátorů úloh zůstává zachováno.
+
+Práce probíhá v oddělené pracovní kopii z `origin/main` (93c7614).
+Původní místní úpravy kapitoly a nesledovaný soubor Rproj zůstaly v původní
+pracovní kopii nedotčené a nejsou součástí tohoto pull requestu.
+
+Ověření konečného znění:
+
+- Celá kniha (pět stránek) úspěšně vykreslena v Quarto 1.9.38.
+- `check-chapter-01.R` prošel v R 4.5.1: původní datová matice,
+  chybějící údaje, elementární výpočty a řešení úlohy 8. R při startu
+  hlásilo nedostupnou lokalizaci C.UTF-8; kontroly skončily úspěšně.
+  Nové jednoduché vztahy (40/20 = 2, shodné pětibodové rozdíly IQ)
+  a všechna doplněná konceptuální řešení zkontrolovány věcně, bez simulací.
+- `check-html.cjs` prošel v Chrome: pět stránek, 44 hesel slovníčku,
+  všech osm sbalených řešení, klávesnice, přechody osnovou, místní odkazy,
+  jedinečné identifikátory, vyhledávání včetně nových anglických názvů
+  a českých alternativ, stránkování a odkazy přes aktivní filtr.
+- Nepovinný rámeček ověřen sbalený, otevřený klávesnicí a čitelný bez
+  JavaScriptu; otevřený nepřetéká na mobilu. Zůstalo ověření řešení
+  bez JavaScriptu a navigace přes `file://`.
+- Desktop při 1360 a 1920 px i mobil při 390 px bez přetékání celé stránky;
+  žádné chyby JavaScriptu ani únik interního R kódu či soukromých zdrojů.
+- Nové tabulky, kvaziintervalový výklad, rámeček a literatura prohlédnuty
+  vizuálně na kontrolních snímcích. Prověřeno všech 18 citačních výskytů
+  a všech pět nových bibliografických záznamů v HTML včetně iniciál,
+  pořadí autorů, let, kurzivy, podtitulů a odkazů DOI. DOI byly ověřeny
+  proti veřejným registrům a vydavatelským/autorským záznamům; přístup
+  k plnému textu na webu vydavatele může vyžadovat předplatné.
+- `git diff --check` bez chyb. Nové rovnice ani grafy nevznikly;
+  desktopový Excel se znovu nespouštěl, protože jeho příklady se neměnily.
+- Veřejné nasazení této změny není lokálními kontrolami potvrzeno;
+  následuje až po uživatelském sloučení a úspěšném publikačním workflow.
+
 ## Základ knihy
 
 `_quarto.yml` vykresluje pouze `index.qmd` a studentské soubory `quarto/*.qmd`.
