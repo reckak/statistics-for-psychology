@@ -1,5 +1,51 @@
 # Autorská dokumentace
 
+## Sjednocení hlavní místní kapitoly a doplnění validity (2026-09-20)
+
+Na výslovnou žádost autora je výsledná kapitola přímo v hlavní pracovní
+složce `D:\R Projects\github\statistics-for-psychology\quarto\kapitola_01.qmd`.
+Hlavní pracovní kopie přešla na tematickou větev z aktuálního `main`
+(1b92cfd, sloučený PR #8). Předchozí místní redakce byla zálohována
+v ignorovaném `tmp/local-integration-20260920/kapitola_01.before.qmd`
+a spojena s rozšířením kapitoly. Zachováno všech 17 bloků místní redakce;
+u společně změněného cíle učení spojeno „Rozlišíte“ s novými pojmy.
+Opraveny dva zjevné překlepy („jí stačí“, „Tím jsme otázku upřesnili“)
+a sjednocena autorem zvolená odpověď „dost“ i v nové přehledové tabulce.
+Nesledovaný soubor Rproj nebyl změněn ani zahrnut do commitu.
+
+Zapracovány další tři předem schválené body:
+
+- Kód chybění musí být nepřípustnou, snadno rozpoznatelnou hodnotou;
+  vzácná, ale možná hodnota nestačí. Zůstává nutnost nastavit zacházení
+  s kódem v programu a odlišit jej od skutečné nuly.
+- U online sběru odlišeno ID odpovědi od ID účastníka a od časového
+  pořadí. Čas zahájení, dokončení a uložení nemusí být shodný;
+  při řazení záleží na časovém pásmu a přesnosti. Obecný příklad
+  odpovídá rozlišení polí v dokumentaci Qualtrics ověřené při přípravě:
+  https://www.qualtrics.com/support/survey-platform/data-and-analysis-module/data/download-data/understanding-your-dataset/.
+- Nová podkapitola interní/externí validity navazuje na náhodné rozdělení
+  a náhodný výběr, s oporou v Howellovi (2013, s. 3) a Simonsovi a kol.
+  (2017, s. 1123). Externí validita zahrnuje i situace a podmínky;
+  není ztotožněna s náhodným výběrem. Vysvětlení nepředpokládá nutný
+  konflikt obou validit. Doplněna otázka 4e s úplným řešením.
+
+Slovníček má 46 hesel, nově interní a externí validitu s anglickými
+ekvivalenty a českými alternativami. Přehledy značení a Excelu se nemění,
+protože nové symboly, vzorce ani funkce nezavádíme.
+
+Ověření z hlavní pracovní složky: úplný render pěti stránek úspěšný;
+kontrola R prošla (pouze obvyklá varování o nedostupné lokalizaci C.UTF-8).
+Kontrola HTML prošla pro 46 hesel, osm skrytých a rozbalitelných řešení,
+nepovinný rámeček, místní odkazy, klávesnici, stránkování, hledání,
+zobrazení bez JavaScriptu a šířky 1360, 1920 a 390 px. Bez chyb
+JavaScriptu a bez přetékání celé stránky. Nové části prohlédnuty na
+snímcích; citace Howella a Simonse vykresleny se správnými lokátory.
+Porovnání se zálohou potvrdilo zachování všech změněných uživatelských
+řádků po uvedených opravách a spojení cíle učení. Nová odpověď 4e
+zkontrolována věcně; žádné nové číselné výpočty ani excelové funkce
+nevznikly a Excel nebyl znovu spouštěn. `git diff --check` bez chyb.
+Toto ověření se týká místního webu, nikoli zveřejnění změn na Pages.
+
 ## Rozšíření pojmů v kapitole 1 (2026-09-20)
 
 Rozsah byl před psaním projednán a schválen: konstanta a závislost
