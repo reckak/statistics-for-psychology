@@ -240,6 +240,24 @@ s každou kapitolou, ne až při dokončení knihy.
 ## Git a dokončení práce
 
 - Před prací ověř stav repozitáře a zachovej rozpracované uživatelské změny.
+- Výchozím postupem je upravovat soubory přímo v hlavní pracovní složce
+  projektu, také když již obsahují necommitované změny. Ty nejsou překážkou
+  práce ani samy o sobě důvodem k další žádosti o souhlas. Před úpravou
+  přečti aktuální obsah a rozdíly vůči Gitu, navazuj na uživatelovu redakci
+  a začleň nové změny do téhož souboru. Zachování rozpracovaných změn
+  znamená zachovat jejich obsah a záměr, nikoli se úpravě souboru vyhnout.
+- Kvůli samotným necommitovaným změnám nevytvářej paralelní pracovní kopie,
+  worktrees ani dočasné verze kapitoly, které by se staly druhým místem
+  pro úpravy. Oddělenou pracovní kopii použij jen na výslovnou žádost
+  uživatele nebo při konkrétní potřebě izolace, kterou předem vysvětlíš.
+  Případná záloha či pomocný soubor pro kontrolu nesmí nahrazovat úpravu
+  cílového souboru ani zanechat více soupeřících verzí výsledku.
+- Tematická větev nevyžaduje jinou pracovní složku. Při změně větve
+  bezpečně zachovej rozpracované změny; neodstraňuj je ani neobnovuj starší
+  obsah jen pro získání čistého pracovního stromu. Pokud se změny překrývají,
+  spoj je podle dohodnutého záměru; ptej se pouze při skutečně nejasném
+  obsahovém konfliktu. Po dokončení ověř, že úplný aktuální výsledek je
+  v souboru na uživatelem očekávané cestě, nikoli jen v jiné kopii či na GitHubu.
 - Každou kapitolu připravuj v samostatné tematické větvi s prefixem `codex/`.
   Další úpravy nesloučené kapitoly patří do stejné větve; po sloučení založ
   pro nový úkol novou větev z aktuálního `main`.
