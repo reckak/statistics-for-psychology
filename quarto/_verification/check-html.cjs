@@ -45,13 +45,37 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 9, 'All nine chapter sources are included');
+        assert.equal(await references.count(), 14, 'All fourteen chapter sources are included');
         const howell = await page.locator('#ref-howell').innerText();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
         assert.match(await page.locator('.citation[data-cites="aron"]').first().innerText(), /Aron et al\. \(2014, s\. 3–5\)/, 'APA narrative citation for three authors');
         assert.match(await page.locator('.citation[data-cites="cumming"]').first().innerText(), /Cumming & Calin-Jageman, 2024/, 'APA parenthetical citation for two authors');
         assert.equal(await page.locator('#ref-lord a').getAttribute('href'), 'https://doi.org/10.1037/h0063675');
+        const newSources = {
+          henrich: ['2010', '10.1017/S0140525X0999152X'],
+          simons: ['2017', '10.1177/1745691617708630'],
+          michell: ['1997', '10.1111/j.2044-8295.1997.tb02641.x'],
+          liddell: ['2018', '10.1016/j.jesp.2018.08.009'],
+          borsboom2002: ['2002', '10.1016/S0160-2896(02)00082-X']
+        };
+        for (const [key, [year, doi]] of Object.entries(newSources)) {
+          const entry = page.locator(`#ref-${key}`);
+          assert((await entry.innerText()).includes(`(${year})`), `Year: ${key}`);
+          assert.equal(await entry.locator('a').getAttribute('href'), `https://doi.org/${doi}`);
+          assert(await entry.locator('em').count() >= 1, `APA journal italics: ${key}`);
+        }
+        const optional = page.locator('#chyba-mereni-podrobne');
+        assert.equal(await optional.locator('.callout-collapse').isVisible(), false);
+        await optional.locator('[data-bs-toggle="collapse"]').focus();
+        await page.keyboard.press('Enter');
+        await optional.locator('.callout-collapse').waitFor({ state: 'visible' });
+        await optional.screenshot({ path: 'tmp/verification/measurement-error-desktop.png' });
+        await optional.locator('[data-bs-toggle="collapse"]').click();
+        await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
+        for (const id of ['sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost', 'refs']) {
+          await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-desktop.png` });
+        }
         const links = page.locator('#TOC > ul > li > a');
         assert.equal(await links.count(), await page.locator('main > section.level2').count(), 'TOC covers chapter sections');
         for (const link of await links.all()) assert(await link.isVisible(), 'TOC link is visible');
@@ -82,6 +106,18 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 390, height: 844 });
       assert.equal(await page.locator('#quarto-margin-sidebar').isVisible(), false, 'Mobile layout hides right sidebar');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Mobile overflow: ${file}`);
+      if (file === 'quarto/kapitola_01.html') {
+        const optional = page.locator('#chyba-mereni-podrobne');
+        await optional.locator('[data-bs-toggle="collapse"]').click();
+        await optional.locator('.callout-collapse').waitFor({ state: 'visible' });
+        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Open optional explanation overflow');
+        await optional.screenshot({ path: 'tmp/verification/measurement-error-mobile.png' });
+        await optional.locator('[data-bs-toggle="collapse"]').click();
+        await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
+        for (const id of ['sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost', 'refs']) {
+          await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-mobile.png` });
+        }
+      }
       if (await solutions.count()) {
         const last = solutions.last();
         await last.locator('[data-bs-toggle="collapse"]').click();
@@ -128,11 +164,17 @@ const server = http.createServer((req, res) => {
       }
       await page.locator('.ref-controls input').fill('measurement');
       assert(await visible() > 0, 'English search');
+      await page.locator('.ref-controls input').fill('convenience');
+      assert.equal(await visible(), 1, 'Search for the new English sampling term');
+      assert(await page.locator('#pojem-prilezitostny-vyber').isVisible());
+      await page.locator('.ref-controls input').fill('dostupny vyber');
+      assert.equal(await visible(), 1, 'Search for an alternative Czech term without diacritics');
+      assert(await page.locator('#pojem-prilezitostny-vyber').isVisible());
       await page.locator('.ref-controls input').fill('uroven mereni');
       assert(await visible() > 0, 'Search without Czech diacritics');
       await page.locator('.ref-controls input').fill('codebook');
       assert.equal(await visible(), 1, 'Search must reach the last row, beyond the first page');
-      assert(await page.locator(`#${lastId}`).isVisible());
+      assert(await page.locator('#pojem-codebook').isVisible());
       await page.locator('.ref-controls input').focus();
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(() => document.activeElement.tagName), 'SELECT');
@@ -149,7 +191,8 @@ const server = http.createServer((req, res) => {
     assert.equal(await plain.locator('tbody tr:visible').count(), total, 'All glossary rows readable without JavaScript');
     if (solutionCount) {
       await plain.goto(base + 'quarto/kapitola_01.html');
-      assert.equal(await plain.locator('.callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+      assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+      assert(await plain.locator('#chyba-mereni-podrobne .callout-collapse').isVisible(), 'Optional explanation readable without JavaScript');
       await plain.setViewportSize({ width: 1360, height: 1000 });
       assert(await plain.locator('#toc-sec-datova-matice').isVisible(), 'TOC readable without JavaScript');
     }
