@@ -45,7 +45,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 14, 'All fourteen chapter sources are included');
+        assert.equal(await references.count(), 17, 'All seventeen chapter sources are included');
         const howell = await page.locator('#ref-howell').innerText();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
@@ -57,7 +57,9 @@ const server = http.createServer((req, res) => {
           simons: ['2017', '10.1177/1745691617708630'],
           michell: ['1997', '10.1111/j.2044-8295.1997.tb02641.x'],
           liddell: ['2018', '10.1016/j.jesp.2018.08.009'],
-          borsboom2002: ['2002', '10.1016/S0160-2896(02)00082-X']
+          borsboom2002: ['2002', '10.1016/S0160-2896(02)00082-X'],
+          stevens1946: ['1946', '10.1126/science.103.2684.677'],
+          weigl2021: ['2021', '10.1177/0013164420952118']
         };
         for (const [key, [year, doi]] of Object.entries(newSources)) {
           const entry = page.locator(`#ref-${key}`);
@@ -65,6 +67,8 @@ const server = http.createServer((req, res) => {
           assert.equal(await entry.locator('a').getAttribute('href'), `https://doi.org/${doi}`);
           assert(await entry.locator('em').count() >= 1, `APA journal italics: ${key}`);
         }
+        assert.equal(await page.locator('#ref-salzberger2010 a').getAttribute('href'), 'https://www.rasch.org/rmt/rmt242a.htm');
+        assert.match(await page.locator('#ref-salzberger2010').innerText(), /Salzberger, T\. \(2010\)/);
         const optional = page.locator('#chyba-mereni-podrobne');
         assert.equal(await optional.locator('.callout-collapse').isVisible(), false);
         await optional.locator('[data-bs-toggle="collapse"]').focus();
@@ -164,6 +168,11 @@ const server = http.createServer((req, res) => {
       }
       await page.locator('.ref-controls input').fill('measurement');
       assert(await visible() > 0, 'English search');
+      for (const [query, id] of [['visual analogue scale', 'pojem-vizualni-analogova-skala'], ['slider', 'pojem-posuvnik'], ['verbal anchor', 'pojem-verbalni-kotva'], ['measurement model', 'pojem-model-mereni']]) {
+        await page.locator('.ref-controls input').fill(query);
+        assert.equal(await visible(), 1, `Search for ${query} across all pages`);
+        assert(await page.locator(`#${id}`).isVisible());
+      }
       await page.locator('.ref-controls input').fill('convenience');
       assert.equal(await visible(), 1, 'Search for the new English sampling term');
       assert(await page.locator('#pojem-prilezitostny-vyber').isVisible());

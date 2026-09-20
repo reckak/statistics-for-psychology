@@ -1,5 +1,65 @@
 # Autorská dokumentace
 
+## Zpřesnění výkladu po společné redakci (2026-09-20)
+
+Na žádost autora zapracovány projednané úpravy přímo do hlavního souboru
+`quarto/kapitola_01.qmd`, na větvi `codex/chapter-01-clarifications`
+z aktuálního `origin/main` (440298b). Zachována dosavadní místní redakce
+i formátování z editoru; nesledovaný soubor Rproj nebyl upraven ani přidán.
+
+- Konkrétně popsáno omezené zastoupení společností v Henrichově přehledu.
+  Oddíl 2 znovu ověřen v autorském PDF uvedeném níže; nevydáváme jeho
+  historická procenta za současný stav celé psychologie.
+- Argument pro zobecnění rozveden na vlastním hypotetickém příkladu
+  rušivých zvuků, starších dospělých a porozumění jazyku nahrávky.
+  Nejde o výsledek skutečně provedené studie. Zachován odkaz na Simonse.
+- Oddělen účel náhodného rozdělení, záměrného rozdílu podmínek a kontroly
+  provedení. Sjednoceno také řešení úlohy 4.
+- Výroky „Jsem odpočatý“ a „Jsem unavený“ označeny jako tvrzení;
+  uveden úplný význam pěti možností odpovědi. Věk vysvětlen jako doba
+  od narození, jejíž poměr nelze přenášet na psychickou zralost.
+- Intervalová interpretace doplněna příkladem modelu měření únavy.
+  Odlišeny původní body od odhadů modelu; závislost na předpokladech
+  výslovně zachována. Konkrétní psychometrické modely se nezavádějí.
+- Tabulka v `sec-uroven-a-spojitost` nahrazena souvislým výkladem
+  možných hodnot, významu vztahů a přesnosti záznamu. Zachováno ID oddílu.
+  Doplněny VAS, posuvník a verbální kotvy, změny číselného zápisu a příklad
+  zaokrouhlené teploty. Nezavádí se topologie, absolutní škála ani SEM.
+
+Slovníček doplněn o čtyři schválené pojmy (celkem 50): model měření,
+vizuální analogová škála, posuvník a verbální kotva. Přehledy značení
+a Excelu se nemění; nové symboly, vzorce ani funkce nepřibyly.
+
+Odborná opora nového textu:
+
+- Stevens (1946), s. 677–679: přípustné změny číselného zápisu;
+  ověřeno v úplném článku, DOI 10.1126/science.103.2684.677.
+- Salzberger (2010), s. 1273–1275: rozdíl mezi součtem bodů a modelovým
+  měřením; ověřeno na https://www.rasch.org/rmt/rmt242a.htm.
+  Nepřebíráme obecný závěr, že shoda s modelem sama definitivně dokazuje
+  kvantitativní povahu konstruktu. U článku není uvedeno DOI.
+- Weigl a Forstner (2021), úvodní část před oddílem „The Present Study“:
+  podoba VAS a popisy bodů; text ověřen v indexovaném plném znění
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8072950/.
+  Metadata ověřena přes Crossref a univerzitní záznam JKU. Rok 2021
+  odpovídá zařazení do ročníku 81(3), s. 595–611; online vydání je 2020.
+  DOI 10.1177/0013164420952118. Přímé načítání PMC vracelo ochrannou
+  stránku a rozhraní Europe PMC chybu 500, dostupný byl indexovaný text.
+
+Ověření: úplný render všech pěti stránek prošel. Kontrola R potvrdila
+modelovou matici, chybějící hodnoty, odpověď 8 a elementární výpočty.
+Všech osm vzorových řešení zkontrolováno obsahově vůči zadání a výkladu.
+Kontrola HTML prošla pro 50 hesel, včetně vyhledání všech čtyř nových
+anglických termínů, odkazy, stránkování, klávesnici, skrytí a rozbalení
+osmi řešení i nepovinného rámečku a zobrazení bez JavaScriptu.
+Šířky 1360, 1920 a 390 px bez přetékání celé stránky a bez chyb JavaScriptu.
+Nové pasáže a bibliografie prohlédnuty na snímcích; ověřeno vykreslení
+nových citací, autorů, let, kurzivy, lokátorů a cílových DOI/URL.
+Nové číselné příklady (rozdíly 5 bodů, převod hodin na minuty a poměry)
+zkontrolovány nezávisle. Excel se neměnil a nebyl znovu spouštěn.
+Kontrola rozdílů bez chyb. Toto ověření se týká místního webu;
+publikování na Pages následuje až po autorově sloučení PR.
+
 ## Sjednocení hlavní místní kapitoly a doplnění validity (2026-09-20)
 
 Na výslovnou žádost autora je výsledná kapitola přímo v hlavní pracovní
