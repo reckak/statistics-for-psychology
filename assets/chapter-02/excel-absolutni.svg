@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 908 465" role="img" aria-labelledby="title desc">
+<title id="title">Absolutní četnosti · vybraná buňka C5</title>
+<desc id="desc">Názorná rekonstrukce excelového listu. =COUNTIFS(Data!$E$2:$E$37;A5). C5 vrací 4: tolik odpovědí ve sloupci Data!E2:E37 má kód 1. Při kopírování dolů se mění A5 → A6 → A7 → A8. Oblast s dolary zůstává pevná.</desc>
+<style>text{font-family:Arial,sans-serif;fill:#223744;font-size:18px}.small{font-size:16px}.label{font-weight:700}.white{fill:white}.mono{font-family:Consolas,monospace;font-size:16px}</style>
+<rect x="0" y="0" width="908" height="465" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<rect x="0" y="0" width="908" height="42" fill="#234f62" stroke="#cad5da" stroke-width="1"/>
+<text x="18" y="28" class="label white" text-anchor="start">Absolutní četnosti · vybraná buňka C5</text>
+<rect x="12" y="54" width="64" height="34" fill="#edf5f1" stroke="#cad5da" stroke-width="1"/>
+<text x="44" y="77" class="label" text-anchor="middle">C5</text>
+<text x="93" y="77" class="small" text-anchor="start">fx</text>
+<rect x="120" y="54" width="776" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="130" y="77" class="mono" text-anchor="start">=COUNTIFS(Data!$E$2:$E$37;A5)</text>
+<text x="17" y="119" class="small" text-anchor="start">Cetnosti!C2 = 36 platných údajů</text>
+<rect x="0" y="136" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<rect x="48" y="136" width="150" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="123.0" y="159" class="small" text-anchor="middle">A</text>
+<rect x="198" y="136" width="330" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="363.0" y="159" class="small" text-anchor="middle">B</text>
+<rect x="528" y="136" width="380" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="718.0" y="159" class="small" text-anchor="middle">C</text>
+<rect x="0" y="170" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="24" y="193" class="small" text-anchor="middle">4</text>
+<rect x="48" y="170" width="150" height="34" fill="#234f62" stroke="#cad5da" stroke-width="1"/>
+<text x="123.0" y="193" class="small white label" text-anchor="middle">Kód</text>
+<rect x="198" y="170" width="330" height="34" fill="#234f62" stroke="#cad5da" stroke-width="1"/>
+<text x="363.0" y="193" class="small white label" text-anchor="middle">Odpočatost</text>
+<rect x="528" y="170" width="380" height="34" fill="#234f62" stroke="#cad5da" stroke-width="1"/>
+<text x="718.0" y="193" class="small white label" text-anchor="middle">Četnost</text>
+<rect x="0" y="204" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="24" y="227" class="small" text-anchor="middle">5</text>
+<rect x="48" y="204" width="150" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="188" y="227" class="" text-anchor="end">1</text>
+<rect x="198" y="204" width="330" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="208" y="227" class="" text-anchor="start">Vůbec</text>
+<rect x="528" y="204" width="380" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="898" y="227" class="" text-anchor="end">4</text>
+<rect x="0" y="238" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="24" y="261" class="small" text-anchor="middle">6</text>
+<rect x="48" y="238" width="150" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="188" y="261" class="" text-anchor="end">2</text>
+<rect x="198" y="238" width="330" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="208" y="261" class="" text-anchor="start">Trochu</text>
+<rect x="528" y="238" width="380" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="898" y="261" class="" text-anchor="end">10</text>
+<rect x="0" y="272" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="24" y="295" class="small" text-anchor="middle">7</text>
+<rect x="48" y="272" width="150" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="188" y="295" class="" text-anchor="end">3</text>
+<rect x="198" y="272" width="330" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="208" y="295" class="" text-anchor="start">Dost</text>
+<rect x="528" y="272" width="380" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="898" y="295" class="" text-anchor="end">14</text>
+<rect x="0" y="306" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="24" y="329" class="small" text-anchor="middle">8</text>
+<rect x="48" y="306" width="150" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="188" y="329" class="" text-anchor="end">4</text>
+<rect x="198" y="306" width="330" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="208" y="329" class="" text-anchor="start">Zcela</text>
+<rect x="528" y="306" width="380" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
+<text x="898" y="329" class="" text-anchor="end">8</text>
+<rect x="529" y="205" width="378" height="32" fill="none" stroke="#168154" stroke-width="3"/>
+<rect x="49" y="205" width="148" height="32" fill="none" stroke="#267888" stroke-width="3"/>
+<text x="16" y="371" class="small" text-anchor="start">C5 vrací 4: tolik odpovědí ve sloupci Data!E2:E37 má kód 1.</text>
+<text x="16" y="396" class="small" text-anchor="start">Při kopírování dolů se mění A5 → A6 → A7 → A8. Oblast s dolary zůstává pevná.</text>
+<rect x="0" y="433" width="908" height="32" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
+<text x="20" y="455" class="small" text-anchor="start">Data     |     Cetnosti     |     Histogram          Zobrazený list: Cetnosti</text>
+</svg>
