@@ -4,7 +4,7 @@
 
 **[Otevřít webovou učebnici](https://reckak.github.io/statistics-for-psychology/)**
 
-Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům** a **Četnosti, rozdělení dat a jejich zobrazení** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Druhá kapitola obsahuje modelová data a upravitelný excelový sešit.
+Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům** a **Četnosti, rozdělení dat a jejich zobrazení** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Druhá kapitola obsahuje modelová data a upravitelný excelový sešit. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
 
 ## Práce s projektem
 
@@ -31,6 +31,7 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `quarto/kapitola_02.qmd`: četnosti, tabulky a grafy, Excel a deset cvičení.
 - `data/kapitola_02.csv` a `.xlsx`: pevná modelová data a studentský sešit s výpočty a grafy.
 - `scripts/`: tvorba grafů, sešitu a názorných excelových ilustrací.
+- `quarto/literatura.qmd`: společná automaticky generovaná bibliografie celé knihy.
 - `quarto/slovnicek.qmd`: české a anglické pojmy s odkazy na výklad.
 - `quarto/znaceni.qmd`: přehled matematického a statistického značení a vzorců.
 - `quarto/excel.qmd`: přehled užitečných funkcí Excelu.
@@ -43,7 +44,7 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 
 Neveřejné autorské podklady ve složce `sources/` nejsou součástí repozitáře ani webu a nejsou potřebné pro čtení, cvičení nebo sestavení knihy. Generované výstupy a dočasné pracovní soubory se do Gitu neukládají.
 
-Novou kapitolu přidejte jako `.qmd` do `quarto/` a zařaďte ji do `book.chapters` v `_quarto.yml` před tři závěrečné přehledy. Přehledy doplňujte současně s kapitolou. Před psaním dohodněte obsah, terminologii a značení podle [projektových instrukcí](AGENTS.md).
+Novou kapitolu přidejte jako `.qmd` do `quarto/` a zařaďte ji do části **Výkladové kapitoly** v `book.chapters` souboru `_quarto.yml`. Bibliografii udržujte jen ve společné kapitole `quarto/literatura.qmd`; v ostatních kapitolách používejte citační zápis Quarta. Přehledy doplňujte současně s kapitolou. Před psaním dohodněte obsah, terminologii a značení podle [projektových instrukcí](AGENTS.md).
 
 ## Kontroly a GitHub
 

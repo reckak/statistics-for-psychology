@@ -1,0 +1,6 @@
+# Literatura {.unnumbered}
+
+Společný seznam obsahuje zdroje citované v celé učebnici. Odkazy u citací v jednotlivých kapitolách vedou přímo k příslušným bibliografickým záznamům.
+
+::: {#refs}
+:::

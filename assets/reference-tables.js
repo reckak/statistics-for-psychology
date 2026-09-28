@@ -13,6 +13,20 @@
       }
     });
   });
+  // Quarto's group toggles are anchors without href; make them keyboard buttons.
+  document.querySelectorAll('.sidebar-item-section > .sidebar-item-container [data-bs-toggle="collapse"]').forEach(toggle => {
+    toggle.tabIndex = 0;
+    toggle.setAttribute('role', 'button');
+    toggle.setAttribute('aria-controls', toggle.dataset.bsTarget.slice(1));
+    const title = toggle.parentElement.querySelector('.menu-text').textContent.trim();
+    toggle.setAttribute('aria-label', `Rozbalit nebo sbalit část ${title}`);
+    toggle.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggle.click();
+      }
+    });
+  });
   document.querySelectorAll('.table-scroll').forEach(wrapper => {
     wrapper.tabIndex = 0;
     wrapper.setAttribute('role', 'region');

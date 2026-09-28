@@ -510,10 +510,3 @@ Po změně odpočatosti dostaneme četnosti 4, 9, 15 a 8; jejich součet zůstá
 
 Změna spánku z 6 na 7 přesune jeden údaj z intervalu 6 až méně než 7 do intervalu 7 až méně než 8. Četnosti budou 2, 4, 6, 12, 6 a 3. Počet platných údajů zůstane 33, protože jsme známé číslo nahradili jiným známým číslem. Hodnota přesně 7 patří do intervalu začínajícího sedmičkou. Po obnovení B2 na 6 se vrátí četnosti 2, 4, 7, 11, 6 a 3.
 :::
-
-## Literatura {.unnumbered}
-
-Úplné bibliografické údaje citovaných zdrojů najdete ve [společném seznamu literatury](kapitola_01.qmd#refs). Odkazy u jednotlivých citací vedou přímo na příslušný záznam.
-
-::: {#refs}
-:::

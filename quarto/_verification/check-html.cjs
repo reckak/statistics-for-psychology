@@ -46,8 +46,8 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 23, 'All sources cited across the book are included');
-        const howell = await page.locator('#ref-howell').innerText();
+        assert.equal(await references.count(), 17, 'Chapter citation data remains available for popovers');
+        const howell = (await page.locator('#ref-howell').innerText()).trim();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
         assert.match(await page.locator('.citation[data-cites="aron"]').first().innerText(), /Aron et al\. \(2014, s\. 3–5\)/, 'APA narrative citation for three authors');
@@ -78,7 +78,7 @@ const server = http.createServer((req, res) => {
         await optional.screenshot({ path: 'tmp/verification/measurement-error-desktop.png' });
         await optional.locator('[data-bs-toggle="collapse"]').click();
         await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
-        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost', 'refs']) {
+        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
           await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-desktop.png` });
         }
         const links = page.locator('#TOC > ul > li > a');
@@ -110,12 +110,25 @@ const server = http.createServer((req, res) => {
         for (const id of ['msCount','msCountifs','msSum','msHistogram']) {
           assert((await page.locator(`#ref-${id} a`).getAttribute('href')).startsWith('https://support.microsoft.com/cs-cz/'));
         }
-        for (const id of ['sec-sumace','sec-excel-histogram','literatura']) {
+        for (const id of ['sec-sumace','sec-excel-histogram']) {
           await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-desktop.png`});
         }
         fs.writeFileSync('tmp/verification/ch02-citations.json', JSON.stringify(await page.locator('.citation, #refs .csl-entry').allTextContents(),null,2));
       }
-      if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), file.includes('kapitola') ? 0 : 1);
+      if (file === 'quarto/literatura.html') {
+        assert.equal(await page.locator('#refs .csl-entry:visible').count(),23,'All cited sources appear in the shared bibliography');
+        assert.equal(await page.locator('h1 .chapter-number').count(),0,'Bibliography is unnumbered');
+        await page.locator('#refs').screenshot({path:'tmp/verification/bibliography-desktop.png'});
+      }
+      if (file.includes('kapitola_')) {
+        const number=file.includes('_01')?'1':'2';
+        assert.equal((await page.locator('h1 .chapter-number').innerText()).trim(),number,'Part headings must not change chapter numbers');
+        assert.equal(await page.locator('#refs .csl-entry:visible').count(),0,'Bibliography appears only on its own page');
+        for (const cite of await page.locator('a[role="doc-biblioref"]').all()) {
+          const target=new URL(await cite.getAttribute('href'),page.url()); assert.equal(target.pathname,prefix+'quarto/literatura.html','Citation links to the common bibliography'); assert(target.hash.startsWith('#ref-'));
+        }
+      }
+      if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), ['quarto/slovnicek.html','quarto/znaceni.html','quarto/excel.html'].includes(file) ? 1 : 0);
       const solutions = page.locator('.callout[title="Ukázat řešení"]');
       solutionsByPage[file] = await solutions.count();
       solutionCount += await solutions.count();
@@ -146,12 +159,12 @@ const server = http.createServer((req, res) => {
         await optional.screenshot({ path: 'tmp/verification/measurement-error-mobile.png' });
         await optional.locator('[data-bs-toggle="collapse"]').click();
         await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
-        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost', 'refs']) {
+        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
           await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-mobile.png` });
         }
       }
       if (file === 'quarto/kapitola_02.html') {
-        for (const id of ['sec-sumace','sec-excel-histogram','literatura']) {
+        for (const id of ['sec-sumace','sec-excel-histogram']) {
           await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-mobile.png`});
         }
       }
@@ -179,6 +192,43 @@ const server = http.createServer((req, res) => {
         if (url.hash && documents[target]) assert(documents[target].ids.includes(decodeURIComponent(url.hash.slice(1))), `Missing anchor ${file}: ${href}`);
       }
     }
+    await page.goto(base+'quarto/kapitola_02.html',{waitUntil:'networkidle'});
+    const sidebar=page.locator('#quarto-sidebar');
+    const groups=sidebar.locator('.sidebar-item-section');
+    assert.equal(await groups.count(),2,'Two sidebar groups');
+    assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
+    assert.match(await groups.nth(1).innerText(),/Literatura a přehledy/);
+    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),2);
+    assert.equal(await groups.nth(1).locator('a.sidebar-item-text[href]').count(),4);
+    assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
+    for (const group of await groups.all()) {
+      const toggle=group.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
+      const body=group.locator('ul.sidebar-section');
+      await toggle.click();await body.waitFor({state:'hidden'});
+      await toggle.focus();await page.keyboard.press('Enter');await body.waitFor({state:'visible'});
+      await page.waitForTimeout(350);
+      await page.keyboard.press('Space');await body.waitFor({state:'hidden'});
+      await page.keyboard.press('Enter');await body.waitFor({state:'visible'});
+      await page.waitForTimeout(350);
+      assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+    }
+    await sidebar.screenshot({path:'tmp/verification/book-groups-desktop.png'});
+    await page.setViewportSize({width:390,height:844});
+    await page.locator('header .quarto-btn-toggle').click();
+    await sidebar.waitFor({state:'visible'});
+    const mobileGroup=groups.nth(1);
+    const mobileToggle=mobileGroup.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
+    await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'hidden'});
+    await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'visible'});
+    await page.waitForTimeout(350);
+    await page.screenshot({path:'tmp/verification/book-groups-mobile.png'});
+    await mobileGroup.locator('a[href$="literatura.html"]').click();
+    await page.waitForURL('**/quarto/literatura.html');
+    assert(await page.locator('#refs').isVisible());
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    await page.setViewportSize({width:1360,height:1000});
+
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();
     if (total > 10) {
@@ -275,6 +325,8 @@ const server = http.createServer((req, res) => {
       await plain.goto(base + `quarto/${file}.html`);
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
     }
+    await plain.goto(base+'quarto/literatura.html');
+    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),23);
     await noScript.close();
     const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
     await local.goto(pathToFileURL(path.join(root, 'quarto/kapitola_01.html')).href);

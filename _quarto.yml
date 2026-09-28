@@ -24,11 +24,16 @@ book:
     search: true
   chapters:
     - index.qmd
-    - quarto/kapitola_01.qmd
-    - quarto/kapitola_02.qmd
-    - quarto/slovnicek.qmd
-    - quarto/znaceni.qmd
-    - quarto/excel.qmd
+    - part: "Výkladové kapitoly"
+      chapters:
+        - quarto/kapitola_01.qmd
+        - quarto/kapitola_02.qmd
+    - part: "Literatura a přehledy"
+      chapters:
+        - quarto/literatura.qmd
+        - quarto/slovnicek.qmd
+        - quarto/znaceni.qmd
+        - quarto/excel.qmd
 
 lang: cs
 bibliography: references.bib
