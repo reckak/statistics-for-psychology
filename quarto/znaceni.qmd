@@ -1,7 +1,21 @@
 # Matematické a statistické značení a vzorce {.unnumbered}
 
-Přehled obsahuje jen značení již vysvětlené v učebnici. Dosud nebylo zavedeno žádné matematické ani statistické značení nebo vzorec.
+Přehled používá stejné symboly jako výklad. Alternativy slouží k orientaci v jiné literatuře; ve výpočtech je nestřídáme. Vyhledávat lze i podle slovního významu.
 
 ::: {.reference-table}
-<table id="notation-table"><caption>Přehled zavedeného značení a vzorců</caption><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody></tbody></table>
+<table id="notation-table"><caption>Přehled zavedeného značení a vzorců</caption><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah nebo příklad</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody>
+<tr id="znak-n"><th scope="row">$n$</th><td>Rozsah souboru: počet případů zahrnutých do konkrétního výpočtu.</td><td>$n=\sum_{i=1}^{k}f_i$</td><td>N v jiné literatuře; zde používáme malé n.</td><td><a href="kapitola_02.html#sec-co-pocitame">Výklad</a></td></tr>
+<tr id="znak-i"><th scope="row">$i$</th><td>Index kategorie, hodnoty nebo intervalu; v této kapitole neoznačuje účastníka.</td><td>$i=1,\ldots,k$</td><td>j v jiné literatuře.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
+<tr id="znak-k"><th scope="row">$k$</th><td>Počet kategorií, jednotlivých hodnot nebo intervalů v dané tabulce.</td><td>$k=4$</td><td>Jiná literatura může používat jiná písmena.</td><td><a href="kapitola_02.html#sec-sumace">Výklad</a></td></tr>
+<tr id="znak-f"><th scope="row">$f_i$</th><td>Absolutní četnost v kategorii i.</td><td>$f_2=2$</td><td>n_i; zde f_i.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
+<tr id="znak-p"><th scope="row">$p_i$</th><td>Relativní četnost v kategorii i; n je počet zahrnutých případů.</td><td>$p_i=\frac{f_i}{n}$</td><td>r_i, f_i v některých zdrojích; zde p_i. Nejde zde o p-hodnotu.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
+<tr id="znak-kum-f"><th scope="row">$f_{\mathrm{kum},i}$</th><td>Kumulativní absolutní četnost: počet až po kategorii i včetně. Část kum je slovní připomínka.</td><td>$f_{\mathrm{kum},i}=f_1+\cdots+f_i$</td><td>F_i; zde malé f s indexem kum.</td><td><a href="kapitola_02.html#sec-kumulativni-cetnosti">Výklad</a></td></tr>
+<tr id="znak-kum-p"><th scope="row">$p_{\mathrm{kum},i}$</th><td>Kumulativní relativní četnost: podíl až po kategorii i včetně.</td><td>$p_{\mathrm{kum},i}=\frac{f_{\mathrm{kum},i}}{n}$</td><td>P_i; zde malé p s indexem kum.</td><td><a href="kapitola_02.html#sec-kumulativni-cetnosti">Výklad</a></td></tr>
+<tr id="znak-sumace"><th scope="row">$\sum_{i=1}^{k}f_i$</th><td>Sumace (summation): sčítáme členy f_i pro index i od dolní meze 1 do horní meze k. Sigma zde je operátor.</td><td>$\sum_{i=1}^{4}f_i=f_1+f_2+f_3+f_4$</td><td>Rozepsaný součet; sigma není populační parametr.</td><td><a href="kapitola_02.html#sec-sumace">Výklad</a></td></tr>
+<tr id="znak-soucet"><th scope="row">$+$</th><td>Sčítání; členy úplné četnostní tabulky pokrývají každý případ právě jednou.</td><td>$1+2+2+1=6$</td><td>Zkráceně znak sumace.</td><td><a href="kapitola_02.html#sec-sumace">Výklad</a></td></tr>
+<tr id="znak-deleni"><th scope="row">$\frac{f_i}{n}$</th><td>Zlomková čára znamená dělení. Čitatel je nahoře, jmenovatel dole.</td><td>$\frac{2}{6}=0{,}333\ldots$</td><td>2/6; v Excelu lomítko /.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
+<tr id="znak-procento"><th scope="row">$\%$</th><td>Procento znamená jednu setinu. Podíl 1 odpovídá 100 %.</td><td>$0{,}25=25\,\%$</td><td>Procentní vyjádření téhož podílu.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
+<tr id="znak-tecky"><th scope="row">$\ldots,\;\cdots$</th><td>Tři tečky zastupují pokračování pravidla: číslice desetinného rozvoje nebo další členy součtu.</td><td>$f_1+\cdots+f_4=f_1+f_2+f_3+f_4$</td><td>Nejde o chybějící údaj.</td><td><a href="kapitola_02.html#sec-kumulativni-cetnosti">Výklad</a></td></tr>
+<tr id="znak-nasobeni"><th scope="row">$\times$</th><td>Násobení, například při porovnání ploch obdélníků.</td><td>$10\times1=5\times2=10$</td><td>Středová tečka v jiných textech; v Excelu hvězdička.</td><td><a href="kapitola_02.html#sec-volba-intervalu">Výklad</a></td></tr>
+</tbody></table>
 :::

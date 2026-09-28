@@ -8,7 +8,7 @@ const root = path.resolve('_book');
 const prefix = '/statistics-for-psychology/';
 const files = fs.readdirSync(path.join(root, 'quarto')).filter(f => f.endsWith('.html'));
 const paths = ['index.html', ...files.map(f => `quarto/${f}`)];
-const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
+const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png' };
 const server = http.createServer((req, res) => {
   let route = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
   if (!route.startsWith(prefix)) { res.writeHead(404); return res.end(); }
@@ -29,6 +29,7 @@ const server = http.createServer((req, res) => {
   fs.mkdirSync('tmp/verification', { recursive: true });
   const documents = {};
   let solutionCount = 0;
+  const solutionsByPage = {};
   try {
     for (const file of paths) {
       await page.goto(base + file, { waitUntil: 'networkidle' });
@@ -45,7 +46,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 17, 'All seventeen chapter sources are included');
+        assert.equal(await references.count(), 23, 'All sources cited across the book are included');
         const howell = await page.locator('#ref-howell').innerText();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
@@ -89,9 +90,36 @@ const server = http.createServer((req, res) => {
         await page.waitForFunction(() => location.hash === '#sec-datova-matice' && document.querySelector('#sec-datova-matice').getBoundingClientRect().top < 100);
         await page.evaluate(() => window.scrollTo(0, 0));
       }
+      if (file === 'quarto/kapitola_02.html') {
+        await page.waitForFunction(() => !!document.querySelector('math'));
+        assert.equal(await page.locator('merror').count(), 0, 'No MathML parse errors');
+        const images = page.locator('main img');
+        assert.equal(await images.count(), 13, 'Ten plots and three Excel illustrations');
+        for (const img of await images.all()) {
+          assert(await img.evaluate(el => el.complete && el.naturalWidth > 0), 'Figure loaded');
+          assert((await img.getAttribute('alt')).length > 30, 'Descriptive figure alternative');
+        }
+        for (const fig of await page.locator('main figure').all()) {
+          const id = await fig.evaluate(el => el.closest('[id]').id);
+          await fig.screenshot({ path: `tmp/verification/ch02-${id}.png` });
+        }
+        assert.equal(await page.locator('#refs .csl-entry').count(), 11);
+        assert.match(await page.locator('#ref-cleveland1984').innerText(), /Cleveland, W. S., & McGill, R. \(1984\)/);
+        assert.equal(await page.locator('#ref-cleveland1984 a').getAttribute('href'), 'https://doi.org/10.1080/01621459.1984.10478080');
+        assert.match(await page.locator('#ref-howell').innerText(), /8\. vyd\./);
+        for (const id of ['msCount','msCountifs','msSum','msHistogram']) {
+          assert((await page.locator(`#ref-${id} a`).getAttribute('href')).startsWith('https://support.microsoft.com/cs-cz/'));
+        }
+        for (const id of ['sec-sumace','sec-excel-histogram','literatura']) {
+          await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-desktop.png`});
+        }
+        fs.writeFileSync('tmp/verification/ch02-citations.json', JSON.stringify(await page.locator('.citation, #refs .csl-entry').allTextContents(),null,2));
+      }
       if (file !== 'index.html') assert.equal(await page.locator('.ref-controls').count(), file.includes('kapitola') ? 0 : 1);
       const solutions = page.locator('.callout[title="Ukázat řešení"]');
+      solutionsByPage[file] = await solutions.count();
       solutionCount += await solutions.count();
+      if (file === 'quarto/kapitola_02.html') assert.equal(await solutions.count(), 10);
       if (file === 'quarto/kapitola_01.html') assert.equal(await solutions.count(), 8, 'All eight exercises must have a solution');
       for (let i = 0; i < await solutions.count(); i++) {
         const item = solutions.nth(i);
@@ -120,6 +148,11 @@ const server = http.createServer((req, res) => {
         await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
         for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost', 'refs']) {
           await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-mobile.png` });
+        }
+      }
+      if (file === 'quarto/kapitola_02.html') {
+        for (const id of ['sec-sumace','sec-excel-histogram','literatura']) {
+          await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-mobile.png`});
         }
       }
       if (await solutions.count()) {
@@ -188,9 +221,40 @@ const server = http.createServer((req, res) => {
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(() => document.activeElement.tagName), 'SELECT');
     } else assert.equal(await page.locator('.ref-pagination button:not([disabled])').count(), 0);
+    for (const [query,id] of [['kolacovy','pojem-vysecovy-graf'],['stem-and-leaf','pojem-stonek-list'],['extremni hodnota','pojem-odlehle-pozorovani']]) {
+      await page.locator('.ref-controls input').fill(query);
+      assert(await page.locator(`#${id}`).isVisible());
+    }
     for (const file of ['znaceni', 'excel']) {
       await page.goto(base + `quarto/${file}.html`, { waitUntil: 'networkidle' });
-      if (!(await page.locator('tbody tr').count())) assert.equal(await page.locator('.ref-pagination button:not([disabled])').count(), 0);
+      const rows=page.locator('tbody tr');
+      const count=await rows.count();
+      assert.equal(await page.locator('tbody tr:visible').count(), Math.min(10,count));
+      for (const size of ['25','50','all','10']) {
+        await page.locator('.ref-controls select').selectOption(size);
+        assert.equal(await page.locator('tbody tr:visible').count(), Math.min(count,size==='all'?count:+size));
+      }
+      const lastId=await rows.last().getAttribute('id');
+      await page.locator('.ref-controls input').fill('nenalezitelnypojem');
+      assert.equal(await page.locator('tbody tr:visible').count(),0);
+      await page.evaluate(id=>location.hash=id,lastId);
+      await page.locator(`#${lastId}`).waitFor({state:'visible'});
+      assert.equal(await page.locator('.ref-controls input').inputValue(),'');
+      await page.goto(base+`quarto/${file}.html#${lastId}`,{waitUntil:'networkidle'});
+      assert(await page.locator(`#${lastId}`).isVisible());
+      await page.locator('.ref-controls input').fill(file==='znaceni'?'summation':'COUNTIFS');
+      assert.equal(await page.locator('tbody tr:visible').count(),1);
+      await page.locator('.ref-controls input').focus();await page.keyboard.press('Tab');
+      assert.equal(await page.evaluate(()=>document.activeElement.tagName),'SELECT');
+      if(file==='znaceni') {
+        await page.waitForFunction(()=>document.querySelector('#znak-sumace math'));
+        assert.equal(await page.locator('merror').count(),0);
+        await page.locator('#znak-sumace').screenshot({path:'tmp/verification/ch02-notation.png'});
+      }
+      await page.setViewportSize({width:390,height:844});
+      assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+      await page.screenshot({path:`tmp/verification/ch02-reference-${file}-mobile.png`});
+      await page.setViewportSize({width:1360,height:1000});
     }
     assert(!fs.existsSync(path.join(root, 'sources')), 'Private sources copied to web');
     assert(!fs.existsSync(path.join(root, 'quarto/README.md')), 'Author documentation copied to web');
@@ -200,10 +264,16 @@ const server = http.createServer((req, res) => {
     assert.equal(await plain.locator('tbody tr:visible').count(), total, 'All glossary rows readable without JavaScript');
     if (solutionCount) {
       await plain.goto(base + 'quarto/kapitola_01.html');
-      assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(), solutionCount, 'Solutions readable without JavaScript');
+      assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(), solutionsByPage['quarto/kapitola_01.html'], 'Solutions readable without JavaScript');
       assert(await plain.locator('#chyba-mereni-podrobne .callout-collapse').isVisible(), 'Optional explanation readable without JavaScript');
       await plain.setViewportSize({ width: 1360, height: 1000 });
       assert(await plain.locator('#toc-sec-datova-matice').isVisible(), 'TOC readable without JavaScript');
+    }
+    await plain.goto(base + 'quarto/kapitola_02.html');
+    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(), 10);
+    for (const file of ['znaceni','excel']) {
+      await plain.goto(base + `quarto/${file}.html`);
+      assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
     }
     await noScript.close();
     const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });

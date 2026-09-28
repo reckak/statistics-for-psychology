@@ -7,6 +7,7 @@ _book/
 .quarto/
 tmp/
 node_modules/
+assets/chapter-02/plots/
 
 /.quarto/
 **/*.quarto_ipynb
