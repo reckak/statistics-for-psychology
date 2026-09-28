@@ -612,8 +612,3 @@ Při přípravě pro statistický program můžeme dvě prázdné číselné bu�
 
 Součet prázdných buněk může vrátit nulu jako výsledek pravidla výpočtu, přestože o výkonu nemáme žádný údaj. U K03 úloha neproběhla. Interpretovat výsledek takového výpočtu jako skutečně nulový výkon by zaměnilo chybění za pozorovanou hodnotu.
 ::::
-
-## Literatura {.unnumbered}
-
-::: {#refs}
-:::
