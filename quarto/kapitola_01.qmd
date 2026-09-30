@@ -14,27 +14,27 @@ Představte si, že se chcete dozvědět, zda délka spánku souvisí s výkonem
 
 Osobní zkušenosti mohou být podnětem k otázce, ale samy ještě neukazují, jak pravidelný je pozorovaný vztah. Snadno si vybavíme situace, které odpovídají našemu očekávání, a opomeneme ty, které mu odporují. Navíc v každodenní situaci obvykle neměníme jen jednu věc: před náročnou zkouškou můžeme současně méně spát, více se učit a prožívat větší míru úzkosti. Potřebu systematických postupů při posuzování zkušeností zdůrazňuje také Navarro [-@navarro, kap. 1] v úvodu své učebnice.
 
-**Statistika (*statistics*)** zahrnuje postupy, které pomáhají plánovat získávání dat, data popisovat a na jejich základě vyvozovat závěry s přihlédnutím k nejistotě. Je užitečná při vlastním výzkumu i při čtení článků, posuzování psychologických doporučení nebo interpretaci výsledků vyšetření. Umožňuje klást přesnější otázky; nenahrazuje znalost toho, co a jak bylo měřeno.
+**Statistika (*statistics*)** zahrnuje postupy, které pomáhají plánovat sběr dat, data popisovat a na jejich základě vyvozovat závěry s přihlédnutím k nejistotě. Je užitečná při vlastním výzkumu i při čtení článků, posuzování psychologických doporučení nebo interpretaci výsledků vyšetření. Umožňuje klást přesnější otázky, ale nenahrazuje znalost toho, co a jak bylo měřeno.
 
-Nejistota není jen nepříjemnost, kterou by správný výpočet měl odstranit. Můžeme mít dobré důvody pro určitý závěr a současně připouštět, že další data mohou naše poznání zpřesnit nebo změnit. Uvažování o síle a omezeních důkazů bude provázet celý kurz [@cumming, kap. 1–2].
+Nejistota není jen nepříjemnost, kterou by správný výpočet měl odstranit. Můžeme mít dobré důkazy pro určitý závěr a současně připouštět, že další data mohou naše poznání zpřesnit nebo změnit. Uvažování o síle a omezeních důkazů bude provázet celý kurz [@cumming, kap. 1–2].
 
 ::: worked-example
 **Od zkušenosti k otázce.** Výrok „Po krátkém spánku si nic nepamatuji“ obsahuje několik nejasností. Jak krátký spánek máme na mysli? Vzpomínání na osobní události, nebo zapamatování nového učiva? Jak a kdy budeme výkon posuzovat?
 
-Pro naši modelovou studii otázku zpřesníme: „Souvisí studentem uvedená doba spánku během předchozí noci s počtem slov, která si vybaví po předložení seznamu dvanácti slov?“ Tím jsme otázku upřesnili do podoby, která může být podrobena zkoumání. Zatím jsme neprokázali, že zvolený údaj zachycuje všechny důležité stránky spánku a paměti, ani že případný vztah bude příčinný.
+Pro naši modelovou studii otázku zpřesníme: „Souvisí studentem uvedená doba spánku během předchozí noci s počtem slov, která si vybaví po předložení seznamu dvanácti slov?“ Tím jsme otázku upřesnili do podoby, která může být podrobena zkoumání. Samo o sobě to ale nedokládá, že zvolený směr zachycuje všechny důležité stránky spánku a paměti, ani že případný vztah bude příčinný.
 :::
 
 ## Od otázky k proměnným a hodnotám {#sec-promenne}
 
 Začněme tím, jak by vypadal záznam o jednom účastníkovi. Student označený P01 uvedl šest hodin spánku, po splnění paměťové úlohy správně vybavil pět slov a do laboratoře přišel dopoledne. Každý z těchto údajů má jiný význam.
 
-**Případ (*case*)** je jednotka, o níž v daném uspořádání vedeme soubor údajů. V naší jednoduché studii odpovídá jeden případ jednomu účastníkovi při jedné návštěvě. Případem ale může být i rodina, školní třída nebo konkrétní návštěva klienta. Vždy potřebujeme určit, co jeden případ představuje.
+**Případ (*case*)** je jednotka, o níž v daném výzkumu vedeme soubor údajů. V naší jednoduché studii odpovídá jeden případ jednomu účastníkovi při jedné návštěvě. Případem ale může být i rodina, školní třída nebo konkrétní návštěva klienta. Vždy potřebujeme určit, co jeden případ představuje.
 
-**Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být číselné.
+**Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V modelovém příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být nutně číselné.
 
-**Konstanta (*constant*)** má ve vymezeném souboru nebo za vymezených podmínek stále stejnou hodnotu. Jestliže zkoumáme pouze studenty druhého ročníku, ročník studia je v tomto souboru konstantní. Přidáme-li studenty prvního a třetího ročníku, bude se tento údaj mezi případy lišit. **Konstantnost tedy posuzujeme vzhledem ke konkrétnímu souboru či podmínkám.** Sloupec můžeme nadále označovat jako proměnnou, přestože v určitém souboru obsahuje jen jednu hodnotu. Přehled nabízí také [heslo konstanta](slovnicek.qmd#pojem-konstanta).
+**Konstanta (*constant*)** má ve vymezeném souboru nebo za vymezených podmínek stále stejnou hodnotu. Jestliže zkoumáme pouze studenty druhého ročníku, ročník studia je v tomto souboru konstantní. Přidáme-li studenty prvního a třetího ročníku, bude se tento údaj mezi případy lišit. **Konstantnost tedy posuzujeme vzhledem ke konkrétnímu souboru či podmínkám.** Sloupec s hodnotami můžeme nadále označovat jako proměnnou, přestože v určitém souboru obsahuje jen jednu hodnotu a striktně vzato se jedná o konstantu. Přehled nabízí také [heslo konstanta](slovnicek.qmd#pojem-konstanta).
 
-Odlišíme **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu vysvětlují také @aron [s. 3–5].
+Je také důležité odlišit **možné hodnoty** proměnné od **zaznamenané hodnoty** u určitého případu. V úloze s dvanácti slovy může počet správně vybavených slov nabývat celých hodnot od nuly do dvanácti. U P01 jsme zaznamenali pět. To, že se určitá možná hodnota v našich záznamech neobjeví, neznamená, že proměnná této hodnoty nabýt nemůže. Rozlišení proměnné, možných hodnot a jednotlivého záznamu vysvětlují také @aron [s. 3–5].
 
 **Data (*data*)** jsou zaznamenané údaje, s nimiž pracujeme. Výraz **pozorování (*observation*)** se používá pro jednotlivý záznam či měření, ale někdy také pro celý případ. Proto si vždy ujasníme jeho význam v konkrétním textu. Pokud každý účastník přijde dvakrát, může být celkový počet měření větší než účastníků; nelze bez vysvětlení zaměnit jejich počty.
 
@@ -48,12 +48,12 @@ Přehled pojmů je dostupný ve [slovníčku](slovnicek.qmd#pojem-promenna). V d
 
 ## Co chceme zjistit a o kom chceme něco tvrdit {#sec-populace-vyber}
 
-Představme si, že nás zajímají všichni studenti bakalářského studia jedné fakulty v určitém akademickém roce. Právě tato skupina tvoří **populaci (*population*)** naší studie: soubor případů, ke kterému se vztahuje výzkumná otázka. Populace nemusí zahrnovat všechny lidi ani být mimořádně velká. Její vymezení závisí na tom, koho chceme poznat [@howell, kap. 1; @privitera, kap. 1].
+Představme si, že nás zajímají všichni studenti bakalářského studia jedné fakulty v určitém akademickém roce. Právě tato skupina tvoří **populaci (*population*)** naší studie: soubor případů, ke kterému se vztahuje výzkumná otázka. Populace nemusí zahrnovat všechny lidi ani být mimořádně velká. Její vymezení závisí na tom, koho chceme studovat [@howell, kap. 1; @privitera, kap. 1].
 
 Nemůžeme-li získat údaje od všech, zkoumáme **výběr (*sample*)**, tedy část populace zahrnutou do studie. V psychologii se pro něj používá také označení výzkumný soubor nebo vzorek. Závěry o výběru a závěry o populaci odpovídají na odlišné otázky.
 
 ::: worked-example
-**Stejní lidé, jiná výzkumná otázka.** Získáme údaje od všech studentů druhého ročníku psychologie jedné fakulty v daném akademickém roce. Chceme-li popsat právě tento ročník, máme údaje o celé vymezené populaci. Chceme-li však z těchto údajů usuzovat na všechny studenty psychologie v Česku, tatáž skupina představuje výběr z širší populace. Její složení ani způsob získání se nezměnily; změnila se otázka a rozsah zamýšleného závěru. Zobecnění na širší populaci vyžaduje další zdůvodnění. Populaci od výběru neodlišuje samotný počet lidí.
+**Stejní lidé, jiná výzkumná otázka.** Získáme údaje od všech studentů druhého ročníku psychologie jedné fakulty v daném akademickém roce. Chceme-li popsat právě tento ročník, máme údaje o celé cílové populaci. Chceme-li však z těchto údajů usuzovat na všechny studenty psychologie v Česku, tatáž skupina představuje výběr z širší populace. Její složení ani způsob získání se nezměnily; změnila se otázka a rozsah zamýšleného závěru. Zobecnění na širší populaci vyžaduje další zdůvodnění. Populaci od výběru neodlišuje samotné množství lidí.
 :::
 
 **Popisná statistika (*descriptive statistics*)** slouží k uspořádání a shrnutí získaných dat. Popis může být zcela správný pro zkoumané případy, a přesto nemusí vystihovat širší populaci. **Inferenční statistika (*inferential statistics*)** poskytuje postupy pro usuzování na základě dat za jejich bezprostřední rámec, například od výběru k populaci. Takové usuzování vyžaduje předpoklady o vzniku dat a zahrnuje nejistotu. Ve slovníčku najdete i alternativní označení [induktivní statistika](slovnicek.qmd#pojem-inferencni).
@@ -64,13 +64,17 @@ Nemůžeme-li získat údaje od všech, zkoumáme **výběr (*sample*)**, tedy �
 Populací zůstávají všichni vymezení studenti fakulty. Výběrem jsou účastníci, od nichž jsme získali údaje. Studenti mimo seminář neměli stejnou příležitost se přihlásit a studenti s určitým režimem spánku mohli častěji odmítnout dopolední termín. Získaná data lze popsat, ale jejich zobecnění na celou fakultu potřebuje další zdůvodnění.
 :::
 
-**Náhodný výběr (*random sampling*)** využívá náhodného mechanismu při určování, kdo bude vybrán. V jednoduchém příkladu bychom losovali ze seznamu všech studentů vymezené populace. „Náhodný“ zde neznamená „oslovili jsme, koho jsme zrovna potkali“. Ani řádné losování neřeší automaticky vše: pozvaní lidé nemusí odpovědět a i náhodně získané výběry se mezi sebou liší.
+**Náhodný výběr (*random sampling*)** využívá náhodný mechanismus, při němž má každý případ z vymezené populace známou a nenulovou pravděpodobnost vybrání. Tyto pravděpodobnosti nemusí být u všech případů stejné.
+
+Nejjednodušší podobou je **prostý náhodný výběr (*simple random sampling*)**. Představme si, že ze seznamu všech 1 000 studentů fakulty vylosujeme 100 různých studentů k oslovení. Losování provedeme tak, aby každá možná skupina 100 studentů měla stejnou pravděpodobnost vybrání. Každý student má potom stejnou, desetiprocentní pravděpodobnost, že bude vylosován.
+
+„Náhodný“ zde neznamená nahodilý ve smyslu „oslovili jsme, koho jsme zrovna potkali“. Ani řádné losování neřeší automaticky vše: někteří vylosovaní studenti mohou účast odmítnout a různé náhodné výběry se mohou lišit svým složením i výsledky.
 
 **Příležitostný výběr (*convenience sampling*)** získává účastníky především podle jejich dostupnosti, například ze semináře, který výzkumnice vyučuje. Pokud se z oslovených přihlásí jen dobrovolníci, složení souboru dále ovlivní ochota zúčastnit se. Příležitostný výběr je jedním ze způsobů nenáhodného výběru, nikoli označením všech nenáhodných postupů. Oslovit lidi, které právě potkáme, není totéž jako losovat ze seznamu populace.
 
-V mnoha oblastech psychologického výzkumu jsou příležitostné výběry běžné. Dostupnost účastníků pomáhá výzkum uskutečnit, ale sama nezaručuje přenos závěrů na ostatní lidi. Například @henrich [oddíl 2] upozorňují, že mnoho psychologických výzkumů zkoumá především obyvatele západních, vzdělaných, industrializovaných, bohatých a demokratických společností. Výsledky získané u těchto účastníků však nemusí platit také pro lidi z jiných kulturních a společenských prostředí. Z toho neplyne, že všechny takto získané výsledky jsou chybné; potřebujeme posoudit, na koho se vztahují.
+V mnoha oblastech psychologického výzkumu jsou příležitostné výběry běžné. Dostupnost účastníků pomáhá výzkum uskutečnit, ale sama nezaručuje přenos závěrů na ostatní lidi. Například @henrich [oddíl 2] upozorňují, že mnoho psychologických výzkumů zkoumá především obyvatele západních, vzdělaných, industrializovaných, bohatých a demokratických společností. Výsledky získané u těchto účastníků však nemusí platit také pro lidi z jiného kulturního nebo společenského prostředí. Z toho neplyne, že všechny takto získané výsledky jsou chybné; potřebujeme posoudit, na koho se vztahují.
 
-Potřebné argumenty závisí na otázce. Chceme-li odhadnout podíl studentů s obtížemi se spánkem, nábor ve skupině věnované těmto obtížím může jejich zastoupení ve výběru zvýšit oproti celé studentské populaci. Chceme-li zkoumat účinek rušivých zvuků na učení, potřebujeme navíc posoudit, zda se účinek může měnit například s věkem nebo pohlavím a proč bychom takovou změnu očekávali.
+Potřebné argumenty pro zobecnění závisejí na výzkumné otázce. Chceme-li odhadnout podíl studentů s obtížemi se spánkem, nábor ve skupině věnované těmto obtížím může jejich zastoupení ve výběru zvýšit oproti celé studentské populaci. Chceme-li zkoumat účinek rušivých zvuků na učení, potřebujeme navíc posoudit, zda se účinek může měnit například s věkem nebo jazykovými schopnostmi a proč bychom takovou změnu očekávali, nebo nikoli.
 
 Představme si hypotetický výzkum, v němž si vysokoškolští studenti za přítomnosti zvukové nahrávky vybaví méně slov než v tichu. Možným vysvětlením je, že nahrávka odvádí pozornost od učení. Pokud tento proces působí také u starších dospělých, máme důvod očekávat zhoršení i u nich. Zatím je to ale vysvětlení, které potřebuje oporu, nikoli záruka stejného účinku v každé skupině. Očekávání můžeme ověřovat obdobným výzkumem se staršími dospělými. Pokud nahrávka obsahuje mluvenou řeč, nabízí se také otázka, zda působí stejně na lidi, kteří jejímu jazyku rozumějí, a na lidi, kteří mu nerozumějí. Porovnání obou skupin by pomohlo posoudit, zda pro zobecnění záleží na porozumění řeči.
 
@@ -84,7 +88,7 @@ Větší soubor poskytuje více údajů, ale sám o sobě nenapraví nevhodný z
 
 Řekneme-li, že dvě proměnné **souvisejí (*association*)**, máme na mysli, že jejich hodnoty vykazují vztah: znalost jedné poskytuje určitou informaci o druhé. **Kauzální závěr (*causal conclusion*)** jde dále: tvrdí, že změna určité podmínky vyvolává změnu výsledku. Samotná souvislost takový závěr nezajišťuje.
 
-V naší studii necháváme studenty spát obvyklým způsobem a pouze zaznamenáme dobu spánku a následný výkon. I kdybychom později zjistili vztah, mohl by souviset například s tím, že studenti v náročném zkouškovém období méně spí a současně jsou při úloze více rozptýlení. To je možné alternativní vysvětlení, nikoli výsledek této modelové studie. Jeho smyslem je ukázat, proč musíme uvažovat o okolnostech vzniku dat [@navarro, kap. 2].
+V naší studii necháváme studenty spát obvyklým způsobem a pouze zaznamenáme dobu spánku a následný výkon. I kdybychom později zjistili vztah, mohl by souviset například s tím, že studenti v náročném zkouškovém období méně spí, ale současně také prožívají vyšší míru úzkosti. To je možné alternativní vysvětlení, nikoli výsledek této modelové studie. Jeho smyslem je ukázat, proč musíme uvažovat o okolnostech vzniku dat [@navarro, kap. 2].
 
 Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně mění určitou podmínku a sleduje její důsledky. Pro ilustraci ponechme spánek stranou a zkoumejme, zda učení slov ovlivňují rušivé zvuky. Jedna skupina dostane seznam slov v tichu, druhá se zvukovou nahrávkou. Seznam, délka prezentace, instrukce a čas pro odpověď budou stejné.
 
@@ -96,9 +100,9 @@ Náhodné rozdělení a stejné provedení úlohy nám tak pomáhají posoudit �
 
 ### Interní a externí validita {#sec-interni-externi-validita}
 
-Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro příčinný závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo zůstávají jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
+Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro příčinný (kauzální) závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo připadjí v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
 
-Howell [-@howell, s. 3] propojuje náhodné rozdělení s interní validitou a náhodný výběr s externí validitou. Náhodné rozdělení omezuje systematické rozdíly ve složení porovnávaných skupin; nenahrazuje však kontrolu provedení experimentu. Náhodný výběr podporuje zobecnění na populaci, z níž vybíráme; sám nezajišťuje přenos do jiného prostředí nebo na jiný druh úlohy. Rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
+Howell [-@howell, s. 3] propojuje náhodné rozdělení s interní validitou a náhodný výběr s externí validitou. Náhodné rozdělení omezuje systematické rozdíly ve složení porovnávaných skupin; nenahrazuje však kontrolu provedení experimentu. Náhodný výběr podporuje zobecnění na populaci, z níž vybíráme vzorek; sám nezajišťuje přenos do jiného prostředí nebo na jiný druh úlohy. Rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
 
 Náhodný výběr a náhodné rozdělení tedy řeší různé otázky:
 
