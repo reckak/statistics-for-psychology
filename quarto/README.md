@@ -462,3 +462,12 @@ Relativní četnost 0 a 1 je výslovně propojena s 0,0 % a 100,0 %. Nový vlast
 Ověření: check-chapter-02.R prošel v čisté relaci R. Nový příklad byl nezávisle přepočten v Pythonu z deseti jednotlivých souborů odpovědí, včetně přesných zlomků a zaokrouhlení. Zkontrolována vzorová řešení a zachování číselných indexů. Celá kniha (sedm stránek) byla úspěšně vykreslena; první pokus blokovala přístupová práva k mezipaměti Quarta, opakovaný render s potřebným přístupem prošel.
 
 check-html.cjs v Chrome prošel: 79 hesel slovníčku, místní odkazy, všech 18 řešení skrytých/otevřených/opět sbalených i klávesnicí, přehledové tabulky a mobilní šířka 390 px bez přetékání stránky. Doplňkově ověřeno hledání „mutually exclusive“, zobrazení řádku znak-j při aktivním nesouvisejícím filtru a matematika bez merror. Vizuálně prohlédnut nový text na desktopu i mobilu, procentní vyjádření, indexy a sumace. Data, grafy a excelové vzorce se nemění; desktopový Excel se znovu nespouštěl. Kontrola není ověřením všech prohlížečů. Publikování následuje až po uživatelském sloučení a nasazení.
+
+
+## Kapitola 2: sjednocení názvů četností (2026-10-04)
+
+Po schválení uživatelem používá kapitola při pojmenování veličin absolutní četnost a kumulativní absolutní četnost místo střídání s „počty“ a „kumulativními počty“. Úprava zahrnuje cíle učení, zaokrouhlování, kumulativní tabulku, výklad os histogramu, excelový postup, alternativní popisky obrázků a vzorová řešení. V související větě je sjednoceno i označení kumulativní relativní četnosti. Slovo počet zůstává v definicích a interpretacích, u hodnot proměnných (počet slov/chyb), rozsahu souboru, počtu kategorií a v názvu funkce POČET. Věcné popisky os „Počet účastníků“ zůstávají zachovány.
+
+Zachována a zahrnuta je aktuální uživatelská redakce kapitoly, včetně zkrácení příkladu vícečetných odpovědí. Nová terminologická úprava nemění čísla, data ani výpočty; číselné zápisy byly porovnány s pracovním stavem bezprostředně před úpravou. Check-chapter-02.R prošel, dotčená kapitola se vykreslila a sekce kumulativních četností byla vizuálně prohlédnuta na desktopu a mobilu. Vzorce a číselná řešení byly zkontrolovány v rozdílech. Excelový sešit a vzorce se nemění a desktopový Excel nebyl znovu spuštěn. Publikování následuje po uživatelském sloučení.
+
+Webová kontrola check-html.cjs prošla na všech sedmi stránkách: místní odkazy, 79 hesel, všech 18 řešení a jejich ovládání klávesnicí, přehledové tabulky, desktop i mobilních 390 px bez přetékání celé stránky; bez hlášených chyb. git diff --check prošel.

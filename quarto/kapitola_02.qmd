@@ -5,7 +5,7 @@ Máme tabulku s odpověďmi a výsledky paměťové úlohy. Kolik účastníků 
 Navážeme na [modelovou studii spánku a vybavování slov](kapitola_01.qmd#sec-datova-matice). Všechny číselné příklady a grafy v této kapitole vycházejí z **modelových dat záměrně sestavených pro výuku**. Nejde o výsledky skutečného výzkumu ani o doklad vztahu mezi spánkem a pamětí. Postupy mají obecné použití; interpretace se vždy vztahuje k popisovanému souboru.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
-Sestavíte četnostní tabulku a vysvětlíte rozdíl mezi počtem případů, jejich podílem a kumulativní četností. Určíte, z jakého celku se procenta počítají. Přečtete jednoduchý zápis součtu, rozdělíte číselné hodnoty do jednoznačných intervalů a zvolíte vhodný graf. Popíšete základní rysy rozdělení a rozpoznáte zavádějící zobrazení. V Excelu zopakujete výpočet četností a vytvoříte sloupcový graf a histogram.
+Sestavíte četnostní tabulku a vysvětlíte rozdíl mezi absolutní, relativní a kumulativní četností. Určíte, z jakého celku se procenta počítají. Přečtete jednoduchý zápis součtu, rozdělíte číselné hodnoty do jednoznačných intervalů a zvolíte vhodný graf. Popíšete základní rysy rozdělení a rozpoznáte zavádějící zobrazení. V Excelu zopakujete výpočet četností a vytvoříte sloupcový graf a histogram.
 :::
 
 ## Od jednotlivých záznamů k četnostem {#sec-od-zaznamu-k-cetnostem}
@@ -51,7 +51,7 @@ Ve skupině 20 studentů uvedlo potíže se soustředěním 8 lidí, ve skupině
 
 **Relativní četnost (*relative frequency*)** je podíl případů s danou hodnotou nebo kategorií ze všech relevantních případů zahrnutých do výpočtu. Zlomek $8/20$ zde říká „osm z dvaceti“; výsledek 0,4 znamená čtyři desetiny celku. Relativní četnost nabývá hodnot od 0 do 1 včetně. Nula znamená, že do dané kategorie nepatří žádný ze zahrnutých případů, jednička znamená, že do ní patří všechny. Stejný podíl můžeme vyjádřit také v procentech: nule odpovídá 0,0 % a jedničce 100,0 %.
 
-Pro jednotlivé řádky použijeme **index (*index*)** $j$: číslo nebo písmeno připojené ke značce, které určuje, o kterou kategorii jde. Zde jej píšeme jako dolní index, například $f_j$. V tabulce odpočatosti značí $j=1$ odpověď „vůbec“, $j=2$ odpověď „trochu“ atd. **Index $j$ používáme pro kategorie či skupiny; index $i$ vyhrazujeme jednotlivým pozorováním.** V tabulce odpočatosti tedy $j$ označuje kategorii odpovědi, nikoli účastníka. Absolutní četnost označíme $f_j$ a relativní četnost $p_j$:
+Pro jednotlivé řádky použijeme **index (*index*)** $j$: číslo nebo písmeno připojené ke značce, které určuje, o kterou kategorii jde. Zde jej píšeme jako dolní index, například $f_j$. V tabulce odpočatosti značí $j=1$ odpověď „vůbec“, $j=2$ odpověď „trochu“ atd. **Index** $j$ používáme pro kategorie či skupiny; index $i$ vyhrazujeme jednotlivým pozorováním. V tabulce odpočatosti tedy $j$ označuje kategorii odpovědi, nikoli účastníka. Absolutní četnost označíme $f_j$ a relativní četnost $p_j$:
 
 $$p_j=\frac{f_j}{n}.$$
 
@@ -70,13 +70,13 @@ Oba výpočty jsou správné, ale odpovídají na různé otázky. Nevíme, zda 
 
 Podobně musíme rozlišit procento lidí a procento odpovědí, když lze zvolit více možností. **Vzájemně výlučné kategorie (*mutually exclusive categories*)** se nepřekrývají: jeden případ nemůže současně patřit do více z nich. Například při jednom hodnocení odpočatosti účastník volí právě jednu odpověď: „vůbec“, „trochu“, „dost“, nebo „zcela“. Naproti tomu možnosti „učím se z poznámek“ a „procvičuji si otázky“ vzájemně výlučné nejsou: tentýž člověk může používat obě strategie. U otázky umožňující více odpovědí jej proto můžeme započítat u obou.
 
-Představme si deset studentů, z nichž šest označí učení z poznámek a pět procvičování otázek; jeden student označí obě možnosti a ostatní po jedné. Z poznámek se tedy učí $6/10=0{,}600$, čili 60,0 % studentů, a otázky si procvičuje $5/10=0{,}500$, čili 50,0 %. Součet je 110,0 %, protože jednoho člověka započítáváme ve dvou kategoriích. Pokud však počítáme podíl ze všech **11 označených odpovědí**, připadá na poznámky $6/11$, tedy přibližně 54,5 %, a na otázky $5/11$, tedy přibližně 45,5 %. Tyto podíly popisují zastoupení odpovědí, nikoli podíl studentů.
+Představme si deset studentů, z nichž šest označí učení z poznámek a pět procvičování otázek; jeden student označí obě možnosti a ostatní po jedné. Z poznámek se tedy učí $6/10=0{,}600$, čili 60,0 % studentů, a otázky si procvičuje $5/10=0{,}500$, čili 50,0 %. Součet je 110,0 %, protože jednoho člověka započítáváme ve dvou kategoriích.
 
-Pro běžnou tabulku rozdělení jedné proměnné budeme pracovat se vzájemně výlučnými kategoriemi, které zároveň pokrývají všechny zahrnuté případy. Každý případ tak patří právě do jedné kategorie. Samotná vzájemná výlučnost nestačí: kdybychom například vynechali odpověď „zcela“, zbývající kategorie by se stále nepřekrývaly, ale nepokrývaly by celý soubor.
+Pro běžnou tabulku rozdělení jedné proměnné budeme pracovat se vzájemně výlučnými kategoriemi, které zároveň pokrývají všechny možné odpovědi. Každý případ tak patří právě do jedné kategorie. Samotná vzájemná výlučnost nestačí: kdybychom například vynechali odpověď „zcela“, zbývající kategorie by se stále nepřekrývaly, ale nepokrývaly by všechny možné odpovědi.
 
 ### Zaokrouhlení mění zápis, ne výpočet {#sec-zaokrouhlovani-02}
 
-V této učebnici budeme podíly zpravidla zobrazovat na **tři desetinná místa**, procenta na **jedno desetinné místo**. Počty případů zůstávají celá čísla. Hodnota 0,400 je tedy tentýž podíl jako 0,4; nuly sjednocují přesnost zobrazení v tabulce.
+V této učebnici budeme podíly zpravidla zobrazovat na **tři desetinná místa**, procenta na **jedno desetinné místo**. Absolutní četnosti zůstávají celá čísla. Hodnota 0,400 je tedy tentýž podíl jako 0,4; nuly sjednocují přesnost zobrazení v tabulce.
 
 Mezivýpočty nezaokrouhlujeme. Procenta i pozdější součty počítáme z původních četností nebo z nezkrácených podílů. Například tři kategorie po jednom případu mají každá přesný podíl $1/3$. Zobrazené hodnoty 0,333 dají součet 0,999 a zobrazených 33,3 % třikrát dá 99,9 %. Ve skutečnosti pokrývají celý soubor. Chybějící desetinu procenta proto svévolně nepřičítáme jedné kategorii; případný rozdíl vysvětlíme zaokrouhlením.
 
@@ -90,21 +90,21 @@ Pro delší tabulku by vypisování všech členů bylo nepohodlné. **Sumace (*
 
 $$\sum_{j=1}^{4} f_j=f_1+f_2+f_3+f_4.$$
 
-Čteme „součet četností $f_j$ pro $j$ od jedné do čtyř“. Zápis $j=1$ pod znakem určuje, kde začneme, číslo 4 nahoře, kde skončíme. Postupně dosadíme za $j$ hodnoty 1, 2, 3 a 4 a vzniklé členy sečteme. Čísla pod a nad znakem se mezi sebou nenásobí; určují rozsah sčítání.
+Čteme „součet četností $f_j$ pro $j$ od jedné do čtyř“. Zápis $j=1$ pod znakem určuje, kde začneme, číslo 4 nahoře, kde skončíme. Postupně dosadíme za $j$ hodnoty 1, 2, 3 a 4 a vzniklé členy sečteme. Čísla pod a nad znakem určují rozsah sčítání.
 
 Počet kategorií označíme $k$. Rozlišujeme tedy $n$, počet případů, a $k$, počet kategorií. V malé tabulce je $n=6$, ale $k=4$. Obecná kontrola úplné četnostní tabulky má podobu:
 
 $$\sum_{j=1}^{k} f_j=n,\qquad \sum_{j=1}^{k} p_j=1.$$
 
-První vztah říká, že sečtením počtů ve všech kategoriích dostaneme počet zahrnutých případů. Druhý říká, že sečtením jejich podílů dostaneme celý soubor. **Podmínkou je úplné rozdělení případů do navzájem se nepřekrývajících kategorií, se stejným jmenovatelem pro všechny podíly.** Vztah pro relativní četnosti se týká nezaokrouhlených hodnot. S kategoriemi vícečetných odpovědí by automaticky neplatil.
+První vztah říká, že sečtením četností ve všech kategoriích dostaneme počet zahrnutých případů. Druhý říká, že sečtením jejich podílů dostaneme celý soubor. **Podmínkou je rozdělení všech případů do vzájemně výlučných kategorií, se stejným jmenovatelem pro všechny podíly.** Vztah pro relativní četnosti se týká nezaokrouhlených hodnot. Pro vícečetné odpovědi (vzájemně nevýlučné kategorie) platit nemusí.
 
 Přehled symbolů najdete v [tabulce značení](znaceni.qmd#znak-sumace). Znak sumace budeme používat tam, kde zkrátí a zpřehlední skutečný součet, nikoli jako náhradu za vysvětlení jeho významu.
 
 ## Kumulativní četnosti: kolik případů je až po danou hodnotu {#sec-kumulativni-cetnosti}
 
-Otázka „Kolik lidí odpovědělo trochu?“ se týká jedné kategorie. Otázka „Kolik lidí odpovědělo nejvýše trochu?“ zahrnuje odpovědi „vůbec“ i „trochu“. V malé tabulce je to $1+2=3$ lidí, tedy polovina souboru.
+Otázka „Kolik lidí odpovědělo ‚trochu’?“ se týká jedné kategorie. Otázka „Kolik lidí odpovědělo nejvýše ‚trochu’?“ zahrnuje odpovědi „vůbec“ i „trochu“. V malé tabulce je to $1+2=3$ lidí, tedy polovina souboru.
 
-**Kumulativní četnost (*cumulative frequency*)** postupně sčítá četnosti od nejnižší hodnoty či kategorie až po zvolenou hranici. Budeme ji počítat vzestupně a včetně příslušné kategorie. Kumulativní absolutní četnost označíme $f_{\mathrm{kum},j}$, kumulativní relativní četnost $p_{\mathrm{kum},j}$. Část „kum“ v indexu pouze připomíná kumulování:
+**Kumulativní četnost (*cumulative frequency*)** postupně sčítá četnosti od nejnižší hodnoty či kategorie až po zvolenou hranici. Budeme ji počítat vzestupně a včetně příslušné kategorie. Kumulativní absolutní četnost označíme $f_{\mathrm{kum},j}$, kumulativní relativní četnost $p_{\mathrm{kum},j}$. Část „kum“ v indexu pouze připomíná kumulaci:
 
 $$f_{\mathrm{kum},j}=f_1+\cdots+f_j,\qquad
 p_{\mathrm{kum},j}=\frac{f_{\mathrm{kum},j}}{n}.$$
@@ -113,37 +113,37 @@ Tři tečky mezi členy znamenají, že pokračujeme stejným způsobem přes v�
 
 ::: table-scroll
 | Odpočatost | $f_j$ | $p_j$ | Procenta | $f_{\mathrm{kum},j}$ | Kumulativní procenta |
-|------------|------:|------:|---------:|---------------------:|---------------------:|
+|------------|-----------:|-----------:|-----------:|-----------:|-----------:|
 | Vůbec      |     1 | 0,167 |   16,7 % |                    1 |               16,7 % |
 | Trochu     |     2 | 0,333 |   33,3 % |                    3 |               50,0 % |
 | Dost       |     2 | 0,333 |   33,3 % |                    5 |               83,3 % |
 | Zcela      |     1 | 0,167 |   16,7 % |                    6 |              100,0 % |
 :::
 
-Každý kumulativní sloupec musí být neklesající: další četnost je nezáporná. Poslední kumulativní počet je $n$, poslední kumulativní podíl 1. **Kumulativní sloupec už nesčítáme**, protože tytéž případy obsahuje opakovaně.
+Každý kumulativní sloupec je z definice neklesající, protože následující četnosti (resp. četnosti obecně) nemohou být záporné. Poslední kumulativní absolutní četnost je $n$, poslední kumulativní relativní četnost 1. **Kumulativní sloupec už nesčítáme**, protože tytéž případy obsahuje opakovaně.
 
-U odpočatosti má kumulování význam díky pořadí kategorií. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, není „nejvýše čtení“ přirozenou hranicí. Součet podle nahodilého pořadí řádků proto nemá stejný věcný význam. Kumulativní četnosti nevyžadují stejné vzdálenosti mezi kategoriemi; postačuje smysluplné pořadí.
+U odpočatosti má kumulování význam díky pořadí kategorií. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, není „nejvýše čtení“ přirozenou hranicí. Součet podle nahodilého pořadí řádků proto nemá stejný věcný význam. Kumulativní četnosti nevyžadují stejné vzdálenosti mezi kategoriemi, postačuje smysluplné pořadí.
 
 ::: worked-example
-**Méně než, nejvýše a alespoň.** Počty vybavených slov v malé matici jsou 5, 9, 8, 6, 7 a 0. Méně než 7 slov si vybavili tři lidé (0, 5, 6), nejvýše 7 slov čtyři lidé (0, 5, 6, 7). Alespoň 7 slov si vybavili tři lidé (7, 8, 9). Pro poslední počet můžeme od všech šesti odečíst tři s výsledkem **menším než 7**. Kdybychom odečetli počet s výsledkem nejvýše 7, nesprávně bychom vyřadili i člověka se sedmi slovy.
+**Méně než, nejvýše a alespoň.** Počty vybavených slov v malém souboru jsou: 5, 9, 8, 6, 7 a 0. Méně než 7 slov si vybavili tři lidé (0, 5, 6), nejvýše 7 slov čtyři lidé (0, 5, 6, 7). Alespoň 7 slov si vybavili tři lidé (7, 8, 9). Pro poslední počet (alespoň 7 slov) můžeme od všech šesti osob odečíst tři osoby s výsledkem **menším než 7**. Kdybychom odečetli počet osob s výsledkem nejvýše 7, nesprávně bychom vyřadili i člověka se sedmi slovy.
 :::
 
 ## Větší soubor a tabulky jednotlivých hodnot {#sec-modelova-data-02}
 
-Nyní použijeme pevně sestavený soubor **36 modelových účastníků**. Prvních šest záznamů je shodných s původní maticí, dalších třicet slouží k názornějšímu zobrazení četností. Každý účastník absolvoval stejnou úlohu s dvanácti slovy jednou, v tichu. Odpočatost je zaznamenána u všech; dobu spánku neuvedli P05, P11 a P24.
+Nyní použijeme pevně sestavený soubor **36 modelových účastníků**. Prvních šest záznamů je shodných s původní maticí, dalších třicet slouží k názornějšímu zobrazení četností. Každý účastník absolvoval stejnou úlohu s dvanácti slovy jednou, v tichu. Odpočatost je zaznamenána u všech; dobu spánku neuvedli účastníci P05, P11 a P24.
 
 Úplná data i výpočty jsou v [excelovém sešitu ke kapitole](../data/kapitola_02.xlsx). List `Data` obsahuje původní hodnoty, list `Cetnosti` shrnutí odpočatosti a list `Histogram` intervalové třídění spánku. Chybějící spánek zůstává prázdnou buňkou. Definice proměnných navazují na [přehled v předchozí kapitole](kapitola_01.qmd#sec-codebook); identifikátory zde pokračují až po P36.
 
 ::: table-scroll
 | Odpočatost | $f_j$ | $p_j$ | Procenta | $f_{\mathrm{kum},j}$ | $p_{\mathrm{kum},j}$ |
-|------------|------:|------:|---------:|---------------------:|---------------------:|
+|------------|-----------:|-----------:|-----------:|-----------:|-----------:|
 | Vůbec      |     4 | 0,111 |   11,1 % |                    4 |                0,111 |
 | Trochu     |    10 | 0,278 |   27,8 % |                   14 |                0,389 |
 | Dost       |    14 | 0,389 |   38,9 % |                   28 |                0,778 |
 | Zcela      |     8 | 0,222 |   22,2 % |                   36 |                1,000 |
 :::
 
-Nejčastější odpovědí je „dost“, ale nevybrala ji většina účastníků: 14 z 36 je méně než polovina. Nejvýše „trochu“ odpovědělo také 14 lidí. Stejný počet zde vznikl pro dvě různé otázky; samotné číslo bez popisu nestačí.
+Nejčastější odpovědí je „dost“, ale přesto nepředstavuje většinu: 14 z 36 je méně než polovina. Nejvýše „trochu“ odpovědělo také 14 lidí. Stejný počet zde vznikl pro dvě různé otázky; samotné číslo bez popisu nestačí.
 
 Počet slov můžeme zatím shrnout bez seskupování: možné hodnoty jsou celá čísla od 0 do 12.
 
@@ -153,7 +153,7 @@ Počet slov můžeme zatím shrnout bez seskupování: možné hodnoty jsou cel�
 | Počet účastníků |   1 |   0 |   1 |   1 |   2 |   4 |   5 |   6 |   6 |   4 |   3 |   2 |   1 |
 :::
 
-Oba sousední výsledky 7 a 8 slov mají po šesti případech. Nulová četnost u jednoho slova zachovává informaci, že jde o možný, ale v tomto souboru nezaznamenaný výsledek.
+Oba sousední výsledky 7 a 8 slov mají po šesti případech. Nulová četnost u jednoho slova zachovává informaci, že jde o možný, ale v tomto souboru nepozorovaný výsledek.
 
 ## Intervalové třídění číselných údajů {#sec-tridni-intervaly}
 
@@ -163,7 +163,7 @@ V našem příkladu zvolíme šířku jedné hodiny. Interval od 6 hodin včetn�
 
 ::: table-scroll
 | Spánek (hodiny) | Dolní hranice patří dovnitř | Horní hranice už nepatří | Četnost | Podíl z 33 platných údajů |
-|----|---:|---:|---:|---:|
+|---------------|--------------:|--------------:|--------------:|--------------:|
 | 4 až méně než 5 | 4 | 5 | 2 | 0,061 |
 | 5 až méně než 6 | 5 | 6 | 4 | 0,121 |
 | 6 až méně než 7 | 6 | 7 | 7 | 0,212 |
@@ -205,7 +205,7 @@ V @fig-slova-tecky vidíme největší soustředění okolo 7–8 slov i jediný
 
 **Histogram (*histogram*)** zobrazuje četnosti číselných hodnot v třídních intervalech. Vodorovná osa je číselná stupnice. Každý obdélník se rozkládá přes skutečnou šířku příslušného intervalu. Při stejně širokých intervalech může jeho výška přímo vyjadřovat počet případů.
 
-![Histogram známých dob spánku; 33 platných údajů, tři chybějící.](../assets/chapter-02/plots/histogram.svg){#fig-spanek-hist fig-alt="Šest navazujících intervalů šířky jedné hodiny od 4 do 10. Počty jsou postupně 2, 4, 7, 11, 6 a 3."}
+![Histogram známých dob spánku; 33 platných údajů, tři chybějící.](../assets/chapter-02/plots/histogram.svg){#fig-spanek-hist fig-alt="Šest navazujících intervalů šířky jedné hodiny od 4 do 10. Absolutní četnosti jsou postupně 2, 4, 7, 11, 6 a 3."}
 
 V @fig-spanek-hist navazují intervaly bez mezer. Pokud některý interval nemá žádný případ, zůstane na číselné ose prázdné místo odpovídající jeho šířce; sousední obsazené intervaly nesmíme přisunout k sobě. Rozdíl proti sloupcovému grafu tedy není pouhá přítomnost či nepřítomnost mezery. Rozhodující je, zda osa představuje samostatné kategorie, nebo číselné intervaly.
 
@@ -222,7 +222,7 @@ Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účast
 ::: {.callout-note collapse="true" title="Rozšíření: nestejně široké intervaly"}
 Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případů v intervalu šířky 1 hodina dá výšku 10 případů na hodinu; 10 případů v intervalu šířky 2 hodiny dá výšku 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
 
-Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U relativní varianty vydělíme šířkou intervalu relativní četnost; celková plocha je pak 1. Výška sama už není podíl a může být větší než 1. V základních příkladech této kapitoly používáme stejně široké intervaly a osu s počty. Rozdílná měřítka histogramu popisuje @nistHistogram [oddíl Definition].
+Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U relativní varianty vydělíme šířkou intervalu relativní četnost; celková plocha je pak 1. Výška sama už není podíl a může být větší než 1. V základních příkladech této kapitoly používáme stejně široké intervaly a osu s absolutními četnostmi. Rozdílná měřítka histogramu popisuje @nistHistogram [oddíl Definition].
 :::
 
 ### Graf kumulativních četností {#sec-kumulativni-graf}
@@ -344,7 +344,7 @@ V D5 vypočítáme podíl:
 
 Do E5 vložíme `=D5`, zkopírujeme do E8 a nastavíme formát **Procenta s jedním desetinným místem**. Hodnota se zobrazí jako **11,1 %**. Při použití procentního formátu už vzorec nenásobíme stem: formát procentní převod obstará při zobrazení. Jinak bychom dostali chybných 1 111,1 %.
 
-Kumulativní počet v F5 vypočítáme:
+Kumulativní absolutní četnost v F5 vypočítáme:
 
 ``` text
 =SUMA($C$5:C5)
@@ -352,7 +352,7 @@ Kumulativní počet v F5 vypočítáme:
 
 Začátek oblasti je pevný, konec se při kopírování posouvá. V F6 tak vznikne `=SUMA($C$5:C6)`, výsledek 14; v F7 výsledek 28 a v F8 výsledek 36. Do G5 vložíme `=F5/$C$2` a zkopírujeme dolů. V H5 použijeme `=G5` a procentní formát. Pro druhý řádek tak dostaneme **0,389**, respektive **38,9 %** účastníků s odpovědí nejvýše „trochu“.
 
-![Názorná rekonstrukce listu: kumulativní součet a nezkrácené podíly.](../assets/chapter-02/excel-kumulativni.svg){#fig-excel-kumulativni fig-alt="Tabulka odpočatosti s četnostmi, podíly a kumulativními počty. Zvýrazněná F6 obsahuje součet C5 až C6 a výsledek 14. Kumulativní podíl je 0,389."}
+![Názorná rekonstrukce listu: kumulativní součet a nezkrácené podíly.](../assets/chapter-02/excel-kumulativni.svg){#fig-excel-kumulativni fig-alt="Tabulka odpočatosti s absolutními, relativními a kumulativními absolutními četnostmi. Zvýrazněná F6 obsahuje součet C5 až C6 a výsledek 14. Kumulativní relativní četnost je 0,389."}
 
 Počet desetinných míst upravujeme ve **formátu buněk**, například přes Ctrl+1. Nezkracujeme vstupy ani vzorce. Pro kontrolu D10 obsahuje `=SUMA(D5:D8)` a vrací 1,000; E10 zobrazuje stejný výsledek jako 100,0 %. U kumulativních sloupců další součtový řádek nevytváříme.
 
@@ -370,7 +370,7 @@ Výsledek D5 je **2**. Po zkopírování do D10 dostaneme postupně 2, 4, 7, 11,
 
 ![Názorná rekonstrukce listu Histogram s oběma hranicemi intervalu.](../assets/chapter-02/excel-intervaly.svg){#fig-excel-intervaly fig-alt="List Histogram s dolními a horními hranicemi, četnostmi 2, 4, 7, 11, 6, 3 a vzorcem COUNTIFS pro současné splnění obou mezí."}
 
-Pro sloupcový graf odpočatosti označíme na listu `Cetnosti` B4:C8 a zvolíme **Vložení → Sloupcový graf → Skupinový sloupcový**. Ověříme, že vodorovná osa obsahuje odpovědi, svislá počty a mezi daty není zahrnut součet. Svislou osu nastavíme od nuly, doplníme popis „Počet účastníků“ a vynecháme prostorové efekty.
+Pro sloupcový graf odpočatosti označíme na listu `Cetnosti` B4:C8 a zvolíme **Vložení → Sloupcový graf → Skupinový sloupcový**. Ověříme, že vodorovná osa obsahuje odpovědi, svislá absolutní četnosti a mezi daty není zahrnut součet. Svislou osu nastavíme od nuly, doplníme popis „Počet účastníků“ a vynecháme prostorové efekty.
 
 Pro histogram z již připravené intervalové tabulky označíme na listu `Histogram` C4:D10. Vložíme rovněž skupinový sloupcový graf a v **Formátu datové řady** nastavíme **Šířku mezery na 0 %**. Zůstanou v něm i intervaly s nulovou četností a zachováme číselné pořadí. Tento postup je vhodný, protože všechny naše intervaly mají stejnou šířku; popisky v C5:C10 jednoznačně uvádějí hranice. Osa ukazuje „Doba spánku (h)“ a „Počet účastníků“, počet platných údajů je 33. Oba upravitelné grafy jsou v sešitu vedle tabulek.
 
@@ -384,7 +384,7 @@ Tabulka zachovává snadno dohledatelná čísla, graf usnadňuje vnímání roz
 
 ## Cvičení {#sec-cviceni-02}
 
-Pro výpočty stačí kalkulačka, pokud zadání výslovně neuvádí Excel. Podíly uvádějte na tři desetinná místa, procenta na jedno; počítejte z nezaokrouhlených hodnot. Při kontrole připouštíme odchylku nejvýše 0,0005 u zobrazeného podílu a 0,05 u čísla před znakem % (například 33,33 % zaokrouhlíme na 33,3 %). Počty musí souhlasit přesně.
+Pro výpočty stačí kalkulačka, pokud zadání výslovně neuvádí Excel. Podíly uvádějte na tři desetinná místa, procenta na jedno; počítejte z nezaokrouhlených hodnot. Při kontrole připouštíme odchylku nejvýše 0,0005 u zobrazeného podílu a 0,05 u čísla před znakem % (například 33,33 % zaokrouhlíme na 33,3 %). Absolutní četnosti a počty případů musí souhlasit přesně.
 
 ### Úloha 1: Od odpovědí k tabulce {#sec-uloha-02-1}
 
@@ -492,7 +492,7 @@ Hodnoty jsou 21, 23, 23, 28, 30, 35 a 42 sekund; celkem sedm pozorování. Opako
 Ve skupině A odpovědělo ano 30 ze 40 lidí, ve skupině B 32 z 80 lidí. Autor ukáže pouze sloupce výšky 30 a 32 na ose začínající na 27 a napíše, že podpora je ve skupině B výrazně vyšší. Vypočítejte relativní četnosti a navrhněte opravu grafu i komentáře.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Ve skupině A je podíl $30/40=0{,}750$, tedy 75,0 %, v B $32/80=0{,}400$, tedy 40,0 %. Absolutní počet ano je v B o dva vyšší, ale jeho relativní zastoupení je nižší. Pro porovnání podpory ukážeme sloupce procent se společnou osou od nuly a uvedeme velikosti skupin 40 a 80. Komentář může znít: „V získaných souborech odpovědělo ano 75,0 % lidí ve skupině A a 40,0 % ve skupině B.“ Samotný popis nezdůvodňuje přenos na další lidi ani příčinu rozdílu.
+Ve skupině A je podíl $30/40=0{,}750$, tedy 75,0 %, v B $32/80=0{,}400$, tedy 40,0 %. Absolutní četnost odpovědi „ano“ je ve skupině B o dva vyšší, ale její relativní četnost je nižší. Pro porovnání podpory ukážeme sloupce procent se společnou osou od nuly a uvedeme velikosti skupin 40 a 80. Komentář může znít: „V získaných souborech odpovědělo ano 75,0 % lidí ve skupině A a 40,0 % ve skupině B.“ Samotný popis nezdůvodňuje přenos na další lidi ani příčinu rozdílu.
 :::
 
 ### Úloha 10: Ověření v Excelu {#sec-uloha-02-10}
@@ -500,7 +500,7 @@ Ve skupině A je podíl $30/40=0{,}750$, tedy 75,0 %, v B $32/80=0{,}400$, tedy 
 Pracujte v kopii sešitu ke kapitole. Na listu `Data` změňte odpočatost P01 v E2 z 2 na 3. Před přepočtem předpovězte změnu absolutních a kumulativních četností i grafu. Potom obnovte původní hodnotu. Samostatně změňte spánek P01 v B2 z 6 na 7 a předpovězte přesun mezi intervaly. Proč se nesmí změnit počet platných údajů?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Po změně odpočatosti dostaneme četnosti 4, 9, 15 a 8; jejich součet zůstává 36. Kumulativní počty jsou 4, 13, 28 a 36. Druhý sloupec grafu klesne o jeden a třetí vzroste o jeden. Relativní četnosti jsou zobrazeny jako 0,111; 0,250; 0,417; 0,222. Po obnovení E2 na 2 se vrátí původní výsledky.
+Po změně odpočatosti dostaneme četnosti 4, 9, 15 a 8; jejich součet zůstává 36. Kumulativní absolutní četnosti jsou 4, 13, 28 a 36. Druhý sloupec grafu klesne o jeden a třetí vzroste o jeden. Relativní četnosti jsou zobrazeny jako 0,111; 0,250; 0,417; 0,222. Po obnovení E2 na 2 se vrátí původní výsledky.
 
 Změna spánku z 6 na 7 přesune jeden údaj z intervalu 6 až méně než 7 do intervalu 7 až méně než 8. Četnosti budou 2, 4, 6, 12, 6 a 3. Počet platných údajů zůstane 33, protože jsme známé číslo nahradili jiným známým číslem. Hodnota přesně 7 patří do intervalu začínajícího sedmičkou. Po obnovení B2 na 6 se vrátí četnosti 2, 4, 7, 11, 6 a 3.
 :::
