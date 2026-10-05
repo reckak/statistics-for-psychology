@@ -5,7 +5,7 @@ Když se po krátkém spánku obtížně soustředíme, nabízí se vysvětlení
 V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Všechny studie, jednotlivé záznamy a zadání v kapitole jsou **autorské modelové příklady**. Uvedená čísla jsou smyšlená pro výuku; nedokládají skutečný vztah mezi spánkem a pamětí.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
-Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině. Rozlišíte populaci, výběr, případy, proměnné a konstanty a vysvětlíte jejich závislost na otázce a souboru. Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty. Nakonec sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
+Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině. Rozlišíte populaci, výběr, případy, proměnné a konstanty a vysvětlíte jejich závislost na otázce a souboru. Určíte role proměnných ve výzkumné otázce a vysvětlíte, proč jejich označení samo nedokládá příčinný vztah. Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty. Nakonec sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
 :::
 
 ## Proč psychologie potřebuje statistiku {#sec-proc-statistika}
@@ -97,6 +97,28 @@ Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně m
 Zatímco složení skupin ponecháváme na náhodném rozdělení, rozdíl mezi podmínkami vytváříme záměrně: jedna skupina se učí v tichu a druhá za přítomnosti rušivých zvuků. Ostatní okolnosti, které by mohly ovlivnit výkon, se snažíme zachovat stejné. Proto obě skupiny dostanou stejný seznam slov, stejné instrukce i stejný čas na učení a odpověď. Kdyby například skupina se zvukovou nahrávkou dostala také obtížnější slova, nemohli bychom rozlišit, zda její případný horší výkon souvisí se zvuky, nebo s obtížností seznamu.
 
 Náhodné rozdělení a stejné provedení úlohy nám tak pomáhají posoudit účinek rušivých zvuků. **Nezaručují však, že každý zjištěný rozdíl způsobily právě zvuky.** I při řádném losování se mohou do jedné skupiny náhodou dostat lidé s lepší pamětí než do druhé. Při vyhodnocení proto musíme zohlednit také nejistotu způsobenou náhodným složením skupin a ověřit, zda byly plánované podmínky skutečně dodrženy.
+
+### Nezávislá a závislá proměnná: role ve výzkumné otázce {#sec-role-promennych}
+
+V experimentu s rušivými zvuky výzkumník záměrně mění podmínku učení: účastníci se učí buď v tichu, nebo se zvukovou nahrávkou. Tato podmínka je **nezávislou proměnnou (*independent variable*)**. Počet správně vybavených slov je **závislou proměnnou (*dependent variable*)**: sledujeme, zda se její hodnoty liší podle podmínky učení. Označení „závislá“ přitom neznamená, že účinek už byl prokázán. Experiment může ukázat i to, že pro očekávaný rozdíl nemáme přesvědčivé důkazy [@howell, s. 4; @navarro, oddíl 2.4].
+
+S těmito názvy se setkáme také mimo experiment. V širším užití nezávislá proměnná označuje proměnnou, pomocí níž se snažíme vysvětlit nebo odhadnout hodnoty závislé proměnné. Můžeme například zkoumat, zda se počet vybavených slov liší podle zaznamenané délky spánku. Délku spánku přitom nemusíme nijak ovlivňovat. Může nás zajímat jako možná příčina rozdílů v paměti, ale také pouze jako údaj užitečný pro odhad výkonu. **Samotné pojmenování proměnných neurčuje, zda je jejich vztah příčinný.**
+
+Terminologie není jednotná. Užší pojetí spojuje nezávislou proměnnou s experimentální manipulací; širší pojetí používá tento název i pro proměnnou pouze měřenou. V literatuře proto potkáme také následující označení, která zdůrazňují různé stránky její role:
+
+::: {.table-scroll aria-label="Označení rolí proměnných"}
+| Označení | Co zdůrazňuje a na co si dát pozor |
+|---|---|
+| **Explanační proměnná (*explanatory variable*)**, česky také vysvětlující proměnná | Pomocí jejích hodnot se snažíme objasnit rozdíly v jiné proměnné. „Vysvětlení“ zde může znamenat zachycení statistického vztahu, nikoli objasnění příčiny. |
+| **Prediktor (*predictor*)** | Poskytuje informace pro odhad hodnot jiné proměnné. Navzdory běžnému významu slova „předpověď“ nemusí jít o budoucnost: můžeme například odhadovat současný výkon z jiného současného měření. |
+| **Výsledná proměnná (*outcome variable*)**, případně výsledek (*outcome*) | Proměnná, jejíž hodnoty se snažíme vysvětlit nebo odhadnout. Název sám nepotvrzuje, že je důsledkem působení jiné proměnné. |
+| **Kritérium (*criterion*, *criterion variable*)** | Označení používané například pro proměnnou, kterou předpovídáme. V psychologickém testování může zároveň znamenat měřítko, vůči němuž posuzujeme užitečnost testu, například studijní úspěšnost. |
+| **Predikant (*predictand*)** | Proměnná, jejíž hodnotu předpovídáme či odhadujeme; protějšek prediktoru. Nejde o samotnou vypočtenou předpověď, ale o proměnnou, ke které se předpověď vztahuje. |
+:::
+
+V této učebnici budeme pro obecné rozlišení rolí používat dvojici **explanační a výsledná proměnná**; při popisu experimentu také tradiční označení **nezávislá a závislá proměnná**. Jde o role vzhledem k určité otázce, nikoli o neměnné vlastnosti proměnných. Délka spánku může být explanační proměnnou při zkoumání paměťového výkonu a výslednou proměnnou při zkoumání souvislosti stresu se spánkem. I když nás zajímá pouze vzájemná souvislost dvou proměnných, nelze se otázce jejich rolí zcela vyhnout, protože jejich rozlišení pomáhá formulovat vysvětlení a rozvíjet psychologickou teorii.
+
+Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slovnicek.qmd#pojem-nezavisla-promenna), [závislá proměnná](slovnicek.qmd#pojem-zavisla-promenna), [explanační proměnná](slovnicek.qmd#pojem-explanacni-promenna), [prediktor](slovnicek.qmd#pojem-prediktor), [výsledná proměnná](slovnicek.qmd#pojem-vysledna-promenna), [kritérium](slovnicek.qmd#pojem-kriterium) a [predikant](slovnicek.qmd#pojem-predikant).
 
 ### Interní a externí validita {#sec-interni-externi-validita}
 
@@ -477,6 +499,8 @@ d)  Vysvětlete vlastními slovy, jak se při posuzování příčiny doplňují
 
 e)  Rozlište dvě námitky: „Skupiny dostaly různě obtížné seznamy.“ a „Nevíme, zda se účinek projeví také při učení starších lidí doma.“ Která se týká interní a která externí validity? Vyřešilo by náhodné získání účastníků problém různých seznamů?
 
+f)  Výkon měříme počtem správně vybavených slov. Určete nezávislou a závislou proměnnou. V jiné studii pouze zaznamenáme délku spánku a počet vybavených slov. Která proměnná by byla explanační a která výsledná, pokud chceme pomocí délky spánku odhadovat paměťový výkon? Dokazuje toto rozlišení, že spánek výkon ovlivňuje?
+
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Použili jsme náhodné rozdělení již získaných dobrovolníků do podmínek. Zadání nepopisuje náhodný výběr z vymezené populace.
 
@@ -487,6 +511,8 @@ Při různě obtížných seznamech by se současně měnil zvuk i obtížnost �
 Náhodné rozdělení zajišťuje, že o zařazení lidí nerozhodují jejich vlastnosti nebo přání; stejné provedení omezuje další rozdíly mezi podmínkami. Společně podporují posouzení účinku zvuků, ale nevylučují náhodné rozdíly ve složení skupin a jejich výsledcích.
 
 Různě obtížné seznamy ohrožují interní validitu: případný rozdíl může způsobit obtížnost, nikoli zvuk. Otázka starších lidí a domácího prostředí se týká externí validity: potřebujeme zdůvodnit přenos závěru. Ani náhodný výběr účastníků by neodstranil rozdíl v seznamech. Zobecnitelnost a opora pro příčinu jsou odlišné otázky.
+
+V experimentu je nezávislou proměnnou podmínka učení (ticho, nebo zvuková nahrávka) a závislou proměnnou počet správně vybavených slov. Ve druhé studii je vzhledem k uvedené otázce explanační proměnnou zaznamenaná délka spánku a výslednou proměnnou počet vybavených slov. Tyto názvy vyjadřují role v otázce a analýze; samy nedokazují, že spánek způsobuje rozdíly ve výkonu. Pozorovanou souvislost mohou ovlivňovat další okolnosti, například úzkost ve zkouškovém období.
 :::
 
 ### Úloha 5: Co je „dobrá paměť“ {#sec-uloha-01-5}

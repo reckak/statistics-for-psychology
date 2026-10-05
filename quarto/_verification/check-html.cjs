@@ -78,7 +78,7 @@ const server = http.createServer((req, res) => {
         await optional.screenshot({ path: 'tmp/verification/measurement-error-desktop.png' });
         await optional.locator('[data-bs-toggle="collapse"]').click();
         await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
-        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
+        for (const id of ['sec-role-promennych', 'sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
           await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-desktop.png` });
         }
         const links = page.locator('#TOC > ul > li > a');
@@ -167,7 +167,7 @@ const server = http.createServer((req, res) => {
         await optional.screenshot({ path: 'tmp/verification/measurement-error-mobile.png' });
         await optional.locator('[data-bs-toggle="collapse"]').click();
         await optional.locator('.callout-collapse').waitFor({ state: 'hidden' });
-        for (const id of ['sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
+        for (const id of ['sec-role-promennych', 'sec-interni-externi-validita', 'sec-kodovani', 'sec-chybejici', 'sec-stejna-vlastnost', 'sec-kvaziintervalove', 'sec-uroven-a-spojitost']) {
           await page.locator(`#${id}`).screenshot({ path: `tmp/verification/${id}-mobile.png` });
         }
       }
@@ -271,6 +271,22 @@ const server = http.createServer((req, res) => {
         await page.locator('.ref-controls input').fill(query);
         assert.equal(await visible(), 1, `Search for ${query} across all pages`);
         assert(await page.locator(`#${id}`).isVisible());
+      }
+      for (const [query, id] of [
+        ['independent variable', 'pojem-nezavisla-promenna'],
+        ['dependent variable', 'pojem-zavisla-promenna'],
+        ['explanatory variable', 'pojem-explanacni-promenna'],
+        ['predictor variable', 'pojem-prediktor'],
+        ['outcome variable', 'pojem-vysledna-promenna'],
+        ['criterion variable', 'pojem-kriterium'],
+        ['predictand', 'pojem-predikant']
+      ]) {
+        await page.locator('.ref-controls input').fill(query);
+        assert(await page.locator(`#${id}`).isVisible(), `Variable role search: ${query}`);
+        await page.locator('.ref-controls input').fill('nenalezitelnypojem');
+        await page.evaluate(id => { location.hash = id; }, id);
+        await page.locator(`#${id}`).waitFor({ state: 'visible' });
+        assert.equal(await page.locator('.ref-controls input').inputValue(), '', 'Variable role link clears filter');
       }
       await page.locator('.ref-controls input').fill('convenience');
       assert.equal(await visible(), 1, 'Search for the new English sampling term');
