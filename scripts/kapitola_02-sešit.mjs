@@ -34,13 +34,13 @@ note(c,'A15','Zkuste změnit Data!E2 z 2 na 3 a sledujte tabulku i graf. Potom o
 h.getRange('A1').values=[['Doba spánku: intervalové četnosti']];h.getRange('A1').format.font={bold:true,size:15};
 h.getRange('B2').values=[['Platné údaje n']];h.getRange('C2').formulas=[["=COUNT('Data'!B2:B37)"]];
 h.getRange('A4:F4').values=[['Dolní mez','Horní mez','Interval (h)','Četnost','Podíl','Procenta']];header(h,'A4:F4');
-h.getRange('A5:C10').values=Array.from({length:6},(_,i)=>[i+4,i+5,`${i+4} až < ${i+5}`]);
-h.getRange('D5:F5').formulas=[["=COUNTIFS('Data'!$B$2:$B$37,\">=\"&A5,'Data'!$B$2:$B$37,\"<\"&B5)",'=D5/$C$2','=E5']];h.getRange('D5:F10').fillDown();
+h.getRange('A5:C10').values=Array.from({length:6},(_,i)=>[i+4,i+5,`> ${i+4} až ${i+5}`]);
+h.getRange('D5:F5').formulas=[["=COUNTIFS('Data'!$B$2:$B$37,\">\"&A5,'Data'!$B$2:$B$37,\"<=\"&B5)",'=D5/$C$2','=E5']];h.getRange('D5:F10').fillDown();
 h.getRange('C12').values=[['Celkem']];h.getRange('D12:F12').formulas=[['=SUM(D5:D10)','=SUM(E5:E10)','=E12']];
 h.getRange('B2:B12').format.columnWidth=20;h.getRange('C2:C12').format.columnWidth=19;
 h.getRange('E5:E12').setNumberFormat('0.000');h.getRange('F5:F12').setNumberFormat('0.0%');
 h.getRange('D5:F10').format.fill='#EFF6FA';h.getRange('C12:F12').format.font={bold:true};
-note(h,'A14','Dolní mez patří do intervalu, horní už ne. Intervaly mají šířku 1 hodina.');
+note(h,'A14','Dolní mez nepatří do intervalu, horní ano. Intervaly mají šířku 1 hodina.');
 note(h,'A15','Tři z 36 účastníků spánek neuvedli. Prázdná buňka neznamená 0 hodin.');
 note(h,'A17','Zkuste změnit Data!B2 z 6 na 7. Po ověření přesunu obnovte hodnotu 6.');
 note(h,'A18','Při rozšíření dat upravte oblasti ve vzorcích a pokrytí intervaly.');

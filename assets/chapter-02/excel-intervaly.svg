@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 908 535" role="img" aria-labelledby="title desc">
 <title id="title">Intervalové četnosti · vybraná buňka D5</title>
-<desc id="desc">Názorná rekonstrukce excelového listu. =COUNTIFS(Data!$B$2:$B$37;&quot;&gt;=&quot;&amp;A5;Data!$B$2:$B$37;&quot;&lt;&quot;&amp;B5). Obě podmínky současně: alespoň dolní mez a méně než horní mez. Hodnota přesně 5 patří do dalšího intervalu. Tři prázdné buňky nejsou započítány.</desc>
+<desc id="desc">Názorná rekonstrukce excelového listu. =COUNTIFS(Data!$B$2:$B$37;&quot;&gt;&quot;&amp;A5;Data!$B$2:$B$37;&quot;&lt;=&quot;&amp;B5). Obě podmínky současně: více než dolní mez a nejvýše horní mez. Hodnota přesně 5 patří do prvního intervalu. Tři prázdné buňky nejsou započítány.</desc>
 <style>text{font-family:Arial,sans-serif;fill:#223744;font-size:18px}.small{font-size:16px}.label{font-weight:700}.white{fill:white}.mono{font-family:Consolas,monospace;font-size:16px}</style>
 <rect x="0" y="0" width="908" height="535" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <rect x="0" y="0" width="908" height="42" fill="#234f62" stroke="#cad5da" stroke-width="1"/>
@@ -9,7 +9,7 @@
 <text x="44" y="77" class="label" text-anchor="middle">D5</text>
 <text x="93" y="77" class="small" text-anchor="start">fx</text>
 <rect x="120" y="54" width="776" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="130" y="77" class="mono" text-anchor="start">=COUNTIFS(Data!$B$2:$B$37;&quot;&gt;=&quot;&amp;A5;Data!$B$2:$B$37;&quot;&lt;&quot;&amp;B5)</text>
+<text x="130" y="77" class="mono" text-anchor="start">=COUNTIFS(Data!$B$2:$B$37;&quot;&gt;&quot;&amp;A5;Data!$B$2:$B$37;&quot;&lt;=&quot;&amp;B5)</text>
 <text x="17" y="119" class="small" text-anchor="start">Histogram!C2 = 33 platných údajů</text>
 <rect x="0" y="136" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <rect x="48" y="136" width="132" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
@@ -45,13 +45,13 @@
 <rect x="180" y="204" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="227" class="" text-anchor="end">5</text>
 <rect x="312" y="204" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="227" class="" text-anchor="end">4 až &lt; 5</text>
+<text x="496" y="227" class="" text-anchor="end">&gt; 4 až 5</text>
 <rect x="506" y="204" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="227" class="" text-anchor="end">2</text>
+<text x="630" y="227" class="" text-anchor="end">3</text>
 <rect x="640" y="204" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="227" class="" text-anchor="end">0,061</text>
+<text x="764" y="227" class="" text-anchor="end">0,091</text>
 <rect x="774" y="204" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="227" class="" text-anchor="end">6,1 %</text>
+<text x="898" y="227" class="" text-anchor="end">9,1 %</text>
 <rect x="0" y="238" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="24" y="261" class="small" text-anchor="middle">6</text>
 <rect x="48" y="238" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
@@ -59,13 +59,13 @@
 <rect x="180" y="238" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="261" class="" text-anchor="end">6</text>
 <rect x="312" y="238" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="261" class="" text-anchor="end">5 až &lt; 6</text>
+<text x="496" y="261" class="" text-anchor="end">&gt; 5 až 6</text>
 <rect x="506" y="238" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="261" class="" text-anchor="end">4</text>
+<text x="630" y="261" class="" text-anchor="end">5</text>
 <rect x="640" y="238" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="261" class="" text-anchor="end">0,121</text>
+<text x="764" y="261" class="" text-anchor="end">0,152</text>
 <rect x="774" y="238" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="261" class="" text-anchor="end">12,1 %</text>
+<text x="898" y="261" class="" text-anchor="end">15,2 %</text>
 <rect x="0" y="272" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="24" y="295" class="small" text-anchor="middle">7</text>
 <rect x="48" y="272" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
@@ -73,13 +73,13 @@
 <rect x="180" y="272" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="295" class="" text-anchor="end">7</text>
 <rect x="312" y="272" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="295" class="" text-anchor="end">6 až &lt; 7</text>
+<text x="496" y="295" class="" text-anchor="end">&gt; 6 až 7</text>
 <rect x="506" y="272" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="295" class="" text-anchor="end">7</text>
+<text x="630" y="295" class="" text-anchor="end">8</text>
 <rect x="640" y="272" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="295" class="" text-anchor="end">0,212</text>
+<text x="764" y="295" class="" text-anchor="end">0,242</text>
 <rect x="774" y="272" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="295" class="" text-anchor="end">21,2 %</text>
+<text x="898" y="295" class="" text-anchor="end">24,2 %</text>
 <rect x="0" y="306" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="24" y="329" class="small" text-anchor="middle">8</text>
 <rect x="48" y="306" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
@@ -87,13 +87,13 @@
 <rect x="180" y="306" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="329" class="" text-anchor="end">8</text>
 <rect x="312" y="306" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="329" class="" text-anchor="end">7 až &lt; 8</text>
+<text x="496" y="329" class="" text-anchor="end">&gt; 7 až 8</text>
 <rect x="506" y="306" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="329" class="" text-anchor="end">11</text>
+<text x="630" y="329" class="" text-anchor="end">10</text>
 <rect x="640" y="306" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="329" class="" text-anchor="end">0,333</text>
+<text x="764" y="329" class="" text-anchor="end">0,303</text>
 <rect x="774" y="306" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="329" class="" text-anchor="end">33,3 %</text>
+<text x="898" y="329" class="" text-anchor="end">30,3 %</text>
 <rect x="0" y="340" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="24" y="363" class="small" text-anchor="middle">9</text>
 <rect x="48" y="340" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
@@ -101,13 +101,13 @@
 <rect x="180" y="340" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="363" class="" text-anchor="end">9</text>
 <rect x="312" y="340" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="363" class="" text-anchor="end">8 až &lt; 9</text>
+<text x="496" y="363" class="" text-anchor="end">&gt; 8 až 9</text>
 <rect x="506" y="340" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="363" class="" text-anchor="end">6</text>
+<text x="630" y="363" class="" text-anchor="end">5</text>
 <rect x="640" y="340" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="363" class="" text-anchor="end">0,182</text>
+<text x="764" y="363" class="" text-anchor="end">0,152</text>
 <rect x="774" y="340" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="363" class="" text-anchor="end">18,2 %</text>
+<text x="898" y="363" class="" text-anchor="end">15,2 %</text>
 <rect x="0" y="374" width="48" height="34" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="24" y="397" class="small" text-anchor="middle">10</text>
 <rect x="48" y="374" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
@@ -115,18 +115,18 @@
 <rect x="180" y="374" width="132" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
 <text x="302" y="397" class="" text-anchor="end">10</text>
 <rect x="312" y="374" width="194" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="496" y="397" class="" text-anchor="end">9 až &lt; 10</text>
+<text x="496" y="397" class="" text-anchor="end">&gt; 9 až 10</text>
 <rect x="506" y="374" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="630" y="397" class="" text-anchor="end">3</text>
+<text x="630" y="397" class="" text-anchor="end">2</text>
 <rect x="640" y="374" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="764" y="397" class="" text-anchor="end">0,091</text>
+<text x="764" y="397" class="" text-anchor="end">0,061</text>
 <rect x="774" y="374" width="134" height="34" fill="#fff" stroke="#cad5da" stroke-width="1"/>
-<text x="898" y="397" class="" text-anchor="end">9,1 %</text>
+<text x="898" y="397" class="" text-anchor="end">6,1 %</text>
 <rect x="507" y="205" width="132" height="32" fill="none" stroke="#168154" stroke-width="3"/>
 <rect x="49" y="205" width="130" height="32" fill="none" stroke="#267888" stroke-width="3"/>
 <rect x="181" y="205" width="130" height="32" fill="none" stroke="#b16a26" stroke-width="3"/>
-<text x="16" y="439" class="small" text-anchor="start">Obě podmínky současně: alespoň dolní mez a méně než horní mez.</text>
-<text x="16" y="464" class="small" text-anchor="start">Hodnota přesně 5 patří do dalšího intervalu. Tři prázdné buňky nejsou započítány.</text>
+<text x="16" y="439" class="small" text-anchor="start">Obě podmínky současně: více než dolní mez a nejvýše horní mez.</text>
+<text x="16" y="464" class="small" text-anchor="start">Hodnota přesně 5 patří do prvního intervalu. Tři prázdné buňky nejsou započítány.</text>
 <rect x="0" y="503" width="908" height="32" fill="#edf1f3" stroke="#cad5da" stroke-width="1"/>
 <text x="20" y="525" class="small" text-anchor="start">Data     |     Cetnosti     |     Histogram          Zobrazený list: Histogram</text>
 </svg>

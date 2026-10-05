@@ -23,14 +23,14 @@ draw('tecky', {
 })
 s <- d$spanek_h[!is.na(d$spanek_h)]
 draw('histogram', {
-  hist(s, breaks = 4:10, right = FALSE, col = blue, border = 'white', main = '',
+  hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, col = blue, border = 'white', main = '',
     xlab = 'Uvedená doba spánku (hodiny)', ylab = 'Počet účastníků', xaxt = 'n', ylim = c(0, 12))
   axis(1, at = 4:10)
 })
 draw('intervaly', {
   par(mfrow = c(1, 2), mar = c(4.4, 4.2, 2, .8))
   for (w in c(.5, 2)) {
-    hist(s, breaks = seq(4, 10, by = w), right = FALSE, col = blue, border = 'white',
+    hist(s, breaks = seq(4, 10, by = w), right = TRUE, include.lowest = FALSE, col = blue, border = 'white',
       main = paste('Šířka', sub('.', ',', as.character(w), fixed = TRUE), 'h'),
       xlab = 'Doba spánku (h)', ylab = 'Počet účastníků', xlim = c(4, 10), ylim = c(0, 20))
   }
@@ -45,7 +45,7 @@ draw('kumulativni', {
   points((0:12)[f>0], c(0,head(cum,-1))[f>0], pch = 21, bg = 'white', col = blue)
 })
 draw('kumulativni-seskupene', {
-  h <- hist(s, breaks = 4:10, right = FALSE, plot = FALSE)
+  h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
   boundaries <- h$breaks
   cumulative <- c(0, cumsum(h$counts)) / length(s)
   par(mar = c(4.8, 5.5, 1.5, 1.2))
@@ -57,13 +57,13 @@ draw('kumulativni-seskupene', {
   abline(h = c(.25, .5, .75, 1), col = '#E6EBED', lty = 1)
   lines(boundaries, cumulative, col = blue, lwd = 2, lty = 2)
   points(boundaries, cumulative, col = blue, pch = 16, cex = 1.15)
-  text(7, cumulative[4] + .07, '13 z 33 (39,4 %)', col = ink, cex = .95)
-  legend('topleft', legend = c('Body: známé podíly pod mezí', 'Spojnice: uvnitř intervalu průběh neznáme'),
+  text(7, cumulative[4] + .07, '16 z 33 (48,5 %)', col = ink, cex = .95)
+  legend('topleft', legend = c('Body: známé podíly až po mez včetně', 'Spojnice: uvnitř intervalu průběh neznáme'),
     col = blue, pch = c(16, NA), lty = c(NA, 2), lwd = c(NA, 2), bty = 'n', cex = .83)
 }, width = 7.4, height = 4.6)
 
 draw('polygon', {
-  h <- hist(s, breaks = 4:10, right = FALSE, plot = FALSE)
+  h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
   plot(h$mids, h$counts, type = 'o', pch = 16, col = blue, lwd = 2, ylim = c(0, 12),
     xlab = 'Střed třídního intervalu spánku (h)', ylab = 'Počet účastníků', bty = 'l', xaxt = 'n')
   axis(1, at = h$mids, labels = sub('.', ',', as.character(h$mids), fixed = TRUE))

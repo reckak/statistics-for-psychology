@@ -6,8 +6,8 @@ import csv
 data=list(csv.DictReader(Path('data/kapitola_02.csv').open(encoding='utf-8')))
 freq=[sum(int(r['odpocatost'])==i for r in data) for i in range(1,5)]
 sleep=[float(r['spanek_h']) for r in data if r['spanek_h']]
-bins=[sum(lo<=v<lo+1 for v in sleep) for lo in range(4,10)]
-assert freq==[4,10,14,8] and bins==[2,4,7,11,6,3]
+bins=[sum(lo<v<=lo+1 for v in sleep) for lo in range(4,10)]
+assert freq==[4,10,14,8] and bins==[3,5,8,10,5,2]
 def fmt(v,d=3): return f'{v:.{d}f}'.replace('.',',')
 def make(name,title,selected,formula,headers,widths,rows,highlight,notes,sheet):
     w=sum(widths)+48; h=465 if len(rows)<5 else 535
@@ -49,9 +49,9 @@ make('excel-kumulativni','Kumulativní četnosti · vybraná buňka F6','F6','=S
      [(i+5,[i+1,labels[i],freq[i],fmt(freq[i]/36),fmt(100*freq[i]/36,1)+' %',cumulative[i],fmt(cumulative[i]/36),fmt(100*cumulative[i]/36,1)+' %']) for i in range(4)],
      [(5,6,'#168154'),(2,5,'#267888'),(2,6,'#267888')],
      ['F6 sčítá C5 a C6: 4 + 10 = 14 účastníků s odpovědí nejvýše „trochu“.','G6 = F6/$C$2 → 14/36. Zobrazeno 0,389; výpočet používá celý podíl.'],'Cetnosti')
-make('excel-intervaly','Intervalové četnosti · vybraná buňka D5','D5','=COUNTIFS(Data!$B$2:$B$37;">="&A5;Data!$B$2:$B$37;"<"&B5)',
+make('excel-intervaly','Intervalové četnosti · vybraná buňka D5','D5','=COUNTIFS(Data!$B$2:$B$37;">"&A5;Data!$B$2:$B$37;"<="&B5)',
      ['Dolní mez','Horní mez','Interval (h)','Četnost','Podíl','Procenta'],[132,132,194,134,134,134],
-     [(i+5,[i+4,i+5,f'{i+4} až < {i+5}',bins[i],fmt(bins[i]/33),fmt(100*bins[i]/33,1)+' %']) for i in range(6)],
+     [(i+5,[i+4,i+5,f'> {i+4} až {i+5}',bins[i],fmt(bins[i]/33),fmt(100*bins[i]/33,1)+' %']) for i in range(6)],
      [(3,5,'#168154'),(0,5,'#267888'),(1,5,'#b16a26')],
-     ['Obě podmínky současně: alespoň dolní mez a méně než horní mez.', 'Hodnota přesně 5 patří do dalšího intervalu. Tři prázdné buňky nejsou započítány.'],'Histogram')
+     ['Obě podmínky současně: více než dolní mez a nejvýše horní mez.', 'Hodnota přesně 5 patří do prvního intervalu. Tři prázdné buňky nejsou započítány.'],'Histogram')
 print('Created three labelled SVG worksheet reconstructions.')

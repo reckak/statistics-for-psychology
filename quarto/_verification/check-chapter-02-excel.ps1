@@ -25,19 +25,19 @@ try {
     Assert-Values $taskCounts 'G5:G8' @((4/36),(14/36),(28/36),1)
     Assert-Values $taskCounts 'C10:E10' @(36,1,1)
     Assert-Values $taskHist 'C2' @(33)
-    Assert-Values $taskHist 'D5:D10' @(2,4,7,11,6,3)
-    Assert-Values $taskHist 'E5:E10' @((2/33),(4/33),(7/33),(11/33),(6/33),(3/33))
+    Assert-Values $taskHist 'D5:D10' @(3,5,8,10,5,2)
+    Assert-Values $taskHist 'E5:E10' @((3/33),(5/33),(8/33),(10/33),(5/33),(2/33))
     Assert-Values $taskHist 'D12:F12' @(33,1,1)
     # Check the exact Czech formulas printed in the chapter.
     $taskCounts.Range('C2').FormulaLocal = '=POČET(Data!E2:E37)'
     $taskCounts.Range('C5').FormulaLocal = '=COUNTIFS(Data!$E$2:$E$37;A5)'
     $taskCounts.Range('F6').FormulaLocal = '=SUMA($C$5:C6)'
-    $taskHist.Range('D5').FormulaLocal = '=COUNTIFS(Data!$B$2:$B$37;">="&A5;Data!$B$2:$B$37;"<"&B5)'
+    $taskHist.Range('D5').FormulaLocal = '=COUNTIFS(Data!$B$2:$B$37;">"&A5;Data!$B$2:$B$37;"<="&B5)'
     $taskExcel.CalculateFullRebuild()
     Assert-Values $taskCounts 'C2' @(36)
     Assert-Values $taskCounts 'C5' @(4)
     Assert-Values $taskCounts 'F6' @(14)
-    Assert-Values $taskHist 'D5' @(2)
+    Assert-Values $taskHist 'D5' @(3)
     $taskData.Range('E2').Value2 = 3
     $taskExcel.CalculateFullRebuild()
     Assert-Values $taskCounts 'C5:C8' @(4,9,15,8)
@@ -48,8 +48,8 @@ try {
     $taskData.Range('E2').Value2 = 2
     $taskData.Range('B2').Value2 = 7
     $taskExcel.CalculateFullRebuild()
-    Assert-Values $taskHist 'D5:D10' @(2,4,6,12,6,3)
-    if ((@($taskHistChart.SeriesCollection(1).Values) -join ',') -ne '2,4,6,12,6,3') { throw 'Histogram did not update' }
+    Assert-Values $taskHist 'D5:D10' @(3,4,9,10,5,2)
+    if ((@($taskHistChart.SeriesCollection(1).Values) -join ',') -ne '3,4,9,10,5,2') { throw 'Histogram did not update' }
     $taskData.Range('B2').Value2 = 6
     $taskExcel.CalculateFullRebuild()
     # Independently compare all 180 source input cells, including blanks.
@@ -84,7 +84,7 @@ try {
         FrequencyFormula=$taskCounts.Range('C5').FormulaLocal
         CumulativeFormula=$taskCounts.Range('F6').FormulaLocal
         IntervalFormula=$taskHist.Range('D5').FormulaLocal
-        Counts='4,10,14,8'; Intervals='2,4,7,11,6,3'
+        Counts='4,10,14,8'; Intervals='3,5,8,10,5,2'
         InputCellsChecked=180; EditsAndChartUpdates='passed'
         RatioDisplay=$taskCounts.Range('D5').Text
         PercentDisplay=$taskCounts.Range('E5').Text
