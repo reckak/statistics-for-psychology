@@ -106,7 +106,7 @@ Přehled symbolů najdete v [tabulce značení](znaceni.qmd#znak-sumace). Znak s
 
 Otázka „Kolik lidí odpovědělo ‚trochu’?“ se týká jedné kategorie. Otázka „Kolik lidí odpovědělo nejvýše ‚trochu’?“ zahrnuje odpovědi „vůbec“ i „trochu“. V malé tabulce je to $1+2=3$ lidí, tedy polovina souboru.
 
-**Kumulativní četnost (*cumulative frequency*)** postupně sčítá četnosti od nejnižší hodnoty či kategorie až po zvolenou mez. Budeme ji počítat vzestupně a včetně příslušné kategorie. Kumulativní absolutní četnost označíme $f_{\mathrm{kum},j}$, kumulativní relativní četnost $p_{\mathrm{kum},j}$. Část „kum“ v indexu pouze připomíná kumulaci:
+**Kumulativní četnost (*cumulative frequency*)** postupně sčítá četnosti od nejnižší hodnoty či kategorie až po zvolenou mez. Budeme ji počítat vzestupně a včetně příslušné hodnoty či kategorie. U číselné meze se tedy ptáme na hodnoty **nejvýše rovné této mezi**. Aby stejný význam platil i po seskupení hodnot, budeme u intervalového třídění zahrnovat horní mez intervalu. Kumulativní absolutní četnost označíme $f_{\mathrm{kum},j}$, kumulativní relativní četnost $p_{\mathrm{kum},j}$. Část „kum“ v indexu pouze připomíná kumulaci:
 
 $$f_{\mathrm{kum},j}=f_1+\cdots+f_j,\qquad
 p_{\mathrm{kum},j}=\frac{f_{\mathrm{kum},j}}{n}.$$
@@ -163,25 +163,25 @@ Oba sousední výsledky 7 a 8 slov mají po šesti případech. Nulová četnost
 
 U doby spánku máme mnoho různých desetinných hodnot. Dlouhá tabulka jednotlivých časů by znesnadňovala přehled. **Intervalové třídění (*grouping into class intervals*)** proto spojuje sousední číselné hodnoty do skupin. **Třídní interval (*class interval, bin*)** je vymezen **dolní mezí (*lower endpoint*)** a **horní mezí (*upper endpoint*)**; jeho šířka je rozdíl horní a dolní meze [@howell, oddíl 2.2; @dostal, oddíl 3.2.1].
 
-V našem příkladu zvolíme šířku jedné hodiny. Interval od 6 hodin včetně do 7 hodin bez sedmičky obsahuje například 6,0, 6,2 a 6,8, ale už ne 7,0. Hodnota 7,0 patří do následujícího intervalu. Tento vztah můžeme zapsat také slovy „alespoň 6 a méně než 7 hodin“.
+V našem příkladu zvolíme šířku jedné hodiny. Interval více než 6 hodin až 7 hodin včetně obsahuje například 6,2, 6,8 a 7,0, ale ne 6,0. Hodnota 6,0 patří do předchozího intervalu. Tento vztah můžeme zapsat také slovy „více než 6 a nejvýše 7 hodin“.
 
 ::: table-scroll
-| Spánek (hodiny) | Dolní mez patří dovnitř | Horní mez už nepatří | Četnost | Podíl z 33 platných údajů |
+| Spánek (hodiny) | Dolní mez nepatří dovnitř | Horní mez patří dovnitř | Četnost | Podíl z 33 platných údajů |
 |----|---:|---:|---:|---:|
-| 4 až méně než 5 | 4 | 5 | 2 | 0,061 |
-| 5 až méně než 6 | 5 | 6 | 4 | 0,121 |
-| 6 až méně než 7 | 6 | 7 | 7 | 0,212 |
-| 7 až méně než 8 | 7 | 8 | 11 | 0,333 |
-| 8 až méně než 9 | 8 | 9 | 6 | 0,182 |
-| 9 až méně než 10 | 9 | 10 | 3 | 0,091 |
+| Více než 4 až 5 včetně | 4 | 5 | 3 | 0,091 |
+| Více než 5 až 6 včetně | 5 | 6 | 5 | 0,152 |
+| Více než 6 až 7 včetně | 6 | 7 | 8 | 0,242 |
+| Více než 7 až 8 včetně | 7 | 8 | 10 | 0,303 |
+| Více než 8 až 9 včetně | 8 | 9 | 5 | 0,152 |
+| Více než 9 až 10 včetně | 9 | 10 | 2 | 0,061 |
 | **Celkem** |  |  | **33** | **1,000** |
 :::
 
-Nejvíce známých údajů leží v intervalu mezi 7 hodinami (včetně) a méně než 8 hodinami: 11 z 33, tedy 33,3 %. Tabulka popisuje pouze platné údaje; tři chybějící nejsou bezdůvodně přiřazeny k nejkratšímu spánku ani k jinému intervalu.
+Nejvíce známých údajů leží v intervalu více než 7 až 8 hodin včetně: 10 z 33, tedy 30,3 %. Tabulka popisuje pouze platné údaje; tři chybějící nejsou bezdůvodně přiřazeny k nejkratšímu spánku ani k jinému intervalu.
 
 ### Které meze do intervalu patří {#sec-hranice-intervalu}
 
-Meze intervalů volíme tak, aby intervaly pokryly všechny zahrnuté hodnoty a každá spadala právě do jednoho z nich. U společné meze dvou sousedních intervalů musíme určit, do kterého patří. Otevřenost a uzavřenost vztahujeme k intervalu: je-li zleva uzavřený, jeho dolní mez do něj patří; je-li zleva otevřený, nepatří. Obdobně je tomu zprava u horní meze. Například interval od 6 hodin včetně do méně než 7 hodin má dolní mez 6 a horní mez 7. Dolní mez do něj patří, horní nikoli. Je tedy zleva uzavřený a zprava otevřený.
+Meze intervalů volíme tak, aby intervaly pokryly všechny zahrnuté hodnoty a každá spadala právě do jednoho z nich. U společné meze dvou sousedních intervalů musíme určit, do kterého patří. Otevřenost a uzavřenost vztahujeme k intervalu: je-li zleva uzavřený, jeho dolní mez do něj patří; je-li zleva otevřený, nepatří. Obdobně je tomu zprava u horní meze. Například interval více než 6 až 7 hodin včetně má dolní mez 6 a horní mez 7. Dolní mez do něj nepatří, horní ano. Je tedy zleva otevřený a zprava uzavřený.
 
 Použít můžeme oba následující způsoby:
 
@@ -204,11 +204,11 @@ Následující tabulka porovnává oba způsoby na stejných 33 údajích o spá
 : Stejné údaje při dvou způsobech zahrnutí mezí intervalů. {#tbl-hranice-intervalu}
 :::
 
-Například údaj 7,0 hodiny patří ve variantě A do intervalu od 7 včetně do méně než 8 hodin, ve variantě B do intervalu více než 6 až 7 hodin včetně. Rozdíly mezi četnostmi tedy způsobují hodnoty ležící přesně na mezích. Obě varianty jsou přípustné; pravidlo musíme uvést a důsledně dodržet. V dalších příkladech a v excelovém sešitu této kapitoly zachováváme variantu A.
+Například údaj 7,0 hodiny patří ve variantě A do intervalu od 7 včetně do méně než 8 hodin, ve variantě B do intervalu více než 6 až 7 hodin včetně. Rozdíly mezi četnostmi tedy způsobují hodnoty ležící přesně na mezích. Obě varianty jsou přípustné; pravidlo musíme uvést a důsledně dodržet. V dalších příkladech a v excelovém sešitu této kapitoly používáme **variantu B**, tedy zleva otevřené a zprava uzavřené intervaly. Kumulativní součet až po horní mez pak znamená „nejvýše“ tato mez, stejně jako u tabulky jednotlivých hodnot.
 
-Nejmenší hodnota našich dat je 4,5 a nejvyšší 9,5 hodiny, takže obě varianty pokrývají celý soubor známých údajů. Kdyby přibyla hodnota 10,0, ve variantě A bychom museli přidat další interval nebo výslovně zahrnout horní mez posledního intervalu. Obdobně by hodnota 4,0 vyžadovala úpravu varianty B. Krajní hodnoty nesmějí při třídění vypadnout.
+Nejmenší hodnota našich dat je 4,5 a nejvyšší 9,5 hodiny, takže obě varianty pokrývají celý soubor známých údajů. Kdyby přibyla hodnota 10,0, ve variantě A bychom museli přidat další interval nebo výslovně zahrnout horní mez posledního intervalu. Obdobně by hodnota 4,0 vyžadovala úpravu varianty B: buď bychom začali pod nejnižší hodnotou dat, nebo bychom výslovně zahrnuli také dolní mez prvního intervalu. Například první interval „4 až 5 včetně“ by zahrnoval obě meze a další by pokračovaly „více než 5 až 6 včetně“. Krajní hodnoty nesmějí při třídění vypadnout. Stejné intervaly a pravidlo zahrnutí mezí použijeme v tabulce, histogramu i kumulativním grafu.
 
-Seskupením ztrácíme přesnost. Z tabulky zjistíme přesně, že méně než 7 hodin uvedlo $2+4+7=13$ účastníků. Nezjistíme z ní přesně, kolik lidí uvedlo méně než 6,5 hodiny: neznáme jejich rozmístění uvnitř intervalu 6 až méně než 7. Pro přesnou odpověď se vrátíme k jednotlivým záznamům. Ani střed intervalu pochopitelně nemusí přesně odpovídat skutečné pozorované hodnotě.
+Seskupením ztrácíme přesnost. Z tabulky zjistíme přesně, že nejvýše 7 hodin uvedlo $3+5+8=16$ účastníků. Nezjistíme z ní přesně, kolik lidí uvedlo nejvýše 6,5 hodiny: neznáme jejich rozmístění uvnitř intervalu více než 6 až 7 včetně. Pro přesnou odpověď se vrátíme k jednotlivým záznamům. Ani střed intervalu pochopitelně nemusí přesně odpovídat skutečné pozorované hodnotě.
 
 ## Grafy četností {#sec-grafy-cetnosti}
 
@@ -236,7 +236,7 @@ V @fig-slova-tecky vidíme největší soustředění okolo 7–8 slov i jednoho
 
 **Histogram (*histogram*)** zobrazuje četnosti číselných hodnot v třídních intervalech. Vodorovná osa je číselná stupnice. Každý obdélník (sloupec) se rozkládá přes skutečnou šířku příslušného intervalu. Při stejně širokých intervalech (což je nejčastější uspořádání) může jeho výška přímo vyjadřovat počet případů.
 
-![Histogram známých dob spánku; 33 platných údajů, tři chybějící.](../assets/chapter-02/plots/histogram.svg){#fig-spanek-hist fig-alt="Šest navazujících intervalů šířky jedné hodiny od 4 do 10. Absolutní četnosti jsou postupně 2, 4, 7, 11, 6 a 3."}
+![Histogram známých dob spánku; 33 platných údajů, tři chybějící.](../assets/chapter-02/plots/histogram.svg){#fig-spanek-hist fig-alt="Šest navazujících intervalů šířky jedné hodiny od 4 do 10. Absolutní četnosti jsou postupně 3, 5, 8, 10, 5 a 2. Horní mez každého intervalu patří dovnitř."}
 
 V @fig-spanek-hist na sebe navazují intervaly bez mezer. Pokud některý interval nemá žádný případ, zůstane na číselné ose prázdné místo odpovídající jeho šířce; sousední obsazené intervaly nesmíme přisunout k sobě a nahradit jimi interval prázdný. Rozdíl proti sloupcovému grafu tedy není pouhá přítomnost či nepřítomnost mezery. Rozhodující je, zda osa představuje samostatné kategorie, nebo číselné intervaly.
 
@@ -248,7 +248,7 @@ Pro intervaly neexistuje jediná vždy správná šířka. Úzké intervaly zach
 
 ![Stejných 33 údajů při šířkách půl hodiny a dvě hodiny.](../assets/chapter-02/plots/intervaly.svg){#fig-sirka-intervalu fig-alt="Dva histogramy stejné proměnné (doby spánku). Levý má dvanáct půlhodinových intervalů, pravý tři dvouhodinové intervaly. Osy mají stejné rozsahy, širší intervaly slučují více hodnot."}
 
-Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. „Jednohodinová“ verze ukazuje, že nejčetnější interval je 7 až méně než 8 hodin. Ve „dvouhodinové“ verzi se tato informace ztrácí ve společném intervalu 6 až méně než 8 hodin. Při volbě šířky vycházíme z otázky, kterou chceme zkoumat, z jednotek a přesnosti zaznamenaných údajů, z rozsahu jejich hodnot a z počtu pozorování. Meze po celých hodinách například umožňují srozumitelně popsat zastoupení různých dob spánku. Pokud nás zajímají jemnější rozdíly a údaje jsou dostatečně přesné, můžeme zkusit půlhodinové intervaly; u malého souboru ale jednotlivé úzké intervaly obsahují málo případů, a obraz proto snadno ovlivní několik pozorování.
+Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. „Jednohodinová“ verze ukazuje, že nejčetnější interval je více než 7 až 8 hodin včetně. Ve „dvouhodinové“ verzi se tato informace ztrácí ve společném intervalu více než 6 až 8 hodin včetně. Při volbě šířky vycházíme z otázky, kterou chceme zkoumat, z jednotek a přesnosti zaznamenaných údajů, z rozsahu jejich hodnot a z počtu pozorování. Meze po celých hodinách například umožňují srozumitelně popsat zastoupení různých dob spánku. Pokud nás zajímají jemnější rozdíly a údaje jsou dostatečně přesné, můžeme zkusit půlhodinové intervaly; u malého souboru ale jednotlivé úzké intervaly obsahují málo případů, a obraz proto snadno ovlivní několik pozorování.
 
 Zvolené členění porovnáme s několika blízkými šířkami i posuny mezí. Za přesvědčivější rys dat považujeme takový, který zůstává patrný při více přiměřených nastaveních. Jestliže drobný vrchol po malém posunu mezí zmizí, samotný histogram nám nedává dostatečnou oporu pro tvrzení, že data tvoří zvláštní skupinu. Automatická pravidla mohou nabídnout výchozí nastavení, ale nenahrazují posouzení účelu grafu a konkrétních dat [@howell, s. 20–21].
 
@@ -260,19 +260,19 @@ Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U
 
 ### Graf kumulativních četností {#sec-kumulativni-graf}
 
-**Graf kumulativních četností (*cumulative frequency graph*)** ukazuje, kolik nebo jaký podíl případů zahrneme, když postupujeme od nejnižších hodnot ke zvolené mezi. Musíme určit, zda zahrnujeme i hodnoty přesně rovné této mezi. Pro jednotlivé přesně zaznamenané hodnoty zde používáme pravidlo „nejvýše“ a graf má podobu schodů: mezi pozorovanými hodnotami se počet nemění, při zahrnutí další hodnoty vzroste.
+**Graf kumulativních četností (*cumulative frequency graph*)** ukazuje, kolik nebo jaký podíl případů zahrneme, když postupujeme od nejnižších hodnot ke zvolené mezi. V této kapitole zahrnujeme i hodnoty přesně rovné této mezi, tedy používáme pravidlo „nejvýše“. Pro jednotlivé přesně zaznamenané hodnoty není potřeba vytvářet intervaly a graf má podobu schodů: mezi pozorovanými hodnotami se počet nemění, při zahrnutí další hodnoty vzroste.
 
 ![Kumulativní procenta výsledků paměťové úlohy.](../assets/chapter-02/plots/kumulativni.svg){#fig-kumulativni-slova fig-alt="Neklesající schodovitý graf výsledků 36 účastníků. Při mezi 6 slov dosahuje 14 z 36, tedy 38,9 procenta; při 8 slovech 26 z 36, tedy 72,2 procenta; při 12 slovech 100 procent."}
 
 V @fig-kumulativni-slova se ptáme na **nejvýše** daný počet slov. U meze 6 je zahrnuto $1+0+1+1+2+4+5=14$ lidí, tedy 38,9 %. U meze 8 je jich 26, tedy 72,2 %. Plný bod ukazuje hodnotu včetně dané meze; prázdný bod ukazuje úroveň těsně před skokem. U hodnoty 1 nevzniká skok, protože žádný účastník si nevybavil **právě jedno slovo**. Kumulativní četnost tam proto zůstává stejná jako u hodnoty 0; jednoho účastníka s nulou vybavených slov již zahrnuje.
 
-U seskupených údajů můžeme kumulativní četnosti zakreslit na horních mezích intervalů a body propojit úsečkami [@privitera, s. 59]. Pro naše intervaly spánku, které horní mez nezahrnují, odpovídá každý bod podílu údajů **menších než** daná mez. Nečteme jej tedy jako „nejvýše“ daná mez.
+U seskupených údajů můžeme kumulativní četnosti zakreslit na horních mezích intervalů a body propojit úsečkami [@privitera, s. 59]. Pro naše intervaly spánku, které horní mez zahrnují, odpovídá každý bod podílu údajů **nejvýše rovných** dané mezi. Jeho význam je tedy stejný jako u kumulativního grafu jednotlivých hodnot.
 
-![Kumulativní procenta známých dob spánku sestavená z jednohodinových intervalů.](../assets/chapter-02/plots/kumulativni-seskupene.svg){#fig-kumulativni-spanek fig-alt="Body na mezích 4, 5, 6, 7, 8, 9 a 10 hodin odpovídají kumulativním absolutním četnostem 0, 2, 6, 13, 24, 30 a 33. Bod u 7 hodin označuje 39,4 procenta údajů kratších než 7 hodin. Přerušované spojnice mezi body neurčují skutečné rozložení uvnitř intervalů."}
+![Kumulativní procenta známých dob spánku sestavená z jednohodinových intervalů.](../assets/chapter-02/plots/kumulativni-seskupene.svg){#fig-kumulativni-spanek fig-alt="Body na mezích 4, 5, 6, 7, 8, 9 a 10 hodin odpovídají kumulativním absolutním četnostem 0, 3, 8, 16, 26, 31 a 33. Bod u 7 hodin označuje 48,5 procenta údajů nejvýše rovných 7 hodinám. Přerušované spojnice mezi body neurčují skutečné rozložení uvnitř intervalů."}
 
-V @fig-kumulativni-spanek u meze 7 sečteme četnosti prvních tří intervalů: $2+4+7=13$. Méně než 7 hodin tedy uvedlo $13/33$, přibližně 0,394 neboli 39,4 % účastníků se známou dobou spánku. U meze 8 přidáme dalších 11 případů: $24/33$, přibližně 0,727 neboli 72,7 %. Bod u 4 hodin začíná na nule a u 10 hodin dosáhneme všech 33 známých údajů, tedy 100,0 %.
+V @fig-kumulativni-spanek u meze 7 sečteme četnosti prvních tří intervalů: $3+5+8=16$. Nejvýše 7 hodin tedy uvedlo $16/33$, přibližně 0,485 neboli 48,5 % účastníků se známou dobou spánku. U meze 8 přidáme dalších 10 případů: $26/33$, přibližně 0,788 neboli 78,8 %. Bod u 4 hodin začíná na nule, protože žádný známý údaj není nejvýše 4 hodiny. U 10 hodin dosáhneme všech 33 známých údajů, tedy 100,0 %. Počáteční nulu smíme zakreslit jen na mezi, pro kterou opravdu nejsou žádné hodnoty menší nebo rovné této mezi.
 
-**Plné body vyjadřují hodnoty známé z tabulky; přerušované úsečky je pouze propojují.** Uvnitř intervalu neznáme ze seskupené tabulky přesné rozmístění hodnot. Výška spojnice například u 6,5 hodiny není přesně zjištěným podílem lidí spících méně než 6,5 hodiny. Její použití jako odhadu by vyžadovalo další předpoklad o rozmístění údajů uvnitř intervalu. U opačného pravidla zahrnutí mezí, varianty B v @tbl-hranice-intervalu, by bod na horní mezi naopak zahrnoval i hodnoty přesně rovné této mezi: četl by se jako „nejvýše“.
+**Plné body vyjadřují hodnoty známé z tabulky; přerušované úsečky je pouze propojují.** Uvnitř intervalu neznáme ze seskupené tabulky přesné rozmístění hodnot. Výška spojnice například u 6,5 hodiny není přesně zjištěným podílem lidí spících nejvýše 6,5 hodiny. Její použití jako odhadu by vyžadovalo další předpoklad o rozmístění údajů uvnitř intervalu. Při opačném pravidle zahrnutí mezí, variantě A v @tbl-hranice-intervalu, by součet na horní mezi zahrnoval pouze hodnoty **menší než** tato mez. Proto v navazujících příkladech používáme variantu B.
 
 ### Polygon četností {#sec-polygon-cetnosti}
 
@@ -280,9 +280,9 @@ V @fig-kumulativni-spanek u meze 7 sečteme četnosti prvních tří intervalů:
 
 Celý postup můžeme zapsat jako $6+(7-6)/2=6{,}5$: nejprve rozdíl mezí v závorce, pak jeho polovina a nakonec přičtení k dolní mezi. Stejný střed dostaneme u obou způsobů zahrnutí mezí; zařazení krajního bodu polohu středu nemění. Střed ale nemusí být hodnotou žádného konkrétního pozorování [@howell, s. 20].
 
-![Polygon stejných četností spánku jako v jednohodinovém histogramu.](../assets/chapter-02/plots/polygon.svg){#fig-polygon-spanek fig-alt="Spojnice šesti bodů nad středy 4,5 až 9,5 hodiny, s četnostmi 2, 4, 7, 11, 6 a 3."}
+![Polygon stejných četností spánku jako v jednohodinovém histogramu.](../assets/chapter-02/plots/polygon.svg){#fig-polygon-spanek fig-alt="Spojnice šesti bodů nad středy 4,5 až 9,5 hodiny, s četnostmi 3, 5, 8, 10, 5 a 2."}
 
-@fig-polygon-spanek shrnuje stejné údaje jako histogram. Bod nad 7,5 hodinami zastupuje **všech 11 údajů v intervalu**, nikoli 11 lidí spících přesně 7,5 hodiny. Spojnice nepopisuje průběh spánku v čase. Polygony mohou usnadnit porovnání rozdělení více skupin, pokud používají stejné intervaly a vhodné četnostní měřítko [@privitera, s. 58–59].
+@fig-polygon-spanek shrnuje stejné údaje jako histogram. Bod nad 7,5 hodinami zastupuje **všech 10 údajů v intervalu**, nikoli 10 lidí spících přesně 7,5 hodiny. Spojnice nepopisuje průběh spánku v čase. Polygony mohou usnadnit porovnání rozdělení více skupin, pokud používají stejné intervaly a vhodné četnostní měřítko [@privitera, s. 58–59].
 
 ### Výsečový graf {#sec-vysecovy-graf}
 
@@ -404,14 +404,14 @@ Počet desetinných míst upravujeme ve **formátu buněk**, například přes C
 Na listu `Histogram` je v C2 `=POČET(Data!B2:B37)`, výsledek **33**. V A5:A10 jsou dolní meze 4 až 9 a v B5:B10 horní meze 5 až 10. Do D5 vložíme:
 
 ``` text
-=COUNTIFS(Data!$B$2:$B$37;">="&A5;Data!$B$2:$B$37;"<"&B5)
+=COUNTIFS(Data!$B$2:$B$37;">"&A5;Data!$B$2:$B$37;"<="&B5)
 ```
 
-Funkce zde používá dvě dvojice oblast–podmínka. Zápis `">="&A5` spojí text „větší nebo rovno“ s dolní mezí, takže v prvním řádku znamená „alespoň 4“. Zápis `"<"&B5` znamená „méně než 5“. U každého záznamu musí platit obě podmínky současně. Znak `&` v Excelu spojuje části textové podmínky. Uvozovky označují text; nezapisujeme do nich celý vzorec.
+Funkce zde používá dvě dvojice oblast–podmínka. Zápis `">"&A5` spojí text „větší než“ s dolní mezí, takže v prvním řádku znamená „více než 4“. Zápis `"<="&B5` znamená „nejvýše 5“. U každého záznamu musí platit obě podmínky současně. Znak `&` v Excelu spojuje části textové podmínky. Uvozovky označují text; nezapisujeme do nich celý vzorec.
 
-Výsledek D5 je **2**. Po zkopírování do D10 dostaneme postupně 2, 4, 7, 11, 6 a 3. Podíl v E5 vypočítáme `=D5/$C$2`, tedy 0,061 po zobrazení na tři místa. Prázdné buňky v tomto konkrétním příkladu nesplňují podmínku (alespoň 4) a nejsou započítány. Při jiných podmínkách nelze automaticky předpokládat stejné zacházení s prázdnou buňkou.
+Výsledek D5 je **3**. Po zkopírování do D10 dostaneme postupně 3, 5, 8, 10, 5 a 2. Podíl v E5 vypočítáme `=D5/$C$2`, tedy 0,091 po zobrazení na tři místa. Prázdné buňky v tomto konkrétním příkladu nesplňují podmínku (více než 4) a nejsou započítány. Při jiných podmínkách nelze automaticky předpokládat stejné zacházení s prázdnou buňkou.
 
-![Názorná rekonstrukce listu Histogram s oběma mezemi intervalu.](../assets/chapter-02/excel-intervaly.svg){#fig-excel-intervaly fig-alt="List Histogram s dolními a horními mezemi, četnostmi 2, 4, 7, 11, 6, 3 a vzorcem COUNTIFS pro současné splnění obou podmínek."}
+![Názorná rekonstrukce listu Histogram s oběma mezemi intervalu.](../assets/chapter-02/excel-intervaly.svg){#fig-excel-intervaly fig-alt="List Histogram s dolními a horními mezemi, četnostmi 3, 5, 8, 10, 5, 2 a vzorcem COUNTIFS pro současné splnění obou podmínek."}
 
 Pro sloupcový graf odpočatosti označíme na listu `Cetnosti` B4:C8 a zvolíme **Vložení → Sloupcový graf → Skupinový sloupcový**. Ověříme, že vodorovná osa obsahuje odpovědi, svislá absolutní četnosti a mezi daty není zahrnut součet. Svislou osu nastavíme od nuly, doplníme popis „Počet účastníků“ a vynecháme prostorové efekty.
 
@@ -421,7 +421,7 @@ Excel obsahuje také samostatný typ grafu **Histogram**, který se vytváří z
 
 ## Shrnutí {#sec-shrnuti-02}
 
-Absolutní četnost odpovídá na otázku „kolik?“, relativní četnost na otázku „jakou část určeného celku“. Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou mez. Správný jmenovatel, smysluplné pořadí a jednoznačné meze jsou součástí výkladu výsledku, nikoli jen technickým detailem výpočtu.
+Absolutní četnost odpovídá na otázku „kolik?“, relativní četnost na otázku „jakou část určeného celku“. Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou mez včetně. Správný jmenovatel, smysluplné pořadí a jednoznačné meze jsou součástí výkladu výsledku, nikoli jen technickým detailem výpočtu.
 
 Tabulka prezentuje snadno dohledatelná čísla, graf usnadňuje vnímání rozdělení. Vždy ale některé informace zdůrazňuje a jiné upozaďuje. Volbu zobrazení proto zdůvodníme otázkou a povahou údajů. Tvar rozdělení v malém souboru, vysoký sloupec nebo odlehlé pozorování nepředstavují samy o sobě důkaz o populačním rozdělení či příčině.
 
@@ -487,14 +487,14 @@ Méně než tři chyby udělalo šest lidí, nejvýše tři sedm lidí a alespo�
 
 ### Úloha 5: Intervaly a ztracené podrobnosti {#sec-uloha-02-5}
 
-Známé doby spánku v hodinách jsou 5,0; 5,5; 6,0; 6,0; 6,5; 7,0; 7,5; 8,0. Rozdělte je do intervalů 5 až méně než 6, 6 až méně než 7, 7 až méně než 8 a 8 až méně než 9. Určete četnosti a podíly. Lze jen z této intervalové tabulky přesně určit počet lidí se spánkem alespoň 6,5 hodiny? Dále určete, do kterého intervalu by údaj 6,0 patřil při opačném pravidle, kdy dolní mez nepatří dovnitř a horní ano. Jaký je střed intervalu mezi 6 a 7 hodinami?
+Známé doby spánku v hodinách jsou 5,0; 5,5; 6,0; 6,0; 6,5; 7,0; 7,5; 8,0. Rozdělte je do intervalů více než 4 až 5 včetně, více než 5 až 6 včetně, více než 6 až 7 včetně a více než 7 až 8 včetně. Určete četnosti a podíly. Lze jen z této intervalové tabulky přesně určit počet lidí se spánkem alespoň 6,5 hodiny? Dále určete, do kterého intervalu by údaj 6,0 patřil při opačném pravidle, kdy dolní mez patří dovnitř a horní nikoli. Jaký je střed intervalu mezi 6 a 7 hodinami?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Četnosti jsou 2, 3, 2 a 1, podíly $2/8=0{,}250$, $3/8=0{,}375$, 0,250 a 0,125. Hodnota 6,0 patří do druhého intervalu, 7,0 do třetího a 8,0 do čtvrtého. Každý z osmi údajů je zahrnut jednou.
+Četnosti jsou 1, 3, 2 a 2, podíly $1/8=0{,}125$, $3/8=0{,}375$, 0,250 a 0,250. Hodnota 5,0 patří do prvního intervalu, 6,0 do druhého, 7,0 do třetího a 8,0 do čtvrtého. Každý z osmi údajů je zahrnut jednou.
 
-Ze samotné intervalové tabulky přesný počet pro mez 6,5 nezjistíme, protože leží uvnitř druhého intervalu. Tři lidé ve vyšších intervalech podmínku určitě splňují; u tří lidí z druhého intervalu však nevíme, kolik z nich ji splňuje. Z původního seznamu však víme, že jde o čtyři hodnoty: 6,5; 7,0; 7,5 a 8,0.
+Ze samotné intervalové tabulky přesný počet pro mez 6,5 nezjistíme, protože leží uvnitř třetího intervalu. Dva lidé ve čtvrtém intervalu podmínku určitě splňují; u dvou lidí ze třetího intervalu však nevíme, kolik z nich ji splňuje. Z původního seznamu však víme, že jde o čtyři hodnoty: 6,5; 7,0; 7,5 a 8,0.
 
-Při opačném pravidle patří 6,0 do intervalu více než 5 až 6 včetně. Střed intervalu mezi 6 a 7 je $6+(7-6)/2=6{,}5$ hodiny; zvolený způsob zahrnutí mezí tento výsledek nemění.
+Při opačném pravidle patří 6,0 do intervalu od 6 včetně do méně než 7. Střed intervalu mezi 6 a 7 je $6+(7-6)/2=6{,}5$ hodiny; zvolený způsob zahrnutí mezí tento výsledek nemění.
 :::
 
 ### Úloha 6: Vyberte graf a zdůvodněte volbu {#sec-uloha-02-6}
@@ -549,5 +549,5 @@ Pracujte v kopii sešitu ke kapitole. Na listu `Data` změňte odpočatost P01 v
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Po změně odpočatosti dostaneme četnosti 4, 9, 15 a 8; jejich součet zůstává 36. Kumulativní absolutní četnosti jsou 4, 13, 28 a 36. Druhý sloupec grafu klesne o jeden a třetí vzroste o jeden. Relativní četnosti jsou zobrazeny jako 0,111; 0,250; 0,417; 0,222. Po obnovení E2 na 2 se vrátí původní výsledky.
 
-Změna spánku z 6 na 7 přesune jeden údaj z intervalu 6 až méně než 7 do intervalu 7 až méně než 8. Četnosti budou 2, 4, 6, 12, 6 a 3. Počet platných údajů zůstane 33, protože jsme známé číslo nahradili jiným známým číslem. Hodnota přesně 7 patří do intervalu začínajícího sedmičkou. Po obnovení B2 na 6 se vrátí četnosti 2, 4, 7, 11, 6 a 3.
+Změna spánku z 6 na 7 přesune jeden údaj z intervalu více než 5 až 6 včetně do intervalu více než 6 až 7 včetně. Četnosti budou 3, 4, 9, 10, 5 a 2. Počet platných údajů zůstane 33, protože jsme známé číslo nahradili jiným známým číslem. Hodnota přesně 7 patří do intervalu končícího sedmičkou. Po obnovení B2 na 6 se vrátí četnosti 3, 5, 8, 10, 5 a 2.
 :::
