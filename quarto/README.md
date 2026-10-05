@@ -471,3 +471,40 @@ Po schválení uživatelem používá kapitola při pojmenování veličin absol
 Zachována a zahrnuta je aktuální uživatelská redakce kapitoly, včetně zkrácení příkladu vícečetných odpovědí. Nová terminologická úprava nemění čísla, data ani výpočty; číselné zápisy byly porovnány s pracovním stavem bezprostředně před úpravou. Check-chapter-02.R prošel, dotčená kapitola se vykreslila a sekce kumulativních četností byla vizuálně prohlédnuta na desktopu a mobilu. Vzorce a číselná řešení byly zkontrolovány v rozdílech. Excelový sešit a vzorce se nemění a desktopový Excel nebyl znovu spuštěn. Publikování následuje po uživatelském sloučení.
 
 Webová kontrola check-html.cjs prošla na všech sedmi stránkách: místní odkazy, 79 hesel, všech 18 řešení a jejich ovládání klávesnicí, přehledové tabulky, desktop i mobilních 390 px bez přetékání celé stránky; bez hlášených chyb. git diff --check prošel.
+
+
+## Kapitola 2: revize podle jedenácti připomínek (2026-10-05)
+
+### Výklad a příklady
+
+Zapracováno všech jedenáct připomínek autora. Obecný pojem rozdělení je vysvětlen před popisem rozdělení četností, s odlišením pozorovaných dat, populace a modelu. Kumulování nominálních kategorií ukazuje vlastní příklad stejných četností 12, 14 a 10 ve dvou pořadích: průběžná kumulativní četnost u čtení je 12, nebo 26. Nejde o změnu dat.
+
+Nová srovnávací tabulka přiřazuje stejné doby spánku do intervalů zleva uzavřených/zprava otevřených a naopak. V první variantě jsou četnosti 2, 4, 7, 11, 6, 3; ve druhé 3, 5, 8, 10, 5, 2. Oba součty jsou 33. Vysvětleno zařazení 7,0 a zacházení s případnými novými krajními hodnotami 4,0 a 10,0. Navazující příklady i excelový sešit zachovávají původní variantu. Tabulka má vlastní minimální šířku a posuvnou oblast přístupnou klávesnicí; její šířka nemění ostatní tabulky.
+
+Volba šířky intervalů je spojena s otázkou, jednotkami, přesností dat, rozsahem a počtem pozorování; kontrolujeme několik blízkých nastavení. Nový vlastní graf seskupených kumulativních četností vychází z týchž 33 dob spánku. Na hranicích 4 až 10 hodin používá kumulativní absolutní četnosti 0, 2, 6, 13, 24, 30, 33 a zobrazuje jejich procentní vyjádření. Výslovně čte „méně než“, nikoli „nejvýše“. Plné body představují hodnoty známé z tabulky, přerušované spojnice neudávají přesné rozložení uvnitř intervalů. Střed intervalu je vysvětlen výpočtem 7 − 6 = 1, 1 / 2 = 0,5, 6 + 0,5 = 6,5.
+
+Doplněno rovnoměrné rozdělení, nesouměrnost zešikmeného rozdělení a vícevrcholové/multimodální rozdělení. Panel se stejnými četnostmi nově nese název Rovnoměrné rozdělení. Termín multimodální má v literatuře i širší význam zahrnující bimodalitu; tato varianta je uvedena v textu i slovníčku. Odlehlá pozorování vždy nejprve zkoumáme, samotná odlehlost nedokazuje neplatnost a nestačí k vyřazení. Nejasné „obrázkové symboly“ nahrazuje vysvětlení siluet osob a čtyřnásobné plochy při dvojnásobné výšce i šířce. Rozšířeny odpovídající části úloh 5 a 7 i jejich úplná řešení, počet úloh zůstává deset.
+
+Do slovníčku přibylo osm hesel (rozdělení, otevřená/uzavřená hranice, oba druhy polouzavřených intervalů, střed intervalu, rovnoměrné a vícevrcholové rozdělení); přehled značení obsahuje výpočet středu. Excelový přehled se nemění, nová funkce se nezavádí. Žádná nová symbolická proměnná ani intervalové závorkové značení nebyly zavedeny.
+
+### Zdroje a věcné opravy
+
+Znovu ověřen titul a tiráž Howella: Statistical methods for psychology, 8. vydání, 2013, Wadsworth/Cengage Learning, ISBN 9781111835484. Výklad navazuje na tištěné s. 17 (četnosti), 20–21 (hranice, středy a volba šířky), 27–29 (tvary a interpretace). Tištěné s. 20 byly prohlédnuty i obrazově. Howellovo doporučení zacházet s hraničními případy volně nepřebíráme; používáme explicitní jednotné pravidlo vhodné k reprodukování v Excelu.
+
+Privitera (2024), tištěná s. 59 (PDF 104), ověřena textově i obrazově jako opora grafu kumulativních četností na horních hranicích; do našeho grafu nejsou přebírána jeho data ani obrázek. Aron et al. (2014), tištěná s. 16 (PDF 21), ověřena také obrazově jako doklad širšího významu multimodality (dva či více vrcholů). Howell na s. 27 výslovně připouští různě vysoké výrazné vrcholy; grafický popis zde nezaměňujeme s definicí modu jako číselné charakteristiky, která se dosud neprobírá.
+
+Doplněny dva zdroje NIST, přístup 2026-10-05: Detection of outliers, oddíl Introduction (https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm), a Uniform distribution, oddíl Probability Density Function (https://www.itl.nist.gov/div898/handbook/eda/section3/eda3662.htm). Datum vydání není na použitých stránkách doloženo, nevymýšlí se. Studentům se nezavádí vzorec hustoty; zdroj podpírá vymezený rozsah a stejné zastoupení stejně širokých intervalů. Citace vznikají společným APA CSL ze záznamů v references.bib.
+
+Kontrola nových citací odhalila anglické popisky ve společné bibliografii. Výchozí česká lokalizace je proto výslovně nastavena i v APA CSL; datum přístupu nových zdrojů používá český tvar „5. října 2026“. Skript zpřístupňující posuvné tabulky nově zachovává výslovně zadaný název oblasti; jinak jej přebírá z popisku tabulky včetně značky figcaption používané Quartem.
+
+Zachována a zahrnuta aktuální uživatelská redakce. Související věcná oprava rozlišuje jednoho účastníka s nulou vybavených slov od nulové četnosti přesně jednoho slova; původní závorka je zaměňovala. Formulace „pouhou náhodou“ u dvou četností 14 byla nahrazena popisem shody dvou různých skupin odpovědí, protože modelová data byla záměrně sestavena. Opraveny zjevné překlepy a neúplná věta o posunu sousedních intervalů.
+
+### Ověření
+
+Rozšířený check-chapter-02.R prošel v čisté relaci: obě konvence hranic včetně hraničních hodnot, pokrytí všech 33 záznamů, kumulativní body proti původním datům, procenta, příklad nominálních kategorií, střed intervalu a všechna dosavadní číselná řešení. Dvě datové varianty se stejnými intervalovými četnostmi navíc ověřují, že uvnitř intervalu mohou mít různé kumulativní četnosti. Nezávislý Python výpočet s přesnými zlomky ověřil údaje v nové tabulce, nový graf, zaokrouhlení a vlastní příklady. Konceptuální řešení zkontrolována proti výkladu.
+
+Celá kniha se vykreslila (sedm stránek, jedenáct grafů a tři excelové ilustrace). Webové kontroly prošly v Chrome: 87 hesel slovníčku, 25 zdrojů společné bibliografie, odkazy, hledání nových pojmů, přehledové tabulky a všech 18 řešení včetně klávesnice; desktop 1360/1920 px a mobil 390 px bez přetékání stránky. Vizuálně prohlédnut nový kumulativní graf, srovnávací tabulka, označení rovnoměrného rozdělení, výklad středu, společná bibliografie a mobilní zobrazení. Na mobilu tabulka zachovává čitelné šířky sloupců; ověřeno její vodorovné posouvání šipkou na klávesnici v samostatné oblasti. Kontrola také ověřuje české citační popisky a datum přístupu obou nových zdrojů.
+
+V jednom opakovaném běhu se objevily chyby načtení citačních náhledů (applyStyles, window.tippy). Po doplnění adresy stránky a zásobníku chyby do diagnostiky prošla stejná kontrola bez další změny vykresleného webu. Příčinu jednorázového výskytu se nepodařilo reprodukovat; nelze jej vydávat za opravenou chybu. git diff --check prošel.
+
+Data, původní výpočty a excelový sešit se nemění. Nativní Excel nebyl znovu spuštěn; ověření webu není testem všech prohlížečů. Veřejná publikace následuje až po uživatelském sloučení a nasazení.

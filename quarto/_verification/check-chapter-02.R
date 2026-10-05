@@ -16,6 +16,21 @@ eq(length(s),33);eq(bins(s,4:9),c(2,4,7,11,6,3));eq(sum(s<7),13)
 eq(hist(s,breaks=4:10,right=FALSE,plot=FALSE)$counts,bins(s,4:9))
 eq(round(bins(s,4:9)/33,3),c(.061,.121,.212,.333,.182,.091))
 eq(freq(d$slova,0:12),c(1,0,1,1,2,4,5,6,6,4,3,2,1));eq(sum(d$slova<=6),14);eq(sum(d$slova<=8),26)
+# Boundary conventions: verify all cases are assigned exactly once, including exact boundaries.
+right_bins <- function(x, lower) vapply(lower, function(lo) sum(x > lo & x <= lo + 1), integer(1))
+eq(right_bins(s, 4:9), c(3,5,8,10,5,2));eq(sum(right_bins(s,4:9)),33)
+eq(hist(s, breaks=4:10, right=TRUE, include.lowest=FALSE, plot=FALSE)$counts,right_bins(s,4:9))
+eq(bins(c(6,6.5,7),5:7),c(0,2,1));eq(right_bins(c(6,6.5,7),5:7),c(1,2,0))
+# Grouped cumulative points must agree with strict thresholds in the original data.
+threshold_counts <- vapply(4:10,function(hi) sum(s<hi),integer(1))
+eq(threshold_counts,c(0,2,6,13,24,30,33));eq(c(0,cumsum(bins(s,4:9))),threshold_counts)
+eq(round(100*threshold_counts[c(4,5)]/33,1),c(39.4,72.7))
+# Identical grouped counts need not determine the cumulative count inside a bin.
+alternative <- s;alternative[s>=6 & s<7] <- 6.8
+eq(bins(alternative,4:9),bins(s,4:9));stopifnot(sum(alternative<6.5)!=sum(s<6.5))
+# Nominal cumulative example, midpoint and pictorial area example.
+eq(cumsum(c(12,14,10))[1],12);eq(cumsum(c(14,12,10))[2],26)
+eq(6+(7-6)/2,6.5);eq((6+7)/2,6.5);eq(2*2,4)
 # Exercises 1 and 2.
 x <- c(2,3,2,1,4,3,2,3,4,2,3,2);fx <- freq(x,1:4)
 eq(fx,c(1,5,4,2));eq(sum(fx[2:4]),11);eq(round(fx/12,3),c(.083,.417,.333,.167))
