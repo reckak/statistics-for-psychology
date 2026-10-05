@@ -508,3 +508,13 @@ Celá kniha se vykreslila (sedm stránek, jedenáct grafů a tři excelové ilus
 V jednom opakovaném běhu se objevily chyby načtení citačních náhledů (applyStyles, window.tippy). Po doplnění adresy stránky a zásobníku chyby do diagnostiky prošla stejná kontrola bez další změny vykresleného webu. Příčinu jednorázového výskytu se nepodařilo reprodukovat; nelze jej vydávat za opravenou chybu. git diff --check prošel.
 
 Data, původní výpočty a excelový sešit se nemění. Nativní Excel nebyl znovu spuštěn; ověření webu není testem všech prohlížečů. Veřejná publikace následuje až po uživatelském sloučení a nasazení.
+
+## Kapitola 2: meze intervalů (2026-10-05)
+
+Na schválení autora používáme dolní a horní mez intervalu namísto hranic. Otevřenost a uzavřenost vztahujeme k intervalu a vysvětlujeme, zda příslušná mez do intervalu patří. Sjednoceny jsou výklad, tabulky, popisky kumulativních grafů, alternativní texty, cvičení, slovníček a přehled výpočtu středu. Obecné hranice měření u efektu podlahy a stropu zůstávají zachovány. Původní identifikátory odkazů zůstávají stabilní; v aktuální autorské redakci byl navíc doplněn chybějící identifikátor srovnávací tabulky, na který text odkazuje. Úpravy zarovnání tabulek od autora byly zachovány.
+
+Slovníček nově obsahuje Meze intervalu s anglickými ekvivalenty. Dřívější označení otevřená/uzavřená hranice je pouze mezi alternativami; preferované popisy uvádějí, zda mez do intervalu patří. Poznámka Histogram!A14 v přiloženém sešitu i její zdrojový generátor nyní používají „Dolní mez“. Artifact Tool upravil a vykreslil buňku; jeho úplný export však přepisoval nesouvisející části původního sešitu. Proto byl do původního balíčku přenesen pouze vytvořený text. Porovnání všech částí XLSX potvrdilo jedinou textovou náhradu ve sharedStrings; ostatní XML, vzorce, hodnoty, grafy a styly zůstaly beze změny. Poznámka byla vizuálně ověřena před úpravou i po ní. Nativní Excel nebyl znovu spuštěn.
+
+Celá kniha byla vykreslena. Check-chapter-02.R prošel; porovnání s pracovním stavem před úpravou potvrdilo shodu všech matematických zápisů a doslovných výpočetních ukázek. Kopie sešitu v sestaveném webu odpovídá upravenému zdroji.
+
+Check-html.cjs prošel na sedmi stránkách bez chyb: 88 hesel slovníčku, místní odkazy, přehledové tabulky, všech 18 řešení včetně klávesnice, desktop 1360/1920 px a mobil 390 px bez přetékání celé stránky. Vizuálně ověřeny změněné popisky grafů, tabulka a vysvětlení mezí na mobilu. git diff --check prošel. Kontroly neověřují všechny prohlížeče ani novou publikaci webu.

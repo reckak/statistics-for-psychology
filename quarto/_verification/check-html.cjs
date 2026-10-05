@@ -172,11 +172,11 @@ const server = http.createServer((req, res) => {
         }
       }
       if (file === 'quarto/kapitola_02.html') {
-        const intervalRegion = page.getByRole('region', { name: 'Srovnání hranic intervalů' });
+        const intervalRegion = page.getByRole('region', { name: 'Srovnání mezí intervalů' });
         assert(await intervalRegion.evaluate(el => el.scrollWidth > el.clientWidth), 'Interval table scrolls within its region on mobile');
         await intervalRegion.focus();
         await page.keyboard.press('ArrowRight');
-        await page.waitForFunction(() => document.querySelector('[aria-label="Srovnání hranic intervalů"]').scrollLeft > 0);
+        await page.waitForFunction(() => document.querySelector('[aria-label="Srovnání mezí intervalů"]').scrollLeft > 0);
         await intervalRegion.evaluate(el => { el.scrollLeft = el.scrollWidth; });
         await intervalRegion.screenshot({ path: 'tmp/verification/ch02-interval-table-right-mobile.png' });
         await intervalRegion.evaluate(el => { el.scrollLeft = 0; el.blur(); });
