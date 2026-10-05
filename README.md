@@ -4,7 +4,7 @@
 
 **[Otevřít webovou učebnici](https://reckak.github.io/statistics-for-psychology/)**
 
-Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům** a **Četnosti, rozdělení dat a jejich zobrazení** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Druhá kapitola obsahuje modelová data a upravitelný excelový sešit. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
+Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům**, **Četnosti, rozdělení dat a jejich zobrazení** a **Ukazatele polohy a variability** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Druhá a třetí kapitola obsahují modelová data a upravitelné excelové sešity. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
 
 ## Práce s projektem
 
@@ -29,7 +29,9 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `index.qmd`: úvod pro studenty.
 - `quarto/kapitola_01.qmd`: od psychologické otázky k datům, včetně závěrečných cvičení.
 - `quarto/kapitola_02.qmd`: četnosti, tabulky a grafy, Excel a deset cvičení.
+- `quarto/kapitola_03.qmd`: poloha a variabilita, robustní shrnutí, modelový popis, Excel, dvanáct základních a dvě nepovinná cvičení.
 - `data/kapitola_02.csv` a `.xlsx`: pevná modelová data a studentský sešit s výpočty a grafy.
+- `data/kapitola_03.csv` a `.xlsx`: malé autorské příklady a sešit s komentovanými mezivýpočty, souhrnem původních dat a nepovinnými rozšířeními.
 - `scripts/`: tvorba grafů, sešitu a názorných excelových ilustrací.
 - `quarto/literatura.qmd`: společná automaticky generovaná bibliografie celé knihy.
 - `quarto/slovnicek.qmd`: české a anglické pojmy s odkazy na výklad.
@@ -70,13 +72,18 @@ Po obsahové změně spusťte také příslušnou kontrolu modelových dat a č�
 ```sh
 Rscript --vanilla quarto/_verification/check-chapter-01.R
 Rscript --vanilla quarto/_verification/check-chapter-02.R
+Rscript --vanilla quarto/_verification/check-chapter-03.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
 
+Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
+
+Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
+
 Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
 
-## Obnova podkladů druhé kapitoly
+## Obnova podkladů druhé a třetí kapitoly
 
 Grafy se obnovují při každém renderování. Samostatně je lze vytvořit příkazem `Rscript --vanilla scripts/render-figures.R`. Názorné rekonstrukce listů jsou editovatelné SVG; obnovuje je `python scripts/kapitola_02-ukazky.py` (standardní knihovna Pythonu).
 
@@ -89,9 +96,18 @@ powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-c
 
 Při použití přibaleného runtime lze cestu k vstupnímu modulu `@oai/artifact-tool` předat proměnnou `ARTIFACT_TOOL_MODULE`; jinak se použije obvyklé vyhledání modulu v Node.js. První krok vytvoří data, vzorce, formátování a grafy. Druhý nastaví nulovou mezeru histogramu a začátky os, ověří skutečný přepočet a uloží sešit. Bez `-Finalize` tentýž skript pouze ověřuje existující výsledek. Při změně CSV obnovte také sešit, ilustrace a knihu a ověřte navazující výklad. Pomocné náhledy a kontrolní výpisy vznikají pouze v ignorované složce `tmp/`.
 
+Sešit třetí kapitoly se obnovuje obdobně:
+
+```sh
+node scripts/kapitola_03-sešit.mjs
+powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-chapter-03-excel.ps1 -Finalize
+```
+
+Závěrečný krok v Excelu normalizuje zápis novějších funkcí v exportu, ověří české vzorce a uloží přepočtené hodnoty. Samotný export prvním příkazem není hotový ověřený sešit. Grafy třetí kapitoly vznikají v základním R; simulace používá pevný seed 20261005 a nevyžaduje instalaci balíčků.
+
 ## Publikování na GitHub Pages
 
-Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselnou kontrolu druhé kapitoly. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
+Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly druhé a třetí kapitoly. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
 
 Při prvním zprovoznění:
 
