@@ -40,7 +40,7 @@ h.getRange('C12').values=[['Celkem']];h.getRange('D12:F12').formulas=[['=SUM(D5:
 h.getRange('B2:B12').format.columnWidth=20;h.getRange('C2:C12').format.columnWidth=19;
 h.getRange('E5:E12').setNumberFormat('0.000');h.getRange('F5:F12').setNumberFormat('0.0%');
 h.getRange('D5:F10').format.fill='#EFF6FA';h.getRange('C12:F12').format.font={bold:true};
-note(h,'A14','Dolní hranice patří do intervalu, horní už ne. Intervaly mají šířku 1 hodina.');
+note(h,'A14','Dolní mez patří do intervalu, horní už ne. Intervaly mají šířku 1 hodina.');
 note(h,'A15','Tři z 36 účastníků spánek neuvedli. Prázdná buňka neznamená 0 hodin.');
 note(h,'A17','Zkuste změnit Data!B2 z 6 na 7. Po ověření přesunu obnovte hodnotu 6.');
 note(h,'A18','Při rozšíření dat upravte oblasti ve vzorcích a pokrytí intervaly.');

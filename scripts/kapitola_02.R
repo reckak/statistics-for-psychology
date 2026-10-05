@@ -37,7 +37,7 @@ draw('intervaly', {
 }, width = 8.2, height = 4)
 draw('kumulativni', {
   plot(ecdf(d$slova), verticals = FALSE, do.points = FALSE, xlim = c(-.5, 12.5),
-    ylim = c(0, 1), main = '', xlab = 'Hranice: počet vybavených slov', ylab = 'Kumulativní podíl',
+    ylim = c(0, 1), main = '', xlab = 'Mez: počet vybavených slov', ylab = 'Kumulativní podíl',
     xaxt = 'n', yaxt = 'n', col = blue, lwd = 2, frame.plot = FALSE)
   axis(1, at = 0:12); axis(2, at = c(0, .25, .5, .75, 1), labels = c('0 %', '25 %', '50 %', '75 %', '100 %'))
   f <- table(factor(d$slova, levels = 0:12)); cum <- cumsum(f)/nrow(d)
@@ -50,7 +50,7 @@ draw('kumulativni-seskupene', {
   cumulative <- c(0, cumsum(h$counts)) / length(s)
   par(mar = c(4.8, 5.5, 1.5, 1.2))
   plot(boundaries, cumulative, type = 'n', xlim = c(4, 10), ylim = c(0, 1),
-    xlab = 'Hranice doby spánku (h)', ylab = 'Kumulativní relativní četnost',
+    xlab = 'Mez doby spánku (h)', ylab = 'Kumulativní relativní četnost',
     xaxt = 'n', yaxt = 'n', bty = 'l')
   axis(1, at = 4:10)
   axis(2, at = c(0, .25, .5, .75, 1), labels = c('0 %', '25 %', '50 %', '75 %', '100 %'))
@@ -58,7 +58,7 @@ draw('kumulativni-seskupene', {
   lines(boundaries, cumulative, col = blue, lwd = 2, lty = 2)
   points(boundaries, cumulative, col = blue, pch = 16, cex = 1.15)
   text(7, cumulative[4] + .07, '13 z 33 (39,4 %)', col = ink, cex = .95)
-  legend('topleft', legend = c('Body: známé podíly pod hranicí', 'Spojnice: uvnitř intervalu průběh neznáme'),
+  legend('topleft', legend = c('Body: známé podíly pod mezí', 'Spojnice: uvnitř intervalu průběh neznáme'),
     col = blue, pch = c(16, NA), lty = c(NA, 2), lwd = c(NA, 2), bty = 'n', cex = .83)
 }, width = 7.4, height = 4.6)
 
