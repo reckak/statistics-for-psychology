@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
   const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
   const page = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
   const errors = [];
-  page.on('pageerror', e => errors.push(e.message));
+  page.on('pageerror', e => errors.push(`${page.url()}: ${e.stack || e.message}`));
   page.on('response', r => { if (r.url().startsWith(base) && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
   fs.mkdirSync('tmp/verification', { recursive: true });
   const documents = {};
@@ -94,7 +94,7 @@ const server = http.createServer((req, res) => {
         await page.waitForFunction(() => !!document.querySelector('math'));
         assert.equal(await page.locator('merror').count(), 0, 'No MathML parse errors');
         const images = page.locator('main img');
-        assert.equal(await images.count(), 13, 'Ten plots and three Excel illustrations');
+        assert.equal(await images.count(), 14, 'Eleven plots and three Excel illustrations');
         for (const img of await images.all()) {
           assert(await img.evaluate(el => el.complete && el.naturalWidth > 0), 'Figure loaded');
           assert((await img.getAttribute('alt')).length > 30, 'Descriptive figure alternative');
@@ -103,21 +103,29 @@ const server = http.createServer((req, res) => {
           const id = await fig.evaluate(el => el.closest('[id]').id);
           await fig.screenshot({ path: `tmp/verification/ch02-${id}.png` });
         }
-        assert.equal(await page.locator('#refs .csl-entry').count(), 11);
+        assert.equal(await page.locator('#refs .csl-entry').count(), 13);
         assert.match(await page.locator('#ref-cleveland1984').innerText(), /Cleveland, W. S., & McGill, R. \(1984\)/);
         assert.equal(await page.locator('#ref-cleveland1984 a').getAttribute('href'), 'https://doi.org/10.1080/01621459.1984.10478080');
         assert.match(await page.locator('#ref-howell').innerText(), /8\. vyd\./);
+        assert.equal(await page.locator('#ref-nistOutliers a').getAttribute('href'), 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm');
+        assert.equal(await page.locator('#ref-nistUniform a').getAttribute('href'), 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda3662.htm');
+        assert(await page.locator('#tbl-hranice-intervalu').isVisible(), 'Both boundary conventions are available');
+
         for (const id of ['msCount','msCountifs','msSum','msHistogram']) {
           assert((await page.locator(`#ref-${id} a`).getAttribute('href')).startsWith('https://support.microsoft.com/cs-cz/'));
         }
-        for (const id of ['sec-sumace','sec-excel-histogram']) {
+        for (const id of ['sec-sumace','sec-excel-histogram','sec-hranice-intervalu','sec-kumulativni-graf','sec-polygon-cetnosti','sec-tvar-rozdeleni']) {
           await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-desktop.png`});
         }
         fs.writeFileSync('tmp/verification/ch02-citations.json', JSON.stringify(await page.locator('.citation, #refs .csl-entry').allTextContents(),null,2));
       }
       if (file === 'quarto/literatura.html') {
-        assert.equal(await page.locator('#refs .csl-entry:visible').count(),23,'All cited sources appear in the shared bibliography');
+        assert.equal(await page.locator('#refs .csl-entry:visible').count(),25,'All cited sources appear in the shared bibliography');
         assert.equal(await page.locator('h1 .chapter-number').count(),0,'Bibliography is unnumbered');
+        for (const key of ['nistOutliers', 'nistUniform']) {
+          assert.match(await page.locator(`#ref-${key}`).innerText(), /Získáno\s+5\. října 2026, z/, 'Czech retrieval date in the shared bibliography');
+        }
+        assert.doesNotMatch(await page.locator('#refs').innerText(), /Retrieved|n\.d\./, 'Czech citation labels');
         await page.locator('#refs').screenshot({path:'tmp/verification/bibliography-desktop.png'});
       }
       if (file.includes('kapitola_')) {
@@ -164,7 +172,15 @@ const server = http.createServer((req, res) => {
         }
       }
       if (file === 'quarto/kapitola_02.html') {
-        for (const id of ['sec-sumace','sec-excel-histogram']) {
+        const intervalRegion = page.getByRole('region', { name: 'Srovnání hranic intervalů' });
+        assert(await intervalRegion.evaluate(el => el.scrollWidth > el.clientWidth), 'Interval table scrolls within its region on mobile');
+        await intervalRegion.focus();
+        await page.keyboard.press('ArrowRight');
+        await page.waitForFunction(() => document.querySelector('[aria-label="Srovnání hranic intervalů"]').scrollLeft > 0);
+        await intervalRegion.evaluate(el => { el.scrollLeft = el.scrollWidth; });
+        await intervalRegion.screenshot({ path: 'tmp/verification/ch02-interval-table-right-mobile.png' });
+        await intervalRegion.evaluate(el => { el.scrollLeft = 0; el.blur(); });
+        for (const id of ['sec-sumace','sec-excel-histogram','sec-hranice-intervalu','sec-kumulativni-graf','sec-polygon-cetnosti','sec-tvar-rozdeleni']) {
           await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-mobile.png`});
         }
       }
@@ -271,7 +287,7 @@ const server = http.createServer((req, res) => {
       await page.keyboard.press('Tab');
       assert.equal(await page.evaluate(() => document.activeElement.tagName), 'SELECT');
     } else assert.equal(await page.locator('.ref-pagination button:not([disabled])').count(), 0);
-    for (const [query,id] of [['kolacovy','pojem-vysecovy-graf'],['stem-and-leaf','pojem-stonek-list'],['extremni hodnota','pojem-odlehle-pozorovani']]) {
+    for (const [query,id] of [['kolacovy','pojem-vysecovy-graf'],['stem-and-leaf','pojem-stonek-list'],['uniform distribution','pojem-rovnomerne'],['multimodal','pojem-vicevrcholove'],['closed endpoint','pojem-uzavrena-hranice'],['class midpoint','pojem-stred-intervalu'],['extremni hodnota','pojem-odlehle-pozorovani']]) {
       await page.locator('.ref-controls input').fill(query);
       assert(await page.locator(`#${id}`).isVisible());
     }
@@ -326,7 +342,7 @@ const server = http.createServer((req, res) => {
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
     }
     await plain.goto(base+'quarto/literatura.html');
-    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),23);
+    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),25);
     await noScript.close();
     const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
     await local.goto(pathToFileURL(path.join(root, 'quarto/kapitola_01.html')).href);

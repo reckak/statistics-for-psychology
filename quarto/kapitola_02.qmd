@@ -35,7 +35,9 @@ Odpověď „trochu“ najdeme dvakrát, odpověď „dost“ také dvakrát. **
 | Zcela      |                 1 |
 | **Celkem** |             **6** |
 
-Takto vidíme **rozdělení četností (*frequency distribution*)**: jak se případy rozdělují mezi jednotlivé kategorie, resp. kolik případů vykazuje danou hodnotu. Tabulka a graf jsou dva způsoby zobrazení četností. Rozdělení samo není totožné s konkrétním obrázkem [@howell, oddíl 2.1; @privitera, oddíly 2.1–2.3].
+[**Rozdělení (*distribution*)**]{#def-rozdeleni} popisuje, jak jsou hodnoty proměnné zastoupeny: které se vyskytují často, které zřídka a které vůbec. U číselné proměnné nás navíc zajímá, v jaké části stupnice se hodnoty soustřeďují a jak široce jsou rozloženy. Nejde tedy o rozdělování účastníků do výzkumných skupin, ale o popis zastoupení hodnot. V češtině se setkáme také s názvem distribuce.
+
+V této kapitole popisujeme rozdělení **pozorovaných dat**. V malé tabulce odpočatosti jsou například krajní odpovědi zastoupeny po jednom případu a obě prostřední po dvou. Přehled zastoupení vyjádřený četnostmi nazýváme **rozdělení četností (*frequency distribution*)**. Tabulka a graf jsou způsoby jeho zobrazení; rozdělení samo není totožné s konkrétním obrázkem [@howell, s. 17; @privitera, oddíly 2.1–2.3]. Později budeme rozlišovat také rozdělení v populaci a teoretická rozdělení, tedy matematické modely možných výsledků. Rozdělení získaného souboru nemusí přesně odpovídat ani celé populaci, ani zvolenému modelu.
 
 Shrnutí některé informace zachovává, ale jiné nikoli. Z tabulky poznáme, že dva lidé odpověděli „dost“, ale už nepoznáme, kteří lidé to byli ani kolik slov si vybavili. Původní matici proto uchováváme. Četnosti lze sestavit pro nominální kategorie, uspořádané odpovědi i číselné hodnoty; nejsou vyhrazeny jednomu typu proměnné.
 
@@ -120,9 +122,11 @@ Tři tečky mezi členy znamenají, že pokračujeme stejným způsobem přes v�
 | Zcela      |     1 | 0,167 |   16,7 % |                    6 |              100,0 % |
 :::
 
-Každý kumulativní sloupec je z definice neklesající, protože následující četnosti (resp. četnosti obecně) nemohou být záporné. Poslední kumulativní absolutní četnost je $n$, poslední kumulativní relativní četnost 1. **Kumulativní sloupec už nesčítáme**, protože tytéž případy obsahuje opakovaně.
+Každý kumulativní sloupec je z definice neklesající, protože následující četnosti (stejně jako četnosti obecně) nemohou být záporné. Poslední kumulativní absolutní četnost je $n$, poslední kumulativní relativní četnost 1. **Kumulativní sloupec už nesčítáme**, protože tytéž případy obsahuje opakovaně.
 
-U odpočatosti má kumulování význam díky pořadí kategorií. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, není „nejvýše čtení“ přirozenou hranicí. Součet podle nahodilého pořadí řádků proto nemá stejný věcný význam. Kumulativní četnosti nevyžadují stejné vzdálenosti mezi kategoriemi, postačuje smysluplné pořadí.
+U odpočatosti má kumulování význam díky přirozenému pořadí kategorií. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, je pořadí kategorií **arbitrární**, tedy zvolené námi; samotné kategorie je neurčují. Kumulativní četnosti lze i tak vypočítat, ale budou záviset na tom, jak kategorie seřadíme.
+
+Představme si 36 studentů: 12 zvolilo čtení, 14 procvičování otázek a 10 vysvětlování látky. V pořadí „čtení → procvičování → vysvětlování“ je kumulativní absolutní četnost u čtení 12. V pořadí „procvičování → čtení → vysvětlování“ je u čtení $14+12=26$. Data se nezměnila, změnilo se pouze to, které kategorie jsme před čtení zařadili. Výrok „nejvýše čtení“ proto nemá přirozený význam jako „nejvýše trochu odpočatý“. Poslední kumulativní absolutní četnost bude při obou pořadích 36, ale průběžné součty se liší. Pro věcnou interpretaci kumulativních četností potřebujeme smysluplné pořadí; stejné vzdálenosti mezi kategoriemi nejsou nutné.
 
 ::: worked-example
 **Méně než, nejvýše a alespoň.** Počty vybavených slov v malém souboru jsou: 5, 9, 8, 6, 7 a 0. Méně než 7 slov si vybavili tři lidé (0, 5, 6), nejvýše 7 slov čtyři lidé (0, 5, 6, 7). Alespoň 7 slov si vybavili tři lidé (7, 8, 9). Pro poslední počet (alespoň 7 slov) můžeme od všech šesti osob odečíst tři osoby s výsledkem **menším než 7**. Kdybychom odečetli počet osob s výsledkem nejvýše 7, nesprávně bychom vyřadili i člověka se sedmi slovy.
@@ -143,7 +147,7 @@ Nyní použijeme pevně sestavený soubor **36 modelových účastníků**. Prvn
 | Zcela      |     8 | 0,222 |   22,2 % |                   36 |                1,000 |
 :::
 
-Nejčastější odpovědí je „dost“, ale přesto nepředstavuje většinu: 14 z 36 je méně než polovina. Nejvýše „trochu“ odpovědělo také 14 lidí. Stejný počet zde vznikl pro dvě různé otázky; samotné číslo bez popisu nestačí.
+Nejčastější odpovědí je „dost“, ale přesto nepředstavuje většinu: 14 z 36 je méně než polovina. Nejvýše „trochu“ odpovědělo také 14 lidí. Stejná četnost zde odpovídá dvěma různým skupinám odpovědí; sama o sobě neznamená, že jde o stejné účastníky.
 
 Počet slov můžeme zatím shrnout bez seskupování: možné hodnoty jsou celá čísla od 0 do 12.
 
@@ -173,25 +177,52 @@ V našem příkladu zvolíme šířku jedné hodiny. Interval od 6 hodin včetn�
 | **Celkem** |  |  | **33** | **1,000** |
 :::
 
-Nejvíce známých údajů leží mezi 7 hodinami včetně a 8 hodinami bez horní hranice: 11 z 33, tedy 33,3 %. Tabulka popisuje pouze platné údaje; tři chybějící nejsou skrytě přiřazeny k nejkratšímu spánku.
+Nejvíce známých údajů leží v intervalu mezi 7 hodinami (včetně) a méně než 8 hodinami: 11 z 33, tedy 33,3 %. Tabulka popisuje pouze platné údaje; tři chybějící nejsou bezdůvodně přiřazeny k nejkratšímu spánku ani k jinému intervalu.
 
-Hranice volíme tak, aby pokryly všechny zahrnuté hodnoty a žádná nebyla započítána dvakrát. Opačné pravidlo, kdy patří dovnitř horní hranice, je také možné; musíme je však uvést a používat důsledně. Naše nejvyšší hodnota 9,5 je pokryta. Kdyby přibyl údaj 10,0, museli bychom doplnit další interval nebo výslovně změnit pravidlo posledního intervalu.
+### Která hranice do intervalu patří {#sec-hranice-intervalu}
 
-Seskupením ztrácíme přesnost. Z tabulky zjistíme přesně, že méně než 7 hodin uvedlo $2+4+7=13$ účastníků. Nezjistíme z ní přesně, kolik lidí uvedlo méně než 6,5 hodiny: neznáme jejich rozmístění uvnitř intervalu 6 až méně než 7. Pro přesnou odpověď se vrátíme k jednotlivým záznamům. Ani střed intervalu není skutečnou hodnotou každého člověka v něm.
+Hranice volíme tak, aby pokryly všechny zahrnuté hodnoty a každá spadala právě do jednoho intervalu. U společné hranice dvou sousedních intervalů proto musíme určit, ke kterému ji přiřadíme. **Uzavřená hranice (*closed endpoint*)** do intervalu patří, **otevřená hranice (*open endpoint*)** do něj nepatří. Levou hranicí rozumíme dolní a pravou horní hranici.
+
+Použít můžeme oba následující způsoby:
+
+- **Zleva uzavřený a zprava otevřený interval (*left-closed, right-open interval*)** zahrnuje dolní hranici a nezahrnuje horní. Například „od 6 včetně do 7 bez sedmičky“ obsahuje 6,0 i 6,5, ale nikoli 7,0.
+- **Zleva otevřený a zprava uzavřený interval (*left-open, right-closed interval*)** nezahrnuje dolní hranici a zahrnuje horní. Například „více než 6 až 7 včetně“ obsahuje 6,5 i 7,0, ale nikoli 6,0.
+
+Následující tabulka porovnává oba způsoby na stejných 33 údajích o spánku. V každé variantě počítáme z původních údajů; jedno přiřazení hranic nelze převést na druhé pouhým přepsáním popisků.
+
+::: {.table-scroll tabindex="0" role="region" aria-label="Srovnání hranic intervalů"}
+| Varianta A: levá hranice patří dovnitř | Absolutní četnost | Varianta B: pravá hranice patří dovnitř | Absolutní četnost |
+|---|---:|---|---:|
+| Od 4 včetně do méně než 5 | 2 | Více než 4 až 5 včetně | 3 |
+| Od 5 včetně do méně než 6 | 4 | Více než 5 až 6 včetně | 5 |
+| Od 6 včetně do méně než 7 | 7 | Více než 6 až 7 včetně | 8 |
+| Od 7 včetně do méně než 8 | 11 | Více než 7 až 8 včetně | 10 |
+| Od 8 včetně do méně než 9 | 6 | Více než 8 až 9 včetně | 5 |
+| Od 9 včetně do méně než 10 | 3 | Více než 9 až 10 včetně | 2 |
+| **Celkem** | **33** | **Celkem** | **33** |
+
+: Stejné údaje při dvou způsobech přiřazení hranic intervalů. {#tbl-hranice-intervalu}
+:::
+
+Například údaj 7,0 hodiny patří ve variantě A do intervalu od 7 včetně do méně než 8 hodin, ve variantě B do intervalu více než 6 až 7 hodin včetně. Rozdíly mezi četnostmi tedy způsobují hodnoty ležící přesně na hranicích. Obě varianty jsou přípustné; pravidlo musíme uvést a důsledně dodržet. V dalších příkladech a v excelovém sešitu této kapitoly zachováváme variantu A.
+
+Nejmenší hodnota našich dat je 4,5 a nejvyšší 9,5 hodiny, takže obě varianty pokrývají celý soubor známých údajů. Kdyby přibyla hodnota 10,0, ve variantě A bychom museli přidat další interval nebo výslovně zahrnout horní hranici posledního intervalu. Obdobně by hodnota 4,0 vyžadovala úpravu varianty B. Krajní hodnoty nesmějí při třídění vypadnout.
+
+Seskupením ztrácíme přesnost. Z tabulky zjistíme přesně, že méně než 7 hodin uvedlo $2+4+7=13$ účastníků. Nezjistíme z ní přesně, kolik lidí uvedlo méně než 6,5 hodiny: neznáme jejich rozmístění uvnitř intervalu 6 až méně než 7. Pro přesnou odpověď se vrátíme k jednotlivým záznamům. Ani střed intervalu pochopitelně nemusí přesně odpovídat skutečné pozorované hodnotě.
 
 ## Grafy četností {#sec-grafy-cetnosti}
 
-Tabulka pomáhá dohledat čísla, graf usnadňuje vnímání vzorců a rozdílů. Před čtením grafu zjistíme, co představují jeho osy, jaké mají jednotky a co je jedním případem. Výška sloupce může znamenat počet lidí, podíl nebo procento; nelze to určit jen podle vzhledu.
+Tabulka pomáhá dohledat čísla, graf usnadňuje vnímání trendů, vzorců a rozdílů. Před čtením grafu zjistíme, co představují jeho osy, jaké mají jednotky a co je jedním případem. Výška sloupce může znamenat počet lidí, podíl nebo procento; nelze to určit jen podle vzhledu.
 
 ### Sloupcový graf {#sec-sloupcovy-graf}
 
-**Sloupcový graf (*bar chart*)** přiřazuje kategoriím samostatné sloupce, jejichž výšky vyjadřují četnosti. Vodorovná varianta využívá délky pruhů a bývá vhodná pro dlouhé slovní popisky. U ordinálních odpovědí zachováme jejich smysluplné pořadí. U nominálních kategorií můžeme pořadí zvolit podle otázky, například podle četnosti.
+**Sloupcový graf (*bar chart*)** přiřazuje kategoriím samostatné sloupce; výšky těchto sloupců vyjadřují četnosti. Vodorovná varianta využívá délky pruhů a bývá vhodná pro dlouhé slovní popisky. U ordinálních odpovědí zachováme jejich smysluplné pořadí. U nominálních kategorií můžeme pořadí zvolit podle vlastního uvážení: můžeme chtít např. kategorie seřadit podle jejich zastoupení (četností), např. sestupně, nebo vzestupně.
 
 ![Odpočatost v souboru 36 modelových účastníků.](../assets/chapter-02/plots/sloupce.svg){#fig-odpocatost fig-alt="Čtyři oddělené sloupce: vůbec 4, trochu 10, dost 14 a zcela 8 účastníků. Svislá osa začíná nulou."}
 
-@fig-odpocatost ukazuje, že „dost“ se vyskytuje nejčastěji a „vůbec“ nejméně často. Pořadí má význam, ale graf neopravňuje vykládat vzdálenosti mezi kategoriemi jako stejné rozdíly v prožitku. Oddělené sloupce právě pomáhají připomenout, že zobrazujeme kategorie.
+@fig-odpocatost ukazuje, že „dost“ se vyskytuje nejčastěji a „vůbec“ nejméně často. Pořadí má význam, ale graf neopravňuje vykládat vzdálenosti mezi kategoriemi jako stejné rozdíly v prožitku. Oddělené sloupce právě pomáhají připomenout, že zobrazujeme kategorie diskrétní proměnné.
 
-Při porovnávání různě velkých skupin může být užitečnější zobrazit relativní četnosti. V takovém případě uvedeme u každé skupiny také počet zahrnutých případů. Podobně vypadající procenta založená na pěti a pěti stech případech nesou odlišnou informaci o množství pozorovaných dat.
+Při porovnávání různě velkých skupin může být užitečnější zobrazit relativní četnosti. V takovém případě uvedeme u každé skupiny také počet zahrnutých případů. Procenta mohou vypadat podobně, ale naše závěry by měly odrážet to, na jak velkém souboru dat jsou založena: je nutné vzít v úvahu, zda vycházejí z malého souboru, zahrnujícího pouze několik případů, nebo daleko většího souboru, čítajícího stovky nebo tisíce případů.
 
 ### Tečkový graf jednotlivých pozorování {#sec-teckovy-graf}
 
@@ -199,25 +230,27 @@ Při porovnávání různě velkých skupin může být užitečnější zobrazi
 
 ![Jednotlivé výsledky úlohy s dvanácti slovy.](../assets/chapter-02/plots/tecky.svg){#fig-slova-tecky fig-alt="36 teček nad počty slov 0 až 12. Nejvyšší sloupky mají hodnoty 7 a 8 s šesti tečkami, u hodnoty 1 není žádná tečka."}
 
-V @fig-slova-tecky vidíme největší soustředění okolo 7–8 slov i jediný nulový výsledek. Tečky umožňují zachovat všechny hodnoty a současně ukázat jejich uspořádání. Podobný postup doporučují Cumming a Calin-Jageman [-@cumming, s. 43–47]. U velmi velkého souboru se tečky mohou překrývat nebo zabírat příliš místa; potom pomůže souhrnné zobrazení.
+V @fig-slova-tecky vidíme největší soustředění okolo 7–8 slov i jednoho účastníka s nulou vybavených slov. U hodnoty 1 naopak není žádná tečka, protože přesně jedno slovo si nevybavil nikdo. Tečky umožňují zachovat všechny hodnoty a současně ukázat jejich rozdělení. Podobný postup doporučují Cumming a Calin-Jageman [-@cumming, s. 43–47]. U velmi velkého souboru se tečky mohou překrývat nebo zabírat příliš místa; potom pomůže souhrnné zobrazení.
 
 ### Histogram {#sec-histogram}
 
-**Histogram (*histogram*)** zobrazuje četnosti číselných hodnot v třídních intervalech. Vodorovná osa je číselná stupnice. Každý obdélník se rozkládá přes skutečnou šířku příslušného intervalu. Při stejně širokých intervalech může jeho výška přímo vyjadřovat počet případů.
+**Histogram (*histogram*)** zobrazuje četnosti číselných hodnot v třídních intervalech. Vodorovná osa je číselná stupnice. Každý obdélník (sloupec) se rozkládá přes skutečnou šířku příslušného intervalu. Při stejně širokých intervalech (což je nejčastější uspořádání) může jeho výška přímo vyjadřovat počet případů.
 
 ![Histogram známých dob spánku; 33 platných údajů, tři chybějící.](../assets/chapter-02/plots/histogram.svg){#fig-spanek-hist fig-alt="Šest navazujících intervalů šířky jedné hodiny od 4 do 10. Absolutní četnosti jsou postupně 2, 4, 7, 11, 6 a 3."}
 
-V @fig-spanek-hist navazují intervaly bez mezer. Pokud některý interval nemá žádný případ, zůstane na číselné ose prázdné místo odpovídající jeho šířce; sousední obsazené intervaly nesmíme přisunout k sobě. Rozdíl proti sloupcovému grafu tedy není pouhá přítomnost či nepřítomnost mezery. Rozhodující je, zda osa představuje samostatné kategorie, nebo číselné intervaly.
+V @fig-spanek-hist na sebe navazují intervaly bez mezer. Pokud některý interval nemá žádný případ, zůstane na číselné ose prázdné místo odpovídající jeho šířce; sousední obsazené intervaly nesmíme přisunout k sobě a nahradit jimi interval prázdný. Rozdíl proti sloupcovému grafu tedy není pouhá přítomnost či nepřítomnost mezery. Rozhodující je, zda osa představuje samostatné kategorie, nebo číselné intervaly.
 
-Histogram není vyhrazen pouze spojitým proměnným. Seskupit do číselných intervalů můžeme také diskrétní hodnoty, například počty chyb při dlouhé úloze. Pro několik málo možných celých hodnot však může být přehlednější ukázat četnosti jednotlivých hodnot nebo tečky.
+Histogram není vyhrazen pouze spojitým proměnným. Seskupit do číselných intervalů můžeme také diskrétní hodnoty, například počty chyb při dlouhé úloze. Pro několik málo možných celých hodnot však může být přehlednější ukázat četnosti jednotlivých hodnot nebo vytvořit tečkový graf.
 
 ### Jak intervaly mění obraz dat {#sec-volba-intervalu}
 
-Pro intervaly neexistuje jediná vždy správná šířka. Úzké intervaly zachovají více podrobností, ale mohou zvýraznit nahodilé nepravidelnosti. Široké intervaly obraz zjednoduší, ale mohou skrýt důležité rozdíly. Záleží i na poloze hranic, nejen na jejich vzdálenosti [@howell, s. 20–21; @cumming, s. 46–47].
+Pro intervaly neexistuje jediná vždy správná šířka. Úzké intervaly zachovají více podrobností, ale mohou zvýraznit nahodilé nepravidelnosti rozdělení dat. Široké intervaly obraz zjednoduší, ale mohou skrýt důležité rozdíly. Záleží i na poloze hranic, nejen na jejich vzdálenosti [@howell, s. 20–21; @cumming, s. 46–47].
 
-![Stejných 33 údajů při šířkách půl hodiny a dvě hodiny.](../assets/chapter-02/plots/intervaly.svg){#fig-sirka-intervalu fig-alt="Dva histogramy stejného spánku. Levý má dvanáct půlhodinových intervalů, pravý tři dvouhodinové intervaly. Osy mají stejné rozsahy, širší intervaly slučují více hodnot."}
+![Stejných 33 údajů při šířkách půl hodiny a dvě hodiny.](../assets/chapter-02/plots/intervaly.svg){#fig-sirka-intervalu fig-alt="Dva histogramy stejné proměnné (doby spánku). Levý má dvanáct půlhodinových intervalů, pravý tři dvouhodinové intervaly. Osy mají stejné rozsahy, širší intervaly slučují více hodnot."}
 
-Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. Jednohodinová verze ukazuje, že nejčetnější interval je 7 až méně než 8 hodin. Ve dvouhodinové verzi se tato informace ztrácí ve společném intervalu 6 až méně než 8 hodin. V praxi porovnáme několik rozumných nastavení a závěr neopřeme o drobný vrchol, který po malém posunu hranic zmizí.
+Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. „Jednohodinová“ verze ukazuje, že nejčetnější interval je 7 až méně než 8 hodin. Ve „dvouhodinové“ verzi se tato informace ztrácí ve společném intervalu 6 až méně než 8 hodin. Při volbě šířky vycházíme z otázky, kterou chceme zkoumat, z jednotek a přesnosti zaznamenaných údajů, z rozsahu jejich hodnot a z počtu pozorování. Hranice po celých hodinách například umožňují srozumitelně popsat zastoupení různých dob spánku. Pokud nás zajímají jemnější rozdíly a údaje jsou dostatečně přesné, můžeme zkusit půlhodinové intervaly; u malého souboru ale jednotlivé úzké intervaly obsahují málo případů, a obraz proto snadno ovlivní několik pozorování.
+
+Zvolené členění porovnáme s několika blízkými šířkami i posuny hranic. Za přesvědčivější rys dat považujeme takový, který zůstává patrný při více přiměřených nastaveních. Jestliže drobný vrchol po malém posunu hranic zmizí, samotný histogram nám nedává dostatečnou oporu pro tvrzení, že data tvoří zvláštní skupinu. Automatická pravidla mohou nabídnout výchozí nastavení, ale nenahrazují posouzení účelu grafu a konkrétních dat [@howell, s. 20–21].
 
 ::: {.callout-note collapse="true" title="Rozšíření: nestejně široké intervaly"}
 Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případů v intervalu šířky 1 hodina dá výšku 10 případů na hodinu; 10 případů v intervalu šířky 2 hodiny dá výšku 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
@@ -227,17 +260,25 @@ Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U
 
 ### Graf kumulativních četností {#sec-kumulativni-graf}
 
-**Graf kumulativních četností (*cumulative frequency graph*)** ukazuje, kolik případů nebo jaký podíl má hodnotu nejvýše rovnou zvolené hranici. Pro jednotlivé přesně zaznamenané hodnoty má podobu schodů: mezi pozorovanými hodnotami se počet nemění, při zahrnutí další hodnoty vzroste.
+**Graf kumulativních četností (*cumulative frequency graph*)** ukazuje, kolik nebo jaký podíl případů zahrneme, když postupujeme od nejnižších hodnot ke zvolené hranici. Musíme určit, zda zahrnujeme i hodnoty přesně rovné této hranici. Pro jednotlivé přesně zaznamenané hodnoty zde používáme pravidlo „nejvýše“ a graf má podobu schodů: mezi pozorovanými hodnotami se počet nemění, při zahrnutí další hodnoty vzroste.
 
 ![Kumulativní procenta výsledků paměťové úlohy.](../assets/chapter-02/plots/kumulativni.svg){#fig-kumulativni-slova fig-alt="Neklesající schodovitý graf výsledků 36 účastníků. Při hranici 6 slov dosahuje 14 z 36, tedy 38,9 procenta; při 8 slovech 26 z 36, tedy 72,2 procenta; při 12 slovech 100 procent."}
 
-V @fig-kumulativni-slova se ptáme na **nejvýše** daný počet slov. U hranice 6 je zahrnuto $1+0+1+1+2+4+5=14$ lidí, tedy 38,9 %. U hranice 8 je jich 26, tedy 72,2 %. Plný bod ukazuje hodnotu včetně dané hranice; prázdný bod ukazuje úroveň těsně před skokem. U jednoho slova nevzniká skok, protože nikdo takový výsledek nemá.
+V @fig-kumulativni-slova se ptáme na **nejvýše** daný počet slov. U hranice 6 je zahrnuto $1+0+1+1+2+4+5=14$ lidí, tedy 38,9 %. U hranice 8 je jich 26, tedy 72,2 %. Plný bod ukazuje hodnotu včetně dané hranice; prázdný bod ukazuje úroveň těsně před skokem. U hodnoty 1 nevzniká skok, protože žádný účastník si nevybavil **právě jedno slovo**. Kumulativní četnost tam proto zůstává stejná jako u hodnoty 0; jednoho účastníka s nulou vybavených slov již zahrnuje.
 
-U seskupených údajů se někdy spojí kumulativní četnosti na hranicích intervalů úsečkami. Pro naše intervaly spánku jsou na horních hranicích přesně známy počty **menší než** daná hranice. Úsečka uvnitř intervalu pouze propojuje známé body: přesný počet pod libovolnou vnitřní hranicí ze seskupené tabulky neznáme. Podoba grafu musí respektovat způsob třídění.
+U seskupených údajů můžeme kumulativní četnosti zakreslit na horních hranicích intervalů a body propojit úsečkami [@privitera, s. 59]. Pro naše intervaly spánku, které pravou hranici nezahrnují, odpovídá každý bod podílu údajů **menších než** daná hranice. Nečteme jej tedy jako „nejvýše“ daná hranice.
+
+![Kumulativní procenta známých dob spánku sestavená z jednohodinových intervalů.](../assets/chapter-02/plots/kumulativni-seskupene.svg){#fig-kumulativni-spanek fig-alt="Body na hranicích 4, 5, 6, 7, 8, 9 a 10 hodin odpovídají kumulativním absolutním četnostem 0, 2, 6, 13, 24, 30 a 33. Bod u 7 hodin označuje 39,4 procenta údajů kratších než 7 hodin. Přerušované spojnice mezi body neurčují skutečné rozložení uvnitř intervalů."}
+
+V @fig-kumulativni-spanek u hranice 7 sečteme četnosti prvních tří intervalů: $2+4+7=13$. Méně než 7 hodin tedy uvedlo $13/33$, přibližně 0,394 neboli 39,4 % účastníků se známou dobou spánku. U hranice 8 přidáme dalších 11 případů: $24/33$, přibližně 0,727 neboli 72,7 %. Bod u 4 hodin začíná na nule a u 10 hodin dosáhneme všech 33 známých údajů, tedy 100,0 %.
+
+**Plné body vyjadřují hodnoty známé z tabulky; přerušované úsečky je pouze propojují.** Uvnitř intervalu neznáme ze seskupené tabulky přesné rozmístění hodnot. Výška spojnice například u 6,5 hodiny není přesně zjištěným podílem lidí spících méně než 6,5 hodiny. Její použití jako odhadu by vyžadovalo další předpoklad o rozmístění údajů uvnitř intervalu. U opačného pravidla hranic, varianty B v @tbl-hranice-intervalu, by bod na horní hranici naopak zahrnoval i hodnoty přesně rovné této hranici: četl by se jako „nejvýše“.
 
 ### Polygon četností {#sec-polygon-cetnosti}
 
-**Polygon četností (*frequency polygon*)** spojí body, které zobrazují četnosti jednotlivých hodnot nebo třídních intervalů. U intervalového třídění leží body nad středy intervalů. Střed intervalu 6 až méně než 7 hodin je 6,5 hodiny: polovinu vzdálenosti mezi hranicemi přičteme k dolní hranici.
+**Polygon četností (*frequency polygon*)** spojí body, které zobrazují četnosti jednotlivých hodnot nebo třídních intervalů. U intervalového třídění leží body nad středy intervalů. **Střed intervalu (*class midpoint*)** leží stejně daleko od obou hranic. Pro interval od 6 do 7 hodin nejprve spočítáme vzdálenost mezi hranicemi: $7-6=1$ hodina. Její polovina je $1/2=0{,}5$ hodiny. Od dolní hranice 6 hodin se posuneme právě o tuto polovinu: $6+0{,}5=6{,}5$ hodiny. Výsledek je od obou hranic vzdálený půl hodiny.
+
+Celý postup můžeme zapsat jako $6+(7-6)/2=6{,}5$: nejprve rozdíl hranic v závorce, pak jeho polovina a nakonec přičtení k dolní hranici. Stejný střed dostaneme u obou způsobů přiřazení hranic; zařazení krajního bodu polohu středu nemění. Střed ale nemusí být hodnotou žádného konkrétního pozorování [@howell, s. 20].
 
 ![Polygon stejných četností spánku jako v jednohodinovém histogramu.](../assets/chapter-02/plots/polygon.svg){#fig-polygon-spanek fig-alt="Spojnice šesti bodů nad středy 4,5 až 9,5 hodiny, s četnostmi 2, 4, 7, 11, 6 a 3."}
 
@@ -251,7 +292,7 @@ V samostatném modelovém příkladu si 36 studentů vybralo **jediný hlavní**
 
 ![Stejné volby zobrazené výsečemi a sloupci.](../assets/chapter-02/plots/vysecovy.svg){#fig-vysece-sloupce fig-alt="Výsečový a sloupcový graf stejných četností: procvičování 14, čtení 12, vysvětlování 10. Podíly jsou 38,9, 33,3 a 27,8 procenta."}
 
-Pro přesné porovnávání kategorií budeme zpravidla preferovat sloupcový graf. Polohy konců sloupců na společné stupnici se porovnávají snáze a přesněji než podobně velké výseče. Experimentální oporu tomuto doporučení poskytují @cleveland1984 [s. 536–541]. Výseče přitom vnímáme podle více vodítek, nejen úhlů, ale také ploch a oblouků. Pro orientační zobrazení několika částí celku může být výsečový graf srozumitelný; jeho nevýhody rostou při mnoha nebo podobně velkých částech. Prostorové efekty čitelnost dále zhoršují.
+Pro přesné porovnávání kategorií budeme zpravidla preferovat sloupcový graf. Polohy konců sloupců na společné stupnici se porovnávají snáze a přesněji než podobně velké výseče. Experimentální oporu tomuto doporučení poskytují @cleveland1984 [s. 536–541]. Výseče přitom vnímáme podle více vodítek, nejen úhlů, ale také ploch a oblouků. Pro orientační zobrazení několika částí celku může být výsečový graf srozumitelný; jeho nevýhody rostou při mnoha nebo podobně velkých částech. Prostorové efekty čitelnost dále zhoršují, takže je lepší je nepoužívat.
 
 ### Graf stonek a list {#sec-stonek-list}
 
@@ -274,35 +315,37 @@ Z tohoto zápisu lze rekonstruovat všechny zaznamenané hodnoty včetně opakov
 
 U grafu číselných dat se ptáme, kde se hodnoty soustřeďují, jak široce jsou rozloženy a jaký má jejich rozdělení tvar. Nejprve jej popíšeme slovně; souhrnné číselné charakteristiky budeme zavádět později [@howell, oddíl 2.5; @cumming, s. 44–46].
 
-![Záměrně sestavené příklady tvarů rozdělení.](../assets/chapter-02/plots/tvary.svg){#fig-tvary-rozdeleni fig-alt="Šest schematických rozdělení: souměrné s jedním vrcholem, zešikmené doprava, zešikmené doleva, se dvěma vrcholy, s podobnými četnostmi a s jedním vzdáleným pozorováním."}
+![Záměrně sestavené příklady tvarů rozdělení.](../assets/chapter-02/plots/tvary.svg){#fig-tvary-rozdeleni fig-alt="Šest schematických rozdělení: souměrné s jedním vrcholem, zešikmené doprava, zešikmené doleva, se dvěma vrcholy, rovnoměrné a s jedním vzdáleným pozorováním."}
 
 **Souměrné rozdělení (*symmetric distribution*)** má přibližně zrcadlovou podobu kolem svého středu. V reálných malých souborech neočekáváme dokonalou souměrnost. Souměrnost také sama neznamená, že rozdělení odpovídá určitému teoretickému modelu.
 
-**Chvost rozdělení (*tail*)** označuje okrajovou oblast směrem k nízkým nebo vysokým hodnotám, kde se pozorování vyskytují řidčeji. **Šikmost (*skewness*)** zde popisuje nesouměrnost s výrazněji protaženou jednou stranou. Rozdělení **zešikmené doprava (*right-skewed, positively skewed*)** má delší pravý chvost: mnoho nižších či středních hodnot a několik výrazně vyšších. Například dokončení úlohy má určitou nejkratší možnou dobu, ale některým lidem může trvat podstatně déle. U rozdělení **zešikmeného doleva (*left-skewed, negatively skewed*)** směřuje delší chvost k nízkým hodnotám. Směr pojmenováváme podle chvostu, nikoli podle místa nejvyššího vrcholu.
+**Rovnoměrné rozdělení (*uniform distribution*)** nemá oblast s vyšším zastoupením než jiné srovnatelné oblasti. Má-li proměnná konečně mnoho možných hodnot, znamená to stejné zastoupení každé z nich; v prostředním dolním panelu @fig-tvary-rozdeleni má například každá z devíti hodnot četnost 4. U spojité číselné proměnné porovnáváme stejně široké intervaly uvnitř vymezeného rozsahu: při rovnoměrném rozdělení mají stejné zastoupení. Širší interval by přirozeně zahrnoval větší část celku. Histogram takového rozdělení má při stejných šířkách intervalů plochý průběh. V reálných datech může být tento obraz pouze přibližný; rozdělení pak popíšeme jako přibližně rovnoměrné. Přesně rovnoměrný pravděpodobnostní model pro spojitou proměnnou se vztahuje k vymezenému intervalu, nikoli ke všem číslům bez omezení [@nistUniform, oddíl Probability Density Function].
 
-**Jednovrcholové rozdělení (*unimodal distribution*)** má jeden výrazný vrchol; **dvouvrcholové (*bimodal distribution*)** dva. Vrcholy nemusí být stejně vysoké. Dva vrcholy mohou upozornit například na smíšení výsledků dvou skupin, ale samy existenci takových skupin neprokazují. Sousední stejně vysoké sloupce u 7 a 8 slov v našem příkladu netvoří automaticky dvě oddělená seskupení. Počet viditelných vrcholů navíc ovlivňuje intervalové třídění.
+**Chvost rozdělení (*tail*)** označuje okrajovou oblast směrem k nízkým nebo vysokým hodnotám, kde se pozorování vyskytují řidčeji. **Šikmost (*skewness*)** zde popisuje nesouměrnost s výrazněji protaženou jednou stranou. **Zešikmené rozdělení tedy není souměrné:** jeho levá a pravá část nejsou zrcadlovými obrazy. Rozdělení **zešikmené doprava čili kladně (pozitivně) zešikmené (*right-skewed, positively skewed*)** má delší pravý chvost: mnoho nižších či středních hodnot a několik výrazně vyšších. Například dokončení úlohy má určitou nejkratší možnou dobu, ale některým lidem může trvat podstatně déle. U rozdělení **zešikmeného doleva neboli záporně (negativně) zešikmeného (*left-skewed, negatively skewed*)** směřuje delší chvost k nízkým hodnotám. Směr pojmenováváme podle chvostu, nikoli podle místa nejvyššího vrcholu.
 
-**Odlehlé pozorování (*outlier*)** je pozorování nápadně vzdálené od ostatních v daném kontextu. V této kapitole jde o důvod k prozkoumání, nikoli o automatické pravidlo pro vyřazení. Může jít o překlep, neobvyklé podmínky nebo správně zaznamenaný vzácný výsledek. Zkontrolujeme původní záznam a okolnosti měření; údaj neodstraníme jen proto, aby graf vypadal pravidelněji. Výrazy odlehlá hodnota a odlehlý případ se používají jako alternativy. Označení extrémní hodnota či případ je širší: nejvyšší hodnota v každém souboru existuje, ale nemusí být odlehlá.
+**Jednovrcholové (unimodální) rozdělení (*unimodal distribution*)** má jeden výrazný vrchol; **dvouvrcholové čili bimodální (*bimodal distribution*)** dva. Při více než dvou výrazných vrcholech mluvíme o **vícevrcholovém neboli multimodálním rozdělení (*multimodal distribution*)**. V širším významu se toto označení používá pro dva či více vrcholů, takže zahrnuje i dvouvrcholové rozdělení [@aron, s. 16]. Vrcholy nemusí být stejně vysoké. Dva vrcholy mohou upozornit například na smíšení výsledků dvou skupin, ale samy existenci takových skupin neprokazují. Sousední stejně vysoké sloupce u 7 a 8 slov v našem příkladu netvoří automaticky dvě oddělená seskupení. Počet viditelných vrcholů navíc ovlivňuje intervalové třídění.
+
+**Odlehlé pozorování (*outlier*)** je pozorování nápadně vzdálené od ostatních v daném kontextu. Odlehlost sama o sobě neznamená, že je údaj chybný nebo neplatný. Takové pozorování vždy nejprve prozkoumáme; nevyřazujeme je automaticky jen kvůli jeho vzdálenosti od ostatních. Může jít o překlep, neobvyklé podmínky nebo správně zaznamenaný vzácný výsledek. Zkontrolujeme původní záznam, okolnosti měření a pravidla pro zahrnutí údajů do analýzy. Prokazatelnou chybu opravíme, je-li to možné; případné vyřazení konkrétně zdůvodníme a zaznamenáme. Údaj neodstraníme jen proto, aby graf vypadal pravidelněji [@nistOutliers, oddíl Introduction]. Výrazy odlehlá hodnota a odlehlý případ se používají jako alternativy. Označení extrémní hodnota či případ je širší: nejvyšší hodnota v každém souboru existuje, ale nemusí být nutně odlehlá.
 
 ### Hranice měření: efekt podlahy a stropu {#sec-podlaha-strop}
 
-**Efekt podlahy (*floor effect*)** vzniká, když měřicí nástroj nedokáže dostatečně rozlišit nízké úrovně a výsledky se hromadí u jeho dolní hranice. Příliš obtížný test například dává mnoha lidem nulu, přestože se jejich znalosti liší. **Efekt stropu (*ceiling effect*)** je obdobná situace u horní hranice: příliš snadný test může dát mnoha lidem maximum a nerozlišit jejich výkony.
+**Efekt podlahy (*floor effect*)** vzniká, když měřicí nástroj nedokáže dostatečně rozlišit nízké úrovně a výsledky se hromadí u jeho dolní hranice. V příliš obtížném testu mnoho lidí nezíská žádný bod, přestože se jejich znalosti liší. **Efekt stropu (*ceiling effect*)** je obdobná situace u horní hranice: v příliš snadném testu mnoho lidí získá maximum bodů, i když se jejich znalosti liší.
 
-![Dva modelové příklady hromadění výsledků u hranic testu.](../assets/chapter-02/plots/podlaha-strop.svg){#fig-podlaha-strop fig-alt="Vlevo se nejvíce výsledků hromadí u nuly, vpravo u maxima dvanácti správných odpovědí; v obou případech četnosti postupně klesají směrem do stupnice."}
+![Dva modelové příklady hromadění výsledků u hranic testu.](../assets/chapter-02/plots/podlaha-strop.svg){#fig-podlaha-strop fig-alt="Vlevo se nejvíce výsledků hromadí u nuly, vpravo u maxima dvanácti správných odpovědí; v obou případech četnosti postupně klesají v opačném směru."}
 
-Samotný výskyt maxima nebo minima ještě takový efekt nedokazuje. Potřebujeme znát nástroj a uvažovat, zda omezuje rozlišení právě v našem souboru. Také ne každé zešikmené rozdělení vzniká efektem podlahy či stropu. Pozorovaný tvar je podnětem k otázkám, nikoli hotovým vysvětlením.
+Samotný výskyt maximální nebo minimální možné hodnoty ještě takový efekt nedokazuje. Potřebujeme znát nástroj a uvažovat, zda omezuje rozlišení právě v našem souboru. Také ne každé zešikmené rozdělení vzniká efektem podlahy či stropu. Pozorovaný tvar je podnětem k úvahám, nikoli hotovým vysvětlením toho, proč nastal.
 
 ## Čtení grafů a zavádějící zobrazení {#sec-zavadejici-grafy}
 
-Před interpretací zkontrolujeme jednotku případu, popisky a měřítka os, velikost souboru, zacházení s chybějícími údaji a způsob seskupení. U sloupců vyjadřuje velikost četnosti jejich délka od základny, proto osu četností začínáme nulou. Uříznutá osa může malý rozdíl opticky zvětšit.
+Před interpretací zkontrolujeme, čemu odpovídá jeden případ, a také popisky a měřítka os, velikost souboru, zacházení s chybějícími údaji a způsob seskupení. U sloupců vyjadřuje četnosti jejich délka od základny, proto osu četností začínáme nulou. Uříznutá osa může malý rozdíl opticky zvětšit.
 
 ![Stejné četnosti 30 a 32 při různém začátku svislé osy.](../assets/chapter-02/plots/osa.svg){#fig-zkracena-osa fig-alt="Dva grafy četností 30 a 32. Vlevo osa začíná nulou, vpravo na 27, takže druhý graf opticky zveličuje rozdíl."}
 
-Oba grafy v @fig-zkracena-osa obsahují stejná čísla a rozdíl je stále dva případy. Vpravo však viditelné části sloupců mají délky 3 a 5, takže obraz naznačuje mnohem výraznější nepoměr. Pro porovnání zastoupení bychom navíc potřebovali celkové počty případů v obou souborech.
+Oba grafy v @fig-zkracena-osa obsahují stejná čísla a rozdíl je stále dva případy. Vpravo však viditelné části sloupců mají délky 3 a 5, takže graf naznačuje mnohem výraznější nepoměr. Pro porovnání zastoupení bychom navíc potřebovali celkové počty případů v obou souborech.
 
-Při srovnávání několika histogramů zachováme srovnatelné intervaly a měřítka. Nevynecháme prázdný interval ani nepřeházíme pořadí číselných hodnot. Obrázkové symboly zvětšené současně do výšky i šířky mění plochu rychleji než délku a mohou rozdíl nadsazovat. Obdobná rizika popisují Cumming a Calin-Jageman [-@cumming, s. 67].
+Při srovnávání několika histogramů zachováme srovnatelné intervaly a měřítka. Nevynecháme prázdný interval ani neprohazujeme pořadí číselných hodnot. Některé grafiky místo sloupců používají zjednodušené obrázky, například siluety osob znázorňující počet účastníků. Pokud mají skupiny 10 a 20 lidí, je druhá skupina dvakrát větší. Zvětšíme-li ale její siluetu dvakrát do výšky a současně dvakrát do šířky, bude mít čtyřnásobnou plochu: $2\times2=4$. Obrázek tak může vyvolat dojem většího rozdílu, než odpovídá údajům. Přehlednější je použít sloupce nebo opakovat stejně velké siluety s jasnou legendou, například jedna silueta = 10 účastníků. Obdobná rizika popisují Cumming a Calin-Jageman [-@cumming, s. 67].
 
-Graf získaného souboru také automaticky nepopisuje celou populaci. V malém souboru mohou jednotlivá pozorování výrazně měnit tvar. A žádný z uvedených grafů sám nedokládá příčinu rozdílů. Popisujeme, co bylo zaznamenáno, a oddělujeme to od vysvětlení, která by vyžadovala další informace.
+Graf získaného souboru také automaticky nepopisuje celou populaci. V malém souboru mohou jednotlivá pozorování výrazně měnit tvar rozdělení. A žádný z uvedených grafů sám nedokládá příčinu rozdílů. Popisujeme, co bylo zaznamenáno, a oddělujeme to od vysvětlení, která by vyžadovala další informace.
 
 ## Četnosti a grafy v Excelu {#sec-excel-cetnosti}
 
@@ -326,7 +369,7 @@ Do C5 vložíme:
 =COUNTIFS(Data!$E$2:$E$37;A5)
 ```
 
-**COUNTIFS (anglicky také *COUNTIFS*)** počítá případy splňující zadané podmínky. První argument je oblast odpovědí, druhý požadovaný kód v A5, zde číslo 1. Dostaneme **4**. Vzorec zkopírujeme dolů do C8; pro další kódy dostaneme 10, 14 a 8. Dolarové znaky zajišťují, že při kopírování zůstane oblast `$E$2:$E$37` pevná, zatímco odkaz A5 se změní na A6, A7 a A8. Dolar není součástí statistického značení, ale pravidlem adresování buněk v Excelu [@msCountifs].
+**COUNTIFS (anglicky název funkce je stejný: *COUNTIFS*)** počítá případy splňující zadané podmínky. První argument je oblast odpovědí, druhý požadovaný kód v A5, zde číslo 1. Dostaneme **4**. Vzorec zkopírujeme dolů do C8; pro další kódy dostaneme 10, 14 a 8. Dolarové znaky zajišťují, že při kopírování zůstane oblast `$E$2:$E$37` pevná, zatímco odkaz A5 se změní na A6, A7 a A8. Dolar není součástí statistického značení, ale pravidlem adresování buněk v Excelu [@msCountifs].
 
 ![Názorná rekonstrukce listu Cetnosti: výpočet absolutních četností.](../assets/chapter-02/excel-absolutni.svg){#fig-excel-absolutni fig-alt="Ukázka tabulky v podobě excelového listu s kódy 1 až 4 a výsledky 4, 10, 14, 8. Řádek vzorců ukazuje COUNTIFS odkazující na sloupec odpočatosti a buňku A5."}
 
@@ -342,7 +385,7 @@ V D5 vypočítáme podíl:
 
 Čitatel je četnost první kategorie, jmenovatel pevný odkaz na počet platných odpovědí. Výsledek $4/36$ se po nastavení tří desetinných míst zobrazí jako **0,111**. Kopírováním do D8 získáme ostatní podíly. Znak `/` v Excelu znamená dělení. Kdybychom odkaz na C2 nezafixovali, při kopírování by se posouval na C3 a další nesprávné buňky.
 
-Do E5 vložíme `=D5`, zkopírujeme do E8 a nastavíme formát **Procenta s jedním desetinným místem**. Hodnota se zobrazí jako **11,1 %**. Při použití procentního formátu už vzorec nenásobíme stem: formát procentní převod obstará při zobrazení. Jinak bychom dostali chybných 1 111,1 %.
+Do E5 vložíme `=D5`, zkopírujeme do E8 a nastavíme formát **Procenta s jedním desetinným místem**. Hodnota se zobrazí jako **11,1 %**. Při použití procentuálního formátu už vzorec nenásobíme stem: formát procentní převod obstará při zobrazení. Jinak bychom dostali chybných 1 111,1 %.
 
 Kumulativní absolutní četnost v F5 vypočítáme:
 
@@ -366,7 +409,7 @@ Na listu `Histogram` je v C2 `=POČET(Data!B2:B37)`, výsledek **33**. V A5:A10 
 
 Funkce zde používá dvě dvojice oblast–podmínka. Zápis `">="&A5` spojí text „větší nebo rovno“ s dolní hranicí, takže v prvním řádku znamená „alespoň 4“. Zápis `"<"&B5` znamená „méně než 5“. U každého záznamu musí platit obě podmínky současně. Znak `&` v Excelu spojuje části textové podmínky. Uvozovky označují text; nezapisujeme do nich celý vzorec.
 
-Výsledek D5 je **2**. Po zkopírování do D10 dostaneme postupně 2, 4, 7, 11, 6 a 3. Podíl v E5 vypočítáme `=D5/$C$2`, tedy 0,061 po zobrazení na tři místa. Prázdné buňky v tomto konkrétním příkladu nesplňují podmínku alespoň 4 a nejsou započítány. Při jiných podmínkách nelze automaticky předpokládat stejné zacházení s prázdnou buňkou.
+Výsledek D5 je **2**. Po zkopírování do D10 dostaneme postupně 2, 4, 7, 11, 6 a 3. Podíl v E5 vypočítáme `=D5/$C$2`, tedy 0,061 po zobrazení na tři místa. Prázdné buňky v tomto konkrétním příkladu nesplňují podmínku (alespoň 4) a nejsou započítány. Při jiných podmínkách nelze automaticky předpokládat stejné zacházení s prázdnou buňkou.
 
 ![Názorná rekonstrukce listu Histogram s oběma hranicemi intervalu.](../assets/chapter-02/excel-intervaly.svg){#fig-excel-intervaly fig-alt="List Histogram s dolními a horními hranicemi, četnostmi 2, 4, 7, 11, 6, 3 a vzorcem COUNTIFS pro současné splnění obou mezí."}
 
@@ -378,9 +421,9 @@ Excel obsahuje také samostatný typ grafu **Histogram**, který se vytváří z
 
 ## Shrnutí {#sec-shrnuti-02}
 
-Absolutní četnost říká kolik, relativní četnost jakou část určeného celku. Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou hranici. Správný jmenovatel, smysluplné pořadí a jednoznačné hranice jsou součástí výkladu výsledku, nikoli jen technickým detailem výpočtu.
+Absolutní četnost odpovídá na otázku „kolik?“, relativní četnost na otázku „jakou část určeného celku“. Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou hranici. Správný jmenovatel, smysluplné pořadí a jednoznačné hranice jsou součástí výkladu výsledku, nikoli jen technickým detailem výpočtu.
 
-Tabulka zachovává snadno dohledatelná čísla, graf usnadňuje vnímání rozdělení. Vždy ale některé informace zdůrazňuje a jiné skrývá. Volbu zobrazení proto zdůvodníme otázkou a povahou údajů. Tvar malého souboru, vysoký sloupec nebo odlehlé pozorování nepředstavují samy o sobě důkaz o populaci či příčině.
+Tabulka prezentuje snadno dohledatelná čísla, graf usnadňuje vnímání rozdělení. Vždy ale některé informace zdůrazňuje a jiné upozaďuje. Volbu zobrazení proto zdůvodníme otázkou a povahou údajů. Tvar rozdělení v malém souboru, vysoký sloupec nebo odlehlé pozorování nepředstavují samy o sobě důkaz o populačním rozdělení či příčině.
 
 ## Cvičení {#sec-cviceni-02}
 
@@ -444,12 +487,14 @@ Méně než tři chyby udělalo šest lidí, nejvýše tři sedm lidí a alespo�
 
 ### Úloha 5: Intervaly a ztracené podrobnosti {#sec-uloha-02-5}
 
-Známé doby spánku v hodinách jsou 5,0; 5,5; 6,0; 6,0; 6,5; 7,0; 7,5; 8,0. Rozdělte je do intervalů 5 až méně než 6, 6 až méně než 7, 7 až méně než 8 a 8 až méně než 9. Určete četnosti a podíly. Lze jen z této intervalové tabulky přesně určit počet lidí se spánkem alespoň 6,5 hodiny?
+Známé doby spánku v hodinách jsou 5,0; 5,5; 6,0; 6,0; 6,5; 7,0; 7,5; 8,0. Rozdělte je do intervalů 5 až méně než 6, 6 až méně než 7, 7 až méně než 8 a 8 až méně než 9. Určete četnosti a podíly. Lze jen z této intervalové tabulky přesně určit počet lidí se spánkem alespoň 6,5 hodiny? Dále určete, do kterého intervalu by údaj 6,0 patřil při opačném pravidle, kdy dolní hranice nepatří dovnitř a horní ano. Jaký je střed intervalu mezi 6 a 7 hodinami?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Četnosti jsou 2, 3, 2 a 1, podíly $2/8=0{,}250$, $3/8=0{,}375$, 0,250 a 0,125. Hodnota 6,0 patří do druhého intervalu, 7,0 do třetího a 8,0 do čtvrtého. Každý z osmi údajů je zahrnut jednou.
 
 Ze samotné intervalové tabulky přesný počet pro hranici 6,5 nezjistíme, protože leží uvnitř druhého intervalu. Tři lidé ve vyšších intervalech podmínku určitě splňují; u tří lidí z druhého intervalu však nevíme, kolik z nich ji splňuje. Z původního seznamu však víme, že jde o čtyři hodnoty: 6,5; 7,0; 7,5 a 8,0.
+
+Při opačném pravidle patří 6,0 do intervalu více než 5 až 6 včetně. Střed intervalu mezi 6 a 7 je $6+(7-6)/2=6{,}5$ hodiny; zvolený způsob zahrnutí hranic tento výsledek nemění.
 :::
 
 ### Úloha 6: Vyberte graf a zdůvodněte volbu {#sec-uloha-02-6}
@@ -462,7 +507,7 @@ a)  Sloupcový graf umožní porovnat četnosti nominálních kategorií. Výse�
 
 ### Úloha 7: Co lze tvrdit o tvaru {#sec-uloha-02-7}
 
-Většina lidí dokončí úlohu mezi 20 a 35 sekundami, několik potřebuje 60 až 90 sekund. Výzkumník tvrdí: „Rozdělení je zešikmené doleva, protože většina hodnot je vlevo. Dlouhé časy jsou chyby a vyřadím je.“ Posuďte obě části. Dále vysvětlete, zda dva vrcholy histogramu dokazují existenci dvou psychologických typů lidí. Nakonec posuďte, zda velký počet maximálních výsledků snadného testu znamená, že mají všichni tito lidé stejnou úroveň schopnosti.
+Většina lidí dokončí úlohu mezi 20 a 35 sekundami, několik potřebuje 60 až 90 sekund. Výzkumník tvrdí: „Rozdělení je zešikmené doleva, protože většina hodnot je vlevo. Dlouhé časy jsou chyby a vyřadím je.“ Posuďte obě části. Dále vysvětlete, zda dva vrcholy histogramu dokazují existenci dvou psychologických typů lidí. Nakonec posuďte, zda velký počet maximálních výsledků snadného testu znamená, že mají všichni tito lidé stejnou úroveň schopnosti. Jak byste popsali histogram se stejně širokými intervaly a přibližně stejnými četnostmi ve všech intervalech? Jak nazvete rozdělení se třemi výraznými vrcholy?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Delší chvost směřuje k vysokým časům, tedy doprava. Směr zešikmení určuje chvost, nikoli strana s většinou hodnot. Dlouhé časy mohou být správné, například kvůli obtížím s úlohou; nejprve je nutné prozkoumat záznamy a okolnosti. Vyřazení pouze kvůli pravidelnějšímu grafu není zdůvodněné.
@@ -470,6 +515,8 @@ Delší chvost směřuje k vysokým časům, tedy doprava. Směr zešikmení ur�
 Dva vrcholy mohou podnítit otázku po různých skupinách, ale mohou souviset i s volbou intervalů či nepravidelností malého souboru. Z grafu samotného neplyne existence psychologických typů ani jejich příčina.
 
 Hromadění na maximu snadného testu může upozornit na efekt stropu: nástroj už nedokáže zachytit další rozdíly. Stejný maximální skór proto neznamená stejnou úroveň schopnosti. Pro posouzení potřebujeme znát úlohy a způsob měření, samotný tvar grafu nestačí.
+
+Histogram s přibližně stejnými četnostmi ve stejně širokých intervalech ukazuje přibližně rovnoměrné rozdělení v daném rozsahu. Tři výrazné vrcholy znamenají vícevrcholové (multimodální) rozdělení. V obou případech jde o popis dat; samotný vzhled nedokazuje určitý model populace ani původ rozdílů.
 :::
 
 ### Úloha 8: Přečtěte stonek a list {#sec-uloha-02-8}

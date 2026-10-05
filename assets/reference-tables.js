@@ -30,7 +30,7 @@
   document.querySelectorAll('.table-scroll').forEach(wrapper => {
     wrapper.tabIndex = 0;
     wrapper.setAttribute('role', 'region');
-    wrapper.setAttribute('aria-label', wrapper.querySelector('caption')?.textContent || 'Tabulka, kterou lze vodorovně posunout');
+    wrapper.setAttribute('aria-label', wrapper.getAttribute('aria-label') || wrapper.querySelector('caption, figcaption')?.textContent || 'Tabulka, kterou lze vodorovně posunout');
   });
   const normalize = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('cs');
   document.querySelectorAll('.reference-table').forEach(region => {

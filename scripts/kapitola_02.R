@@ -44,6 +44,24 @@ draw('kumulativni', {
   points(0:12, cum, pch = 16, col = blue)
   points((0:12)[f>0], c(0,head(cum,-1))[f>0], pch = 21, bg = 'white', col = blue)
 })
+draw('kumulativni-seskupene', {
+  h <- hist(s, breaks = 4:10, right = FALSE, plot = FALSE)
+  boundaries <- h$breaks
+  cumulative <- c(0, cumsum(h$counts)) / length(s)
+  par(mar = c(4.8, 5.5, 1.5, 1.2))
+  plot(boundaries, cumulative, type = 'n', xlim = c(4, 10), ylim = c(0, 1),
+    xlab = 'Hranice doby spánku (h)', ylab = 'Kumulativní relativní četnost',
+    xaxt = 'n', yaxt = 'n', bty = 'l')
+  axis(1, at = 4:10)
+  axis(2, at = c(0, .25, .5, .75, 1), labels = c('0 %', '25 %', '50 %', '75 %', '100 %'))
+  abline(h = c(.25, .5, .75, 1), col = '#E6EBED', lty = 1)
+  lines(boundaries, cumulative, col = blue, lwd = 2, lty = 2)
+  points(boundaries, cumulative, col = blue, pch = 16, cex = 1.15)
+  text(7, cumulative[4] + .07, '13 z 33 (39,4 %)', col = ink, cex = .95)
+  legend('topleft', legend = c('Body: známé podíly pod hranicí', 'Spojnice: uvnitř intervalu průběh neznáme'),
+    col = blue, pch = c(16, NA), lty = c(NA, 2), lwd = c(NA, 2), bty = 'n', cex = .83)
+}, width = 7.4, height = 4.6)
+
 draw('polygon', {
   h <- hist(s, breaks = 4:10, right = FALSE, plot = FALSE)
   plot(h$mids, h$counts, type = 'o', pch = 16, col = blue, lwd = 2, ylim = c(0, 12),
@@ -64,7 +82,7 @@ draw('tvary', {
   par(mfrow = c(2, 3), mar = c(3.2, 3, 2.5, .4), cex = .9)
   sets <- list(c(1,2,4,7,10,7,4,2,1), c(1,3,10,8,5,3,2,1,1), c(1,1,2,3,5,8,10,3,1),
     c(1,6,10,4,1,4,10,6,1), c(4,4,4,4,4,4,4,4,4), c(1,3,8,9,4,1,0,0,1))
-  titles <- c('Přibližná souměrnost', 'Zešikmení doprava', 'Zešikmení doleva', 'Dva výrazné vrcholy', 'Podobné četnosti', 'Vzdálené pozorování')
+  titles <- c('Přibližná souměrnost', 'Zešikmení doprava', 'Zešikmení doleva', 'Dva výrazné vrcholy', 'Rovnoměrné rozdělení', 'Vzdálené pozorování')
   for (i in seq_along(sets)) {
     plot(1:9, sets[[i]], type='h', lwd=12, lend=1, col=blue, xlim=c(.5,9.5), ylim=c(0,11),
       main=titles[i], xlab='Hodnota', ylab='Četnost', bty='l', xaxt='n')
@@ -90,4 +108,4 @@ draw('osa', {
     axis(1,at=1:2,labels=c('A','B'));text(1:2,c(30,32)+.3,c(30,32))
   }
 }, width=8.2,height=4)
-cat('Chapter 2: generated 10 figures from fixed data.\n')
+cat('Chapter 2: generated 11 figures from fixed data.\n')
