@@ -1,0 +1,569 @@
+# Ukazatele polohy a variability {#sec-kapitola-03}
+
+Dvě skupiny mohou dosáhnout stejného průměrného výsledku, a přesto se v jedné lidé navzájem téměř neliší, zatímco ve druhé se objevují velmi nízké i velmi vysoké výsledky. Jedno číslo proto není náhradou za celé rozdělení. Souhrnné ukazatele jsou užitečné právě tehdy, když rozumíme tomu, kterou vlastnost dat vystihují a kterou ponechávají stranou.
+
+Navazujeme na [četnosti a grafické zobrazení](kapitola_02.qmd#sec-kapitola-02). Budeme pracovat se známými modelovými údaji o spánku a paměti a s malými autorskými příklady. **Nejde o výsledky skutečného výzkumu.** Malé soubory jsou záměrně sestavené pro výuku; náhodně vytvořená data v simulaci budou výslovně označena. Údaje pro malé příklady jsou dostupné jako [CSV](../data/kapitola_03.csv), výpočty také v [excelovém sešitu](../data/kapitola_03.xlsx).
+
+::: {.callout-note title="Co budete po prostudování umět"}
+Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvaru rozdělení. Na malém souboru vysvětlíte a vypočítáte průměr, medián, kvantily, rozpětí, absolutní odchylky, rozptyl a směrodatnou odchylku. Přečtete a sestavíte krabicový graf, rozpoznáte vliv vzdáleného pozorování a odlišíte ořezání od winsorizace. Předpovíte důsledky změny jednotek a napíšete srozumitelný popis dat. Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficientů tvaru; jejich vzorce nejsou součástí povinných dovedností.
+:::
+
+## Co souhrnné ukazatele zachycují {#sec-poloha-variabilita}
+
+**Ukazatele polohy (*measures of location*)** vyjadřují, kde se rozdělení na škále nachází; při popisu jeho středu se používá také označení ukazatele centrální tendence. **Ukazatele variability (*measures of variability, measures of dispersion*)** zachycují, jak se hodnoty navzájem liší, například jak široce jsou rozloženy nebo jak daleko bývají od určitého středu. Vypočítané charakteristice souboru říkáme také **statistika (*statistic*)**. Toto užití slova odlišíme od statistiky jako oboru [@howell, oddíly 2.7–2.8].
+
+Číselnou charakteristiku celé populace nebo modelu označujeme jako **parametr (*parameter*)**. Rozlišujme například průměr vypočtený u účastníků studie a průměr v populaci, o kterou se zajímáme. Výběrová statistika může sloužit k odhadu populačního parametru, ale její konkrétní hodnota závisí na získaných datech. K významu modelu se [vrátíme na konci výkladu](#sec-popis-a-model).
+
+![Dva modelové soubory dob dokončení úlohy se stejným průměrem a různou variabilitou.](../assets/chapter-03/plots/stejny-prumer.svg){#fig-stejny-prumer fig-alt="První soubor obsahuje hodnoty 5, 6, 6, 6 a 7 minut; druhý 2, 4, 6, 8 a 10 minut. Oba mají průměr 6 minut, druhý má větší rozptýlenost."}
+
+V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření je tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
+
+Význam čísel závisí také na měřicí škále. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ není délka času. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
+
+## Tři způsoby vyjádření středu {#sec-stred-rozdeleni}
+
+Průběžný malý příklad obsahuje doby dokončení pozornostní úlohy u pěti modelových účastníků, v minutách:
+
+$$4,\quad 5,\quad 5,\quad 6,\quad 10.$$
+
+Každý účastník poskytl jednu hodnotu. Rozsah souboru je tedy $n=5$. Zápis **$x_i$** označuje hodnotu u pozorování s indexem $i$: například $x_1=4$ a $x_5=10$. Index je pořadové označení záznamu, nikoli jeho velikost. Malé soubory zde slouží k pochopení výpočtu, nikoli k věrohodnému zobecnění na populaci.
+
+### Modus: nejčastější hodnota {#sec-modus}
+
+**Modus (*mode*)** je hodnota nebo kategorie s nejvyšší absolutní četností. V našem příkladu je modem **5 minut**, protože pětka se vyskytuje dvakrát a ostatní hodnoty jednou. Modem je hodnota 5, nikoli její četnost 2. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, můžeme obdobně určit nejčastější kategorii.
+
+Je-li nejvyšší četnost sdílena několika hodnotami, uvedeme všechny. Pro 4, 4, 6, 6 a 9 jsou tedy mody 4 a 6; jejich průměr 5 není modem. Jestliže se všechny hodnoty vyskytují stejně často, žádná není jednoznačně nejčastější. Ve zprávě je užitečnější tuto skutečnost napsat než uvést arbitrárně vybraný modus.
+
+U jemně měřených spojitých veličin se přesné hodnoty často neopakují. Nejvyšší sloupec histogramu pak označuje nejčetnější **interval**, nikoli nutně konkrétní modus původních dat. Připomeňme také rozdíl mezi touto definicí a [vrcholy rozdělení](kapitola_02.qmd#sec-tvar-rozdeleni): dva výrazné vrcholy histogramu nemusí mít stejnou výšku, zatímco několik modů jednotlivých hodnot sdílí nejvyšší četnost.
+
+### Medián: prostřední poloha {#sec-median}
+
+**Medián (*median*)**, zde $\tilde{x}$, určíme po seřazení hodnot od nejmenší po největší. Vlnovka nad $x$ je součást značky pro medián. Při lichém počtu pozorování vezmeme prostřední hodnotu. V řadě 4, 5, 5, 6, 10 je třetí hodnota **5 minut**.
+
+Při sudém počtu číselných hodnot používáme průměr dvou prostředních hodnot. Pro 4, 5, 6 a 10 je tedy medián $(5+6)/2=5{,}5$ minuty. Výsledek nemusí být mezi skutečně zaznamenanými hodnotami. Pět a půl minuty je zde hranice prostředku uspořádaného souboru, nikoli tvrzení, že někdo právě takovou dobu naměřil.
+
+U číselných dat medián splňuje, že **alespoň polovina hodnot je nejvýše rovna mediánu a alespoň polovina je nejméně rovna mediánu**. Neznamená to, že přesně polovina je menší a přesně polovina větší. V našem pětičlenném souboru je pod mediánem 20,0 % hodnot, rovno mediánu 40,0 % a nad ním 40,0 %. Shodné hodnoty nelze při interpretaci přehlížet [@dostal, oddíl 3.4.3].
+
+U slovních ordinálních kategorií můžeme hledat prostřední kategorii, protože známe pořadí. Pokud ale dvě prostřední pozorování spadají do různých kategorií, nebudeme průměrovat jejich kódy. Pro „vůbec, trochu, dost, zcela“ uvedeme, že prostřední dvě odpovědi jsou „trochu“ a „dost“. Číslo 2,5 by bez dalšího předpokladu o vzdálenostech mezi kategoriemi nepředstavovalo novou měřenou kategorii.
+
+### Aritmetický průměr: součet rozdělený mezi případy {#sec-prumer}
+
+**Aritmetický průměr (*arithmetic mean*)**, značený $m$, získáme součtem hodnot vyděleným jejich počtem. Představme si, že celkovou dobu všech pěti účastníků rozdělíme rovnoměrně: každý by dostal stejný díl. Vzorec tento postup zkracuje:
+
+$$m=\frac{1}{n}\sum_{i=1}^{n}x_i.$$
+
+$n$ je počet zahrnutých pozorování, $x_i$ jednotlivá hodnota a [sumace](kapitola_02.qmd#sec-sumace) říká, že sčítáme od prvního do posledního pozorování. Násobit $1/n$ znamená dělit $n$. Zde tedy
+
+$$m=\frac{4+5+5+6+10}{5}=\frac{30}{5}=6\ \text{minut}.$$
+
+Průměr využívá velikost každé hodnoty. Pro jeho interpretaci potřebujeme, aby sčítání a rozdíly hodnot měly věcný význam. U součtových dotazníkových skórů proto připomínáme předpoklad [přibližně intervalového měření](kapitola_01.qmd#sec-kvaziintervalove); samotné číselné kódy jej nezaručují.
+
+::: worked-example
+**Jedno vzdálenější pozorování.** Nahradíme-li posledních 10 minut hodnotou 30, součet vzroste o 20 minut. Průměr se zvýší o $20/5=4$ minuty, tedy z 6 na 10 minut. Medián i modus zůstávají 5 minut. Průměr citlivě zaznamenal změnu celkového času; medián nadále zachycuje prostřední polohu. Ani jeden výsledek není početně špatně. Výběr ukazatele závisí na otázce.
+:::
+
+![Změna jedné doby z 10 na 30 minut posune průměr, ale zachová medián.](../assets/chapter-03/plots/odlehle-a-stred.svg){#fig-odlehle-stred fig-alt="Při stejném měřítku obou os se průměr posune z 6 na 10 minut, zatímco medián zůstane na 5 minutách. Oranžová plná čára značí průměr a modrá přerušovaná medián."}
+
+U rozdělení s dlouhým pravým chvostem bývá průměr vyšší než medián, protože velké hodnoty zvyšují součet. Je to užitečné vodítko, nikoli univerzální pravidlo určující pořadí průměru, mediánu a modu v každém možném souboru. Průměr lze vypočítat i při silné šikmosti; normální rozdělení není podmínkou jeho výpočtu [@howell, oddíl 2.7; @cumming, s. 51–55].
+
+### Průměr více skupin {#sec-vazeny-prumer}
+
+Při spojování skupin musíme zachovat příspěvek každého člověka. Deset účastníků dokončilo úlohu v průměru za 4 minuty a třicet za 8 minut. Celkem strávili úlohou $10\times4+30\times8=280$ minut. **Vážený průměr (*weighted mean*)**, v tomto případě průměr s vahami danými velikostmi skupin, je
+
+$$m=\frac{10\times4+30\times8}{10+30}=7\ \text{minut}.$$
+
+Prostý průměr skupinových průměrů $(4+8)/2=6$ by přisoudil oběma skupinám stejnou váhu, přestože jedna obsahuje třikrát více lidí. Je správný pro jinou otázku: průměr dvou skupinových charakteristik. Obdobně lze průměr jednotlivých hodnot získat z úplné tabulky četností: každou hodnotu započítáme tolikrát, kolikrát se vyskytla. Z intervalové tabulky s pouhými středy intervalů dostaneme zpravidla jen aproximaci, protože původní hodnoty už neznáme.
+
+Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstruujeme. A pokud stejní lidé vyplnili dva testy bez chybějících hodnot, průměr jejich součtů je součtem průměrů. K tomuto vztahu nepotřebujeme předpoklad nezávislosti. U rozptylů součtu už na vztahu proměnných záleží; k tomu se vrátíme později.
+
+## Kvartily, percentily a kvantily {#sec-kvantily}
+
+Medián popisuje prostřední polohu. Někdy nás zajímá jiná část uspořádaného rozdělení: například hranice vysokých časů potřebných k dokončení úlohy. **Kvantily (*quantiles*)** jsou hodnoty na škále spojené se zvolenými úrovněmi kumulativního zastoupení. Pro úroveň $p$ používáme zápis $q_p$, kde $p$ je podíl od 0 do 1. Nejde o index kategorie v dřívějším $p_j$; zde volíme úroveň hledaného kvantilu.
+
+**Percentily (*percentiles*)** vyjadřují tyto úrovně v setinách: 25. percentil odpovídá $q_{0{,}25}$. **Kvartily (*quartiles*)** jsou kvantily na úrovních jedné čtvrtiny, poloviny a tří čtvrtin. Dolní kvartil je $q_{0{,}25}$, druhý kvartil je medián a horní kvartil $q_{0{,}75}$. Běžné značky Q₁, Q₂ a Q₃ najdete jako alternativy v [přehledu značení](znaceni.qmd#znak-kvantil). Slovo kvartil zde označuje hraniční hodnotu, nikoli jednu ze čtyř skupin lidí.
+
+### Jedna výpočetní konvence {#sec-vypocet-kvantilu}
+
+V konečném souboru nelze vždy oddělit přesně požadovaný podíl dat. Někdy není požadovaný počet lidí celé číslo, jindy se hodnoty opakují. Existuje proto více konvencí výpočtu výběrových kvantilů. Pro číselná data v této učebnici používáme postup funkce **PERCENTIL.INC (*PERCENTILE.INC*)**. Pokud je potřeba, provádí **lineární interpolaci (*linear interpolation*)**: hledá hodnotu mezi dvěma sousedními hodnotami úměrně tomu, jak daleko je hledaná pozice mezi jejich pozicemi [@hyndman1996; @msPercentileInc].
+
+Nejprve hodnoty seřadíme. Zápis $x_{(i)}$ označuje hodnotu na $i$-té pozici v seřazené řadě; závorky v indexu odlišují tuto pozici od původního pořadí záznamů. Pro úroveň $p$ vypočítáme
+
+$$\text{pozice}=1+(n-1)\times p.$$
+
+Je-li pozice celé číslo, vezmeme příslušnou hodnotu. Leží-li například na pozici 2,4, posuneme se od druhé hodnoty ke třetí o 0,4 jejich rozdílu. Pro $p=0$ dostáváme minimum, pro $p=1$ maximum. U jediného platného pozorování se všechny kvantily rovnají této hodnotě.
+
+::: worked-example
+**Kvartily a jiný percentil.** Pro 4, 5, 5, 6, 10 je $n=5$. Dolní kvartil má pozici $1+4\times0{,}25=2$, tedy hodnotu 5. Medián má pozici 3 a hodnotu 5. Horní kvartil má pozici 4 a hodnotu 6. Pro 90. percentil je pozice $1+4\times0{,}9=4{,}6$. Mezi čtvrtou hodnotou 6 a pátou hodnotou 10 se posuneme o šest desetin rozdílu:
+
+$$q_{0{,}9}=6+0{,}6\times(10-6)=8{,}4\ \text{minuty}.$$
+
+Hodnota 8,4 je interpolovaná hranice, nikoli zaznamenaný čas některého účastníka. V souboru jsou nejvýše této hodnotě rovny čtyři z pěti dob, tedy 80,0 %. Výpočet netvrdí, že přesně 90,0 % těchto pěti pozorování leží pod výsledkem.
+:::
+
+Stejná potíž se může projevit i bez shodných hodnot: třicátý percentil hodnot 1, 2, 3, 4 je podle této konvence 1,9, přestože nejvýše 1,9 má 25,0 % pozorování. Proto nebudeme interpolovaný výběrový percentil definovat jako hodnotu, pod níž musí ležet přesně dané procento dat. Naproti tomu při odečtu z kumulativní četnosti můžeme hledat první pozorovanou hodnotu, na níž podíl **dosáhne nebo překročí** stanovenou úroveň. To je jiný, rovněž smysluplný postup; nemusí dávat stejné číslo. U čistě ordinálních kategorií pracujeme s jejich uspořádáním a kumulativním zastoupením, nikoli s interpolací mezi číselnými kódy.
+
+### Percentilové pořadí není hodnota percentilu {#sec-percentilove-poradi}
+
+**Percentilové pořadí (*percentile rank*)** popisuje relativní postavení konkrétního výsledku ve vymezeném souboru. V této učebnici používáme inkluzivní konvenci: vyjádříme procento výsledků **menších nebo rovných** dané hodnotě. U našich časů je pro 5 minut podíl $3/5=0{,}6$, tedy percentilové pořadí 60. Hodnota 5 je mediánem a současně má v této konvenci percentilové pořadí 60; shodné hodnoty brání jednoduchému obracení obou postupů.
+
+Jiné zdroje započítávají pouze menší hodnoty, případně menší hodnoty plus polovinu shodných. Poslední postup by u 5 minut dal $(1+2/2)/5=0{,}4$, tedy 40. Při interpretaci norem psychologického testu proto vždy potřebujeme znát použitou konvenci a referenční skupinu. Vysoké percentilové pořadí navíc neznamená automaticky lepší výsledek: u doby dokončení úlohy znamená delší dobu. Percentilové pořadí není ani procento správně vyřešených položek testu.
+
+## Rozpětí celého souboru a jeho prostřední části {#sec-rozpeti}
+
+**Minimum (*minimum*)** je nejmenší pozorovaná hodnota, **maximum (*maximum*)** největší. Nezaměňujeme je s nejnižší a nejvyšší možnou hodnotou měřicího nástroje. **Variační rozpětí (*range*)** zde znamená rozdíl maxima a minima. U pěti dob je to $10-4=6$ minut. Interval od 4 do 10 minut popisuje obě krajní hodnoty, zatímco jeho šířka 6 minut je jedno číslo.
+
+Rozpětí využívá pouze dvě krajní hodnoty. Nahradíme-li 10 hodnotou 30, vzroste na $30-4=26$ minut. Pokud k souboru přidáváme další pozorování, jeho rozpětí se nemůže zmenšit. Dva samostatné náhodné soubory ale nemusí dodržet pořadí „větší soubor = větší rozpětí“; jde o tendenci při opakovaném výběru ze stejné populace, nikoli záruku u konkrétní dvojice.
+
+**Mezikvartilové rozpětí (*interquartile range*, běžně IQR)** je rozdíl horního a dolního kvartilu:
+
+$$\text{mezikvartilové rozpětí}=q_{0{,}75}-q_{0{,}25}.$$
+
+Pro naše data je to $6-5=1$ minuta. Zachycuje šířku prostřední části rozdělení a v tomto příkladu se nezmění ani po nahrazení 10 hodnotou 30. Označení „prostředních 50 %“ je užitečná orientace; u malých souborů a shodných hodnot nemusí interval mezi vypočítanými kvartily obsahovat přesně polovinu pozorování [@howell, s. 38–39; @hyndman1996].
+
+Samotné kvartily můžeme popsat i jako ordinální kategorie, ale **jejich číselný rozdíl vyžaduje smysluplné vzdálenosti na škále**. Rozdíl kódů dvou slovních odpovědí není automaticky měřitelnou velikostí variability.
+
+## Odchylky, rozptyl a směrodatná odchylka {#sec-odchylky-rozptyl}
+
+### Proč průměr odchylek nestačí {#sec-odchylky}
+
+**Odchylka (*deviation*)** vyjadřuje rozdíl hodnoty od zvoleného referenčního bodu. Od průměru ji zapíšeme $x_i-m$. Záporná odchylka znamená hodnotu pod průměrem, kladná nad ním. U našich dob je průměr 6 minut:
+
+::: {.table-scroll}
+| Doba $x_i$ (min) | Odchylka $x_i-m$ (min) | Absolutní odchylka (min) | Čtverec odchylky (min²) |
+|---:|---:|---:|---:|
+| 4 | −2 | 2 | 4 |
+| 5 | −1 | 1 | 1 |
+| 5 | −1 | 1 | 1 |
+| 6 | 0 | 0 | 0 |
+| 10 | 4 | 4 | 16 |
+| **Součet** | **0** | **8** | **22** |
+:::
+
+Součet odchylek je $-2-1-1+0+4=0$. Kladné a záporné odchylky od průměru se vždy přesně vyruší, pokud používáme nezaokrouhlený průměr. Proto je průměr také **těžištěm** hodnot: jejich celková odchylka na jednu stranu vyvažuje druhou. Nulový součet odchylek ovšem neznamená nulovou variabilitu [@howell, s. 39–41].
+
+### Průměrná absolutní odchylka {#sec-prumerna-absolutni}
+
+**Absolutní hodnota (*absolute value*)**, zapisovaná svislými čarami, vyjadřuje vzdálenost čísla od nuly bez ohledu na směr. Například $|-2|=2$, $|4|=4$ a $|0|=0$. Absolutní odchylka $|x_i-m|$ tedy zachovává vzdálenost od průměru a odstraňuje rozdíl mezi levým a pravým směrem.
+
+**Průměrná absolutní odchylka od průměru (*mean absolute deviation about the mean*)** je průměr těchto vzdáleností:
+
+$$\frac{1}{n}\sum_{i=1}^{n}|x_i-m|=\frac{2+1+1+0+4}{5}=1{,}6\ \text{minuty}.$$
+
+Doby jsou od svého průměru vzdálené v průměru o 1,6 minuty. Jde o přímo interpretovatelný ukazatel. Není však imunní vůči vzdáleným pozorováním: ta ovlivňují nejen své odchylky, ale i průměr, od něhož vzdálenosti počítáme. Zkratku MAD zde nepoužíváme bez vysvětlení, protože označuje i jiný ukazatel, který zavedeme níže [@nistScale].
+
+### Druhé mocniny a rozptyl {#sec-rozptyl}
+
+Jiný způsob, jak zabránit vyrušení znamének, představuje **druhá mocnina (*square*)**: číslo vynásobíme samo sebou. Platí $(-2)^2=(-2)\times(-2)=4$ a $4^2=16$. Závorky říkají, že umocňujeme celou odchylku včetně znaménka. Čtyřikrát větší vzdálenost tak přispěje šestnáctkrát větší druhou mocninou.
+
+**Součet čtverců odchylek od průměru (*sum of squared deviations from the mean*)** je v našem příkladu 22 min². Není to součet druhých mocnin původních hodnot: ten by byl $4^2+5^2+5^2+6^2+10^2=202$ min². Nejde ani o druhou mocninu součtu hodnot, která je $30^2=900$ min². Před výpočtem si vždy ujasníme, co sčítáme a co umocňujeme.
+
+**Rozptyl (*variance*)** zachycuje variabilitu pomocí čtverců odchylek. Pokud chceme průměr čtverců odchylek právě těchto pěti hodnot, vydělíme 22 pěti:
+
+$$\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2=\frac{22}{5}=4{,}4\ \text{min}^2.$$
+
+Tento výpočet správně popisuje empirické rozdělení, v němž má každé pozorování stejnou váhu. Když však chceme z náhodného výběru odhadovat rozptyl širší populace, běžně používáme **výběrový rozptyl (*sample variance*)**, značený $s^2$:
+
+$$s^2=\frac{\sum_{i=1}^{n}(x_i-m)^2}{n-1}=\frac{22}{4}=5{,}5\ \text{min}^2.$$
+
+Čitatel je součet čtverců odchylek, jmenovatel je počet pozorování zmenšený o jednu. Značka $s^2$ připomíná vztah ke směrodatné odchylce $s$. Oba výpočty mají svůj účel; dělení $n$ není samo o sobě chyba. V dalším textu označuje **$s^2$ vždy variantu s dělením $n-1$**. U jediného pozorování je součet čtverců nulový, ale tento výběrový rozptyl nelze vypočítat, protože bychom dělili nulou.
+
+### Proč při odhadování používáme $n-1$ {#sec-korekce-rozptylu}
+
+Průměr jsme přizpůsobili právě získaným datům. Je to bod, od něhož je součet čtverců odchylek nejmenší. Měření variability kolem tohoto přizpůsobeného středu proto při opakovaných náhodných výběrech vede k menším odchylkám, než kdybychom znali a používali skutečný populační průměr.
+
+Pro nezávislá pozorování ze stejného rozdělení s konečným rozptylem je průměr výsledků s dělením $n$ roven $(n-1)/n$ populačního rozptylu. Dělení $n-1$ toto systematické podhodnocení odstraňuje. Výsledek se tím stává **nestranným odhadem (*unbiased estimator*)** populačního rozptylu: při opakování výběru je jeho dlouhodobý průměr roven odhadovanému parametru. Neznamená to, že každý jednotlivý výsledek je přesný nebo že je tato varianta v každém výběru bližší skutečnosti [@howell, s. 45–47].
+
+::: worked-example
+**Simulace opakovaných výběrů.** Uvažujme známou modelovou populaci s hodnotami 2, 4, 6, 8 a 10 minut, každou se stejným zastoupením. Populační průměr je 6 minut. Čtverce odchylek jsou 16, 4, 0, 4 a 16, takže populační rozptyl je $40/5=8$ min².
+
+Z této populace náhodně vybíráme **s vracením**: v každém tahu má každá z pěti hodnot znovu stejnou šanci a jeden tah neovlivňuje druhý. Pro každou z velikostí $n=5$, $n=20$ a $n=100$ jsme vytvořili 20 000 výběrů. V každém jsme spočítali vlastní průměr a obě varianty rozptylu. Nakonec jsme rozptyly zprůměrovali napříč výběry.
+
+::: {.table-scroll}
+| Počet hodnot v jednom výběru | Průměr rozptylů s dělením $n$ | Průměr rozptylů s dělením $n-1$ |
+|---:|---:|---:|
+| 5 | 6,41 | 8,01 |
+| 20 | 7,62 | 8,02 |
+| 100 | 7,93 | 8,01 |
+:::
+
+Všechny rozptyly jsou v min². Rozdíl od přesné hodnoty 8 u druhého sloupce výpočtů souvisí s konečným počtem náhodných opakování. U prvního postupu vidíme navíc systematické podhodnocení, výraznější pro malé výběry. Simulace vztah názorně ilustruje; nenahrazuje obecné matematické zdůvodnění.
+:::
+
+![Průměry rozptylů z opakovaných výběrů ze známé populace.](../assets/chapter-03/plots/korekce-rozptylu.svg){#fig-korekce-rozptylu fig-alt="Pro rozsahy 5, 20 a 100 jsou průměry při dělení n přibližně 6,41, 7,62 a 7,93. Při dělení n minus jedna jsou přibližně 8,01, 8,02 a 8,01, blízko populačnímu rozptylu 8."}
+
+Korekce se týká tohoto konkrétního problému odhadování. Sama nenapravuje nereprezentativní výběr, chybné měření ani závislost pozorování. V uvedené simulaci jsou podmínky záměrně splněny.
+
+### Směrodatná odchylka a původní jednotky {#sec-smerodatna-odchylka}
+
+Rozptyl je ve čtverečních jednotkách: zde v min². Pro srozumitelnější vyjádření variability se vrátíme k minutám pomocí **druhé odmocniny (*square root*)**. Odmocnina z nezáporného čísla je nezáporné číslo, jehož druhá mocnina dává původní hodnotu. Například $\sqrt{9}=3$, protože $3^2=9$.
+
+**Směrodatná odchylka (*standard deviation*)** je odmocnina rozptylu. Pro výběrovou variantu:
+
+$$s=\sqrt{s^2}=\sqrt{5{,}5}\doteq2{,}35\ \text{minuty}.$$
+
+Značka $\doteq$ znamená přibližnou rovnost: výsledek jsme pro prezentaci zaokrouhlili na dvě desetinná místa. Mezivýpočty nezaokrouhlujeme. Směrodatná odchylka je mírou vzdáleností od průměru založenou na druhých mocninách; **není totožná s průměrnou absolutní odchylkou**, která zde činí 1,6 minuty. Kvůli druhým mocninám silně reaguje na vzdálené hodnoty.
+
+Průměr 6 a směrodatná odchylka 2,35 minuty neříkají, že se každý účastník lišil od průměru právě o 2,35 minuty. Bez dalšího předpokladu o rozdělení také neurčují, jaké procento pozorování leží mezi $m-s$ a $m+s$. Pravidla pro takové podíly probereme až u normálního rozdělení. Nulová směrodatná odchylka při alespoň dvou platných údajích znamená, že všechny hodnoty jsou stejné; není tím ale prokázána přesnost měření.
+
+Nestrannost rozptylu se automaticky nepřenáší na jeho odmocninu. V simulaci pro $n=5$ byl průměr výběrových směrodatných odchylek 2,73 minuty, zatímco populační směrodatná odchylka je $\sqrt{8}\doteq2{,}83$ minuty. Odmocnění je nelineární operace: průměr odmocnin obecně není odmocninou průměru.
+
+## Odolnější shrnutí: medián odchylek, ořezání a winsorizace {#sec-odolne-shrnuti}
+
+### Medián absolutních odchylek od mediánu {#sec-median-absolutnich}
+
+Chceme-li omezit vliv několika vzdálených pozorování, můžeme zvolit střed i typickou vzdálenost pomocí mediánu. **Medián absolutních odchylek od mediánu (*median absolute deviation about the median*, MAD)** vypočteme ve třech krocích: určíme medián dat, spočítáme absolutní vzdálenost každé hodnoty od tohoto mediánu a vezmeme medián získaných vzdáleností [@nistScale; @rMad].
+
+::: worked-example
+Pro hodnoty 4, 5, 5, 6, 10 je medián 5. Absolutní odchylky od něj jsou 1, 0, 0, 1, 5. Po seřazení dostaneme 0, 0, 1, 1, 5, a jejich medián je **1 minuta**. Nahradíme-li 10 hodnotou 30, poslední vzdálenost vzroste z 5 na 25, ale medián vzdáleností zůstane 1. Naproti tomu výběrová směrodatná odchylka vzroste z 2,35 na 11,20 minuty.
+:::
+
+Takový ukazatel je v tomto smyslu **odolný vůči krajním hodnotám (*resistant*)**: několik velmi vzdálených pozorování jej nemusí výrazně změnit. Odolnost neznamená úplnou necitlivost ke změnám dat ani záruku, že ukazatel nejlépe odpovídá každé otázce. Například u hodnot 5, 5, 5, 8, 10 je medián absolutních odchylek nulový, přestože data nejsou všechna stejná. Ukazatel vystihuje prostřední vzdálenost a může přehlédnout variabilitu menší části souboru.
+
+Zde vždy uvádíme **nepřepočtený** medián absolutních odchylek. Některý software jej násobí přibližně 1,4826, aby sloužil jako odhad populační směrodatné odchylky při normálním modelu ve velkých výběrech. Takto přepočtená hodnota je jiná veličina; nesmí se bez upozornění míchat s naším výsledkem 1 minuta [@rMad].
+
+### Ořezaný a winsorizovaný průměr {#sec-orezani-winsorizace}
+
+Další možností je upravit příspěvek krajních hodnot. **Ořezání (*trimming*)** při výpočtu dané statistiky vynechá předem určený počet nejnižších a nejvyšších hodnot. **Winsorizace (*winsorization*)** tyto hodnoty nevynechá, ale pro výpočet je nahradí nejbližšími ponechanými hodnotami. Původní data v obou případech uchováme; nejde o zjištění, že krajní záznamy byly chybné [@howell, s. 35 a 39].
+
+::: worked-example
+Deset modelových dob dokončení úlohy v minutách je již seřazeno:
+
+$$2,\ 3,\ 4,\ 5,\ 5,\ 6,\ 7,\ 8,\ 9,\ 31.$$
+
+Běžný průměr je $80/10=8$ minut, medián $(5+6)/2=5{,}5$ minuty. Pro ilustraci předem zvolíme **10 % hodnot na každém konci**, tedy jednu nejnižší a jednu nejvyšší hodnotu. Celkem jde o 20 % souboru.
+
+Po ořezání zůstane 3, 4, 5, 5, 6, 7, 8, 9. Součet je 47 a **ořezaný průměr (*trimmed mean*)** činí $47/8=5{,}875$, po zaokrouhlení **5,88 minuty**.
+
+Při winsorizaci nahradíme 2 hodnotou 3 a 31 hodnotou 9. Pro výpočet dostaneme 3, 3, 4, 5, 5, 6, 7, 8, 9, 9. **Winsorizovaný průměr (*winsorized mean*)** je $59/10=5{,}9$ minuty. Počet hodnot se nezměnil.
+:::
+
+Ořezání ani winsorizaci nevolíme dodatečně proto, aby vyšel žádoucí výsledek. Ve zprávě uvedeme pravidlo a důvod použití. Oba postupy omezují vliv krajních hodnot, ale obecně také mění to, kterou charakteristiku populace chceme vystihnout. Ořezaný průměr například při zešikmeném rozdělení nemusí odhadovat stejný populační průměr jako běžný průměr. Pokud je otázkou celkový čas potřebný pro všechny účastníky, dlouhé platné časy nelze prostě odsunout jako nepodstatné.
+
+## Krabicový graf {#sec-boxplot}
+
+**Krabicový graf (*boxplot, box-and-whisker plot*)** zobrazuje medián, kvartily a další informace o rozptýlenosti. Je úsporný při porovnávání několika skupin, ale neukáže celé rozdělení. Z pouhé krabice například nemusíme rozpoznat dva vrcholy [@howell, s. 47–50].
+
+V této kapitole používáme následující variantu. Krabice sahá od dolního k hornímu kvartilu a čára uvnitř označuje medián. Od dolního kvartilu odečteme 1,5násobek mezikvartilového rozpětí a k hornímu kvartilu jej přičteme. Tím získáme orientační dolní a horní mez. **Vousy (*whiskers*)** sahají až k nejnižšímu a nejvyššímu skutečnému pozorování, které ještě leží uvnitř těchto mezí, včetně mezí samotných. Pozorování za mezemi zobrazíme samostatně.
+
+::: worked-example
+U 4, 5, 5, 6, 10 jsou kvartily 5 a 6 a mezikvartilové rozpětí 1 minuta. Dolní mez je $5-1{,}5\times1=3{,}5$ a horní $6+1{,}5\times1=7{,}5$ minuty. Vousy proto končí u **4 a 6 minut**, nikoli u 3,5 a 7,5. Hodnota 10 se zobrazí samostatně. Medián se shoduje s dolním kvartilem, takže jeho čára leží na levém okraji krabice.
+:::
+
+![Konstrukce krabicového grafu průběžného příkladu.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Krabice od 5 do 6 minut, medián na 5, vousy na 4 a 6, samostatný bod na 10. Pomocné meze jsou 3,5 a 7,5. Pod grafem jsou původní hodnoty."}
+
+Pravidlo 1,5násobku rozpětí je **pomůcka k označení neobvyklých pozorování**, nikoli důkaz chyby či pokyn k vyřazení. Navazujeme na [zásady práce s odlehlými pozorováními](kapitola_02.qmd#sec-tvar-rozdeleni). U zešikmeného rozdělení může být více bodů za jednou mezí přirozenou vlastností dat. Je-li mezikvartilové rozpětí nulové, mohou být samostatně označeny i nepříliš vzdálené odlišné hodnoty; pak je zvlášť důležité zobrazit jednotlivá pozorování.
+
+Existují také krabicové grafy s vousy až k minimu a maximu nebo k určeným percentilům. Vždy zjistíme použitou definici. Zde i ve všech výpočtech kvartilů používáme konvenci PERCENTIL.INC; výchozí krabicový graf některého programu může kvartily určovat jinak. Vodorovná délka krabice v našem obrázku představuje mezikvartilové rozpětí; její výška nic dalšího nekóduje. Graf lze také otočit a hodnoty číst ze svislé osy.
+
+## Variabilita kategorií a entropie {#sec-entropie}
+
+U nominálních kategorií nedávají rozptyl jejich kódů ani směrodatná odchylka smysluplný popis rozmanitosti. Přesto je rozdíl mezi skupinou, v níž každý používá tutéž strategii učení, a skupinou rozdělenou rovnoměrně mezi čtyři strategie. Četnosti tento rozdíl popíší úplně; jedním souhrnným ukazatelem je **Shannonova entropie (*Shannon entropy*)**, zde $h$ [@shannon1948, oddíl 6].
+
+Entropie zachycuje nejistotu ohledně kategorie při náhodném výběru jednoho případu z popisovaného souboru. Je nulová, pokud všichni patří do stejné kategorie. Pro **stejný počet vymezených kategorií** dosahuje maxima při jejich rovnoměrném zastoupení. Nerozlišuje vzdálenosti ani pořadí kategorií; přejmenování kategorií ji nezmění.
+
+![Tři rozdělení mezi čtyři strategie učení a jejich entropie.](../assets/chapter-03/plots/entropie.svg){#fig-entropie fig-alt="Ve čtyřech kategoriích jsou postupně podíly 1, 0, 0, 0 s entropií 0; 0,5, 0,25, 0,25, 0 s entropií 1,5; a čtyři podíly 0,25 s entropií 2 bity."}
+
+Na @fig-entropie je první skupina zcela jednotná, poslední má rovnoměrné zastoupení čtyř strategií. Prostřední leží mezi nimi. Používáme jednotku **bit (*bit*)**; její souvislost s výpočtem vysvětluje nepovinné okénko. Číselnou entropii neporovnáváme bez znalosti kategorií: podrobnější rozdělení jedné kategorie do několika podkategorií může entropii změnit, přestože se chování lidí nezměnilo. Nejde ani o ukazatel kvality strategií nebo kvality dat.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: logaritmus a výpočet entropie" #rozsireni-entropie}
+**Logaritmus (*logarithm*)** odpovídá na otázku, na jakou mocninu musíme umocnit zvolený základ, abychom dostali dané kladné číslo. Pro základ 2 píšeme $\log_2$. Platí $2^3=8$, a proto $\log_2 8=3$. Také $2^0=1$, takže $\log_2 1=0$. Záporný exponent vyjadřuje převrácenou mocninu: $2^{-1}=1/2$ a $2^{-2}=1/4$. Odtud $\log_2(1/2)=-1$ a $\log_2(1/4)=-2$.
+
+Číslo $-\log_2 p_j$ vyjadřuje informační překvapivost výsledku v kategorii s podílem $p_j$. Méně pravděpodobný výsledek přináší větší překvapení: při podílu 1/2 jde o 1 bit, při 1/4 o 2 bity. Entropie je průměr této překvapivosti, v němž každá kategorie dostane váhu odpovídající svému zastoupení:
+
+$$h=-\sum_{j=1}^{k}p_j\log_2 p_j.$$
+
+$k$ je počet kategorií, $j$ jejich index a $p_j$ jejich relativní četnost; všechny podíly dohromady dávají 1. Znaménko minus převádí nekladné logaritmy podílů na nezáporný výsledek. Zvolení základu 2 určuje jednotku bit. Pro podíly 0,5; 0,25; 0,25; 0 dostaneme:
+
+$$h=0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5\ \text{bitu}.$$
+
+Kategorie s nulovým zastoupením přispívá **nulou**. Logaritmus nuly není definován; výraz nepočítáme jako obyčejné násobení nuly jeho logaritmem. Pravidlo vyjadřuje, že příspěvek kategorie se při zmenšování jejího podílu k nule také blíží nule.
+
+Čtyři stejně časté kategorie dávají $4\times0{,}25\times2=2$ bity. Obecně je maximum pro $k$ kategorií $\log_2 k$. Entropie 1,5 bitu neznamená „1,5 různých strategií“ ani „75 % jistoty“; jde o průměrné množství informace v popsaném smyslu [@shannon1948, oddíl 6].
+:::
+
+## Co mění posun a změna jednotek {#sec-zmena-skaly}
+
+Přičteme-li ke každé době dvě minuty přípravy, všechny hodnoty se posunou stejně. Průměr, medián i všechny kvantily se zvýší o dvě minuty, ale rozdíly mezi hodnotami zůstanou stejné. Rozpětí, absolutní odchylky, rozptyl a směrodatná odchylka se proto nezmění.
+
+Převedeme-li minuty na sekundy, násobíme každou hodnotu 60. Průměr, medián, kvantily, rozpětí i absolutní odchylky se násobí 60. Směrodatná odchylka rovněž; **rozptyl se násobí $60^2=3\,600$**, protože pracuje se čtverci odchylek. Pro náš příklad dostaneme $m=360$ sekund, $s\doteq140{,}71$ sekundy a $s^2=19\,800$ s². Vyšší číselná směrodatná odchylka po změně jednotky neznamená, že se lidé začali více lišit [@howell, oddíl 2.12].
+
+Při **obrácení skórování (*reverse scoring*)** se obrátí i pořadí. Převedeme-li číselné skóry od 0 do 10 pravidlem „nový skór = 10 − původní skór“, průměr i medián se změní stejným pravidlem, ale směrodatná odchylka zůstane stejná. Dolní a horní kvartil si vymění role: nový dolní kvartil je 10 minus původní horní. Obecně se při násobení záporným číslem násobí směrodatná odchylka a rozpětí **absolutní hodnotou** tohoto čísla; nemohou být záporné.
+
+Rozdíl mezi ukazateli **založenými na uspořádání hodnot (*order-based statistics*)** a ukazateli založenými na velikosti odchylek nám pomáhá rozumět jejich chování. V užším matematickém významu jsou **pořadové statistiky (*order statistics*)** jednotlivé seřazené hodnoty $x_{(i)}$; medián či interpolovaný kvantil z nich může být sestaven. Toto členění však neznamená, že všechny pořadové ukazatele jsou odolné (minimum a maximum nejsou) nebo že všechny jejich číselné rozdíly lze interpretovat na ordinální škále.
+
+## Jak vybrat a sdělit popisné statistiky {#sec-komunikace-statistik}
+
+Výběr začíná otázkou. Zajímá nás celkový čas rozdělený na jednoho člověka, prostřední výsledek, zastoupení kategorií, nebo vysoká hranice důležitá pro plánování? Dále posoudíme význam měření a prohlédneme rozdělení. Průměr a směrodatná odchylka často dobře shrnou přibližně souměrné jednovrcholové rozdělení, zatímco medián a kvartily pomohou popsat prostřední část při výrazné šikmosti. Není to zákaz průměru pro zešikmená data: někdy potřebujeme oba pohledy. U dvou vrcholů může být důležitější ukázat celé rozdělení a věcně prozkoumat skupiny než hledat jediný „typický“ výsledek [@cumming, s. 63–65].
+
+::: {.table-scroll}
+| Otázka a data | Užitečný popis | Co je třeba doplnit |
+|:---|:---|:---|
+| Které strategie učení lidé uvádějí? | Četnosti, podíly, modus; případně entropie. | Znění a vymezení kategorií; zda každý volil právě jednu. |
+| Jak lidé hodnotí odpočatost slovními kategoriemi? | Četnosti a kumulativní zastoupení; prostřední kategorie. | Nezaměňovat rozdíly kódů s měřenou vzdáleností. |
+| Kolik času připadá v průměru na člověka? | Průměr, směrodatná odchylka a graf. | Platné dlouhé časy přispívají k celkové době. |
+| Jak vypadá prostřední část silně zešikmených dob? | Medián, dolní a horní kvartil, případně medián absolutních odchylek. | Ukázat také chvost; odolné shrnutí jej může zastínit. |
+| Liší se rozdělení mezi dvěma skupinami? | Stejné ukazatele, stejné jednotky a měřítka; krabicové grafy s body. | Rozsahy souborů; popisný rozdíl sám neprokazuje příčinu ani rozdíl v populaci. |
+:::
+
+U známých dat o spánku a paměti můžeme napsat následující **popis modelového souboru**:
+
+::: worked-example
+Dobu spánku uvedlo 33 z 36 účastníků. Průměr byl 7,06 hodiny a výběrová směrodatná odchylka 1,29 hodiny. Medián činil 7,10 hodiny; dolní a horní kvartil byly 6,20 a 8,00 hodiny. Mezikvartilové rozpětí tedy bylo 1,80 hodiny. Zaznamenané doby sahaly od 4,50 do 9,50 hodiny. Jde o popis uvedených údajů, nikoli o zjištěnou potřebu spánku nebo reprezentativní odhad pro všechny studenty.
+
+V paměťové úloze máme údaje všech 36 účastníků. Průměr byl 7,03 slova, směrodatná odchylka 2,59 slova a medián 7 slov. Průměr nemusí být celé číslo, přestože každý člověk vybavil celočíselný počet slov. Kvartily 5,75 a 9 slov byly vypočteny zvolenou interpolací; nejde o tvrzení, že někdo vybavil tři čtvrtiny slova.
+:::
+
+V odborném článku se setkáte se značkami *M*, *Mdn* a *SD*. V této učebnici používáme $m$, $\tilde{x}$ a $s$; při čtení článku zjistíme, co autor uvádí a s jakou definicí. V popularizační zprávě je vhodnější napsat „prostřední doba spánku“ a vysvětlit medián než ponechat nevyloženou zkratku. Zápis „průměr ± směrodatná odchylka“ není automaticky interval, v němž leží většina lidí, ani interval nejistoty průměru.
+
+Uveďte jednotky, počet platných údajů a zacházení s chyběním; prázdný údaj nenahrazujte nulou. Výsledky zpravidla zobrazujeme na dvě desetinná místa, pokud to dává vzhledem k měření smysl. Vyšší přesnost výpočtu není vyšší přesností měřicího nástroje. Srovnávané statistiky počítejte podle stejné konvence a nezaokrouhlujte mezivýsledky.
+
+Při grafickém porovnání průměrů je užitečné zobrazit body a rozdělení jednotlivých výsledků. Pokud délka sloupců kóduje velikost hodnot, vyžaduje poctivé porovnání nulovou základnu. Když nula není pro zobrazení užitečná, například při porovnávání IQ, zvolíme raději bodový graf s jasně označeným měřítkem. U histogramu se tato zásada týká osy četností, nikoli požadavku začít osu hodnot proměnné na nule [@onsBar].
+
+## Od popisu dat k modelu rozdělení {#sec-popis-a-model}
+
+Několik souhrnných ukazatelů neuchová veškerou informaci. Oba modelové soubory v @fig-stejne-statistiky mají šest pozorování, průměr 6 a výběrový rozptyl 4,8. První je soustředěn do dvou oddělených skupin, druhý má většinu hodnot ve středu. Ani průměr spolu se směrodatnou odchylkou tedy obecně neurčuje celé rozdělení.
+
+![Dva odlišně uspořádané soubory se stejným průměrem i výběrovým rozptylem.](../assets/chapter-03/plots/stejne-dve-statistiky.svg){#fig-stejne-statistiky fig-alt="První soubor obsahuje třikrát 4 a třikrát 8. Druhý obsahuje čtyřikrát 6 a dvě hodnoty přibližně 2,54 a 9,46. Oba mají průměr 6 a výběrový rozptyl 4,8."}
+
+**Parametrický popis rozdělení (*parametric description of a distribution*)** navíc přijímá určitou rodinu pravděpodobnostních modelů. Její konkrétní člen je určen několika parametry. Například normální rozdělení je rodina souměrných zvonovitých rozdělení: po zvolení této rodiny určují populační průměr a směrodatná odchylka celé konkrétní rozdělení. Jeho křivka, pravděpodobnosti intervalů a percentily už pak nejsou nezávisle volitelné [@nistNormal].
+
+Věta „soubor má průměr 6 a směrodatnou odchylku přibližně 2,19“ pouze shrnuje data v obrázku. Věta „použijeme normální model s takto odhadnutými parametry“ přidává předpoklad, který z uvedených dvou čísel neplyne. Musíme posoudit, zda je model pro data a zamýšlený účel přiměřený. Výběrové statistiky jsou vypočtené z dat, zatímco parametry popisují zvolený model či populaci a jejich odhady se mezi výběry mohou měnit.
+
+Rozdělení lze také popisovat přímo pomocí četností a kvantilů, bez volby určité parametrické rodiny. V tomto smyslu mluvíme o **neparametrickém popisu (*nonparametric description*)**. Neznamená to „bez čísel“ nebo „bez předpokladů“. Také samotný populační průměr můžeme zkoumat bez předpokladu normálního modelu. Podrobnosti rozvineme v kapitole o normálním rozdělení; nyní stačí rozlišovat pozorované shrnutí a dodatečný modelový předpoklad.
+
+## Nepovinné rozšíření: momentová šikmost a špičatost {#sec-momenty}
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: princip, výpočty a meze interpretace" #rozsireni-momenty}
+Průměry mocnin hodnot nebo jejich odchylek označujeme jako **momenty (*moments*)**. Průměr původních hodnot je moment prvního řádu kolem nuly; průměr čtverců odchylek od průměru je centrální moment druhého řádu. Slovo centrální zde znamená „počítaný z odchylek od průměru“. Ne každou charakteristiku odchylek je však vhodné zaměňovat s momentem: například směrodatná odchylka je odmocninou příslušného rozptylu.
+
+**Třetí mocnina (*cube*)** je součin tří stejných čísel, například $(-2)^3=-8$. Zachovává znaménko a současně zdůrazňuje vzdálené hodnoty. **Čtvrtá mocnina (*fourth power*)**, například $(-2)^4=16$, je nezáporná a vzdálené hodnoty zvýrazní ještě silněji. K porovnání rozdělení v různých jednotkách musíme tyto průměry mocnin přepočítat vzhledem k variabilitě.
+
+### Koeficient šikmosti
+
+Základní **momentový koeficient šikmosti (*moment coefficient of skewness*)** označíme $g_1$:
+
+$$g_1=\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^3}
+{\left(\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2}\right)^3}.$$
+
+V čitateli průměrujeme třetí mocniny odchylek. Ve jmenovateli nejprve spočítáme průměr čtverců odchylek s dělením $n$, potom jej odmocníme a nakonec umocníme na třetí. Tím odstraníme jednotky: min³ dělíme min³. Zde záměrně nepoužíváme výběrový rozptyl $s^2$ s dělením $n-1$; jde o jinou přesně vymezenou konvenci.
+
+Pro naše doby 4, 5, 5, 6, 10 jsou odchylky −2, −1, −1, 0, 4. Třetí mocniny jsou −8, −1, −1, 0, 64. Součet je 54 a průměr $54/5=10{,}8$ min³. Průměr čtverců je $22/5=4{,}4$ min². Dostaneme
+
+$$g_1=\frac{10{,}8}{(\sqrt{4{,}4})^3}\doteq1{,}17.$$
+
+Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Obrácené tvrzení však neplatí: **nulová momentová šikmost sama nedokazuje souměrnost**. Také silně nesouměrné příspěvky se mohou v součtu vyrušit. Velikost koeficientu nemá univerzální hranice oddělující „dobrá“ a „špatná“ data.
+
+### Špičatost neboli kurtóza a exces
+
+**Kurtóza (*kurtosis*)**, tradičně česky **špičatost**, porovnává průměr čtvrtých mocnin odchylek s druhou mocninou průměru čtverců. Pro normální rozdělení má populační kurtóza hodnotu 3. Odečtením tří získáme **exces (*excess kurtosis*)**, který označíme $g_2$:
+
+$$g_2=\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^4}
+{\left(\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2\right)^2}-3.$$
+
+Čtvrté mocniny našich odchylek jsou 16, 1, 1, 0, 256. Jejich součet je 274 a průměr 54,8 min⁴. Druhá mocnina 4,4 min² je 19,36 min⁴. Kurtóza je tedy $54{,}8/19{,}36\doteq2{,}83$ a exces $g_2\doteq-0{,}17$. Výsledek je bez jednotky. Záporný exces neznamená záporný rozptyl; je to porovnání kurtózy s referenční hodnotou 3.
+
+Tradiční slovo špičatost může svádět k tomu, že koeficient měří jen ostrost či výšku vrcholu. **Tato interpretace je nesprávná.** Čtvrté mocniny zdůrazňují velmi vzdálené hodnoty vzhledem k celkové variabilitě. Kurtóza proto informuje o krajních odchylkách, sama však neurčuje tvar vrcholu [@westfall2014, s. 191–195].
+
+![Stejně vysoký centrální sloupec neznamená stejnou kurtózu.](../assets/chapter-03/plots/spicatost.svg){#fig-spicatost fig-alt="Oba soubory mají 80 ze 100 hodnot ve středu. První má dalších deset hodnot na minus jedné a deset na plus jedné, exces 2. Druhý přesouvá po jedné hodnotě do minus tří a plus tří, exces přibližně 10,89."}
+
+V @fig-spicatost má každý soubor sto pozorování a osmdesát z nich leží přesně ve středu. Vlevo jsou zbývající hodnoty rozděleny po deseti mezi −1 a 1; vpravo po devíti mezi −1 a 1 a po jedné na −3 a 3. Vrchol má v obou obrázcích stejnou četnost 80. Přesto jsou excesy **2 a 10,89**. Jde o autorský diskrétní příklad významu vzdálených hodnot, nikoli o návod odhadovat kurtózu z výšky sloupců histogramu. Změna měřítka os či šířky intervalů by mohla vzhled vrcholu změnit bez změny vypočteného koeficientu.
+
+### Korekce pro výběr a malé soubory
+
+Excelová funkce SKEW vrací korigovanou výběrovou variantu, nikoli přímo $g_1$; základnímu $g_1$ odpovídá SKEW.P. Funkce KURT vrací korigovaný **exces**, nikoli kurtózu bez odečtení tří. Korigovanou šikmost získáme jako
+
+$$\frac{\sqrt{n(n-1)}}{n-2}\,g_1.$$
+
+Korigovaný exces získáme jako
+
+$$\frac{n-1}{(n-2)(n-3)}\bigl[(n+1)g_2+6\bigr].$$
+
+V obou výrazech je $n$ počet platných hodnot a $g_1$, $g_2$ základní koeficienty definované výše. Nejprve vyhodnotíme závorky a až potom násobení a dělení. V našem příkladu první násobitel činí $\sqrt{20}/3$, takže korigovaná šikmost vyjde přibližně **1,74**. Druhý vztah dává přibližně **3,32**. Rozdíl od základních výsledků 1,17 a −0,17 je u pouhých pěti hodnot značný. Nejde o chybu zaokrouhlení [@msSkew; @msSkewP; @msKurt].
+
+Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; variabilita nesmí být nulová. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Oba ukazatele mohou v malých souborech silně kolísat a reagovat na jedinou hodnotu. Graf a věcný kontext proto zůstávají nezbytné. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít ani jeden vypočtený koeficient přesně nulový. A ani dvojice nul sama normalitu nedokazuje.
+:::
+
+## Výpočty v Excelu {#sec-excel-poloha}
+
+Otevřete [sešit ke kapitole](../data/kapitola_03.xlsx). List `Priklad` obsahuje v **A2:A6** časy 4, 5, 5, 6, 10 minut, v řádku 1 je záhlaví. List `Souhrn` shrnuje známá data o spánku a paměti z listu `Data`; list `Rozsireni` ukazuje entropii a momentové výpočty. Číselné buňky obsahují čísla, jednotky jsou v popiscích. Žluté vstupy lze měnit, modré buňky obsahují výpočty. Prázdné údaje o spánku zůstávají prázdné.
+
+Postupy používají české názvy, desetinnou čárku a středníky. Uvedené funkce jsou dostupné v Excelu 2016 a novějších verzích včetně Microsoft 365. Odkaz na oblast buněk funkce zpravidla zpracuje tak, že prázdné buňky a text ignoruje, ale skutečnou nulu započítá. Následující postup s pomocnými odchylkami je určen pro pět vyplněných číselných buněk; prázdné vstupy do něj bez úpravy nepřidávejte, protože odčítání prázdné buňky by ji mohlo považovat za nulu.
+
+### Základní ukazatele a kvantily {#sec-excel-zaklad-03}
+
+V tabulce je u každého vzorce uvedena cílová buňka listu `Priklad`. Anglický název je v závorce. Argument `A2:A6` vždy označuje pět původních časů; nepřidáváme součet ani průměr jako další pozorování.
+
+::: {.table-scroll}
+| Buňka | Funkce a český vzorec | Výsledek a význam |
+|:---|:---|:---|
+| J2 | POČET (*COUNT*): `=POČET(A2:A6)` | 5 platných číselných údajů. |
+| J3 | PRŮMĚR (*AVERAGE*): `=PRŮMĚR(A2:A6)` | 6 minut: součet dělený počtem. |
+| J4 | MEDIAN (*MEDIAN*): `=MEDIAN(A2:A6)` | 5 minut: prostřední poloha. |
+| J5 | MODE.SNGL (*MODE.SNGL*): `=MODE.SNGL(A2:A6)` | 5 minut: nejčastější hodnota. |
+| J6 | MIN (*MIN*): `=MIN(A2:A6)` | 4 minuty: minimum. |
+| J7 | MAX (*MAX*): `=MAX(A2:A6)` | 10 minut: maximum. |
+| J8 | PERCENTIL.INC (*PERCENTILE.INC*): `=PERCENTIL.INC(A2:A6;0,25)` | 5 minut: dolní kvartil. |
+| J9 | `=PERCENTIL.INC(A2:A6;0,75)` | 6 minut: horní kvartil. |
+| J10 | `=J7-J6` | 6 minut: variační rozpětí. |
+| J11 | `=J9-J8` | 1 minuta: mezikvartilové rozpětí. |
+:::
+
+U PERCENTIL.INC je druhým argumentem **podíl**, nikoli celé procento: pro 90. percentil zadáme 0,9 a dostaneme 8,4. Funkce MODE.SNGL pracuje s čísly, nikoli s textovými názvy nominálních kategorií. Pokud se žádné číslo neopakuje, vrací chybu `#N/A`; pokud několik čísel sdílí nejvyšší četnost, vrátí jen jedno. V takové situaci prohlédneme tabulku četností a uvedeme všechny mody [@msAverage; @msMedian; @msMode; @msMin; @msMax; @msPercentileInc].
+
+Percentilové pořadí pro 5 minut podle naší inkluzivní konvence vypočteme jako `=COUNTIFS(A2:A6;"<=5")/POČET(A2:A6)` a výsledek zobrazíme jako procento. COUNTIFS počítá hodnoty splňující podmínku, POČET poskytuje jmenovatel. Výsledek 0,6 neboli 60,0 % zahrnuje obě hodnoty rovné pěti. K přímému výpočtu této konvence nepoužíváme bez ověření funkci s názvem obsahujícím PERCENTRANK, protože může používat jiný postup.
+
+### Odchylky a rozptyl po krocích {#sec-excel-odchylky-03}
+
+Do **B2** zapíšeme `=A2-$J$3`: odečítáme průměr. Dolarové znaky udržují odkaz na J3 při kopírování. Do **C2** zapíšeme `=ABS(B2)` a do **D2** `=B2^2`. Funkce **ABS (*ABS*)** vrací absolutní hodnotu jednoho číselného argumentu; znak `^` umocňuje na exponent za ním. Vzorce zkopírujeme až do řádku 6. Sloupce B, C a D pak odpovídají tabulce v [oddílu o odchylkách](#sec-odchylky).
+
+V **J12** je `=PRŮMĚR(C2:C6)`, tedy průměrná absolutní odchylka **1,6 minuty**. V **J13** je `=SUMA(D2:D6)`, tedy součet čtverců **22 min²**. Funkce SUMA sečte zadanou oblast. V **J14** je `=J13/J2`, tedy průměr čtverců s dělením $n$, **4,4 min²**. Totéž zde vrací **VAR.P (*VAR.P*)**: `=VAR.P(A2:A6)`.
+
+Pro výběrový rozptyl můžeme napsat `=J13/(J2-1)`. V **J15** je stejný výsledek pomocí **VAR.S (*VAR.S*)**: `=VAR.S(A2:A6)`, tedy **5,5 min²**. V **J16** je `=SMODCH.VÝBĚR.S(A2:A6)`, kde **SMODCH.VÝBĚR.S (*STDEV.S*)** vrací výběrovou směrodatnou odchylku **2,35 minuty** po zaokrouhlení. Totéž dostaneme jako `=ODMOCNINA(J15)`; **ODMOCNINA (*SQRT*)** přijímá nezáporné číslo a vrací jeho druhou odmocninu. VAR.S a SMODCH.VÝBĚR.S vyžadují alespoň dvě platná čísla [@msVarP; @msVarS; @msStdevS; @msAbs; @msSqrt].
+
+### Medián absolutních odchylek {#sec-excel-mad-03}
+
+Do **E2** zapíšeme `=ABS(A2-$J$4)` a zkopírujeme do E6. Odkazujeme na **medián**, nikoli průměr. Dostaneme 1, 0, 0, 1, 5. V **J17** vypočteme `=MEDIAN(E2:E6)` a získáme **1 minutu**. Pomocný sloupec umožňuje celý postup sledovat bez maticových vzorců a bez násobení korekční konstantou.
+
+List `Souhrn` používá obdobné základní funkce na sloupcích B a C listu `Data`, vždy v řádcích 2–37. Například `=PRŮMĚR(Data!B2:B37)` vrací 7,063636… hodiny spánku, `=POČET(Data!B2:B37)` vrací 33. U paměti `=POČET(Data!C2:C37)` vrací 36. Tři prázdné údaje o spánku nesmějí změnit velikost jmenovatele u paměti.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: entropie a tvar v Excelu" #rozsireni-excel-03}
+Na listu `Rozsireni` jsou v A2:A5 čtyři strategie A–D a v B2:B5 jejich absolutní četnosti **4, 2, 2, 0**. Do C2 zapíšeme `=B2/SUMA($B$2:$B$5)` a zkopírujeme do C5. Získáme podíly 0,5; 0,25; 0,25; 0. Funkce **LOGZ (*LOG*)** má první argument kladné číslo a druhý základ logaritmu. Například `=LOGZ(0,5;2)` vrací −1. Základ 2 zadáváme výslovně; bez něj funkce používá základ 10.
+
+Do D2 zapíšeme `=KDYŽ(C2=0;0;-C2*LOGZ(C2;2))` a zkopírujeme do D5. **KDYŽ (*IF*)** nejprve vyhodnotí podmínku, při jejím splnění vrací druhý argument a jinak třetí. Proto pro nulový podíl vrátíme 0 a nepočítáme logaritmus nuly. Sloupec D obsahuje 0,5; 0,5; 0,5; 0. V D7 je `=SUMA(D2:D5)`, tedy **1,5 bitu**. Celková četnost musí být kladná a jednotlivé četnosti nezáporné; bez jediného platného pozorování nelze definovat rozdělení podílů [@msLog; @msIf].
+
+Pro tvar průběžného příkladu jsou na listu `Priklad` ve F2:F6 třetí mocniny odchylek (`=B2^3`, kopírovat dolů), v G2:G6 čtvrté (`=B2^4`). Na listu `Rozsireni` jsou výsledky:
+
+::: {.table-scroll}
+| Buňka | Český vzorec | Výsledek |
+|:---|:---|---:|
+| J2 | `=PRŮMĚR(Priklad!F2:F6)/(ODMOCNINA(Priklad!J14)^3)` | $g_1\doteq1{,}17$ |
+| J3 | `=SKEW.P(Priklad!A2:A6)` | $g_1\doteq1{,}17$ |
+| J4 | `=SKEW(Priklad!A2:A6)` | korigovaná šikmost 1,74 |
+| J5 | `=PRŮMĚR(Priklad!G2:G6)/(Priklad!J14^2)-3` | $g_2\doteq-0{,}17$ |
+| J6 | `=KURT(Priklad!A2:A6)` | korigovaný exces 3,32 |
+:::
+
+**SKEW.P (*SKEW.P*)**, **SKEW (*SKEW*)** a **KURT (*KURT*)** přijímají oblast číselných dat. První odpovídá základnímu koeficientu, druhá a třetí výběrovým korekcím uvedeným v rozšíření. KURT už obsahuje odečtení odpovídající referenční normální hodnotě; další trojku od jeho výsledku neodečítáme. Při nulové variabilitě nejsou tyto koeficienty definovány [@msSkewP; @msSkew; @msKurt].
+:::
+
+## Cvičení {#sec-cviceni-03}
+
+U početních úloh použijte kalkulačku, pokud zadání neurčuje Excel. Kvantily počítejte podle konvence PERCENTIL.INC. Mezivýpočty nezaokrouhlujte; konečné necelé výsledky zpravidla uveďte na dvě desetinná místa (přípustná odchylka posledního zaokrouhleného výsledku 0,01). Vysvětlení a jednotky jsou součástí odpovědi.
+
+Pro zopakování lze využít [slovníček](slovnicek.qmd#pojem-mad), [přehled vzorců](znaceni.qmd#znak-s2) a [funkce Excelu](excel.qmd#excel-percentil). Řešení otevírejte až po vlastním pokusu.
+
+### 1. Jaký střed hledáme
+
+Šest modelových účastníků potřebovalo k dokončení úlohy 3, 4, 4, 5, 6 a 20 minut. Určete modus, medián a průměr. Který ukazatel byste použili pro celkový čas připadající na jednoho účastníka a který pro prostřední polohu? Je správné 20 minut automaticky odstranit?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Modus je 4 minuty, protože má jako jediný četnost 2. Medián je průměr třetí a čtvrté hodnoty, $(4+5)/2=4{,}5$ minuty. Součet je 42 a průměr $42/6=7$ minut. Pro celkový čas rozdělený mezi účastníky je relevantní průměr, pro prostřední polohu medián. Dlouhý čas musíme prozkoumat: může znamenat chybu, přerušení úlohy nebo platný pomalý výkon. Samotná vzdálenost od ostatních není důvodem k odstranění. Je vhodné uvést také graf a míru variability.
+:::
+
+### 2. Dvě různě velké skupiny
+
+Osm účastníků mělo průměrný paměťový výkon 6 slov a dvanáct účastníků 9 slov. Určete společný průměr. Bylo by možné určit společný medián, kdyby čísla 6 a 9 označovala pouze skupinové mediány?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+První skupina vybavila dohromady $8\times6=48$ slov, druhá $12\times9=108$. Společný průměr je $(48+108)/(8+12)=156/20=7{,}8$ slova. Průměr 7,5 ze dvou skupinových průměrů by ignoroval různou velikost skupin. Z mediánů a velikostí skupin společný medián obecně neplyne, protože neznáme uspořádání jednotlivých hodnot kolem obou mediánů.
+:::
+
+### 3. Kvantily a shodné hodnoty
+
+Pro skóry 1, 1, 1, 3, 4, 8 určete medián, dolní kvartil, horní kvartil a mezikvartilové rozpětí. Jaké je inkluzivní percentilové pořadí skóru 1? Vysvětlete rozdíl mezi tímto pořadím a hodnotou percentilu.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Medián je $(1+3)/2=2$. Dolní kvartil má pozici $1+5\times0{,}25=2{,}25$; mezi druhou a třetí hodnotou 1 vyjde opět 1. Horní kvartil má pozici $1+5\times0{,}75=4{,}75$, tedy $3+0{,}75(4-3)=3{,}75$. Mezikvartilové rozpětí je $3{,}75-1=2{,}75$ bodu. Tři ze šesti skórů jsou nejvýše rovny 1, takže jeho percentilové pořadí je 50. Pořadí je relativní postavení daného skóru; percentil je hodnota na škále vypočtená pro zvolenou úroveň. Medián 2 a percentilové pořadí 50 pro skór 1 se nevylučují: používáme dva různé postupy a data obsahují shody.
+:::
+
+### 4. Co je na ordinální škále přípustné
+
+Čtyři lidé odpověděli „vůbec“, „trochu“, „dost“, „zcela“. Výzkumník kóduje odpovědi 1, 2, 3, 4 a tvrdí: „Medián je 2,5, takže typický člověk je přesně uprostřed mezi trochou a dostatkem odpočatosti.“ Co tvrzení předpokládá a jak byste data popsali bez tohoto předpokladu?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Výpočet průměru prostředních kódů předpokládá, že s jejich vzdálenostmi lze zacházet jako s měřenými rozdíly. Pořadí kategorií samo takový předpoklad neposkytuje. Bez něj uvedeme, že prostřední dvě odpovědi jsou „trochu“ a „dost“, každá kategorie má četnost 1 a podíl 25,0 %. Kód 2,5 není zaznamenaná kategorie ani doložená intenzita odpočatosti.
+:::
+
+### 5. Výpočet variability
+
+Pro tři doby 2, 4 a 6 minut vypočtěte průměr, jednotlivé odchylky, průměrnou absolutní odchylku, součet čtverců odchylek, výběrový rozptyl a směrodatnou odchylku. Proč nelze variabilitu měřit průměrem podepsaných odchylek?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průměr jsou nulové, přestože hodnoty se liší. Absolutní odchylky 2, 0, 2 dávají průměr $4/3\doteq1{,}33$ minuty. Čtverce 4, 0, 4 mají součet 8 min². Výběrový rozptyl je $8/(3-1)=4$ min² a směrodatná odchylka $\sqrt4=2$ minuty. Průměr čtverců s dělením $n$ by byl $8/3\doteq2{,}67$ min²; jde o jinou popisnou konvenci, nikoli totéž $s^2$.
+:::
+
+### 6. Co dokládá simulace korekce
+
+Známá populace má rozptyl 8 min². Ze simulace s výběry po pěti hodnotách vyšel průměr rozptylů s dělením $n$ přibližně 6,41 a s dělením $n-1$ přibližně 8,01. Spolužák tvrdí: „Dělení $n-1$ poskytne v každém jednotlivém výběru správný rozptyl. Jeho odmocnina je také nestranná.“ Posuďte obě části.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+První část zaměňuje vlastnost opakovaného odhadování s přesností jednotlivého výsledku. Nestrannost se týká dlouhodobého průměru; jednotlivé rozptyly mohou být nižší i vyšší než 8 a korekce může v konkrétním výběru výsledek od skutečnosti i vzdálit. Hodnota 8,01 místo 8 odpovídá konečnému počtu opakování. Druhá část také neplatí: průměr odmocnin není odmocninou průměru. V této simulaci činil průměr směrodatných odchylek 2,73, zatímco populační hodnota je přibližně 2,83 minuty. Podmínky nezávislého výběru jsou součástí zdůvodnění; korekce nenapravuje chybné získání dat.
+:::
+
+### 7. Medián absolutních odchylek
+
+Pro doby 2, 3, 4, 5, 16 minut určete medián a medián absolutních odchylek od mediánu. Co se s nimi stane, pokud 16 nahradíme 100? Vysvětlete, proč zachování těchto ukazatelů neznamená zachování celé variability.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Medián je 4 minuty. Absolutní odchylky jsou 2, 1, 0, 1, 12, po seřazení 0, 1, 1, 2, 12; jejich medián je 1 minuta. Po nahrazení 16 hodnotou 100 zůstává medián 4, poslední odchylka se změní na 96 a medián odchylek stále činí 1. Krajní část rozdělení se přesto výrazně změnila: variační rozpětí vzrostlo z 14 na 98 minut. Odolný ukazatel shrnuje prostřední vzdálenost, ne každou vlastnost rozptýlenosti.
+:::
+
+### 8. Ořezání a winsorizace
+
+Použijte deset časů 2, 3, 4, 5, 5, 6, 7, 8, 9, 31 minut. Nyní předem stanovíme ořezání **20 % na každém konci**. Vypočtěte ořezaný průměr a průměr po odpovídající winsorizaci. Kolik hodnot vstupuje do každého výpočtu a znamená postup, že jsou vynechané hodnoty chybné?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Na každém konci upravujeme dvě hodnoty, celkem tedy čtyři. Při ořezání zůstává 4, 5, 5, 6, 7, 8, součet 35 a průměr $35/6\doteq5{,}83$ minuty. Při winsorizaci nahradíme 2 a 3 hodnotou 4 a 9 a 31 hodnotou 8. Pro výpočet použijeme 4, 4, 4, 5, 5, 6, 7, 8, 8, 8; součet je 59 a průměr $59/10=5{,}9$ minuty. První výpočet používá šest hodnot, druhý deset. Pravidlo samo neprokazuje chybu žádného původního záznamu a nenahrazuje jeho kontrolu. Původní údaje zachováme a úpravu popíšeme.
+:::
+
+### 9. Krabicový graf
+
+Pro doby 1, 2, 2, 3, 4, 5, 6, 15 minut vypočtěte kvartily, medián, mezikvartilové rozpětí a obě meze pravidla 1,5násobku. Určete konce vousů a samostatně zobrazené body. Nakreslete vodorovný krabicový graf.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Pozice dolního kvartilu je $1+7\times0{,}25=2{,}75$, takže jeho hodnota je 2. Medián je $(3+4)/2=3{,}5$. Horní kvartil má pozici 6,25 a hodnotu $5+0{,}25(6-5)=5{,}25$. Mezikvartilové rozpětí je $5{,}25-2=3{,}25$. Násobek $1{,}5\times3{,}25=4{,}875$ vede k mezím −2,875 a 10,125 minuty; k rozhodnutí je nezaokrouhlujeme. Vousy končí u 1 a 6, pozorování 15 zobrazíme samostatně. Na ose od 0 do alespoň 15 nakreslíme krabici od 2 do 5,25, uvnitř čáru na 3,5, vousy k 1 a 6 a bod na 15. Záporná pomocná mez netvrdí, že se záporné časy skutečně vyskytly. Samostatný bod neodstraňujeme bez věcného zdůvodnění.
+:::
+
+### 10. Změna jednotek a obrácení škály
+
+Soubor časů má průměr 4 minuty, směrodatnou odchylku 1,5 minuty a medián 3,5 minuty. Ke každému času přičteme 2 minuty a výsledek převedeme na sekundy. Určete nový průměr, medián, směrodatnou odchylku a rozptyl. Proč nemůže násobení záporným číslem vytvořit zápornou směrodatnou odchylku?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Nový průměr je $(4+2)\times60=360$ sekund a medián $(3{,}5+2)\times60=330$ sekund. Posun vzdálenosti nemění, převod jednotek je násobí 60: nová směrodatná odchylka je $1{,}5\times60=90$ sekund a rozptyl $90^2=8\,100$ s². Původní rozptyl byl $1{,}5^2=2{,}25$ min². Směrodatná odchylka je nezáporná odmocnina; při násobení dat záporným číslem se obrátí pořadí, ale vzdálenosti se násobí absolutní hodnotou násobitele.
+:::
+
+### 11. Rozmanitost kategorií a meze souhrnu
+
+Ve skupině A používá všech 20 lidí stejnou ze čtyř strategií učení. Ve skupině B používá každou strategii pět lidí. Porovnejte entropii slovně, bez logaritmů. Dále posuďte výrok: „Dvě skupiny mají stejný průměr a směrodatnou odchylku, takže mají stejné rozdělení a můžeme u obou použít normální model.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Skupina A má nulovou entropii: kategorii náhodně zvoleného člena známe jistě. Skupina B má při čtyřech kategoriích maximální entropii, protože všechny jsou zastoupeny stejně. Neříká to, která strategie je účinnější. Druhý výrok je chybný. Dvě číselné charakteristiky obecně neurčují celé rozdělení; protipříklad ukazuje @fig-stejne-statistiky. Normální model přidává předpoklad o rodině rozdělení, který z rovnosti průměrů a směrodatných odchylek nevyplývá.
+:::
+
+### 12. Samostatný popis dat v Excelu
+
+V sešitu použijte počty vybavených slov z listu `Data`, buňky C2:C37. Určete počet platných údajů, průměr, medián, výběrovou směrodatnou odchylku, oba kvartily a mezikvartilové rozpětí. Napište tři až čtyři věty pro čtenáře bez statistického školení. Uveďte také jedno omezení interpretace.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Vzorce jsou `=POČET(Data!C2:C37)`, `=PRŮMĚR(Data!C2:C37)`, `=MEDIAN(Data!C2:C37)`, `=SMODCH.VÝBĚR.S(Data!C2:C37)` a `=PERCENTIL.INC(Data!C2:C37;0,25)`, respektive tentýž vzorec s 0,75. Výsledky jsou $n=36$, $m\doteq7{,}03$, medián 7, $s\doteq2{,}59$, dolní kvartil 5,75 a horní 9 slov. Jejich rozdíl je 3,25 slova.
+
+Možný popis: „V modelovém souboru 36 účastníků připadalo na jednoho člověka v průměru 7,03 vybaveného slova z dvanácti. Prostřední výsledek v seřazené řadě byl sedm slov. Rozdíly mezi výkony shrnuje směrodatná odchylka 2,59 slova, která vyjadřuje míru vzdáleností od průměru; prostřední část rozdělení vymezují vypočtené hodnoty 5,75 a 9 slov. Data byla záměrně sestavena pro výuku, a nevypovídají proto o paměťovém výkonu všech studentů.“ Podle účelu zprávy můžeme poslední číselný údaj nahradit grafem; čtenář nemá z interpolovaného kvartilu usuzovat, že někdo vybavil část slova.
+:::
+
+### 13. Nepovinně: entropie od četností
+
+Tři kategorie mají četnosti 4, 2 a 2. Vypočtěte entropii se základem logaritmu 2. Co se změní, pokud přidáme čtvrtou kategorii s nulovou četností? A co pokud všech osm případů patří do jediné kategorie?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Celkem je osm případů, podíly jsou 0,5; 0,25; 0,25. Jejich záporné dvojkové logaritmy jsou 1, 2, 2. Vážený průměr je $0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5$ bitu. Kategorie s nulovou četností přidá nulový příspěvek, takže hodnota zůstane stejná; změní se však počet vymezených kategorií, vůči němuž bychom posuzovali teoretické maximum. Při úplné koncentraci je jediný nenulový podíl 1 a $\log_2 1=0$, takže entropie činí 0 bitů.
+:::
+
+### 14. Nepovinně: nulová šikmost a stejný vrchol
+
+Modelový soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom vysvětlete, proč stejná výška vrcholu v @fig-spicatost nezaručuje stejnou kurtózu.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Počet hodnot je 20 a součet $4(-2)+5(-1)+10(1)+1(3)=0$, tedy průměr 0. Odchylky jsou totožné s hodnotami. Součet třetích mocnin je $4(-8)+5(-1)+10(1)+1(27)=0$. Rozptyl s dělením $n$ je $(4\times4+5\times1+10\times1+1\times9)/20=2$, takže jmenovatel koeficientu není nulový a $g_1=0$. Soubor přesto není souměrný: například hodnota 3 nemá protějšek −3 a četnosti hodnot −1 a 1 se liší. Nulový součet třetích mocnin je slabší podmínka než souměrnost.
+
+Kurtóza používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: kurtóza je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: kurtóza je $1{,}8/0{,}36^2\doteq13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot. Výšku sloupce nelze zaměňovat za kurtózu.
+:::
