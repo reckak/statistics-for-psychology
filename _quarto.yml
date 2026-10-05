@@ -28,6 +28,7 @@ book:
       chapters:
         - quarto/kapitola_01.qmd
         - quarto/kapitola_02.qmd
+        - quarto/kapitola_03.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd
@@ -37,6 +38,8 @@ book:
 
 lang: cs
 bibliography: references.bib
+# Use the same citation set in every chapter so APA year suffixes agree with the shared bibliography.
+nocite: '@*'
 csl: styles/apa.csl
 execute:
   echo: false
