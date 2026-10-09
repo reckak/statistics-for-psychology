@@ -35,5 +35,6 @@ caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 6
   main code { overflow-wrap: anywhere; }
 }
 
-/* Keep the two interval conventions readable side by side on small screens. */
-#tbl-hranice-intervalu table { min-width: 620px; }
+/* Keep prose comparisons readable inside their horizontal scroll containers. */
+#tbl-hranice-intervalu table,
+#tbl-srovnani-stredu table { min-width: 620px; }

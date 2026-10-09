@@ -146,7 +146,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_03.html') {
         assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
-        assert.equal(await page.locator('main img').count(),7);
+        assert.equal(await page.locator('main img').count(),8);
         assert.equal(await page.locator('#refs .csl-entry').count(),48);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);
@@ -164,7 +164,7 @@ const server = http.createServer((req, res) => {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch03-${id}.png`});
         }
-        for(const id of ['sec-vypocet-kvantilu','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-entropie','sec-momenty','sec-excel-poloha']) {
+        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-vypocet-kvantilu','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-entropie','sec-momenty','sec-excel-poloha']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch03-${id}-desktop.png`});
         }
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
@@ -238,7 +238,7 @@ const server = http.createServer((req, res) => {
           await block.locator('[data-bs-toggle="collapse"]').click();
           await block.locator('.callout-collapse').waitFor({state:'hidden'});
         }
-        for(const id of ['sec-vypocet-kvantilu','sec-korekce-rozptylu','sec-boxplot','sec-excel-zaklad-03']) {
+        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-vypocet-kvantilu','sec-korekce-rozptylu','sec-boxplot','sec-excel-zaklad-03']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch03-${id}-mobile.png`});
         }
       }
@@ -389,7 +389,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({width:1360,height:1000});
     }
     // New reference rows must be searchable across pages and reachable through an unrelated filter.
-    for(const [file,query,id] of [['slovnicek','median absolute deviation','pojem-mad'],['slovnicek','winsorization','pojem-winsorizace'],['slovnicek','kurtosis','pojem-kurtoza'],['znaceni','logaritmus','znak-log2'],['znaceni','exces','znak-g2'],['excel','LOGZ','excel-log'],['excel','STDEV.S','excel-sd']]) {
+    for(const [file,query,id] of [['slovnicek','median absolute deviation','pojem-mad'],['slovnicek','winsorization','pojem-winsorizace'],['slovnicek','kurtosis','pojem-kurtoza'],['slovnicek','linear interpolation','pojem-interpolace'],['znaceni','úroveň kvantilu přiřazená','vztah-uroven-kvantilu'],['znaceni','lineární interpolace','vztah-interpolace'],['znaceni','logaritmus','znak-log2'],['znaceni','exces','znak-g2'],['excel','LOGZ','excel-log'],['excel','STDEV.S','excel-sd']]) {
       await page.goto(base+`quarto/${file}.html`,{waitUntil:'networkidle'});
       await page.locator('.ref-controls input').fill(query);
       assert(await page.locator('#'+id).isVisible());
