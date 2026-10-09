@@ -175,22 +175,50 @@ ch3_draw('kvantil-interpolace',{
   text(20,7,'Třetí čas',pos=2,offset=.7,cex=.95)
 },width=5.5,height=7.8)
 # Explicit type-7 box: never rely on R's default Tukey hinges.
+ch3_box_x <- c(2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,
+  50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98)
+ch3_box_q <- ch3_quantile(ch3_box_x,c(.25,.5,.75))
+ch3_box_iqr <- ch3_box_q[3]-ch3_box_q[1]
+ch3_box_fences <- ch3_box_q[c(1,3)]+c(-1,1)*1.5*ch3_box_iqr
+ch3_box_inside <- ch3_box_x[ch3_box_x>=ch3_box_fences[1]&ch3_box_x<=ch3_box_fences[2]]
+ch3_box_out <- ch3_box_x[ch3_box_x<ch3_box_fences[1]|ch3_box_x>ch3_box_fences[2]]
 ch3_draw('boxplot',{
-  x<-ch3_x;q<-ch3_quantile(x,c(.25,.5,.75));iq<-q[3]-q[1]
-  fences<-q[c(1,3)]+c(-1,1)*1.5*iq; inside<-x[x>=fences[1]&x<=fences[2]]
-  plot(NA,xlim=c(2.8,10.7),ylim=c(.3,2.4),yaxt='n',xlab='Doba dokončení úlohy (minuty)',ylab='',bty='n')
-  rect(q[1],.8,q[3],1.4,col='#DCEEF0',border='#267888',lwd=2)
-  segments(q[2],.8,q[2],1.4,lwd=4,col='#223744')
-  segments(min(inside),1.1,q[1],1.1,lwd=2);segments(q[3],1.1,max(inside),1.1,lwd=2)
-  segments(range(inside),.95,range(inside),1.25,lwd=2)
-  points(x[x<fences[1]|x>fences[2]],1.1,pch=21,bg='#B16A26',cex=1.4)
-  abline(v=fences,lty=3,col='#999999')
-  text(fences,2.15,c('Dolní mez 3,5','Horní mez 7,5'),cex=.85)
-  text(c(4.7,6.35,10),c(1.75,1.75,1.75),c('Medián\n= dolní kvartil','Horní\nkvartil','Odlehlé\npozorování'),cex=.8)
-  segments(c(4.7,6.35),1.58,c(5,6),1.42,col='#7A8C94')
-  points(x,.38+.13*ave(x,x,FUN=seq_along),pch=16,col='#267888')
-  title('Kvartily podle PERCENTIL.INC; vousy končí u pozorování')
-},width=8,height=3.7)
+  x<-ch3_box_x;q<-ch3_box_q;fences<-ch3_box_fences
+  par(mar=c(2,4,3,1),mgp=c(2.2,.6,0),cex=1.05)
+  plot(NA,xlim=c(0,5.8),ylim=c(-3,105),axes=FALSE,xlab='',ylab='Testový skór (body)')
+  axis(2,at=seq(0,100,10));box(bty='l')
+  text(.4,104,'Pozorování',cex=.9);text(1.65,104,'Boxplot',cex=.9)
+  offset<-ave(x,x,FUN=function(z) (seq_along(z)-(length(z)+1)/2)*.13)
+  points(.4+offset,x,pch=16,col='#70AABB',cex=1)
+  rect(1.3,q[1],2,q[3],col='#DCEEF0',border='#267888',lwd=2)
+  segments(1.3,q[2],2,q[2],lwd=4,col='#223744')
+  segments(1.65,min(ch3_box_inside),1.65,q[1],lwd=2)
+  segments(1.65,q[3],1.65,max(ch3_box_inside),lwd=2)
+  segments(1.3,range(ch3_box_inside),2,range(ch3_box_inside),lwd=2)
+  points(rep(1.65,length(ch3_box_out)),ch3_box_out,pch=21,bg='#B16A26',cex=1.25)
+  segments(1.15,fences,2.35,fences,lty=3,col='#667078',lwd=1.5)
+  bracket<-function(at,low,high,col) {
+    segments(at,low,at,high,col=col,lwd=1.5)
+    segments(at-.07,c(low,high),at+.07,c(low,high),col=col,lwd=1.5)
+  }
+  bracket(.98,q[1],q[3],'#267888')
+  text(.79,50,'IQR = 20 bodů',srt=90,col='#267888',cex=.9)
+  bracket(2.25,fences[1],q[1],'#8055A0');bracket(2.25,q[3],fences[2],'#8055A0')
+  text(2.55,c(25,75),'1,5 × IQR = 30 bodů',adj=0,col='#8055A0',cex=.95)
+  label<-function(y,txt,col='#223744',from=2.03,to=y) {
+    arrows(2.48,y,from,to,length=.07,col=col)
+    text(2.55,y,txt,adj=0,col=col,cex=.95)
+  }
+  label(60,'3. kvartil = 60');label(50,'Medián = 50');label(40,'1. kvartil = 40')
+  label(84,'Horní vous: konec 85',to=85)
+  label(16,'Dolní vous: konec 15',to=15)
+  label(91,'Horní mez = 90',col='#667078',from=2.35,to=90)
+  label(9,'Dolní mez = 10',col='#667078',from=2.35,to=10)
+  label(98,'Podezřelá odlehlá\npozorování: 95 a 98',col='#B16A26',from=1.75,to=98)
+  arrows(2.48,98,1.75,95,length=.07,col='#B16A26')
+  label(1,'Podezřelá odlehlá\npozorování: 2 a 5',col='#B16A26',from=1.75,to=2)
+  arrows(2.48,1,1.75,5,length=.07,col='#B16A26')
+},width=6.8,height=9)
 ch3_draw('korekce-rozptylu',{
   z<-ch3_simulation_summary
   mat<-rbind(z$variance_n,z$variance_n1)

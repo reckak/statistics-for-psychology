@@ -83,7 +83,13 @@ eq(mean(ch3_trim,trim=.2),35/6); eq(mean(pmin(pmax(ch3_trim,4),8)),5.9)
 # Boxplots use type-7 quartiles, not Tukey hinges.
 fences<-ch3_quantile(x,c(.25,.75))+c(-1,1)*1.5*diff(ch3_quantile(x,c(.25,.75)))
 eq(fences,c(3.5,7.5)); eq(range(x[x>=fences[1]&x<=fences[2]]),c(4,6))
+eq(length(ch3_box_x),41);eq(ch3_box_x[c(11,21,31)],c(40,50,60))
+eq(ch3_box_q,c(40,50,60));eq(ch3_box_iqr,20);eq(ch3_box_fences,c(10,90))
+eq(range(ch3_box_inside),c(15,85));eq(ch3_box_out,c(2,5,95,98))
 eq(ch3_entropy(c(1,0,0,0)),0); eq(ch3_entropy(c(.5,.25,.25,0)),1.5); eq(ch3_entropy(rep(.25,4)),2)
+eq(ch3_entropy(c(.5,.25,.25,0))/log2(4),.75)
+eq(round(ch3_entropy(c(.5,.25,.25))/log2(3),3),.946)
+eq(ch3_entropy(c(1,0,0,0))/log2(4),0);eq(ch3_entropy(rep(.25,4))/log2(4),1)
 eq(ch3_moments(ch3_peak_a)[2],2); eq(ch3_moments(ch3_peak_b)[2],98/9)
 eq(c(mean(ch3_shape_a),var(ch3_shape_a)),c(6,4.8)); eq(c(mean(ch3_shape_b),var(ch3_shape_b)),c(6,4.8))
 # Quantitative exercise solutions.

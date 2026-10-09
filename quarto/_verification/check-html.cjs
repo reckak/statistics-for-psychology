@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 54, 'Shared citation data remains available for consistent APA suffixes and popovers');
+        assert.equal(await references.count(), 55, 'Shared citation data remains available for consistent APA suffixes and popovers');
         const howell = (await page.locator('#ref-howell').innerText()).trim();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
           const id = await fig.evaluate(el => el.closest('[id]').id);
           await fig.screenshot({ path: `tmp/verification/ch02-${id}.png` });
         }
-        assert.equal(await page.locator('#refs .csl-entry').count(), 54);
+        assert.equal(await page.locator('#refs .csl-entry').count(), 55);
         assert.match(await page.locator('#ref-cleveland1984').innerText(), /Cleveland, W. S., & McGill, R. \(1984\)/);
         assert.equal(await page.locator('#ref-cleveland1984 a').getAttribute('href'), 'https://doi.org/10.1080/01621459.1984.10478080');
         assert.match(await page.locator('#ref-howell').innerText(), /8\. vyd\./);
@@ -122,7 +122,7 @@ const server = http.createServer((req, res) => {
         fs.writeFileSync('tmp/verification/ch02-citations.json', JSON.stringify(await page.locator('.citation, #refs .csl-entry').allTextContents(),null,2));
       }
       if (file === 'quarto/literatura.html') {
-        assert.equal(await page.locator('#refs .csl-entry:visible').count(),54,'All cited sources appear in the shared bibliography');
+        assert.equal(await page.locator('#refs .csl-entry:visible').count(),55,'All cited sources appear in the shared bibliography');
         assert.equal(await page.locator('h1 .chapter-number').count(),0,'Bibliography is unnumbered');
         for (const key of ['nistOutliers', 'nistUniform']) {
           assert.match(await page.locator(`#ref-${key}`).innerText(), /Získáno\s+5\. října 2026, z/, 'Czech retrieval date in the shared bibliography');
@@ -147,7 +147,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
         assert.equal(await page.locator('main img').count(),11);
-        assert.equal(await page.locator('#refs .csl-entry').count(),54);
+        assert.equal(await page.locator('#refs .csl-entry').count(),55);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);
           assert(!await block.locator('.callout-collapse').isVisible(),'Optional material initially closed');
@@ -409,7 +409,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({width:1360,height:1000});
     }
     // New reference rows must be searchable across pages and reachable through an unrelated filter.
-    for(const [file,query,id] of [['slovnicek','median absolute deviation','pojem-mad'],['slovnicek','MeanAD','pojem-prumerna-absolutni'],['slovnicek','MedAD','pojem-mad'],['slovnicek','degrees of freedom','pojem-stupne-volnosti'],['znaceni','stupňů volnosti','vztah-stupne-volnosti'],['znaceni','počet hodnot při ořezání','vztah-pocet-orezani'],['slovnicek','winsorization','pojem-winsorizace'],['slovnicek','kurtosis','pojem-kurtoza'],['slovnicek','linear interpolation','pojem-interpolace'],['znaceni','úroveň kvantilu přiřazená','vztah-uroven-kvantilu'],['znaceni','lineární interpolace','vztah-interpolace'],['znaceni','percentilové pořadí','vztah-percentilove-poradi'],['slovnicek','kompromisní','pojem-percentilove-poradi'],['znaceni','logaritmus','znak-log2'],['znaceni','exces','znak-g2'],['excel','LOGZ','excel-log'],['excel','STDEV.S','excel-sd']]) {
+    for(const [file,query,id] of [['slovnicek','normalized entropy','pojem-normalizovana-entropie'],['znaceni','Normalizovaná entropie','znak-normalizovana-entropie'],['slovnicek','median absolute deviation','pojem-mad'],['slovnicek','MeanAD','pojem-prumerna-absolutni'],['slovnicek','MedAD','pojem-mad'],['slovnicek','degrees of freedom','pojem-stupne-volnosti'],['znaceni','stupňů volnosti','vztah-stupne-volnosti'],['znaceni','počet hodnot při ořezání','vztah-pocet-orezani'],['slovnicek','winsorization','pojem-winsorizace'],['slovnicek','kurtosis','pojem-kurtoza'],['slovnicek','linear interpolation','pojem-interpolace'],['znaceni','úroveň kvantilu přiřazená','vztah-uroven-kvantilu'],['znaceni','lineární interpolace','vztah-interpolace'],['znaceni','percentilové pořadí','vztah-percentilove-poradi'],['slovnicek','kompromisní','pojem-percentilove-poradi'],['znaceni','logaritmus','znak-log2'],['znaceni','exces','znak-g2'],['excel','LOGZ','excel-log'],['excel','STDEV.S','excel-sd']]) {
       await page.goto(base+`quarto/${file}.html`,{waitUntil:'networkidle'});
       await page.locator('.ref-controls input').fill(query);
       assert(await page.locator('#'+id).isVisible());
@@ -440,7 +440,7 @@ const server = http.createServer((req, res) => {
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
     }
     await plain.goto(base+'quarto/literatura.html');
-    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),54);
+    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),55);
     await noScript.close();
     const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
     await local.goto(pathToFileURL(path.join(root, 'quarto/kapitola_01.html')).href);
