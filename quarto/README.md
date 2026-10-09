@@ -625,3 +625,9 @@ Omezení pravidla byla ověřena v původním článku von Hippela (2005), Journ
 
 V čisté relaci R prošly všechny výpočty, devět obrázků bylo reprodukováno a nadále prošlo 14 řešení. Celá kniha byla vykreslena. Nový graf byl vizuálně zkontrolován na desktopu i mobilu (390 px); popisky byly upraveny pro čitelnost a odstranění kolizí s osou. Byla zkontrolována výsledná citace a nový bibliografický záznam. Excelový sešit ani vzorce se nemění, desktopový Excel nebyl znovu spuštěn.
 Závěrečná webová kontrola v místním Chrome prošla: osm stránek, 137 hesel, 32 řešení, odkazy, klávesnice, skrytí a rozbalení, MathML, bibliografie a šířky 1360/1920/390 px bez přetékání celé stránky. git diff --check prošel. Veřejné nasazení následuje až po uživatelském sloučení; v této úpravě nebylo ověřováno.
+
+## Začlenění úplné autorské redakce kapitoly 3 (2026-10-09)
+
+Do navazujícího commitu byla začleněna veškerá zbývající redakce pracovního souboru kapitoly 3, včetně výkladu průměru bodových skórů a pořadí, ordinálních položek, dílčích terminologických upřesnění a formátování. Její dřívější ponechání mimo commity bylo chybným výkladem pravidla o změnách patřících k úkolu: tyto úpravy byly součástí stejné kapitoly a měly být zahrnuty do předávaného výsledku. Dřívější poznámky o ponechání redakce mimo commit popisují tehdejší stav, nikoli správný pracovní postup.
+
+Obsah kapitoly se při tomto začlenění dále neměnil. Jde o stejný úplný pracovní soubor, na němž v předchozím kroku proběhl render a webová kontrola. Znovu prošla numerická kontrola kapitoly i 14 řešení a git diff --check. Proto nebyl opakován nezměněný render ani vizuální kontrola. Předchozí PR #25 již byl sloučen, oprava proto vychází z aktuálního main a je předána samostatným PR.
