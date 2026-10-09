@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
         const references = page.locator('#refs .csl-entry');
-        assert.equal(await references.count(), 49, 'Shared citation data remains available for consistent APA suffixes and popovers');
+        assert.equal(await references.count(), 50, 'Shared citation data remains available for consistent APA suffixes and popovers');
         const howell = (await page.locator('#ref-howell').innerText()).trim();
         assert.match(howell, /^Howell, D\. C\. \(2013\)\./, 'APA author initials and year');
         assert.match(await page.locator('#ref-howell em').innerText(), /Statistical methods for psychology/, 'APA book title');
@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
           const id = await fig.evaluate(el => el.closest('[id]').id);
           await fig.screenshot({ path: `tmp/verification/ch02-${id}.png` });
         }
-        assert.equal(await page.locator('#refs .csl-entry').count(), 49);
+        assert.equal(await page.locator('#refs .csl-entry').count(), 50);
         assert.match(await page.locator('#ref-cleveland1984').innerText(), /Cleveland, W. S., & McGill, R. \(1984\)/);
         assert.equal(await page.locator('#ref-cleveland1984 a').getAttribute('href'), 'https://doi.org/10.1080/01621459.1984.10478080');
         assert.match(await page.locator('#ref-howell').innerText(), /8\. vyd\./);
@@ -122,7 +122,7 @@ const server = http.createServer((req, res) => {
         fs.writeFileSync('tmp/verification/ch02-citations.json', JSON.stringify(await page.locator('.citation, #refs .csl-entry').allTextContents(),null,2));
       }
       if (file === 'quarto/literatura.html') {
-        assert.equal(await page.locator('#refs .csl-entry:visible').count(),49,'All cited sources appear in the shared bibliography');
+        assert.equal(await page.locator('#refs .csl-entry:visible').count(),50,'All cited sources appear in the shared bibliography');
         assert.equal(await page.locator('h1 .chapter-number').count(),0,'Bibliography is unnumbered');
         for (const key of ['nistOutliers', 'nistUniform']) {
           assert.match(await page.locator(`#ref-${key}`).innerText(), /Získáno\s+5\. října 2026, z/, 'Czech retrieval date in the shared bibliography');
@@ -146,8 +146,8 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_03.html') {
         assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
-        assert.equal(await page.locator('main img').count(),8);
-        assert.equal(await page.locator('#refs .csl-entry').count(),49);
+        assert.equal(await page.locator('main img').count(),9);
+        assert.equal(await page.locator('#refs .csl-entry').count(),50);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);
           assert(!await block.locator('.callout-collapse').isVisible(),'Optional material initially closed');
@@ -164,7 +164,7 @@ const server = http.createServer((req, res) => {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch03-${id}.png`});
         }
-        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-vypocet-kvantilu','sec-percentilove-poradi','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-entropie','sec-momenty','sec-excel-poloha']) {
+        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-stred-tvar','sec-vypocet-kvantilu','sec-percentilove-poradi','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-entropie','sec-momenty','sec-excel-poloha']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch03-${id}-desktop.png`});
         }
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
@@ -238,7 +238,7 @@ const server = http.createServer((req, res) => {
           await block.locator('[data-bs-toggle="collapse"]').click();
           await block.locator('.callout-collapse').waitFor({state:'hidden'});
         }
-        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-vypocet-kvantilu','sec-percentilove-poradi','sec-korekce-rozptylu','sec-boxplot','sec-excel-zaklad-03']) {
+        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-stred-tvar','sec-vypocet-kvantilu','sec-percentilove-poradi','sec-korekce-rozptylu','sec-boxplot','sec-excel-zaklad-03']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch03-${id}-mobile.png`});
         }
       }
@@ -431,7 +431,7 @@ const server = http.createServer((req, res) => {
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
     }
     await plain.goto(base+'quarto/literatura.html');
-    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),49);
+    assert.equal(await plain.locator('#refs .csl-entry:visible').count(),50);
     await noScript.close();
     const local = await browser.newPage({ viewport: { width: 1360, height: 1000 } });
     await local.goto(pathToFileURL(path.join(root, 'quarto/kapitola_01.html')).href);

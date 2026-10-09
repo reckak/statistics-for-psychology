@@ -75,6 +75,46 @@ ch3_draw('odlehle-a-stred',{
     abline(v=mean(x),col='#B16A26',lwd=2);abline(v=median(x),col='#267888',lty=2,lwd=2)
   }
 },height=5.4)
+# Exact continuous models on a 0-100 scale: symmetric beta and mirrored betas.
+ch3_centre_models <- data.frame(a=c(5,5,2),b=c(5,2,5))
+ch3_centre_models$mean <- with(ch3_centre_models,100*a/(a+b))
+ch3_centre_models$median <- with(ch3_centre_models,100*qbeta(.5,a,b))
+ch3_centre_models$mode <- with(ch3_centre_models,100*(a-1)/(a+b-2))
+ch3_draw('stred-a-tvar',{
+  par(mfrow=c(3,1),mar=c(6.1,1.2,2.8,1.2),mgp=c(2,.5,0),cex=1.15)
+  titles<-c('Souměrné rozdělení','Zešikmené doleva',
+    'Zešikmené doprava')
+  cols<-c('#B16A26','#267888','#72549B'); types<-c(1,2,3)
+  grid<-seq(0,100,length.out=1001)
+  for(j in 1:3) {
+    model<-ch3_centre_models[j,]
+    den<-dbeta(grid/100,model$a,model$b)/100
+    plot(grid,den,type='n',xlim=c(0,100),ylim=c(0,.03),axes=FALSE,
+      xlab='',ylab='',main=titles[j],cex.main=1.1,xaxs='i',yaxs='i')
+    polygon(c(grid,100,0),c(den,0,0),col='#E7EFF4',border=NA)
+    axis(1,at=seq(0,100,20),cex.axis=.95)
+    lines(grid,den,col='#315D80',lwd=2.5)
+    centres<-as.numeric(model[c('mean','median','mode')])
+    if(j==1) {
+      segments(50,0,50,dbeta(.5,5,5)/100,col='#223744',lwd=2)
+      text(50,-.015,'Průměr = medián = modus = 50',xpd=NA,cex=1.02)
+    } else {
+      # Staggered leader labels keep close mean/median positions legible.
+      order_x<-order(centres)
+      label_x<-if(j==2) c(47,70,92) else c(8,30,53)
+      for(k in 1:3) {
+        i<-order_x[k]; at<-centres[i]
+        segments(at,0,at,dbeta(at/100,model$a,model$b)/100,
+          col=cols[i],lty=types[i],lwd=2)
+        segments(at,-.006,label_x[k],-.010,xpd=NA,col=cols[i])
+        label<-paste0(c('Průměr','Medián','Modus')[i],'\n',
+          format(round(at,1),decimal.mark=',',trim=TRUE))
+        text(label_x[k],-.014,label,xpd=NA,col=cols[i],cex=1.02)
+      }
+    }
+    text(50,-.025,'Skór (body)',xpd=NA,cex=.95)
+  }
+},width=5.5,height=10.5)
 ch3_draw('kvantil-interpolace',{
   par(mfrow=c(2,1),mar=c(4.7,4.4,3.6,.6),cex=1)
   plot(100*ch3_interpolation_levels,ch3_interpolation,type='o',pch=21,

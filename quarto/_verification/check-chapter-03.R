@@ -18,6 +18,18 @@ eq(ch3_quantile(x,seq(.25,.5,length.out=101)),rep(5,101))
 stopifnot(ch3_quantile(x,.249)<5,ch3_quantile(x,.501)>5)
 eq(ch3_quantile(x,c(.4,.7)),c(5,5.8))
 # Type-7 interpolation: knots, fractional positions, endpoints and ties.
+# Independently integrate the densities used in the centre/shape illustration.
+for(j in 1:nrow(ch3_centre_models)) {
+  model<-ch3_centre_models[j,]
+  density<-function(z) dbeta(z/100,model$a,model$b)/100
+  eq(integrate(density,0,100)$value,1)
+  eq(integrate(function(z) z*density(z),0,100)$value,model$mean)
+  eq(integrate(density,0,model$median)$value,.5)
+  stopifnot(abs(optimize(density,c(0,100),maximum=TRUE)$maximum-model$mode)<.001)
+}
+eq(as.numeric(ch3_centre_models[1,c('mean','median','mode')]),rep(50,3))
+eq(as.numeric(ch3_centre_models[2,c('mean','median','mode')])+as.numeric(ch3_centre_models[3,c('mean','median','mode')]),rep(100,3))
+stopifnot(with(ch3_centre_models,mean[2]<median[2] && median[2]<mode[2] && mode[3]<median[3] && median[3]<mean[3]))
 eq(ch3_quantile(ch3_interpolation,ch3_interpolation_levels),ch3_interpolation)
 eq(ch3_quantile(ch3_interpolation,.17),6.4)
 eq(mean(ch3_interpolation<=6.4),2/11)
