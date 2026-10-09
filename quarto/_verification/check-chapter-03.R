@@ -8,6 +8,29 @@ eq(sum(x^2),202); eq(sum(x)^2,900)
 eq(mean(abs(x-mean(x))),1.6); eq(var(x),5.5); eq(mad(x,constant=1),1)
 eq(ch3_quantile(x,c(0,.25,.5,.75,.9,1)),c(4,5,5,6,8.4,10))
 eq(ch3_quantile(1:4,.3),1.9); eq(mean(x<=5),.6); eq(mean(x<=8.4),.8)
+# Type-7 interpolation: knots, fractional positions, endpoints and ties.
+eq(ch3_quantile(ch3_interpolation,ch3_interpolation_levels),ch3_interpolation)
+eq(ch3_quantile(ch3_interpolation,.17),6.4)
+eq(mean(ch3_interpolation<=6.4),2/11)
+interpolate_by_position <- function(x,p) {
+  x<-sort(x);n<-length(x)
+  if(n==1L) return(x[1])
+  position<-1+(n-1)*p;i<-floor(position)
+  if(i==n || position==i) return(x[i])
+  x[i]+(position-i)*(x[i+1]-x[i])
+}
+for(z in list(ch3_interpolation,c(1,1,1,3,4,8),c(4,5,5,6,10),7)) {
+  probs<-c(0,.1,.17,.25,.3,.5,.75,.9,1)
+  eq(vapply(probs,function(p) interpolate_by_position(z,p),numeric(1)),ch3_quantile(z,probs))
+}
+# Numerical entries in the printed table must agree with the figure's input.
+chapter_lines<-readLines('quarto/kapitola_03.qmd',encoding='UTF-8')
+table_start<-grep('Pozice v seřazené řadě',chapter_lines,fixed=TRUE)
+table_rows<-chapter_lines[table_start+2:12]
+table_numbers<-do.call(rbind,lapply(strsplit(table_rows,'|',fixed=TRUE),function(row)
+  as.numeric(gsub('%','',trimws(row[2:4]),fixed=TRUE))))
+eq(table_numbers[,1],1:11);eq(table_numbers[,2],ch3_interpolation)
+eq(table_numbers[,3],100*ch3_interpolation_levels)
 eq(ch3_moments(x),c(10.8/4.4^1.5,54.8/4.4^2-3))
 eq(ch3_corrected(x),c(1.74436949745499,3.32231404958677))
 eq(ch3_stats(c(4,5,5,6,30))[c('mean','median','variance','median_abs')],c(10,5,125.5,1))

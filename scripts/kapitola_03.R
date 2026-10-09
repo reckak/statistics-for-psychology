@@ -3,6 +3,9 @@ ch3_data <- read.csv('data/kapitola_03.csv', fileEncoding = 'UTF-8')
 ch3_previous <- read.csv('data/kapitola_02.csv', na.strings = '', fileEncoding = 'UTF-8')
 ch3_x <- ch3_data$doba_min[ch3_data$soubor == 'zaklad']
 ch3_trim <- sort(ch3_data$doba_min[ch3_data$soubor == 'orezani'])
+# Self-contained teaching example printed in the chapter's interpolation table.
+ch3_interpolation <- c(4,5,7,8,9,10,12,13,15,18,22)
+ch3_interpolation_levels <- (seq_along(ch3_interpolation)-1)/(length(ch3_interpolation)-1)
 ch3_quantile <- function(x, p) unname(quantile(x, p, type = 7, na.rm = TRUE))
 ch3_moments <- function(x) {
   z <- x - mean(x); v <- mean(z^2)
@@ -72,6 +75,28 @@ ch3_draw('odlehle-a-stred',{
     abline(v=mean(x),col='#B16A26',lwd=2);abline(v=median(x),col='#267888',lty=2,lwd=2)
   }
 },height=5.4)
+ch3_draw('kvantil-interpolace',{
+  par(mfrow=c(2,1),mar=c(4.7,4.4,3.6,.6),cex=1)
+  plot(100*ch3_interpolation_levels,ch3_interpolation,type='o',pch=21,
+    bg='#267888',col='#267888',lwd=2,cex=1.15,xaxt='n',yaxt='n',bty='l',
+    xlab='Přiřazená úroveň kvantilu (%)',ylab='Doba úlohy (minuty)',
+    xlim=c(0,100),ylim=c(3,23),main='Jedenáct hodnot, deset kroků\npo 10 procentních bodech')
+  axis(1,at=seq(0,100,10));axis(2,at=c(4,8,12,16,20,22))
+  rect(10,5,20,7,border='#B16A26',lwd=2)
+  arrows(31,5.5,21,6,length=.08,col='#B16A26')
+  text(32,5.5,'Detail dole',adj=0,col='#8A4D17',cex=.95)
+  plot(c(10,20),c(5,7),type='o',pch=21,bg='#267888',col='#267888',
+    lwd=2,cex=1.3,xaxt='n',yaxt='n',bty='l',xlim=c(9,21),ylim=c(4.75,7.35),
+    xlab='Přiřazená úroveň kvantilu (%)',ylab='Doba úlohy (minuty)',
+    main='17. percentil: sedm desetin cesty\nod 5 k 7 minutám')
+  axis(1,at=c(10,17,20));axis(2,at=c(5,6.4,7),labels=c('5','6,4','7'))
+  segments(17,4.75,17,6.4,lty=2,col='#B16A26',lwd=2)
+  segments(9,6.4,17,6.4,lty=2,col='#B16A26',lwd=2)
+  points(17,6.4,pch=21,bg='#B16A26',col='white',cex=1.5)
+  text(17,6.4,'6,4 min',pos=4,offset=.7,col='#8A4D17')
+  text(10,5,'Druhý čas',pos=4,offset=.6,cex=.95)
+  text(20,7,'Třetí čas',pos=2,offset=.7,cex=.95)
+},width=5.5,height=7.8)
 # Explicit type-7 box: never rely on R's default Tukey hinges.
 ch3_draw('boxplot',{
   x<-ch3_x;q<-ch3_quantile(x,c(.25,.5,.75));iq<-q[3]-q[1]

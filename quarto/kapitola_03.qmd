@@ -10,19 +10,19 @@ Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvar
 
 ## Co souhrnné ukazatele zachycují {#sec-poloha-variabilita}
 
-**Ukazatele polohy (*measures of location*)** vyjadřují, kde se rozdělení na škále nachází; při popisu jeho středu se používá také označení ukazatele centrální tendence. **Ukazatele variability (*measures of variability, measures of dispersion*)** zachycují, jak se hodnoty navzájem liší, například jak široce jsou rozloženy nebo jak daleko bývají od určitého středu. Vypočítané charakteristice souboru říkáme také **statistika (*statistic*)**. Toto užití slova odlišíme od statistiky jako oboru [@howell, oddíly 2.7–2.8].
+**Ukazatele polohy (*measures of location*)** vyjadřují, kde se rozdělení na škále nachází; při popisu jeho středu se používá také označení ukazatele střední (centrální) tendence. **Ukazatele variability (*measures of variability, measures of dispersion*)** zachycují, jak se hodnoty navzájem liší, například jak široce jsou rozloženy nebo jak daleko bývají od určitého středu. Vypočítané charakteristice souboru říkáme také **statistika (*statistic*)**. Toto užití slova odlišíme od statistiky (v ang. ***statistics*** se „s“ na konci) jako oboru [@howell, oddíly 2.7–2.8].
 
-Číselnou charakteristiku celé populace nebo modelu označujeme jako **parametr (*parameter*)**. Rozlišujme například průměr vypočtený u účastníků studie a průměr v populaci, o kterou se zajímáme. Výběrová statistika může sloužit k odhadu populačního parametru, ale její konkrétní hodnota závisí na získaných datech. K významu modelu se [vrátíme na konci výkladu](#sec-popis-a-model).
+Číselnou charakteristiku celé populace nebo modelu označujeme jako **parametr (*parameter*)**. Rozlišujme například průměr vypočtený u účastníků studie (výběrový průměr) a průměr v populaci (populační průměr), o kterou se zajímáme. Výběrová statistika může sloužit k odhadu populačního parametru, ale její konkrétní hodnota závisí na získaných datech. K významu modelu se [vrátíme na konci výkladu](#sec-popis-a-model).
 
 ![Dva modelové soubory dob dokončení úlohy se stejným průměrem a různou variabilitou.](../assets/chapter-03/plots/stejny-prumer.svg){#fig-stejny-prumer fig-alt="První soubor obsahuje hodnoty 5, 6, 6, 6 a 7 minut; druhý 2, 4, 6, 8 a 10 minut. Oba mají průměr 6 minut, druhý má větší rozptýlenost."}
 
-V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření je tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
+V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření může být tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
 
-Význam čísel závisí také na měřicí škále. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ není délka času. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
+Význam čísel závisí také na škále měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nevyjadřuje přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
 
 ## Tři způsoby vyjádření středu {#sec-stred-rozdeleni}
 
-Průběžný malý příklad obsahuje doby dokončení pozornostní úlohy u pěti modelových účastníků, v minutách:
+Průběžný malý příklad obsahuje doby dokončení úlohy měřící pozornost u pěti modelových účastníků, v minutách:
 
 $$4,\quad 5,\quad 5,\quad 6,\quad 10.$$
 
@@ -30,19 +30,23 @@ Každý účastník poskytl jednu hodnotu. Rozsah souboru je tedy $n=5$. Zápis 
 
 ### Modus: nejčastější hodnota {#sec-modus}
 
-**Modus (*mode*)** je hodnota nebo kategorie s nejvyšší absolutní četností. V našem příkladu je modem **5 minut**, protože pětka se vyskytuje dvakrát a ostatní hodnoty jednou. Modem je hodnota 5, nikoli její četnost 2. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, můžeme obdobně určit nejčastější kategorii.
+**Modus (*mode*)** je hodnota nebo kategorie s nejvyšší četností. V našem příkladu je modem **5 minut**, protože pětka se vyskytuje dvakrát a ostatní hodnoty jednou. Modem je hodnota 5, nikoli její četnost 2. Použití absolutních nebo relativních četností výsledek nemění: při převodu na podíly dělíme všechny četnosti stejným počtem pozorování. U nominální proměnné, například hlavního způsobu přípravy na zkoušku, můžeme obdobně určit nejčastější kategorii.
 
 Je-li nejvyšší četnost sdílena několika hodnotami, uvedeme všechny. Pro 4, 4, 6, 6 a 9 jsou tedy mody 4 a 6; jejich průměr 5 není modem. Jestliže se všechny hodnoty vyskytují stejně často, žádná není jednoznačně nejčastější. Ve zprávě je užitečnější tuto skutečnost napsat než uvést arbitrárně vybraný modus.
 
-U jemně měřených spojitých veličin se přesné hodnoty často neopakují. Nejvyšší sloupec histogramu pak označuje nejčetnější **interval**, nikoli nutně konkrétní modus původních dat. Připomeňme také rozdíl mezi touto definicí a [vrcholy rozdělení](kapitola_02.qmd#sec-tvar-rozdeleni): dva výrazné vrcholy histogramu nemusí mít stejnou výšku, zatímco několik modů jednotlivých hodnot sdílí nejvyšší četnost.
+V grafu četností jednotlivých číselných hodnot najdeme modus na vodorovné ose **pod nejvyšším vrcholem**; výška vrcholu vyjadřuje jeho četnost. Odtud souvislost s označeními z [výkladu tvaru rozdělení](kapitola_02.qmd#sec-tvar-rozdeleni): jednovrcholové rozdělení se označuje také jako **unimodální**, dvouvrcholové jako **bimodální** a vícevrcholové jako **multimodální**. Při popisu tvaru však počítáme výrazné vrcholy, které nemusí být stejně vysoké. Bimodální tvar tedy nemusí znamenat dvě jednotlivé hodnoty se shodnou nejvyšší četností [@howell, s. 27, 32].
+
+U jemně měřených spojitých veličin může být modus přesných hodnot málo informativní. Představme si reakční časy zaznamenané na tisícinu sekundy: téměř každý člověk může mít jiný čas. Pokud se pouze jeden čas náhodou objeví dvakrát, stane se modem, i když se nejvíce ostatních časů soustřeďuje v jiné části rozdělení. Samotná shoda dvou hodnot tak nemusí vystihovat oblast největšího soustředění dat.
+
+Pro tuto otázku je užitečnější seskupit hodnoty do intervalů a prohlédnout histogram. **Při stejně širokých intervalech** nejvyšší sloupec označuje nejčetnější interval, nikoli přesnou nejčastější hodnotu. Výsledek závisí také na šířce a umístění intervalů; nápadný vrchol jednoho histogramu proto nemusí být stálou vlastností dat. U nestejně širokých intervalů nelze četnost porovnávat jen podle výšky sloupců, jak vysvětluje [oddíl o histogramu](kapitola_02.qmd#sec-histogram).
 
 ### Medián: prostřední poloha {#sec-median}
 
-**Medián (*median*)**, zde $\tilde{x}$, určíme po seřazení hodnot od nejmenší po největší. Vlnovka nad $x$ je součást značky pro medián. Při lichém počtu pozorování vezmeme prostřední hodnotu. V řadě 4, 5, 5, 6, 10 je třetí hodnota **5 minut**.
+**Medián (*median*)**, zde $\tilde{x}$, je hodnota vyjadřující prostřední polohu uspořádaného souboru: **alespoň polovina pozorování má hodnotu menší nebo rovnou mediánu a alespoň polovina větší nebo rovnou mediánu**. Vlnovka nad $x$ je součást značky pro medián. Pro jeho určení nejprve seřadíme hodnoty od nejmenší po největší. Při lichém počtu pozorování vezmeme prostřední hodnotu. V řadě 4, 5, 5, 6, 10 je třetí hodnota **5 minut**.
 
 Při sudém počtu číselných hodnot používáme průměr dvou prostředních hodnot. Pro 4, 5, 6 a 10 je tedy medián $(5+6)/2=5{,}5$ minuty. Výsledek nemusí být mezi skutečně zaznamenanými hodnotami. Pět a půl minuty je zde hranice prostředku uspořádaného souboru, nikoli tvrzení, že někdo právě takovou dobu naměřil.
 
-U číselných dat medián splňuje, že **alespoň polovina hodnot je nejvýše rovna mediánu a alespoň polovina je nejméně rovna mediánu**. Neznamená to, že přesně polovina je menší a přesně polovina větší. V našem pětičlenném souboru je pod mediánem 20,0 % hodnot, rovno mediánu 40,0 % a nad ním 40,0 %. Shodné hodnoty nelze při interpretaci přehlížet [@dostal, oddíl 3.4.3].
+Slovo **alespoň** je v definici podstatné: neznamená to, že přesně polovina hodnot je menší a přesně polovina větší. V našem pětičlenném souboru je pod mediánem 20,0 % hodnot, rovno mediánu 40,0 % a nad ním 40,0 %. Nejvýše rovno mediánu je tedy 60,0 % a nejméně rovno mediánu 80,0 % hodnot; obě podmínky jsou splněny. U sudého počtu číselných hodnot podmínky splňují všechny hodnoty mezi dvěma prostředními včetně obou krajů; běžná konvence vybírá jejich průměr. Shodné hodnoty ani tuto výpočetní konvenci nelze při interpretaci přehlížet [@dostal, oddíl 3.4.3].
 
 U slovních ordinálních kategorií můžeme hledat prostřední kategorii, protože známe pořadí. Pokud ale dvě prostřední pozorování spadají do různých kategorií, nebudeme průměrovat jejich kódy. Pro „vůbec, trochu, dost, zcela“ uvedeme, že prostřední dvě odpovědi jsou „trochu“ a „dost“. Číslo 2,5 by bez dalšího předpokladu o vzdálenostech mezi kategoriemi nepředstavovalo novou měřenou kategorii.
 
@@ -66,6 +70,26 @@ Průměr využívá velikost každé hodnoty. Pro jeho interpretaci potřebujeme
 
 U rozdělení s dlouhým pravým chvostem bývá průměr vyšší než medián, protože velké hodnoty zvyšují součet. Je to užitečné vodítko, nikoli univerzální pravidlo určující pořadí průměru, mediánu a modu v každém možném souboru. Průměr lze vypočítat i při silné šikmosti; normální rozdělení není podmínkou jeho výpočtu [@howell, oddíl 2.7; @cumming, s. 51–55].
 
+### Výhody a omezení modu, mediánu a průměru {#sec-volba-stredu}
+
+Žádný z těchto ukazatelů není nejlepší pro všechny otázky. Modus odpovídá na otázku **„Co se vyskytuje nejčastěji?“**, medián **„Kde leží prostředek uspořádaných hodnot?“** a průměr **„Kolik připadá na jeden případ, rozdělíme-li součet rovnoměrně?“** Následující srovnání shrnuje hlavní výhody a omezení všech tří ukazatelů [@howell, s. 34–35].
+
+::: {.table-scroll}
+| Ukazatel | V čem je užitečný | Co ponechává stranou a na co dát pozor |
+|:---|:---|:---|
+| **Modus** | Určí nejčastější skutečně pozorovanou hodnotu nebo kategorii. Je použitelný i u nominálních dat, kde průměr ani medián nemají smysluplnou interpretaci. | Nejčastější neznamená většinový: modem může být kategorie zastoupená méně než polovinou lidí. Modus nemusí být jednoznačný a nepopisuje vzdálenosti ostatních hodnot. U jemného měření může zachytit jen ojedinělou shodu. |
+| **Medián** | Vystihuje prostřední polohu a je odolný vůči tomu, jak daleko leží několik krajních hodnot. Pro určení prostřední kategorie stačí pořadí. | Nemusí zaznamenat změny mimo prostředek řady, i když jsou věcně důležité. Ze samotného mediánu nezjistíme součet. U sudého počtu číselných hodnot nemusí být výsledný medián pozorován; průměrování prostředních hodnot vyžaduje smysluplné vzdálenosti. |
+| **Aritmetický průměr** | Zohledňuje velikost každé hodnoty a souvisí přímo se součtem. Umožňuje například spojit průměry skupin, známe-li jejich velikosti. | Reaguje i na jedinou velmi vzdálenou hodnotu. Vyžaduje smysluplné sčítání a rozdíly hodnot; může ležet tam, kde žádné pozorování není. |
+
+: Srovnání tří ukazatelů středu. {#tbl-srovnani-stredu tbl-colwidths="[18,36,46]"}
+:::
+
+V našem příkladu je **5 minut** nejčastější dobou i prostřední polohou. Modus však zastupuje jen dva z pěti účastníků, tedy 40,0 %, nikoli většinu. Pokud chceme vyjádřit celkovou časovou zátěž připadající na člověka, použijeme průměr **6 minut**: pět účastníků dohromady potřebovalo 30 minut. Nahrazení času 10 minut časem 30 minut je pro tento účel významná změna, kterou má průměr zachytit. Pro popis prostředního času je naopak užitečné, že medián zůstane 5 minut.
+
+Odolnost mediánu tedy neznamená, že krajní hodnoty nejsou důležité nebo je můžeme automaticky vyřadit. A citlivost průměru není vždy nevýhodou: záleží, zda chceme zachytit prostřední polohu, nebo celkovou velikost rozdělenou mezi případy. Samotný modus zase neříká, jak blízko nejčastější hodnotě leží ostatní lidé; při těsném rozdílu četností může i malá změna dat změnit, která hodnota je nejčastější.
+
+Při volbě proto společně zvažujeme **otázku, úroveň měření a tvar rozdělení**. U výrazně nesouměrných nebo vícevrcholových dat je zvlášť důležité doplnit souhrn grafem; může být vhodné uvést průměr i medián a vysvětlit, proč se liší. To, že průměr či medián není přímo pozorovanou hodnotou, samo o sobě není chybou. Ani jejich shoda sama nedokazuje souměrnost rozdělení.
+
 ### Průměr více skupin {#sec-vazeny-prumer}
 
 Při spojování skupin musíme zachovat příspěvek každého člověka. Deset účastníků dokončilo úlohu v průměru za 4 minuty a třicet za 8 minut. Celkem strávili úlohou $10\times4+30\times8=280$ minut. **Vážený průměr (*weighted mean*)**, v tomto případě průměr s vahami danými velikostmi skupin, je
@@ -80,17 +104,61 @@ Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstru
 
 Medián popisuje prostřední polohu. Někdy nás zajímá jiná část uspořádaného rozdělení: například hranice vysokých časů potřebných k dokončení úlohy. **Kvantily (*quantiles*)** jsou hodnoty na škále spojené se zvolenými úrovněmi kumulativního zastoupení. Pro úroveň $p$ používáme zápis $q_p$, kde $p$ je podíl od 0 do 1. Nejde o index kategorie v dřívějším $p_j$; zde volíme úroveň hledaného kvantilu.
 
-**Percentily (*percentiles*)** vyjadřují tyto úrovně v setinách: 25. percentil odpovídá $q_{0{,}25}$. **Kvartily (*quartiles*)** jsou kvantily na úrovních jedné čtvrtiny, poloviny a tří čtvrtin. Dolní kvartil je $q_{0{,}25}$, druhý kvartil je medián a horní kvartil $q_{0{,}75}$. Běžné značky Q₁, Q₂ a Q₃ najdete jako alternativy v [přehledu značení](znaceni.qmd#znak-kvantil). Slovo kvartil zde označuje hraniční hodnotu, nikoli jednu ze čtyř skupin lidí.
+**Percentily (*percentiles*)** vyjadřují tyto úrovně v setinách: 25. percentil odpovídá $q_{0{,}25}$. **Kvartily (*quartiles*)** jsou kvantily na úrovních jedné čtvrtiny, poloviny a tří čtvrtin. Dolní kvartil je $q_{0{,}25}$, druhý kvartil je medián a horní kvartil $q_{0{,}75}$. Běžné značky Q₁, Q₂ a Q₃ najdete jako alternativy v [přehledu značení](znaceni.qmd#znak-qp). Slovo kvartil zde označuje hraniční hodnotu, nikoli jednu ze čtyř skupin lidí.
 
 ### Jedna výpočetní konvence {#sec-vypocet-kvantilu}
 
 V konečném souboru nelze vždy oddělit přesně požadovaný podíl dat. Někdy není požadovaný počet lidí celé číslo, jindy se hodnoty opakují. Existuje proto více konvencí výpočtu výběrových kvantilů. Pro číselná data v této učebnici používáme postup funkce **PERCENTIL.INC (*PERCENTILE.INC*)**. Pokud je potřeba, provádí **lineární interpolaci (*linear interpolation*)**: hledá hodnotu mezi dvěma sousedními hodnotami úměrně tomu, jak daleko je hledaná pozice mezi jejich pozicemi [@hyndman1996; @msPercentileInc].
 
-Nejprve hodnoty seřadíme. Zápis $x_{(i)}$ označuje hodnotu na $i$-té pozici v seřazené řadě; závorky v indexu odlišují tuto pozici od původního pořadí záznamů. Pro úroveň $p$ vypočítáme
+Nejprve hodnoty seřadíme. Zápis $x_{(i)}$ označuje hodnotu na $i$-té pozici v seřazené řadě; závorky v indexu odlišují tuto pozici od původního pořadí záznamů. Princip si ukážeme na **jedenácti různých modelových dobách dokončení úlohy**. Každý z jedenácti účastníků poskytl jednu hodnotu:
+
+::: {.table-scroll}
+| Pozice v seřazené řadě $i$ | Doba $x_{(i)}$ (minuty) | Přiřazená úroveň kvantilu $p$ vyjádřená v procentech |
+|---:|---:|---:|
+| 1 | 4 | 0 % |
+| 2 | 5 | 10 % |
+| 3 | 7 | 20 % |
+| 4 | 8 | 30 % |
+| 5 | 9 | 40 % |
+| 6 | 10 | 50 % |
+| 7 | 12 | 60 % |
+| 8 | 13 | 70 % |
+| 9 | 15 | 80 % |
+| 10 | 18 | 90 % |
+| 11 | 22 | 100 % |
+:::
+
+Mezi jedenácti pozicemi je **deset mezer**. Konvence PERCENTIL.INC přiřadí první hodnotě úroveň 0 % a poslední 100 %; mezi sousedními pozicemi proto postupujeme vždy o deset procentních bodů. Druhá hodnota je v této konvenci 10. percentilem, třetí 20. percentilem a tak dále. Mezi časy samotnými však stejně velké rozdíly být nemusejí: z 5 na 7 minut jsou to dvě minuty, ze 7 na 8 pouze jedna.
+
+**Nejde o rozdělení pozorování na deset skupin po 10 %.** Procenta ve třetím sloupci jsou úrovně přiřazené pozicím pro výpočet kvantilů. Každý člověk zde tvoří $1/11$ souboru, tedy přibližně 9,1 %. Například nejvýše 5 minut potřebovali dva z jedenácti lidí, přibližně 18,2 %, přestože času 5 minut je pro interpolaci přiřazena úroveň 10 %.
+
+Pro libovolný počet hodnot větší než jedna odpovídá pozici $i$ úroveň
+
+$$p=\frac{i-1}{n-1}.$$
+
+Čitatel $i-1$ počítá mezery od první pozice k vybrané pozici, jmenovatel $n-1$ všechny mezery od první k poslední. Pro třetí z jedenácti hodnot je to $(3-1)/(11-1)=2/10=0{,}2$, tedy 20 %. Při hledání kvantilu postupujeme opačně: známe úroveň $p$ a chceme najít pozici. Z téhož vztahu dostaneme
 
 $$\text{pozice}=1+(n-1)\times p.$$
 
-Je-li pozice celé číslo, vezmeme příslušnou hodnotu. Leží-li například na pozici 2,4, posuneme se od druhé hodnoty ke třetí o 0,4 jejich rozdílu. Pro $p=0$ dostáváme minimum, pro $p=1$ maximum. U jediného platného pozorování se všechny kvantily rovnají této hodnotě.
+Je-li pozice celé číslo, vezmeme příslušnou hodnotu. Pro $p=0$ dostáváme minimum, pro $p=1$ maximum. U jediného platného pozorování se všechny kvantily rovnají této hodnotě; vzorec s dělením $n-1$ v takovém případě nepoužíváme.
+
+**Co když hledáme 17. percentil?** Pro jedenáct hodnot dostaneme pozici $1+10\times0{,}17=2{,}7$, tedy mezi druhou a třetí hodnotou. Úroveň 17 % leží mezi 10 % a 20 % v sedmi desetinách cesty:
+
+$$\frac{0{,}17-0{,}10}{0{,}20-0{,}10}=\frac{0{,}07}{0{,}10}=0{,}7.$$
+
+Stejnou část cesty urazíme od druhého času 5 minut ke třetímu času 7 minut. Rozdíl je $7-5=2$ minuty, sedm desetin rozdílu je $0{,}7\times2=1{,}4$ minuty. Tuto část přičteme k nižší hodnotě:
+
+$$q_{0{,}17}=5+0{,}7\times(7-5)=6{,}4\ \text{minuty}.$$
+
+![Výpočet kvantilů z jedenácti modelových časů: přiřazené úrovně a detail lineární interpolace pro 17. percentil.](../assets/chapter-03/plots/kvantil-interpolace.svg){#fig-kvantil-interpolace fig-alt="Horní graf spojuje jedenáct časů s přiřazenými úrovněmi od 0 do 100 procent. Dolní graf zvětšuje úsek od 10 procent a 5 minut do 20 procent a 7 minut. Hledaných 17 procent leží v sedmi desetinách vodorovné vzdálenosti; na spojnici mu odpovídá 6,4 minuty."}
+
+V horním panelu @fig-kvantil-interpolace jsou vodorovné rozestupy bodů stejné, ale svislé rozdíly časů se mění. Dolní panel ukazuje, proč mluvíme o **lineární** interpolaci: mezi dvěma sousedními body vedeme přímou úsečku a hledanou hodnotu odečteme na ní. Spojnice je pravidlo výpočtu; netvrdí, že jsme mezi 5 a 7 minutami pozorovali další lidi nebo že jsou tam časy v populaci rovnoměrně rozloženy. Výsledek 6,4 minuty leží blíže k 7 než k 5 minutám, protože úroveň 17 % je blíže k 20 % než k 10 %.
+
+Obecně označíme $i$ jako **celou část necelé pozice**: například u pozice 2,7 je $i=2$. Nižší sousední hodnota je $x_{(i)}$, vyšší $x_{(i+1)}$. Rozdíl $\text{pozice}-i$ udává, jakou část cesty mezi nimi urazíme. Přesný výpočet je
+
+$$q_p=x_{(i)}+(\text{pozice}-i)\times\bigl(x_{(i+1)}-x_{(i)}\bigr).$$
+
+Jinými slovy: **nižší hodnota + příslušná část rozdílu k vyšší hodnotě**. V našem příkladu dosazujeme $i=2$, $\text{pozice}-i=0{,}7$, $x_{(2)}=5$ a $x_{(3)}=7$. Pokud jsou sousední hodnoty shodné, je jejich rozdíl nulový a interpolace vrací tutéž hodnotu. Přehled obou vztahů najdete v [tabulce značení a vzorců](znaceni.qmd#vztah-interpolace).
 
 ::: worked-example
 **Kvartily a jiný percentil.** Pro 4, 5, 5, 6, 10 je $n=5$. Dolní kvartil má pozici $1+4\times0{,}25=2$, tedy hodnotu 5. Medián má pozici 3 a hodnotu 5. Horní kvartil má pozici 4 a hodnotu 6. Pro 90. percentil je pozice $1+4\times0{,}9=4{,}6$. Mezi čtvrtou hodnotou 6 a pátou hodnotou 10 se posuneme o šest desetin rozdílu:
@@ -472,8 +540,12 @@ První skupina vybavila dohromady $8\times6=48$ slov, druhá $12\times9=108$. Sp
 
 Pro skóry 1, 1, 1, 3, 4, 8 určete medián, dolní kvartil, horní kvartil a mezikvartilové rozpětí. Jaké je inkluzivní percentilové pořadí skóru 1? Vysvětlete rozdíl mezi tímto pořadím a hodnotou percentilu.
 
+Dále uvažujte jedenáct **různých** časů: jejich 17. percentil podle PERCENTIL.INC leží mezi druhou a třetí seřazenou hodnotou. Kolik pozorování je nejvýše rovno tomuto percentilu a jaký podíl souboru tvoří? Potřebujete k této odpovědi znát konkrétní časy?
+
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Medián je $(1+3)/2=2$. Dolní kvartil má pozici $1+5\times0{,}25=2{,}25$; mezi druhou a třetí hodnotou 1 vyjde opět 1. Horní kvartil má pozici $1+5\times0{,}75=4{,}75$, tedy $3+0{,}75(4-3)=3{,}75$. Mezikvartilové rozpětí je $3{,}75-1=2{,}75$ bodu. Tři ze šesti skórů jsou nejvýše rovny 1, takže jeho percentilové pořadí je 50. Pořadí je relativní postavení daného skóru; percentil je hodnota na škále vypočtená pro zvolenou úroveň. Medián 2 a percentilové pořadí 50 pro skór 1 se nevylučují: používáme dva různé postupy a data obsahují shody.
+
+U jedenácti různých časů je pozice $1+10\times0{,}17=2{,}7$. Výsledek leží přísně mezi druhou a třetí hodnotou, takže jsou mu nejvýše rovny **dva časy**. Jde o $2/11\times100\doteq18{,}2$ % pozorování, nikoli 17 %. K určení tohoto počtu a podílu stačí jejich pořadí a informace, že jsou všechny různé; konkrétní časy bychom potřebovali až pro číselnou hodnotu percentilu v minutách.
 :::
 
 ### 4. Co je na ordinální škále přípustné
