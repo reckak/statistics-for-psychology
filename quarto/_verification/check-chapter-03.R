@@ -91,7 +91,15 @@ eq(ch3_entropy(c(.5,.25,.25,0))/log2(4),.75)
 eq(round(ch3_entropy(c(.5,.25,.25))/log2(3),3),.946)
 eq(ch3_entropy(c(1,0,0,0))/log2(4),0);eq(ch3_entropy(rep(.25,4))/log2(4),1)
 eq(ch3_moments(ch3_peak_a)[2],2); eq(ch3_moments(ch3_peak_b)[2],98/9)
-eq(c(mean(ch3_shape_a),var(ch3_shape_a)),c(6,4.8)); eq(c(mean(ch3_shape_b),var(ch3_shape_b)),c(6,4.8))
+# Exact population moments, independently integrated over complete supports.
+eq(sum(c(-1,1)*.5),0);eq(sum(c(-1,1)^2*.5),1)
+eq(integrate(function(z) z*dnorm(z),-Inf,Inf)$value,0)
+eq(integrate(function(z) z^2*dnorm(z),-Inf,Inf)$value,1)
+eq(integrate(function(z) z*dgamma(z+2,4,rate=2),-2,Inf)$value,0)
+eq(integrate(function(z) z^2*dgamma(z+2,4,rate=2),-2,Inf)$value,1)
+eq(mean(2+3*x),2+3*mean(x));eq(sd(2+3*x),3*sd(x))
+eq(var(2-3*x),9*var(x));eq(mean(x^2),40.4)
+eq(diff(c(2,3)^2),5);eq(diff(c(8,9)^2),17)
 # Quantitative exercise solutions.
 # Cumulative selection preserves observed values and ordinal categories.
 first_reached <- function(values,p) {
