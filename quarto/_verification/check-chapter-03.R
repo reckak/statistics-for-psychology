@@ -4,6 +4,11 @@ eq <- function(actual,expected,tolerance=1e-10) stopifnot(isTRUE(all.equal(as.nu
 x <- ch3_x
 eq(x,c(4,5,5,6,10)); eq(sum(x),30); eq(mean(x),6); eq(median(x),5)
 eq(x-mean(x),c(-2,-1,-1,0,4)); eq(sum((x-mean(x))^2),22)
+# Segment lengths and square areas in the two-panel geometry illustration.
+eq(ch3_deviations,c(-2,-1,-1,0,4))
+eq(ch3_square_width,c(2,1,1,0,4));eq(ch3_square_width^2,c(4,1,1,0,16))
+eq(sum(ch3_square_width),8);eq(sum(ch3_square_width^2),22)
+stopifnot(all(seq_along(x)==ch3_square_left | seq_along(x)==ch3_square_left+ch3_square_width))
 eq(sum(x^2),202); eq(sum(x)^2,900)
 eq(mean(abs(x-mean(x))),1.6); eq(var(x),5.5); eq(mad(x,constant=1),1)
 eq(ch3_quantile(x,c(0,.25,.5,.75,.9,1)),c(4,5,5,6,8.4,10))
