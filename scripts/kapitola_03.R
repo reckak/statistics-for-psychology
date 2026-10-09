@@ -43,8 +43,12 @@ ch3_simulation_summary <- do.call(rbind,lapply(ch3_simulations,function(x)
 ch3_peak_a <- c(rep(-1,10),rep(0,80),rep(1,10))
 ch3_peak_b <- c(-3,rep(-1,9),rep(0,80),rep(1,9),3)
 # The two samples have the same mean and variance but different configurations.
-ch3_shape_a <- c(4,4,4,8,8,8)
-ch3_shape_b <- c(6-sqrt(12),6,6,6,6,6+sqrt(12))
+ch3_shape_breaks <- seq(-4.1,6.1,by=.2)
+ch3_shape_centers <- head(ch3_shape_breaks,-1)+.1
+ch3_shape_prob <- list(
+  as.numeric(abs(ch3_shape_centers+1)<1e-8 | abs(ch3_shape_centers-1)<1e-8)/2,
+  diff(pnorm(ch3_shape_breaks)),
+  diff(pgamma(ch3_shape_breaks+2,shape=4,rate=2)))
 ch3_out <- 'assets/chapter-03/plots'
 dir.create(ch3_out,recursive=TRUE,showWarnings=FALSE)
 dir.create('tmp/chapter-03-build',recursive=TRUE,showWarnings=FALSE)
@@ -251,9 +255,29 @@ ch3_draw('spicatost',{
   }
 },width=8,height=4.2)
 ch3_draw('stejne-dve-statistiky',{
-  par(mfrow=c(2,1),mar=c(3.7,4,2,.8))
-  for(x in list(ch3_shape_a,ch3_shape_b)) {
-    ch3_dots(x,xlim=c(2,10),ylim=c(.5,4.8),xlab='Skór v modelové úloze (body)',
-      main='Průměr 6 bodů; výběrový rozptyl 4,8 bodu²')
+  par(mfrow=c(3,1),mar=c(3.5,4.5,3,.7),cex=1)
+  for(i in 1:3) {
+    p<-ch3_shape_prob[[i]]
+    ymax<-c(.53,.11,.12)[i]
+    plot(NA,xlim=c(-4,6),ylim=c(0,ymax),xlab='Hodnota proměnné',ylab='Pravděpodobnost v intervalu',yaxt='n',
+      main=c('Dvě stejně pravděpodobné hodnoty','Souměrné zvonovité rozdělení','Rozdělení zešikmené doprava')[i],bty='l')
+    ticks<-if(i==1) seq(0,.5,.1) else seq(0,.1,.02)
+    axis(2,at=ticks,labels=format(ticks,decimal.mark=','))
+    rect(head(ch3_shape_breaks,-1),0,tail(ch3_shape_breaks,-1),p,col='#70AABB',border='white')
+    abline(v=0,lty=2,col='#B16A26')
+    text(5.8,ymax*.83,'Průměr = 0\nSměrodatná odchylka = 1',adj=1,cex=.9)
   }
-},height=5.5)
+},width=6.5,height=9)
+ch3_draw('transformace',{
+  par(mfrow=c(2,1),mar=c(4,4.5,3,.8))
+  for(i in 1:2) {
+    z<-seq(0,10,length.out=201);f<-if(i==1) function(x) 2+3*x else function(x) x^2
+    plot(z,f(z),type='l',lwd=2,col='#267888',xlab='Původní skór x',ylab='Nový skór y',
+      main=if(i==1) 'Lineární: y = 2 + 3x' else 'Nelineární: y = x²',bty='l')
+    points(c(2,3,8,9),f(c(2,3,8,9)),pch=19,col='#B16A26')
+    segments(c(2,8),f(c(2,8)),c(3,9),f(c(2,8)),lty=3)
+    arrows(c(3,9),f(c(2,8)),c(3,9),f(c(3,9)),code=3,angle=90,length=.08)
+    text(c(3,9)-.25,(f(c(2,8))+f(c(3,9)))/2,
+      if(i==1) c('+3','+3') else c('+5','+17'),pos=2,cex=.9)
+  }
+},width=6,height=8)
