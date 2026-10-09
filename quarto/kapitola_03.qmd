@@ -90,6 +90,20 @@ Odolnost mediánu tedy neznamená, že krajní hodnoty nejsou důležité nebo j
 
 Při volbě proto společně zvažujeme **otázku, úroveň měření a tvar rozdělení**. U výrazně nesouměrných nebo vícevrcholových dat je zvlášť důležité doplnit souhrn grafem; může být vhodné uvést průměr i medián a vysvětlit, proč se liší. To, že průměr či medián není přímo pozorovanou hodnotou, samo o sobě není chybou. Ani jejich shoda sama nedokazuje souměrnost rozdělení.
 
+### Střed a tvar rozdělení {#sec-stred-tvar}
+
+Jak spolu souvisejí polohy průměru, mediánu a modu, když změníme tvar rozdělení? Připomeňme si [souměrnost a směr zešikmení](kapitola_02.qmd#sec-tvar-rozdeleni). Směr zešikmení pojmenováváme podle **delšího chvostu**, tedy podle strany, do níž rozdělení vybíhá k vzdálenějším hodnotám; nikoli podle strany, kde leží vrchol.
+
+U **přesně souměrného rozdělení s jediným vrcholem ve středu** leží průměr, medián i modus na stejném místě, pokud průměr existuje. Protilehlé hodnoty se při výpočtu průměru vyvažují, medián odděluje obě poloviny a modus označuje vrchol. V reálném souboru, který je pouze přibližně souměrný, očekáváme spíše blízkost těchto ukazatelů než jejich přesnou shodu. Samotná souměrnost také nezaručuje jediný modus: souměrné rozdělení se dvěma vrcholy může mít mody po obou stranách středu.
+
+Při **zešikmení doprava** mohou vzdálené vysoké hodnoty posunout průměr nad medián. Představme si náročný test, v němž většina lidí získá nižší skóry a jen někteří dosáhnou velmi vysokých. V dolním modelovém grafu leží zleva **modus, medián a průměr**. Při **zešikmení doleva** je situace v prostředním grafu zrcadlová: například v lehkém testu může většina lidí získat vysoké skóry, zatímco několik velmi nízkých skórů snižuje průměr. Zleva zde leží **průměr, medián a modus**. Obtížnost testu sama tento tvar nezaručuje; jde o možné příklady.
+
+![Poloha tří ukazatelů středu ve třech modelových rozděleních skórů. Zobrazené pořadí u zešikmených rozdělení je ilustrací, nikoli univerzálním pravidlem.](../assets/chapter-03/plots/stred-a-tvar.svg){#fig-stred-tvar fig-alt="Tři grafy nad sebou. V souměrném modelu splývá průměr, medián i modus na 50 bodech. V modelu zešikmeném doleva je průměr přibližně 71,4, medián 73,6 a modus 80 bodů. V modelu zešikmeném doprava je modus 20, medián 26,4 a průměr 28,6 bodu. Směr zešikmení určuje delší chvost."}
+
+Grafy představují **vlastní modelové příklady, nikoli naměřená data**. Hladká křivka znázorňuje tvar rozdělení; větší plocha pod ní v určitém rozmezí znamená větší podíl výsledků v tomto rozmezí. Modus zde označuje polohu vrcholu křivky, medián dělí její plochu na poloviny a průměr zohledňuje polohu všech výsledků. Barvy i typy čar rozlišují ukazatele; popisky jsou od svislých čar odsunuty, aby se nepřekrývaly.
+
+**Pořadí z obrázku nepoužívejme jako definici ani jako neomylný test šikmosti.** Průměr ovlivňuje nejen vzdálenost krajních hodnot, ale i jejich zastoupení. U jiných rozdělení se proto může medián nacházet mimo interval mezi modem a průměrem; výjimky existují i mezi jednovrcholovými rozděleními. Pro posouzení tvaru vždy potřebujeme graf celého rozdělení. Stejně tak shoda průměru a mediánu sama nedokazuje souměrnost [@vonHippel2005, oddíly 2–3].
+
 ### Průměr více skupin {#sec-vazeny-prumer}
 
 Při spojování skupin musíme zachovat příspěvek každého člověka. Deset účastníků dokončilo úlohu v průměru za 4 minuty a třicet za 8 minut. Celkem strávili úlohou $10\times4+30\times8=280$ minut. **Vážený průměr (*weighted mean*)**, v tomto případě průměr s vahami danými velikostmi skupin, je
