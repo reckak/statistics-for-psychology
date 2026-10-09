@@ -696,3 +696,11 @@ Na základě dohodnuté formulace je PERCENTIL.INC označena jako hlavní konven
 Doplněn případ úrovně nižší nebo rovné kumulativnímu podílu minima: pro p = 0,1 a 0,2 vychází 4, pro p = 0,25 vychází 5. Nové výsledky i všechny dosavadní příklady a 14 řešení ověřila čistá relace R. Zahrnuta celá souběžná autorská redakce, opravena nadbytečná předložka u řazení a obnoveny stabilní identifikátory tabulek. Excelové příklady ani grafy se nemění; desktopový Excel nebyl znovu spouštěn.
 
 Render celé knihy a webová kontrola osmi stránek prošly: 142 hesel, 32 řešení, odkazy, klávesnice, matematika i šířky 1360/1920/390 px bez přetékání celé stránky. Změněné oddíly byly prohlédnuty na mobilu. git diff --check prošel. Veřejné nasazení nebylo ověřováno.
+
+## Kapitola 3: význam řádu momentu (2026-10-10)
+
+Při zavedení momentů je nyní výslovně vysvětleno, že řád určuje mocninu. Příklady rozlišují první, druhý a třetí řád i druhý moment kolem nuly od druhého centrálního momentu. Stejné upřesnění je v dosavadním hesle slovníčku; nové značení se nezavádí.
+
+Zahrnuta souběžná autorská redakce výkladu šikmosti a špičatosti. Opraven překlep „mocnic“ a poslední čtverec odchylky v rozepsaném příkladu: 4² = 16, takže součet čtverců zůstává 22. Obnoveny stabilní identifikátory a šířky dvou tabulek odstraněné pracovní redakcí. Čistá relace R ověřila všechny numerické příklady a 14 řešení; celá kniha byla vykreslena. Excelové příklady ani grafy se nemění; desktopový Excel nebyl znovu spouštěn.
+
+Webová kontrola osmi stránek prošla: 142 hesel, 32 řešení, vnitřní odkazy, ovládání klávesnicí, skrytí a rozbalení řešení a šířky 1360/1920/390 px bez chyb. Upravené rozšíření bylo vizuálně prohlédnuto na desktopu i mobilu. git diff --check prošel. Veřejné nasazení nebylo ověřováno.
