@@ -76,7 +76,7 @@ U rozdělení s dlouhým pravým chvostem bývá průměr vyšší než medián,
 
 Žádný z těchto ukazatelů není nejlepší pro všechny otázky. Modus odpovídá na otázku **„Co se vyskytuje nejčastěji?“**, medián **„Kde leží prostředek uspořádaných hodnot?“** a průměr **„Kolik připadá na jeden případ, rozdělíme-li součet rovnoměrně?“** Následující srovnání shrnuje hlavní výhody a omezení všech tří ukazatelů [@howell, s. 34–35].
 
-![Tři geometrické pohledy na střed stejného modelového rozdělení: modus, medián a průměr. Převzato beze změny od Cmglee [@cmgleeCentre], licence [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).](../assets/chapter-03/plots/mode-median-mean.svg){#fig-vyznam-stredu width=320 fig-alt="Třikrát stejná nesouměrná křivka. Horní panel mode označuje modus pod nejvyšším vrcholem. Prostřední panel median dělí plochu pod křivkou na dvě poloviny. Dolní panel mean ukazuje průměr jako místo podpory, na němž by se plocha vyvážila."}
+![Tři geometrické pohledy na střed stejného modelového rozdělení: modus, medián a průměr. Převzato beze změny od Cmglee [@cmgleeCentre], licence [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).](../assets/chapter-03/plots/mode-median-mean.svg){#fig-vyznam-stredu width="320" fig-alt="Třikrát stejná nesouměrná křivka. Horní panel mode označuje modus pod nejvyšším vrcholem. Prostřední panel median dělí plochu pod křivkou na dvě poloviny. Dolní panel mean ukazuje průměr jako místo podpory, na němž by se plocha vyvážila."}
 
 V horním panelu **mode znamená modus**: hledáme nejvyšší místo křivky. V prostředním **median znamená medián**: svislá čára rozděluje plochu pod křivkou na poloviny. V dolním **mean znamená průměr**: kdybychom plochu vystřihli z rovnoměrně silného materiálu, průměr by určoval polohu podpěry, na níž se vyváží. Vzdálenější části plochy mají při vyvažování větší účinek. Obrázek je schématem hladkého rozdělení; u konkrétních pozorování se shodami nemusí být přesně polovina hodnot přísně pod mediánem. Odlišné polohy tří ukazatelů zde vyjadřují odlišné otázky, na které odpovídají.
 
@@ -198,11 +198,11 @@ Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu, u níž ku
 
 ::: {.table-scroll tabindex="0" role="region" aria-label="Kumulativní podíly dob dokončení"}
 | Doba (minuty) | Počet dob nejvýše rovných této době | Kumulativní podíl |
-|---:|---:|---:|
-| 4 | 1 | $1/5=20\,\%$ |
-| 5 | 3 | $3/5=60\,\%$ |
-| 6 | 4 | $4/5=80\,\%$ |
-| 10 | 5 | $5/5=100\,\%$ |
+|--------------:|------------------------------------:|------------------:|
+|             4 |                                   1 |      $1/5=20\,\%$ |
+|             5 |                                   3 |      $3/5=60\,\%$ |
+|             6 |                                   4 |      $4/5=80\,\%$ |
+|            10 |                                   5 |     $5/5=100\,\%$ |
 :::
 
 Hledáme-li úroveň **90 %**, u 6 minut máme teprve 80 %, a proto pokračujeme k 10 minutám, kde dosáhneme 100 %. Podle této konvence je 90. percentil **10 minut**, zatímco interpolace PERCENTIL.INC dala **8,4 minuty**. Rozdíl odpovídá jinému pravidlu, nikoli početní chybě [@hyndman1996].
@@ -212,18 +212,17 @@ Tento odečet se hodí například tehdy, když se ptáme: **„Jaký nejnižš�
 **Ordinální příklad: odpočatost.** Vraťme se k šesti modelovým odpovědím z [výkladu kumulativních četností](kapitola_02.qmd#sec-kumulativni-cetnosti): „vůbec“, „trochu“, „trochu“, „dost“, „dost“, „zcela“. Pořadí kategorií známe, velikosti rozdílů mezi nimi nikoli.
 
 ::: {.table-scroll tabindex="0" role="region" aria-label="Kumulativní četnosti odpočatosti; tabulku lze posouvat vodorovně"}
-| Odpočatost | Četnost | Kumulativní počet | Kumulativní podíl |
-|:---|---:|---:|---:|
-| Vůbec | 1 | 1 | $1/6\doteq16{,}7\,\%$ |
-| Trochu | 2 | 3 | $3/6=50{,}0\,\%$ |
-| Dost | 2 | 5 | $5/6\doteq83{,}3\,\%$ |
-| Zcela | 1 | 6 | $6/6=100{,}0\,\%$ |
+| Odpočatost | Četnost | Kumulativní počet |     Kumulativní podíl |
+|:-----------|--------:|------------------:|----------------------:|
+| Vůbec      |       1 |                 1 | $1/6\doteq16{,}7\,\%$ |
+| Trochu     |       2 |                 3 |      $3/6=50{,}0\,\%$ |
+| Dost       |       2 |                 5 | $5/6\doteq83{,}3\,\%$ |
+| Zcela      |       1 |                 6 |     $6/6=100{,}0\,\%$ |
 :::
 
 Pro **75. percentil** hledáme první kategorii s kumulativním podílem alespoň 75 %. „Trochu“ ještě nestačí (50,0 %), „dost“ již ano (83,3 %). Výsledkem je tedy **kategorie „dost“**: je to nejnižší kategorie, do níž včetně spadá alespoň 75 % odpovědí. Pro úroveň 50 % stejným pravidlem vybereme „trochu“ a pro 90 % „zcela“. U 50 % jde o výslovně zvolenou dolní prostřední kategorii; prostřední dvě odpovědi jsou „trochu“ a „dost“.
 
 Kdybychom kategoriím přiřadili kódy 1, 2, 3, 4 a interpolovali 90. percentil, vyšlo by 3,5. **„Odpočatost 3,5“ však není kategorií ani doloženou intenzitou odpočatosti.** Stejné pořadí bychom mohli zakódovat i čísly 1, 2, 10, 100; interpolace by pak dala 55, zatímco kumulativní odečet by stále vybral kategorii „zcela“. U čistě ordinální proměnné proto používáme pořadí a zastoupení kategorií, nikoli nedoložené vzdálenosti mezi jejich kódy.
-
 
 ### Percentilové pořadí není hodnota percentilu {#sec-percentilove-poradi}
 
@@ -391,7 +390,7 @@ Zde vždy uvádíme **nepřepočtený** medián absolutních odchylek. Některý
 
 Další možností je upravit příspěvek krajních hodnot. **Ořezání (*trimming*)** při výpočtu dané statistiky vynechá předem určený počet nejnižších a nejvyšších hodnot. **Winsorizace (*winsorization*)** tyto hodnoty nevynechá, ale pro výpočet je nahradí nejbližšími ponechanými hodnotami. Původní data v obou případech uchováme; nejde o zjištění, že krajní záznamy byly chybné [@howell, s. 35 a 39].
 
-V této učebnici se **procentní úroveň ořezání či winsorizace vztahuje ke každému konci zvlášť**: 10% ořezání znamená vynechat 10 % nejnižších a 10 % nejvyšších hodnot, tedy celkem 20 %, pokud tyto podíly odpovídají celým počtům. U winsorizace stejný počet hodnot na obou koncích nahrazujeme. Jiné zdroje mohou udávat celkový podíl nebo používat jiné zaokrouhlení, proto konvenci vždy uvedeme [@rMean; @scipyWinsorize].
+V této učebnici se **procentní úroveň ořezání či winsorizace vztahuje ke každému konci zvlášť**: 10% ořezání znamená vynechat 10 % nejnižších i 10 % nejvyšších hodnot, tedy celkem 20 %, pokud tyto podíly odpovídají celým počtům. U winsorizace stejný počet hodnot na obou koncích nahrazujeme. Jiné zdroje mohou udávat celkový podíl nebo používat jiné zaokrouhlení, proto konvenci vždy uvedeme [@rMean; @scipyWinsorize].
 
 **Nejprve spočítáme počet pro jeden konec a zaokrouhlíme jej dolů.** Například při 10% ořezání 18 hodnot je $0{,}10\times18=1{,}8$. Na každém konci tedy vynecháme **jednu** hodnotu, nikoli dvě. Celkem odstraníme dvě z osmnácti, tedy přibližně 11,1 %, a průměrujeme zbývajících 16. Při stejné winsorizaci jednu nejnižší hodnotu nahradíme druhou nejnižší a jednu nejvyšší druhou nejvyšší; průměrujeme všech 18. U pěti hodnot dává 10 % pouze 0,5, po zaokrouhlení dolů nulu: podle tohoto pravidla se neupraví žádná hodnota.
 
@@ -413,44 +412,60 @@ Ořezání ani winsorizaci nevolíme dodatečně proto, aby vyšel žádoucí v�
 
 ## Krabicový graf {#sec-boxplot}
 
-**Krabicový graf (*boxplot, box-and-whisker plot*)** zobrazuje medián, kvartily a další informace o rozptýlenosti. Je úsporný při porovnávání několika skupin, ale neukáže celé rozdělení. Z pouhé krabice například nemusíme rozpoznat dva vrcholy [@howell, s. 47–50].
+**Krabicový graf (*boxplot, box-and-whisker plot*)** zobrazuje medián, kvartily a další informace o rozptýlenosti. Je úsporný při porovnávání několika skupin, ale nemusí zachytit všechny vlastnosti rozdělení. Nemusí z něj být patrné například to, že rozdělení má dva vrcholy místo jednoho [@howell, s. 47–50].
 
 V této kapitole používáme následující variantu. Krabice sahá od dolního k hornímu kvartilu a čára uvnitř označuje medián. Od dolního kvartilu odečteme 1,5násobek mezikvartilového rozpětí a k hornímu kvartilu jej přičteme. Tím získáme orientační dolní a horní mez. **Vousy (*whiskers*)** sahají až k nejnižšímu a nejvyššímu skutečnému pozorování, které ještě leží uvnitř těchto mezí, včetně mezí samotných. Pozorování za mezemi zobrazíme samostatně.
 
+Pro názornou konstrukci použijeme větší **modelový soubor testových skórů 41 účastníků**. Jde o vlastní didaktická data v bodech, nikoli výsledky skutečného výzkumu. Seřazené hodnoty jsou:
+
+2, 5, 15, 25, 30, 32, 34, 36, 38, 40, 40, 42, 44, 44, 46, 46, 48, 48, 49, 50, 50, 50, 51, 52, 52, 54, 54, 56, 56, 58, 60, 60, 62, 64, 66, 68, 70, 75, 85, 95, 98.
+
 ::: worked-example
-U 4, 5, 5, 6, 10 jsou kvartily 5 a 6 a mezikvartilové rozpětí 1 minuta. Dolní mez je $5-1{,}5\times1=3{,}5$ a horní $6+1{,}5\times1=7{,}5$ minuty. Vousy proto končí u **4 a 6 minut**, nikoli u 3,5 a 7,5. Hodnota 10 se zobrazí samostatně. Medián se shoduje s dolním kvartilem, takže jeho čára leží na levém okraji krabice.
+Při naší konvenci je pozice 1. kvartilu $1+(41-1)\times0{,}25=11$, mediánu 21 a 3. kvartilu 31. Na těchto pozicích najdeme **40, 50 a 60 bodů**. Krabice tedy sahá od 40 do 60 a čára mediánu leží na 50. Mezikvartilové rozpětí je $60-40=20$ bodů a jeho 1,5násobek $1{,}5\times20=30$ bodů.
+
+**Dolní mez** je $40-30=10$ bodů a **horní mez** $60+30=90$ bodů. Nejnižší pozorování uvnitř mezí je 15 a nejvyšší 85: právě tam končí **dolní a horní vous**, nikoli na 10 a 90. Hodnoty **2 a 5** leží pod dolní mezí, hodnoty **95 a 98** nad horní; zobrazíme je samostatnými body jako podezřelá odlehlá pozorování.
 :::
 
-![Konstrukce krabicového grafu průběžného příkladu.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Krabice od 5 do 6 minut, medián na 5, vousy na 4 a 6, samostatný bod na 10. Pomocné meze jsou 3,5 a 7,5. Pod grafem jsou původní hodnoty."}
+![Konstrukce krabicového grafu pro 41 modelových testových skórů. Vlevo jsou všechna pozorování; shodné hodnoty jsou rozloženy vedle sebe. Pomocné meze a vyznačené vzdálenosti vysvětlují konstrukci a v běžném boxplotu se zpravidla nekreslí.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Svislý boxplot: první kvartil 40, medián 50, třetí kvartil 60, IQR 20 bodů. Od každého kvartilu směrem ven je vyznačeno 1,5 IQR, tedy 30 bodů, k dolní mezi 10 a horní mezi 90. Dolní vous končí na 15, horní na 85. Podezřelá odlehlá pozorování jsou 2 a 5 dole a 95 a 98 nahoře. Vlevo jsou původní skóry."}
+
+**Meze určují nejzazší přípustný dosah vousů**, nikoli nutně jejich skutečné konce. V anglických popiscích se dolní a horní vous označují *lower whisker* a *upper whisker*, pomocné meze jako *lower/upper fence* nebo *lower/upper maximum whisker reach*. Body za nimi bývají označeny *suspected outliers*. Na @fig-boxplot-03 rozdíl vidíme přímo: mezi dolní mezí 10 a koncem vousu 15 ani mezi koncem vousu 85 a horní mezí 90 nejsou žádná pozorování. Délka každého vousu zde činí 25 bodů; **1,5 IQR je maximální povolená délka od příslušného kvartilu, nikoli povinná délka vousu**.
 
 Pravidlo 1,5násobku rozpětí je **pomůcka k označení neobvyklých pozorování**, nikoli důkaz chyby či pokyn k vyřazení. Navazujeme na [zásady práce s odlehlými pozorováními](kapitola_02.qmd#sec-tvar-rozdeleni). U zešikmeného rozdělení může být více bodů za jednou mezí přirozenou vlastností dat. Je-li mezikvartilové rozpětí nulové, mohou být samostatně označeny i nepříliš vzdálené odlišné hodnoty; pak je zvlášť důležité zobrazit jednotlivá pozorování.
 
-Existují také krabicové grafy s vousy až k minimu a maximu nebo k určeným percentilům. Vždy zjistíme použitou definici. Zde i ve všech výpočtech kvartilů používáme konvenci PERCENTIL.INC; výchozí krabicový graf některého programu může kvartily určovat jinak. Vodorovná délka krabice v našem obrázku představuje mezikvartilové rozpětí; její výška nic dalšího nekóduje. Graf lze také otočit a hodnoty číst ze svislé osy.
+Existují také krabicové grafy s vousy až k minimu a maximu nebo k určeným percentilům. Vždy zjistíme použitou definici. Zde i ve všech výpočtech kvartilů používáme konvenci PERCENTIL.INC; výchozí krabicový graf některého programu může kvartily určovat jinak. **Výška krabice** v našem svislém obrázku představuje mezikvartilové rozpětí; její šířka nic dalšího nekóduje. Graf lze také otočit a hodnoty číst z vodorovné osy.
 
 ## Variabilita kategorií a entropie {#sec-entropie}
 
-U nominálních kategorií nedávají rozptyl jejich kódů ani směrodatná odchylka smysluplný popis rozmanitosti. Přesto je rozdíl mezi skupinou, v níž každý používá tutéž strategii učení, a skupinou rozdělenou rovnoměrně mezi čtyři strategie. Četnosti tento rozdíl popíší úplně; jedním souhrnným ukazatelem je **Shannonova entropie (*Shannon entropy*)**, zde $h$ [@shannon1948, oddíl 6].
+U nominálních kategorií nedávají rozptyl jejich kódů ani směrodatná odchylka smysluplný popis rozmanitosti. Přesto je rozdíl mezi skupinou, v níž každý používá tutéž strategii učení, a skupinou, kde lidé rovnoměrně využívají všechny čtyři strategie. Četnosti tento rozdíl popíší úplně; jedním souhrnným ukazatelem je **Shannonova entropie (*Shannon entropy*)**, zde $h$ [@shannon1948, oddíl 6].
 
-Entropie zachycuje nejistotu ohledně kategorie při náhodném výběru jednoho případu z popisovaného souboru. Je nulová, pokud všichni patří do stejné kategorie. Pro **stejný počet vymezených kategorií** dosahuje maxima při jejich rovnoměrném zastoupení. Nerozlišuje vzdálenosti ani pořadí kategorií; přejmenování kategorií ji nezmění.
+Entropie zachycuje nejistotu ohledně výskytu kategorie při náhodném výběru jednoho případu z popisovaného souboru. Je nulová, pokud všichni patří do stejné kategorie. Pro **stejný počet vymezených kategorií** dosahuje maxima při jejich rovnoměrném zastoupení. Nerozlišuje vzdálenosti ani pořadí kategorií; přejmenování kategorií na ni také nemá vliv.
 
 ![Tři rozdělení mezi čtyři strategie učení a jejich entropie.](../assets/chapter-03/plots/entropie.svg){#fig-entropie fig-alt="Ve čtyřech kategoriích jsou postupně podíly 1, 0, 0, 0 s entropií 0; 0,5, 0,25, 0,25, 0 s entropií 1,5; a čtyři podíly 0,25 s entropií 2 bity."}
 
-Na @fig-entropie je první skupina zcela jednotná, poslední má rovnoměrné zastoupení čtyř strategií. Prostřední leží mezi nimi. Používáme jednotku **bit (*bit*)**; její souvislost s výpočtem vysvětluje nepovinné okénko. Číselnou entropii neporovnáváme bez znalosti kategorií: podrobnější rozdělení jedné kategorie do několika podkategorií může entropii změnit, přestože se chování lidí nezměnilo. Nejde ani o ukazatel kvality strategií nebo kvality dat.
+Na @fig-entropie je první skupina zcela jednotná, poslední vykazuje rovnoměrné zastoupení čtyř strategií. Prostřední leží mezi nimi. K vyjádření míry entropie můžeme použít jako jednotku **bit (*bit*)**; její souvislost s výpočtem vysvětluje nepovinné okénko. Číselnou entropii neporovnáváme bez znalosti kategorií: podrobnější rozdělení jedné kategorie do několika podkategorií může entropii změnit, přestože se chování lidí nezměnilo. Nejde ani o ukazatel kvality strategií nebo kvality dat.
 
 ::: {#rozsireni-entropie .callout-note collapse="true" title="Nepovinné rozšíření: logaritmus a výpočet entropie"}
-**Logaritmus (*logarithm*)** odpovídá na otázku, na jakou mocninu musíme umocnit zvolený základ, abychom dostali dané kladné číslo. Pro základ 2 píšeme $\log_2$. Platí $2^3=8$, a proto $\log_2 8=3$. Také $2^0=1$, takže $\log_2 1=0$. Záporný exponent vyjadřuje převrácenou mocninu: $2^{-1}=1/2$ a $2^{-2}=1/4$. Odtud $\log_2(1/2)=-1$ a $\log_2(1/4)=-2$.
+**Logaritmus (*logarithm*)** odpovídá na otázku, na jakou mocninu musíme umocnit zvolený základ, abychom dostali dané kladné číslo. Pro logaritmus o základu 2 (binární logaritmus) píšeme $\log_2$. Platí $2^3=8$, a proto $\log_2 8=3$. Také $2^0=1$, takže $\log_2 1=0$. Záporný exponent vyjadřuje „obrácenou“ mocninu: $2^{-1}=1/2$ a $2^{-2}=1/4$. Odtud $\log_2(1/2)=-1$ a $\log_2(1/4)=-2$.
 
-Číslo $-\log_2 p_j$ vyjadřuje informační překvapivost výsledku v kategorii s podílem $p_j$. Méně pravděpodobný výsledek přináší větší překvapení: při podílu 1/2 jde o 1 bit, při 1/4 o 2 bity. Entropie je průměr této překvapivosti, v němž každá kategorie dostane váhu odpovídající svému zastoupení:
+Číslo $-\log_2 p_j$ vyjadřuje informační překvapivost výsledku v kategorii s podílem $p_j$. Méně pravděpodobný výsledek značí větší překvapení: při podílu 1/2 jde o 1 bit, při 1/4 o 2 bity. Entropie je vážený průměr této překvapivosti, přičemž každá kategorie dostane váhu odpovídající jejímu zastoupení (relativní četnosti):
 
 $$h=-\sum_{j=1}^{k}p_j\log_2 p_j.$$
 
-$k$ je počet kategorií, $j$ jejich index a $p_j$ jejich relativní četnost; všechny podíly dohromady dávají 1. Znaménko minus převádí nekladné logaritmy podílů na nezáporný výsledek. Zvolení základu 2 určuje jednotku bit. Pro podíly 0,5; 0,25; 0,25; 0 dostaneme:
+$k$ je počet kategorií, $j$ jejich index a $p_j$ jejich relativní četnost; všechny podíly dohromady dávají 1. Znaménko minus převádí záporné logaritmy podílů na kladný výsledek; při podílu 1 zůstává výsledek nulový. Zvolení základu 2 určuje jako jednotku bit. Pro podíly kategorií 0,5; 0,25; 0,25; 0 dostaneme:
 
 $$h=0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5\ \text{bitu}.$$
 
-Kategorie s nulovým zastoupením přispívá **nulou**. Logaritmus nuly není definován; výraz nepočítáme jako obyčejné násobení nuly jeho logaritmem. Pravidlo vyjadřuje, že příspěvek kategorie se při zmenšování jejího podílu k nule také blíží nule.
+Kategorie s nulovým zastoupením se výpočtu neúčastní, takže její příspěvek je **nulový** (logaritmus nuly není definován, takže výraz nepočítáme jako obyčejné násobení nuly jeho logaritmem). Obecně přitom platí, že příspěvek kategorie k celkové entropii se při zmenšování jejího podílu (přibližování k nulovému podílu) také blíží nule.
 
 Čtyři stejně časté kategorie dávají $4\times0{,}25\times2=2$ bity. Obecně je maximum pro $k$ kategorií $\log_2 k$. Entropie 1,5 bitu neznamená „1,5 různých strategií“ ani „75 % jistoty“; jde o průměrné množství informace v popsaném smyslu [@shannon1948, oddíl 6].
+
+**Normalizovaná entropie (*normalized entropy*)** vyjadřuje podíl dosažené entropie na jejím teoretickém maximu. Pro více než jednu vymezenou kategorii ji vypočítáme jako
+
+$$\text{normalizovaná entropie}=\frac{h}{\log_2 k}.$$
+
+V čitateli je entropie $h$ v bitech, ve jmenovateli její maximum pro $k$ kategorií. Výsledný poměr nemá jednotku. Pro čtyři strategie a $h=1{,}5$ bitu dostaneme $1{,}5/\log_2 4=1{,}5/2=0{,}75$: **75 % maximální možné entropie pro čtyři kategorie**. Nula znamená soustředění všech případů do jediné kategorie, jednička rovnoměrné zastoupení všech vymezených kategorií. Vyšší hodnota při stejných kategoriích vyjadřuje větší vyrovnanost jejich zastoupení [@nistShannon]. Ani tento poměr, ani jeho doplněk do jedničky není pravděpodobností správného odhadu kategorie.
+
+Počet $k$ zde zahrnuje **všechny předem vymezené možné kategorie**, i ty s nulovou četností. Při porovnávání skupin zachováme stejné kategorie a stejné maximum. Přidání prázdné kategorie nemění samotnou entropii, ale zvětšuje jmenovatel, a tedy může změnit normalizovanou hodnotu. Normalizace proto neodstraňuje vliv vymezení kategorií. Pro $k=1$ je maximum nulové a tento podíl nedefinujeme; samotná entropie je přitom 0 bitů.
 :::
 
 ## Co mění posun a změna jednotek {#sec-zmena-skaly}
@@ -459,22 +474,22 @@ Přičteme-li ke každé době dvě minuty přípravy, všechny hodnoty se posun
 
 Převedeme-li minuty na sekundy, násobíme každou hodnotu 60. Průměr, medián, kvantily, rozpětí i absolutní odchylky se násobí 60. Směrodatná odchylka rovněž; **rozptyl se násobí** $60^2=3\,600$, protože pracuje se čtverci odchylek. Pro náš příklad dostaneme $m=360$ sekund, $s\doteq140{,}71$ sekundy a $s^2=19\,800$ s². Vyšší číselná směrodatná odchylka po změně jednotky neznamená, že se lidé začali více lišit [@howell, oddíl 2.12].
 
-Při **obrácení skórování (*reverse scoring*)** se obrátí i pořadí. Převedeme-li číselné skóry od 0 do 10 pravidlem „nový skór = 10 − původní skór“, průměr i medián se změní stejným pravidlem, ale směrodatná odchylka zůstane stejná. Dolní a horní kvartil si vymění role: nový dolní kvartil je 10 minus původní horní. Obecně se při násobení záporným číslem násobí směrodatná odchylka a rozpětí **absolutní hodnotou** tohoto čísla; nemohou být záporné.
+Při **obrácení skórování (*reverse scoring*)** se obrátí i pořadí. Převedeme-li číselné skóry od 0 do 10 pravidlem „nový skór = 10 − původní skór“, průměr i medián se změní stejným způsobem, ale směrodatná odchylka zůstane stejná. Dolní a horní kvartil si vymění role: nový dolní kvartil je 10 minus původní horní kvartil. Obecně se při násobení záporným číslem násobí směrodatná odchylka a rozpětí **absolutní hodnotou** tohoto čísla; nemohou být záporné.
 
 Rozdíl mezi ukazateli **založenými na uspořádání hodnot (*order-based statistics*)** a ukazateli založenými na velikosti odchylek nám pomáhá rozumět jejich chování. V užším matematickém významu jsou **pořadové statistiky (*order statistics*)** jednotlivé seřazené hodnoty $x_{(i)}$; medián či interpolovaný kvantil z nich může být sestaven. Toto členění však neznamená, že všechny pořadové ukazatele jsou odolné (minimum a maximum nejsou) nebo že všechny jejich číselné rozdíly lze interpretovat na ordinální škále.
 
 ## Jak vybrat a sdělit popisné statistiky {#sec-komunikace-statistik}
 
-Výběr začíná otázkou. Zajímá nás celkový čas rozdělený na jednoho člověka, prostřední výsledek, zastoupení kategorií, nebo vysoká hranice důležitá pro plánování? Dále posoudíme význam měření a prohlédneme rozdělení. Průměr a směrodatná odchylka často dobře shrnou přibližně souměrné jednovrcholové rozdělení, zatímco medián a kvartily pomohou popsat prostřední část při výrazné šikmosti. Není to zákaz průměru pro zešikmená data: někdy potřebujeme oba pohledy. U dvou vrcholů může být důležitější ukázat celé rozdělení a věcně prozkoumat skupiny než hledat jediný „typický“ výsledek [@cumming, s. 63–65].
+Výběr začíná otázkou. Zajímá nás celkový čas v přepočtu na jednoho člověka, „prostřední“ výsledek, zastoupení kategorií, nebo vysoká hranice důležitá pro plánování? Dále posoudíme význam měření a prohlédneme rozdělení. Průměr a směrodatná odchylka často dobře shrnou přibližně souměrné jednovrcholové rozdělení, zatímco medián a kvartily pomohou popsat prostřední část rozdělení i při výrazném zešikmení. Neznamená to pochopitelně zákaz používat průměr pro zešikmená data: někdy potřebujeme oba pohledy. U dvou vrcholů může být důležitější ukázat celé rozdělení a věcně prozkoumat případné skupiny než hledat jediný „typický“ výsledek [@cumming, s. 63–65].
 
 ::: table-scroll
 | Otázka a data | Užitečný popis | Co je třeba doplnit |
 |:-----------------------|:-----------------------|:-----------------------|
 | Které strategie učení lidé uvádějí? | Četnosti, podíly, modus; případně entropie. | Znění a vymezení kategorií; zda každý volil právě jednu. |
 | Jak lidé hodnotí odpočatost slovními kategoriemi? | Četnosti a kumulativní zastoupení; prostřední kategorie. | Nezaměňovat rozdíly kódů s měřenou vzdáleností. |
-| Kolik času připadá v průměru na člověka? | Průměr, směrodatná odchylka a graf. | Platné dlouhé časy přispívají k celkové době. |
-| Jak vypadá prostřední část silně zešikmených dob? | Medián, dolní a horní kvartil, případně medián absolutních odchylek. | Ukázat také chvost; odolné shrnutí jej může zastínit. |
-| Liší se rozdělení mezi dvěma skupinami? | Stejné ukazatele, stejné jednotky a měřítka; krabicové grafy s body. | Rozsahy souborů; popisný rozdíl sám neprokazuje příčinu ani rozdíl v populaci. |
+| Kolik času připadá v průměru na člověka? | Průměr, směrodatná odchylka a graf. | I nezvyklé dlouhé, ale platné časy přispívají k celkové době. |
+| Jak vypadá prostřední část silně zešikmených dob? | Medián, dolní a horní kvartil, případně medián absolutních odchylek. | Ukázat také chvost; robustní statistiky jej mohou opomenout. |
+| Liší se rozdělení mezi dvěma skupinami? | Stejné ukazatele, stejné jednotky a měřítka; krabicové grafy s body. | Rozsahy souborů; popis rozdílů sám o sobě nedokládá příčinu ani rozdíl na úrovni populace. |
 :::
 
 U známých dat o spánku a paměti můžeme napsat následující **popis modelového souboru**:
@@ -728,10 +743,12 @@ Možný popis: „V modelovém souboru 36 účastníků připadalo na jednoho č
 
 ### 13. Nepovinně: entropie od četností
 
-Tři kategorie mají četnosti 4, 2 a 2. Vypočtěte entropii se základem logaritmu 2. Co se změní, pokud přidáme čtvrtou kategorii s nulovou četností? A co pokud všech osm případů patří do jediné kategorie?
+Tři kategorie mají četnosti 4, 2 a 2. Vypočtěte entropii se základem logaritmu 2. Co se změní, pokud přidáme čtvrtou kategorii s nulovou četností? Porovnejte také normalizovanou entropii pro tři a čtyři vymezené kategorie (použijte kalkulačku). A co pokud všech osm případů patří do jediné ze čtyř kategorií?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Celkem je osm případů, podíly jsou 0,5; 0,25; 0,25. Jejich záporné dvojkové logaritmy jsou 1, 2, 2. Vážený průměr je $0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5$ bitu. Kategorie s nulovou četností přidá nulový příspěvek, takže hodnota zůstane stejná; změní se však počet vymezených kategorií, vůči němuž bychom posuzovali teoretické maximum. Při úplné koncentraci je jediný nenulový podíl 1 a $\log_2 1=0$, takže entropie činí 0 bitů.
+
+Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\doteq0{,}946$, tedy přibližně 94,6 % maxima; pro čtyři $1{,}5/2=0{,}75$, tedy 75 % maxima. Rozdíl vznikl změnou referenčního maxima, nikoli změnou pozorovaných četností. Pokud všichni patří do jediné ze čtyř vymezených kategorií, je i normalizovaná entropie $0/2=0$.
 :::
 
 ### 14. Nepovinně: nulová šikmost a stejný vrchol
