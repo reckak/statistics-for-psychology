@@ -82,6 +82,29 @@ eq(ch3_entropy(c(1,0,0,0)),0); eq(ch3_entropy(c(.5,.25,.25,0)),1.5); eq(ch3_entr
 eq(ch3_moments(ch3_peak_a)[2],2); eq(ch3_moments(ch3_peak_b)[2],98/9)
 eq(c(mean(ch3_shape_a),var(ch3_shape_a)),c(6,4.8)); eq(c(mean(ch3_shape_b),var(ch3_shape_b)),c(6,4.8))
 # Quantitative exercise solutions.
+# Cumulative selection preserves observed values and ordinal categories.
+first_reached <- function(values,p) {
+  values<-sort(values); values[which(seq_along(values)/length(values)>=p)[1]]
+}
+eq(vapply(c(4,5,6,10),function(v) sum(x<=v),integer(1)),c(1,3,4,5))
+eq(first_reached(x,.9),10);eq(ch3_quantile(x,.9),8.4)
+rested<-c(1,2,2,3,3,4)
+eq(vapply(c(.5,.75,.9),function(p) first_reached(rested,p),numeric(1)),c(2,3,4))
+eq(cumsum(tabulate(rested)),c(1,3,5,6))
+eq(ch3_quantile(rested,.9),3.5)
+recoded<-c(1,2,10,100)[rested]
+eq(first_reached(recoded,.9),100);eq(ch3_quantile(recoded,.9),55)
+eq(first_reached(1:4,.5),2);eq(first_reached(1:4,.75),3)
+# One zero-sum constraint fixes the last deviation; none are discarded.
+eq(-sum(c(-2,-1,-1,0)),4);eq(-sum(c(-3,-1,-1,0)),5)
+eq(-sum(c(-2,0)),2)
+# Explicit floor convention, both tails, and median as limiting trimmed mean.
+eq(floor(c(.1*18,.1*5)),c(1,0))
+eq(mean(1:18,trim=.1),mean(2:17));eq(mean(1:5,trim=.1),mean(1:5))
+eq(mean(ch3_trim,trim=.4999),median(ch3_trim))
+eq(mean(c(2,3,4,5,16),trim=.4999),4)
+eq(mean(ch3_trim,trim=.5),5.5)
+eq(mean(abs(x-mean(x))),1.6);eq(mad(x,constant=1),1)
 z<-c(3,4,4,5,6,20);eq(c(mean(z),median(z)),c(7,4.5));stopifnot(names(which.max(table(z)))=='4')
 z<-c(1,1,1,3,4,8);eq(ch3_quantile(z,c(.25,.5,.75)),c(1,2,3.75));eq(mean(z<=1),.5)
 z<-c(2,4,6);eq(c(mean(z),mean(abs(z-mean(z))),sum((z-mean(z))^2),var(z),sd(z)),c(4,4/3,8,4,2))
