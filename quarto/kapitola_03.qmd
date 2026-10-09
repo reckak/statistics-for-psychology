@@ -174,7 +174,32 @@ Stejná potíž se může projevit i bez shodných hodnot: třicátý percentil 
 
 **Percentilové pořadí (*percentile rank*)** popisuje relativní postavení konkrétního výsledku ve vymezeném souboru. V této učebnici používáme inkluzivní konvenci: vyjádříme procento výsledků **menších nebo rovných** dané hodnotě. U našich časů je pro 5 minut podíl $3/5=0{,}6$, tedy percentilové pořadí 60. Hodnota 5 je mediánem a současně má v této konvenci percentilové pořadí 60; shodné hodnoty brání jednoduchému obracení obou postupů.
 
-Jiné zdroje započítávají pouze menší hodnoty, případně menší hodnoty plus polovinu shodných. Poslední postup by u 5 minut dal $(1+2/2)/5=0{,}4$, tedy 40. Při interpretaci norem psychologického testu proto vždy potřebujeme znát použitou konvenci a referenční skupinu. Vysoké percentilové pořadí navíc neznamená automaticky lepší výsledek: u doby dokončení úlohy znamená delší dobu. Percentilové pořadí není ani procento správně vyřešených položek testu.
+Porovnejme tři konvence, které se liší tím, jak zacházejí s výsledky rovnými posuzované hodnotě:
+
+- **Inkluzivní konvence** započítá všechny menší i všechny shodné hodnoty.
+- **Exkluzivní konvence** započítá pouze menší hodnoty; všechny shodné vynechá.
+- **Kompromisní konvence** započítá všechny menší hodnoty a polovinu počtu shodných. Výsledek je přesně uprostřed mezi exkluzivním a inkluzivním pořadím [@scipyPercentileRank].
+
+V každém případě příslušný počet vydělíme **celkovým počtem pozorování $n$** a vynásobíme 100. Exkluzivní postup tedy nevylučuje shodná pozorování ze jmenovatele; liší se pouze tím, která započítáme v čitateli. Zde se stále vracíme k pěti časům **4, 5, 5, 6 a 10 minut**, nikoli k jedenáctičlennému příkladu interpolace. Dvě pětky představují dvě pozorování, ale mají stejné percentilové pořadí, proto jsou v tabulce na společném řádku.
+
+::: {.table-scroll tabindex="0" role="region" aria-label="Srovnání percentilových pořadí a kvantilů; tabulku lze posouvat vodorovně"}
+| Doba a pozice v řadě | Inkluzivní pořadí | Exkluzivní pořadí | Kompromisní pořadí | Úroveň kvantilu podle PERCENTIL.INC |
+|:---|:---|:---|:---|:---|
+| **4 min**, pozice 1 | $\frac{0+1}{5}\times100=20$ | $\frac{0}{5}\times100=0$ | $\frac{0+1/2}{5}\times100=10$ | $p=\frac{1-1}{4}=0$; tedy $q_0=4$. |
+| **5 min**, pozice 2 a 3 | $\frac{1+2}{5}\times100=60$ | $\frac{1}{5}\times100=20$ | $\frac{1+2/2}{5}\times100=40$ | Od $p=\frac{2-1}{4}=0{,}25$ do $p=\frac{3-1}{4}=0{,}50$; po celou dobu $q_p=5$. |
+| **6 min**, pozice 4 | $\frac{3+1}{5}\times100=80$ | $\frac{3}{5}\times100=60$ | $\frac{3+1/2}{5}\times100=70$ | $p=\frac{4-1}{4}=0{,}75$; tedy $q_{0{,}75}=6$. |
+| **10 min**, pozice 5 | $\frac{4+1}{5}\times100=100$ | $\frac{4}{5}\times100=80$ | $\frac{4+1/2}{5}\times100=90$ | $p=\frac{5-1}{4}=1$; tedy $q_1=10$. |
+
+: Tři konvence percentilového pořadí a odpovídající úrovně interpolovaných kvantilů pro stejných pět časů. {#tbl-percentilove-poradi tbl-colwidths="[13,18,18,21,30]"}
+:::
+
+**Jak číst řádek pro 5 minut?** Menší je jeden čas (4 minuty) a shodné jsou dva (obě pětky). Inkluzivně proto počítáme tři z pěti, exkluzivně jednoho z pěti a kompromisně jednoho plus polovinu ze dvou shodných, tedy dva z pěti. Dostáváme pořadí **60, 20 a 40**, která vyjadřují 60,0 %, 20,0 % a 40,0 % podle příslušného pravidla. Nejde o tři různé naměřené časy ani o tři různé skupiny účastníků.
+
+Poslední sloupec odpovídá na jinou otázku: **pro které úrovně $p$ vrátí náš výpočet kvantilu daný čas?** Jmenovatel je zde $n-1=4$, protože úrovně přiřazujeme mezerám mezi pozicemi podle dříve vysvětlené konvence. Hodnota 5 minut stojí na druhé i třetí pozici, a proto je nejen 25. a 50. percentilem, ale i každým percentilem mezi nimi. Například pro 40. percentil dostáváme pozici $1+4\times0{,}40=2{,}6$ a interpolaci $5+0{,}6\times(5-5)=5$. Interval úrovní 25–50 % tedy zahrnuje i oba krajní body. **Shodné hodnotě nemusí odpovídat jediná kvantilová úroveň.**
+
+Shoda některého percentilového pořadí s některou úrovní v posledním sloupci není obecné pravidlo. Například pro 6 minut je kompromisní pořadí 70, ale $q_{0{,}70}=5+0{,}8\times(6-5)=5{,}8$ minuty; samotných 6 minut odpovídá až 75. percentilu. Označení inkluzivní a exkluzivní zde popisuje **započítávání shod při percentilovém pořadí**. Neoznačuje změnu algoritmu kvantilů: poslední sloupec používá ve všech řádcích stejnou konvenci PERCENTIL.INC.
+
+Při interpretaci norem psychologického testu proto vždy potřebujeme znát použitou konvenci a referenční skupinu. Vysoké percentilové pořadí navíc neznamená automaticky lepší výsledek: u doby dokončení úlohy znamená delší dobu. Percentilové pořadí není ani procento správně vyřešených položek testu.
 
 ## Rozpětí celého souboru a jeho prostřední části {#sec-rozpeti}
 

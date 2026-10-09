@@ -38,3 +38,6 @@ caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 6
 /* Keep prose comparisons readable inside their horizontal scroll containers. */
 #tbl-hranice-intervalu table,
 #tbl-srovnani-stredu table { min-width: 620px; }
+
+/* Keep the worked rank calculations readable; scroll the table, not the page. */
+#tbl-percentilove-poradi table { min-width: 1060px; }
