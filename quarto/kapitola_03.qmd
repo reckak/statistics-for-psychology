@@ -587,9 +587,11 @@ Rozdělení lze také popisovat přímo pomocí četností a kvantilů, bez volb
 ## Nepovinné rozšíření: momentová šikmost a špičatost {#sec-momenty}
 
 ::: {#rozsireni-momenty .callout-note collapse="true" title="Nepovinné rozšíření: princip, výpočty a meze interpretace"}
-Průměry mocnin hodnot nebo jejich odchylek označujeme jako **momenty (*moments*)**. Průměr původních hodnot je moment prvního řádu kolem nuly; průměr čtverců odchylek od průměru je centrální moment druhého řádu. Slovo centrální zde znamená „počítaný z odchylek od průměru“. Ne každou charakteristiku odchylek je však vhodné zaměňovat s momentem: například směrodatná odchylka je odmocninou příslušného rozptylu.
+Průměry mocnin hodnot nebo jejich odchylek označujeme jako **momenty (*moments*)**. **Řád momentu (*order of a moment*) říká, kterou mocninu průměrujeme:** první řád používá první mocninu (samotnou hodnotu), druhý její čtverec, třetí třetí mocninu a tak dále.
 
-**Třetí mocnina (*cube*)** je součin tří stejných čísel, například $(-2)^3=-8$. Zachovává znaménko a současně zdůrazňuje vzdálené hodnoty. **Čtvrtá mocnina (*fourth power*)**, například $(-2)^4=16$, je nezáporná a vzdálené hodnoty zvýrazní ještě silněji. K porovnání rozdělení v různých jednotkách musíme tyto průměry mocnin přepočítat vzhledem k variabilitě.
+Vedle řádu rozlišujeme, **co umocňujeme**. Průměr původních hodnot je moment prvního řádu kolem nuly, protože $x_i^1=x_i$. Průměr čtverců odchylek $(x_i-m)^2$ je centrální moment druhého řádu. Slovo **centrální** zde znamená „počítaný z odchylek od průměru“; druhý řád určuje mocninu 2. Průměr původních čtverců $x_i^2$ by byl také momentem druhého řádu, ale kolem nuly, nikoli centrálním momentem. Ne každou charakteristiku odchylek je však vhodné zaměňovat s momentem: například směrodatná odchylka je odmocninou příslušného rozptylu.
+
+**Třetí mocnina (*cube*)** je součin tří stejných čísel, například $(-2)^3=-8$. Zachovává znaménko a současně zdůrazní vzdálené hodnoty. **Čtvrtá mocnina (*fourth power*)**, například $(-2)^4=16$, je nezáporná a vzdálené hodnoty zvýrazní ještě silněji. K porovnání rozdělení v různých jednotkách musíme tyto průměry mocnin přepočítat vzhledem k variabilitě.
 
 ### Koeficient šikmosti
 
@@ -598,13 +600,13 @@ Základní **momentový koeficient šikmosti (*moment coefficient of skewness*)*
 $$g_1=\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^3}
 {\left(\sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2}\right)^3}.$$
 
-V čitateli průměrujeme třetí mocniny odchylek. Ve jmenovateli nejprve spočítáme průměr čtverců odchylek s dělením $n$, potom jej odmocníme a nakonec umocníme na třetí. Tím odstraníme jednotky: min³ dělíme min³. Zde záměrně nepoužíváme výběrový rozptyl $s^2$ s dělením $n-1$; jde o jinou přesně vymezenou konvenci.
+V čitateli průměrujeme třetí mocniny odchylek. Ve jmenovateli nejprve spočítáme průměr čtverců odchylek s dělením $n$ (počtem případů), potom jej odmocníme a nakonec umocníme na třetí. Tím odstraníme jednotky: min³ dělíme min³. Zde záměrně nepoužíváme výběrový rozptyl $s^2$ s dělením $n-1$; jde o jinou přesně vymezenou konvenci.
 
-Pro naše doby 4, 5, 5, 6, 10 jsou odchylky −2, −1, −1, 0, 4. Třetí mocniny jsou −8, −1, −1, 0, 64. Součet je 54 a průměr $54/5=10{,}8$ min³. Průměr čtverců je $22/5=4{,}4$ min². Dostaneme
+Pro náš soubor časových hodnot 4, 5, 5, 6, 10 činí odchylky od průměru −2, −1, −1, 0, 4. Jejich třetí mocniny jsou −8, −1, −1, 0, 64; součet těchto třetích mocnin je 54 a průměr $54/5=10{,}8$ min³. Čtverce odchylek jsou 4, 1, 1, 0, 16 a jejich průměr je $22/5=4{,}4$ min². Dostaneme tedy
 
 $$g_1=\frac{10{,}8}{(\sqrt{4{,}4})^3}\doteq1{,}17.$$
 
-Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Obrácené tvrzení však neplatí: **nulová momentová šikmost sama nedokazuje souměrnost**. Také silně nesouměrné příspěvky se mohou v součtu vyrušit. Velikost koeficientu nemá univerzální hranice oddělující „dobrá“ a „špatná“ data.
+Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Obrácené tvrzení však nemusí platit: **nulová momentová šikmost sama nedokazuje souměrnost**. Také silně nesouměrné příspěvky se mohou v součtu vyrušit. Velikost koeficientu nemá univerzální hranice oddělující „dobrá“ a „špatná“ data.
 
 ### Špičatost neboli kurtóza a exces
 
@@ -633,7 +635,7 @@ $$\frac{n-1}{(n-2)(n-3)}\bigl[(n+1)g_2+6\bigr].$$
 
 V obou výrazech je $n$ počet platných hodnot a $g_1$, $g_2$ základní koeficienty definované výše. Nejprve vyhodnotíme závorky a až potom násobení a dělení. V našem příkladu první násobitel činí $\sqrt{20}/3$, takže korigovaná šikmost vyjde přibližně **1,74**. Druhý vztah dává přibližně **3,32**. Rozdíl od základních výsledků 1,17 a −0,17 je u pouhých pěti hodnot značný. Nejde o chybu zaokrouhlení [@msSkew; @msSkewP; @msKurt].
 
-Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; variabilita nesmí být nulová. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Oba ukazatele mohou v malých souborech silně kolísat a reagovat na jedinou hodnotu. Graf a věcný kontext proto zůstávají nezbytné. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít ani jeden vypočtený koeficient přesně nulový. A ani dvojice nul sama normalitu nedokazuje.
+Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; variabilita nesmí být nulová. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Oba ukazatele mohou v malých souborech silně kolísat a reagovat na jedinou hodnotu. Graf a věcný kontext proto zůstávají nezbytné. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít (kvůli výběrové variabilitě) ani jeden vypočtený koeficient přesně nulový. Ani opačné uvažování by nebylo oprávněné: nulová výběrová šikmost a exces samy o sobě nedokládají, že výběr pochází z normálního rozdělení.
 :::
 
 ## Výpočty v Excelu {#sec-excel-poloha}
