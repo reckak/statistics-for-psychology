@@ -107,6 +107,7 @@ first_reached <- function(values,p) {
 }
 eq(vapply(c(4,5,6,10),function(v) sum(x<=v),integer(1)),c(1,3,4,5))
 eq(first_reached(x,.9),10);eq(ch3_quantile(x,.9),8.4)
+eq(vapply(c(.1,.2,.25),function(p) first_reached(x,p),numeric(1)),c(4,4,5))
 rested<-c(1,2,2,3,3,4)
 eq(vapply(c(.5,.75,.9),function(p) first_reached(rested,p),numeric(1)),c(2,3,4))
 eq(cumsum(tabulate(rested)),c(1,3,5,6))
