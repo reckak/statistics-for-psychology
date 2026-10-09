@@ -18,7 +18,7 @@ Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvar
 
 V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření může být tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
 
-Význam čísel závisí také na škále měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nevyjadřuje přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
+Význam čísel závisí také na škále měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nemusí vyjadřovat přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
 
 ## Tři způsoby vyjádření středu {#sec-stred-rozdeleni}
 
@@ -128,11 +128,15 @@ Medián popisuje prostřední polohu. Někdy nás zajímá jiná část uspořá
 
 **Percentily (*percentiles*)** vyjadřují tyto úrovně v setinách: 25. percentil odpovídá 25% kvantilu, tedy $q_{0{,}25}$. **Kvartily (*quartiles*)** jsou kvantily na úrovních jedné čtvrtiny, poloviny a tří čtvrtin. Dolní kvartil je $q_{0{,}25}$, druhý kvartil je medián a horní kvartil $q_{0{,}75}$. Běžné značky Q₁, Q₂ a Q₃ najdete jako alternativy v [přehledu značení](znaceni.qmd#znak-qp). Slovo kvartil zde označuje hraniční hodnotu, nikoli jednu ze čtyř skupin lidí.
 
-### Jedna výpočetní konvence {#sec-vypocet-kvantilu}
+### Hlavní konvence v této učebnici: kvantily s interpolací {#sec-vypocet-kvantilu}
 
 V konečném souboru nelze vždy oddělit přesně požadovaný podíl dat. Někdy není požadovaný počet lidí celé číslo, jindy se hodnoty opakují. Existuje proto více konvencí výpočtu výběrových kvantilů. Pro číselná data v této učebnici používáme postup funkce **PERCENTIL.INC (*PERCENTILE.INC*)**. Pokud je potřeba, provádí **lineární interpolaci (*linear interpolation*)**: hledá hodnotu mezi dvěma sousedními hodnotami úměrně tomu, jak daleko je hledaná pozice mezi jejich pozicemi [@hyndman1996; @msPercentileInc].
 
-Nejprve hodnoty seřadíme podle vzestupně podle velikosti. Zápis $x_{(i)}$ označuje hodnotu na $i$-té pozici v seřazené řadě; závorky v indexu odlišují tuto pozici od původního pořadí záznamů. Princip si ukážeme na **jedenácti různých modelových dobách dokončení úlohy**. Každý z jedenácti účastníků poskytl jednu hodnotu:
+Tento postup je naší **hlavní konvencí pro číselná data**, pokud výslovně neuvedeme jinak. Přirozeně se uplatňuje zejména u **spojitých proměnných**, kde mohou mít věcný význam i hodnoty mezi pozorováními. Použít jej lze také u **diskrétních číselných proměnných**: například interpolovaný kvartil 5,75 slova může sloužit jako hranice na číselné škále, přestože nikdo nemůže vybavit 5,75 slova. Samotná skutečnost, že výsledek nelze pozorovat, tedy interpolaci automaticky neznehodnocuje; záleží na tom, co má kvantil vyjadřovat.
+
+U **čistě ordinálních kategorií** je problém zásadnější: známe jejich pořadí, ale nemáme podklad pro velikost rozdílů mezi jejich číselnými kódy. Interpolace těchto kódů proto není věcně podložená. Pro takové kategorie budeme používat [odečet z kumulativních podílů](#sec-kvantil-kumulativni), při němž výsledkem zůstává pozorovaná kategorie.
+
+Nejprve hodnoty seřadíme vzestupně podle velikosti. Zápis $x_{(i)}$ označuje hodnotu na $i$-té pozici v seřazené řadě; závorky v indexu odlišují tuto pozici od původního pořadí záznamů. Princip si ukážeme na **jedenácti různých modelových dobách dokončení úlohy**. Každý z jedenácti účastníků poskytl jednu hodnotu:
 
 ::: table-scroll
 | Pozice v seřazené řadě $i$ | Doba $x_{(i)}$ (minuty) | Přiřazená úroveň kvantilu $p$ vyjádřená v procentech |
@@ -174,27 +178,27 @@ $$q_{0{,}17}=5+0{,}7\times(7-5)=6{,}4\ \text{minuty}.$$
 
 ![Výpočet kvantilů z jedenácti modelových časů: přiřazené úrovně a detail lineární interpolace pro 17. percentil.](../assets/chapter-03/plots/kvantil-interpolace.svg){#fig-kvantil-interpolace fig-alt="Horní graf spojuje jedenáct časů s přiřazenými úrovněmi od 0 do 100 procent. Dolní graf zvětšuje úsek od 10 procent a 5 minut do 20 procent a 7 minut. Hledaných 17 procent leží v sedmi desetinách vodorovné vzdálenosti; na spojnici mu odpovídá 6,4 minuty."}
 
-V horním panelu @fig-kvantil-interpolace jsou vodorovné rozestupy bodů stejné, ale svislé rozdíly časů se mění. Dolní panel ukazuje, proč mluvíme o **lineární** interpolaci: mezi dvěma sousedními body vedeme přímou úsečku a hledanou hodnotu odečteme na ní. Spojnice je pravidlo výpočtu; netvrdí, že jsme mezi 5 a 7 minutami pozorovali další lidi nebo že jsou tam časy v populaci rovnoměrně rozloženy. Výsledek 6,4 minuty leží blíže k 7 než k 5 minutám, protože úroveň 17 % je blíže k 20 % než k 10 %.
+V horním panelu @fig-kvantil-interpolace jsou rozestupy bodů na vodorovné ose stejné, ale rozdíly časů na svislé ose se mění. Dolní panel ukazuje, proč mluvíme o **lineární** interpolaci: mezi dvěma sousedními body vedeme přímou úsečku a hledanou hodnotu odečteme na ní. Spojnice je pravidlo výpočtu; netvrdí, že jsme mezi 5 a 7 minutami pozorovali další lidi nebo že jsou tam časy v populaci rovnoměrně rozloženy. Výsledek 6,4 minuty leží blíže k 7 než k 5 minutám, protože úroveň 17 % je blíže k 20 % než k 10 %.
 
 Obecně označíme $i$ jako **celou část necelé pozice**: například u pozice 2,7 je $i=2$. Nižší sousední hodnota je $x_{(i)}$, vyšší $x_{(i+1)}$. Rozdíl $\text{pozice}-i$ udává, jakou část cesty mezi nimi urazíme. Přesný výpočet je
 
 $$q_p=x_{(i)}+(\text{pozice}-i)\times\bigl(x_{(i+1)}-x_{(i)}\bigr).$$
 
-Jinými slovy: **nižší hodnota + příslušná část rozdílu k vyšší hodnotě**. V našem příkladu dosazujeme $i=2$, $\text{pozice}-i=0{,}7$, $x_{(2)}=5$ a $x_{(3)}=7$. Pokud jsou sousední hodnoty shodné, je jejich rozdíl nulový a interpolace vrací tutéž hodnotu. Přehled obou vztahů najdete v [tabulce značení a vzorců](znaceni.qmd#vztah-interpolace).
+Jinými slovy: **nižší hodnota + příslušná část rozdílu (cesty) k vyšší hodnotě**. V našem příkladu dosazujeme $i=2$, $\text{pozice}-i=0{,}7$, $x_{(2)}=5$ a $x_{(3)}=7$. Pokud jsou sousední hodnoty shodné, je jejich rozdíl nulový a interpolace vrací tutéž hodnotu. Přehled obou vztahů najdete v [tabulce značení a vzorců](znaceni.qmd#vztah-interpolace).
 
 ::: worked-example
-**Kvartily a jiný percentil.** Pro 4, 5, 5, 6, 10 je $n=5$. Dolní kvartil má pozici $1+4\times0{,}25=2$, tedy hodnotu 5. Medián má pozici 3, tedy také hodnotu 5, jelikož se hodnoty na 2. a 3. pozici shodují. Horní kvartil má pozici 4 a hodnotu 6. Pro 90. percentil je pozice $1+4\times0{,}9=4{,}6$. Mezi čtvrtou hodnotou 6 a pátou hodnotou 10 se posuneme o šest desetin rozdílu:
+**Kvartily a jiný percentil.** Pro 4, 5, 5, 6, 10 je $n=5$. Dolní kvartil má pozici $1+4\times0{,}25=2$, tedy hodnotu 5. Medián má pozici 3, tedy také hodnotu 5, jelikož se hodnoty na 2. a 3. pozici shodují. Horní kvartil má pozici 4 a hodnotu 6. Pro 90. percentil je pozice $1+4\times0{,}9=4{,}6$. Mezi čtvrtou hodnotou 6 a pátou hodnotou 10 se posuneme o šest desetin rozdílu (jehož velikost je 10 – 6 = 4):
 
 $$q_{0{,}9}=6+0{,}6\times(10-6)=8{,}4\ \text{minuty}.$$
 
-Hodnota 8,4 je interpolovaná hranice, vypočtená ze dvou zaznamenaných, nikoli zaznamenaný čas některého účastníka. V souboru jsou nejvýše této hodnotě rovny čtyři z pěti dob, tedy 80,0 %. Výpočet netvrdí, že přesně 90,0 % těchto pěti pozorování leží pod výsledkem.
+Hodnota 8,4 je interpolovaná hranice, vypočtená ze dvou zaznamenaných časů, nikoli zaznamenaný čas některého účastníka. V souboru jsou nejvýše této hodnotě rovny čtyři z pěti dob, tedy 80,0 %. Výpočet netvrdí, že přesně 90,0 % těchto pěti pozorování leží pod hledanou hranicí.
 :::
 
 Stejná potíž se může objevit i bez shodných hodnot: třicátý percentil hodnot 1, 2, 3, 4 je podle této konvence 1,9, přestože nejvýše 1,9 má 25,0 % pozorování. Proto nebudeme interpolovaný výběrový percentil definovat jako hodnotu, pod níž musí ležet přesně dané procento dat.
 
-### Kvantil jako první dosažená kumulativní úroveň {#sec-kvantil-kumulativni}
+### Když má být kvantilem pozorovaná hodnota nebo kategorie {#sec-kvantil-kumulativni}
 
-Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu, u níž kumulativní podíl dosáhne nebo překročí zvolenou úroveň**. Výsledek tedy vždy vybereme z pozorovaných hodnot. Porovnejme oba postupy na našich pěti časech:
+Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu nebo kategorii, u níž kumulativní podíl dosáhne zvolené úrovně (nebo ji překročí)**. Výsledek tedy vždy vybereme z pozorovaných hodnot či kategorií. Tento postup se hodí pro diskrétní proměnné, pokud požadujeme skutečně pozorovatelný výsledek, a zejména pro čistě ordinální kategorie, mezi nimiž nemáme podklad pro interpolaci. **Kvantily ordinálních kategorií budeme v této učebnici určovat tímto pravidlem.** Použít je můžeme i u spojité proměnné, pokud nás zajímá první pozorovaná hodnota pokrývající požadovaný podíl souboru. Porovnejme oba postupy na našich pěti časech:
 
 ::: {.table-scroll tabindex="0" role="region" aria-label="Kumulativní podíly dob dokončení"}
 | Doba (minuty) | Počet dob nejvýše rovných této době | Kumulativní podíl |
@@ -206,6 +210,8 @@ Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu, u níž ku
 :::
 
 Hledáme-li úroveň **90 %**, u 6 minut máme teprve 80 %, a proto pokračujeme k 10 minutám, kde dosáhneme 100 %. Podle této konvence je 90. percentil **10 minut**, zatímco interpolace PERCENTIL.INC dala **8,4 minuty**. Rozdíl odpovídá jinému pravidlu, nikoli početní chybě [@hyndman1996].
+
+**Pokud požadovanou úroveň dosáhneme už u nejnižší hodnoty, vybereme tuto hodnotu.** Například 10. i 20. percentil jsou podle tohoto pravidla 4 minuty, protože už u nejkratší doby dosahuje kumulativní podíl 20 %. Pro 25. percentil už 4 minuty nestačí; vybereme 5 minut, u nichž podíl dosahuje 60 %. Podíl se tedy může dostat nad požadovanou úroveň a několik různých percentilů může odpovídat stejné hodnotě. Nevyžadujeme přesnou shodu podílů.
 
 Tento odečet se hodí například tehdy, když se ptáme: **„Jaký nejnižší časový limit by v tomto konkrétním souboru stačil alespoň 90 % účastníků?“** Limit 8,4 minuty by stačil jen čtyřem z pěti, tedy 80 %. Nejnižší vyhovující limit je 10 minut. U pěti lidí nemůžeme zahrnout přesně 90 %: musíme přejít ze čtyř lidí na všech pět. Interpolovaný kvantil naproti tomu přiřazuje zvolené úrovni polohu mezi seřazenými hodnotami a tuto podmínku pokrytí konkrétního souboru nezaručuje. Ani jeden výpočet sám nezaručuje, kolika **budoucím** účastníkům bude limit stačit.
 
@@ -432,7 +438,7 @@ Při naší konvenci je pozice 1. kvartilu $1+(41-1)\times0{,}25=11$, mediánu 2
 
 Pravidlo 1,5násobku rozpětí je **pomůcka k označení neobvyklých pozorování**, nikoli důkaz chyby či pokyn k vyřazení. Navazujeme na [zásady práce s odlehlými pozorováními](kapitola_02.qmd#sec-tvar-rozdeleni). U zešikmeného rozdělení může být více bodů za jednou mezí přirozenou vlastností dat. Je-li mezikvartilové rozpětí nulové, mohou být samostatně označeny i nepříliš vzdálené odlišné hodnoty; pak je zvlášť důležité zobrazit jednotlivá pozorování.
 
-Existují také krabicové grafy s vousy až k minimu a maximu nebo k určeným percentilům. Vždy zjistíme použitou definici. Zde i ve všech výpočtech kvartilů používáme konvenci PERCENTIL.INC; výchozí krabicový graf některého programu může kvartily určovat jinak. **Výška krabice** v našem svislém obrázku představuje mezikvartilové rozpětí; její šířku můžeme nastavit podle uvážení. Graf by bylo samozřejmě možné také otočit a hodnoty číst z vodorovné osy.
+Existují také krabicové grafy s vousy až k minimu a maximu nebo k určeným percentilům. Vždy zjistíme použitou definici. Zde používáme naši hlavní konvenci pro číselná data, PERCENTIL.INC; výchozí krabicový graf některého programu může kvartily určovat jinak. **Výška krabice** v našem svislém obrázku představuje mezikvartilové rozpětí; její šířku můžeme nastavit podle uvážení. Graf by bylo samozřejmě možné také otočit a hodnoty číst z vodorovné osy.
 
 ## Variabilita kategorií a entropie {#sec-entropie}
 
