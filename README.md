@@ -41,7 +41,11 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `assets/`: společné styly a ovládání přehledových tabulek.
 - `references.bib`: bibliografické údaje citovaných zdrojů.
 - `quarto/_verification/`: kontrolní skripty.
-- `quarto/README.md`: autorská dokumentace, odborné zdroje, rozhodnutí a záznamy ověření.
+- `AGENTS.md`: společná pravidla tvorby, didaktické revize, ověřování a práce s Gitem.
+- [docs/PREZENTACE.md](docs/PREZENTACE.md): pravidla pro prezentace, poznámky a jejich exporty.
+- [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): platná autorská rozhodnutí s rozsahem a doklady.
+- [docs/OSNOVA.md](docs/OSNOVA.md): dohodnutý obsah, cíle a návaznosti kapitol; neschválené náměty jsou oddělené.
+- `quarto/README.md`: historická autorská dokumentace, odborné zdroje, rozhodnutí a záznamy ověření.
 - `.github/workflows/book.yml`: sestavení, kontrola webu a publikování na GitHub Pages.
 
 Neveřejné autorské podklady ve složce `sources/` nejsou součástí repozitáře ani webu a nejsou potřebné pro čtení, cvičení nebo sestavení knihy. Generované výstupy a dočasné pracovní soubory se do Gitu neukládají.

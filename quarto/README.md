@@ -1,5 +1,9 @@
 # Autorská dokumentace
 
+Historické záznamy níže popisují stav v době vzniku a zůstávají zachovány.
+Pro současné konvence používejte [přehled rozhodnutí](../docs/ROZHODNUTI.md),
+pro dohodnutý obsah a návaznosti [osnovu](../docs/OSNOVA.md).
+
 ## Zpřesnění výkladu po společné redakci (2026-09-20)
 
 Na žádost autora zapracovány projednané úpravy přímo do hlavního souboru
@@ -704,3 +708,30 @@ Při zavedení momentů je nyní výslovně vysvětleno, že řád určuje mocni
 Zahrnuta souběžná autorská redakce výkladu šikmosti a špičatosti. Opraven překlep „mocnic“ a poslední čtverec odchylky v rozepsaném příkladu: 4² = 16, takže součet čtverců zůstává 22. Obnoveny stabilní identifikátory a šířky dvou tabulek odstraněné pracovní redakcí. Čistá relace R ověřila všechny numerické příklady a 14 řešení; celá kniha byla vykreslena. Excelové příklady ani grafy se nemění; desktopový Excel nebyl znovu spouštěn.
 
 Webová kontrola osmi stránek prošla: 142 hesel, 32 řešení, vnitřní odkazy, ovládání klávesnicí, skrytí a rozbalení řešení a šířky 1360/1920/390 px bez chyb. Upravené rozšíření bylo vizuálně prohlédnuto na desktopu i mobilu. git diff --check prošel. Veřejné nasazení nebylo ověřováno.
+
+## Revize projektových instrukcí a rozdělení dokumentace (2026-10-10)
+
+Po společném projednání a výslovném souhlasu autora jsou pravidla pro výklad a ověřování ponechána pohromadě v kořenovém AGENTS.md. Nevznikají samostatné VYKLAD.md, OVEROVANI.md, GOALS.md ani PLANS.md. Do docs/PREZENTACE.md se přesouvají veškerá dosavadní pravidla pro prezentace, poznámky a exporty; mění se pouze úroveň nadpisů a relativní odkaz na společná pravidla. Kořenové instrukce určují, kdy načíst další dokumenty, bez povinnosti číst všechny při každém úkolu.
+
+Nový docs/ROZHODNUTI.md eviduje šest skupin doložených konvencí s rozsahem, důvodem a dokladem: značení/reportování, indexy/četnosti, hranice intervalů, kvantily/boxplot, zaokrouhlování a robustní shrnutí. Nejde o úplný slovníček. Nový docs/OSNOVA.md shrnuje obsah a cíle současných tří kapitol, návaznosti, základní a nepovinný rozsah; budoucí náměty výslovně nejsou vydávány za schválené kapitoly. Starší záznamy této historie zůstávají zachovány a jsou doplněny odkazem na současné přehledy.
+
+Opraveny dva doložené nesoulady: cesta k hlavní učebnici nyní odpovídá existujícímu sources/učebnice/howell.pdf; větu o neexistenci výjimek ve značení nahrazuje vymezení schválených ukázek APA, bez změny výpočetního m a dalších dosavadních symbolů. Jsou připomenuty i rozlišující zkratky MeanAD a MedAD. Nové odborné značení se nezavádí.
+
+Před návrhem nové kapitoly se musí posoudit aktuální soubory v sources/ včetně podsložek: další učebnice, autorovy starší prezentace, příklady k procvičování a ostatní podklady. U relevantních materiálů se mají prostudovat odpovídající části a při projednávání uvést využití, podstatné rozpory a případné mezery v přístupu. Howell zůstává hlavním východiskem. Tato revize instrukcí ověřila umístění souborů, není novou odbornou rešerší jejich obsahu.
+
+Didaktická revize nově ukládá hledat chybějící myšlenkové kroky, nevysvětlené pojmy, nevyřčené předpoklady, záměny pojmů a chybějící interpretace. Zahrnuje návaznosti, účel příkladů a grafů, přípravu na cvičení a jazykovou čitelnost. Rozsah odpovídá změně; běžné opravy v dohodnutém rozsahu nepotřebují nové schvalování. Nové pojmy, změny značení a rozšíření nadále podléhají dohodě. Nevzniká povinnost vkládat samostatná cvičení do výkladu a interní revize není vydávána za ověření porozumění na studentech.
+
+### Mapa zachování pravidel a kontrola
+
+| Původní část AGENTS.md | Výsledek |
+|---|---|
+| Cíl a cílová skupina; příprava každé kapitoly; didaktika a jazyk; výpočty; cvičení; tři přehledy; ověřování Quarto Book; Git | Osm oddílů obsahově i textově zachováno. |
+| Zdroje | Opravena cesta a rozšířen postup posouzení podkladů; ostatní požadavky zachovány. |
+| Terminologie a značení | Nahrazena zastaralá věta o výjimkách; doplněn odkaz na vymezení reportování a zkratek. |
+| Studentský text a autorská dokumentace | Zpřesněno rozdělení historie, platných rozhodnutí a osnovy. |
+| Prezentace a poznámky | Úplný přesun do docs/PREZENTACE.md s výslovným načtením z kořenových instrukcí. |
+| Nové oddíly | Použití projektové dokumentace a didaktická revize. |
+
+Přímé porovnání proti výchozímu origin/main potvrdilo úplnost přesunu prezentací (po normalizaci úrovně nadpisů a odkazu na AGENTS.md) a nezměněný obsah osmi zachovaných oddílů. Kontrola 42 místních Markdown odkazů v šesti dotčených dokumentech potvrdila existenci cílů a explicitních kotev. Ověřeno UTF-8, cesta k Howellovi, odstranění obou zastaralých formulací a soulad osnovy a konvencí s aktuálními kapitolami a historickými doklady. git diff --check prošel.
+
+Mění se pouze instrukce a autorská dokumentace; kapitoly, data, prezentace ani konfigurace webu se nemění. Podle pravidla pro tento druh změny nebyl spouštěn render, numerické ani excelové kontroly a vizuální kontrola webu. Veřejné nasazení nebylo ověřováno. Nejde o novou didaktickou revizi samotných kapitol.
