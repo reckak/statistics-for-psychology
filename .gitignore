@@ -9,7 +9,8 @@ tmp/
 node_modules/
 presentations/
 assets/chapter-02/plots/
-assets/chapter-03/plots/
+assets/chapter-03/plots/*
+!assets/chapter-03/plots/mode-median-mean.svg
 
 /.quarto/
 **/*.quarto_ipynb

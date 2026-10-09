@@ -115,6 +115,43 @@ ch3_draw('stred-a-tvar',{
     text(50,-.025,'Skór (body)',xpd=NA,cex=.95)
   }
 },width=5.5,height=10.5)
+# Same observations as the chapter table. Squares are geometric areas, not
+# distances on the observation-number axis. Direction avoids overlapping areas.
+ch3_deviations <- ch3_x-mean(ch3_x)
+ch3_square_left <- c(-1,2,3,4,5)
+ch3_square_width <- abs(ch3_deviations)
+ch3_draw('odchylky-a-ctverce',{
+  par(mfrow=c(2,1),mar=c(4.3,4.3,3.2,.8),mgp=c(2.5,.65,0),cex=1.05)
+  cols<-c('#B35A18','#0072B2','#00836B','#667078','#8055A0')
+  for(panel in 1:2) {
+    plot(seq_along(ch3_x),ch3_x,type='n',xlim=c(-1.5,9.5),ylim=c(2.5,10.8),
+      asp=1,axes=FALSE,xlab='Číslo pozorování',ylab='Doba dokončení (minuty)',
+      main=if(panel==1) 'A. Odchylky od průměru\nDélka úsečky = absolutní odchylka' else
+        'B. Čtverce odchylek\nPlocha čtverce = druhá mocnina odchylky',cex.main=.95)
+    axis(1,at=1:5);axis(2,at=seq(2,10,2));box(bty='l')
+    if(panel==2) for(i in seq_along(ch3_x)) {
+      rect(ch3_square_left[i],min(ch3_x[i],mean(ch3_x)),
+        ch3_square_left[i]+ch3_square_width[i],max(ch3_x[i],mean(ch3_x)),
+        col=adjustcolor(cols[i],alpha.f=.20),border=cols[i],lwd=1.5)
+      if(ch3_square_width[i]>0) text(ch3_square_left[i]+ch3_square_width[i]/2,
+        (ch3_x[i]+mean(ch3_x))/2,paste0(ch3_deviations[i]^2,' min²'),
+        cex=if(ch3_square_width[i]==1) .72 else .95,col=cols[i])
+    }
+    abline(h=mean(ch3_x),lty=2,col='#223744',lwd=1.5)
+    text(9.3,6.3,'Průměr = 6 min',adj=1,cex=.9)
+    segments(1:5,mean(ch3_x),1:5,ch3_x,col=cols,lwd=3)
+    points(1:5,ch3_x,pch=21,bg=cols,col='white',cex=1.5)
+    if(panel==1) {
+      text((1:5)[-4]+.23,(ch3_x[-4]+mean(ch3_x))/2,
+        c('−2','−1','−1','+4'),adj=0,col=cols[-4],cex=.95)
+      text(4,5.5,'0',col=cols[4],cex=.95)
+      text(7.2,3.6,'Součet délek\n8 min',cex=1)
+    } else {
+      text(4,6.55,'0 min²',col=cols[4],cex=.85)
+      text(7.2,3.6,'Součet ploch\n22 min²',cex=1)
+    }
+  }
+},width=6.5,height=11)
 ch3_draw('kvantil-interpolace',{
   par(mfrow=c(2,1),mar=c(4.7,4.4,3.6,.6),cex=1)
   plot(100*ch3_interpolation_levels,ch3_interpolation,type='o',pch=21,

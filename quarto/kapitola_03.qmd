@@ -76,6 +76,10 @@ U rozdělení s dlouhým pravým chvostem bývá průměr vyšší než medián,
 
 Žádný z těchto ukazatelů není nejlepší pro všechny otázky. Modus odpovídá na otázku **„Co se vyskytuje nejčastěji?“**, medián **„Kde leží prostředek uspořádaných hodnot?“** a průměr **„Kolik připadá na jeden případ, rozdělíme-li součet rovnoměrně?“** Následující srovnání shrnuje hlavní výhody a omezení všech tří ukazatelů [@howell, s. 34–35].
 
+![Tři geometrické pohledy na střed stejného modelového rozdělení: modus, medián a průměr. Převzato beze změny od Cmglee [@cmgleeCentre], licence [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).](../assets/chapter-03/plots/mode-median-mean.svg){#fig-vyznam-stredu width=320 fig-alt="Třikrát stejná nesouměrná křivka. Horní panel mode označuje modus pod nejvyšším vrcholem. Prostřední panel median dělí plochu pod křivkou na dvě poloviny. Dolní panel mean ukazuje průměr jako místo podpory, na němž by se plocha vyvážila."}
+
+V horním panelu **mode znamená modus**: hledáme nejvyšší místo křivky. V prostředním **median znamená medián**: svislá čára rozděluje plochu pod křivkou na poloviny. V dolním **mean znamená průměr**: kdybychom plochu vystřihli z rovnoměrně silného materiálu, průměr by určoval polohu podpěry, na níž se vyváží. Vzdálenější části plochy mají při vyvažování větší účinek. Obrázek je schématem hladkého rozdělení; u konkrétních pozorování se shodami nemusí být přesně polovina hodnot přísně pod mediánem. Odlišné polohy tří ukazatelů zde vyjadřují odlišné otázky, na které odpovídají.
+
 ::: table-scroll
 | Ukazatel | V čem je užitečný | Co ponechává stranou a na co dát pozor |
 |:-----------------------|:-----------------------|:-----------------------|
@@ -300,6 +304,14 @@ Doby jsou od svého průměru vzdálené v průměru o 1,6 minuty. Jde o přímo
 ### Druhé mocniny a rozptyl {#sec-rozptyl}
 
 Jiný způsob, jak zabránit vyrušení znamének, představuje **druhá mocnina** čili **čtverec (*square*)**: číslo vynásobíme samo sebou. Platí $(-2)^2=(-2)\times(-2)=4$ a $4^2=16$. Závorky říkají, že umocňujeme celou odchylku včetně znaménka. Čtyřikrát větší vzdálenost tak přispěje šestnáctkrát větší druhou mocninou.
+
+![Odchylky pěti modelových dob od průměru 6 minut jako úsečky a jako plochy čtverců. Stejná barva v obou panelech označuje stejné pozorování.](../assets/chapter-03/plots/odchylky-a-ctverce.svg){#fig-odchylky-ctverce fig-alt="V obou panelech je na vodorovné ose číslo pozorování 1 až 5 a na svislé doba v minutách: 4, 5, 5, 6 a 10. Horní panel spojuje body s čarou průměru 6; odchylky jsou minus 2, minus 1, minus 1, 0 a plus 4. Dolní panel staví na stejných úsečkách čtverce o plochách 4, 1, 1, 0 a 16 minut čtverečních."}
+
+**V horním panelu** má každý účastník vlastní číslo na vodorovné ose; svislá osa ukazuje jeho dobu dokončení. Úsečka od bodu k čáře průměru má délku rovnou absolutní odchylce. Její poloha pod nebo nad průměrem určuje znaménko podepsané odchylky. Délky jsou 2, 1, 1, 0 a 4 minuty, jejich součet 8 minut a průměrná délka MeanAD je $8/5=1{,}6$ minuty. Čtvrté pozorování leží přímo na průměru, proto má nulovou odchylku.
+
+**V dolním panelu** je každá úsečka stranou čtverce. Plocha proto odpovídá druhé mocnině odchylky a je vždy nezáporná: délce 2 minuty odpovídá plocha 4 min², délce 4 minuty plocha 16 min². Nulová odchylka vytváří nulovou plochu. Nejvzdálenější páté pozorování tak přispívá do součtu ploch čtyřikrát více než první, přestože jeho vzdálenost od průměru je jen dvojnásobná.
+
+V obou panelech zůstává svislá osa v **minutách**, nikoli v min²; čtverec odchylky vyjadřuje **plocha**, nikoli výška bodu. Vodorovná strana čtverce je pouze geometricky dokreslena ve stejném měřítku jako svislá: neznamená počet účastníků ani rozdíl jejich pořadí. Součet jednotlivých ploch $4+1+1+0+16=22$ min² použijeme při výpočtu rozptylu. Graf je vlastním zpracováním našeho příkladu, inspirovaným [vizuální předlohou odchylek a jejich čtverců](https://miro.medium.com/v2/resize:fit:786/format:webp/0*YAqygP_cDwKqEvtf.gif).
 
 **Součet čtverců odchylek od průměru (*sum of squared deviations from the mean*)** je v našem příkladu 22 min². Není to součet druhých mocnin původních hodnot: ten by byl $4^2+5^2+5^2+6^2+10^2=202$ min². Nejde ani o druhou mocninu součtu hodnot, která je $30^2=900$ min². Před výpočtem si vždy ujasníme, co sčítáme a co umocňujeme.
 
