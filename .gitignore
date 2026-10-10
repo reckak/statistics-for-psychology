@@ -8,6 +8,7 @@ _book/
 tmp/
 node_modules/
 presentations/
+assets/chapter-01/plots/
 assets/chapter-02/plots/
 assets/chapter-03/plots/*
 assets/chapter-04/plots/
