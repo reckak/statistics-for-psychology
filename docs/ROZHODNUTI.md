@@ -246,6 +246,48 @@ vyhodnocují podle konkrétního manuálu.
 část kapitoly společně s jinými způsoby toho, jak posoudit, zda je normální
 model přiměřený“; „S posloupností souhlasím“ a souhlas s tvorbou kapitoly 4.
 
+<a id="r10-terminologie-kapitoly-1"></a>
+
+## R10 — Terminologie výběru, přidělení a rolí proměnných
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** kapitola 1, slovníček a další
+použití těchto pojmů v učebnici a souvisejících materiálech.
+
+- **Pravděpodobnostní výběr** (*probability sampling*) je hlavní termín
+  pro výběr, při němž má každý případ populace známou a nenulovou
+  pravděpodobnost vybrání. „Náhodný výběr“ (*random sampling*) uvádíme
+  jako alternativu. „Prostý náhodný výběr“ zůstává. Obecná spojení typu
+  „při náhodném výběru jednoho případu“ v dalších kapitolách se nemění.
+- **Náhodné přidělení do podmínek** (*random assignment*) nahrazuje
+  dosavadní „náhodné rozdělení do podmínek“, aby se pojem nepletl
+  s pravděpodobnostním rozdělením. Starší tvar zůstává mezi alternativami
+  ve slovníčku.
+- **Odhadovaná (predikovaná) proměnná** (*predictand*) nahrazuje chybný
+  tvar „predikant“; „prediktand“ uvádíme jako alternativu. Kritérium
+  i odhadovaná proměnná zůstávají v hlavním textu kapitoly 1.
+- Pro část populace zahrnutou do studie používáme důsledně **výběr**.
+  „Výzkumný soubor“ a „vzorek“ uvádíme jen při zavedení pojmu a ve
+  slovníčku. Slovo „soubor“ zůstává pro datový soubor či vymezenou
+  množinu případů.
+- Model měření, posuvník s verbálními kotvami a spor o čísla na dresech
+  jsou v kapitole 1 nepovinným rozšířením.
+
+**Důvod:** přesnost názvu vůči definici, odlišení od rozdělení ve smyslu
+*distribution*, jazyková správnost a jednotné označení bez střídání
+synonym; snížení počtu povinných pojmů úvodní kapitoly.
+
+**Nahrazuje:** termíny „náhodný výběr“ jako hlavní označení, „náhodné
+rozdělení do podmínek“ a „predikant“ z původního znění kapitoly 1
+a ze záznamu „Kapitola 1: role proměnných“ (2026-10-05).
+
+**Doklad:** výslovné pokyny autora při revizi kapitoly 1 dne 2026-10-11:
+hlavní překlad „odhadovaná (predikovaná) proměnná“ se správným tvarem
+prediktand; „používal [bych] termín výběr“; „jako hlavní termín bych
+používal pravděpodobnostní výběr a náhodný uvedl jako alternativu“;
+„náhodné přidělení“ místo „náhodné rozdělení“ a volba doplňku
+„do podmínek“; přesun tří témat do nepovinného rozšíření. Záznam
+„Kapitola 1: revize po posouzení“ v [historii](../quarto/README.md).
+
 ## Návrhy a další rozhodnutí
 
 Při založení tohoto dokumentu se nepřidávají nové statistické konvence.

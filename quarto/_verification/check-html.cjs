@@ -396,7 +396,9 @@ const server = http.createServer((req, res) => {
         ['predictor variable', 'pojem-prediktor'],
         ['outcome variable', 'pojem-vysledna-promenna'],
         ['criterion variable', 'pojem-kriterium'],
-        ['predictand', 'pojem-predikant']
+        ['predictand', 'pojem-odhadovana-promenna'],
+        ['probability sampling', 'pojem-pravdepodobnostni-vyber'],
+        ['random assignment', 'pojem-nahodne-prideleni']
       ]) {
         await page.locator('.ref-controls input').fill(query);
         assert(await page.locator(`#${id}`).isVisible(), `Variable role search: ${query}`);

@@ -32,12 +32,13 @@ rozliší konstrukt a ukazatel i základní zdroje nejistoty. Sestaví
 a zkontroluje datovou matici a přehled proměnných.
 
 **Hlavní obsah:** účel statistiky, proměnné a hodnoty, populace a výběr,
-náhodný výběr versus náhodné rozdělení, souvislost a příčina, role proměnných,
+pravděpodobnostní výběr versus náhodné přidělení do podmínek, souvislost a příčina, role proměnných,
 interní a externí validita, měření a operacionalizace, čtyři úrovně měření,
 diskrétnost a spojitost, chyba a nejistota, organizace a kódování dat,
 chybění a kontrola v Excelu.
 
-**Nepovinné rozšíření:** podrobnější modelový pohled na chybu měření.
+**Nepovinné rozšíření:** model měření, spor o čísla na dresech, posuvník
+a verbální kotvy, podrobnější modelový pohled na chybu měření.
 **Procvičování:** osm úloh zaměřených na pojmy, argumentaci a opravu datové
 matice. Četnosti a grafy patří do kapitoly 2, číselné charakteristiky
 do kapitoly 3; formální inference zde není zaváděna.

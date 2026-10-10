@@ -1048,3 +1048,69 @@ Vznikl samostatný kontrolní skript kapitoly a jeho zapojení do CI;
 desktopový Excel se spouští místně, nikoli v linuxovém CI. Lokální
 výsledek sám nepotvrzuje publikování na GitHub Pages; změna je připravena
 v tematické větvi `codex/chapter-04` pro uživatelovu kontrolu a sloučení.
+
+## Kapitola 1: revize po posouzení (2026-10-11)
+
+Na žádost autora proběhlo posouzení kapitoly 1 z hlediska věcné správnosti,
+didaktiky a jazyka. Hrubá věcná chyba nalezena nebyla. Autor rozhodl sporné
+body; platné konvence shrnuje [R10](../docs/ROZHODNUTI.md#r10-terminologie-kapitoly-1).
+Úpravy jsou ve větvi `codex/chapter-01-review` z `main` (d30bd98).
+
+### Terminologie
+
+- Hlavní termín je pravděpodobnostní výběr, náhodný výběr je alternativa.
+  Náhodné rozdělení do podmínek nahrazeno náhodným přidělením do podmínek.
+- Chybný tvar „predikant“ nahrazen označením odhadovaná (predikovaná)
+  proměnná s alternativou prediktand. Kotva slovníčku je nově
+  `pojem-odhadovana-promenna`; přejmenovány také `pojem-pravdepodobnostni-vyber`
+  a `pojem-nahodne-prideleni`. Staré kotvy se v repozitáři nepoužívají.
+- Pro část populace důsledně „výběr“. „Soubor“ zůstal jen pro datový soubor
+  a vymezenou množinu případů.
+- Kapitoly 3 a 4 používají „náhodný výběr“ v obecných spojeních a nemění se.
+
+### Věcná zpřesnění
+
+- Kódování: opraven obrácený směr definice (přiřazujeme kódy odpovědím).
+- Alternativní vysvětlení souvislosti spánku a výkonu výslovně popisuje
+  společnou příčinu; nový termín se nezavádí.
+- Doplněn vztah chyby měření a systematického zkreslení; sladěno řešení
+  úlohy 7b.
+- Závěrečná věta oddílu o rolích proměnných zmírněna z „nelze se otázce
+  jejich rolí zcela vyhnout“ na „vyplatí se o jejich rolích uvažovat“.
+  Původní znění bylo autorovou formulací z 2026-10-05; jde o návrh
+  předložený autorovi k posouzení v pull requestu.
+
+### Struktura a didaktika
+
+- Tři nová sbalená nepovinná rozšíření: model měření, spor o čísla na
+  dresech, posuvník a verbální kotvy. Spor je nově převyprávěn podle
+  Lorda (1953, s. 750–751) a Zand Scholten a Borsbooma (2009, s. 71–73);
+  oba texty byly přečteny v `sources/ostatní zdroje/`.
+- Přípustné změny číselného zápisu přesunuty za souhrnnou tabulku čtyř
+  úrovní měření.
+- Nové schéma populace → výběr → přidělení do podmínek
+  (`scripts/kapitola_01.R`, generované SVG v ignorované složce
+  `assets/chapter-01/plots/`). Jde o ilustraci s pevnými polohami teček,
+  nikoli o zobrazení dat.
+- Omezeno opakování vazby „samo (o sobě) nedokládá / nezaručuje“
+  a odstraněny dvě duplicitní věty. Cíle učení jsou výčtem; ostatní
+  kapitoly mají cíle dosud v odstavci.
+- Úloha 7e má novou situaci (dotazník spokojenosti klientů poradny)
+  s úplným řešením; řešení úloh 1–4 mají označené části.
+- Opraveny jazykové chyby (překlep, předložka, interpunkce, nejasné odkazy).
+
+### Ověření
+
+Celá kniha se vykreslila v Quarto 1.9.38 / R 4.5.1. `check-chapter-01.R`
+prošel. `check-html.cjs` po doplnění tří nových hledání prošel bez chyb:
+9 stránek, 159 hesel slovníčku, místní odkazy, 42 řešení, desktop
+1360/1920 px a mobil 390 px. Kontrola běžela s místním Chrome a modulem
+Playwright z jiné instalace, nikoli s verzí 1.55.0 uvedenou v README.
+Ručně v prohlížeči prohlédnuto schéma na desktopu i mobilu, rozbalení tří
+nových rozšíření, vykreslené citace Lorda a Zand Scholten a Borsbooma
+a zpřístupnění nových řádků slovníčku přes odkaz.
+
+Neověřeno: stránky a lokátory ostatních citací kapitoly vůči zdrojům,
+jiné prohlížeče než Chrome a veřejné publikování. Excelové příklady se
+nemění a desktopový Excel nebyl spuštěn. Interní didaktická revize není
+ověřením porozumění na studentech.
