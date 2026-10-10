@@ -178,6 +178,43 @@ Ostatní navržené termíny ani podrobný rozsah kapitoly se tím neschvalují.
 rozdělení‘“ a požadavek upravit osnovu, ponechat alternativy do slovníčku
 a doplnit jazykové zdůvodnění; [osnova kapitoly](OSNOVA.md).
 
+<a id="r08-terminologie-kapitoly-4"></a>
+
+## R08 — Zbývající terminologie kapitoly 4
+
+**Stav:** schváleno 2026-10-10. **Rozsah:** příprava a budoucí výklad
+kapitoly 4 a navazující přehledy. Aktuální seznam názvů a anglických
+ekvivalentů obsahuje [osnova](OSNOVA.md); tento záznam určuje rozhodující
+rozlišení a doklad schválení, nenahrazuje studentský slovníček.
+
+- Používat jednoduchý název **IQ-skór / IQ-skóry** pro zde probírané
+  měřítko 100/15. Vysvětlit, že jej lze použít i mimo inteligenční testy,
+  ale samotný převod nemění měřenou vlastnost. V neinteligenčním příkladu
+  je vhodné „výsledek vyjádřený na škále IQ-skórů“.
+- Používat **standardní subtestový skór** místo původně navrženého
+  „vážený subtestový skór“. Při ukázce škály 10/3 uvést její parametry,
+  nepovažovat je za obecnou definici anglického scaled score.
+  **Vážený skór** zůstává alternativou ve slovníčku a vysvětlenou zmínkou
+  při prvním výkladu: zde nejde o vážený součet nebo průměr položek
+  či subškál, ale o převod hrubého výsledku podle norem na společnou škálu.
+- Ostatní navržené názvy a rozlišení autor schválil: hrubý skór,
+  referenční skupina versus normativní soubor, z-skór a standardizace,
+  normální rozdělení, hustota pravděpodobnosti, distribuční funkce,
+  standardní skór jako širší označení, T-skór, sten a stanin,
+  normalizace rozdělení v přesně vymezeném významu a normální Q–Q graf.
+  Chvost rozdělení byl již zaveden, nejde o nové rozhodnutí.
+
+**Důvod:** srozumitelné názvy bez zavádějící představy vážení a bez
+záměny měřítka skóru s měřeným konstruktem. Standardizaci na z-skóry
+odlišit od normalizace přes pořadí i širší standardizace metody.
+
+**Doklad:** autorův návrh názvu IQ-skóry s upozorněním na použití mimo
+inteligenční testy, následné přijetí doporučení „standardní subtestové
+skóry“ a výslovné „Ano, souhlasím. Zbytek terminologie je podle mě
+v pořádku.“ Toto potvrzení se týká terminologie; neoznačuje za schválené
+nové symboly ani konečný rozsah nepovinných témat. Nahrazuje příslušné
+neschválené názvy v původním návrhu osnovy; R07 zůstává v platnosti.
+
 ## Návrhy a další rozhodnutí
 
 Při založení tohoto dokumentu se nepřidávají nové statistické konvence.

@@ -921,3 +921,31 @@ Změna se týká pouze tří autorských dokumentů. Ověřeny rozdíly, UTF-8,
 místní odkazy a výskyty termínu v osnově; git diff --check prošel.
 Render, numerické, excelové ani webové kontroly se pro tuto
 terminologickou změnu autorské dokumentace nespouštěly.
+
+## Kapitola 4: souhlas se zbývající terminologií (2026-10-10)
+
+Po diskusi autor přijal jednoduché označení IQ-skóry s upozorněním,
+že škála 100/15 může vyjadřovat i výsledky jiných než inteligenčních
+testů; změna měřítka nemění měřenou vlastnost. U subtestových skórů
+schválil označení standardní subtestové skóry. Alternativa vážené skóry
+zůstává pro slovníček a vysvětlení při prvním výkladu, aby ji studenti
+nezaměňovali za vážený součet či průměr položek nebo subškál.
+
+Autorův souhlas se zbytkem terminologie je zaznamenán jako R08.
+Osnova používá schválené názvy v tematickém oddílu i přehledu pojmů;
+upozorňuje také, že chvost rozdělení byl již zaveden v kapitole 2.
+Nové symboly, konečná podoba osnovy, příklady a rozsah nepovinných témat
+nadále zůstávají k dohodě; souhlas s terminologií je nepotvrzuje.
+
+Při předchozí diskusi byl doložen starší anglický termín weighted scores
+v názvu článku A critique of the Wechsler-Bellevue system of weighted
+scores (1949), https://pubmed.ncbi.nlm.nih.gov/18118257/. To umožňuje
+uvažovat i o přímém překladu z angličtiny, ale neprokazuje skutečnou
+cestu převzetí do češtiny. Německý či ruský původ není doložen a nebude
+vydáván za fakt. Odkaz a omezení jsou zaznamenány v osnově.
+
+Kontrola tří upravených autorských dokumentů ověřila UTF-8, místní
+odkazy včetně kotev, soulad názvů a rozlišení schválených termínů
+od návrhů značení a obsahu; git diff --check prošel. Studentské kapitoly,
+slovníček ani web se nemění, render a numerické či webové kontroly
+se proto nespouštěly. Přehledy se doplní spolu s prvním výkladem.
