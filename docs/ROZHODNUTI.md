@@ -150,6 +150,34 @@ a „Kapitola 3: kumulativní kvantily, stupně volnosti a robustní shrnutí“
 (2026-10-09) v [historii](../quarto/README.md);
 [výklad](../quarto/kapitola_03.qmd#sec-odolne-shrnuti).
 
+<a id="r07-normovane-normalni"></a>
+
+## R07 — Normované normální rozdělení
+
+**Stav:** schváleno 2026-10-10. **Rozsah:** návrh kapitoly 4, její budoucí
+výklad a další použití pojmu v učebnici a souvisejících materiálech.
+
+Pro *standard normal distribution* používáme **normované normální
+rozdělení**. Alternativy „standardní normální rozdělení“ a „standardizované
+normální rozdělení“ uvádíme ve slovníčku, nikoli jako střídající se
+synonyma ve výkladu. Jde o normální rozdělení s průměrem 0 a směrodatnou
+odchylkou 1; samotná standardizace nenormálních dat normalitu nevytváří.
+
+**Důvod:** zavedené české užití a jazyková přirozenost. Do budoucího hesla
+slovníčku patří vysvětlení, že „standardní normální rozdělení“ je
+doslovnější překlad anglického názvu, ale kvůli blízkému běžnému významu
+slov „standardní“ a „normální“ může spojení působit kostrbatě. Toto
+hodnocení je redakčním zdůvodněním volby, nikoli tvrzením o odborné
+nesprávnosti alternativy.
+
+**Nahrazuje:** původní neschválené doporučení v návrhu osnovy preferovat
+„standardní normální rozdělení“ kvůli návaznosti na standardizaci.
+Ostatní navržené termíny ani podrobný rozsah kapitoly se tím neschvalují.
+
+**Doklad:** výslovný pokyn autora „používejme tedy ‚normované normální
+rozdělení‘“ a požadavek upravit osnovu, ponechat alternativy do slovníčku
+a doplnit jazykové zdůvodnění; [osnova kapitoly](OSNOVA.md).
+
 ## Návrhy a další rozhodnutí
 
 Při založení tohoto dokumentu se nepřidávají nové statistické konvence.

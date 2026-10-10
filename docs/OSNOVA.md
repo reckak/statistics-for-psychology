@@ -112,7 +112,9 @@ v [přehledu rozhodnutí](ROZHODNUTI.md).
 ## 4. Normální rozdělení a standardní skóry
 
 **Stav:** hlavní zaměření dohodnuto 2026-10-10; název, podrobná osnova,
-cíle, příklady, termíny a nové značky níže jsou **návrhem k projednání**.
+cíle, příklady, termíny a nové značky níže jsou **návrhem k projednání**,
+s výjimkou výslovně schváleného názvu „normované normální rozdělení“
+(viz [R07](ROZHODNUTI.md#r07-normovane-normalni)).
 Studentská kapitola dosud nevznikla a nebyla přidána do navigace knihy.
 
 **Dohodnutý rozsah:** poloha výsledku a z-skór; normální rozdělení jako
@@ -185,7 +187,7 @@ relativní polohu vůči normám místo závěru o „větším talentu“.
 4. Průměr, medián a modus modelu se shodují. Měnit v obrázku vždy jeden
    parametr; rozdíly výšky křivky dovysvětlit pomocí stejné celkové plochy
    v následujícím oddílu.
-5. Standardní normální rozdělení s průměrem 0 a směrodatnou odchylkou 1.
+5. Normované normální rozdělení s průměrem 0 a směrodatnou odchylkou 1.
    Standardizace normálního modelu; souvislost s již vysvětleným z-skórem.
 6. Normalita jako věcně posuzovaný předpoklad: omezené skóry, podlaha,
    strop, šikmost a směsi skupin. „Normální“ není hodnocení zdraví
@@ -314,7 +316,10 @@ centrální limitní věta, výběrová rozdělení, standardní chyba, interval
 spolehlivosti a testování hypotéz; Shapirův–Wilkův a další testy normality.
 Tím není schváleno zařazení všech těchto témat do jedné další kapitoly.
 
-### Návrh termínů, značek a funkcí k dohodě
+### Termíny, značky a funkce: návrhy a schválené položky
+
+Kromě výslovně označené schválené položky zůstávají následující termíny
+a značky návrhem k dohodě.
 
 | Návrh českého termínu | Anglický ekvivalent | Doporučení a rozsah |
 |---|---|---|
@@ -322,7 +327,7 @@ Tím není schváleno zařazení všech těchto témat do jedné další kapitol
 | referenční skupina; normativní soubor | reference group; normative sample | Rozlišit skupinu, ke které vztahujeme interpretaci, a data použitá při tvorbě norem. |
 | z-skór; standardizace | z score; standardization | Standardizací zde rozumět konkrétní lineární převod; širší význam v psychodiagnostice výslovně odlišit. |
 | normální rozdělení | normal distribution | Gaussovo rozdělení jako alternativa ve slovníčku. |
-| standardní normální rozdělení | standard normal distribution | Alternativa normované normální rozdělení; preferovat první název kvůli návaznosti na standardizaci. |
+| **normované normální rozdělení** | standard normal distribution | **Schváleno 2026-10-10.** Ve výkladu používat tento název; „standardní normální rozdělení“ a „standardizované normální rozdělení“ uvést jako alternativy ve slovníčku. |
 | hustota pravděpodobnosti | probability density | Stručný grafický význam; nezaměnit za pravděpodobnost jediné hodnoty. |
 | distribuční funkce | cumulative distribution function | Vysvětlit jako kumulativní plochu; „kumulativní distribuční funkce“ uvést jako běžnou alternativu. |
 | chvost rozdělení | distribution tail | Význam nejprve ukázat na obrázku. |
@@ -331,6 +336,15 @@ Tím není schváleno zařazení všech těchto témat do jedné další kapitol
 | sten; stanin | sten; stanine | České tvary k dohodě, včetně případné alternativy stanina ve slovníčku. |
 | normalizace rozdělení | normalization / rank-based normal-score transformation | Krátké odlišení od lineární standardizace; nepřidávat algoritmus tvorby norem. |
 | normální Q–Q graf | normal Q–Q plot | Pouze pokud se schválí nepovinné rozšíření. |
+
+**Schválené doplnění pro budoucí heslo slovníčku:** „Standardní normální
+rozdělení“ je doslovnější překlad anglického *standard normal distribution*.
+V běžné češtině mají slova „standardní“ a „normální“ blízký význam,
+takže jejich spojení může působit poněkud kostrbatě. V této učebnici
+proto používáme zavedený název „normované normální rozdělení“.
+Jde o jazykové zdůvodnění naší volby, nikoli o označení alternativního
+odborného názvu za nesprávný. Heslo bude při vytvoření kapitoly doplněno
+do studentského slovníčku společně s odkazem na první výklad.
 
 Navržené nové symboly jsou kurzivní `z` (případně `z_i`) a stojaté
 řecké μ a σ pro populační/modelový průměr a směrodatnou odchylku.
