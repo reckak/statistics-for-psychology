@@ -899,3 +899,25 @@ explicitní kotvy tohoto záznamu, rozlišení dohodnutého a navrženého
 obsahu a `git diff --check`. Render knihy, webové a mobilní kontroly
 ani desktopový Excel nebyly pro tuto dokumentační změnu spouštěny;
 veřejné nasazení nebylo ověřováno.
+
+## Kapitola 4: schválení názvu normované normální rozdělení (2026-10-10)
+
+Autor výslovně schválil „normované normální rozdělení“ jako používaný
+český název pro standard normal distribution. V osnově byl nahrazen
+původní návrh „standardní normální rozdělení“ a odlišena tato schválená
+položka od dosud projednávaných termínů. Rozhodnutí R07 eviduje rozsah,
+důvod a nahrazené doporučení; původní historický záznam přípravy zůstává
+zachován.
+
+Pro budoucí heslo studentského slovníčku jsou v osnově zaznamenány
+alternativy „standardní normální rozdělení“ a „standardizované normální
+rozdělení“ i dohodnuté jazykové vysvětlení: první varianta je doslovnější
+překlad, ale blízký běžný význam obou přídavných jmen může působit
+kostrbatě. Nejde o tvrzení, že je alternativní odborný název chybný.
+Studentský slovníček se doplní současně s prvním výkladem v dosud
+nevytvořené kapitole; nevzniká předčasný odkaz na neexistující kapitolu.
+
+Změna se týká pouze tří autorských dokumentů. Ověřeny rozdíly, UTF-8,
+místní odkazy a výskyty termínu v osnově; git diff --check prošel.
+Render, numerické, excelové ani webové kontroly se pro tuto
+terminologickou změnu autorské dokumentace nespouštěly.
