@@ -41,3 +41,8 @@ caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 6
 
 /* Keep the worked rank calculations readable; scroll the table, not the page. */
 #tbl-percentilove-poradi table { min-width: 1060px; }
+
+/* Chapter 4 calculation tables retain readable columns within a scrollable region. */
+.chapter-04-wide table { min-width: 620px; }
+.chapter-04-figure { max-width: 100%; overflow-x: auto; }
+.chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }

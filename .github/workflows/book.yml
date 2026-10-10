@@ -23,6 +23,7 @@ jobs:
       - run: quarto render
       - run: Rscript --vanilla quarto/_verification/check-chapter-02.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-03.R
+      - run: Rscript --vanilla quarto/_verification/check-chapter-04.R
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

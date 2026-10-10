@@ -949,3 +949,102 @@ odkazy včetně kotev, soulad názvů a rozlišení schválených termínů
 od návrhů značení a obsahu; git diff --check prošel. Studentské kapitoly,
 slovníček ani web se nemění, render a numerické či webové kontroly
 se proto nespouštěly. Přehledy se doplní spolu s prvním výkladem.
+
+## Kapitola 4: vytvoření výkladu, 2026-10-10 {#vytvoreni-kapitoly-4}
+
+Autor schválil tvorbu kapitoly a navrženou posloupnost s výslovnými
+dodatky: zařadit N(μ, σ²) a povinné posouzení přiměřenosti modelu včetně
+čtení i tvorby normálního Q–Q grafu. R09 v přehledu rozhodnutí nahrazuje
+dřívější návrh obě témata odložit nebo ponechat nepovinná. R07 a R08
+zůstávají v platnosti. Osnova nyní rozlišuje realizovanou kapitolu od
+dosud nedohodnuté následující kapitoly o pravděpodobnosti.
+
+Vznikl souvislý výklad v `kapitola_04.qmd`, dvanáct původních SVG obrázků
+generovaných v základním R, deset samostatných úloh s úplnými sbalenými
+řešeními a dvoulistový sešit `data/kapitola_04.xlsx`. List `Model` spojuje
+převody ploch a kvantilů, list `QQ` ukazuje 12 pořadí, výpočet kvantilů
+a upravitelný bodový graf. Malý soubor je také v CSV. Doplněny jsou všechny
+tři přehledy, navigace, bibliografie, generátor a automatické kontroly.
+
+### Odborná a didaktická rozhodnutí při psaní
+
+Výklad vychází z předchozího posouzení všech deseti učebnic a autorských
+podkladů, zaznamenaného výše v přípravě kapitoly. Howell (2013), kapitola 3,
+s. 66–79, zůstává hlavní oporou; znovu byly přečteny s. 75–78 pro povinné
+Q–Q grafy. Jeho výklad směrů os není jednotný, proto nová kapitola vždy
+explicitně používá normální kvantily vodorovně, data svisle. Neopisuje
+idealizovanou úvahu, že nejvyšší hodnota konečného souboru má konečný
+100. normální percentil, ani nepředkládá 45° úhel jako obecnou podmínku.
+
+Pořadové polohy (i − 0,5)/n jsou zvolenou jednoduchou konstrukcí pro
+výuku (dokumentace R `ppoints`, parametr a = 0,5); přímka m + sz dává
+přímou návaznost na již vysvětlený zpětný převod. Nejde o novou konvenci
+empirických kvantilů nebo percentilových pořadí. Čtení průběhu doplňuje
+NIST, oddíl Normal Probability Plot. Jiná poloha os, polohovací vzorec
+nebo kvartilová přímka v programu nemusí znamenat chybu.
+
+Ilustrační skór pozornosti s μ = 50 a σ = 10, všechny malé soubory,
+úlohy i grafy jsou původní autorské konstrukce; nejsou vydávány za
+Achenbachovy normy ani za reálná výzkumná data. Simulované diagnostické
+obrázky používají seed 20261010 a po 200 hodnotách: normální rozdělení,
+posunuté exponenciální rozdělení, symetrické t rozdělení se třemi stupni
+volnosti a směs dvou normálních skupin. Názvy těchto dalších modelů se
+studentům předčasně nezavádějí; obrázky slouží k interpretaci tvaru.
+
+Plochy začínají vysvětlením výšky histogramu a plochy obdélníku, aby
+nevyžadovaly nepovinné učivo kapitoly 2. Hustota a distribuční funkce
+mají samostatně porovnané grafy. Odlišujeme výsledek spojitého modelu,
+zaokrouhlený skór a diskrétní počet. Prostřední 95% interval se vztahuje
+k jednotlivým hodnotám při zadaném modelu, nikoli k nejistotě průměru.
+Zařazení mimo dvě odchylky není diagnostickým rozhodnutím. Standardizace
+nemění šikmost a větší soubor nenormalizuje původní hodnoty.
+
+Parametry 10/3 ověřuje Pearson Clinical Assessment's Scientific Council
+(2023), s. 4; nepřebírá se tamní příliš široké tvrzení, že každé standardní
+skórování vytváří normální křivku. SHL (2019), s. 6, dokládá měřítko stenů,
+GL Assessment staniny. Podíly pásem byly vypočteny nezávisle z normálního
+modelu, nikoli převzaty jako zaokrouhlená percentilová pásma konkrétního
+testu. Přesné hraniční hodnoty používají dolní vyloučenou/horní zahrnutou
+mez z R03, což je v textu uvedeno; skutečné testy se řídí svým manuálem.
+Například přesné z = 0 zde dává sten 5, přestože jiné normy při zaokrouhlení
+mohou dát 6. Původ výrazu „vážený skór“ se historicky nespekuluje.
+
+České názvy čtyř normálních funkcí ověřila oficiální dokumentace Microsoftu
+a skutečný Excel 16.0. U NORM.S.DIST s NEPRAVDA text uvádí hustotu,
+nepřebírá chybný český popisek „hromadná pravděpodobnostní funkce“.
+NORM.DIST a NORM.INV přijímají odchylku; N(μ, σ²) zapisuje rozptyl.
+
+Didaktická revize sledovala návaznost referenční skupina → z-skór →
+model → plocha → kvantil → škály → Q–Q graf. Vysvětlila význam μ a σ,
+každého kroku inverzního převodu i rozdíl pořadové polohy pro graf od
+empirického percentilového pořadí. Úlohy pokrývají výpočet, interpretaci,
+práci s modelem i opravu argumentu; jejich řešení obsahují mezikroky.
+Tato interní revize není ověřením porozumění na studentech.
+
+### Ověření
+
+Průběžně prošel plný render knihy v Quarto 1.9.38 / R 4.5.1, numerické
+kontroly všech čtyř kapitol a skutečné české vzorce v Excelu 16.0.
+Kontrola sešitu porovnala všechny pořadové polohy, inverzní převody,
+krajní chybové argumenty, změny vstupů i datové vazby bodového grafu.
+Oba listy byly prohlédnuty v náhledu i po nativním exportu Excelu.
+Webová kontrola zachytila vodorovné přetékání nové tabulky a dlouhých
+vzorců na mobilu; opravily se zdroje, nikoli generované HTML.
+Závěrečná kontrola webu prošla na všech 9 stránkách: všechny místní odkazy,
+159 hesel slovníčku, všech 42 řešení (včetně deseti nových), stránkování
+a hledání v přehledech, odkazy přes aktivní filtr, klávesnice, mobilní
+šířka 390 px, desktop 1360/1920 px a náhradní chování bez JavaScriptu
+i při otevření souboru. Řecké μ a σ mají v renderovaném MathML stojatý
+řez; matematika neobsahuje chyby a kód R není zobrazen. Prohlédnuty byly
+všechny nové obrázky, nové citace, klíčové oddíly na desktopu a mobilu
+i oba listy sešitu. Podrobné obrázky na mobilu ponechávají čitelné
+měřítko a posouvají se uvnitř samostatné oblasti, stejně jako široké
+tabulky. Webová kontrola zároveň ověřila jejich posun.
+
+Finální sešit znovu prošel nativní kontrolou po zavření a otevření,
+bez ukládání testovacích změn. Soubor ve vykresleném webu se shoduje
+s finální verzí v `data/`. Kontrola UTF-8 a `git diff --check` prošla.
+Vznikl samostatný kontrolní skript kapitoly a jeho zapojení do CI;
+desktopový Excel se spouští místně, nikoli v linuxovém CI. Lokální
+výsledek sám nepotvrzuje publikování na GitHub Pages; změna je připravena
+v tematické větvi `codex/chapter-04` pro uživatelovu kontrolu a sloučení.

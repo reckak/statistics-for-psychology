@@ -5,3 +5,4 @@ if (.Platform$OS.type == 'windows') {
 }
 source('scripts/kapitola_02.R', encoding = 'UTF-8')
 source('scripts/kapitola_03.R', encoding = 'UTF-8')
+source('scripts/kapitola_04.R', encoding = 'UTF-8')

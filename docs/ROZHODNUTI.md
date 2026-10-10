@@ -215,6 +215,37 @@ v pořádku.“ Toto potvrzení se týká terminologie; neoznačuje za schválen
 nové symboly ani konečný rozsah nepovinných témat. Nahrazuje příslušné
 neschválené názvy v původním návrhu osnovy; R07 zůstává v platnosti.
 
+<a id="r09-kapitola-4-model-qq"></a>
+
+## R09 — Zápis normálního modelu a povinné Q–Q grafy
+
+**Stav:** schváleno 2026-10-10. **Rozsah:** kapitola 4 a navazující přehledy.
+Souhlas s posloupností, většinou předložených doporučení a výslovné
+zahájení tvorby uzavírají přípravu kapitoly. Autor změnil dvě části návrhu:
+zápis **N(μ, σ²)** se zařazuje nyní a normální **Q–Q graf je povinný**
+včetně čtení i ukázky tvorby, společně s dalšími způsoby posouzení modelu.
+Nahrazuje původní návrhy odložit zápis a zařadit Q–Q jen nepovinně.
+
+Používáme kurzivní z, z_i a velké T pro T-skór, stojaté μ a σ pro
+populační/modelové parametry. Druhý argument N je rozptyl σ²; Excel
+NORM.DIST a NORM.INV naproti tomu přijímá směrodatnou odchylku.
+Zachováváme výběrové m, s, již zavedené x_i, i, n a p pro podíl/úroveň
+kvantilu. Nezavádíme zde zápis náhodných veličin ani P(…), Φ a Φ⁻¹.
+
+**Provedení schválené konstrukce:** Q–Q graf má teoretické normální
+kvantily vodorovně, seřazené skóry svisle. Používá středy pořadových dílků
+p = (i − 0,5)/n a orientační přímku m + sz. Jde o autorskou volbu jedné
+platné konstrukce v rámci schváleného rozsahu, nikoli o tvrzení, že autor
+výslovně vybral tento algoritmus. Text vysvětluje alternativy a odlišení
+od percentilového pořadí a PERCENTIL.INC. Steny/staniny v učebních tabulkách
+navazují na R03 (dolní mez vyloučená, horní zahrnutá); reálné normy se
+vyhodnocují podle konkrétního manuálu.
+
+**Doklad:** „zápis N(μ, σ²) bych neodkládal, ale zařadil“;
+„normální Q–Q graf, jeho čtení i ukázku tvorby bych zařadil jako povinnou
+část kapitoly společně s jinými způsoby toho, jak posoudit, zda je normální
+model přiměřený“; „S posloupností souhlasím“ a souhlas s tvorbou kapitoly 4.
+
 ## Návrhy a další rozhodnutí
 
 Při založení tohoto dokumentu se nepřidávají nové statistické konvence.

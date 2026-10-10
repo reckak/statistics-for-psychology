@@ -14,7 +14,7 @@ přehledem úplný seznam termínů, značek a funkcí v závěrečných přehle
 ## Současné uspořádání
 
 Pořadí webových stránek určuje [_quarto.yml](../_quarto.yml).
-Úvod předchází třem dosavadním výkladovým kapitolám. Za nimi je společná
+Úvod předchází čtyřem dosavadním výkladovým kapitolám. Za nimi je společná
 literatura a tři závěrečné přehledy: slovníček, značení a vzorce, funkce
 Excelu. Nové výkladové kapitoly se zařazují před literaturu a přehledy.
 Čísla níže slouží k orientaci v autorské dokumentaci; studentské odkazy
@@ -111,17 +111,18 @@ v [přehledu rozhodnutí](ROZHODNUTI.md).
 
 ## 4. Normální rozdělení a standardní skóry
 
-**Stav:** hlavní zaměření dohodnuto 2026-10-10; název, podrobná osnova,
-cíle, příklady a nové značky níže jsou **návrhem k projednání**.
-Terminologie byla schválena včetně upřesnění IQ-skórů a standardních
-subtestových skórů (viz [R07](ROZHODNUTI.md#r07-normovane-normalni)
-a [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4)). Schválení názvu
-nepovinného tématu samo nepotvrzuje jeho zařazení do kapitoly.
-Studentská kapitola dosud nevznikla a nebyla přidána do navigace knihy.
+**Stav:** rozsah, posloupnost a zahájení tvorby schváleny 2026-10-10.
+Autor výslovně doplnil zápis N(μ, σ²) a povinné posouzení normálního
+modelu včetně čtení i tvorby Q–Q grafu. Studentský výklad je v
+[kapitole 4](../quarto/kapitola_04.qmd) a v navigaci knihy.
+Terminologii určují [R07](ROZHODNUTI.md#r07-normovane-normalni)
+a [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4), nové značení a rozsah
+upřesňuje [R09](ROZHODNUTI.md#r09-kapitola-4-model-qq).
 
 **Dohodnutý rozsah:** poloha výsledku a z-skór; normální rozdělení jako
 model; podíly jako plochy pod křivkou; převody od hodnoty k podílu a zpět;
-různé standardní skóry včetně stenů a staninů. Podrobný výklad
+různé standardní skóry včetně stenů a staninů; posouzení přiměřenosti
+modelu včetně povinného normálního Q–Q grafu a jeho tvorby. Podrobný výklad
 pravděpodobnosti a souvisejících pojmů je odložen do následující kapitoly.
 **Doklad:** autorův výslovný souhlas s tímto zaměřením a žádost o podrobnou
 osnovu po posouzení všech učebnic a nově dodané `normal_distribution.pptx`.
@@ -133,7 +134,7 @@ výklad ploch nestejně širokých sloupců histogramu ani momentů se
 nepředpokládá jako zvládnuté učivo; potřebný vztah plochy a podílu se
 vysvětlí přímo v této kapitole.
 
-### Navržené cíle a uspořádání
+### Schválené cíle a uspořádání
 
 Student má po kapitole umět:
 
@@ -147,6 +148,9 @@ Student má po kapitole umět:
 - určit podíl pod hranicí, nad hranicí a mezi dvěma hranicemi a opačně
   najít hodnotu zadaného percentilu nebo meze prostředního podílu;
 - převést a interpretovat běžné standardní skóry, steny a staniny;
+- přečíst N(μ, σ²), nezaměnit rozptyl a směrodatnou odchylku;
+- číst a vytvořit normální Q–Q graf v Excelu, spojit jeho interpretaci
+  s histogramem, významem proměnné, mezemi škály a účelem modelu;
 - rozpoznat neodůvodněný převod na percentil, nevhodnou referenční skupinu
   a záměnu statistické neobvyklosti za klinickou závažnost.
 
@@ -196,7 +200,7 @@ relativní polohu vůči normám místo závěru o „větším talentu“.
    nebo žádoucnosti. Větší počet osob sám nezmění tvar rozdělení skórů.
 
 Vzorec hustoty s exponenciálou ani důkaz normality nejsou součástí
-navrženého povinného výkladu. Není třeba zavádět centrální limitní větu
+schváleného povinného výkladu. Není třeba zavádět centrální limitní větu
 jen jako zdůvodnění, proč je normální rozdělení užitečné.
 
 ### 4.3 Podíly jako plochy pod křivkou
@@ -292,28 +296,38 @@ a prostředních 95 %. Numerické mezikroky nezaokrouhlovat předčasně.
    inteligence. Neobvyklý výsledek sám není diagnóza; stejné standardní
    číslo v odlišných normách neznamená stejný původní výkon.
 
-Navrženým cílem u stenů a staninů je správně číst škálu a přiřadit skór
-pomocí dodané tabulky. Zapamatování všech hranic se nepožaduje. Konkrétní
-tabulku hranic včetně zacházení s přesnou mezí ověřit před psaním
-a sladit s již schválenou intervalovou konvencí.
+Cílem u stenů a staninů je správně číst škálu a přiřadit skór
+pomocí dodané tabulky. Zapamatování všech hranic se nepožaduje. Tabulky používají
+obvyklé hranice normované škály a již schválenou intervalovou konvenci
+(dolní mez vyloučená, horní zahrnutá).
 
-### 4.7 Shrnutí a samostatná cvičení
+### 4.7 Posouzení přiměřenosti normálního modelu
 
-Navrhujeme osm až deset odstupňovaných úloh na konci kapitoly:
+Povinná část po výkladu kvantilů a standardních skórů: význam měření,
+referenční skupina, meze a diskrétnost škály, histogram při více šířkách
+intervalů, doplňkový krabicový graf a normální Q–Q graf. Vysvětlení
+kvantilových dvojic, os a přímky; konstrukce v Excelu na 12 autorských
+skórech a srovnání čtyř simulovaných tvarů (normální, šikmý, těžší
+chvosty, směs dvou skupin). Rozlišit systematické odchylky a výběrové
+kolísání; žádný graf nedokazuje normalitu ani reprezentativnost.
+
+### 4.8 Shrnutí a samostatná cvičení
+
+Deset odstupňovaných úloh na konci kapitoly:
 interpretace z-skóru a zpětný převod; změna referenční skupiny;
 standardizace zešikmených dat; četnost versus modelová plocha;
 podíly pod/nad/mezi hranicemi; modelový percentil a centrální interval;
 převody standardních skórů; čtení stenů a staninů; oprava chybných
-tvrzení o normalitě, percentilech a klinickém významu. Řešení mají
+tvrzení o normalitě, percentilech a klinickém významu; konstrukce Q–Q
+grafu a změna krajního pozorování. Řešení mají
 zdůvodnit postup i význam výsledku, nikoli jen uvést číslo.
 
 ### Rozšíření a hranice kapitoly
 
-**Navržené nepovinné rozšíření:** krátké čtení normálního Q–Q grafu,
-teprve po výkladu kvantilů; přibližná přímka a systematické odchylky,
-bez konstrukce grafu v Excelu, bez výpočtu pořadových pozic a bez testů
-normality. Druhým možným krátkým příkladem je zaokrouhlený skór jako
-interval hodnot spojitého modelu. Není nutné zařadit obě rozšíření.
+**Upřesnění proti původnímu návrhu:** Q–Q graf je povinný včetně
+konstrukce, nikoli nepovinné rozšíření. Zaokrouhlený skór jako interval
+je krátkým řešeným příkladem v základním výkladu ploch. Formální testy
+normality zůstávají odložené.
 
 **Odloženo:** formální jevy, množinové operace, nezávislost, podmíněná
 pravděpodobnost a Bayesova věta; systematický výklad náhodné veličiny
@@ -322,11 +336,11 @@ centrální limitní věta, výběrová rozdělení, standardní chyba, interval
 spolehlivosti a testování hypotéz; Shapirův–Wilkův a další testy normality.
 Tím není schváleno zařazení všech těchto témat do jedné další kapitoly.
 
-### Schválené termíny a navržené značení a funkce
+### Schválené termíny, značení a funkce
 
 Názvy a terminologická rozlišení v následující tabulce jsou schválené
 2026-10-10. Chvost rozdělení je již zavedený pojem z kapitoly 2.
-Nové symboly a rozsah nepovinných rozšíření zůstávají návrhem.
+Nové symboly a povinný rozsah Q–Q grafů potvrzuje závěrečná dohoda R09.
 
 | Schválený český termín | Anglický ekvivalent | Použití a rozsah |
 |---|---|---|
@@ -343,7 +357,7 @@ Nové symboly a rozsah nepovinných rozšíření zůstávají návrhem.
 | standardní subtestový skór | scaled subtest score | Při použití škály 10/3 výslovně uvést její parametry; nejsou definicí každého scaled score. „Vážený skór“ uvést jako používanou alternativu a odlišit jej od váženého součtu nebo průměru. |
 | sten; stanin | sten (standard ten); stanine (standard nine) | Jednotné číslo sten a stanin, množné steny a staniny; případnou variantu stanina ponechat ve slovníčku. |
 | normalizace rozdělení | normalization / rank-based normal-score transformation | Krátké odlišení od lineární standardizace; nepřidávat algoritmus tvorby norem. |
-| normální Q–Q graf | normal Q–Q plot | Pouze pokud se schválí nepovinné rozšíření. |
+| normální Q–Q graf | normal Q–Q plot | Povinné čtení a tvorba; součást společného posouzení přiměřenosti modelu. |
 
 **Schválené doplnění pro budoucí heslo slovníčku:** „Standardní normální
 rozdělení“ je doslovnější překlad anglického *standard normal distribution*.
@@ -351,8 +365,8 @@ V běžné češtině mají slova „standardní“ a „normální“ blízký 
 takže jejich spojení může působit poněkud kostrbatě. V této učebnici
 proto používáme zavedený název „normované normální rozdělení“.
 Jde o jazykové zdůvodnění naší volby, nikoli o označení alternativního
-odborného názvu za nesprávný. Heslo bude při vytvoření kapitoly doplněno
-do studentského slovníčku společně s odkazem na první výklad.
+odborného názvu za nesprávný. Heslo je doplněno do studentského slovníčku
+společně s odkazem na první výklad.
 
 **Historická poznámka k alternativě „vážený skór“:** starší anglické
 označení *weighted scores* je doloženo již v názvu článku
@@ -361,30 +375,33 @@ Přesná cesta převzetí do češtiny nebyla ověřena; netvrdit německý
 ani ruský původ. Do studentského textu je podstatné vysvětlení významu,
 nikoli spekulace o historii překladu.
 
-Navržené nové symboly jsou kurzivní `z` (případně `z_i`) a stojaté
+Schválené nové symboly jsou kurzivní `z` (případně `z_i`) a stojaté
 řecké μ a σ pro populační/modelový průměr a směrodatnou odchylku.
-Zachovat dosavadní výběrové `m` a `s`. Navrhované vztahy:
+Zachovat dosavadní výběrové `m` a `s`. Schválené vztahy:
 `z_i = (x_i − m) / s` pro popis souboru,
 `z = (x − μ) / σ` a `x = μ + σz` pro modelové převody.
-T označuje druh skóru, nikoli výběrovou statistiku; jeho zápis dohodnout
-s ostatními novými symboly. Pro obecný nový skór lze využít již zavedené
+Kurzivní velké T označuje druh skóru, nikoli výběrovou statistiku.
+Pro obecný nový skór lze využít již zavedené
 `y` namísto nového písmene.
 
 Písmeno `p` již slouží jako úroveň kvantilu; zde má znamenat podíl
 vlevo od hranice, nikoli p-hodnotu testu. Nové `X`, `Z`, `P(…)`, `Φ`
-a `Φ⁻¹` není nutné zavádět do povinného výkladu. Případný stručný zápis
-`N(μ, σ²)` odložit, pokud nepřinese užitek; zdroje se liší, zda druhým
-parametrem zapisují rozptyl, nebo směrodatnou odchylku.
+a `Φ⁻¹` není nutné zavádět do povinného výkladu. Zápis `N(μ, σ²)` je
+na výslovné přání autora povinný: druhým parametrem je rozptyl.
+Upozornit na odlišnou konvenci některých zdrojů a argument odchylky
+v excelových funkcích.
 
-Navržené funkce jsou `NORM.S.DIST` a `NORM.S.INV` jako základ,
+Schválené funkce jsou `NORM.S.DIST` a `NORM.S.INV` jako základ,
 `NORM.DIST` a `NORM.INV` jako přímá alternativa. Jejich české i anglické
 názvy jsou shodné; české oddělovače a logickou hodnotu `PRAVDA` vysvětlit
 v příkladech. Schválené zaokrouhlování ani konvence empirických kvantilů
-se tímto návrhem nemění.
+se tím nemění. U Q–Q grafu používáme polohy `(i − 0,5) / n` a přímku
+`m + sz`; výslovně je odlišujeme od empirických percentilových pořadí
+a algoritmu `PERCENTIL.INC`.
 
 **Zdroje:** hlavním východiskem je Howell (2013), *Statistical Methods
 for Psychology*, 8. vydání, kapitola 3, zejména oddíly 3.1–3.4 a 3.6;
-3.5 je podkladem pouze navrženého rozšíření. Posouzení všech deseti
+3.5 je podkladem povinného oddílu o přiměřenosti modelu. Posouzení všech deseti
 učebnic, nového souboru a dalších podkladů včetně rozporů a omezení
 je zaznamenáno v [autorské historii](../quarto/README.md#priprava-kapitoly-4).
 
