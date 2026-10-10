@@ -735,3 +735,167 @@ Didaktická revize nově ukládá hledat chybějící myšlenkové kroky, nevysv
 Přímé porovnání proti výchozímu origin/main potvrdilo úplnost přesunu prezentací (po normalizaci úrovně nadpisů a odkazu na AGENTS.md) a nezměněný obsah osmi zachovaných oddílů. Kontrola 42 místních Markdown odkazů v šesti dotčených dokumentech potvrdila existenci cílů a explicitních kotev. Ověřeno UTF-8, cesta k Howellovi, odstranění obou zastaralých formulací a soulad osnovy a konvencí s aktuálními kapitolami a historickými doklady. git diff --check prošel.
 
 Mění se pouze instrukce a autorská dokumentace; kapitoly, data, prezentace ani konfigurace webu se nemění. Podle pravidla pro tento druh změny nebyl spouštěn render, numerické ani excelové kontroly a vizuální kontrola webu. Veřejné nasazení nebylo ověřováno. Nejde o novou didaktickou revizi samotných kapitol.
+
+<a id="priprava-kapitoly-4"></a>
+
+## Příprava kapitoly 4: normální rozdělení a standardní skóry (2026-10-10)
+
+Autor dohodl zaměření kapitoly 4 na polohu výsledku a z-skór, normální
+model, podíly jako plochy, převody mezi hodnotami a podíly a další standardní
+skóry včetně stenů a staninů. Podrobnou pravděpodobnost chce ponechat
+následující kapitole. Současně požádal o posouzení všech učebnic a nově
+přidané krátké přednášky `normal_distribution.pptx` a o podrobnou osnovu.
+Tento dohodnutý rámec je zapsán do `docs/OSNOVA.md`; členění, cíle, příklady,
+terminologie, značky, Excel a nepovinná rozšíření jsou výslovně návrhem,
+nikoli dodatečně přisuzovaným schválením. Studentská kapitola ani zápisy
+do závěrečných přehledů zatím nevznikají.
+
+### Rozsah posouzení učebnic
+
+Byl znovu zjištěn úplný obsah `sources/` včetně podsložek. Všech deset
+PDF v `sources/učebnice/` bylo čitelných. Posouzení zahrnulo jejich
+obsahy a relevantní výkladové pasáže uvedené níže, nikoli přečtení všech
+knih od začátku do konce. Strany v tabulce jsou tištěné stránky knih;
+u digitálního Navarra jde o číslování dodané PDF verze. Automatická
+extrakce místy poškodila matematické znaky, zejména u Judda; přesný
+matematický zápis proto není přebírán z poškozené extrakce.
+
+| Podklad | Prostudované relevantní části | Navržené využití a hranice |
+|---|---|---|
+| Howell, *Statistical Methods for Psychology*, 8. vyd., 2013, Wadsworth Cengage Learning; `howell.pdf` | Kap. 3, zejména 3.1–3.6, s. 66–79. Titul a vydání ověřeny v titulních a vydavatelských údajích, ISBN 978-1-111-83548-4. | Hlavní opora: normální model, standardizace, plochy, centrální interval a jiné standardní skóry. Q–Q graf z 3.5 jen nepovinně. Howell výslovně odlišuje interval jednotlivých hodnot od intervalu spolehlivosti průměru. |
+| Gravetter a Wallnau, *Statistics for the Behavioral Sciences*, 10. vyd., `gravetter.pdf` | Kap. 5, zejména s. 135, 141–148; normální plochy v oddílu 6.2, s. 165–166. | Podrobná intuitivní interpretace z-skóru, zachování tvaru, změna měřítka a odlišení výběrové a populační standardizace. Podporuje zařazení z-skóru před normální model. |
+| Aron, Aron a Coups, *Statistics for Psychology*, 6. vyd., Pearson New International Edition, 2014; `aron.pdf` | Kap. 3, s. 75–81 a 84–87. | Relativní poloha osoby, převody tam a zpět, kresba a hrubý odhad před výpočtem, závěrečná kontrola smyslu výsledku. Statistické tabulky nahradit Excelem. |
+| Cumming a Calin-Jageman, *Introduction to the New Statistics*, 2. vyd., 2024; `cumming.pdf` | Kap. 4, s. 74–81. | Přechod od spojitého modelu k plochám, vliv parametrů, rozdíl z-skóru a normality, meze modelu u ohraničených dat a v chvostech; zaokrouhlené skóry jako možné rozšíření. Následující výběrová rozdělení odložit. |
+| Diez, Çetinkaya-Rundel a Barr, *OpenIntro Statistics*, 4. vyd., 2019; `diez.pdf` | Oddíl 4.1, s. 133–141. | Přehledná posloupnost otázek pod/nad/mezi a inverzní úlohy; kresba a kontrola výsledku. Nepřebírat časově specifické normy SAT jako aktuální empirický fakt. |
+| Dostál, *Statistické metody v psychologii*; `dostal.pdf` | Oddíl 2.7, s. 31–37, zejména 2.7.2–2.7.3. | Česká terminologie, grafická interpretace hustoty a distribuční funkce. Matematickou formulaci i příliš široká zobecnění o normalitě přizpůsobit cíli; limitní větu nezařazovat. |
+| Navarro, *Learning Statistics with R*; `navarro.pdf` | Oddíl 5.6, s. 191–193; oddíl 9.5, zejména s. 387–392. | Oddělení standardizace od normality, srozumitelné psychologické příklady a vliv parametrů. R kód ani delší matematické odbočky nepatří do studentského výkladu. Rok nové digitální verze nebyl odvozován z názvu souboru. |
+| Privitera, *Statistics for the Behavioral Sciences*, 4. vyd., 2024; `privitera.pdf` | Kap. 6, s. 192–198 a 207–209; přehled návaznosti oddílů kapitoly. | Výslovné cíle a odstupňované převody hodnot a podílů. Nepřebírat obecná tvrzení o normalitě většiny chování ani hodnocení výsledků mimo dvě odchylky jako „nenormálních“ bez rozlišení významů. Binomická aproximace mimo rozsah. |
+| Judd, McClelland a Ryan, *Data Analysis: A Model Comparison Approach to Regression, ANOVA, and Beyond*, 3. vyd.; `judd.pdf` | Kap. 3, úvod s. 25 a související výklad normálního modelu s. 29–32. | Autorská opora pro důsledné oddělení dat, modelu a předpokladů. Rozdělení chyb modelu, regrese a limitní argumentace jsou pro tuto kapitolu předčasné. |
+| Sahu, *Introduction to Probability, Statistics & R: Foundations for Data-Based Sciences*, 2024; `sahu.pdf` | Oddíl 7.2: s. 125–126 a 130–135, zejména standardní normální model, převody a kvantily. | Technická kontrola vztahů, parametrů a rozdílu jednostranné a oboustranné hranice. Integrální odvození, programování a další rozdělení vynechat. |
+
+Zdroje mají odlišné pořadí. Howell přechází od modelu ke standardizaci;
+Gravetter a Navarro vykládají z-skóry odděleně dříve. Navržené pořadí
+navazuje na transformace v naší kapitole 3 a zachovává Howellovo jádro
+normálního modelu a jeho aplikací. Nejde o požadavek převzít součet témat
+ze všech deseti knih.
+
+Důležitý skutečný rozdíl je parametrizace zápisu normálního rozdělení:
+OpenIntro užívá ve druhé pozici směrodatnou odchylku, zatímco Howell,
+Dostál a Sahu rozptyl. Jde o různé konvence, nikoli různé modely.
+Návrh proto ponechává kompaktní zápis mimo povinné minimum; pokud bude
+zaveden, musí být jeho význam jednoznačně dohodnut. Slovo standard score
+také může znamenat přímo z-skór nebo širší rodinu převedených skórů;
+navrženo je druhé pojetí s jasným rozlišením konkrétních škál.
+
+### Přednášky, procvičování a další podklady
+
+Nová `sources/starší přednášky/normal_distribution.pptx` má 22 snímků.
+Byl přečten jejich text a prohlédnuty vybrané vložené grafy normální
+křivky, ploch, převodních škál a Q–Q grafů. Nebyl prováděn úplný render
+a kontrola vzhledu prezentace v PowerPointu. Hlavní obsah dobře odpovídá
+záměru: parametry, standardizace, plochy, jiné skóry a Excel. Následující
+body se nesmějí automaticky převzít do nové kapitoly:
+
+- Snímek 4 uvádí kurtosis = 0 bez odlišení excesu. Pro normální model
+  je standardizovaný čtvrtý centrální moment 3, exces 0; navázat na již
+  vysvětlené rozlišení v kapitole 3 a neopakovat celou momentovou odbočku.
+- Snímek 21 označuje rozsah ±1,96 odchylky za „95% interval spolehlivosti“.
+  Zde jde o prostředních přibližně 95 % jednotlivých výsledků modelu,
+  nikoli o nejistotu odhadu populačního průměru.
+- Snímky 15, 17 a 18 potřebují důsledné odlišení percentilu, jeho úrovně
+  a percentilového pořadí. Rozmezí z-skórů nelze přiřadit jedinému
+  percentilovému pořadí. Hodnoty ±2 odpovídají přibližně 2,28. a 97,72.
+  percentilu, nikoli přesně 2,5. a 97,5.
+- Steny a staniny potřebují hranice kategorií a ztrátu přesnosti,
+  nikoli pouze uvedení středu a směrodatné odchylky. Spojitý lineární
+  mezivýsledek není totožný s konečnou kategorií.
+- Centrální limitní věta a výběrová rozdělení na snímcích 5–6 přesahují
+  dohodnuté zaměření. Formální testy normality a mechanická pravidla
+  typu absolutní šikmost pod 1 nebo 2 ze snímku 13 nejsou vhodným
+  povinným rozhodovacím postupem pro tuto kapitolu. Pořadové vzorce
+  pro konstrukci Q–Q grafu ze snímku 22 jsou zde nadbytečné.
+- Příklad s pojmenovaným klinickým nástrojem a parametry 50 a 10
+  není nezávisle ověřeným dokladem skutečných norem tohoto nástroje.
+  Navržený výklad použije jasně označený vlastní modelový příklad.
+
+Starší `PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx`
+spojuje standardizaci, normální model, pravděpodobnost a další návaznosti;
+pro tuto kapitolu využít jen odpovídající části. Přednášky P01 a P02
+slouží hlavně ke kontrole návaznosti na již probrané četnosti a popis.
+
+Z `sources/příklady k procvičování/ulohy_tyden03_2024.docx` jsou relevantní
+zvláště úlohy X3_04–X3_07 a blok normálního rozdělení a kvantilů od X3_21;
+pravděpodobnostní část ponechat další kapitole. Starší listy týdnů 1–2
+slouží k návaznostem, jejich obsah se nemá znovu přidávat. Příklady
+ze `Seminar4_-_na_zed_-_2024.pptx` jsou vhodnou inspirací pro porovnání
+relativní polohy, nelineární vztah percentilového pořadí a z-skóru a Excel.
+Otázky na „větší talent“ přeformulovat podle toho, co z dat skutečně
+plyne. `NORM.S.DIST` vrací kumulativní podíl, nikoli hodnotu kvantilu;
+tuto terminologii ve starším semináři zpřesnit při případném převzetí.
+Podklady nejsou vydávány za již opravené ani celé numericky přezkoušené.
+
+V `sources/ostatní zdroje/Normalni_rozdeleni_do_3_aveamian._prednasky.xlsx`
+byly přečteny listy, popisy a vzorce: plochy, hustota, převody z/T/IQ
+a kvantily. Potvrzuje důraz autora na porozumění převodům a použití
+kalkulátoru místo tištěných tabulek. Sešit nebyl přepočten v desktopovém
+Excelu ani kompletně vizuálně kontrolován; má být inspirací pro nové
+samostatně použitelné příklady, nikoli hotovým ověřeným studentským sešitem.
+
+U zbývajících souborů bylo ověřeno zaměření. Podklady k datové matici,
+kódování proměnných a Lordově příkladu fotbalových čísel nerozšiřují
+jádro této kapitoly. Baronovy kapitoly o normativní a deskriptivní
+pravděpodobnosti patří do budoucí přípravy pravděpodobnosti; jde
+o skenované PDF, u nichž byly vizuálně posouzeny úvodní části, nikoli
+přečten celý text. Obdobně byl výběrově prohlédnut Uttsové text o
+statistické gramotnosti, včetně záměny podmíněných pravděpodobností;
+pro tuto kapitolu je jen širším kontextem. Tyto omezené průchody nejsou
+vydávány za úplnou rešerši uvedených článků či za chybějící kontrolu
+některé z deseti učebnic.
+
+### Doplňující primární zdroje a ověření návrhu
+
+Základní vlastnosti a rozlišení kurtosis/exces byly porovnány s
+[NIST: Normal Distribution](https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm).
+Použití dalších škál bylo ověřeno v primárních materiálech vydavatelů:
+[SHL, ukázková zpráva Verify Interactive](https://service.shl.com/docs/Verify%20Interactive%20Ability%20Report%20DNI%20UKE.pdf)
+uvádí steny a T-skóry;
+[GL Education, CAT4 Quick Data Guide](https://support.gl-education.com/knowledge-base/assessments/cat4-support/after-the-test/quick-data-guide)
+vymezuje staninové kategorie;
+[Pearson, výklad standardních a vážených skórů](https://www.pearsonclinical.co.uk/featured-topics/aa-and-the-dsa.html)
+uvádí škály 100/15 a 10/3. Nejde o oprávnění zaměňovat normy různých
+konkrétních testů nebo vydávat každý převod 100 + 15z za IQ.
+
+České názvy a účel čtyř navržených funkcí byly ověřeny v dokumentaci
+Microsoftu:
+[NORM.S.DIST](https://support.microsoft.com/cs-cz/excel/functions/norm-s-dist-function),
+[NORM.S.INV](https://support.microsoft.com/cs-cz/excel/functions/norm-s-inv-function),
+[NORM.DIST](https://support.microsoft.com/cs-cz/excel/functions/norm-dist-function),
+[NORM.INV](https://support.microsoft.com/cs-cz/excel/functions/norm-inv-function).
+Dokumentační kontrola není vydávána za provedení budoucích příkladů
+v českém Excelu.
+
+Nezávislý výpočet normální distribuční a kvantilové funkce ověřil
+číselné hodnoty použité při posouzení: prostřední podíly pro ±1, ±2
+a ±3 jsou přibližně 0,6826895, 0,9544997 a 0,9973002; pro ±1,96
+přibližně 0,9500042. Kvantily úrovní 0,90, 0,95 a 0,975 jsou
+přibližně 1,281552, 1,644854 a 1,959964. Pro ideální staninové kategorie
+s hranicemi ±0,25, ±0,75, ±1,25 a ±1,75 odpovídají zaokrouhlené
+procentní podíly 4–7–12–17–20–17–12–7–4; jejich přesná směrodatná
+odchylka je přibližně 1,944, proto se 2 nemá vydávat za přesnou
+vlastnost každého kategorizovaného souboru. Výpočty nejsou nově
+schválenými konvencemi studentského výkladu.
+
+Didaktické posouzení návrhu hlídá vstupní znalosti a rozsah: nejprve
+z-skór jako popis, poté model a plochy, až následně přesné převody
+a jejich aplikace. Předpoklady normality jsou výslovně připojeny
+k převodům na modelové podíly. Rozlišení standardizace a normalizace
+má být krátké; Q–Q graf zůstává nepovinný. Jde o autorské posouzení
+osnovy, nikoli o ověření porozumění na studentech.
+
+Změny se týkají pouze osnovy a tohoto historického záznamu. Studentský
+web, zdrojové prezentace a sešit ani konvence v `docs/ROZHODNUTI.md`
+se nemění. Kontrola dokumentace ověřila UTF-8, místní odkazy včetně
+explicitní kotvy tohoto záznamu, rozlišení dohodnutého a navrženého
+obsahu a `git diff --check`. Render knihy, webové a mobilní kontroly
+ani desktopový Excel nebyly pro tuto dokumentační změnu spouštěny;
+veřejné nasazení nebylo ověřováno.
