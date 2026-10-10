@@ -112,9 +112,11 @@ v [přehledu rozhodnutí](ROZHODNUTI.md).
 ## 4. Normální rozdělení a standardní skóry
 
 **Stav:** hlavní zaměření dohodnuto 2026-10-10; název, podrobná osnova,
-cíle, příklady, termíny a nové značky níže jsou **návrhem k projednání**,
-s výjimkou výslovně schváleného názvu „normované normální rozdělení“
-(viz [R07](ROZHODNUTI.md#r07-normovane-normalni)).
+cíle, příklady a nové značky níže jsou **návrhem k projednání**.
+Terminologie byla schválena včetně upřesnění IQ-skórů a standardních
+subtestových skórů (viz [R07](ROZHODNUTI.md#r07-normovane-normalni)
+a [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4)). Schválení názvu
+nepovinného tématu samo nepotvrzuje jeho zařazení do kapitoly.
 Studentská kapitola dosud nevznikla a nebyla přidána do navigace knihy.
 
 **Dohodnutý rozsah:** poloha výsledku a z-skór; normální rozdělení jako
@@ -264,9 +266,13 @@ a prostředních 95 %. Numerické mezikroky nezaokrouhlovat předčasně.
    směrodatná odchylka“. Výsledný skór vyjadřuje tutéž standardizovanou
    polohu, ale jeho číslo závisí na zvolené škále a referenční skupině.
 2. Společná přehledová tabulka a jeden řešený převod: z-skór (0; 1),
-   T-skór (50; 10), škála typu IQ (100; 15), vážený subtestový skór
-   používaný například ve Wechslerových škálách (10; 3). Poslední název
-   a rozsah jeho použití je nutné terminologicky dohodnout.
+   T-skór (50; 10), IQ-skór (100; 15), standardní subtestový skór
+   na škále používané například ve Wechslerových metodách (10; 3).
+   IQ-skóry zde označují měřítko použitelné i mimo inteligenční testy;
+   převod nemění měřenou vlastnost. U neinteligenčního příkladu psát
+   „výsledek vyjádřený na škále IQ-skórů“. České označení „vážené skóry“
+   uvést jako alternativu s vysvětlením, že zde neoznačuje výpočet
+   váženého součtu položek či subškál.
 3. Steny: deset kategorií 1–10; staniny: devět kategorií 1–9.
    Vysvětlit hranice na z-škále, šířku vnitřních kategorií a otevřené
    krajní kategorie. Stenová škála má střed 5,5, staninová 5;
@@ -316,24 +322,26 @@ centrální limitní věta, výběrová rozdělení, standardní chyba, interval
 spolehlivosti a testování hypotéz; Shapirův–Wilkův a další testy normality.
 Tím není schváleno zařazení všech těchto témat do jedné další kapitoly.
 
-### Termíny, značky a funkce: návrhy a schválené položky
+### Schválené termíny a navržené značení a funkce
 
-Kromě výslovně označené schválené položky zůstávají následující termíny
-a značky návrhem k dohodě.
+Názvy a terminologická rozlišení v následující tabulce jsou schválené
+2026-10-10. Chvost rozdělení je již zavedený pojem z kapitoly 2.
+Nové symboly a rozsah nepovinných rozšíření zůstávají návrhem.
 
-| Návrh českého termínu | Anglický ekvivalent | Doporučení a rozsah |
+| Schválený český termín | Anglický ekvivalent | Použití a rozsah |
 |---|---|---|
 | hrubý skór | raw score | Původní výsledek před převodem; připomenout vztah ke slovu hodnota. |
-| referenční skupina; normativní soubor | reference group; normative sample | Rozlišit skupinu, ke které vztahujeme interpretaci, a data použitá při tvorbě norem. |
+| referenční skupina; normativní soubor | reference group; normative sample | Rozlišit skupinu, ke které vztahujeme interpretaci, a soubor osob použitý při tvorbě norem. „Standardizační soubor“ uvést jako alternativu ve slovníčku. |
 | z-skór; standardizace | z score; standardization | Standardizací zde rozumět konkrétní lineární převod; širší význam v psychodiagnostice výslovně odlišit. |
 | normální rozdělení | normal distribution | Gaussovo rozdělení jako alternativa ve slovníčku. |
 | **normované normální rozdělení** | standard normal distribution | **Schváleno 2026-10-10.** Ve výkladu používat tento název; „standardní normální rozdělení“ a „standardizované normální rozdělení“ uvést jako alternativy ve slovníčku. |
 | hustota pravděpodobnosti | probability density | Stručný grafický význam; nezaměnit za pravděpodobnost jediné hodnoty. |
 | distribuční funkce | cumulative distribution function | Vysvětlit jako kumulativní plochu; „kumulativní distribuční funkce“ uvést jako běžnou alternativu. |
-| chvost rozdělení | distribution tail | Význam nejprve ukázat na obrázku. |
+| chvost rozdělení | distribution tail | Již zaveden v kapitole 2; připomenout pomocí obrázku, nejde o nový termín. |
 | standardní skór; T-skór | standard score; T score | Standardní skór jako širší rodina škál; z-skór jako její konkrétní případ. |
-| vážený subtestový skór | scaled subtest score | Název k dohodě; neprezentovat 10 a 3 jako parametry každé škály nazývané scaled score. |
-| sten; stanin | sten; stanine | České tvary k dohodě, včetně případné alternativy stanina ve slovníčku. |
+| IQ-skór | IQ score | Zde škála s průměrem 100 a směrodatnou odchylkou 15, použitelná i mimo měření inteligence. Samotný převod nevytvoří IQ jako výsledek měření inteligence. |
+| standardní subtestový skór | scaled subtest score | Při použití škály 10/3 výslovně uvést její parametry; nejsou definicí každého scaled score. „Vážený skór“ uvést jako používanou alternativu a odlišit jej od váženého součtu nebo průměru. |
+| sten; stanin | sten (standard ten); stanine (standard nine) | Jednotné číslo sten a stanin, množné steny a staniny; případnou variantu stanina ponechat ve slovníčku. |
 | normalizace rozdělení | normalization / rank-based normal-score transformation | Krátké odlišení od lineární standardizace; nepřidávat algoritmus tvorby norem. |
 | normální Q–Q graf | normal Q–Q plot | Pouze pokud se schválí nepovinné rozšíření. |
 
@@ -345,6 +353,13 @@ proto používáme zavedený název „normované normální rozdělení“.
 Jde o jazykové zdůvodnění naší volby, nikoli o označení alternativního
 odborného názvu za nesprávný. Heslo bude při vytvoření kapitoly doplněno
 do studentského slovníčku společně s odkazem na první výklad.
+
+**Historická poznámka k alternativě „vážený skór“:** starší anglické
+označení *weighted scores* je doloženo již v názvu článku
+[*A critique of the Wechsler-Bellevue system of weighted scores* (1949)](https://pubmed.ncbi.nlm.nih.gov/18118257/).
+Přesná cesta převzetí do češtiny nebyla ověřena; netvrdit německý
+ani ruský původ. Do studentského textu je podstatné vysvětlení významu,
+nikoli spekulace o historii překladu.
 
 Navržené nové symboly jsou kurzivní `z` (případně `z_i`) a stojaté
 řecké μ a σ pro populační/modelový průměr a směrodatnou odchylku.
