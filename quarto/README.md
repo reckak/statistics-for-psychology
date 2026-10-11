@@ -1358,3 +1358,64 @@ Omezení: generátor `kapitola_03-sešit.mjs` byl upraven, ale nespuštěn
 v Excelu a zdroj prošel jen kontrolou syntaxe. `check-chapter-04-excel.ps1`
 je rovněž bez BOM a nebyl měněn. Citace mimo Howella nebyly znovu ověřovány.
 Interní revize není ověřením porozumění na studentech.
+
+## Kapitola 4: revize po posouzení (2026-10-11)
+
+Na žádost autora proběhlo posouzení kapitoly 4 z hlediska věcné správnosti,
+srozumitelnosti, návaznosti, didaktiky, jazyka a názvosloví. Hrubá věcná
+chyba nalezena nebyla; všechna čísla výkladu i řešení byla nezávisle
+přepočítána (Python `statistics.NormalDist`) a souhlasí. Úpravy jsou ve
+větvi `codex/chapter-04` z `origin/main` (c4de22e).
+
+### Rozhodnutí autora
+
+- Zápis normálního modelu je nově N(μ, σ) se směrodatnou odchylkou jako
+  druhým parametrem ([R15](../docs/ROZHODNUTI.md#r15-zapis-normalniho-modelu),
+  nahrazuje příslušnou část R09). Ilustrační model je N(50, 10); výklad
+  upozorňuje na častou konvenci N(μ, σ²). Úloha 3 používá N(80, 5).
+- Úvodní blok cílů je seznam s odrážkami. Věta o posouvání na úzké
+  obrazovce byla odstraněna.
+- „Výzkumný soubor“ v oddílu o výpočtu v Excelu zůstává jako přípustná
+  alternativa; „normativní skupina“ → „normativní soubor“; v řešení úlohy 10
+  „velikost výběru n = 200“ (R13).
+- Cvičení zůstávají v počtu deseti; doplněny dílčí otázky v úlohách 3
+  (konvence zápisu a argument `NORM.DIST`), 7 (nestejné přírůstky modelových
+  percentilových pořadí) a 10 (Q–Q graf zešikmeného rozdělení).
+
+### Další opravy
+
+- Samotné „odchylka“ ve významu směrodatné odchylky nahrazeno plným
+  termínem ve výkladu, řešeních, alt textu, slovníčku, značení a popiscích
+  obrázků 4.1 a 4.3 (legendy nyní uvádějí N(50, 10) apod.). Důvod: v kapitole 3
+  znamená „odchylka“ rozdíl hodnoty od průměru.
+- Nezavedený zápis polouzavřených intervalů v řešení úlohy 8 nahrazen
+  nerovnostmi; „model 50/10“ → N(50, 10); „na normované škále“ → „na škále
+  z-skórů“; IQ-skór zaveden v jednotném čísle; vysvětleno slovo inverzní.
+- Podíl mezi dvěma hranicemi je vyložen v pořadí z-skóry → levé plochy →
+  rozdíl (vzorec se zaokrouhlením na pět míst) → Excel. Před výpočtem
+  90. percentilu je předpověď znaménka. Odkaz „plochu nyní vysvětlíme“ míří
+  na správný oddíl.
+- Doplněno z osnovy: modelové percentilové pořadí není procento správných
+  odpovědí (4.4.6); obvyklé zaokrouhlené podíly staninů (4.6.4).
+- Zkráceno opakování přírůstků 34,1 a 13,6 v oddílu o normalizaci;
+  zpřesněna věta o výšce a šířce křivky; jazykové opravy („Ve spojitém“,
+  chybějící čárka, dvojznačné „bez dalšího údaje“, „rovnice přímky“).
+- Popisek příkazu řazení opraven na „Seřadit od nejmenšího k největšímu“.
+
+### Ověření a omezení
+
+`check-chapter-04.R` prošel (R 4.5.1) včetně nových kontrol úlohy 3
+a zaokrouhleného rozdílu ploch. Celá kniha se vykreslila v Quarto 1.9.38
+bez varování; `check-html.cjs` prošel bez chyb (9 stránek, 160 hesel,
+42 řešení, mobil 390 px). V prohlížeči ověřeno: 15 obrázků se načte, nové
+popisky obrázků 4.1 a 4.3 se vejdou, deset sbalených řešení, stojaté μ a σ,
+žádná chyba matematiky, žádný kód R, šířka 390 px bez vodorovného přetékání.
+Strany Howella (66–68, 69–71, 74–75, 75–78, 78–79) byly porovnány s textem
+PDF podle výskytu témat a odpovídají.
+
+Omezení: sešit `data/kapitola_04.xlsx` se neměnil a Excel nebyl znovu
+spuštěn; popisek příkazu řazení nebyl ověřen v běžícím českém Excelu.
+Údaj o dostupnosti funkcí od Excelu 2016 zůstal beze změny, i když funkce
+pravděpodobně existují už od verze 2010 (neověřeno v dokumentaci). Citace
+mimo Howella nebyly znovu ověřovány. Ostatní obrázky byly prohlédnuty jen
+v malém měřítku. Interní revize není ověřením porozumění na studentech.

@@ -222,13 +222,15 @@ neschválené názvy v původním návrhu osnovy; R07 zůstává v platnosti.
 **Stav:** schváleno 2026-10-10. **Rozsah:** kapitola 4 a navazující přehledy.
 Souhlas s posloupností, většinou předložených doporučení a výslovné
 zahájení tvorby uzavírají přípravu kapitoly. Autor změnil dvě části návrhu:
-zápis **N(μ, σ²)** se zařazuje nyní a normální **Q–Q graf je povinný**
+zápis **N(μ, σ²)** se zařazuje nyní (tvar zápisu později nahradilo
+[R15](#r15-zapis-normalniho-modelu)) a normální **Q–Q graf je povinný**
 včetně čtení i ukázky tvorby, společně s dalšími způsoby posouzení modelu.
 Nahrazuje původní návrhy odložit zápis a zařadit Q–Q jen nepovinně.
 
 Používáme kurzivní z, z_i a velké T pro T-skór, stojaté μ a σ pro
-populační/modelové parametry. Druhý argument N je rozptyl σ²; Excel
+populační/modelové parametry. Původně: druhý argument N je rozptyl σ²; Excel
 NORM.DIST a NORM.INV naproti tomu přijímá směrodatnou odchylku.
+**Tato věta je nahrazena R15.**
 Zachováváme výběrové m, s, již zavedené x_i, i, n a p pro podíl/úroveň
 kvantilu. Nezavádíme zde zápis náhodných veličin ani P(…), Φ a Φ⁻¹.
 
@@ -400,4 +402,31 @@ používal označení 1./3. kvartil a uvedl označení ‚dolní‘ a ‚horní�
 jako možnou alternativu“; „pro kurtosis bych jako primární překlad/termín
 volil ‚špičatost‘, kurtóza uvedl pouze jako možnou alternativu“; „vše dal
 do jednoho souboru, a to toho excelovského“. Záznam „Kapitola 3: revize
+po posouzení“ v [historii](../quarto/README.md).
+
+<a id="r15-zapis-normalniho-modelu"></a>
+
+## R15 — Zápis normálního modelu N(μ, σ)
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** kapitola 4, přehled značení,
+slovníček, přehled funkcí Excelu a další použití zápisu v učebnici
+a souvisejících materiálech.
+
+Normální model zapisujeme **N(μ, σ)**: druhým parametrem je směrodatná
+odchylka, nikoli rozptyl. Ilustrační model skóru pozornosti je N(50, 10),
+normované normální rozdělení N(0, 1). Výklad a přehled značení upozorňují,
+že mnoho zdrojů používá N(μ, σ²); čtenář má konvenci cizího textu ověřit.
+Zápis odpovídá argumentům funkcí NORM.DIST a NORM.INV. Stojaté μ a σ
+a ostatní značení podle R09 se nemění.
+
+**Důvod:** jednoduchost a konzistence; student pracuje s jediným údajem
+o variabilitě ve stejných jednotkách jako skór a nepřepočítává rozptyl.
+
+**Nahrazuje:** část [R09](#r09-kapitola-4-model-qq) o zápisu N(μ, σ²)
+s rozptylem jako druhým parametrem. Povinné zařazení zápisu a Q–Q grafů
+z R09 zůstává.
+
+**Doklad:** pokyn autora při revizi kapitoly 4 dne 2026-10-11: „místo
+zápisu N(μ,σ2) používal pro jednoduchost konzistentně N(μ,σ), tedy jako
+druhý parametr uvádět směrodatnou odchylku“. Záznam „Kapitola 4: revize
 po posouzení“ v [historii](../quarto/README.md).

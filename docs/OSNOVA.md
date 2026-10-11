@@ -113,7 +113,8 @@ v [přehledu rozhodnutí](ROZHODNUTI.md).
 ## 4. Normální rozdělení a standardní skóry
 
 **Stav:** rozsah, posloupnost a zahájení tvorby schváleny 2026-10-10.
-Autor výslovně doplnil zápis N(μ, σ²) a povinné posouzení normálního
+Autor výslovně doplnil zápis normálního modelu (od 2026-10-11 ve tvaru
+N(μ, σ), viz [R15](ROZHODNUTI.md#r15-zapis-normalniho-modelu)) a povinné posouzení normálního
 modelu včetně čtení i tvorby Q–Q grafu. Studentský výklad je v
 [kapitole 4](../quarto/kapitola_04.qmd) a v navigaci knihy.
 Terminologii určují [R07](ROZHODNUTI.md#r07-normovane-normalni)
@@ -149,7 +150,7 @@ Student má po kapitole umět:
 - určit podíl pod hranicí, nad hranicí a mezi dvěma hranicemi a opačně
   najít hodnotu zadaného percentilu nebo meze prostředního podílu;
 - převést a interpretovat běžné standardní skóry, steny a staniny;
-- přečíst N(μ, σ²), nezaměnit rozptyl a směrodatnou odchylku;
+- přečíst N(μ, σ) a rozpoznat odlišnou konvenci zdrojů s rozptylem N(μ, σ²);
 - číst a vytvořit normální Q–Q graf v Excelu, spojit jeho interpretaci
   s histogramem, významem proměnné, mezemi škály a účelem modelu;
 - rozpoznat neodůvodněný převod na percentil, nevhodnou referenční skupinu
@@ -320,7 +321,10 @@ standardizace zešikmených dat; četnost versus modelová plocha;
 podíly pod/nad/mezi hranicemi; modelový percentil a centrální interval;
 převody standardních skórů; čtení stenů a staninů; oprava chybných
 tvrzení o normalitě, percentilech a klinickém významu; konstrukce Q–Q
-grafu a změna krajního pozorování. Řešení mají
+grafu a změna krajního pozorování. Při revizi 2026-10-11 byly bez změny
+počtu úloh doplněny dílčí otázky: odlišná konvence zápisu modelu a argument
+`NORM.DIST` (úloha 3), nestejné přírůstky modelových percentilových pořadí
+(úloha 7) a čtení Q–Q grafu zešikmeného rozdělení (úloha 10). Řešení mají
 zdůvodnit postup i význam výsledku, nikoli jen uvést číslo.
 
 ### Rozšíření a hranice kapitoly
@@ -387,10 +391,10 @@ Pro obecný nový skór lze využít již zavedené
 
 Písmeno `p` již slouží jako úroveň kvantilu; zde má znamenat podíl
 vlevo od hranice, nikoli p-hodnotu testu. Nové `X`, `Z`, `P(…)`, `Φ`
-a `Φ⁻¹` není nutné zavádět do povinného výkladu. Zápis `N(μ, σ²)` je
-na výslovné přání autora povinný: druhým parametrem je rozptyl.
-Upozornit na odlišnou konvenci některých zdrojů a argument odchylky
-v excelových funkcích.
+a `Φ⁻¹` není nutné zavádět do povinného výkladu. Zápis normálního modelu je
+na výslovné přání autora povinný. Od 2026-10-11 má tvar `N(μ, σ)`:
+druhým parametrem je směrodatná odchylka, shodně s argumenty excelových
+funkcí. Upozornit na častou konvenci jiných zdrojů `N(μ, σ²)` s rozptylem.
 
 Schválené funkce jsou `NORM.S.DIST` a `NORM.S.INV` jako základ,
 `NORM.DIST` a `NORM.INV` jako přímá alternativa. Jejich české i anglické

@@ -39,12 +39,12 @@ ch4_draw('standardizace', {
 },height=5)
 ch4_draw('parametry', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.6,.6))
-  ch4_curve(main='Jiný průměr, stejná odchylka',xlim=c(10,110))
+  ch4_curve(main='Mění se průměr',xlim=c(10,110))
   curve(dnorm(x,65,10),add=TRUE,col=ch4_orange,lwd=2.3,lty=2)
-  legend('topright',c('Průměr 50; odchylka 10','Průměr 65; odchylka 10'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
-  ch4_curve(main='Stejný průměr, jiná odchylka',xlim=c(0,100))
+  legend('topright',c('N(50, 10)','N(65, 10)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
+  ch4_curve(main='Mění se směrodatná odchylka',xlim=c(0,100))
   curve(dnorm(x,50,15),add=TRUE,col=ch4_orange,lwd=2.3,lty=2)
-  legend('topright',c('Průměr 50; odchylka 10','Průměr 50; odchylka 15'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
+  legend('topright',c('N(50, 10)','N(50, 15)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
 },width=10)
 ch4_draw('hustota', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,3,.7))
@@ -102,7 +102,7 @@ ch4_draw('z-jako-jednotka', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
   for(k in 1:2) {
     y<-if(k==1) 5 else 2
-    text(.5,y+1.3,if(k==1) 'Test A: průměr 50 bodů; odchylka 10 bodů' else 'Test B: průměr 30 bodů; odchylka 6 bodů',adj=0,font=2)
+    text(.5,y+1.3,if(k==1) 'Test A: průměr 50 bodů; směrodatná odchylka 10 bodů' else 'Test B: průměr 30 bodů; směrodatná odchylka 6 bodů',adj=0,font=2)
     xx<-c(2,4,6);segments(1,y,7,y,col=ch4_blue)
     points(xx,rep(y,3),pch=19,col=ch4_blue)
     text(xx,y-.5,if(k==1)c('50','60','70') else c('30','36','42'))
