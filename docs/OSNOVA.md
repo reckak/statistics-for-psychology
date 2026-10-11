@@ -1,7 +1,8 @@
 # Mapa obsahu a návazností učebnice
 
 **Poslední kontrola mapy: 2026-10-11.** Dokument popisuje aktuální zdrojové
-texty čtyř výkladových kapitol a odděleně eviduje plán další kapitoly.
+texty čtyř výkladových kapitol a odděleně eviduje schválený plán páté
+kapitoly a stav dalšího pokračování.
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
 kapitolou ani potvrzením dokončení, odborné bezchybnosti nebo nasazení webu.
 
@@ -61,7 +62,8 @@ stabilní identifikátory Quarta.
 | [2. Četnosti, rozdělení dat a jejich zobrazení](#mapa-kapitola-02) | Od jednotlivých záznamů k zastoupení hodnot a grafům. | 10 úloh, z toho závěrečná změna vstupů v Excelu. |
 | [3. Ukazatele polohy a variability](#mapa-kapitola-03) | Číselná shrnutí, jejich volba, výpočet, omezení a reportování. | 12 základních a 2 nepovinné úlohy. |
 | [4. Normální rozdělení a standardní skóry](#mapa-kapitola-04) | Relativní poloha, modelové podíly a kvantily, standardní škály a posouzení modelu. | 10 úloh včetně tvorby Q–Q grafu. |
-| [Plán pokračování](#plan-dalsi-kapitoly) | Dohodnutý směr: pravděpodobnost; podrobnosti dosud otevřené. | Není vytvořenou kapitolou ani schválenou sadou úloh. |
+| [5. Pravděpodobnost — schválený plán](#mapa-kapitola-05) | Pravidla pro jevy, podmínění a Bayesova věta; binomické rozdělení a jeho normální aproximace. | Kapitola se píše; plán není mapou hotového textu. |
+| [Plán pokračování](#plan-dalsi-kapitoly) | Po kapitole 5 není nic schváleno. | Není vytvořenou kapitolou ani schválenou sadou úloh. |
 
 <a id="tematicky-rozcestnik"></a>
 
@@ -532,57 +534,66 @@ Hlavní odbornou a didaktickou oporou původní přípravy je Howell, kapitola 3
 podrobnosti pasáží a srovnání podkladů patří do [karty U01](ZDROJE.md#u01)
 a historie přípravy, nikoli do druhé mapy zdrojů.
 
+<a id="mapa-kapitola-05"></a>
+
+## 5. Pravděpodobnost — schválený plán, kapitola se píše
+
+**Stav k 2026-10-11: schválený rozsah, pořadí, terminologie a značení;
+text kapitoly dosud není hotový.** Dohodu dokládají
+[R21](ROZHODNUTI.md#r21-rozsah-kapitoly-5),
+[R22](ROZHODNUTI.md#r22-znaceni-pravdepodobnosti) a
+[R23](ROZHODNUTI.md#r23-terminologie-kapitoly-5); termíny jsou
+v [registru](SLOVNIK.md#kapitola-05). Tento oddíl je plán, nikoli mapa
+skutečného textu; po dopsání kapitoly jej nahradí karta podle výkladu,
+zadání a řešení.
+
+**Vstup:** relativní a kumulativní četnosti, určení celku a doplněk (kap. 2);
+průměr a směrodatná odchylka (kap. 3); modelový podíl jako plocha, z-skór,
+NORM.S.DIST a NORM.DIST, nulová plocha jediného bodu ve spojitém modelu
+(kap. 4); výběr z populace a rozdíl souvislosti a příčiny (kap. 1).
+Logaritmy, entropie ani momentové koeficienty se nepředpokládají.
+
+**Schválené cíle:** vysvětlit, co pravděpodobnost vyjadřuje, a rozlišit
+klasické, četnostní a subjektivní pojetí; vymezit výsledek náhodného pokusu,
+výběrový prostor a jev a použít doplněk, součtové a součinové pravidlo;
+z kontingenční tabulky určit marginální, společnou a podmíněnou
+pravděpodobnost a posoudit nezávislost; rozlišit P(A | B) a P(B | A)
+a pomocí přirozených četností, úplné pravděpodobnosti a Bayesovy věty určit
+prediktivní hodnotu včetně její závislosti na prevalenci; rozpoznat hráčský
+a konjunkční klam, záměnu podmínky a zanedbání základních četností; popsat
+diskrétní rozdělení pravděpodobnosti a odlišit je od rozdělení dat
+a od hustoty; rozpoznat situaci pro binomický model, ověřit předpoklady
+a počítat ručně i v Excelu; použít normální aproximaci a posoudit její přesnost.
+
+| Blok | Schválené pořadí oddílů | Povinnost |
+|---|---|---|
+| A. Pravděpodobnost jevů | 1. Od podílu k pravděpodobnosti, tři pojetí, kolísání relativní četnosti, hráčský klam. 2. Náhodný pokus, výsledek, výběrový prostor, jev, doplněk, jistý a nemožný jev. 3. Průnik, sjednocení, součtové pravidlo, kontingenční tabulka, konjunkční klam. 4. Podmíněná pravděpodobnost, součinové pravidlo, nezávislost a její meze. 5. Přirozené četnosti a strom → úplná pravděpodobnost → Bayesova věta; srovnání dvou prevalencí; základní četnost, prevalence a apriorní pravděpodobnost. | Povinné; šance jen jako nepovinné rozšíření. |
+| B. Rozdělení pravděpodobnosti | 6. Náhodná proměnná, diskrétní rozdělení, střední hodnota, vztah k rozdělení dat a k hustotě. 7. Faktoriál, kombinace a kombinační číslo. 8. Binomické rozdělení: předpoklady, odvození, vzorec, tvar, „právě/nejvýše/alespoň“, Excel. 9. Normální aproximace, její přesnost, převod počtu na podíl. | Povinné; obecná střední hodnota a rozptyl a variace bez opakování nepovinně. |
+| Závěr | Shrnutí a přibližně 10–12 cvičení se sbalenými řešeními. | Cvičení pokrývají povinný rozsah. |
+
+**Schválené příklady:** autorská dvojice tabulek pohlaví × stres pro závislost
+a nezávislost; nový modelový screening ve dvou prevalencích při senzitivitě
+0,95 a specificitě 0,90; hádání v testu s výběrem odpovědí pro binomické
+rozdělení; příklady převzaté z Howella nanejvýš jako citovaná cvičení.
+Data studentům poskytne jediný sešit `data/kapitola_05.xlsx`.
+
+**Hranice:** viz „Mimo kapitolu“ v R21. Otázka, jak pravděpodobný je
+výsledek při pouhém hádání, do kapitoly patří; formální test nikoli.
+
+**Podklady:** rozsah skutečného čtení a zjištěné rozpory jsou v kartách
+U01, U04, U05, U08, U10, U11, P03, P05, C03 a D07–D09
+[mapy zdrojů](ZDROJE.md). Před citací konkrétní pasáže se ověřuje originál.
+
 <a id="plan-dalsi-kapitoly"></a>
 
-## Plán další kapitoly — odděleně od existujícího obsahu
+## Plán pokračování po kapitole 5 — odděleně od existujícího obsahu
 
-**Stav k 2026-10-11: dohodnutý směr, nikoli schválený podrobný plán.**
-Po normálním rozdělení má následovat podrobnější pravděpodobnost a související
-pojmy. Konkrétní rozsah, cíle, posloupnost, příklady, nové termíny a značky
-nebyly dohodnuty. Kapitola 5 není v aktuální navigaci a tato část mapy
-nepředstavuje její hotový text ani zahájení tvorby.
-
-### Na čem lze stavět
-
-Student již má vysvětlené a procvičené podíly/procenta, určení celku,
-kumulaci a doplněk; u normálního modelu plochy intervalů a kvantily.
-Rozlišuje modelovou pravděpodobnost a pozorovanou relativní četnost.
-Setkal se s opakovanými náhodnými výběry v simulaci rozptylu a s kolísáním
-grafů. To však nenahrazuje definice jevů, podmínění nebo nezávislosti.
-Výpočet entropie, logaritmy a momentové koeficienty nesmějí být bez nového
-vysvětlení vstupním předpokladem povinné kapitoly.
-
-### Co musí podrobný plán teprve rozhodnout
-
-| Oblast | Současný stav a otázka pro přípravu |
-|---|---|
-| Cíle a rozsah | Dohodnut je směr k pravděpodobnosti; vybrat konkrétní dovednosti přiměřené zbývajícímu semestru. |
-| Význam pravděpodobnosti a pravidla | Navázat na modelový podíl; dohodnout hloubku pojetí pravděpodobnosti, formální jevy, operace a pravidla. |
-| Podmínění, nezávislost a Bayes | Náměty k projednání, nikoli schválené oddíly. Rozhodnout zařazení a rozsah, případnou práci s přirozenými četnostmi, tabulkami či stromy. |
-| Náhodná veličina a další rozdělení | Rozhodnout, zda patří sem, nebo do dalšího kroku. Zmínka o modelu v předchozích kapitolách nezavádí úplný aparát ani schválení binomického rozdělení. |
-| Příklady a procvičování | Teprve vybrat psychologické situace, původ dat a cíle jednotlivých úloh. Zde nevzniká nová sada zadání ani řešení. |
-| Terminologie, symboly a Excel | Předem dohodnout nové české/anglické názvy a zápisy; dosavadní p pro podíl nesmí bez vysvětlení měnit význam. Volbu funkcí a konkrétní pracovní postupy teprve ověřit. |
-| Hranice vůči inferenci | Výběrová rozdělení, standardní chyba, CLT, intervaly a testování zůstávají budoucími tématy bez schváleného pořadí; nezařazovat je automaticky všechna do jedné kapitoly. |
-
-### Podklady pro budoucí přípravu
-
-Rozcestník [mapy zdrojů](ZDROJE.md) již uvádí pravděpodobnost a navazující
-témata. Pro výběr relevantních pasáží odkazuje zejména na Howella
-[U01](ZDROJE.md#u01), kapitolu 5, a srovnání
-[U04](ZDROJE.md#u04), [U08](ZDROJE.md#u08), [U10](ZDROJE.md#u10)
-a [U11](ZDROJE.md#u11); dále na starší výuku
-[P03](ZDROJE.md#p03), [P05](ZDROJE.md#p05), úlohy [C03](ZDROJE.md#c03)
-a podklady [D07](ZDROJE.md#d07), [D08](ZDROJE.md#d08), [D09](ZDROJE.md#d09).
-Jde o odkazy pro přípravu, nikoli o nově provedenou rešerši či schválený výběr.
-
-Před předložením podrobné osnovy je nutné podle AGENTS.md zkontrolovat
-aktuální `sources/` proti inventáři, přečíst relevantní pasáže v originálech,
-vyhodnotit zaznamenané rozpory a určit konkrétní použití příkladů. Tato
-aktualizace mapy učebnice podklady znovu odborně neověřovala. Howell zůstává
-hlavním východiskem; nabídka dalších zdrojů není souhlasem se všemi tématy.
-
-Po dohodě sem patří schválené cíle, pořadí oddílů, pojmy/znaky, příklady,
-povinný/nepovinný rozsah, zdroje a doklad dohody. Během psaní se plán
-nesmí vydávat za realizovaný obsah. Po vytvoření kapitoly vznikne její
-karta podle skutečného textu a tento oddíl se přesune k dalšímu pokračování;
-zbývající návrhy a nevyřešené otázky zůstanou výslovně označené.
+**Stav k 2026-10-11: žádný schválený plán.** Směr, rozsah ani pořadí kapitol
+následujících po pravděpodobnosti nebyly dohodnuty. Jako možná návaznost
+se v dosavadních kapitolách a v R21 pouze zmiňují výběrová rozdělení,
+standardní chyba, centrální limitní věta, intervaly spolehlivosti
+a testování hypotéz; žádná z těchto zmínek není schválením tématu ani
+jeho umístění. Rozcestník [mapy zdrojů](ZDROJE.md) nabízí podklady,
+nikoli osnovu. Před předložením návrhu další kapitoly platí postup
+z AGENTS.md: kontrola `sources/` proti inventáři, čtení relevantních pasáží
+v originálech a dohoda o rozsahu, cílech, termínech a značkách.

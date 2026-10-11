@@ -1742,3 +1742,58 @@ za zachování podmíněných pravděpodobností a příklad dvou šestek z pět
 přesnou racionální aritmetikou v Pythonu. Excel nebyl spuštěn. Zkontrolován
 diff a umístění doplnění u zdrojových karet; `git diff --check` bez chyb.
 Změna autorské dokumentace nevyžaduje render knihy ani kontrolu webu.
+
+<a id="dohoda-kapitola-05"></a>
+
+## Kapitola 5: dohoda o obsahu (2026-10-11)
+
+Autor požádal o projednání kapitoly o pravděpodobnosti s využitím svých
+prezentací, především `probability.pptx`, a s doplněním chybějícího
+z ostatních zdrojů. Návrh vycházel ze záznamů čtení v
+[mapě zdrojů](../docs/ZDROJE.md) (karty U01, U04, U05, U08, U10, U11, P03,
+P05, C03, D07–D09) a z nového čtení textu všech 36 snímků P05, snímků 22–44
+P03, úloh X3_08–20 a X3_31 a Howellových s. 108–128 v textové extrakci.
+
+**Schváleno** (doklady a plné znění v
+[R21](../docs/ROZHODNUTI.md#r21-rozsah-kapitoly-5),
+[R22](../docs/ROZHODNUTI.md#r22-znaceni-pravdepodobnosti) a
+[R23](../docs/ROZHODNUTI.md#r23-terminologie-kapitoly-5)):
+
+- jedna kapitola ve dvou blocích, od pojetí pravděpodobnosti po normální
+  aproximaci binomického rozdělení; chyby pravděpodobnostního úsudku povinně,
+  šance, obecná střední hodnota a variace bez opakování nepovinně;
+- úplná pravděpodobnost jako samostatný krok před Bayesovou větou a srovnání
+  dvou prevalencí při stejné senzitivitě a specificitě; věrohodnost se nezavádí;
+- zápis P(A), P(A ∩ B), P(A ∪ B), P(A | B), A′; stojaté π, n a k v binomickém modelu;
+- padesát hesel [registru](../docs/SLOVNIK.md#kapitola-05) včetně významových hranic.
+
+Autor návrh dvakrát vrátil. Nejprve opravil pět formulací: pojetí jako
+různé interpretace se společnými pravidly, nikoli „téhož počtu“; výsledek
+a elementární jev nejsou synonyma a „pole jevů“ není výběrový prostor;
+vztah nulové pravděpodobnosti a nemožnosti vyložit na konečném modelu
+a u podmínění uvádět kladnou pravděpodobnost podmínky; „kurz“ není šance
+a kombinační číslo není kombinace; Howellův výpočet pro přesně devět
+správných odpovědí je správný a volba „devět nebo více“ závisí na otázce.
+Podruhé upravil terminologii: výběrový prostor jako hlavní termín, výsledek
+náhodného pokusu, základní četnost odlišená od prevalence a apriorní
+pravděpodobnosti, variace bez opakování, marginální pravděpodobnost bez
+synonyma „nepodmíněná“ a jednotné „pojetí“.
+
+**Rozpory podkladů, jejichž řešení je součástí schváleného návrhu:** chyby
+v P05 uvedené v její kartě se nepřebírají; součtové a součinové pravidlo
+se uvádí v obecném tvaru (Howell je formuluje jen pro výlučné, resp.
+nezávislé jevy); nezávislost se nedefinuje Howellovým „nemá vliv“;
+Russova záměna nezávislosti výsledku testu a jeho správnosti (s. 62)
+se nepřebírá; diskrétnost není „malý počet hodnot“; náhodná proměnná není
+sloupec dat; podmínka normální aproximace se uvádí jako orientační pravidlo
+deseti očekávaných úspěchů i neúspěchů s poznámkou o mírnější variantě.
+
+**Stav větve:** `codex/chapter-05` byla po sloučení PR #58 posunuta
+rychlým převinutím na aktuální `origin/main`; neobsahovala žádné
+neodeslané změny. Tento záznam, rozhodnutí, registr a plán v
+[osnově](../docs/OSNOVA.md#mapa-kapitola-05) jsou dokumentační změny;
+studentský text ani sešit jimi nevznikají a render není potřeba.
+
+**Neověřeno v okamžiku dohody:** Howell od s. 128; Gravetter, Privitera
+a Aron; bibliografická identita Baronovy knihy a DOI článku Uttsové;
+původní studie Tverského a Kahnemana; funkce Excelu nebyly spuštěny.
