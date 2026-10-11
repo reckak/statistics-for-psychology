@@ -1349,8 +1349,11 @@ slovníčku `pojem-kurtoza` a `pojem-kvartil`, šířka 375 px bez vodorovného
 přetékání. Strany Howella citované v kapitole (27, 32, 34–35, 38–41, 45–50)
 byly porovnány s textem PDF podle výskytu témat a odpovídají.
 
-Omezení: `check-html.cjs` neběžel, modul Playwright není v tomto prostředí
-dostupný. Generátor `kapitola_03-sešit.mjs` byl upraven, ale nespuštěn
+`check-html.cjs` po doinstalování Playwright 1.55.0 a Chromia prošel bez chyb:
+9 stránek, 160 hesel slovníčku, místní odkazy, 42 řešení, desktop
+1360/1920 px a mobil 390 px.
+
+Omezení: generátor `kapitola_03-sešit.mjs` byl upraven, ale nespuštěn
 (chybí `@oai/artifact-tool`); list byl do uloženého sešitu doplněn přímo
 v Excelu a zdroj prošel jen kontrolou syntaxe. `check-chapter-04-excel.ps1`
 je rovněž bez BOM a nebyl měněn. Citace mimo Howella nebyly znovu ověřovány.
