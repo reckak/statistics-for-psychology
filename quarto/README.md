@@ -1499,3 +1499,36 @@ chyb. Originál a pomocné exporty jsou ignorované Gitem. Jde pouze o
 autorskou dokumentaci; nový render webu nebyl potřebný ani provedený.
 Nebyla provedena úplná odborná revize všech tvrzení, kontrola animací,
 původu převzatých obrázků ani ověření excelových funkcí snímku 36.
+
+## 2026-10-11: doplnění Russovy učebnice do mapy zdrojů
+
+Na žádost autora přidán místní `sources/učebnice/russo.pdf` jako
+[U11](../docs/ZDROJE.md#u11). Inventář nyní zahrnuje 30 souborů, z toho
+11 učebnic. Doplněna mapa kapitol a příslušné odkazy v tematickém
+rozcestníku; Howell zůstává hlavním východiskem a osnova se nemění.
+
+Ověřeny titulní a nakladatelské strany, obsah, začátky kapitol a dostupný
+rozsah souboru (331 stran PDF). Jde o druhé vydání Riccarda Russa,
+Routledge, s rokem 2021 uvedeným v PDF. DOI ověřeno v Crossrefu, který
+uvádí online publikaci 29. listopadu 2020; oba údaje karta rozlišuje.
+Přečteny obě předmluvy a celá kapitola 3, s. 52–67 (PDF 73–88), včetně
+obrázků a tabulky. Titulní údaje, obsah a tato kapitola byly také
+vizuálně prohlédnuty v exportech Poppleru. U ostatních kapitol je
+zaznamenána mapa obsahu, nikoli úplné prostudování.
+
+Nezávisle přepočítány diagnostický strom, jeho Bayesův výsledek a příklad
+dvou komunit přesnou racionální aritmetikou v Pythonu. Na s. 62 byla
+v originálu potvrzena záměna nezávislosti výsledku testu a nezávislosti
+správnosti klasifikace vzhledem ke zdravotnímu stavu. Karta vysvětluje
+rozdíl a vymezuje další podmínky použití. Označuje také chybějící webové
+kapitoly 13–14 a jednotlivé oddíly, které obsah uvádí, ale PDF neobsahuje.
+Externí úlohy, data a sešity ani aktuální běh JASP nebyly ověřeny;
+nejde o úplnou odbornou revizi knihy.
+
+Kontrola prošla: 30 souborů odpovídá 30 kartám a inventárním řádkům,
+všechny otisky souhlasí, 414 místních odkazů má dostupný cíl nebo vlastní
+kotvu a všech 220 odkazů na stránky PDF leží v rozsahu příslušného
+souboru. U U11 zkontrolována vazba tištěných stran na pořadí PDF.
+Tabulky, jedinečnost kotev, UTF-8 a `git diff --check` jsou bez chyb.
+Původní PDF zůstalo nezměněné a neveřejné. Pro tuto změnu autorské
+dokumentace nebyl render studentského webu potřebný ani provedený.
