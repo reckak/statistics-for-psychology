@@ -1,11 +1,7 @@
+import { ExcelWorkbook } from './excel-workbook.mjs';
 import { addStudentInputs } from './sesity-data.mjs';
-// Editable teaching workbook. Run from project root with the bundled artifact runtime.
 import fs from 'node:fs/promises';
-import {createRequire} from 'node:module';
-import {pathToFileURL} from 'node:url';
-const require=createRequire(import.meta.url);
-const {Workbook,SpreadsheetFile}=await import(pathToFileURL(process.env.ARTIFACT_TOOL_MODULE||require.resolve('@oai/artifact-tool')).href);
-const wb=Workbook.create();
+const wb=new ExcelWorkbook();
 wb.worksheets.add('Prehled');
 const model=wb.worksheets.add('Model'),qq=wb.worksheets.add('QQ');
 const out='tmp/chapter-04';await fs.mkdir(out,{recursive:true});
@@ -48,23 +44,10 @@ qq.getRange('A18').values=[['Podíl: střed pořadového dílku (i − 0,5) / n.
 qq.getRange('A19').values=[['Přímka používá průměr a odchylku těchto dat.']];
 qq.getRange('A21').values=[['Měňte skóry ve žlutých buňkách a zachovejte pořadí.']];
 qq.getRange('A22').values=[['Graf a vzorce se přepočítají. Data nemají být prázdná.']];
-const chart=qq.charts.add('scatter',[qq.getRange('D1:D13'),qq.getRange('B1:B13'),qq.getRange('E1:E13')]);
-chart.title='Normální Q–Q graf';chart.setPosition('G7','N24');chart.titleTextStyle.typeface='Arial';chart.titleTextStyle.fontSize=15;
-chart.legend={position:'bottom',textStyle:{typeface:'Arial',fontSize:11}};
-chart.xAxis={axisType:'valueAxis',numberFormatCode:'0.0',numberFormatSourceLinked:false,textStyle:{typeface:'Arial',fontSize:11}};
-chart.yAxis={numberFormatCode:'0',numberFormatSourceLinked:false,textStyle:{typeface:'Arial',fontSize:11}};
-chart.xAxis.title.text='Teoretický normální kvantil (z)';chart.yAxis.title.text='Pozorovaný skór (body)';
-chart.series.items[0].fill='#245D78';chart.series.items[1].line={fill:'#B54E24',style:'dashed',width:2};
-// Native Excel verification finalizes scatter marker/line types and checks range bindings.
+wb.addChart({sheet:'QQ',type:'scatter',title:'Normální Q–Q graf',start:'G7',end:'N24',
+ xTitle:'Teoretický normální kvantil (z)',yTitle:'Pozorovaný skór (body)',legend:true,
+ series:[{name:'Pozorované skóry',x:'D2:D13',y:'B2:B13',color:'#245D78'},
+ {name:'Referenční přímka',x:'D2:D13',y:'E2:E13',color:'#B54E24',line:true}]});
 await fs.mkdir('tmp/chapter-04',{recursive:true});
 await addStudentInputs(wb,4,'tmp/chapter-04');
-wb.recalculate();
-for(const [sh,range]of [['Model','A1:D25'],['QQ','A1:N24']]){
- const inspect=await wb.inspect({kind:'table',range:`${sh}!${sh==='Model'?'A2:B25':'A2:H13'}`,include:'values,formulas',tableMaxRows:24,tableMaxCols:8,maxChars:6000});
- await fs.writeFile(`${out}/${sh}-inspect.ndjson`,inspect.ndjson);
- const preview=await wb.render({sheetName:sh,range,scale:1.4,format:'png'});await fs.writeFile(`${out}/${sh}.png`,new Uint8Array(await preview.arrayBuffer()));
-}
-const errors=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:15},maxChars:2000});console.log(errors.ndjson);
-const result=await SpreadsheetFile.exportXlsx(wb);await result.save('data/kapitola_04.xlsx');
-await fs.rename('data/kapitola_04.xlsx.inspect.ndjson',`${out}/workbook-export.ndjson`).catch(e=>{if(e.code!=='ENOENT')throw e;});
-console.log('Created data/kapitola_04.xlsx; student inputs, overview and editable calculation sheets.');
+await wb.build(4, 'tmp/chapter-04');

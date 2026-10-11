@@ -101,8 +101,8 @@ mezní hodnoty stenů a staninů a souřadnice Q–Q grafu. Skript
 `check-chapter-04-excel.ps1` skutečně spouští české vzorce, kontroluje
 inverzní převody, nepřípustné krajní argumenty, změny vstupů a vazby
 dvou řad bodového grafu. Přepínač `-Finalize` také nastaví jeho nativní
-značky a referenční přímku, uloží sešit a vytvoří kontrolní PDF obou
-listů do `tmp/chapter-04/`. Běžný běh změny neukládá.
+značky a referenční přímku, uloží sešit a vytvoří kontrolní PDF
+sešitu do `tmp/chapter-04/`. Běžný běh změny neukládá.
 
 Pátou kapitolu ověřuje `check-chapter-05.R`: hodnoty citované ve výkladu
 (včetně pěti simulovaných řad a 40 simulovaných studentů), tabulky, nepovinná
@@ -121,52 +121,102 @@ Změny připravujte v tematické větvi `codex/` a předložte je prostřednictv
 
 ## Obnova sešitů a podkladů kapitol 1–5
 
-Grafy se obnovují při každém renderování. Samostatně je lze vytvořit příkazem `Rscript --vanilla scripts/render-figures.R`. Názorné rekonstrukce listů jsou editovatelné SVG; obnovuje je `python scripts/kapitola_02-ukazky.py` (standardní knihovna Pythonu).
+Všech pět sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
+Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
+5.1, Node.js a pro simulované vstupy kapitol 4–5 také R. Příkazy `node`
+a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze
+standardní moduly Node.js a rozhraní COM instalovaného Excelu; nepotřebují
+žádný balíček npm, `@oai/artifact-tool` ani prostředí konkrétního LLM.
+Spouštějte je lokálně v uživatelské relaci, kde lze spustit Excel.
 
-Vstupy všech sešitů a jejich přehledy definuje `scripts/sesity-data.mjs`. První kapitolu obnovuje `node scripts/kapitola_01-sešit.mjs`. Před obnovou čtvrté a páté kapitoly spusťte `Rscript --vanilla scripts/sesity-simulace.R`, který převezme totožné simulované hodnoty z generátorů obrázků. Kontrola `python quarto/_verification/check-workbooks.py` porovnává uložené vstupy s deklaracemi, ověřuje datové typy, chybění a odkazy na listy a buňky v kapitolách. Spouštějte ji po obnově sešitů, nativních kontrolách Excelu a renderování, aby ověřila také totožné kopie souborů ve webu. Deklarace vznikají v `tmp/chapter-NN-build/inputs.json` (u kapitoly 4 v `tmp/chapter-04/inputs.json`) při obnově sešitu; jejich shoda sama nenahrazuje redakční porovnání s textem.
+Z kořene projektu obnovte všechny sešity a spusťte jejich kontroly:
 
-Po kapitolových kontrolách ověřte všechny sešity v Excelu příkazem `powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-workbooks-excel.ps1 -Finalize`. Kontrola prochází všechny listy, hledá chyby vzorců a ukládá sešity otevřené na přehledu. Bez `-Finalize` nic neukládá. Pak vykreslete knihu a spusťte výše uvedenou kontrolu uložených vstupů.
-
-Studentský sešit je uložen v repozitáři a při renderování se nepřepočítává. Jeho obnova vyžaduje Node.js s dostupným `@oai/artifact-tool` a následnou kontrolu v desktopovém Excelu:
-
-```sh
-node scripts/kapitola_02-sešit.mjs
-powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-chapter-02-excel.ps1 -Finalize
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Verify
 ```
 
-Při použití přibaleného runtime lze cestu k vstupnímu modulu `@oai/artifact-tool` předat proměnnou `ARTIFACT_TOOL_MODULE`; jinak se použije obvyklé vyhledání modulu v Node.js. První krok vytvoří data, vzorce, formátování a grafy. Druhý nastaví nulovou mezeru histogramu a začátky os, ověří skutečný přepočet a uloží sešit. Bez `-Finalize` tentýž skript pouze ověřuje existující výsledek. Při změně CSV obnovte také sešit, ilustrace a knihu a ověřte navazující výklad. Pomocné náhledy a kontrolní výpisy vznikají pouze v ignorované složce `tmp/`.
+Jedinou kapitolu lze obnovit například takto (bez `-Verify` se pouze
+sestaví a zkontrolují chyby vzorců; nespustí se kapitolové zkoušky):
 
-Sešit třetí kapitoly se obnovuje obdobně:
-
-```sh
-node scripts/kapitola_03-sešit.mjs
-powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-chapter-03-excel.ps1 -Finalize
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Chapter 4 -Verify
 ```
 
-Závěrečný krok v Excelu normalizuje zápis novějších funkcí v exportu, ověří české vzorce a uloží přepočtené hodnoty. Samotný export prvním příkazem není hotový ověřený sešit. Grafy třetí kapitoly vznikají v základním R; simulace používá pevný seed 20261005 a nevyžaduje instalaci balíčků.
+Přepínač `-Verify` spustí numerické kontroly a změny vstupů vybrané kapitoly
+(pro kapitoly 2–5) a kontrolu chyb vzorců ve všech pěti uložených sešitech.
+Samotné kontroly sešity neukládají. Přepočet a konečnou podobu grafů zajišťuje
+již generátor; dřívější dokončování pomocí `-Finalize` není k obnově potřeba.
+Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu změny.
 
-Sešit čtvrté kapitoly obnovíte příkazy:
+### Zdroje a průběh sestavení
 
-```sh
-node scripts/kapitola_04-sešit.mjs
-powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-chapter-04-excel.ps1 -Finalize
+- `scripts/sesity-data.mjs`: společné vstupy, jejich původ a studentské přehledy.
+- `scripts/kapitola_NN-sešit.mjs`: rozložení, vzorce a grafy dané kapitoly.
+- `scripts/excel-workbook.mjs`: malá místní vrstva zapisující deklarace
+  do JSON; sama nepočítá vzorce ani nevytváří XLSX.
+- `scripts/build-workbook-excel.ps1`: společný zápis deklarací do skutečného
+  Excelu, formátování, ověření vstupů, nativní grafy, přepočet a uložení.
+- `scripts/sesity-simulace.R`: stejné pevně reprodukovatelné simulace jako
+  v obrázcích; společný spouštěč jej pro kapitoly 4–5 zavolá automaticky.
+
+Každý sešit vzniká v samostatné skryté instanci Excelu. Skript se nepřipojuje
+k otevřeným uživatelským sešitům. Nejprve uloží hotový přepočtený soubor
+do `tmp/`, poté jej zkopíruje do `data/kapitola_NN.xlsx`; při chybě sestavení
+zůstane předchozí studentský sešit zachován. Cílový sešit před obnovou zavřete.
+Výstup se otevírá na listu `Prehled` a při ukládání se odstraňují osobní
+údaje z vlastností dokumentu.
+
+Generátory kapitol 1–4 zadávají vzorce prostřednictvím `Formula`
+ve standardním anglickém zápisu. Kapitola 5 používá české `FormulaLocal`.
+České vzorce z učebnice navíc skutečně spouštějí kapitolové kontroly.
+Číselné formáty buněk a os respektují místní oddělovače. Textové hodnoty
+zůstávají textem i tehdy, když vypadají jako číslo; chybění zůstává prázdné.
+Nové soubory PowerShellu používají ASCII a české texty čtou z UTF-8 JSON;
+skripty s českými literály musí mít pro Windows PowerShell 5.1 UTF-8 BOM.
+
+### Ověření obsahu a vzhledu
+
+Kontrola vstupů používá standardní Python bez dalších knihoven:
+
+```powershell
+python quarto/_verification/check-workbooks.py
 ```
 
-Sešit páté kapitoly se sestavuje jinak, bez `@oai/artifact-tool`:
+Porovnává uložené vstupy, typy, chybění a odkazy na listy a buňky v kapitolách.
+Deklarace vznikají při sestavení v `tmp/chapter-NN-build/inputs.json`
+(kapitola 4: `tmp/chapter-04/inputs.json`). Jejich shoda nenahrazuje
+redakční porovnání s textem; pokrytí eviduje [docs/DATA.md](docs/DATA.md).
+Kontrolu spusťte **po renderování knihy**, protože kontroluje také totožnost
+sešitů v `data/` a `_book/data/`. Při renderování se sešity pouze kopírují;
+Excel se nespouští a na GitHubu není k sestavení webu potřeba.
 
-```sh
-Rscript --vanilla scripts/sesity-simulace.R
-node scripts/kapitola_05-sešit.mjs
-powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-chapter-05-excel.ps1
+Pro vizuální prohlídku všech listů vytvořte náhledy přímo z Excelu:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/preview-workbooks-excel.ps1
 ```
 
-Druhý příkaz zapíše deklarace vstupů a výpočtových listů do
-`tmp/chapter-05-build/` a spustí `scripts/kapitola_05-sesit-excel.ps1`.
-Ten sešit vytvoří v samostatné skryté instanci desktopového Excelu: české
-vzorce zadává stejně jako student, číselné formáty převádí na místní
-oddělovače a před uložením odstraní osobní údaje z vlastností dokumentu.
-Vyžaduje Windows s českým Excelem; grafy sešit neobsahuje. Soubor `.ps1`
-je záměrně jen v ASCII, všechny české texty přebírá z JSON.
+Kontrolní PDF a přehled oblastí vznikají v `tmp/workbook-previews/`.
+U dlouhých vstupních listů náhled ukazuje prvních 15 řádků; kontrola hodnot
+prochází všechna data. Výpočtové listy a přehledy se zobrazují celé.
+Volitelné parametry `-Chapter 4 -Sheet QQ` omezí náhled na dotčený list.
+Tisková nastavení náhledů se do studentských sešitů neukládají.
+
+Při migraci generátoru nejprve odložte kontrolní kopie původních pěti
+sešitů do ignorované složky. Nástroj `compare-workbooks.py` pak porovná
+všechny vyplněné buňky, vzorce, uložené výsledky, pořadí listů, sloučení
+buněk, ukotvení, ověření vstupů, číselné formáty, vazby a meze os grafů. Pouze tato doplňková
+kontrola vyžaduje veřejnou knihovnu `openpyxl` (`python -m pip install openpyxl`):
+
+```powershell
+python quarto/_verification/compare-workbooks.py tmp/excel-migration/before
+```
+
+Grafy učebnice se obnovují při každém renderování; samostatně příkazem
+`Rscript --vanilla scripts/render-figures.R`. Názorné rekonstrukce listů
+jsou editovatelné SVG; obnovuje je `python scripts/kapitola_02-ukazky.py`
+(standardní knihovna Pythonu). Při změně vstupů obnovte sešit, související
+ilustrace a knihu a ověřte navazující výklad. Pomocné výstupy patří do `tmp/`.
 
 ## Publikování na GitHub Pages
 

@@ -1909,3 +1909,64 @@ samostatné rovnice.
 - Sešit kapitoly 5 lze obnovit jen na Windows s českým Excelem.
 - Interní didaktická revize není ověřením porozumění na studentech.
   Veřejné nasazení webu navazuje na autorovo sloučení pull requestu.
+
+## 2026-10-12 — Generátory všech sešitů v desktopovém Excelu
+
+Na výslovný pokyn autora (rozhodnutí R24) byla tvorba sešitů kapitol 1–5
+sjednocena na místní skripty ovládající desktopový Excel. Historické
+záznamy výše popisují tehdejší použití `@oai/artifact-tool`; nejsou již
+platným postupem obnovy. Aktuální příkazy a závislosti jsou v kořenovém
+README, závazná pravidla v AGENTS.md.
+
+Kapitolové generátory a společné vstupy zachovávají původní texty, data,
+adresy, vzorce a oddělení vstupů od hotových výpočtů. Místní modul
+`excel-workbook.mjs` vytváří pouze seznam operací v JSON; jejich provedení,
+grafy, výpočet a XLSX zajišťuje `build-workbook-excel.ps1` prostřednictvím
+COM. Samostatný generátor Excelu pro kapitolu 5 byl nahrazen společným.
+Nevyžaduje se balíček npm ani neveřejný runtime. Společný spouštěč
+`build-workbooks.ps1 -Verify` obnovuje i simulované vstupy a volá kontroly.
+
+Výsledek vzniká nejprve v `tmp/` a po přepočtu a kontrole chyb se kopíruje
+na původní cestu `data/kapitola_NN.xlsx`. Každý běh používá vlastní skrytou
+instanci Excelu. Při záměrně vyvolané chybě neznámou operací skript skončil
+neúspěchem a hash dosavadního sešitu zůstal totožný.
+
+### Ověření převodu
+
+- Proti kopiím před migrací prošlo porovnání všech **3 342 vyplněných
+  buněk v 96 listech**: texty, čísla, typy, vzorce a jejich uložené výsledky,
+  pořadí listů, sloučené buňky, ukotvení, ověření vstupů, číselné formáty
+  i datové vazby, formáty a pevné meze os všech tří nativních grafů.
+  Numerické porovnání používá toleranci 1e-12, texty a typy přesnou shodu.
+- V Excelu 16.0 byly skutečně spuštěny všechny kapitolové excelové
+  kontroly 2–5 i společná kontrola všech listů: **323 vzorců bez chyb**.
+  Kontroly ověřily české funkce, mezní argumenty, změny vstupů, přepočet
+  výsledků a grafů. Kapitola 5 navíc ověřila 74 uložených výsledků,
+  28 českých vzorců, 5 očekávaných chyb argumentů a 23 změněných výsledků.
+- Stejné kontroly prošly při spuštění společného příkazu z README,
+  tedy po novém úplném sestavení všech pěti sešitů běžným Node.js 24.21.0
+  a Windows PowerShellem 5.1. Nebyl použit původní balíček.
+- Prošly nezávislé R kontroly kapitol 1–5. Pro R 4.5.1 bylo v této relaci
+  nutné nahradit zděděné unixové locale `C.UTF-8` windowsovým UTF-8 locale;
+  vstupní soubory ani výpočty se kvůli tomu neměnily.
+- Prohlédnuty nativní PDF náhledy všech 96 listů. U dlouhých samostatných
+  vstupů ukazují prvních 15 řádků; všechny hodnoty kontrolují skripty.
+  Výpočtové listy a grafy byly prohlédnuty celé. Náhledy jsou pouze
+  pomocné výstupy v `tmp/`, tisková nastavení se do XLSX neukládala.
+- Kontrola zachytila převod textového listu „2“ na číslo a lokální formát
+  osy Q–Q grafu. Oba problémy byly opraveny v generátoru a následné
+  porovnání prošlo. Skript kontroly kapitoly 4 dostal UTF-8 BOM, aby české
+  literály správně četl Windows PowerShell 5.1.
+- Prošel plný render deseti stránek a HTML kontrola: 210 hesel,
+  54 sbalených řešení, odkazy, klávesnice, režim bez JavaScriptu,
+  `file://`, šířky 1360/1920 px a mobilní zobrazení 390 px, bez chyb.
+- Po posledním sestavení prošla kontrola 1 583 uložených vstupních buněk,
+  datových typů, chybění a odkazů z kapitol. Nový render zahrnul totožné
+  kopie všech pěti sešitů do `_book/data/`; tuto shodu potvrdila kontrola.
+  Prošel také `git diff --check`.
+
+Obsah výkladových kapitol a datové pokrytí se neměnily; rozsah učiva
+ani terminologie nebyly znovu otevírány. Ověření se týká místního
+českého Excelu ve Windows; jiné kancelářské aplikace a cloudová prostředí
+nebyly testovány. Veřejné nasazení bude následovat až po autorově sloučení
+PR a úspěšném publikačním workflow.

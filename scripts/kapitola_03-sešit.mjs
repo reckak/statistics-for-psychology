@@ -1,12 +1,8 @@
+import { ExcelWorkbook } from './excel-workbook.mjs';
 import { addStudentInputs } from './sesity-data.mjs';
-// Run from the project root. The optional ARTIFACT_TOOL_MODULE points to the bundled runtime.
 import fs from 'node:fs/promises';
-import { createRequire } from 'node:module';
-import { pathToFileURL } from 'node:url';
-const require=createRequire(import.meta.url);
-const {Workbook,SpreadsheetFile}=await import(pathToFileURL(process.env.ARTIFACT_TOOL_MODULE||require.resolve('@oai/artifact-tool')).href);
 const rows=(await fs.readFile('data/kapitola_02.csv','utf8')).trim().split(/\r?\n/).slice(1).map(line=>line.split(',').map((x,i)=>[1,2,4].includes(i)?(x===''?null:+x):x));
-const wb=Workbook.create();
+const wb=new ExcelWorkbook();
 wb.worksheets.add('Prehled');
 const p=wb.worksheets.add('Priklad'),s=wb.worksheets.add('Souhrn'),r=wb.worksheets.add('Rozsireni'),x=wb.worksheets.add('Kontrola_prikladu'),d=wb.worksheets.add('Data');
 const header=(sh,range)=>{sh.getRange(range).format={fill:'#234F62',font:{bold:true,color:'#FFFFFF'},wrapText:true,rowHeight:44,verticalAlignment:'center'};};
@@ -73,13 +69,4 @@ note(d,'G7:J7','slova: počet správně vybavených slov z dvanácti. Platné ho
 note(d,'G9:J9','cast_dne: dopoledne před 12:00, odpoledne od 12:00.');
 note(d,'G11:J11','odpocatost: 1 = vůbec, 2 = trochu, 3 = dost, 4 = zcela.');
 note(d,'G13:J13','Úplné vymezení proměnných a postupu najdete v kapitole o četnostech.');
-wb.recalculate();
-await fs.mkdir('tmp/chapter-03-build',{recursive:true});
-console.log((await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},summary:'Formula errors',maxChars:1200})).ndjson);
-for(const [name,range] of [['Priklad','A1:J22'],['Souhrn','A1:D17'],['Rozsireni','A1:J15'],['Kontrola_prikladu','A1:H43'],['Data','A1:J38']]){
- const img=await wb.render({sheetName:name,range,scale:1.5,format:'png'});
- await fs.writeFile(`tmp/chapter-03-build/${name}.png`,new Uint8Array(await img.arrayBuffer()));
-}
-await (await SpreadsheetFile.exportXlsx(wb)).save('data/kapitola_03.xlsx');
-await fs.rename('data/kapitola_03.xlsx.inspect.ndjson','tmp/chapter-03-build/workbook-inspect.ndjson');
-console.log('Saved data/kapitola_03.xlsx; verify formulas and Czech syntax in native Excel.');
+await wb.build(3, 'tmp/chapter-03-build');

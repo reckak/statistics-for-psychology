@@ -1,11 +1,7 @@
-// Student workbook for chapter 5. Run from the project root after
-// `Rscript --vanilla scripts/sesity-simulace.R`.
-// This chapter does not use @oai/artifact-tool: the declarations below are written
-// to tmp/chapter-05-build/ and the workbook is built by desktop Excel through
-// scripts/kapitola_05-sesit-excel.ps1, so every Czech formula is actually evaluated.
-import {inputs, existing} from './sesity-data.mjs';
+// Native Excel workbook; run after scripts/sesity-simulace.R.
+import {inputs, populateStudentInputs} from './sesity-data.mjs';
 import fs from 'node:fs/promises';
-import {execFileSync} from 'node:child_process';
+import {ExcelWorkbook} from './excel-workbook.mjs';
 const out='tmp/chapter-05-build';await fs.mkdir(out,{recursive:true});
 const sim=JSON.parse(await fs.readFile('tmp/sesity-simulace-05.json','utf8'));
 const specs=[...inputs[5]];
@@ -56,8 +52,24 @@ const sheets=[
   N('D2','Autorský model rozpoznávací úlohy.'),N('D4','Žlutě: vstupy. Modře: výpočty.'),N('D6','Orientační podmínka: B6 i B7 alespoň 10.'),
   N('D10','Aproximace není přesná hodnota.'),N('D11','Přesnou hodnotu vrací BINOM.DIST.'),N('D16','B16 se shoduje s B9: změnila se jen jednotka.')]}
 ];
-await fs.writeFile(`${out}/inputs.json`,JSON.stringify(specs,null,2));
-const overview=['Data ke kapitole 5','Začněte vstupy. Žluté buňky obsahují data; modré buňky na výpočtových listech vzorce.','Zadání a vysvětlení jsou v kapitole. Řešení otevírejte až po vlastním pokusu.','Slovní úlohy bez konkrétních čísel nevyžadují vlastní datový list.','Pravděpodobnosti a modelové četnosti nejsou záznamy o jednotlivých lidech.','List','Oblast vstupů / tabulky','Příklad nebo cvičení'];
-await fs.writeFile(`${out}/build.json`,JSON.stringify({chapter:5,noteTitle:'Použití a původ',overview,inputs:specs,sheets,existing:existing[5]},null,2));
-execFileSync('powershell',['-NoProfile','-ExecutionPolicy','Bypass','-File','scripts/kapitola_05-sesit-excel.ps1'],{stdio:'inherit'});
-console.log('Created data/kapitola_05.xlsx with desktop Excel; verify with quarto/_verification/check-chapter-05-excel.ps1.');
+const wb=new ExcelWorkbook();wb.worksheets.add('Prehled');
+for(const spec of sheets){
+ const sh=wb.worksheets.add(spec.name);sh.showGridLines=true;
+ sh.getRange('A1:F22').format={font:{name:'Arial',size:11,color:'#223744'},verticalAlignment:'center'};
+ for(const [col,width] of Object.entries(spec.widths))sh.getRange(`${col}1`).format.columnWidth=width;
+ for(const [address,kind,value,format] of spec.cells){
+  const r=sh.getRange(address);
+  if(typeof value==='string'&&value.startsWith('='))r.formulasLocal=[[value]];else r.values=[[value]];
+  if(kind==='head')r.format={fill:'#234F62',font:{color:'#FFFFFF',bold:true},wrapText:true,rowHeight:34};
+  if(kind==='input'||kind==='calc'){r.format.fill=kind==='input'?'#FFF1CB':'#EAF4F8';r.setNumberFormat(format);}
+  if(kind==='note')r.format.font={color:'#526775'};
+ }
+}
+await populateStudentInputs(wb,5,out,specs);
+const overview=wb.worksheets.getItem('Prehled');
+overview.getRange('A5').values=[['Slovní úlohy bez konkrétních čísel nevyžadují vlastní datový list.']];
+overview.getRange('A6').values=[['Pravděpodobnosti a modelové četnosti nejsou záznamy o jednotlivých lidech.']];
+overview.getRange('C1').format.columnWidth=78;
+// The simulation contains integer counts, as in the original workbook.
+wb.worksheets.getItem('Sim_hadani').getRange('A2:A41').setNumberFormat('General');
+await wb.build(5,out);

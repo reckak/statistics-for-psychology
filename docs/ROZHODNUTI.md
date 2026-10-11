@@ -708,3 +708,26 @@ bez opakování‘“; „odstraň ‚kurz‘ ze synonym“; „Sjednoť názvy 
 a ‚očekávanou hodnotu‘ uveď jako alternativy“; vymezení tří pojmů základní
 četnost, prevalence a apriorní pravděpodobnost; následné schválení návrhu.
 Záznam „Kapitola 5: dohoda o obsahu“ v [historii](../quarto/README.md).
+
+
+## R24 — Tvorba sešitů v desktopovém Excelu
+
+**Stav:** schváleno 2026-10-12. **Rozsah:** všechny studentské sešity
+a jejich generátory; nemění obsah kapitol ani pravidla pro prezentace.
+
+Sešity sestavovat reprodukovatelnými skripty ovládajícími desktopový Excel
+pro Windows. Odstranit povinnou závislost na `@oai/artifact-tool` a runtime
+konkrétního poskytovatele LLM. Zachovat data, význam a adresy buněk,
+vzorce, nativní grafy i ověřování výsledků nezávislými výpočty.
+Toto rozhodnutí nahrazuje dřívější technický postup obnovy sešitů
+pomocí uvedené knihovny; historické záznamy o něm zůstávají zachovány.
+
+**Důvod:** spolupráce více LLM nad jedním repozitářem; autor má lokálně
+k dispozici Excel. Přístup ke skutečnému Excelu zajišťuje přepočet
+a ověření chování v cílové aplikaci.
+
+**Doklad:** pokyn autora: „Převeď tedy tvorbu všech sešitů na skripty
+ovládající desktopový Excel, odstraň závislost na artifact-tool a uprav
+příslušné instrukce. Zachovej obsah i funkčnost sešitů a ověř je.“
+Provozní postup je v [README](../README.md#obnova-sešitů-a-podkladů-kapitol-15),
+pravidla v [AGENTS.md](../AGENTS.md#data-ke-kapitolám).
