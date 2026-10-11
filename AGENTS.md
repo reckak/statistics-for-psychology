@@ -11,6 +11,10 @@
   [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md). Nová schválená rozhodnutí zde
   průběžně eviduj s rozsahem platnosti, důvodem a dokladem; nenahrazuj tím
   studentský slovníček ani přehled značení. Samotný návrh není schválení.
+- Pro výběr podkladů používej [docs/ZDROJE.md](docs/ZDROJE.md): inventář,
+  obsahové mapy, přesné lokátory, zjištěné rozpory a rozsah ověření zdrojů.
+  Nabídka témat v mapě není schválenou osnovou; postup její údržby je níže
+  v oddílu „Zdroje a jejich použití“.
 - Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
   a jejich exportech podle odkazu v příslušném oddílu níže.
 - Provozní postupy jsou v [README.md](README.md), historické autorské
@@ -75,11 +79,25 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   učebnice v `sources/učebnice/howell.pdf`. Před použitím ověř její přesný titul,
   vydání a bibliografické údaje; nevymýšlej čísla stran ani odkazy.
 - Před návrhem obsahu nové kapitoly projdi aktuální obsah `sources/`
-  včetně všech podsložek. Posuď relevanci jednotlivých souborů: dalších
-  učebnic, autorových starších prezentací, příkladů k procvičování i jiných
-  doplňujících podkladů. U relevantních souborů prostuduj odpovídající části;
-  samotný seznam názvů nenahrazuje posouzení obsahu. Nejasný název není
-  důvodem soubor bez nahlédnutí vyřadit.
+  včetně všech podsložek a porovnej jej s inventářem v `docs/ZDROJE.md`.
+  U nových, změněných či nahrazených souborů ověř identitu, obsah a lokátory
+  a aktualizuj příslušnou kartu; zachovej její stabilní ID, pokud jde
+  o tentýž zdroj. Přejmenování či nové vydání nesmí ponechat neplatné odkazy.
+  Posuď relevanci všech podkladů: učebnic, starších prezentací, příkladů
+  i dalších souborů. Nejasný název není důvodem zdroj bez nahlédnutí vyřadit.
+- Tematický rozcestník a karty v `docs/ZDROJE.md` používej k dohledání
+  pasáží, nikoli místo jejich čtení. U relevantních zdrojů před návrhem
+  kapitoly prostuduj skutečný výklad, příklady, obrázky a podmínky použití.
+  Samotný obsah knihy, textová extrakce ani starší záznam neprokazují
+  podrobné prostudování či odbornou správnost dané pasáže.
+- V mapě rozlišuj identifikaci zdroje, mapu obsahu, skutečně prostudované
+  části a nezávislé ověření. Uváděj datum a verzi souboru, konkrétní použití,
+  zjištěné rozpory a přesně vymezené neověřené části. U PDF rozlišuj tištěnou
+  stranu a pořadí stránky souboru; u prezentace číslo snímku, u úloh ID
+  zadání i řešení a u sešitu list a buňky. Podezření z OCR či extrakce ověř
+  v originálu, než je zapíšeš jako chybu zdroje. Čísla stran ani bibliografické
+  údaje nedoplňuj odhadem. Nová zjištění zapisuj ke zdroji průběžně;
+  schválené změny rozsahu či konvencí patří také do osnovy či rozhodnutí.
 - Při projednávání kapitoly uveď, které podklady navrhuješ využít, k čemu
   a zda se v důležitých bodech rozcházejí. Starší prezentace a úlohy využij
   také k pochopení dosavadních obsahových priorit autora a způsobu
@@ -95,7 +113,9 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   s uživatelem. Upřednostňuj odbornou literaturu a oficiální dokumentaci.
 - Původní podklady zachovej. Složku `sources/` nezahrnuj do veřejného
   repozitáře ani publikovaného webu. Studentská cvičení nesmějí záviset
-  na přístupu k této neveřejné složce.
+  na přístupu k této neveřejné složce. Do veřejně verzované autorské mapy
+  nevkládej kopie podkladů, celé extrahované texty, skeny ani neveřejná data.
+  Odkazy mapy do `sources/` označ jako místní; mapa není studentská kapitola.
 
 ## Didaktika a jazyk
 

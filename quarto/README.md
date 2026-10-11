@@ -1432,3 +1432,44 @@ spuštěn; popisek příkazu řazení nebyl ověřen v běžícím českém Exce
 pravděpodobně existují už od verze 2010 (neověřeno v dokumentaci). Citace
 mimo Howella nebyly znovu ověřovány. Ostatní obrázky byly prohlédnuty jen
 v malém měřítku. Interní revize není ověřením porozumění na studentech.
+
+## 2026-10-11: mapa autorských zdrojů
+
+Na výslovnou žádost autora vytvořena [mapa zdrojů](../docs/ZDROJE.md)
+pro přípravu dalších kapitol. Zahrnuje všech 28 souborů aktuálního `sources/`,
+stabilní identifikátory, bibliografickou identitu v dostupném rozsahu,
+tematický rozcestník, mapy obsahu, konkrétní lokátory a meze provedeného
+ověření. Do `AGENTS.md` doplněn postup použití a údržby mapy; do kořenového
+README přidán odkaz. Osnova, studentský text a původní podklady se nemění.
+
+Všechny soubory byly otevřeny a obsahově posouzeny. U učebnic zmapován
+obsah a prostudovány vybrané pasáže, zejména k pravděpodobnosti a návaznostem;
+nejde o úplné přečtení všech knih. U prezentací extrahován text i poznámky
+podle skutečných vazeb, všechny snímky vyexportovány PowerPointem a vybrané
+kontaktní listy vizuálně prohlédnuty. Pro skeny použito OCR s vybranými
+vizuálními kontrolami. Prostudovány texty a tabulky souborů úloh a prohlédnuty
+vložené obrázky. U XLSX zkontrolovány listy, vzorce, uložené výsledky a
+zdrojové rozsahy grafů.
+
+Konkrétní nálezy jsou u zdrojů: například nesoulad kvartilového vzorce
+v P02, záměna součtu čtverců hodnot a odchylek v C02/X2_24, opačná znaménka
+normálních kvantilů v C03/X3_28 a P–P graf označený jako Q–Q v D10.
+Vizuální kontrola vyvrátila podezření na chybný počet hodnot v P02/sn. 43:
+textová extrakce vynechala první hodnotu. Nezávisle přepočítány uvedené
+součty čtverců a kvantily; 66 uložených výsledků normálních funkcí v D10
+souhlasí s Python `statistics.NormalDist` do přibližně 3,4 × 10⁻¹⁶.
+Shodují se také průměr a výběrová SD 96 uložených simulovaných hodnot.
+
+Omezení: nebyly kompletně ověřeny všechny výpočty, důkazy, klíče úloh,
+animace, vložené objekty, externí data, aplikace a původní empirické studie.
+Bibliografické mezery a nepřítomná pokračování úryvků jsou výslovně označeny.
+Sešit nebyl nově spuštěn v Excelu; kontrola uložených výsledků není kontrolou
+živého přepočtu. Originály a pomocné extrakce/exporty se nezahrnují do Gitu.
+Kontrola změny se týká dokumentace, úplnosti inventáře, lokátorů, místních
+odkazů, kódování a rozdílů; nový render webu pro tuto změnu není potřebný.
+Kontrola prošla: 28 souborů má 28 karet, všech 377 místních odkazů má
+dostupný cíl nebo vlastní kotvu a 205 odkazů na stránky PDF leží v rozsahu
+příslušného souboru. U odkazů s tištěným číslem stránky byla zkontrolována
+také vazba na číslování PDF; u Priviterovy úvodní kapitoly, jejíž elektronický
+štítek je odlišný, podle textu titulní strany kapitoly. Otisky všech původních
+zdrojů zůstaly stejné. Tabulky, UTF-8 a `git diff --check` jsou bez chyb.
