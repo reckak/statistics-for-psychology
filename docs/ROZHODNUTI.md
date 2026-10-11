@@ -331,3 +331,10 @@ jejich počet se řídí didaktickým přínosem. Podrobné pravidlo je v
 **Důvod:** podpořit konceptuální porozumění názorným zobrazením.
 **Doklad:** výslovné zadání autora ze dne 2026-10-11 doplnit toto pravidlo
 s příkladem schématu výběru z populace a přidělení do podmínek v kapitole 1.
+
+**Uplatnění v kapitolách 2–4 (2026-10-11):** autor schválil všech jedenáct
+návrhů z následného posouzení: devět nových diagramů a rozšíření histogramů
+o posun mezí a přehledu standardních škál o modelové percentilové pořadí.
+Nejde o rozšíření terminologie ani změnu početních konvencí. Dokladem je
+pokyn „Doplň všechny navržené vizualizace (prioritní i neprioritní)“;
+provedení a kontroly zaznamenává [autorská historie](../quarto/README.md).

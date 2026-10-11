@@ -1154,3 +1154,52 @@ Rozhodnutí zachycuje R12 v `docs/ROZHODNUTI.md`.
 Ověření: kontrola formulace, návaznosti pravidel a rozdílů; `git diff --check`.
 Jde pouze o autorské instrukce a dokumentaci, proto render ani výpočetní
 a excelové kontroly nebyly potřeba a nebyly spuštěny.
+
+## Názorné vizualizace v kapitolách 2–4 (2026-10-11)
+
+Na výslovný pokyn autora uskutečněno všech jedenáct předložených návrhů,
+prioritních i neprioritních. Jde o devět nových obrázků a rozšíření dvou
+stávajících; všechny vycházejí z dosavadních autorských příkladů:
+
+- Kapitola 2: dva základy procent při chybějícím údaji; „právě“ versus
+  „nejvýše“; zařazení společné intervalové meze; rozšíření porovnání
+  histogramů o posunuté meze při zachované šířce jedné hodiny.
+- Kapitola 3: příspěvky různě velkých skupin ke společnému průměru;
+  percentil versus inkluzivní percentilové pořadí; ořezání versus
+  winsorizace včetně počtu hodnot vstupujících do výpočtu.
+- Kapitola 4: z-skór jako počet jednotek směrodatné odchylky; rozšíření
+  standardních škál o percentilové pořadí podle normálního modelu;
+  stenová a staninová pásma včetně ztráty podrobností; vznik souřadnic
+  jednoho bodu Q–Q grafu ze společného pořadí.
+
+Generátory zůstávají v `scripts/kapitola_02.R` až `kapitola_04.R` a při
+renderu vytvářejí SVG. Každý nový obrázek má stabilní identifikátor,
+alternativní text a vysvětlení ve výkladu. Nová třída `teaching-figure`
+umožňuje v kapitolách 2 a 3 místní posouvání širokých diagramů; kapitola 4
+používá svůj existující kontejner. Oblasti jsou pojmenované a ovladatelné
+klávesnicí. Rozsah učiva, terminologie, přehledy ani studentské sešity se
+nemění; schválení realizace je doplněno k rozhodnutí R12.
+
+Didaktická revize se zaměřila na návaznost příkladu, obrázku a interpretace.
+Výslovně odlišuje chybění od nesplnění podmínky, pořadové rozestupy od
+časových vzdáleností, změnu šířky od posunu mezí, kvantil od pořadí,
+lineární převod od normálního modelu a teoretický kvantil Q–Q od
+standardizace pozorovaného skóru. Interní revize není ověřením porozumění
+na studentech.
+
+Ověření: úplný render devíti stránek (Quarto 1.9.38, R 4.5.1), číselné
+kontroly kapitol 2–4 a nezávislý přepočet všech nových číselných příkladů
+v Pythonu (`statistics.NormalDist`, přímé počítání intervalů a podílů).
+Webová kontrola v místním Chromu ověřila odkazy, 159 hesel slovníčku,
+42 skrytých a rozbalitelných řešení, matematiku, načtení obrázků,
+desktop 1360/1920 px a mobil 390 px bez přetékání celé stránky.
+Rozšířené kontroly pokrývají všech jedenáct dotčených obrázků, odkazy
+z výkladu, čitelné minimální šířky a místní posouvání klávesnicí.
+Vizuálně prohlédnuty všechny dotčené obrázky na desktopu i obě krajní
+polohy jejich mobilních výřezů. Snímky a nezávislý pomocný výpočet jsou
+v ignorované složce `tmp/`; zdrojové R a HTML kontroly jsou v repozitáři.
+Kontrola `git diff --check` prošla.
+
+Omezení: jde o lokálně vykreslený web, nikoli o potvrzení veřejného
+nasazení. Jiné prohlížeče než Chrome nebyly ověřeny. Desktopový Excel
+nebyl znovu spuštěn, protože sešity ani excelové vzorce se nemění.

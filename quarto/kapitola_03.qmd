@@ -122,6 +122,14 @@ Prostý průměr skupinových průměrů $(4+8)/2=6$ by přisoudil oběma skupin
 
 Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstruujeme. A pokud stejní lidé vyplnili dva testy bez chybějících hodnot, průměr jejich součtů je součtem průměrů. K tomuto vztahu nepotřebujeme předpoklad nezávislosti. U rozptylů součtu už na vztahu proměnných záleží; k tomu se vrátíme později.
 
+::: {.teaching-figure role="region" aria-label="Příspěvky různě velkých skupin ke společnému průměru" tabindex="0"}
+
+![Společný průměr zachovává příspěvek každého účastníka.](../assets/chapter-03/plots/vazeny-prumer.svg){#fig-vazeny-prumer fig-alt="Deset lidí s průměrem čtyři minuty přispívá celkovým časem 40 minut. Třicet lidí s průměrem osm minut přispívá 240 minutami. Součet 280 dělený 40 lidmi dává sedm minut, blíže průměru větší skupiny."}
+
+:::
+
+Šipky v @fig-vazeny-prumer nejprve spojují celkové časy, teprve potom dělíme počtem všech lidí. Společný průměr leží mezi oběma skupinovými průměry, ale není v polovině: skupina s průměrem 8 minut obsahuje třikrát více lidí.
+
 ## Kvartily, percentily a kvantily {#sec-kvantily}
 
 Medián popisuje prostřední polohu. Někdy nás zajímá jiná část uspořádaného rozdělení: například časová hranice potřebná k dokončení úlohy. **Kvantily (*quantiles*)** jsou hodnoty na škále spojené se zvolenými úrovněmi kumulativního zastoupení. Pro zvolenou úroveň $p$ používáme zápis $q_p$, kde $p$ je podíl od 0 do 1. Nejde o index kategorie v dřívějším $p_j$; zde volíme úroveň hledaného kvantilu.
@@ -233,6 +241,14 @@ Kdybychom kategoriím přiřadili kódy 1, 2, 3, 4 a interpolovali např. 90. pe
 ### Percentilové pořadí není hodnota percentilu {#sec-percentilove-poradi}
 
 **Percentilové pořadí (*percentile rank*)** popisuje relativní postavení konkrétního výsledku ve vymezeném souboru. V této učebnici používáme inkluzivní konvenci: vyjádříme procento výsledků **menších nebo rovných** dané hodnotě. U našich časů je pro 5 minut podíl $3/5=0{,}6$, tedy percentilové pořadí 60. Hodnota 5 je mediánem (50% kvantilem) a současně má v této konvenci percentilové pořadí 60; shodné hodnoty brání jednoduchému obracení obou postupů.
+
+::: {.teaching-figure role="region" aria-label="Percentil a percentilové pořadí odpovídají na odlišné otázky" tabindex="0"}
+
+![Od zvolené úrovně k hodnotě a od hodnoty k podílu pozorování.](../assets/chapter-03/plots/percentil-a-poradi.svg){#fig-percentil-a-poradi fig-alt="Pět seřazených časů 4, 5, 5, 6 a 10. Horní řada označuje prostřední pozici: 50. percentil je pět minut. Dolní řada označuje všechny tři časy nejvýše pět minut: inkluzivní percentilové pořadí je 60."}
+
+:::
+
+V @fig-percentil-a-poradi jsou značky uspořádány podle pořadí, nikoli podle časových vzdáleností. Nahoře známe kvantilovou úroveň a hledáme čas; dole známe čas a počítáme jeho kumulativní zastoupení. Dvě pětky jsou dvě pozorování, proto se dole započítají obě. Výsledek v minutách a hodnota na stupnici percentilového pořadí nejsou zaměnitelné ani automaticky vratné převody.
 
 **Percentilové pořadí zapisujeme bez tečky:** „percentilové pořadí 60“, protože jde o číselnou hodnotu na stupnici od 0 do 100, nikoli o šedesáté místo mezi účastníky. Může být i desetinné, například 62,5. Naproti tomu „60. percentil“ píšeme s tečkou: jde o šedesátý percentil. Podobně tečka patří k zápisu „2. pozice“, ale nikoli ke spojení „pozice 2“.
 
@@ -411,6 +427,14 @@ Po ořezání zůstane 3, 4, 5, 5, 6, 7, 8, 9. Součet je 47 a **ořezaný prům
 
 Při winsorizaci nahradíme 2 hodnotou 3 a 31 hodnotou 9. Pro výpočet dostaneme 3, 3, 4, 5, 5, 6, 7, 8, 9, 9. **Winsorizovaný průměr (*winsorized mean*)** je $59/10=5{,}9$ minuty. Počet hodnot se nezměnil.
 :::
+
+::: {.teaching-figure role="region" aria-label="Srovnání ořezání a winsorizace stejných časů" tabindex="0"}
+
+![Dva způsoby omezení příspěvku krajních hodnot.](../assets/chapter-03/plots/orezani-winsorizace.svg){#fig-orezani-winsorizace fig-alt="Tři řady hodnot. Původních deset časů má průměr osm minut. Ořezání vynechá dva krajní časy 2 a 31, zbývajících osm má průměr 5,875. Winsorizace nahradí 2 třemi a 31 devíti; všech deset hodnot má průměr 5,9 minuty."}
+
+:::
+
+V @fig-orezani-winsorizace zachovávají políčka původní pořadové pozice; jejich rozestupy neznázorňují rozdíly časů. Přeškrtnuté hodnoty v prostřední řadě do výpočtu nevstupují, proto dělíme osmi. Ve spodní řadě se započítá všech deset políček, včetně obou nahrazených hodnot. Obrázek ukazuje úpravu pro výpočet statistiky, nikoli přepis či mazání původních záznamů.
 
 **Medián jako krajní případ ořezaného průměru.** Odebíráme-li postupně stejně mnoho hodnot z obou konců, zůstane nakonec při lichém počtu jediná prostřední hodnota a při sudém počtu dvě prostřední hodnoty. Jejich průměr je právě medián. U našich deseti časů po odstranění čtyř z každého konce zbývá 5 a 6, tedy medián 5,5. Proto se medián někdy označuje jako „50% ořezaný průměr“: jde o krajní případ při přibližování úrovně ořezání k 50 % z každé strany. **Neznamená to doslova odstranit obě poloviny a průměrovat prázdný soubor.** Při přesně 50 % je pro sudý počet hodnot nutné toto zvláštní vymezení pomocí mediánu; běžné pravidlo pro počet vynechaných hodnot používáme pro úrovně nižší než 50 %.
 

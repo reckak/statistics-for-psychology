@@ -22,6 +22,18 @@ eq(left_bins(s, 4:9), c(2,4,7,11,6,3));eq(sum(left_bins(s,4:9)),33)
 eq(hist(s, breaks=4:10, right=FALSE, include.lowest=FALSE, plot=FALSE)$counts,left_bins(s,4:9))
 eq(bins(c(6,6.5,7),5:7),c(1,2,0));eq(left_bins(c(6,6.5,7),5:7),c(0,2,1))
 # Grouped cumulative points must agree with inclusive thresholds in the original data.
+# Moving equal-width bins must preserve every observation, including exact endpoints.
+for (breaks in list(seq(4,10,.5),seq(4,10,2),4:10,seq(3.5,10.5,1))) {
+  actual <- hist(s,breaks=breaks,right=TRUE,include.lowest=FALSE,plot=FALSE)$counts
+  independent <- vapply(seq_len(length(breaks)-1),function(i)
+    sum(s>breaks[i] & s<=breaks[i+1]),integer(1))
+  eq(actual,independent);eq(sum(actual),33)
+}
+# The two denominator frames contain the same three known qualifying responses.
+small <- read.csv('data/kapitola_02.csv',na.strings='',fileEncoding='UTF-8')[1:6,]
+eq(sum(small$spanek_h>=7,na.rm=TRUE),3)
+eq(c(3/nrow(small),3/sum(!is.na(small$spanek_h))),c(.5,.6))
+eq(c(sum(small$odpocatost==2),sum(small$odpocatost<=2)),c(2,3))
 threshold_counts <- vapply(4:10,function(hi) sum(s<=hi),integer(1))
 eq(threshold_counts,c(0,3,8,16,26,31,33));eq(c(0,cumsum(bins(s,4:9))),threshold_counts)
 eq(round(100*threshold_counts[c(4,5)]/33,1),c(48.5,78.8))

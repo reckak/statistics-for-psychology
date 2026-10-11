@@ -46,3 +46,7 @@ caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 6
 .chapter-04-wide table { min-width: 620px; }
 .chapter-04-figure { max-width: 100%; overflow-x: auto; }
 .chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }
+
+/* Explanatory diagrams retain legible labels and scroll locally on phones. */
+.teaching-figure { max-width: 100%; overflow-x: auto; }
+.teaching-figure img { width: 100%; min-width: 650px; max-width: none; }

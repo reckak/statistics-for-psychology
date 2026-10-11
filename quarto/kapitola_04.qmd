@@ -38,6 +38,14 @@ Například $z_i=-1{,}5$ dává $x_i=50+10\times(-1{,}5)=50-15=35$ bodů. Těsn�
 
 Z-skóry dovolují porovnat **relativní polohu** na různých škálách. V ilustračním testu A má člověk 60 bodů při $m=50$, $s=10$, tedy $z=1$. V testu B má 42 bodů při $m=30$, $s=6$, tedy $z=(42-30)/6=2$. Ve druhém testu je dále nad průměrem své referenční skupiny, přestože má méně hrubých bodů. Nemůžeme z toho bez dalšího vyvodit, že je „dvakrát schopnější“ nebo že dva testy měří totéž. U škály obtíží může vyšší hodnota znamenat více potíží; kladný z-skór proto neznamená automaticky lepší výsledek.
 
+::: {.chapter-04-figure role="region" aria-label="Z-skór jako počet kroků směrodatné odchylky od průměru" tabindex="0"}
+
+![Rozdílné bodové jednotky, srovnání počtu směrodatných odchylek.](../assets/chapter-04/plots/z-jako-jednotka.svg){#fig-z-jako-jednotka fig-alt="V testu A je výsledek 60 o jeden desetibodový krok nad průměrem 50, z je jedna. V testu B je výsledek 42 o dva šestibodové kroky nad průměrem 30, z jsou dvě."}
+
+:::
+
+V @fig-z-jako-jednotka představuje stejná délka kroku vždy jednu směrodatnou odchylku příslušného testu: nahoře 10 bodů, dole 6. Osy tedy nemají stejné bodové měřítko. Kroužek označuje posuzovaný výsledek. Porovnáváme počet kroků od příslušného průměru; k tomuto výpočtu nepotřebujeme předpoklad normálního rozdělení ani z něj zatím neurčujeme percentilové pořadí.
+
 ### Standardizace nemění tvar rozdělení {#sec-standardizace}
 
 Převod všech hodnot na z-skóry nazveme **standardizací (*standardization*)**. Jestliže každou hodnotu téhož souboru převedeme s jeho vlastním $m$ a $s$, nové hodnoty mají průměr 0 a výběrovou směrodatnou odchylku 1. Odečtení průměru posune střed k nule a dělení $s$ zvolí takovou jednotku, aby směrodatná odchylka byla jedna. Jde o zvláštní případ [lineární transformace](kapitola_03.qmd#sec-zmena-skaly).
@@ -277,11 +285,13 @@ Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-s
 
 ::: {.chapter-04-figure role="region" aria-label="Odpovídající hodnoty na čtyřech standardních škálách." tabindex="0"}
 
-![Odpovídající hodnoty na čtyřech standardních škálách.](../assets/chapter-04/plots/skaly.svg){#fig-skaly-04 fig-alt="Stejným svislým polohám odpovídají z-skóry od minus 2 do 2, T-skóry od 30 do 70, IQ-skóry od 70 do 130 a subtestové skóry od 4 do 16. Mění se měřítko, nikoli relativní poloha."}
+![Čtyři lineární standardní škály a podmíněné doplnění percentilového pořadí.](../assets/chapter-04/plots/skaly.svg){#fig-skaly-04 fig-alt="Svisle zarovnané body propojují z-skóry od minus 2 do 2 s T-skóry, IQ-skóry a subtestovými skóry. Pátá řada platí pouze pro normální model: percentilová pořadí přibližně 2,3; 15,9; 50; 84,1 a 97,7 mají při stejných krocích z-skóru nestejné přírůstky."}
 
 :::
 
 @fig-skaly-04 porovnává pouze různá vyjádření téhož z-skóru. Neznamená, že člověk musí mít stejnou relativní polohu ve všech skutečných testech. Ta závisí na jeho výsledku, obsahu testu a referenční skupině. Pokud normativní skupinu nebo převod změníme, může se změnit také přiřazený standardní skór.
+
+Poslední řada v @fig-skaly-04 přidává percentilové pořadí **pouze za předpokladu normálního modelu**. První čtyři řady jsou lineární převody a tento předpoklad nepotřebují. Při kroku z 0 na 1 vzroste modelové percentilové pořadí přibližně o 34,1, při stejně velkém kroku z 1 na 2 jen o 13,6. Stejné rozestupy bodů v obrázku znamenají stejné rozdíly z-skóru, nikoli stejné rozdíly percentilových pořadí.
 
 ### Steny a staniny: intervaly místo jemné škály {#sec-steny-staniny}
 
@@ -328,6 +338,14 @@ Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nep�
 
 Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, ne univerzální kategorií schopnosti.
 
+::: {.chapter-04-figure role="region" aria-label="Stenová a staninová pásma normálního modelu" tabindex="0"}
+
+![Stejný z-skór v různých pásmech stenů a staninů.](../assets/chapter-04/plots/pasma-skoru.svg){#fig-pasma-skoru fig-alt="Dvě normální křivky na shodné z-ose. Horní je rozdělená do deseti stenů, dolní do devíti staninů. Zvýrazněné z rovné 1,2 spadá do stenu 8 a staninu 7. Vnitřní pásma mají šířku 0,5, ale jejich plochy se liší; krajní pásma pokračují neomezeně."}
+
+:::
+
+Svislé čáry v @fig-pasma-skoru vymezují pásma, jejichž čísla jsou pod osou. Stejně široké vnitřní intervaly mají pod křivkou větší plochu uprostřed než na okrajích; steny proto nejsou stejně početné desetiny. Krajní pásma pokračují i za výřez obrázku. Například $z=1{,}1$ i $z=1{,}4$ patří do stejného zvýrazněného stenu 8: samotné číslo stenu už tyto výsledky nerozliší. Přesné meze přiřazujeme podle tabulek výše, včetně pravidla horní zahrnuté meze.
+
 ### Standardizace, normalizace a percentilové pořadí {#sec-normalizace}
 
 V reálných testových normách se nepoužívá vždy prostý lineární převod hrubého skóru. **Normalizací rozdělení (*rank-based normal-score transformation*)** zde rozumíme převod založený na pořadí: poloze v původním souboru se přiřadí odpovídající kvantil normálního modelu. Ten může následně dostat například měřítko T-skórů. Takový převod mění rozestupy mezi hodnotami; kvůli konečnému souboru a shodným hodnotám nemusí vytvořit přesné normální rozdělení. Na rozdíl od standardizace jde o jiný postup, jehož konkrétní provedení zde neprobíráme.
@@ -371,6 +389,14 @@ Každému pořadí přiřadíme podíl uvnitř intervalu od 0 do 1. Celý rozsah
 $$p=\frac{i-0{,}5}{n}.$$
 
 $i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. **Nejde o novou definici empirického percentilového pořadí ani o algoritmus `PERCENTIL.INC`.** Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
+
+::: {.chapter-04-figure role="region" aria-label="Vznik jednoho bodu normálního Q–Q grafu" tabindex="0"}
+
+![Dvě větve výpočtu souřadnic prvního bodu Q–Q grafu.](../assets/chapter-04/plots/qq-konstrukce.svg){#fig-qq-konstrukce fig-alt="Společné první pořadí ze dvanácti hodnot propojí pozorovaný skór 35 se z-skórem normálního kvantilu přibližně minus 1,73. Ten vznikne z podílu (1 minus 0,5) děleno 12. Bod má souřadnice minus 1,73 na vodorovné a 35 na svislé ose."}
+
+:::
+
+V @fig-qq-konstrukce levá větev pouze přečte seřazená data; pravá najde pomocí `NORM.S.INV` teoretický kvantil pro přiřazený podíl. Do grafu spojíme jejich výsledky v pořadí **(vodorovná souřadnice; svislá souřadnice)**. Hodnota −1,73 tedy není z-skór vypočtený standardizací pozorovaného skóru 35 pomocí průměru a odchylky dat. Je to kvantil normovaného normálního modelu přiřazený prvnímu pořadí. Referenční přímka je další prvek grafu a původní svislou souřadnici nenahrazuje.
 
 Na listu `QQ` vytvořte následující rozložení; stejné obsahuje přiložený sešit:
 

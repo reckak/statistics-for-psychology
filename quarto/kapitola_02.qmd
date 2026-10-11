@@ -70,6 +70,14 @@ U spánku máme v naší malé datové matici šest účastníků, ale jen pět 
 
 Oba výpočty jsou správné, ale odpovídají na různé otázky. Nevíme, zda podmínku splňuje i P05. První výrok proto není totéž jako tvrzení, že přesně polovina všech účastníků skutečně spala alespoň sedm hodin. U tabulky výslovně uvedeme počet platných údajů a počet chybějících. Chybějící hodnoty nenahrazujeme nulami a neodstraňujeme bez upozornění.
 
+::: {.teaching-figure role="region" aria-label="Stejný čitatel a dva základy procent" tabindex="0"}
+
+![Tři známé odpovědi splňující podmínku, dva různé základy procent.](../assets/chapter-02/plots/zaklad-procent.svg){#fig-zaklad-procent fig-alt="V obou řadách jsou tři plné kruhy pro spánek alespoň sedm hodin, dva prázdné pro kratší spánek a čtverec s otazníkem pro neznámý údaj. Horní rámeček zahrnuje všech šest osob, dolní pouze pět známých odpovědí. Výsledky jsou 50 a 60 procent."}
+
+:::
+
+V @fig-zaklad-procent se tři plné kruhy nemění; mění se pouze rámeček vymezující základ výpočtu. Čtverec s otazníkem neoznačuje kratší spánek, ale chybějící informaci. Vyloučení neznámého údaje ze jmenovatele není zjištěním, jak dlouho daný člověk spal.
+
 Podobně musíme rozlišit procento lidí a procento odpovědí, když lze zvolit více možností. **Vzájemně výlučné kategorie (*mutually exclusive categories*)** se nepřekrývají: jeden případ nemůže současně patřit do více z nich. Například při jednom hodnocení odpočatosti účastník volí právě jednu odpověď: „vůbec“, „trochu“, „dost“, nebo „zcela“. Naproti tomu možnosti „učím se z poznámek“ a „procvičuji si otázky“ vzájemně výlučné nejsou: tentýž člověk může používat obě strategie. U otázky umožňující více odpovědí jej proto můžeme započítat u obou.
 
 Představme si deset studentů, z nichž šest označí učení z poznámek a pět procvičování otázek; jeden student označí obě možnosti a ostatní po jedné. Z poznámek se tedy učí $6/10=0{,}600$, čili 60,0 % studentů, a otázky si procvičuje $5/10=0{,}500$, čili 50,0 %. Součet je 110,0 %, protože jednoho člověka započítáváme ve dvou kategoriích.
@@ -105,6 +113,14 @@ Přehled symbolů najdete v [tabulce značení](znaceni.qmd#znak-sumace). Znak s
 ## Kumulativní četnosti: kolik případů je až po danou hodnotu {#sec-kumulativni-cetnosti}
 
 Otázka „Kolik lidí odpovědělo ‚trochu’?“ se týká jedné kategorie. Otázka „Kolik lidí odpovědělo nejvýše ‚trochu’?“ zahrnuje odpovědi „vůbec“ i „trochu“. V malé tabulce je to $1+2=3$ lidí, tedy polovina souboru.
+
+::: {.teaching-figure role="region" aria-label="Jedna kategorie versus kumulování kategorií" tabindex="0"}
+
+![Stejné odpovědi při otázkách „právě“ a „nejvýše“.](../assets/chapter-02/plots/princip-kumulace.svg){#fig-princip-kumulace fig-alt="Šest odpovědí je v obou řadách stejné. Pro právě trochu jsou plné dvě značky trochu. Pro nejvýše trochu je navíc plná značka vůbec, celkem tři."}
+
+:::
+
+V @fig-princip-kumulace přidává slovo „nejvýše“ všechny nižší kategorie. Počet lidí v samotné kategorii „trochu“ se nezměnil; rozšířil se okruh odpovědí, na které se ptáme.
 
 **Kumulativní četnost (*cumulative frequency*)** postupně sčítá četnosti od nejnižší hodnoty či kategorie až po zvolenou mez. Budeme ji počítat vzestupně a včetně příslušné hodnoty či kategorie. U číselné meze se tedy ptáme na hodnoty **nejvýše rovné této mezi**. Aby stejný význam platil i po seskupení hodnot, budeme u intervalového třídění zahrnovat horní mez intervalu. Kumulativní absolutní četnost označíme $f_{\mathrm{kum},j}$, kumulativní relativní četnost $p_{\mathrm{kum},j}$. Část „kum“ v indexu pouze připomíná kumulaci:
 
@@ -190,6 +206,14 @@ Použít můžeme oba následující způsoby:
 
 Následující tabulka porovnává oba způsoby na stejných 33 údajích o spánku. V každé variantě počítáme z původních údajů; jedno pravidlo zahrnutí mezí nelze změnit na druhé pouhým přepsáním popisků.
 
+::: {.teaching-figure role="region" aria-label="Zařazení společné meze do sousedních intervalů" tabindex="0"}
+
+![Kam patří přesně 7,0 hodiny při dvou konvencích mezí.](../assets/chapter-02/plots/meze-intervalu.svg){#fig-meze-intervalu fig-alt="Ve variantě A patří sedm hodin do intervalu od sedmi včetně do osmi bez osmičky. Ve variantě B, používané v učebnici, patří do intervalu nad šest až sedm včetně. Plný krajní bod je zahrnutý, prázdný vyloučený."}
+
+:::
+
+V @fig-meze-intervalu jsou sousední úsečky pro přehlednost mírně nad sebou; obě používají stejnou časovou osu. U společné meze je vždy jeden krajní bod plný a druhý prázdný: údaj 7,0 hodiny tak započítáme právě jednou. Hodnota 6,5 hodiny by v obou variantách zůstala v intervalu mezi šesti a sedmi.
+
 ::: {.table-scroll tabindex="0" role="region" aria-label="Srovnání mezí intervalů"}
 | Varianta A: dolní mez patří dovnitř | Absolutní četnost | Varianta B: horní mez patří dovnitř | Absolutní četnost |
 |----|---:|----|---:|
@@ -246,11 +270,17 @@ Histogram není vyhrazen pouze spojitým proměnným. Seskupit do číselných i
 
 Pro intervaly neexistuje jediná vždy správná šířka. Úzké intervaly zachovají více podrobností, ale mohou zvýraznit nahodilé nepravidelnosti rozdělení dat. Široké intervaly obraz zjednoduší, ale mohou skrýt důležité rozdíly. Záleží i na poloze mezí, nejen na jejich vzdálenosti [@howell, s. 20–21; @cumming, s. 46–47].
 
-![Stejných 33 údajů při šířkách půl hodiny a dvě hodiny.](../assets/chapter-02/plots/intervaly.svg){#fig-sirka-intervalu fig-alt="Dva histogramy stejné proměnné (doby spánku). Levý má dvanáct půlhodinových intervalů, pravý tři dvouhodinové intervaly. Osy mají stejné rozsahy, širší intervaly slučují více hodnot."}
+::: {.teaching-figure role="region" aria-label="Vliv šířky a polohy intervalů histogramu" tabindex="0"}
 
-Vyšší sloupce v pravém grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. „Jednohodinová“ verze ukazuje, že nejčetnější interval je více než 7 až 8 hodin včetně. Ve „dvouhodinové“ verzi se tato informace ztrácí ve společném intervalu více než 6 až 8 hodin včetně. Při volbě šířky vycházíme z otázky, kterou chceme zkoumat, z jednotek a přesnosti zaznamenaných údajů, z rozsahu jejich hodnot a z počtu pozorování. Meze po celých hodinách například umožňují srozumitelně popsat zastoupení různých dob spánku. Pokud nás zajímají jemnější rozdíly a údaje jsou dostatečně přesné, můžeme zkusit půlhodinové intervaly; u malého souboru ale jednotlivé úzké intervaly obsahují málo případů, a obraz proto snadno ovlivní několik pozorování.
+![Stejných 33 dob spánku při změně šířky i polohy intervalů.](../assets/chapter-02/plots/intervaly.svg){#fig-sirka-intervalu fig-alt="Čtyři histogramy se shodnými rozsahy os. Nahoře se liší šířka půl hodiny a dvě hodiny. Dole je šířka vždy jedna hodina, ale pravý graf posouvá všechny meze o půl hodiny. Všechny panely zahrnují stejných 33 údajů a horní mez intervalu."}
+
+:::
+
+Vyšší sloupce v pravém horním grafu @fig-sirka-intervalu neznamenají více účastníků; každý sloupec jen zahrnuje širší rozsah časů. „Jednohodinová“ verze ukazuje, že nejčetnější interval je více než 7 až 8 hodin včetně. Ve „dvouhodinové“ verzi se tato informace ztrácí ve společném intervalu více než 6 až 8 hodin včetně. Při volbě šířky vycházíme z otázky, kterou chceme zkoumat, z jednotek a přesnosti zaznamenaných údajů, z rozsahu jejich hodnot a z počtu pozorování. Meze po celých hodinách například umožňují srozumitelně popsat zastoupení různých dob spánku. Pokud nás zajímají jemnější rozdíly a údaje jsou dostatečně přesné, můžeme zkusit půlhodinové intervaly; u malého souboru ale jednotlivé úzké intervaly obsahují málo případů, a obraz proto snadno ovlivní několik pozorování.
 
 Zvolené členění porovnáme s několika blízkými šířkami i posuny mezí. Za přesvědčivější rys dat považujeme takový, který zůstává patrný při více přiměřených nastaveních. Jestliže drobný vrchol po malém posunu mezí zmizí, samotný histogram nám nedává dostatečnou oporu pro tvrzení, že data tvoří zvláštní skupinu. Automatická pravidla mohou nabídnout výchozí nastavení, ale nenahrazují posouzení účelu grafu a konkrétních dat [@howell, s. 20–21].
+
+Dolní dvojice v @fig-sirka-intervalu mění pouze polohu mezí: šířka zůstává jedna hodina. Nové meze jinak seskupí sousední časy, a proto se změní i výšky sloupců, přestože se nezměnil žádný údaj. Ve všech čtyřech panelech zůstává horní mez zahrnutá a součet četností je 33. Posun mezí je tedy jiná změna než obrácení pravidla, který krajní bod do intervalu patří.
 
 ::: {.callout-note collapse="true" title="Rozšíření: nestejně široké intervaly"}
 Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případů v intervalu šířky 1 hodina dá výšku 10 případů na hodinu; 10 případů v intervalu šířky 2 hodiny dá výšku 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
