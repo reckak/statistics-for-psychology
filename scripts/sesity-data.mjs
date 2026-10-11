@@ -103,7 +103,6 @@ export const existing = {
 };
 
 export async function addStudentInputs(wb,chapter,out) {
-  const overview=wb.worksheets.getItem('Prehled');
   const specs=[...inputs[chapter]];
   if(chapter===4){
     const q=(await fs.readFile('data/kapitola_04.csv','utf8')).trim().split(/\r?\n/).slice(1).map(l=>+l.split(',')[1]);
@@ -111,6 +110,11 @@ export async function addStudentInputs(wb,chapter,out) {
     const sim=JSON.parse(await fs.readFile('tmp/sesity-simulace.json','utf8'));
     for(const [key,values] of Object.entries(sim))specs.push(vector(`Sim_${key}`,'Obrázky histogramů a Q–Q grafů','Simulovaný skór (body)',values,'Simulovaná data z obrázků kapitoly, 200 hodnot. Nejde o skutečný test ani o nezadaná individuální data cvičení 10.'));
   }
+  await populateStudentInputs(wb,chapter,out,specs);
+}
+
+export async function populateStudentInputs(wb,chapter,out,specs) {
+  const overview=wb.worksheets.getItem('Prehled');
   const catalog=[];
   for(const spec of specs){
     const sh=wb.worksheets.add(spec.name),end=String.fromCharCode(64+spec.headers.length),last=spec.rows.length+1;
@@ -140,8 +144,6 @@ export async function addStudentInputs(wb,chapter,out) {
     sh.getRange(`${noteCol}4:${noteCol}7`).merge();sh.getRange(`${noteCol}4`).values=[[spec.note]];
     sh.freezePanes.freezeRows(1);
     catalog.push([spec.name,`A2:${end}${last}`,spec.use]);
-    const img=await wb.render({sheetName:spec.name,range:`A1:${noteCol}${Math.min(Math.max(last,7),15)}`,scale:1.2,format:'png'});
-    await fs.writeFile(`${out}/${spec.name}.png`,new Uint8Array(await img.arrayBuffer()));
   }
   const list=[...catalog,...existing[chapter]];
   overview.showGridLines=false;
@@ -159,6 +161,4 @@ export async function addStudentInputs(wb,chapter,out) {
   overview.getRange(`C1:C${list.length+7}`).format.columnWidth=70;
   overview.freezePanes.freezeRows(7);
   await fs.writeFile(`${out}/inputs.json`,JSON.stringify(specs,null,2));
-  const preview=await wb.render({sheetName:'Prehled',range:`A1:C${list.length+7}`,scale:1.2,format:'png'});
-  await fs.writeFile(`${out}/Prehled.png`,new Uint8Array(await preview.arrayBuffer()));
 }

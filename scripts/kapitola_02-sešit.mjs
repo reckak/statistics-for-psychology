@@ -1,14 +1,9 @@
+import { ExcelWorkbook } from './excel-workbook.mjs';
 import { addStudentInputs } from './sesity-data.mjs';
-// Run from the repository root; dependencies come from the Codex bundled runtime.
 import fs from 'node:fs/promises';
-import { createRequire } from 'node:module';
-import { pathToFileURL } from 'node:url';
-const require = createRequire(import.meta.url);
-const modulePath = process.env.ARTIFACT_TOOL_MODULE || require.resolve('@oai/artifact-tool');
-const { Workbook, SpreadsheetFile } = await import(pathToFileURL(modulePath).href);
 const csv = (await fs.readFile('data/kapitola_02.csv','utf8')).trim().split(/\r?\n/).slice(1);
 const rows = csv.map(line => line.split(',').map((v,i)=>[1,2,4].includes(i) ? (v===''?null:Number(v)) : v));
-const wb=Workbook.create();
+const wb=new ExcelWorkbook();
 wb.worksheets.add('Prehled');
 const c=wb.worksheets.add('Cetnosti'), h=wb.worksheets.add('Histogram'), d=wb.worksheets.add('Data');
 for(const sh of [c,h,d]){
@@ -65,25 +60,12 @@ const notes=[
 ];notes.forEach((v,i)=>note(d,`G${i+3}`,v));
 d.getRange('E2:E37').dataValidation={rule:{type:'whole',operator:'between',formula1:1,formula2:4}};
 d.getRange('C2:C37').dataValidation={rule:{type:'whole',operator:'between',formula1:0,formula2:12}};
-function chart(sh,range,title,pos1,pos2,xlabel){
- const g=sh.charts.add('bar',sh.getRange(range));g.title=title;g.hasLegend=false;g.setPosition(pos1,pos2);
- g.titleTextStyle.typeface='Arial';g.titleTextStyle.fontSize=15;
- g.xAxis={axisType:'textAxis',textStyle:{typeface:'Arial',fontSize:11}};
- g.yAxis={numberFormatCode:'0',numberFormatSourceLinked:false,textStyle:{typeface:'Arial',fontSize:11}};
- g.xAxis.title.text=xlabel;g.yAxis.title.text='Počet účastníků';g.series.items[0].fill='#267888';return g;
-}
-chart(c,'B4:C8','Odpočatost','J3','R18','Odpočatost');
-chart(h,'C4:D10','Doba spánku','H3','P18','Doba spánku (h)');
+wb.addChart({sheet:'Cetnosti',type:'column',title:'Odpočatost',start:'J3',end:'R18',
+ xTitle:'Odpočatost',yTitle:'Počet účastníků',legend:false,
+ series:[{name:'Četnost',x:'B5:B8',y:'C5:C8',color:'#267888'}]});
+wb.addChart({sheet:'Histogram',type:'column',title:'Doba spánku',start:'H3',end:'P18',
+ xTitle:'Doba spánku (h)',yTitle:'Počet účastníků',legend:false,histogram:true,
+ series:[{name:'Četnost',x:'C5:C10',y:'D5:D10',color:'#267888'}]});
 await fs.mkdir('tmp/chapter-02-build',{recursive:true});
 await addStudentInputs(wb,2,'tmp/chapter-02-build');
-wb.recalculate();
-console.log((await wb.inspect({kind:'table',range:'Cetnosti!A4:H10',include:'values,formulas',tableMaxRows:8,tableMaxCols:8,maxChars:2200})).ndjson);
-console.log((await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},summary:'Formula errors',maxChars:1000})).ndjson);
-await fs.mkdir('tmp/chapter-02-build',{recursive:true});
-for(const [name,range] of [['Cetnosti','A1:R18'],['Histogram','A1:P19'],['Data','A1:O38']]){
- const img=await wb.render({sheetName:name,range,scale:1.5,format:'png'});
- await fs.writeFile(`tmp/chapter-02-build/${name}.png`,new Uint8Array(await img.arrayBuffer()));
-}
-await (await SpreadsheetFile.exportXlsx(wb)).save('data/kapitola_02.xlsx');
-await fs.rename('data/kapitola_02.xlsx.inspect.ndjson','tmp/chapter-02-build/workbook-inspect.ndjson');
-console.log('Saved data/kapitola_02.xlsx. Native Excel validation follows.');
+await wb.build(2, 'tmp/chapter-02-build');

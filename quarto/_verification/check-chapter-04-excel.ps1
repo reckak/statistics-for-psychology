@@ -1,4 +1,4 @@
-param([switch]$Finalize)
+﻿param([switch]$Finalize)
 # Separate hidden instance; no changes to an existing Excel session.
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '../..')).Path

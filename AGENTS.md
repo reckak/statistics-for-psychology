@@ -295,6 +295,24 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 
 ## Data ke kapitolám
 
+- Sešity sestavuj reprodukovatelnými skripty ovládajícími desktopový Excel
+  pro Windows. Používej společný generátor `scripts/build-workbooks.ps1`
+  a místní deklarace listů; tvorba ani ověřování nesmějí vyžadovat
+  `@oai/artifact-tool`, runtime konkrétního LLM ani jinou neveřejnou knihovnu.
+  Provozní příkazy a závislosti udržuj v kořenovém README.
+- Excel spouštěj v samostatné skryté instanci, bez zásahu do otevřených
+  uživatelských sešitů. Výsledek nejprve sestav a přepočítej v `tmp/`,
+  teprve po úspěchu nahraď cílový sešit. Při chybě ukonči vlastní instanci
+  a zachovej předchozí výstup. Běžné kontrolní skripty změny neukládají.
+- Rozlišuj standardní anglický zápis vzorců pro `Formula` od českého
+  zápisu pro `FormulaLocal`; české vzorce z učebnice skutečně ověřuj
+  v českém Excelu. Číselné formáty přizpůsob místním oddělovačům a zachovej
+  datové typy včetně číselně vypadajícího textu a prázdných buněk.
+- Při změně generátoru porovnej obsah a výsledky s předchozími sešity,
+  ověř zachování listů, adres, vzorců, grafů a ověření vstupů. Spusť
+  kapitolové kontroly Excelu, nezávislé číselné kontroly a vizuálně
+  prohlédni dotčené listy a grafy. Zachovej obsah i didaktické oddělení
+  vstupů od řešení; samotný úspěšný zápis XLSX není ověřením funkčnosti.
 - Ke každé výkladové kapitole poskytuj studentům jediný excelový sešit
   `data/kapitola_NN.xlsx`. Obsahuje všechny zadané datové soubory i souhrnné
   číselné vstupy potřebné k zopakování příkladů a vyřešení cvičení.
