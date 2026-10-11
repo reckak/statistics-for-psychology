@@ -152,6 +152,15 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Nový statistický i matematický pojem vysvětli před použitím. U nového
   vzorce vysvětli všechny symboly, význam vztahu, dosazení a podstatné mezikroky.
   Přehledové kapitoly nenahrazují vysvětlení přímo ve výkladu.
+- Každý nově zaváděný abstraktní pojem nebo vztah pokud možno objasni
+  konkrétním, přednostně psychologickým příkladem. Výslovně vysvětli, jak
+  příklad ilustruje obecný význam pojmu či vztahu; samotné uvedení příkladu
+  nestačí.
+- Výklad nestav převážně na tom, co pojem neznamená nebo co z výsledku
+  nelze vyvodit. Nejprve vysvětli, co pojem znamená, k čemu slouží a jaké
+  závěry umožňuje za uvedených podmínek. Upozornění na časté omyly a neplatné
+  závěry zařazuj účelně a vyvažuj je konkrétními ukázkami správného použití
+  a interpretace.
 - Matematickou notaci používej střídmě a účelně. Každý vzorec má pomoci
   pochopit vztah mezi veličinami, princip výpočtu nebo strukturu a předpoklady
   modelu. Vedle vysvětlení symbolů vždy objasni, co vztah říká a proč jej
