@@ -1,6 +1,6 @@
 # Mapa autorských zdrojů
 
-Stav inventury a obsahového průzkumu: **11. října 2026**. Mapa zahrnuje všech **29 souborů** v aktuální složce `sources/` a jejích podsložkách: 10 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
+Stav inventury a obsahového průzkumu: **11. října 2026**. Mapa zahrnuje všech **30 souborů** v aktuální složce `sources/` a jejích podsložkách: 11 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -29,21 +29,21 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 
 | Téma / plánovací otázka | Hlavní opora a srovnání | Starší výuka a úlohy | Využití a podmínky |
 |---|---|---|---|
-| Výzkumná otázka, populace, výběr, experiment, měření | [U01](#u01) kap. 1; [U03](#u03) kap. 2; [U04](#u04) kap. 1; [U08](#u08) kap. 2 | [P01](#p01) sn. 13–38; [C01](#c01) X1 | Navazuje na existující kapitolu 1; metodologii a kauzalitu nelze odvozovat pouze z typu statistiky. |
+| Výzkumná otázka, populace, výběr, experiment, měření | [U01](#u01) kap. 1; [U03](#u03) kap. 2; [U04](#u04) kap. 1; [U08](#u08) kap. 2; [U11](#u11) kap. 1 | [P01](#p01) sn. 13–38; [C01](#c01) X1 | Navazuje na existující kapitolu 1; metodologii a kauzalitu nelze odvozovat pouze z typu statistiky. |
 | Úrovně měření a oprávněnost interpretace | [U01](#u01) §1.3; dvojice [D05](#d05) + [D06](#d06) | [P01](#p01) sn. 27–30; [C01](#c01) X1_01–03, X1_06, X1_09 | Spor o měření představit jako argumentaci, nikoli mechanický seznam povolených testů. |
 | Datová matice, kódování, chybějící hodnoty | [D01](#d01)/[D02](#d02), [D03](#d03), [D04](#d04) | [P01](#p01) sn. 32–38; [C01](#c01) X1_05, X1_07–08 | Rozlišovat obecné zásady a pravidla konkrétního programu či projektu. |
-| Četnosti, histogram, hustota, klamavé grafy | [U01](#u01) kap. 2; [U03](#u03) kap. 3; [U04](#u04) kap. 2 | [P01](#p01) sn. 39–68; [C01](#c01) X2; [C02](#c02) X2_04–10 | Návaznost na kapitolu 2; šířka intervalů, plocha sloupců, omezení rekonstrukce dat. |
-| Poloha, variabilita, kvantily, boxplot | [U01](#u01) §2.6–2.12; [U06](#u06) kap. 3–4; [U05](#u05) kap. 3 | [P02](#p02); [C02](#c02) | Existující kapitola 3; dodržet R04 a R14, nevracet starší algoritmy a značení. |
+| Četnosti, histogram, hustota, klamavé grafy | [U01](#u01) kap. 2; [U03](#u03) kap. 3; [U04](#u04) kap. 2; [U11](#u11) §2.1–2.4 | [P01](#p01) sn. 39–68; [C01](#c01) X2; [C02](#c02) X2_04–10 | Návaznost na kapitolu 2; šířka intervalů, plocha sloupců, omezení rekonstrukce dat. |
+| Poloha, variabilita, kvantily, boxplot | [U01](#u01) §2.6–2.12; [U06](#u06) kap. 3–4; [U05](#u05) kap. 3; [U11](#u11) §2.5–2.10 | [P02](#p02); [C02](#c02) | Existující kapitola 3; dodržet R04 a R14, nevracet starší algoritmy a značení. |
 | Transformace, z/T/IQ, percentilové pořadí | [U01](#u01) §2.12, §3.2 a §3.6; [U02](#u02) kap. 3 | [P03](#p03) sn. 3–21; [P04](#p04); [C03](#c03) X3_01–07; [C04](#c04); [D10](#d10) | Rozlišit standardizaci, normalizaci a pořadí; pozor na chyby ve starých řešeních. |
-| Normální model, plochy, kvantily, posouzení modelu | [U01](#u01) kap. 3; [U03](#u03) kap. 4; [U04](#u04) §4.1 | [P03](#p03) sn. 45–59; [P04](#p04); [C03](#c03) X3_21–37; [D10](#d10) | Existující kapitola 4; konvence N(μ, σ) podle R15; rozlišit Q–Q a P–P graf. |
-| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Směr další výkladové kapitoly podle osnovy; konkrétní rozsah teprve dohodnout. Srovnat rozdílná pojetí u Dostála a Barona. |
-| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129 | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Přirozené četnosti, kontingenční tabulky, stromy; odlišit P(A\|B) a P(B\|A). |
+| Normální model, plochy, kvantily, posouzení modelu | [U01](#u01) kap. 3; [U03](#u03) kap. 4; [U04](#u04) §4.1; [U11](#u11) §6.2–6.4 | [P03](#p03) sn. 45–59; [P04](#p04); [C03](#c03) X3_21–37; [D10](#d10) | Existující kapitola 4; konvence N(μ, σ) podle R15; rozlišit Q–Q a P–P graf. |
+| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4; [U11](#u11) kap. 3 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Směr další výkladové kapitoly podle osnovy; konkrétní rozsah teprve dohodnout. Srovnat rozdílná pojetí u Dostála a Barona. |
+| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129; [U11](#u11) §3.5–3.8 (s opravou s. 62) | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Přirozené četnosti, kontingenční tabulky, stromy; odlišit P(A\|B) a P(B\|A). |
 | Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [D08](#d08), [D09](#d09) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | Psychologická motivace a chyby interpretace; původní studie nejsou tímto průzkumem replikovány ani aktualizovány. |
-| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | Nabídka navazujících témat; kombinatoriku a matematický rozsah vybrat podle cíle. U P05 opravit zaznamenané chyby před použitím. |
-| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10 | [P04](#p04) sn. 5–6 jen jako výchozí námět | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti. |
-| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7 | [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
-| Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07) | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
-| ANOVA, více prediktorů, meta-analýza, neparametrické a bayesovské metody | [U01](#u01) kap. 11–18; [U03](#u03) kap. 9, 14–15; [U07](#u07); [U08](#u08) kap. 14–17; [U10](#u10) části IV–V | Bez úplného pokrytí staršími podklady zde | Rezerva pro autora a případná další skripta; nepovažovat za povinnou náplň jednoho semestru. |
+| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | Nabídka navazujících témat; kombinatoriku a matematický rozsah vybrat podle cíle. U P05 opravit zaznamenané chyby před použitím. |
+| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P04](#p04) sn. 5–6 jen jako výchozí námět | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti. |
+| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07); [U11](#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
+| ANOVA, více prediktorů, meta-analýza, neparametrické a bayesovské metody | [U01](#u01) kap. 11–18; [U03](#u03) kap. 9, 14–15; [U07](#u07); [U08](#u08) kap. 14–17; [U10](#u10) části IV–V; [U11](#u11) kap. 9 (bayesovský t-test; kap. 14 pouze na webu) | Bez úplného pokrytí staršími podklady zde | Rezerva pro autora a případná další skripta; nepovažovat za povinnou náplň jednoho semestru. |
 
 ## Inventář souborů
 
@@ -61,6 +61,7 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [U08](#u08) | [navarro.pdf](../sources/u%C4%8Debnice/navarro.pdf) | 796 stran PDF | `a5314ddd00a2f1db` |
 | [U09](#u09) | [privitera.pdf](../sources/u%C4%8Debnice/privitera.pdf) | 954 stran PDF | `c93dc75c07ef4c18` |
 | [U10](#u10) | [sahu.pdf](../sources/u%C4%8Debnice/sahu.pdf) | 560 stran PDF | `6c0a39f1de739519` |
+| [U11](#u11) | [russo.pdf](../sources/u%C4%8Debnice/russo.pdf) | 331 stran PDF | `8939c8698b119e74` |
 | [P01](#p01) | [PSYb1170_P01_2025_-_Uvod__cetnosti.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P01_2025_-_Uvod__cetnosti.pptx) | 69 snímků | `077197470a4b781d` |
 | [P02](#p02) | [PSYb1170_P02_2026_-_Popisne_statistiky.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P02_2026_-_Popisne_statistiky.pptx) | 53 snímků | `a241d36fb9152355` |
 | [P03](#p03) | [PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx) | 60 snímků | `c36178e0a58eb3d0` |
@@ -414,6 +415,49 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Prostudované pasáže:** Obsah celé knihy; kap. 4 s. 64–66: podmínění jako omezení prostoru, příklad kostky, obecný vzorec a pravidlo násobení.
 
 **Nálezy a neověřené části:** Matematické důkazy, cvičení, kód R a obsah opravy nebyly kompletně ověřeny. Číslování PDF má vložené a vynechané stránky; nepoužívat jediný konstantní posun.
+
+<a id="u11"></a>
+
+### U11 — Russo — úvod do četnostní a bayesovské statistiky
+
+**Soubor:** [russo.pdf](../sources/u%C4%8Debnice/russo.pdf) (místní neveřejný podklad).
+
+**Identita:** Riccardo Russo: *Statistics for the Behavioural Sciences: An Introduction to Frequentist and Bayesian Approaches*, 2. vydání, Routledge. Titul PDF 4, nakladatelské údaje PDF 5 uvádějí vydání a copyright **2021**; ISBN 978-1-138-71148-8 (vázané), 978-1-138-71150-1 (brožované), 978-1-315-20041-5 (elektronické). [Nakladatel](https://www.routledge.com/Statistics-for-the-Behavioural-Sciences-An-Introduction-to-Frequentist/Russo/p/book/9781138711501) potvrzuje autora, druhé vydání a copyright 2021. DOI [10.4324/9781315200415](https://doi.org/10.4324/9781315200415) ověřeno v [registračních metadatech Crossref](https://api.crossref.org/works/10.4324/9781315200415), která datují online publikaci na **29. listopadu 2020**. Rozlišovat rok konkrétního vydání v PDF a datum online publikace; při případném zařazení do společné bibliografie tento rozdíl zachovat v autorském záznamu.
+
+**Datum a verze průzkumu:** 11. října 2026, 331 stran PDF, SHA-256 prefix `8939c8698b119e74`. Obsah s. vii–xiii (PDF 8–14); pro níže uvedené lokátory hlavního textu platí PDF = tištěná strana + 21, ověřeno na začátcích kapitol, příloh a v prostudované kapitole 3. Údaj nakladatele „330 stran“ není počet stran tohoto souboru.
+
+**Doporučené použití:** doplňkový didaktický zdroj pro začátečníky, názorný výklad pravděpodobnosti pomocí množin, stromů a tabulek a srovnání četnostní a bayesovské inference. Kapitola 0 nabízí připomenutí potřebné matematiky. Předmluva druhého vydání zdůrazňuje porozumění důvodům postupů a opakování principů v různých kontextech. Howell zůstává hlavním východiskem pořadí; Russo probírá pravděpodobnost a binomický model před normálním rozdělením. Postupy v JASP nepřebírat jako nové softwarové požadavky kurzu a tabulky pravděpodobností nevyžadovat místo Excelu.
+
+| Lokátor | Mapa obsahu |
+|---|---|
+| [s. 1 (PDF 22)](../sources/u%C4%8Debnice/russo.pdf#page=22) | 0 Matematika a algebra: operátory, pořadí operací a zlomky s. 1–2, proměnné a rovnice s. 3–4. |
+| [s. 5 (PDF 26)](../sources/u%C4%8Debnice/russo.pdf#page=26) | 1 Základní pojmy: smysl statistiky a testování, škály s. 10, popis a inference s. 13, experiment s. 14, korelační studie s. 15. |
+| [s. 18 (PDF 39)](../sources/u%C4%8Debnice/russo.pdf#page=39) | 2 Popis dat: četnosti a histogramy s. 18, intervaly s. 21, poloha s. 25, sumace s. 30, variabilita s. 31, vlastnosti odhadů s. 39, lineární transformace s. 42, JASP s. 45. |
+| [s. 52 (PDF 73)](../sources/u%C4%8Debnice/russo.pdf#page=73) | 3 Pravděpodobnost: pojetí a prostor výsledků s. 52–54, Vennovy diagramy s. 55, součet a součin s. 57–58, stromy s. 59, podmínění s. 60, nezávislost s. 63, Bayes s. 64–67. |
+| [s. 68 (PDF 89)](../sources/u%C4%8Debnice/russo.pdf#page=89) | 4 Inference: četnostní přístup s. 69, chyby s. 72–73, intervaly spolehlivosti s. 75, bayesovský přístup s. 76, šance s. 78, Bayesův faktor s. 82–89, credible intervals s. 90, srovnání přístupů s. 91. České názvy nových pojmů zde jsou orientační, nikoli schválená terminologie. |
+| [s. 93 (PDF 114)](../sources/u%C4%8Debnice/russo.pdf#page=114) | 5 Pravděpodobnostní rozdělení: střední hodnota s. 96, rozptyl s. 98, uspořádání s. 99, kombinace a binomické rozdělení s. 102, testování s. 107, znaménkový test s. 111, bayesovský binomický test s. 117, volba prioru s. 122. |
+| [s. 124 (PDF 145)](../sources/u%C4%8Debnice/russo.pdf#page=145) | 6 Spojité proměnné: hustota s. 124, normální rozdělení s. 127, standardní normální rozdělení s. 130, testování s. 133, chyby s. 135, jednostranné a dvoustranné testy s. 139, bayesovský přístup s. 141. |
+| [s. 143 (PDF 164)](../sources/u%C4%8Debnice/russo.pdf#page=164) | 7 Výběrové rozdělení průměru a CLT, známá σ s. 145, jednovýběrový t-test s. 146, intervaly spolehlivosti s. 150, vztah testu, účinku a velikosti studie s. 156, síla s. 158–165, JASP s. 166. |
+| [s. 168 (PDF 189)](../sources/u%C4%8Debnice/russo.pdf#page=189) | 8 Párový a nezávislý t-test: párový s. 168, vyvažování pořadí s. 172, nezávislé skupiny s. 173–178, robustnost s. 179, efekt stropu a podlahy s. 181, volba uspořádání s. 183, síla s. 186, JASP s. 189. |
+| [s. 195 (PDF 216)](../sources/u%C4%8Debnice/russo.pdf#page=216) | 9 Bayesovský t-test: Bayesův faktor s. 196, credible intervals s. 200, volba prioru s. 205, JASP s. 210–218, Dienesův kalkulátor s. 219. |
+| [s. 222 (PDF 243)](../sources/u%C4%8Debnice/russo.pdf#page=243) | 10 Korelace: kovariance s. 227, Pearsonovo r s. 228, testy a intervaly s. 229–234, parciální korelace s. 235, vlivy na r s. 237, bodově biseriální s. 240, Spearman s. 244, Kendallovo W s. 245, síla s. 246, JASP s. 248 a 250. |
+| [s. 255 (PDF 276)](../sources/u%C4%8Debnice/russo.pdf#page=276) | 11 Jednoduchá regrese: přímka s. 255, vztah ke korelaci s. 259, test a interval sklonu s. 260–262, r² s. 262, chyba predikce s. 263, JASP s. 265 a 267. |
+| [s. 270 (PDF 291)](../sources/u%C4%8Debnice/russo.pdf#page=291) | 12 Chí-kvadrát a kategoriální data: dobrá shoda s. 273, předpoklady s. 275, tabulky 2 × 2 s. 276 a R × C s. 280, síla asociace s. 282, poměr šancí s. 286, zahrnutí nevýskytů s. 288, JASP s. 289 a 291. |
+| [s. 295 (PDF 316)](../sources/u%C4%8Debnice/russo.pdf#page=316) | Pouze odkazy na kapitolu 13 (testy podílů) a 14 (neparametrické testy); jejich výklad je označen jako **Web only content** a v tomto PDF není. |
+| [s. 296 (PDF 317)](../sources/u%C4%8Debnice/russo.pdf#page=317) | Příloha: statistické tabulky a hlavní vzorce; literatura s. 303 (PDF 324), rejstřík s. 304 (PDF 325). |
+
+**Prostudované pasáže:** titulní a nakladatelská strana, celý obsah, předmluvy prvního a druhého vydání (PDF 15–17 a 19) a celá kapitola 3, s. 52–67 (PDF 73–88), včetně příkladů, tabulky 3.1 a obrázků 3.1–3.7. Titul, nakladatelská strana, obsah a kapitola 3 byly prohlédnuty také v obrazech vykreslených Popplerem; s. 62 navíc samostatně kvůli podezření na věcnou chybu. U ostatních kapitol byly ověřeny názvy a lokátory, nikoli celý výklad. Starší předmluva popisuje strukturu prvního vydání; pro lokátory druhého vydání používat aktuální obsah.
+
+**Nezávislé ověření:** přesnou racionální aritmetikou v Pythonu přepočítány čtyři větve diagnostického stromu obr. 3.6 (0,855; 0,095; 0,045; 0,005), jejich součet 1, celková pravděpodobnost pozitivního výsledku 0,14 a Bayesův výsledek s. 67: 0,045/0,14 = 0,321428…; odpovídají číslům knihy. Přepočítán také výsledek dvou komunit s. 65–66: 0,08/(0,08 + 0,04) = 2/3. Toto ověření modelových výpočtů nepotvrzuje empirickou platnost zadání.
+
+**Nálezy a podmínky použití:**
+
+- **S. 53–54 (PDF 74–75):** pojetí pravděpodobnosti je vhodné srovnat s Howellem, Navarrem a Baronem. Analytický poměr správně výslovně vyžaduje stejně pravděpodobné výsledky. Tvrzení, že pravděpodobnost 0 znamená nemožnost, však nepřenášet bez omezení na spojité modely; výklad četností nesmí vyvolat dojem, že každé prodloužení řady nutně zlepší přiblížení k pravděpodobnosti. Filozofické soudy o jedinečných událostech nejsou univerzální matematické definice.
+- **S. 60–62 (PDF 81–83):** rozlišit výsledek testu (pozitivní/negativní) od správnosti testu (správně/chybně). Text na s. 62 označuje výsledek testu a zdravotní stav za nezávislé, což odporuje vlastnímu zadání: pravděpodobnost pozitivního výsledku u nemocných je 0,9 a u zdravých 0,1, zatímco celkově 0,14. Nezávislost v tomto konkrétním modelu platí pro **správnost** klasifikace a zdravotní stav, protože senzitivita i specificita jsou 0,9. Součiny pro větve stromu vyžadují podmíněné pravděpodobnosti výsledku testu. Nález potvrzen ve vykresleném originálu i výpočtem, nejde o chybu extrakce.
+- **S. 63–64 (PDF 84–85):** didakticky užitečné je výslovné oddělení zjištěné závislosti ve výběrové tabulce od inference o populaci. Při využití lze zvolit psychologicky vhodný nový kontext se zachováním principu.
+- **S. 64–67 (PDF 85–88):** názorný přechod od stromu k Bayesově větě a upozornění, že podmínění nevyžaduje časové pořadí. Příklad komunit mísí nelegální jednání a zatčení; číselný výsledek platí pro podmínku uvedenou v modelu (nelegální jednání), nikoli automaticky pro mechanismus zatýkání. Pro nový výklad je vhodnější diagnostický příklad s jasně vymezenými jevy a opraveným vysvětlením nezávislosti.
+
+**Neověřeno a chybějící části:** podrobný výklad mimo uvedené pasáže, ostatní výpočty, důkazy, empirická tvrzení a odpovědi na cvičení; aktuální funkčnost JASP, Dienesova kalkulátoru a dalších programů. Webové úlohy, data a sešity nebyly staženy ani prověřeny. Kromě kapitol 13–14 jsou pouze na webu také §2.11, §5.11, §6.9, §8.10 a §12.5–12.6; stránka uvedená v obsahu je odkazem, nikoli dostupným výkladem. Bayesovské postupy jsou převážně zmapované, nikoli kompletně odborně revidované. Jejich zařazení do kurzu vyžaduje samostatnou dohodu.
 
 ## Starší přednáškové prezentace
 
@@ -828,11 +872,12 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 |---|---|
 | Schválená koncepce | Pořadí a rozsah určuje OSNOVA; rozsáhlé kapitoly učebnic o ANOVA, regresi či bayesovských metodách nejsou automaticky součástí tohoto semestru. |
 | Značení a kvantily | Přednost mají R01–R04, R14 a R15. Staré M/SD/MAD, pořadové algoritmy a N(μ, σ²) nepřebírat bez výslovného rozlišení konvencí. |
-| Pojetí pravděpodobnosti | Dostál s. 13–14, Howell s. 108–110, Navarro s. 373–375 a Baron kap. 5 nepodávají totožný filozofický výklad. Před návrhem formulací dohodnout, která pojetí představit a v jakém rozsahu. |
+| Pojetí pravděpodobnosti | Dostál s. 13–14, Howell s. 108–110, Navarro s. 373–375, Russo s. 52–54 a Baron kap. 5 nepodávají totožný filozofický výklad. Před návrhem formulací dohodnout, která pojetí představit a v jakém rozsahu. |
+| Podmínění a nezávislost | [U11](#u11) s. 62 zaměňuje výsledek diagnostického testu za správnost klasifikace; při použití opravit podle zadání a stromu na s. 60. |
 | Data a software | Číselné kódování a missing z SPSS nejsou univerzální požadavek; −99 nesmí vstupovat do běžného průměru. R z cizích knih zůstává interní. |
 | Normální model | Rozlišit CDF a kvantil, percentil a pořadí, Q–Q a P–P, interval hodnot a interval spolehlivosti. Starší podklady obsahují konkrétní záměny. |
 | Bibliografie | Došetřit vydání obou Baronových úryvků, de Vause a Morgana; rok/verzi Navarro; rozdíly v identitě mezinárodního Arona; přesný původ úloh C2/C3. |
-| Nedostupné návazné materiály | Odkazované externí datasety, `Datíčka.xls`, videa, QR odkazy, online aplikace, originály studií a navazující části knih nejsou automaticky pokryty inventářem. |
+| Nedostupné návazné materiály | U [U11](#u11) jsou kap. 13–14 a další označené oddíly pouze na webu, nikoli v místním PDF. Odkazované externí datasety, `Datíčka.xls`, videa, QR odkazy, online aplikace, originály studií a navazující části knih nejsou automaticky pokryty inventářem. |
 | Odborné ověření | Před použitím konkrétního příkladu nezávisle ověřit všechny vstupy, výpočty a řešení; před převzetím empirického tvrzení ověřit původní zdroj a relevantní současné poznatky. |
 
 ### Záznam prvního průzkumu a údržba
