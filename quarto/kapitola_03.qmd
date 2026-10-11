@@ -23,7 +23,7 @@ Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficie
 
 V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření může být tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
 
-Význam čísel závisí také na škále měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nemusí vyjadřovat přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
+Význam čísel závisí také na úrovni měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nemusí vyjadřovat přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
 
 ## Tři způsoby vyjádření středu {#sec-stred-rozdeleni}
 
@@ -123,9 +123,9 @@ Při spojování skupin musíme zachovat příspěvek každého člověka. Deset
 
 $$m=\frac{10\times4+30\times8}{10+30}=7\ \text{minut}.$$
 
-Prostý průměr skupinových průměrů $(4+8)/2=6$ by přisoudil oběma skupinám stejnou váhu, přestože jedna obsahuje třikrát více lidí. Je správný pro jinou otázku: průměr dvou skupinových charakteristik. Obdobně lze průměr jednotlivých hodnot získat z úplné tabulky četností: každou hodnotu započítáme tolikrát, kolikrát se vyskytla. Z intervalové tabulky s pouhými středy intervalů dostaneme zpravidla jen aproximaci, protože původní hodnoty už neznáme.
+Prostý průměr skupinových průměrů $(4+8)/2=6$ by přisoudil oběma skupinám stejnou váhu, přestože jedna obsahuje třikrát více lidí. Je správný pro jinou otázku: průměr dvou skupinových charakteristik. Obdobně lze průměr jednotlivých hodnot získat z úplné četnostní tabulky: každou hodnotu započítáme tolikrát, kolikrát se vyskytla. Z intervalové tabulky s pouhými středy intervalů dostaneme zpravidla jen aproximaci, protože původní hodnoty už neznáme.
 
-Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstruujeme. A pokud stejní lidé vyplnili dva testy bez chybějících hodnot, průměr jejich součtů je součtem průměrů. K tomuto vztahu nepotřebujeme žádný předpoklad o tom, jak spolu výsledky obou testů souvisejí. U variability součtu už na vztahu obou proměnných záleží; k tomu se vrátíme později.
+Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstruujeme. A pokud stejní lidé vyplnili dva testy bez chybějících údajů, průměr jejich součtů je součtem průměrů. K tomuto vztahu nepotřebujeme žádný předpoklad o tom, jak spolu výsledky obou testů souvisejí. U variability součtu už na vztahu obou proměnných záleží; k tomu se vrátíme později.
 
 ::: {.teaching-figure role="region" aria-label="Příspěvky různě velkých skupin ke společnému průměru" tabindex="0"}
 
@@ -288,7 +288,7 @@ Při interpretaci norem psychologického testu proto vždy potřebujeme znát po
 
 **Minimum (*minimum*)** je nejmenší pozorovaná hodnota, **maximum (*maximum*)** největší. Nezaměňujeme je s nejnižší a nejvyšší možnou hodnotou měřicího nástroje. **Variační rozpětí (*range*)** zde znamená rozdíl maxima a minima. U pěti dob je to $10-4=6$ minut. Interval od 4 do 10 minut popisuje obě krajní hodnoty, zatímco jeho šířka 6 minut je jedno číslo.
 
-Rozpětí využívá pouze dvě krajní hodnoty. Nahradíme-li 10 hodnotou 30, vzroste na $30-4=26$ minut. Pokud k souboru přidáváme další pozorování, jeho rozpětí se nemůže zmenšit. Pro dva samostatné náhodné výběry ale nemusí nutně platit, že „větší soubor = větší rozpětí“; jde o tendenci při opakovaném výběru ze stejné populace, nikoli záruku u konkrétní dvojice souborů.
+Rozpětí využívá pouze dvě krajní hodnoty. Nahradíme-li 10 hodnotou 30, vzroste na $30-4=26$ minut. Pokud k souboru přidáváme další pozorování, jeho rozpětí se nemůže zmenšit. Pro dva samostatné pravděpodobnostní výběry ale nemusí nutně platit, že „větší soubor = větší rozpětí“; jde o tendenci při opakovaném výběru ze stejné populace, nikoli záruku u konkrétní dvojice souborů.
 
 **Mezikvartilové rozpětí (*interquartile range*, běžně IQR)** je rozdíl 3. a 1. kvartilu:
 
@@ -344,7 +344,7 @@ V obou panelech zůstává svislá osa v **minutách**, nikoli v min²; čtverec
 
 $$\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2=\frac{22}{5}=4{,}4\ \text{min}^2.$$
 
-Tento výpočet správně popisuje empirické rozdělení, v němž má každé pozorování stejnou váhu. Když však chceme z náhodného výběru odhadovat rozptyl širší populace, běžně používáme **výběrový rozptyl (*sample variance*)**, značený $s^2$:
+Tento výpočet správně popisuje empirické rozdělení, v němž má každé pozorování stejnou váhu. Když však chceme z výběru odhadovat rozptyl širší populace, běžně používáme **výběrový rozptyl (*sample variance*)**, značený $s^2$:
 
 $$s^2=\frac{\sum_{i=1}^{n}(x_i-m)^2}{n-1}=\frac{22}{4}=5{,}5\ \text{min}^2.$$
 
@@ -460,7 +460,7 @@ Při naší konvenci je pozice 1. kvartilu $1+(41-1)\times0{,}25=11$, mediánu 2
 **Dolní mez** je $40-30=10$ bodů a **horní mez** $60+30=90$ bodů. Nejnižší pozorování uvnitř mezí je 15 a nejvyšší 85: právě tam končí **dolní a horní vous**, nikoli na 10 a 90. Hodnoty **2 a 5** leží pod dolní mezí, hodnoty **95 a 98** nad horní; zobrazíme je samostatnými body jako podezřelá odlehlá pozorování.
 :::
 
-![Konstrukce krabicového grafu pro 41 modelových testových skórů. Vlevo jsou všechna pozorování; shodné hodnoty jsou rozloženy vedle sebe. Pomocné meze a vyznačené vzdálenosti vysvětlují konstrukci a v běžném boxplotu se zpravidla nekreslí.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Svislý boxplot: 1. kvartil 40, medián 50, 3. kvartil 60, IQR 20 bodů. Od každého kvartilu směrem ven je vyznačeno 1,5 IQR, tedy 30 bodů, k dolní mezi 10 a horní mezi 90. Dolní vous končí na 15, horní na 85. Podezřelá odlehlá pozorování jsou 2 a 5 dole a 95 a 98 nahoře. Vlevo jsou původní skóry."}
+![Konstrukce krabicového grafu pro 41 modelových testových skórů. Vlevo jsou všechna pozorování; shodné hodnoty jsou rozloženy vedle sebe. Pomocné meze a vyznačené vzdálenosti vysvětlují konstrukci a v běžném krabicovém grafu se zpravidla nekreslí.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Svislý krabicový graf: 1. kvartil 40, medián 50, 3. kvartil 60, IQR 20 bodů. Od každého kvartilu směrem ven je vyznačeno 1,5 IQR, tedy 30 bodů, k dolní mezi 10 a horní mezi 90. Dolní vous končí na 15, horní na 85. Podezřelá odlehlá pozorování jsou 2 a 5 dole a 95 a 98 nahoře. Vlevo jsou původní skóry."}
 
 **Meze určují nejzazší přípustný dosah vousů**, nikoli nutně jejich skutečné konce. V běžném krabicovém grafu se pomocné meze nekreslí; zde jsou zobrazeny jen kvůli výkladu. V anglických popiscích se dolní a horní vous označují *lower whisker* a *upper whisker*, pomocné meze *lower/upper fence* a body za nimi *suspected outliers*. Na @fig-boxplot-03 rozdíl vidíme přímo: mezi dolní mezí 10 a koncem vousu 15 ani mezi koncem vousu 85 a horní mezí 90 nejsou žádná pozorování. Délka každého vousu zde činí 25 bodů; **1,5 IQR je maximální povolená délka od příslušného kvartilu, nikoli povinná délka vousu**.
 
@@ -579,7 +579,7 @@ All 36 participants completed the memory task (*M* = 7.0 words, *SD* = 2.6, *Mdn
 ::: worked-example
 **Tatáž ukázka v češtině se značkami APA 7 a českou typografií:**
 
-Modelový soubor zahrnoval 36 účastníků (*N* = 36). Údaj o době spánku byl k dispozici u 91,7 % účastníků (*n* = 33; *M* = 7,06 hodiny; *SD* = 1,29; *Mdn* = 7,10). Pozorované rozdělení bylo přibližně souměrné, bez výrazně delšího chvostu na některé straně. U tří účastníků údaj o spánku chyběl; chybějící hodnoty nebyly nahrazeny nulou.
+Modelový soubor zahrnoval 36 účastníků (*N* = 36). Údaj o době spánku byl k dispozici u 91,7 % účastníků (*n* = 33; *M* = 7,06 hodiny; *SD* = 1,29; *Mdn* = 7,10). Pozorované rozdělení bylo přibližně souměrné, bez výrazně delšího chvostu na některé straně. U tří účastníků údaj o spánku chyběl; chybějící údaje nebyly nahrazeny nulou.
 
 Paměťovou úlohu dokončilo všech 36 účastníků (*M* = 7,0 slova; *SD* = 2,6; *Mdn* = 7). Rozdělení mělo delší levý chvost, včetně výsledku nula slov. Tyto statistiky popisují daný modelový soubor a nepředstavují populační normy.
 :::
@@ -600,13 +600,13 @@ Při grafickém porovnání průměrů je užitečné zobrazit body a rozdělen�
 
 ## Od popisu dat k modelu rozdělení {#sec-popis-a-model}
 
-Několik souhrnných ukazatelů neuchová veškerou informaci. Tři **modelová populační rozdělení** v @fig-stejne-statistiky mají shodný průměr 0, rozptyl 1 a směrodatnou odchylku 1. První připouští jen hodnoty −1 a 1, každou s pravděpodobností 50 %. Druhé je souměrné a zvonovité. Třetí má delší pravý chvost. Nejde o tři náhodné výběry: shoda ukazatelů je přesnou vlastností zvolených modelů. Ani průměr spolu se směrodatnou odchylkou tedy obecně neurčuje celé rozdělení.
+Několik souhrnných ukazatelů neuchová veškerou informaci. Tři **modelová populační rozdělení** v @fig-stejne-statistiky mají shodný průměr 0, rozptyl 1 a směrodatnou odchylku 1. První připouští jen hodnoty −1 a 1, každou s pravděpodobností 50 %. Druhé je souměrné a zvonovité. Třetí má delší pravý chvost. Nejde o tři výběry z populací: shoda ukazatelů je přesnou vlastností zvolených modelů. Ani průměr spolu se směrodatnou odchylkou tedy obecně neurčuje celé rozdělení.
 
 ![Tři výrazně odlišná modelová rozdělení se stejným průměrem 0 a směrodatnou odchylkou 1. Sloupce zobrazují pravděpodobnosti v intervalech šířky 0,2; vodorovné osy jsou shodné, svislá měřítka se kvůli čitelnosti tvarů liší. Přerušovaná čára označuje společný průměr.](../assets/chapter-03/plots/stejne-dve-statistiky.svg){#fig-stejne-statistiky fig-alt="Tři panely se shodnou vodorovnou osou a různými svislými měřítky: nahoře dvě stejně pravděpodobné hodnoty minus 1 a 1, uprostřed souměrné zvonovité rozdělení, dole rozdělení zešikmené doprava. Všechny modely mají průměr 0 a směrodatnou odchylku 1."}
 
 Výška sloupce zde představuje **pravděpodobnost intervalu**, nikoli četnost v konkrétním souboru. První model nemá žádné hodnoty poblíž svého průměru, další dva ano. U druhého a třetího pokračují chvosty i za zobrazeným výřezem; uvedené ukazatele platí pro celá rozdělení, nikoli jen pro viditelnou část. Jde o vlastní modelovou ilustraci principu, nikoli o skutečná psychologická data.
 
-První model také ukazuje, proč **rozptýlenost číselných hodnot není totéž co počet různých hodnot**. Připouští pouze dvě hodnoty, ale obě leží jednu jednotku od průměru. Průměr čtverců jejich odchylek je proto $0{,}5\times(-1)^2+0{,}5\times1^2=1$. Zbylé dva modely připouštějí spojité rozmezí hodnot, přesto mají stejný rozptyl. Rozptyl a směrodatná odchylka tedy nepočítají, kolik různých výsledků se může vyskytnout; vyjadřují jejich vzdálenosti od průměru. Běžné slovo „rozmanitost“ může označovat i počet možností nebo vyrovnanost jejich zastoupení, které jsme u kategorií popisovali pomocí četností a entropie.
+První model také ukazuje, proč **variabilita číselných hodnot není totéž co počet různých hodnot**. Připouští pouze dvě hodnoty, ale obě leží jednu jednotku od průměru. Průměr čtverců jejich odchylek je proto $0{,}5\times(-1)^2+0{,}5\times1^2=1$. Zbylé dva modely připouštějí spojité rozmezí hodnot, přesto mají stejný rozptyl. Rozptyl a směrodatná odchylka tedy nepočítají, kolik různých výsledků se může vyskytnout; vyjadřují jejich vzdálenosti od průměru. Běžné slovo „rozmanitost“ může označovat i počet možností nebo vyrovnanost jejich zastoupení, které jsme u kategorií popisovali pomocí četností a entropie.
 
 **Parametrický popis rozdělení (*parametric description of a distribution*)** navíc přijímá určitou rodinu pravděpodobnostních modelů. Její konkrétní člen je určen několika parametry. Například normální rozdělení je rodina souměrných zvonovitých rozdělení: po zvolení této rodiny určují populační průměr a směrodatná odchylka celé konkrétní rozdělení. Jeho křivka, pravděpodobnosti intervalů a percentily už pak nejsou nezávisle volitelné, ale plně určeny těmito dvěma parametry [@nistNormal].
 
@@ -693,7 +693,7 @@ V tabulce je u každého vzorce uvedena cílová buňka listu `Priklad`. Anglick
 | J11 | `=J9-J8` | 1 minuta: mezikvartilové rozpětí. |
 :::
 
-U PERCENTIL.INC je druhým argumentem **podíl**, nikoli celé procento: pro 90. percentil zadáme 0,9 a dostaneme 8,4. Funkce MODE.SNGL pracuje s čísly, nikoli s textovými názvy nominálních kategorií. Pokud se žádné číslo neopakuje, vrací chybu `#N/A`; pokud několik čísel sdílí nejvyšší četnost, vrátí jen jedno. V takové situaci prohlédneme tabulku četností a uvedeme všechny mody [@msAverage; @msMedian; @msMode; @msMin; @msMax; @msPercentileInc].
+U PERCENTIL.INC je druhým argumentem **podíl**, nikoli celé procento: pro 90. percentil zadáme 0,9 a dostaneme 8,4. Funkce MODE.SNGL pracuje s čísly, nikoli s textovými názvy nominálních kategorií. Pokud se žádné číslo neopakuje, vrací chybu `#N/A`; pokud několik čísel sdílí nejvyšší četnost, vrátí jen jedno. V takové situaci prohlédneme četnostní tabulku a uvedeme všechny mody [@msAverage; @msMedian; @msMode; @msMin; @msMax; @msPercentileInc].
 
 Percentilové pořadí pro 5 minut podle naší inkluzivní konvence vypočteme jako `=COUNTIFS(A2:A6;"<=5")/POČET(A2:A6)` a výsledek zobrazíme jako procento. COUNTIFS počítá hodnoty splňující podmínku, POČET poskytuje jmenovatel. Výsledek 0,6 neboli 60,0 % zahrnuje obě hodnoty rovné pěti. K přímému výpočtu této konvence nepoužíváme bez ověření funkci s názvem obsahujícím PERCENTRANK, protože může používat jiný postup.
 
@@ -796,7 +796,7 @@ První část zaměňuje vlastnost opakovaného odhadování s přesností jedno
 Pro doby 2, 3, 4, 5, 16 minut určete medián a medián absolutních odchylek od mediánu. Co se s nimi stane, pokud 16 nahradíme 100? Vysvětlete, proč zachování těchto ukazatelů neznamená zachování celé variability.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Medián je 4 minuty. Absolutní odchylky jsou 2, 1, 0, 1, 12, po seřazení 0, 1, 1, 2, 12; jejich medián je 1 minuta. Po nahrazení 16 hodnotou 100 zůstává medián 4, poslední odchylka se změní na 96 a medián odchylek stále činí 1. Krajní část rozdělení se přesto výrazně změnila: variační rozpětí vzrostlo z 14 na 98 minut. Odolný ukazatel shrnuje prostřední vzdálenost, ne každou vlastnost rozptýlenosti.
+Medián je 4 minuty. Absolutní odchylky jsou 2, 1, 0, 1, 12, po seřazení 0, 1, 1, 2, 12; jejich medián je 1 minuta. Po nahrazení 16 hodnotou 100 zůstává medián 4, poslední odchylka se změní na 96 a medián odchylek stále činí 1. Krajní část rozdělení se přesto výrazně změnila: variační rozpětí vzrostlo z 14 na 98 minut. Odolný ukazatel shrnuje prostřední vzdálenost, ne každou vlastnost variability.
 :::
 
 ### 8. Ořezání a winsorizace

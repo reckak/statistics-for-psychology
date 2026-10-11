@@ -1632,3 +1632,38 @@ vizuální kontrola webu nebyly potřebné a nebyly spuštěny. Neproběhla nov�
 terminologická rešerše ani úplný audit užití v každé kapitole či místních
 prezentacích; registr shrnuje doložené konvence a existující vysvětlení.
 Veřejné nasazení nebylo ověřováno.
+
+## 2026-10-11 — Sjednocení terminologie kapitol 1–4
+
+Na základě schváleného auditu sjednoceny názvy v kapitolách, cvičeních,
+řešeních, studentském slovníčku a českých popiscích grafů podle
+`docs/SLOVNIK.md`: chybějící údaj, výběr, pravděpodobnostní výběr,
+kauzální závěr, úroveň měření, četnostní tabulka, souměrnost, variabilita,
+krabicový graf, rozdělení zešikmené doprava a meze intervalů.
+
+Zachovány výslovné alternativy při zavedení, prostý náhodný výběr, běžný
+popis náhodného výběru jednoho případu, normativní soubor, anglické
+reportování a obecné hranice. U výběrového rozptylu zůstávají předpoklady
+nestrannosti v navazujícím výkladu. Nové znění hesel odlišuje širší pojem
+rozdělení dat a obecný Q–Q graf; platný údaj nezaručuje správnost hodnoty.
+Preference potvrzuje R19, registr nyní konkrétně dokládá i kauzální závěr.
+Mapa obsahu zachycuje zpřesnění platného údaje a názvu zešikmení; rozsah
+učiva se nemění. Technická ID hesel a souborů zůstala zachována.
+
+Ověřena shoda všech 160 názvů a ID registru a studentského slovníčku,
+odstranění nalezených odchylek a zachování významových výjimek.
+Revize dotčených formulací zachovala odborný význam a návaznosti.
+Proběhl render celé knihy a všechny čtyři R kontroly včetně číselných
+příkladů a řešení. Aktuální snímky krabicového grafu a histogramu s Q–Q
+grafem byly vizuálně prohlédnuty: nové české popisky jsou celé a čitelné.
+
+První pokusy narazily na místní konfiguraci (Windows locale R, spouštěč
+Quarta a přístup prohlížeče k localhostu); ověření bylo zopakováno
+s UTF-8 locale, přímo přes quarto.exe a v instalovaném Chrome.
+Excel nebyl znovu spuštěn: data, sešity, vzorce ani výsledky se neměnily.
+Prezentace ani veřejné nasazení nebyly součástí této kontroly.
+
+Kontrola `check-html.cjs` prošla: 9 stránek, 160 hesel, místní odkazy,
+42 sbalených/rozbalovaných řešení včetně klávesnice, přehledové tabulky,
+obsah kapitol, zobrazení bez JavaScriptu a mobilní šířka 390 px; bez chyb.
+Kontrola `git diff --check` také prošla.

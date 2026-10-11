@@ -73,7 +73,7 @@ U spánku máme v naší malé datové matici šest účastníků, ale jen pět 
 - Ze **všech šesti účastníků** máme u tří zaznamenánu dobu spánku alespoň sedm hodin: $3/6=0{,}500$, tedy 50,0 %.
 - Z **pěti účastníků s platným údajem o spánku** splňují tuto podmínku tři: $3/5=0{,}600$, tedy 60,0 %.
 
-Oba výpočty jsou správné, ale odpovídají na různé otázky. Nevíme, zda podmínku splňuje i P05. První výrok proto není totéž jako tvrzení, že přesně polovina všech účastníků skutečně spala alespoň sedm hodin. U tabulky výslovně uvedeme počet platných údajů a počet chybějících. Chybějící hodnoty nenahrazujeme nulami a neodstraňujeme bez upozornění.
+Oba výpočty jsou správné, ale odpovídají na různé otázky. Nevíme, zda podmínku splňuje i P05. První výrok proto není totéž jako tvrzení, že přesně polovina všech účastníků skutečně spala alespoň sedm hodin. U tabulky výslovně uvedeme počet platných údajů a počet chybějících. Chybějící údaje nenahrazujeme nulami a neodstraňujeme bez upozornění.
 
 ::: {.teaching-figure role="region" aria-label="Stejný čitatel a dva základy procent" tabindex="0"}
 

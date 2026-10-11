@@ -20,7 +20,7 @@ Podrobnou teorii pravděpodobnosti k tomu zatím nepotřebujete.
 
 **Hrubý skór (*raw score*)** je výsledek před převodem na společnou standardní škálu, například počet správně vyřešených úloh. **Referenční skupina (*reference group*)** je skupina, vůči níž výsledek posuzujeme. V psychologické diagnostice se opíráme o **normativní soubor (*normative sample*)**, tedy konkrétní soubor lidí, na jehož údajích byly vytvořeny normy testu. Normy spojují dosažený výsledek s jeho polohou v určité skupině; jejich použitelnost závisí například na věku, jazyce, době získání a způsobu výběru účastníků. Normativní soubor není automaticky reprezentativní jen proto, že je velký.
 
-Představme si, že student získal 60 bodů. Ve skupině s průměrem 50 je deset bodů nad průměrem. Stejný rozdíl ale může být velký tam, kde se výsledky navzájem málo liší, a poměrně běžný ve velmi různorodé skupině. Proto jej vztáhneme ke [směrodatné odchylce](kapitola_03.qmd#sec-smerodatna-odchylka), která popisuje rozptýlenost hodnot ve stejných jednotkách jako původní měření.
+Představme si, že student získal 60 bodů. Ve skupině s průměrem 50 je deset bodů nad průměrem. Stejný rozdíl ale může být velký tam, kde se výsledky navzájem málo liší, a poměrně běžný ve velmi různorodé skupině. Proto jej vztáhneme ke [směrodatné odchylce](kapitola_03.qmd#sec-smerodatna-odchylka), která popisuje variabilitu hodnot ve stejných jednotkách jako původní měření.
 
 ### Od bodového rozdílu k jednotkám směrodatné odchylky
 
@@ -54,7 +54,7 @@ V @fig-z-jako-jednotka představuje stejná délka kroku vždy jednu směrodatno
 
 Převod všech hodnot na z-skóry nazveme **standardizací (*standardization*)**. Jestliže každou hodnotu téhož souboru převedeme s jeho vlastním $m$ a $s$, nové hodnoty mají průměr 0 a výběrovou směrodatnou odchylku 1. Odečtení průměru posune střed k nule a dělení $s$ zvolí takovou jednotku, aby směrodatná odchylka byla jedna. Jde o zvláštní případ [lineární transformace](kapitola_03.qmd#sec-zmena-skaly).
 
-Takový převod zachovává pořadí i vzájemné poměry rozdílů. **Nemění však zešikmený tvar na symetrický.** V již známých dobách dokončení úlohy 4, 5, 5, 6 a 10 minut je $m=6$ a $s=\sqrt{5{,}5}\approx2{,}35$. Z-skóry jsou po zaokrouhlení −0,85; −0,43; −0,43; 0 a 1,71. Poslední hodnota zůstává od ostatních vzdálená a opakované pětky zůstávají shodné. Změnily se souřadnice, nikoli uspořádání dat.
+Takový převod zachovává pořadí i vzájemné poměry rozdílů. **Nemění však zešikmený tvar na souměrný.** V již známých dobách dokončení úlohy 4, 5, 5, 6 a 10 minut je $m=6$ a $s=\sqrt{5{,}5}\approx2{,}35$. Z-skóry jsou po zaokrouhlení −0,85; −0,43; −0,43; 0 a 1,71. Poslední hodnota zůstává od ostatních vzdálená a opakované pětky zůstávají shodné. Změnily se souřadnice, nikoli uspořádání dat.
 
 ::: {.chapter-04-figure role="region" aria-label="Stejných pět autorských hodnot před standardizací a po ní." tabindex="0"}
 
@@ -70,7 +70,7 @@ Slovo standardizace má v psychologii také širší význam, například sjedno
 
 ### Od pozorovaných dat k hladké křivce
 
-Histogram shrnuje konkrétní naměřené hodnoty. **Normální rozdělení (*normal distribution*)** je naproti tomu matematický model rozdělení spojité veličiny. Jeho křivka má jeden vrchol a je symetrická kolem průměru; průměr, medián i modus se v tomto modelu shodují. Křivka směrem od středu klesá a má dva chvosty. Pokračují neomezeně doleva i doprava a žádná konečná hodnota není nepřekročitelnou hranicí [@howell, s. 66–68].
+Histogram shrnuje konkrétní naměřené hodnoty. **Normální rozdělení (*normal distribution*)** je naproti tomu matematický model rozdělení spojité veličiny. Jeho křivka má jeden vrchol a je souměrná kolem průměru; průměr, medián i modus se v tomto modelu shodují. Křivka směrem od středu klesá a má dva chvosty. Pokračují neomezeně doleva i doprava a žádná konečná hodnota není nepřekročitelnou hranicí [@howell, s. 66–68].
 
 Model nemusí být přesným popisem mechanismu, který data vytváří. Může být užitečným přiblížením pro určitou skupinu a otázku. Skór omezený například na 0 až 100 bodů nemůže mít přesně normální rozdělení s neomezenými chvosty. Normální model přesto může dobře aproximovat jeho střední část, pokud většina výsledků leží daleko od mezí a škála má dostatek možných hodnot. Přiměřenost posoudíme v [závěrečném oddílu](#sec-primerenost-modelu). Slovo „normální“ zde označuje tvar matematického modelu, nikoli zdraví, žádoucnost nebo správnost výsledku.
 
@@ -132,7 +132,7 @@ Pro plochy normálního modelu se „méně než 60“ a „nejvýše 60“ neli
 
 ### Orientační pravidlo 68–95–99,7 {#sec-pravidlo-normalni}
 
-V každém normálním modelu připadá přibližně 68,3 % hodnot do vzdálenosti jedné směrodatné odchylky od průměru, 95,4 % do vzdálenosti dvou a 99,7 % do vzdálenosti tří. Zbývající podíl se díky symetrii dělí napůl mezi oba chvosty.
+V každém normálním modelu připadá přibližně 68,3 % hodnot do vzdálenosti jedné směrodatné odchylky od průměru, 95,4 % do vzdálenosti dvou a 99,7 % do vzdálenosti tří. Zbývající podíl se díky souměrnosti dělí napůl mezi oba chvosty.
 
 ::: {.table-scroll .chapter-04-wide role="region" aria-label="Orientační podíly normálního modelu" tabindex="0"}
 
@@ -158,7 +158,7 @@ Tabulka zobrazuje jednotlivá čísla zaokrouhlená, proto se poslední desetinn
 
 :::
 
-V @fig-distribucni-04 zobrazuje levý graf hustotu, pravý distribuční funkci. U hustoty čteme podíl z **plochy**, u distribuční funkce přímo z **výšky**. Když posouváme hranici doprava, přidáváme další plochu, takže distribuční funkce nemůže klesat. V průměru symetrického normálního rozdělení má hodnotu 0,5.
+V @fig-distribucni-04 zobrazuje levý graf hustotu, pravý distribuční funkci. U hustoty čteme podíl z **plochy**, u distribuční funkce přímo z **výšky**. Když posouváme hranici doprava, přidáváme další plochu, takže distribuční funkce nemůže klesat. V průměru souměrného normálního rozdělení má hodnotu 0,5.
 
 ### Výpočet v Excelu {#sec-excel-normalni}
 
@@ -181,7 +181,7 @@ Na listu `Model` v přiloženém sešitu jsou vstupy a vzorce uspořádány takt
 
 :::
 
-Z modelu tedy vychází přibližně **84,1 % výsledků nejvýše 60 bodů** a **15,9 % nad 60 body**. Jde o modelový odhad percentilového pořadí, ne o přímo spočítanou četnost konkrétního výzkumného souboru. Pro podíl nad hranicí odečítáme od 1, protože obě oblasti společně tvoří celou plochu. Od 100 bychom odečítali tehdy, kdybychom počítali přímo s procentními čísly, například $100-84{,}1$.
+Z modelu tedy vychází přibližně **84,1 % výsledků nejvýše 60 bodů** a **15,9 % nad 60 body**. Jde o modelový odhad percentilového pořadí, ne o přímo spočítanou četnost konkrétního výběru. Pro podíl nad hranicí odečítáme od 1, protože obě oblasti společně tvoří celou plochu. Od 100 bychom odečítali tehdy, kdybychom počítali přímo s procentními čísly, například $100-84{,}1$.
 
 Modelové percentilové pořadí také není procento správně vyřešených úloh: říká, jaký podíl výsledků leží nejvýše na dané hodnotě, nikoli jak velkou část testu člověk zvládl.
 
@@ -189,27 +189,27 @@ Funkce **`NORM.DIST`** (anglicky rovněž `NORM.DIST`) dovoluje zadat rovnou pů
 
 Uvedené funkce jsou dostupné v Excelu 2016 a novějších verzích včetně Microsoft 365. Používáme českou desetinnou čárku a středníky mezi argumenty. Výsledek lze zobrazit procentním formátem; není pak třeba jej navíc násobit stem. V mezivýpočtech ponecháme plnou přesnost a zaokrouhlujeme až při prezentaci: obvykle podíl na tři desetinná místa, procento na jedno.
 
-### Mezi dvěma hranicemi
+### Mezi dvěma mezemi {#mezi-dvěma-hranicemi}
 
-Jaký podíl výsledků leží **nad 60 a nejvýše na 70 bodech**? Hranice mají z-skóry $(60-50)/10=1$ a $(70-50)/10=2$. Vlevo od 70 bodů leží podíl přibližně 0,97725, vlevo od 60 bodů již známý podíl přibližně 0,84134. Plocha do 70 zahrnuje i vše do 60. Menší levou plochu proto odečteme od větší:
+Jaký podíl výsledků leží **nad 60 a nejvýše na 70 bodech**? Meze intervalu mají z-skóry $(60-50)/10=1$ a $(70-50)/10=2$. Vlevo od 70 bodů leží podíl přibližně 0,97725, vlevo od 60 bodů již známý podíl přibližně 0,84134. Plocha do 70 zahrnuje i vše do 60. Menší levou plochu proto odečteme od větší:
 
 $$0{,}97725-0{,}84134=0{,}13591.$$
 
-Excel počítá s nezaokrouhlenými hodnotami. V listu `Model` zapište dolní hranici 60 do B11 a horní 70 do B12. Do B13 patří
+Excel počítá s nezaokrouhlenými hodnotami. V listu `Model` zapište dolní mez 60 do B11 a horní 70 do B12. Do B13 patří
 
 ```text
 =NORM.S.DIST((B12-B2)/B3;PRAVDA)-NORM.S.DIST((B11-B2)/B3;PRAVDA)
 ```
 
-Vzorec standardizuje obě hranice, určí obě levé plochy a odečte je. Výsledkem je přibližně **13,6 %**. Stejným postupem pro 40 až 60 odečteme $0{,}841344746\ldots-0{,}158655254\ldots$. Dostaneme $0{,}682689492\ldots$, tedy 68,3 %.
+Vzorec standardizuje obě meze, určí obě levé plochy a odečte je. Výsledkem je přibližně **13,6 %**. Stejným postupem pro 40 až 60 odečteme $0{,}841344746\ldots-0{,}158655254\ldots$. Dostaneme $0{,}682689492\ldots$, tedy 68,3 %.
 
-::: {.chapter-04-figure role="region" aria-label="Podíl pod hranicí, nad hranicí a mezi dvěma hranicemi." tabindex="0"}
+::: {.chapter-04-figure role="region" aria-label="Podíl pod hranicí, nad hranicí a v intervalu." tabindex="0"}
 
-![Podíl pod hranicí, nad hranicí a mezi dvěma hranicemi.](../assets/chapter-04/plots/oblasti.svg){#fig-oblasti-04 fig-alt="Tři stejné normální křivky mají vyznačenu plochu vlevo od 60, vpravo od 60 a mezi 60 a 70 body. Příslušné podíly jsou 84,1, 15,9 a 13,6 procenta."}
+![Podíl pod hranicí, nad hranicí a v intervalu.](../assets/chapter-04/plots/oblasti.svg){#fig-oblasti-04 fig-alt="Tři stejné normální křivky mají vyznačenu plochu vlevo od 60, vpravo od 60 a mezi 60 a 70 body. Příslušné podíly jsou 84,1, 15,9 a 13,6 procenta."}
 
 :::
 
-@fig-oblasti-04 připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporná plocha po odečtení upozorňuje na obrácené pořadí hranic, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
+@fig-oblasti-04 připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporná plocha po odečtení upozorňuje na obrácené pořadí mezí, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
 
 ## Od podílu zpět k hodnotě {#sec-podil-hodnota}
 
@@ -248,7 +248,7 @@ Převod můžete zkontrolovat vložením nalezeného z-skóru do `NORM.S.DIST` s
 
 ### Prostředních 95 % a horních 5 % jsou různé úlohy {#sec-centralni-podil}
 
-Chceme-li vymezit **prostředních 95 %** normálního rozdělení, zbývá mimo interval 5 %. Díky symetrii připadá 2,5 % na každý chvost. Dolní hranice tedy odpovídá $p=0{,}025$, horní $p=0{,}975$, protože vlevo od horní hranice leží také dolní chvost.
+Chceme-li vymezit **prostředních 95 %** normálního rozdělení, zbývá mimo interval 5 %. Díky souměrnosti připadá 2,5 % na každý chvost. Dolní mez tedy odpovídá $p=0{,}025$, horní $p=0{,}975$, protože vlevo od horní meze leží také dolní chvost.
 
 Hodnoty `=NORM.S.INV(0,025)` a `=NORM.S.INV(0,975)` jsou přibližně −1,959964 a 1,959964. V modelu $N(50,10)$ tak získáme meze **30,40 a 69,60 bodu**. Na listu `Model` je podíl 0,95 v B22, podíl v jednom chvostu `=(1-B22)/2` v B23 a meze `=NORM.INV(B23;B2;B3)` v B24 a `=NORM.INV(1-B23;B2;B3)` v B25. Používáme skutečné nezaokrouhlené výsledky funkcí; hodnota 1,96 je jejich běžné zaokrouhlení.
 
@@ -370,7 +370,7 @@ Zkontrolujeme přípustné hodnoty, jednotky, chybějící údaje a možné chyb
 
 Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněný jednotlivými body u malého souboru nebo [krabicovým grafem](kapitola_03.qmd#sec-boxplot). Hledáme asymetrii, více vrcholů, vzdálené hodnoty a nahromadění na mezích. U histogramu vyzkoušíme několik rozumných šířek a poloh intervalů: jeden výběr může zakrýt důležité rysy. Přes histogram lze přiložit normální křivku s průměrem $m$ a směrodatnou odchylkou $s$ z dat. Aby měly oba útvary porovnatelnou výšku, histogram musí mít svislou osu hustoty a celkovou plochu 1.
 
-Zvonovitý a přibližně symetrický histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Koeficienty šikmosti a excesu mohou popis doplnit, pokud je známe z nepovinného [rozšíření](kapitola_03.qmd#sec-momenty), ale jeden univerzální číselný práh nenahrazuje posouzení tvaru a účelu modelu [@howell, s. 75–78].
+Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Koeficienty šikmosti a excesu mohou popis doplnit, pokud je známe z nepovinného [rozšíření](kapitola_03.qmd#sec-momenty), ale jeden univerzální číselný práh nenahrazuje posouzení tvaru a účelu modelu [@howell, s. 75–78].
 
 ### Co porovnává normální Q–Q graf {#sec-qq-graf}
 
@@ -448,23 +448,23 @@ V následujících obrázcích jsou **simulovaná data**, vždy 200 hodnot. Kaž
 
 :::
 
-@fig-qq-normalni-04 ukazuje běžné kolísání. Ani při generování z normálního modelu nedostaneme dokonale symetrický histogram nebo body přesně na čáře. Samotná nepravidelnost proto není dostatečným důvodem model odmítnout.
+@fig-qq-normalni-04 ukazuje běžné kolísání. Ani při generování z normálního modelu nedostaneme dokonale souměrný histogram nebo body přesně na čáře. Samotná nepravidelnost proto není dostatečným důvodem model odmítnout.
 
-::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s pravostrannou šikmostí." tabindex="0"}
+::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s rozdělením zešikmeným doprava." tabindex="0"}
 
-![Simulovaný soubor s pravostrannou šikmostí.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Histogram je nahromaděný vlevo a má dlouhý pravý chvost. Q–Q body se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
+![Simulovaný soubor s rozdělením zešikmeným doprava.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Histogram je nahromaděný vlevo a má dlouhý pravý chvost. Q–Q body se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
 
 :::
 
 V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od středu vzdálenější, než normální model předpokládá, a dolní část je stlačená. Normální podíly horního chvostu by zde mohly skutečný výskyt vysokých výsledků podstatně zkreslit. Odečtení průměru a dělení směrodatnou odchylkou toto zakřivení neodstraní.
 
-::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze symetrického modelu s těžšími chvosty." tabindex="0"}
+::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s těžšími chvosty." tabindex="0"}
 
-![Simulovaný soubor ze symetrického modelu s těžšími chvosty.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně symetrické, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni."}
+![Simulovaný soubor ze souměrného modelu s těžšími chvosty.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně souměrné, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni."}
 
 :::
 
-@fig-qq-chvosty-04 připomíná, že **symetrie nestačí**. U těžších chvostů jsou oba konce vzdálenější od středu: při našich osách leží levý konec pod přímkou a pravý nad ní. U kratších, více omezených chvostů očekáváme opačné stáčení. Čteme celé uspořádání; referenční přímku může sama ovlivnit několik velmi vzdálených hodnot.
+@fig-qq-chvosty-04 připomíná, že **souměrnost nestačí**. U těžších chvostů jsou oba konce vzdálenější od středu: při našich osách leží levý konec pod přímkou a pravý nad ní. U kratších, více omezených chvostů očekáváme opačné stáčení. Čteme celé uspořádání; referenční přímku může sama ovlivnit několik velmi vzdálených hodnot.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaná směs dvou skupin s různými průměry." tabindex="0"}
 
@@ -524,18 +524,18 @@ Výška hustoty není podíl. Podílu odpovídá plocha nad intervalem; nad jedi
 Druhá učebnice uvádí jako druhý údaj rozptyl 25. Jde o týž model, protože $\sqrt{25}=5$. Excel vyžaduje směrodatnou odchylku, správný je proto první vzorec. Vrátí přibližně 0,841, tedy 84,1 %: hranice 85 leží jednu směrodatnou odchylku nad průměrem. Druhý vzorec by počítal s pětkrát širším modelem a vrátil by přibližně 0,579.
 :::
 
-### 4. Pod, nad a mezi hranicemi
+### 4. Pod mezí, nad mezí a v intervalu {#pod-nad-a-mezi-hranicemi}
 
 Pro model skóru pozornosti $N(50,10)$ načrtněte a vypočítejte podíl výsledků a) nejvýše 45 bodů, b) nad 65 bodů, c) mezi 45 a 65 body. Ve skutečné skupině 20 lidí má 8 výsledek nejvýše 45. Je tento podíl totožný s výsledkem modelu?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Směrodatná odchylka je 10. Dolní hranice má $z=(45-50)/10=-0{,}5$, horní $z=(65-50)/10=1{,}5$.
+Směrodatná odchylka je 10. Dolní mez má $z=(45-50)/10=-0{,}5$, horní $z=(65-50)/10=1{,}5$.
 
 a) Vybarvíme levou plochu do −0,5. `=NORM.S.DIST(-0,5;PRAVDA)` dává přibližně 0,308538, tedy **30,9 %**.
 
 b) Vybarvíme pravou plochu od 1,5. `=1-NORM.S.DIST(1,5;PRAVDA)` dává přibližně 0,066807, tedy **6,7 %**.
 
-c) Od levé plochy do horní hranice odečteme levou plochu do dolní: `=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)`. Výsledek je přibližně 0,624655, tedy **62,5 %**. Všechny tři oblasti společně pokrývají celé rozdělení; nezaokrouhlené podíly se sečtou na 1.
+c) Od levé plochy do horní meze odečteme levou plochu do dolní: `=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)`. Výsledek je přibližně 0,624655, tedy **62,5 %**. Všechny tři oblasti společně pokrývají celé rozdělení; nezaokrouhlené podíly se sečtou na 1.
 
 V datech je podíl $8/20=0{,}4$, tedy 40 %. Je to pozorovaná relativní četnost, kdežto 30,9 % je podíl podle modelu. Neshoda může vznikat výběrovým kolísáním i nevhodností modelu; samotná tato dvě čísla příčinu nerozhodnou.
 :::
@@ -596,14 +596,14 @@ Podíl $12/12=1$ by požadoval konečný 100. percentil normálního modelu, kte
 
 ### 10. Posouzení modelu a oprava závěru
 
-U 200 skórů má histogram jeden přibližně symetrický vrchol. V Q–Q grafu s teoretickými kvantily vodorovně leží dolní krajní body výrazně pod přímkou a horní výrazně nad ní. Výzkumník chce z normální křivky odhadnout podíl mimořádně vysokých skórů a říká: „Máme dost lidí, takže jsou data normální; každý výsledek nad dvěma směrodatnými odchylkami je klinicky závažný.“ Posuďte jeho argument a navrhněte další postup. Jak by se čtení grafu změnilo u jiného souboru, v němž je histogram nahromaděný vlevo a v Q–Q grafu leží dolní i horní krajní body nad přímkou a střední pod ní?
+U 200 skórů má histogram jeden přibližně souměrný vrchol. V Q–Q grafu s teoretickými kvantily vodorovně leží dolní krajní body výrazně pod přímkou a horní výrazně nad ní. Výzkumník chce z normální křivky odhadnout podíl mimořádně vysokých skórů a říká: „Máme dost lidí, takže jsou data normální; každý výsledek nad dvěma směrodatnými odchylkami je klinicky závažný.“ Posuďte jeho argument a navrhněte další postup. Jak by se čtení grafu změnilo u jiného souboru, v němž je histogram nahromaděný vlevo a v Q–Q grafu leží dolní i horní krajní body nad přímkou a střední pod ní?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Popis Q–Q grafu ukazuje těžší chvosty vůči normálnímu modelu: v obou směrech se objevují vzdálenější hodnoty, než přímka předpokládá. Symetrický vrchol tento nesoulad nevylučuje. Právě pro odhad velmi vysokých skórů je odchylka pravého chvostu důležitá. Velikost výběru $n=200$ zlepšuje možnost tvar posoudit, ale nenormalizuje původní hodnoty.
+Popis Q–Q grafu ukazuje těžší chvosty vůči normálnímu modelu: v obou směrech se objevují vzdálenější hodnoty, než přímka předpokládá. Souměrný vrchol tento nesoulad nevylučuje. Právě pro odhad velmi vysokých skórů je odchylka pravého chvostu důležitá. Velikost výběru $n=200$ zlepšuje možnost tvar posoudit, ale nenormalizuje původní hodnoty.
 
 Prověříme záznamy, rozsah škály, způsob získání dat a případné věcně odlišné skupiny. Pro popis získaného souboru uvedeme skutečnou četnost vysokých skórů a empirické kvantily; zobecnění na populaci bude potřebovat další zdůvodnění. Platná krajní pozorování automaticky nevyřadíme.
 
 Statistická neobvyklost vůči skupině není klinická závažnost. K té je potřeba význam měřené vlastnosti, kvalita testu, důsledky výsledku a odpovídající diagnostické podklady. Ani při přesném normálním modelu nejsou dvě směrodatné odchylky samy o sobě diagnostickým pravidlem.
 
-Ve druhém souboru jde o pravostranně zešikmené rozdělení. Nízké hodnoty jsou blíže středu, než normální model předpokládá, proto leží nad přímkou; vysoké hodnoty jsou naopak vzdálenější a leží také nad ní. Body tvoří oblouk, nikoli dvě opačně stočené části jako u těžších chvostů. Normální křivka by podíl velmi vysokých skórů zkreslila, zpravidla podhodnotila. Standardizace toto prohnutí neodstraní.
+Ve druhém souboru jde o rozdělení zešikmené doprava. Nízké hodnoty jsou blíže středu, než normální model předpokládá, proto leží nad přímkou; vysoké hodnoty jsou naopak vzdálenější a leží také nad ní. Body tvoří oblouk, nikoli dvě opačně stočené části jako u těžších chvostů. Normální křivka by podíl velmi vysokých skórů zkreslila, zpravidla podhodnotila. Standardizace toto prohnutí neodstraní.
 :::
