@@ -63,6 +63,55 @@ ch3_dots <- function(x,col='#267888',...) {
   yy <- ave(x,x,FUN=seq_along)
   plot(x,yy,pch=21,bg=col,col='white',cex=1.6,yaxt='n',ylab='',bty='n',...)
 }
+ch3_draw('percentil-a-poradi',{
+  par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
+  for(k in 1:2) {
+    y<-if(k==1) 5 else 2
+    text(.5,y+1.4,if(k==1) 'Otázka: Jaký je 50. percentil?' else 'Otázka: Jaké pořadí má čas 5 minut?',adj=0,font=2)
+    text(.5,y+.8,if(k==1) 'Hledáme hodnotu v minutách.' else 'Počítáme všechny časy nejvýše 5 minut.',adj=0,cex=.9)
+    selected<-if(k==1) seq_along(ch3_x)==3 else ch3_x<=5
+    points(1:5,rep(y,5),pch=21,cex=3,bg=ifelse(selected,'#267888','white'),col='#223744')
+    text(1:5,y-.55,ch3_x)
+    text(7.6,y,if(k==1) 'Medián = 5 minut' else '3 / 5 = 60 %\nPercentilové pořadí 60',font=2,cex=1)
+  }
+  text(.5,.3,'Stejných pět časů: 4, 5, 5, 6 a 10 minut. Každý kruh je jeden čas.',adj=0,cex=.85)
+},width=8,height=5.3)
+ch3_draw('orezani-winsorizace',{
+  par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,12),ylim=c(0,8),xaxs='i',yaxs='i')
+  ys<-c(6.6,4.2,1.8);xs<-seq(1,11,length.out=10)
+  trimmed<-ch3_trim[2:9];wins<-c(ch3_trim[2],trimmed,ch3_trim[9])
+  for(k in 1:3) {
+    y<-ys[k]
+    text(.5,y+.8,c('Původní časy (minuty)','Ořezání: krajní hodnoty vynecháme z výpočtu',
+      'Winsorizace: krajní hodnoty nahradíme')[k],adj=0,font=2)
+    vals<-if(k==3) wins else ch3_trim
+    for(i in 1:10) {
+      edge<-i %in% c(1,10)
+      rect(xs[i]-.35,y-.32,xs[i]+.35,y+.32,
+        col=if(edge)'#FAECDD' else '#E5F1F3',border=if(edge)'#B16A26' else '#267888')
+      text(xs[i],y,vals[i],col=if(k==2 && edge)'#737373' else '#223744')
+      if(k==2 && edge) segments(xs[i]-.32,y-.3,xs[i]+.32,y+.3,col='#B16A26',lwd=2)
+    }
+    text(.5,y-.8,c('10 hodnot; průměr 8 min','8 hodnot; průměr 5,875 min',
+      '10 hodnot; průměr 5,9 min')[k],adj=0,cex=.9)
+    if(k==3) text(xs[c(1,10)],y+.48,c('2 → 3','31 → 9'),col='#8A4D17',cex=.85)
+  }
+  text(.5,.2,'Upravujeme 10 % na každém konci. Původní záznamy uchováme.',adj=0,cex=.85)
+},width=8.5,height=5.8)
+ch3_draw('vazeny-prumer',{
+  par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
+  rect(.5,4.8,4.4,6.6,col='#E5F1F3',border='#267888')
+  rect(5.6,4.8,9.5,6.6,col='#FAECDD',border='#B16A26')
+  text(2.45,5.7,'10 lidí × průměr 4 min\nCelkový čas 40 min',cex=1.05)
+  text(7.55,5.7,'30 lidí × průměr 8 min\nCelkový čas 240 min',cex=1.05)
+  arrows(c(2.45,7.55),4.7,c(4,6),3.9,length=.1)
+  text(5,3.5,'(40 + 240) min / (10 + 30) lidí = 7 min na člověka',font=2,cex=.95)
+  segments(1.5,1.7,8.5,1.7,col='#223744')
+  points(c(1.5,8.5),c(1.7,1.7),pch=19,col=c('#267888','#B16A26'),cex=1.4)
+  points(6.75,1.7,pch=18,cex=2,col='#223744')
+  text(c(1.5,6.75,8.5),1.05,c('4 min','7 min\nSpolečný průměr','8 min'),cex=.9)
+  text(5,.25,'Větší skupina má při průměrování všech lidí větší váhu.',cex=.9)
+},width=8,height=5)
 ch3_draw('stejny-prumer',{
   par(mfrow=c(2,1),mar=c(3.5,4,2,.8))
   for(x in list(c(5,6,6,6,7),c(2,4,6,8,10))) {

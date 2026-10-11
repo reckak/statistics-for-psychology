@@ -97,7 +97,7 @@ const server = http.createServer((req, res) => {
         await page.waitForFunction(() => !!document.querySelector('math'));
         assert.equal(await page.locator('merror').count(), 0, 'No MathML parse errors');
         const images = page.locator('main img');
-        assert.equal(await images.count(), 14, 'Eleven plots and three Excel illustrations');
+        assert.equal(await images.count(), 17, 'Fourteen figures and three Excel illustrations');
         for (const img of await images.all()) {
           assert(await img.evaluate(el => el.complete && el.naturalWidth > 0), 'Figure loaded');
           assert((await img.getAttribute('alt')).length > 30, 'Descriptive figure alternative');
@@ -147,7 +147,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
-        assert.equal(await page.locator('main img').count(),12);
+        assert.equal(await page.locator('main img').count(),15);
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
@@ -170,7 +170,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_03.html') {
         assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
-        assert.equal(await page.locator('main img').count(),12);
+        assert.equal(await page.locator('main img').count(),15);
         assert.equal(await page.locator('#refs .csl-entry').count(),expectedReferences);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);
@@ -310,6 +310,29 @@ const server = http.createServer((req, res) => {
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
       }
       await page.evaluate(() => window.scrollTo(0, 0));
+      // New concept diagrams must remain readable and keyboard-scrollable on phones.
+      const conceptFigures = {
+        'quarto/kapitola_02.html': ['fig-zaklad-procent','fig-princip-kumulace','fig-meze-intervalu','fig-sirka-intervalu'],
+        'quarto/kapitola_03.html': ['fig-vazeny-prumer','fig-percentil-a-poradi','fig-orezani-winsorizace'],
+        'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce']
+      };
+      for (const id of conceptFigures[file] || []) {
+        const fig = page.locator('#'+id);
+        const region = fig.locator('xpath=ancestor::div[contains(@class,"teaching-figure") or contains(@class,"chapter-04-figure")][1]');
+        assert.equal(await region.getAttribute('tabindex'),'0',`Keyboard region: ${id}`);
+        assert((await region.getAttribute('aria-label')).length>10);
+        assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth),`Local mobile scrolling: ${id}`);
+        assert(await fig.locator('img').evaluate(e=>e.getBoundingClientRect().width>=650),`Legible mobile width: ${id}`);
+        assert(await page.locator(`main a[href="#${id}"]`).count()>0,`Figure discussed in prose: ${id}`);
+        await region.evaluate(e=>e.scrollLeft=0);
+        await region.screenshot({path:`tmp/verification/${id}-mobile-left.png`});
+        await region.focus();await page.keyboard.press('ArrowRight');await page.waitForTimeout(200);
+        assert(await region.evaluate(e=>e.scrollLeft>0),`Keyboard scrolling: ${id}`);
+        await region.evaluate(e=>e.scrollLeft=e.scrollWidth);
+        await region.screenshot({path:`tmp/verification/${id}-mobile-right.png`});
+        await region.evaluate(e=>e.scrollLeft=0);
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`No page overflow: ${id}`);
+      }
       await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-mobile.png` });
       await page.setViewportSize({ width: 1360, height: 1000 });
     }

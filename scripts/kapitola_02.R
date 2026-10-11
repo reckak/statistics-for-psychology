@@ -28,13 +28,16 @@ draw('histogram', {
   axis(1, at = 4:10)
 })
 draw('intervaly', {
-  par(mfrow = c(1, 2), mar = c(4.4, 4.2, 2, .8))
-  for (w in c(.5, 2)) {
-    hist(s, breaks = seq(4, 10, by = w), right = TRUE, include.lowest = FALSE, col = blue, border = 'white',
-      main = paste('Šířka', sub('.', ',', as.character(w), fixed = TRUE), 'h'),
-      xlab = 'Doba spánku (h)', ylab = 'Počet účastníků', xlim = c(4, 10), ylim = c(0, 20))
+  par(mfrow = c(2, 2), mar = c(4.4, 4.2, 2.5, .8))
+  breaks_list <- list(seq(4,10,.5),seq(4,10,2),4:10,seq(3.5,10.5,1))
+  titles <- c('Šířka 0,5 h','Šířka 2 h','Šířka 1 h; meze na celých hodinách',
+    'Šířka 1 h; meze posunuté o 0,5 h')
+  for (i in seq_along(breaks_list)) {
+    hist(s, breaks = breaks_list[[i]], right = TRUE, include.lowest = FALSE, col = blue, border = 'white',
+      main = titles[i], cex.main=.9,
+      xlab = 'Doba spánku (h)', ylab = 'Počet účastníků', xlim = c(3.5, 10.5), ylim = c(0, 20))
   }
-}, width = 8.2, height = 4)
+}, width = 8.2, height = 7.5)
 draw('kumulativni', {
   plot(ecdf(d$slova), verticals = FALSE, do.points = FALSE, xlim = c(-.5, 12.5),
     ylim = c(0, 1), main = '', xlab = 'Mez: počet vybavených slov', ylab = 'Kumulativní podíl',
@@ -108,4 +111,49 @@ draw('osa', {
     axis(1,at=1:2,labels=c('A','B'));text(1:2,c(30,32)+.3,c(30,32))
   }
 }, width=8.2,height=4)
-cat('Chapter 2: generated 11 figures from fixed data.\n')
+draw('zaklad-procent', {
+  par(mar=c(0,0,0,0))
+  plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
+  for (k in 1:2) {
+    y <- if(k==1) 5.3 else 2.4
+    text(.5,y+1.1,if(k==1) 'Všech šest účastníků' else 'Pět účastníků se známým údajem',adj=0,font=2)
+    rect(.65,y-.65,if(k==1) 7.1 else 6,y+.65,border=ink,lwd=1.5)
+    points(1:6+.2,rep(y,6),pch=c(21,21,21,21,21,22),cex=2.8,
+      bg=c(blue,blue,blue,'white','white','#DFE3E5'),col=ink)
+    text(6.2,y,'?',cex=.9)
+    text(1:6+.2,y-.95,c('P02','P03','P06','P01','P04','P05'),cex=.8)
+    text(8.5,y,if(k==1) '3 / 6\n50 %' else '3 / 5\n60 %',font=2,cex=1.15)
+  }
+  text(.5,.6,'Plný kruh: alespoň 7 h     Prázdný kruh: méně než 7 h\nČtverec s otazníkem: údaj neznáme',adj=0,cex=.85)
+},width=7.5,height=5.2)
+draw('princip-kumulace', {
+  par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,6),xaxs='i',yaxs='i')
+  categories <- c(1,2,2,3,3,4)
+  for(k in 1:2) {
+    y<-if(k==1) 4.4 else 1.8
+    selected<-if(k==1) categories==2 else categories<=2
+    text(.5,y+1,if(k==1) 'Právě „trochu“' else 'Nejvýše „trochu“',adj=0,font=2)
+    points(1:6,rep(y,6),pch=21,cex=2.8,bg=ifelse(selected,blue,'white'),col=ink)
+    text(1:6,y-.6,c('vůbec','trochu','trochu','dost','dost','zcela'),cex=.85)
+    text(8,y,paste(sum(selected),'ze 6'),font=2,cex=1.2)
+  }
+  text(.5,.3,'Jedna značka = jedna odpověď; plné značky započítáváme.',adj=0,cex=.85)
+},width=7.5,height=4.5)
+draw('meze-intervalu', {
+  par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(5.7,8.9),ylim=c(0,6),xaxs='i',yaxs='i')
+  for(k in 1:2) {
+    y<-if(k==1) 4.4 else 1.9
+    text(5.8,y+1.2,if(k==1) 'A: dolní mez patří, horní nepatří' else 'B: dolní mez nepatří, horní patří — používáme zde',adj=0,font=2,cex=.9)
+    for(j in 1:2) {
+      yy<-y-(j-1)*.55;lo<-5+j;hi<-lo+1;col<-c(blue,orange)[j]
+      segments(lo,yy,hi,yy,col=col,lwd=3)
+      points(c(lo,hi),c(yy,yy),pch=21,cex=1.5,col=col,
+        bg=if(k==1)c(col,'white') else c('white',col))
+    }
+    text(6:8,y-.95,6:8)
+    arrows(7,y+.8,7,if(k==1)y-.35 else y+.15,length=.09,col=ink)
+    text(7.2,y+.7,'7,0 h',adj=0,cex=.85)
+  }
+  text(5.8,.2,'Plný krajní bod patří do intervalu; prázdný nepatří.',adj=0,cex=.85)
+},width=8,height=4.8)
+cat('Chapter 2: generated 14 figures from fixed data.\n')
