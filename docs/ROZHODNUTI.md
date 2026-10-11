@@ -316,3 +316,18 @@ po každém sloučení a samostatných tematických větví pro infrastrukturu.
 a výslovné zadání ze dne 2026-10-11 upravit instrukce a uklidit staré
 větve po prověření výjimek; podrobnosti v autorském záznamu níže
 v [historii](../quarto/README.md).
+
+<a id="r12-nazorne-vizualizace"></a>
+
+## R12 — Názorné vizualizace ve výkladu
+
+**Stav:** schváleno. **Rozsah:** výkladové kapitoly učebnice.
+
+Diagramy, schémata a grafy zařazujeme tam, kde pomáhají pochopit pojem,
+vztah mezi pojmy nebo princip postupu. Vždy je propojujeme s výkladem;
+jejich počet se řídí didaktickým přínosem. Podrobné pravidlo je v
+[AGENTS.md](../AGENTS.md#didaktika-a-jazyk).
+
+**Důvod:** podpořit konceptuální porozumění názorným zobrazením.
+**Doklad:** výslovné zadání autora ze dne 2026-10-11 doplnit toto pravidlo
+s příkladem schématu výběru z populace a přidělení do podmínek v kapitole 1.

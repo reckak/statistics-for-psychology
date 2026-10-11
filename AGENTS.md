@@ -123,6 +123,12 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   rozšíření.
 - Piš odbornou, přirozenou češtinou v souvislém výkladu. Výčty, tabulky
   a zvýrazněné bloky používej, když pomáhají porozumění.
+- Tam, kde usnadní pochopení pojmu, vztahu mezi pojmy nebo principu postupu,
+  zařazuj do kapitoly názorné diagramy, schémata či grafy. Propoj je
+  s výkladem a vysvětli, co znázorňují a čeho si má student všimnout.
+  Příkladem je schéma odlišující výběr z populace od přidělení do podmínek
+  v první kapitole. Volbu a počet vizualizací řiď jejich didaktickým přínosem;
+  nejsou samoúčelnou ilustrací ani povinnou součástí každého oddílu.
 - Piš soustředěně a podpůrně. Pomáhej studentům vysvětlením obtížných míst
   a běžných omylů; nenahrazuj odborný výklad obecnou motivační řečí.
 - Preferuj příklady z psychologie a jasně popiš proměnné, jednotky a kontext.

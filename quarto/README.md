@@ -1142,3 +1142,15 @@ Ověření: stav obou pracovních stromů, historie a ekvivalence výjimečného
 commitu, seznam větví, kontrola rozdílů a `git diff --check`. Změny se týkají
 jen autorských instrukcí a dokumentace, render ani numerické a excelové
 kontroly proto nebyly potřeba a nebyly spuštěny.
+
+## Názorné diagramy a grafy ve výkladu (2026-10-11)
+
+Na žádost autora doplněno do oddílu „Didaktika a jazyk“ v `AGENTS.md`
+pravidlo zařazovat diagramy, schémata a grafy podle jejich přínosu
+pro pochopení pojmů, jejich vztahů a principů postupů. Referenčním příkladem
+je schéma výběru z populace a přidělení do podmínek v první kapitole.
+Rozhodnutí zachycuje R12 v `docs/ROZHODNUTI.md`.
+
+Ověření: kontrola formulace, návaznosti pravidel a rozdílů; `git diff --check`.
+Jde pouze o autorské instrukce a dokumentaci, proto render ani výpočetní
+a excelové kontroly nebyly potřeba a nebyly spuštěny.
