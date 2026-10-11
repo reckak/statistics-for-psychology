@@ -121,6 +121,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Celý text všech kapitol, úlohy a výpočty nebyly znovu ověřeny. V §5.1 nepřebírat bez vysvětlení tvrzení, že různá pojetí pravděpodobnosti vedou v testování ke stejnému výsledku. V §5.2 je třeba odlišit elementární výsledek a jev; obecná tvrzení o nemožnosti při pravděpodobnosti 0 vyžadují při spojitých modelech zpřesnění.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu ověřena identita na PDF 3 a 6; přečten souvislý výklad s. 108–127 (PDF 132–151), včetně tabulek a příkladů. V obrazech zvlášť zkontrolovány s. 109, 113, 120, 122, 125 a 127. Tabulka rodičovství/pásy (tab. 5.2, s. 113) a dopingový příklad (s. 121–122) jsou přímými podklady příkladů P05, nikoli dvěma nezávislými empirickými zdroji. Při převzetí uvést původ u Howella a modelové předpoklady. Binomický výklad s. 125–126 již přechází od přesné pravděpodobnosti konkrétního počtu k inferenčnímu závěru; pro zamýšlený úvod oddělit výpočet pravděpodobnosti od pozdějšího testování. Binomický test a úlohy od s. 128 nejsou tímto čtením kompletně prověřeny.
+
 <a id="u02"></a>
 
 ### U02 — Aron, Aron a Coups — postupné psychologické příklady
@@ -215,6 +217,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Ostatní výpočty, datové soubory a řešení nebyly systematicky přepočítány; příklady nejsou převážně psychologické.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** z originálního PDF přečteny s. 95–96, příklady 3.26–3.27 a tabulky/obrázky 3.11–3.14 v textové extrakci. Využitelný je postup od otázky ke konkrétnímu jmenovateli při podmínění. Samostatná vizuální kontrola těchto stran ani ověření datasetu v tomto kroku neproběhly.
+
 <a id="u05"></a>
 
 ### U05 — Dostál — česká terminologie a matematické souvislosti
@@ -241,6 +245,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Prostudované pasáže:** Obsah celé opory a §2.1–2.2.1, s. 12–14: jevy, pravidla, nezávislost a klasická pravděpodobnost.
 
 **Nálezy a neověřené části:** Důležitá odchylka: s. 13–14 odmítají pravděpodobnost jako subjektivní míru jistoty pro již rozhodnutou neznámou skutečnost. Jde o určité pojetí, které se rozchází s Baronem a s pluralitou pojetí u Howella/Navarro; nepřebírat jako obecný zákaz. Neověřeny všechny výpočty a řešení.
+
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 12–14; potvrzen rozpor v pojetí pravděpodobnosti uvedený výše. Terminologický podklad je užitečný, ale odmítnutí pravděpodobnosti již nastalé neznámé skutečnosti není společnou definicí všech pravděpodobnostních přístupů. Nová vizuální kontrola těchto stran neproběhla.
 
 <a id="u06"></a>
 
@@ -343,6 +349,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Kód R, závislosti a epilogy nejsou kompletně spuštěny ani revidovány. Pozdější bayesovské kapitoly jsou pouze zmapované.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteny s. 373–377 včetně kontextu model → data versus data → model, četnostního výkladu a úvodu k subjektivnímu pojetí. Obr. 9.1 byl čten jen v extrakci, nová vizuální kontrola neproběhla. Návrh vlastní simulace má ukazovat kolísání relativních četností, nikoli slib monotónního přibližování nebo přesného vyrovnání krátké řady.
+
 <a id="u09"></a>
 
 ### U09 — Privitera — široká učebnice behaviorálních věd
@@ -416,6 +424,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Matematické důkazy, cvičení, kód R a obsah opravy nebyly kompletně ověřeny. Číslování PDF má vložené a vynechané stránky; nepoužívat jediný konstantní posun.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteny s. 64–69 (PDF 79–84): definice podmínění včetně kladné pravděpodobnosti podmínky, obecné součinové pravidlo, úplná pravděpodobnost a Bayesova věta. Vizuálně zkontrolovány s. 64, 68–69 včetně obr. 4.1–4.2. Pro studentský text postačí úplná pravděpodobnost rozdělená podle jevu a jeho doplňku; obecný indexovaný zápis není tímto schválen.
+
 <a id="u11"></a>
 
 ### U11 — Russo — úvod do četnostní a bayesovské statistiky
@@ -458,6 +468,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 - **S. 64–67 (PDF 85–88):** názorný přechod od stromu k Bayesově větě a upozornění, že podmínění nevyžaduje časové pořadí. Příklad komunit mísí nelegální jednání a zatčení; číselný výsledek platí pro podmínku uvedenou v modelu (nelegální jednání), nikoli automaticky pro mechanismus zatýkání. Pro nový výklad je vhodnější diagnostický příklad s jasně vymezenými jevy a opraveným vysvětlením nezávislosti.
 
 **Neověřeno a chybějící části:** podrobný výklad mimo uvedené pasáže, ostatní výpočty, důkazy, empirická tvrzení a odpovědi na cvičení; aktuální funkčnost JASP, Dienesova kalkulátoru a dalších programů. Webové úlohy, data a sešity nebyly staženy ani prověřeny. Kromě kapitol 13–14 jsou pouze na webu také §2.11, §5.11, §6.9, §8.10 a §12.5–12.6; stránka uvedená v obsahu je odkazem, nikoli dostupným výkladem. Bayesovské postupy jsou převážně zmapované, nikoli kompletně odborně revidované. Jejich zařazení do kurzu vyžaduje samostatnou dohodu.
+
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 60–67 (PDF 81–88); vizuálně prohlédnuty s. 62 a 64–67. Potvrzena výše uvedená záměna nezávislosti výsledku testu a jeho správnosti. S. 64 je vhodná opora pro rozlišení tabulky výběru a populační nezávislosti a pro vysvětlení, že podmínění nemusí vyjadřovat časovou posloupnost.
 
 ## Starší přednáškové prezentace
 
@@ -531,6 +543,8 @@ U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohle
 
 **Neověřeno:** všechny koeficienty, historické údaje, odkazované video, externí kalkulátory a QR kódy. Příklad délky prstu je zadán s modelovým předpokladem; nedokládá empirickou normalitu této vlastnosti.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** z aktuálního PPTX znovu přečteny sn. 22–44 i dostupné poznámky; sn. 22–40 prohlédnuty v existujícím exportu. Doplňkové využití: nejistota, převod pravděpodobnosti na šance a přechod od dat k modelu. Sn. 28 vyžaduje opravu: nezávislost opakování není součástí obecné definice náhodného pokusu a náhodná proměnná nevzniká teprve opakováním ani není totožná se sloupcem pozorovaných dat. Na sn. 38 nepřebírat označení likelihood jako matematicky volného synonyma plauzibility; věrohodnost má přesný statistický význam. Šance, poměr šancí i další názvy zůstávají návrhy k dohodě.
+
 <a id="p04"></a>
 
 ### P04 — Normální rozdělení, STPS 2025
@@ -587,6 +601,8 @@ U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohle
 - **Sn. 35:** zadání požaduje 135 a více úspěchů, ale čitatel z-skóru obsahuje 130 − 120. Hodnota přibližně 2,16 odpovídá 135, nikoli 130 (pro 130 vychází přibližně 1,44). Přesný binomický výsledek pro zadanou otázku je 0,017307…; normální aproximace bez korekce na spojitost 0,015191… a s hranicí 134,5 přibližně 0,018179…. Rozdíl popsat jako aproximaci, nikoli jako přesnou shodu.
 
 **Neověřeno:** úplná odborná revize každého tvrzení, všech poznámek a výpočtů; původ a oprávnění k dalšímu použití převzatých obrázků a dat; živé animace a externí odkazy. Funkce, české názvy, syntaxe a výsledky sn. 36 nebyly spuštěny v Excelu ani nově ověřeny v jeho dokumentaci. Originál prezentace zůstal beze změny; tato karta není jeho opravenou verzí ani schválením nových termínů.
+
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** z aktuálního PPTX znovu přečten všech 36 snímků a dostupné poznámky; všechny snímky prohlédnuty na čtyřech existujících kontaktních listech. Srovnání s U01 s. 113 a 121–122 doložilo původ tabulky rodičovství/pásy a dopingového příkladu. Přesnou racionální aritmetikou znovu ověřeno 95/185 a 810/815; při modelové změně prevalence na 1 % za stejné senzitivity 0,95 a specificity 0,90 je pozitivní prediktivní hodnota 95/1085 = 0,087558… (četnosti pro 10 000 osob). Jde o návrh doplnění vlivu základního výskytu, nikoli schválenou úlohu ani empirickou vlastnost testu. Ověřen také příklad dvou šestek z pěti hodů: 10 × (1/6)^2 × (5/6)^3 = 0,160751…; Excel nebyl spuštěn.
 
 ## Procvičování a seminář
 
@@ -659,6 +675,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 **Odchylky od projektu:** X3_02 používá postup percentilového pořadí se jmenovatelem n + 1; není to současný empirický podíl hodnot menších nebo rovných podle R04. V X3_31 musí být odlišena přesná binomická pravděpodobnost od normální aproximace. Při převzetí převodů skórů určit, zda je SD populační parametr, nebo výběrová charakteristika.
 
 **Neověřeno:** celý klíč, aktuálnost empirických tvrzení a právních souvislostí Flynnova efektu, přesné vydání úloh C3, původ dat a normy testů. Modelový výpočet četnosti IQ v Brně není zjištěný počet skutečných obyvatel s danou vlastností.
+
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečtena zadání X3_08–20. Pro návrh využitelné jsou doplněk, alespoň jeden výskyt, nezávislé hody a hádání odpovědí; u hádání je třeba výslovně zadat počet správných alternativ, způsob volby a nezávislost. Nejde o novou úplnou kontrolu řešení ani schválení převzetí celé sady.
 
 <a id="c04"></a>
 
@@ -796,6 +814,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Neověřeno:** původní data a následný vývoj citovaných studií, všechny drobné údaje v obrazových částech skenu. Historické příklady nejsou automaticky současná medicínská či jiná odborná doporučení. Textová vrstva samotného PDF téměř nezachycuje článek; při přesné citaci použít obraz strany, nikoli nekontrolované OCR.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 77–78 (PDF 4–5), zejména oddíly 7–8 o náhodných shodách a záměně obrácených podmíněných pravděpodobností. Podnět pro rozlišení předem určené události a některé z mnoha možných shod. Bez nového vizuálního ověření OCR a bez aktualizace empirických či demografických údajů; tyto údaje se do návrhu nepřebírají.
+
 <a id="d08"></a>
 
 ### D08 — Baron: normativní teorie pravděpodobnosti
@@ -819,6 +839,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Odchylky / neověřeno:** autor obhajuje osobní pojetí; to je stanovisko zdroje, ne neutrální přepis všech interpretací. Diagnostické četnosti v příkladech jsou historická výuková zadání, nikoli ověřené současné parametry testů. OCR vzorců je místy porušené; všechny vzorce, skórovací pravidla, diagnostické sítě a bibliografická identita vyžadují před konkrétním použitím kontrolu originálu.
 
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 121–123 (PDF 19–21), s. 122 navíc zkontrolována v obrazu. Využitelný je postup nejprve přirozené četnosti a tabulka, potom strom a symbolický vztah. Klinické hodnoty příkladu nejsou tímto ověřeny pro současnou praxi; neověřená bibliografická identita celého úryvku trvá.
+
 <a id="d09"></a>
 
 ### D09 — Baron: deskriptivní teorie pravděpodobnostních úsudků
@@ -840,6 +862,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 **Prostudováno:** struktura celého úryvku a hlavní výklady/příklady pomocí OCR; obrazově zejména s. 145–152. **Použití:** konceptuální otázky a psychologické příklady, které propojují formální pravidla s úsudkem.
 
 **Nálezy / neověřeno:** výraz „confidence interval“ na s. 139 označuje zde subjektivní interval úsudku; nelze bez vysvětlení převzít jeho pravděpodobnostní interpretaci do frekventistického intervalu spolehlivosti. Neověřeny původní experimenty, replikace, současná empirická podpora jednotlivých vysvětlení, všechny číselné údaje a původní bibliografie. Zdrojem je historická kapitola, nikoli aktualizovaný systematický přehled.
+
+**Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 150–152 (PDF 14–16): obrácené podmínění, konjunkční klam a hráčský klam. Vlastní didaktické příklady lze v návrhu připojit přímo k příslušným pravidlům pravděpodobnosti. Neproběhla nová vizuální kontrola těchto stran ani ověření původních studií; historická vysvětlení mechanismů nevydávat za nový přehled empirických poznatků.
 
 <a id="d10"></a>
 

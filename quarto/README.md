@@ -1723,3 +1723,22 @@ Lokálně zkontrolovány rozdíly a `git diff --check`. Render a kontroly
 knihy ověří běh PR na GitHubu. Nahrání Pages artefaktu a nasazení jsou
 podmíněny větví main a lze je ověřit až po autorově sloučení; tato změna
 sama veřejné nasazení nepotvrzuje.
+
+
+## Příprava kapitoly 5: čtení podkladů (2026-10-11)
+
+Na žádost autora o projednání kapitoly o pravděpodobnosti byly porovnány
+všechny soubory `sources/` s inventářem: 30 souborů, všechny prefixy SHA-256
+odpovídají mapě. Rozšířené čtení obou relevantních prezentací, Howellovy
+kapitoly 5 a vybraných dalších zdrojů je přesně zaznamenáno v kartách
+U01, U04, U05, U08, U10, U11, P03, P05, C03 a D07–D09 v
+[mapě zdrojů](../docs/ZDROJE.md). Karty oddělují textovou a vizuální kontrolu,
+nezávislé výpočty i zbývající bibliografická a empirická omezení.
+
+V této fázi není schválen podrobný rozsah kapitoly ani nové pojmy a symboly.
+Studentské kapitoly, zdrojové prezentace a ostatní originály se neměnily.
+Ověřeny číselné podíly dopingového příkladu, navržená změna prevalence
+za zachování podmíněných pravděpodobností a příklad dvou šestek z pěti hodů
+přesnou racionální aritmetikou v Pythonu. Excel nebyl spuštěn. Zkontrolován
+diff a umístění doplnění u zdrojových karet; `git diff --check` bez chyb.
+Změna autorské dokumentace nevyžaduje render knihy ani kontrolu webu.
