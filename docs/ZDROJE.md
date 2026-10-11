@@ -1,6 +1,6 @@
 # Mapa autorských zdrojů
 
-Stav inventury a obsahového průzkumu: **11. října 2026**. Mapa zahrnuje všech **28 souborů** v aktuální složce `sources/` a jejích podsložkách: 10 učebnic, 4 starší přednáškové prezentace, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
+Stav inventury a obsahového průzkumu: **11. října 2026**. Mapa zahrnuje všech **29 souborů** v aktuální složce `sources/` a jejích podsložkách: 10 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -36,10 +36,10 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Poloha, variabilita, kvantily, boxplot | [U01](#u01) §2.6–2.12; [U06](#u06) kap. 3–4; [U05](#u05) kap. 3 | [P02](#p02); [C02](#c02) | Existující kapitola 3; dodržet R04 a R14, nevracet starší algoritmy a značení. |
 | Transformace, z/T/IQ, percentilové pořadí | [U01](#u01) §2.12, §3.2 a §3.6; [U02](#u02) kap. 3 | [P03](#p03) sn. 3–21; [P04](#p04); [C03](#c03) X3_01–07; [C04](#c04); [D10](#d10) | Rozlišit standardizaci, normalizaci a pořadí; pozor na chyby ve starých řešeních. |
 | Normální model, plochy, kvantily, posouzení modelu | [U01](#u01) kap. 3; [U03](#u03) kap. 4; [U04](#u04) §4.1 | [P03](#p03) sn. 45–59; [P04](#p04); [C03](#c03) X3_21–37; [D10](#d10) | Existující kapitola 4; konvence N(μ, σ) podle R15; rozlišit Q–Q a P–P graf. |
-| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4 | [P03](#p03) sn. 22–32; [C03](#c03) X3_08–20; [D08](#d08) | Směr další výkladové kapitoly podle osnovy; konkrétní rozsah teprve dohodnout. Srovnat rozdílná pojetí u Dostála a Barona. |
-| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129 | [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Přirozené četnosti, kontingenční tabulky, stromy; odlišit P(A\|B) a P(B\|A). |
+| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Směr další výkladové kapitoly podle osnovy; konkrétní rozsah teprve dohodnout. Srovnat rozdílná pojetí u Dostála a Barona. |
+| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129 | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Přirozené četnosti, kontingenční tabulky, stromy; odlišit P(A\|B) a P(B\|A). |
 | Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [D08](#d08), [D09](#d09) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | Psychologická motivace a chyby interpretace; původní studie nejsou tímto průzkumem replikovány ani aktualizovány. |
-| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [C03](#c03) X3_31 | Nabídka navazujících témat; kombinatoriku a matematický rozsah vybrat podle cíle. |
+| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | Nabídka navazujících témat; kombinatoriku a matematický rozsah vybrat podle cíle. U P05 opravit zaznamenané chyby před použitím. |
 | Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10 | [P04](#p04) sn. 5–6 jen jako výchozí námět | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti. |
 | Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7 | [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
 | Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07) | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
@@ -65,6 +65,7 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [P02](#p02) | [PSYb1170_P02_2026_-_Popisne_statistiky.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P02_2026_-_Popisne_statistiky.pptx) | 53 snímků | `a241d36fb9152355` |
 | [P03](#p03) | [PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx) | 60 snímků | `c36178e0a58eb3d0` |
 | [P04](#p04) | [normal_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/normal_distribution.pptx) | 22 snímků | `e96b31993c914185` |
+| [P05](#p05) | [probability.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/probability.pptx) | 36 snímků | `3f65f85091f08242` |
 | [C01](#c01) | [ulohy_tyden01_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden01_2025.docx) | DOCX | `748e3395728f4f81` |
 | [C02](#c02) | [ulohy_tyden02_2026.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden02_2026.docx) | DOCX | `eb503ae2273185eb` |
 | [C03](#c03) | [ulohy_tyden03_2024.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden03_2024.docx) | DOCX | `2dc558b65cba9540` |
@@ -416,7 +417,7 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 ## Starší přednáškové prezentace
 
-U všech čtyř prezentací byl přečten extrahovaný text snímků a byly dohledány poznámky podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly vybrané přehledové kontaktní listy. To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
+U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohledány poznámky podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly přehledové kontaktní listy (u P01–P04 vybrané, u P05 všechny). To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
 
 <a id="p01"></a>
 
@@ -504,6 +505,44 @@ U všech čtyř prezentací byl přečten extrahovaný text snímků a byly dohl
 **Nálezy:** sn. 4 uvádí špičatost normálního modelu 0 bez rozlišení excessu; běžný čtvrtý standardizovaný moment je 3. Sn. 5 vynechává podmínky CLT a rozlišení toho, čeho se týká normalita v různých metodách. Tabulka na sn. 21 používá označení „interval spolehlivosti“ pro interval vymezený kvantily rozdělení hodnot; tyto pojmy nezaměňovat. Ve sn. 15–17 odlišit percentil od percentilového pořadí a interval z-skórů od jediné hodnoty pořadí.
 
 **Neověřeno:** empirická opora tvrzení o normalitě psychologických rysů a skutečné normy testu YSR ve sn. 11. Parametry příkladu nepředstavovat jako ověřená diagnostická doporučení. Výpočty a konstrukční formule sn. 21–22 nebyly kompletně přepočítány.
+
+<a id="p05"></a>
+
+### P05 — Pravděpodobnost, STPS 2025
+
+**Soubor:** [probability.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/probability.pptx) (místní neveřejný podklad); 36 snímků, žádný označený jako skrytý. Titul uvádí „Pravděpodobnost“ a „STPS 2025“. Metadata PPTX uvádějí autora Karla Rečku a poslední změnu 19. prosince 2025; nejde o nezávislé ověření autorství všech převzatých příkladů a obrázků.
+
+**Datum a verze průzkumu:** 11. října 2026, SHA-256 prefix `3f65f85091f08242`.
+
+| Snímky | Obsah a využití |
+|---|---|
+| 1–3 | Úvod, analytické, četnostní a subjektivní pojetí; příklad populace 100 lentilek. |
+| 4–7 | Náhodný pokus, jev a proměnná, nezávislost, výlučnost a doplněk; společná, podmíněná a marginální pravděpodobnost a sjednocení. Kontingenční tabulka rodičovství a používání pásů. |
+| 8–13 | Součtové a součinové pravidlo, karty; srovnání nezávislosti a závislosti v tabulkách pohlaví a stresu. |
+| 14–19 | Prostor výsledků, rozdělení, diskrétní a spojité proměnné, hustota a shrnutí. Sn. 17 zobrazuje odpovědi na položku kvality života, sn. 18 hustotu věku matky při narození prvního dítěte; obrázky nesou označení Cengage Learning 2013. |
+| 20–23 | Faktoriál, uspořádaný a neuspořádaný výběr bez opakování; loterie se třemi různými nebo stejnými cenami pro 100 studentů. |
+| 24–28 | Bayesova věta, prior, posterior a věrohodnost; dopingový test, senzitivita, specificita, prediktivní hodnoty a přepis do přirozených četností pro 1 000 osob. |
+| 29–31 | Binomické rozdělení a jeho předpoklady; dvě šestky v pěti hodech, deset možných rozmístění úspěchů. |
+| 32–35 | Normální aproximace binomického rozdělení; sn. 33 je obrazová tabule histogramů 10 000 výběrových podílů pro různá p a n. Převod počtu na podíl a příklad alespoň 135 úspěchů z 200 při p = 0,6. |
+| 36 | Funkce Excelu: FAKTORIÁL, PERMUTACE, KOMBINACE, BINOM.DIST a BINOM.INV. |
+
+**Doporučené použití:** podklad k dosavadním obsahovým prioritám autora pro další kapitolu o pravděpodobnosti; zejména srovnání typů pravděpodobností v jedné tabulce (sn. 7), dvojice tabulek nezávislosti a závislosti (sn. 12–13) a převod Bayesova výpočtu na přirozené četnosti (sn. 26–28). Kombinatorika, binomický model a aproximace jsou nabídkou navazujících témat, nikoli schváleným rozsahem kapitoly. Při použití porovnat s U01 kap. 5 a U10 kap. 3–7; Howell zůstává hlavním východiskem. Označení a symboly prezentace nejsou automaticky schválenou konvencí učebnice.
+
+**Prostudováno:** text všech 36 snímků včetně matematických objektů a dostupných poznámek podle vazeb PPTX; všechny snímky vyexportovány PowerPointem a prohlédnuty na čtyřech kontaktních listech. Sn. 34 navíc prohlédnut samostatně kvůli spornému vzorci. Obrazový sn. 33 tedy není prázdný, přestože textová extrakce nevrací obsah.
+
+**Nezávislé výpočty:** v Pythonu ověřeny počty 970 200 a 161 700 pro loterii (sn. 21–23), podíly 95/185 = 0,513513… a 810/815 = 0,993865… (sn. 26–28), binomická pravděpodobnost dvou šestek 0,160751… (sn. 30–31) a příklad sn. 35 součtem binomických pravděpodobností i normální aproximací. Nejde o ověření všech výpočtů ani funkcí Excelu.
+
+**Nálezy a podmínky dalšího použití:**
+
+- **Sn. 3:** u zelených lentilek je četnost 16, ale pravděpodobnost 13/100 = 13 %. Při rovnoměrném výběru jedné lentilky má být 16/100 = 16 %; nesoulad je i ve vykreslené tabulce.
+- **Sn. 2, 4, 14–16 a 19:** před převzetím zpřesnit rozdíl mezi výsledkem a jevem a mezi diskrétním rozdělením a spojitou hustotou. „Malý počet hodnot“ není obecná definice diskrétnosti; může jít i o spočetně nekonečný soubor hodnot. Tvrzení, že pravděpodobnost 0 znamená nemožnost, nelze bez omezení přenést na spojité modely. Práce s výběry sama nezdůvodňuje výhradní volbu četnostního pojetí. U tabulek sn. 12–13 rozlišit popis dané tabulky od závěru o populaci.
+- **Sn. 20–23:** pojmenování uspořádaného výběru „permutace“ je třeba před českým výkladem terminologicky dohodnout (běžné české rozlišení variací a permutací). Poznámka sn. 20 mylně opakuje „permutace“ i pro výběr bez ohledu na pořadí. Na sn. 22 v mezikroku 100!/97! chybí faktor 3! ve jmenovateli; konečný výsledek 161 700 je správný.
+- **Sn. 25–28:** poznámku sn. 25 o Bayesově větě jako „váženém průměru“ nepřebírat jako obecné vysvětlení aktualizace. Na sn. 26 má druhý člen jmenovatele symbolického vzorce obsahovat pravděpodobnost pozitivního testu při **nedopování**; v originále je opět „dopuje“. Číselné dosazení používá správně 0,10. Podíl 95/185 se na tři desetinná místa zaokrouhluje na **0,514**, nikoli 0,513; doplněk na 0,486. Na sn. 27 je 0,994 správné zaokrouhlení, ale odpovídající procento je přibližně **99,4 %**, nikoli 99,6 %.
+- **Sn. 30–31:** přesný výsledek je přibližně 0,160751; 0,16 je vhodná hrubá aproximace, ale mezikrok 0,016 je již zaokrouhlený a nemá se vydávat za přesnou rovnost.
+- **Sn. 34:** vzorec směrodatné odchylky počtu je správný. Po převodu na podíl však N nezmizí: směrodatná odchylka je √[p(1 − p)/N], nikoli uvedené √[p(1 − p)]. Plyne to z dělení směrodatné odchylky počtu číslem N. Chyba potvrzena v samostatném exportu snímku.
+- **Sn. 35:** zadání požaduje 135 a více úspěchů, ale čitatel z-skóru obsahuje 130 − 120. Hodnota přibližně 2,16 odpovídá 135, nikoli 130 (pro 130 vychází přibližně 1,44). Přesný binomický výsledek pro zadanou otázku je 0,017307…; normální aproximace bez korekce na spojitost 0,015191… a s hranicí 134,5 přibližně 0,018179…. Rozdíl popsat jako aproximaci, nikoli jako přesnou shodu.
+
+**Neověřeno:** úplná odborná revize každého tvrzení, všech poznámek a výpočtů; původ a oprávnění k dalšímu použití převzatých obrázků a dat; živé animace a externí odkazy. Funkce, české názvy, syntaxe a výsledky sn. 36 nebyly spuštěny v Excelu ani nově ověřeny v jeho dokumentaci. Originál prezentace zůstal beze změny; tato karta není jeho opravenou verzí ani schválením nových termínů.
 
 ## Procvičování a seminář
 
