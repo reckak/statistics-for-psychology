@@ -172,7 +172,7 @@ ch4_draw('qq-priklad', {
 # Distinct simulations for graphical diagnosis; not empirical psychological data.
 set.seed(20261010)
 ch4_simulations <- list(normalni=rnorm(200,50,10),sikme=30+rexp(200,rate=1/15),chvosty=50+8*rt(200,df=3),smes=c(rnorm(100,36,5),rnorm(100,64,5)))
-ch4_titles <- c(normalni='Normální model',sikme='Pravostranná šikmost',chvosty='Těžší chvosty',smes='Směs dvou skupin')
+ch4_titles <- c(normalni='Normální model',sikme='Rozdělení zešikmené doprava',chvosty='Těžší chvosty',smes='Směs dvou skupin')
 for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   v<-ch4_simulations[[nm]]; z<-qnorm((seq_along(v)-.5)/length(v))
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))

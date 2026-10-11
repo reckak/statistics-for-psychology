@@ -126,9 +126,9 @@ Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slov
 
 ### Interní a externí validita {#sec-interni-externi-validita}
 
-Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro příčinný (kauzální) závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo připadají v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
+Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro kauzální závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo připadají v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
 
-Howell [-@howell, s. 3] propojuje náhodné přidělení s interní validitou a náhodný výběr z populace s externí validitou. Náhodné přidělení omezuje systematické rozdíly ve složení porovnávaných skupin; kontrolu provedení experimentu však nenahrazuje. Pravděpodobnostní výběr podporuje zobecnění na populaci, z níž vybíráme. Přenos do jiného prostředí nebo na jiný druh úlohy je samostatná otázka; rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
+Howell [-@howell, s. 3] propojuje náhodné přidělení s interní validitou a pravděpodobnostní výběr z populace s externí validitou. Náhodné přidělení omezuje systematické rozdíly ve složení porovnávaných skupin; kontrolu provedení experimentu však nenahrazuje. Pravděpodobnostní výběr podporuje zobecnění na populaci, z níž vybíráme. Přenos do jiného prostředí nebo na jiný druh úlohy je samostatná otázka; rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
 
 Pravděpodobnostní výběr a náhodné přidělení tedy řeší různé otázky. @fig-vyber-prideleni je ukazuje jako dva po sobě jdoucí kroky: první rozhoduje o tom, kdo se z populace dostane do výběru, druhý o tom, kterou podmínku účastník dostane. Náhodný mechanismus můžeme použít v obou krocích, jen v jednom z nich, nebo v žádném.
 
@@ -149,7 +149,7 @@ Tečky ve schématu představují lidi. V prvním kroku se z populace stane výb
 Dobře provedené srovnání může přispět k posouzení účinku zvuků v dané situaci. Musíme ověřit, zda se podmínky nelišily něčím jiným, například odlišnou místností nebo instrukcemi: tím posuzujeme interní validitu. Přenos výsledku na starší lidi, učení delšího textu nebo domácí prostředí potřebuje další argumenty: tím posuzujeme externí validitu. Dobré příčinné srovnání uvnitř studie je možné i s dobrovolníky; náhodné přidělení z nich ale neudělá pravděpodobnostní výběr z populace.
 :::
 
-Silná interní validita nezaručuje širokou zobecnitelnost a reprezentativní výběr sám neprokazuje příčinu. Ani neplatí obecné pravidlo, že posílení jedné validity musí nutně oslabit druhou. Pro přenos příčinného závěru potřebujeme jak oporu pro příčinu v původní studii, tak oporu pro jeho platnost v nových podmínkách. Oba pojmy najdete také ve [slovníčku](slovnicek.qmd#pojem-interni-validita).
+Silná interní validita nezaručuje širokou zobecnitelnost a reprezentativní výběr sám neprokazuje příčinu. Ani neplatí obecné pravidlo, že posílení jedné validity musí nutně oslabit druhou. Pro přenos kauzálního závěru potřebujeme jak oporu pro příčinu v původní studii, tak oporu pro jeho platnost v nových podmínkách. Oba pojmy najdete také ve [slovníčku](slovnicek.qmd#pojem-interni-validita).
 
 Podrobná statistická analýza příčinu „nedodá“ tam, kde pro ni chybí opora v uspořádání (designu) studie a v relevantních předpokladech. Popis, usuzování na populaci a kauzální závěr je proto vhodné rozlišovat už při formulování otázky, ne až po výpočtu.
 
@@ -391,7 +391,7 @@ Pro názvy sloupců zvolíme jednoduchou konvenci: krátké a srozumitelné náz
 
 **Chybějící údaj (*missing value*)** znamená, že hodnotu nemáme k dispozici. Účastník mohl otázku přeskočit, nemuselo proběhnout měření nebo se záznam ztratil. Někdy je důležité zachovat i důvod chybění, protože může měnit naše porozumění datům.
 
-Při přepisu dat pro následné zpracování ve statistickém programu lze pro chybějící hodnoty použít jednotný kód mimo přípustný rozsah, například −99. Jeho výhodou je, že vyplněný kód může znamenat: „Zkontrolovali jsme formulář a zjistili jsme, že odpověď chybí.“ Prázdná buňka může během přepisu znamenat chybně přeskočené místo, které jsme zapomněli vyplnit. Význam kódu proto předem stanovíme a zapíšeme.
+Při přepisu dat pro následné zpracování ve statistickém programu lze pro chybějící údaje použít jednotný kód mimo přípustný rozsah, například −99. Jeho výhodou je, že vyplněný kód může znamenat: „Zkontrolovali jsme formulář a zjistili jsme, že odpověď chybí.“ Prázdná buňka může během přepisu znamenat chybně přeskočené místo, které jsme zapomněli vyplnit. Význam kódu proto předem stanovíme a zapíšeme.
 
 Kód volíme tak, aby byl snadno rozpoznatelný jako zvláštní označení a nemohl být zaměněn za skutečnou hodnotu dané proměnné. Například −99 nemůže představovat počet správně vybavených slov v úloze s dvanácti slovy. Samotná neobvyklost čísla nestačí: hodnota, která je vzácná, ale možná, není vhodným kódem chybění. **Rozhoduje nepřípustnost podle vymezení proměnné, nikoli jen to, že se hodnota v našem souboru nevyskytla.**
 

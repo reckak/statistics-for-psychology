@@ -511,3 +511,27 @@ a rozhodnutí a zadal: „Vytvoř docs/SLOVNIK.md podle tohoto návrhu, naplň h
 dosud schválenou terminologií a uprav související dokumentaci a AGENTS.md,
 aby bylo jasné, jak ho používat a udržovat.“ Tento souhlas nemění jednotlivé
 statistické konvence a neschvaluje nové pojmy budoucích kapitol.
+
+<a id="r19-sjednoceni-terminologie"></a>
+
+## R19 — Sjednocení terminologie kapitol 1–4
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** čtyři kapitoly, studentský
+slovníček a související popisky grafů.
+
+Používat preference registru SLOVNIK.md také v navazujícím výkladu,
+cvičeních, řešeních a popiscích. Autor výslovně potvrdil preferenci
+„pravděpodobnostní výběr“ před „náhodný výběr“ a „kauzální závěr“ před
+„příčinný závěr“. Zachovat prostý náhodný výběr, běžný popis náhodného
+výběru jednoho případu, normativní soubor, orientační uvedení alternativ
+a anglické ukázky reportování. Meze intervalů odlišovat od obecných hranic.
+
+Ve slovníčku výslovně odlišit širší označení quantile–quantile plot
+a rozdělení dat; platný údaj zde znamená nechybějící, nikoli ověřeně správný.
+
+**Důvod:** odstranit střídání pojmenování a zpřesnit významové hranice
+bez změny rozsahu učiva, výpočtů či předpokladů statistických tvrzení.
+
+**Doklad:** autor po předložení auditu zadal „proveď navržené opravy
+včetně zpřesnění slovníčku a souvisejících popisků“, výslovně potvrdil
+obě preference a požadoval zachování uvedených výjimek.

@@ -240,7 +240,7 @@ ch3_draw('boxplot',{
   par(mar=c(2,4,3,1),mgp=c(2.2,.6,0),cex=1.05)
   plot(NA,xlim=c(0,5.8),ylim=c(-3,105),axes=FALSE,xlab='',ylab='Testový skór (body)')
   axis(2,at=seq(0,100,10));box(bty='l')
-  text(.4,104,'Pozorování',cex=.9);text(1.65,104,'Boxplot',cex=.9)
+  text(.4,104,'Pozorování',cex=.9);text(1.65,104,'Krabicový graf',cex=.9)
   offset<-ave(x,x,FUN=function(z) (seq_along(z)-(length(z)+1)/2)*.13)
   points(.4+offset,x,pch=16,col='#70AABB',cex=1)
   rect(1.3,q[1],2,q[3],col='#DCEEF0',border='#267888',lwd=2)
