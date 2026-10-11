@@ -2,8 +2,12 @@
 
 Historické záznamy níže popisují stav v době vzniku a zůstávají zachovány.
 Pro současné konvence používejte [přehled rozhodnutí](../docs/ROZHODNUTI.md),
+pro preferované názvy, alternativy a významové hranice
+[autorský registr terminologie](../docs/SLOVNIK.md),
 pro aktuální obsah, návaznosti a oddělený plán pokračování
 [mapu učebnice](../docs/OSNOVA.md).
+
+<a id="terminologie-mereni-01"></a>
 
 ## Zpřesnění výkladu po společné redakci (2026-09-20)
 
@@ -65,6 +69,8 @@ zkontrolovány nezávisle. Excel se neměnil a nebyl znovu spouštěn.
 Kontrola rozdílů bez chyb. Toto ověření se týká místního webu;
 publikování na Pages následuje až po autorově sloučení PR.
 
+<a id="terminologie-validita-01"></a>
+
 ## Sjednocení hlavní místní kapitoly a doplnění validity (2026-09-20)
 
 Na výslovnou žádost autora je výsledná kapitola přímo v hlavní pracovní
@@ -110,6 +116,8 @@ Porovnání se zálohou potvrdilo zachování všech změněných uživatelskýc
 zkontrolována věcně; žádné nové číselné výpočty ani excelové funkce
 nevznikly a Excel nebyl znovu spouštěn. `git diff --check` bez chyb.
 Toto ověření se týká místního webu, nikoli zveřejnění změn na Pages.
+
+<a id="terminologie-rozsireni-01"></a>
 
 ## Rozšíření pojmů v kapitole 1 (2026-09-20)
 
@@ -226,6 +234,8 @@ bez JavaScriptových chyb. Mobilní podoba prázdného slovníčku prohlédnuta.
 Základ zatím neobsahuje řešení ani matematiku; jejich ověření nebylo
 předmětem této kontroly. Publikace na Pages čeká na sloučení a nastavení
 zdroje GitHub Actions; živé nasazení dosud nebylo ověřeno.
+
+<a id="terminologie-zaklad-01"></a>
 
 ## Kapitola Od psychologické otázky k datům
 
@@ -408,6 +418,8 @@ vykreslené podobě; seznam literatury také vizuálně na desktopu a mobilu.
 Publikace této změny bude následovat až po uživatelském sloučení a nasazení.
 
 
+<a id="terminologie-zaklad-02"></a>
+
 ## Kapitola 2: četnosti a grafy (2026-09-28)
 
 ### Dohodnutý obsah a návaznost
@@ -514,6 +526,8 @@ V jednom opakovaném běhu se objevily chyby načtení citačních náhledů (ap
 
 Data, původní výpočty a excelový sešit se nemění. Nativní Excel nebyl znovu spuštěn; ověření webu není testem všech prohlížečů. Veřejná publikace následuje až po uživatelském sloučení a nasazení.
 
+<a id="terminologie-meze-02"></a>
+
 ## Kapitola 2: meze intervalů (2026-10-05)
 
 Na schválení autora používáme dolní a horní mez intervalu namísto hranic. Otevřenost a uzavřenost vztahujeme k intervalu a vysvětlujeme, zda příslušná mez do intervalu patří. Sjednoceny jsou výklad, tabulky, popisky kumulativních grafů, alternativní texty, cvičení, slovníček a přehled výpočtu středu. Obecné hranice měření u efektu podlahy a stropu zůstávají zachovány. Původní identifikátory odkazů zůstávají stabilní; v aktuální autorské redakci byl navíc doplněn chybějící identifikátor srovnávací tabulky, na který text odkazuje. Úpravy zarovnání tabulek od autora byly zachovány.
@@ -524,6 +538,8 @@ Celá kniha byla vykreslena. Check-chapter-02.R prošel; porovnání s pracovní
 
 Check-html.cjs prošel na sedmi stránkách bez chyb: 88 hesel slovníčku, místní odkazy, přehledové tabulky, všech 18 řešení včetně klávesnice, desktop 1360/1920 px a mobil 390 px bez přetékání celé stránky. Vizuálně ověřeny změněné popisky grafů, tabulka a vysvětlení mezí na mobilu. git diff --check prošel. Kontroly neověřují všechny prohlížeče ani novou publikaci webu.
 
+
+<a id="terminologie-role-01"></a>
 
 ## Kapitola 1: role proměnných (2026-10-05)
 
@@ -536,6 +552,8 @@ Znovu ověřena titulní strana a tiráž Howella: Statistical methods for psych
 Ověření: celá kniha (sedm stránek) se úspěšně vykreslila. První pokus blokoval přístup k mezipaměti Quarta; opakování s potřebným přístupem prošlo. Check-chapter-01.R prošel v čisté relaci R; původní data a výpočty se nemění. Nová konceptuální odpověď byla zkontrolována proti zadání a výkladu. Rozšířený check-html.cjs prošel bez chyb: 95 hesel, místní odkazy, hledání všech sedmi nových anglických označení a zpřístupnění jejich řádků přes aktivní nesouvisející filtr, všech 18 řešení včetně klávesnice, desktop 1360/1920 px a mobil 390 px bez přetékání celé stránky. Nový oddíl a tabulka byly vizuálně prohlédnuty na desktopu i mobilu, včetně českých vykreslených citací. Dosavadní kontrola ověřila i společnou bibliografii. git diff --check prošel.
 
 Excelové příklady ani sešit se nemění; desktopový Excel nebyl znovu spuštěn. Kontrola webu proběhla v Chrome, nikoli ve všech prohlížečích. Veřejné publikování následuje až po uživatelském sloučení a nasazení.
+
+<a id="terminologie-zaklad-03"></a>
 
 ## Kapitola 3: ukazatele polohy a variability (2026-10-05)
 
@@ -637,6 +655,8 @@ Do navazujícího commitu byla začleněna veškerá zbývající redakce pracov
 
 Obsah kapitoly se při tomto začlenění dále neměnil. Jde o stejný úplný pracovní soubor, na němž v předchozím kroku proběhl render a webová kontrola. Znovu prošla numerická kontrola kapitoly i 14 řešení a git diff --check. Proto nebyl opakován nezměněný render ani vizuální kontrola. Předchozí PR #25 již byl sloučen, oprava proto vychází z aktuálního main a je předána samostatným PR.
 
+<a id="terminologie-robustni-03"></a>
+
 ## Kapitola 3: kumulativní kvantily, stupně volnosti a robustní shrnutí (2026-10-09)
 
 Zapracováno šest redakčních připomínek spolu s úplnou souběžnou autorskou redakcí pracovního souboru. PR #26 byl již sloučen, proto větev vychází z aktuálního main. Rozpracované změny kapitoly patří do výsledného commitu. Opraveno také zjevně zdvojené slovo „prostřední“ v úvodu kvantilů a obnoveny identifikátory obou dříve doplněných tabulek, které pracovní redakce opět postrádala.
@@ -662,6 +682,8 @@ V čisté relaci R prošly všechny výpočty a 14 řešení. Nová kontrola ov�
 
 Webová kontrola v místním Chrome prošla na osmi stránkách: 138 hesel, 32 řešení, interní odkazy, klávesnice, skrytí a rozbalení řešení i bibliografie. Šířky 1360/1920/390 px nemají přetékání celé stránky. Oba doplněné obrázky byly vizuálně zkontrolovány na desktopu i mobilu. git diff --check prošel. Veřejné nasazení nebylo součástí ověření.
 
+<a id="terminologie-entropie-03"></a>
+
 ## Kapitola 3: názorná konstrukce boxplotu a normalizovaná entropie (2026-10-09)
 
 Po sloučení PR #28 vzniká nová větev z aktuálního main. Do výsledku je začleněna i souběžná autorská redakce kapitoly. Její záměr je zachován; opraveny drobné překlepy ve výkladu entropie a doplněna nulová hodnota logaritmu při podílu 1. Obnoveny identifikátory a šířky obou přehledových tabulek, které pracovní redakce odstranila.
@@ -674,6 +696,8 @@ V čisté relaci R prošly všechny numerické kontroly i 14 řešení, včetně
 
 Nezávislý výpočet z dat vypsaných přímo v kapitole potvrdil počet 41, příslušné pořadové hodnoty, meze, vousy a odlehlá pozorování; zkontrolován i poměr pro tři kategorie. Webová kontrola v místním Chrome prošla na osmi stránkách (139 hesel, 32 řešení, 55 bibliografických položek), včetně vyhledávání a stabilních odkazů nového pojmu i vzorce, klávesnice, skrytých řešení a matematického zápisu. Boxplot a rozšíření o entropii byly prohlédnuty na desktopu a mobilu. Při šířkách 1360/1920/390 px stránka nepřetéká vodorovně. git diff --check prošel. Veřejné nasazení nebylo ověřováno.
 
+<a id="terminologie-transformace-03"></a>
+
 ## Kapitola 3: reportování APA, transformace a shodné momenty (2026-10-09)
 
 Na žádost autora doplněny lineární a nelineární transformace, rovnice y_i = a + b x_i s vysvětlením všech prvků, upozornění na přesnější matematický název afinní a dvoupanelový graf. Vlastnosti polohy nejsou vydávány za univerzální definici všech statistik; záporný násobitel obrací pořadí kvartilů. U variability je odlišeno násobení směrodatné odchylky absolutní hodnotou b od násobení rozptylu b². Druhá mocnina na nezáporných skórech mění stejné rozdíly nestejně; průměr čtverců 40,4 není čtvercem průměru 36. Doplněny přehledy pojmů a vztahů.
@@ -685,6 +709,8 @@ Nová vlastní ilustrace inspirovaná principem uživatelova obrázku používá
 Zahrnuta je úplná průběžná autorská redakce kapitoly, včetně přeformulování ordinálního mediánu. Opraveny její drobné překlepy a obnoveny stabilní identifikátory tabulek. Čistá relace R ověřila všechny výpočty a 14 řešení, nové transformace a integračně oba spojité modely. Celá kniha byla vykreslena; po úpravě měřítek grafu znovu dotčená kapitola. Bibliografie má 57 položek. Excelové vzorce ani sešit se nemění, desktopový Excel nebyl znovu spouštěn.
 
 Webová kontrola v místním Chrome prošla na osmi stránkách: 142 hesel, 32 řešení, vyhledávání a odkazy nových pojmů a vztahů, klávesnice, matematický zápis a bibliografie. Vizuálně zkontrolovány oba nové grafy, výklad transformací a ukázka APA na desktopu i mobilu. Po spojení dvou sousedních závorek v anglické ukázce znovu vykreslena kapitola a cíleně zkontrolována konečná ukázka a oba grafy při 1360 a 390 px. Kontroly neodhalily vodorovné přetékání celé stránky. git diff --check prošel. Veřejné nasazení nebylo ověřováno.
+
+<a id="terminologie-poradove-03"></a>
 
 ## Kapitola 3: české reportování a zpřesnění výkladu (2026-10-09)
 
@@ -1568,3 +1594,41 @@ Studentské kapitoly, data a konfigurace se nemění. Render, nová vizuální
 kontrola grafů, přepočty a běh Excelu nebyly pro tuto dokumentační změnu
 potřebné ani provedené. Mapa sama nepotvrzuje odbornou bezchybnost kapitol
 ani porozumění na studentech; zdroje nebyly znovu odborně revidovány.
+
+<a id="zalozeni-autorskeho-slovniku"></a>
+
+## 2026-10-11: autorský registr terminologie
+
+Na výslovné zadání autora vznikl `docs/SLOVNIK.md` jako hlavní autorský
+registr preferovaných českých názvů, anglických ekvivalentů, rozpoznávaných
+alternativ a významových hranic. Obsahuje všech 160 současných hesel
+studentského slovníčku ve čtyřech tematických tabulkách; každý řádek má
+stabilní ID, doklad, odkaz na studentské heslo a první výklad.
+
+Při založení je 56 hesel označeno S (konkrétní doložená volba nebo schválený
+seznam názvů) a 104 K (převzetí v rámci staršího dohodnutého výkladu).
+Rozlišení nepředstírá samostatné schválení každého názvu či každé alternativy.
+Pozdější rozhodnutí mají přednost před historickým zněním; návrhy a nejasně
+doložené budoucí volby mají oddělené místo. Terminologie kapitoly 5 se
+tímto úkolem neschvaluje. U 91 hesel je doplněno konkrétní pravidlo použití,
+zejména pro role proměnných, protiklady, širší pojmy, zkratky, meze intervalů,
+kvartily, špičatost, standardizaci a normalizaci.
+
+AGENTS.md stanoví čtení registru před prací, doložení nových voleb a společnou
+údržbu všech dotčených materiálů. Rozcestníky a návaznosti doplněny do
+kořenového README, osnovy, mapy zdrojů, rozhodnutí a pravidel prezentací;
+schválené rozdělení odpovědnosti eviduje R18. Do dvanácti starších záznamů
+přidány pouze stabilní kotvy, jejich historický obsah je zachován.
+
+Ověřena úplnost a shoda 160 ID i preferovaných českých názvů proti
+studentskému slovníčku, struktura tabulek, jedinečnost kotev, UTF-8 a cíle
+všech nových či upravených místních odkazů v osmi dotčených dokumentech.
+Porovnání vůči výchozímu commitu potvrdilo zachování historického textu
+a nezměněné studentské zdroje, data, skripty i konfiguraci. Kontrola
+`git diff --check` prošla.
+
+Jde o dokumentační změnu. Render, numerické a excelové kontroly ani
+vizuální kontrola webu nebyly potřebné a nebyly spuštěny. Neproběhla nová
+terminologická rešerše ani úplný audit užití v každé kapitole či místních
+prezentacích; registr shrnuje doložené konvence a existující vysvětlení.
+Veřejné nasazení nebylo ověřováno.

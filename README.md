@@ -46,6 +46,7 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `AGENTS.md`: společná pravidla tvorby, didaktické revize, ověřování a práce s Gitem.
 - [docs/PREZENTACE.md](docs/PREZENTACE.md): pravidla pro prezentace, poznámky a jejich exporty.
 - [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): platná autorská rozhodnutí s rozsahem a doklady.
+- [docs/SLOVNIK.md](docs/SLOVNIK.md): hlavní autorský registr preferovaných českých termínů, anglických ekvivalentů, alternativ a pravidel použití; rozlišuje doklady jednotlivých voleb a starších schválených celků. Studentské definice zůstávají ve slovníčku.
 - [docs/OSNOVA.md](docs/OSNOVA.md): podrobná mapa aktuálního obsahu kapitol, příkladů, cvičení a návazností s tematickým rozcestníkem; plán další kapitoly a neschválené náměty jsou oddělené.
 - [docs/ZDROJE.md](docs/ZDROJE.md): autorská mapa podkladů v `sources/`, tematický rozcestník, přesné lokátory, rozpory a rozsah ověření. Odkazy na podklady fungují pouze v místní kopii s neveřejnými zdroji.
 - `quarto/README.md`: historická autorská dokumentace, odborné zdroje, rozhodnutí a záznamy ověření.
@@ -54,6 +55,8 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 Neveřejné autorské podklady ve složce `sources/` nejsou součástí repozitáře ani webu a nejsou potřebné pro čtení, cvičení nebo sestavení knihy. Generované výstupy a dočasné pracovní soubory se do Gitu neukládají.
 
 Novou kapitolu přidejte jako `.qmd` do `quarto/` a zařaďte ji do části **Výkladové kapitoly** v `book.chapters` souboru `_quarto.yml`. Bibliografii udržujte jen ve společné kapitole `quarto/literatura.qmd`; v ostatních kapitolách používejte citační zápis Quarta. Přehledy doplňujte současně s kapitolou. Před psaním dohodněte obsah, terminologii a značení podle [projektových instrukcí](AGENTS.md).
+
+Před psaním a při revizi vyhledejte platné termíny v [autorském registru](docs/SLOVNIK.md), včetně významových hranic a dokladů. Novou schválenou volbu zaznamenejte do rozhodnutí a současně slaďte registr, studentský slovníček i všechny dotčené materiály. Návrhy zůstávají oddělené; postup údržby je v registru a [AGENTS.md](AGENTS.md#terminologie-a-značení).
 
 ## Kontroly a GitHub
 

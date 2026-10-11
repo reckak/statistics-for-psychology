@@ -23,6 +23,11 @@
   [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md). Nová schválená rozhodnutí zde
   průběžně eviduj s rozsahem platnosti, důvodem a dokladem; nenahrazuj tím
   studentský slovníček ani přehled značení. Samotný návrh není schválení.
+- Pro volbu termínů před psaním i při revizi používej
+  [docs/SLOVNIK.md](docs/SLOVNIK.md), hlavní autorský registr platných
+  českých preferencí, anglických ekvivalentů, alternativ a významových hranic.
+  Čti také pravidlo použití a doklad hesla; samotný seznam synonym nestačí.
+  Rozdělení odpovědnosti a údržbu určuje oddíl „Terminologie a značení“ níže.
 - Pro výběr podkladů používej [docs/ZDROJE.md](docs/ZDROJE.md): inventář,
   obsahové mapy, přesné lokátory, zjištěné rozpory a rozsah ověření zdrojů.
   Nabídka témat v mapě není schválenou osnovou; postup její údržby je níže
@@ -215,10 +220,32 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 
 ## Terminologie a značení
 
+- [Autorský registr](docs/SLOVNIK.md) určuje platné terminologické preference
+  pro učebnici i související materiály; [studentský slovníček](quarto/slovnicek.qmd)
+  poskytuje vysvětlení a odkazy na výklad. Důvody, rozsah a doklady nových
+  dohod zapisuj do [ROZHODNUTI.md](docs/ROZHODNUTI.md), v registru na ně odkazuj.
 - Při prvním zavedení odborného pojmu uveď schválený český termín a v závorce
   anglický ekvivalent. V dalším výkladu důsledně používej jednu schválenou
-  českou variantu. Alternativy eviduj ve slovníčku, nikoli jako střídající
-  se synonyma ve výkladu.
+  českou variantu v kontextu určeném registrem. Alternativy eviduj v registru
+  a studentském slovníčku; upozorni na ně při zavedení, je-li to užitečné,
+  ale systematicky je nestřídej ve výkladu. Rozlišuj skutečná synonyma,
+  související či širší/užší pojmy, protiklady a chybné podoby i v angličtině.
+- Nové heslo nebo změnu preference zařaď mezi platná až po dohodě s autorem;
+  připoj stav, doklad, rozsah použití, stabilní ID a odkazy na studentské
+  heslo a první výklad. Návrhy a nejasně doložené volby drž odděleně.
+  Samotný výskyt termínu v kapitole, zdroji či slovníčku není jeho schválení.
+  Registr rozlišuje konkrétní schválení od převzetí staršího dohodnutého celku.
+- Při terminologické změně v témže úkolu aktualizuj registr, studentský
+  slovníček a všechna dotčená místa včetně cvičení, popisků a alternativních
+  textů grafů, generátorů, sešitů, prezentací a poznámek; podle dopadu také
+  značení, přehled Excelu a osnovu. Zkontroluj shodu názvů, významové výjimky
+  a odkazy; rozsah kontroly, datum a omezení zapiš do autorské historie.
+  Neprováděj slepé hromadné náhrady ani neoznačuj nezkontrolované materiály
+  za sjednocené. Při přejmenování zachovej ID hesla.
+- Aktuální výslovná dohoda má přednost před starším záznamem. Při rozporu
+  ověř doklad a rozsah, slaď dokumenty a označ nahrazené rozhodnutí;
+  historické záznamy zachovej. Skutečně nejasnou volbu projednej s autorem,
+  již doloženou platnou konvenci znovu neschvaluj.
 - Výběrové charakteristiky označuj malými písmeny latinky v kurzivě;
   populační parametry řeckými písmeny ve stojatém řezu, bez kurzivy.
 - Výběrový průměr označuj konzistentně kurzivním *m*.
@@ -317,7 +344,8 @@ s každou kapitolou, ne až při dokončení knihy.
   která student potřebuje pro porozumění příkladu.
 - Provozní postupy udržuj v kořenovém `README.md`; podrobnosti o zdrojích,
   opravách, schválených rozhodnutích a provedeném ověření v historické
-  autorské dokumentaci `quarto/README.md`. Platné konvence shrnuj v
+  autorské dokumentaci `quarto/README.md`. Platné terminologické preference
+  udržuj v `docs/SLOVNIK.md`, rozhodnutí s důvody a doklady v
   `docs/ROZHODNUTI.md`, aktuální obsah, návaznosti a oddělený plán pokračování
   v `docs/OSNOVA.md`; pravidlo průběžné údržby mapy je v úvodním oddílu
   „Použití projektové dokumentace“.

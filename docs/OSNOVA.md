@@ -33,9 +33,14 @@ mapy nevyžadují. Pravidlo je součástí [projektových instrukcí](../AGENTS.
 Mapa zachycuje **existující obsah**, sama jej dodatečně neschvaluje a nenahrazuje
 přípravu nové kapitoly. Pokud se skutečný výklad a dohoda rozcházejí, popiš
 rozdíl a vyřeš jej podle instrukcí; nepřepisuj plán jako hotový text.
-Úplné definice, anglické ekvivalenty a vzorce patří do [slovníčku](../quarto/slovnicek.qmd),
+Úplné studentské definice, anglické ekvivalenty a vzorce patří do [slovníčku](../quarto/slovnicek.qmd),
 [přehledu značení](../quarto/znaceni.qmd) a [funkcí Excelu](../quarto/excel.qmd).
-[ROZHODNUTI.md](ROZHODNUTI.md) eviduje platné konvence a doklady dohod,
+[SLOVNIK.md](SLOVNIK.md) je hlavní autorský registr terminologických preferencí,
+alternativ a významových hranic; čti jej před psaním i při revizi. Nové
+schválené názvy a jejich změny aktualizuj současně v registru, studentském
+slovníčku a dotčeném výkladu. Tato mapa eviduje jejich zařazení a návaznosti,
+nikoli druhý úplný seznam překladů. [ROZHODNUTI.md](ROZHODNUTI.md) eviduje
+platné konvence, důvody a doklady dohod,
 [ZDROJE.md](ZDROJE.md) podklady a rozsah jejich prostudování,
 [quarto/README.md](../quarto/README.md) historii tvorby a ověřování.
 
