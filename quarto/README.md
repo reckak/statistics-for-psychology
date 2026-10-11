@@ -1667,3 +1667,43 @@ Kontrola `check-html.cjs` prošla: 9 stránek, 160 hesel, místní odkazy,
 42 sbalených/rozbalovaných řešení včetně klávesnice, přehledové tabulky,
 obsah kapitol, zobrazení bez JavaScriptu a mobilní šířka 390 px; bez chyb.
 Kontrola `git diff --check` také prošla.
+
+## 2026-10-11 — Jeden excelový sešit pro každou kapitolu
+
+Na výslovnou žádost autora sjednoceny studentské podklady kapitol 1–4.
+Nové pravidlo je v AGENTS.md a rozhodnutí R20; aktuální mapa souborů
+v OSNOVA.md a audit příkladů a všech 42 cvičení v docs/DATA.md.
+Vstupy se člení do samostatných listů, první list Prehled uvádí jejich
+umístění a účel. Hotové výpočty zůstávají oddělené a označené.
+
+- Kapitola 1 nově má sešit s maticí, přehledem proměnných a podklady
+  opravy chybného přepisu. Chybění a platné nuly zůstávají rozlišeny.
+- Kapitola 2 doplňuje menší příklady, schematické četnosti obrázků
+  a vstupy cvičení; dosavadní výpočty a grafy zachovány.
+- Kapitola 3 rozděluje další příklady do listů Kvantily, Orezani a
+  Boxplot. Kontrola_prikladu je na ně navázána vzorci. Doplněny všechny
+  datové úlohy včetně souhrnů a nepovinných příkladů.
+- Kapitola 4 má samostatné vstupy k převodům a Q–Q grafu, úlohy a všech
+  800 simulovaných skórů ze čtyř obrázků. Export používá existující
+  generátor, jeho seed a pořadí tahů; simulace nejsou nově vymyšlenými daty.
+- CSV zůstávají interními vstupy R a kontrol, ale nejsou odkázány ani
+  kopírovány do webu. Čtyři kapitoly odkazují na XLSX a konkrétní buňky.
+
+Ověření: redakční porovnání vstupů s příklady a zadáními, kontrola 1 421
+uložených vstupních buněk (hodnoty, typy a chybění), existence odkazovaných
+listů a oblastí. Vykreslené náhledy všech 74 listů vizuálně prohlédnuty;
+u dlouhých datových sloupců byly vizuálně kontrolovány horní oblasti,
+úplné hodnoty pokrývá automatická kontrola. Excel 16.0 otevřel, přepočetl
+a uložil všechny čtyři sešity. Kapitolové kontroly ověřily české vzorce,
+změny vstupů a vazby grafů; nově také změnu listu Kvantily a navazující
+výpočet percentilu. Kontrola všech listů nenašla chyby ve 249 vzorcích.
+
+Prošly číselné R kontroly všech čtyř kapitol, celý devítistránkový render,
+HTML kontrola odkazů, 42 sbalených řešení, klávesnice, přehledových tabulek
+(160 hesel), desktopu 1360/1920 a mobilu 390 px. Ověřena binární shoda
+všech čtyř studentských sešitů s kopiemi v `_book/data/` a nepřítomnost CSV.
+`git diff --check` bez chyb. R kontroly kapitol 3–4 byly spuštěny s explicitním
+Windows locale `.UTF-8`; výchozí nastavení prostředí jinak odmítalo české
+řetězce při načtení zdrojů. Excel a lokální Chrome vyžadovaly běh mimo
+omezený sandbox. Veřejné nasazení ani porozumění na studentech tím nejsou
+ověřeny; sloučení a publikování navazuje na autorovu kontrolu PR.

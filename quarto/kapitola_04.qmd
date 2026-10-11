@@ -2,7 +2,9 @@
 
 Výsledek 60 bodů sám o sobě neříká, zda člověk dosáhl neobvykle vysokého výkonu. Záleží na úloze, na skupině, s níž jej porovnáváme, i na tom, jak se výsledky této skupiny rozkládají. V této kapitole nejprve vyjádříme vzdálenost výsledku od průměru. Potom zavedeme normální rozdělení jako model, který umožní za určitých předpokladů odpovídat například na otázku, jaký podíl výsledků leží nad 60 body. Nakonec se naučíme posoudit, zda je takový model pro konkrétní data rozumný.
 
-Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **autorský ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy. Také malé datové soubory jsou sestavené pro výuku; simulované soubory u grafů výslovně označujeme. Výpočty si můžete zopakovat v [excelovém sešitu](../data/kapitola_04.xlsx), data pro konstrukci Q–Q grafu jsou dostupná i jako [CSV](../data/kapitola_04.csv).
+Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **autorský ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy. Také malé datové soubory jsou sestavené pro výuku; simulované soubory u grafů výslovně označujeme. Výpočty si můžete zopakovat v [excelovém sešitu](../data/kapitola_04.xlsx). Samostatné vstupy pro konstrukci Q–Q grafu jsou na listu `QQ_data` v A2:A13; hotový postup s grafem je na listu `QQ`.
+
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_04.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Vypočítáte a vysvětlíte z-skór.
@@ -494,6 +496,8 @@ V úlohách 1–3 a 7–8 stačí kalkulačka a tabulky z výkladu. Pro normáln
 
 ### 1. Skór a referenční skupina
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U01_reference` A2:E3.
+
 Člověk získal v testu 62 bodů. Ve skupině A je $m=50$, $s=8$; ve skupině B je $m=65$, $s=6$. Vypočítejte oba z-skóry a vysvětlete rozdíl. Jaký hrubý skór odpovídá $z=-0{,}75$ ve skupině A? Lze ze z-skórů bez dalších informací zjistit percentilové pořadí?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -504,6 +508,8 @@ Zpětný převod ve skupině A dává $x=50+8\times(-0{,}75)=50-6=44$ bodů. Pro
 
 ### 2. Standardizace zešikmených dat
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U02_standardizace` A2:A6.
+
 Doby dokončení úlohy jsou 2, 2, 2, 2 a 12 minut. Vypočítejte průměr, výběrovou směrodatnou odchylku a z-skóry. Vysvětlete, zda po převodu vzniklo normální rozdělení.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -513,6 +519,8 @@ Součet je 20 a $m=20/5=4$. Odchylky jsou −2, −2, −2, −2 a 8; součet je
 :::
 
 ### 3. Zápis modelu a význam plochy
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U03_model` A2:B6.
 
 Je dán normální model $N(80,5)$. Určete jeho průměr, směrodatnou odchylku a rozptyl. Který interval obsahuje přibližně 68,3 % modelových výsledků? Student tvrdí, že výška hustoty 0,08 znamená „8 % lidí má přesně tento výsledek“. Opravte jeho interpretaci. Jiná učebnice zapisuje týž model jako $N(80,25)$. Co v ní znamená druhý údaj? Který ze vzorců `=NORM.DIST(85;80;5;PRAVDA)` a `=NORM.DIST(85;80;25;PRAVDA)` vrátí správný podíl výsledků nejvýše 85 bodů?
 
@@ -525,6 +533,8 @@ Druhá učebnice uvádí jako druhý údaj rozptyl 25. Jde o týž model, proto�
 :::
 
 ### 4. Pod mezí, nad mezí a v intervalu {#pod-nad-a-mezi-hranicemi}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U04_plochy` A2:B7.
 
 Pro model skóru pozornosti $N(50,10)$ načrtněte a vypočítejte podíl výsledků a) nejvýše 45 bodů, b) nad 65 bodů, c) mezi 45 a 65 body. Ve skutečné skupině 20 lidí má 8 výsledek nejvýše 45. Je tento podíl totožný s výsledkem modelu?
 
@@ -542,6 +552,8 @@ V datech je podíl $8/20=0{,}4$, tedy 40 %. Je to pozorovaná relativní četnos
 
 ### 5. Od podílu k hranici
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U05_percentily` A2:B6.
+
 V modelu $N(50,10)$ najděte a) 20. percentil, b) hranici horních 10 %, c) meze prostředních 90 %. Vždy nejprve napište, jaký podíl zadáte do inverzní funkce a proč.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -554,6 +566,8 @@ c) Mimo prostřední interval zbývá 10 %, tedy 5 % v každém chvostu. Zadáme
 
 ### 6. Zaokrouhlený skór
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U06_zaokrouhleni` A2:B5.
+
 Spojitý skór se řídí modelem $N(50,10)$ a zaznamenává se zaokrouhlený na celé body. Který interval původních hodnot se zobrazí jako 50 a jaký modelový podíl mu odpovídá? Proč není výsledek nulový?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -561,6 +575,8 @@ Jde o interval od 49,5 do 50,5; volba zahrnutí přesných půlbodových mezí n
 :::
 
 ### 7. Převody standardních skórů
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U07_prevody` A2:A5 a `Skaly` A2:C5.
 
 Výsledek je vyjádřen T-skórem 38. Určete z-skór, odpovídající IQ-skór na škále 100/15 a standardní subtestový skór na škále 10/3 před zaokrouhlením. Co lze říci o výsledku, pokud měřenou proměnnou byla úzkost? Vyžaduje tento výpočet normální rozdělení? Jaká modelová percentilová pořadí by za předpokladu normálního modelu odpovídala T-skórům 50, 60 a 70? Porovnejte oba přírůstky.
 
@@ -574,6 +590,8 @@ T-skóry 50, 60 a 70 mají z-skóry 0, 1 a 2. Podle [orientačních podílů](#s
 
 ### 8. Co se ztratí zařazením do pásma
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U08_pasmo` A2:A4.
+
 Pomocí tabulek určete sten a stanin pro $z=1{,}2$, $z=-0{,}6$ a přesné $z=0$. Vysvětlete, proč ze stenu 8 nelze obnovit přesný hrubý skór ani při znalosti původního průměru a směrodatné odchylky.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -583,6 +601,8 @@ Sten 8 sdružuje všechna $z$ větší než 1 a nejvýše 1,5. V modelu $N(50,10
 :::
 
 ### 9. Sestavení a kontrola Q–Q grafu
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `QQ_data` A2:A13.
 
 V Excelu znovu sestavte Q–Q graf pro dvanáct skórů z [výkladu](#sec-excel-qq). Zkontrolujte souřadnice prvního a posledního bodu. Potom změňte poslední skór z 65 na 90, přepočítejte graf a popište změnu. Vysvětlete, proč není správné použít pro poslední pořadí podíl $12/12$.
 

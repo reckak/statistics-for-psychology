@@ -535,3 +535,23 @@ bez změny rozsahu učiva, výpočtů či předpokladů statistických tvrzení.
 **Doklad:** autor po předložení auditu zadal „proveď navržené opravy
 včetně zpřesnění slovníčku a souvisejících popisků“, výslovně potvrdil
 obě preference a požadoval zachování uvedených výjimek.
+
+
+<a id="r20-data-v-excelu"></a>
+
+## R20 — Jeden studentský excelový sešit ke kapitole
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** kapitoly 1–4 i další kapitoly.
+
+Všechna data k příkladům a cvičením zpřístupňovat v jediném sešitu,
+rozdělená podle úloh do listů, s úvodním přehledem, popisy a přesnými
+oblastmi buněk. Vstupy oddělit od hotových výpočtů; nesestavovat fiktivní
+individuální data ze souhrnů. CSV zůstává případně interním vstupem,
+ne studentským souborem ke stažení. Pravidlo rozšiřuje R14 na celou knihu.
+
+**Důvod:** studenti mají pracovat se statistickým obsahem bez požadavku
+na zvládnutí importu CSV; souběžné formáty zbytečně komplikují orientaci.
+
+**Doklad:** autor přijal návrh a zadal: „Ano, sjednoť to takto ve všech
+dosavadních kapitolách. Ověř, že sešity obsahují všechna data k příkladům
+i cvičením, uprav odkazy a zapiš toto pravidlo i pro další kapitoly do AGENTS.md.“

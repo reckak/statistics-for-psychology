@@ -9,7 +9,8 @@ project:
     - quarto/*.qmd
   resources:
     - assets/
-    - data/
+    - data/*.xlsx
+    - "!data/*.csv"
     - "!sources/**"
     - "!quarto/README.md"
     - "!quarto/_verification/**"

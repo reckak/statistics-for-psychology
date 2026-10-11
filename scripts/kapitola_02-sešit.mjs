@@ -1,3 +1,4 @@
+import { addStudentInputs } from './sesity-data.mjs';
 // Run from the repository root; dependencies come from the Codex bundled runtime.
 import fs from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -8,6 +9,7 @@ const { Workbook, SpreadsheetFile } = await import(pathToFileURL(modulePath).hre
 const csv = (await fs.readFile('data/kapitola_02.csv','utf8')).trim().split(/\r?\n/).slice(1);
 const rows = csv.map(line => line.split(',').map((v,i)=>[1,2,4].includes(i) ? (v===''?null:Number(v)) : v));
 const wb=Workbook.create();
+wb.worksheets.add('Prehled');
 const c=wb.worksheets.add('Cetnosti'), h=wb.worksheets.add('Histogram'), d=wb.worksheets.add('Data');
 for(const sh of [c,h,d]){
   sh.showGridLines=true; // Teaching workbook: addresses and ordinary grid aid navigation.
@@ -72,6 +74,8 @@ function chart(sh,range,title,pos1,pos2,xlabel){
 }
 chart(c,'B4:C8','Odpočatost','J3','R18','Odpočatost');
 chart(h,'C4:D10','Doba spánku','H3','P18','Doba spánku (h)');
+await fs.mkdir('tmp/chapter-02-build',{recursive:true});
+await addStudentInputs(wb,2,'tmp/chapter-02-build');
 wb.recalculate();
 console.log((await wb.inspect({kind:'table',range:'Cetnosti!A4:H10',include:'values,formulas',tableMaxRows:8,tableMaxCols:8,maxChars:2200})).ndjson);
 console.log((await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},summary:'Formula errors',maxChars:1000})).ndjson);

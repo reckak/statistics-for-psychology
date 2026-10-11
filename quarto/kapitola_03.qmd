@@ -4,6 +4,8 @@ Dvě skupiny mohou dosáhnout stejného průměrného výsledku, a přesto se v 
 
 Navazujeme na [četnosti a grafické zobrazení](kapitola_02.qmd#sec-kapitola-02). Budeme pracovat se známými modelovými údaji o spánku a paměti a s malými autorskými příklady. **Nejde o výsledky skutečného výzkumu.** Malé soubory jsou záměrně sestavené pro výuku; náhodně vytvořená data v simulaci budou výslovně označena. Údaje všech příkladů i komentované výpočty najdete v [excelovém sešitu ke kapitole](../data/kapitola_03.xlsx).
 
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_03.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
+
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvaru rozdělení.
 - Na malém souboru vysvětlíte a vypočítáte průměr, medián, kvantily, rozpětí, absolutní odchylky, rozptyl a směrodatnou odchylku.
@@ -670,7 +672,7 @@ Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; varia
 
 ## Výpočty v Excelu {#sec-excel-poloha}
 
-Otevřete [sešit ke kapitole](../data/kapitola_03.xlsx). List `Priklad` obsahuje v **A2:A6** časy 4, 5, 5, 6, 10 minut, v řádku 1 je záhlaví. List `Souhrn` shrnuje známá data o spánku a paměti z listu `Data`; list `Rozsireni` ukazuje entropii a momentové výpočty. List `Dalsi_priklady` obsahuje údaje zbývajících příkladů z výkladu: jedenáct dob pro [výpočet kvantilů](#sec-vypocet-kvantilu) v A2:A12, deset dob pro [ořezání a winsorizaci](#sec-orezani-winsorizace) v C2:C11 a 41 testových skórů pro [krabicový graf](#sec-boxplot) v E2:E42, spolu s několika kontrolními výsledky. Číselné buňky obsahují čísla, jednotky jsou v popiscích. Žluté vstupy lze měnit, modré buňky obsahují výpočty. Prázdné údaje o spánku zůstávají prázdné.
+Otevřete [sešit ke kapitole](../data/kapitola_03.xlsx). List `Priklad` obsahuje v **A2:A6** časy 4, 5, 5, 6, 10 minut, v řádku 1 je záhlaví. List `Souhrn` shrnuje známá data o spánku a paměti z listu `Data`; list `Rozsireni` ukazuje entropii a momentové výpočty. Samostatné vstupy pro [výpočet kvantilů](#sec-vypocet-kvantilu) jsou na listu `Kvantily` v A2:A12, pro [ořezání a winsorizaci](#sec-orezani-winsorizace) na listu `Orezani` v A2:A11 a pro [krabicový graf](#sec-boxplot) na listu `Boxplot` v A2:A42. List `Kontrola_prikladu` z těchto vstupů přebírá hodnoty a počítá kontrolní výsledky. Pět základních časů bez hotových výpočtů najdete na listu `Zaklad_data` v A2:A6. Další příklady i cvičení mají vlastní listy uvedené v přehledu. Číselné buňky obsahují čísla, jednotky jsou v popiscích. Žluté vstupy lze měnit, modré buňky obsahují výpočty. Prázdné údaje o spánku zůstávají prázdné.
 
 Postupy používají české názvy, desetinnou čárku a středníky. Uvedené funkce jsou dostupné v Excelu 2016 a novějších verzích včetně Microsoft 365. Odkaz na oblast buněk funkce zpravidla zpracuje tak, že prázdné buňky a text ignoruje, ale skutečnou nulu započítá. Následující postup s pomocnými odchylkami je určen pro pět vyplněných číselných buněk; prázdné vstupy do něj bez úpravy nepřidávejte, protože odčítání prázdné buňky by ji mohlo považovat za nulu.
 
@@ -741,6 +743,8 @@ Pro zopakování lze využít [slovníček](slovnicek.qmd#pojem-mad), [přehled 
 
 ### 1. Jaký střed hledáme
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U01_stred` A2:A7.
+
 Šest modelových účastníků potřebovalo k dokončení úlohy 3, 4, 4, 5, 6 a 20 minut. Určete modus, medián a průměr. Který ukazatel byste použili pro celkový čas připadající na jednoho účastníka a který pro prostřední polohu? Je správné 20 minut automaticky odstranit?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -749,6 +753,8 @@ Modus je 4 minuty, protože má jako jediný četnost 2. Medián je průměr tř
 
 ### 2. Dvě různě velké skupiny
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U02_skupiny` A2:C3.
+
 Osm účastníků mělo průměrný paměťový výkon 6 slov a dvanáct účastníků 9 slov. Určete společný průměr. Bylo by možné určit společný medián, kdyby čísla 6 a 9 označovala pouze skupinové mediány?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -756,6 +762,8 @@ První skupina vybavila dohromady $8\times6=48$ slov, druhá $12\times9=108$. Sp
 :::
 
 ### 3. Kvantily a shodné hodnoty
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U03_kvantily` A2:A7; pro srovnání `Kvantily` A2:A12.
 
 Pro skóry 1, 1, 1, 3, 4, 8 určete medián, 1. kvartil, 3. kvartil a mezikvartilové rozpětí. Jaké je inkluzivní percentilové pořadí skóru 1? Vysvětlete rozdíl mezi tímto pořadím a hodnotou percentilu.
 
@@ -769,6 +777,8 @@ U jedenácti různých časů je pozice $1+10\times0{,}17=2{,}7$. Výsledek lež
 
 ### 4. Co je na ordinální škále přípustné
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U04_kategorie` A2:B5.
+
 Čtyři lidé odpověděli „vůbec“, „trochu“, „dost“, „zcela“. Výzkumník kóduje odpovědi 1, 2, 3, 4 a tvrdí: „Medián je 2,5, takže typický člověk je přesně uprostřed mezi trochou a dostatkem odpočatosti.“ Co tvrzení předpokládá a jak byste data popsali bez tohoto předpokladu? Kterou kategorii byste pro 50. a 75. percentil vybrali pravidlem první dosažené kumulativní úrovně?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -776,6 +786,8 @@ Výpočet průměru prostředních kódů předpokládá, že s jejich vzdáleno
 :::
 
 ### 5. Výpočet variability
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U05_variabilita` A2:A4.
 
 Pro tři doby 2, 4 a 6 minut vypočtěte průměr, jednotlivé odchylky, průměrnou absolutní odchylku, součet čtverců odchylek, výběrový rozptyl a směrodatnou odchylku. Proč nelze variabilitu měřit průměrem podepsaných odchylek? Kolik stupňů volnosti mají tyto odchylky a jak určíte třetí, znáte-li první dvě?
 
@@ -785,6 +797,8 @@ Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průmě
 
 ### 6. Co dokládá simulace korekce
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U06_simulace` A2:C5.
+
 Známá populace má rozptyl 8 min². Ze simulace s výběry po pěti hodnotách vyšel průměr rozptylů s dělením $n$ přibližně 6,41 a s dělením $n-1$ přibližně 8,01. Spolužák tvrdí: „Dělení $n-1$ poskytne v každém jednotlivém výběru správný rozptyl. Jeho odmocnina je také nestranná.“ Posuďte obě části.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -792,6 +806,8 @@ První část zaměňuje vlastnost opakovaného odhadování s přesností jedno
 :::
 
 ### 7. Medián absolutních odchylek
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U07_MedAD` A2:A6.
 
 Pro doby 2, 3, 4, 5, 16 minut určete medián a medián absolutních odchylek od mediánu. Co se s nimi stane, pokud 16 nahradíme 100? Vysvětlete, proč zachování těchto ukazatelů neznamená zachování celé variability.
 
@@ -801,6 +817,8 @@ Medián je 4 minuty. Absolutní odchylky jsou 2, 1, 0, 1, 12, po seřazení 0, 1
 
 ### 8. Ořezání a winsorizace
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Orezani` A2:A11.
+
 Použijte deset časů 2, 3, 4, 5, 5, 6, 7, 8, 9, 31 minut. Nyní předem stanovíme ořezání **20 % na každém konci**. Vypočtěte ořezaný průměr a průměr po odpovídající winsorizaci. Kolik hodnot vstupuje do každého výpočtu a znamená postup, že jsou vynechané hodnoty chybné? Dále určete pouze počty upravovaných a ponechaných hodnot při 10% ořezání souboru 18 hodnot. Proč se skutečný odstraněný podíl liší od 20 %?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -808,6 +826,8 @@ Na každém konci upravujeme dvě hodnoty, celkem tedy čtyři. Při ořezání 
 :::
 
 ### 9. Krabicový graf
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U09_boxplot` A2:A9.
 
 Pro doby 1, 2, 2, 3, 4, 5, 6, 15 minut vypočtěte kvartily, medián, mezikvartilové rozpětí a obě meze pravidla 1,5násobku. Určete konce vousů a samostatně zobrazené body. Nakreslete vodorovný krabicový graf.
 
@@ -817,6 +837,8 @@ Pozice 1. kvartilu je $1+7\times0{,}25=2{,}75$, takže jeho hodnota je 2. Mediá
 
 ### 10. Změna jednotek a obrácení škály
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U10_transformace` A2:C6.
+
 Soubor časů má průměr 4 minuty, směrodatnou odchylku 1,5 minuty a medián 3,5 minuty. Ke každému času přičteme 2 minuty a výsledek převedeme na sekundy. Určete nový průměr, medián, směrodatnou odchylku a rozptyl. Proč nemůže násobení záporným číslem vytvořit zápornou směrodatnou odchylku?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -825,6 +847,8 @@ Nový průměr je $(4+2)\times60=360$ sekund a medián $(3{,}5+2)\times60=330$ s
 
 ### 11. Rozmanitost kategorií a meze souhrnu
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U11_strategie` A2:C5.
+
 Ve skupině A používá všech 20 lidí stejnou ze čtyř strategií učení. Ve skupině B používá každou strategii pět lidí. Porovnejte entropii slovně, bez logaritmů. Dále posuďte výrok: „Dvě skupiny mají stejný průměr a směrodatnou odchylku, takže mají stejné rozdělení a můžeme u obou použít normální model.“
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -832,6 +856,8 @@ Skupina A má nulovou entropii: kategorii náhodně zvoleného člena známe jis
 :::
 
 ### 12. Samostatný popis dat v Excelu
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Data` C2:C37.
 
 V sešitu použijte počty vybavených slov z listu `Data`, buňky C2:C37. Určete počet platných údajů, průměr, medián, výběrovou směrodatnou odchylku, 1. a 3. kvartil a mezikvartilové rozpětí. Napište tři až čtyři věty pro čtenáře bez statistického školení a uveďte jedno omezení interpretace. Nakonec zapište průměr, směrodatnou odchylku a medián tak, jak byste je uvedli v českém odborném textu se značkami APA 7.
 
@@ -845,6 +871,8 @@ Odborný zápis: „Účastníci vybavili v průměru sedm slov z dvanácti (*N*
 
 ### 13. Nepovinně: entropie od četností
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Entropie_data` A2:B5.
+
 Tři kategorie mají četnosti 4, 2 a 2. Vypočtěte entropii se základem logaritmu 2. Co se změní, pokud přidáme čtvrtou kategorii s nulovou četností? Porovnejte také normalizovanou entropii pro tři a čtyři vymezené kategorie (použijte kalkulačku). A co pokud všech osm případů patří do jediné ze čtyř kategorií?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -854,6 +882,8 @@ Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\doteq0{,}946$, ted
 :::
 
 ### 14. Nepovinně: nulová šikmost a stejný vrchol
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U14_sikmost` A2:B5 a `Spicatost` A2:C6.
 
 Modelový soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom vysvětlete, proč stejná výška vrcholu v @fig-spicatost nezaručuje stejnou špičatost.
 
