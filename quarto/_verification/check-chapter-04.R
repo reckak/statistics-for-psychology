@@ -28,7 +28,8 @@ eq(round(100*ch4_stanine_proportions,1),c(4,6.6,12.1,17.5,19.7,17.5,12.1,6.6,4))
 # Exercises 1--3 and 7--8.
 eq(c((62-50)/8,(62-65)/6,50+8*(-.75)),c(1.5,-.5,44))
 x<-c(2,2,2,2,12);eq(c(mean(x),var(x)),c(4,20));eq((x-4)/sqrt(20),c(rep(-2/sqrt(20),4),8/sqrt(20)))
-eq(80+c(-1,1)*sqrt(25),c(75,85))
+eq(80+c(-1,1)*5,c(75,85));eq(round(c(pnorm(85,80,5),pnorm(85,80,25)),3),c(.841,.579))
+eq(round(pnorm(2),5)-round(pnorm(1),5),.13591);eq(round(pnorm(2)-pnorm(1),5),.13591)
 eq(c((38-50)/10,100+15*(-1.2),10+3*(-1.2)),c(-1.2,82,6.4))
 eq(ch4_sten(c(1.2,-.6,0)),c(8,4,5));eq(ch4_stanine(c(1.2,-.6,0)),c(7,4,5))
 # Exercises 4--6; three complementary areas partition the model.
