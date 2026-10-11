@@ -9,6 +9,10 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Prezentace připravuj v češtině pro stejnou cílovou skupinu jako skripta.
   Platí pro ně společná pravidla odborné správnosti, didaktiky,
   terminologie a značení v kořenovém AGENTS.md.
+- Před psaním i při revizi používej [autorský registr terminologie](SLOVNIK.md),
+  včetně významových hranic a kontextových výjimek. Při schválené změně názvu
+  slaď snímky, popisky a poznámky i jejich exporty; nové preference nejprve
+  dohodni a zanes do registru a rozhodnutí podle AGENTS.md.
 - Vycházej z aktuálního znění příslušné kapitoly. Vyber její hlavní
   myšlenky a dovednosti; nepřeváděj mechanicky každý odstavec do slidu.
 - Příprava prezentace sama neopravňuje měnit kapitolu. Případné věcné

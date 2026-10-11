@@ -2,9 +2,16 @@
 
 Tento přehled zachycuje doložené konvence, jejich důvody a rozsah platnosti.
 Společná pravidla zůstávají v [AGENTS.md](../AGENTS.md), obsah a návaznosti
-v [osnově](OSNOVA.md). Úplné definice a značení jsou ve studentských
+v [osnově](OSNOVA.md). Hlavním autorským registrem terminologických preferencí,
+alternativ a významových hranic je [SLOVNIK.md](SLOVNIK.md). Úplné definice
+a značení jsou ve studentských
 [pojmech](../quarto/slovnicek.qmd) a [přehledu značení](../quarto/znaceni.qmd).
 Tyto přehledy zde nekopíruj.
+
+Při nové terminologické dohodě zde eviduj důvod, rozsah a doklad; současně
+aktualizuj příslušné heslo registru a dotčený výklad i přehledy. Registr
+na rozhodnutí odkazuje. Starší konkrétní terminologické volby níže zůstávají
+jako doklady; při nahrazení označ dotčenou část a odkaž na nové rozhodnutí.
 
 U každého nového záznamu uveď stav **návrh**, **schváleno** nebo **nahrazeno**,
 rozsah, důvod a doklad dohody (autorský záznam, PR nebo konkrétní zadání).
@@ -183,8 +190,9 @@ a doplnit jazykové zdůvodnění; [osnova kapitoly](OSNOVA.md).
 ## R08 — Zbývající terminologie kapitoly 4
 
 **Stav:** schváleno 2026-10-10. **Rozsah:** příprava a budoucí výklad
-kapitoly 4 a navazující přehledy. Aktuální seznam názvů a anglických
-ekvivalentů obsahuje [slovníček](../quarto/slovnicek.qmd); jejich zařazení
+kapitoly 4 a navazující přehledy. Aktuální preference, anglické ekvivalenty
+a hranice použití obsahuje [registr](SLOVNIK.md#kapitola-04), studentská
+vysvětlení [slovníček](../quarto/slovnicek.qmd); jejich zařazení
 do výkladu zachycuje [mapa kapitoly](OSNOVA.md#mapa-kapitola-04).
 Tento záznam určuje rozhodující
 rozlišení a doklad schválení, nenahrazuje studentský slovníček.
@@ -477,3 +485,29 @@ neschvaluje podrobný obsah kapitoly 5. Historické doklady dohod zůstávají.
 návrhu“, „Podrobně zmapuj aktuální obsah všech čtyř kapitol a odděl jej od
 plánu další kapitoly“ a „Doplň také do instrukcí pravidlo průběžné
 aktualizace mapy“.
+
+<a id="r18-autorsky-slovnik"></a>
+
+## R18 — Autorský registr terminologie
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** učebnice a související materiály,
+autorská dokumentace a další terminologické změny.
+
+[SLOVNIK.md](SLOVNIK.md) je hlavní autorský přehled preferovaných českých
+termínů, anglických ekvivalentů, rozpoznávaných alternativ a významových
+hranic. Studentský slovníček poskytuje definice a odkazy na první výklad;
+tento dokument uchovává důvody a doklady dohod. Registr rozlišuje konkrétní
+schválení od převzetí staršího dohodnutého celku a návrhy drží odděleně.
+Samotný výskyt termínu není schválením. Při změně se společně aktualizují
+registr, studentský slovníček a všechna dotčená místa podle
+[AGENTS.md](../AGENTS.md#terminologie-a-značení).
+
+**Důvod:** umožnit jednotné používání názvů bez záměny souvisejících pojmů
+a bez konkurenčních seznamů platných preferencí. Úplné definice se nekopírují
+do autorského registru; historie schvalování se nenahrazuje slovníčkem.
+
+**Doklad:** autor přijal návrh rozdělení rolí registru, studentského slovníčku
+a rozhodnutí a zadal: „Vytvoř docs/SLOVNIK.md podle tohoto návrhu, naplň ho
+dosud schválenou terminologií a uprav související dokumentaci a AGENTS.md,
+aby bylo jasné, jak ho používat a udržovat.“ Tento souhlas nemění jednotlivé
+statistické konvence a neschvaluje nové pojmy budoucích kapitol.

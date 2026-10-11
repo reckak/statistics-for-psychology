@@ -1,0 +1,298 @@
+# Autorský registr terminologie
+
+**Poslední kontrola: 2026-10-11.** Registr pokrývá 160 hesel současného
+studentského slovníčku pro kapitoly 1–4 a výslovně zachycuje i názvy
+kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
+
+## Účel a platnost
+
+Tento soubor je hlavní autorský přehled platných terminologických preferencí
+pro učebnici, cvičení, grafy, sešity, prezentace a poznámky. U každého pojmu
+určuje používaný český název, anglický ekvivalent, rozpoznávané alternativy
+a hranice použití. Není studentskou kapitolou ani novým schválením témat.
+
+- [Studentský slovníček](../quarto/slovnicek.qmd) vysvětluje význam pojmů
+  a odkazuje na výklad. Musí být v souladu s tímto registrem.
+- [Rozhodnutí](ROZHODNUTI.md) uchovávají důvody, rozsah a doklady dohod;
+  registr na ně odkazuje, nepřebírá celou jejich historii.
+- [Osnova](OSNOVA.md) určuje existující obsah, návaznosti a stav plánu.
+  Schválení termínu není schválením jeho zařazení do nové kapitoly.
+- [Značení](../quarto/znaceni.qmd) a [Excel](../quarto/excel.qmd) zůstávají
+  místem symbolů, vzorců a funkcí. Zkratky zde uvádíme jen pro rozlišení názvů.
+
+Výslovná aktuální dohoda autora má přednost před starším heslem. Při rozporu
+ověř její rozsah a doklad, oprav registr i dotčená místa společně. Samotné
+novější datum, výskyt ve zdroji, kapitole či studentském slovníčku ani sloučení
+PR nejsou důkazem schválení nové terminologické volby. Při skutečně nejasné
+volbě zachovej dosavadní doloženou konvenci a předlož rozpor autorovi.
+
+## Jak registr číst
+
+Hesla jsou tematicky seskupena podle prvního výkladu. Vyhledávat lze český
+i anglický název nebo alternativu. Stabilní ID hesla je stejné jako ve
+studentském slovníčku; při přejmenování se nemění.
+
+- **S** = doložená konkrétní terminologická volba nebo výslovně schválený
+  seznam názvů. **K** = termín převzatý v rámci doloženého dohodnutého výkladu
+  či schválené kapitoly; doklad nepředstírá samostatné hlasování o každém názvu.
+  Oba stavy patří do platného registru. Konkrétní pozdější volba má přednost
+  před původním zněním schváleného celku.
+- Sloupec alternativ je orientační: přebírá rozpoznávané podoby ze současného
+  studentského slovníčku. Stav S/K není tvrzením, že autor jednotlivě schválil
+  každé synonymum. Jejich přítomnost neopravňuje střídat je v souvislém výkladu.
+- Související, širší a užší pojmy, protiklady i chybné podoby jsou odděleny
+  do pravidla použití; nejsou bezvýhradnými synonymy. Totéž platí pro angličtinu.
+- Pomlčka u alternativ znamená, že zde žádnou neevidujeme, nikoli že neexistuje.
+  Pomlčka u pravidla znamená použití obecného pravidla: po zavedení používat
+  preferovaný termín konzistentně, alternativy jen pro orientaci.
+- První velké písmeno hesla neukládá velké písmeno v souvislé větě.
+  Kratší běžné podoby lze použít, pokud je význam jednoznačný (např. průměr).
+  Citace, názvy zdrojů a vysvětlené srovnání terminologie zachovávají původní znění.
+
+## Jak registr udržovat
+
+1. Před psaním či revizí vyhledej relevantní hesla včetně pravidel použití,
+   dokladů a souvisejících pojmů; potom čti dotčený výklad a kartu v osnově.
+2. U nového pojmu připrav český termín, anglický ekvivalent, alternativy,
+   významové hranice a doporučení. Do platných tabulek jej zapiš až po dohodě.
+   Nejasně doložené starší heslo nepovyšuj automaticky na schválené.
+3. Nové schválení nebo změnu zaznamenej v ROZHODNUTI.md s dokladem a rozsahem;
+   v registru aktualizuj stejné ID, preferenci, pravidlo a odkaz. Nahrazené
+   rozhodnutí označ, ale historické záznamy nemaž. Nová hesla označ S;
+   stav K slouží pro doložené převzetí staršího schváleného výkladu.
+4. V témže úkolu slaď studentský slovníček, všechny dotčené kapitoly,
+   zadání/řešení, tabulky, popisky i alternativní texty grafů, jejich generátory
+   a související sešity či prezentace. Podle dopadu uprav přehled značení,
+   Excel a mapu obsahu. Nenahrazuj řetězce bez kontroly jejich významu.
+5. Zkontroluj shodu názvů, kontextových výjimek a odkazů. Zaznamenej datum,
+   rozsah kontroly i neověřené části do autorské historie; nepřipisuj si kontrolu
+   celé knihy při změně jediného hesla. Pro studentské změny platí ověřování
+   podle AGENTS.md; dokumentační změna sama nevyžaduje nový render.
+
+Při prvotním naplnění byly porovnány všechny řádky studentského slovníčku,
+platná rozhodnutí a níže určené autorské záznamy. České/anglické názvy
+a alternativy přebíráme z tohoto existujícího výkladu, nevytváříme novou
+terminologickou rešerši. Plné definice se zde neduplikují. Hranice synonym
+jsou redakčně rozlišeny podle již existujících vysvětlení. Nejde o novou
+odbornou revizi všech kapitol ani o audit starších místních prezentací.
+
+## Doklady starších dohod
+
+Odkazy H vedou na konkrétní historické záznamy, odkazy R na platná rozhodnutí.
+Záznamy čti v uvedeném rozsahu, včetně pozdějších náhrad. Historie nemusí
+obsahovat samostatné výslovné schválení každé doprovodné formulace.
+
+| Doklad | Rozsah doložení |
+|---|---|
+| <a id="doklad-h01"></a>[H01](../quarto/README.md#terminologie-zaklad-01) | Dohodnutý základ kapitoly 1; zejména oddíly „Dohodnutý obsah a původ příkladů“ a „Terminologie a značení“. |
+| <a id="doklad-h02"></a>[H02](../quarto/README.md#terminologie-rozsireni-01) | Schválené rozšíření kapitoly 1: konstanta, výběr, měření a zkreslení. |
+| <a id="doklad-h03"></a>[H03](../quarto/README.md#terminologie-validita-01) | Tři schválená doplnění, včetně interní a externí validity. |
+| <a id="doklad-h04"></a>[H04](../quarto/README.md#terminologie-mereni-01) | Čtyři výslovně schválené pojmy: model měření, VAS, posuvník a verbální kotva. |
+| <a id="doklad-h05"></a>[H05](../quarto/README.md#terminologie-role-01) | Výslovné schválení znění o rolích; původní „predikant“ je nahrazen R10. |
+| <a id="doklad-h06"></a>[H06](../quarto/README.md#terminologie-zaklad-02) | Výslovné schválení rozsahu a terminologie kapitoly 2; pozdější změny mají vlastní doklady. |
+| <a id="doklad-h07"></a>[H07](../quarto/README.md#terminologie-meze-02) | Schválené názvy dolní/horní mez a vztah otevřenosti či uzavřenosti k intervalu. |
+| <a id="doklad-h08"></a>[H08](../quarto/README.md#terminologie-zaklad-03) | Dohodnutý výklad kapitoly 3 a jeho pojmy; původní názvy kvartilů a kurtóza jsou nahrazeny R14. |
+| <a id="doklad-h09"></a>[H09](../quarto/README.md#terminologie-robustni-03) | Zapracované připomínky autora: MeanAD/MedAD, robustnost a stupně volnosti. |
+| <a id="doklad-h10"></a>[H10](../quarto/README.md#terminologie-entropie-03) | Požadavek autora na normalizovanou entropii a úpravu konstrukce krabicového grafu. |
+| <a id="doklad-h11"></a>[H11](../quarto/README.md#terminologie-transformace-03) | Požadavek autora na lineární/nelineární transformace; přesnější matematické označení afinní. |
+| <a id="doklad-h12"></a>[H12](../quarto/README.md#terminologie-poradove-03) | Zapracované připomínky k obrácení skórování a užšímu významu pořadových statistik. |
+
+<a id="kapitola-01"></a>
+
+## Výzkum, data a měření
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-statistika"></a>**Statistika** | statistics | — | Obor; odlišit od statistiky jako číselného ukazatele. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-statistika); [výklad](../quarto/kapitola_01.qmd#sec-proc-statistika) |
+| <a id="pojem-popisna"></a>**Popisná statistika** | descriptive statistics | deskriptivní statistika | — | S — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-popisna); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-inferencni"></a>**Inferenční statistika** | inferential statistics | induktivní statistika | Statistické usuzování je činnost, nikoli druhé označení oboru. | S — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-inferencni); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-populace"></a>**Populace** | population | základní soubor | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-populace); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-vyber"></a>**Výběr** | sample | výběrový soubor; výzkumný soubor; vzorek | Pro část populace důsledně výběr; alternativy jen při zavedení a ve slovníčku. „Soubor“ lze použít pro datový soubor či vymezenou množinu. | S — [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-vyber); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-pripad"></a>**Případ** | case | — | Statistická jednotka je související označení; pozorování není bez kontextu zaměnitelné s případem. | S — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-pripad); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-pozorovani"></a>**Pozorování** | observation | záznam; měření (podle kontextu) | Upřesnit, zda jde o měření, záznam či celý případ; nepřejmenovávat mechanicky všechny případy na pozorování. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-pozorovani); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-promenna"></a>**Proměnná** | variable | statistický znak | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-promenna); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-nezavisla-promenna"></a>**Nezávislá proměnná** | independent variable | — | V učebnici při popisu experimentu. Obecně explanační proměnná; širší užití v literatuře vysvětlit. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-nezavisla-promenna); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-zavisla-promenna"></a>**Závislá proměnná** | dependent variable | — | V učebnici při popisu experimentu. Obecně výsledná proměnná; označení samo nezaručuje příčinu. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-zavisla-promenna); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-explanacni-promenna"></a>**Explanační proměnná** | explanatory variable | vysvětlující proměnná | Obecné preferované označení role. Nezávislá proměnná a prediktor jsou kontextově související pojmy. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-explanacni-promenna); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-prediktor"></a>**Prediktor** | predictor; predictor variable | — | Při odhadu hodnot jiné proměnné, i současných. Není omezen na budoucnost; obecné rozlišení rolí používá explanační/výslednou proměnnou. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-prediktor); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-vysledna-promenna"></a>**Výsledná proměnná** | outcome variable; outcome | výsledek (podle kontextu) | Obecné preferované označení role; závislá proměnná, kritérium a odhadovaná proměnná mají vlastní kontext. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-vysledna-promenna); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-kriterium"></a>**Kritérium** | criterion; criterion variable | — | Zachovat při výkladu predikce a psychologického testování; obecná výsledná proměnná není jeho bezvýhradné synonymum. | S — [H05](#doklad-h05) | [Heslo](../quarto/slovnicek.qmd#pojem-kriterium); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-odhadovana-promenna"></a>**Odhadovaná (predikovaná) proměnná** | predictand | prediktand | Proměnná, jejíž hodnoty odhadujeme, nikoli vypočtená předpověď. „Predikant“ je chybný tvar, nikoli alternativa. | S — [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-odhadovana-promenna); [výklad](../quarto/kapitola_01.qmd#sec-role-promennych) |
+| <a id="pojem-hodnota"></a>**Hodnota** | value | zaznamenaná hodnota; jednotlivý údaj | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-hodnota); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-data"></a>**Data** | data | údaje | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-data); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-pravdepodobnostni-vyber"></a>**Pravděpodobnostní výběr** | probability sampling; random sampling | náhodný výběr | Obecný odborný název preferovat před náhodným výběrem. „Prostý náhodný výběr“ a běžné „při náhodném výběru jednoho případu“ zůstávají. | S — [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-pravdepodobnostni-vyber); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-souvislost"></a>**Souvislost** | association | asociace | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-souvislost); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
+| <a id="pojem-kauzalni-zaver"></a>**Kauzální závěr** | causal conclusion | závěr o příčině; příčinný závěr | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-kauzalni-zaver); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
+| <a id="pojem-experiment"></a>**Experiment** | experiment | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-experiment); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
+| <a id="pojem-nahodne-prideleni"></a>**Náhodné přidělení do podmínek** | random assignment | náhodné rozdělení do podmínek; náhodné přiřazení; randomizace do podmínek | Důsledně odlišit od výběru z populace a od rozdělení ve smyslu distribution. | S — [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-nahodne-prideleni); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
+| <a id="pojem-konstrukt"></a>**Konstrukt** | construct | psychologický konstrukt | Nezaměňovat s jedním ukazatelem ani testovým skórem. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-konstrukt); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |
+| <a id="pojem-mereni"></a>**Měření** | measurement | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-mereni); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |
+| <a id="pojem-operacionalizace"></a>**Operacionalizace** | operationalization | — | Odlišit postup operacionalizace od výsledné operacionální definice. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-operacionalizace); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |
+| <a id="pojem-operacionalni-definice"></a>**Operacionální definice** | operational definition | operacionální vymezení | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-operacionalni-definice); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |
+| <a id="pojem-ukazatel"></a>**Ukazatel** | indicator | indikátor | Indikátor konstruktu; nezaměňovat automaticky se statistikou jako souhrnným ukazatelem. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-ukazatel); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |
+| <a id="pojem-uroven-mereni"></a>**Úroveň měření** | level of measurement; scale of measurement | škála měření | Důsledně úroveň měření; typ možných hodnot (diskrétní/spojité) je jiné rozlišení. | S — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-uroven-mereni); [výklad](../quarto/kapitola_01.qmd#sec-urovne) |
+| <a id="pojem-nominalni"></a>**Nominální úroveň měření** | nominal level of measurement | nominální škála měření | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-nominalni); [výklad](../quarto/kapitola_01.qmd#sec-nominalni) |
+| <a id="pojem-ordinalni"></a>**Ordinální úroveň měření** | ordinal level of measurement | ordinální škála měření; pořadová škála | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-ordinalni); [výklad](../quarto/kapitola_01.qmd#sec-ordinalni) |
+| <a id="pojem-intervalova"></a>**Intervalová úroveň měření** | interval level of measurement | intervalová škála měření | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-intervalova); [výklad](../quarto/kapitola_01.qmd#sec-intervalova) |
+| <a id="pojem-pomerova"></a>**Poměrová úroveň měření** | ratio level of measurement | poměrová škála měření | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-pomerova); [výklad](../quarto/kapitola_01.qmd#sec-pomerova) |
+| <a id="pojem-diskretni"></a>**Diskrétní proměnná** | discrete variable | nespojitá proměnná | Není synonymem celočíselného zápisu. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-diskretni); [výklad](../quarto/kapitola_01.qmd#sec-diskretni-spojite) |
+| <a id="pojem-spojita"></a>**Spojitá proměnná** | continuous variable | — | Odlišit spojitost měřené proměnné od přesnosti záznamu. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-spojita); [výklad](../quarto/kapitola_01.qmd#sec-diskretni-spojite) |
+| <a id="pojem-chyba-mereni"></a>**Chyba měření** | measurement error | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-chyba-mereni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-zkresleni"></a>**Systematické zkreslení** | bias | vychýlení podle kontextu | Vychýlení uvádět podle významu v daném zdroji; nezaměňovat s náhodným kolísáním. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-zkresleni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-chyba-zaznamu"></a>**Chyba záznamu** | data entry error | chyba přepisu | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-chyba-zaznamu); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-nejistota"></a>**Nejistota** | uncertainty | — | Není synonymem chyby. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-nejistota); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-datova-matice"></a>**Datová matice** | data matrix | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-datova-matice); [výklad](../quarto/kapitola_01.qmd#sec-datova-matice) |
+| <a id="pojem-identifikator"></a>**Identifikátor** | identifier; ID | identifikační kód | ID je zkratka, nikoli aktuální pořadí řádku. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-identifikator); [výklad](../quarto/kapitola_01.qmd#sec-kodovani) |
+| <a id="pojem-kodovani"></a>**Kódování** | coding | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-kodovani); [výklad](../quarto/kapitola_01.qmd#sec-kodovani) |
+| <a id="pojem-chybejici"></a>**Chybějící údaj** | missing value | chybějící hodnota | Opak platného údaje; chybění není nula. | S — [R13](ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu) | [Heslo](../quarto/slovnicek.qmd#pojem-chybejici); [výklad](../quarto/kapitola_01.qmd#sec-chybejici) |
+| <a id="pojem-codebook"></a>**Přehled proměnných a jejich kódování** | codebook | popis dat; datový slovník | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-codebook); [výklad](../quarto/kapitola_01.qmd#sec-codebook) |
+| <a id="pojem-konstanta"></a>**Konstanta** | constant | konstantní údaj | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-konstanta); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
+| <a id="pojem-prilezitostny-vyber"></a>**Příležitostný výběr** | convenience sampling | dostupný výběr | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-prilezitostny-vyber); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-kvaziintervalove"></a>**Kvaziintervalové měření** | quasi-interval measurement | přibližně intervalové měření | Podmíněné zacházení pro určitý účel, nikoli pátá základní úroveň měření. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-kvaziintervalove); [výklad](../quarto/kapitola_01.qmd#sec-kvaziintervalove) |
+| <a id="pojem-vyberova-variabilita"></a>**Výběrová variabilita** | sampling variability | kolísání mezi výběry | Odlišit od výběrového zkreslení. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberova-variabilita); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-vyberove-zkresleni"></a>**Výběrové zkreslení** | sampling bias | zkreslení výběru | Odlišit od výběrové variability a zkreslení v důsledku neúčasti. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberove-zkresleni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-neucast"></a>**Zkreslení v důsledku neúčasti** | nonresponse bias | zkreslení v důsledku neodpovídání | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-neucast); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-testovy-skor"></a>**Testový skór** | test score | výsledek testu | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-testovy-skor); [výklad](../quarto/kapitola_01.qmd#sec-kvaziintervalove) |
+| <a id="pojem-reprezentativnost"></a>**Reprezentativnost** | representativeness | reprezentativita | Není synonymem pravděpodobnostního výběru. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-reprezentativnost); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
+| <a id="pojem-interni-validita"></a>**Interní validita** | internal validity | vnitřní validita | V kontextu opory pro příčinný závěr v dané studii. | S — [H03](#doklad-h03) | [Heslo](../quarto/slovnicek.qmd#pojem-interni-validita); [výklad](../quarto/kapitola_01.qmd#sec-interni-externi-validita) |
+| <a id="pojem-externi-validita"></a>**Externí validita** | external validity | vnější validita | V kontextu přenosu závěru; neomezovat na reprezentativnost výběru. | S — [H03](#doklad-h03) | [Heslo](../quarto/slovnicek.qmd#pojem-externi-validita); [výklad](../quarto/kapitola_01.qmd#sec-interni-externi-validita) |
+| <a id="pojem-model-mereni"></a>**Model měření** | measurement model | měřicí model | — | S — [H04](#doklad-h04) | [Heslo](../quarto/slovnicek.qmd#pojem-model-mereni); [výklad](../quarto/kapitola_01.qmd#model-mereni-podrobne) |
+| <a id="pojem-vizualni-analogova-skala"></a>**Vizuální analogová škála** | visual analogue scale; visual analog scale; VAS | vizuálně analogová škála | — | S — [H04](#doklad-h04) | [Heslo](../quarto/slovnicek.qmd#pojem-vizualni-analogova-skala); [výklad](../quarto/kapitola_01.qmd#sec-uroven-a-spojitost) |
+| <a id="pojem-posuvnik"></a>**Posuvník** | slider | posuvná odpovědní škála | — | S — [H04](#doklad-h04) | [Heslo](../quarto/slovnicek.qmd#pojem-posuvnik); [výklad](../quarto/kapitola_01.qmd#posuvnik-podrobne) |
+| <a id="pojem-verbalni-kotva"></a>**Verbální kotva** | verbal anchor | slovní kotva; slovní popis bodu škály | — | S — [H04](#doklad-h04) | [Heslo](../quarto/slovnicek.qmd#pojem-verbalni-kotva); [výklad](../quarto/kapitola_01.qmd#posuvnik-podrobne) |
+
+<a id="kapitola-02"></a>
+
+## Četnosti, intervaly a grafy
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-absolutni-cetnost"></a>**Absolutní četnost** | absolute frequency | četnost; počet výskytů | Při pojmenování veličiny absolutní četnost; počet zůstává v definicích, interpretacích, názvech proměnných a popiscích „Počet účastníků“. | S — [R02](ROZHODNUTI.md#r02-indexy-a-cetnosti) | [Heslo](../quarto/slovnicek.qmd#pojem-absolutni-cetnost); [výklad](../quarto/kapitola_02.qmd#sec-od-zaznamu-k-cetnostem) |
+| <a id="pojem-cetnostni-tabulka"></a>**Četnostní tabulka** | frequency table | tabulka četností | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-cetnostni-tabulka); [výklad](../quarto/kapitola_02.qmd#sec-od-zaznamu-k-cetnostem) |
+| <a id="pojem-rozdeleni"></a>**Rozdělení** | distribution | distribuce | Odlišit data, populaci a teoretický model; nezaměňovat s přidělováním do skupin. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-rozdeleni); [výklad](../quarto/kapitola_02.qmd#def-rozdeleni) |
+| <a id="pojem-rozdeleni-cetnosti"></a>**Rozdělení četností** | frequency distribution | četnostní rozdělení | V kontextu zastoupení hodnot; rozdělení dat je širší označení. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-rozdeleni-cetnosti); [výklad](../quarto/kapitola_02.qmd#sec-od-zaznamu-k-cetnostem) |
+| <a id="pojem-velikost-vyberu"></a>**Velikost výběru** | sample size | rozsah výběru; rozsah souboru; velikost souboru; počet případů | Určit jednotku a zahrnuté případy. „Velikost skupin“ se tímto pravidlem nemění. | S — [R13](ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu) | [Heslo](../quarto/slovnicek.qmd#pojem-velikost-vyberu); [výklad](../quarto/kapitola_02.qmd#sec-co-pocitame) |
+| <a id="pojem-platny-udaj"></a>**Platný údaj** | valid value | nechybějící údaj; známý údaj; dostupný údaj | V této konvenci údaj, který nechybí; opak chybějícího údaje. Název sám nepotvrzuje bezchybnost měření. | S — [R13](ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu) | [Heslo](../quarto/slovnicek.qmd#pojem-platny-udaj); [výklad](../quarto/kapitola_02.qmd#sec-jmenovatel) |
+| <a id="pojem-relativni-cetnost"></a>**Relativní četnost** | relative frequency | poměrná četnost | Při pojmenování veličiny relativní četnost; podíl je obecnější pojem a zůstává při interpretaci. | S — [R02](ROZHODNUTI.md#r02-indexy-a-cetnosti) | [Heslo](../quarto/slovnicek.qmd#pojem-relativni-cetnost); [výklad](../quarto/kapitola_02.qmd#sec-relativni-cetnost) |
+| <a id="pojem-procento"></a>**Procento** | percent; percentage | procentní vyjádření podílu | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-procento); [výklad](../quarto/kapitola_02.qmd#sec-relativni-cetnost) |
+| <a id="pojem-vzajemne-vylucne-kategorie"></a>**Vzájemně výlučné kategorie** | mutually exclusive categories | nepřekrývající se kategorie | Výlučnost není totéž co úplné pokrytí případů. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-vzajemne-vylucne-kategorie); [výklad](../quarto/kapitola_02.qmd#sec-jmenovatel) |
+| <a id="pojem-index"></a>**Index** | index; subscript | dolní index | Zápis a význam i/j určuje R02 a přehled značení. | S — [R02](ROZHODNUTI.md#r02-indexy-a-cetnosti) | [Heslo](../quarto/slovnicek.qmd#pojem-index); [výklad](../quarto/kapitola_02.qmd#sec-relativni-cetnost) |
+| <a id="pojem-sumace"></a>**Sumace** | summation | sčítání; součet (podle kontextu) | Sumace označuje zápis/postup sčítání; součet může označovat jeho výsledek. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-sumace); [výklad](../quarto/kapitola_02.qmd#sec-sumace) |
+| <a id="pojem-kumulativni-cetnost"></a>**Kumulativní četnost** | cumulative frequency | kumulovaná četnost; součtová četnost | Při pojmenování veličin rozlišit kumulativní absolutní četnost a kumulativní relativní četnost; nestřídat s „kumulativními počty“. | S — [R02](ROZHODNUTI.md#r02-indexy-a-cetnosti) | [Heslo](../quarto/slovnicek.qmd#pojem-kumulativni-cetnost); [výklad](../quarto/kapitola_02.qmd#sec-kumulativni-cetnosti) |
+| <a id="pojem-intervalove-trideni"></a>**Intervalové třídění** | grouping into class intervals; binning | seskupování do intervalů | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-intervalove-trideni); [výklad](../quarto/kapitola_02.qmd#sec-tridni-intervaly) |
+| <a id="pojem-tridni-interval"></a>**Třídní interval** | class interval; bin | interval třídy | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-tridni-interval); [výklad](../quarto/kapitola_02.qmd#sec-tridni-intervaly) |
+| <a id="pojem-meze-intervalu"></a>**Meze intervalu** | lower endpoint; upper endpoint; interval limits | dolní a horní hranice intervalu | Používat dolní mez a horní mez. Otevřenost/uzavřenost vztahovat k intervalu; obecné hranice měření zůstávají. | S — [H07](#doklad-h07) | [Heslo](../quarto/slovnicek.qmd#pojem-meze-intervalu); [výklad](../quarto/kapitola_02.qmd#sec-tridni-intervaly) |
+| <a id="pojem-uzavrena-hranice"></a>**Mez patřící do intervalu** | closed endpoint | zahrnutá mez; uzavřená hranice | Vyjádřit, že mez do intervalu patří; neoznačovat ji systematicky „uzavřenou hranicí“. | S — [H07](#doklad-h07) | [Heslo](../quarto/slovnicek.qmd#pojem-uzavrena-hranice); [výklad](../quarto/kapitola_02.qmd#sec-hranice-intervalu) |
+| <a id="pojem-otevrena-hranice"></a>**Mez nepatřící do intervalu** | open endpoint | nezahrnutá mez; otevřená hranice | Vyjádřit, že mez do intervalu nepatří; neoznačovat ji systematicky „otevřenou hranicí“. | S — [H07](#doklad-h07) | [Heslo](../quarto/slovnicek.qmd#pojem-otevrena-hranice); [výklad](../quarto/kapitola_02.qmd#sec-hranice-intervalu) |
+| <a id="pojem-interval-zleva-uzavreny"></a>**Zleva uzavřený a zprava otevřený interval** | left-closed, right-open interval | — | Platná srovnávací konvence, nikoli výchozí konvence hlavních příkladů. Polouzavřený interval je širší označení. | K — [R03](ROZHODNUTI.md#r03-hranice-intervalu) | [Heslo](../quarto/slovnicek.qmd#pojem-interval-zleva-uzavreny); [výklad](../quarto/kapitola_02.qmd#sec-hranice-intervalu) |
+| <a id="pojem-interval-zprava-uzavreny"></a>**Zleva otevřený a zprava uzavřený interval** | left-open, right-closed interval | — | Výchozí konvence hlavních příkladů podle R03; krajní hodnoty pokrýt výslovně. Polouzavřený interval je širší označení. | K — [R03](ROZHODNUTI.md#r03-hranice-intervalu) | [Heslo](../quarto/slovnicek.qmd#pojem-interval-zprava-uzavreny); [výklad](../quarto/kapitola_02.qmd#sec-hranice-intervalu) |
+| <a id="pojem-stred-intervalu"></a>**Střed intervalu** | class midpoint | třídní střed | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-stred-intervalu); [výklad](../quarto/kapitola_02.qmd#sec-polygon-cetnosti) |
+| <a id="pojem-sloupcovy-graf"></a>**Sloupcový graf** | bar chart; bar graph | — | Pruhový graf označuje vodorovnou variantu; není bez rozlišení orientace další název všech sloupcových grafů. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-sloupcovy-graf); [výklad](../quarto/kapitola_02.qmd#sec-sloupcovy-graf) |
+| <a id="pojem-teckovy-graf"></a>**Tečkový graf jednotlivých pozorování** | dot plot | bodový graf jednotlivých hodnot | Nezaměňovat s bodovým grafem vztahu dvou proměnných. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-teckovy-graf); [výklad](../quarto/kapitola_02.qmd#sec-teckovy-graf) |
+| <a id="pojem-histogram"></a>**Histogram** | histogram | — | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-histogram); [výklad](../quarto/kapitola_02.qmd#sec-histogram) |
+| <a id="pojem-kumulativni-graf"></a>**Graf kumulativních četností** | cumulative frequency graph | kumulativní graf | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-kumulativni-graf); [výklad](../quarto/kapitola_02.qmd#sec-kumulativni-graf) |
+| <a id="pojem-polygon-cetnosti"></a>**Polygon četností** | frequency polygon | četnostní polygon | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-polygon-cetnosti); [výklad](../quarto/kapitola_02.qmd#sec-polygon-cetnosti) |
+| <a id="pojem-vysecovy-graf"></a>**Výsečový graf** | pie chart | koláčový graf | — | S — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-vysecovy-graf); [výklad](../quarto/kapitola_02.qmd#sec-vysecovy-graf) |
+| <a id="pojem-stonek-list"></a>**Graf stonek a list** | stem-and-leaf plot; stem-and-leaf display | stonkový graf; graf kmen–list | — | S — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-stonek-list); [výklad](../quarto/kapitola_02.qmd#sec-stonek-list) |
+| <a id="pojem-soumernost"></a>**Souměrné rozdělení** | symmetric distribution | symetrické rozdělení; souměrnost | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-soumernost); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-rovnomerne"></a>**Rovnoměrné rozdělení** | uniform distribution | uniformní rozdělení; obdélníkové rozdělení | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-rovnomerne); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-chvost"></a>**Chvost rozdělení** | tail | konec rozdělení; okrajová část | Při popisu tvaru důsledně chvost. „Konec“ zůstává pro vousy a seřazenou řadu při ořezání/winsorizaci. | S — [R14](ROZHODNUTI.md#r14-kvartily-spicatost-chvost) | [Heslo](../quarto/slovnicek.qmd#pojem-chvost); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-sikmost"></a>**Šikmost** | skewness | zešikmení | Asymetrie je obecnější pojem; momentový koeficient má samostatné heslo. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-sikmost); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-sikmost-doprava"></a>**Rozdělení zešikmené doprava** | right-skewed distribution; positively skewed distribution | kladně zešikmené rozdělení; pravostranné zešikmení | Směr podle protažení chvostu, nikoli podle polohy většiny případů. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-sikmost-doprava); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-sikmost-doleva"></a>**Rozdělení zešikmené doleva** | left-skewed distribution; negatively skewed distribution | záporně zešikmené rozdělení; levostranné zešikmení | Směr podle protažení chvostu, nikoli podle polohy většiny případů. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-sikmost-doleva); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-jednovrcholove"></a>**Jednovrcholové rozdělení** | unimodal distribution | unimodální rozdělení | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-jednovrcholove); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-dvouvrcholove"></a>**Dvouvrcholové rozdělení** | bimodal distribution | bimodální rozdělení | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-dvouvrcholove); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-vicevrcholove"></a>**Vícevrcholové rozdělení** | multimodal distribution | multimodální rozdělení | Zde při více než dvou vrcholech; širší užití zahrnuje i dvouvrcholové. | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-vicevrcholove); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-odlehle-pozorovani"></a>**Odlehlé pozorování** | outlier | odlehlá hodnota; odlehlý případ | Extrémní hodnota/případ je širší pojem. Odlehlost není důkaz chyby ani pokyn k odstranění. | S — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-odlehle-pozorovani); [výklad](../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) |
+| <a id="pojem-podlaha"></a>**Efekt podlahy** | floor effect | efekt dolní hranice | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-podlaha); [výklad](../quarto/kapitola_02.qmd#sec-podlaha-strop) |
+| <a id="pojem-strop"></a>**Efekt stropu** | ceiling effect | efekt horní hranice | — | K — [H06](#doklad-h06) | [Heslo](../quarto/slovnicek.qmd#pojem-strop); [výklad](../quarto/kapitola_02.qmd#sec-podlaha-strop) |
+
+<a id="kapitola-03"></a>
+
+## Poloha, variabilita a transformace
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-poloha"></a>**Poloha** | location; central tendency | centrální tendence | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-poloha); [výklad](../quarto/kapitola_03.qmd#sec-poloha-variabilita) |
+| <a id="pojem-variabilita"></a>**Variabilita** | variability; dispersion | rozptýlenost; proměnlivost | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-variabilita); [výklad](../quarto/kapitola_03.qmd#sec-poloha-variabilita) |
+| <a id="pojem-statistika-ukazatel"></a>**Statistika (číselný ukazatel)** | statistic | výběrová charakteristika; ukazatel | Číselný ukazatel z dat; odlišit obor statistika a populační/modelový parametr. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-statistika-ukazatel); [výklad](../quarto/kapitola_03.qmd#sec-poloha-variabilita) |
+| <a id="pojem-modus"></a>**Modus** | mode | modální hodnota | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-modus); [výklad](../quarto/kapitola_03.qmd#sec-modus) |
+| <a id="pojem-median"></a>**Medián** | median | prostřední hodnota | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-median); [výklad](../quarto/kapitola_03.qmd#sec-median) |
+| <a id="pojem-prumer"></a>**Aritmetický průměr** | arithmetic mean | průměr | Po zavedení lze zkrátit na průměr, je-li druh jednoznačný. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-prumer); [výklad](../quarto/kapitola_03.qmd#sec-prumer) |
+| <a id="pojem-vazeny-prumer"></a>**Vážený průměr** | weighted mean | — | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-vazeny-prumer); [výklad](../quarto/kapitola_03.qmd#sec-vazeny-prumer) |
+| <a id="pojem-kvantil"></a>**Kvantil** | quantile | — | Odlišit hodnotu kvantilu a jeho úroveň; výpočetní konvence jsou v R04. | K — [R04](ROZHODNUTI.md#r04-kvantily) | [Heslo](../quarto/slovnicek.qmd#pojem-kvantil); [výklad](../quarto/kapitola_03.qmd#sec-kvantily) |
+| <a id="pojem-kvartil"></a>**Kvartil** | quartile | dolní kvartil (1.); horní kvartil (3.) | Preferovat 1. kvartil a 3. kvartil; dolní/horní jen při zavedení a ve slovníčku. 2. kvartil je medián; čtvrtina rozdělení není hodnota kvartilu. | S — [R14](ROZHODNUTI.md#r14-kvartily-spicatost-chvost) | [Heslo](../quarto/slovnicek.qmd#pojem-kvartil); [výklad](../quarto/kapitola_03.qmd#sec-kvantily) |
+| <a id="pojem-percentil"></a>**Percentil** | percentile | — | Odlišit od percentilového pořadí: 60. percentil versus percentilové pořadí 60. | K — [R04](ROZHODNUTI.md#r04-kvantily) | [Heslo](../quarto/slovnicek.qmd#pojem-percentil); [výklad](../quarto/kapitola_03.qmd#sec-kvantily) |
+| <a id="pojem-interpolace"></a>**Lineární interpolace** | linear interpolation | dopočet mezi sousedními hodnotami | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-interpolace); [výklad](../quarto/kapitola_03.qmd#sec-vypocet-kvantilu) |
+| <a id="pojem-percentilove-poradi"></a>**Percentilové pořadí** | percentile rank | percentilový skór (nejednoznačné) | „Percentilový skór“ je nejednoznačný. Číselné pořadí psát bez tečky; konvenci vymezit podle R04. | K — [R04](ROZHODNUTI.md#r04-kvantily) | [Heslo](../quarto/slovnicek.qmd#pojem-percentilove-poradi); [výklad](../quarto/kapitola_03.qmd#sec-percentilove-poradi) |
+| <a id="pojem-minimum"></a>**Minimum** | minimum | nejmenší hodnota | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-minimum); [výklad](../quarto/kapitola_03.qmd#sec-rozpeti) |
+| <a id="pojem-maximum"></a>**Maximum** | maximum | největší hodnota | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-maximum); [výklad](../quarto/kapitola_03.qmd#sec-rozpeti) |
+| <a id="pojem-variacni-rozpeti"></a>**Variační rozpětí** | range | rozpětí | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-variacni-rozpeti); [výklad](../quarto/kapitola_03.qmd#sec-rozpeti) |
+| <a id="pojem-mezikvartilove-rozpeti"></a>**Mezikvartilové rozpětí** | interquartile range | kvartilové rozpětí | IQR je běžná zkratka, nikoli další český překlad. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-mezikvartilove-rozpeti); [výklad](../quarto/kapitola_03.qmd#sec-rozpeti) |
+| <a id="pojem-odchylka"></a>**Odchylka od průměru** | deviation from the mean | deviační skór | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-odchylka); [výklad](../quarto/kapitola_03.qmd#sec-odchylky) |
+| <a id="pojem-absolutni-hodnota"></a>**Absolutní hodnota** | absolute value | — | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-absolutni-hodnota); [výklad](../quarto/kapitola_03.qmd#sec-prumerna-absolutni) |
+| <a id="pojem-prumerna-absolutni"></a>**Průměrná absolutní odchylka od průměru** | mean absolute deviation from the mean | AAD; MAD (nejednoznačné zkratky jiných zdrojů) | Používaná zkratka MeanAD; odlišit od MedAD. AAD a nejednoznačné MAD jen pro čtení jiných zdrojů. | S — [R01](ROZHODNUTI.md#r01-znaceni-a-reportovani) | [Heslo](../quarto/slovnicek.qmd#pojem-prumerna-absolutni); [výklad](../quarto/kapitola_03.qmd#sec-prumerna-absolutni) |
+| <a id="pojem-rozptyl"></a>**Rozptyl** | variance | variance (nepreferovaná česká varianta) | Variabilita je širší pojem. Rozlišit popis s dělením n a výběrový rozptyl s dělením n − 1. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-rozptyl); [výklad](../quarto/kapitola_03.qmd#sec-rozptyl) |
+| <a id="pojem-nestrannost"></a>**Nestrannost odhadu** | unbiasedness | nevychýlenost | Vlastnost odhadovacího postupu při opakování, nikoli přesnost jednoho výsledku. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-nestrannost); [výklad](../quarto/kapitola_03.qmd#sec-korekce-rozptylu) |
+| <a id="pojem-smerodatna-odchylka"></a>**Směrodatná odchylka** | standard deviation | standardní odchylka | SD patří do vymezených ukázek reportování APA; výpočetní s zůstává podle R01. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-smerodatna-odchylka); [výklad](../quarto/kapitola_03.qmd#sec-smerodatna-odchylka) |
+| <a id="pojem-stupne-volnosti"></a>**Stupně volnosti** | degrees of freedom | — | Používat slovní označení; df je běžná zkratka jiných zdrojů, ne nové výpočetní značení. | K — [H09](#doklad-h09) | [Heslo](../quarto/slovnicek.qmd#pojem-stupne-volnosti); [výklad](../quarto/kapitola_03.qmd#sec-korekce-rozptylu) |
+| <a id="pojem-robustnost"></a>**Robustnost** | robustness | — | Vždy vymezit, vůči čemu; odolnost vůči krajním hodnotám (resistance) je užší význam, nikoli úplné synonymum robustnosti. | K — [H09](#doklad-h09) | [Heslo](../quarto/slovnicek.qmd#pojem-robustnost); [výklad](../quarto/kapitola_03.qmd#sec-median-absolutnich) |
+| <a id="pojem-mad"></a>**Medián absolutních odchylek od mediánu** | median absolute deviation | mediánová absolutní odchylka; MAD (zkratka jiných zdrojů) | Používaná zkratka MedAD; MAD pouze při upozornění na jiné zdroje. Odlišit od MeanAD; zde bez škálovací konstanty (R06). | S — [R01](ROZHODNUTI.md#r01-znaceni-a-reportovani) | [Heslo](../quarto/slovnicek.qmd#pojem-mad); [výklad](../quarto/kapitola_03.qmd#sec-median-absolutnich) |
+| <a id="pojem-orezany-prumer"></a>**Ořezaný průměr** | trimmed mean | useknutý průměr | Nezaměňovat s winsorizovaným průměrem; konvence úrovně a počtu hodnot v R06. | K — [R06](ROZHODNUTI.md#r06-robustni-shrnuti) | [Heslo](../quarto/slovnicek.qmd#pojem-orezany-prumer); [výklad](../quarto/kapitola_03.qmd#sec-orezani-winsorizace) |
+| <a id="pojem-winsorizace"></a>**Winsorizace** | winsorization | winsorování | Odlišit nahrazení krajních hodnot od ořezání; konvence v R06. | K — [R06](ROZHODNUTI.md#r06-robustni-shrnuti) | [Heslo](../quarto/slovnicek.qmd#pojem-winsorizace); [výklad](../quarto/kapitola_03.qmd#sec-orezani-winsorizace) |
+| <a id="pojem-boxplot"></a>**Krabicový graf** | boxplot; box-and-whisker plot | boxplot; krabicový diagram | — | K — [R04](ROZHODNUTI.md#r04-kvantily) | [Heslo](../quarto/slovnicek.qmd#pojem-boxplot); [výklad](../quarto/kapitola_03.qmd#sec-boxplot) |
+| <a id="pojem-entropie"></a>**Entropie** | entropy; Shannon entropy | Shannonova entropie | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-entropie); [výklad](../quarto/kapitola_03.qmd#sec-entropie) |
+| <a id="pojem-normalizovana-entropie"></a>**Normalizovaná entropie** | normalized entropy | ukazatel vyrovnanosti zastoupení kategorií | Bezrozměrný poměr; odlišit od entropie v bitech a normalizace rozdělení přes pořadí. | S — [H10](#doklad-h10) | [Heslo](../quarto/slovnicek.qmd#pojem-normalizovana-entropie); [výklad](../quarto/kapitola_03.qmd#sec-entropie) |
+| <a id="pojem-logaritmus"></a>**Logaritmus** | logarithm | — | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-logaritmus); [výklad](../quarto/kapitola_03.qmd#sec-entropie) |
+| <a id="pojem-bit"></a>**Bit** | bit; binary digit | — | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-bit); [výklad](../quarto/kapitola_03.qmd#sec-entropie) |
+| <a id="pojem-poradova-statistika"></a>**Pořadová statistika** | order statistic | — | Jednotlivá hodnota v seřazených datech; „ukazatel založený na uspořádání“ je širší pojem. | K — [H12](#doklad-h12) | [Heslo](../quarto/slovnicek.qmd#pojem-poradova-statistika); [výklad](../quarto/kapitola_03.qmd#sec-zmena-skaly) |
+| <a id="pojem-obraceni-skaly"></a>**Obrácení skórování** | reverse scoring | reverzní skórování | — | K — [H12](#doklad-h12) | [Heslo](../quarto/slovnicek.qmd#pojem-obraceni-skaly); [výklad](../quarto/kapitola_03.qmd#sec-zmena-skaly) |
+| <a id="pojem-parametr"></a>**Parametr** | parameter | — | Upřesnit populační či modelový parametr; statistika z výběru není parametr. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-parametr); [výklad](../quarto/kapitola_03.qmd#sec-poloha-variabilita) |
+| <a id="pojem-parametricky-popis"></a>**Parametrický popis rozdělení** | parametric description of a distribution | — | — | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-parametricky-popis); [výklad](../quarto/kapitola_03.qmd#sec-popis-a-model) |
+| <a id="pojem-neparametricky-popis"></a>**Neparametrický popis** | nonparametric description | — | Zde přímý popis bez volby parametrické rodiny, nikoli absence všech předpokladů. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-neparametricky-popis); [výklad](../quarto/kapitola_03.qmd#sec-popis-a-model) |
+| <a id="pojem-moment"></a>**Moment** | moment | — | Centrální moment je určitý druh momentu, nikoli synonymum všech momentů. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-moment); [výklad](../quarto/kapitola_03.qmd#sec-momenty) |
+| <a id="pojem-momentova-sikmost"></a>**Momentový koeficient šikmosti** | moment coefficient of skewness | — | Odlišit základní momentový koeficient a korigovanou výběrovou variantu; g₁ je značka, nikoli synonymum. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-momentova-sikmost); [výklad](../quarto/kapitola_03.qmd#sec-momenty) |
+| <a id="pojem-kurtoza"></a>**Špičatost** | kurtosis | kurtóza | Preferovat špičatost; název nevykládat jako výšku či ostrost vrcholu. Odlišit exces. | S — [R14](ROZHODNUTI.md#r14-kvartily-spicatost-chvost) | [Heslo](../quarto/slovnicek.qmd#pojem-kurtoza); [výklad](../quarto/kapitola_03.qmd#sec-momenty) |
+| <a id="pojem-exces"></a>**Exces** | excess kurtosis | nadměrná špičatost; nadbytečná kurtóza | Odlišit od špičatosti a základní výpočet od korigovaného výsledku KURT. | K — [H08](#doklad-h08) | [Heslo](../quarto/slovnicek.qmd#pojem-exces); [výklad](../quarto/kapitola_03.qmd#sec-momenty) |
+| <a id="pojem-orezani"></a>**Ořezání** | trimming | useknutí | — | K — [R06](ROZHODNUTI.md#r06-robustni-shrnuti) | [Heslo](../quarto/slovnicek.qmd#pojem-orezani); [výklad](../quarto/kapitola_03.qmd#sec-orezani-winsorizace) |
+| <a id="pojem-winsorizovany-prumer"></a>**Winsorizovaný průměr** | winsorized mean | — | — | K — [R06](ROZHODNUTI.md#r06-robustni-shrnuti) | [Heslo](../quarto/slovnicek.qmd#pojem-winsorizovany-prumer); [výklad](../quarto/kapitola_03.qmd#sec-orezani-winsorizace) |
+| <a id="pojem-vousy"></a>**Vousy krabicového grafu** | whiskers | — | Konce vousů nejsou pomocné meze; pravidlo konstrukce v R04. | K — [H10](#doklad-h10) | [Heslo](../quarto/slovnicek.qmd#pojem-vousy); [výklad](../quarto/kapitola_03.qmd#sec-boxplot) |
+| <a id="pojem-transformace"></a>**Transformace** | transformation | převod hodnot | — | K — [H11](#doklad-h11) | [Heslo](../quarto/slovnicek.qmd#pojem-transformace); [výklad](../quarto/kapitola_03.qmd#sec-zmena-skaly) |
+| <a id="pojem-linearni-transformace"></a>**Lineární transformace** | linear transformation; affine transformation (přesnější při nenulovém posunu) | afinní transformace (při nenulovém posunu) | Zde zahrnuje posun a násobení; při nenulovém posunu je afinní přesnější matematický název. | K — [H11](#doklad-h11) | [Heslo](../quarto/slovnicek.qmd#pojem-linearni-transformace); [výklad](../quarto/kapitola_03.qmd#sec-zmena-skaly) |
+| <a id="pojem-nelinearni-transformace"></a>**Nelineární transformace** | nonlinear transformation | — | — | K — [H11](#doklad-h11) | [Heslo](../quarto/slovnicek.qmd#pojem-nelinearni-transformace); [výklad](../quarto/kapitola_03.qmd#sec-zmena-skaly) |
+
+<a id="kapitola-04"></a>
+
+## Normální model a standardní skóry
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-hruby-skor"></a>**Hrubý skór** | raw score | nepřevedený skór | — | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-hruby-skor); [výklad](../quarto/kapitola_04.qmd#sec-referencni-skupina) |
+| <a id="pojem-referencni-skupina"></a>**Referenční skupina** | reference group | srovnávací skupina v tomto významu | Odlišit skupinu pro srovnání od konkrétního normativního souboru. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-referencni-skupina); [výklad](../quarto/kapitola_04.qmd#sec-referencni-skupina) |
+| <a id="pojem-normativni-soubor"></a>**Normativní soubor** | normative sample | standardizační soubor | Zachovat schválené spojení soubor; obecná preference „výběr“ neznamená přejmenovat jej na normativní výběr. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normativni-soubor); [výklad](../quarto/kapitola_04.qmd#sec-referencni-skupina) |
+| <a id="pojem-z-skor"></a>**Z-skór** | z score | z-hodnota; standardizovaný skór | V souvislém textu z-skór. Standardizovaný skór může mít v jiných zdrojích širší význam. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-z-skor); [výklad](../quarto/kapitola_04.qmd#sec-z-skor) |
+| <a id="pojem-standardizace"></a>**Standardizace** | standardization | převod na z-skóry (v tomto kontextu) | Zde převod na z-skóry; širší standardizace metody je jiný význam. Nezaměňovat s normalizací rozdělení. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-standardizace); [výklad](../quarto/kapitola_04.qmd#sec-standardizace) |
+| <a id="pojem-normalni-rozdeleni"></a>**Normální rozdělení** | normal distribution | Gaussovo rozdělení | Normální není klinické hodnocení. Parametrizaci N(μ, σ) určuje R15. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normalni-rozdeleni); [výklad](../quarto/kapitola_04.qmd#sec-normalni-model) |
+| <a id="pojem-normovane-normalni"></a>**Normované normální rozdělení** | standard normal distribution | standardní normální rozdělení; standardizované normální rozdělení | Používat normované normální; alternativy nejsou odborně chybné. Standardizace nenormálních dat normalitu nevytváří. | S — [R07](ROZHODNUTI.md#r07-normovane-normalni) | [Heslo](../quarto/slovnicek.qmd#pojem-normovane-normalni); [výklad](../quarto/kapitola_04.qmd#sec-normovane-normalni) |
+| <a id="pojem-hustota"></a>**Hustota pravděpodobnosti** | probability density | pravděpodobnostní hustota; hustotní funkce | Odlišit výšku hustoty od pravděpodobnosti/podílu jako plochy. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-hustota); [výklad](../quarto/kapitola_04.qmd#sec-hustota) |
+| <a id="pojem-distribucni-funkce"></a>**Distribuční funkce** | cumulative distribution function | kumulativní distribuční funkce | — | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-distribucni-funkce); [výklad](../quarto/kapitola_04.qmd#sec-distribucni-funkce) |
+| <a id="pojem-standardni-skor"></a>**Standardní skór** | standard score | standardizovaný skór (význam ověřit podle kontextu) | Schválen je širší význam zahrnující různé škály; v části literatury jen z-skór. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-standardni-skor); [výklad](../quarto/kapitola_04.qmd#sec-standardni-skory) |
+| <a id="pojem-t-skor"></a>**T-skór** | T score | T-skóre | — | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-t-skor); [výklad](../quarto/kapitola_04.qmd#sec-prepocty-skoru) |
+| <a id="pojem-iq-skor"></a>**IQ-skór** | IQ score | skór na škále typu IQ | Zde škála 100/15; mimo inteligenci „výsledek vyjádřený na škále IQ-skórů“. Převod nemění konstrukt. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-iq-skor); [výklad](../quarto/kapitola_04.qmd#sec-prepocty-skoru) |
+| <a id="pojem-subtestovy-skor"></a>**Standardní subtestový skór** | scaled subtest score | vážený skór; vážený subtestový skór; přepočtený skór | Při zavedení vysvětlit vážený skór; nejde o vážený součet. 10/3 je zde probíraná škála, nikoli definice všech scaled scores. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-subtestovy-skor); [výklad](../quarto/kapitola_04.qmd#sec-prepocty-skoru) |
+| <a id="pojem-sten"></a>**Sten** | sten; standard ten | stenový skór | — | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-sten); [výklad](../quarto/kapitola_04.qmd#sec-steny-staniny) |
+| <a id="pojem-stanin"></a>**Stanin** | stanine; standard nine | stanina | — | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-stanin); [výklad](../quarto/kapitola_04.qmd#sec-steny-staniny) |
+| <a id="pojem-normalizace"></a>**Normalizace rozdělení** | rank-based normal-score transformation | normalizace přes pořadí (v tomto významu) | Zde převod přes pořadí na normální kvantily, nikoli standardizace na z-skóry. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normalizace); [výklad](../quarto/kapitola_04.qmd#sec-normalizace) |
+| <a id="pojem-normalni-qq"></a>**Normální Q–Q graf** | normal Q–Q plot; quantile–quantile plot (širší označení) | kvantilový graf vůči normálnímu modelu | Obecný Q–Q graf je širší pojem. Zde srovnání s normálním modelem; nejde o P–P graf. | S — [R08](ROZHODNUTI.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normalni-qq); [výklad](../quarto/kapitola_04.qmd#sec-qq-graf) |
+
+## Návrhy a nejasně doložené volby — mimo platný registr
+
+Při založení se sem nepřidávají nové návrhy. Terminologie budoucí kapitoly 5
+zůstává k dohodě podle [plánu pokračování](OSNOVA.md#plan-dalsi-kapitoly).
+Pouhá zmínka o budoucím tématu není schválením českého překladu.
+
+Budoucí návrh zde eviduj odděleně s pracovním ID, stavem **návrh** nebo
+**doklad k ověření**, navrženým českým/anglickým názvem, alternativami,
+kontextem, důvodem a konkrétní otevřenou otázkou. Při schválení přesuň heslo
+do příslušné platné tabulky a doplň doklad; odmítnutý návrh nevydávej za
+platnou alternativu. Prázdný oddíl neznamená schválení dosud neevidovaných názvů.

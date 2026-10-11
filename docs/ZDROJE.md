@@ -10,7 +10,7 @@ Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou d
 2. Zkontroluj aktuální soubory proti inventáři; nové a změněné podklady doplň před návrhem kapitoly.
 3. Přečti konkrétní relevantní pasáže v originálech, včetně návazností, obrázků a podmínek použití. Mapa usnadňuje dohledání, nenahrazuje tento krok.
 4. Při návrhu kapitoly uveď, který podklad slouží pro pořadí výkladu, vysvětlení, příklad, procvičování nebo odbornou kontrolu; připoj přesný lokátor a otevřené otázky.
-5. Aktualizuj příslušnou kartu, pokud se prohloubí ověření, přibude nález nebo se změní soubor. Schválený rozsah kapitoly zapisuj do osnovy, schválené konvence do rozhodnutí.
+5. Aktualizuj příslušnou kartu, pokud se prohloubí ověření, přibude nález nebo se změní soubor. Schválený rozsah kapitoly zapisuj do osnovy, schválené konvence do rozhodnutí; terminologické preference současně do [SLOVNIK.md](SLOVNIK.md). Překlad nalezený v podkladu není automaticky preferencí učebnice. Před převzetím ověř význam a platné heslo registru, novou volbu nejprve dohodni.
 
 **Rozsah provedené práce.** Všechny soubory byly otevřeny a jejich obsah byl posouzen. U rozsáhlých učebnic byl zmapován obsah celé knihy a přečteny vybrané pasáže; nejde o přečtení všech několika tisíc stran ani o kontrolu všech důkazů a příkladů. Konkrétní rozsah je uveden v kartách. U kratších podkladů byly čteny texty, zadání a dostupná řešení; skeny vyžadovaly OCR. Textová extrakce ani OCR samy o sobě nejsou odborným ověřením. Obrázky prezentací byly kontrolovány z exportů PowerPointu, obrázky DOCX a XLSX také samostatně. Neproběhla úplná kontrola všech animací, vložených objektů a odkazovaného externího obsahu.
 
