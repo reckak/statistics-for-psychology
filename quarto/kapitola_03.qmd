@@ -26,7 +26,7 @@ Průběžný malý příklad obsahuje doby dokončení úlohy měřící pozorno
 
 $$4,\quad 5,\quad 5,\quad 6,\quad 10.$$
 
-Každý účastník poskytl jednu hodnotu. Rozsah souboru je tedy $n=5$. Zápis $x_i$ označuje hodnotu u pozorování s indexem $i$: například $x_1=4$ a $x_5=10$. Index je pořadové označení záznamu, nikoli jeho velikost. Malé soubory zde slouží k pochopení výpočtu, nikoli k věrohodnému zobecnění na populaci.
+Každý účastník poskytl jednu hodnotu. Velikost výběru je tedy $n=5$. Zápis $x_i$ označuje hodnotu u pozorování s indexem $i$: například $x_1=4$ a $x_5=10$. Index je pořadové označení záznamu, nikoli jeho velikost. Malé soubory zde slouží k pochopení výpočtu, nikoli k věrohodnému zobecnění na populaci.
 
 ### Modus: nejčastější hodnota {#sec-modus}
 

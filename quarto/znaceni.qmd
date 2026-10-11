@@ -4,7 +4,7 @@ Přehled používá stejné symboly jako výklad. Alternativy slouží k orienta
 
 ::: {.reference-table}
 <table id="notation-table"><caption>Přehled zavedeného značení a vzorců</caption><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah nebo příklad</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody>
-<tr id="znak-n"><th scope="row">$n$</th><td>Rozsah souboru: počet případů zahrnutých do konkrétního výpočtu.</td><td>$n=\sum_{j=1}^{k}f_j$</td><td>N v jiné literatuře; zde používáme malé n.</td><td><a href="kapitola_02.html#sec-co-pocitame">Výklad</a></td></tr>
+<tr id="znak-n"><th scope="row">$n$</th><td>Velikost výběru: počet případů zahrnutých do konkrétního výpočtu.</td><td>$n=\sum_{j=1}^{k}f_j$</td><td>N v jiné literatuře; zde používáme malé n.</td><td><a href="kapitola_02.html#sec-co-pocitame">Výklad</a></td></tr>
 <tr id="znak-i"><th scope="row">$i$</th><td>Index jednotlivého pozorování; neoznačuje kategorii ani skupinu.</td><td>$i=1,\ldots,n$ pro n zahrnutých pozorování.</td><td>Písmeno indexu závisí na konvenci; zde i pro pozorování.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
 <tr id="znak-j"><th scope="row">$j$</th><td>Index kategorie, hodnoty, intervalu nebo skupiny.</td><td>$j=1,\ldots,k$ pro k kategorií.</td><td>i v jiné literatuře; zde j pro kategorie a skupiny.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
 <tr id="znak-k"><th scope="row">$k$</th><td>Počet kategorií, jednotlivých hodnot nebo intervalů v dané tabulce.</td><td>$k=4$</td><td>Jiná literatura může používat jiná písmena.</td><td><a href="kapitola_02.html#sec-sumace">Výklad</a></td></tr>

@@ -1203,3 +1203,70 @@ Kontrola `git diff --check` prošla.
 Omezení: jde o lokálně vykreslený web, nikoli o potvrzení veřejného
 nasazení. Jiné prohlížeče než Chrome nebyly ověřeny. Desktopový Excel
 nebyl znovu spuštěn, protože sešity ani excelové vzorce se nemění.
+
+## Kapitola 2: revize po posouzení (2026-10-11)
+
+Na žádost autora proběhlo posouzení kapitoly 2 z hlediska věcné správnosti,
+srozumitelnosti, návaznosti, didaktiky, jazyka a názvosloví. Hrubá věcná
+ani početní chyba nalezena nebyla; všechna čísla výkladu a řešení byla
+znovu přepočítána proti `data/kapitola_02.csv`. Autor rozhodl sporné body;
+platné konvence shrnuje [R13](../docs/ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu).
+Úpravy jsou ve větvi `codex/chapter-02` z `origin/main` (259f5c7).
+
+### Terminologie
+
+- Hlavní termín pro *sample size* je velikost výběru (dříve rozsah souboru);
+  změněno v kapitole 2, na jediném místě kapitoly 3, ve slovníčku
+  (kotva `pojem-velikost-vyberu`; stará kotva se v repozitáři nepoužívala)
+  a v přehledu značení. „Velikost skupin“ se nemění.
+- Platný údaj (*valid value*) je zaveden v oddílu o jmenovateli a nahrazuje
+  střídané „známý / dostupný / nechybějící údaj“ v textu, popiscích, alt
+  textech, obrázku základů procent a cvičeních. Slovníček má nové heslo
+  Platný údaj a heslo Chybějící údaj; každé uvádí, že je opakem druhého.
+  Anglický ekvivalent *valid value* odpovídá běžnému označení ve
+  statistických programech; nebyl dohledáván v Howellovi.
+- Panel obrázku tvarů se jmenuje Odlehlé pozorování (dříve Vzdálené).
+- „Vícečetné odpovědi“ nahrazeny opisem „otázky umožňující více odpovědí“;
+  „kumulativní graf“ sjednocen na graf kumulativních četností,
+  „procentuální formát“ na procentní. U sloupcového grafu „samostatné
+  kategorie“ místo „kategorie diskrétní proměnné“. Kde šlo o zařazování
+  případů, je „rozdělení“ nahrazeno slovy zařazení a roztřídění.
+
+### Návaznost a didaktika
+
+- Odstraněny dopředné odkazy na dosud nezavedené pojmy: populační parametr
+  u znaku sumace, intervalové třídění u definice kumulativní četnosti
+  (nahrazeno odkazem na pozdější oddíl) a střed intervalu u ztráty přesnosti.
+- Odstavec o indexech nejprve zavádí značky f a p, pak index; výklad sumace
+  nově jmenuje dolní a horní mez sčítání, které používá úloha 2 a přehled
+  značení.
+- Příklad otázky s více odpověďmi doplněn o procento odpovědí (6 z 11),
+  které úvodní věta odstavce slibovala.
+- Pořadí výkladu sladěno s obrázky: srovnání konvencí mezí odkazuje na
+  obrázek i tabulku; odstavec o dolních panelech histogramů předchází
+  obecným doporučením; rovnoměrné rozdělení následuje za vrcholy a je
+  zkráceno o větu s nezavedeným pojmem pravděpodobnostního modelu.
+- Cíle učení jsou výčtem. Zjednodušeno několik rozvleklých vět a opraveny
+  jazykové chyby (překlep, uvozovky, tvar „7,5 hodiny“, nejednotný vid).
+
+### Cvičení
+
+Počet úloh zůstává deset. Úloha 3 má novou část b) o otázce s více
+odpověďmi (60,0 %, 70,0 %, 30,0 %; součet 160,0 %; 32 označení od 20 lidí)
+s úplným řešením. Úlohy 6 a 7 mají označené části v zadání i řešení.
+
+### Ověření
+
+`scripts/kapitola_02.R` znovu vytvořil 14 obrázků; `check-chapter-02.R`
+(doplněný o novou část úlohy 3 a příklad 6 z 11) prošel. Celá kniha se
+vykreslila v Quarto 1.9.38 / R 4.5.1. `check-html.cjs` prošel bez chyb:
+9 stránek, 160 hesel slovníčku, místní odkazy, 42 řešení, desktop
+1360/1920 px a mobil 390 px; běžel s místním Chrome a modulem Playwright
+z jiné instalace. Na snímcích vykreslené stránky prohlédnuty cíle učení,
+obrázek základů procent, obrázek tvarů a rozbalená řešení úloh 3 a 7;
+nevyřešené křížové odkazy v kapitole nejsou.
+
+Omezení: nové heslo slovníčku nebylo samostatně testováno hledáním
+a přímým odkazem nad rámec obecné kontroly tabulky. Sešit XLSX se nemění
+a Excel nebyl spuštěn. Citované stránky zdrojů nebyly znovu ověřovány,
+protože se citace nemění. Interní revize není ověřením porozumění na studentech.

@@ -338,3 +338,30 @@ o posun mezí a přehledu standardních škál o modelové percentilové pořad�
 Nejde o rozšíření terminologie ani změnu početních konvencí. Dokladem je
 pokyn „Doplň všechny navržené vizualizace (prioritní i neprioritní)“;
 provedení a kontroly zaznamenává [autorská historie](../quarto/README.md).
+
+<a id="r13-platny-udaj-velikost-vyberu"></a>
+
+## R13 — Platný a chybějící údaj, velikost výběru
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** celá učebnice, slovníček,
+přehled značení a související materiály.
+
+- **Platný údaj** (*valid value*) je hlavní termín pro údaj, který nechybí;
+  „známý“, „dostupný“ a „nechybějící údaj“ jsou alternativy ve slovníčku.
+  **Chybějící údaj** (*missing value*) zůstává hlavním termínem pro chybění.
+  Obě hesla slovníčku uvádějí, že jedno je opakem druhého.
+- **Velikost výběru** (*sample size*) nahrazuje „rozsah souboru“; „rozsah
+  výběru“, „rozsah souboru“ a „velikost souboru“ jsou alternativy.
+  Značka n se nemění; při výpočtu označuje počet zahrnutých případů.
+  „Velikost skupin“ je jiné spojení a nemění se.
+- Panel obrázku tvarů rozdělení používá schválený termín odlehlé pozorování.
+
+**Důvod:** jednotné označení bez střídání synonym a návaznost na R10
+(*sample* = výběr). **Nahrazuje:** „rozsah souboru“ z původního znění kapitol 2 a 3.
+
+**Doklad:** pokyn autora při revizi kapitoly 2: „Používal bych pro platné,
+nechybějící, známé údaje jako hlavní termín ‚platný údaj‘ a pro missing
+value pojem ‚chybějící údaj‘, oba pojmy bych uvedl ve slovníku s poukázáním
+na to, že jedno je opakem druhého“; „používal bych podobně ‚velikost výběru‘
+pro sample size“; volba „Přejmenovat na ‚Odlehlé pozorování‘“. Záznam
+„Kapitola 2: revize po posouzení“ v [historii](../quarto/README.md).
