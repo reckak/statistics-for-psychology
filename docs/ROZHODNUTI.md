@@ -184,7 +184,9 @@ a doplnit jazykové zdůvodnění; [osnova kapitoly](OSNOVA.md).
 
 **Stav:** schváleno 2026-10-10. **Rozsah:** příprava a budoucí výklad
 kapitoly 4 a navazující přehledy. Aktuální seznam názvů a anglických
-ekvivalentů obsahuje [osnova](OSNOVA.md); tento záznam určuje rozhodující
+ekvivalentů obsahuje [slovníček](../quarto/slovnicek.qmd); jejich zařazení
+do výkladu zachycuje [mapa kapitoly](OSNOVA.md#mapa-kapitola-04).
+Tento záznam určuje rozhodující
 rozlišení a doklad schválení, nenahrazuje studentský slovníček.
 
 - Používat jednoduchý název **IQ-skór / IQ-skóry** pro zde probírané
@@ -448,3 +450,30 @@ z R09 zůstává.
 zápisu N(μ,σ2) používal pro jednoduchost konzistentně N(μ,σ), tedy jako
 druhý parametr uvádět směrodatnou odchylku“. Záznam „Kapitola 4: revize
 po posouzení“ v [historii](../quarto/README.md).
+
+<a id="r17-mapa-ucebnice"></a>
+
+## R17 — Mapa skutečného obsahu a oddělený plán pokračování
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** autorská dokumentace celé knihy
+a údržba při obsahových změnách.
+
+[OSNOVA.md](OSNOVA.md) se rozšiřuje na podrobnou mapu existujících kapitol
+s tematickým rozcestníkem. Karty zachycují skutečný výklad, příklady,
+vizualizace, soubory, pokrytí cvičeními, vstupní znalosti a hranice učiva.
+Rozlišují vysvětlení, samostatné procvičení, pouhou zmínku a nepovinné části.
+Plán další kapitoly zůstává oddělený s rozlišením schváleného a otevřeného.
+Pravidlo průběžné aktualizace je v úvodu [AGENTS.md](../AGENTS.md).
+
+**Důvod:** umožnit spolehlivé plánování návazností a kontrolu opakování,
+aniž by se podrobný obsah udržoval ve dvou konkurenčních dokumentech.
+Mapa nenahrazuje kapitoly, slovníček, značení ani zdrojové karty.
+
+**Nahrazuje:** dosavadní stručnou osnovu kapitol 1–3 a plánovací popis
+již vytvořené kapitoly 4. Nemění jejich schválený rozsah ani terminologii;
+neschvaluje podrobný obsah kapitoly 5. Historické doklady dohod zůstávají.
+
+**Doklad:** výslovný pokyn autora „rozšiř tedy docs/OSNOVA.md podle tohoto
+návrhu“, „Podrobně zmapuj aktuální obsah všech čtyř kapitol a odděl jej od
+plánu další kapitoly“ a „Doplň také do instrukcí pravidlo průběžné
+aktualizace mapy“.

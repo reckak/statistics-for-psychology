@@ -4,9 +4,21 @@
 
 - Tento soubor obsahuje společná pravidla tvorby i ověřování. Další
   dokumenty načítej podle úkolu, nikoli všechny při každé drobné úpravě.
-- Při přípravě nové kapitoly nebo podstatné změně jejího rozsahu či návazností
-  prostuduj [docs/OSNOVA.md](docs/OSNOVA.md). Po dohodnuté změně jej aktualizuj;
-  navrhovaná témata nevydávej za schválená.
+- Před obsahovou prací prostuduj dotčenou kartu a relevantní návaznosti v
+  [mapě obsahu učebnice](docs/OSNOVA.md), potom příslušné pasáže kapitoly.
+  Mapa zachycuje skutečný obsah existujících kapitol a odděleně plán další
+  kapitoly; nenahrazuje čtení textu ani dohodu o novém rozsahu.
+- Při každé obsahové změně průběžně aktualizuj dotčenou část mapy: obsah
+  oddílů, cíle a vstupní znalosti, pojmy a postupy, příklady a vizualizace,
+  soubory, pokrytí cvičeními, povinný/nepovinný rozsah a hranice učiva.
+  Rozlišuj, co je vysvětleno, samostatně procvičeno, pouze zmíněno nebo
+  odloženo. Při změně návazností uprav také tematický rozcestník a plán
+  pokračování; ověř odkazy a u karty uveď datum kontroly souladu s textem.
+  Drobné jazykové opravy bez změny významu aktualizaci mapy nevyžadují.
+- Plánovaná témata nevydávej za vytvořený ani schválený obsah. V plánu
+  rozlišuj dohodnutý směr, schválený rozsah a otevřené návrhy; po vytvoření
+  kapitoly zmapuj skutečný výklad včetně zadání a řešení, nikoli jen původní
+  osnovu. Definice, úplné značení a zdrojové karty v mapě neduplikuj.
 - Před obsahovou prací vyhledej relevantní platná rozhodnutí v
   [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md). Nová schválená rozhodnutí zde
   průběžně eviduj s rozsahem platnosti, důvodem a dokladem; nenahrazuj tím
@@ -306,7 +318,9 @@ s každou kapitolou, ne až při dokončení knihy.
 - Provozní postupy udržuj v kořenovém `README.md`; podrobnosti o zdrojích,
   opravách, schválených rozhodnutích a provedeném ověření v historické
   autorské dokumentaci `quarto/README.md`. Platné konvence shrnuj v
-  `docs/ROZHODNUTI.md`, dohodnutý rozsah a návaznosti v `docs/OSNOVA.md`.
+  `docs/ROZHODNUTI.md`, aktuální obsah, návaznosti a oddělený plán pokračování
+  v `docs/OSNOVA.md`; pravidlo průběžné údržby mapy je v úvodním oddílu
+  „Použití projektové dokumentace“.
   Nevydávej neexistující dokumenty či kontroly za již zavedené
   a neduplikuj provozní návody v těchto instrukcích.
 
