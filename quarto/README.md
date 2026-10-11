@@ -2,7 +2,8 @@
 
 Historické záznamy níže popisují stav v době vzniku a zůstávají zachovány.
 Pro současné konvence používejte [přehled rozhodnutí](../docs/ROZHODNUTI.md),
-pro dohodnutý obsah a návaznosti [osnovu](../docs/OSNOVA.md).
+pro aktuální obsah, návaznosti a oddělený plán pokračování
+[mapu učebnice](../docs/OSNOVA.md).
 
 ## Zpřesnění výkladu po společné redakci (2026-09-20)
 
@@ -1532,3 +1533,38 @@ souboru. U U11 zkontrolována vazba tištěných stran na pořadí PDF.
 Tabulky, jedinečnost kotev, UTF-8 a `git diff --check` jsou bez chyb.
 Původní PDF zůstalo nezměněné a neveřejné. Pro tuto změnu autorské
 dokumentace nebyl render studentského webu potřebný ani provedený.
+
+## 2026-10-11: podrobná mapa obsahu učebnice
+
+Na výslovnou žádost autora rozšířena [OSNOVA.md](../docs/OSNOVA.md)
+na mapu skutečného obsahu všech čtyř kapitol. Přečten celý aktuální
+výklad, zadání i řešení. Karty zachycují cíle a předpoklady, obsah
+jednotlivých oddílů, pojmy, příklady, účel vizualizací, studentské soubory,
+všech 42 závěrečných úloh (včetně dvou nepovinných) a hranice návazností.
+Tematický rozcestník propojuje 16 témat napříč knihou. Rozlišeno vysvětlení,
+samostatné procvičení, pouhá zmínka, nepovinné rozšíření a odložené učivo.
+
+Plán pokračování k pravděpodobnosti je oddělen od existujících kapitol;
+otevřené volby nejsou vydávány za schválený rozsah kapitoly 5. Původní
+plán kapitoly 4 nahradila mapa jejího skutečného textu s odkazy na platná
+rozhodnutí. Úplné definice a anglické ekvivalenty zůstávají ve slovníčku,
+značení v přehledu a zdrojové karty v mapě zdrojů. V AGENTS.md doplněna
+průběžná údržba mapy při obsahových změnách, kontrola odkazů a datum karty;
+aktualizován rozcestník README a zaznamenáno rozhodnutí R17.
+
+Z původní osnovy se zde zachovává historická poznámka: anglické označení
+*weighted scores* je zaznamenáno v názvu článku
+[*A critique of the Wechsler-Bellevue system of weighted scores* (1949)](https://pubmed.ncbi.nlm.nih.gov/18118257/).
+Přesná cesta převzetí označení „vážený skór“ do češtiny nebyla ověřena;
+není podklad pro tvrzení o německém nebo ruském původu. Jde o přesun
+staršího záznamu, nikoli o novou bibliografickou či historickou rešerši.
+
+Kontrola dokumentace prošla: 318 místních odkazů v mapě, instrukcích,
+kořenovém README a rozhodnutích má dostupný soubor a případnou kotvu;
+mapa odkazuje na všech 139 nadpisů s výslovným identifikátorem ve čtyřech
+kapitolách. Zkontrolována úplnost seznamů 8 + 10 + 14 + 10 úloh,
+struktura tabulek, jedinečnost sedmi kotev mapy, UTF-8 a `git diff --check`.
+Studentské kapitoly, data a konfigurace se nemění. Render, nová vizuální
+kontrola grafů, přepočty a běh Excelu nebyly pro tuto dokumentační změnu
+potřebné ani provedené. Mapa sama nepotvrzuje odbornou bezchybnost kapitol
+ani porozumění na studentech; zdroje nebyly znovu odborně revidovány.

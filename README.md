@@ -46,7 +46,7 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `AGENTS.md`: společná pravidla tvorby, didaktické revize, ověřování a práce s Gitem.
 - [docs/PREZENTACE.md](docs/PREZENTACE.md): pravidla pro prezentace, poznámky a jejich exporty.
 - [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): platná autorská rozhodnutí s rozsahem a doklady.
-- [docs/OSNOVA.md](docs/OSNOVA.md): dohodnutý obsah, cíle a návaznosti kapitol; neschválené náměty jsou oddělené.
+- [docs/OSNOVA.md](docs/OSNOVA.md): podrobná mapa aktuálního obsahu kapitol, příkladů, cvičení a návazností s tematickým rozcestníkem; plán další kapitoly a neschválené náměty jsou oddělené.
 - [docs/ZDROJE.md](docs/ZDROJE.md): autorská mapa podkladů v `sources/`, tematický rozcestník, přesné lokátory, rozpory a rozsah ověření. Odkazy na podklady fungují pouze v místní kopii s neveřejnými zdroji.
 - `quarto/README.md`: historická autorská dokumentace, odborné zdroje, rozhodnutí a záznamy ověření.
 - `.github/workflows/book.yml`: sestavení, kontrola webu a publikování na GitHub Pages.
