@@ -122,7 +122,7 @@ U spojitého modelu nahrazuje obdélníky hladká křivka. Její výška vyjadř
 
 Levá část @fig-hustota-04 je schéma s předem zvolenými podíly. Pravá zobrazuje náš normální model. Nejvýše je křivka u 50 bodů, ale procento výsledků mezi 50 a 60 určuje celá vybarvená plocha. Při změně bodů na jiné jednotky se změní také výška hustoty; příslušný podíl zůstane stejný.
 
-Plochu můžeme číst jako **modelový podíl** v populaci popisované daným rozdělením. Při náhodném výběru jednoho člověka z takto modelované populace ji lze chápat jako pravděpodobnost, že jeho výsledek padne do intervalu. V této kapitole nám stačí toto propojení; pravidla počítání s pravděpodobnostmi probereme později. Modelových 30 % nezaručuje, že v každém souboru deseti lidí budou právě tři příslušné výsledky.
+Plochu můžeme číst jako **modelový podíl** v populaci popisované daným rozdělením. Při náhodném výběru jednoho člověka z takto modelované populace ji lze chápat jako pravděpodobnost, že jeho výsledek padne do intervalu. V této kapitole nám stačí toto propojení; pravidla počítání s pravděpodobnostmi probereme v [kapitole o pravděpodobnosti](kapitola_05.qmd#sec-kapitola-05). Modelových 30 % nezaručuje, že v každém souboru deseti lidí budou právě tři příslušné výsledky.
 
 ### Jednotlivá hodnota a zaokrouhlený výsledek {#sec-bod-a-interval}
 

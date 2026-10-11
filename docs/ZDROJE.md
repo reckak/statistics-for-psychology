@@ -1,6 +1,6 @@
 # Mapa autorských zdrojů
 
-Stav inventury a obsahového průzkumu: **11. října 2026**. Mapa zahrnuje všech **30 souborů** v aktuální složce `sources/` a jejích podsložkách: 11 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
+Stav inventury a obsahového průzkumu: **11. října 2026**; záznamy o použití v kapitole 5 doplněny **12. října 2026**. Mapa zahrnuje všech **30 souborů** v aktuální složce `sources/` a jejích podsložkách: 11 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -36,10 +36,10 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Poloha, variabilita, kvantily, boxplot | [U01](#u01) §2.6–2.12; [U06](#u06) kap. 3–4; [U05](#u05) kap. 3; [U11](#u11) §2.5–2.10 | [P02](#p02); [C02](#c02) | Existující kapitola 3; dodržet R04 a R14, nevracet starší algoritmy a značení. |
 | Transformace, z/T/IQ, percentilové pořadí | [U01](#u01) §2.12, §3.2 a §3.6; [U02](#u02) kap. 3 | [P03](#p03) sn. 3–21; [P04](#p04); [C03](#c03) X3_01–07; [C04](#c04); [D10](#d10) | Rozlišit standardizaci, normalizaci a pořadí; pozor na chyby ve starých řešeních. |
 | Normální model, plochy, kvantily, posouzení modelu | [U01](#u01) kap. 3; [U03](#u03) kap. 4; [U04](#u04) §4.1; [U11](#u11) §6.2–6.4 | [P03](#p03) sn. 45–59; [P04](#p04); [C03](#c03) X3_21–37; [D10](#d10) | Existující kapitola 4; konvence N(μ, σ) podle R15; rozlišit Q–Q a P–P graf. |
-| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4; [U11](#u11) kap. 3 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Směr další výkladové kapitoly podle osnovy; konkrétní rozsah teprve dohodnout. Srovnat rozdílná pojetí u Dostála a Barona. |
-| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129; [U11](#u11) §3.5–3.8 (s opravou s. 62) | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Přirozené četnosti, kontingenční tabulky, stromy; odlišit P(A\|B) a P(B\|A). |
-| Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [D08](#d08), [D09](#d09) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | Psychologická motivace a chyby interpretace; původní studie nejsou tímto průzkumem replikovány ani aktualizovány. |
-| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | Nabídka navazujících témat; kombinatoriku a matematický rozsah vybrat podle cíle. U P05 opravit zaznamenané chyby před použitím. |
+| Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4; [U11](#u11) kap. 3 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Existující kapitola 5 (R21–R23). Tři pojetí jsou představena jako interpretace se společnými pravidly; Dostálovo odmítnutí subjektivní pravděpodobnosti převzato nebylo. |
+| Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129; [U11](#u11) §3.5–3.8 (s opravou s. 62) | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Vyloženo v kapitole 5: přirozené četnosti, tabulka, strom, úplná pravděpodobnost, Bayesova věta, dvě prevalence. |
+| Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [D08](#d08), [D09](#d09) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
+| Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
 | Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P04](#p04) sn. 5–6 jen jako výchozí námět | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti. |
 | Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
 | Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07); [U11](#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
@@ -122,6 +122,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Celý text všech kapitol, úlohy a výpočty nebyly znovu ověřeny. V §5.1 nepřebírat bez vysvětlení tvrzení, že různá pojetí pravděpodobnosti vedou v testování ke stejnému výsledku. V §5.2 je třeba odlišit elementární výsledek a jev; obecná tvrzení o nemožnosti při pravděpodobnosti 0 vyžadují při spojitých modelech zpřesnění.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu ověřena identita na PDF 3 a 6; přečten souvislý výklad s. 108–127 (PDF 132–151), včetně tabulek a příkladů. V obrazech zvlášť zkontrolovány s. 109, 113, 120, 122, 125 a 127. Tabulka rodičovství/pásy (tab. 5.2, s. 113) a dopingový příklad (s. 121–122) jsou přímými podklady příkladů P05, nikoli dvěma nezávislými empirickými zdroji. Při převzetí uvést původ u Howella a modelové předpoklady. Binomický výklad s. 125–126 již přechází od přesné pravděpodobnosti konkrétního počtu k inferenčnímu závěru; pro zamýšlený úvod oddělit výpočet pravděpodobnosti od pozdějšího testování. Binomický test a úlohy od s. 128 nejsou tímto čtením kompletně prověřeny.
+
+**Použití v kapitole 5 (2026-10-12):** pořadí výkladu a citace s. 108–110 (pojetí), 109 (podmínka stejně pravděpodobných výsledků), 112 (výběr s vracením), 119 (náhodná pořadí místo všech), 121–123 (Bayesova věta, taxíky), 124–128 (binomické rozdělení, parametry, orientační pravidlo „větší než asi 5“). S. 119 a 128 čteny v textové extrakci, nikoli v obraze. Kapitola nepřebírá Howellovy užší tvary součtového a součinového pravidla ani definici nezávislosti slovy „nemá vliv“. U příkladu devíti správných odpovědí z deseti (s. 125–126) text odlišuje otázku na právě devět od otázky na devět nebo více. Úloha o taxících je cvičením 7 s uvedením zdroje; tabulka pásů a dopingový příklad použity nebyly. Binomický test a cvičení od s. 128 zůstávají nečtené.
 
 <a id="u02"></a>
 
@@ -218,6 +220,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Ostatní výpočty, datové soubory a řešení nebyly systematicky přepočítány; příklady nejsou převážně psychologické.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** z originálního PDF přečteny s. 95–96, příklady 3.26–3.27 a tabulky/obrázky 3.11–3.14 v textové extrakci. Využitelný je postup od otázky ke konkrétnímu jmenovateli při podmínění. Samostatná vizuální kontrola těchto stran ani ověření datasetu v tomto kroku neproběhly.
+
+**Použití v kapitole 5 (2026-10-12):** jediná citace, s. 95–96, k volbě jmenovatele při čtení tabulky. Identita na PDF 1–2 znovu přečtena v extrakci (4. vydání, 2019, aktualizace 12. 8. 2019, openintro.org/os); do společné bibliografie zařazeno s vydavatelem OpenIntro. Vizuální kontrola stran 95–96 neproběhla.
 
 <a id="u05"></a>
 
@@ -426,6 +430,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteny s. 64–69 (PDF 79–84): definice podmínění včetně kladné pravděpodobnosti podmínky, obecné součinové pravidlo, úplná pravděpodobnost a Bayesova věta. Vizuálně zkontrolovány s. 64, 68–69 včetně obr. 4.1–4.2. Pro studentský text postačí úplná pravděpodobnost rozdělená podle jevu a jeho doplňku; obecný indexovaný zápis není tímto schválen.
 
+**Použití v kapitole 5 (2026-10-12):** ověřeny tištěné strany jednotlivých vztahů v extrakci: podmíněná pravděpodobnost s požadavkem kladné pravděpodobnosti podmínky s. 64–65, součinové pravidlo s. 66, úplná pravděpodobnost s. 67–68, Bayesova věta s. 69 včetně důkazu ze tří předchozích vztahů. Posun PDF = tištěná strana + 15 platí pro tyto strany. DOI ověřeno v metadatech Crossref. Obecný indexovaný zápis úplné pravděpodobnosti kapitola nepoužívá.
+
 <a id="u11"></a>
 
 ### U11 — Russo — úvod do četnostní a bayesovské statistiky
@@ -470,6 +476,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Neověřeno a chybějící části:** podrobný výklad mimo uvedené pasáže, ostatní výpočty, důkazy, empirická tvrzení a odpovědi na cvičení; aktuální funkčnost JASP, Dienesova kalkulátoru a dalších programů. Webové úlohy, data a sešity nebyly staženy ani prověřeny. Kromě kapitol 13–14 jsou pouze na webu také §2.11, §5.11, §6.9, §8.10 a §12.5–12.6; stránka uvedená v obsahu je odkazem, nikoli dostupným výkladem. Bayesovské postupy jsou převážně zmapované, nikoli kompletně odborně revidované. Jejich zařazení do kurzu vyžaduje samostatnou dohodu.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 60–67 (PDF 81–88); vizuálně prohlédnuty s. 62 a 64–67. Potvrzena výše uvedená záměna nezávislosti výsledku testu a jeho správnosti. S. 64 je vhodná opora pro rozlišení tabulky výběru a populační nezávislosti a pro vysvětlení, že podmínění nemusí vyjadřovat časovou posloupnost.
+
+**Použití v kapitole 5 (2026-10-12):** dvě citace s. 64: nezávislost v tabulce výběru není nezávislost v populaci; podmínění nevyjadřuje časové pořadí. Obojí ověřeno na s. 64 (PDF 85) v extrakci. Záměna nezávislosti výsledku testu a jeho správnosti ze s. 62 převzata nebyla.
 
 ## Starší přednáškové prezentace
 
@@ -604,6 +612,8 @@ U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohle
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** z aktuálního PPTX znovu přečten všech 36 snímků a dostupné poznámky; všechny snímky prohlédnuty na čtyřech existujících kontaktních listech. Srovnání s U01 s. 113 a 121–122 doložilo původ tabulky rodičovství/pásy a dopingového příkladu. Přesnou racionální aritmetikou znovu ověřeno 95/185 a 810/815; při modelové změně prevalence na 1 % za stejné senzitivity 0,95 a specificity 0,90 je pozitivní prediktivní hodnota 95/1085 = 0,087558… (četnosti pro 10 000 osob). Jde o návrh doplnění vlivu základního výskytu, nikoli schválenou úlohu ani empirickou vlastnost testu. Ověřen také příklad dvou šestek z pěti hodů: 10 × (1/6)^2 × (5/6)^3 = 0,160751…; Excel nebyl spuštěn.
 
+**Použití v kapitole 5 (2026-10-12):** kostra kapitoly odpovídá pořadí snímků; chyby uvedené v této kartě převzaty nebyly (lentilky, jmenovatel sn. 26, zaokrouhlení 0,514 a 99,4 %, směrodatná odchylka podílu, čitatel sn. 35). Dvojice tabulek pohlaví × stres (sn. 12–13) je průběžným příkladem; příklad 135 a více z 200 (sn. 35) je uveden s přesnou hodnotou 0,0173, aproximací 0,0152 a hodnotou od hranice 134,5. Uspořádaný výběr se v textu nazývá variace bez opakování (R23), loterie ze sn. 21–23 je v nepovinném rozšíření s jinými částkami. Pojem věrohodnosti ze sn. 24–25 se nezavádí (R21). Funkce ze sn. 36 byly skutečně spuštěny v českém Excelu.
+
 ## Procvičování a seminář
 
 Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jednou v zadání a podruhé v oddílu řešení. Mezery v číselné řadě jsou součástí originálu. Byly přečteny texty a tabulky všech tří souborů; vložené obrázky byly prohlédnuty samostatně. **Všechna řešení nebyla nezávisle přepočítána.** Zjištěné konkrétní chyby níže neznamenají, že zbytek klíče je ověřený.
@@ -677,6 +687,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 **Neověřeno:** celý klíč, aktuálnost empirických tvrzení a právních souvislostí Flynnova efektu, přesné vydání úloh C3, původ dat a normy testů. Modelový výpočet četnosti IQ v Brně není zjištěný počet skutečných obyvatel s danou vlastností.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečtena zadání X3_08–20. Pro návrh využitelné jsou doplněk, alespoň jeden výskyt, nezávislé hody a hádání odpovědí; u hádání je třeba výslovně zadat počet správných alternativ, způsob volby a nezávislost. Nejde o novou úplnou kontrolu řešení ani schválení převzetí celé sady.
+
+**Použití v kapitole 5 (2026-10-12):** úlohy nebyly převzaty doslova. Náměty doplňku, „alespoň jednou“, nezávislých tipů a výběru bez vracení jsou v autorských cvičeních 2, 4 a 9; X3_31 je základem cvičení 11 s výslovně odlišenou přesnou binomickou hodnotou (0,0018), normální aproximací (0,0013) a hodnotou od hranice 64,5 (0,0019). Pojem „pole jevů“ z X3_09 se nepoužívá (R23).
 
 <a id="c04"></a>
 
@@ -816,6 +828,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 77–78 (PDF 4–5), zejména oddíly 7–8 o náhodných shodách a záměně obrácených podmíněných pravděpodobností. Podnět pro rozlišení předem určené události a některé z mnoha možných shod. Bez nového vizuálního ověření OCR a bez aktualizace empirických či demografických údajů; tyto údaje se do návrhu nepřebírají.
 
+**Použití v kapitole 5 (2026-10-12):** s. 77–78 prohlédnuty v obraze. Ověřeno: oddíl o záměně obrácených podmíněných pravděpodobností, studie se 100 lékaři (odpovědi kolem 75 % při správné hodnotě přibližně 7,5 %) a doporučení tabulky s počty pro pomyslnou skupinu lidí. DOI 10.1198/0003130031630, ročník 57, číslo 2, s. 74–79 ověřeny v metadatech Crossref a zapsány do společné bibliografie. Empirické údaje článku se do kapitoly nepřebírají.
+
 <a id="d08"></a>
 
 ### D08 — Baron: normativní teorie pravděpodobnosti
@@ -841,6 +855,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 121–123 (PDF 19–21), s. 122 navíc zkontrolována v obrazu. Využitelný je postup nejprve přirozené četnosti a tabulka, potom strom a symbolický vztah. Klinické hodnoty příkladu nejsou tímto ověřeny pro současnou praxi; neověřená bibliografická identita celého úryvku trvá.
 
+**Použití v kapitole 5 (2026-10-12):** s. 121–123 prohlédnuty v obraze: příklad se 100 ženami, tabulka počtů, strom a teprve potom vzorec. Kapitola cituje jen tento postup, nikoli klinické hodnoty. **Bibliografická identita ověřena mimo úryvek:** Jonathan Baron, *Thinking and Deciding*, 4. vydání, Cambridge University Press; rok 2008 a označení vydání podle záznamu Kongresové knihovny pro ISBN 978-0-521-68043-1; DOI knihy 10.1017/CBO9780511840265; metadata Crossref uvádějí kapitolu „Normative theory of probability“ na s. 103–136 a „Descriptive theory of probability judgment“ na s. 137–160, což odpovídá stránkování úryvků. Metadata vydavatele uvádějí odlišné datum 2006; v bibliografii je rok 2008. Copyrightová strana knihy nebyla k dispozici.
+
 <a id="d09"></a>
 
 ### D09 — Baron: deskriptivní teorie pravděpodobnostních úsudků
@@ -864,6 +880,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 **Nálezy / neověřeno:** výraz „confidence interval“ na s. 139 označuje zde subjektivní interval úsudku; nelze bez vysvětlení převzít jeho pravděpodobnostní interpretaci do frekventistického intervalu spolehlivosti. Neověřeny původní experimenty, replikace, současná empirická podpora jednotlivých vysvětlení, všechny číselné údaje a původní bibliografie. Zdrojem je historická kapitola, nikoli aktualizovaný systematický přehled.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteno OCR s. 150–152 (PDF 14–16): obrácené podmínění, konjunkční klam a hráčský klam. Vlastní didaktické příklady lze v návrhu připojit přímo k příslušným pravidlům pravděpodobnosti. Neproběhla nová vizuální kontrola těchto stran ani ověření původních studií; historická vysvětlení mechanismů nevydávat za nový přehled empirických poznatků.
+
+**Použití v kapitole 5 (2026-10-12):** s. 149–152 prohlédnuty v obraze. Citováno: zanedbání základních četností a úloha o taxících s. 149–150, záměna podmíněných pravděpodobností s. 150, konjunkční klam s. 150–152, hráčský klam s. 152. Vinětka o Lindě převzata nebyla; kapitola používá vlastní příklady. Bibliografická identita viz D08.
 
 <a id="d10"></a>
 
@@ -896,7 +914,7 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 |---|---|
 | Schválená koncepce | Pořadí a rozsah určuje OSNOVA; rozsáhlé kapitoly učebnic o ANOVA, regresi či bayesovských metodách nejsou automaticky součástí tohoto semestru. |
 | Značení a kvantily | Přednost mají R01–R04, R14 a R15. Staré M/SD/MAD, pořadové algoritmy a N(μ, σ²) nepřebírat bez výslovného rozlišení konvencí. |
-| Pojetí pravděpodobnosti | Dostál s. 13–14, Howell s. 108–110, Navarro s. 373–375, Russo s. 52–54 a Baron kap. 5 nepodávají totožný filozofický výklad. Před návrhem formulací dohodnout, která pojetí představit a v jakém rozsahu. |
+| Pojetí pravděpodobnosti | Dostál s. 13–14, Howell s. 108–110, Navarro s. 373–375, Russo s. 52–54 a Baron kap. 5 nepodávají totožný filozofický výklad. Dohodnuto v R21: tři pojetí jako různé interpretace se společnými pravidly, které nemusí vést ke stejnému číslu. |
 | Podmínění a nezávislost | [U11](#u11) s. 62 zaměňuje výsledek diagnostického testu za správnost klasifikace; při použití opravit podle zadání a stromu na s. 60. |
 | Data a software | Číselné kódování a missing z SPSS nejsou univerzální požadavek; −99 nesmí vstupovat do běžného průměru. R z cizích knih zůstává interní. |
 | Normální model | Rozlišit CDF a kvantil, percentil a pořadí, Q–Q a P–P, interval hodnot a interval spolehlivosti. Starší podklady obsahují konkrétní záměny. |

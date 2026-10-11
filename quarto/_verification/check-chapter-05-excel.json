@@ -1,0 +1,565 @@
+{
+ "note": "Expected values: exact rational binomial sums and erfc in Python (check-chapter-05-excel-expected.py); not produced by Excel or R.",
+ "cells": [
+  {
+   "sheet": "Bayes",
+   "cell": "B7",
+   "expected": 100.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B8",
+   "expected": 900.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B9",
+   "expected": 95.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B10",
+   "expected": 5.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B11",
+   "expected": 90.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B12",
+   "expected": 810.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B13",
+   "expected": 185.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B14",
+   "expected": 815.0
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B16",
+   "expected": 0.5135135135135135
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B17",
+   "expected": 0.9938650306748467
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B19",
+   "expected": 0.185
+  },
+  {
+   "sheet": "Bayes",
+   "cell": "B20",
+   "expected": 0.5135135135135135
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B6",
+   "expected": 0.2373046875
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C6",
+   "expected": 0.2373046875
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D6",
+   "expected": 1.0
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B7",
+   "expected": 0.3955078125
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C7",
+   "expected": 0.6328125
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D7",
+   "expected": 0.7626953125
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B8",
+   "expected": 0.263671875
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C8",
+   "expected": 0.896484375
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D8",
+   "expected": 0.3671875
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B9",
+   "expected": 0.087890625
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C9",
+   "expected": 0.984375
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D9",
+   "expected": 0.103515625
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B10",
+   "expected": 0.0146484375
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C10",
+   "expected": 0.9990234375
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D10",
+   "expected": 0.015625
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B11",
+   "expected": 0.0009765625
+  },
+  {
+   "sheet": "Binom",
+   "cell": "C11",
+   "expected": 1.0
+  },
+  {
+   "sheet": "Binom",
+   "cell": "D11",
+   "expected": 0.0009765625
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B13",
+   "expected": 1.0
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B14",
+   "expected": 1.25
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B15",
+   "expected": 0.9682458365518543
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B17",
+   "expected": 120.0
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B18",
+   "expected": 10.0
+  },
+  {
+   "sheet": "Binom",
+   "cell": "B19",
+   "expected": 0.263671875
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B7",
+   "expected": 0.2023311518569244
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B8",
+   "expected": 0.6171726543871046
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B9",
+   "expected": 0.01386441694376117
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B10",
+   "expected": 0.01386441694376117
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B11",
+   "expected": 5.0
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B12",
+   "expected": 1.9364916731037085
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "B13",
+   "expected": 8.0
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E2",
+   "expected": 0.0031712119389339932
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E3",
+   "expected": 0.02114141292622662
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E4",
+   "expected": 0.06694780759971763
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E5",
+   "expected": 0.13389561519943527
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E6",
+   "expected": 0.18968545486586663
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E7",
+   "expected": 0.2023311518569244
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E8",
+   "expected": 0.16860929321410367
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E9",
+   "expected": 0.11240619547606912
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E10",
+   "expected": 0.060886689216204104
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E11",
+   "expected": 0.02706075076275738
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E12",
+   "expected": 0.009922275279677706
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E13",
+   "expected": 0.00300675008475082
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E14",
+   "expected": 0.000751687521187705
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E15",
+   "expected": 0.0001541923120385036
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E16",
+   "expected": 2.569871867308393e-05
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E17",
+   "expected": 3.4264958230778575e-06
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E18",
+   "expected": 3.569266482372768e-07
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E19",
+   "expected": 2.799424692057073e-08
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E20",
+   "expected": 1.5552359400317073e-09
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E21",
+   "expected": 5.4569682106375694e-11
+  },
+  {
+   "sheet": "Binom_20",
+   "cell": "E22",
+   "expected": 9.094947017729282e-13
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B6",
+   "expected": 120.0
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B7",
+   "expected": 80.0
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B8",
+   "expected": 6.928203230275509
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B9",
+   "expected": 2.165063509461097
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B10",
+   "expected": 0.015191410988288754
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B11",
+   "expected": 0.017307341051347923
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B12",
+   "expected": 0.018179276586395357
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B14",
+   "expected": 0.675
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B15",
+   "expected": 0.034641016151377546
+  },
+  {
+   "sheet": "Aproximace",
+   "cell": "B16",
+   "expected": 2.165063509461097
+  }
+ ],
+ "formulas": [
+  {
+   "formula": "=FAKTORIÁL(5)",
+   "expected": 120.0
+  },
+  {
+   "formula": "=FAKTORIÁL(0)",
+   "expected": 1.0
+  },
+  {
+   "formula": "=FAKTORIÁL(10)",
+   "expected": 3628800.0
+  },
+  {
+   "formula": "=KOMBINACE(5;2)",
+   "expected": 10.0
+  },
+  {
+   "formula": "=KOMBINACE(4;3)",
+   "expected": 4.0
+  },
+  {
+   "formula": "=KOMBINACE(100;3)",
+   "expected": 161700.0
+  },
+  {
+   "formula": "=PERMUTACE(100;3)",
+   "expected": 970200.0
+  },
+  {
+   "formula": "=PERMUTACE(5;2)",
+   "expected": 20.0
+  },
+  {
+   "formula": "=BINOM.DIST(2;5;0,25;NEPRAVDA)",
+   "expected": 0.263671875
+  },
+  {
+   "formula": "=BINOM.DIST(2;5;0,25;PRAVDA)",
+   "expected": 0.896484375
+  },
+  {
+   "formula": "=BINOM.DIST.RANGE(20;0,25;10;20)",
+   "expected": 0.01386441694376117
+  },
+  {
+   "formula": "=BINOM.INV(20;0,25;0,95)",
+   "expected": 8.0
+  },
+  {
+   "formula": "=BINOM.DIST(7;20;0,25;PRAVDA)",
+   "expected": 0.8981881430772773
+  },
+  {
+   "formula": "=BINOM.DIST(8;20;0,25;PRAVDA)",
+   "expected": 0.9590748322934814
+  },
+  {
+   "formula": "=BINOM.DIST(9;10;0,5;NEPRAVDA)",
+   "expected": 0.009765625
+  },
+  {
+   "formula": "=1-BINOM.DIST(8;10;0,5;PRAVDA)",
+   "expected": 0.0107421875
+  },
+  {
+   "formula": "=BINOM.DIST(120;200;0,6;NEPRAVDA)",
+   "expected": 0.05750643200848385
+  },
+  {
+   "formula": "=1-NORM.S.DIST(2,165;PRAVDA)",
+   "expected": 0.015193842636020262
+  },
+  {
+   "formula": "=1-BINOM.DIST(134;200;0,6;PRAVDA)",
+   "expected": 0.017307341051347923
+  },
+  {
+   "formula": "=BINOM.DIST(3;15;0,2;NEPRAVDA)",
+   "expected": 0.25013889531904
+  },
+  {
+   "formula": "=BINOM.DIST(3;15;0,2;PRAVDA)",
+   "expected": 0.648162104573952
+  },
+  {
+   "formula": "=1-BINOM.DIST(6;15;0,2;PRAVDA)",
+   "expected": 0.018058806984704
+  },
+  {
+   "formula": "=BINOM.DIST.RANGE(15;0,2;7;15)",
+   "expected": 0.018058806984704
+  },
+  {
+   "formula": "=1-NORM.S.DIST(3;PRAVDA)",
+   "expected": 0.0013498980316300959
+  },
+  {
+   "formula": "=1-BINOM.DIST(64;100;0,5;PRAVDA)",
+   "expected": 0.0017588208614850792
+  },
+  {
+   "formula": "=1-NORM.S.DIST(2,9;PRAVDA)",
+   "expected": 0.001865813300384038
+  },
+  {
+   "formula": "=1-BINOM.DIST(9;20;0,25;PRAVDA)",
+   "expected": 0.01386441694376117
+  },
+  {
+   "formula": "=1-NORM.S.DIST(5/ODMOCNINA(3,75);PRAVDA)",
+   "expected": 0.004911637253759626
+  }
+ ],
+ "errors": [
+  "=BINOM.DIST(6;5;0,25;NEPRAVDA)",
+  "=BINOM.DIST(2;5;1,2;NEPRAVDA)",
+  "=KOMBINACE(2;5)",
+  "=FAKTORIÁL(-1)",
+  "=BINOM.INV(20;0,25;1)"
+ ],
+ "changes": [
+  {
+   "sheet": "Bayes",
+   "set": {
+    "B2": 10000,
+    "B3": 0.01
+   },
+   "expect": {
+    "B9": 95,
+    "B11": 990,
+    "B13": 1085,
+    "B16": 0.08755760368663594,
+    "B20": 0.08755760368663594,
+    "B17": 0.9994391475042064
+   }
+  },
+  {
+   "sheet": "Bayes",
+   "set": {
+    "B2": 10000,
+    "B3": 0.1
+   },
+   "expect": {
+    "B9": 950,
+    "B11": 900,
+    "B16": 0.5135135135135135
+   }
+  },
+  {
+   "sheet": "Binom",
+   "set": {
+    "B3": 0.5
+   },
+   "expect": {
+    "B8": 0.3125,
+    "B13": 1,
+    "B14": 2.5,
+    "B19": 0.3125
+   }
+  },
+  {
+   "sheet": "Binom_20",
+   "set": {
+    "B3": 0.5
+   },
+   "expect": {
+    "B9": 0.5880985260009766,
+    "B10": 0.5880985260009766,
+    "B11": 10
+   }
+  },
+  {
+   "sheet": "Aproximace",
+   "set": {
+    "B2": 100,
+    "B3": 0.5,
+    "B4": 65
+   },
+   "expect": {
+    "B8": 5,
+    "B9": 3,
+    "B10": 0.0013498980316300959,
+    "B11": 0.0017588208614850792,
+    "B12": 0.001865813300384038,
+    "B15": 0.05,
+    "B16": 3
+   }
+  }
+ ]
+}
