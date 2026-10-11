@@ -73,6 +73,24 @@ export const inputs = {
     item('U06_zaokrouhleni','Cvičení 6',['Vstup','Hodnota'],[['Průměr (body)',50],['Směrodatná odchylka (body)',10],['Zaznamenaný skór (body)',50],['Krok zaokrouhlení (body)',1]]),
     vector('U07_prevody','Cvičení 7','T-skór',[38,50,60,70],'První skór slouží k lineárnímu převodu; ostatní tři k porovnání modelových percentilových pořadí. Parametry škál jsou na listu Skaly.'),
     vector('U08_pasmo','Cvičení 8','Z-skór',[1.2,-.6,0]),
+  ],
+  5: [
+    item('Karticky','Výklad: výsledek, jev, doplněk, výběr bez vracení',['Slovní druh','Počet kartiček'],[['Podstatné jméno',40],['Sloveso',35],['Přídavné jméno',25]],'Autorská modelová krabice 100 kartiček. Četnosti, nikoli záznamy o lidech.'),
+    item('Tabulka_zavislost','Výklad: průnik, sjednocení, podmíněná pravděpodobnost, závislost',['Pohlaví','Stres','Pohoda'],[['Žena',40,60],['Muž',30,70]],'Autorský modelový soubor 200 studentů. Četnosti kombinací, nikoli jednotliví lidé ani skutečný výzkum.'),
+    item('Tabulka_nezavislost','Výklad: nezávislé jevy',['Pohlaví','Stres','Pohoda'],[['Žena',30,70],['Muž',30,70]],'Druhý autorský modelový soubor 200 studentů se stejným podílem stresu v obou řádcích.'),
+    item('Screening','Výklad: přirozené četnosti, úplná pravděpodobnost, Bayesova věta, dvě prevalence',['Vstup','Hodnota'],[['Počet osob',1000],['Prevalence v poradně',.1],['Senzitivita',.95],['Specificita',.9],['Prevalence při plošném použití',.01],['Počet osob pro srovnání prevalencí',10000]],'Modelové hodnoty zvolené pro výklad. Nejde o vlastnosti skutečného dotazníku ani o skutečný výskyt poruchy. Hotový výpočet je na listu Bayes.'),
+    item('Test_hadani','Výklad: rozdělení pravděpodobnosti, kombinace, binomické rozdělení',['Vstup','Hodnota'],[['Počet otázek krátkého testu',5],['Počet možností u otázky',4],['Pravděpodobnost správného tipu',.25],['Počet otázek delšího testu',20],['Hodnota pro právě a nejvýše',5],['Hranice pro alespoň',10]],'Model zcela náhodného a nezávislého tipování; každá otázka má jedinou správnou možnost. Hotové výpočty jsou na listech Binom a Binom_20.'),
+    item('Rozpoznavani','Výklad: normální aproximace a převod na podíl',['Vstup','Hodnota'],[['Počet pokusů',200],['Pravděpodobnost správné odpovědi',.6],['Hranice počtu správných odpovědí',135]],'Autorský model rozpoznávací úlohy s nezávislými pokusy. Hotový výpočet je na listu Aproximace.'),
+    item('Losovani','Nepovinné rozšíření: variace bez opakování',['Vstup','Hodnota'],[['Počet studentů',100],['Počet cen',3]],'Autorský příklad losování; při různých cenách záleží na pořadí, při stejných nikoli.'),
+    item('U01_emoce','Cvičení 1',['Emoce','Počet fotografií'],[['Radost',24],['Smutek',18],['Strach',12],['Překvapení',6]],'Autorská modelová sada 60 fotografií. Četnosti, nikoli odpovědi lidí.'),
+    item('U03_tabulka','Cvičení 3',['Sport','Dobrý spánek','Špatný spánek'],[['Sportuje',54,26],['Nesportuje',27,43]],'Autorský modelový soubor 150 studentů. Četnosti kombinací, nikoli jednotliví lidé.'),
+    item('U04_vstupy','Cvičení 4',['Vstup','Hodnota'],[['Počet možností u otázky',4],['Počet tipovaných otázek',2],['Počet kartiček v sadě',10],['Počet cílových slov v sadě',4]]),
+    item('U06_screening','Cvičení 6',['Vstup','Hodnota'],[['Počet osob',1000],['Senzitivita',.8],['Specificita',.9],['Prevalence v první skupině',.05],['Prevalence ve druhé skupině',.2]],'Modelové hodnoty. Nejde o vlastnosti skutečného dotazníku.'),
+    item('U07_taxi','Cvičení 7',['Vstup','Hodnota'],[['Podíl zelených taxíků',.85],['Podíl modrých taxíků',.15],['Pravděpodobnost správného určení barvy',.8]],'Čísla podle Howella (2013, s. 122–123), který uvádí úlohu Tverského a Kahnemana; znění zadání je upraveno.'),
+    item('U08_rozdeleni','Cvičení 8',['Počet vybavených slov','Pravděpodobnost v modelu','Četnost ve výběru 20 lidí'],[[0,.1,3],[1,.4,7],[2,.35,8],[3,.15,2]],'Autorský model a autorské ilustrační četnosti. Řádek je hodnota proměnné, nikoli účastník.'),
+    item('U09_test','Cvičení 9',['Vstup','Hodnota'],[['Počet otázek',4],['Pravděpodobnost správného tipu',.5],['Počet správných odpovědí v části a) a b)',3]]),
+    item('U10_test','Cvičení 10',['Vstup','Hodnota'],[['Počet otázek',15],['Počet možností u otázky',5],['Hodnota pro právě a nejvýše',3],['Hranice pro alespoň',7]]),
+    item('U11_aproximace','Cvičení 11',['Vstup','Hodnota'],[['Počet otázek',100],['Pravděpodobnost správného tipu',.5],['Hranice počtu správných odpovědí',65]],'Upraveno podle starší autorovy úlohy k normálnímu rozdělení.'),
   ]
 };
 
@@ -80,7 +98,8 @@ export const existing = {
   1: [],
   2: [['Data','A2:E37','36 osob; výklad a cvičení 10'],['Cetnosti','A4:H8','Hotové výpočty a graf odpočatosti'],['Histogram','A4:E10','Hotové intervalové četnosti a histogram']],
   3: [['Data','A2:E37','Spánek a paměť; cvičení 12'],['Priklad','A1:J21','Hotové výpočty pro pět časů'],['Souhrn','A1:D16','Hotový souhrn spánku a paměti'],['Rozsireni','A1:J14','Hotové nepovinné výpočty'],['Kontrola_prikladu','A1:H42','Kontrolní výpočty; vstupy na Kvantily, Orezani, Boxplot']],
-  4: [['Model','A1:D25','Hotové převody modelu N(50, 10)'],['QQ','A1:N24','Hotový Q–Q graf a mezivýpočty']]
+  4: [['Model','A1:D25','Hotové převody modelu N(50, 10)'],['QQ','A1:N24','Hotový Q–Q graf a mezivýpočty']],
+  5: [['Bayes','A1:B20','Hotové přirozené četnosti, úplná pravděpodobnost a Bayesova věta'],['Binom','A1:D19','Hotové binomické rozdělení pro pět otázek'],['Binom_20','A1:E22','Hotové výpočty právě, nejvýše a alespoň pro dvacet otázek'],['Aproximace','A1:B16','Hotová normální aproximace, přesná hodnota a převod na podíl']]
 };
 
 export async function addStudentInputs(wb,chapter,out) {

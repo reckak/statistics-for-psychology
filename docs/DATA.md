@@ -1,6 +1,6 @@
 # Pokrytí dat v sešitech
 
-Kontrola proti zadáním a výkladu: 2026-10-11. Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
+Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 1–4) a 2026-10-12 (kapitola 5). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
 
 Slovní situace bez individuálních pozorování nejsou doplňovány smyšlenými daty. Hladké křivky znázorňují modely, nikoli nezveřejněné výběry. U simulace korekce v kapitole 3 je vstupem známá populace a parametry opakování; interní miliony náhodných tahů nejsou studentským datovým souborem. Kapitola 4 obsahuje všech 800 simulovaných skórů ze čtyř porovnávaných obrázků.
 
@@ -100,3 +100,36 @@ individuální data ke slovnímu cvičení 10.
 | 8 | `U08_pasmo` A2:A4 |
 | 9 | `QQ_data` A2:A13 |
 | 10 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+
+## Kapitola 5
+
+[Sešit](../data/kapitola_05.xlsx). Kontrola proti výkladu a zadáním: 2026-10-12.
+
+Výklad: `Karticky` (krabice 100 kartiček), `Tabulka_zavislost` a
+`Tabulka_nezavislost` (dva modelové soubory 200 studentů), `Screening`
+(senzitivita, specificita, dvě prevalence), `Test_hadani` (počty otázek
+a pravděpodobnost správného tipu), `Sim_hadani` (všech 40 simulovaných hodnot
+z obrázku modelu a dat), `Rozpoznavani` (normální aproximace) a `Losovani`
+(nepovinné variace). Hotové výpočty jsou odděleně na listech `Bayes`,
+`Binom`, `Binom_20` a `Aproximace`; jejich žluté buňky jsou vstupy.
+
+Pět simulovaných řad po 1 000 tipech z prvního obrázku není studentským
+datovým souborem: vstupem je pravděpodobnost 0,25, počet řad a pevný seed
+v `scripts/kapitola_05.R`. Kontingenční tabulky a přirozené četnosti jsou
+četnosti kombinací, nikoli záznamy o jednotlivých lidech; z nich se žádná
+individuální data nesestavují.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1 | `U01_emoce` A2:B5 |
+| 2 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 3 | `U03_tabulka` A2:C3 |
+| 4 | `U04_vstupy` A2:B5 |
+| 5 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 6 | `U06_screening` A2:B6 |
+| 7 | `U07_taxi` A2:B4; čísla podle Howella, s. 122–123 |
+| 8 | `U08_rozdeleni` A2:C5 |
+| 9 | `U09_test` A2:B4 |
+| 10 | `U10_test` A2:B5 |
+| 11 | `U11_aproximace` A2:B4 |
+| 12 | Slovní / konceptuální zadání; individuální data nejsou zadána. |

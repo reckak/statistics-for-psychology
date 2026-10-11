@@ -43,9 +43,13 @@ caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 6
 #tbl-percentilove-poradi table { min-width: 1060px; }
 
 /* Chapter 4 calculation tables retain readable columns within a scrollable region. */
-.chapter-04-wide table { min-width: 620px; }
+.chapter-04-wide table, .chapter-05-wide table { min-width: 620px; }
 .chapter-04-figure { max-width: 100%; overflow-x: auto; }
 .chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }
+
+/* A display equation wider than the column scrolls inside its own line instead of widening the page. */
+/* Native MathML: the equation is a direct child of its paragraph, so the paragraph scrolls. */
+p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 
 /* Explanatory diagrams retain legible labels and scroll locally on phones. */
 .teaching-figure { max-width: 100%; overflow-x: auto; }

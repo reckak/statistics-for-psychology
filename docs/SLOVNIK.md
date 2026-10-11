@@ -1,6 +1,6 @@
 # Autorský registr terminologie
 
-**Poslední kontrola: 2026-10-11.** Registr pokrývá 210 hesel současného
+**Poslední kontrola: 2026-10-12.** Registr pokrývá 210 hesel současného
 studentského slovníčku pro kapitoly 1–5 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
 

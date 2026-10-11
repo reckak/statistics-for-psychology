@@ -1797,3 +1797,115 @@ studentský text ani sešit jimi nevznikají a render není potřeba.
 **Neověřeno v okamžiku dohody:** Howell od s. 128; Gravetter, Privitera
 a Aron; bibliografická identita Baronovy knihy a DOI článku Uttsové;
 původní studie Tverského a Kahnemana; funkce Excelu nebyly spuštěny.
+
+<a id="vytvoreni-kapitoly-5"></a>
+
+## Kapitola 5: vytvoření výkladu (2026-10-12)
+
+Podle [dohody z 2026-10-11](#dohoda-kapitola-05) a rozhodnutí R21–R23 vznikla
+kapitola `quarto/kapitola_05.qmd` (Pravděpodobnost) s dvanácti obrázky,
+dvanácti cvičeními a třemi nepovinnými rozšířeními, sešit
+`data/kapitola_05.xlsx`, padesát hesel slovníčku, dvacet řádků přehledu
+značení a šest funkcí v přehledu Excelu. Plán v osnově byl nahrazen
+[kartou skutečného obsahu](../docs/OSNOVA.md#mapa-kapitola-05).
+
+### Odborná a didaktická rozhodnutí při psaní
+
+- **Úvodní příklad** používá skutečnou četnost z dat kapitoly 2: odpověď
+  „dost“ uvedlo 14 z 36 účastníků. První koncept pracoval s vymyšlenými
+  9 z 36; didaktická revize rozpor s kapitolou 2 odhalila a kontrola
+  `check-chapter-05.R` nyní čte hodnotu přímo z `data/kapitola_02.csv`.
+- **Simulace pěti řad** (obrázek relativní četnosti) má seed 5, číslo
+  kapitoly. Nejde o první zkoušený seed: při původním 20261011 skončily
+  dvě z pěti řad po 1 000 tipech asi 2,5–3 směrodatné odchylky od 0,25
+  (0,221 a 0,289), což by zkreslilo představu o obvyklém kolísání.
+  Výklad uvádí rozsahy po 10, 50 a 1 000 tipech a výslovně neslibuje
+  pravidelné přibližování. Čtyřicet simulovaných studentů má seed 20261012
+  a nebylo vybíráno.
+- **Bayesova věta** je složena ze tří dříve vyložených vztahů; úplná
+  pravděpodobnost je samostatný oddíl. Srovnání prevalencí 10 % a 1 %
+  používá pro obě skupinu 10 000 osob, aby vycházely celé počty.
+- **Úprava hranice o 0,5** při normální aproximaci je vysvětlena
+  návazností na zaokrouhlený skór z kapitoly 4, bez pojmenování; název
+  *continuity correction* nebyl schválen. Stejně se nezavádí věrohodnost
+  ani poměr šancí.
+- **Dvojí význam písmen:** k je v kapitole 2 počet kategorií, zde počet
+  úspěchů; n je počet pokusů. Výklad i přehled značení na to upozorňují.
+  Znaky ≤ a ≥, dosud užité bez vysvětlení v tabulkách kapitoly 4, jsou
+  vysvětleny a mají řádek v přehledu značení.
+- **Jednotné sloveso** „tipovat“ místo střídání s „hádat“; listy sešitu
+  si ponechávají identifikátory `Test_hadani` a `Sim_hadani`.
+- **Bez slibů o dalších kapitolách:** text odkazuje na inferenční statistiku
+  a testování hypotéz jako na oblasti, ne na konkrétní budoucí kapitoly,
+  jejichž plán není schválen.
+- Kapitola 4 dostala jediný dopředný odkaz na kapitolu 5 (věta o pravidlech
+  počítání s pravděpodobnostmi); její význam se nezměnil.
+
+### Zdroje a citace
+
+Rozsah čtení a použití je v kartách U01, U04, U10, U11, P05, C03 a D07–D09
+[mapy zdrojů](../docs/ZDROJE.md). V obraze byly při psaní prohlédnuty
+Baronovy s. 121–123 a 149–152 a s. 77–78 článku Uttsové; jedna věta
+o „literatuře o usuzování“ byla po této kontrole přeformulována, protože
+ji citované strany nepodporovaly. Do `references.bib` přibylo jedenáct
+záznamů: Sahu, Russo, Diez et al., Baron, Utts a šest stránek české
+dokumentace Microsoftu (stav 2026-10-11). DOI Uttsové, Sahua a identita
+Baronovy knihy byly ověřeny v metadatech Crossref, rok 2008 Baronova
+čtvrtého vydání v záznamu Kongresové knihovny.
+
+### Sešit a Excel
+
+Generátory sešitů kapitol 1–4 vyžadují modul `@oai/artifact-tool`, který
+v tomto prostředí nebyl dostupný. Sešit kapitoly 5 proto sestavuje
+`scripts/kapitola_05-sešit.mjs` spolu s `scripts/kapitola_05-sesit-excel.ps1`
+přímo v desktopovém Excelu (16.0, české rozhraní); deklarace vstupů
+zůstávají v `scripts/sesity-data.mjs`. Při tvorbě se projevily a byly
+ošetřeny dvě vlastnosti automatizace: jedno místo skriptu nesmí přiřazovat
+buňce střídavě text a číslo a vlastnost `NumberFormat` se v PowerShellu
+čte s místními oddělovači. Sešit má 22 listů a 74 vzorců, neobsahuje grafy
+a ve vlastnostech dokumentu nemá jméno autora.
+
+### Ověření
+
+- `check-chapter-05.R`: všechna čísla výkladu, tabulek, nepovinných
+  rozšíření a řešení dvanácti cvičení, obě simulace a dvanáct obrázků;
+  binomické hodnoty navíc přímým vzorcem nezávisle na `dbinom`. Kontrola
+  odhalila, že 0,0625 a 0,4375 jsou přesné poloviny: text zaokrouhluje
+  nahoru jako Excel (0,063 a 0,438).
+- `check-chapter-05-excel.ps1` ve skutečném Excelu: 74 uložených výsledků,
+  28 českých vzorců z textu a řešení, 5 chybových případů a 23 výsledků
+  po změně vstupů; očekávané hodnoty z přesné racionální aritmetiky
+  v Pythonu. Funkce FAKTORIÁL, KOMBINACE, PERMUTACE, BINOM.DIST,
+  BINOM.DIST.RANGE a BINOM.INV byly tedy spuštěny, nejen ověřeny dokumentací.
+- `check-workbooks.py`: 1 583 vstupních buněk pěti sešitů, odkazy na listy
+  a oblasti v textu a shoda sešitu s kopií ve webu.
+- Render celé knihy (10 stránek) a `check-html.cjs`: odkazy, 210 hesel,
+  54 sbalených řešení, klávesnice, tři sbalená nepovinná rozšíření,
+  stojaté π, μ a σ, velké P, vyhledávání nových řádků přehledů, mobil 390 px.
+- R kontroly kapitol 2–4 po změně společných souborů prošly.
+- Vizuálně prohlédnuto: všech dvanáct obrázků, snímky úvodu, Bayesovy věty,
+  binomického vzorce a aproximace na desktopu, Bayesova věta na mobilu
+  a PDF exporty listů `Prehled`, `Binom` a `Screening`.
+
+**Nalezeno a opraveno kontrolou webu:** kapitola na mobilu vodorovně
+přetékala. Dlouhé rovnice jsou rozděleny do řádků, dlouhé řádkové vzorce
+v řešeních rozděleny, všechny tabulky mají posuvný obal a excelové tabulky
+minimální šířku. Do společných stylů přibylo pravidlo, podle kterého se
+odstavec s příliš širokou rovnicí posouvá sám a nerozšiřuje stránku; platí
+pro všechny kapitoly a kapitoly 2–4 byly po změně zkontrolovány i na šířce
+360 px. Zlomky ve víceřádkových rovnicích mají výslovně velikost
+samostatné rovnice.
+
+### Omezení a neověřené části
+
+- Excelové kontroly sešitů kapitol 1–4 (`check-workbooks-excel.ps1`
+  a kapitolové skripty) nebyly znovu spuštěny; tyto sešity se neměnily.
+- Howellův text od s. 128 (binomický test) a cvičení jeho kapitoly 5
+  nebyly čteny; s. 119 a 128 jen v textové extrakci. Diezovy s. 95–96
+  nebyly prohlédnuty v obraze. Původní studie Tverského a Kahnemana
+  a Eddyho jsou zmíněny jen prostřednictvím Barona, Uttsové a Howella.
+- Copyrightová strana Baronovy knihy nebyla k dispozici; rok 2008 se opírá
+  o katalogový záznam, metadata vydavatele uvádějí 2006.
+- Sešit kapitoly 5 lze obnovit jen na Windows s českým Excelem.
+- Interní didaktická revize není ověřením porozumění na studentech.
+  Veřejné nasazení webu navazuje na autorovo sloučení pull requestu.

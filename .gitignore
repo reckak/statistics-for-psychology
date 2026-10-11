@@ -12,6 +12,7 @@ assets/chapter-01/plots/
 assets/chapter-02/plots/
 assets/chapter-03/plots/*
 assets/chapter-04/plots/
+assets/chapter-05/plots/
 !assets/chapter-03/plots/mode-median-mean.svg
 
 /.quarto/

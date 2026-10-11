@@ -144,6 +144,32 @@ const server = http.createServer((req, res) => {
       solutionsByPage[file] = await solutions.count();
       solutionCount += await solutions.count();
       if (file === 'quarto/kapitola_02.html') assert.equal(await solutions.count(), 10);
+      if (file === 'quarto/kapitola_05.html') {
+        assert.equal(await solutions.count(),12,'Chapter 5 has twelve complete exercise solutions');
+        assert.equal(await page.locator('merror').count(),0,'Chapter 5 mathematics parses');
+        assert.equal(await page.locator('main img').count(),12);
+        for(const img of await page.locator('main img').all()) {
+          await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          assert((await img.getAttribute('alt')).length>30);
+        }
+        const greek5=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πμσ]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
+        assert(greek5.filter(e=>e.text.includes('π')).length>12,'Success probability actually rendered as pi');
+        assert(greek5.every(e=>e.variant==='normal'),'Greek parameters of chapter 5 must be upright');
+        assert((await page.locator('main math mi').evaluateAll(items=>items.filter(e=>e.textContent==='P').length))>40,'Probability notation uses capital P');
+        for(const id of ['rozsireni-sance','rozsireni-stredni-hodnota','rozsireni-variace']) {
+          assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
+        }
+        for(const id of ['sec-uplna-pravdepodobnost','sec-dve-prevalence','sec-normalni-aproximace','sec-konjunkcni-klam']) assert(await page.locator('#'+id).isVisible(),`Core section present: ${id}`);
+        assert.equal(await page.locator('#sec-uplna-pravdepodobnost .callout-collapse, #sec-normalni-aproximace .callout-collapse').count(),0,'Total probability and approximation are not optional');
+        for(const fig of await page.locator('main figure').all()) {
+          const id=await fig.evaluate(el=>el.closest('[id]').id);
+          await fig.screenshot({path:`tmp/verification/ch05-${id}.png`});
+        }
+        for(const id of ['sec-kontingencni-tabulka','sec-bayesova-veta','sec-binomicky-vzorec','sec-excel-binom','sec-aproximace-presnost']) {
+          await page.locator('#'+id).screenshot({path:`tmp/verification/ch05-${id}-desktop.png`});
+        }
+      }
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
@@ -314,7 +340,8 @@ const server = http.createServer((req, res) => {
       const conceptFigures = {
         'quarto/kapitola_02.html': ['fig-zaklad-procent','fig-princip-kumulace','fig-meze-intervalu','fig-sirka-intervalu'],
         'quarto/kapitola_03.html': ['fig-vazeny-prumer','fig-percentil-a-poradi','fig-orezani-winsorizace'],
-        'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce']
+        'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
+        'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace']
       };
       for (const id of conceptFigures[file] || []) {
         const fig = page.locator('#'+id);
@@ -354,7 +381,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await groups.count(),2,'Two sidebar groups');
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
     assert.match(await groups.nth(1).innerText(),/Literatura a přehledy/);
-    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),4);
+    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),5);
     assert.equal(await groups.nth(1).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -497,6 +524,15 @@ const server = http.createServer((req, res) => {
       await page.evaluate(id=>location.hash=id,id);
       await page.locator('#'+id).waitFor({state:'visible'});
     }
+    // Chapter 5 rows: Czech, English and alternative names; reachable through an unrelated filter.
+    for(const [file,query,id] of [['slovnicek','sample space','pojem-vyberovy-prostor'],['slovnicek','náhodná veličina','pojem-nahodna-promenna'],['slovnicek','base rate','pojem-zakladni-cetnost'],['slovnicek','opačný jev','pojem-doplnkovy-jev'],['slovnicek','conjunction fallacy','pojem-konjunkcni-klam'],['znaceni','Bayesova','vztah-bayes'],['znaceni','n nad k','znak-kombinacni-cislo'],['znaceni','3,14','znak-pi'],['excel','BINOM.DIST.RANGE','excel-binom-dist-range'],['excel','COMBIN','excel-kombinace'],['excel','PERMUT','excel-permutace']]) {
+      await page.goto(base+`quarto/${file}.html`,{waitUntil:'networkidle'});
+      await page.locator('.ref-controls input').fill(query);
+      assert(await page.locator('#'+id).isVisible(),`Searchable: ${id}`);
+      await page.locator('.ref-controls input').fill('nenalezitelnypojem');
+      await page.evaluate(id=>location.hash=id,id);
+      await page.locator('#'+id).waitFor({state:'visible'});
+    }
     assert(!fs.existsSync(path.join(root, 'sources')), 'Private sources copied to web');
     assert(!fs.existsSync(path.join(root, 'quarto/README.md')), 'Author documentation copied to web');
     const noScript = await browser.newContext({ javaScriptEnabled: false });
@@ -517,6 +553,9 @@ const server = http.createServer((req, res) => {
     assert(await plain.locator('#rozsireni-momenty .callout-collapse').isVisible());
     await plain.goto(base + 'quarto/kapitola_04.html');
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),10);
+    await plain.goto(base + 'quarto/kapitola_05.html');
+    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),12);
+    assert(await plain.locator('#rozsireni-sance .callout-collapse').isVisible());
     for (const file of ['znaceni','excel']) {
       await plain.goto(base + `quarto/${file}.html`);
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());
