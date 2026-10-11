@@ -1473,3 +1473,29 @@ příslušného souboru. U odkazů s tištěným číslem stránky byla zkontrol
 také vazba na číslování PDF; u Priviterovy úvodní kapitoly, jejíž elektronický
 štítek je odlišný, podle textu titulní strany kapitoly. Otisky všech původních
 zdrojů zůstaly stejné. Tabulky, UTF-8 a `git diff --check` jsou bez chyb.
+
+## 2026-10-11: doplnění prezentace probability.pptx do mapy
+
+Na žádost autora přidána karta [P05](../docs/ZDROJE.md#p05), inventární
+řádek a odkazy v tematickém rozcestníku. Mapa nyní zahrnuje 29 podkladů,
+z toho pět starších přednáškových prezentací. Přečten text všech 36 snímků
+včetně matematických objektů a dostupných poznámek podle skutečných vazeb
+PPTX. Všechny snímky vyexportovány PowerPointem a prohlédnuty na čtyřech
+kontaktních listech; snímek 34 také samostatně. Původní prezentace se neměnila.
+
+Karta uvádí obsah, přesné rozsahy snímků, doporučené využití, metadata,
+otisk souboru a konkrétní nálezy: chybný podíl zelených lentilek, chybějící
+faktoriál v mezikroku kombinací, chybnou podmínku v Bayesově vzorci,
+zaokrouhlení a procentní převod, nesprávnou směrodatnou odchylku podílu
+a nesoulad zadání a dosazení normální aproximace. Vybrané počty a
+pravděpodobnosti byly nezávisle přepočítány Pythonem; podrobnosti jsou
+v kartě. Zpřesnění definic a terminologie jsou podmínkami budoucího použití,
+nikoli schválením rozsahu či značení nové kapitoly.
+
+Kontrola prošla: 29 souborů odpovídá 29 inventárním řádkům a kartám,
+všechny jejich otisky souhlasí, 383 místních odkazů v mapě má dostupný cíl
+nebo vlastní kotvu. Kotvy jsou jedinečné, UTF-8 a `git diff --check` bez
+chyb. Originál a pomocné exporty jsou ignorované Gitem. Jde pouze o
+autorskou dokumentaci; nový render webu nebyl potřebný ani provedený.
+Nebyla provedena úplná odborná revize všech tvrzení, kontrola animací,
+původu převzatých obrázků ani ověření excelových funkcí snímku 36.
