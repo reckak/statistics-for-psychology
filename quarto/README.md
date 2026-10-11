@@ -1114,3 +1114,31 @@ Neověřeno: stránky a lokátory ostatních citací kapitoly vůči zdrojům,
 jiné prohlížeče než Chrome a veřejné publikování. Excelové příklady se
 nemění a desktopový Excel nebyl spuštěn. Interní didaktická revize není
 ověřením porozumění na studentech.
+
+## Zjednodušení větví a bezpečný úklid (2026-10-11)
+
+Na výslovnou žádost autora zavedeny názvy `codex/chapter-NN` a `codex/other`
+s nejvýše jednou aktivní větví na kapitolu. Po sloučení a ověření se větev
+odstraní a při další práci vznikne z aktuálního `origin/main` pod stejným
+názvem. Pravidla jsou v `AGENTS.md`, schválené rozhodnutí v R11.
+
+Před úklidem byl hlavní pracovní strom čistý. Aktualizace pomocí
+`git fetch --prune origin` ukázala, že všech 39 starých pracovních větví
+již na GitHubu neexistuje. Z lokálních větví bylo 38 obsaženo přímo
+v historii `origin/main` (03e99de). Výjimka `codex/book-sections-bibliography`
+obsahovala commit 8a5d840 převzatý do `main` jako 6f3e429: `git cherry`
+potvrdil ekvivalenci a oba diffy mají shodný stabilní patch-id
+86b6614a5ba635226b5126ea73e65226d4d8fd99. Žádné jedinečné změny nezůstaly.
+
+Pracovní kopie `tmp/chapter-01-concepts` byla čistá bez nesledovaných
+neignorovaných souborů; ignorované soubory tvoří výstup webu, cache Quarta
+a snímky kontrol. Byla ponechána na původním commitu 99a31f9 v detached
+HEAD, takže její soubory zůstaly zachované a starý název větve šlo odstranit.
+Všech 39 starých lokálních pracovních větví bylo odstraněno. Lokální
+`main` byl posunut na aktuální `origin/main`; nové instrukce vznikají
+na `codex/other`. Sloučení tohoto PR zůstává na autorovi.
+
+Ověření: stav obou pracovních stromů, historie a ekvivalence výjimečného
+commitu, seznam větví, kontrola rozdílů a `git diff --check`. Změny se týkají
+jen autorských instrukcí a dokumentace, render ani numerické a excelové
+kontroly proto nebyly potřeba a nebyly spuštěny.

@@ -294,3 +294,25 @@ Při založení tohoto dokumentu se nepřidávají nové statistické konvence.
 Budoucí návrhy uváděj samostatně se stavem **návrh** a povyšuj je na
 schválené až po dohodě s autorem. Koncepce nových kapitol patří do
 [osnovy](OSNOVA.md); průběžné výsledky kontrol do autorské historie.
+
+<a id="r11-pracovni-vetve"></a>
+
+## R11 — Jedna aktivní větev na kapitolu
+
+**Stav:** schváleno. **Rozsah:** celý repozitář a budoucí práce s Gitem.
+
+Používáme nejvýše jednu aktivní větev `codex/chapter-NN` pro každou
+kapitolu a `codex/other` pro společné změny. Související aktualizace
+přehledů patří ke kapitole. Dílčí úpravy rozlišují commity a PR.
+Po sloučení a ověření zachování změn se pracovní větev odstraní;
+při další práci se stejný název znovu založí z aktuálního `origin/main`.
+Úplná pravidla bezpečného úklidu stanoví [AGENTS.md](../AGENTS.md#git-a-dokončení-práce).
+
+**Důvod:** přehledný seznam aktivní práce bez hromadění větví pro každou
+redakční úpravu. Nahrazuje dosavadní pravidlo nových tematických názvů
+po každém sloučení a samostatných tematických větví pro infrastrukturu.
+
+**Doklad:** uživatelův návrh jedné větve na kapitolu a větve „other“
+a výslovné zadání ze dne 2026-10-11 upravit instrukce a uklidit staré
+větve po prověření výjimek; podrobnosti v autorském záznamu níže
+v [historii](../quarto/README.md).

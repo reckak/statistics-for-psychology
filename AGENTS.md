@@ -334,11 +334,23 @@ konkrétní formát slidů a poznámek určuje specializovaný dokument.
   spoj je podle dohodnutého záměru; ptej se pouze při skutečně nejasném
   obsahovém konfliktu. Po dokončení ověř, že úplný aktuální výsledek je
   v souboru na uživatelem očekávané cestě, nikoli jen v jiné kopii či na GitHubu.
-- Každou kapitolu připravuj v samostatné tematické větvi s prefixem `codex/`.
-  Další úpravy nesloučené kapitoly patří do stejné větve; po sloučení založ
-  pro nový úkol novou větev z aktuálního `main`.
-- Instrukce a společnou infrastrukturu upravuj ve vlastních tematických
-  větvích. Aktualizace přehledů související s kapitolou patří do její větve.
+- Pro každou kapitolu používej nejvýše jednu aktivní pracovní větev
+  `codex/chapter-01`, `codex/chapter-02` atd. Nevytvářej další větve
+  s příponami podle dílčích úprav. Jednotlivé změny rozlišuj commity a PR;
+  další úpravy před sloučením patří do stejné větve.
+- Pro instrukce, společnou infrastrukturu a změny napříč knihou používej
+  jedinou pracovní větev `codex/other`. Aktualizace přehledů související
+  s konkrétní kapitolou patří do větve této kapitoly. Nesouvisející úkoly
+  v `codex/other` dokončuj postupně, aby se nemíchaly v jednom PR.
+- Po uživatelově sloučení PR ověř zachování všech změn v aktuálním `main`
+  a odstraň dokončenou pracovní větev lokálně i na GitHubu, pokud ještě
+  existuje. Při další práci ji vytvoř z aktuálního `origin/main` pod stejným
+  názvem. Nezakládej prázdné větve pro kapitoly, na kterých se nepracuje.
+- Před odstraněním větve aktualizuj stav z GitHubu a prověř neodeslané
+  commity i připojené pracovní kopie včetně nesledovaných a ignorovaných
+  souborů. Pokud změny přešly do `main` pod jinými identifikátory commitů,
+  ověř jejich obsahovou shodu. Jedinečné nebo rozpracované změny zachovej;
+  samotné uzavření PR ani odstranění vzdálené větve není dokladem sloučení.
 - Do commitu zahrň pouze změny patřící k úkolu. Po kontrole vytvoř commit
   a odešli pracovní větev na GitHub; připrav změny k uživatelské kontrole
   a sloučení prostřednictvím pull requestu.
