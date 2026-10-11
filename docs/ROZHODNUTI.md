@@ -365,3 +365,39 @@ value pojem ‚chybějící údaj‘, oba pojmy bych uvedl ve slovníku s pouká
 na to, že jedno je opakem druhého“; „používal bych podobně ‚velikost výběru‘
 pro sample size“; volba „Přejmenovat na ‚Odlehlé pozorování‘“. Záznam
 „Kapitola 2: revize po posouzení“ v [historii](../quarto/README.md).
+
+<a id="r14-kvartily-spicatost-chvost"></a>
+
+## R14 — Označení kvartilů, špičatost, chvost a data kapitoly 3
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** kapitola 3, slovníček, přehled
+značení, sešit kapitoly a další použití těchto pojmů v učebnici.
+
+- **1. a 3. kvartil** je hlavní označení kvantilů na úrovních 0,25 a 0,75;
+  „dolní“ a „horní kvartil“ uvádíme jen při zavedení pojmu a ve slovníčku
+  jako alternativu. Druhý kvartil je medián. Značení q s úrovní v indexu
+  a výpočetní konvence podle [R04](#r04-kvantily) se nemění.
+- **Špičatost** je hlavní český termín pro *kurtosis*; „kurtóza“ je
+  alternativa ve slovníčku. Výklad dál výslovně upozorňuje, že koeficient
+  neměří ostrost ani výšku vrcholu. Exces zůstává.
+- Při popisu tvaru rozdělení používáme důsledně **chvost** (levý, pravý),
+  nikoli „konec“ rozdělení. „Konec“ zůstává pro konce vousů a pro konce
+  seřazené řady při ořezání a winsorizaci.
+- Údaje všech příkladů kapitoly 3 dostávají studenti v jediném souboru,
+  excelovém sešitu (list `Dalsi_priklady` doplňuje jedenáct dob, deset dob
+  a 41 skórů). Samostatné CSV kapitoly 3 bylo zrušeno; skripty obsahují
+  tytéž pevné hodnoty.
+
+**Důvod:** jednotné označení bez střídání synonym; číselné označení kvartilů
+odpovídá běžným značkám Q₁ a Q₃; jeden soubor místo dvou neúplných.
+
+**Nahrazuje:** hlavní tvary „dolní/horní kvartil“ a „kurtóza“ z dosavadního
+znění kapitoly 3 a slovníčku.
+
+**Doklad:** pokyny autora při revizi kapitoly 3 dne 2026-10-11: „používal
+bych konzistentně ‚chvost‘ místo ‚konec‘ distribuce“; „jako primární
+používal označení 1./3. kvartil a uvedl označení ‚dolní‘ a ‚horní‘ pouze
+jako možnou alternativu“; „pro kurtosis bych jako primární překlad/termín
+volil ‚špičatost‘, kurtóza uvedl pouze jako možnou alternativu“; „vše dal
+do jednoho souboru, a to toho excelovského“. Záznam „Kapitola 3: revize
+po posouzení“ v [historii](../quarto/README.md).

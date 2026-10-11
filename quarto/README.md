@@ -1270,3 +1270,88 @@ Omezení: nové heslo slovníčku nebylo samostatně testováno hledáním
 a přímým odkazem nad rámec obecné kontroly tabulky. Sešit XLSX se nemění
 a Excel nebyl spuštěn. Citované stránky zdrojů nebyly znovu ověřovány,
 protože se citace nemění. Interní revize není ověřením porozumění na studentech.
+
+## Kapitola 3: revize po posouzení (2026-10-11)
+
+Autor zadal kontrolu kapitoly 3 z hlediska věcné správnosti, srozumitelnosti,
+návaznosti, didaktiky, jazyka a konzistence názvosloví. Kapitola byla přečtena
+celá; všechny příklady, tabulky a řešení čtrnácti cvičení byly ručně
+přepočítány. Početní chyba nalezena nebyla. Opravy jsou jazykové,
+terminologické a didaktické; rozhodnutí autora zachycuje
+[R14](../docs/ROZHODNUTI.md#r14-kvartily-spicatost-chvost).
+
+### Rozhodnutí autora
+
+- Hlavní označení **1. a 3. kvartil**; „dolní/horní“ jen při zavedení
+  a ve slovníčku. Provedeno v kapitole, slovníčku, přehledu značení,
+  popiscích sešitu a jeho generátoru.
+- Hlavní termín **špičatost** (*kurtosis*), „kurtóza“ alternativa. Heslo
+  slovníčku přejmenováno, kotva `pojem-kurtoza` zachována kvůli odkazům.
+- Důsledně **chvost** místo „konec“ rozdělení (popis dat o spánku a paměti,
+  česká ukázka APA, komentář k tvaru).
+- Odkaz na obrázek z CDN Medium u grafu odchylek a čtverců odstraněn
+  (křehká adresa bez bibliografického údaje).
+- `data/kapitola_03.csv` zrušeno; všechny údaje příkladů jsou v sešitu.
+  Nový list `Dalsi_priklady`: jedenáct dob (A2:A12), deset dob (C2:C11),
+  41 skórů (E2:E42) a sedm kontrolních výsledků (H2:H8). `scripts/kapitola_03.R`
+  má hodnoty zapsané přímo.
+
+### Věcné a didaktické opravy výkladu
+
+- **Střed a tvar:** odstavec o zešikmení doleva odkazoval na „zrcadlovou
+  situaci“ před jejím popisem a tvrdil, že „většina hodnot je větších než
+  průměr, ale nižších než modus“, což svádí k závěru, že většina leží mezi
+  nimi. Nově: více než polovina nad průměrem a více než polovina pod modem,
+  s výslovným vyloučením chybného čtení; opraven překlep.
+- **Průměr více skupin:** zmínka o „rozptylech součtu“ před zavedením
+  rozptylu nahrazena obecnou „variabilitou součtu“.
+- **Kvantily:** $p_j$ z kapitoly 2 je relativní četnost, ne „index kategorie“;
+  opravena návaznost příkladu 1, 2, 3, 4; u ordinálního příkladu zkráceno
+  trojí opakování a doplněna vazba na dvě prostřední kategorie mediánu.
+- **Korekce rozptylu:** zpřesněno, že součet čtverců kolem výběrového průměru
+  nepřevýší součet kolem populačního v žádném výběru; „nestranný odhad“ se už
+  nepoužívá před svou definicí; komentář k simulaci jmenuje dělení místo
+  „druhého sloupce výpočtů“ a uvádí očekávané hodnoty 6,4; 7,6; 7,92.
+- **Směrodatná odchylka:** závorka „(zde v min²)“ stála u původních jednotek.
+- **Transformace:** odstavec o ukazatelích založených na uspořádání přesunut
+  k nelineární transformaci, kde má vyústění: medián lichého souboru se při
+  rostoucím převodu převádí přímo (25), interpolovaný 90. percentil nikoli
+  (74,4 ≠ 70,56). Bez nového pojmu.
+- **Reportování:** odstavec o přirozené nule a nulové základně sloupců měl
+  nadpis „Zaokrouhlování“; má vlastní pododdíl.
+- Terminologie podle R13: „rozsah“ → „velikost výběru“ (tabulka a alt text
+  simulace, popisek osy grafu, tabulka volby statistik); „rozptýlenost“
+  jako pouhé synonymum → „variabilita“; pomocné meze jednotně.
+- Odkazy na pravidlo 68–95–99,7 a kapitolu 4; identifikátory pododdílů
+  `sec-vlastnosti-ukazatelu`, `sec-nelinearni-transformace`,
+  `sec-zaokrouhlovani-03`, `sec-nula-graf`, `sec-spicatost`.
+- Jazyk: překlepy, zkrácení rozvleklých vět (odchylky, entropie nulové
+  kategorie, anglické popisky boxplotu, momenty).
+
+### Cvičení
+
+Úloha 8 upozorňuje, že shoda 20% winsorizovaného průměru s hodnotou 5,9
+z výkladu je náhodná. Úloha 12 nově žádá zápis se značkami APA 7
+(*M* = 7,0; *SD* = 2,6; *Mdn* = 7); cíl reportování dosud neměl cvičení.
+
+### Ověření
+
+`check-chapter-03.R` prošel (R 4.5.1), včetně souhrnů spánku a paměti
+a simulace. `check-chapter-03-excel.ps1 -Finalize` skutečně běžel
+v Excelu 16.0: české vzorce, 247 vstupních buněk včetně nového listu,
+výsledky H2:H8 (6,4; 8; 5,5; 40; 50; 60; 20) a přepočet při změně vstupů.
+Skript dostal BOM UTF-8; bez něj Windows PowerShell 5.1 české názvy funkcí
+nenačetl. Celá kniha se vykreslila v Quarto 1.9.38 bez varování. První
+render odhalil, že buňka slovníčku začínající „3. kvartil…“ se četla jako
+číslovaný seznam; formulace upravena. V prohlížeči ověřeno: kotvy v kapitole,
+odkazy do kapitol 2 a 4, 17 sbalených bloků, žádný odkaz na CSV, řádky
+slovníčku `pojem-kurtoza` a `pojem-kvartil`, šířka 375 px bez vodorovného
+přetékání. Strany Howella citované v kapitole (27, 32, 34–35, 38–41, 45–50)
+byly porovnány s textem PDF podle výskytu témat a odpovídají.
+
+Omezení: `check-html.cjs` neběžel, modul Playwright není v tomto prostředí
+dostupný. Generátor `kapitola_03-sešit.mjs` byl upraven, ale nespuštěn
+(chybí `@oai/artifact-tool`); list byl do uloženého sešitu doplněn přímo
+v Excelu a zdroj prošel jen kontrolou syntaxe. `check-chapter-04-excel.ps1`
+je rovněž bez BOM a nebyl měněn. Citace mimo Howella nebyly znovu ověřovány.
+Interní revize není ověřením porozumění na studentech.
