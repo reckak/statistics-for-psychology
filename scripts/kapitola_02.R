@@ -85,7 +85,7 @@ draw('tvary', {
   par(mfrow = c(2, 3), mar = c(3.2, 3, 2.5, .4), cex = .9)
   sets <- list(c(1,2,4,7,10,7,4,2,1), c(1,3,10,8,5,3,2,1,1), c(1,1,2,3,5,8,10,3,1),
     c(1,6,10,4,1,4,10,6,1), c(4,4,4,4,4,4,4,4,4), c(1,3,8,9,4,1,0,0,1))
-  titles <- c('Přibližná souměrnost', 'Zešikmení doprava', 'Zešikmení doleva', 'Dva výrazné vrcholy', 'Rovnoměrné rozdělení', 'Vzdálené pozorování')
+  titles <- c('Přibližná souměrnost', 'Zešikmení doprava', 'Zešikmení doleva', 'Dva výrazné vrcholy', 'Rovnoměrné rozdělení', 'Odlehlé pozorování')
   for (i in seq_along(sets)) {
     plot(1:9, sets[[i]], type='h', lwd=12, lend=1, col=blue, xlim=c(.5,9.5), ylim=c(0,11),
       main=titles[i], xlab='Hodnota', ylab='Četnost', bty='l', xaxt='n')
@@ -116,7 +116,7 @@ draw('zaklad-procent', {
   plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
   for (k in 1:2) {
     y <- if(k==1) 5.3 else 2.4
-    text(.5,y+1.1,if(k==1) 'Všech šest účastníků' else 'Pět účastníků se známým údajem',adj=0,font=2)
+    text(.5,y+1.1,if(k==1) 'Všech šest účastníků' else 'Pět účastníků s platným údajem',adj=0,font=2)
     rect(.65,y-.65,if(k==1) 7.1 else 6,y+.65,border=ink,lwd=1.5)
     points(1:6+.2,rep(y,6),pch=c(21,21,21,21,21,22),cex=2.8,
       bg=c(blue,blue,blue,'white','white','#DFE3E5'),col=ink)
@@ -124,7 +124,7 @@ draw('zaklad-procent', {
     text(1:6+.2,y-.95,c('P02','P03','P06','P01','P04','P05'),cex=.8)
     text(8.5,y,if(k==1) '3 / 6\n50 %' else '3 / 5\n60 %',font=2,cex=1.15)
   }
-  text(.5,.6,'Plný kruh: alespoň 7 h     Prázdný kruh: méně než 7 h\nČtverec s otazníkem: údaj neznáme',adj=0,cex=.85)
+  text(.5,.6,'Plný kruh: alespoň 7 h     Prázdný kruh: méně než 7 h\nČtverec s otazníkem: údaj chybí',adj=0,cex=.85)
 },width=7.5,height=5.2)
 draw('princip-kumulace', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,6),xaxs='i',yaxs='i')

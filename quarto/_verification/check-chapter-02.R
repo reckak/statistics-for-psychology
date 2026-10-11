@@ -49,6 +49,8 @@ eq(fx,c(1,5,4,2));eq(sum(fx[2:4]),11);eq(round(fx/12,3),c(.083,.417,.333,.167))
 eq(round(100*fx/12,1),c(8.3,41.7,33.3,16.7));stopifnot(max(fx)<length(x)/2)
 # Exercise 3: distinct denominators and missingness.
 eq(c(9/20,9/25,11/25,5/25),c(.45,.36,.44,.20));eq(1-9/25,.64)
+# Exercise 3b and the worked multiple-response example: percentages need not sum to 100.
+eq(c(12,14,6)/20,c(.6,.7,.3));eq(sum(c(12,14,6)/20),1.6);eq(12+14+6,32);eq(round(100*6/11,1),54.5);eq(6/10+5/10,1.1)
 # Exercise 4: strict versus inclusive thresholds.
 x <- c(0,1,1,2,2,2,3,4,4,5)
 eq(freq(x,0:5),c(1,2,3,1,2,1));eq(cumsum(freq(x,0:5)),c(1,3,6,7,9,10))
