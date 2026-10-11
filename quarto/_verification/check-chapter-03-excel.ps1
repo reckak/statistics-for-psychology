@@ -1,4 +1,4 @@
-param([switch]$Finalize)
+﻿param([switch]$Finalize)
 # Create a separate hidden Excel instance; do not attach to an existing user session.
 $ErrorActionPreference = 'Stop'
 $taskRoot = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
@@ -11,7 +11,7 @@ try {
     $taskExcel = New-Object -ComObject Excel.Application
     $taskExcel.Visible=$false; $taskExcel.DisplayAlerts=$false
     $taskBook=$taskExcel.Workbooks.Open((Join-Path $taskRoot 'data/kapitola_03.xlsx'),0,$false)
-    $p=$taskBook.Worksheets.Item('Priklad'); $s=$taskBook.Worksheets.Item('Souhrn'); $r=$taskBook.Worksheets.Item('Rozsireni'); $d=$taskBook.Worksheets.Item('Data')
+    $p=$taskBook.Worksheets.Item('Priklad'); $s=$taskBook.Worksheets.Item('Souhrn'); $r=$taskBook.Worksheets.Item('Rozsireni'); $d=$taskBook.Worksheets.Item('Data'); $x=$taskBook.Worksheets.Item('Dalsi_priklady')
     # Let native Excel normalize modern function names exported without its compatibility prefix.
     foreach($sh in @($p,$s,$r)){foreach($cell in $sh.UsedRange.Cells){if($cell.HasFormula){$cell.Formula=$cell.Formula}}}
     # Assign the actual Czech formulas given to students, including copied helper columns.
@@ -40,6 +40,14 @@ try {
     foreach($entry in @(@('B2',33),@('C2',36),@('B3',(233.1/33)),@('C3',(253/36)),@('B4',7.1),@('C4',7),@('B7',6.2),@('C7',5.75),@('B8',8),@('C8',9),@('B9',1.8),@('C9',3.25),@('B10',1.66051136363636),@('C10',6.71349206349206),@('B11',1.28860830574538),@('C11',2.59104072903065))) {Assert-Cell $s $entry[0] $entry[1]}
     Assert-Cell $r 'D7' 1.5; Assert-Cell $r 'D5' 0
     foreach($entry in @(@('J2',1.17015863225595),@('J3',1.17015863225595),@('J4',1.74436949745499),@('J5',-0.169421487603306),@('J6',3.32231404958677))) {Assert-Cell $r $entry[0] $entry[1]}
+    # Remaining worked examples: fixed inputs and the Czech formulas printed in the chapter.
+    $more=@{A=@(4,5,7,8,9,10,12,13,15,18,22);C=@(2,3,4,5,5,6,7,8,9,31);E=@(2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98)}
+    foreach($col in $more.Keys){for($i=0;$i -lt $more[$col].Count;$i++){Assert-Cell $x ($col+($i+2)) $more[$col][$i]}}
+    $moreLocal=[ordered]@{H2='=PERCENTIL.INC(A2:A12;0,17)';H3='=PRŮMĚR(C2:C11)';H4='=MEDIAN(C2:C11)';H5='=PERCENTIL.INC(E2:E42;0,25)';H6='=MEDIAN(E2:E42)';H7='=PERCENTIL.INC(E2:E42;0,75)';H8='=H7-H5'}
+    foreach($a in $moreLocal.Keys){$x.Range($a).FormulaLocal=$moreLocal[$a]}
+    $taskExcel.CalculateFullRebuild()
+    $moreExpected=@(6.4,8,5.5,40,50,60,20)
+    for($i=0;$i -lt 7;$i++){Assert-Cell $x ('H'+($i+2)) $moreExpected[$i]}
     # Alternate formulas also printed in the chapter, evaluated in a disposable cell.
     foreach($entry in @(@('=VAR.P(A2:A6)',4.4),@('=ODMOCNINA(J15)',[math]::Sqrt(5.5)),@('=J13/(J2-1)',5.5),@('=COUNTIFS(A2:A6;"<=5")/POČET(A2:A6)',0.6),@('=PERCENTIL.INC(A2:A6;0,9)',8.4),@('=LOGZ(0,5;2)',-1))) {
         $p.Range('L1').FormulaLocal=$entry[0]; $taskExcel.CalculateFullRebuild(); Assert-Cell $p 'L1' $entry[1]
@@ -64,11 +72,11 @@ try {
         elseif($actual -ne $value){throw 'Text input changed'}
     }}
     $taskExcel.CalculateFullRebuild()
-    foreach($sh in @($p,$s,$r,$d)){foreach($cell in $sh.UsedRange.Cells){if($cell.Text -match '^#'){throw "Excel error: $($sh.Name) $($cell.Address()) $($cell.Text)"}}}
+    foreach($sh in @($p,$s,$r,$x,$d)){foreach($cell in $sh.UsedRange.Cells){if($cell.Text -match '^#'){throw "Excel error: $($sh.Name) $($cell.Address()) $($cell.Text)"}}}
     if($Finalize){$taskBook.Save()}
-    [pscustomobject]@{ExcelVersion=$taskExcel.Version;LocalEntropyFormula=$r.Range('D2').FormulaLocal;InputCellsChecked=185;NumericAndMutationChecks='passed';Saved=[bool]$Finalize}|ConvertTo-Json
+    [pscustomobject]@{ExcelVersion=$taskExcel.Version;LocalEntropyFormula=$r.Range('D2').FormulaLocal;InputCellsChecked=247;NumericAndMutationChecks='passed';Saved=[bool]$Finalize}|ConvertTo-Json
 } finally {
     if($null -ne $taskBook){$taskBook.Close($false)}
     if($null -ne $taskExcel){$taskExcel.Quit()}
-    foreach($o in @($p,$s,$r,$d,$taskBook,$taskExcel)){if($null -ne $o -and [System.Runtime.InteropServices.Marshal]::IsComObject($o)){[void][System.Runtime.InteropServices.Marshal]::FinalReleaseComObject($o)}}
+    foreach($o in @($p,$s,$r,$x,$d,$taskBook,$taskExcel)){if($null -ne $o -and [System.Runtime.InteropServices.Marshal]::IsComObject($o)){[void][System.Runtime.InteropServices.Marshal]::FinalReleaseComObject($o)}}
 }

@@ -1,8 +1,8 @@
 # Chapter 3: reproducible calculations and figures; base R, project-root paths.
-ch3_data <- read.csv('data/kapitola_03.csv', fileEncoding = 'UTF-8')
 ch3_previous <- read.csv('data/kapitola_02.csv', na.strings = '', fileEncoding = 'UTF-8')
-ch3_x <- ch3_data$doba_min[ch3_data$soubor == 'zaklad']
-ch3_trim <- sort(ch3_data$doba_min[ch3_data$soubor == 'orezani'])
+# Fixed author examples; students get the same values in data/kapitola_03.xlsx.
+ch3_x <- c(4,5,5,6,10)
+ch3_trim <- c(2,3,4,5,5,6,7,8,9,31)
 # Self-contained teaching example printed in the chapter's interpolation table.
 ch3_interpolation <- c(4,5,7,8,9,10,12,13,15,18,22)
 ch3_interpolation_levels <- (seq_along(ch3_interpolation)-1)/(length(ch3_interpolation)-1)
@@ -276,7 +276,7 @@ ch3_draw('korekce-rozptylu',{
   z<-ch3_simulation_summary
   mat<-rbind(z$variance_n,z$variance_n1)
   pos<-barplot(mat,beside=TRUE,names.arg=paste0('n = ',z$n),ylim=c(0,11),
-    col=c('#B16A26','#267888'),border=NA,ylab='Průměr vypočtených rozptylů (min²)',xlab='Rozsah jednoho výběru')
+    col=c('#B16A26','#267888'),border=NA,ylab='Průměr vypočtených rozptylů (min²)',xlab='Velikost výběru')
   abline(h=8,lty=2,lwd=2);text(pos,mat+.65,format(round(mat,2),decimal.mark=','),cex=.9)
   legend('top',legend=c('Dělení n','Dělení n − 1','Populační rozptyl 8'),
     col=c('#B16A26','#267888','#223744'),pch=c(15,15,NA),

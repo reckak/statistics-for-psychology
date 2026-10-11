@@ -32,7 +32,7 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `quarto/kapitola_03.qmd`: poloha a variabilita, robustní shrnutí, modelový popis, Excel, dvanáct základních a dvě nepovinná cvičení.
 - `quarto/kapitola_04.qmd`: normální model, plochy a kvantily, standardní skóry, posouzení modelu a povinné čtení i tvorba Q–Q grafu; deset cvičení.
 - `data/kapitola_02.csv` a `.xlsx`: pevná modelová data a studentský sešit s výpočty a grafy.
-- `data/kapitola_03.csv` a `.xlsx`: malé autorské příklady a sešit s komentovanými mezivýpočty, souhrnem původních dat a nepovinnými rozšířeními.
+- `data/kapitola_03.xlsx`: sešit se všemi autorskými příklady kapitoly, komentovanými mezivýpočty, souhrnem původních dat a nepovinnými rozšířeními. Samostatné CSV kapitola nemá; pevné hodnoty příkladů jsou zapsány také ve skriptech.
 - `data/kapitola_04.csv` a `.xlsx`: 12 autorských skórů pro Q–Q graf, modelové převody a upravitelný bodový graf.
 - `scripts/`: tvorba grafů, sešitu a názorných excelových ilustrací.
 - `quarto/literatura.qmd`: společná automaticky generovaná bibliografie celé knihy.
@@ -84,7 +84,7 @@ Rscript --vanilla quarto/_verification/check-chapter-04.R
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
 
-Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
+Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy včetně listu `Dalsi_priklady` a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
 
 Čtvrtou kapitolu ověřuje `check-chapter-04.R`: plochy, kvantily, řešení,
 mezní hodnoty stenů a staninů a souřadnice Q–Q grafu. Skript
