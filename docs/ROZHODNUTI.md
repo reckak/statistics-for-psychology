@@ -341,6 +341,24 @@ Nejde o rozšíření terminologie ani změnu početních konvencí. Dokladem je
 pokyn „Doplň všechny navržené vizualizace (prioritní i neprioritní)“;
 provedení a kontroly zaznamenává [autorská historie](../quarto/README.md).
 
+<a id="r16-cile-kapitoly-odrazky"></a>
+
+## R16 — Cíle kapitoly jako seznam s odrážkami
+
+**Stav:** schváleno 2026-10-11. **Rozsah:** úvodní blok „Co budete po
+prostudování umět“ ve všech výkladových kapitolách.
+
+Cíle na začátku kapitoly formátujeme jako seznam s odrážkami, nikoli jako
+souvislý odstavec. Doplňující poznámka patří pod seznam. Pravidlo je v
+[AGENTS.md](../AGENTS.md#příprava-každé-kapitoly). Záznam je zařazen zde,
+mimo číselné pořadí, aby se souběžně připravované záznamy na konci
+dokumentu nepřekrývaly.
+
+**Důvod:** přehlednost. **Doklad:** pokyn autora ze dne 2026-10-11:
+„do AGENTS.md bych přidal instrukci, že odstavec s cíli na začátku kapitoly
+by měl být formátován jako seznam s odrážkami“. Kapitoly 1 a 2 pravidlo
+splňovaly, kapitoly 3 a 4 byly upraveny ve svých větvích.
+
 <a id="r13-platny-udaj-velikost-vyberu"></a>
 
 ## R13 — Platný a chybějící údaj, velikost výběru
