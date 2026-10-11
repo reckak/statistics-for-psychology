@@ -53,6 +53,10 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   Při změně aktualizuj všechna dotčená místa i přehledové kapitoly.
 - Před zavedením referenční kapitoly nevydávej žádnou kapitolu za závaznou
   šablonu. Strukturu a délku přizpůsob tématu.
+- Úvodní blok s cíli kapitoly („Co budete po prostudování umět“) formátuj
+  jako seznam s odrážkami, jedna dovednost nebo úzce související skupina
+  dovedností na odrážku, nikoli jako souvislý odstavec. Doplňující poznámku,
+  například o nepovinných rozšířeních, uveď jako větu pod seznamem.
 
 ## Zdroje a jejich použití
 

@@ -1204,6 +1204,14 @@ Omezení: jde o lokálně vykreslený web, nikoli o potvrzení veřejného
 nasazení. Jiné prohlížeče než Chrome nebyly ověřeny. Desktopový Excel
 nebyl znovu spuštěn, protože sešity ani excelové vzorce se nemění.
 
+## Cíle kapitol jako seznam s odrážkami (2026-10-11)
+
+Na pokyn autora doplněno do `AGENTS.md` pravidlo, že úvodní blok s cíli
+kapitoly se formátuje jako seznam s odrážkami;
+[R16](../docs/ROZHODNUTI.md#r16-cile-kapitoly-odrazky). Změna se týká jen
+instrukcí a autorské dokumentace, render nebyl potřeba. Úpravy kapitol 3
+a 4 jsou v jejich větvích.
+
 ## Kapitola 2: revize po posouzení (2026-10-11)
 
 Na žádost autora proběhlo posouzení kapitoly 2 z hlediska věcné správnosti,
