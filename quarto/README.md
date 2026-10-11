@@ -1707,3 +1707,19 @@ Windows locale `.UTF-8`; výchozí nastavení prostředí jinak odmítalo česk�
 řetězce při načtení zdrojů. Excel a lokální Chrome vyžadovaly běh mimo
 omezený sandbox. Veřejné nasazení ani porozumění na studentech tím nejsou
 ověřeny; sloučení a publikování navazuje na autorovu kontrolu PR.
+
+## 2026-10-11 — Akce GitHub Actions s podporou Node.js 24
+
+Workflow `.github/workflows/book.yml` aktualizuje `actions/checkout` na v7,
+`actions/setup-node` na v7, `actions/upload-pages-artifact` na v5 a
+`actions/deploy-pages` na v5. Původní verze deklarovaly Node.js 20;
+`upload-artifact@v4` byl nepřímou závislostí upload-pages-artifact@v3.
+Ověřeny manifesty vydaných verzí na GitHubu včetně upload-artifact v7,
+na který odkazuje upload-pages-artifact v5: JavaScriptové akce používají
+`node24`. Nastavení `node-version: '22'` zůstává pro kontrolní skripty;
+neřídí runtime samotných akcí. Oprava nepoužívá potlačení varování.
+
+Lokálně zkontrolovány rozdíly a `git diff --check`. Render a kontroly
+knihy ověří běh PR na GitHubu. Nahrání Pages artefaktu a nasazení jsou
+podmíněny větví main a lze je ověřit až po autorově sloučení; tato změna
+sama veřejné nasazení nepotvrzuje.
