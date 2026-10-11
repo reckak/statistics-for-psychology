@@ -1357,6 +1357,11 @@ slovníčku `pojem-kurtoza` a `pojem-kvartil`, šířka 375 px bez vodorovného
 přetékání. Strany Howella citované v kapitole (27, 32, 34–35, 38–41, 45–50)
 byly porovnány s textem PDF podle výskytu témat a odpovídají.
 
+Dodatek z téhož dne: úvodní blok „Co budete po prostudování umět“ byl na
+pokyn autora převeden z odstavce na seznam s odrážkami, beze změny obsahu;
+poznámka o nepovinných rozšířeních zůstává jako věta pod seznamem. Kapitola
+se znovu vykreslila bez varování.
+
 `check-html.cjs` po doinstalování Playwright 1.55.0 a Chromia prošel bez chyb:
 9 stránek, 160 hesel slovníčku, místní odkazy, 42 řešení, desktop
 1360/1920 px a mobil 390 px.

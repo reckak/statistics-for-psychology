@@ -5,7 +5,12 @@ Dvě skupiny mohou dosáhnout stejného průměrného výsledku, a přesto se v 
 Navazujeme na [četnosti a grafické zobrazení](kapitola_02.qmd#sec-kapitola-02). Budeme pracovat se známými modelovými údaji o spánku a paměti a s malými autorskými příklady. **Nejde o výsledky skutečného výzkumu.** Malé soubory jsou záměrně sestavené pro výuku; náhodně vytvořená data v simulaci budou výslovně označena. Údaje všech příkladů i komentované výpočty najdete v [excelovém sešitu ke kapitole](../data/kapitola_03.xlsx).
 
 ::: {.callout-note title="Co budete po prostudování umět"}
-Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvaru rozdělení. Na malém souboru vysvětlíte a vypočítáte průměr, medián, kvantily, rozpětí, absolutní odchylky, rozptyl a směrodatnou odchylku. Přečtete a sestavíte krabicový graf, rozpoznáte vliv vzdáleného pozorování a odlišíte ořezání od winsorizace. Předpovíte důsledky změny jednotek a napíšete srozumitelný popis dat. Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficientů tvaru; jejich vzorce nejsou součástí povinných dovedností.
+- Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvaru rozdělení.
+- Na malém souboru vysvětlíte a vypočítáte průměr, medián, kvantily, rozpětí, absolutní odchylky, rozptyl a směrodatnou odchylku.
+- Přečtete a sestavíte krabicový graf, rozpoznáte vliv vzdáleného pozorování a odlišíte ořezání od winsorizace.
+- Předpovíte důsledky změny jednotek a napíšete srozumitelný popis dat.
+
+Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficientů tvaru; jejich vzorce nejsou součástí povinných dovedností.
 :::
 
 ## Co souhrnné ukazatele zachycují {#sec-poloha-variabilita}
