@@ -293,6 +293,27 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   interaktivní relace. Uveď závislosti a vstupy, používej relativní cesty
   a u náhodných postupů nastav seed. Neinstaluj balíčky během renderování.
 
+## Data ke kapitolám
+
+- Ke každé výkladové kapitole poskytuj studentům jediný excelový sešit
+  `data/kapitola_NN.xlsx`. Obsahuje všechny zadané datové soubory i souhrnné
+  číselné vstupy potřebné k zopakování příkladů a vyřešení cvičení.
+  Souběžné CSV studentům nenabízej; interní CSV mohou zůstat pro generátory
+  a kontroly, ale nesmějí být součástí publikovaných studentských dat.
+- Datové soubory rozděluj do výstižně pojmenovaných listů podle příkladů
+  a cvičení. Stejná data sdílená více úlohami mohou používat jeden list.
+  Na prvním listu `Prehled` uveď návaznost na text a přesné oblasti buněk.
+  Vysvětli proměnné, jednotky, kódování, chybění a původ dat.
+- Vstupy pro vlastní procvičení odděl od hotových výpočtů a řešení.
+  Zachovej záměrně chybná data, pokud jsou předmětem úlohy. Ze zadaných
+  souhrnů nevymýšlej individuální pozorování; u čistě slovních úloh a
+  modelových křivek bez datového souboru tuto skutečnost v přehledu vysvětli.
+- V kapitole odkazuj na jediný sešit a u konkrétní práce uveď list a buňky.
+  Při každé změně příkladu či cvičení ověř úplnost, hodnoty, datové typy
+  a chybění proti textu, uprav reprodukovatelný generátor i kontrolu sešitu.
+  Ověř rovněž dostupnost sešitu ve vykresleném webu. Přehled pokrytí
+  příkladů a všech cvičení udržuj v autorské dokumentaci.
+
 ## Cvičení a řešení
 
 - Samostatná cvičení soustřeď na konec každé výkladové kapitoly.

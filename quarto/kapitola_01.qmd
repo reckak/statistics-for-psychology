@@ -4,6 +4,8 @@ Když se po krátkém spánku obtížně soustředíme, nabízí se vysvětlení
 
 V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Všechny studie, jednotlivé záznamy a zadání v kapitole jsou **autorské modelové příklady**. Uvedená čísla jsou smyšlená pro výuku; nedokládají skutečný vztah mezi spánkem a pamětí.
 
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_01.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
+
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Vysvětlíte, proč psychologie potřebuje statistiku, a odlišíte popis dat, zobecnění a závěr o příčině.
 - Rozlišíte populaci, výběr, případy, proměnné a konstanty a vysvětlíte jejich závislost na otázce a souboru.
@@ -425,7 +427,7 @@ Takto můžeme záznam interpretovat i s odstupem času. Údaj 3 v posledním sl
 
 ### Sestavení a kontrola v Excelu {#sec-kontrola-matice}
 
-Pro zopakování příkladu otevřete prázdný list. Do buněk A1 až E1 napište názvy `id`, `spanek_h`, `slova`, `cast_dne` a `odpocatost`. Šest řádků dat z úvodní matice přepište do řádků 2 až 7. Buňku B6 pro P05 ponechte prázdnou, do C7 pro P06 zapište číselnou nulu. Přehled proměnných umístěte na samostatný list, aby se nepletl s daty.
+Pro zopakování příkladu použijte list `Data` v sešitu ke kapitole (A1:E7); popis proměnných je na listu `Promenne`. Chcete-li si procvičit také samotné sestavení matice, otevřete nový prázdný list. Do buněk A1 až E1 napište názvy `id`, `spanek_h`, `slova`, `cast_dne` a `odpocatost`. Šest řádků dat z úvodní matice přepište do řádků 2 až 7. Buňku B6 pro P05 ponechte prázdnou, do C7 pro P06 zapište číselnou nulu. Přehled proměnných umístěte na samostatný list, aby se nepletl s daty.
 
 Do jedné buňky zapisujte jeden údaj. Jednotku nebo vysvětlující větu přesuňte do přehledu proměnných či samostatného sloupce. Nemíchejte například `7`, `7 hodin` a `asi sedm, nevím` v jednom číselném sloupci. Pokud je odhad nejistý, způsob zachycení nejistoty stanovte předem. Nevyplňujte opakující se hodnoty jen v prvním řádku a zbytek nenechávejte „domyslet“ podle sousedních buněk. Barva buňky také nesmí být jediným nositelem údaje.
 
@@ -622,6 +624,8 @@ e)  Jde o zkreslení v důsledku neúčasti: ochota odpovědět souvisí se zji�
 :::
 
 ### Úloha 8: Opravte matici a zachovejte význam {#sec-uloha-01-8}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_01.xlsx): `U08_podklady` A2:C4 a `U08_prepis` A2:C4.
 
 Každý ze tří účastníků navštívil laboratoř jednou. Na původních formulářích stojí:
 

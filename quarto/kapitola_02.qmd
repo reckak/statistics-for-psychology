@@ -4,6 +4,8 @@ Máme tabulku s odpověďmi a výsledky paměťové úlohy. Kolik účastníků 
 
 Navážeme na [modelovou studii spánku a vybavování slov](kapitola_01.qmd#sec-datova-matice). Všechny číselné příklady a grafy v této kapitole vycházejí z **modelových dat záměrně sestavených pro výuku**. Nejde o výsledky skutečného výzkumu ani o doklad vztahu mezi spánkem a pamětí. Postupy mají obecné použití; interpretace se vždy vztahuje k popisovanému souboru.
 
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_02.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
+
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Sestavíte četnostní tabulku a vysvětlíte rozdíl mezi absolutní, relativní a kumulativní četností.
 - Určíte, z jakého celku se procenta počítají, a odlišíte platné údaje od chybějících.
@@ -466,6 +468,8 @@ Pro výpočty stačí kalkulačka, pokud zadání výslovně neuvádí Excel. Po
 
 ### Úloha 1: Od odpovědí k tabulce {#sec-uloha-02-1}
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U01_odpocatost` A2:A13.
+
 Dvanáct účastníků ohodnotilo odpočatost kódy 1 = vůbec, 2 = trochu, 3 = dost, 4 = zcela:
 
 ``` text
@@ -489,6 +493,8 @@ Například $p_2=5/12$, zobrazeno 0,417 a 41,7 %. Součet četností je $1+5+4+2
 
 ### Úloha 2: Co říká sumace {#sec-uloha-02-2}
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U01_odpocatost` A2:A13.
+
 Pro tabulku z [první úlohy](#sec-uloha-02-1) rozepište a vypočítejte $\sum_{j=2}^{4}f_j$. Co výsledek znamená? Je roven $n$? Zdůvodněte, proč by nebylo správné zaměnit horní mez sčítání za 12.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -496,6 +502,8 @@ Zápis znamená $f_2+f_3+f_4=5+4+2=11$. Jde o počet účastníků s odpovědí 
 :::
 
 ### Úloha 3: Chybějící údaje a různé jmenovatele {#sec-uloha-02-3}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U03_chybeni` A2:B4 a `U03_ruseni` A2:C4.
 
 Z 25 oslovených studentů odpovědělo na otázku o obtížích se soustředěním 20: devět ano a jedenáct ne. Pět odpovědí chybí.
 
@@ -510,6 +518,8 @@ b)  Základem je vždy 20 odpovídajících: hluk $12/20=0{,}600$, tedy 60,0 %; 
 :::
 
 ### Úloha 4: Kumulování a meze {#sec-uloha-02-4}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U04_chyby` A2:A11.
 
 Počty chyb v krátké úloze jsou 0, 1, 1, 2, 2, 2, 3, 4, 4 a 5. Sestavte absolutní a kumulativní absolutní četnosti. Kolik lidí udělalo méně než tři chyby, nejvýše tři chyby a alespoň tři chyby? Vysvětlete výpočet posledního počtu pomocí doplňku.
 
@@ -527,6 +537,8 @@ Méně než tři chyby udělalo šest lidí, nejvýše tři sedm lidí a alespo�
 :::
 
 ### Úloha 5: Intervaly a ztracené podrobnosti {#sec-uloha-02-5}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U05_spanek` A2:A9.
 
 Platné údaje o době spánku v hodinách jsou 5,0; 5,5; 6,0; 6,0; 6,5; 7,0; 7,5; 8,0. Rozdělte je do intervalů více než 4 až 5 včetně, více než 5 až 6 včetně, více než 6 až 7 včetně a více než 7 až 8 včetně. Určete četnosti a podíly. Lze jen z této intervalové tabulky přesně určit počet lidí se spánkem alespoň 6,5 hodiny? Dále určete, do kterého intervalu by údaj 6,0 patřil při opačném pravidle, kdy dolní mez patří dovnitř a horní nikoli. Jaký je střed intervalu mezi 6 a 7 hodinami?
 
@@ -590,6 +602,8 @@ V posledních dvou případech jde o popis dat; samotný vzhled nedokazuje urči
 
 ### Úloha 8: Přečtěte stonek a list {#sec-uloha-02-8}
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `U08_stonek` A2:B4.
+
 Rekonstruujte hodnoty v následujícím zápisu s klíčem „2 \| 3 znamená 23 sekund“. Kolik je pozorování? Co ze zápisu nezjistíte?
 
 ``` text
@@ -605,6 +619,8 @@ Hodnoty jsou 21, 23, 23, 28, 30, 35 a 42 sekund; celkem sedm pozorování. Opako
 
 ### Úloha 9: Procenta a optický dojem {#sec-uloha-02-9}
 
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `Podpora` A2:C3.
+
 Ve skupině A odpovědělo ano 30 ze 40 lidí, ve skupině B 32 z 80 lidí. Autor ukáže pouze sloupce výšky 30 a 32 na ose začínající na 27 a napíše, že podpora je ve skupině B výrazně vyšší. Vypočítejte relativní četnosti a navrhněte opravu grafu i komentáře.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -612,6 +628,8 @@ Ve skupině A je podíl $30/40=0{,}750$, tedy 75,0 %, v B $32/80=0{,}400$, tedy 
 :::
 
 ### Úloha 10: Ověření v Excelu {#sec-uloha-02-10}
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_02.xlsx): `Data` A2:E37.
 
 Pracujte v kopii sešitu ke kapitole. Na listu `Data` změňte odpočatost P01 v E2 z 2 na 3. Před přepočtem předpovězte změnu absolutních a kumulativních četností i grafu. Potom obnovte původní hodnotu. Samostatně změňte spánek P01 v B2 z 6 na 7 a předpovězte přesun mezi intervaly. Proč se nesmí změnit počet platných údajů?
 

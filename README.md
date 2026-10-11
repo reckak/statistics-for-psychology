@@ -4,7 +4,7 @@
 
 **[Otevřít webovou učebnici](https://reckak.github.io/statistics-for-psychology/)**
 
-Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům**, **Četnosti, rozdělení dat a jejich zobrazení**, **Ukazatele polohy a variability** a **Normální rozdělení a standardní skóry** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Kapitoly 2–4 obsahují modelová data a upravitelné excelové sešity. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
+Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům**, **Četnosti, rozdělení dat a jejich zobrazení**, **Ukazatele polohy a variability** a **Normální rozdělení a standardní skóry** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Každá z kapitol 1–4 obsahuje jediný excelový sešit se vstupy k příkladům a cvičením a s úvodním přehledem listů. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
 
 ## Práce s projektem
 
@@ -31,9 +31,12 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `quarto/kapitola_02.qmd`: četnosti, tabulky a grafy, Excel a deset cvičení.
 - `quarto/kapitola_03.qmd`: poloha a variabilita, robustní shrnutí, modelový popis, Excel, dvanáct základních a dvě nepovinná cvičení.
 - `quarto/kapitola_04.qmd`: normální model, plochy a kvantily, standardní skóry, posouzení modelu a povinné čtení i tvorba Q–Q grafu; deset cvičení.
-- `data/kapitola_02.csv` a `.xlsx`: pevná modelová data a studentský sešit s výpočty a grafy.
+- `data/kapitola_01.xlsx`: matice, přehled proměnných, chybění a podklady cvičení 8.
+- `data/kapitola_02.xlsx`: příklady a cvičení o četnostech, výpočty a grafy.
 - `data/kapitola_03.xlsx`: sešit se všemi autorskými příklady kapitoly, komentovanými mezivýpočty, souhrnem původních dat a nepovinnými rozšířeními. Samostatné CSV kapitola nemá; pevné hodnoty příkladů jsou zapsány také ve skriptech.
-- `data/kapitola_04.csv` a `.xlsx`: 12 autorských skórů pro Q–Q graf, modelové převody a upravitelný bodový graf.
+- `data/kapitola_04.xlsx`: příklady a cvičení, samostatné skóry pro Q–Q, čtyři simulované soubory a oddělené modelové výpočty.
+- `data/*.csv`: interní vstupy generátorů a kontrol; do webu se nekopírují.
+- [docs/DATA.md](docs/DATA.md): audit pokrytí příkladů a všech cvičení sešity.
 - `scripts/`: tvorba grafů, sešitu a názorných excelových ilustrací.
 - `quarto/literatura.qmd`: společná automaticky generovaná bibliografie celé knihy.
 - `quarto/slovnicek.qmd`: české a anglické pojmy s odkazy na výklad.
@@ -88,7 +91,7 @@ Rscript --vanilla quarto/_verification/check-chapter-04.R
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
 
-Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy včetně listu `Dalsi_priklady` a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
+Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy včetně listu `Kontrola_prikladu` a samostatných vstupů a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
 
 Čtvrtou kapitolu ověřuje `check-chapter-04.R`: plochy, kvantily, řešení,
 mezní hodnoty stenů a staninů a souřadnice Q–Q grafu. Skript
@@ -102,9 +105,13 @@ Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro 
 
 Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
 
-## Obnova podkladů kapitol 2–4
+## Obnova sešitů a podkladů kapitol 1–4
 
 Grafy se obnovují při každém renderování. Samostatně je lze vytvořit příkazem `Rscript --vanilla scripts/render-figures.R`. Názorné rekonstrukce listů jsou editovatelné SVG; obnovuje je `python scripts/kapitola_02-ukazky.py` (standardní knihovna Pythonu).
+
+Vstupy všech sešitů a jejich přehledy definuje `scripts/sesity-data.mjs`. První kapitolu obnovuje `node scripts/kapitola_01-sešit.mjs`. Před obnovou čtvrté kapitoly spusťte `Rscript --vanilla scripts/sesity-simulace.R`, který převezme totožné simulované skóry z generátoru obrázků. Kontrola `python quarto/_verification/check-workbooks.py` porovnává uložené vstupy s deklaracemi, ověřuje datové typy, chybění a odkazy na listy a buňky v kapitolách. Spouštějte ji po obnově sešitů, nativních kontrolách Excelu a renderování, aby ověřila také totožné kopie souborů ve webu. Deklarace vznikají v `tmp/chapter-NN-build/inputs.json` (u kapitoly 4 v `tmp/chapter-04/inputs.json`) při obnově sešitu; jejich shoda sama nenahrazuje redakční porovnání s textem.
+
+Po kapitolových kontrolách ověřte všechny sešity v Excelu příkazem `powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/check-workbooks-excel.ps1 -Finalize`. Kontrola prochází všechny listy, hledá chyby vzorců a ukládá sešity otevřené na přehledu. Bez `-Finalize` nic neukládá. Pak vykreslete knihu a spusťte výše uvedenou kontrolu uložených vstupů.
 
 Studentský sešit je uložen v repozitáři a při renderování se nepřepočítává. Jeho obnova vyžaduje Node.js s dostupným `@oai/artifact-tool` a následnou kontrolu v desktopovém Excelu:
 

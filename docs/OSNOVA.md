@@ -129,6 +129,11 @@ určuje konkrétní **procvičení**. Nepovinná okénka jsou označena samostat
 
 ### Příklady, vizualizace a nepovinné části
 
+[Sešit kapitoly 1](../data/kapitola_01.xlsx) obsahuje `Prehled`, matici
+`Data` A2:E7, `Promenne`, rozdíl nuly a chybění, podklad opravy a oddělené
+listy `U08_podklady` a `U08_prepis` pro závěrečnou úlohu. Chybný přepis
+zůstává zadáním, hotové řešení sešitem nepředkládáme.
+
 Průběžným příkladem je autorská studie spánku a vybavování 12 slov.
 Šest osob P01–P06 tvoří konkrétní matici; u P05 chybí spánek, P06 má
 skutečný nulový výkon. Kapitola z těchto čísel nevyvozuje vztah spánku a paměti.
@@ -221,7 +226,10 @@ propojují tabulky a tvorbu vybraných grafů s konkrétním sešitem.
 `Data`, `Cetnosti`, `Histogram`; 36 záznamů je v řádcích 2–37 a popis
 proměnných vpravo od dat. Navazuje prvních šest osob z kapitoly 1;
 spánek chybí u P05, P11 a P24. Všechna data jsou sestavená pro výuku.
-Samostatné příklady zahrnují strategie učení, časy dokončení a srovnání skupin.
+Samostatné listy doplňují strategie učení, časy dokončení, srovnání skupin
+a vstupy cvičení 1–5, 8–9. Cvičení 10 používá `Data`; 6–7 jsou slovní
+zadání bez konkrétních jednotlivých pozorování. První list `Prehled` uvádí
+návaznosti a oblasti. [Pokrytí všech cvičení](DATA.md).
 
 Grafy nejsou jen ukázkami typů: [základy procent](../quarto/kapitola_02.qmd#fig-zaklad-procent),
 [princip kumulace](../quarto/kapitola_02.qmd#fig-princip-kumulace) a
@@ -320,8 +328,11 @@ jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
 
 [Sešit kapitoly 3](../data/kapitola_03.xlsx) je jediným studentským datovým
 souborem této kapitoly. Podle výkladu obsahuje `Priklad` (pět časů v A2:A6),
-`Data` a `Souhrn` (spánek/paměť), `Rozsireni` a `Dalsi_priklady`:
-jedenáct časů v A2:A12, deset časů v C2:C11 a 41 skórů v E2:E42.
+`Data` a `Souhrn` (spánek/paměť), `Rozsireni` a oddělené vstupy
+`Kvantily` A2:A12, `Orezani` A2:A11 a `Boxplot` A2:A42. Kontrolní výpočty
+jsou na `Kontrola_prikladu`, pět časů bez výpočtů na `Zaklad_data`.
+Další listy pokrývají menší příklady a všech 14 cvičení včetně zadaných
+souhrnů. První list `Prehled` uvádí umístění. [Pokrytí cvičení](DATA.md).
 
 | Příklad / lokátor | Didaktický účel a původ |
 |---|---|
@@ -437,8 +448,11 @@ a histogramem posoudit přiměřenost modelu.
 
 [Sešit kapitoly 4](../data/kapitola_04.xlsx) doprovází výpočty; text přesně
 popisuje list `Model` (parametry, plochy a inverzní převody) a `QQ`
-(A2:E13 a souhrn H2:H4). [CSV](../data/kapitola_04.csv) nabízí data pro Q–Q.
-Na rozdíl od kapitoly 3 je zde CSV stále součástí studentských podkladů.
+(A2:E13 a souhrn H2:H4). Samostatné vstupy Q–Q jsou na `QQ_data`
+A2:A13, další listy pokrývají příklady, cvičení 1–9 a čtyři soubory
+simulovaných skórů z obrázků. Cvičení 10 je slovním zadáním; individuální
+skóry zadány nejsou. První list `Prehled` uvádí oblasti a návaznosti.
+Studentům se poskytuje pouze XLSX. [Pokrytí cvičení](DATA.md).
 
 Průběžný model skóru pozornosti **N(50, 10)** je ilustrační, není normou
 skutečného testu. Ukazuje podíl do/nad 60, mezi 60 a 70, 90. percentil,

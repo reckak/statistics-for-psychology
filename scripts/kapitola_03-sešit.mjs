@@ -1,3 +1,4 @@
+import { addStudentInputs } from './sesity-data.mjs';
 // Run from the project root. The optional ARTIFACT_TOOL_MODULE points to the bundled runtime.
 import fs from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -6,7 +7,8 @@ const require=createRequire(import.meta.url);
 const {Workbook,SpreadsheetFile}=await import(pathToFileURL(process.env.ARTIFACT_TOOL_MODULE||require.resolve('@oai/artifact-tool')).href);
 const rows=(await fs.readFile('data/kapitola_02.csv','utf8')).trim().split(/\r?\n/).slice(1).map(line=>line.split(',').map((x,i)=>[1,2,4].includes(i)?(x===''?null:+x):x));
 const wb=Workbook.create();
-const p=wb.worksheets.add('Priklad'),s=wb.worksheets.add('Souhrn'),r=wb.worksheets.add('Rozsireni'),x=wb.worksheets.add('Dalsi_priklady'),d=wb.worksheets.add('Data');
+wb.worksheets.add('Prehled');
+const p=wb.worksheets.add('Priklad'),s=wb.worksheets.add('Souhrn'),r=wb.worksheets.add('Rozsireni'),x=wb.worksheets.add('Kontrola_prikladu'),d=wb.worksheets.add('Data');
 const header=(sh,range)=>{sh.getRange(range).format={fill:'#234F62',font:{bold:true,color:'#FFFFFF'},wrapText:true,rowHeight:44,verticalAlignment:'center'};};
 const note=(sh,range,value)=>{sh.getRange(range).merge();sh.getRange(range).values=[[value]];sh.getRange(range).format={wrapText:true,rowHeight:36,font:{size:11,color:'#526775'}};};
 for(const sh of [p,s,r,x,d]){
@@ -49,16 +51,19 @@ note(r,'A10:J10','Nepovinné rozšíření. Entropie vlevo popisuje strategie u�
 note(r,'A12:J12','Četnosti musí být nezáporné a celkový počet kladný. Nulová četnost má nulový příspěvek.');
 note(r,'A14:J14','SKEW.P a SKEW používají různé konvence. KURT vrací korigovaný exces, nikoli špičatost před odečtením tří.');
 r.getRange('B2:B5').dataValidation={rule:{type:'whole',operator:'greaterThanOrEqual',formula1:0}};
+await fs.mkdir('tmp/chapter-03-build',{recursive:true});
+await addStudentInputs(wb,3,'tmp/chapter-03-build');
 // Remaining worked examples of the chapter: quantile interpolation, trimming/winsorization, boxplot.
-const xTimes=[4,5,7,8,9,10,12,13,15,18,22],xTrim=[2,3,4,5,5,6,7,8,9,31],xScores=[2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98];
 x.getRange('A1').values=[['Doby pro kvantily (min)']];x.getRange('C1').values=[['Doby pro ořezání (min)']];x.getRange('E1').values=[['Skóry pro krabicový graf (body)']];header(x,'A1');header(x,'C1');header(x,'E1');
-x.getRange('A2:A12').values=xTimes.map(v=>[v]);x.getRange('C2:C11').values=xTrim.map(v=>[v]);x.getRange('E2:E42').values=xScores.map(v=>[v]);
-for(const a of ['A2:A12','C2:C11','E2:E42']){x.getRange(a).format.fill='#FFF1CB';x.getRange(a).setNumberFormat('0');}
+x.getRange('A2:A12').formulas=Array.from({length:11},(_,i)=>['=Kvantily!A'+(i+2)]);
+x.getRange('C2:C11').formulas=Array.from({length:10},(_,i)=>['=Orezani!A'+(i+2)]);
+x.getRange('E2:E42').formulas=Array.from({length:41},(_,i)=>['=Boxplot!A'+(i+2)]);
+for(const a of ['A2:A12','C2:C11','E2:E42']){x.getRange(a).format.fill='#EAF4F8';x.getRange(a).setNumberFormat('0');}
 x.getRange('A1:A42').format.columnWidth=18;x.getRange('C1:C42').format.columnWidth=18;x.getRange('E1:E42').format.columnWidth=22;x.getRange('B1:B42').format.columnWidth=3;x.getRange('D1:D42').format.columnWidth=3;x.getRange('F1:F42').format.columnWidth=3;
 x.getRange('G1:H1').values=[['Ukazatel','Výsledek']];header(x,'G1:H1');x.getRange('G1:G8').format.columnWidth=38;x.getRange('H1:H8').format.columnWidth=14;
 const xStats=[['17. percentil jedenácti dob (min)','=PERCENTILE.INC(A2:A12,0.17)'],['Průměr deseti dob (min)','=AVERAGE(C2:C11)'],['Medián deseti dob (min)','=MEDIAN(C2:C11)'],['1. kvartil skórů (body)','=PERCENTILE.INC(E2:E42,0.25)'],['Medián skórů (body)','=MEDIAN(E2:E42)'],['3. kvartil skórů (body)','=PERCENTILE.INC(E2:E42,0.75)'],['Mezikvartilové rozpětí skórů (body)','=H7-H5']];
 x.getRange('G2:G8').values=xStats.map(v=>[v[0]]);x.getRange('H2:H8').formulas=xStats.map(v=>[v[1]]);x.getRange('H2:H8').format.fill='#EAF4F8';x.getRange('H2:H8').setNumberFormat('0.00');
-note(x,'G10:H10','Autorské modelové údaje z výkladu kapitoly. Nejde o skutečný výzkum.');
+note(x,'G10:H10','Kontrola příkladů. Vstupy měňte na listech Kvantily, Orezani a Boxplot.');
 note(x,'G12:H12','Ořezání a winsorizaci proveďte podle výkladu ručně; sešit je záměrně nepočítá.');
 d.getRange('A1:E1').values=[['id','spanek_h','slova','cast_dne','odpocatost']];header(d,'A1:E1');d.getRange('A2:E37').values=rows;d.getRange('B2:E37').format.fill='#FFF1CB';d.getRange('B2:B37').setNumberFormat('0.0');d.getRange('D1:D37').format.columnWidth=20;
 note(d,'G1:J1','Modelová data z kapitoly o četnostech. Nejde o skutečný výzkum.');
@@ -71,7 +76,7 @@ note(d,'G13:J13','Úplné vymezení proměnných a postupu najdete v kapitole o 
 wb.recalculate();
 await fs.mkdir('tmp/chapter-03-build',{recursive:true});
 console.log((await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},summary:'Formula errors',maxChars:1200})).ndjson);
-for(const [name,range] of [['Priklad','A1:J22'],['Souhrn','A1:D17'],['Rozsireni','A1:J15'],['Dalsi_priklady','A1:H43'],['Data','A1:J38']]){
+for(const [name,range] of [['Priklad','A1:J22'],['Souhrn','A1:D17'],['Rozsireni','A1:J15'],['Kontrola_prikladu','A1:H43'],['Data','A1:J38']]){
  const img=await wb.render({sheetName:name,range,scale:1.5,format:'png'});
  await fs.writeFile(`tmp/chapter-03-build/${name}.png`,new Uint8Array(await img.arrayBuffer()));
 }

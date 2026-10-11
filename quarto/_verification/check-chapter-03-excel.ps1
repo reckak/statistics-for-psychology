@@ -11,7 +11,7 @@ try {
     $taskExcel = New-Object -ComObject Excel.Application
     $taskExcel.Visible=$false; $taskExcel.DisplayAlerts=$false
     $taskBook=$taskExcel.Workbooks.Open((Join-Path $taskRoot 'data/kapitola_03.xlsx'),0,$false)
-    $p=$taskBook.Worksheets.Item('Priklad'); $s=$taskBook.Worksheets.Item('Souhrn'); $r=$taskBook.Worksheets.Item('Rozsireni'); $d=$taskBook.Worksheets.Item('Data'); $x=$taskBook.Worksheets.Item('Dalsi_priklady')
+    $p=$taskBook.Worksheets.Item('Priklad'); $s=$taskBook.Worksheets.Item('Souhrn'); $r=$taskBook.Worksheets.Item('Rozsireni'); $d=$taskBook.Worksheets.Item('Data'); $x=$taskBook.Worksheets.Item('Kontrola_prikladu')
     # Let native Excel normalize modern function names exported without its compatibility prefix.
     foreach($sh in @($p,$s,$r)){foreach($cell in $sh.UsedRange.Cells){if($cell.HasFormula){$cell.Formula=$cell.Formula}}}
     # Assign the actual Czech formulas given to students, including copied helper columns.
@@ -48,6 +48,12 @@ try {
     $taskExcel.CalculateFullRebuild()
     $moreExpected=@(6.4,8,5.5,40,50,60,20)
     for($i=0;$i -lt 7;$i++){Assert-Cell $x ('H'+($i+2)) $moreExpected[$i]}
+    # The split input sheets remain live dependencies of the control sheet.
+    $kv=$taskBook.Worksheets.Item('Kvantily')
+    $kv.Range('A3').Value2=6; $taskExcel.CalculateFullRebuild()
+    Assert-Cell $x 'A3' 6; Assert-Cell $x 'H2' 6.7
+    $kv.Range('A3').Value2=5; $taskExcel.CalculateFullRebuild()
+    Assert-Cell $x 'H2' 6.4
     # Alternate formulas also printed in the chapter, evaluated in a disposable cell.
     foreach($entry in @(@('=VAR.P(A2:A6)',4.4),@('=ODMOCNINA(J15)',[math]::Sqrt(5.5)),@('=J13/(J2-1)',5.5),@('=COUNTIFS(A2:A6;"<=5")/POČET(A2:A6)',0.6),@('=PERCENTIL.INC(A2:A6;0,9)',8.4),@('=LOGZ(0,5;2)',-1))) {
         $p.Range('L1').FormulaLocal=$entry[0]; $taskExcel.CalculateFullRebuild(); Assert-Cell $p 'L1' $entry[1]
