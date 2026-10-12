@@ -1970,3 +1970,91 @@ ani terminologie nebyly znovu otevírány. Ověření se týká místního
 českého Excelu ve Windows; jiné kancelářské aplikace a cloudová prostředí
 nebyly testovány. Veřejné nasazení bude následovat až po autorově sloučení
 PR a úspěšném publikačním workflow.
+
+
+<a id="revize-kapitoly-5-2026-10-12"></a>
+
+## 2026-10-12 — Zapracování odborné, didaktické a technické revize kapitoly 5
+
+Na výslovný pokyn autora zapracováno všech 12 nálezů a 3 didaktická
+doporučení z předchozí revize; rozsah kapitoly a schválené značky zůstaly
+zachovány. Dohodu zachycuje R25. Součástí společného commitu je autorem
+přidané ignorování složky `prompts/`; její obsah se neodesílá.
+
+### Obsah a didaktika
+
+- Stejná senzitivita a specificita při různých prevalencích jsou výslovným
+  předpokladem; doplněna opora Mulherin a Miller (2002), v rozsahu veřejného
+  abstraktu. Falešná pozitivita/negativita mají vymezenou příslušnou skupinu.
+- Opraveny příklady nezávislosti, podmíněné versus nepodmíněné pravděpodobnosti
+  při losování, výklad P(B) > 0 a předpoklad stejné pravděpodobnosti nehody
+  taxíků. U dalšího vyšetření se připomíná překrytí informací.
+- Definice náhodného pokusu a rozdělení nepředpokládají vyjmenovatelnost
+  výsledků; experimentální manipulace není vyloučena. Modelové situace
+  v úlohách 5 a 8 se nevydávají za skutečné výzkumy. Použití p připomíná
+  i úroveň kvantilu.
+- Kategorie „bez vysokého stresu“ nahrazuje nepřesnou „pohodu“ v kapitole,
+  alternativních textech, třech schématech, generátoru dat i sešitu.
+  Úprava nezavádí nový odborný termín. Prezentace nebyly součástí revize;
+  původní soukromé zdroje zůstaly beze změny.
+- Přesnost aproximace je vyjádřena i relativně (přibližně 12 %); řešení
+  úlohy 11 odlišuje vliv hranice a rozdílu tvarů rozdělení.
+- Opraveno skloňování křížových odkazů s automatickým číslem; ID zachována.
+  Souběžně upraven slovníček, registr, mapa obsahu, data, zdroje a přehled Excelu.
+
+Interní didaktická revize dotčených míst posoudila vysvětlení podmínek,
+celku v pravděpodobnostních otázkách, návaznost zadání a řešení a hranice
+povinného učiva. KDYŽ je u nového použití vysvětleno přímo, takže není
+nutná znalost nepovinné excelové části kapitoly 3. Nejde o ověření
+porozumění na studentech.
+
+### Sešit a reprodukovatelnost
+
+`Binom` má pevné n = 5 a jedinou odemčenou buňku B3. `Binom_20` má pevné
+n = 20, vstupy B3:B5 a popisky A7:A9/A19 propojené s hranicemi. Ochrana
+listů bez hesla brání přepsání vzorců a pevného rozsahu tabulky.
+Generátor dostal volitelnou deklaraci odemčených oblastí a desetinné
+ověření vstupu; existující celočíselná pravidla zachovávají výchozí chování.
+
+Rozšířený test odhalil v místním Excelu 16.0 chyby BINOM.DIST pro k = 0,
+π = 1 a BINOM.INV pro krajní π = 0/1. P(X = 0) proto počítá přímo
+(1 − π)^n; na `Binom_20` ošetřuje krajní bodový dotaz a inverzi KDYŽ.
+České vzorce a význam větví odpovídají textu. Nejde o změnu matematického
+modelu ani jeho výchozích výsledků.
+
+### Provedené kontroly a omezení
+
+- R kontrola kapitoly prošla pro všechny příklady, nepovinné části,
+  dvanáct řešení a 12 generovaných obrázků, včetně nového relativního rozdílu.
+- Nezávislé očekávané hodnoty z Pythonu používají racionální binomické
+  součty a erfc. Nativní Excel ověřil 74 uložených výsledků, 28 českých
+  vzorců, 5 očekávaných chyb, 50 výsledků po změně vstupů, čtyři změněné
+  popisky a ochranu dvou listů včetně odmítnutí zápisu do pevného n.
+  Testy mění také π = 0/1 a krajní povolené hodnoty počtu úspěchů.
+- Samostatná společná kontrola přepočítala všech pět sešitů: 327 vzorců
+  v 96 listech bez chyb. Ostatní čtyři sešity nebyly znovu sestavovány.
+- Porovnání kapitoly 5 před/po obnově potvrdilo stejné pořadí 22 listů,
+  sloučené oblasti a všech 224 číselných buněk v toleranci 1e-12.
+  Dvacet obsahových změn tvoří pouze schválené popisky, poznámky a vzorce;
+  přidána ochrana a ověření podporovaných vstupů. Kontrola všech 1 583
+  studentských vstupních buněk kapitol 1–5 prošla včetně datových typů,
+  chybění, odkazovaných adres a shody s kopiemi sešitů na webu.
+- Vizuálně zkontrolovány nativní náhledy změněných listů Binom, Binom_20,
+  Tabulka_zavislost, Screening, U06_screening a U07_taxi; doplněné texty
+  jsou čitelné. Náhledy jsou pouze dočasné, tisková nastavení se neukládají.
+- Prošel plný render deseti stránek a HTML kontrola: 210 hesel, 54 řešení
+  (v kapitole 5 všech 12), odkazy, klávesnice, zobrazení bez JavaScriptu,
+  navigace přes file://, šířky 1360/1920 px a mobilní šířka 390 px.
+  Upravené tři grafy, tabulka stresu a oddíl binomického Excelu byly
+  znovu vizuálně prohlédnuty bez překryvů či ořezaných popisků.
+  Nový bibliografický záznam a gramatika odkazů byly zkontrolovány
+  ve výsledném HTML. Po doplnění odkazu u KDYŽ se přehled Excelu
+  vykreslil znovu. Cílená kontrola oddílů o prevalenci, binomickém Excelu
+  a kumulaci i nového odkazu KDYŽ prošla při 1360 a 390 px bez přetékání.
+  Prošel také závěrečný git diff --check.
+
+Ověřování probíhá místně v českém desktopovém Excelu a Chromu ve Windows;
+cloudové kanceláře, jiné prohlížeče, fyzický telefon a veřejné nasazení
+nejsou tímto ověřeny. U zdrojů zůstávají omezení původní revize popsaná
+v ZDROJE.md, včetně neověřených původních experimentů a copyrightové
+strany Baronova vydání. Uživatel provede sloučení PR.

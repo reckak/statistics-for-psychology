@@ -74,13 +74,14 @@ try {
       }
       'validation' {
         $rule=$op.value
-        if($rule.type -ne 'whole'){throw 'Unsupported validation type'}
+        $validationType=@{whole=1;decimal=2}[$rule.type]
+        if($null -eq $validationType){throw 'Unsupported validation type'}
         $operator=@{between=1;greaterThanOrEqual=7}[$rule.operator]
         if($null -eq $operator){throw 'Unsupported validation operator'}
         $r.Validation.Delete()
-        if($operator -eq 1){$r.Validation.Add(1,1,$operator,[string]$rule.formula1,[string]$rule.formula2)}
-        else{$r.Validation.Add(1,1,$operator,[string]$rule.formula1)}
-        $r.Validation.IgnoreBlank=$false;$r.Validation.ShowError=$false
+        if($operator -eq 1){$r.Validation.Add($validationType,1,$operator,[string]$rule.formula1,[string]$rule.formula2)}
+        else{$r.Validation.Add($validationType,1,$operator,[string]$rule.formula1)}
+        $r.Validation.IgnoreBlank=$false;$r.Validation.ShowError=($rule.showError -eq $true)
       }
       default {throw "Unsupported operation: $($op.kind)"}
     }
@@ -128,6 +129,12 @@ try {
     $taskExcel.ActiveWindow.FreezePanes=$false
     if($ss.freezeRows){$taskExcel.ActiveWindow.SplitRow=[int]$ss.freezeRows;$taskExcel.ActiveWindow.SplitColumn=0;$taskExcel.ActiveWindow.FreezePanes=$true}
     [void]$sh.Range('A1').Select()
+    if($null -ne $ss.editableRanges){
+      $sh.Cells.Locked=$true
+      foreach($address in $ss.editableRanges){$sh.Range([string]$address).Locked=$false}
+      # Protect formulas and fixed values against accidental edits; no password.
+      $sh.Protect()
+    }
   }
   $taskExcel.Calculation=-4105;$taskExcel.CalculateFullRebuild()
   $formulas=0

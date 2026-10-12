@@ -544,7 +544,7 @@ a historie přípravy, nikoli do druhé mapy zdrojů.
 ## 5. Pravděpodobnost
 
 **Podklad a stav:** existující [kapitola 5](../quarto/kapitola_05.qmd#sec-kapitola-05), karta
-sestavena podle výkladu, zadání a řešení a zkontrolována 2026-10-12.
+sestavena podle výkladu, zadání a řešení a zkontrolována po odborné revizi 2026-10-12 ([R25](ROZHODNUTI.md#r25-revize-kapitoly-5)).
 Schválený plán z 2026-10-11 byl nahrazen touto mapou skutečného textu;
 dohodu dokládají [R21](ROZHODNUTI.md#r21-rozsah-kapitoly-5),
 [R22](ROZHODNUTI.md#r22-znaceni-pravdepodobnosti),
@@ -580,17 +580,17 @@ sloupec určuje konkrétní **procvičení**.
 | [Relativní četnost v dlouhé řadě](../quarto/kapitola_05.qmd#sec-dlouha-rada) | Simulace pěti řad po 1 000 tipech (π = 0,25): rozsah po 10, 50 a 1 000 tipech; přibližování není pravidelné a počáteční odchylka se „nevyrovnává“, jen ztrácí váhu. Hráčský klam a jeho vazba na nezávislost. | 2b–c. |
 | [Výsledek a výběrový prostor](../quarto/kapitola_05.qmd#sec-vyberovy-prostor), [jev](../quarto/kapitola_05.qmd#sec-jev) | Náhodný pokus odlišen od výzkumného experimentu, výběrový prostor od výběru. Sto kartiček se slovy; jev jako množina výsledků; klasický podíl jen pro stejně pravděpodobné výsledky (kartičky, ne slovní druhy). | 1. |
 | [Doplňkový jev](../quarto/kapitola_05.qmd#sec-doplnkovy-jev), [jistý a nemožný jev](../quarto/kapitola_05.qmd#sec-jisty-nemozny) | A′ a P(A′) = 1 − P(A). Obrácení „pravděpodobnost 0 = nenastane“ platí v konečném modelu s kladnými pravděpodobnostmi výsledků; ve spojitém modelu nikoli. | 1d, 1f, 12a. |
-| [Průnik a sjednocení](../quarto/kapitola_05.qmd#sec-prunik-sjednoceni), [součtové pravidlo](../quarto/kapitola_05.qmd#sec-souctove-pravidlo) | Modelový soubor 200 studentů (pohlaví × stres); pravděpodobnosti popisují soubor, ne populaci. Obecné součtové pravidlo zdůvodněné dvojím započtením; vzájemně výlučné jevy jako zvláštní případ. | 1c, 3d, 12b. |
+| [Průnik a sjednocení](../quarto/kapitola_05.qmd#sec-prunik-sjednoceni), [součtové pravidlo](../quarto/kapitola_05.qmd#sec-souctove-pravidlo) | Modelový soubor 200 studentů (pohlaví × vysoký stres / bez vysokého stresu); pravděpodobnosti popisují soubor, ne populaci. Obecné součtové pravidlo zdůvodněné dvojím započtením; vzájemně výlučné jevy jako zvláštní případ. | 1c, 3d, 12b. |
 | [Kontingenční tabulka](../quarto/kapitola_05.qmd#sec-kontingencni-tabulka) | Společná pravděpodobnost z pole, marginální jako součet přes možnosti druhé proměnné; čtyřpolní tabulka jako zvláštní případ. | 3a–b. |
 | [Konjunkční klam](../quarto/kapitola_05.qmd#sec-konjunkcni-klam) | Průnik není pravděpodobnější než kterýkoli z jevů; autorská vinětka „Klára“; nahrazení otázky pravděpodobnosti otázkou shody s popisem. | 5a. |
 | [Podmíněná pravděpodobnost](../quarto/kapitola_05.qmd#sec-podminena) | Podmínka zužuje celek; vztah s průnikem a požadavek P(B) > 0; „z koho počítám?“; tři čísla o týchž 40 studentkách; P(A∣B) ≠ P(B∣A); podmínka není čas ani příčina. | 3c, 5b. |
 | [Součinové pravidlo](../quarto/kapitola_05.qmd#sec-soucinove-pravidlo) | Obecný tvar s podmíněnou pravděpodobností; dvě kartičky bez vracení a s vracením. | 4b, 12f. |
 | [Nezávislé jevy](../quarto/kapitola_05.qmd#sec-nezavislost) a [meze nezávislosti](../quarto/kapitola_05.qmd#sec-nezavislost-meze) | Druhý modelový soubor se stejnými podíly; definice součinovým tvarem, intuitivní tvar přes podmíněnou pravděpodobnost; „alespoň jednou“ přes doplněk. Nezávislost není výlučnost, závislost není příčina, tabulka není populace, nezávislost je předpoklad. | 3e–f, 4a, 4c, 12c. |
-| [Screening](../quarto/kapitola_05.qmd#sec-screening) a [přirozené četnosti](../quarto/kapitola_05.qmd#sec-prirozene-cetnosti) | Senzitivita, specificita, falešně pozitivní a negativní výsledek; obrácená otázka psycholožky. 1 000 studentů, strom, tabulka; prediktivní hodnoty 95/185 a 810/815. | 6a–b, 7a. |
+| [Screening](../quarto/kapitola_05.qmd#sec-screening) a [přirozené četnosti](../quarto/kapitola_05.qmd#sec-prirozene-cetnosti) | Senzitivita, specificita, falešně pozitivní a negativní výsledek s výslovným vymezením podmínky; obrácená otázka psycholožky. 1 000 studentů, strom, tabulka; prediktivní hodnoty 95/185 a 810/815. | 6a–b, 7a. |
 | [Úplná pravděpodobnost](../quarto/kapitola_05.qmd#sec-uplna-pravdepodobnost) | Samostatný krok: jmenovatel jako součet dvou cest stromem; rozklad podle jevu a doplňku bez indexovaného zápisu; vztah k marginální pravděpodobnosti. | 6c. |
 | [Bayesova věta](../quarto/kapitola_05.qmd#sec-bayesova-veta) | Složena z definice podmíněné pravděpodobnosti, součinového pravidla a úplné pravděpodobnosti; čitatel jedna cesta, jmenovatel všechny. List `Bayes` bez zvláštních funkcí. Věrohodnost se nezavádí. | 6c, 7b, 12d. |
-| [Dvě prevalence](../quarto/kapitola_05.qmd#sec-dve-prevalence) | Týž dotazník při 10 % a 1 %: 0,514 versus 0,088 (z 10 000 osob); prediktivní hodnota není vlastností testu. Zanedbání základních četností a záměna podmínky. | 6d, 7c–d. |
-| [Základní četnost, prevalence, apriorní pravděpodobnost](../quarto/kapitola_05.qmd#sec-zakladni-cetnost) | Tři související, ale různé pojmy; „před novou informací“ neznamená „bez podkladů“; aposteriorní pravděpodobnost jako východisko dalšího kroku. | 6e. |
+| [Dvě prevalence](../quarto/kapitola_05.qmd#sec-dve-prevalence) | Týž dotazník při 10 % a 1 %, s výslovně předpokládanou stejnou senzitivitou a specificitou: 0,514 versus 0,088 (z 10 000 osob); prediktivní hodnota není vlastností testu. Zanedbání základních četností a záměna podmínky. | 6d, 7c–d. |
+| [Základní četnost, prevalence, apriorní pravděpodobnost](../quarto/kapitola_05.qmd#sec-zakladni-cetnost) | Tři související, ale různé pojmy; „před novou informací“ neznamená „bez podkladů“; aposteriorní pravděpodobnost jako východisko dalšího kroku a riziko dvojího použití téže informace. | 6e. |
 | [Nepovinné: šance](../quarto/kapitola_05.qmd#rozsireni-sance) | Poměr P(A) a 1 − P(A), převod oběma směry, rozdíl od pravděpodobnosti a od sázkového kurzu. Poměr šancí se nezavádí. | Bez cvičení. |
 | [Náhodná proměnná a rozdělení](../quarto/kapitola_05.qmd#sec-rozdeleni-pravdepodobnosti) | Počet správných tipů z pěti; X a k; náhodná proměnná není sloupec dat ani nevyžaduje opakování. Tabulka rozdělení, součet 1, sčítání hodnot. Model versus 40 simulovaných studentů; diskrétní rozdělení versus hustota. | 8. |
 | [Střední hodnota](../quarto/kapitola_05.qmd#sec-stredni-hodnota) | Dlouhodobý průměr jako parametr μ, nemusí být dosažitelnou hodnotou; m z dat versus μ; σ rozdělení. | 9d, 10a. |
@@ -600,9 +600,9 @@ sloupec určuje konkrétní **procvičení**.
 | [Předpoklady binomického modelu](../quarto/kapitola_05.qmd#sec-binomicke-predpoklady) | Čtyři podmínky; úspěch jako technické označení; π není 3,14 a liší se od p; čtyři způsoby porušení podmínek. | 9e, 12e–f. |
 | [Odvození](../quarto/kapitola_05.qmd#sec-binomicke-odvozeni), [vzorec](../quarto/kapitola_05.qmd#sec-binomicky-vzorec) | Tři kroky: jedna posloupnost, stejná pravděpodobnost všech, jejich počet. Vzorec s vysvětlením prvků; celé rozdělení pro n = 5, π = 0,25; 32 pětic není stejně pravděpodobných. | 9b–c. |
 | [Tvar, střední hodnota, směrodatná odchylka](../quarto/kapitola_05.qmd#sec-binomicke-tvar) | μ = nπ, σ = √[nπ(1 − π)]; souměrnost při π = 0,5, šikmost jinak, vliv počtu pokusů. | 9d, 10a. |
-| [Excel](../quarto/kapitola_05.qmd#sec-excel-binom) | BINOM.DIST s NEPRAVDA a PRAVDA, pevné odkazy, list `Binom`, kontrola ručního výpočtu. | 10b. |
-| [Právě, nejvýše, alespoň](../quarto/kapitola_05.qmd#sec-binom-kumulace) | Test s 20 otázkami; doplněk „alespoň 10“ je „nejvýše 9“; BINOM.DIST.RANGE a BINOM.INV. Co výsledek říká a co ne: nedokazuje znalost, neobrací podmínku, platí za předpokladů modelu. Právě devět versus alespoň devět z deseti (podle Howella). | 10c–d. |
-| [Normální aproximace](../quarto/kapitola_05.qmd#sec-aproximace-postup) a [její přesnost](../quarto/kapitola_05.qmd#sec-aproximace-presnost) | Orientační podmínka deseti očekávaných úspěchů i neúspěchů (mírnější varianta zmíněna); čtyři kroky pro 135 a více z 200. Přesná hodnota 0,0173, aproximace 0,0152, od hranice 134,5 hodnota 0,0182; selhání při n = 20, π = 0,25. Úprava hranice je popsána bez pojmenování. | 11a–c. |
+| [Excel](../quarto/kapitola_05.qmd#sec-excel-binom) | BINOM.DIST s NEPRAVDA a PRAVDA, pevné odkazy, list `Binom` s pevným n = 5 a jediným měnitelným vstupem B3, kontrola ručního výpočtu, přímý výpočet P(X = 0). | 10b. |
+| [Právě, nejvýše, alespoň](../quarto/kapitola_05.qmd#sec-binom-kumulace) | List `Binom_20` s pevným n = 20, měnitelnými B3:B5 a navázanými popisky; doplněk „alespoň 10“ je „nejvýše 9“; BINOM.DIST.RANGE a BINOM.INV; KDYŽ vysvětleno znovu pro ošetření krajních vstupů, bez předpokladu znalosti nepovinné části kapitoly 3. Co výsledek říká a co ne: nedokazuje znalost, neobrací podmínku, platí za předpokladů modelu. Právě devět versus alespoň devět z deseti (podle Howella). | 10c–d. |
+| [Normální aproximace](../quarto/kapitola_05.qmd#sec-aproximace-postup) a [její přesnost](../quarto/kapitola_05.qmd#sec-aproximace-presnost) | Orientační podmínka deseti očekávaných úspěchů i neúspěchů (mírnější varianta zmíněna); čtyři kroky pro 135 a více z 200. Přesná hodnota 0,0173, aproximace 0,0152 (přibližně o 12 % nižší), od hranice 134,5 hodnota 0,0182; selhání při n = 20, π = 0,25. Úprava hranice je popsána bez pojmenování. | 11a–c. |
 | [Od počtu k podílu](../quarto/kapitola_05.qmd#sec-od-poctu-k-podilu) | p = k/n jako změna jednotky; střední hodnota π a směrodatná odchylka √[π(1 − π)/n]; stejný z-skór; čtyřnásobek pokusů půlí kolísání. | 11d. |
 | [Shrnutí](../quarto/kapitola_05.qmd#sec-shrnuti-05) | Pravidla, obrácení podmínky, model versus data; pravděpodobnost výsledku za modelu není pravděpodobnost modelu. | Souhrnně 1–12. |
 
@@ -648,14 +648,14 @@ tolerance 0,001, počty osob přesně.
 | 2. Co číslo znamená | Přiřadí tři výroky třem pojetím, posoudí hráčský klam a odchylku relativní četnosti po 1 000 pokusech. |
 | 3. Čtení kontingenční tabulky | Z tabulky sport × spánek určí marginální, společnou a obě podmíněné pravděpodobnosti, sjednocení dvěma způsoby, nezávislost dvěma způsoby a meze závěru. |
 | 4. Součinové pravidlo, doplněk a výběr bez vracení | Dva nezávislé tipy, „alespoň jeden“, dvě kartičky bez vracení a s vracením; vyvrátí „výlučné, tedy nezávislé“. |
-| 5. Kde je chyba v úsudku | Rozpozná konjunkční klam a záměnu podmíněných pravděpodobností; určí chybějící údaj. |
+| 5. Kde je chyba v úsudku | V modelovém zadání rozpozná konjunkční klam a záměnu podmíněných pravděpodobností; určí chybějící údaj. |
 | 6. Screening přirozenými četnostmi | Sestaví tabulku pro 1 000 lidí, určí prediktivní hodnoty, úplnou pravděpodobnost a Bayesovu větu; porovná prevalenci 5 % a 20 %; určí apriorní a aposteriorní pravděpodobnost. |
-| 7. Svědek a taxíky | Přirozené četnosti a Bayesova věta v nediagnostické situaci; základní četnost; případ stejných četností. |
-| 8. Rozdělení pravděpodobnosti a data | Ověří rozdělení, sčítá hodnoty, porovná model s četnostmi 20 lidí a vysvětlí, proč to nejde u spojité proměnné. |
+| 7. Svědek a taxíky | Přirozené četnosti a Bayesova věta v nediagnostické situaci s výslovným předpokladem stejné pravděpodobnosti nehody pro každý taxík; základní četnost; případ stejných četností. |
+| 8. Rozdělení pravděpodobnosti a data | Ověří rozdělení, sčítá hodnoty, porovná rozdělení s ilustračními četnostmi představujícími 20 lidí a vysvětlí, proč to nejde u spojité proměnné. |
 | 9. Kombinace a ruční výpočet | Vypíše kombinace, spočítá P(X = 3) a P(X ≥ 3) pro čtyři otázky ano–ne, μ a σ; uvede porušení předpokladů. |
 | 10. Binomické rozdělení v Excelu | Právě, nejvýše a alespoň pro 15 otázek s pěti možnostmi; interpretuje výsledek bez obrácení podmínky. |
 | 11. Normální aproximace | Ověří podmínku, porovná aproximaci, přesnou hodnotu a aproximaci od hranice 64,5; převede na podíl. |
-| 12. Které pravidlo použít | U šesti situací zvolí nástroj a zdůvodní volbu, včetně případu, kdy binomický model nevyhovuje. |
+| 12. Které pravidlo použít | U šesti situací zvolí nástroj a zdůvodní volbu, včetně případu losování bez vracení: mění se podmíněné pravděpodobnosti při známých předchozích tazích, nikoli nepodmíněná pravděpodobnost ženy na jednotlivých pozicích. |
 
 ### Pojmy, konvence a hranice návaznosti
 

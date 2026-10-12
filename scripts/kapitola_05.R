@@ -12,7 +12,7 @@ ch5_draw <- function(name,code,width=8,height=4.5) {
 }
 # Fixed teaching inputs -------------------------------------------------------
 ch5_cards <- c(podstatna=40,slovesa=35,pridavna=25)
-ch5_dependent <- matrix(c(40,60,30,70),2,byrow=TRUE,dimnames=list(c('Žena','Muž'),c('Stres','Pohoda')))
+ch5_dependent <- matrix(c(40,60,30,70),2,byrow=TRUE,dimnames=list(c('Žena','Muž'),c('Stres','Bez vysokého stresu')))
 ch5_independent <- matrix(c(30,70,30,70),2,byrow=TRUE,dimnames=dimnames(ch5_dependent))
 ch5_sens <- .95; ch5_spec <- .90
 # Natural frequencies: state present/absent by positive/negative result.
