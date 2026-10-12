@@ -3,7 +3,7 @@ param([Parameter(Mandatory=$true)][string]$Manifest)
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $spec=Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
-if($spec.chapter -notin 1,2,3,4,5){throw 'Unsupported chapter'}
+if($spec.chapter -notin 1,2,3,4,5,6){throw 'Unsupported chapter'}
 $target=Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $spec.chapter)
 $staged=Join-Path (Split-Path -Parent $Manifest) 'workbook.xlsx'
 $taskExcel=$null;$taskBook=$null
@@ -46,6 +46,21 @@ try {
   foreach($op in $spec.operations){
     $sh=$taskBook.Worksheets.Item([string]$op.sheet);$r=$sh.Range([string]$op.address)
     switch($op.kind){
+      {$_ -eq 'values' -and $op.value.Count -ge 1000} {
+        # Large simulated blocks are numeric only and are written in one assignment.
+        $rows=$op.value.Count;$cols=@($op.value[0]).Count
+        $block=New-Object 'object[,]' $rows,$cols
+        for($i=0;$i -lt $rows;$i++){
+          $row=@($op.value[$i])
+          for($j=0;$j -lt $cols;$j++){
+            $v=$row[$j]
+            if($null -eq $v -or $v -is [string] -or $v -is [bool]){throw 'Large value blocks must be numeric'}
+            $block[$i,$j]=[double]$v
+          }
+        }
+        $r.Value2=$block
+        break
+      }
       {$_ -in 'values','formulas','formulasLocal'} {
         for($i=0;$i -lt $op.value.Count;$i++){
           $row=@($op.value[$i])

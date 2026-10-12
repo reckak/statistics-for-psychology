@@ -6,12 +6,14 @@ $taskExcel=$null;$taskBook=$null
 try {
   $taskExcel=New-Object -ComObject Excel.Application
   $taskExcel.Visible=$false;$taskExcel.DisplayAlerts=$false
-  foreach($n in 1,2,3,4,5){
+  foreach($n in 1,2,3,4,5,6){
     $taskBook=$taskExcel.Workbooks.Open((Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $n)),0,$false)
     if($taskBook.Worksheets.Item(1).Name -ne 'Prehled'){throw 'Overview is not first'}
     $taskExcel.CalculateFullRebuild()
     $formulaCount=0
     foreach($sh in $taskBook.Worksheets){
+      # Sheets without any formula (large simulated inputs) need no cell-by-cell pass.
+      if($sh.UsedRange.HasFormula -eq $false){continue}
       foreach($cell in $sh.UsedRange.Cells){
         if($cell.HasFormula){$formulaCount++;if($cell.Text -match '^#'){throw "Excel error: $n $($sh.Name) $($cell.Address()) $($cell.Text)"}}
       }

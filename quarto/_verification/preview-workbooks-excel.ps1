@@ -1,4 +1,4 @@
-param([string]$OutputDirectory='tmp/workbook-previews',[int[]]$Chapter=@(1,2,3,4,5),[string[]]$Sheet=@())
+param([string]$OutputDirectory='tmp/workbook-previews',[int[]]$Chapter=@(1,2,3,4,5,6),[string[]]$Sheet=@())
 # Read-only native Excel previews: every tab, first 15 rows of input datasets,
 # entire worked examples/overview. Print settings are never saved to the XLSX.
 $ErrorActionPreference='Stop'
