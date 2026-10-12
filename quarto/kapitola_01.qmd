@@ -64,6 +64,14 @@ Nemůžeme-li získat údaje od všech, zkoumáme **výběr (*sample*)**, tedy �
 
 **Popisná statistika (*descriptive statistics*)** slouží k uspořádání a shrnutí získaných dat. Popis může být zcela správný pro zkoumané případy, a přesto nemusí vystihovat širší populaci. **Inferenční statistika (*inferential statistics*)** poskytuje postupy, jimiž z dat usuzujeme na něco širšího, než co jsme přímo pozorovali, například z výběru na populaci. Takové usuzování vyžaduje předpoklady o vzniku dat a zahrnuje nejistotu. Ve slovníčku najdete i alternativní označení [induktivní statistika](slovnicek.qmd#pojem-inferencni).
 
+@fig-populace-vyber-inference odlišuje vznik výběru od usuzování na populaci. Anglické *sampling* označuje proces vybírání případů, zatímco *sample* označuje jeho výsledek: výběr zahrnutý do studie. Českým slovem „výběr“ lze označit obojí; v této učebnici jím zpravidla označujeme výsledný soubor případů.
+
+::: {.teaching-figure role="region" aria-label="Populace, získání výběru a usuzování z dat" tabindex="0"}
+![Populace, získání výběru a usuzování z dat](../assets/chapter-01/plots/populace-vyber-inference.svg){#fig-populace-vyber-inference fig-alt="Z populace vybíráme případy do studie: sampling je proces, sample výsledný výběr. Popisná statistika shrnuje získaná data. Zpětná šipka představuje usuzování z dat výběru na populaci s předpoklady a nejistotou."}
+:::
+
+Popisná statistika shrnuje získaná data; v obrázku jde o data výběru, ale může popisovat také celou populaci, pokud máme údaje o všech jejích případech. Zpětná šipka znázorňuje jednu základní podobu statistické inference, nikoli návrat účastníků do populace. Pro zobecnění potřebujeme oporu ve způsobu získání dat a dalších předpokladech. Samotné shrnutí výběru tuto oporu nevytváří.
+
 ::: worked-example
 **Kdo se do studie dostal?** Chceme poznat všechny bakalářské studenty fakulty. Pozvánku však zveřejníme jen v jednom dobrovolném semináři a přihlásí se studenti, kterým vyhovuje dopolední termín.
 
@@ -96,13 +104,19 @@ Větší výběr poskytuje více údajů, nevhodný způsob získávání účas
 
 V naší studii necháváme studenty spát obvyklým způsobem a pouze zaznamenáme dobu spánku a následný výkon. I kdybychom později zjistili, že studenti s kratším spánkem si vybavují méně slov, nemusel by za tím stát spánek. Náročné zkouškové období může například zkracovat spánek a současně zvyšovat úzkost, která zhoršuje soustředění při úloze. Kratší spánek a horší výkon by se pak vyskytovaly společně proto, že mají společnou příčinu, nikoli proto, že jedno vyvolává druhé. To je možné alternativní vysvětlení, nikoli výsledek této modelové studie. Jeho smyslem je ukázat, proč musíme uvažovat o okolnostech vzniku dat [@navarro, kap. 2].
 
+Obě vysvětlení porovnává @fig-souvislost-pricina. V horním panelu uvažujeme přímé působení spánku na výkon; v dolním může společné zkouškové období ovlivňovat spánek a přes úzkost také výkon. Šipky označují hypotézy, nikoli prokázané účinky. V praxi mohou oba mechanismy působit současně a existovat i další vysvětlení. Pozorovaná souvislost sama mezi nimi nerozhodne.
+
+::: {.teaching-figure role="region" aria-label="Různé možné příčiny stejné souvislosti" tabindex="0"}
+![Různé možné příčiny stejné souvislosti](../assets/chapter-01/plots/souvislost-pricina.svg){#fig-souvislost-pricina fig-alt="Horní panel: kratší spánek může vést k horšímu výkonu. Dolní panel: náročné zkouškové období může zkracovat spánek a zvyšovat úzkost, která zhoršuje výkon. Jde o možné, navzájem se nevylučující mechanismy."}
+:::
+
 Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně mění určitou podmínku a sleduje její důsledky. Pro ilustraci ponechme spánek stranou a zkoumejme, zda učení slov ovlivňují rušivé zvuky. Jedna skupina dostane seznam slov v tichu, druhá se zvukovou nahrávkou.
 
-**Náhodné přidělení do podmínek (*random assignment*)** znamená, že o tom, kterou podmínku účastník dostane, rozhoduje náhodný mechanismus, například předem připravené losování. V našem příkladu tedy nepřidělujeme podmínku podle toho, jak dobrou má účastník paměť, ani účastníkům nedáváme možnost vybrat si ticho nebo zvukovou nahrávku. Kdyby si totiž podmínku vybírali sami, mohli by ticho častěji volit lidé, které zvuky snadno rozptylují. Případný rozdíl ve výsledcích by pak mohl odrážet nejen působení zvuků, ale také odlišné složení skupin.
+**Náhodné přiřazení k podmínkám (*random assignment*)** znamená, že o tom, kterou podmínku účastník dostane, rozhoduje náhodný mechanismus, například předem připravené losování. V našem příkladu tedy nepřidělujeme podmínku podle toho, jak dobrou má účastník paměť, ani účastníkům nedáváme možnost vybrat si ticho nebo zvukovou nahrávku. Kdyby si totiž podmínku vybírali sami, mohli by ticho častěji volit lidé, které zvuky snadno rozptylují. Případný rozdíl ve výsledcích by pak mohl odrážet nejen působení zvuků, ale také odlišné složení skupin.
 
-Zatímco složení skupin ponecháváme na náhodném přidělení, rozdíl mezi podmínkami vytváříme záměrně: jedna skupina se učí v tichu a druhá za přítomnosti rušivých zvuků. Ostatní okolnosti, které by mohly ovlivnit výkon, se snažíme zachovat stejné. Proto obě skupiny dostanou stejný seznam slov, stejné instrukce i stejný čas na učení a odpověď. Kdyby například skupina se zvukovou nahrávkou dostala také obtížnější slova, nemohli bychom rozlišit, zda její případný horší výkon souvisí se zvuky, nebo s obtížností seznamu.
+Zatímco složení skupin ponecháváme na náhodném přiřazení, rozdíl mezi podmínkami vytváříme záměrně: jedna skupina se učí v tichu a druhá za přítomnosti rušivých zvuků. Ostatní okolnosti, které by mohly ovlivnit výkon, se snažíme zachovat stejné. Proto obě skupiny dostanou stejný seznam slov, stejné instrukce i stejný čas na učení a odpověď. Kdyby například skupina se zvukovou nahrávkou dostala také obtížnější slova, nemohli bychom rozlišit, zda její případný horší výkon souvisí se zvuky, nebo s obtížností seznamu.
 
-Náhodné přidělení a stejné provedení úlohy nám tak pomáhají posoudit účinek rušivých zvuků. **Nezaručují však, že každý zjištěný rozdíl způsobily právě zvuky.** I při řádném losování se mohou do jedné skupiny náhodou dostat lidé s lepší pamětí než do druhé. Při vyhodnocení proto musíme zohlednit také nejistotu způsobenou náhodným složením skupin a ověřit, zda byly plánované podmínky skutečně dodrženy.
+Náhodné přiřazení a stejné provedení úlohy nám tak pomáhají posoudit účinek rušivých zvuků. **Nezaručují však, že každý zjištěný rozdíl způsobily právě zvuky.** I při řádném losování se mohou do jedné skupiny náhodou dostat lidé s lepší pamětí než do druhé. Při vyhodnocení proto musíme zohlednit také nejistotu způsobenou náhodným složením skupin a ověřit, zda byly plánované podmínky skutečně dodrženy.
 
 ### Nezávislá a závislá proměnná: role ve výzkumné otázce {#sec-role-promennych}
 
@@ -130,11 +144,11 @@ Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slov
 
 Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro kauzální závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo připadají v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
 
-Howell [-@howell, s. 3] propojuje náhodné přidělení s interní validitou a pravděpodobnostní výběr z populace s externí validitou. Náhodné přidělení omezuje systematické rozdíly ve složení porovnávaných skupin; kontrolu provedení experimentu však nenahrazuje. Pravděpodobnostní výběr podporuje zobecnění na populaci, z níž vybíráme. Přenos do jiného prostředí nebo na jiný druh úlohy je samostatná otázka; rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
+Howell [-@howell, s. 3] propojuje náhodné přiřazení s interní validitou a pravděpodobnostní výběr z populace s externí validitou. Náhodné přiřazení omezuje systematické rozdíly ve složení porovnávaných skupin; kontrolu provedení experimentu však nenahrazuje. Pravděpodobnostní výběr podporuje zobecnění na populaci, z níž vybíráme. Přenos do jiného prostředí nebo na jiný druh úlohy je samostatná otázka; rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
 
-Pravděpodobnostní výběr a náhodné přidělení tedy řeší různé otázky. @fig-vyber-prideleni je ukazuje jako dva po sobě jdoucí kroky: první rozhoduje o tom, kdo se z populace dostane do výběru, druhý o tom, kterou podmínku účastník dostane. Náhodný mechanismus můžeme použít v obou krocích, jen v jednom z nich, nebo v žádném.
+Pravděpodobnostní výběr a náhodné přiřazení tedy řeší různé otázky. @fig-vyber-prideleni je ukazuje jako dva po sobě jdoucí kroky: první rozhoduje o tom, kdo se z populace dostane do výběru, druhý o tom, kterou podmínku účastník dostane. Náhodný mechanismus můžeme použít v obou krocích, jen v jednom z nich, nebo v žádném.
 
-![Dva kroky, v nichž může rozhodovat náhoda: výběr z populace a přidělení do podmínek.](../assets/chapter-01/plots/vyber-prideleni.svg){#fig-vyber-prideleni fig-alt="Schéma tří částí propojených šipkami. Vlevo populace znázorněná mnoha tečkami, z nichž je část zvýrazněna. Šipka označená číslem 1 vede k výběru, který obsahuje jen zvýrazněné tečky. Z výběru vedou dvě šipky označené číslem 2 ke dvěma podmínkám: ticho a rušivé zvuky, každá s polovinou teček. Pod schématem je u kroku 1 otázka, na koho lze závěr zobecnit (externí validita), a u kroku 2 otázka, zda lze rozdíl připsat podmínce (interní validita)."}
+![Dva kroky, v nichž může rozhodovat náhoda: výběr z populace a přiřazení k podmínkám.](../assets/chapter-01/plots/vyber-prideleni.svg){#fig-vyber-prideleni fig-alt="Schéma tří částí propojených šipkami. Vlevo populace znázorněná mnoha tečkami, z nichž je část zvýrazněna. Šipka označená číslem 1 vede k výběru, který obsahuje jen zvýrazněné tečky. Z výběru vedou dvě šipky označené číslem 2 ke dvěma podmínkám: ticho a rušivé zvuky, každá s polovinou teček. Pod schématem je u kroku 1 otázka, na koho lze závěr zobecnit (externí validita), a u kroku 2 otázka, zda lze rozdíl připsat podmínce (interní validita)."}
 
 Tečky ve schématu představují lidi. V prvním kroku se z populace stane výběr: podle toho, jak tento krok proběhl, posuzujeme, na koho lze závěr zobecnit. Ve druhém kroku se účastníci výběru dostávají do podmínek: podle toho, jak proběhl tento krok, posuzujeme, zda lze rozdíl mezi podmínkami připsat právě jim. Totéž shrnuje tabulka:
 
@@ -142,13 +156,13 @@ Tečky ve schématu představují lidi. V prvním kroku se z populace stane výb
 | Postup | O čem rozhoduje | Co nám pomáhá zdůvodnit |
 |------------------------|------------------------|------------------------|
 | Pravděpodobnostní výběr | Kdo se dostane z populace do výběru | Usuzování na vymezenou populaci; jedna z opor externí validity |
-| Náhodné přidělení | Kterou podmínku dostanou již získaní účastníci | Posouzení příčinného účinku; jedna z opor interní validity |
+| Náhodné přiřazení | Kterou podmínku dostanou již získaní účastníci | Posouzení příčinného účinku; jedna z opor interní validity |
 :::
 
 ::: worked-example
-**Losování uvnitř skupiny dobrovolníků.** Ze semináře získáme dobrovolníky a losem jim přidělíme buď podmínku ticha, nebo rušivých zvuků. Použili jsme náhodné přidělení do podmínek. Nepoužili jsme tím zároveň pravděpodobnostní výběr ze všech studentů fakulty.
+**Losování uvnitř skupiny dobrovolníků.** Ze semináře získáme dobrovolníky a losem jim přidělíme buď podmínku ticha, nebo rušivých zvuků. Použili jsme náhodné přiřazení k podmínkám. Nepoužili jsme tím zároveň pravděpodobnostní výběr ze všech studentů fakulty.
 
-Dobře provedené srovnání může přispět k posouzení účinku zvuků v dané situaci. Musíme ověřit, zda se podmínky nelišily něčím jiným, například odlišnou místností nebo instrukcemi: tím posuzujeme interní validitu. Přenos výsledku na starší lidi, učení delšího textu nebo domácí prostředí potřebuje další argumenty: tím posuzujeme externí validitu. Dobré příčinné srovnání uvnitř studie je možné i s dobrovolníky; náhodné přidělení z nich ale neudělá pravděpodobnostní výběr z populace.
+Dobře provedené srovnání může přispět k posouzení účinku zvuků v dané situaci. Musíme ověřit, zda se podmínky nelišily něčím jiným, například odlišnou místností nebo instrukcemi: tím posuzujeme interní validitu. Přenos výsledku na starší lidi, učení delšího textu nebo domácí prostředí potřebuje další argumenty: tím posuzujeme externí validitu. Dobré příčinné srovnání uvnitř studie je možné i s dobrovolníky; náhodné přiřazení z nich ale neudělá pravděpodobnostní výběr z populace.
 :::
 
 Silná interní validita nezaručuje širokou zobecnitelnost a reprezentativní výběr sám neprokazuje příčinu. Ani neplatí obecné pravidlo, že posílení jedné validity musí nutně oslabit druhou. Pro přenos kauzálního závěru potřebujeme jak oporu pro příčinu v původní studii, tak oporu pro jeho platnost v nových podmínkách. Oba pojmy najdete také ve [slovníčku](slovnicek.qmd#pojem-interni-validita).
@@ -163,16 +177,13 @@ Psychologické otázky se často týkají paměti, úzkosti, motivace nebo dův�
 
 V naší modelové úloze účastník jednu minutu čte seznam dvanácti běžných českých slov. Seznam poté odstraníme a účastník má jednu minutu na zapsání slov, která si vybaví. Započítáme každé správné slovo jednou; opakované uvedení stejného slova nepřidává další bod. Předem určíme, jak posoudíme drobné pravopisné odchylky. Tak získáme počet správně vybavených slov.
 
-::: table-scroll
-| Pojem v naší otázce | Konkrétní podoba v paměťové úloze |
-|------------------------------------|------------------------------------|
-| Konstrukt | Určitá stránka paměti, o níž chceme získat informaci |
-| Operacionalizace | Předložení seznamu 12 slov a následné bezprostřední vybavování |
-| Operacionální definice | Výše popsané časy, instrukce a pravidla započítávání slov |
-| Zaznamenaná proměnná | Počet správně vybavených různých slov |
-| Možné hodnoty | Celá čísla od 0 do 12 |
-| Hodnota u P01 | 5 správně vybavených slov |
+@fig-od-konstruktu-k-zaznamu propojuje obecný cíl měření s konkrétním údajem. Operacionalizace zahrnuje volbu úlohy; její přesné časy, instrukce a skórování tvoří operacionální definici. Počet slov je zaznamenaná proměnná a číslo 5 je její hodnota u jednoho případu. Šipky zde ukazují postup vymezení a záznamu, nikoli příčinné působení.
+
+::: {.teaching-figure role="region" aria-label="Od konstruktu k záznamu u jednoho účastníka" tabindex="0"}
+![Od konstruktu k záznamu u jednoho účastníka](../assets/chapter-01/plots/od-konstruktu-k-zaznamu.svg){#fig-od-konstruktu-k-zaznamu fig-alt="Určitou stránku paměti zkoumáme úlohou s dvanácti slovy, jednou minutou čtení a jednou minutou vybavování. Každé správné slovo počítáme jednou. Zaznamenaná proměnná má celé hodnoty od nuly do dvanácti; P01 vybavil pět slov."}
 :::
+
+
 
 Operacionalizací není pouze samotné číslo. Zahrnuje postup, kterým je získáme. Výsledek zde popisuje výkon v úloze bezprostředního vybavování slov; bez dalšího zdůvodnění jej nelze považovat za čisté měření krátkodobé paměti oddělené od ostatních vlivů.
 
@@ -247,6 +258,12 @@ U nominálních kategorií lze vyměnit jejich číselné kódy, pokud nadále r
 
 U intervalového měření můžeme změnit jednotku i zvolený nulový bod, jako při převodu teploty ze stupňů Celsia na stupně Fahrenheita. Stejně velké teplotní rozdíly zůstanou stejně velké i v novém zápisu. U poměrového měření můžeme změnit jednotku, například převést hodiny na minuty, ale zachováváme věcný nulový bod. Poměr osmi a čtyř hodin tak zůstane stejný jako poměr 480 a 240 minut.
 
+@fig-zmena-zapisu ukazuje tyto změny na konkrétních zápisech. Sledujte vždy vztah, který zůstává zachován: rozlišení kategorií, pořadí, rovnost rozdílů nebo poměr. Překódování ordinálních odpovědí mění číselné rozestupy, přestože pořadí odpovědí zůstává stejné. U Celsiovy a Fahrenheitovy stupnice se mění číselná velikost rozdílu, ale dva původně stejné rozdíly zůstávají stejné i po převodu.
+
+::: {.teaching-figure role="region" aria-label="Co se zachová při změně kódů nebo jednotek" tabindex="0"}
+![Co se zachová při změně kódů nebo jednotek](../assets/chapter-01/plots/zmena-zapisu.svg){#fig-zmena-zapisu fig-alt="Nominální kódy lze změnit při zachování kategorií. Ordinální kódy 1, 2, 3, 4 a 1, 2, 5, 10 zachovávají pořadí. Pěti stupňům Celsia odpovídá devět stupňů Fahrenheita, ale poměr hodnot teplot se mění. Čtyři a osm hodin odpovídají 240 a 480 minutám se stejným poměrem dva ku jedné."}
+:::
+
 Rozlišení úrovní měření je užitečné pro kontrolu významu tvrzení, nikoli jako automatický návod na výběr metody. Vždy se ptáme, kterou vlastnost mají čísla v dané otázce reprezentovat a které vztahy mezi nimi o ní vypovídají. Proč na tom záleží, ukazuje známý spor popsaný v nepovinném rozšíření.
 
 ::: {#cisla-na-dresech .callout-note collapse="true" title="Nepovinné rozšíření: spor o čísla na dresech"}
@@ -300,6 +317,12 @@ Jiné hledisko se týká možných hodnot. **Diskrétní proměnná (*discrete v
 
 Rozhodující není přítomnost desetinné čárky. Pokud úloha dovoluje jen hodnocení 0, 0,5 a 1 bod, zaznamenaný bodový výsledek je diskrétní i s desetinnou hodnotou. U doby spánku naopak celočíselný zápis může být jen důsledkem hrubého odhadu. Vždy upřesníme, zda mluvíme o sledované veličině, nebo o konkrétním způsobu jejího záznamu.
 
+Rozdíl znázorňuje @fig-diskretnost-a-zaznam. U počtu slov jsou mezilehlé necelé hodnoty vyloučeny pravidlem úlohy. U doby jsou mezilehlé hodnoty možné, ale při zaokrouhlení na celé hodiny je nerozlišíme: například 6,8 i 7,2 hodiny zapíšeme jako 7 hodin. Shodný zápis tedy nemusí znamenat shodnou dobu.
+
+::: {.teaching-figure role="region" aria-label="Diskrétní možnosti a zaokrouhlení spojité doby" tabindex="0"}
+![Diskrétní možnosti a zaokrouhlení spojité doby](../assets/chapter-01/plots/diskretnost-a-zaznam.svg){#fig-diskretnost-a-zaznam fig-alt="Počet slov má oddělené přípustné hodnoty 0 až 12. Doba má spojitý podklad; hodnoty 6,8 a 7,2 hodiny se obě při zaokrouhlení na celé hodiny zapíší jako 7. Desetinné možnosti 0, 0,5 a 1 bod jsou naopak diskrétní."}
+:::
+
 ### Jak souvisejí úroveň měření a možné hodnoty {#sec-uroven-a-spojitost}
 
 Rozlišení diskrétních a spojitých proměnných odpovídá na jinou otázku než úroveň měření. **Diskrétnost a spojitost se týkají toho, jakých hodnot může proměnná nabývat. Úroveň měření se týká toho, co vztahy mezi zaznamenanými hodnotami vypovídají o sledované vlastnosti.** Tato hlediska proto nemůžeme zaměňovat.
@@ -317,6 +340,21 @@ Další otázkou je **přesnost záznamu**. Teplotu můžeme zapisovat jen v cel
 Podobně ze čtyř možností odpovědi na tvrzení o únavě neplyne, že lidé mohou prožívat jen čtyři stupně únavy. To je vlastnost způsobu odpovídání. Ani nabídka libovolné polohy na úsečce naopak nedokazuje, že prožitek má spojitou povahu.
 
 Při popisu dat proto vždy rozlišujeme sledovanou vlastnost, způsob jejího zachycení a zaznamenané hodnoty. Zjišťujeme, jaké hodnoty jsou možné, zda mají význam jejich pořadí, rozdíly či poměry a jak záznam omezuje naše rozlišení. Teprve společně nám tyto informace pomáhají rozhodnout, jak data analyzovat a co z výsledků vyvozovat.
+
+Následující tabulka propojuje obě hlediska. Označení „spojité“ se v ní vztahuje k možným hodnotám veličiny nebo k idealizovanému způsobu odpovídání, nikoli k neomezené přesnosti skutečného záznamu.
+
+::: {#srovnani-urovni-hodnot .table-scroll tabindex="0" role="region" aria-label="Úroveň měření a diskrétní nebo spojité hodnoty"}
+| Úroveň měření | Diskrétní hodnoty nebo oddělené kategorie | Spojité hodnoty nebo spojitý způsob odpovídání |
+|---|---|---|
+| Nominální | Ticho / rušivé zvuky: odlišné kategorie bez pořadí podle množství vlastnosti. | U nominálních kategorií spojitost neuvažujeme; jejich číselné kódy nejsou stupnicí množství. |
+| Ordinální | Vůbec / trochu / dost / zcela: pořadí bez doložené rovnosti rozdílů. | Možné: poloha odpovědi na nečleněné úsečce může mít pouze ordinální interpretaci únavy. Spojitý způsob odpovědi nedokládá rovnost rozdílů v prožitku. |
+| Intervalová | Kalendářní rok narození zapsaný celým letopočtem: rozdíly mají význam, poměry letopočtů nikoli. | Teplota ve °C: spojitá veličina s interpretovatelnými rovnými rozdíly. |
+| Poměrová | Počet správně vybavených slov: deset slov je dvojnásobný počet oproti pěti. | Doba spánku: osm hodin je dvojnásobná doba oproti čtyřem. |
+
+: Úroveň měření a možné hodnoty: příklady a meze interpretace. {#tbl-urovne-hodnoty}
+:::
+
+**Možné hodnoty říkají, jakých podob může údaj nabývat. Úroveň měření říká, které vztahy mezi hodnotami můžeme věcně interpretovat. Přesnost záznamu určuje, jak jemné rozdíly zachytíme.** U úsečky je fyzická vzdálenost značky od začátku něco jiného než míra únavy: vlastnosti délky se automaticky nepřenášejí na prožitek. Spojitost polohy značky také sama nedokazuje spojitost únavy. Tabulka proto nerozhoduje o vlastnostech psychologického rysu podle vzhledu odpovědi.
 
 ## Rozdíly, chyba a nejistota {#sec-nejistota}
 
@@ -345,6 +383,12 @@ Jde o **zkreslení v důsledku neúčasti (*nonresponse bias*)**. Původní loso
 :::
 
 A nakonec se mohou objevit obyčejné **chyby záznamu (*data entry errors*)**, například přepis sedmi hodin jako sedmdesáti. Je důležité tyto situace odlišovat, protože vyžadují různá opatření.
+
+@fig-variabilita-a-neucast odlišuje náhodné kolísání od mechanismu, který může závěr soustavně posunout. Kolečka představují podporovatele strany, trojúhelníky ostatní lidi. V horním panelu mají stejně velké výběry různé složení, přestože postup vybírání zůstává stejný. Dolní panel ukazuje jiný problém: po oslovení častěji odmítají právě podporovatelé. Jde o schematické možnosti, nikoli o výsledky skutečného průzkumu nebo simulaci četnosti těchto situací. Neúčast může působit zároveň s náhodným kolísáním.
+
+::: {.teaching-figure role="region" aria-label="Výběrová variabilita a zkreslení neúčastí" tabindex="0"}
+![Výběrová variabilita a zkreslení neúčastí](../assets/chapter-01/plots/variabilita-a-neucast.svg){#fig-variabilita-a-neucast fig-alt="Tři stejně velké schematické výběry obsahují různé zastoupení podporovatelů a ostatních. V dolním panelu podporovatelé častěji odmítají rozhovor než ostatní, což může vést k podhodnocení podpory mezi odpovídajícími."}
+:::
 
 ::: worked-example
 **Stejná otázka, různé problémy.** Jeden účastník si nepamatuje, jak dlouho v noci bděl. Jiný odhadne dobu přesně, ale při přepisu vznikne překlep. Třetí student se vůbec nezúčastní, protože studii organizujeme v době, kdy pracuje.
@@ -380,6 +424,12 @@ Vrátíme se ke studii spánku a vybavování slov. Každý student přichází 
 **Identifikátor (*identifier*, ID)** jednoznačně označuje účastníka, případ nebo záznam podle stanoveného účelu. V naší tabulce `id` označuje účastníka a při jediné návštěvě zároveň celý řádek. Identifikátor není pořadím řádku v aktuálním zobrazení. Když tabulku seřadíme jinak, P01 zůstává P01. Identifikátor umožňuje spojit záznam s odpovídajícím původním formulářem; může, ale nemusí uchovávat původní pořadí řádků, podle toho, na jakém principu tyto kódy stanovujeme.
 
 Při dvou návštěvách by se identifikátor účastníka opakoval a konkrétní záznam bychom mohli odlišit kombinací ID a čísla návštěvy. Dva řádky stejného člověka bychom pak nesměli vydávat za dva různé účastníky. Jejich společný původ musí zůstat dohledatelný.
+
+Tuto situaci ukazuje @fig-ucastnik-navsteva-radek: dva lidé přijdou každý dvakrát, takže vzniknou čtyři případy vymezené jako jednotlivé návštěvy. Řádek označený A a 1 patří stejnému člověku jako řádek A a 2. Počet řádků proto není počtem různých lidí a společný původ záznamů nesmí při analýze zmizet.
+
+::: {.teaching-figure role="region" aria-label="Účastník, návštěva a řádek datové matice" tabindex="0"}
+![Účastník, návštěva a řádek datové matice](../assets/chapter-01/plots/ucastnik-navsteva-radek.svg){#fig-ucastnik-navsteva-radek fig-alt="Účastník A má návštěvu 1 a 2, stejně jako účastník B. Každá návštěva tvoří jeden řádek matice. Čtyři řádky patří dvěma lidem; kombinace ID účastníka a čísla návštěvy rozlišuje jednotlivé záznamy."}
+:::
 
 Online dotazníkový nástroj může každému odevzdanému dotazníku přidělit automaticky vytvořený identifikátor, například řetězec písmen a číslic, z něhož pořadí vyplňování nepoznáme. Současně může zaznamenat datum a čas zahájení nebo dokončení dotazníku. Podle těchto údajů lze záznamy chronologicky seřadit, aniž bychom měnili jejich identifikátory. **Identifikátor odpovědi ale nemusí být identifikátorem člověka:** při opakovaném vyplnění může tentýž člověk dostat nový identifikátor záznamu. Pro spojení jeho odpovědí potřebujeme stálý identifikátor účastníka.
 
@@ -443,7 +493,7 @@ Před analýzou projdeme identifikátory, jednotky, přípustné hodnoty a chyb�
 
 Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem. Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
 
-Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Pravděpodobnostní výběr a náhodné přidělení do podmínek slouží odlišným účelům; žádný z nich neřeší všechna omezení studie. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
+Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Pravděpodobnostní výběr a náhodné přiřazení k podmínkám slouží odlišným účelům; žádný z nich neřeší všechna omezení studie. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
 
 Nyní umíme připravit a číst jednotlivé záznamy. Dalším krokem bude hledat, jak jsou hodnoty v souboru zastoupeny a jak je přehledně zobrazit.
 
@@ -513,26 +563,26 @@ b)  Data pouze popisuje první výrok. Pro druhý výrok potřebujeme posoudit v
 
 Do studie přijde 40 dobrovolníků. Losem jim přidělíme jednu ze dvou podmínek tak, aby vznikly dvě stejně velké skupiny. Jedna se učí slova v tichu, druhá při zvukové nahrávce. Ostatní podmínky se snažíme zachovat stejné.
 
-a)  Použili jsme pravděpodobnostní výběr, náhodné přidělení, nebo obojí?
+a)  Použili jsme pravděpodobnostní výběr, náhodné přiřazení, nebo obojí?
 
 b)  Je zaručeno, že obě skupiny mají stejné předchozí paměťové schopnosti?
 
-c)  Asistent předloží jedné skupině těžší seznam slov. Proč by to změnilo interpretaci výsledku, přestože přidělení proběhlo losem?
+c)  Asistent předloží jedné skupině těžší seznam slov. Proč by to změnilo interpretaci výsledku, přestože přiřazení proběhlo losem?
 
-d)  Vysvětlete vlastními slovy, jak se při posuzování příčiny doplňují náhodné přidělení a stejné provedení úlohy.
+d)  Vysvětlete vlastními slovy, jak se při posuzování příčiny doplňují náhodné přiřazení a stejné provedení úlohy.
 
 e)  Rozlište dvě námitky: „Skupiny dostaly různě obtížné seznamy.“ a „Nevíme, zda se účinek projeví také při učení starších lidí doma.“ Která se týká interní a která externí validity? Vyřešil by pravděpodobnostní výběr účastníků problém různých seznamů?
 
 f)  Výkon měříme počtem správně vybavených slov. Určete nezávislou a závislou proměnnou. V jiné studii pouze zaznamenáme délku spánku a počet vybavených slov. Která proměnná by byla explanační a která výsledná, pokud chceme pomocí délky spánku odhadovat paměťový výkon? Dokazuje toto rozlišení, že spánek výkon ovlivňuje?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Použili jsme náhodné přidělení již získaných dobrovolníků do podmínek. Zadání nepopisuje pravděpodobnostní výběr z vymezené populace.
+a)  Použili jsme náhodné přiřazení již získaných dobrovolníků do podmínek. Zadání nepopisuje pravděpodobnostní výběr z vymezené populace.
 
 b)  Není. Losování nezaručuje přesně stejné složení skupin. O zařazení rozhoduje náhoda, nikoli například paměťová schopnost nebo preference účastníka. Přesto se v jedné skupině mohou náhodou sejít zdatnější účastníci. Stejná velikost skupin také neznamená stejné schopnosti.
 
 c)  Při různě obtížných seznamech by se současně měnil zvuk i obtížnost úlohy. Případný rozdíl ve výkonu bychom proto nemohli jednoznačně připsat zvuku. Losování účastníků neodstraňuje další rozdíly, které sami vytvoříme v podmínkách experimentu.
 
-d)  Náhodné přidělení zajišťuje, že o zařazení lidí nerozhodují jejich vlastnosti nebo přání; stejné provedení omezuje další rozdíly mezi podmínkami. Společně podporují posouzení účinku zvuků, ale nevylučují náhodné rozdíly ve složení skupin a jejich výsledcích.
+d)  Náhodné přiřazení zajišťuje, že o zařazení lidí nerozhodují jejich vlastnosti nebo přání; stejné provedení omezuje další rozdíly mezi podmínkami. Společně podporují posouzení účinku zvuků, ale nevylučují náhodné rozdíly ve složení skupin a jejich výsledcích.
 
 e)  Různě obtížné seznamy ohrožují interní validitu: případný rozdíl může způsobit obtížnost, nikoli zvuk. Otázka starších lidí a domácího prostředí se týká externí validity: potřebujeme zdůvodnit přenos závěru. Ani pravděpodobnostní výběr účastníků by neodstranil rozdíl v seznamech. Zobecnitelnost a opora pro příčinu jsou odlišné otázky.
 

@@ -45,7 +45,7 @@ Kde se číslo 0,389 vzalo a co přesně tvrdí? Existuje několik interpretací
 
 **Subjektivní pojetí pravděpodobnosti (*subjective probability*)** chápe pravděpodobnost jako míru přesvědčení, které má určitý člověk na základě informací, jež má k dispozici. Terapeutka může říci, že klient dokončí terapii s pravděpodobností 0,7. Nejde o počítání lístků ani o dlouhou řadu opakování: tento klient podstoupí tuto terapii jednou. Číslo shrnuje její zkušenost s podobnými klienty, informace o tomto člověku a jejich zvážení. Jiný terapeut s jinými informacemi může dospět k jinému číslu.
 
-Různá pojetí proto nemusí vést ke stejnému číselnému hodnocení téže situace. U lístků se shodnou. U klienta v terapii klasické pojetí použít nelze, četnostní by vyžadovalo rozhodnout, které dřívější klienty považujeme za „stejný pokus“, a subjektivní závisí na tom, co kdo ví. Jakmile však pravděpodobnosti číslem vyjádříme, počítáme s nimi ve všech pojetích stejně. V psychologii se setkáte se všemi třemi: klasické uvažování se uplatní při losování a náhodném přidělení do podmínek, četnostní při usuzování z výběrů a subjektivní při klinickém úsudku.
+Různá pojetí proto nemusí vést ke stejnému číselnému hodnocení téže situace. U lístků se shodnou. U klienta v terapii klasické pojetí použít nelze, četnostní by vyžadovalo rozhodnout, které dřívější klienty považujeme za „stejný pokus“, a subjektivní závisí na tom, co kdo ví. Jakmile však pravděpodobnosti číslem vyjádříme, počítáme s nimi ve všech pojetích stejně. V psychologii se setkáte se všemi třemi: klasické uvažování se uplatní při losování a náhodném přiřazení k podmínkám, četnostní při usuzování z výběrů a subjektivní při klinickém úsudku.
 
 ### Relativní četnost v dlouhé řadě pokusů {#sec-dlouha-rada}
 

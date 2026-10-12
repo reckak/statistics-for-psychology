@@ -262,6 +262,8 @@ model přiměřený“; „S posloupností souhlasím“ a souhlas s tvorbou kap
 
 ## R10 — Terminologie výběru, přidělení a rolí proměnných
 
+**Částečně nahrazeno 2026-10-12:** preferovaný překlad random assignment mění [R26](#r26-vizualizace-kapitoly-1) na „náhodné přiřazení k podmínkám“. Ostatní části R10 zůstávají platné.
+
 **Stav:** schváleno 2026-10-11. **Rozsah:** kapitola 1, slovníček a další
 použití těchto pojmů v učebnici a souvisejících materiálech.
 
@@ -760,3 +762,26 @@ nebo nesprávnému čtení výsledků po změně vstupů sešitu.
 „Zapracuj všechny uvedené opravy i didaktická doporučení do kapitoly 5
 a souvisejících souborů. Na listu Binom ponech n = 5 a umožni měnit jen B3.“
 Rozsah ověření zaznamenává [autorská historie](../quarto/README.md#revize-kapitoly-5-2026-10-12).
+
+<a id="r26-vizualizace-kapitoly-1"></a>
+
+## R26 — Vizualizace kapitoly 1 a přiřazení k podmínkám
+
+**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 1 a terminologie napříč materiály.
+
+Preferovaný překlad *random assignment* je **náhodné přiřazení k podmínkám**.
+Nahrazuje preferenci „náhodné přidělení do podmínek“ z R10; starý překlad
+zůstává alternativou. Stabilní ID `pojem-nahodne-prideleni` se nemění.
+Dokladem je výslovný pokyn autora v tomto zadání; důvodem jednotná autorská preference.
+
+Autor schválil sedm nových schémat: populace/výběr/inference, alternativní
+příčinná vysvětlení, operacionalizace, změny zápisu u čtyř úrovní měření,
+diskrétnost a přesnost záznamu, výběrová variabilita a neúčast, člověk/návštěva/řádek.
+Součástí je srovnávací tabulka úrovní měření a možných hodnot s příklady.
+Nominálním kategoriím nepřipisuje spojitost; ordinální interpretaci nevylučuje
+u spojité odpovědi, ale rozlišuje odpověď od měřeného rysu. Sampling vysvětlujeme
+jako proces vybírání, sample jako výsledný výběr. Popisná statistika může
+popisovat také celou populaci; diagram ilustruje inferenci z výběru na populaci.
+Doklad: souhlas autora s upřesněním tabulky a pokyn doplnit všechny prioritní
+i neprioritní návrhy a schéma populace a výběru. Nejde o zavedení kauzálního
+formalismu, výběrových rozdělení ani nové početní látky.

@@ -1,6 +1,6 @@
 # Mapa obsahu a návazností učebnice
 
-**Poslední kontrola mapy: 2026-10-12** (karta kapitoly 5; karty 1–4 naposledy
+**Poslední kontrola mapy: 2026-10-12** (karty kapitol 1 a 5; karty 2–4 naposledy
 2026-10-11). Dokument popisuje aktuální zdrojové texty pěti výkladových
 kapitol a odděleně eviduje stav dalšího pokračování.
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
@@ -100,8 +100,8 @@ jsou v kartách níže; jejich řešení zůstávají ve studentském textu.
 ## 1. Od psychologické otázky k datům
 
 **Podklad a stav:** existující [kapitola 1](../quarto/kapitola_01.qmd#sec-kapitola-01),
-obsah karty zkontrolován 2026-10-11. Dohodnutý obsah a pozdější rozšíření
-rolí proměnných dokládá autorská historie; terminologii výběru, přidělení
+obsah karty zkontrolován 2026-10-12. Dohodnutý obsah a pozdější rozšíření
+rolí proměnných dokládá autorská historie; terminologii výběru, přiřazení
 a rolí shrnuje [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1).
 **Vstup:** matematika základní školy, bez předchozí statistiky či programování.
 
@@ -119,9 +119,9 @@ určuje konkrétní **procvičení**. Nepovinná okénka jsou označena samostat
 | [Proč psychologie potřebuje statistiku](../quarto/kapitola_01.qmd#sec-proc-statistika) | Přechod od osobní zkušenosti se spánkem k vymezené otázce; selektivnost zkušeností, souběh okolností, statistika při plánování, popisu a usuzování. Nejistota není odstranitelná pouhým výpočtem. | 2–3: meze výpočtu a druhy závěrů. |
 | [Proměnné a hodnoty](../quarto/kapitola_01.qmd#sec-promenne) | Případ, proměnná, hodnota, konstanta, data a nejednoznačné užití slova pozorování. Možné versus zaznamenané hodnoty; konstantnost vzhledem k souboru; jedno číslo jako doba, počet nebo ID. | 1: student × den, 4 lidé a 28 záznamů. |
 | [Populace a výběr](../quarto/kapitola_01.qmd#sec-populace-vyber) | Vymezení populace otázkou; stejný ročník jako populace i výběr. Popisná a inferenční statistika. Pravděpodobnostní, prostý náhodný a příležitostný výběr, dobrovolnost a neúčast; reprezentativnost není synonymem náhodnosti. Kulturní a situační meze zobecnění, argumentace mechanismem a potřeba dalšího ověření. | 2–3; bez výpočtu inferenčních statistik. |
-| [Souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina) | Pozorovaný spánek a paměť versus možná společná příčina; experiment s tichem a nahrávkou. Náhodné přidělení doplňuje stejné provedení úlohy, nezaručuje shodné skupiny ani příčinu každého rozdílu. | 3–4. |
+| [Souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina) | Pozorovaný spánek a paměť versus možná společná příčina; experiment s tichem a nahrávkou. Náhodné přiřazení doplňuje stejné provedení úlohy, nezaručuje shodné skupiny ani příčinu každého rozdílu. | 3–4. |
 | [Role proměnných](../quarto/kapitola_01.qmd#sec-role-promennych) | Nezávislá a závislá proměnná v experimentu i širším užití; explanační proměnná, prediktor a výsledná proměnná. Role závisí na otázce; predikce nemusí mířit do budoucnosti a názvosloví neprokazuje příčinu. | 4f. |
-| [Interní a externí validita](../quarto/kapitola_01.qmd#sec-interni-externi-validita) | Opora pro příčinu versus přenos závěru; dva kroky náhodnosti ve schématu populace → výběr → podmínky. Dobrovolníci mohou být náhodně přiděleni; interní a externí validita nejsou automaticky ve vztahu kompromisu. | 4a–e. |
+| [Interní a externí validita](../quarto/kapitola_01.qmd#sec-interni-externi-validita) | Opora pro příčinu versus přenos závěru; dva kroky náhodnosti ve schématu populace → výběr → podmínky. Dobrovolníci mohou být náhodně přiřazeni k podmínkám; interní a externí validita nejsou automaticky ve vztahu kompromisu. | 4a–e. |
 | [Co vlastně měříme](../quarto/kapitola_01.qmd#sec-mereni) | Konstrukt, měření, operacionalizace, operacionální definice a ukazatel. Úloha s 12 slovy má přesné časy a skórování; doba spánku vylučuje bdění; stejný kód souhlasu mění význam se zněním položky. | 5–6. |
 | [Úrovně měření](../quarto/kapitola_01.qmd#sec-urovne): [nominální](../quarto/kapitola_01.qmd#sec-nominalni), [ordinální](../quarto/kapitola_01.qmd#sec-ordinalni), [intervalová](../quarto/kapitola_01.qmd#sec-intervalova), [poměrová](../quarto/kapitola_01.qmd#sec-pomerova) | Odlišnost, pořadí, rovnost rozdílů a poměry; role nuly a přípustné změny kódů/jednotek. Podmínky experimentu, odpočatost, teplota, únava, doba a počet slov. Poměr počtů není poměrem paměťové schopnosti; úroveň není pouhá nálepka pro volbu metody. | 6a–c, e a g. |
 | [Stejná vlastnost, různé údaje](../quarto/kapitola_01.qmd#sec-stejna-vlastnost) | Přesný věk, pásma, odpověď ano/ne pro prostřední pásmo a rok narození uchovávají různé vztahy. Přepis slov odlišuje počet/tempo od schopnosti; fyzikální teplota není teplotní pohodlí. | 6f–g. |
@@ -144,9 +144,22 @@ Průběžným příkladem je autorská studie spánku a vybavování 12 slov.
 Šest osob P01–P06 tvoří konkrétní matici; u P05 chybí spánek, P06 má
 skutečný nulový výkon. Kapitola z těchto čísel nevyvozuje vztah spánku a paměti.
 Experiment s tichem/nahrávkou slouží k odlišení manipulace a pozorování;
-[diagram výběru a přidělení](../quarto/kapitola_01.qmd#fig-vyber-prideleni)
+[diagram výběru a přiřazení](../quarto/kapitola_01.qmd#fig-vyber-prideleni)
 odděluje oporu pro zobecnění a kauzální závěr. Tabulky měření, věku a codebooku
 umožňují porovnat význam stejných čísel a způsobů záznamu.
+
+Doplnění 2026-10-12 podle [R26](ROZHODNUTI.md#r26-vizualizace-kapitoly-1):
+sedm schémat propojuje již vysvětlené pojmy. Populace/výběr/inference rozlišuje
+sampling a sample a rozsah popisné statistiky; souvislost/příčina ukazuje
+dvě slučitelná hypotetická vysvětlení. Schéma operacionalizace nahrazuje
+původní tabulku pojmů v paměťové úloze. Změny kódů a jednotek názorně
+ukazují zachované vztahy; osy počtu a doby odlišují diskrétnost od zaokrouhlení.
+Srovnávací tabulka čtyř úrovní a diskrétních/spojitých hodnot uvádí příklady
+a odděluje spojitou odpověď od spojitosti rysu. Výběrová variabilita/neúčast
+a dva lidé/čtyři návštěvy podporují úlohy 7 a 1. Ostatní schémata podporují
+dosavadní úlohy 2–6 a 8; samostatné nové cvičení se nepřidává. Předpoklady
+a hranice učiva se nemění. Generátor: `scripts/kapitola_01.R`, osm SVG v
+`assets/chapter-01/plots/` včetně původního výběru a přiřazení.
 
 Nepovinná jsou čtyři rozšíření: [model měření](../quarto/kapitola_01.qmd#model-mereni-podrobne)
 pro zdůvodnění intervalovosti; [spor o čísla na dresech](../quarto/kapitola_01.qmd#cisla-na-dresech)
@@ -165,7 +178,7 @@ jsou na konci kapitoly; kalkulačka není potřeba.
 | [1. Co tvoří jeden záznam](../quarto/kapitola_01.qmd#sec-uloha-01-1) | Rozliší 4 účastníky a 28 denních případů, proměnnou/hodnotu a konstantu; zachová spojení záznamů ID. |
 | [2. Co nám řeknou dobrovolníci](../quarto/kapitola_01.qmd#sec-uloha-01-2) | Vymezí populaci a výběr, kritizuje zobecnění z 300 dobrovolníků, pojmenuje nábor a změní interpretaci téže skupiny při jiné otázce. |
 | [3. Tři různé závěry](../quarto/kapitola_01.qmd#sec-uloha-01-3) | Oddělí popis, zobecnění a příčinný zásah a doplní potřebnou oporu. |
-| [4. Co zajistilo losování](../quarto/kapitola_01.qmd#sec-uloha-01-4) | Rozliší výběr/přidělení, náhodné složení/provedení úlohy, interní/externí validitu a role proměnných. |
+| [4. Co zajistilo losování](../quarto/kapitola_01.qmd#sec-uloha-01-4) | Rozliší výběr/přiřazení, náhodné složení/provedení úlohy, interní/externí validitu a role proměnných. |
 | [5. Co je „dobrá paměť“](../quarto/kapitola_01.qmd#sec-uloha-01-5) | Odhalí nesrovnatelnou operacionalizaci před a po programu a navrhne srovnatelné měření bez předčasné volby metody. |
 | [6. Co hodnoty opravňují tvrdit](../quarto/kapitola_01.qmd#sec-uloha-01-6) | Posoudí devět tvrzení o škálách, kódech, konstruktech, přesnosti a spojitosti; zdůvodní chybějící předpoklady. |
 | [7. Více údajů nevyřeší všechno](../quarto/kapitola_01.qmd#sec-uloha-01-7) | Rozezná překlep, zkreslení měření, výběrové kolísání, skutečný rozdíl a neúčast; navrhne odpovídající opatření. |
