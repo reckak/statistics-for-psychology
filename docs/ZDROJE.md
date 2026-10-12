@@ -1,6 +1,6 @@
 # Mapa autorských zdrojů
 
-Stav inventury a obsahového průzkumu: **11. října 2026**; záznamy o použití v kapitole 5 doplněny **12. října 2026**. Mapa zahrnuje všech **30 souborů** v aktuální složce `sources/` a jejích podsložkách: 11 učebnic, 5 starších přednáškových prezentací, 3 soubory úloh, 1 seminární prezentaci a 10 dalších podkladů.
+Stav inventury: **12. října 2026**. Mapa zahrnuje všech **33 souborů** v aktuální složce `sources/` a jejích podsložkách: 12 učebnic a monografií, 7 přednáškových prezentací, 4 soubory úloh, 1 seminární prezentaci a 9 dalších podkladů. Nově zmapovány U12, P06, P07, C05 a D11; odstraněné samostatné výřezy Barona se již do inventáře nepočítají. Karty D08 a D09 zůstávají jako podrobné karty kapitol celé knihy U12.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -12,7 +12,7 @@ Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou d
 4. Při návrhu kapitoly uveď, který podklad slouží pro pořadí výkladu, vysvětlení, příklad, procvičování nebo odbornou kontrolu; připoj přesný lokátor a otevřené otázky.
 5. Aktualizuj příslušnou kartu, pokud se prohloubí ověření, přibude nález nebo se změní soubor. Schválený rozsah kapitoly zapisuj do osnovy, schválené konvence do rozhodnutí; terminologické preference současně do [SLOVNIK.md](SLOVNIK.md). Překlad nalezený v podkladu není automaticky preferencí učebnice. Před převzetím ověř význam a platné heslo registru, novou volbu nejprve dohodni.
 
-**Rozsah provedené práce.** Všechny soubory byly otevřeny a jejich obsah byl posouzen. U rozsáhlých učebnic byl zmapován obsah celé knihy a přečteny vybrané pasáže; nejde o přečtení všech několika tisíc stran ani o kontrolu všech důkazů a příkladů. Konkrétní rozsah je uveden v kartách. U kratších podkladů byly čteny texty, zadání a dostupná řešení; skeny vyžadovaly OCR. Textová extrakce ani OCR samy o sobě nejsou odborným ověřením. Obrázky prezentací byly kontrolovány z exportů PowerPointu, obrázky DOCX a XLSX také samostatně. Neproběhla úplná kontrola všech animací, vložených objektů a odkazovaného externího obsahu.
+**Rozsah provedené práce.** Následující souhrn zachycuje průzkum z 11. října; rozsah nového čtení a omezení aktualizace z 12. října uvádějí jednotlivé nové či převedené karty. Všechny původně evidované soubory byly otevřeny a jejich obsah byl posouzen. U rozsáhlých učebnic byl zmapován obsah celé knihy a přečteny vybrané pasáže; nejde o přečtení všech několika tisíc stran ani o kontrolu všech důkazů a příkladů. Konkrétní rozsah je uveden v kartách. U kratších podkladů byly čteny texty, zadání a dostupná řešení; skeny vyžadovaly OCR. Textová extrakce ani OCR samy o sobě nejsou odborným ověřením. Obrázky prezentací byly kontrolovány z exportů PowerPointu, obrázky DOCX a XLSX také samostatně. Neproběhla úplná kontrola všech animací, vložených objektů a odkazovaného externího obsahu.
 
 Použité označení:
 
@@ -38,10 +38,12 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Normální model, plochy, kvantily, posouzení modelu | [U01](#u01) kap. 3; [U03](#u03) kap. 4; [U04](#u04) §4.1; [U11](#u11) §6.2–6.4 | [P03](#p03) sn. 45–59; [P04](#p04); [C03](#c03) X3_21–37; [D10](#d10) | Existující kapitola 4; konvence N(μ, σ) podle R15; rozlišit Q–Q a P–P graf. |
 | Co znamená pravděpodobnost, jevy, pravidla | [U01](#u01) kap. 5; [U04](#u04) kap. 3; [U08](#u08) §9.2; [U10](#u10) kap. 3–4; [U11](#u11) kap. 3 | [P03](#p03) sn. 22–32; [P05](#p05) sn. 2–19; [C03](#c03) X3_08–20; [D08](#d08) | Existující kapitola 5 (R21–R23). Tři pojetí jsou představena jako interpretace se společnými pravidly; Dostálovo odmítnutí subjektivní pravděpodobnosti převzato nebylo. |
 | Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129; [U11](#u11) §3.5–3.8 (s opravou s. 62) | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Vyloženo v kapitole 5: přirozené četnosti, tabulka, strom, úplná pravděpodobnost, Bayesova věta, dvě prevalence. |
-| Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [D08](#d08), [D09](#d09) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
+| Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [U12](#u12) kap. 5–9 a 20; podrobně [D08](#d08), [D09](#d09); [D11](#d11) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
 | Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
-| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P04](#p04) sn. 5–6 jen jako výchozí námět | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti. |
-| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P06](#p06) sn. 2–6; [P07](#p07) sn. 3–54; [C05](#c05) X5 a X6; [D11](#d11) s. 249–253 | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. Nové zdroje neschvalují rozsah další kapitoly. |
+| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [P06](#p06) sn. 7–25; [C05](#c05) X5_11–12, X6_20–21; [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Bootstrap a odhad nejistoty různých statistik | [U01](#u01) kap. 18; [U03](#u03); [U08](#u08) | [P07](#p07) sn. 32–37, 53 a 57–60; [C05](#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
+| Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](#d11) s. 250–253; [U12](#u12) kap. 8 | [C05](#c05) X5_09 (mince); [P07](#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
 | Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07); [U11](#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
 | ANOVA, více prediktorů, meta-analýza, neparametrické a bayesovské metody | [U01](#u01) kap. 11–18; [U03](#u03) kap. 9, 14–15; [U07](#u07); [U08](#u08) kap. 14–17; [U10](#u10) části IV–V; [U11](#u11) kap. 9 (bayesovský t-test; kap. 14 pouze na webu) | Bez úplného pokrytí staršími podklady zde | Rezerva pro autora a případná další skripta; nepovažovat za povinnou náplň jednoho semestru. |
 
@@ -62,15 +64,19 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [U09](#u09) | [privitera.pdf](../sources/u%C4%8Debnice/privitera.pdf) | 954 stran PDF | `c93dc75c07ef4c18` |
 | [U10](#u10) | [sahu.pdf](../sources/u%C4%8Debnice/sahu.pdf) | 560 stran PDF | `6c0a39f1de739519` |
 | [U11](#u11) | [russo.pdf](../sources/u%C4%8Debnice/russo.pdf) | 331 stran PDF | `8939c8698b119e74` |
+| [U12](#u12) | [baron.pdf](../sources/u%C4%8Debnice/baron.pdf) | 600 stran PDF | `75bc974f0f0411f7` |
 | [P01](#p01) | [PSYb1170_P01_2025_-_Uvod__cetnosti.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P01_2025_-_Uvod__cetnosti.pptx) | 69 snímků | `077197470a4b781d` |
 | [P02](#p02) | [PSYb1170_P02_2026_-_Popisne_statistiky.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P02_2026_-_Popisne_statistiky.pptx) | 53 snímků | `a241d36fb9152355` |
 | [P03](#p03) | [PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx) | 60 snímků | `c36178e0a58eb3d0` |
 | [P04](#p04) | [normal_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/normal_distribution.pptx) | 22 snímků | `e96b31993c914185` |
 | [P05](#p05) | [probability.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/probability.pptx) | 36 snímků | `3f65f85091f08242` |
+| [P06](#p06) | [sampling_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/sampling_distribution.pptx) | 25 snímků | `23b4d53d6f84082d` |
+| [P07](#p07) | [PSYb1170_P04_2026_-_Indukce_a_CI.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P04_2026_-_Indukce_a_CI.pptx) | 62 snímků | `8587c9d38fdbc988` |
 | [C01](#c01) | [ulohy_tyden01_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden01_2025.docx) | DOCX | `748e3395728f4f81` |
 | [C02](#c02) | [ulohy_tyden02_2026.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden02_2026.docx) | DOCX | `eb503ae2273185eb` |
 | [C03](#c03) | [ulohy_tyden03_2024.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden03_2024.docx) | DOCX | `2dc558b65cba9540` |
 | [C04](#c04) | [Seminar4_-_na_zed_-_2024.pptx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/Seminar4_-_na_zed_-_2024.pptx) | 9 snímků | `007c056ae95ddd72` |
+| [C05](#c05) | [ulohy_tyden04_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden04_2025.docx) | DOCX | `46c371ac09021077` |
 | [D01](#d01) | [1. Základy tvorby datové matice.docx](../sources/ostatn%C3%AD%20zdroje/1.%20Z%C3%A1klady%20tvorby%20datov%C3%A9%20matice.docx) | DOCX | `eb639ba5a54af039` |
 | [D02](#d02) | [1. Základy tvorby datové matice.pdf](../sources/ostatn%C3%AD%20zdroje/1.%20Z%C3%A1klady%20tvorby%20datov%C3%A9%20matice.pdf) | 6 stran PDF | `3e2a6cec5170dd39` |
 | [D03](#d03) | [de_Vaus_-_Variable_coding_rules.pdf](../sources/ostatn%C3%AD%20zdroje/de_Vaus_-_Variable_coding_rules.pdf) | 9 stran PDF | `d2dc9a9796ed557d` |
@@ -78,9 +84,10 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [D05](#d05) | [On_the_Statistical_Treatment_of_Football_Numbers.pdf](../sources/ostatn%C3%AD%20zdroje/On_the_Statistical_Treatment_of_Football_Numbers.pdf) | 2 stran PDF | `0d07d85b09228954` |
 | [D06](#d06) | [A reanalysis of Lord’s statistical treatment of football numbers.pdf](../sources/ostatn%C3%AD%20zdroje/A%20reanalysis%20of%20Lord%E2%80%99s%20statistical%20treatment%20of%20football%20numbers.pdf) | 7 stran PDF | `206402da457efbfc` |
 | [D07](#d07) | [What educated citizens should know about statistics and probability.pdf](../sources/ostatn%C3%AD%20zdroje/What%20educated%20citizens%20should%20know%20about%20statistics%20and%20probability.pdf) | 6 stran PDF | `4cc78dcce3c286ea` |
-| [D08](#d08) | [Baron_-_kap5_-_probability_rkhanxjn.pdf](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf) | 34 stran PDF | `59dda8531fb552d4` |
-| [D09](#d09) | [Baron_-_kap6_-_probability_desc.pdf](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf) | 24 stran PDF | `9fdad8c6f9412d0b` |
 | [D10](#d10) | [Normalni_rozdeleni_do_3_aveamian._prednasky.xlsx](../sources/ostatn%C3%AD%20zdroje/Normalni_rozdeleni_do_3_aveamian._prednasky.xlsx) | 4 listy | `0f1a5783380913ed` |
+| [D11](#d11) | [Most_Dangerous_eqn.pdf](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf) | 9 stran PDF | `245684f6fe1c2b63` |
+
+**Nahrazené soubory (mimo aktuální inventář):** `Baron_-_kap5_-_probability_rkhanxjn.pdf` (34 stran PDF, otisk `59dda8531fb552d4`) a `Baron_-_kap6_-_probability_desc.pdf` (24 stran PDF, otisk `9fdad8c6f9412d0b`) autor odstranil. Jejich stabilní karty [D08](#d08) a [D09](#d09) nyní odkazují do [U12](#u12); historický rozsah čtení zůstává zachován.
 
 ## Učebnice
 
@@ -479,9 +486,50 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Použití v kapitole 5 (2026-10-12):** dvě citace s. 64: nezávislost v tabulce výběru není nezávislost v populaci; podmínění nevyjadřuje časové pořadí. Obojí ověřeno na s. 64 (PDF 85) v extrakci. Záměna nezávislosti výsledku testu a jeho správnosti ze s. 62 převzata nebyla.
 
+<a id="u12"></a>
+
+### U12 — Baron — Thinking and Deciding, celá monografie
+
+**Soubor a verze:** [baron.pdf](../sources/u%C4%8Debnice/baron.pdf), 600 stran PDF; otisk v inventáři, kontrola 2026-10-12. Nahrazuje dva samostatné výřezy; jejich podrobné tematické karty [D08](#d08) a [D09](#d09) nadále platí s novými PDF lokátory.
+
+**Identita:** Jonathan Baron, *Thinking and Deciding*, 4. vydání, Cambridge University Press. Titul a autor PDF 5; copyrightová strana PDF 6 uvádí © 1988, 1994, 2000, **2008**, současně „First published in print format **2007**“. ISBN eBook (NetLibrary) 978-0-511-46487-4, hardback 978-0-521-86207-3. Údaje byly přečteny i v obraze. [Stránka vydavatele](https://www.cambridge.org/highereducation/books/thinking-and-deciding/D61CB67A2638AAA41BF5C23DF7629C15) také popisuje čtvrté vydání jako poprvé vydané v roce 2007; datum online vydání není rokem původního tisku. Existující záznam `baron2008` a DOI 10.1017/CBO9780511840265 se nyní nemění. Dřívější nedostupnost copyrightové strany je vyřešena, rozdíl letopočtů však musí zůstat doložený.
+
+**Doporučené použití:** psychologická opora pro pravděpodobnostní úsudky, práci s důkazy, mylné závěry o souvislostech a rozhodování v nejistotě. Kapitoly 5–6 přímo navazují na již použité podklady učebnice; ostatní kapitoly rozšiřují nabídku pro autora, nikoli schválený rozsah kurzu. Kapitola 7 pojednává o zkoušení hypotéz v uvažování a vědě, není náhradou statistického výkladu NHST u Howella.
+
+Obsah knihy je na PDF 7–14. Pro níže uvedené tištěné strany platí **PDF = s. + 16**; začátky kapitol a lokátory D08/D09 byly ověřeny v aktuálním PDF.
+
+| Lokátor začátku | Mapa obsahu |
+|---|---|
+| [s. 5 (PDF 21)](../sources/u%C4%8Debnice/baron.pdf#page=21) | 1 What is thinking? — hledání možností, důkazy, cíle a usuzování |
+| [s. 31 (PDF 47)](../sources/u%C4%8Debnice/baron.pdf#page=47) | 2 The study of thinking — deskriptivní, normativní a preskriptivní modely; metody výzkumu |
+| [s. 61 (PDF 77)](../sources/u%C4%8Debnice/baron.pdf#page=77) | 3 Rationality — racionalita, cíle a přesvědčení |
+| [s. 77 (PDF 93)](../sources/u%C4%8Debnice/baron.pdf#page=93) | 4 Logic — logika, mentální modely a chyby usuzování |
+| [s. 103 (PDF 119)](../sources/u%C4%8Debnice/baron.pdf#page=119) | 5 Normative theory of probability — pojetí, koherence, kalibrace, Bayes; podrobně D08 |
+| [s. 137 (PDF 153)](../sources/u%C4%8Debnice/baron.pdf#page=153) | 6 Descriptive theory of probability judgment — heuristiky, kalibrace a zkreslení úsudku; podrobně D09 |
+| [s. 161 (PDF 177)](../sources/u%C4%8Debnice/baron.pdf#page=177) | 7 Hypothesis testing — hypotézy ve vědě, vyhledávání informací a ověřování přesvědčení |
+| [s. 183 (PDF 199)](../sources/u%C4%8Debnice/baron.pdf#page=199) | 8 Judgment of correlation and contingency — úsudky o souvislosti, příčinách a iluze kontroly |
+| [s. 199 (PDF 215)](../sources/u%C4%8Debnice/baron.pdf#page=215) | 9 Actively open-minded thinking — alternativy, jednostranné hledání důkazů a setrvávání na přesvědčení |
+| [s. 233 (PDF 249)](../sources/u%C4%8Debnice/baron.pdf#page=249) | 10 Normative theory of choice under uncertainty — očekávaná hodnota a užitek |
+| [s. 257 (PDF 273)](../sources/u%C4%8Debnice/baron.pdf#page=273) | 11 Descriptive theory of choice under uncertainty — prospektová teorie, rámování a nejednoznačnost |
+| [s. 289 (PDF 305)](../sources/u%C4%8Debnice/baron.pdf#page=305) | 12 Choice under certainty — preference, mentální účetnictví a utopené náklady |
+| [s. 311 (PDF 327)](../sources/u%C4%8Debnice/baron.pdf#page=327) | 13 Utility measurement — měření užitku a rozhodovací analýza |
+| [s. 341 (PDF 357)](../sources/u%C4%8Debnice/baron.pdf#page=357) | 14 Decision analysis and values — hodnoty, cíle a více atributů |
+| [s. 363 (PDF 379)](../sources/u%C4%8Debnice/baron.pdf#page=379) | 15 Quantitative judgment — regrese, úsudek a predikce |
+| [s. 389 (PDF 405)](../sources/u%C4%8Debnice/baron.pdf#page=405) | 16 Moral judgment and choice — morální soudy a volba |
+| [s. 417 (PDF 433)](../sources/u%C4%8Debnice/baron.pdf#page=433) | 17 Fairness and justice — spravedlnost a vyjednávání |
+| [s. 441 (PDF 457)](../sources/u%C4%8Debnice/baron.pdf#page=457) | 18 Social dilemmas: Cooperation versus defection — kooperace a sociální dilemata |
+| [s. 471 (PDF 487)](../sources/u%C4%8Debnice/baron.pdf#page=487) | 19 Decisions about the future — plány, diskontování a sebekontrola |
+| [s. 497 (PDF 513)](../sources/u%C4%8Debnice/baron.pdf#page=513) | 20 Risk — úsudky o riziku a jeho regulace |
+
+Literatura začíná s. 527 (PDF 543), autorský rejstřík s. 567 (PDF 583), věcný rejstřík s. 577 (PDF 593).
+
+**Prostudováno nyní:** titul, copyright, celý obsah, začátky kapitol a kontrola návaznosti kap. 5–6; z aktuální knihy znovu čteny s. 121–123 a 149–152 v textové vrstvě, obrazově zejména s. 103, 122, 137 a 150. Historické podrobnější čtení výřezů vymezují D08/D09. Nejde o nové úplné přečtení celé monografie ani o porovnání dvou binárně dostupných verzí: odstraněné soubory již v `sources/` nejsou.
+
+**Neověřeno:** souvislý výklad ostatních kapitol, všechny příklady, původní experimenty a jejich současná empirická podpora. Obsah kap. 1–4 a 7–20 má převážně stav mapy obsahu; názvy a tematická relevance nejsou potvrzením správnosti každého tvrzení.
+
 ## Starší přednáškové prezentace
 
-U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohledány poznámky podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly přehledové kontaktní listy (u P01–P04 vybrané, u P05 všechny). To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
+Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímků a poznámky dohledané podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly přehledové kontaktní listy (u P01–P04 vybrané, u P05 všechny). Rozsah nového čtení a obrazové kontroly P06–P07 uvádějí jejich karty. To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
 
 <a id="p01"></a>
 
@@ -614,9 +662,68 @@ U všech pěti prezentací byl přečten extrahovaný text snímků a byly dohle
 
 **Použití v kapitole 5 (2026-10-12):** kostra kapitoly odpovídá pořadí snímků; chyby uvedené v této kartě převzaty nebyly (lentilky, jmenovatel sn. 26, zaokrouhlení 0,514 a 99,4 %, směrodatná odchylka podílu, čitatel sn. 35). Dvojice tabulek pohlaví × stres (sn. 12–13) je průběžným příkladem; příklad 135 a více z 200 (sn. 35) je uveden s přesnou hodnotou 0,0173, aproximací 0,0152 a hodnotou od hranice 134,5. Uspořádaný výběr se v textu nazývá variace bez opakování (R23), loterie ze sn. 21–23 je v nepovinném rozšíření s jinými částkami. Pojem věrohodnosti ze sn. 24–25 se nezavádí (R21). Funkce ze sn. 36 byly skutečně spuštěny v českém Excelu.
 
+<a id="p06"></a>
+
+### P06 — Výběrové rozdělení, STPS 2025
+
+**Soubor:** [sampling_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/sampling_distribution.pptx), 25 snímků; titul „Výběrové rozdělení“, STPS 2025. Metadata uvádějí Karla Rečku a poslední změnu 2025-12-19; kontrola aktuálního otisku 2026-10-12. Název souboru nevystihuje celý rozsah: většina prezentace rozvíjí testování hypotéz.
+
+| Snímky | Obsah a využití |
+|---|---|
+| 1–4 | Populace, výběr, výběrová variabilita a rozdělení statistiky; parkovací příklad připisovaný Rubackovi a Juiengovi (1997). |
+| 5–6 | Obrazové grafy dvou shodných zešikmených populací a rozdělení rozdílu průměrů pro n = 5, 30, 100 a 1 000. |
+| 7–10 | Nulová a alternativní hypotéza, rozdíl 6,88 s, chyby rozhodnutí, kritická oblast a p-hodnota. |
+| 11–15 | Hladina významnosti a síla; srovnání alternativních rozdílů 3, 5 a 8 s při stejné rozhodovací hranici. |
+| 16–21 | Jednostranné a oboustranné testy, kritické hodnoty versus p-hodnoty a jejich interpretace. |
+| 22–25 | Velikost účinku, shrnutí NHST, formulace závěrů a nezamítnutí nulové hypotézy. |
+
+**Prostudováno:** text všech snímků a dostupných poznámek podle vazeb PPTX; všech 25 snímků vyexportováno PowerPointem a prohlédnuto na kontaktních listech. Obrazové sn. 5–6 byly zahrnuty. V R nezávisle ověřena aritmetika uvedená níže. Přednostní využití: vizualizace rozdílu populačního a výběrového rozdělení a vztahu účinku, rozhodovací hranice a síly. K návrhu kapitoly je nutné oddělit úvod do výběrových rozdělení od dosud neschváleného výkladu testování.
+
+**Nálezy a podmínky použití:**
+
+- **Sn. 8, poznámky; sn. 10 a 17–18:** 5/10 000 = **0,0005 = 0,05 %**, nikoli 0,00005 = 0,005 %. Obdobně 10/10 000 = **0,001 = 0,1 %**. Chybné desetinné hodnoty se objevují i v popiscích grafů. Pro normální model s SD = 2,13 uvedenou v poznámce dává pravý chvost od 6,88 přibližně 0,000619; tento modelový výpočet není reprodukcí původní simulace. Její data, seed a počty extrémů nebyly dostupné.
+- **Sn. 9:** druhý řádek tabulky současně tvrdí nepravdivost H₀ i Hₐ. Při zamýšlených doplňujících se hypotézách má být v tomto řádku Hₐ pravdivá; potvrzeno v obraze.
+- **Sn. 3–4 a 7:** konkrétní velikost rozdílu sama neurčuje jeho nepravděpodobnost; záleží na variabilitě, počtu pozorování a modelu. Výběrové rozdělení je obecný pojem, rozdělení za platnosti H₀ je jeho konkrétní použití. Nulové hypotézy obecně nemusejí být bodové.
+- **Sn. 7, 19–21 a 23:** důsledně definovat p-hodnotu pomocí pozorovaného **nebo extrémnějšího** výsledku; zkratka „pravděpodobnost našeho výsledku“ je pro spojitou statistiku zavádějící. Pravidlo „statistika > kritická hodnota“ nepopisuje obecně levostranný či oboustranný test. Tvrzení sn. 20 o „přesné síle důkazu“ je příliš silné; srovnáno se šesti principy v [oficiálním shrnutí ASA, s. 2](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf), zejména principem 6.
+- **Sn. 22:** 6,88/14,6 = 0,4712 je početně správně; původ SD = 14,6 a volba standardizace nebyly ověřeny v původní studii. Obecné slovní kategorie velikosti účinku nenahrazují význam v kontextu.
+
+**Neověřeno:** původní studie a kauzální vysvětlení parkovacího chování, zdrojové simulace a všechny hodnoty síly, živé animace a externí odkazy. Terminologie snímků není schválením nových hesel učebnice. Originál se neměnil.
+
+<a id="p07"></a>
+
+### P07 — Statistické usuzování, PSYb1170, 2026
+
+**Soubor:** [PSYb1170_P04_2026_-_Indukce_a_CI.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P04_2026_-_Indukce_a_CI.pptx), 62 snímků. Titul uvádí PSYb1170, přednášku 4, 2026; metadata Stanislava Ježka, poslední změnu 2026-03-17. Kontrola 2026-10-12.
+
+| Snímky | Obsah a využití |
+|---|---|
+| 1–11 | Od popisu k inferenci, statistiky a parametry, bodový odhad, náhodné a systematické chyby; potřeba struktury u 32 studentů (průměr 3,95; SD 0,91). |
+| 12–21 | Simulace, výběrové rozdělení a rozdělení chyb, kvantily, standardní chyba; srovnání teorie a bootstrapu. |
+| 22–31 | Odvození variability průměru, CLT, známá/neznámá populační SD, t-rozdělení a kvantily, velikost chyby odhadu. Sn. 22 je v poznámce označen jako rozšíření. |
+| 32–37 | Bootstrap: výběr s vracením, medián, ukázka v R, odkaz na Excel a vztah k opakovaným výběrům. |
+| 38–50 | Bodové a intervalové odhady, hladina spolehlivosti, mezní chyba, interval pro průměr a vlivy na jeho šířku. Sn. 40–41 mají místa k doplnění, sn. 46 číselné řešení. |
+| 51–53 | Interval pro podíl normální aproximací, přehled přesnějších postupů (Clopper–Pearson, Wilson, Agresti–Coull), percentilový bootstrap. Poznámka sn. 52 vymezuje původní požadavek kurzu pouze na normální aproximaci. |
+| 54–56 | Interpretace intervalů, srovnání s bayesovským pojetím a shrnutí. |
+| 57–62 | Další statistiky: medián, rozptyl, korelace a Fisherova transformace; korekce rozptylu; bayesovský interval pro podíl. |
+
+**Prostudováno:** text všech 62 snímků, matematických objektů a dostupných poznámek; všechny snímky vyexportovány PowerPointem a prohlédnuty na kontaktních listech, sn. 61 také samostatně. Důležitá didaktická priorita autora: společný příklad potřeby struktury, odlišení chyby výběru od systematické chyby, propojení simulace a teorie, porozumění intervalům. Rozšiřující snímky nejsou automaticky plánem učebnice.
+
+**Nálezy a podmínky použití:**
+
+- **Sn. 5 a 61:** ve vzorcích je třeba důsledně uvést čtverce odchylek od průměru. Sn. 61 má v obou součtech odchylky bez druhé mocniny a obrácený faktor zkreslení: pro rozptyl počítaný se jmenovatelem n je očekávání **(n − 1)σ²/n**, nikoli nσ²/(n − 1). Průměr konečného počtu simulovaných rozptylů se očekávání pouze přibližuje. Chyby sn. 61 potvrzeny v samostatném obrazu.
+- **Sn. 18, 20, 31 a 56:** SE je SD výběrového rozdělení, nikoli obecně průměrná podepsaná ani absolutní chyba. U průměru při pevném n roste s populační SD; shrnutí „klesá … s variabilitou“ na sn. 31 a 56 obrací tento vztah.
+- **Sn. 23–30, 40 a 46:** neznalost σ nezmění rozdělení samotného průměru na Studentovo. Za nezávislého normálního výběru má t-rozdělení statistika **(m − μ)/(s/√n)**. Odhad s/√n odlišit od skutečné SE. Pevné hranice n > 30 či n > 100 nejsou obecnou zárukou aproximace. Výpočet a rozlišení statistiky porovnány s [NIST, Confidence Limits for the Mean](https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm).
+- **Sn. 24 a 46:** 0,91/√32 = **0,16087**, tedy na dvě místa 0,16, nikoli 0,17. Pro 31 stupňů volnosti je horní 97,5% kvantil 2,03951 a interval (3,62191; 4,27809), tedy závěr sn. 46 (3,62; 4,28) souhlasí. Jeho mezikrok u horní meze však obsahuje **2,4** místo 2,04. Výpočty ověřeny v R, nikoli spuštěním Excelu.
+- **Sn. 32–37, 53 a 58:** bootstrapové rozdělení je odhad, nemá zaručeně stejný tvar a SE jako skutečné výběrové rozdělení. Nelze jej představit jako postup bez předpokladů pro libovolnou statistiku. Samotné opakování malého vzorku neodstraňuje jeho zkreslení ani problémy závislých pozorování.
+- **Sn. 42, 48, 51–54 a 59–60:** je-li α pravděpodobnost v intervalu 0–1, procentní zápis hladiny je **100(1 − α) %**. Frekventistické pokrytí se týká postupu při opakovaných výběrech za předpokladů modelu. Sn. 55 nedokládá obecnou shodu intervalů pro libovolnou charakteristiku polohy s bayesovskými intervaly; ta vyžaduje konkrétní model a prior.
+- **Sn. 51–52:** pro pevné n je výběrový podíl diskrétní přepočet binomického počtu, nikoli spojitá náhodná veličina. Oříznutí normálního intervalu na 0 a 1 samo neřeší jeho pokrytí. Vzorce s BETA.INV vyžadují zvláštní zacházení s nulovým či úplným počtem úspěchů; všechny popsané intervalové postupy před použitím samostatně ověřit.
+- **Sn. 58–62:** pořadové meze mediánu na sn. 58 mají ve slovním popisu prohozené označení horní/dolní meze. Tvrzení sn. 60, že rozdělení korelace „neznáme“, není vhodnou obecnou formulací. Na sn. 62 rozlišit věrohodnost a posterior: kvantily vyžadují normalizované posteriorní rozdělení při zvoleném prioru; interval s rovnými chvosty se obecně nerovná intervalu nejvyšší hustoty. Tato rozšíření nejsou kompletně odborně ověřena.
+
+**Neověřeno:** všechny další výpočty, platnost a česká syntaxe funkcí ve skutečném Excelu, vložené a externí simulace, všechny animace, zdrojová data a empirický původ příkladu. R kód ze sn. 35 nebyl spuštěn. Originál se neměnil.
+
 ## Procvičování a seminář
 
-Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jednou v zadání a podruhé v oddílu řešení. Mezery v číselné řadě jsou součástí originálu. Byly přečteny texty a tabulky všech tří souborů; vložené obrázky byly prohlédnuty samostatně. **Všechna řešení nebyla nezávisle přepočítána.** Zjištěné konkrétní chyby níže neznamenají, že zbytek klíče je ověřený.
+Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jednou v zadání a podruhé v oddílu řešení. Mezery v číselné řadě jsou součástí originálu. Původní průzkum zahrnul texty, tabulky a vložené obrázky C01–C03; nový rozsah čtení C05 je vymezen v jeho kartě. **Všechna řešení nebyla nezávisle přepočítána.** Zjištěné konkrétní chyby níže neznamenají, že zbytek klíče je ověřený.
 
 <a id="c01"></a>
 
@@ -707,6 +814,39 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 **Nálezy:** sn. 6 označuje výsledek CDF jako kvantil; zpřesnit podobně jako P03. Ve sn. 5 je v závěrečné otázce jiné jméno než v zadání. Inverzní normální funkce nemá pro p = 0 konečný kvantil; před případným zařazením ověřit přesné chování použitého Excelu.
 
 **Neověřeno:** příklady nebyly spuštěny v Excelu; převodní obrázky a testové normy nejsou nezávisle validovány. Úlohy dovolují porovnat relativní umístění v daných rozděleních, nikoli bez dalšího psychometrickou hodnotu různých talentů.
+
+<a id="c05"></a>
+
+### C05 — Úlohy, týden 4, 2025: výběrová rozdělení a intervaly
+
+**Soubor:** [ulohy_tyden04_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden04_2025.docx). Metadata uvádějí Andreu Staňkovou a posledního editora „Standa Ježek“, poslední změnu 2025-03-12; nejde o ověření autorství všech převzatých úloh. Kontrola 2026-10-12. Označení týdne se neshoduje s prefixy úloh: soubor obsahuje **X5, X6 a C5**. Zachovat jejich původní ID.
+
+| Zadání a odpovídající položka v „SPRÁVNÁ ŘEŠENÍ“ | Obsah a použití |
+|---|---|
+| C5_01–09, C5_11 | Náhodný výběr, rozdělení průměrů, SE, CLT, simulace v ESCI; spokojenost s kolejemi a spojení dvou výběrů. C5_10 není uvedena. |
+| X5_01–06 | Předpoklady výběru, IQ, simulace a teoretické rozdělení průměru a podílu; porovnání mediánu, SD, rozptylu, IQR a rozpětí. |
+| X5_07–08 | Bolest u 25 horolezců a 20 odpovědí o vybavování událostí; odhady SE vzorcem a bootstrapem. |
+| X5_09 | Historická motivace „trial of the pyx“, podle zadání inspirace 2. kapitolou Stiglerovy *The Seven Pillars of Statistical Wisdom*; součet versus průměr a odmocninový vztah. Téma souvisí také s D11, který zde není uveden jako přímý zdroj zadání. |
+| X5_10–12; X5_100 | Empatie, opakované výkony jednoho dítěte, podíl snídajících a změna parametrů; tabulka pojmů. |
+| X6_01–10 | Význam a šířka CI, známá/neznámá SD, CLT, různá centra intervalů a vztah SE k n. |
+| X6_11–16 | CI pro průměr: hospitalizované děti, rychlost čtení, párové rozdíly Stroopových časů, objem piva, IQ a historické výšky chlapců. |
+| X6_17–19 | Hodnota hypotézy v CI, vnoření intervalů a interpretace obrazu 50 opakovaných intervalů. |
+| X6_20–22 | Potřebné n pro požadovanou šířku CI, podíl vybavených událostí a volební průzkum. |
+| C5_14–23, C5_27–31 | Anglické konceptuální otázky: chyba odhadu, mezní chyba, hladina, t-rozdělení, replikace a chybové úsečky. Za C5_23 jsou dvě další věty bez samostatného ID; číslování 24–26 není úplné. |
+
+**Prostudováno:** text a tabulky zadání i oddílu řešení z OOXML; čtyři vložené PNG prohlédnuty samostatně (symbol, obraz intervalů, vzorec SE, boxplot). Jedna vložená EMF nebyla vizuálně ověřena. Export pouze pro čtení ve Wordu se zablokoval; vlastní instanci bylo nutné ukončit, proto **stránkování a celé vykreslení DOCX nejsou ověřeny**. Lokátory jsou ID úloh, nikoli odhadnuté stránky dokumentu.
+
+**Nezávislé ověření a nálezy:**
+
+- **X5_01 a C5_02:** rozlišit prostý náhodný výběr bez vracení od nezávislých losování. Úplná nezávislost zařazení jednotek není obecnou podmínkou prostého náhodného výběru pevné velikosti bez vracení. Odpověď X5_01 navíc končí nedopsanou větou. **C5_01 a X6_08:** podmínky intervalu formulovat pro konkrétní postup; samotná znalost σ nestačí k přesnému normálnímu CI při libovolném n a rozdělení populace.
+- **X5_06 a X5_12:** binomický model je v současné kapitole 5 již vysvětlen; původní poznámka, že je mimo kurikulum, se nepřenáší. U n = 5 není normální aproximace spolehlivým výchozím postupem. Pro otázky X5_12 jsou přesné binomické hodnoty P(X ≤ 11; n = 20, π = 0,6) = **0,40440** a P(X ≤ 18; n = 20, π = 0,95) = **0,26416**. Klíč uvádí aproximace 0,32 a 0,23; rozlišit modelovou π od pozorovaného p a diskrétní hranici.
+- **X5_08, X5_10 a X5_11:** rozlišit pravděpodobnost budoucí výběrové chyby za předpokladů modelu od pravděpodobnostního tvrzení o parametru po získání dat. Deset výkonů téhož člověka nelze bez zdůvodnění považovat za nezávislá srovnatelná měření; úloha není validovaným diagnostickým postupem. V řešení X5_10 má konkrétní hodnota spojité veličiny pravděpodobnost **přesně 0**, nikoli jen „limitně blízkou 0“.
+- **X5_09:** při daném nezávislém normálním modelu je SE průměru 0,0005 g a SD součtu 0,05 g; levý chvost od z = −20 je 2,7536 × 10⁻⁸⁹. Jednoprocentní hranici odpovídá průměr mince přibližně **9,991163 g**. Tím je ověřena modelová aritmetika, nikoli historické vyprávění ani ekonomické přepočty.
+- **X6_11–13, klíč:** znaménka a pravděpodobnost argumentu T.INV nejsou důsledná. X6_12 píše kladný kvantil 2,571, ale `T.INV(0,025;5)` odpovídá zápornému −2,57058. X6_13 spojuje 2,26 s `T.INV(0,05;9)`; kladnému 2,26216 odpovídá p = **0,975**, zatímco p = 0,05 dává −1,83311. Samotné meze 95% intervalů X6_12 (209,929; 523,404) a X6_13 pro deset rozdílů (13,167; 28,233) souhlasí s nezávislým výpočtem v R.
+- **X6_14:** neparametrický bootstrap na osmi hodnotách není obecnou náhradou všech předpokladů normálního modelu. Parametrický 95% interval z daných hodnot je přibližně (0,46852; 0,50048); hrubé zaokrouhlení horní meze na 0,50 nesmí zastřít její vztah k testované hodnotě.
+- **X6_20–21:** při uvedeném modelu a cílové celkové šířce vychází potřebná n po zaokrouhlení vzhůru **210**, resp. **289**; klíč v těchto konečných hodnotách souhlasí. Druhá hodnota používá plánovací odhad p = 0,75, není zárukou pro každý populační podíl.
+
+**Podmínky převzetí / neověřeno:** závislosti `Simulace výběrů.xlsx` a `bootstrap.xlsx` v aktuálním `sources/` chybějí; ESCI a externí simulace nebyly spuštěny. Funkce nebyly testovány v českém Excelu, bootstrapové číselné výsledky nebyly reprodukovány a celý klíč nebyl přepočten. Přesné vydání zdroje C5 a jeho stránkové odkazy nejsou ověřeny; odkazovaný web používá ISBN 9781138825529, nelze jej automaticky ztotožnit se současným místním druhým vydáním U03. Původ dat a historická či empirická tvrzení je třeba ověřit před převzetím. Originál se neměnil.
 
 ## Další podklady
 
@@ -834,18 +974,22 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 ### D08 — Baron: normativní teorie pravděpodobnosti
 
-**Soubor:** [Baron_-_kap5_-_probability_rkhanxjn.pdf](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf); 34 skenovaných stran. Kap. 5 má název *Normative theory of probability*, začíná tištěnou s. 103 a text končí na s. 135 (PDF 33); PDF 34 je prázdná. **Jméno Baron plyne z názvu souboru; titul celé knihy, vydání, rok a úplná bibliografická identita nejsou v úryvku ověřeny.**
+**Aktuální soubor:** [baron.pdf](../sources/u%C4%8Debnice/baron.pdf), [U12](#u12), kap. 5, s. 103–136 (PDF 119–152). **Převod ověřen 2026-10-12:** následující tabulka již používá stránky celé monografie. Bibliografická identita a rozdíl letopočtů viz U12.
+
+**Historický soubor (odstraněn):** `Baron_-_kap5_-_probability_rkhanxjn.pdf`. Dřívější záznamy pod tabulkou se týkají tohoto výřezu; jejich PDF čísla označují původní soubor. Jeho tehdejší neověřená identita byla později doplněna externě a nyní přímo z celé knihy.
 
 | Lokátor | Obsah a využití |
 |---|---|
-| [s. 103–106 (PDF 1)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=1) | Proč normativně hodnotit úsudky, číselné pravděpodobnosti a jejich komunikaci. |
-| [s. 106–111, „What is probability?“ (PDF 4)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=4) | Četnostní, logické a osobní pojetí pravděpodobnosti. |
-| [s. 112–118 (PDF 10)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=10) | Konstrukce úsudku, sázky, koherence a pravidla pravděpodobnosti. |
-| [s. 118–121, „Evaluating probability judgments“ (PDF 16)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=16) | Kalibrace, informační hodnota a skórovací pravidla; tab. 5.1 na s. 120. |
-| [s. 121–126, „Bayes’s theorem“ (PDF 19)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=19) | Diagnostický příklad, přirozené četnosti, strom, vzorce a poměr šancí; obr. 5.2 na s. 125. |
-| [s. 126–129 (PDF 24)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=24) | Proč mají četnosti význam, aktualizace a meze účelného použití Bayesovy věty. |
-| [s. 130–132 (PDF 28)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=28) | Náhodné shody, hledání vzorců po zhlédnutí dat a problém tří dveří. |
-| [s. 133–135 (PDF 31)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap5_-_probability_rkhanxjn.pdf#page=31) | Více znaků, podmíněná nezávislost, diagnostické sítě, řešení příkladů a závěr. |
+| [s. 103–106 (PDF 119)](../sources/u%C4%8Debnice/baron.pdf#page=119) | Proč normativně hodnotit úsudky, číselné pravděpodobnosti a jejich komunikaci. |
+| [s. 106–111, „What is probability?“ (PDF 122)](../sources/u%C4%8Debnice/baron.pdf#page=122) | Četnostní, logické a osobní pojetí pravděpodobnosti. |
+| [s. 112–118 (PDF 128)](../sources/u%C4%8Debnice/baron.pdf#page=128) | Konstrukce úsudku, sázky, koherence a pravidla pravděpodobnosti. |
+| [s. 118–121, „Evaluating probability judgments“ (PDF 134)](../sources/u%C4%8Debnice/baron.pdf#page=134) | Kalibrace, informační hodnota a skórovací pravidla; tab. 5.1 na s. 120. |
+| [s. 121–126, „Bayes’s theorem“ (PDF 137)](../sources/u%C4%8Debnice/baron.pdf#page=137) | Diagnostický příklad, přirozené četnosti, strom, vzorce a poměr šancí; obr. 5.2 na s. 125. |
+| [s. 126–129 (PDF 142)](../sources/u%C4%8Debnice/baron.pdf#page=142) | Proč mají četnosti význam, aktualizace a meze účelného použití Bayesovy věty. |
+| [s. 130–132 (PDF 146)](../sources/u%C4%8Debnice/baron.pdf#page=146) | Náhodné shody, hledání vzorců po zhlédnutí dat a problém tří dveří. |
+| [s. 133–135 (PDF 149)](../sources/u%C4%8Debnice/baron.pdf#page=149) | Více znaků, podmíněná nezávislost, diagnostické sítě, řešení příkladů a závěr. |
+
+**Historie čtení a použití odstraněného výřezu (2026-10-11 až dřívější práce 2026-10-12):**
 
 **Prostudováno:** členění celého úryvku pomocí OCR; podrobněji pasáže k pojetí pravděpodobnosti, koherenci a Bayesově větě, včetně vizuální kontroly s. 119–126. Zbylé části byly obsahově prohlédnuty, nikoli všechny řádek po řádku ověřeny.
 
@@ -861,19 +1005,23 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 ### D09 — Baron: deskriptivní teorie pravděpodobnostních úsudků
 
-**Soubor:** [Baron_-_kap6_-_probability_desc.pdf](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf); sken 24 stran, tištěné s. 137–160, kap. 6 *Descriptive theory of probability judgment*. Bibliografické omezení je stejné jako u D08; shoda tematické a stránkové návaznosti sama neověřuje vydání celé knihy.
+**Aktuální soubor:** [baron.pdf](../sources/u%C4%8Debnice/baron.pdf), [U12](#u12), kap. 6, s. 137–160 (PDF 153–176). **Převod ověřen 2026-10-12:** následující tabulka již používá stránky celé monografie. Bibliografická identita a rozdíl letopočtů viz U12.
+
+**Historický soubor (odstraněn):** `Baron_-_kap6_-_probability_desc.pdf`. Dřívější záznamy pod tabulkou se týkají tohoto výřezu; jejich PDF čísla označují původní soubor. Jeho tehdejší neověřená identita byla později doplněna externě a nyní přímo z celé knihy.
 
 | Lokátor | Obsah a využití |
 |---|---|
-| [s. 137–139 (PDF 1)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=1) | Odhady četností; srovnání odhadovaného a skutečného výskytu událostí. |
-| [s. 139–146 (PDF 3)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=3) | Kalibrace, nepřiměřená jistota, obtížnost úloh, experti, důvody proti vlastnímu závěru a rozklad úsudku. |
-| [s. 146–150 (PDF 10)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=10) | Reprezentativnost; Tom W. s. 147, základní četnosti a taxík s. 149–150. |
-| [s. 150–152 (PDF 14)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=14) | Záměna podmíněných pravděpodobností, konjunkční klam a Linda. |
-| [s. 152–153 (PDF 16)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=16) | Hráčský klam a přizpůsobování četnosti voleb pravděpodobnostem. |
-| [s. 153–156 (PDF 17)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=17) | Dostupnost, stromy možných příčin a odhad vlastního příspěvku. |
-| [s. 156–157 (PDF 20)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=20) | Subaditivita a vliv popisu kategorií. |
-| [s. 157–159 (PDF 21)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=21) | Zpětné zkreslení, práce s alternativami a chybné průměrování pravděpodobností. |
-| [s. 159–160 (PDF 23)](../sources/ostatn%C3%AD%20zdroje/Baron_-_kap6_-_probability_desc.pdf#page=23) | Závěr: interpretace chyb a možnosti vzdělávání. |
+| [s. 137–139 (PDF 153)](../sources/u%C4%8Debnice/baron.pdf#page=153) | Odhady četností; srovnání odhadovaného a skutečného výskytu událostí. |
+| [s. 139–146 (PDF 155)](../sources/u%C4%8Debnice/baron.pdf#page=155) | Kalibrace, nepřiměřená jistota, obtížnost úloh, experti, důvody proti vlastnímu závěru a rozklad úsudku. |
+| [s. 146–150 (PDF 162)](../sources/u%C4%8Debnice/baron.pdf#page=162) | Reprezentativnost; Tom W. s. 147, základní četnosti a taxík s. 149–150. |
+| [s. 150–152 (PDF 166)](../sources/u%C4%8Debnice/baron.pdf#page=166) | Záměna podmíněných pravděpodobností, konjunkční klam a Linda. |
+| [s. 152–153 (PDF 168)](../sources/u%C4%8Debnice/baron.pdf#page=168) | Hráčský klam a přizpůsobování četnosti voleb pravděpodobnostem. |
+| [s. 153–156 (PDF 169)](../sources/u%C4%8Debnice/baron.pdf#page=169) | Dostupnost, stromy možných příčin a odhad vlastního příspěvku. |
+| [s. 156–157 (PDF 172)](../sources/u%C4%8Debnice/baron.pdf#page=172) | Subaditivita a vliv popisu kategorií. |
+| [s. 157–159 (PDF 173)](../sources/u%C4%8Debnice/baron.pdf#page=173) | Zpětné zkreslení, práce s alternativami a chybné průměrování pravděpodobností. |
+| [s. 159–160 (PDF 175)](../sources/u%C4%8Debnice/baron.pdf#page=175) | Závěr: interpretace chyb a možnosti vzdělávání. |
+
+**Historie čtení a použití odstraněného výřezu (2026-10-11 až dřívější práce 2026-10-12):**
 
 **Prostudováno:** struktura celého úryvku a hlavní výklady/příklady pomocí OCR; obrazově zejména s. 145–152. **Použití:** konceptuální otázky a psychologické příklady, které propojují formální pravidla s úsudkem.
 
@@ -908,6 +1056,29 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Neověřeno:** sešit nebyl nově spuštěn a přepočten v Excelu, neověřeno jeho živé chování, české názvy funkcí v dané instalaci, všechny vzorce ani výsledné rozložení grafů v Excelu. Shoda uložených výsledků s Pythonem neprokazuje funkčnost sešitu v aktuálním Excelu. Originál se neměnil.
 
+<a id="d11"></a>
+
+### D11 — Wainer: The Most Dangerous Equation
+
+**Soubor:** [Most_Dangerous_eqn.pdf](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf), 9 stran PDF: titul reprintu PDF 1, článek s. 249–256 na PDF 2–9. Kontrola 2026-10-12; text a všechny obrazy stran prohlédnuty, graf škol na s. 253 také samostatně.
+
+**Identita:** Howard Wainer (2007), *The Most Dangerous Equation*, *American Scientist, 95*(3), 249–256, květen–červen. Autor, titul, ročník, období a stránky ověřeny v PDF; číslo vydání potvrzuje [archiv čísla](https://www.jstor.org/stable/i27858948). DOI [10.1511/2007.65.249](https://doi.org/10.1511/2007.65.249) uvádí indexovaný záznam [vydavatele](https://www.americanscientist.org/node/941); přímé načtení jeho stránky při kontrole selhalo HTTP 503. Jde o výkladový esej pro širší vědecké publikum, nikoli systematický přehled nebo jedinou metodologickou autoritu.
+
+| Lokátor | Obsah a využití |
+|---|---|
+| [s. 249–251 (PDF 2)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=2) | Motivace vztahu SE průměru = σ/√n; „trial of the pyx“, variabilita součtu oproti průměru. |
+| [s. 251–252 (PDF 4)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=4) | Extrémní míry rakoviny v malých okresech; mapa a graf variability podle počtu obyvatel (obr. 2–3). |
+| [s. 251–253 (PDF 4)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=4) | Velikost škol a nadreprezentace malých škol na obou koncích výsledků; obr. 4 na s. 253. |
+| [s. 253–254 (PDF 6)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=6) | Žebříčky bezpečnosti měst a velikost populace (obr. 5). |
+| [s. 253–255 (PDF 6)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=6) | Rozdíly variability mezi pohlavími, historická data NAEP a biologická/evoluční interpretace. |
+| [s. 255–256 (PDF 8)](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf#page=8) | Závěr: malé nemocnice a fondy, extrémy a návrat k průměru; bibliografie. |
+
+**Doporučené použití:** motivace, proč odhady z menších skupin více kolísají a proč při interpretaci extrémů posuzovat i n. Školy jsou vhodný pedagogický námět; vlastní simulace by dovolila oddělit čistou výběrovou variabilitu od skutečných rozdílů škol. Mince propojují článek s C05/X5_09, ale přímý původ této úlohy je v zadání připsán Stiglerovi.
+
+**Nálezy a omezení:** na s. 252 text uvádí čtení v pátém ročníku, zatímco osy a popisek obr. 4 na s. 253 uvádějí matematiku; nesoulad potvrzen v obraze. Před konkrétním převzetím ověřit původní data a předmět testu. Vztah σ/√n se týká variability průměru za daných předpokladů, není důkazem, že všechny empirické rozdíly okresů či škol způsobuje jen jejich velikost. Z korelace velikosti školy a výsledku nelze samotné odvodit účinek organizační změny. Genetický argument na s. 254–255 nepřebírat jako ověřené vysvětlení: aplikace odmocninového vztahu na chromozomy vyžaduje samostatný biologický model a empirické zdůvodnění.
+
+**Neověřeno:** historické údaje o mincovně, původní okresní, školní a NAEP data, navazující studie, kauzální a biologická tvrzení a jejich současná platnost. Článek neobsahuje reprodukovatelný datový soubor a výpočty grafů nebyly znovu sestaveny. Reprint výslovně omezuje další reprodukci; mapa zpřístupňuje lokátory a autorský popis, nikoli kopie obrázků nebo textu.
+
 ## Rozpory, mezery a další práce
 
 | Oblast | Co je třeba respektovat při přípravě kapitoly |
@@ -918,9 +1089,14 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 | Podmínění a nezávislost | [U11](#u11) s. 62 zaměňuje výsledek diagnostického testu za správnost klasifikace; při použití opravit podle zadání a stromu na s. 60. |
 | Data a software | Číselné kódování a missing z SPSS nejsou univerzální požadavek; −99 nesmí vstupovat do běžného průměru. R z cizích knih zůstává interní. |
 | Normální model | Rozlišit CDF a kvantil, percentil a pořadí, Q–Q a P–P, interval hodnot a interval spolehlivosti. Starší podklady obsahují konkrétní záměny. |
-| Bibliografie | Došetřit vydání obou Baronových úryvků, de Vause a Morgana; rok/verzi Navarro; rozdíly v identitě mezinárodního Arona; přesný původ úloh C2/C3. |
+| Bibliografie | Baronova identita nyní ověřena v celé knize U12; zachovat doložený rozdíl copyrightu 2008 a prvního tisku 2007. Došetřit vydání de Vause a Morgana, rok/verzi Navarra, identitu mezinárodního Arona a přesný původ úloh C2/C3/C5. |
 | Nedostupné návazné materiály | U [U11](#u11) jsou kap. 13–14 a další označené oddíly pouze na webu, nikoli v místním PDF. Odkazované externí datasety, `Datíčka.xls`, videa, QR odkazy, online aplikace, originály studií a navazující části knih nejsou automaticky pokryty inventářem. |
+| Nové inferenční podklady | P06: číselné p-hodnoty a zobecnění NHST; P07: rozdělení průměru versus t-statistiky, SE, bootstrap, interpretace intervalů a vzorce rozptylu; C05: modely, argumenty kvantilových funkcí a chybějící simulační sešity. Před použitím vyřešit konkrétní nálezy v kartách. |
 | Odborné ověření | Před použitím konkrétního příkladu nezávisle ověřit všechny vstupy, výpočty a řešení; před převzetím empirického tvrzení ověřit původní zdroj a relevantní současné poznatky. |
+
+### Aktualizace inventáře — 2026-10-12
+
+Na žádost autora doplněno pět nových souborů, vyřazeny dva odstraněné výřezy a převedeny všechny jejich aktivní místní odkazy do celé knihy. Ověřeny aktuální cesty, rozsahy a SHA-256 proti inventáři, zachována ID D08/D09 a jejich historie. Záznam neznamená schválení dalších kapitol ani úplnou odbornou revizi podkladů. Původní soubory, studentské kapitoly a bibliografie se neměnily. Omezení neúspěšného exportu DOCX a neprovedených kontrol jsou u C05; web se při této dokumentační změně nerenderoval.
 
 ### Záznam prvního průzkumu a údržba
 
@@ -943,8 +1119,8 @@ na PubMed; abstrakt výslovně uvádí rozdíly přesnosti mezi podskupinami
 a nutnost posoudit přenos do cílové populace. Použití pouze pro toto
 omezení u dvou prevalencí v kapitole 5, nikoli pro nové klinické hodnoty.
 Plný článek nebyl prostudován; nepřebíráme jeho postupy analýzy ani odhady.
-Soubor nebyl přidán do místní složky `sources/`; inventář jejích 30 souborů
-se tím nemění.
+Soubor nebyl přidán do místní složky `sources/`; do počtu místních souborů
+se nezapočítává.
 
 ### Doplnění kontroly podkladů kapitoly 5 — 2026-10-12
 
@@ -955,8 +1131,9 @@ V originálním obraze navíc prohlédnuty Howell s. 122 a 128, Sahu s. 64
 a 69, OpenIntro s. 95, všechny uvedené strany Barona a Uttsové.
 Výpočty kapitoly byly ověřeny nezávisle; u Howellova výsledku 0,513
 (s. 122) kapitola správně zaokrouhluje 95/185 na 0,514.
-Původní experimentální studie nebyly znovu ověřeny a identita Baronova
-vydání zůstává v rozsahu a s omezením popsaným v kartě D08.
+Původní experimentální studie nebyly znovu ověřeny. Identita Baronova
+vydání v této dřívější kontrole vycházela z externích údajů D08; pozdější
+inventura téhož dne ji doplňuje přímo z monografie [U12](#u12).
 U C03 znovu ověřeno textové zadání X3_31 (100 otázek ano–ne, hranice 65);
 kapitola na rozdíl od původního zadání rozlišuje přesný binomický model
 a normální aproximaci. Nová typografická revize původního DOCX neproběhla.
