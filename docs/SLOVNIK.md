@@ -3,6 +3,8 @@
 **Poslední kontrola: 2026-10-12.** Registr pokrývá 211 hesel současného
 studentského slovníčku pro kapitoly 1–5 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
+Navíc obsahuje 29 hesel schválených pro dosud nenapsanou
+[kapitolu 6](#kapitola-06); jejich studentská hesla vzniknou s kapitolou.
 
 ## Účel a platnost
 
@@ -150,7 +152,7 @@ obsahovat samostatné výslovné schválení každé doprovodné formulace.
 | <a id="pojem-konstanta"></a>**Konstanta** | constant | konstantní údaj | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-konstanta); [výklad](../quarto/kapitola_01.qmd#sec-promenne) |
 | <a id="pojem-prilezitostny-vyber"></a>**Příležitostný výběr** | convenience sampling | dostupný výběr | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-prilezitostny-vyber); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
 | <a id="pojem-kvaziintervalove"></a>**Kvaziintervalové měření** | quasi-interval measurement | přibližně intervalové měření | Podmíněné zacházení pro určitý účel, nikoli pátá základní úroveň měření. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-kvaziintervalove); [výklad](../quarto/kapitola_01.qmd#sec-kvaziintervalove) |
-| <a id="pojem-vyberova-variabilita"></a>**Výběrová variabilita** | sampling variability | kolísání mezi výběry | Odlišit od výběrového zkreslení. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberova-variabilita); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-vyberova-variabilita"></a>**Výběrová variabilita** | sampling variability | kolísání mezi výběry | Proměnlivost výsledků mezi výběry. Odlišit od výběrového zkreslení, od výběrové chyby jednoho odhadu a od směrodatné chyby ([R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6)). | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberova-variabilita); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-vyberove-zkresleni"></a>**Výběrové zkreslení** | sampling bias | zkreslení výběru | Odlišit od výběrové variability a zkreslení v důsledku neúčasti. | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberove-zkresleni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-neucast"></a>**Zkreslení v důsledku neúčasti** | nonresponse bias | zkreslení v důsledku neodpovídání | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-neucast); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-testovy-skor"></a>**Testový skór** | test score | výsledek testu | — | K — [H02](#doklad-h02) | [Heslo](../quarto/slovnicek.qmd#pojem-testovy-skor); [výklad](../quarto/kapitola_01.qmd#sec-kvaziintervalove) |
@@ -346,9 +348,53 @@ Značení určuje [R22](ROZHODNUTI.md#r22-znaceni-pravdepodobnosti).
 | <a id="pojem-uspech"></a>**Úspěch a neúspěch** | success; failure | — | Technické označení sledovaného výsledku, nikoli nutně žádoucího. | S — [R23](ROZHODNUTI.md#r23-terminologie-kapitoly-5) | [Heslo](../quarto/slovnicek.qmd#pojem-uspech); [výklad](../quarto/kapitola_05.qmd#sec-binomicke-predpoklady) |
 | <a id="pojem-normalni-aproximace"></a>**Normální aproximace binomického rozdělení** | normal approximation to the binomial distribution | — | Přibližný výpočet; uvádět podmínku použití a rozdíl od přesného výsledku. | S — [R23](ROZHODNUTI.md#r23-terminologie-kapitoly-5) | [Heslo](../quarto/slovnicek.qmd#pojem-normalni-aproximace); [výklad](../quarto/kapitola_05.qmd#sec-aproximace-postup) |
 
+<a id="kapitola-06"></a>
+
+## Výběrové rozdělení a testování hypotéz
+
+Hesla schválená při projednání kapitoly 6 ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)–[R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6)).
+Značení určuje [R29](ROZHODNUTI.md#r29-znaceni-kapitoly-6). **Kapitola 6 zatím
+není napsána:** studentská hesla a odkazy na výklad vzniknou s ní pod zde
+uvedenými stabilními ID. Do té doby se tato hesla ve studentském textu nepoužívají.
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-vyberove-rozdeleni"></a>**Výběrové rozdělení** | sampling distribution | — | Při zavedení úplněji „výběrové rozdělení statistiky“ a konkrétně „výběrové rozdělení průměru“ (podílu, rozdílu průměrů). Není to rozdělení hodnot v jednom výběru ani rozdělení proměnné v populaci. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-vyberova-chyba"></a>**Výběrová chyba** | sampling error | — | Zde rozdíl mezi výběrovým odhadem a populačním parametrem v jednom výběru. Upozornit, že literatura termín užívá v různé šíři. Odlišit od výběrové variability, směrodatné chyby a systematického zkreslení. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-smerodatna-chyba"></a>**Směrodatná chyba** | standard error | standardní chyba; střední chyba | Směrodatná odchylka výběrového rozdělení statistiky. Není to směrodatná odchylka dat, průměrná chyba ani chyba jednoho odhadu. Zkratka SE jen v ukázkách reportování ([R29](ROZHODNUTI.md#r29-znaceni-kapitoly-6)). | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-odhad-smerodatne-chyby"></a>**Odhad směrodatné chyby** | estimated standard error | — | Pro průměr s/√n. Sám mezi výběry kolísá. Nahrazení σ hodnotou s mění test; t-rozdělení je mimo kapitolu 6. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-zakon-velkych-cisel"></a>**Zákon velkých čísel** | law of large numbers | — | Přibližování výběrového průměru populační hodnotě s rostoucí velikostí výběru. Odlišit od centrální limitní věty. Neslibovat „vyrovnání“ krátké řady. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-centralni-limitni-veta"></a>**Centrální limitní věta** | central limit theorem | centrální limitní teorém | Týká se tvaru vhodně standardizovaného rozdělení průměru, ne rozdělení jednotlivých hodnot. Uvádět podmínky; bez univerzální hranice n = 30. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-testovani-hypotez"></a>**Testování hypotéz** | hypothesis testing; null hypothesis significance testing | testování nulové hypotézy | — | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-vyzkumna-hypoteza"></a>**Výzkumná hypotéza** | research hypothesis | — | Věcné tvrzení o zkoumané otázce. Test se týká statistické hypotézy; podpora výzkumné hypotézy neplyne automaticky ze statistické významnosti ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)). | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-statisticka-hypoteza"></a>**Statistická hypotéza** | statistical hypothesis | — | Tvrzení o parametru nebo modelu, se kterým se data porovnávají. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-nulova-hypoteza"></a>**Nulová hypotéza** | null hypothesis | — | Značka H₀. Model pro porovnání; nemusí být bodová a nemusí být vždy nepravdivá. U jednostranného testu odlišit celou hypotézu od hraniční hodnoty použité ve výpočtu. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-alternativni-hypoteza"></a>**Alternativní hypotéza** | alternative hypothesis | alternativa | Značka H₁. Není totožná s výzkumnou hypotézou. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-testova-statistika"></a>**Testová statistika** | test statistic | testovací statistika; testové kritérium | — | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-p-hodnota"></a>**p-hodnota** | p-value | dosažená hladina významnosti | Pravděpodobnost pozorovaného nebo extrémnějšího výsledku za platnosti nulové hypotézy; není to pravděpodobnost hypotézy. Výsledek vypočtený z dat, ne pravidlo. Ve výkladu se vypisuje slovy ([R29](ROZHODNUTI.md#r29-znaceni-kapitoly-6)). | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-hladina-vyznamnosti"></a>**Hladina významnosti** | significance level | hladina statistické významnosti | Značka α. Pravidlo stanovené předem; odlišit od p-hodnoty. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-statisticka-vyznamnost"></a>**Statisticky významný výsledek** | statistically significant result | signifikantní výsledek | Nikdy jen „významný“. Odlišit od věcné a praktické významnosti. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-kriticky-obor"></a>**Kritický obor** | critical region; rejection region | oblast zamítnutí | Hodnoty testové statistiky, při nichž podle zvoleného pravidla zamítáme nulovou hypotézu. „Oblast zamítnutí“ uvést jako doslovnější, méně zavedený překlad, který vystihuje funkci. Odlišit od kritické hodnoty. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-kriticka-hodnota"></a>**Kritická hodnota** | critical value | — | Hranice kritického oboru, nikoli obor sám. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-chyba-prvniho-druhu"></a>**Chyba I. druhu** | Type I error | chyba prvního druhu; chyba I. typu | Zamítnutí pravdivé nulové hypotézy. Její pravděpodobnost α je podmíněná platností nulové hypotézy. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-chyba-druheho-druhu"></a>**Chyba II. druhu** | Type II error | chyba druhého druhu; chyba II. typu | Nezamítnutí nepravdivé nulové hypotézy. Její pravděpodobnost β závisí na skutečné velikosti rozdílu. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-statisticka-sila"></a>**Statistická síla** | statistical power | síla testu | Pravděpodobnost zamítnutí nulové hypotézy při konkrétní uvažované alternativě a daném uspořádání testu. Není to neměnná vlastnost pojmenované metody. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-jednostranny-test"></a>**Jednostranný test** | one-tailed test; directional test | — | Směr se volí před sběrem dat. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-oboustranny-test"></a>**Oboustranný test** | two-tailed test; nondirectional test | dvoustranný test | — | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-zamitnuti-hypotezy"></a>**Zamítnutí a nezamítnutí nulové hypotézy** | reject; fail to reject the null hypothesis | — | Formulace „zamítáme nulovou hypotézu“ a „nulovou hypotézu nezamítáme“. Nezamítnutí není potvrzení ani prokázání; nepsat „přijímáme nulovou hypotézu“. Po rozhodnutí testu následuje věcná interpretace ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)). | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-velikost-ucinku"></a>**Velikost účinku** | effect size | velikost efektu | Slovo „účinek“ neopravňuje ke kauzálnímu závěru; velikost účinku není jeho významnost. Povinně v původních jednotkách. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-vecna-vyznamnost"></a>**Věcná významnost** | substantive significance | — | Důležitost výsledku pro zkoumanou otázku včetně teoretického významu. Není synonymem praktické významnosti; upozornit, že je literatura někdy zaměňuje. Odlišit od statistické významnosti. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-prakticka-vyznamnost"></a>**Praktická významnost** | practical significance | — | Důležitost důsledků výsledku pro praxi. Odlišit od věcné i statistické významnosti. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-standardizovany-rozdil"></a>**Standardizovaný rozdíl průměrů** | standardized mean difference | Cohenovo d | Jen v nepovinném bloku. Uvést, která směrodatná odchylka je použita; obecná pásma malý–střední–velký nezařazovat. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-z-test"></a>**z-test** | z-test | — | Test průměru při známé populační směrodatné odchylce. Samotný z-skór není test. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+| <a id="pojem-binomicky-test"></a>**Binomický test** | binomial test | — | Rozdělení testové statistiky je diskrétní; skutečná chybovost nemusí dosáhnout zvolené hladiny. | S — [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) | Vznikne s kapitolou 6 |
+
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
-Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 5 byla schválena
+Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 6 byla schválena
+2026-10-12 a je v [platné tabulce](#kapitola-06); názvy pro témata ponechaná
+mimo kapitolu 6 (intervaly spolehlivosti, t-rozdělení a další) zůstávají
+k dohodě. Terminologie kapitoly 5 byla schválena
 a je v [platné tabulce](#kapitola-05). Při její přípravě nebyly schváleny
 a ve studentském textu se jako termíny nezavádějí: věrohodnost (*likelihood*),
 poměr šancí (*odds ratio*) a název úpravy hranice při normální aproximaci

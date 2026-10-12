@@ -2209,3 +2209,107 @@ nutný nový render knihy. Studentský obsah, schválená osnova, terminologie,
 bibliografie a originály v sources/ se neměnily; nové zdroje nejsou
 schválením rozsahu další kapitoly. Pomocné extrakce a náhledy jsou pouze
 v ignorovaném tmp/.
+
+## Příprava kapitoly 6: čtení podkladů (2026-10-12)
+
+Na žádost autora o projednání kapitoly o výběrovém rozdělení a principu
+testování hypotéz byl obsah `sources/` porovnán s inventářem: 33 souborů,
+žádný nový ani chybějící. U dvanácti relevantních souborů (U01–U06, U08,
+U11, P06, P07, C05, D11) odpovídá prefix SHA-256 mapě. Rozsah čtení a nálezy
+jsou v kartách U01, U03, U04, U05, U08, U11, P06, P07 a C05
+v [mapě zdrojů](../docs/ZDROJE.md).
+
+- **Čteno v textové extrakci:** Howell, kap. 4 (s. 83–106), s. 128–132
+  s §5.9 a s. 177–183 s §7.1–7.2; všech 25 snímků P06 s poznámkami; P07
+  sn. 1–37 s poznámkami; zadání C5_01–11, X5_01–12 a X5_100 z C05; Dostál
+  s. 92–101; Cumming s. 83–94; Navarro §11.1–11.2 a začátek §11.3; Russo
+  s. 107–111; OpenIntro s. 170–172.
+- **V obraze:** jen Howell s. 95–96 (obr. 4.2 a 4.3).
+- **Nezávisle přepočteno v Pythonu** (standardní knihovna): směrodatná chyba
+  rozdílu, kritické hodnoty a β u Howella; binomické chvosty u Howella
+  a Russa; příklad devíti výběrů (střední hodnota 35, rozptyl 75); síla
+  pro rozdíly 3, 5 a 8 s jednostranně i oboustranně; čísla navržených
+  řešených příkladů a cvičení.
+- **Nečteno:** Gravetter, Aron, Privitera, Judd a Sahu v relevantních
+  kapitolách; Cumming kap. 6; Navarro kap. 10 a §11.4–11.9; Howell kap. 8.
+  Wainer a Utts nebyli čteni nově. Původní studie Rubacka a Juienga (1997)
+  není v `sources/`.
+- **Nespuštěno:** R ani Excel. Obrázky prezentací nebyly nově prohlíženy.
+
+<a id="dohoda-kapitola-06"></a>
+
+## Kapitola 6: dohoda o obsahu (2026-10-12)
+
+Autor navrhl, aby se kapitola 6 věnovala výběrovému rozdělení a principu
+testování hypotéz, a požádal o podrobný plán obsahu včetně rozhodnutí
+o zařazení a vynechání.
+
+**Průběh.** Autor nejprve zodpověděl sedm otázek: jedna kapitola ve dvou
+blocích; parkovací studie jako páteř výkladu; studenti počítají binomický
+test i z-test; termín směrodatná chyba; intervaly spolehlivosti odložit;
+všechna čtyři nabídnutá nepovinná rozšíření; po schválení jen zapsat dohodu
+a výklad psát zvlášť. Předložený návrh potom čtyřikrát vrátil:
+
+1. **Pojetí výkladu.** Původních 23 položek spojit do 10–12 větších oddílů,
+   z nichž každý rozvíjí jednu otázku od příkladu přes vysvětlení
+   k interpretaci. Začít problémem kolísání výsledků, pokračovat binomickým
+   příkladem z kapitoly 5 a přesným příkladem devíti výběrů před simulací.
+   Oddělovat studii, výukový model a simulovaná data. Povinně krátce odhad
+   s/√n a zákon velkých čísel. Hypotézy a směr před první p-hodnotou. Síla
+   pro konkrétní alternativy. Standardizovaný rozdíl do nepovinného bloku.
+   Opravit tři příliš obecná tvrzení návrhu: že přesná nulová hypotéza
+   sotva platí, že z-skór z kapitoly 4 je test s n = 1, a výpočet
+   chybovosti více testů bez podmínek.
+2. **Terminologie.** Výběrové rozdělení statistiky při zavedení; rozlišení
+   výběrové variability, výběrové chyby a směrodatné chyby; statistická
+   síla; kritický obor s alternativou oblast zamítnutí; velikost účinku;
+   formulace zamítáme a nezamítáme.
+3. **Dva kroky závěru.** Rozhodnutí testu oddělit od věcné interpretace
+   vzhledem k výzkumné hypotéze.
+4. **Významnosti.** Věcnou a praktickou významnost rozlišovat jako dva
+   pojmy; návrh původně vedl „věcná“ jen jako alternativu „praktické“.
+
+Po zapracování autor návrh schválil.
+
+**Schváleno** (plné znění a doklady v
+[R28](../docs/ROZHODNUTI.md#r28-rozsah-kapitoly-6),
+[R29](../docs/ROZHODNUTI.md#r29-znaceni-kapitoly-6) a
+[R30](../docs/ROZHODNUTI.md#r30-terminologie-kapitoly-6)):
+
+- dvanáct oddílů ve dvou blocích, tři vrstvy průběžného příkladu, pět
+  nepovinných rozšíření a návrh čtrnácti cvičení podle
+  [plánu v osnově](../docs/OSNOVA.md#plan-dalsi-kapitoly);
+- zásady výkladu včetně dvou kroků závěru u každého řešeného příkladu;
+- značení H₀, H₁, μ₀, směrodatná chyba jako σ s indexem m a její odhad
+  jako s s indexem m, p-hodnota vypisovaná slovy;
+- 29 hesel [registru](../docs/SLOVNIK.md#kapitola-06).
+
+**Rozpory podkladů, jejichž řešení je součástí dohody:** σ/√n a centrální
+limitní věta se zařazují už do kapitoly 6, kdežto Howell je má až
+v kapitole 7. Hlavní test parkovacího příkladu je oboustranný se stejnou
+hranicí ve všech panelech síly; přednáška používá jednostrannou hranici.
+Pravděpodobnosti se uvádějí jako výsledky výukového modelu, ne jako počty
+extrémních případů z 10 000 simulací (Howell, s. 88, a poznámky P06).
+Nepřebírají se nesouhlasné kritické hodnoty a β z Howellových s. 94–96,
+chyby P06 uvedené v její kartě ani formulace „přijímáme alternativní
+hypotézu“.
+
+**Změněné soubory:** `docs/ZDROJE.md`, `docs/ROZHODNUTI.md`,
+`docs/SLOVNIK.md`, `docs/OSNOVA.md` a tento záznam. V osnově a mapě zdrojů
+bylo pracovní označení „standardní chyba“ nahrazeno schváleným termínem;
+R21 zůstává jako historický záznam beze změny. Studentské kapitoly,
+slovníček, přehled značení, přehled Excelu, sešity, bibliografie
+a `sources/` se neměnily. Kapitola 6 zatím neexistuje.
+
+**Stav větve:** `codex/chapter-06` vytvořena z `origin/main` po sloučení
+PR #64; pracovní strom byl čistý.
+
+**Kontroly:** `git diff --check` bez nálezu; skriptem ověřeny místní odkazy
+a kotvy pěti upravených dokumentů a jedinečnost ID; zkontrolován rozdíl
+proti `main`. Jde o dokumentační změnu, render knihy nebyl potřeba.
+
+**Neověřeno v okamžiku dohody:** uspořádání a bibliografický záznam studie
+Rubacka a Juienga (1997); Russova tabulka 5.2 v obraze; podklady vedené
+jen jako mapa obsahu; přesné strany tvrzení u Navarra. Čísla v plánu jsou
+výsledky normálního a binomického modelu přepočtené v Pythonu; R ani Excel
+nebyly spuštěny a simulace zatím neexistují.

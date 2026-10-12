@@ -2,7 +2,8 @@
 
 **Poslední kontrola mapy: 2026-10-12** (karty kapitol 1 a 5; karty 2–4 naposledy
 2026-10-11). Dokument popisuje aktuální zdrojové texty pěti výkladových
-kapitol a odděleně eviduje stav dalšího pokračování.
+kapitol a odděleně eviduje schválený plán kapitoly 6, jejíž text zatím
+neexistuje.
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
 kapitolou ani potvrzením dokončení, odborné bezchybnosti nebo nasazení webu.
 
@@ -63,7 +64,7 @@ stabilní identifikátory Quarta.
 | [3. Ukazatele polohy a variability](#mapa-kapitola-03) | Číselná shrnutí, jejich volba, výpočet, omezení a reportování. | 12 základních a 2 nepovinné úlohy. |
 | [4. Normální rozdělení a standardní skóry](#mapa-kapitola-04) | Relativní poloha, modelové podíly a kvantily, standardní škály a posouzení modelu. | 10 úloh včetně tvorby Q–Q grafu. |
 | [5. Pravděpodobnost](#mapa-kapitola-05) | Pravidla pro jevy, podmínění a Bayesova věta; rozdělení pravděpodobnosti, binomický model a jeho normální aproximace. | 12 úloh, z toho dvě v Excelu. |
-| [Plán pokračování](#plan-dalsi-kapitoly) | Po kapitole 5 není nic schváleno. | Není vytvořenou kapitolou ani schválenou sadou úloh. |
+| [Plán kapitoly 6](#plan-dalsi-kapitoly) | Schválený rozsah a pojetí kapitoly „Výběrové rozdělení a testování hypotéz“; text zatím neexistuje. | Navrženo 12 základních a 2 nepovinné úlohy; zadání nejsou napsána. |
 
 <a id="tematicky-rozcestnik"></a>
 
@@ -78,7 +79,7 @@ jsou v kartách níže; jejich řešení zůstávají ve studentském textu.
 | Populace, výběr a zobecnění | [1: populace a výběr](../quarto/kapitola_01.qmd#sec-populace-vyber); [4: referenční skupina](../quarto/kapitola_04.qmd#sec-referencni-skupina). | 1/2–4, 4/1 a 10, 5/3; kapitola 5 odlišuje nezávislost v tabulce výběru od nezávislosti v populaci. Formální inferenční postupy zatím nejsou vyloženy. |
 | Souvislost, příčina, role proměnných a validita | [1: souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina); [nepovinné pedagogické příklady](../quarto/kapitola_01.qmd#souvislost-pedagogicka). | 1/3–4; společná příčina a výběr podle společného následku jsou názorně porovnány v nepovinném rozšíření, bez samostatného cvičení a bez formální kauzální analýzy. |
 | Měření, konstrukt, škály a význam transformací | [1: měření](../quarto/kapitola_01.qmd#sec-mereni) a [úrovně](../quarto/kapitola_01.qmd#sec-urovne); [3: volba statistik](../quarto/kapitola_03.qmd#sec-komunikace-statistik); [4: standardní skóry](../quarto/kapitola_04.qmd#sec-standardni-skory). | 1/5–6, 3/4, 4/7; číselný převod nezmění měřený konstrukt. |
-| Chyba, zkreslení a výběrová variabilita | [1: nejistota](../quarto/kapitola_01.qmd#sec-nejistota); [3: korekce rozptylu](../quarto/kapitola_03.qmd#sec-korekce-rozptylu); [4: Q–Q](../quarto/kapitola_04.qmd#sec-qq-graf). | 1/7, 3/6, 4/4 a 10, 5/2, 8 a 11; kapitola 5 ukazuje kolísání relativní četnosti a směrodatnou odchylku podílu. Výběrová rozdělení a standardní chyba nejsou systematicky vysvětleny. |
+| Chyba, zkreslení a výběrová variabilita | [1: nejistota](../quarto/kapitola_01.qmd#sec-nejistota); [3: korekce rozptylu](../quarto/kapitola_03.qmd#sec-korekce-rozptylu); [4: Q–Q](../quarto/kapitola_04.qmd#sec-qq-graf). | 1/7, 3/6, 4/4 a 10, 5/2, 8 a 11; kapitola 5 ukazuje kolísání relativní četnosti a směrodatnou odchylku podílu. Výběrová rozdělení a směrodatná chyba nejsou systematicky vysvětleny; jsou náplní schválené kapitoly 6. |
 | Datová matice, ID, chybění a platné údaje | [1: matice](../quarto/kapitola_01.qmd#sec-datova-matice); [2: jmenovatel](../quarto/kapitola_02.qmd#sec-jmenovatel); [3: Excel](../quarto/kapitola_03.qmd#sec-excel-poloha). | 1/8, 2/3 a 10, 3/12; bez výkladu imputace. |
 | Četnosti, podíly a procenta | [2: četnosti](../quarto/kapitola_02.qmd#sec-od-zaznamu-k-cetnostem) a [podíly](../quarto/kapitola_02.qmd#sec-relativni-cetnost); [4: modelové plochy](../quarto/kapitola_04.qmd#sec-plochy-normalniho). | 2/1–4 a 9–10, 4/3–6; pozorované a modelové podíly mají odlišnou oporu. |
 | Indexy, sumace a matematické mezikroky | [2: indexy](../quarto/kapitola_02.qmd#sec-relativni-cetnost) a [sumace](../quarto/kapitola_02.qmd#sec-sumace); [3: absolutní hodnota](../quarto/kapitola_03.qmd#sec-prumerna-absolutni), [mocniny](../quarto/kapitola_03.qmd#sec-rozptyl), [odmocnina](../quarto/kapitola_03.qmd#sec-smerodatna-odchylka). | 2/2, 3/5; logaritmus a vyšší momenty pouze nepovinně. |
@@ -198,7 +199,7 @@ jsou na konci kapitoly; kalkulačka není potřeba.
 Nově se vysvětlují metodologické a datové pojmy uvedené v tabulce; soustavné
 statistické výpočetní značení se zde ještě nezavádí. **Inference je vysvětlena
 jako druh usuzování, nikoli jako výpočetní postup.** Výběrová variabilita má
-slovní výklad, ne rozdělení odhadů či standardní chybu. Průměr a IQ jsou
+slovní výklad, ne rozdělení odhadů či směrodatnou chybu. Průměr a IQ jsou
 v příkladech zmíněny před jejich pozdějším systematickým výkladem. Reliabilita
 ani modely měření zde netvoří samostatný výpočetní celek.
 
@@ -556,9 +557,10 @@ pro odlišení:** interval spolehlivosti parametru, obecná nezávislost pozorov
 formální testy normality. **Vyloženo až v kapitole 5:** jevy a jejich operace,
 podmíněná pravděpodobnost, nezávislost a Bayesova věta, náhodná proměnná
 a rozdělení pravděpodobnosti, binomický model a jeho normální aproximace.
-**Odloženo:** výběrová rozdělení, centrální limitní věta, standardní chyba,
+**Odloženo:** výběrová rozdělení, centrální limitní věta, směrodatná chyba,
 intervaly spolehlivosti a testování. Tato zmínka sama neschvaluje žádné
-z těchto témat pro další kapitolu.
+z těchto témat pro další kapitolu; rozsah kapitoly 6 určilo až
+[R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6).
 
 Hlavní odbornou a didaktickou oporou původní přípravy je Howell, kapitola 3;
 podrobnosti pasáží a srovnání podkladů patří do [karty U01](ZDROJE.md#u01)
@@ -697,14 +699,15 @@ bez opakování. Další kapitola je nesmí předpokládat.
 
 **Vysvětleno omezeně:** střední hodnota a směrodatná odchylka rozdělení
 slovně a vzorci pro binomický model; směrodatná odchylka podílu jako důsledek
-změny jednotky, bez názvu standardní chyba; otázka „jak pravděpodobný je
+změny jednotky, bez názvu směrodatná chyba; otázka „jak pravděpodobný je
 výsledek při tipování“ bez rozhodovacího pravidla. **Pouze zmíněno:**
 testování hypotéz, inferenční statistika jako oblast, bayesovské pokračování
 (aposteriorní pravděpodobnost jako nová apriorní). **Nevyloženo:** věrohodnost,
 poměr šancí, název úpravy hranice při aproximaci, binomický a znaménkový
 test, multinomické a Poissonovo rozdělení, výběrová rozdělení, centrální
-limitní věta, standardní chyba, intervaly spolehlivosti. Žádná z těchto
-zmínek neschvaluje téma pro další kapitolu.
+limitní věta, směrodatná chyba, intervaly spolehlivosti. Žádná z těchto
+zmínek neschvaluje téma pro další kapitolu; rozsah kapitoly 6 určilo až
+[R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6).
 
 Hlavní oporou pořadí je Howell, kapitola 5, a autorova přednáška
 `probability.pptx`; rozsah čtení a zjištěné rozpory jsou v kartách
@@ -712,14 +715,123 @@ Hlavní oporou pořadí je Howell, kapitola 5, a autorova přednáška
 
 <a id="plan-dalsi-kapitoly"></a>
 
-## Plán pokračování po kapitole 5 — odděleně od existujícího obsahu
+## Plán kapitoly 6 — odděleně od existujícího obsahu
 
-**Stav k 2026-10-11: žádný schválený plán.** Směr, rozsah ani pořadí kapitol
-následujících po pravděpodobnosti nebyly dohodnuty. Jako možná návaznost
-se v dosavadních kapitolách a v R21 pouze zmiňují výběrová rozdělení,
-standardní chyba, centrální limitní věta, intervaly spolehlivosti
-a testování hypotéz; žádná z těchto zmínek není schválením tématu ani
-jeho umístění. Rozcestník [mapy zdrojů](ZDROJE.md) nabízí podklady,
-nikoli osnovu. Před předložením návrhu další kapitoly platí postup
-z AGENTS.md: kontrola `sources/` proti inventáři, čtení relevantních pasáží
-v originálech a dohoda o rozsahu, cílech, termínech a značkách.
+<a id="plan-kapitola-06"></a>
+
+**Stav k 2026-10-12: schválený rozsah a pojetí, text neexistuje.** Kapitola
+„Výběrové rozdělení a testování hypotéz“ má dohodnutý obsah, pořadí, zásady
+výkladu, značení a terminologii podle
+[R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6),
+[R29](ROZHODNUTI.md#r29-znaceni-kapitoly-6) a
+[R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6). Níže je plán, nikoli mapa
+skutečného textu: po napsání kapitoly jej nahradí karta sestavená z výkladu,
+zadání a řešení. Čísla v plánu jsou výsledky výukového modelu přepočtené
+při přípravě; při tvorbě se ověří znovu.
+
+**Vstup:** populace, výběr, výběrová variabilita, systematické zkreslení,
+souvislost a příčina (kap. 1); statistika a parametr, m a s, simulace
+opakovaných výběrů (kap. 3); normální model, z-skór, plochy, kvantily
+a Q–Q graf (kap. 4); podmíněná pravděpodobnost a obrácení podmínky, náhodná
+proměnná, rozdělení pravděpodobnosti, střední hodnota, binomické rozdělení,
+normální aproximace a směrodatná odchylka podílu (kap. 5). Nepovinné části
+kapitol 3 a 5 se nepředpokládají.
+
+**Cíle:** vysvětlit kolísání výsledků výběrů a rozlišit populaci, jeden výběr
+a výběrové rozdělení statistiky; sestavit výběrové rozdělení průměru z malého
+přesného příkladu; vysvětlit směrodatnou chybu, odlišit ji od směrodatné
+odchylky, výběrové chyby a systematického zkreslení a odhadnout ji z dat;
+odlišit zákon velkých čísel od centrální limitní věty; spočítat
+pravděpodobnost výběrového průměru ve známém modelu; stanovit hypotézy a směr
+testu před výpočtem; vysvětlit p-hodnotu a odlišit ji od hladiny významnosti
+a kritického oboru; rozlišit chyby I. a II. druhu a určit, na čem závisí
+statistická síla; provést binomický test a z-test; formulovat rozhodnutí
+testu i věcnou interpretaci, vyjádřit velikost účinku v původních jednotkách
+a odlišit statistickou, věcnou a praktickou významnost.
+
+### Tři vrstvy průběžného příkladu
+
+| Vrstva | Co obsahuje | Původ |
+|---|---|---|
+| Skutečná studie | Dvě skupiny po 100 řidičích; průměrná doba opuštění parkovacího místa 32,15 s bez čekajícího a 39,03 s s čekajícím; rozdíl 6,88 s; směrodatná odchylka 14,6 s v každé skupině. | Howell, s. 86, podle Rubacka a Juienga (1997). Původní článek zatím ověřen nebyl. |
+| Výukový model | Populace dob s průměrem 35 s a směrodatnou odchylkou 15 s, tvar zešikmený doprava; nezávislé náhodné výběry; za platnosti nulové hypotézy dvě populace se stejným rozdělením. | Průměr a odchylka jsou Howellovy zvolené hodnoty (s. 87). Tvar a shoda rozdělení jsou vlastní předpoklady, které text označí. |
+| Simulovaná data | 10 000 opakování výběru z modelu. | Vlastní skript v R se seedem; statická data v sešitu. |
+
+### Plánované oddíly
+
+Každý oddíl rozvíjí jednu otázku od konkrétního příkladu přes vysvětlení
+k interpretaci. Sloupec cvičení odkazuje na plánovaná čísla úloh níže.
+
+| # | Oddíl a jeho otázka | Příklad | Vysvětlení a interpretace | Cvičení |
+|---|---|---|---|---|
+| 1 | **Proč jeden výsledek nestačí.** Jak posoudit, zda pozorovaný výsledek odpovídá určitému modelu, když výsledky výběrů kolísají? | Rozdíl 6,88 s; jiná dvojice výběrů by dala jiný rozdíl. | Výběrová variabilita jako zdroj kolísání; plán kapitoly (rozdělení statistiky → míra kolísání → pravidlo posouzení); tři vrstvy příkladu. Co lze říci už teď a k čemu jsou potřeba další nástroje. | 1 |
+| 2 | **Rozdělení, které už známe: počet a podíl úspěchů.** Jak moc kolísá počet a podíl správných odpovědí mezi výběry? | Test z kapitoly 5: 20 otázek, pravděpodobnost úspěchu 0,25. | Binomické rozdělení je rozdělením statistiky; zavádí se výběrové rozdělení statistiky a směrodatná chyba podílu. Sloupec je možná hodnota statistiky, ne člověk; nejde o rozdělení hodnot v jednom výběru. | 3 |
+| 3 | **Výběrové rozdělení průměru: od devíti výběrů k simulaci.** Jaké průměry mohou vyjít a jak často? | Doby 20, 35 a 50 s; všech devět uspořádaných dvojic s vracením; průměry 20; 27,5; 35; 42,5; 50 s s pravděpodobnostmi 1/9, 2/9, 3/9, 2/9, 1/9. | Řetězec výběr → statistika → rozdělení statistiky; populace, jeden výběr, výběrové rozdělení. Simulace (n = 5, 30, 100) nahrazuje vypsání všech výběrů; velikost výběru není počet opakování. Střed 35 s; průměry kolísají méně než jednotlivé hodnoty (8,66 s proti 12,25 s). | 1, 2 |
+| 4 | **Směrodatná chyba: jak moc průměry kolísají.** Jak daleko od populačního průměru výběrové průměry obvykle leží? | Jednotliví řidiči: 15 s; průměry sta řidičů: 1,5 s. | σ/√n ověřené přesným příkladem i simulací; zákon velkých čísel; odhad s/√n, který sám kolísá. Rozlišení směrodatné odchylky, výběrové variability, směrodatné chyby, výběrové chyby a systematického zkreslení. Malé skupiny mají extrémnější průměry; samo to není doklad příčiny. | 4, 6 |
+| 5 | **Tvar výběrového rozdělení: centrální limitní věta.** Jaký tvar má rozdělení průměru, když populace není normální? | Zešikmený model dob; n = 2, 5, 30, 100. | Odděleně pokles rozptýlenosti a změna tvaru standardizovaného průměru; podmínky; bez univerzální hranice n = 30; aproximace z kapitoly 5 jako zvláštní případ. Větší výběr nemění rozdělení jednotlivých hodnot; jiné statistiky mají vlastní rozdělení. | 6 |
+| 6 | **Jak pravděpodobný je výběrový průměr: řešený výpočet.** S jakou pravděpodobností vyjde průměr v zadaném rozmezí, když model známe? | Průměr sta řidičů nad 38 s: 0,023. Rozdíl průměrů dvou výběrů větší než 3 s: 0,157. | Kroky model → směrodatná chyba → z → plocha; NORM.DIST se směrodatnou chybou; rozdíl dvou průměrů jako statistika s chybou 2,12 s. Rozmezí pro průměry není rozmezí pro jednotlivce ani interval spolehlivosti; rovnost průměrů není shoda rozdělení. | 5 |
+| 7 | **Od výzkumné otázky k hypotézám a směru testu.** S čím budeme data porovnávat a které výsledky budou mluvit proti? | Nulová hypotéza o nulovém rozdílu populačních průměrů; alternativa oboustranná. | Výzkumná a statistická hypotéza; směr se volí před daty; co znamená „extrémnější“; u jednostranné hypotézy celá nulová hypotéza versus hraniční hodnota. Změna směru po datech mění chybovost. | 7 |
+| 8 | **P-hodnota, hladina významnosti a kritický obor.** Jak neobvyklý je výsledek v modelu nulové hypotézy? | z = 3,24; oboustranná p-hodnota přibližně 0,001; kritický obor za ±4,16 s. | Výsledek z dat versus pravidlo stanovené předem; kritický obor a kritická hodnota; konečná přesnost simulace. Rozhodnutí testu a věcná interpretace; p-hodnota není pravděpodobnost hypotézy. | 9, 11 |
+| 9 | **Dvě chyby rozhodnutí a statistická síla.** Jak často pravidlo rozhodne chybně a na čem to závisí? | Stejná hranice ±4,16 s při skutečném rozdílu 0, 3, 5 a 8 s: 0,05; 0,29; 0,65; 0,97. | Chyba I. a II. druhu; β závisí na skutečné velikosti rozdílu; síla pro konkrétní alternativu a dané uspořádání testu. Ukázka nezamítnutí: nulová hypotéza není potvrzena, výzkumná není vyvrácena. | 10 |
+| 10 | **Co výsledek znamená: velikost účinku a závěr.** Jak velký je rozdíl a co z testu vyvodit? | 6,88 s; rozdíl 1 bodu při n = 25 a n = 2 500. | Statistická, věcná a praktická významnost; velikost účinku v původních jednotkách. Směr, velikost, nejistota a uspořádání studie; významný rozdíl v opačném směru směrovou hypotézu nepodporuje. | 11, 12 |
+| 11 | **Dva testy krok za krokem.** Jak tytéž kroky použít tam, kde rozdělení statistiky spočítáme sami? | Binomický test: 10 z 20, p-hodnota 0,014, kritický obor od 9 s pravděpodobností 0,041. z-test: n = 25, m = 46 proti N(50, 10), z = −2, p-hodnota 0,023. | Společné kroky a co se mění; BINOM.DIST, NORM.DIST, NORM.S.INV; z-skór sám není test; σ z normy je předpoklad. Oba kroky závěru; skutečná chybovost diskrétního testu. | 8, 9 |
+| 12 | **Meze testování a poctivé zacházení s testy.** Co oslabuje spolehlivost závěru? | Dvacet nezávislých testů při platnosti všech nulových hypotéz: 0,64. | Hladina je konvence; přesná nulová hypotéza platit může i nemusí; dodatečný výběr analýz a zastavování sběru. Co dělat: plánovat předem, uvádět všechny testy a velikost rozdílu. | 12 |
+
+### Nepovinná rozšíření
+
+Žádné nebude předpokladem základních cvičení ani další kapitoly.
+
+| Rozšíření | Plánované umístění | Obsah |
+|---|---|---|
+| Odvození σ/√n | za oddílem 6 | Rozptyl součtu nezávislých proměnných; směrodatná chyba rozdílu dvou průměrů. |
+| Výpočet síly | oddíl 9 | Síla jako plocha pod křivkou alternativy. |
+| Standardizovaný rozdíl | oddíl 10 | 6,88/14,6 ≈ 0,47; přesné určení použité směrodatné odchylky; bez pásem malý–střední–velký. |
+| Test jako screening | oddíl 12 | Pravděpodobnost nulové hypotézy při významném výsledku přirozenými četnostmi. |
+| Dvě tradice testování | oddíl 12 | Stručně Fisher versus Neyman a Pearson; Jones a Tukey jen zmínkou. |
+
+### Plánovaná cvičení
+
+Dvanáct základních a dvě nepovinné úlohy; zadání ani řešení zatím neexistují.
+
+| Úloha | Co má student samostatně udělat |
+|---|---|
+| 1 | Určit, které ze tří rozdělení výrok popisuje a co je jedna hodnota na ose; odlišit velikost výběru od počtu opakování. |
+| 2 | Vypsat všechny dvojice ze tří jiných hodnot, sestavit rozdělení průměru a ověřit σ/√2. |
+| 3 | Popsat výběrové rozdělení podílu, směrodatnou chybu a vliv velikosti výběru. |
+| 4 | Rozlišit ve scénáři směrodatnou odchylku, výběrovou variabilitu, směrodatnou chybu, výběrovou chybu a zkreslení; odhadnout s/√n ze dvou výběrů. |
+| 5 | Spočítat pravděpodobnost průměru devíti IQ skórů nad 105 (0,159) proti jednotlivci (0,369) a rozmezí 95 % průměrů. |
+| 6 | Vysvětlit, co říká zákon velkých čísel a co centrální limitní věta; malé a velké školy. |
+| 7 | Převést výzkumnou otázku na hypotézy, směr a hraniční hodnotu; určit extrémnější výsledky. |
+| 8 | Binomický test ručně: 7 z 8 (podle Howella, s. 129–130; 0,035), kritický obor a skutečná chybovost; oba kroky závěru. |
+| 9 | z-test v Excelu: p-hodnota, kritická hodnota, vliv směru; oba kroky závěru. |
+| 10 | Chyby a statistická síla ve scénáři pro konkrétní alternativy; jak sílu zvýšit. |
+| 11 | K osmi výsledkům napsat rozhodnutí testu a věcnou interpretaci, včetně významného rozdílu v opačném směru a nezamítnutí; opravit chybné formulace. |
+| 12 | Statistická, věcná a praktická významnost při různé velikosti výběru; více testů a jejich podmínky. |
+| 13 | Nepovinně: výpočet síly. |
+| 14 | Nepovinně: test jako screening. |
+
+### Soubory, pojmy a hranice
+
+Plánované soubory: `quarto/kapitola_06.qmd`, sešit `data/kapitola_06.xlsx`
+(`Prehled`, devět výběrů, statická simulovaná data, výpočtové listy pro
+směrodatnou chybu, binomický test, z-test a sílu, vstupy cvičení), grafy
+ze `scripts/kapitola_06.R` v `assets/chapter-06/plots/`. Žádný z nich zatím
+neexistuje.
+
+Schválených 29 termínů je v [registru](SLOVNIK.md#kapitola-06), značení
+v R29. Studentský slovníček, přehled značení a přehled Excelu se doplní
+současně s kapitolou. Nové funkce Excelu se nepředpokládají: BINOM.DIST,
+NORM.DIST a NORM.S.INV jsou vysvětleny v kapitolách 4 a 5.
+
+**Mimo kapitolu 6:** intervaly spolehlivosti, t-rozdělení a t-testy,
+bootstrap, znaménkový test, funkce Z.TEST, korekce pro více testů,
+chí-kvadrát, korelace, bayesovské testování a plánování velikosti výběru.
+
+**Neschváleno:** směr, rozsah ani pořadí kapitol následujících po šesté.
+Zmínky o intervalech spolehlivosti a t-testech jako o další návaznosti
+nejsou schválením tématu ani jeho umístění.
+
+**Otevřeno před tvorbou výkladu:** ověřit uspořádání a bibliografický záznam
+studie Rubacka a Juienga (1997); prohlédnout Russovu tabulku 5.2 v obraze;
+dočíst Wainera a Uttsovou v rozsahu, v jakém se budou citovat. Podklady
+a rozsah čtení jsou v [mapě zdrojů](ZDROJE.md).
