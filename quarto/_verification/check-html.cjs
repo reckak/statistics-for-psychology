@@ -48,8 +48,13 @@ const server = http.createServer((req, res) => {
       }
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
+        const pedagogy = page.locator('#souvislost-pedagogicka');
+        assert.equal(await pedagogy.locator('.callout-collapse').isVisible(), false);
+        await pedagogy.locator('[data-bs-toggle="collapse"]').focus();
+        await page.keyboard.press('Enter');
+        await pedagogy.locator('.callout-collapse').waitFor({state:'visible'});
         const figures01 = page.locator('main .quarto-figure img');
-        assert.equal(await figures01.count(), 8, 'Chapter 1 has eight explanatory figures');
+        assert.equal(await figures01.count(), 10, 'Chapter 1 has eight diagrams and two simulated scatterplots');
         for (const img of await figures01.all()) {
           assert(await img.evaluate(e => e.complete && e.naturalWidth > 0), 'Chapter 1 figure loaded');
           assert((await img.getAttribute('alt')).length > 40, 'Chapter 1 descriptive alt text');
@@ -279,7 +284,7 @@ const server = http.createServer((req, res) => {
       }
       if (file === 'quarto/kapitola_01.html') {
         const regions01 = page.locator('.teaching-figure');
-        assert.equal(await regions01.count(), 7, 'Seven new diagrams have accessible scroll regions');
+        assert.equal(await regions01.count(), 9, 'Seven diagrams and two scatterplots have accessible scroll regions');
         for (let i=0; i<await regions01.count(); i++) {
           const region=regions01.nth(i);
           assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth), 'Chapter 1 diagram scrolls locally');

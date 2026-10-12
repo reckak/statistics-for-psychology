@@ -785,3 +785,28 @@ popisovat také celou populaci; diagram ilustruje inferenci z výběru na popula
 Doklad: souhlas autora s upřesněním tabulky a pokyn doplnit všechny prioritní
 i neprioritní návrhy a schéma populace a výběru. Nejde o zavedení kauzálního
 formalismu, výběrových rozdělení ani nové početní látky.
+
+<a id="r27-souvislost-pedagogicka"></a>
+
+## R27 — Nepovinné pedagogicko-psychologické příklady souvislosti
+
+**Stav:** schváleno 2026-10-12. **Rozsah:** nepovinné rozšíření kapitoly 1,
+související přehledy, dvě simulace a data v sešitu.
+
+První tři příklady ukazují motivaci → úspěšnost, opačný směr s časovou
+posloupností a společnou příčinu v podpoře vyučujícího. Čtvrtý výslovně
+přechází k jiné dvojici: inteligence a motivace, výběr podle školní úspěšnosti.
+Nejde o čtyři vysvětlení jediného vztahu. Mechanismy nejsou vzájemně výlučné
+ani empiricky prokázané. Šipky stručně vyjadřují předpokládaný směr působení.
+
+Schválený termín je **zkreslení při výběru podle společného následku
+(*collider bias*)**, ID `pojem-collider-bias`. Obecné podmiňování vysvětlit
+konkrétním omezením na jedničkáře, bez požadavku na znalost pravděpodobnosti.
+Český název zdůrazňuje vyložený případ; anglický termín má širší použití.
+Záporná souvislost ve vybrané skupině neznamená záporný kauzální účinek
+a není obecným směrem tohoto zkreslení.
+
+**Doklad:** autor navrhl čtyři pedagogické příklady a dva bodové grafy;
+na upřesnění odlišné dvojice proměnných, simulací a termínu odpověděl
+„Ano, souhlasím.“ **Důvod:** názorně rozlišit společnou příčinu a společný
+následek bez rozšiřování povinného učiva. Nová výpočetní úloha se nepřidává.

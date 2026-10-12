@@ -1,6 +1,6 @@
 param([ValidateRange(1,5)][int[]]$Chapter=@(1,2,3,4,5),[switch]$Verify)
 # Common entry point. Requires ordinary Node.js, Windows PowerShell and Excel;
-# Rscript (base R only) supplies fixed simulations for chapters 4 and 5.
+# Rscript (base R only) supplies fixed simulations for chapters 1, 4 and 5.
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 Push-Location $taskRoot

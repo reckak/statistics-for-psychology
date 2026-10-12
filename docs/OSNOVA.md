@@ -76,7 +76,7 @@ jsou v kartách níže; jejich řešení zůstávají ve studentském textu.
 |---|---|---|
 | Případ, proměnná, hodnota, konstanta | [1: proměnné](../quarto/kapitola_01.qmd#sec-promenne); [2: co počítáme](../quarto/kapitola_02.qmd#sec-co-pocitame). | 1/1, 1/8; počet řádků není automaticky počet různých lidí. |
 | Populace, výběr a zobecnění | [1: populace a výběr](../quarto/kapitola_01.qmd#sec-populace-vyber); [4: referenční skupina](../quarto/kapitola_04.qmd#sec-referencni-skupina). | 1/2–4, 4/1 a 10, 5/3; kapitola 5 odlišuje nezávislost v tabulce výběru od nezávislosti v populaci. Formální inferenční postupy zatím nejsou vyloženy. |
-| Souvislost, příčina, role proměnných a validita | [1: souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina). | 1/3–4; pozdější popisy rozdílů na toto omezení navazují, nevyučují kauzální analýzu. |
+| Souvislost, příčina, role proměnných a validita | [1: souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina); [nepovinné pedagogické příklady](../quarto/kapitola_01.qmd#souvislost-pedagogicka). | 1/3–4; společná příčina a výběr podle společného následku jsou názorně porovnány v nepovinném rozšíření, bez samostatného cvičení a bez formální kauzální analýzy. |
 | Měření, konstrukt, škály a význam transformací | [1: měření](../quarto/kapitola_01.qmd#sec-mereni) a [úrovně](../quarto/kapitola_01.qmd#sec-urovne); [3: volba statistik](../quarto/kapitola_03.qmd#sec-komunikace-statistik); [4: standardní skóry](../quarto/kapitola_04.qmd#sec-standardni-skory). | 1/5–6, 3/4, 4/7; číselný převod nezmění měřený konstrukt. |
 | Chyba, zkreslení a výběrová variabilita | [1: nejistota](../quarto/kapitola_01.qmd#sec-nejistota); [3: korekce rozptylu](../quarto/kapitola_03.qmd#sec-korekce-rozptylu); [4: Q–Q](../quarto/kapitola_04.qmd#sec-qq-graf). | 1/7, 3/6, 4/4 a 10, 5/2, 8 a 11; kapitola 5 ukazuje kolísání relativní četnosti a směrodatnou odchylku podílu. Výběrová rozdělení a standardní chyba nejsou systematicky vysvětleny. |
 | Datová matice, ID, chybění a platné údaje | [1: matice](../quarto/kapitola_01.qmd#sec-datova-matice); [2: jmenovatel](../quarto/kapitola_02.qmd#sec-jmenovatel); [3: Excel](../quarto/kapitola_03.qmd#sec-excel-poloha). | 1/8, 2/3 a 10, 3/12; bez výkladu imputace. |
@@ -108,6 +108,8 @@ a rolí shrnuje [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1).
 **Cíle:** odlišit popis, zobecnění a příčinu; určit populaci, výběr, případ,
 proměnnou, hodnotu a konstantu; zdůvodnit role proměnných a význam měření;
 rozpoznat zdroje nejistoty; sestavit a kontrolovat matici s přehledem proměnných.
+Nepovinně odlišit dva směry působení, společnou příčinu a vznik souvislosti
+výběrem podle společného následku; nepředpokládá znalost korelačního koeficientu.
 
 ### Skutečný obsah oddílů
 
@@ -119,7 +121,7 @@ určuje konkrétní **procvičení**. Nepovinná okénka jsou označena samostat
 | [Proč psychologie potřebuje statistiku](../quarto/kapitola_01.qmd#sec-proc-statistika) | Přechod od osobní zkušenosti se spánkem k vymezené otázce; selektivnost zkušeností, souběh okolností, statistika při plánování, popisu a usuzování. Nejistota není odstranitelná pouhým výpočtem. | 2–3: meze výpočtu a druhy závěrů. |
 | [Proměnné a hodnoty](../quarto/kapitola_01.qmd#sec-promenne) | Případ, proměnná, hodnota, konstanta, data a nejednoznačné užití slova pozorování. Možné versus zaznamenané hodnoty; konstantnost vzhledem k souboru; jedno číslo jako doba, počet nebo ID. | 1: student × den, 4 lidé a 28 záznamů. |
 | [Populace a výběr](../quarto/kapitola_01.qmd#sec-populace-vyber) | Vymezení populace otázkou; stejný ročník jako populace i výběr. Popisná a inferenční statistika. Pravděpodobnostní, prostý náhodný a příležitostný výběr, dobrovolnost a neúčast; reprezentativnost není synonymem náhodnosti. Kulturní a situační meze zobecnění, argumentace mechanismem a potřeba dalšího ověření. | 2–3; bez výpočtu inferenčních statistik. |
-| [Souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina) | Pozorovaný spánek a paměť versus možná společná příčina; experiment s tichem a nahrávkou. Náhodné přiřazení doplňuje stejné provedení úlohy, nezaručuje shodné skupiny ani příčinu každého rozdílu. | 3–4. |
+| [Souvislost a příčina](../quarto/kapitola_01.qmd#sec-souvislost-pricina) | Pozorovaný spánek a paměť versus možná společná příčina; experiment s tichem a nahrávkou. Náhodné přiřazení doplňuje stejné provedení úlohy, nezaručuje shodné skupiny ani příčinu každého rozdílu. Nepovinně motivace → úspěšnost, opačný směr v čase, podpora jako společná příčina; jiná dvojice inteligence/motivace při výběru jedničkářů. Dva bodové grafy a jejich slovní interpretace, bez výpočtu korelace. | 3–4; nové rozšíření vysvětleno, samostatně neprocvičeno. |
 | [Role proměnných](../quarto/kapitola_01.qmd#sec-role-promennych) | Nezávislá a závislá proměnná v experimentu i širším užití; explanační proměnná, prediktor a výsledná proměnná. Role závisí na otázce; predikce nemusí mířit do budoucnosti a názvosloví neprokazuje příčinu. | 4f. |
 | [Interní a externí validita](../quarto/kapitola_01.qmd#sec-interni-externi-validita) | Opora pro příčinu versus přenos závěru; dva kroky náhodnosti ve schématu populace → výběr → podmínky. Dobrovolníci mohou být náhodně přiřazeni k podmínkám; interní a externí validita nejsou automaticky ve vztahu kompromisu. | 4a–e. |
 | [Co vlastně měříme](../quarto/kapitola_01.qmd#sec-mereni) | Konstrukt, měření, operacionalizace, operacionální definice a ukazatel. Úloha s 12 slovy má přesné časy a skórování; doba spánku vylučuje bdění; stejný kód souhlasu mění význam se zněním položky. | 5–6. |
@@ -158,10 +160,17 @@ Srovnávací tabulka čtyř úrovní a diskrétních/spojitých hodnot uvádí p
 a odděluje spojitou odpověď od spojitosti rysu. Výběrová variabilita/neúčast
 a dva lidé/čtyři návštěvy podporují úlohy 7 a 1. Ostatní schémata podporují
 dosavadní úlohy 2–6 a 8; samostatné nové cvičení se nepřidává. Předpoklady
-a hranice učiva se nemění. Generátor: `scripts/kapitola_01.R`, osm SVG v
+a hranice učiva se těmito schématy nemění. Generátor: `scripts/kapitola_01.R`, původních osm SVG v
 `assets/chapter-01/plots/` včetně původního výběru a přiřazení.
 
-Nepovinná jsou čtyři rozšíření: [model měření](../quarto/kapitola_01.qmd#model-mereni-podrobne)
+Nově jsou přidány dva bodové grafy v [pedagogickém rozšíření](../quarto/kapitola_01.qmd#souvislost-pedagogicka):
+tři skupiny podpory a výběr jedničkářů s překryvem skupin. Simulace je
+v `scripts/kapitola_01-simulace.R`, grafy v `scripts/kapitola_01.R`;
+kapitola tak obsahuje deset SVG. Sešit doplňují `Podpora_ucitele` A2:C301
+a `Jednickari` A2:C601. Původní listy a všech osm cvičení zůstávají beze změny.
+
+Nepovinných je pět rozšíření: [vznik souvislosti v pedagogických příkladech](../quarto/kapitola_01.qmd#souvislost-pedagogicka);
+[model měření](../quarto/kapitola_01.qmd#model-mereni-podrobne)
 pro zdůvodnění intervalovosti; [spor o čísla na dresech](../quarto/kapitola_01.qmd#cisla-na-dresech)
 a závislost interpretace na otázce; [posuvník a verbální kotvy](../quarto/kapitola_01.qmd#posuvnik-podrobne);
 [modelové pojetí chyby měření](../quarto/kapitola_01.qmd#chyba-mereni-podrobne)
@@ -197,6 +206,9 @@ Kapitola 2 přebírá význam proměnných, chybění, případu a prvních šes
 Kapitola 3 využívá zdůvodnění škál při volbě statistik. Kapitola 4 rozvíjí
 referenční skupinu, měřicí omezení a rozdíl neobvyklosti od klinického významu.
 Četnosti a grafy se učí až ve 2, číselné charakteristiky ve 3.
+Nepovinné bodové grafy v kapitole 1 předjímají pouze čtení vztahu dvou
+proměnných, které je na místě vysvětleno. Collider bias není vstupním
+předpokladem dalších kapitol; formální podmiňování z kapitoly 5 se zde nevyžaduje.
 
 <a id="mapa-kapitola-02"></a>
 

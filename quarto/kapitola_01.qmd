@@ -110,6 +110,58 @@ Obě vysvětlení porovnává @fig-souvislost-pricina. V horním panelu uvažuje
 ![Různé možné příčiny stejné souvislosti](../assets/chapter-01/plots/souvislost-pricina.svg){#fig-souvislost-pricina fig-alt="Horní panel: kratší spánek může vést k horšímu výkonu. Dolní panel: náročné zkouškové období může zkracovat spánek a zvyšovat úzkost, která zhoršuje výkon. Jde o možné, navzájem se nevylučující mechanismy."}
 :::
 
+:::: {.callout-note collapse="true" title="Nepovinné rozšíření: motivace, školní úspěšnost a vznik souvislosti" #souvislost-pedagogicka}
+
+Představme si, že motivovanější studenti mívají lepší studijní výsledky. Jak by taková souvislost mohla vzniknout? První tři možnosti se týkají vztahu mezi **studijní motivací a školní úspěšností**. Ve čtvrté se podíváme, jak souvislost mezi jinými dvěma vlastnostmi může vytvořit samotný výběr studentů. Jde o možné mechanismy, nikoli o výsledky skutečného výzkumu nebo úplný seznam vysvětlení. Šipka vede od předpokládané příčiny k jejímu následku; sama účinek neprokazuje.
+
+**1. Motivace podporuje školní úspěšnost**
+
+Studijní motivace → školní úspěšnost
+
+Motivovanější student se pravidelně připravuje, obtížnému učivu věnuje více času a při neúspěchu hledá jiný způsob učení. Díky tomu může látce lépe porozumět a dosahovat lepších výsledků. V tomto vysvětlení tedy motivace přispívá k úspěšnosti prostřednictvím studijního chování; šipka tento postup stručně shrnuje. Možná se studentovi daří lépe proto, že má větší chuť se učit.
+
+**2. Školní úspěšnost podporuje motivaci**
+
+Školní úspěšnost → studijní motivace
+
+Student zpočátku nemá o předmět velký zájem. Podaří se mu však vyřešit několik náročných úloh a dostane povzbudivou, konkrétní zpětnou vazbu. Začne věřit, že předmětu může porozumět, a získá větší chuť se mu věnovat. Úspěšnější studenti tak mohou být motivovanější také proto, že předchozí úspěch posílil jejich následnou motivaci. Možná má student větší chuť se učit proto, že se mu začalo dařit.
+
+Oba mechanismy mohou působit současně, postupně v čase: motivace dnes ovlivní přípravu a výsledek zkoušky, výsledek zkoušky pak ovlivní další motivaci. Nemusíme tedy volit jediný směr. Pouhé současné zjištění motivace a výsledků však tuto posloupnost nerozliší.
+
+**3. Podpora vyučujícího ovlivňuje motivaci i školní úspěšnost**
+
+Studijní motivace ← podpora vyučujícího → školní úspěšnost
+
+Vyučující srozumitelně vysvětluje látku, poskytuje užitečnou zpětnou vazbu a vytváří prostor pro otázky. Taková podpora může zároveň zvyšovat motivaci studentů a zlepšovat jejich porozumění učivu. Motivace a výsledky potom mohou souviset alespoň částečně proto, že je ovlivňuje **společná příčina**. Možná mají studenti větší chuť se učit i lepší výsledky proto, že dostávají kvalitnější podporu. To nevylučuje další působení motivace na výsledky.
+
+V @fig-podpora-motivace představuje každý bod jednoho simulovaného studenta. Vodorovná osa zachycuje studijní motivaci, svislá školní úspěšnost; vyšší hodnota vždy znamená více dané vlastnosti. Obě škály jsou pro ilustraci vyjádřeny v bodech, nejde o skutečný dotazník ani známky. Barva a tvar rozlišují nízkou, střední a vysokou podporu vyučujícího.
+
+::: {.teaching-figure role="region" aria-label="Motivace a úspěšnost podle podpory vyučujícího" tabindex="0"}
+![Společná příčina v simulovaných datech: podpora vyučujícího posouvá motivaci i úspěšnost.](../assets/chapter-01/plots/podpora-motivace.svg){#fig-podpora-motivace fig-alt="Tři skupiny podle nízké, střední a vysoké podpory tvoří postupně výše a vpravo umístěné shluky. V celém souboru motivace a úspěšnost zřetelně souvisejí, uvnitř jednotlivých skupin je souvislost slabá."}
+:::
+
+Při pohledu na všechny body vidíme, že vyšší motivaci zpravidla doprovází vyšší úspěšnost. Uvnitř skupin se stejnou podporou je však souvislost slabá. Data jsme totiž vytvořili tak, aby podpora zvyšovala obě hodnoty, zatímco jejich další odchylky vznikaly nezávisle. Celkový vztah zde odráží především rozdíly mezi skupinami. **Samotný obdobný obraz ve skutečných datech by nedokazoval, že podpora je společnou příčinou**; to bychom museli podložit dalšími znalostmi a vhodným výzkumem.
+
+**4. Souvislost vytvoří výběr podle společného následku**
+
+Souvislost může vzniknout také tím, koho do zkoumání zahrneme. Abychom tento mechanismus ukázali, budeme nyní sledovat vztah mezi **inteligencí a studijní motivací**. V našem zjednodušeném modelu obě přispívají ke školní úspěšnosti:
+
+Inteligence → školní úspěšnost ← studijní motivace
+
+Školní úspěšnost je tentokrát **společným následkem** dvou sledovaných vlastností. Předpokládejme pro ilustraci, že inteligence a motivace v celé populaci nesouvisejí. Pokud ale zahrneme pouze jedničkáře, vybíráme podle výsledku, k němuž mohou přispět obě vlastnosti. Mezi takto vybranými studenty může nižší hodnota jedné vlastnosti častěji doprovázet vyšší hodnotu druhé: i ta totiž v tomto modelu pomáhá dosáhnout výborného výsledku.
+
+::: {.teaching-figure role="region" aria-label="Inteligence a motivace v celém souboru a mezi jedničkáři" tabindex="0"}
+![Výběr podle společného následku: zvýraznění jedničkáři jsou částí téhož simulovaného souboru. Vlastní simulace inspirovaná principem ilustrace v odborné literatuře [@griffith2020, obr. 1].](../assets/chapter-01/plots/jednickari-motivace.svg){#fig-jednickari-motivace fig-alt="Na vodorovné ose je inteligence, na svislé motivace. Celý soubor bodů nemá zřetelný směr vztahu. Mezi oranžovými trojúhelníky označujícími jedničkáře se objevuje klesající vztah. Oranžové a šedé body se překrývají, výběr nemá ostrou hranici."}
+:::
+
+V @fig-jednickari-motivace nejprve sledujte všechny body včetně zvýrazněných: inteligence a motivace v celém simulovaném souboru spolu téměř nesouvisejí. Potom sledujte jen jedničkáře. Mezi nimi se objevuje **záporná souvislost**: s vyšší inteligencí bývá spojena nižší motivace. Neznamená to, že inteligence motivaci snižuje. Rozdíl vznikl tím, že nyní posuzujeme pouze studenty s výborným výsledkem. Skupiny se překrývají, protože do výsledku kromě obou vlastností vstupují i další vlivy, například podmínky při zkoušení. Ani vysoké hodnoty obou vlastností tedy v simulaci výborný výsledek nezaručují.
+
+Tento problém označujeme jako **zkreslení při výběru podle společného následku (*collider bias*)**. Obecněji se mluví o podmiňování společným následkem: zde to znamená omezit posuzování na studenty splňující určitou podmínku školní úspěšnosti. Na rozdíl od předchozího příkladu šipky do třetí proměnné vstupují, místo aby z ní vycházely. Takové omezení může souvislost vytvořit nebo změnit; záporný směr je vlastností našeho příkladu, nikoli všech situací tohoto typu [@griffith2020, oddíl Introduction a obr. 1].
+
+Oba obrázky používají vlastní simulovaná data. Druhý přenáší princip citované ilustrace na jiné proměnné a přidává další vlivy na výběr. Model nepředstavuje empirické tvrzení o inteligenci, motivaci ani známkování. Data najdete v [sešitu kapitoly](../data/kapitola_01.xlsx): `Podpora_ucitele` A2:C301 a `Jednickari` A2:C601. U druhého obrázku je inteligence vyjádřena ilustračním skórem na škále podobné IQ a motivace v bodech; nejde o výsledky konkrétních testů. Výpočty ani konstrukce grafů se v tomto rozšíření nevyžadují.
+
+::::
+
 Jinou situaci vytváří **experiment (*experiment*)**: výzkumník záměrně mění určitou podmínku a sleduje její důsledky. Pro ilustraci ponechme spánek stranou a zkoumejme, zda učení slov ovlivňují rušivé zvuky. Jedna skupina dostane seznam slov v tichu, druhá se zvukovou nahrávkou.
 
 **Náhodné přiřazení k podmínkám (*random assignment*)** znamená, že o tom, kterou podmínku účastník dostane, rozhoduje náhodný mechanismus, například předem připravené losování. V našem příkladu tedy nepřidělujeme podmínku podle toho, jak dobrou má účastník paměť, ani účastníkům nedáváme možnost vybrat si ticho nebo zvukovou nahrávku. Kdyby si totiž podmínku vybírali sami, mohli by ticho častěji volit lidé, které zvuky snadno rozptylují. Případný rozdíl ve výsledcích by pak mohl odrážet nejen působení zvuků, ale také odlišné složení skupin.

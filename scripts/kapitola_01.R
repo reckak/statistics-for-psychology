@@ -1,8 +1,41 @@
-# Reproducible chapter figure. Base R only, run from the project root.
-# Schematic illustration: dot positions are fixed, no data are analysed.
+# Reproducible chapter figures. Base R only, run from the project root.
+# Diagrams use fixed positions; two plots use fictional simulations.
+source('scripts/kapitola_01-simulace.R', encoding = 'UTF-8')
 out <- 'assets/chapter-01/plots'
 dir.create(out, recursive = TRUE, showWarnings = FALSE)
 ink <- '#223744'; blue <- '#267888'; orange <- '#B16A26'; grey <- '#B9C4CA'
+sim <- chapter01_simulation()
+scatter_device <- function(name, x, y, xlab, ylab, title) {
+  svg(file.path(out, name), width = 8.8, height = 6.6,
+      family = 'sans', bg = 'white', pointsize = 14)
+  par(mar = c(4.8, 4.8, 4.4, 1), fg = ink, col.axis = ink, col.lab = ink)
+  plot(x, y, type = 'n', xlab = xlab, ylab = ylab, las = 1, bty = 'l')
+  grid(col = '#E6ECEF')
+  title(main = title, col.main = ink, line = 2.6, cex.main = 1.05)
+}
+d <- sim$support
+scatter_device('podpora-motivace.svg', d$motivace, d$uspesnost,
+  'Studijní motivace (body)', 'Školní úspěšnost (body)', 'Stejná podpora, slabá souvislost uvnitř skupin')
+cols <- c(blue, orange, '#79609C'); shapes <- c(16,17,15)
+for (j in 1:3) {
+  take <- d$podpora == c('nízká','střední','vysoká')[j]
+  points(d$motivace[take], d$uspesnost[take], pch = shapes[j],
+    col = adjustcolor(cols[j], .75), cex = .85)
+}
+legend('topleft', legend = c('Nízká podpora', 'Střední podpora', 'Vysoká podpora'),
+  pch = shapes, col = cols, bty = 'n', cex = .87)
+dev.off()
+d <- sim$selection
+scatter_device('jednickari-motivace.svg', d$inteligence, d$motivace,
+  'Inteligence (ilustrační skór)', 'Studijní motivace (body)', 'Celý soubor a výběr jedničkářů')
+take <- d$skupina == 'jedničkáři'
+points(d$inteligence[!take], d$motivace[!take], pch = 16,
+  col = adjustcolor('#7C8C98', .45), cex = .8)
+points(d$inteligence[take], d$motivace[take], pch = 17,
+  col = adjustcolor(orange, .88), cex = 1)
+legend('topleft', legend = c('Jedničkáři', 'Ostatní'), pch = c(17,16),
+  col = c(orange, '#7C8C98'), bty = 'n', cex = .9)
+dev.off()
 svg(file.path(out, 'vyber-prideleni.svg'), width = 7.6, height = 4.6, family = 'sans', bg = 'white')
 par(mar = c(0, 0, 0, 0), xaxs = 'i', yaxs = 'i', fg = ink)
 plot.new(); plot.window(xlim = c(0, 100), ylim = c(0, 62))
