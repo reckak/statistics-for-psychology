@@ -30,20 +30,39 @@ try {
   }
   [void]$scratch.Clear()
   # 4. Changed yellow inputs flow through the dependent formulas; originals are restored.
-  $changed=0
+  $changed=0;$labels=0
   foreach($ch in $spec.changes){
     $sh=$taskBook.Worksheets.Item([string]$ch.sheet);$old=@{}
     foreach($p in $ch.set.PSObject.Properties){$old[$p.Name]=$sh.Range($p.Name).Value2;$sh.Range($p.Name).Value2=[double]$p.Value}
     $taskExcel.CalculateFullRebuild()
     foreach($p in $ch.expect.PSObject.Properties){Assert-Cell $sh $p.Name $p.Value;$changed++}
+    foreach($p in $ch.labels.PSObject.Properties){
+      if($sh.Range($p.Name).Value2 -cne [string]$p.Value){throw "Stale label $($sh.Name)!$($p.Name)"}
+      $labels++
+    }
     foreach($a in $old.Keys){$sh.Range($a).Value2=[double]$old[$a]}
   }
   $taskExcel.CalculateFullRebuild()
   foreach($c in $spec.cells){Assert-Cell $taskBook.Worksheets.Item([string]$c.sheet) ([string]$c.cell) $c.expected}
   # 5. The formulas really are the Czech ones shown to students.
-  $local=$taskBook.Worksheets.Item('Binom').Range('B6').FormulaLocal
-  if($local -notmatch '^=BINOM\.DIST\(A6;\$B\$2;\$B\$3;NEPRAVDA\)$'){throw "Unexpected local formula: $local"}
-  [pscustomobject]@{Cells=@($spec.cells).Count;Formulas=@($spec.formulas).Count;Errors=@($spec.errors).Count;ChangedResults=$changed;ExcelVersion=$taskExcel.Version;Saved=$false}|ConvertTo-Json -Compress
+  $local=$taskBook.Worksheets.Item('Binom').Range('B7').FormulaLocal
+  if($local -notmatch '^=BINOM\.DIST\(A7;\$B\$2;\$B\$3;NEPRAVDA\)$'){throw "Unexpected local formula: $local"}
+  # 6. Fixed n and every formula remain protected; only supported controls unlock.
+  foreach($name in 'Binom','Binom_20'){
+    $sh=$taskBook.Worksheets.Item($name)
+    if(-not $sh.ProtectContents){throw "Unprotected sheet: $name"}
+    $allowed=if($name -eq 'Binom'){@('B3')}else{@('B3','B4','B5')}
+    foreach($cell in $sh.UsedRange.Cells){
+      $address=$cell.Address($false,$false)
+      if([bool]$cell.Locked -eq ($address -in $allowed)){throw "Wrong edit permission: ${name}!$address"}
+    }
+    $blocked=$false
+    try{$sh.Range('B2').Value2=6}catch{$blocked=$true}
+    if(-not $blocked){throw "Fixed n was editable: $name"}
+    Assert-Cell $sh 'B2' $(if($name -eq 'Binom'){5}else{20})
+    if(-not $sh.Range('B3').Validation.ShowError){throw "Missing probability validation: $name"}
+  }
+  [pscustomobject]@{Cells=@($spec.cells).Count;Formulas=@($spec.formulas).Count;Errors=@($spec.errors).Count;ChangedResults=$changed;ChangedLabels=$labels;ProtectedSheets=2;ExcelVersion=$taskExcel.Version;Saved=$false}|ConvertTo-Json -Compress
 } finally {
   if($null -ne $taskBook){$taskBook.Close($false);[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($taskBook)}
   if($null -ne $taskExcel){$taskExcel.Quit();[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($taskExcel)}

@@ -731,3 +731,32 @@ ovládající desktopový Excel, odstraň závislost na artifact-tool a uprav
 příslušné instrukce. Zachovej obsah i funkčnost sešitů a ověř je.“
 Provozní postup je v [README](../README.md#obnova-sešitů-a-podkladů-kapitol-15),
 pravidla v [AGENTS.md](../AGENTS.md#data-ke-kapitolám).
+
+<a id="r25-revize-kapitoly-5"></a>
+
+## R25 — Zapracování odborné revize kapitoly 5
+
+**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 5, její grafy, sešit,
+slovníček, autorský registr a související kontroly. R21–R23 zůstávají platné;
+upřesňuje se výklad, nikoli rozsah učiva nebo značky.
+
+- Senzitivita a specificita jsou při srovnání prevalencí stejné z předpokladu;
+  jejich přenos mezi skupinami není automatický. Doplněk specificity/senzitivity
+  se výslovně vztahuje k příslušné skupině bez stavu / se stavem.
+- Náhodný pokus vymezuje možné výsledky, nevyžaduje jejich vyjmenování
+  ani vyloučení manipulace. Definice rozdělení zahrnuje i spojité modely.
+- Doplněk vysokého stresu se nazývá „bez vysokého stresu“, nikoli „pohoda“.
+  Opravují se příklady nezávislosti a podmíněných pravděpodobností při
+  losování bez vracení. Modelové situace se nevydávají za empirické výzkumy.
+- Na `Binom` zůstává n = 5; měnit lze pouze B3. `Binom_20` zachovává
+  tabulku pro 20 pokusů a umožňuje změnit pravděpodobnost a hranice;
+  výsledné popisky musí odpovídat aktuálním vstupům.
+
+**Důvod:** zabránit záměně podmíněných a společných pravděpodobností,
+modelového předpokladu a obecné vlastnosti, modelových a skutečných dat
+nebo nesprávnému čtení výsledků po změně vstupů sešitu.
+
+**Doklad:** autor po předložení dvanácti nálezů a tří doporučení zadal:
+„Zapracuj všechny uvedené opravy i didaktická doporučení do kapitoly 5
+a souvisejících souborů. Na listu Binom ponech n = 5 a umožni měnit jen B3.“
+Rozsah ověření zaznamenává [autorská historie](../quarto/README.md#revize-kapitoly-5-2026-10-12).

@@ -42,7 +42,7 @@ export class ExcelWorkbook {
   addChart(spec) { this.charts.push(spec); }
   async build(chapter, out) {
     await fs.mkdir(out,{recursive:true});
-    const spec = {chapter, sheets:this.sheets.map(({name,showGridLines,freezeRows}) => ({name,showGridLines,freezeRows})),
+    const spec = {chapter, sheets:this.sheets.map(({name,showGridLines,freezeRows,editableRanges}) => ({name,showGridLines,freezeRows,editableRanges})),
       operations:this.operations, charts:this.charts};
     const manifest = path.resolve(out,'build.json');
     await fs.writeFile(manifest,JSON.stringify(spec,null,2));

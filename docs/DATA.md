@@ -112,6 +112,18 @@ a pravděpodobnost správného tipu), `Sim_hadani` (všech 40 simulovaných hodn
 z obrázku modelu a dat), `Rozpoznavani` (normální aproximace) a `Losovani`
 (nepovinné variace). Hotové výpočty jsou odděleně na listech `Bayes`,
 `Binom`, `Binom_20` a `Aproximace`; jejich žluté buňky jsou vstupy.
+Na listu `Binom` je n = 5 pevné, odemčená je pouze B3 (pravděpodobnost
+od 0 do 1). Na `Binom_20` je n = 20 pevné, odemčené jsou B3:B5:
+pravděpodobnost 0–1, hodnota pro právě/nejvýše 0–20 a hranice alespoň 1–20.
+Popisky A7:A9 a A19 jsou vzorce navázané na B4:B5. Ochrana bez hesla
+brání náhodným změnám pevného n, rozsahu hodnot a výpočtů.
+Krajní π = 0 a π = 1 jsou podporovány: P(X = 0) používá přímý součin
+neúspěchů; bodový dotaz a inverzní funkce na `Binom_20` mají ošetření
+pomocí KDYŽ. Tyto případy se skutečně přepočítávají v kontrole Excelu.
+V tabulkách stresu je druhá kategorie „Bez vysokého stresu“, nikoli „Pohoda“.
+U screeningu je stálost senzitivity a specificity předpokladem srovnání;
+u taxíků předpokládáme stejnou pravděpodobnost nehody pro každý taxík.
+Cvičení 8 používá autorské ilustrační četnosti, nikoli skutečně vyšetřené osoby.
 
 Pět simulovaných řad po 1 000 tipech z prvního obrázku není studentským
 datovým souborem: vstupem je pravděpodobnost 0,25, počet řad a pevný seed

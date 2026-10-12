@@ -190,6 +190,11 @@ Kontrolu spusťte **po renderování knihy**, protože kontroluje také totožno
 sešitů v `data/` a `_book/data/`. Při renderování se sešity pouze kopírují;
 Excel se nespouští a na GitHubu není k sestavení webu potřeba.
 
+Kontrola kapitoly 5 navíc ověřuje přepočet popisků při změně hranic,
+krajní pravděpodobnosti 0 a 1 a ochranu pevných počtů pokusů.
+Na listu `Binom` lze upravit pouze B3; na `Binom_20` B3:B5. Ochrana listů
+bez hesla chrání výukové vzorce před náhodným přepsáním.
+
 Pro vizuální prohlídku všech listů vytvořte náhledy přímo z Excelu:
 
 ```powershell

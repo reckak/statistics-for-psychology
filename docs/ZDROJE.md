@@ -927,3 +927,36 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 Inventura zahrnula všechny soubory ve všech aktuálních podsložkách. Ověřeny byly místní cesty, rozsahy souborů a otisky. Původní podklady nebyly upravovány. Pomocné textové extrakce, OCR, obrazy stran a exporty snímků zůstávají v ignorovaném `tmp/`, nejsou součástí mapy ani veřejného repozitáře.
 
 Při aktualizaci karty zachovej ID; doplň datum, verzi souboru, přesné nově prostudované části, způsob ověření a zbývající mezery. Nový obsahový nález zapisuj k dotčenému zdroji; pouze schválenou změnu výkladu promítni také do osnovy či rozhodnutí. Při výměně vydání knihy zkontroluj všechny odkazované stránky, nikoli pouze první z nich.
+
+<a id="e01-mulherin-miller"></a>
+
+## E01 — Mulherin a Miller: přenos diagnostické přesnosti mezi skupinami
+
+**Externí zdroj, doplněn při revizi 2026-10-12:** Mulherin, S. A., & Miller,
+W. C. (2002). Spectrum bias or spectrum effect? Subgroup variation in
+diagnostic test evaluation. *Annals of Internal Medicine, 137*(7), 598–602.
+[DOI](https://doi.org/10.7326/0003-4819-137-7-200210010-00011),
+[PubMed](https://pubmed.ncbi.nlm.nih.gov/12353947/). Klíč `mulherin2002`.
+
+**Skutečně ověřeno:** bibliografická metadata a celý veřejný abstrakt
+na PubMed; abstrakt výslovně uvádí rozdíly přesnosti mezi podskupinami
+a nutnost posoudit přenos do cílové populace. Použití pouze pro toto
+omezení u dvou prevalencí v kapitole 5, nikoli pro nové klinické hodnoty.
+Plný článek nebyl prostudován; nepřebíráme jeho postupy analýzy ani odhady.
+Soubor nebyl přidán do místní složky `sources/`; inventář jejích 30 souborů
+se tím nemění.
+
+### Doplnění kontroly podkladů kapitoly 5 — 2026-10-12
+
+Při revizi znovu přečteny relevantní citované pasáže Howella (zejména
+s. 108–112, 119, 121–128), Navarra (373–377), Sahua (64–69), Russa (64),
+OpenIntro (95–96), Barona (121–123 a 149–152) a Uttsové (77–78).
+V originálním obraze navíc prohlédnuty Howell s. 122 a 128, Sahu s. 64
+a 69, OpenIntro s. 95, všechny uvedené strany Barona a Uttsové.
+Výpočty kapitoly byly ověřeny nezávisle; u Howellova výsledku 0,513
+(s. 122) kapitola správně zaokrouhluje 95/185 na 0,514.
+Původní experimentální studie nebyly znovu ověřeny a identita Baronova
+vydání zůstává v rozsahu a s omezením popsaným v kartě D08.
+U C03 znovu ověřeno textové zadání X3_31 (100 otázek ano–ne, hranice 65);
+kapitola na rozdíl od původního zadání rozlišuje přesný binomický model
+a normální aproximaci. Nová typografická revize původního DOCX neproběhla.
