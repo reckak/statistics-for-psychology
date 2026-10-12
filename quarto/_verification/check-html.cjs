@@ -187,6 +187,34 @@ const server = http.createServer((req, res) => {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch05-${id}-desktop.png`});
         }
       }
+      if (file === 'quarto/kapitola_06.html') {
+        assert.equal(await solutions.count(),14,'Chapter 6 has twelve core and two optional exercise solutions');
+        assert.equal(await page.locator('merror').count(),0,'Chapter 6 mathematics parses');
+        assert.equal(await page.locator('main img').count(),16);
+        for(const img of await page.locator('main img').all()) {
+          await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          assert((await img.getAttribute('alt')).length>30);
+        }
+        const greek6=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πμσαβ]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
+        assert(greek6.filter(e=>e.text.includes('σ')).length>12,'Standard error notation actually rendered with sigma');
+        assert(greek6.filter(e=>e.text.includes('α')).length>5,'Significance level rendered as alpha');
+        assert(greek6.every(e=>e.variant==='normal'),'Greek symbols of chapter 6 must be upright');
+        for(const id of ['rozsireni-odvozeni-chyby','rozsireni-vypocet-sily','rozsireni-standardizovany-rozdil','rozsireni-test-screening','rozsireni-dve-tradice']) {
+          assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
+        }
+        for(const id of ['sec-devet-vyberu','sec-odhad-chyby','sec-zakon-velkych-cisel','sec-clv-zneni','sec-smer-testu','sec-nezamitnuti','sec-zaver-testu','sec-binomicky-test','sec-z-test']) assert(await page.locator('#'+id).isVisible(),`Core section present: ${id}`);
+        assert.equal(await page.locator('#sec-odhad-chyby .callout-collapse, #sec-zakon-velkych-cisel .callout-collapse, #sec-dva-testy .callout-collapse').count(),0,'Estimated standard error, law of large numbers and worked tests are not optional');
+        const main6=await page.locator('main').innerText();
+        assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main6.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance outside quoted counterexamples');
+        for(const fig of await page.locator('main figure').all()) {
+          const id=await fig.evaluate(el=>el.closest('[id]').id);
+          await fig.screenshot({path:`tmp/verification/ch06-${id}.png`});
+        }
+        for(const id of ['sec-devet-vyberu','sec-pet-pojmu','sec-hladina-kriticky-obor','sec-statisticka-sila','sec-zaver-testu','sec-kroky-testu']) {
+          await page.locator('#'+id).screenshot({path:`tmp/verification/ch06-${id}-desktop.png`});
+        }
+      }
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
@@ -381,7 +409,8 @@ const server = http.createServer((req, res) => {
         'quarto/kapitola_02.html': ['fig-zaklad-procent','fig-princip-kumulace','fig-meze-intervalu','fig-sirka-intervalu'],
         'quarto/kapitola_03.html': ['fig-vazeny-prumer','fig-percentil-a-poradi','fig-orezani-winsorizace'],
         'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
-        'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace']
+        'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace'],
+        'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-stejny-rozdil','fig-dva-testy']
       };
       for (const id of conceptFigures[file] || []) {
         const fig = page.locator('#'+id);
@@ -421,7 +450,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await groups.count(),2,'Two sidebar groups');
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
     assert.match(await groups.nth(1).innerText(),/Literatura a přehledy/);
-    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),5);
+    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),6);
     assert.equal(await groups.nth(1).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -596,6 +625,9 @@ const server = http.createServer((req, res) => {
     await plain.goto(base + 'quarto/kapitola_05.html');
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),12);
     assert(await plain.locator('#rozsireni-sance .callout-collapse').isVisible());
+    await plain.goto(base + 'quarto/kapitola_06.html');
+    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),14);
+    assert(await plain.locator('#rozsireni-test-screening .callout-collapse').isVisible());
     for (const file of ['znaceni','excel']) {
       await plain.goto(base + `quarto/${file}.html`);
       assert.equal(await plain.locator('tbody tr:visible').count(), await plain.locator('tbody tr').count());

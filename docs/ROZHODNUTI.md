@@ -731,7 +731,7 @@ a ověření chování v cílové aplikaci.
 **Doklad:** pokyn autora: „Převeď tedy tvorbu všech sešitů na skripty
 ovládající desktopový Excel, odstraň závislost na artifact-tool a uprav
 příslušné instrukce. Zachovej obsah i funkčnost sešitů a ověř je.“
-Provozní postup je v [README](../README.md#obnova-sešitů-a-podkladů-kapitol-15),
+Provozní postup je v [README](../README.md#obnova-sešitů-a-podkladů-kapitol-16),
 pravidla v [AGENTS.md](../AGENTS.md#data-ke-kapitolám).
 
 <a id="r25-revize-kapitoly-5"></a>
@@ -815,7 +815,7 @@ následek bez rozšiřování povinného učiva. Nová výpočetní úloha se ne
 
 ## R28 — Rozsah, pořadí a zásady výkladu kapitoly 6
 
-**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 6 „Výběrové rozdělení a testování hypotéz“, její cvičení, sešit a navazující přehledy. Výklad zatím neexistuje; pořadí dvanácti oddílů eviduje [plán v osnově](OSNOVA.md#plan-dalsi-kapitoly).
+**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 6 „Výběrové rozdělení a testování hypotéz“, její cvičení, sešit a navazující přehledy. Výklad vznikl 2026-10-12; skutečný obsah dvanácti oddílů a dvě drobné odchylky od plánu eviduje [karta kapitoly 6](OSNOVA.md#mapa-kapitola-06).
 
 **Členění a příklady**
 

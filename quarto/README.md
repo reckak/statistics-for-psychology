@@ -2313,3 +2313,142 @@ Rubacka a Juienga (1997); Russova tabulka 5.2 v obraze; podklady vedené
 jen jako mapa obsahu; přesné strany tvrzení u Navarra. Čísla v plánu jsou
 výsledky normálního a binomického modelu přepočtené v Pythonu; R ani Excel
 nebyly spuštěny a simulace zatím neexistují.
+
+<a id="vytvoreni-kapitoly-6"></a>
+
+## Kapitola 6: vytvoření výkladu (2026-10-12)
+
+Podle [dohody z 2026-10-12](#dohoda-kapitola-06) a rozhodnutí R28–R30 vznikla
+kapitola `quarto/kapitola_06.qmd` (Výběrové rozdělení a testování hypotéz)
+s dvanácti výkladovými oddíly, šestnácti obrázky, pěti nepovinnými
+rozšířeními a čtrnácti cvičeními (dvanáct základních, dvě nepovinná), sešit
+`data/kapitola_06.xlsx`, 29 hesel slovníčku (celkem 240) a dvanáct řádků
+přehledu značení (celkem 89). Přehled funkcí Excelu se nezměnil: kapitola
+nezavádí žádnou novou funkci. Plán v osnově byl nahrazen
+[kartou skutečného obsahu](../docs/OSNOVA.md#mapa-kapitola-06).
+
+Před psaním byly na autorův pokyn odstraněny sloučené pracovní větve
+`codex/chapter-01`, `codex/chapter-05` a `codex/other` lokálně i na GitHubu
+poté, co bylo ověřeno, že jejich commity jsou obsaženy v `origin/main`. Větev `codex/chapter-06`
+byla po sloučení PR #66 posunuta na `origin/main` a pokračuje pod stejným
+názvem; vzdálená větev se neodstraňovala a nové commity na ni navazují.
+
+### Odborná a didaktická rozhodnutí při psaní
+
+- **Výukový model** má gama rozdělení s průměrem 35 s a směrodatnou
+  odchylkou 15 s (medián 32,9 s). Průměr a odchylka jsou Howellovy hodnoty,
+  tvar je vlastní volba a text ji tak označuje. Simulace mají pevné seedy
+  20261013 (průměry), 20261014 (rozdíly průměrů) a 20261015 (150 skupin);
+  seedy nebyly vybírány podle výsledku.
+- **Zobrazený výběr** 30 řidičů je třetí z osmi vypsaných výběrů (průměr
+  36,5 s). První výběr má shodou okolností průměr 39,03 s, stejný jako
+  jedna ze skupin studie, a mohl by svádět k záměně simulace se studií.
+- **Síla pro skutečný rozdíl 8 s** je 0,96 (přesně 0,965). Plán a karta P06
+  uváděly 0,97 chybným zaokrouhlením; opraveno v textu i v dokumentaci.
+- **Aritmetika v textu** dělí směrodatnou chybou 2,1213 s, ne zaokrouhlenou
+  hodnotou 2,12 s, aby uvedené mezivýsledky (1,41; 3,24; 0,0786) navazovaly.
+- **P-hodnota parkovacího příkladu** se uvádí jako „přibližně jedna tisícina“
+  z normálního modelu. Počet jedenácti simulovaných rozdílů alespoň 6,88 s
+  slouží jen k vysvětlení konečné přesnosti simulace.
+- **Cvičení 11** má šest situací a dva výroky k opravě; plán mluvil o osmi
+  výsledcích. Dvojice p-hodnot 0,049 a 0,051 a jednostranný test se stejnými
+  daty jako v situaci 3 pokrývají zásady R28 lépe než dvě další obdobné situace.
+- **Zápis normálního modelu.** Modely s desetinnou směrodatnou chybou jsou
+  popsány slovy; zápis N(μ, σ) podle R15 se používá jen s celými čísly.
+  První koncept odděloval parametry středníkem; to by bylo nedohodnuté značení.
+- **Odkazy na další kapitolu.** Tři věty slibují interval spolehlivosti
+  a test s odhadem směrodatné chyby „v další kapitole“ podle autorových
+  pokynů v R28. Rozsah další kapitoly schválen není; plán pokračování
+  v osnově tato místa vyjmenovává pro případ jiné dohody.
+
+**Didaktická revize** celého textu proběhla po dokončení konceptu. Opraveno:
+chybějící zavedení termínu testování hypotéz s anglickým ekvivalentem;
+definice hladiny významnosti jako „pravděpodobnosti, pod kterou…“, z níž
+nebylo zřejmé, čeho pravděpodobnost má být pod hranicí (nyní hranice
+pro p-hodnotu; upraveno i heslo slovníčku); nepřesná věta, že u souměrné
+populace stačí malé výběry (doplněno „a nemá těžké chvosty“); volná
+formulace o „nesouladu s daty“ u p-hodnoty a modelu; rozdělený odstavec
+u směrodatné chyby podílu; na pěti místech samotné „významný“ místo
+„statisticky významný“ a na dvou „síla testu“ místo „statistická síla“.
+Interní revize není ověřením porozumění na studentech.
+
+### Zdroje a citace
+
+Rozsah čtení a použití je v kartách U01, U04, U08, U11, P06, C05, D07 a D11
+a v [záznamu o použití](../docs/ZDROJE.md#pouziti-kapitola-06). Do
+`references.bib` přibyly čtyři záznamy (celkem 83): Ruback a Juieng (1997),
+Wainer (2007), Wasserstein a Lazar (2016) a Simmons et al. (2011); údaje
+všech čtyř byly ověřeny v metadatech Crossref. Body otevřené při dohodě
+byly vyřešeny takto: bibliografický záznam a uspořádání parkovací studie
+ověřeny z Crossref a ze shrnutí článku; Russova tabulka 5.2 potvrzena
+v obraze; Wainer s. 249–253 a Uttsová s. 75–76 přečteny.
+
+Při psaní byly po kontrole proti zdroji opraveny čtyři formulace: věta
+o dvojnásobné chybovosti při dodatečné volbě směru je citována jako
+„srov.“, protože je vlastním shrnutím Howellovy s. 98; výzkumná hypotéza
+je uvedena Howellovou formulací (s. 89) místo tvrzení o očekávání autorů
+studie; věta o Uttsové odpovídá s. 75–76; Fisherovo pojetí je popsáno
+podle Howella. Z nálezů k Howellovi byl vyřazen údaj „16,88 s“: jde
+o hypotetický příklad, ne o chybu.
+
+### Sešit a Excel
+
+Sešit vytváří `scripts/kapitola_06-sešit.mjs` společným generátorem
+v desktopovém Excelu (16.0, české rozhraní) z deklarací
+v `scripts/sesity-data.mjs` a ze simulací v `scripts/sesity-simulace.R`.
+Má 26 listů a 49 vzorců, neobsahuje grafy. Simulovaná data (přes 50 000 čísel)
+jsou statická a zaokrouhlená na tři desetinná místa.
+
+Společné soubory se změnily ve třech bodech. `build-workbook-excel.ps1`
+zapisuje čistě číselné bloky od 1 000 řádků jedním přiřazením oblasti;
+bez toho trvalo sestavení neúměrně dlouho (nyní asi dvě minuty).
+`check-workbooks-excel.ps1` přeskakuje listy bez vzorců. Rozsahy kapitol
+ve spouštěči, náhledech a kontrolách byly rozšířeny na 1–6. Sešity kapitol
+1–5 nebyly znovu sestaveny a v Gitu se nezměnily; jejich největší blok má
+600 řádků, takže nová větev zápisu se jich netýká.
+
+### Ověření
+
+- `check-chapter-06.R`: přesný příklad, modelové hodnoty, všechny údaje
+  ze simulací citované v textu, nepovinná rozšíření, čtrnáct cvičení
+  a existence šestnácti obrázků. R kontroly kapitol 1–5 po změně společných
+  skriptů prošly.
+- `check-chapter-06-excel.ps1` ve skutečném Excelu: 47 uložených výsledků,
+  33 českých vzorců z textu a řešení včetně čtyř počtů COUNTIFS (261, 236,
+  7 a 4), tři chybové případy, deset změn vstupů a český zápis osmi vzorců
+  listů. Použité funkce byly tedy spuštěny, nejen ověřeny dokumentací.
+- `check-workbooks-excel.ps1`: žádná chyba vzorce v šesti sešitech.
+  `check-workbooks.py`: 54 803 vstupních buněk šesti sešitů, odkazy na listy
+  a oblasti v textu a shoda sešitů s kopií ve webu.
+- Render celé knihy (11 stránek) bez varování a `check-html.cjs`: odkazy,
+  240 hesel, 68 sbalených řešení, čtrnáct řešení a pět sbalených
+  nepovinných rozšíření kapitoly 6, stojatá řecká písmena, žádná formulace
+  o přijetí nulové hypotézy mimo citované protipříklady, klávesnice, režim
+  bez JavaScriptu a mobil 390 px.
+- Vizuálně prohlédnuto: všech šestnáct obrázků (náhledy PNG), snímky šesti
+  oddílů kapitoly z kontroly webu a PDF náhledy listů `Prehled`, `Chyba`,
+  `Test_rozdilu`, `Binom_test`, `Z_test`, `Sila` a `Sim_prumery`.
+- Místní odkazy a kotvy upravených dokumentů ověřeny skriptem.
+
+**Nalezeno a opraveno kontrolami:** rozbalená řešení na mobilu vodorovně
+přetékala (tabulky uvnitř řešení dostaly posuvný obal, tři dlouhé rovnice
+jsou rozděleny do řádků); u šesti obrázků se překrývaly nebo ořezávaly
+popisky; pod desetinnou čárkou R selhal převod názvů tabulky na čísla
+v přesném příkladu.
+
+### Omezení a neověřené části
+
+- Plný text studie Rubacka a Juienga (1997) čten nebyl; průměry
+  a směrodatná odchylka jsou jen z Howella a uspořádání ze shrnutí článku.
+  U Simmonse et al. (2011) byl ověřen jen bibliografický záznam.
+- Howellovy citované strany byly čteny v textové extrakci, v obraze jen
+  s. 95–96; u Navarra je lokátorem oddíl, ne strana. Práce, na které Howell
+  odkazuje (Jones a Tukey, Fisher, Neyman a Pearson), čteny nebyly.
+- Kapitolové excelové kontroly kapitol 2–5 nebyly znovu spuštěny; jejich
+  sešity se neměnily. Vstupní listy cvičení a listy `Sim_vyber`,
+  `Sim_rozdily` a `Skupiny` byly zkontrolovány číselně, vizuálně nikoli.
+- Všechny pravděpodobnosti parkovacího příkladu platí ve výukovém modelu
+  se známou směrodatnou odchylkou; nejsou reprodukcí analýzy autorů studie.
+- Sešit lze obnovit jen na Windows s českým Excelem.
+- Interní didaktická revize není ověřením porozumění na studentech.
+  Veřejné nasazení webu navazuje na autorovo sloučení pull requestu.

@@ -1,0 +1,579 @@
+{
+ "note": "Expected values: exact rational binomial sums, erfc and bisection quantiles in Python (check-chapter-06-excel-expected.py); counts on Sim_ sheets are properties of the stored data. Not produced by Excel.",
+ "cells": [
+  {
+   "sheet": "Chyba",
+   "cell": "B7",
+   "expected": 1.5
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B8",
+   "expected": 2.0
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B9",
+   "expected": 0.9772498680518209
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B10",
+   "expected": 0.022750131948179216
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B12",
+   "expected": 32.06005402318992,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B13",
+   "expected": 37.93994597681008,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B7",
+   "expected": 3.243294206382878
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B8",
+   "expected": 0.0011815613335622993
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B9",
+   "expected": 1.9599639845400545,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B10",
+   "expected": 4.157671600404818,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B7",
+   "expected": 0.01386441694376117
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B8",
+   "expected": 9.0
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B9",
+   "expected": 0.04092516770651855
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E2",
+   "expected": 1.0
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E3",
+   "expected": 0.996828788061066
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E4",
+   "expected": 0.9756873751348394
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E5",
+   "expected": 0.9087395675351218
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E6",
+   "expected": 0.7748439523356865
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E7",
+   "expected": 0.5851584974698198
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E8",
+   "expected": 0.38282734561289544
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E9",
+   "expected": 0.21421805239879177
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E10",
+   "expected": 0.10181185692272265
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E11",
+   "expected": 0.04092516770651855
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E12",
+   "expected": 0.01386441694376117
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E13",
+   "expected": 0.003942141664083465
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E14",
+   "expected": 0.000935391579332645
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E15",
+   "expected": 0.00018370405814494006
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E16",
+   "expected": 2.9511746106436476e-05
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E17",
+   "expected": 3.813027433352545e-06
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E18",
+   "expected": 3.865316102746874e-07
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E19",
+   "expected": 2.9604962037410587e-08
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E20",
+   "expected": 1.610715116839856e-09
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E21",
+   "expected": 5.547917680814862e-11
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "E22",
+   "expected": 9.094947017729282e-13
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B8",
+   "expected": 2.0
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B9",
+   "expected": -2.0
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B10",
+   "expected": 0.022750131948179216
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B11",
+   "expected": 0.9772498680518209
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B12",
+   "expected": 0.04550026389635843
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B13",
+   "expected": 46.71029274609705,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B14",
+   "expected": 46.080072030919894,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B15",
+   "expected": 53.919927969080106,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B16",
+   "expected": 53.28970725390295,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "cell": "B4",
+   "expected": 4.157671600404818,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "cell": "B6",
+   "expected": 0.6543462172169967,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "cell": "B7",
+   "expected": 7.907878703741602e-06,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "cell": "B8",
+   "expected": 0.6543541250957005,
+   "tolerance": 1e-07
+  }
+ ],
+ "formulas": [
+  {
+   "formula": "=NORM.DIST(38;35;1,5;PRAVDA)",
+   "expected": 0.9772498680518209
+  },
+  {
+   "formula": "=NORM.INV(0,025;35;1,5)",
+   "expected": 32.06005402318992,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=1-BINOM.DIST(12;25;0,4;PRAVDA)",
+   "expected": 0.1537677689757629
+  },
+  {
+   "formula": "=1-BINOM.DIST(51;100;0,4;PRAVDA)",
+   "expected": 0.010005143199993011
+  },
+  {
+   "formula": "=1-NORM.DIST(105;100;15;PRAVDA)",
+   "expected": 0.36944134018176367
+  },
+  {
+   "formula": "=1-NORM.DIST(105;100;5;PRAVDA)",
+   "expected": 0.15865525393145707
+  },
+  {
+   "formula": "=2*(1-NORM.S.DIST(1,8;PRAVDA))",
+   "expected": 0.07186063822585162
+  },
+  {
+   "formula": "=1-NORM.S.DIST(1,8;PRAVDA)",
+   "expected": 0.03593031911292581
+  },
+  {
+   "formula": "=2*(1-NORM.S.DIST(0,5;PRAVDA))",
+   "expected": 0.6170750774519739
+  },
+  {
+   "formula": "=NORM.DIST(46,71;45;2;PRAVDA)",
+   "expected": 0.8037244261254557
+  },
+  {
+   "formula": "=NORM.DIST(46,71;47;2;PRAVDA)",
+   "expected": 0.44235543589507664
+  },
+  {
+   "formula": "=NORM.DIST(48,355;47;1;PRAVDA)",
+   "expected": 0.9122912214855138
+  },
+  {
+   "formula": "=BINOM.INV(20;0,25;0,95)+1",
+   "expected": 9.0
+  },
+  {
+   "formula": "=BINOM.INV(8;0,5;0,95)+1",
+   "expected": 7.0
+  },
+  {
+   "formula": "=1-BINOM.DIST(6;8;0,5;PRAVDA)",
+   "expected": 0.03515625
+  },
+  {
+   "formula": "=1-BINOM.DIST(5;8;0,5;PRAVDA)",
+   "expected": 0.14453125
+  },
+  {
+   "formula": "=COUNTIFS(Sim_rozdily!A2:A10001;\">=4,16\")",
+   "expected": 261.0
+  },
+  {
+   "formula": "=COUNTIFS(Sim_rozdily!A2:A10001;\"<=-4,16\")",
+   "expected": 236.0
+  },
+  {
+   "formula": "=COUNTIFS(Sim_rozdily!A2:A10001;\">=6,88\")",
+   "expected": 7.0
+  },
+  {
+   "formula": "=COUNTIFS(Sim_rozdily!A2:A10001;\"<=-6,88\")",
+   "expected": 4.0
+  },
+  {
+   "formula": "=COUNTIFS(Sim_prumery!D2:D10001;\">38\")",
+   "expected": 243.0
+  },
+  {
+   "formula": "=POČET(Sim_prumery!A2:D10001)",
+   "expected": 40000.0
+  },
+  {
+   "formula": "=POČET(Sim_rozdily!A2:A10001)",
+   "expected": 10000.0
+  },
+  {
+   "formula": "=ZAOKROUHLIT(SMODCH.VÝBĚR.S(Sim_prumery!B2:B10001);2)",
+   "expected": 6.77
+  },
+  {
+   "formula": "=ZAOKROUHLIT(SMODCH.VÝBĚR.S(Sim_prumery!C2:C10001);2)",
+   "expected": 2.74
+  },
+  {
+   "formula": "=ZAOKROUHLIT(SMODCH.VÝBĚR.S(Sim_prumery!D2:D10001);2)",
+   "expected": 1.51
+  },
+  {
+   "formula": "=ZAOKROUHLIT(SMODCH.VÝBĚR.S(Sim_rozdily!A2:A10001);2)",
+   "expected": 2.12
+  },
+  {
+   "formula": "=ZAOKROUHLIT(PRŮMĚR(Sim_vyber!A2:A31);1)",
+   "expected": 36.5
+  },
+  {
+   "formula": "=ZAOKROUHLIT(SMODCH.VÝBĚR.S(Sim_vyber!A2:A31);1)",
+   "expected": 14.9
+  },
+  {
+   "formula": "=POČET(Skupiny!A2:B151)",
+   "expected": 300.0
+  },
+  {
+   "formula": "=COUNTIFS(Skupiny!A2:A151;\"<=50\")",
+   "expected": 56.0
+  },
+  {
+   "formula": "=MIN(Skupiny!A2:A151)",
+   "expected": 10.0
+  },
+  {
+   "formula": "=MAX(Skupiny!A2:A151)",
+   "expected": 397.0
+  }
+ ],
+ "errors": [
+  "=BINOM.DIST(21;20;0,25;PRAVDA)",
+  "=NORM.S.INV(0)",
+  "=NORM.DIST(38;35;0;PRAVDA)"
+ ],
+ "texts": [
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B11",
+   "expected": "zamítáme nulovou hypotézu"
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B10",
+   "expected": "zamítáme nulovou hypotézu"
+  }
+ ],
+ "locals": [
+  {
+   "sheet": "Chyba",
+   "cell": "B9",
+   "formula": "=NORM.DIST(B5;B2;B7;PRAVDA)"
+  },
+  {
+   "sheet": "Chyba",
+   "cell": "B7",
+   "formula": "=B3/ODMOCNINA(B4)"
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "cell": "B8",
+   "formula": "=2*(1-NORM.S.DIST(ABS(B7);PRAVDA))"
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B7",
+   "formula": "=1-BINOM.DIST(B4-1;B2;B3;PRAVDA)"
+  },
+  {
+   "sheet": "Binom_test",
+   "cell": "B8",
+   "formula": "=BINOM.INV(B2;B3;1-B5)+1"
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B10",
+   "formula": "=NORM.S.DIST(B9;PRAVDA)"
+  },
+  {
+   "sheet": "Z_test",
+   "cell": "B13",
+   "formula": "=B2+NORM.S.INV(B6)*B8"
+  },
+  {
+   "sheet": "Sila",
+   "cell": "B6",
+   "formula": "=1-NORM.DIST(B4;B2;B3;PRAVDA)"
+  }
+ ],
+ "changes": [
+  {
+   "sheet": "Chyba",
+   "set": {
+    "B4": 400
+   },
+   "expect": {
+    "B7": 0.75,
+    "B8": 4,
+    "B10": 3.1671241833119965e-05
+   }
+  },
+  {
+   "sheet": "Chyba",
+   "set": {
+    "B2": 100,
+    "B3": 15,
+    "B4": 9,
+    "B5": 105
+   },
+   "expect": {
+    "B7": 5,
+    "B8": 1,
+    "B10": 0.15865525393145707
+   }
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "set": {
+    "B2": 2.9
+   },
+   "expect": {
+    "B7": 1.367086220713713,
+    "B8": 0.17159828177219633
+   },
+   "labels": {
+    "B11": "nulovou hypotézu nezamítáme"
+   }
+  },
+  {
+   "sheet": "Test_rozdilu",
+   "set": {
+    "B2": -6.88
+   },
+   "expect": {
+    "B7": -3.243294206382878,
+    "B8": 0.0011815613335622993
+   },
+   "labels": {
+    "B11": "zamítáme nulovou hypotézu"
+   }
+  },
+  {
+   "sheet": "Binom_test",
+   "set": {
+    "B2": 8,
+    "B3": 0.5,
+    "B4": 7
+   },
+   "expect": {
+    "B7": 0.03515625,
+    "B8": 7,
+    "B9": 0.03515625,
+    "E10": 0.00390625
+   },
+   "labels": {
+    "B10": "zamítáme nulovou hypotézu",
+    "E11": "",
+    "E22": ""
+   }
+  },
+  {
+   "sheet": "Binom_test",
+   "set": {
+    "B2": 8,
+    "B3": 0.5,
+    "B4": 6
+   },
+   "expect": {
+    "B7": 0.14453125,
+    "B8": 7
+   },
+   "labels": {
+    "B10": "nulovou hypotézu nezamítáme"
+   }
+  },
+  {
+   "sheet": "Z_test",
+   "set": {
+    "B2": 100,
+    "B3": 15,
+    "B4": 36,
+    "B5": 104.5
+   },
+   "expect": {
+    "B8": 2.5,
+    "B9": 1.8,
+    "B11": 0.03593031911292581,
+    "B12": 0.07186063822585162,
+    "B10": 0.9640696808870742
+   }
+  },
+  {
+   "sheet": "Sila",
+   "set": {
+    "B2": 0
+   },
+   "expect": {
+    "B8": 0.05
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "set": {
+    "B2": 3
+   },
+   "expect": {
+    "B8": 0.292993580244959
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Sila",
+   "set": {
+    "B2": 8
+   },
+   "expect": {
+    "B8": 0.9649534379303575
+   },
+   "tolerance": 1e-07
+  }
+ ]
+}

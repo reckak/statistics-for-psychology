@@ -4,7 +4,7 @@
 
 **[Otevřít webovou učebnici](https://reckak.github.io/statistics-for-psychology/)**
 
-Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům**, **Četnosti, rozdělení dat a jejich zobrazení**, **Ukazatele polohy a variability**, **Normální rozdělení a standardní skóry** a **Pravděpodobnost** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Každá z kapitol 1–5 obsahuje jediný excelový sešit se vstupy k příkladům a cvičením a s úvodním přehledem listů. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
+Projekt používá [Quarto Book](https://quarto.org/docs/books/). Aktuálně obsahuje úvod, kapitoly **Od psychologické otázky k datům**, **Četnosti, rozdělení dat a jejich zobrazení**, **Ukazatele polohy a variability**, **Normální rozdělení a standardní skóry**, **Pravděpodobnost** a **Výběrové rozdělení a testování hypotéz** a tři průběžně doplňované přehledy: slovníček pojmů, značení a vzorce a funkce Excelu. Každá z kapitol 1–6 obsahuje jediný excelový sešit se vstupy k příkladům a cvičením a s úvodním přehledem listů. Navigace má dvě rozbalovací části: **Výkladové kapitoly** a **Literatura a přehledy**. Úvod stojí před nimi; druhá část začíná společnou nečíslovanou literaturou a pokračuje třemi přehledy.
 
 ## Práce s projektem
 
@@ -32,11 +32,13 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 - `quarto/kapitola_03.qmd`: poloha a variabilita, robustní shrnutí, modelový popis, Excel, dvanáct základních a dvě nepovinná cvičení.
 - `quarto/kapitola_04.qmd`: normální model, plochy a kvantily, standardní skóry, posouzení modelu a povinné čtení i tvorba Q–Q grafu; deset cvičení.
 - `quarto/kapitola_05.qmd`: pravděpodobnost jevů, podmínění a Bayesova věta, rozdělení pravděpodobnosti, binomický model a jeho normální aproximace; dvanáct cvičení a tři nepovinná rozšíření.
+- `quarto/kapitola_06.qmd`: výběrové rozdělení, směrodatná chyba, zákon velkých čísel a centrální limitní věta, princip testování hypotéz, statistická síla, velikost účinku, binomický test a z-test; dvanáct základních a dvě nepovinná cvičení a pět nepovinných rozšíření.
 - `data/kapitola_01.xlsx`: matice, přehled proměnných, chybění a podklady cvičení 8.
 - `data/kapitola_02.xlsx`: příklady a cvičení o četnostech, výpočty a grafy.
 - `data/kapitola_03.xlsx`: sešit se všemi autorskými příklady kapitoly, komentovanými mezivýpočty, souhrnem původních dat a nepovinnými rozšířeními. Samostatné CSV kapitola nemá; pevné hodnoty příkladů jsou zapsány také ve skriptech.
 - `data/kapitola_04.xlsx`: příklady a cvičení, samostatné skóry pro Q–Q, čtyři simulované soubory a oddělené modelové výpočty.
 - `data/kapitola_05.xlsx`: tabulky četností, vstupy screeningu a testů, simulované počty správných tipů a oddělené výpočty Bayesovy věty, binomického rozdělení a aproximace.
+- `data/kapitola_06.xlsx`: vstupy příkladů a cvičení, všechna simulovaná data z obrázků (10 000 průměrů pro čtyři velikosti výběru, 10 000 rozdílů průměrů, 150 skupin) a oddělené výpočty směrodatné chyby, testu rozdílu, binomického testu, z-testu a statistické síly.
 - `data/*.csv`: interní vstupy generátorů a kontrol; do webu se nekopírují.
 - [docs/DATA.md](docs/DATA.md): audit pokrytí příkladů a všech cvičení sešity.
 - `scripts/`: tvorba grafů, sešitu a názorných excelových ilustrací.
@@ -90,6 +92,7 @@ Rscript --vanilla quarto/_verification/check-chapter-02.R
 Rscript --vanilla quarto/_verification/check-chapter-03.R
 Rscript --vanilla quarto/_verification/check-chapter-04.R
 Rscript --vanilla quarto/_verification/check-chapter-05.R
+Rscript --vanilla quarto/_verification/check-chapter-06.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -115,15 +118,30 @@ v `check-chapter-05-excel.json`; vytváří je
 `python quarto/_verification/check-chapter-05-excel-expected.py quarto/_verification/check-chapter-05-excel.json`
 přesnou racionální aritmetikou nezávisle na Excelu i R.
 
+Šestou kapitolu ověřuje `check-chapter-06.R`: přesný příklad devíti výběrů,
+hodnoty normálního a binomického modelu, všechny údaje ze tří simulací
+citované ve výkladu, nepovinná rozšíření, řešení čtrnácti cvičení
+a šestnáct obrázků. Skript `check-chapter-06-excel.ps1` otevře sešit pouze
+pro čtení v samostatné skryté instanci Excelu a nic neukládá: porovná
+47 uložených výsledků, zadá 33 českých vzorců citovaných v textu a řešeních
+(včetně počtů COUNTIFS nad 10 000 simulovanými rozdíly), ověří chybové
+hodnoty u nepřípustných argumentů, přepočet při deseti změnách žlutých vstupů
+a zápis osmi vzorců listů v češtině. Očekávané hodnoty jsou
+v `check-chapter-06-excel.json`; vytváří je
+`python quarto/_verification/check-chapter-06-excel-expected.py quarto/_verification/check-chapter-06-excel.json`
+standardní knihovnou Pythonu nezávisle na Excelu i R. Počty nad uloženými
+simulovanými daty jsou v něm konstanty; ze stejných seedů je nezávisle
+ověřuje `check-chapter-06.R`.
+
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 
 Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
 
-## Obnova sešitů a podkladů kapitol 1–5
+## Obnova sešitů a podkladů kapitol 1–6
 
-Všech pět sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
+Všech šest sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
 Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
-5.1, Node.js a pro simulované vstupy kapitol 1 a 4–5 také R. Příkazy `node`
+5.1, Node.js a pro simulované vstupy kapitol 1 a 4–6 také R. Příkazy `node`
 a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze
 standardní moduly Node.js a rozhraní COM instalovaného Excelu; nepotřebují
 žádný balíček npm, `@oai/artifact-tool` ani prostředí konkrétního LLM.
@@ -143,7 +161,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 
 ```
 
 Přepínač `-Verify` spustí numerické kontroly a změny vstupů vybrané kapitoly
-(pro kapitoly 2–5) a kontrolu chyb vzorců ve všech pěti uložených sešitech.
+(pro kapitoly 2–6) a kontrolu chyb vzorců ve všech šesti uložených sešitech.
 Samotné kontroly sešity neukládají. Přepočet a konečnou podobu grafů zajišťuje
 již generátor; dřívější dokončování pomocí `-Finalize` není k obnově potřeba.
 Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu změny.
@@ -157,7 +175,7 @@ Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu zm
 - `scripts/build-workbook-excel.ps1`: společný zápis deklarací do skutečného
   Excelu, formátování, ověření vstupů, nativní grafy, přepočet a uložení.
 - `scripts/sesity-simulace.R`: stejné pevně reprodukovatelné simulace jako
-  v obrázcích; společný spouštěč jej pro kapitoly 4–5 zavolá automaticky.
+  v obrázcích; společný spouštěč jej pro kapitoly 4–6 zavolá automaticky.
 - `scripts/kapitola_01-simulace.R`: společné simulace pedagogických příkladů
   pro grafy a sešit; generátor kapitoly 1 jej zavolá automaticky.
 
@@ -169,10 +187,14 @@ Výstup se otevírá na listu `Prehled` a při ukládání se odstraňují osobn
 údaje z vlastností dokumentu.
 
 Generátory kapitol 1–4 zadávají vzorce prostřednictvím `Formula`
-ve standardním anglickém zápisu. Kapitola 5 používá české `FormulaLocal`.
+ve standardním anglickém zápisu. Kapitoly 5 a 6 používají české `FormulaLocal`.
 České vzorce z učebnice navíc skutečně spouštějí kapitolové kontroly.
 Číselné formáty buněk a os respektují místní oddělovače. Textové hodnoty
 zůstávají textem i tehdy, když vypadají jako číslo; chybění zůstává prázdné.
+Čistě číselné bloky od 1 000 řádků (zatím jen simulovaná data kapitoly 6)
+zapisuje generátor jedním přiřazením celé oblasti; menší bloky zůstávají
+u zápisu po buňkách se zachováním typů. Kontrola chyb vzorců přeskakuje listy,
+které žádný vzorec neobsahují.
 Nové soubory PowerShellu používají ASCII a české texty čtou z UTF-8 JSON;
 skripty s českými literály musí mít pro Windows PowerShell 5.1 UTF-8 BOM.
 
@@ -227,7 +249,7 @@ ilustrace a knihu a ověřte navazující výklad. Pomocné výstupy patří do 
 
 ## Publikování na GitHub Pages
 
-Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–5. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
+Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–6. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
 
 Při prvním zprovoznění:
 
