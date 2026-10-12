@@ -2058,3 +2058,77 @@ cloudové kanceláře, jiné prohlížeče, fyzický telefon a veřejné nasazen
 nejsou tímto ověřeny. U zdrojů zůstávají omezení původní revize popsaná
 v ZDROJE.md, včetně neověřených původních experimentů a copyrightové
 strany Baronova vydání. Uživatel provede sloučení PR.
+
+## Kapitola 1: sedm schémat, srovnávací tabulka a přiřazení (2026-10-12)
+
+Na výslovný pokyn autora byly doplněny všechny projednané návrhy: dvě
+alternativní příčinná vysvětlení, konstrukt → operacionalizace → záznam,
+změny zápisu u čtyř úrovní měření, diskrétnost versus zaokrouhlení,
+výběrová variabilita versus neúčast, účastník/návštěva/řádek a schéma
+populace → výběr s usuzováním v opačném směru. V posledním schématu
+sampling označuje proces, sample výsledek; popisná statistika shrnuje
+získaná data a inference z výběru na populaci vyžaduje předpoklady.
+Jde o vlastní schematické ilustrace navazující na výklad; uživatelem
+poskytnuté obrázky sloužily jako koncepční reference, nebyly kopírovány.
+Všech osm SVG včetně původního schématu obnovuje scripts/kapitola_01.R.
+
+Tabulka úrovní měření a možných hodnot obsahuje příklady a podstatné
+výjimky: spojitá poloha odpovědi nedokazuje spojitost psychologického
+rysu ani intervalové měření; u nominálních kategorií spojitost neuvažujeme.
+Schéma operacionalizace nahrazuje původní tabulku, aby se výklad
+zbytečně neopakoval. Každý obrázek má stabilní ID, alternativní text,
+křížový odkaz a vysvětlení. Nové diagramy a srovnávací tabulka se na
+mobilu posouvají místně a lze je ovládat klávesnicí.
+
+Random assignment používá preferovaný překlad „náhodné přiřazení
+k podmínkám“ podle R26. Sjednocena kapitola 1 včetně úloh, řešení,
+popisků a generátoru, jeden výskyt v kapitole 5, studentský slovníček,
+autorský registr, osnova a příklad v AGENTS.md. ID hesla i obrázku
+zůstala stabilní; předchozí překlad je pouze mezi alternativami a
+v zachované historii. R10 je označeno jako částečně nahrazené.
+Obecné přidělení kódu nebo bodů není terminologickým výskytem assignment.
+
+Místně byla sjednocena také aktuální presentations/kapitola_01_od_otazky_k_datum.pptx
+(snímky 8, 10, 25 a relevantní poznámky), odpovídající PDF export a
+kapitola_01_poznamky.docx. Výskyt na snímcích i v poznámkách byl přečten
+před úpravou; změny zachovávají formátování a ostatní obsah. Snímky
+8, 10 a 25 byly vykresleny v PowerPointu a vizuálně prohlédnuty.
+Aktuální prezentace a poznámky kapitoly 2 neobsahovaly měněný termín;
+číselné sešity ani jejich generátory nevyžadovaly změnu. Soubory s „kopie“
+v názvu jsou historické zálohy, nebyly aktualizovány. Prezentace a exporty
+jsou dle .gitignore místní, nejsou součástí commitu ani PR.
+
+Omezení místních poznámek: všechny XML části DOCX i PPTX byly úspěšně
+načteny a balíčky zachovaly původní seznam souborů. Vizuální kontrola
+DOCX nebyla dokončena: balený render_docx.py nemá k dispozici LibreOffice;
+Word se při otevírání původní kontrolní kopie pro PDF export zasekl.
+Vlastní exportovací proces byl ukončen. Sazba upraveného DOCX proto není
+ověřena, ačkoli terminologická úprava v něm je uložená.
+
+Odborná a didaktická kontrola dotčeného textu: šipky jsou vysvětleny
+podle účelu (hypotéza, postup měření, inference); schémata neprokazují
+empirické účinky ani nezavádějí kauzální formalismus či rozdělení odhadů.
+Srovnávací tabulka odlišuje vlastnost, odpověď a záznam. Rozsah úloh
+1–8 a jejich řešení zůstává zachován; nové početní učivo se nezavádí.
+Sešit nepřidává nová individuální data: obrázky jsou pojmová schémata
+nebo převody jednotek, nikoli nové datové úlohy. Pokrytí shrnuje DATA.md.
+Nejde o testování porozumění na studentech.
+
+Ověření: plný Quarto render deseti stránek; R kontrola kapitoly 1 včetně
+matice, chybění, řešení úlohy 8, převodů °C/°F, hodin/minut, ordinálního
+překódování, zaokrouhlení a opakovaných návštěv. Převody a zaokrouhlení
+byly nezávisle přepočteny v Pythonu. Kontrola všech sešitů prošla pro
+1 583 vstupních buněk včetně typů, chybění a totožnosti kopií na webu.
+Desktopový Excel nebyl znovu spouštěn, protože sešity ani vzorce se neměnily.
+Všechny osm obrázků byly vizuálně prohlédnuty; webová kontrola prošla
+pro 10 stránek, 210 hesel a 54 řešení, odkazy, klávesnici, JavaScript
+vypnutý/zapnutý, file://, šířky 1360/1920 px a mobilní šířku 390 px.
+Sedm nových diagramů má ověřené lokální posouvání a načtené obrázky
+s alternativním textem. Po vizuální kontrole byla nová tabulka rozšířena
+na čitelnou minimální šířku s místním posouváním. Fyzický telefon,
+jiné prohlížeče a veřejné nasazení se tímto neověřují.
+Po doplnění názvu tabulky a rozlišení sampling/sample do existujícího
+hesla slovníčku byl znovu vykreslen celý web. Cílená kontrola konečné
+verze při 1360 a 390 px ověřila osm načtených obrázků, popisek tabulky,
+její posouvání klávesnicí, nepřetékání stránky a přímý odkaz na upravené
+heslo. Konečná tabulka byla vizuálně prohlédnuta. Git diff --check prošel.

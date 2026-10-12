@@ -12,6 +12,10 @@ Výklad: `Data` obsahuje šest původních záznamů; `Promenne` jejich význam,
 jednotky a chybění; `Chybeni` rozlišuje nulu a nezměřený výkon;
 `Oprava_zaznamu` zachovává chybný přepis i údaj původního formuláře.
 Ostatní příklady vysvětlují pojmy pomocí slovních situací, nikoli datových souborů.
+Sedm schémat doplněných 2026-10-12 znázorňuje vztahy, převody jednotek
+a schematické případy; nezadává nový datový soubor ani výpočetní úlohu.
+Pevné polohy a počty značek jsou součástí generátoru `scripts/kapitola_01.R`;
+vstupy a pokrytí cvičení v sešitu se nemění.
 
 | Cvičení | List a oblast / povaha zadání |
 |---|---|

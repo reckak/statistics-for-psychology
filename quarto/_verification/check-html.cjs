@@ -48,6 +48,18 @@ const server = http.createServer((req, res) => {
       }
       await page.setViewportSize({ width: 1360, height: 1000 });
       if (file === 'quarto/kapitola_01.html') {
+        const figures01 = page.locator('main .quarto-figure img');
+        assert.equal(await figures01.count(), 8, 'Chapter 1 has eight explanatory figures');
+        for (const img of await figures01.all()) {
+          assert(await img.evaluate(e => e.complete && e.naturalWidth > 0), 'Chapter 1 figure loaded');
+          assert((await img.getAttribute('alt')).length > 40, 'Chapter 1 descriptive alt text');
+        }
+        const body01 = await page.locator('main').innerText();
+        assert(body01.includes('Náhodné přiřazení k podmínkám'), 'Preferred assignment term');
+        assert(!body01.includes('náhodné přidělení'), 'Old preferred assignment term removed from exposition');
+        for (const region of await page.locator('.teaching-figure').all()) {
+          await region.screenshot({path:`tmp/verification/ch01-${await region.locator('[id^="fig-"]').first().getAttribute('id')}-desktop.png`});
+        }
         const references = page.locator('#refs .csl-entry');
         assert.equal(await references.count(), expectedReferences, 'Shared citation data remains available for consistent APA suffixes and popovers');
         const howell = (await page.locator('#ref-howell').innerText()).trim();
@@ -266,6 +278,29 @@ const server = http.createServer((req, res) => {
         await figure.screenshot({path:'tmp/verification/ch04-figure-right-mobile.png'});
       }
       if (file === 'quarto/kapitola_01.html') {
+        const regions01 = page.locator('.teaching-figure');
+        assert.equal(await regions01.count(), 7, 'Seven new diagrams have accessible scroll regions');
+        for (let i=0; i<await regions01.count(); i++) {
+          const region=regions01.nth(i);
+          assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth), 'Chapter 1 diagram scrolls locally');
+          await region.focus();
+          await page.keyboard.press('ArrowRight');
+          await page.waitForFunction(i=>document.querySelectorAll('.teaching-figure')[i].scrollLeft>0,i);
+          await region.screenshot({path:`tmp/verification/ch01-figure-${i+1}-mobile.png`});
+          await region.evaluate(e=>{e.scrollLeft=e.scrollWidth;e.blur();});
+          await region.screenshot({path:`tmp/verification/ch01-figure-${i+1}-right-mobile.png`});
+          await region.evaluate(e=>e.scrollLeft=0);
+        }
+        const scales01=page.getByRole('region',{name:'Úroveň měření a diskrétní nebo spojité hodnoty',exact:true});
+        assert(await scales01.evaluate(e=>e.scrollWidth>e.clientWidth),'Chapter 1 comparison table retains readable columns');
+        await scales01.focus();
+        await page.keyboard.press('ArrowRight');
+        await page.waitForFunction(()=>document.querySelector('#srovnani-urovni-hodnot').scrollLeft>0);
+        await scales01.evaluate(e=>{e.scrollLeft=0;e.blur();});
+        await scales01.screenshot({path:'tmp/verification/ch01-scales-mobile.png'});
+        await scales01.evaluate(e=>e.scrollLeft=e.scrollWidth);
+        await scales01.screenshot({path:'tmp/verification/ch01-scales-right-mobile.png'});
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Chapter 1 diagrams do not overflow the page');
         const optional = page.locator('#chyba-mereni-podrobne');
         await optional.locator('[data-bs-toggle="collapse"]').click();
         await optional.locator('.callout-collapse').waitFor({ state: 'visible' });

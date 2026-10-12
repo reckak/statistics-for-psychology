@@ -176,7 +176,7 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Tam, kde usnadní pochopení pojmu, vztahu mezi pojmy nebo principu postupu,
   zařazuj do kapitoly názorné diagramy, schémata či grafy. Propoj je
   s výkladem a vysvětli, co znázorňují a čeho si má student všimnout.
-  Příkladem je schéma odlišující výběr z populace od přidělení do podmínek
+  Příkladem je schéma odlišující výběr z populace od přiřazení k podmínkám
   v první kapitole. Volbu a počet vizualizací řiď jejich didaktickým přínosem;
   nejsou samoúčelnou ilustrací ani povinnou součástí každého oddílu.
 - Piš soustředěně a podpůrně. Pomáhej studentům vysvětlením obtížných míst

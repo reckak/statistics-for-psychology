@@ -21,3 +21,17 @@ cells <- lapply(strsplit(answer, '|', fixed = TRUE), function(x) trimws(x[2:5]))
 stopifnot(cells[[1]][3] == '0', cells[[2]][2] == '', cells[[3]][3] == '')
 stopifnot(cells[[2]][1] == 'K02')
 cat('Chapter 01: matrix, missing values, exercise 8 and elementary calculations passed.\n')
+
+# Unit changes in the teaching diagram preserve the claimed relations.
+celsius <- c(10, 15, 20, 25)
+fahrenheit <- celsius * 9 / 5 + 32
+stopifnot(identical(fahrenheit, c(50, 59, 68, 77)))
+stopifnot(diff(fahrenheit[1:2]) == diff(fahrenheit[3:4]),
+          celsius[3] / celsius[1] == 2, fahrenheit[3] / fahrenheit[1] == 1.36)
+stopifnot(identical(order(c(1,2,3,4)), order(c(1,2,5,10))),
+          length(unique(diff(c(1,2,5,10)))) > 1,
+          all(round(c(6.8,7.2)) == 7))
+visits <- expand.grid(person=c('A','B'), visit=1:2)
+stopifnot(nrow(visits)==4, length(unique(visits$person))==2,
+          !anyDuplicated(paste(visits$person,visits$visit)))
+cat('Chapter 01: diagram conversions, ordinal recoding, rounding and repeated visits passed.\n')
