@@ -41,7 +41,7 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [U12](#u12) kap. 5–9 a 20; podrobně [D08](#d08), [D09](#d09); [D11](#d11) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
 | Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
 | Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P06](#p06) sn. 2–6; [P07](#p07) sn. 3–54; [C05](#c05) X5 a X6; [D11](#d11) s. 249–253 | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. Nové zdroje neschvalují rozsah další kapitoly. |
-| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [P06](#p06) sn. 7–25; [C05](#c05) X5_11–12, X6_20–21; [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9; [E02](#e02), [E03](#e03) | [P06](#p06) sn. 7–25; [C05](#c05) X5_11–12, X6_20–21; [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. Interpretaci p ověřovat také proti E02/E03. |
 | Bootstrap a odhad nejistoty různých statistik | [U01](#u01) kap. 18; [U03](#u03); [U08](#u08) | [P07](#p07) sn. 32–37, 53 a 57–60; [C05](#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
 | Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](#d11) s. 250–253; [U12](#u12) kap. 8 | [C05](#c05) X5_09 (mince); [P07](#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
 | Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07); [U11](#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
@@ -132,6 +132,12 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Použití v kapitole 5 (2026-10-12):** pořadí výkladu a citace s. 108–110 (pojetí), 109 (podmínka stejně pravděpodobných výsledků), 112 (výběr s vracením), 119 (náhodná pořadí místo všech), 121–123 (Bayesova věta, taxíky), 124–128 (binomické rozdělení, parametry, orientační pravidlo „větší než asi 5“). S. 119 a 128 čteny v textové extrakci, nikoli v obraze. Kapitola nepřebírá Howellovy užší tvary součtového a součinového pravidla ani definici nezávislosti slovy „nemá vliv“. U příkladu devíti správných odpovědí z deseti (s. 125–126) text odlišuje otázku na právě devět od otázky na devět nebo více. Úloha o taxících je cvičením 7 s uvedením zdroje; tabulka pásů a dopingový příklad použity nebyly. Binomický test a cvičení od s. 128 zůstávají nečtené.
 
+**Příprava kapitoly 6 (2026-10-12):** znovu ověřena identita PDF 3 a 6; pro návrh přečteny relevantní pasáže kapitoly 4, zejména §4.2–4.11, s. 86–102 (PDF 110–126), a s. 178–182 (PDF 202–206). První část poskytuje pořadí výběrové rozdělení → hypotézy → chyby → směrovost → účinek; druhá SE průměru, CLT a test se známou σ. Doporučený plán předsouvá SE průměru a CLT před samotné testování a využívá binomický model již vysvětlený v naší kapitole 5. Nejde o převzetí celé Howellovy kapitoly ani jeho značení.
+
+**Nově ověřené rozpory v úvodním příkladu:** na s. 87 (PDF 111) text pracuje se 100 pozorováními v každé skupině, ale popisek obr. 4.1 uvádí 25. Na s. 94 (PDF 118) je kritická hodnota 4,94; na s. 96 (PDF 120) text pracuje s hranicí přibližně 3,5. Všechny tři strany prohlédnuty v originálním obraze. Pro nezávislé skupiny s n = 100 a σ = 15 vychází SE rozdílu √(15²/100 + 15²/100) = 2,12132 a pravostranná 5% hranice 3,48926 (nezávislý výpočet v Pythonu). Čísla tedy nelze převzít jako jediný konzistentní příklad. S. 96 dále střídá alternativní rozdíl 2 a 3,5 a v jedné větě popisuje β jako pravděpodobnost nad kritickou hranicí, přestože zamýšlená chyba je oblast nezamítnutí. Podmínky a hodnoty každé křivky při případné adaptaci sestavit znovu.
+
+**Meze použití:** poznámky o Jonesově–Tukeyově přístupu s. 99–101 nepřenášet jako obecnou definici testování ani tvrzení, že nulová hypotéza nikdy nemůže být pravdivá. Klinické rozhodnutí v §4.12 není samo validovaným diagnostickým postupem pro studentský příklad. Vizuálně zkontrolována také s. 180 (PDF 204): při vlastním srovnání variability průměrů držet společné osy. Orientační n = 30 na s. 179 není univerzální záruka normální aproximace. Úlohy a celá kap. 8 o síle nebyly v tomto kole podrobně revidovány; původní parkovací studie nebyla přečtena.
+
 <a id="u02"></a>
 
 ### U02 — Aron, Aron a Coups — postupné psychologické příklady
@@ -199,6 +205,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Nespouštěny aplikace a simulace dances/esci ani všechny příklady. Odkazy C2/C3 ve starých úlohách mají jiné stránkování a nemusí pocházet z tohoto vydání.
 
+**Příprava kapitoly 6 (2026-10-12):** přečteny s. 83–91 (PDF 118–126): opakované výběry, rozdělení průměrů, SE a CLT; dále s. 134–136 (PDF 169–171), úvod do NHST. Obr. 4.8 na s. 87 (PDF 122) prohlédnut v obraze. Vhodný podklad vlastní vizualizace tří úrovní: populace, jeden výběr, průměry mnoha výběrů; předloha se nekopíruje. Zúžení výběrového rozdělení a přiblížení jeho tvaru normálnímu rozdělení vysvětlit jako dvě různé vlastnosti. Větu formulovat pro nezávislá stejně rozdělená pozorování s konečným rozptylem, bez univerzální hranice n. Cumming řadí CI před NHST, což je odlišná didaktická možnost k projednání, nikoli schválená změna pořadí. Zbytek kapitol 5–6, jejich úlohy a aplikace ESCI nebyly nově kompletně pročteny ani spuštěny.
+
 <a id="u04"></a>
 
 ### U04 — Diez, Çetinkaya-Rundel a Barr — OpenIntro Statistics
@@ -258,6 +266,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Důležitá odchylka: s. 13–14 odmítají pravděpodobnost jako subjektivní míru jistoty pro již rozhodnutou neznámou skutečnost. Jde o určité pojetí, které se rozchází s Baronem a s pluralitou pojetí u Howella/Navarro; nepřebírat jako obecný zákaz. Neověřeny všechny výpočty a řešení.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 12–14; potvrzen rozpor v pojetí pravděpodobnosti uvedený výše. Terminologický podklad je užitečný, ale odmítnutí pravděpodobnosti již nastalé neznámé skutečnosti není společnou definicí všech pravděpodobnostních přístupů. Nová vizuální kontrola těchto stran neproběhla.
+
+**Příprava kapitoly 6 (2026-10-12):** přečteny s. 69–74 a 94–97 (stejné pořadí PDF). První pasáž rozlišuje statistiku jako postup a realizovaný odhad, nezávislý stejně rozdělený výběr a jeho chybu; poskytuje terminologickou alternativu „směrodatná chyba“. Druhá propojuje výzkumnou otázku s hypotézami. Poznámka 23 na s. 96–97 výslovně zjednodušuje zápis H₀ na rovnost i u jednostranné alternativy; plán doporučuje projednat úplné doplňující se hypotézy a výpočet na hranici H₀. Formální teorii estimátorů nepřebírat jako nutnou vstupní znalost. Čtení proběhlo v textové extrakci; nejde o novou úplnou obrazovou či číselnou kontrolu opory.
 
 <a id="u06"></a>
 
@@ -361,6 +371,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Kód R, závislosti a epilogy nejsou kompletně spuštěny ani revidovány. Pozdější bayesovské kapitoly jsou pouze zmapované.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteny s. 373–377 včetně kontextu model → data versus data → model, četnostního výkladu a úvodu k subjektivnímu pojetí. Obr. 9.1 byl čten jen v extrakci, nová vizuální kontrola neproběhla. Návrh vlastní simulace má ukazovat kolísání relativních četností, nikoli slib monotónního přibližování nebo přesného vyrovnání krátké řady.
+
+**Příprava kapitoly 6 (2026-10-12):** přečteny s. 450–453 a 464–465 (stejné pořadí PDF). U směrového testu s. 450 používá doplňující se H₀: θ ≤ 0,5 a H₁: θ > 0,5. Výklad p-hodnoty nabízí spojení kritických oblastí a pravděpodobnosti pozorované nebo extrémnější statistiky; při adaptaci rozlišit dlouhodobou chybovost rozhodovacího pravidla a pravděpodobnost chyby konkrétního závěru. Užitečný doplněk k interpretaci nezamítnutí a metodologickým omezením testování. Nevnášet bez dohody θ ani R kód do studentského textu. Čtení v extrakci, bez nové obrazové kontroly; celá kapitola 11 ani její kód nebyly prověřeny.
 
 <a id="u09"></a>
 
@@ -689,6 +701,8 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 
 **Neověřeno:** původní studie a kauzální vysvětlení parkovacího chování, zdrojové simulace a všechny hodnoty síly, živé animace a externí odkazy. Terminologie snímků není schválením nových hesel učebnice. Originál se neměnil.
 
+**Použití pro návrh kapitoly 6 (2026-10-12):** znovu přečten text všech 25 snímků a poznámek a prohlédnuty všechny tři kontaktní listy z aktuálního souboru. P06 je nejbližší přednáškovou předlohou navrženého tématu. Převzít posloupnost otázek a námět rozdělení za různých alternativ; číselné simulace sestavit vlastní. Jednostranný test nevyžaduje logickou nemožnost opačného účinku: jeho vhodnost záleží na předem vymezené otázce a rozhodovacím postupu. Sílu lze vypočítat při zadaném modelu a konkrétní alternativě; neznalost skutečného populačního účinku není důvodem vydávat každý takový výpočet pouze za odhad. Úplný dvouvýběrový test ani Cohenovo d nejsou v návrhu základního rozsahu.
+
 <a id="p07"></a>
 
 ### P07 — Statistické usuzování, PSYb1170, 2026
@@ -720,6 +734,8 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 - **Sn. 58–62:** pořadové meze mediánu na sn. 58 mají ve slovním popisu prohozené označení horní/dolní meze. Tvrzení sn. 60, že rozdělení korelace „neznáme“, není vhodnou obecnou formulací. Na sn. 62 rozlišit věrohodnost a posterior: kvantily vyžadují normalizované posteriorní rozdělení při zvoleném prioru; interval s rovnými chvosty se obecně nerovná intervalu nejvyšší hustoty. Tato rozšíření nejsou kompletně odborně ověřena.
 
 **Neověřeno:** všechny další výpočty, platnost a česká syntaxe funkcí ve skutečném Excelu, vložené a externí simulace, všechny animace, zdrojová data a empirický původ příkladu. R kód ze sn. 35 nebyl spuštěn. Originál se neměnil.
+
+**Použití pro návrh kapitoly 6 (2026-10-12):** znovu přečteny relevantní části sn. 3–31 a 38–46, orientačně pasáže o bootstrapu mezi nimi; prohlédnuty kontaktní listy sn. 10–27 a 37–45. Pro základní plán jsou vhodné bodové odhady, výběrová chyba, SE a simulace. Intervaly, Studentovo rozdělení a bootstrap představují samostatné volby rozsahu, nikoli automatický doplněk k P06. Původní hodnoty potřeby struktury lze využít až s jasným původem dat a opraveným rozlišením SE a rozdělení t-statistiky. Nové čtení nepokrývá podrobně všech 62 snímků; dřívější širší průzkum zůstává zaznamenán výše.
 
 ## Procvičování a seminář
 
@@ -847,6 +863,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 - **X6_20–21:** při uvedeném modelu a cílové celkové šířce vychází potřebná n po zaokrouhlení vzhůru **210**, resp. **289**; klíč v těchto konečných hodnotách souhlasí. Druhá hodnota používá plánovací odhad p = 0,75, není zárukou pro každý populační podíl.
 
 **Podmínky převzetí / neověřeno:** závislosti `Simulace výběrů.xlsx` a `bootstrap.xlsx` v aktuálním `sources/` chybějí; ESCI a externí simulace nebyly spuštěny. Funkce nebyly testovány v českém Excelu, bootstrapové číselné výsledky nebyly reprodukovány a celý klíč nebyl přepočten. Přesné vydání zdroje C5 a jeho stránkové odkazy nejsou ověřeny; odkazovaný web používá ISBN 9781138825529, nelze jej automaticky ztotožnit se současným místním druhým vydáním U03. Původ dat a historická či empirická tvrzení je třeba ověřit před převzetím. Originál se neměnil.
+
+**Použití pro návrh kapitoly 6 (2026-10-12):** znovu čtena zadání C5_01–09 a C5_11, X5_01–12, příslušný klíč X5_01–12 a vybraná zadání X6. Pro vlastní přepracování doporučeny X5_02 a X5_05 (simulace průměrů a teoretická SE), C5_11 (vliv n) a X5_12 (přesný binomický model místo původní aproximace). X5_11 s opakovanými výkony jednoho dítěte není vhodný hlavní inferenční příklad bez psychometrických a závislostních podmínek. Úlohy o CI, bootstrapu a mincovně jsou rezervou podle dohodnutého rozsahu. Nově se pracovalo s textem OOXML; nevzniklo úplné vykreslení DOCX, nový přepočet celého klíče ani náhrady chybějících sešitů.
 
 ## Další podklady
 
@@ -1079,6 +1097,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 **Neověřeno:** historické údaje o mincovně, původní okresní, školní a NAEP data, navazující studie, kauzální a biologická tvrzení a jejich současná platnost. Článek neobsahuje reprodukovatelný datový soubor a výpočty grafů nebyly znovu sestaveny. Reprint výslovně omezuje další reprodukci; mapa zpřístupňuje lokátory a autorský popis, nikoli kopie obrázků nebo textu.
 
+**Použití pro návrh kapitoly 6 (2026-10-12):** znovu přečteny s. 250–253 (PDF 3–6), obrázek škol na s. 253 znovu prohlédnut samostatně. Doporučen krátký vlastní model škol se stejným populačním rozdělením a různými n: vysvětlí, proč lze mezi oběma krajními skupinami najít více malých škol i bez rozdílů jejich populačních průměrů. Tento model nesmí být vydáván za empirické vysvětlení Wainerových škol. Historické, politické a biologické pasáže nejsou doporučeny do základního rozsahu kapitoly 6.
+
 ## Rozpory, mezery a další práce
 
 | Oblast | Co je třeba respektovat při přípravě kapitoly |
@@ -1161,3 +1181,45 @@ První graf navazuje na autorem popsaný vzor tří skupin z
 Autorství a okolní článek tohoto obrázku nebyly určeny; nepřebíráme jeho
 data ani obraz. Schválený pedagogický kontext, osy a skupiny jsou od autora
 učebnice. Platnost modelových tvrzení ověřují vlastní numerické kontroly.
+
+<a id="e02"></a>
+
+## E02 — ASA: principy interpretace p-hodnot
+
+**Zdroj:** [oficiální shrnutí prohlášení ASA](https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf), 7. března 2016, 3 strany PDF. Jde o shrnutí zveřejněné asociací, nikoli celý metodologický článek. Čteno 2026-10-12, zejména šest principů na s. 2; navazuje na dřívější kontrolu P06.
+
+**Použití pro návrh kapitoly 6:** p-hodnota vyjadřuje vztah dat ke specifikovanému modelu, nikoli pravděpodobnost pravdivosti hypotézy, velikost účinku nebo jeho důležitost. Věcný závěr se neopírá pouze o překročení hranice; záleží také na předpokladech a úplnosti reportování. Nepřebírat tvrzení P06 o p jako přesné síle důkazu. Doprovodné komentáře k prohlášení nebyly v tomto kole systematicky pročteny. Soubor se nepřidával do místního inventáře.
+
+<a id="e03"></a>
+
+## E03 — Greenland et al.: chybné interpretace testů a intervalů
+
+**Identita:** Greenland, S., Senn, S. J., Rothman, K. J., Carlin, J. B., Poole, C., Goodman, S. N., & Altman, D. G. (2016). *Statistical tests, P values, confidence intervals, and power: A guide to misinterpretations*. *European Journal of Epidemiology, 31*, 337–350. [Text vydavatele a DOI 10.1007/s10654-016-0149-3](https://link.springer.com/article/10.1007/s10654-016-0149-3).
+
+**Prostudováno 2026-10-12:** úvod o předpokladech a oddíl „Misinterpretations of P values“, zejména vztah p k hypotéze, náhodě, α a interpretaci zamítnutí/nezamítnutí; čten veřejný HTML text. Pro návrh kapitoly 6 slouží jako odborná kontrola interpretačních hranic, nikoli jako povinná studentská četba. Nesoulad dat se týká celého přijatého modelu; velké p samo nepotvrzuje H₀ a p není pravděpodobnost chybného aktuálního rozhodnutí. Celý článek včetně všech pasáží o intervalech a síle nebyl podrobně revidován; doplňující literatura nebyla systematicky čtena. Záznam se nezapočítává mezi místní soubory.
+
+<a id="e04"></a>
+
+## E04 — NIST: interval a test pro jeden průměr
+
+**Zdroj:** [NIST/SEMATECH e-Handbook, §1.3.5.2 Confidence Limits for the Mean](https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm). Stránka přečtena 2026-10-12; datum její poslední obsahové aktualizace nebylo zjištěno.
+
+**Použití:** kontrola vzorce t-statistiky, intervalových mezí, stupňů volnosti a vazby oboustranného testu na odpovídající interval. Pomáhá opravit P07: odhadovaná SE vstupuje do t-statistiky, neznalost σ sama nepřemění rozdělení průměru na t-rozdělení. Úplný t-test a intervaly jsou zatím otevřenou volbou rozsahu kapitoly 6. Data a softwarové ukázky na stránce nebyly spuštěny; celá příručka nebyla revidována. Soubor se nestahoval do místního inventáře.
+
+### Průzkum pro plán kapitoly 6 — 2026-10-12
+
+Před návrhem znovu porovnán aktuální rekurzivní seznam `sources/` s inventářem:
+všech 33 souborů odpovídá cestám a uvedeným prefixům SHA-256. Nebyly nalezeny
+nové, změněné ani chybějící soubory. Nové čtení je vymezeno v kartách U01,
+U03, U05, U08, P06, P07, C05 a D11; E02–E04 doplňují externí odbornou kontrolu.
+Ostatní učebnice, přednášky a úlohy byly posouzeny podle tematické mapy jako
+již využité návaznosti nebo doplňková rezerva, nikoli nově celé prostudovány.
+Návrh v [osnově](OSNOVA.md#navrh-kapitola-06) zůstává k projednání.
+
+Pro dva vlastní modelové příklady byly nezávisle spočítány binomické chvosty
+a normální pravděpodobnosti v Pythonu. Pro n = 20 a π₀ = 0,25 je
+P(X ≥ 10) = 0,0138644 a P(X ≥ 9) = 0,0409252; stejná hranice 9 má při
+π = 0,4 sílu 0,4044013 a při π = 0,5 sílu 0,7482777. V normálním modelu
+μ₀ = 50, σ = 10, n = 25 a m = 54 vychází SE = 2, z = 2 a oboustranné
+p = 0,0455003. To ověřuje aritmetiku návrhu, nikoli dosud neexistující
+studentský sešit či simulace. Excel a externí výukové aplikace nebyly spuštěny.

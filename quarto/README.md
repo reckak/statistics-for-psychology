@@ -2209,3 +2209,32 @@ nutný nový render knihy. Studentský obsah, schválená osnova, terminologie,
 bibliografie a originály v sources/ se neměnily; nové zdroje nejsou
 schválením rozsahu další kapitoly. Pomocné extrakce a náhledy jsou pouze
 v ignorovaném tmp/.
+
+## Návrh obsahu kapitoly 6 — 2026-10-12
+
+Na žádost autora připraven k projednání podrobný plán výběrových rozdělení
+a principu testování hypotéz v `docs/OSNOVA.md`. Obsahuje cíle, návaznosti,
+pořadí 12 oddílů včetně cvičení, konkrétní příklady, volby zařazení či odložení,
+navrženou terminologii a značení, budoucí sešit a požadavky na ověření.
+Žádost o návrh není schválením rozsahu: kapitola 6, sešit a studentské přehledy
+se nyní nevytvářely; rozhodnutí a platný terminologický registr se neměnily.
+
+Podkladem jsou aktuální kapitoly a projektové konvence, Howellova kap. 4
+a výklad průměru na s. 178–182, vybrané pasáže Cumminga, Dostála a Navarro,
+obě inferenční přednášky, úlohy týdne 4 a Wainerův námět malých skupin.
+Přesný rozsah čtení, obrazových kontrol, doporučeného použití a omezení je
+v doplněných kartách `docs/ZDROJE.md`. Nově obrazově potvrzené číselné rozpory
+Howellova úvodního příkladu jsou zaznamenány v U01. Externí odborné doplnění
+tvoří karty E02–E04 (ASA, Greenland et al., NIST); nejde o nové místní soubory.
+
+Všech 33 zdrojů odpovídá rekurzivnímu inventáři a otiskům SHA-256. Python
+nezávisle ověřil binomické p-hodnoty, kritickou hranici a dvě hodnoty síly,
+normální příklad se známou σ a nesoulad Howellovy kritické hodnoty; výsledky
+jsou v mapě. Celý klíč úloh, původní parkovací studie, empirická data Wainera,
+externí simulace ani Excel v tomto kole ověřeny nebyly. Návrh nevyžaduje
+chybějící původní sešity a nevydává ostatní inferenční kapitoly za nově přečtené.
+Při změně pouze autorské dokumentace se kniha znovu nerenderuje.
+Zkontrolováno 848 místních odkazů v dotčených dokumentech, cíle odkazů
+do kapitol, nové kotvy plánu a externích karet a jedinečnost výslovných ID.
+`git diff --check` prošel. Pomocné extrakce, obrazové náhledy a jednorázová
+kontrola plánu zůstávají v ignorovaném `tmp/chapter06-planning/`.

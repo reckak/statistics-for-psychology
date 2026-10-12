@@ -1,6 +1,6 @@
 # Mapa obsahu a návazností učebnice
 
-**Poslední kontrola mapy: 2026-10-12** (karty kapitol 1 a 5; karty 2–4 naposledy
+**Poslední kontrola mapy: 2026-10-12** (karty kapitol 1 a 5 a návrh kapitoly 6; karty 2–4 naposledy
 2026-10-11). Dokument popisuje aktuální zdrojové texty pěti výkladových
 kapitol a odděleně eviduje stav dalšího pokračování.
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
@@ -94,6 +94,7 @@ jsou v kartách níže; jejich řešení zůstávají ve studentském textu.
 | Lineární a nelineární transformace | [3: změna škály](../quarto/kapitola_03.qmd#sec-zmena-skaly); [4: standardizace](../quarto/kapitola_04.qmd#sec-standardizace) a [normalizace](../quarto/kapitola_04.qmd#sec-normalizace). | 3/10, 4/1–2 a 7–8; normalizace přes pořadí vysvětlena principem, bez algoritmu tvorby norem. |
 | Statistika, parametr, data a model | [3: souhrnné ukazatele](../quarto/kapitola_03.qmd#sec-poloha-variabilita) a [popis/model](../quarto/kapitola_03.qmd#sec-popis-a-model); [4: normální model](../quarto/kapitola_04.qmd#sec-normalni-model). | 3/11, 4/3–5 a 10, 5/8; kapitola 5 přidává rozdělení pravděpodobnosti diskrétní proměnné a parametr π. Normální model nepředstavuje obecnou teorii rozdělení. |
 | Kritické čtení grafu a sdělení výsledku | [2: zavádějící grafy](../quarto/kapitola_02.qmd#sec-zavadejici-grafy); [3: reportování](../quarto/kapitola_03.qmd#sec-reportovani-apa); [4: přiměřenost modelu](../quarto/kapitola_04.qmd#sec-primerenost-modelu). | 2/6–9, 3/12, 4/10; APA značky jsou vymezenou výjimkou, výpočetní značení se nemění. |
+| Výběrová rozdělení a princip testování | Dosud nejsou vytvořeny; [návrh kapitoly 6](#navrh-kapitola-06) navazuje na kapitoly 1 a 3–5. | K projednání: SE, CLT, binomický test, modelový test průměru, p-hodnota, chyby a síla. Rozsah intervalů a t-testů zůstává otevřený. |
 
 <a id="mapa-kapitola-01"></a>
 
@@ -714,12 +715,163 @@ Hlavní oporou pořadí je Howell, kapitola 5, a autorova přednáška
 
 ## Plán pokračování po kapitole 5 — odděleně od existujícího obsahu
 
-**Stav k 2026-10-11: žádný schválený plán.** Směr, rozsah ani pořadí kapitol
-následujících po pravděpodobnosti nebyly dohodnuty. Jako možná návaznost
-se v dosavadních kapitolách a v R21 pouze zmiňují výběrová rozdělení,
-standardní chyba, centrální limitní věta, intervaly spolehlivosti
-a testování hypotéz; žádná z těchto zmínek není schválením tématu ani
-jeho umístění. Rozcestník [mapy zdrojů](ZDROJE.md) nabízí podklady,
-nikoli osnovu. Před předložením návrhu další kapitoly platí postup
-z AGENTS.md: kontrola `sources/` proti inventáři, čtení relevantních pasáží
-v originálech a dohoda o rozsahu, cílech, termínech a značkách.
+**Stav k 2026-10-12: návrh k projednání, rozsah dosud neschválen.** Autor
+navrhl pro kapitolu 6 výběrová rozdělení a princip testování hypotéz
+a požádal o podrobný plán založený na podkladech. Níže je doporučení,
+nikoli vytvořený studentský text ani souhlas s jednotlivými tématy,
+termíny, značkami či pořadím dalších kapitol. R21 tím není nahrazeno.
+
+<a id="navrh-kapitola-06"></a>
+
+### Návrh kapitoly 6: Výběrová rozdělení a princip testování hypotéz
+
+**Didaktický záměr:** pochopit, jak se proměnlivost statistiky mezi výběry
+využívá při posouzení konkrétní hypotézy. Základ tvoří jeden průměr
+a známý binomický model. Rozdíl dvou průměrů ukáže přenositelnost principu,
+ale nevyžaduje zde zavedení dvouvýběrového testu.
+
+**Vstupní znalosti:** populace, výběr, výběrová variabilita a zkreslení
+(kapitola 1), průměr, rozptyl, směrodatná odchylka a nestrannost
+(kapitola 3), normální rozdělení, z-skór, plochy a kvantily (kapitola 4),
+náhodná proměnná, podmínění, binomické rozdělení a podíl (kapitola 5).
+Nepředpokládat nepovinný obecný výpočet střední hodnoty ani znalost R.
+Přímé návaznosti jsou [tipování a otázka „alespoň“](../quarto/kapitola_05.qmd#sec-binom-kumulace)
+a [kolísání podílu](../quarto/kapitola_05.qmd#sec-od-poctu-k-podilu).
+
+**Navržené cíle učení:**
+
+- Rozlišit rozdělení hodnot v populaci, hodnot v jednom výběru a statistiky
+  při opakování stejného výběrového postupu.
+- Vysvětlit standardní chybu a odlišit ji od variability jednotlivých lidí,
+  skutečné chyby jednoho odhadu a systematického zkreslení.
+- Popsat vliv velikosti výběru a variability populace na rozdělení průměru;
+  vysvětlit podmínky a meze normální aproximace.
+- Převést výzkumnou otázku na statistické hypotézy o parametru a určit,
+  které výsledky považujeme za extrémní.
+- Na jednoduchém binomickém a normálním příkladu vypočítat p-hodnotu,
+  spojit ji s kritickou oblastí a formulovat podmíněný věcný závěr.
+- Rozlišit p-hodnotu, hladinu významnosti, chyby I. a II. typu, sílu testu
+  a velikost účinku.
+- Posoudit předpoklady, volbu směrovosti a chyby v reportování výsledku.
+
+### Doporučené pořadí a hranice oddílů
+
+| Oddíl | Navržený výklad a konkrétní výstup | Vizualizace / příklad | Hranice |
+|---|---|---|---|
+| 6.1 Proč se výsledky výběrů liší | Připomenutí statistiky a parametru; bodový odhad a neznámá chyba m − μ; náhodné kolísání versus zkreslení. Inference zahrnuje odhadování i testování. | Několik stejně velkých výběrů modelových skórů stresu; každý dává jiný průměr. | Velký výběr sám neodstraňuje zkreslení. Nezavádět teorii vlastností estimátorů. |
+| 6.2 Výběrové rozdělení | Opakovat stejný postup při pevném n a modelu; z každého výběru uložit jednu statistiku. Teoretické rozdělení odlišit od histogramu konečné simulace. | Tři navazující úrovně: populace, jeden výběr, průměry mnoha výběrů; ručně vypsat všech devět uspořádaných dvojic ze tří stejně pravděpodobných hodnot s vracením. | Počet simulovaných výběrů není velikost jednoho výběru. Více simulací zpřesní obraz rozdělení, nezmenší jeho skutečnou SE. |
+| 6.3 Standardní chyba průměru | SE jako SD rozdělení statistiky. Pro nezávislá stejně rozdělená pozorování s konečným rozptylem: σ/√n, odhad s/√n, význam jednotek. Střed rozdělení průměru je μ. | Srovnání n = 25 a 100 při σ = 10; srovnání dvou σ při stejném n. Krátké zdůvodnění odmocniny. | SE není průměrná absolutní chyba ani zjištěná odchylka od neznámého parametru. Prostý náhodný výběr bez vracení z malé konečné populace vyžaduje úpravu. |
+| 6.4 Tvar rozdělení a centrální limitní věta | Z normální populace je rozdělení průměru normální při každém n; jinak jde za uvedených podmínek o aproximaci zlepšující se s n. Rozlišit zúžení rozdělení a změnu jeho tvaru. | Stejné osy pro simulace z normální a výrazně zešikmené populace, několik n. | Žádná univerzální hranice n = 30. Velký výběr nenormalizuje jednotlivá data; věta zde není tvrzením o každé statistice. Důkaz odložit. |
+| 6.5 Výběrové rozdělení podílu | Návrat k binomickému počtu a podílu k/n; pojmenovat již známou SD podílu jako SE a porovnat přesný model s aproximací. | n = 5: šest možných podílů; větší n: jemnější a užší rozdělení. | Neopakovat celou kombinatoriku. Ani podíl z velkého pevného n není spojitý. |
+| 6.6 Statistické hypotézy a nulový model | Výzkumná otázka, H₀ a H₁, parametr versus pozorovaná statistika, testová statistika. Nulová hypotéza určuje část modelu; další předpoklady se uvádějí zvlášť. | Návrat k 20 otázkám se čtyřmi možnostmi: výkon nad úrovní tipování. | Výzkumná teorie není totožná s H₁. H₀ nemusí tvrdit „žádný účinek“ ani vždy určovat jedinou hodnotu. |
+| 6.7 P-hodnota a úplný první test | Předem určit směr, n, statistiku a model. Sčítat pravděpodobnosti pozorované nebo extrémnější hodnoty; vysvětlit výsledek slovně. | 10 správných z 20 při π₀ = 0,25: horní chvost 0,0138644. Známá BINOM.DIST; sloupce s vyznačenou oblastí. | Není to P(H₀ za podmínky dat) ani pravděpodobnost pouze jedné přesné hodnoty. Závěr neprokazuje konkrétní psychologický mechanismus. |
+| 6.8 Hladina významnosti a kritická oblast | α jako předem zvolené omezení chybovosti postupu za H₀; rozhodnutí p ≤ α. Kritická hodnota a p-hodnota jako dva způsoby použití téhož testu. | Pro stejný binomický model a α = 0,05 zamítáme od 9 správných; skutečná pravděpodobnost zamítnutí na hranici H₀ je 0,0409252. | Kvůli diskrétnosti nemusí skutečná chybovost dosahovat přesně α. Nesrovnávat se zaokrouhlenou p-hodnotou. |
+| 6.9 Test pro průměr a směrovost | Na jednoduchém modelu se známou σ ukázat standardizaci odchylky průměru pomocí SE; levý, pravý a oba chvosty. Volbu určit výzkumnou otázkou před pohledem na výsledek. | Autorský model: nezávislé normální skóry, μ₀ = 50, σ = 10, n = 25, m = 54: SE = 2, z = 2, oboustranné p = 0,0455003. | Známá σ je výslovná modelová podmínka, nikoli běžná vlastnost výzkumu. σ normovací populace nemusí platit v jiné skupině. Oboustranné p není u všech rozdělení automaticky dvojnásobkem jednoho chvostu. |
+| 6.10 Chyby rozhodnutí a síla | Tabulka skutečnosti a rozhodnutí; α versus β, síla při konkrétně zvolené alternativě, vliv n, σ, α a velikosti rozdílu. | Stejná kritická oblast ve dvou či třech modelových rozděleních; binomické alternativy π = 0,4 a 0,5 mají sílu 0,4044 a 0,7483 při hranici 9 z 20. | α ani p nejsou podílem chybných závěrů mezi zamítnutými hypotézami. Síla není jedna vlastnost testu bez určení alternativy. Plné plánování n a retrospektivní sílu odložit. |
+| 6.11 Velikost účinku, věcný závěr a předpoklady | Rozdíl v původních jednotkách, velikost výběru a nejistota; statistická versus praktická důležitost. Interpretace zamítnutí i nezamítnutí. Připomenout nezávislost, výběr, měření a předem stanovený postup. | Stejný rozdíl při různých n; oprava dvou krátkých zpráv o výsledku. Nástin odhadování velikosti rozdílu a jeho nejistoty. | Konkrétní koeficienty účinku až s odpovídajícími metodami. Jeden významný test neprokazuje příčinu; nevýznamný není důkazem rovnosti. |
+| 6.12 Shrnutí a samostatná cvičení | Propojit otázku, model, statistiku, referenční rozdělení, p, rozhodnutí a věcnou interpretaci. | Smíšená sada níže s úplnými sbalenými řešeními. | Nepřidávat další nevysvětlené testy jen do úloh. |
+
+U směrového příkladu doporučit doplňující se hypotézy H₀: π ≤ 0,25
+a H₁: π > 0,25. Výpočet při hraniční hodnotě π₀ = 0,25 zdůvodnit:
+v celé H₀ dává největší pravděpodobnost tak vysokého počtu úspěchů.
+Tím se neztotožní složená nulová hypotéza s jedinou hodnotou použitou
+pro výpočet. Jde o návrh konvence k dohodě, nikoli již schválený zápis.
+Binomický příklad musí výslovně předpokládat nezávislé odpovědi a stejnou
+pravděpodobnost úspěchu; u skutečného znalostního testu nejsou tyto podmínky
+automatické. Čisté nezávislé náhodné tipování mezi čtyřmi možnostmi je
+konkrétní situace, která hraniční model π₀ = 0,25 splňuje.
+
+### Rozhodnutí o zařazení a vynechání
+
+| Otevřený bod | Doporučení k projednání | Alternativa a její důsledek |
+|---|---|---|
+| Intervaly spolehlivosti | V závěru vysvětlit motivaci intervalového odhadu; úplnou konstrukci, pokrytí a vztah k testu projednat pro samostatné pokračování. | Zařadit zde jeden úplný normální CI se známou σ; přidá samostatný cíl, graf opakovaných intervalů a alespoň dvě úlohy. Nemá zůstat pouhý vzorec ±1,96 SE. |
+| Studentovo t-rozdělení a jednovýběrový t-test | U s/√n vysvětlit, že odhad SE přináší další nejistotu; plný t-test odložit. | Zařadit t-statistiku, její předpoklady, stupně volnosti, kvantily a Excel zde. Pokud současně přibudou CI, zvážit rozdělení látky do dvou kapitol. |
+| První konkrétní test | Úplný jednostranný binomický test na známém modelu tipování, potom ilustrativní z-test jednoho průměru. | Pouze průměr se známou σ více sjednotí příběh, ale oslabí návaznost na kapitolu 5 a realistický příklad přesného testu. |
+| Rozdíl dvou průměrů a parkování P06/Howell | Použít případně jako stručnou ilustraci obecnosti výběrových rozdělení; vlastní úplný výpočet dvouvýběrového testu odložit. | Zvolit jej jako hlavní příběh: nutno nově odvodit či dodat rozdělení rozdílu a ověřit původní studii. Nepřebírat zjevně rozporné hodnoty z podkladů. |
+| Bootstrap a permutační test | Odložit; simulaci opakovaných výběrů z daného modelu ukázat povinně. | Nepovinné srovnání principů, ale výslovně odlišit výběry z populace, bootstrap z jednoho výběru a přeskupování podmínek za příslušné nulové hypotézy. |
+| Síla a velikost účinku | Konceptuální porozumění obojímu povinně, včetně jednoho numerického srovnání síly; účinek zatím v původních jednotkách. | Cohenovo d a výpočtové plánování n přidat až s konkrétními testy a jejich předpoklady. |
+| Malé skupiny a extrémní výsledky | Krátký řešený příklad simulovaných školních průměrů jako použití σ/√n, inspirovaný D11. | Pokud kapitola příliš naroste, přesunout do nepovinného rozšíření. Empirické a kauzální závěry Wainera bez dalšího ověření nepřebírat. |
+| Vícenásobné testování a volitelné zastavování | Stručně a povinně vysvětlit, proč dodatečná volba směru, výsledku či ukončení sběru mění chybovost postupu. | Výpočet 1 − (1 − α)^k pro nezávislé testy nepovinně; korekční postupy a sekvenční metody odložit. |
+| Fisher, Neyman–Pearson, Jones–Tukey, Bayes | V jádru rozlišit míru nesouladu s modelem a pravidlo s kontrolovanou dlouhodobou chybovostí; historii případně v nepovinné poznámce. | Úplné porovnání škol, Jonesův–Tukeyův postup, Bayesovy faktory a testy ekvivalence odložit. Neučit obecnou tezi, že H₀ nikdy nemůže být pravdivá. |
+| Formální odvození a konečná populace | Krátké vysvětlení odmocninového vztahu povinně; algebra rozptylu součtu nepovinně. Uvést hranici vzorců při výběru bez vracení. | Výpočet korekce na konečnou populaci a důkaz CLT odložit; potřebné podmínky tím nevynechat. |
+
+### Návrhy nových termínů a značení k dohodě
+
+Toto není platný terminologický registr. Již schválené termíny statistika,
+parametr, výběrová variabilita, výběrové zkreslení, nestrannost,
+pravděpodobnostní výběr a normované normální rozdělení se znovu neotevírají.
+
+| Navržený český termín | Anglicky | Alternativy a důvod volby |
+|---|---|---|
+| Výběrové rozdělení (statistiky) | sampling distribution | „Rozdělení statistiky při opakovaných výběrech“ jako vysvětlení; důsledně odlišit od rozdělení dat ve výběru. |
+| Bodový odhad; odhadovací postup | point estimate; estimator | Estimát/estimátor jen jako případné alternativy v registru; v jádru stačí srozumitelně odlišit číslo a postup. |
+| Výběrová chyba | sampling error | Vymezit zde odchylku statistiky od parametru v modelu opakovaného výběru; nejde o synonymum SE či všeho zkreslení. |
+| Standardní chyba | standard error | Alternativa „směrodatná chyba“ používaná P07 a Dostálem. Doporučení „standardní“ navazuje na P06; rozhodnutí dosud nepadlo. |
+| Centrální limitní věta | central limit theorem | Alternativa „centrální limitní teorém“; preferovat české „věta“, bez důkazu v jádru. |
+| Statistická hypotéza; nulová a alternativní hypotéza | statistical hypothesis; null / alternative hypothesis | Výzkumnou hypotézu (research hypothesis) vysvětlit zvlášť, nezaměňovat ji automaticky s alternativní. |
+| Testová statistika | test statistic | Alternativa „testovací statistika“; vždy konkrétní ukazatel vypočtený z dat. |
+| P-hodnota | p-value | Ve větě „p-hodnota“; „dosažená hladina významnosti“ nanejvýš jako vysvětlená alternativa, aby nesplývala s předem zvolenou α. |
+| Hladina významnosti; statisticky významný výsledek | significance level; statistically significant result | Alternativa „signifikantní“ se nedoporučuje; vždy odlišit věcnou důležitost. |
+| Kritická oblast; kritická hodnota | critical / rejection region; critical value | Alternativy „kritický obor“, „oblast zamítnutí“. Doporučit jednu hlavní variantu a druhou použít jako vysvětlení. |
+| Jednostranný a oboustranný test | one-sided / one-tailed; two-sided / two-tailed test | „Dvoustranný“ je alternativa; pravostranný a levostranný jako druhy jednostranného. |
+| Chyba I. a II. typu; síla testu | Type I / Type II error; statistical power | Alternativa „druhu“, „statistická síla“; pro výklad sjednotit jednu podobu. |
+| Velikost účinku; praktická důležitost | effect size; practical / substantive significance | „Velikost efektu“ jako alternativa. Slovo účinek samo nesmí naznačovat prokázanou kauzalitu. |
+
+Značení k dohodě: H₀ a H₁; stojaté μ₀ a π₀ pro hodnoty v nulové
+hypotéze; stojaté α a β, síla 1 − β; kurzivní z jako testová statistika.
+Pro SE navrhnout **σₘ pro skutečnou SE a sₘ pro její odhad**, aby zůstala
+zachována řecká/latinská konvence; zkratku SE uvést jako běžnou alternativu.
+Stávající m, s, n, P a π se nemění. Značku p pro p-hodnotu odlišit
+od p pro podíl: v jednom příkladu psát podíl jako k/n, nebo po dohodě
+označit p-hodnotu p_test. Velké M jako náhodnou proměnnou ani obecné θ
+není nutné zavádět; rozdíl statistiky před výběrem a její zjištěné hodnoty
+vysvětlit slovně. Případné CI, t, df a další značení projednat až podle
+zvoleného rozsahu. Návrh reportování: p na tři desetinná místa,
+p < 0,001 u menších hodnot, nikdy p = 0,000; pro kontrolu mezí uchovat
+nezaokrouhlené výsledky. Jde o návrh doplnění, nikoli změnu R05.
+
+### Příklady, cvičení a zamýšlené soubory
+
+Navržená sada **12 základních cvičení**: (1) přiřazení tří rozdělení,
+(2) přesný výčet dvojic a jejich průměrů, (3) SD versus SE a neznámá chyba,
+(4) změny n a σ, (5) CLT a předpoklady, (6) přesné rozdělení podílu,
+(7) překlad otázky na H₀/H₁, (8) binomická p-hodnota a kritická oblast,
+(9) modelový test průměru a směrovost, (10) chyby I./II. typu a síla,
+(11) stejný účinek při různých n, (12) redakce zprávy a kontrola předpokladů.
+Úlohy 1–7 a konceptuální části dalších mají být řešitelné s kalkulačkou;
+distribuční pravděpodobnosti v 8–10 s Excelem. Každá úloha má vyžadovat
+zdůvodnění či interpretaci a úplné řešení. Číselná zadání a tolerance
+se dopracují teprve po dohodě rozsahu.
+
+Podklady C05/X5_02 a X5_05 jsou vhodné pro propojení simulace a teorie,
+C5_11 pro vztah SE a n, X5_12 pro přesný binomický výpočet; původní
+znění a řešení se nepřebírají automaticky. Příklady X5_11 s opakovanými
+IQ výkony a X5_03 s nákazou nejsou doporučeny jako hlavní příběh kvůli
+dalším psychometrickým a závislostním předpokladům. Historická mincovna
+X5_09, medián a bootstrap mohou být nepovinné náměty.
+
+Po schválení mají vzniknout `quarto/kapitola_06.qmd`, jediný
+`data/kapitola_06.xlsx`, generátory a příslušné kontroly. Sešit by obsahoval
+`Prehled`, oddělené vstupy ručního výčtu, reprodukovatelné simulace,
+zadání a hotové výpočty pro binomický a normální test. Použít známé funkce
+BINOM.DIST, NORM.DIST, NORM.S.DIST a kvantilové funkce; nové funkce
+přidávat jen podle schváleného rozsahu. Ruční změny modelových vstupů
+mají měnit výsledky i grafy. Studentský materiál nesmí záviset na chybějících
+`Simulace výběrů.xlsx`, `bootstrap.xlsx` ani na externí aplikaci.
+Obecný odhad SE, výběrové rozdělení a jeho odhad simulací musejí zůstat
+rozlišeny také v popiscích sešitu.
+
+Po napsání budou potřeba numerické kontroly, skutečný běh českých vzorců
+v Excelu, kontrola simulací, didaktická revize, render celé knihy po
+přidání kapitoly, kontrola HTML, odkazů, skrytých řešení a mobilních grafů.
+Současně se doplní přehledy, DATA, mapa a schválené části registru/rozhodnutí.
+Žádný z těchto budoucích souborů ani kontrol tímto plánem nevznikl.
+
+**Podklady a omezení průzkumu:** viz aktualizované karty U01, U03, U05,
+U08, P06, P07, C05 a D11 v [mapě zdrojů](ZDROJE.md), včetně rozlišení
+nového čtení, obrazové kontroly a neověřených částí. Všech 33 místních
+souborů odpovídalo inventáři i otiskům SHA-256. Ostatní učebnice byly
+posouzeny podle mapy jako doplňková rezerva, jejich inferenční kapitoly
+nebyly v tomto kole podrobně pročteny. Rozhodující otevřené volby:
+rozsah CI/t-testu, role binomického testu, nepovinné aplikace a nové termíny.
