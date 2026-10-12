@@ -1,6 +1,6 @@
 # Autorský registr terminologie
 
-**Poslední kontrola: 2026-10-12.** Registr pokrývá 210 hesel současného
+**Poslední kontrola: 2026-10-12.** Registr pokrývá 211 hesel současného
 studentského slovníčku pro kapitoly 1–5 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
 
@@ -123,6 +123,7 @@ obsahovat samostatné výslovné schválení každé doprovodné formulace.
 | <a id="pojem-pravdepodobnostni-vyber"></a>**Pravděpodobnostní výběr** | probability sampling; random sampling | náhodný výběr | Obecný odborný název preferovat před náhodným výběrem (potvrzeno v [R19](ROZHODNUTI.md#r19-sjednoceni-terminologie)). „Prostý náhodný výběr“ a běžné „při náhodném výběru jednoho případu“ zůstávají. | S — [R10](ROZHODNUTI.md#r10-terminologie-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-pravdepodobnostni-vyber); [výklad](../quarto/kapitola_01.qmd#sec-populace-vyber) |
 | <a id="pojem-souvislost"></a>**Souvislost** | association | asociace | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-souvislost); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
 | <a id="pojem-kauzalni-zaver"></a>**Kauzální závěr** | causal conclusion | závěr o příčině; příčinný závěr | V odborném pojmenování preferovat kauzální závěr; běžné vysvětlení „závěr o příčině“ před zavedením pojmu zůstává. | S — [R19](ROZHODNUTI.md#r19-sjednoceni-terminologie) | [Heslo](../quarto/slovnicek.qmd#pojem-kauzalni-zaver); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
+| <a id="pojem-collider-bias"></a>**Zkreslení při výběru podle společného následku** | collider bias | — | Didaktický název pro zde vyložený výběr; obecný anglický pojem zahrnuje i jiné podmiňování společným následkem. Nezaměňovat se společnou příčinou ani s každým výběrovým zkreslením; směr nemusí být záporný. | S — [R27](ROZHODNUTI.md#r27-souvislost-pedagogicka) | [Heslo](../quarto/slovnicek.qmd#pojem-collider-bias); [výklad](../quarto/kapitola_01.qmd#souvislost-pedagogicka) |
 | <a id="pojem-experiment"></a>**Experiment** | experiment | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-experiment); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
 | <a id="pojem-nahodne-prideleni"></a>**Náhodné přiřazení k podmínkám** | random assignment | náhodné přidělení do podmínek; náhodné rozdělení do podmínek; randomizace do podmínek | Důsledně odlišit od výběru z populace a od rozdělení ve smyslu distribution. | S — [R26](ROZHODNUTI.md#r26-vizualizace-kapitoly-1) | [Heslo](../quarto/slovnicek.qmd#pojem-nahodne-prideleni); [výklad](../quarto/kapitola_01.qmd#sec-souvislost-pricina) |
 | <a id="pojem-konstrukt"></a>**Konstrukt** | construct | psychologický konstrukt | Nezaměňovat s jedním ukazatelem ani testovým skórem. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-konstrukt); [výklad](../quarto/kapitola_01.qmd#sec-mereni) |

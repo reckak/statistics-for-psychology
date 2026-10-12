@@ -1,6 +1,6 @@
 # Pokrytí dat v sešitech
 
-Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 1–4) a 2026-10-12 (kapitola 5). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
+Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4) a 2026-10-12 (kapitoly 1 a 5). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
 
 Slovní situace bez individuálních pozorování nejsou doplňovány smyšlenými daty. Hladké křivky znázorňují modely, nikoli nezveřejněné výběry. U simulace korekce v kapitole 3 je vstupem známá populace a parametry opakování; interní miliony náhodných tahů nejsou studentským datovým souborem. Kapitola 4 obsahuje všech 800 simulovaných skórů ze čtyř porovnávaných obrázků.
 
@@ -11,11 +11,19 @@ Slovní situace bez individuálních pozorování nejsou doplňovány smyšlený
 Výklad: `Data` obsahuje šest původních záznamů; `Promenne` jejich význam,
 jednotky a chybění; `Chybeni` rozlišuje nulu a nezměřený výkon;
 `Oprava_zaznamu` zachovává chybný přepis i údaj původního formuláře.
-Ostatní příklady vysvětlují pojmy pomocí slovních situací, nikoli datových souborů.
+Ostatní základní příklady vysvětlují pojmy pomocí slovních situací, nikoli datových souborů.
 Sedm schémat doplněných 2026-10-12 znázorňuje vztahy, převody jednotek
 a schematické případy; nezadává nový datový soubor ani výpočetní úlohu.
 Pevné polohy a počty značek jsou součástí generátoru `scripts/kapitola_01.R`;
-vstupy a pokrytí cvičení v sešitu se nemění.
+vstupy a pokrytí cvičení se těmito schématy nemění.
+
+Nepovinné pedagogické rozšíření přidává `Podpora_ucitele` A2:C301
+(podpora, motivace, úspěšnost; 300 řádků) a `Jednickari` A2:C601
+(inteligence, motivace, skupina; 600 řádků). Vlastní simulace s pevným seedem
+20261012 pochází z `scripts/kapitola_01-simulace.R`, stejná data používá
+generátor grafů a sešitu. Žádné chybění, ilustrační skóry bez vazby na
+konkrétní test; skupina jedničkářů zohledňuje oba skóry i další náhodné vlivy.
+Nejde o nová zadání početních cvičení. Původní listy a jejich adresy zůstávají.
 
 | Cvičení | List a oblast / povaha zadání |
 |---|---|

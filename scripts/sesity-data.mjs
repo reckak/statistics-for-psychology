@@ -103,6 +103,13 @@ export const existing = {
 };
 
 export async function addStudentInputs(wb,chapter,out) {
+  if(chapter===1){
+    const readSim=async name=>(await fs.readFile(`tmp/chapter-01-build/${name}.csv`,'utf8')).trim().split(/\r?\n/).slice(1).map(line=>line.split(','));
+    inputs[1]=inputs[1].filter(s=>!['Podpora_ucitele','Jednickari'].includes(s.name));
+    inputs[1].push(
+      item('Podpora_ucitele','Nepovinné rozšíření: společná příčina',['Podpora vyučujícího','Studijní motivace (body)','Školní úspěšnost (body)'],(await readSim('support')).map(r=>[r[0],+r[1],+r[2]]),'Vlastní simulace, 300 studentů, bez chybění. Podpora: nízká, střední, vysoká. Vyšší body = více motivace či úspěšnosti. Nejde o skutečné testy ani známky.'),
+      item('Jednickari','Nepovinné rozšíření: společný následek',['Inteligence (ilustrační skór)','Studijní motivace (body)','Skupina'],(await readSim('selection')).map(r=>[+r[0],+r[1],r[2]]),'Vlastní simulace, 600 studentů, bez chybění; inspirace: Griffith et al. (2020), obr. 1, doi:10.1038/s41467-020-19478-2. Skór inteligence podobný IQ, motivace v bodech. Jedničkáři = výborný výsledek ovlivněný oběma vlastnostmi a dalšími vlivy.'));
+  }
   const specs=[...inputs[chapter]];
   if(chapter===4){
     const q=(await fs.readFile('data/kapitola_04.csv','utf8')).trim().split(/\r?\n/).slice(1).map(l=>+l.split(',')[1]);

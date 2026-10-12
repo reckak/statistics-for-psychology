@@ -123,7 +123,7 @@ Změny připravujte v tematické větvi `codex/` a předložte je prostřednictv
 
 Všech pět sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
 Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
-5.1, Node.js a pro simulované vstupy kapitol 4–5 také R. Příkazy `node`
+5.1, Node.js a pro simulované vstupy kapitol 1 a 4–5 také R. Příkazy `node`
 a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze
 standardní moduly Node.js a rozhraní COM instalovaného Excelu; nepotřebují
 žádný balíček npm, `@oai/artifact-tool` ani prostředí konkrétního LLM.
@@ -158,6 +158,8 @@ Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu zm
   Excelu, formátování, ověření vstupů, nativní grafy, přepočet a uložení.
 - `scripts/sesity-simulace.R`: stejné pevně reprodukovatelné simulace jako
   v obrázcích; společný spouštěč jej pro kapitoly 4–5 zavolá automaticky.
+- `scripts/kapitola_01-simulace.R`: společné simulace pedagogických příkladů
+  pro grafy a sešit; generátor kapitoly 1 jej zavolá automaticky.
 
 Každý sešit vzniká v samostatné skryté instanci Excelu. Skript se nepřipojuje
 k otevřeným uživatelským sešitům. Nejprve uloží hotový přepočtený soubor

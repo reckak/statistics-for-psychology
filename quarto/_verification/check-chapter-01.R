@@ -1,5 +1,5 @@
 # Run from repository root: Rscript --vanilla quarto/_verification/check-chapter-01.R
-# No packages, random data, workspace objects, or private sources required.
+# Base R only; fixed simulations require no workspace objects or private sources.
 chapter <- readLines('quarto/kapitola_01.qmd', encoding = 'UTF-8', warn = FALSE)
 table_lines <- grep('^\\| P0[1-6] \\|', chapter, value = TRUE)
 parts <- lapply(strsplit(table_lines, '|', fixed = TRUE), function(x) trimws(x[2:6]))
@@ -35,3 +35,27 @@ visits <- expand.grid(person=c('A','B'), visit=1:2)
 stopifnot(nrow(visits)==4, length(unique(visits$person))==2,
           !anyDuplicated(paste(visits$person,visits$visit)))
 cat('Chapter 01: diagram conversions, ordinal recoding, rounding and repeated visits passed.\n')
+
+# Check the plotted data, not only the intended generating mechanism.
+if (.Platform$OS.type == 'windows') Sys.setlocale('LC_CTYPE', '.UTF-8')
+source('scripts/kapitola_01-simulace.R', encoding = 'UTF-8')
+sim <- chapter01_simulation()
+d <- sim$support
+within <- sapply(split(d, d$podpora), function(g) cor(g$motivace, g$uspesnost))
+stopifnot(nrow(d) == 300, all(table(d$podpora) == 100),
+          cor(d$motivace, d$uspesnost) > .75, all(abs(within) < .2),
+          all(d$motivace > 0 & d$motivace < 100),
+          all(d$uspesnost > 0 & d$uspesnost < 100))
+d <- sim$selection
+chosen <- d$skupina == 'jedničkáři'
+stopifnot(nrow(d) == 600, sum(chosen) > 60,
+          abs(cor(d$inteligence, d$motivace)) < .1,
+          cor(d$inteligence[chosen], d$motivace[chosen]) < -.35)
+# A simple score on the two plotted causes cannot perfectly separate groups.
+sum_score <- (d$inteligence - 100) / 15 + (d$motivace - 50) / 15
+stopifnot(min(sum_score[chosen]) < max(sum_score[!chosen]),
+          identical(sim, chapter01_simulation()))
+cat('Chapter 01: common-cause and selection simulations passed.\n')
+print(c(overall_support = cor(sim$support$motivace, sim$support$uspesnost),
+        within, all_students = cor(d$inteligence, d$motivace),
+        selected_students = cor(d$inteligence[chosen], d$motivace[chosen])))

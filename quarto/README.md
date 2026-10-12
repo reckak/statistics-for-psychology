@@ -2132,3 +2132,52 @@ hesla slovníčku byl znovu vykreslen celý web. Cílená kontrola konečné
 verze při 1360 a 390 px ověřila osm načtených obrázků, popisek tabulky,
 její posouvání klávesnicí, nepřetékání stránky a přímý odkaz na upravené
 heslo. Konečná tabulka byla vizuálně prohlédnuta. Git diff --check prošel.
+
+## Pedagogické příklady souvislosti — 2026-10-12
+
+Podle [R27](../docs/ROZHODNUTI.md#r27-souvislost-pedagogicka) je v kapitole 1
+nové sbalené nepovinné rozšíření `souvislost-pedagogicka`. Tři mechanismy
+se týkají motivace a úspěšnosti, čtvrtý výslovně mění dvojici na inteligenci
+a motivaci. Text rozlišuje časovou posloupnost obou směrů, společnou příčinu
+a výběr podle společného následku; šipky nejsou důkazem účinku a záporný
+směr vyvolané souvislosti není obecné pravidlo. Doplněn schválený termín
+do registru a slovníčku, šipka do značení, mapa obsahu a data. Nové funkce
+Excelu ani povinné výpočty se nezavádějí; osm cvičení a jejich řešení se nemění.
+
+Vlastní simulace `scripts/kapitola_01-simulace.R` se seedem 20261012
+sdílí grafy a sešit. První má 300 případů, po 100 v každé skupině podpory;
+druhý 600 případů. Jedničkáře vymezuje součet dvou nezávislých standardních
+normálních veličin a dalšího normálního vlivu se SD 0,6 nad hranicí 1,5.
+Skóry pro zobrazení jsou převedeny a zaokrouhleny na dvě desetinná místa.
+Jde o vlastní modelové údaje, nikoli empirické závěry o psychologii.
+
+R kontrola ověřila celkovou souvislost prvního grafu 0,8273 a vnitroskupinové
+hodnoty 0,1007, −0,1167 a 0,1580; druhý graf −0,0641 pro všechny a −0,5470
+pro jedničkáře. Ověřena opakovatelnost a překryv skupin vzhledem k oběma
+příčinám. Nezávislý výpočet v Pythonu potvrdil směry a velikosti souvislostí.
+Koeficienty jsou pouze autorská kontrola, studentský text je nevyžaduje.
+Prošla také původní R kontrola kapitoly, čísel a řešení.
+
+Sešit byl sestaven a přepočten ve skryté instanci Excelu 16.0; má devět
+listů, bez vzorců. `Podpora_ucitele` a `Jednickari` přidávají 2 700 buněk.
+Kontrola všech sešitů potvrdila 4 283 vstupních buněk, typy, chybění a
+totožnost publikovaných kopií. Porovnání proti předchozímu sešitu ověřilo
+původní hodnoty, datové typy, číselné formáty, sloučené buňky, ukotvení,
+validace a počty grafů; v přehledu pouze přibyly dva řádky. Prohlédnuty
+náhledy nových listů a přehledu exportované skutečným Excelem. Kontrola
+chyb vzorců ostatních čtyř sešitů byla jen pro čtení, bez ukládání.
+
+Celá kniha byla vykreslena. Kontrola webu prošla pro deset stránek,
+211 hesel a 54 řešení, odkazy, klávesnici, JavaScript zapnutý/vypnutý,
+file:// a šířky 1360/1920/390 px. Nové rozšíření je výchozím stavem sbalené
+a otevřitelné klávesnicí; grafy mají alternativní text a lokální posouvání.
+Oba byly vizuálně prohlédnuty na desktopu i na mobilní šířce včetně pravé
+části posunutého grafu. Bibliografie obsahuje 14 autorů, 11(1), Article 5749
+a ověřený DOI; citace generuje Quarto. Git diff --check prošel.
+
+Didaktická revize ověřila vysvětlení bodu a os před interpretací, změnu
+dvojice proměnných, rozdíl mezi modelem a daty, možnost současného působení
+a meze kauzálního závěru. Nejde o ověření porozumění na studentech.
+Původní obrazové odkazy nebyly dostupné pro vizuální srovnání; rozsah čtení
+článku a omezení zaznamenává [mapa zdrojů](../docs/ZDROJE.md).
+Fyzický telefon, další prohlížeče ani veřejné nasazení se neověřovaly.
