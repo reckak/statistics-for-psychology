@@ -2181,3 +2181,31 @@ a meze kauzálního závěru. Nejde o ověření porozumění na studentech.
 Původní obrazové odkazy nebyly dostupné pro vizuální srovnání; rozsah čtení
 článku a omezení zaznamenává [mapa zdrojů](../docs/ZDROJE.md).
 Fyzický telefon, další prohlížeče ani veřejné nasazení se neověřovaly.
+
+
+## Aktualizace mapy zdrojů — 2026-10-12
+
+Na žádost autora doplněny karty U12 (celý Baron), P06/P07 (výběrová
+rozdělení a statistické usuzování), C05 (úlohy týdne 4) a D11 (Wainer).
+Inventář nyní pokrývá 33 místních souborů. Odstraněné Baronovy výřezy
+se nepočítají jako dostupné soubory; ID D08/D09 a historické záznamy
+zůstaly, aktuální odkazy vedou na tištěné strany celé knihy (PDF = s. + 16).
+Titul, čtvrté vydání a copyright 2008 ověřeny přímo v PDF; současný údaj
+o prvním tisku 2007 je zaznamenán jako bibliografická odlišnost.
+
+Obě nové prezentace byly přečteny včetně poznámek a všech 87 snímků
+prohlédnuto z exportů PowerPointu. Wainerův článek byl přečten včetně
+obrazů stran. U Barona zmapován obsah celé knihy a ověřeny lokátory,
+nikoli celý výklad. U C05 přečtena zadání i klíč z OOXML a prohlédnuty
+čtyři PNG; jedna EMF a celé vykreslení zůstávají neověřeny. Export ve
+Wordu se zablokoval, vlastní skrytá instance byla ukončena bez uložení
+zdroje. R nezávisle ověřilo vybrané hodnoty P06/P07 a C05; přesný rozsah,
+nálezy a neprovedené kontroly uvádějí příslušné karty mapy. Excel,
+bootstrapové simulace a externí výukové aplikace nebyly spuštěny.
+
+Zkontrolovány místní odkazy, jedinečnost ID, pokrytí inventáře, otisky
+a git diff --check. Změna se týká autorské dokumentace, proto nebyl
+nutný nový render knihy. Studentský obsah, schválená osnova, terminologie,
+bibliografie a originály v sources/ se neměnily; nové zdroje nejsou
+schválením rozsahu další kapitoly. Pomocné extrakce a náhledy jsou pouze
+v ignorovaném tmp/.
