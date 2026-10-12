@@ -1,6 +1,6 @@
 # Pokrytí dat v sešitech
 
-Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4) a 2026-10-12 (kapitoly 1 a 5). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
+Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4) a 2026-10-12 (kapitoly 1, 5 a 6). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
 
 Slovní situace bez individuálních pozorování nejsou doplňovány smyšlenými daty. Hladké křivky znázorňují modely, nikoli nezveřejněné výběry. U simulace korekce v kapitole 3 je vstupem známá populace a parametry opakování; interní miliony náhodných tahů nejsou studentským datovým souborem. Kapitola 4 obsahuje všech 800 simulovaných skórů ze čtyř porovnávaných obrázků.
 
@@ -157,3 +157,49 @@ individuální data nesestavují.
 | 10 | `U10_test` A2:B5 |
 | 11 | `U11_aproximace` A2:B4 |
 | 12 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+
+## Kapitola 6
+
+[Sešit](../data/kapitola_06.xlsx). Kontrola proti výkladu a zadáním: 2026-10-12.
+
+Výklad: `Parkovani` (souhrny studie podle Howella a parametry výukového
+modelu), `Tipovani` (test s 20 a 80 otázkami), `Devet_vyberu` (všech devět
+výběrů dvou dob) a `Pozornost` (z-test). Hotové výpočty jsou odděleně
+na listech `Chyba`, `Test_rozdilu`, `Binom_test`, `Z_test` a `Sila`; žluté
+buňky jsou vstupy, modré vzorce. Na `Binom_test` je vstup omezen ověřením
+dat na nejvýše 20 pokusů a pozorovaný počet alespoň 1; list počítá jen
+alternativu „více“. Směrodatná chyba na `Test_rozdilu` a `Sila` je zadána
+jako hodnota výukového modelu (2,1213 s), nepočítá se z dat studie.
+
+Simulovaná data z obrázků jsou v sešitu úplná a statická: `Sim_vyber`
+A2:A31 (30 dob zobrazeného výběru), `Sim_prumery` A2:D10001 (10 000 průměrů
+pro každou ze čtyř velikostí výběru; hodnoty v řádku spolu nesouvisejí),
+`Sim_rozdily` A2:A10001 (10 000 rozdílů průměrů dvou výběrů po 100 řidičích
+při platné nulové hypotéze) a `Skupiny` A2:B151 (150 skupin z jediné
+populace). Hodnoty jsou zaokrouhleny na tři desetinná místa; vznikají
+v `scripts/sesity-simulace.R` ze stejných seedů jako obrázky
+(`scripts/kapitola_06.R`). Počty citované v textu (261, 236, 7 a 4) jsou
+ověřeny funkcí COUNTIFS přímo na uložených hodnotách. Jednotlivé simulované
+doby, ze kterých průměry vznikly, studentským datovým souborem nejsou.
+
+Parkovací studie je v sešitu jen čtyřmi souhrnnými čísly z Howella (s. 86);
+individuální doby řidičů nebyly zveřejněny a nesestavují se. Hladké křivky
+obrázků jsou modely. Cvičení 10 zadává hotové hodnoty statistické síly
+a cvičení 11 hotové p-hodnoty; nejde o jednotlivá pozorování.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 2 | `U02_body` A2:A4 |
+| 3 | `U03_podil` A2:B5 |
+| 4 | `U04_vybery` A2:B10; `U04_model` A2:B3 |
+| 5 | `U05_IQ` A2:B6; upraveno podle starší úlohy kurzu |
+| 6 | `Skupiny` A2:B151 (simulovaná data z výkladu) |
+| 7 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 8 | `U08_pokus` A2:B6; čísla podle Howella, s. 129–130 |
+| 9 | `U09_pamet` A2:B6; k výpočtu lze použít list `Z_test` |
+| 10 | `U10_sila` A2:C3; zadané hodnoty síly z normálního modelu |
+| 11 | `U11_vysledky` A2:D7; zadané výsledky testů |
+| 12 | `U12_studie` A2:B8 |
+| 13 (nepovinné) | `U13_sila` A2:B7 |
+| 14 (nepovinné) | `U14_screening` A2:B6; smyšlené hodnoty |
