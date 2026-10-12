@@ -40,8 +40,8 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Podmíněná pravděpodobnost, Bayes, základní četnosti | [U01](#u01) §5.7; [U04](#u04) §3.2; [U10](#u10) kap. 4; [D08](#d08) s. 121–129; [U11](#u11) §3.5–3.8 (s opravou s. 62) | [P05](#p05) sn. 6–13 a 24–28; [D09](#d09) s. 147–151; [D07](#d07) s. 77–78 | Vyloženo v kapitole 5: přirozené četnosti, tabulka, strom, úplná pravděpodobnost, Bayesova věta, dvě prevalence. |
 | Pravděpodobnostní úsudky a statistická gramotnost | [D07](#d07), [U12](#u12) kap. 5–9 a 20; podrobně [D08](#d08), [D09](#d09); [D11](#d11) | [P01](#p01) sn. 18–21; příklady v [C03](#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
 | Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](#u01) §5.3–5.9; [U04](#u04) §3.4 a kap. 4; [U10](#u10) kap. 5–7; [U11](#u11) §5.1–5.8 | [P02](#p02) sn. 36, 45–48; [P03](#p03) sn. 33–44; [P05](#p05) sn. 14–18, 20–23 a 29–36; [C03](#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
-| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P06](#p06) sn. 2–6; [P07](#p07) sn. 3–54; [C05](#c05) X5 a X6; [D11](#d11) s. 249–253 | Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. Nové zdroje neschvalují rozsah další kapitoly. |
-| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U11](#u11) kap. 4 a 7–9 | [P06](#p06) sn. 7–25; [C05](#c05) X5_11–12, X6_20–21; [D07](#d07) s. 75–76 | Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Výběrová rozdělení, SE, CLT, intervaly | [U01](#u01) kap. 4 a 7; [U03](#u03) kap. 4–5; [U06](#u06) kap. 7; [U08](#u08) kap. 10; [U11](#u11) §7.2–7.5 | [P06](#p06) sn. 2–6; [P07](#p07) sn. 3–54; [C05](#c05) X5 a X6; [D11](#d11) s. 249–253 | Rozsah kapitoly 6 schválen v [R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6): výběrové rozdělení, směrodatná chyba, zákon velkých čísel a centrální limitní věta; intervaly spolehlivosti a t-rozdělení zůstávají mimo. Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. |
+| Testování, velikost účinku, síla, plánování | [U01](#u01) kap. 4, §5.9, 7–8; [U03](#u03) kap. 5–10; [U04](#u04) kap. 5–7; [U05](#u05) §5.2; [U08](#u08) kap. 11; [U11](#u11) kap. 4, §5.9 a 7–9 | [P06](#p06) sn. 7–25; [C05](#c05) X5_11–12, X6_20–21; [D07](#d07) s. 75–76 | Princip testování je součástí schválené kapitoly 6 ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)): průběžným příkladem je parkovací studie podle U01 s. 86–88 a P06, binomický test a z-test jsou řešené příklady. t-testy, plánování velikosti výběru a výpočty síly nad rámec nepovinného bloku schváleny nejsou. Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
 | Bootstrap a odhad nejistoty různých statistik | [U01](#u01) kap. 18; [U03](#u03); [U08](#u08) | [P07](#p07) sn. 32–37, 53 a 57–60; [C05](#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
 | Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](#d11) s. 250–253; [U12](#u12) kap. 8 | [C05](#c05) X5_09 (mince); [P07](#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
 | Kategoriální data, korelace a regrese | [U01](#u01) kap. 6, 9–10; [U04](#u04) kap. 6, 8–9; [U07](#u07); [U11](#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
@@ -112,7 +112,7 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 | [s. 107 (PDF 131)](../sources/u%C4%8Debnice/howell.pdf#page=131) | 5 Pravděpodobnost; pojetí s. 108, pravidla s. 110, náhodné proměnné s. 114–115, kombinatorika s. 117, Bayes s. 120, binomické rozdělení s. 124, binomický test s. 128 |
 | [s. 137 (PDF 161)](../sources/u%C4%8Debnice/howell.pdf#page=161) | 6 Kategoriální data; dobrá shoda s. 139, kontingenční tabulky s. 144, předpoklady s. 153, závislá data s. 154, velikost účinku s. 160, shoda posuzovatelů s. 166 |
 | [s. 177 (PDF 201)](../sources/u%C4%8Debnice/howell.pdf#page=201) | 7 Průměry a t-testy; rozdělení průměru s. 178, známé σ s. 181, jeden průměr s. 183, párová data s. 197, nezávislé skupiny s. 206, nestejné rozptyly s. 217 |
-| [s. 229 (PDF 253)](../sources/u%C4%8Debnice/howell.pdf#page=253) | 8 Síla testu; faktory s. 232, výpočty s. 234–243, retrospektivní síla s. 245 |
+| [s. 229 (PDF 253)](../sources/u%C4%8Debnice/howell.pdf#page=253) | 8 Statistická síla; faktory s. 232, výpočty s. 234–243, retrospektivní síla s. 245 |
 | [s. 251 (PDF 275)](../sources/u%C4%8Debnice/howell.pdf#page=275) | 9 Korelace a jednoduchá regrese; kovariance s. 258, r s. 260, přímka s. 261, predikce s. 266, předpoklady s. 272, inference s. 274–290 |
 | [s. 303 (PDF 327)](../sources/u%C4%8Debnice/howell.pdf#page=327) | 10 Další korelační koeficienty; phi s. 304, biseriální a pořadové s. 313, Kendallovo W s. 320 |
 | [s. 325 (PDF 349)](../sources/u%C4%8Debnice/howell.pdf#page=349) | 11 Jednofaktorová ANOVA; model s. 327, logika s. 329, předpoklady s. 343, účinek s. 353 |
@@ -131,6 +131,23 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu ověřena identita na PDF 3 a 6; přečten souvislý výklad s. 108–127 (PDF 132–151), včetně tabulek a příkladů. V obrazech zvlášť zkontrolovány s. 109, 113, 120, 122, 125 a 127. Tabulka rodičovství/pásy (tab. 5.2, s. 113) a dopingový příklad (s. 121–122) jsou přímými podklady příkladů P05, nikoli dvěma nezávislými empirickými zdroji. Při převzetí uvést původ u Howella a modelové předpoklady. Binomický výklad s. 125–126 již přechází od přesné pravděpodobnosti konkrétního počtu k inferenčnímu závěru; pro zamýšlený úvod oddělit výpočet pravděpodobnosti od pozdějšího testování. Binomický test a úlohy od s. 128 nejsou tímto čtením kompletně prověřeny.
 
 **Použití v kapitole 5 (2026-10-12):** pořadí výkladu a citace s. 108–110 (pojetí), 109 (podmínka stejně pravděpodobných výsledků), 112 (výběr s vracením), 119 (náhodná pořadí místo všech), 121–123 (Bayesova věta, taxíky), 124–128 (binomické rozdělení, parametry, orientační pravidlo „větší než asi 5“). S. 119 a 128 čteny v textové extrakci, nikoli v obraze. Kapitola nepřebírá Howellovy užší tvary součtového a součinového pravidla ani definici nezávislosti slovy „nemá vliv“. U příkladu devíti správných odpovědí z deseti (s. 125–126) text odlišuje otázku na právě devět od otázky na devět nebo více. Úloha o taxících je cvičením 7 s uvedením zdroje; tabulka pásů a dopingový příklad použity nebyly. Binomický test a cvičení od s. 128 zůstávají nečtené.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečtena celá kap. 4, s. 83–106 (PDF 107–130), dále s. 128–132 s §5.9 (PDF 152–156) a s. 177–183 s §7.1–7.2 (PDF 201–207); s. 95–96 (PDF 119–120) také v obraze. Využití podle [R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6):
+
+- **Parkovací příklad, s. 86–88:** průběžný příklad kapitoly. Howell uvádí dvě skupiny po 100 řidičích, průměry 32,15 s a 39,03 s, rozdíl 6,88 s a směrodatnou odchylku 14,6 s v každé skupině. Průměr 35 a směrodatnou odchylku 15 volí sám pro simulaci (s. 87); nejde o údaje studie. Z textu není zřejmé, zda řidiči byli k podmínkám přiřazeni, nebo jen pozorováni.
+- **Další opory:** kroky testu s. 89–90, rozdíl mezi pravděpodobností dat za platnosti hypotézy a pravděpodobností hypotézy s. 90 a 99, chyby a síla s. 94–97, směr testu s. 97–99, velikost účinku s. 101–102, binomický test 7 z 8 s. 129–130 (pro cvičení), centrální limitní věta a σ/√n s. 178–180, test průměru při známém σ s. 181–183.
+- **Původní studie:** Ruback a Juieng (1997) není v `sources/`. Howellův seznam literatury uvádí *Journal of Applied Social Psychology, 27*, 821–834; údaj nebyl ověřen mimo Howella.
+
+**Nálezy z kap. 4 a 7 (2026-10-12):**
+
+- **S. 87:** popisek obr. 4.1 uvádí rozdíly průměrů „each based on 25 observations“, text n = 100. Rozptýlenost na obrázku odpovídá n = 100 (15 × √(2/100) = 2,12).
+- **S. 88:** pravděpodobnost 0,0006 je 6 případů z 10 000 simulovaných dvojic. Normální model dává jednostranně 0,00059 a oboustranně 0,0012; odhad opřený o šest případů má značnou simulační nejistotu.
+- **S. 94–96:** kritická hodnota 4,94 je uvedena pro horních 5 % (obr. 4.2 má osu −9 až 9), o stranu dál text i obr. 4.3 pracují s hodnotou „asi 3,5“. Pro σ = 15 a n = 100 je jednostranná 5% hranice 3,49; hodnota 4,93 odpovídá 1% hranici. Svislé osy obou obrázků mají vrchol 0,4, jsou tedy schematické.
+- **S. 96:** β = 0,76 odpovídá skutečnému rozdílu 2 s, jak je nakreslen obr. 4.3; text ji připisuje rozdílu 3,5 s (pro něj vychází 0,50). Hodnoty 0,92 pro α = 0,01 a 0,46 pro α = 0,20 (s. 97) souhlasí s rozdílem 2 s. Cvičení 4.18 na s. 105 uvádí 0,74.
+- **S. 91 a 100–101:** formulace „we conclude that the null hypothesis is false“ a tvrzení Jonese a Tukeyho, že pravděpodobnost platnosti nulové hypotézy je 0, se nepřebírají jako obecná pravidla (R28, R30).
+- **S. 182:** odkaz na „Figure 12.3“ u výběrového rozdělení průměru neodpovídá kapitole 7; zjištěno jen v extrakci.
+
+**Nezávislé ověření (Python, 2026-10-12):** směrodatná chyba rozdílu 2,121; kritické hodnoty 3,489 (5 % jednostranně), 4,158 (5 % oboustranně) a 4,935 (1 % jednostranně); β pro rozdíl 2 s: 0,759, 0,917 a 0,460; příklad jednoho skóru s. 103: z = −2,415, pravděpodobnost 0,0079; test s. 182: z = 7,36; binomické chvosty s. 130–131: 0,0352 a 0,0193. **Nečteno:** kap. 8 o síle, zbytek kap. 7; cvičení kap. 4 nebyla řešena. Práce Wilkinsona (1999), Nickersona (2000) a Jonese a Tukeyho (2000), na které Howell odkazuje, nebyly čteny.
 
 <a id="u02"></a>
 
@@ -199,6 +216,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Nálezy a neověřené části:** Nespouštěny aplikace a simulace dances/esci ani všechny příklady. Odkazy C2/C3 ve starých úlohách mají jiné stránkování a nemusí pocházet z tohoto vydání.
 
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 83–94 (PDF 118–129): výběrové rozdělení průměru jako hromada průměrů („mean heap“) a „dance of the means“, směrodatná chyba σ/√N, čtyřnásobný výběr a poloviční chyba, centrální limitní věta a výběry z rovnoměrné, zešikmené a vlastní populace. Využitelné pro blok A: zobrazení jednotlivých výběrů pod sebou s vyznačeným průměrem, oddělení empirické hromady průměrů od teoretické křivky a upozornění, že při zešikmené populaci a malém výběru zůstává rozdělení průměru zešikmené (obr. 4.10, N = 4). Řečnická formulace o normálním rozdělení jako základním rysu vesmíru (s. 90) se nepřebírá. Obrázky nebyly prohlédnuty v obraze, aplikace dances a esci nebyly spuštěny; kap. 6 o p-hodnotách zůstává ve stavu mapy obsahu.
+
 <a id="u04"></a>
 
 ### U04 — Diez, Çetinkaya-Rundel a Barr — OpenIntro Statistics
@@ -230,6 +249,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 **Použití v kapitole 5 (2026-10-12):** jediná citace, s. 95–96, k volbě jmenovatele při čtení tabulky. Identita na PDF 1–2 znovu přečtena v extrakci (4. vydání, 2019, aktualizace 12. 8. 2019, openintro.org/os); do společné bibliografie zařazeno s vydavatelem OpenIntro. Vizuální kontrola stran 95–96 neproběhla.
 
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 170–172: bodový odhad a jeho chyba rozdělená na výběrovou chybu a zkreslení (s. 170), simulace 10 000 výběrových podílů při podílu 0,88 a n = 1 000 a popis výběrového rozdělení středem, rozptýleností a tvarem (s. 171), centrální limitní věta pro podíl s podmínkou alespoň deseti očekávaných úspěchů i neúspěchů (s. 172; shodné s orientačním pravidlem kapitoly 5). Podnět pro blok A: výběrové rozdělení ve skutečném výzkumu nepozorujeme, a přesto o odhadu uvažujeme jako o jedné hodnotě z něj. „Sampling error“ zde označuje kolísání odhadu mezi výběry, tedy širší užití než v [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6). Vizuální kontrola neproběhla; §5.2–5.3 nebyly čteny.
+
 <a id="u05"></a>
 
 ### U05 — Dostál — česká terminologie a matematické souvislosti
@@ -258,6 +279,12 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Důležitá odchylka: s. 13–14 odmítají pravděpodobnost jako subjektivní míru jistoty pro již rozhodnutou neznámou skutečnost. Jde o určité pojetí, které se rozchází s Baronem a s pluralitou pojetí u Howella/Navarro; nepřebírat jako obecný zákaz. Neověřeny všechny výpočty a řešení.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 12–14; potvrzen rozpor v pojetí pravděpodobnosti uvedený výše. Terminologický podklad je užitečný, ale odmítnutí pravděpodobnosti již nastalé neznámé skutečnosti není společnou definicí všech pravděpodobnostních přístupů. Nová vizuální kontrola těchto stran neproběhla.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 92–101, z toho §5.2 „Logika testování statistických hypotéz“ na s. 94–101: požadavek jednoznačné předpovědi stanovené předem, test průměru při známém σ (devět studentů, průměr 24 proti 20, σ = 6), jednostranné a dvoustranné alternativy, kritická hodnota a kritický obor. Výpočty příkladu ověřeny: z = 2, pravděpodobnost 0,0228, dvoustranně 0,0455.
+
+- **Terminologie kap. 4–5 (vyhledáním v extrakci):** testová statistika (též testovací), p-hodnota, hladina významnosti, statisticky významný (signifikantní), alternativní hypotéza (alternativa, H s indexem A), jednostranná a dvoustranná (oboustranná) alternativa, kritická hodnota, kritický obor, chyba prvního a druhého druhu, síla testu, centrální limitní teorém, nestranný a konzistentní odhad. Spojení „výběrové rozdělení“ se v prohledaném textu jako termín nevyskytuje. Volby učebnice určuje [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6); Dostálovy názvy jsou podkladem, ne preferencí.
+- **Nálezy:** věta na s. 100, že při hladině 0,05 je „dobrých 5 % statisticky významných výsledků jen dílem náhody“, zaměňuje pravděpodobnost zamítnutí při platné nulové hypotéze za podíl chybných mezi významnými výsledky. Tabulka 5 na s. 99 s hvězdičkami a označením „existuje trend“ se nepřebírá. Formulace „zamítneme nulovou hypotézu a přijmeme hypotézu alternativní“ (s. 98) se nepřebírá. Zápis N(μ, σ²) na s. 96–97 se liší od R15.
+- **Neověřeno:** vizuální kontrola stran, §5.3 a dále, kap. 4 mimo vyhledané termíny.
 
 <a id="u06"></a>
 
@@ -361,6 +388,8 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Nálezy a neověřené části:** Kód R, závislosti a epilogy nejsou kompletně spuštěny ani revidovány. Pozdější bayesovské kapitoly jsou pouze zmapované.
 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** přečteny s. 373–377 včetně kontextu model → data versus data → model, četnostního výkladu a úvodu k subjektivnímu pojetí. Obr. 9.1 byl čten jen v extrakci, nová vizuální kontrola neproběhla. Návrh vlastní simulace má ukazovat kolísání relativních četností, nikoli slib monotónního přibližování nebo přesného vyrovnání krátké řady.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny §11.1–11.2 a začátek §11.3 (podle obsahu knihy s. 440–446): výzkumná versus statistická hypotéza na příkladu 62 správných odpovědí ze 100, nulová a alternativní hypotéza, dva druhy chyb, hladina významnosti a síla, testová statistika a její výběrové rozdělení za platnosti nulové hypotézy. Využitelné pro blok B: test se týká statistické hypotézy a její vazbu na výzkumnou hypotézu zajišťuje uspořádání studie (§11.1.1); poznámka o sporném jazyku závěrů (§11.2, pozn. 4). Formulace, že cílem testu je ukázat, že nulová hypotéza je „(probably) false“ (§11.1.2), se nepřebírá: p-hodnota není pravděpodobnost hypotézy. Přesné strany jednotlivých tvrzení nebyly v extrakci ověřeny; vizuální kontrola neproběhla. §11.4–11.9 a kap. 10 zůstávají ve stavu mapy obsahu.
 
 <a id="u09"></a>
 
@@ -485,6 +514,12 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 **Doplnění při přípravě kapitoly 5 (2026-10-11):** znovu přečteny s. 60–67 (PDF 81–88); vizuálně prohlédnuty s. 62 a 64–67. Potvrzena výše uvedená záměna nezávislosti výsledku testu a jeho správnosti. S. 64 je vhodná opora pro rozlišení tabulky výběru a populační nezávislosti a pro vysvětlení, že podmínění nemusí vyjadřovat časovou posloupnost.
 
 **Použití v kapitole 5 (2026-10-12):** dvě citace s. 64: nezávislost v tabulce výběru není nezávislost v populaci; podmínění nevyjadřuje časové pořadí. Obojí ověřeno na s. 64 (PDF 85) v extrakci. Záměna nezávislosti výsledku testu a jeho správnosti ze s. 62 převzata nebyla.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 107–111 (PDF 128–132): §5.9 s binomickým testem (13 uzdravených z 15 při pravděpodobnosti úspěchu 0,6) a s příkladem férovosti mince při oboustranné alternativě; začátek §5.10 o znaménkovém testu. Využitelné pro blok B: postup od rozdělení za platnosti nulové hypotézy k množině krajních výsledků, rozdělení kritického oboru do obou chvostů a podmínka nezávislosti pokusů.
+
+- **Ověřeno výpočtem:** pravděpodobnost 13 a více úspěchů z 15 je 0,0271; součet krajních výsledků 0–3 a 12–15 při pravděpodobnosti 0,5 je 0,0352.
+- **Nálezy:** tabulka 5.2 na s. 110 uvádí u r = 2 a r = 13 hodnotu 0,00032, správně 105/32 768 = 0,0032; zjištěno v extrakci, v obraze neověřeno. Text na s. 110 uvádí pravděpodobnost chybného zamítnutí 0,05, ačkoli popsaný kritický obor má pravděpodobnost 0,035. Závěr „the alternative hypothesis … is accepted“ (s. 109) se nepřebírá ([R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6)).
+- **Neověřeno:** vizuální kontrola stran; kap. 4, 6 a 7 zůstávají ve stavu mapy obsahu. Znaménkový test je mimo schválený rozsah kapitoly 6.
 
 <a id="u12"></a>
 
@@ -689,6 +724,14 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 
 **Neověřeno:** původní studie a kauzální vysvětlení parkovacího chování, zdrojové simulace a všechny hodnoty síly, živé animace a externí odkazy. Terminologie snímků není schválením nových hesel učebnice. Originál se neměnil.
 
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** z PPTX znovu přečten text všech 25 snímků a poznámky; obrazové sn. 5–6 a grafy nebyly nově prohlíženy. Podle [R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6) je prezentace kostrou bloku B a parkovací příklad průběžným příkladem celé kapitoly.
+
+- **Převzaté pořadí:** hypotézy → rozdělení za platnosti nulové hypotézy → hladina a kritická hodnota → chyby a síla pro rozdíly 3, 5 a 8 s → směr testu → velikost účinku → formulace závěrů.
+- **Odchylky schváleného pojetí:** hlavní test parkování je oboustranný a stejná hranice platí ve všech panelech síly, kdežto sn. 13–15 používají jednostrannou hranici 3,51 s. V normálním modelu se σ = 15 a n = 100 vychází síla pro 3, 5 a 8 s jednostranně 0,41; 0,76; 0,98 a oboustranně 0,29; 0,65; 0,97 (Python). Pravděpodobnosti se uvádějí jako výsledky výukového modelu, ne jako počty z 10 000 simulací.
+- **Termíny podle [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6):** směrodatná chyba místo „standardní chyba“ (sn. 4); kritický obor s alternativou oblast zamítnutí (sn. 10, 17–18); chyba I. a II. druhu (sn. 9 střídá „typu“ a „druhu“); H₁ (sn. 9 a 13–15 střídají Hₐ, H₁ a H1).
+- **Další nálezy:** poznámka sn. 16 nadepisuje výhody jednostranného testu slovem „Nevýhody“. Sn. 22 definuje velikost účinku jako „měřítko těsnosti vztahu“, což nevystihuje rozdíl průměrů v původních jednotkách; slovní hodnocení „malý až středně silný efekt“ se nepřebírá. Formulace sn. 25 „výsledky umožňují přijmout alternativní hypotézu“ se nepřebírá. Sn. 24 uvádí, že bodová nulová hypotéza prakticky nemůže platit; R28 to formuluje opatrněji.
+- **Původ čísel:** sn. 3 přebírá průměry 32,15 s a 39,03 s z U01 s. 86; původní článek ověřen nebyl.
+
 <a id="p07"></a>
 
 ### P07 — Statistické usuzování, PSYb1170, 2026
@@ -698,7 +741,7 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 | Snímky | Obsah a využití |
 |---|---|
 | 1–11 | Od popisu k inferenci, statistiky a parametry, bodový odhad, náhodné a systematické chyby; potřeba struktury u 32 studentů (průměr 3,95; SD 0,91). |
-| 12–21 | Simulace, výběrové rozdělení a rozdělení chyb, kvantily, standardní chyba; srovnání teorie a bootstrapu. |
+| 12–21 | Simulace, výběrové rozdělení a rozdělení chyb, kvantily, směrodatná chyba; srovnání teorie a bootstrapu. |
 | 22–31 | Odvození variability průměru, CLT, známá/neznámá populační SD, t-rozdělení a kvantily, velikost chyby odhadu. Sn. 22 je v poznámce označen jako rozšíření. |
 | 32–37 | Bootstrap: výběr s vracením, medián, ukázka v R, odkaz na Excel a vztah k opakovaným výběrům. |
 | 38–50 | Bodové a intervalové odhady, hladina spolehlivosti, mezní chyba, interval pro průměr a vlivy na jeho šířku. Sn. 40–41 mají místa k doplnění, sn. 46 číselné řešení. |
@@ -720,6 +763,13 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 - **Sn. 58–62:** pořadové meze mediánu na sn. 58 mají ve slovním popisu prohozené označení horní/dolní meze. Tvrzení sn. 60, že rozdělení korelace „neznáme“, není vhodnou obecnou formulací. Na sn. 62 rozlišit věrohodnost a posterior: kvantily vyžadují normalizované posteriorní rozdělení při zvoleném prioru; interval s rovnými chvosty se obecně nerovná intervalu nejvyšší hustoty. Tato rozšíření nejsou kompletně odborně ověřena.
 
 **Neověřeno:** všechny další výpočty, platnost a česká syntaxe funkcí ve skutečném Excelu, vložené a externí simulace, všechny animace, zdrojová data a empirický původ příkladu. R kód ze sn. 35 nebyl spuštěn. Originál se neměnil.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** z PPTX znovu přečten text sn. 1–37 a poznámky; sn. 38–62 jen podle této karty.
+
+- **Využití pro blok A ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)):** rozlišení náhodné výběrové chyby a systematického zkreslení (sn. 8–10); výběrové rozdělení jako rozdělení pravděpodobnosti hodnot statistiky a výstraha před záměnou s rozdělením proměnné (sn. 14); popis výběrového rozdělení polohou, rozptýleností a tvarem (sn. 17); termín směrodatná chyba (sn. 18); úvaha od N = 1 k většímu výběru jako podklad nepovinného odvození (sn. 22).
+- **Šíře termínu:** sn. 10 dokládá, že „sampling error“ se užívá pro celkovou chybu odhadu i jen pro její náhodnou složku; na tuto různou šíři má výklad podle [R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) upozornit.
+- **Nepřebírá se:** „SE vyjadřuje průměrnou, očekávanou chybu odhadu“ (sn. 18, 20, 31); hranice N > 30 a N > 100 (sn. 23, 25); tvrzení, že výběrové rozdělení průměru je při neznámém σ Studentovo (sn. 25, 29); hodnota 0,17 na sn. 24 (správně 0,16 podle nálezu výše).
+- **Mimo schválený rozsah kapitoly 6:** bootstrap (sn. 32–37) a intervaly spolehlivosti (sn. 38–62).
 
 ## Procvičování a seminář
 
@@ -847,6 +897,15 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 - **X6_20–21:** při uvedeném modelu a cílové celkové šířce vychází potřebná n po zaokrouhlení vzhůru **210**, resp. **289**; klíč v těchto konečných hodnotách souhlasí. Druhá hodnota používá plánovací odhad p = 0,75, není zárukou pro každý populační podíl.
 
 **Podmínky převzetí / neověřeno:** závislosti `Simulace výběrů.xlsx` a `bootstrap.xlsx` v aktuálním `sources/` chybějí; ESCI a externí simulace nebyly spuštěny. Funkce nebyly testovány v českém Excelu, bootstrapové číselné výsledky nebyly reprodukovány a celý klíč nebyl přepočten. Přesné vydání zdroje C5 a jeho stránkové odkazy nejsou ověřeny; odkazovaný web používá ISBN 9781138825529, nelze jej automaticky ztotožnit se současným místním druhým vydáním U03. Původ dat a historická či empirická tvrzení je třeba ověřit před převzetím. Originál se neměnil.
+
+**Doplnění při přípravě kapitoly 6 (2026-10-12):** z OOXML znovu přečtena zadání C5_01–09, C5_11, X5_01–12 a X5_100; řešení a část X6 jen podle této karty. Náměty pro cvičení kapitoly 6, žádné se nepřebírá doslova:
+
+- **Výběrové rozdělení průměru (X5_02, X5_05):** IQ při N = 9; směrodatná chyba 5, podíl průměrů nad 105 je 0,159, nad 110 je 0,023 a mezi 95 a 105 je 0,683 (Python).
+- **Výběrové rozdělení podílu (X5_03, X5_06):** malé N a diskrétnost rozdělení.
+- **Směrodatná chyba a velikost výběru (C5_11, X5_09):** spojení dvou výběrů; mincovní úloha jako motivace odmocninového vztahu.
+- **Binomický test (X5_12):** 11 nebo méně z 20 při pravděpodobnosti 0,6, přesně 0,404.
+- **Jiné statistiky (X5_04):** odpovídá krátké zmínce o výběrových rozděleních mediánu, směrodatné odchylky a rozptylu.
+- **Nepoužije se:** úlohy závislé na chybějících sešitech `Simulace výběrů.xlsx` a `bootstrap.xlsx` ([R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6) předepisuje statická simulovaná data); bootstrap (X5_07–08); deset výkonů téhož dítěte (X5_11).
 
 ## Další podklady
 
@@ -1091,7 +1150,8 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 | Normální model | Rozlišit CDF a kvantil, percentil a pořadí, Q–Q a P–P, interval hodnot a interval spolehlivosti. Starší podklady obsahují konkrétní záměny. |
 | Bibliografie | Baronova identita nyní ověřena v celé knize U12; zachovat doložený rozdíl copyrightu 2008 a prvního tisku 2007. Došetřit vydání de Vause a Morgana, rok/verzi Navarra, identitu mezinárodního Arona a přesný původ úloh C2/C3/C5. |
 | Nedostupné návazné materiály | U [U11](#u11) jsou kap. 13–14 a další označené oddíly pouze na webu, nikoli v místním PDF. Odkazované externí datasety, `Datíčka.xls`, videa, QR odkazy, online aplikace, originály studií a navazující části knih nejsou automaticky pokryty inventářem. |
-| Nové inferenční podklady | P06: číselné p-hodnoty a zobecnění NHST; P07: rozdělení průměru versus t-statistiky, SE, bootstrap, interpretace intervalů a vzorce rozptylu; C05: modely, argumenty kvantilových funkcí a chybějící simulační sešity. Před použitím vyřešit konkrétní nálezy v kartách. |
+| Nové inferenční podklady | P06: číselné p-hodnoty a zobecnění NHST; P07: rozdělení průměru versus t-statistiky, SE, bootstrap, interpretace intervalů a vzorce rozptylu; C05: modely, argumenty kvantilových funkcí a chybějící simulační sešity. Před použitím vyřešit konkrétní nálezy v kartách. Rozsah a pojetí kapitoly 6 určuje [R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6); U01 má v kap. 4 nesoulad kritických hodnot a β (karta U01). |
+| Parkovací studie | Souhrny Rubacka a Juienga (1997) jsou známy jen z U01 s. 86; původní článek není v `sources/`. Před tvorbou výkladu ověřit uspořádání studie a bibliografický záznam. Do té doby čísla uvádět „podle Howella“ a rozdíl nevykládat jako prokázaný účinek čekajícího řidiče. |
 | Odborné ověření | Před použitím konkrétního příkladu nezávisle ověřit všechny vstupy, výpočty a řešení; před převzetím empirického tvrzení ověřit původní zdroj a relevantní současné poznatky. |
 
 ### Aktualizace inventáře — 2026-10-12
@@ -1161,3 +1221,11 @@ První graf navazuje na autorem popsaný vzor tří skupin z
 Autorství a okolní článek tohoto obrázku nebyly určeny; nepřebíráme jeho
 data ani obraz. Schválený pedagogický kontext, osy a skupiny jsou od autora
 učebnice. Platnost modelových tvrzení ověřují vlastní numerické kontroly.
+
+### Kontrola podkladů při přípravě kapitoly 6 — 2026-10-12
+
+Na žádost autora o projednání kapitoly o výběrovém rozdělení a principu testování hypotéz byl aktuální obsah `sources/` porovnán s inventářem: 33 souborů, žádný nový ani chybějící. U dvanácti relevantních souborů (U01–U06, U08, U11, P06, P07, C05 a D11) byl znovu ověřen prefix SHA-256, beze změny.
+
+Rozsah nového čtení a nálezy jsou v kartách U01, U03, U04, U05, U08, U11, P06, P07 a C05. Čteno bylo v textové extrakci; v obraze jen U01 s. 95–96. Ve stavu mapy obsahu zůstávají U02 kap. 4–6, U06 kap. 7–8, U07 kap. 3–4, U09 kap. 7–8, U10 kap. 9 a 12, U03 kap. 6 a zbytek U08 kap. 10–11. D07 a D11 nebyly nově čteny; návrh se opírá o jejich karty. Vyhledání klíčových slov v U12 (PDF 150–175) nenašlo pasáž o vlivu velikosti výběru.
+
+Schválený rozsah a pojetí kapitoly určují [R28](ROZHODNUTI.md#r28-rozsah-kapitoly-6)–[R30](ROZHODNUTI.md#r30-terminologie-kapitoly-6) a [plán v osnově](OSNOVA.md#plan-dalsi-kapitoly). Tento záznam není odbornou revizí podkladů. Originály v `sources/` se neměnily a do složky se nic nepřidalo.
