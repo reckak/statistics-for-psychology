@@ -2623,3 +2623,44 @@ Obsahová kontrola rozdílů, `git diff --check` a
 `node scripts/check-doc-maps.cjs` prošly bez chyb. Změna se týká pouze
 instrukcí a jejich evidence; studentský obsah ani prezentace se neměnily,
 render knihy proto nebyl potřeba.
+
+## Prezentace ke kapitole 3 (2026-10-13)
+
+Vytvořeny místní, Gitem ignorované soubory v `presentations/`:
+`kapitola_03_poloha_a_variabilita.pptx` (29 slidů),
+`kapitola_03_poloha_a_variabilita_cviceni.xlsx` a `kapitola_03_poznamky.docx`.
+Rozsah dohodnut s autorem: jedna výuka, jádro kapitoly ve 22 výkladových
+slidech (45 minut); MedAD, ořezání, winsorizace, entropie a vztah dat a modelu
+jen stručně, nepovinné momenty vynechány. Procvičení tvoří šest úloh bez
+Excelu adaptovaných z Howella (úlohy 2.30–2.36 a 2.54, s. 60–62) a podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+doprovodný sešit s listy `Prehled`, `Vypraveni` (data úloh 2.1 a 2.4,
+úkoly 1–5) a `Transformace` (úloha 2.45, úkol 6). Řešení úloh z prezentace
+jsou pouze v poznámkách. Rozsah čtení Howella eviduje
+[karta U01](../docs/zdroje/U01-howell.md#u01). Kapitola 3, slovník, osnova
+ani studentský sešit `data/kapitola_03.xlsx` se neměnily; při přípravě nebyl
+zjištěn věcný rozpor mezi kapitolou a prezentací.
+
+Postup: slidy a poznámky zapisuje dočasný generátor v `tmp/` přímo v OOXML
+do balíčku předlohy z prezentace kapitoly 2 (editovatelný text a tabulky,
+vzorce jako nativní rovnice, čeština u všech textů); výsledný soubor uložil
+PowerPoint. Grafy jsou rastrové převody existujících obrázků kapitoly 3,
+bez změny publikovaných souborů. Sešit sestavila skrytá instance Excelu
+z deklarací přes `scripts/excel-workbook.mjs` a místní kopii sestavovacího
+skriptu s jiným cílovým souborem; sdílené skripty se neměnily.
+
+Kontroly: všech 29 slidů vykresleno v PowerPointu a prohlédnuto (diakritika,
+zalamování, překryvy, tabulky, vzorce); každý slide má poznámky a jazyk
+textů i poznámek je čeština (ověřeno přes objektový model PowerPointu).
+Čísla na slidech, v poznámkách a v řešeních přepočítána nezávisle v R
+a shodují se s kapitolou. Sešit přepočítán v českém Excelu 16 bez chybových
+buněk; 59 vzorců zapsaných českou syntaxí vrací hodnoty shodné s R, pracovní
+buňky jsou prázdné a listy byly prohlédnuty z exportu. DOCX otevřen ve Wordu:
+29 nadpisů „Slide N:“, 231 odrážek shodných s PPTX, 15 stran.
+
+Omezení: popisky uvnitř převzatých grafů jsou při projekci drobné, hlavní
+hodnoty proto opakuje text slidu. Funkce MINIFS, MAXIFS a TRIMMEAN v řešení
+sešitu nejsou vyloženy v kapitole; sešit je vysvětluje a u prvních dvou
+uvádí požadavek na Excel 2019 nebo Microsoft 365. Starší verze Excelu ani
+PowerPointu nebyly zkoušeny. Didaktická revize byla interní, bez ověření
+na studentech. Render knihy nebyl potřeba, studentský web se nemění.
