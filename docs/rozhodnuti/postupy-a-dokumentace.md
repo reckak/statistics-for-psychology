@@ -297,3 +297,45 @@ pokud jsou početní a vyžadují práci v excelu, nevkládat do samotné
 prezentace ale, na samostatný excelovský sešit i se zadáním, vstupními
 daty a řešením.“ Dále: „Pokud by se více úkolů týkalo stejného datasetu,
 dal bych vše na tentýž sheet, v opačném případě na samostatné sheety.“
+
+<a id="r34-intuitivni-vysvetleni"></a>
+
+## R34 — Prostředky intuitivního vysvětlení
+
+**Stav:** schváleno 2026-10-13. **Rozsah:** didaktická pravidla knihy
+a souvisejících materiálů.
+
+**Volba:** intuitivní vysvětlení může využívat analogie, přirovnání nebo
+metafory, pokud pomáhají pochopit podstatu pojmu či vztahu. Pravidlo je
+zapracováno do [didaktiky](../../AGENTS.md#didaktika-a-jazyk); navazující
+požadavek přesného uvažování a vysvětlení mezí analogie zůstává v platnosti.
+
+**Důvod:** konkretizovat dostupné prostředky intuitivního vysvětlení.
+**Doklad:** autor navrhl doplnění analogií, přirovnání a metafor a následně
+přijal předložené znění slovy „Ok, souhlasím.“
+
+<a id="r35-nekapitolove-vetve"></a>
+
+## R35 — Nekapitolové větve podle typu práce
+
+**Stav:** schválený směr 2026-10-13; konkrétní názvy a vymezení kategorií
+jsou prováděcí volbou tohoto úkolu. **Rozsah:** práce s Gitem v repozitáři.
+
+**Volba:** nahradit jedinou obecnou nekapitolovou větev větvemi podle typu
+změny. Zachovat nejvýše jednu aktivní větev na kapitolu a používat nejvýše
+jednu aktivní větev pro každý typ nekapitolové práce. Aktuální názvy,
+hranice kategorií a zacházení se souvisejícími změnami určuje
+[AGENTS.md](../../AGENTS.md#git-a-dokončení-práce).
+
+**Důvod:** název `codex/other` nerozlišuje instrukce, prezentace a další
+odlišné druhy práce; členění má zpřehlednit aktivní větve a rozsah PR.
+
+**Nahrazuje:** pouze požadavek jediné větve `codex/other` v
+[R11](#r11-pracovni-vetve). Pravidla kapitolových větví, zachování změn
+a bezpečného úklidu po sloučení se nemění. Původní doklad R11 je zachován.
+
+**Doklad:** autor dne 2026-10-13 uvedl: „přidal bych více
+"nekapitolových" větví podle různých typů změny, např. instrukce,
+prezentace apod.“ Prováděcí rozdělení používá kategorie instrukce
+a autorská dokumentace, prezentace, infrastruktura a obsahové změny
+napříč kapitolami; nejde o doslovný seznam názvů zadaný autorem.

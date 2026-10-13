@@ -2608,3 +2608,18 @@ Jde pouze o změnu instrukcí; existující PPTX ani XLSX se v tomto úkolu
 neměnily. Provedena obsahová kontrola rozdílů, `git diff --check`
 a `node scripts/check-doc-maps.cjs` bez chyb. Render knihy není pro tuto
 změnu potřeba; kontrola konkrétních prezentací či sešitů nebyla součástí úkolu.
+
+## Intuitivní vysvětlení a nekapitolové větve (2026-10-13)
+
+V `AGENTS.md` doplněno schválené využití analogií, přirovnání a metafor
+v intuitivním vysvětlení. Na žádost autora nahrazena jediná nekapitolová
+větev členěním podle hlavního účelu práce; vymezen vztah ke kapitolovým
+větvím a související dokumentaci. Doklady jsou v
+[R34](../docs/rozhodnuti/postupy-a-dokumentace.md#r34-intuitivni-vysvetleni)
+a [R35](../docs/rozhodnuti/postupy-a-dokumentace.md#r35-nekapitolove-vetve);
+registr označuje příslušnou část R11 za nahrazenou.
+
+Obsahová kontrola rozdílů, `git diff --check` a
+`node scripts/check-doc-maps.cjs` prošly bez chyb. Změna se týká pouze
+instrukcí a jejich evidence; studentský obsah ani prezentace se neměnily,
+render knihy proto nebyl potřeba.
