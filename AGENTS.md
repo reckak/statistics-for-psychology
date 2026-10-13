@@ -206,7 +206,9 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   používej k objasnění principů a k získání výsledků, které student dokáže
   interpretovat; nezahlcuj text samoúčelným početním nácvikem.
 - Preferuj posloupnost: intuice → psychologický příklad → formální zápis
-  → výpočet → interpretace a omezení. Používej ji smysluplně, nikoli jako
+  → výpočet → interpretace a omezení. Intuitivní vysvětlení může využívat
+  také analogie, přirovnání nebo metafory, pokud pomáhají pochopit podstatu
+  probíraného pojmu či vztahu. Posloupnost používej smysluplně, nikoli jako
   povinné nadpisy každého oddílu.
 - Intuitivní vysvětlení a analogie propojuj s přesným uvažováním. Nesmějí
   nahrazovat zdůvodnění závěru; upozorni na jejich meze tam, kde by mohly
@@ -522,14 +524,24 @@ konkrétní formát slidů a poznámek určuje specializovaný dokument.
   `codex/chapter-01`, `codex/chapter-02` atd. Nevytvářej další větve
   s příponami podle dílčích úprav. Jednotlivé změny rozlišuj commity a PR;
   další úpravy před sloučením patří do stejné větve.
-- Pro instrukce, společnou infrastrukturu a změny napříč knihou používej
-  jedinou pracovní větev `codex/other`. Aktualizace přehledů související
-  s konkrétní kapitolou patří do větve této kapitoly. Nesouvisející úkoly
-  v `codex/other` dokončuj postupně, aby se nemíchaly v jednom PR.
+- Pro práci mimo výklad jednotlivé kapitoly používej větve podle typu změny:
+  `codex/instructions` pro autorská pravidla a samostatnou údržbu autorské
+  dokumentace, `codex/presentations` pro prezentace, poznámky a jejich
+  doprovodné sešity, `codex/infrastructure` pro sestavení, publikování,
+  společné styly a technické nástroje a `codex/cross-chapter` pro obsahové
+  změny napříč více kapitolami. Obecnou větev `codex/other` nově nepoužívej.
+- Pro každý uvedený typ používej nejvýše jednu aktivní větev. Nesouvisející
+  úkoly stejného typu dokončuj postupně v samostatných PR. Větev vybírej
+  podle hlavního účelu úkolu; související změny nerozděluj mechanicky
+  podle typu souboru. Aktualizace přehledů, dokumentace, dat a kontrol
+  vyvolané změnou jedné kapitoly patří do větve této kapitoly. Samostatná
+  práce na prezentaci patří do `codex/presentations`, i když se týká
+  jediné kapitoly; úprava pravidel prezentací patří do `codex/instructions`.
 - Po uživatelově sloučení PR ověř zachování všech změn v aktuálním `main`
   a odstraň dokončenou pracovní větev lokálně i na GitHubu, pokud ještě
   existuje. Při další práci ji vytvoř z aktuálního `origin/main` pod stejným
-  názvem. Nezakládej prázdné větve pro kapitoly, na kterých se nepracuje.
+  názvem. Nezakládej prázdné větve pro kapitoly ani typy práce, na kterých
+  se nepracuje.
 - Před odstraněním větve aktualizuj stav z GitHubu a prověř neodeslané
   commity i připojené pracovní kopie včetně nesledovaných a ignorovaných
   souborů. Pokud změny přešly do `main` pod jinými identifikátory commitů,
