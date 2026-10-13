@@ -1,0 +1,32 @@
+project:
+  type: default
+  render:
+    - quarto/kapitola_03.qmd
+lang: cs
+bibliography: references.bib
+csl: apa.csl
+filters:
+  - at: pre-ast
+    path: chapter.lua
+format:
+  typst:
+    papersize: a4
+    fontsize: 11pt
+    mainfont: Libertinus Serif
+    toc: true
+    toc-title: Obsah kapitoly
+    toc-depth: 2
+    number-sections: true
+    section-numbering: "1.1.1"
+    citeproc: true
+    keep-typ: true
+    margin:
+      x: 20mm
+      y: 20mm
+    include-before-body: layout.typ
+crossref:
+  chapters: true
+execute:
+  echo: false
+  warning: false
+  message: false

@@ -389,7 +389,12 @@ modelů od náhodných výběrů. Tuto odlišnost je nutné zachovat i v pokrač
 ### Cvičení a očekávané dovednosti
 
 [Úlohy 1–14](../quarto/kapitola_03.qmd#sec-cviceni-03) mají bezprostřední
-sbalená řešení. Jednotlivé nadpisy nemají explicitní ID, proto tato mapa
+sbalená řešení na webu. Ručně vyžádané pracovní PDF kapitoly 3 přesouvá
+všechna řešení za všechna zadání, s obousměrnými odkazy; obsah úloh zachovává.
+Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
+[postup](../README.md#ruční-pdf-vybrané-kapitoly) a
+[R31](ROZHODNUTI.md#r31-pracovni-pdf).
+Jednotlivé nadpisy ve zdroji nemají explicitní ID, proto tato mapa
 odkazuje na stabilní oddíl cvičení a používá číslo i název. Základem je
 kalkulačka, u úlohy 12 Excel; kvantily podle PERCENTIL.INC, výsledky zpravidla
 na dvě místa s tolerancí 0,01. Reportovací část 12 má vlastní přesnost.

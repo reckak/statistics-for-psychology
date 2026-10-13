@@ -902,3 +902,26 @@ následek bez rozšiřování povinného učiva. Nová výpočetní úloha se ne
 **Nahrazuje:** pracovní označení „standardní chyba“ v osnově a ve výčtu R21; R21 zůstává historickým záznamem. Zpřesňuje pravidlo hesla výběrová variabilita v registru.
 
 **Doklad:** autorova volba „Směrodatná chyba“ a pokyny z 2026-10-12: „Sampling distribution → výběrové rozdělení. Při zavedení používej úplnější označení ‚výběrové rozdělení statistiky‘“; „Rozlišuj výběrovou variabilitu, výběrovou chybu a směrodatnou chybu.“; „Statistical power → statistická síla jako hlavní termín; síla testu jako alternativa.“; „Critical region / rejection region → kritický obor jako hlavní termín. Uveď také oblast zamítnutí“; „Effect size → velikost účinku jako hlavní termín; velikost efektu uveď jako synonymum.“; „Zachovej srozumitelné rozhodovací formulace ‚zamítáme nulovou hypotézu‘ a ‚nulovou hypotézu nezamítáme‘.“; „Substantive significance → věcná významnost a practical significance → praktická významnost v učebnici rozlišuj.“ Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../quarto/README.md#dohoda-kapitola-06).
+
+<a id="r31-pracovni-pdf"></a>
+
+## R31 — Ručně vyžádané pracovní PDF kapitoly
+
+**Stav:** schváleno. **Rozsah:** sekundární pracovní PDF; první ověřenou
+kapitolou je kapitola 3. Hlavním výstupem zůstává HTML.
+
+PDF se sestavuje pouze na výslovné vyžádání, bez automatického spouštění
+s webem a bez automatické publikace. Zahrnuje vybranou kapitolu; závěrečný
+slovníček, značení a přehled Excelu se zatím vynechávají. Všechna zadání
+cvičení předcházejí samostatnému oddílu řešení. Obsah se udržuje ve společném
+zdroji kapitoly; přesun řešení probíhá při exportu. Propojení zadání a řešení
+zachovává čísla cvičení. Web nadále používá sbalené řešení pod zadáním.
+
+**Důvod:** umožnit čtení a tisk jednotlivé kapitoly bez nároků na finální
+knižní sazbu a bez prodlužování běžného sestavení webu.
+
+**Doklad:** zadání autora 2026-10-13: „Nechtěl bych, ať se render do pdf
+spouští automaticky, ale pouze tehdy, když si o něj výslovně řeknu“,
+„Závěrečné přehledy bych zatím vynechal“ a „Řešení cvičení by byly posunuty
+do samostatné části umístěné za zadání cvičení“. Následná volba „Kapitolu 3“.
+Postup a závislosti jsou v [README](../README.md#ruční-pdf-vybrané-kapitoly).
