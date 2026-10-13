@@ -2718,3 +2718,18 @@ upravit. Pomocné příznaky používají `KDYŽ` a `A`, zaokrouhlení dolů
 `CELÁ.ČÁST`; sešit je vysvětluje. Na slidu 29 se nahrazením ztratily případné
 ruční úpravy formátu tohoto jediného slidu. Ostatní slidy nebyly znovu
 vykreslovány, protože se jejich části souboru nezměnily.
+
+## Rovnice u úloh v doprovodných sešitech: pravidlo (2026-10-14)
+
+K [R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+připojeno druhé datované upřesnění a v
+[PREZENTACE.md](../docs/PREZENTACE.md#excelova-cviceni) doplněno, že se
+u každé úlohy v doprovodném sešitu uvádějí obecné rovnice potřebné k výpočtu,
+ve značení učebnice, s vysvětlením symbolů a jako editovatelné rovnice Excelu.
+Do kontrol před předáním přibyla úplnost, značení a vykreslení rovnic.
+Nevzniklo nové ID rozhodnutí; registr upřesnění uvádí.
+
+Jde pouze o změnu instrukcí a jejich evidence. Obsahová kontrola rozdílů,
+`git diff --check` a `node scripts/check-doc-maps.cjs` bez chyb; render knihy
+není potřeba. Pravidlo bylo téhož dne uplatněno v sešitu k prezentaci
+kapitoly 3; sešit k prezentaci kapitoly 2 upravován nebyl.

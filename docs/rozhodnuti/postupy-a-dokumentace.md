@@ -314,6 +314,15 @@ zobecnění na další doprovodné sešity schválil autor s plánem úpravy té
 dne. Původní znění výše zůstává dokladem první dohody; aktuální pravidla
 jsou v [PREZENTACE.md](../PREZENTACE.md#excelova-cviceni).
 
+**Upřesnění 2026-10-14 (obecné rovnice u úloh):** autor požádal: „Pro
+ještě větší didaktickou přehlednost bych do toho Excelu se cvičeními vložil
+ke každé úloze relevantní rovnice (v obecné formě), které je nutné znát
+k výpočtu výsledku.“ Na doplňující dotazy zvolil podobu nativních rovnic
+Excelu (nikoli text v buňkách) a potvrdil, že má jít o pravidlo i pro další
+doprovodné sešity. Rovnice používají značení učebnice podle
+[R01](spolecne-konvence.md#r01-znaceni-a-reportovani); upřesnění samo
+nezavádí žádný nový symbol do přehledu značení.
+
 <a id="r34-intuitivni-vysvetleni"></a>
 
 ## R34 — Prostředky intuitivního vysvětlení
