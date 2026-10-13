@@ -102,6 +102,11 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
   výpočty, takže by jeden list nebyl přehledný, rozděl je na samostatné
   listy se stejnými vstupními daty na stejných adresách. Stejně postupuj
   u společných souhrnných vstupů; individuální data z nich nevymýšlej.
+- U každé úlohy uveď u zadání obecné rovnice, které je k výpočtu nutné
+  znát, ve značení učebnice a s krátkým vysvětlením symbolů. Vkládej je
+  jako editovatelné rovnice Excelu s alternativním textem, nikoli jako
+  obrázky; nové značení bez dohody nezaváděj a pomocné označení výslovně
+  vysvětli.
 - Řešení rozepiš po krocích základními operacemi (sčítání, odčítání,
   násobení, dělení, součet, průměr apod.) včetně pomocných sloupců
   a mezivýsledků, například průměr, odchylky, jejich čtverce, součet
@@ -151,7 +156,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Zkontroluj pokrytí zadání, správnost příkladů a řešení, úplnost
   poznámek a jejich shodu se slidy.
 - U doprovodného sešitu ověř úplnost zadání a dat, přiřazení úkolů
-  k datasetům či listům, shodu krokového řešení s kontrolní funkcí,
+  k datasetům či listům, úplnost, značení a vykreslení rovnic u úloh,
+  shodu krokového řešení s kontrolní funkcí,
   správnost vzorců a výsledků po přepočtu v Excelu,
   čitelnost listů a oddělení pracovní oblasti od řešení. Zkontroluj
   také odkaz z prezentace a shodu uvedených názvů listů.
