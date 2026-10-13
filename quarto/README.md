@@ -2665,6 +2665,23 @@ uvádí požadavek na Excel 2019 nebo Microsoft 365. Starší verze Excelu ani
 PowerPointu nebyly zkoušeny. Didaktická revize byla interní, bez ověření
 na studentech. Render knihy nebyl potřeba, studentský web se nemění.
 
+## Upřesnění pravidel doprovodných sešitů k prezentacím (2026-10-13)
+
+K [R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+připojen datovaný doklad upřesnění a upravena pravidla v
+[PREZENTACE.md](../docs/PREZENTACE.md#excelova-cviceni): úkoly ke stejnému
+datasetu zůstávají obvykle na jednom listu, ale při větším počtu úkolů nebo
+rozsáhlejších výpočtech se dělí na samostatné listy se stejnými vstupními
+daty; řešení se rozepisuje po krocích základními operacemi a speciální
+funkce Excelu slouží jen jako kontrola. Do kontrol před předáním doplněna
+shoda krokového řešení s kontrolní funkcí. Nevzniklo nové ID rozhodnutí,
+původní znění R33 je zachováno a registr uvádí upřesnění.
+
+Jde pouze o změnu instrukcí a jejich evidence. Provedena obsahová kontrola
+rozdílů, `git diff --check` a `node scripts/check-doc-maps.cjs` bez chyb;
+render knihy není potřeba. Podle nového znění byl téhož dne upraven sešit
+k prezentaci kapitoly 3, starší sešit k prezentaci kapitoly 2 upravován nebyl.
+
 ## Doprovodný sešit k prezentaci kapitoly 3: řešení po krocích (2026-10-13)
 
 Na žádost autora přestavěn místní sešit

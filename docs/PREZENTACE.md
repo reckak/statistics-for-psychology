@@ -95,10 +95,19 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Pro závěrečná početní cvičení vyžadující Excel připrav jeden samostatný
   soubor XLSX k prezentaci. Musí obsahovat úplná zadání, vstupní data
   a řešení včetně vzorců, postupu a interpretace výsledků.
-- Listy čleň podle datasetů: všechny úkoly ke stejnému datasetu umísti
-  na tentýž list se společnými vstupními daty; úkoly k jinému datasetu
-  patří na jiný list. Stejně postupuj u společných souhrnných vstupů;
-  individuální data z nich nevymýšlej.
+- Listy čleň podle datasetů: úkoly ke stejnému datasetu patří obvykle
+  na tentýž list se společnými vstupními daty, pokud je jich málo
+  a nevyžadují rozsáhlejší výpočty; úkoly k jinému datasetu patří na jiný
+  list. Je-li úkolů ke stejnému datasetu více nebo vyžadují rozsáhlejší
+  výpočty, takže by jeden list nebyl přehledný, rozděl je na samostatné
+  listy se stejnými vstupními daty na stejných adresách. Stejně postupuj
+  u společných souhrnných vstupů; individuální data z nich nevymýšlej.
+- Řešení rozepiš po krocích základními operacemi (sčítání, odčítání,
+  násobení, dělení, součet, průměr apod.) včetně pomocných sloupců
+  a mezivýsledků, například průměr, odchylky, jejich čtverce, součet
+  čtverců a dělení n − 1 u rozptylu. Speciální funkci Excelu (například
+  VAR.S) uveď až na konci jako kontrolu výsledku, nikoli jako jediné řešení.
+  Studenti mají vidět každý krok výpočtu a rozumět jeho principu.
 - Na každém listu přehledně odděl zadání, vstupní data, prostor pro vlastní
   výpočty a označený blok řešení. Řešení ponech na témže listu, ale mimo
   pracovní oblast, aby hotové výpočty nenahrazovaly vlastní práci studenta.
@@ -142,7 +151,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Zkontroluj pokrytí zadání, správnost příkladů a řešení, úplnost
   poznámek a jejich shodu se slidy.
 - U doprovodného sešitu ověř úplnost zadání a dat, přiřazení úkolů
-  k datasetům, správnost vzorců a výsledků po přepočtu v Excelu,
+  k datasetům či listům, shodu krokového řešení s kontrolní funkcí,
+  správnost vzorců a výsledků po přepočtu v Excelu,
   čitelnost listů a oddělení pracovní oblasti od řešení. Zkontroluj
   také odkaz z prezentace a shodu uvedených názvů listů.
 - Prezentaci vykresli a vizuálně zkontroluj čitelnost, diakritiku,

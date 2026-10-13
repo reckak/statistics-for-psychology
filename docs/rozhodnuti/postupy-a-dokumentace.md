@@ -298,6 +298,22 @@ prezentace ale, na samostatný excelovský sešit i se zadáním, vstupními
 daty a řešením.“ Dále: „Pokud by se více úkolů týkalo stejného datasetu,
 dal bych vše na tentýž sheet, v opačném případě na samostatné sheety.“
 
+**Upřesnění 2026-10-13 (členění listů a podoba řešení):** při úpravě
+sešitu k prezentaci kapitoly 3 autor zpřesnil pravidlo o společném listu:
+„úkoly ke stejnému datasetu patří obvykle na tentýž list, pokud je jich
+málo a nevyžadují rozsáhlejší výpočty; ale pokud ji je více nebo vyžadují
+rozsáhlejší výpočty, a jejich umístění na stejný list by tudíž nebylo
+přehledné, je určitě vhodnější je rozdělit na samostatné listy se stejnými
+vstupními daty.“ Současně požádal, aby řešení ukazovalo jednotlivé kroky
+výpočtu: „Řešení každé úlohy bych chtěl rozebrat i podrobněji, jen
+s využitím základních aritmetických operací (+, -, *, /, suma, průměr
+apod.), a použitím speciální funkce (např. var.s) pouze jako kontrolou“,
+aby studenti „skutečně viděli všechny kroky výpočtu a pochopili jeho
+princip“. Požadavek na řešení po krocích zazněl k uvedenému sešitu; jeho
+zobecnění na další doprovodné sešity schválil autor s plánem úpravy téhož
+dne. Původní znění výše zůstává dokladem první dohody; aktuální pravidla
+jsou v [PREZENTACE.md](../PREZENTACE.md#excelova-cviceni).
+
 <a id="r34-intuitivni-vysvetleni"></a>
 
 ## R34 — Prostředky intuitivního vysvětlení
