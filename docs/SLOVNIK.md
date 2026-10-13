@@ -400,7 +400,7 @@ a je v [platné tabulce](#kapitola-05). Při její přípravě nebyly schváleny
 a ve studentském textu se jako termíny nezavádějí: věrohodnost (*likelihood*),
 poměr šancí (*odds ratio*) a název úpravy hranice při normální aproximaci
 (*continuity correction*). Názvy pro další kapitoly zůstávají k dohodě podle
-[plánu pokračování](OSNOVA.md#plan-dalsi-kapitoly).
+[plánu pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly).
 Pouhá zmínka o budoucím tématu není schválením českého překladu.
 
 Budoucí návrh zde eviduj odděleně s pracovním ID, stavem **návrh** nebo

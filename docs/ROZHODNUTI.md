@@ -193,7 +193,7 @@ a doplnit jazykové zdůvodnění; [osnova kapitoly](OSNOVA.md).
 kapitoly 4 a navazující přehledy. Aktuální preference, anglické ekvivalenty
 a hranice použití obsahuje [registr](SLOVNIK.md#kapitola-04), studentská
 vysvětlení [slovníček](../quarto/slovnicek.qmd); jejich zařazení
-do výkladu zachycuje [mapa kapitoly](OSNOVA.md#mapa-kapitola-04).
+do výkladu zachycuje [mapa kapitoly](kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04).
 Tento záznam určuje rozhodující
 rozlišení a doklad schválení, nenahrazuje studentský slovníček.
 
@@ -468,6 +468,10 @@ po posouzení“ v [historii](../quarto/README.md).
 **Stav:** schváleno 2026-10-11. **Rozsah:** autorská dokumentace celé knihy
 a údržba při obsahových změnách.
 
+**Uspořádání souborů aktualizováno 2026-10-13 podle [R32](#r32-propojene-mapy):**
+podrobné karty jsou v `kapitoly/`, společný rozcestník zůstává v OSNOVA.md.
+Níže je zachován původní záznam; obsahové a evidenční požadavky nadále platí.
+
 [OSNOVA.md](OSNOVA.md) se rozšiřuje na podrobnou mapu existujících kapitol
 s tematickým rozcestníkem. Karty zachycují skutečný výklad, příklady,
 vizualizace, soubory, pokrytí cvičeními, vstupní znalosti a hranice učiva.
@@ -564,7 +568,7 @@ i cvičením, uprav odkazy a zapiš toto pravidlo i pro další kapitoly do AGEN
 
 **Stav:** schváleno 2026-10-11. **Rozsah:** kapitola 5, její cvičení, sešit
 a navazující přehledy. Podrobné pořadí oddílů eviduje
-[mapa obsahu](OSNOVA.md#mapa-kapitola-05).
+[mapa obsahu](kapitoly/05-pravdepodobnost.md#mapa-kapitola-05).
 
 - Celý rozsah autorovy přednášky `probability.pptx` tvoří **jednu kapitolu**
   ve dvou blocích: pravděpodobnost jevů (pojetí, výběrový prostor a jevy,
@@ -815,7 +819,7 @@ následek bez rozšiřování povinného učiva. Nová výpočetní úloha se ne
 
 ## R28 — Rozsah, pořadí a zásady výkladu kapitoly 6
 
-**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 6 „Výběrové rozdělení a testování hypotéz“, její cvičení, sešit a navazující přehledy. Výklad vznikl 2026-10-12; skutečný obsah dvanácti oddílů a dvě drobné odchylky od plánu eviduje [karta kapitoly 6](OSNOVA.md#mapa-kapitola-06).
+**Stav:** schváleno 2026-10-12. **Rozsah:** kapitola 6 „Výběrové rozdělení a testování hypotéz“, její cvičení, sešit a navazující přehledy. Výklad vznikl 2026-10-12; skutečný obsah dvanácti oddílů a dvě drobné odchylky od plánu eviduje [karta kapitoly 6](kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06).
 
 **Členění a příklady**
 
@@ -925,3 +929,37 @@ spouští automaticky, ale pouze tehdy, když si o něj výslovně řeknu“,
 „Závěrečné přehledy bych zatím vynechal“ a „Řešení cvičení by byly posunuty
 do samostatné části umístěné za zadání cvičení“. Následná volba „Kapitolu 3“.
 Postup a závislosti jsou v [README](../README.md#ruční-pdf-vybrané-kapitoly).
+
+<a id="r32-propojene-mapy"></a>
+
+## R32 — Propojené karty obsahu a zdrojů
+
+**Stav:** schváleno 2026-10-13. **Rozsah:** organizace a údržba autorské
+dokumentace celé knihy.
+
+[OSNOVA.md](OSNOVA.md) zachovává celkovou strukturu a tematické návaznosti;
+podrobné karty jednotlivých kapitol a samostatný plán pokračování jsou
+v `kapitoly/`. [ZDROJE.md](ZDROJE.md) zachovává inventář a tematický
+rozcestník; každý zdroj má jednu kartu v `zdroje/`. Kapitolové karty
+odkazují na relevantní zdrojové karty, které obsahují zpětné odkazy.
+Společné nálezy a datované souhrny kontrol více podkladů zůstávají pohromadě
+v [historii ověřování](zdroje/HISTORIE.md). Tematická vazba neznamená
+skutečné použití, schválení obsahu ani nové prostudování zdroje.
+
+Přesun zachovává veškerý obsah, stabilní ID a historii ověření. Příchozí
+odkazy míří přímo na nové umístění; původní adresy obsahují kotvy s odkazy
+na příslušné karty. Datum reorganizace nemění data obsahových kontrol.
+Při práci se načítá rozcestník a vybrané karty, nikoli automaticky celá
+složka. Podrobnosti se udržují v jediném příslušném souboru.
+
+**Důvod:** snížit množství současně načítané dokumentace a usnadnit
+dohledání návazností bez duplikování zdrojové evidence mezi kapitolami.
+
+**Nahrazuje:** fyzické uložení podrobných karet v jediném souboru podle
+[R17](#r17-mapa-ucebnice); jeho požadavky na obsah mapy a oddělení plánu
+nadále platí. Původní rozhodnutí a záznamy zůstávají zachovány.
+
+**Doklad:** výslovný pokyn autora z 2026-10-13: „proveď navržené rozdělení
+zdrojů a osnovy do propojených Markdownových souborů. Zachovej veškerý
+obsah, stabilní ID a historii ověření, aktualizuj odkazy i AGENTS.md
+a zkontroluj, že se nic neztratilo.“

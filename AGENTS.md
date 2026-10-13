@@ -4,16 +4,18 @@
 
 - Tento soubor obsahuje společná pravidla tvorby i ověřování. Další
   dokumenty načítej podle úkolu, nikoli všechny při každé drobné úpravě.
-- Před obsahovou prací prostuduj dotčenou kartu a relevantní návaznosti v
-  [mapě obsahu učebnice](docs/OSNOVA.md), potom příslušné pasáže kapitoly.
+- Před obsahovou prací otevři [mapu obsahu učebnice](docs/OSNOVA.md),
+  prostuduj relevantní návaznosti a odkazovanou kartu dotčené kapitoly
+  v `docs/kapitoly/`, potom příslušné pasáže kapitoly.
   Mapa zachycuje skutečný obsah existujících kapitol a odděleně plán další
   kapitoly; nenahrazuje čtení textu ani dohodu o novém rozsahu.
 - Při každé obsahové změně průběžně aktualizuj dotčenou část mapy: obsah
   oddílů, cíle a vstupní znalosti, pojmy a postupy, příklady a vizualizace,
   soubory, pokrytí cvičeními, povinný/nepovinný rozsah a hranice učiva.
   Rozlišuj, co je vysvětleno, samostatně procvičeno, pouze zmíněno nebo
-  odloženo. Při změně návazností uprav také tematický rozcestník a plán
-  pokračování; ověř odkazy a u karty uveď datum kontroly souladu s textem.
+  odloženo. Podrobnosti udržuj v jediné kartě kapitoly. Při změně návazností
+  uprav také tematický rozcestník a [plán pokračování](docs/kapitoly/plan-pokracovani.md);
+  ověř odkazy a u karty uveď datum kontroly souladu s textem.
   Drobné jazykové opravy bez změny významu aktualizaci mapy nevyžadují.
 - Plánovaná témata nevydávej za vytvořený ani schválený obsah. V plánu
   rozlišuj dohodnutý směr, schválený rozsah a otevřené návrhy; po vytvoření
@@ -28,10 +30,21 @@
   českých preferencí, anglických ekvivalentů, alternativ a významových hranic.
   Čti také pravidlo použití a doklad hesla; samotný seznam synonym nestačí.
   Rozdělení odpovědnosti a údržbu určuje oddíl „Terminologie a značení“ níže.
-- Pro výběr podkladů používej [docs/ZDROJE.md](docs/ZDROJE.md): inventář,
-  obsahové mapy, přesné lokátory, zjištěné rozpory a rozsah ověření zdrojů.
+- Pro výběr podkladů používej [docs/ZDROJE.md](docs/ZDROJE.md): inventář
+  a tematický rozcestník odkazující na samostatné karty v `docs/zdroje/`.
+  Karta zdroje obsahuje jeho identitu, obsahovou mapu, přesné lokátory,
+  zjištěné rozpory a rozsah ověření. Společné nálezy a datované kontroly
+  více podkladů jsou v [historii ověřování](docs/zdroje/HISTORIE.md).
   Nabídka témat v mapě není schválenou osnovou; postup její údržby je níže
   v oddílu „Zdroje a jejich použití“.
+- Do kontextu načítej rozcestník, dotčené karty a relevantní pasáže;
+  nečti automaticky všechny soubory obou složek. Karta kapitoly odkazuje
+  na zdrojové karty a jejich konkrétní části, nekopíruje jejich evidenci.
+  Tematický odkaz sám nedokládá použití ani prostudování zdroje. Při novém
+  propojení udržuj také odkazy ze zdrojové karty na dotčené kapitoly.
+  Zachovávej stabilní ID i datované záznamy; při přesunu uprav příchozí
+  a relativní odkazy a na původní adrese ponech odkaz na nové umístění.
+  Datum reorganizace nesmí nahrazovat datum skutečné obsahové kontroly.
 - Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
   a jejich exportech podle odkazu v příslušném oddílu níže.
 - Provozní postupy jsou v [README.md](README.md), historické autorské
@@ -106,8 +119,9 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   o tentýž zdroj. Přejmenování či nové vydání nesmí ponechat neplatné odkazy.
   Posuď relevanci všech podkladů: učebnic, starších prezentací, příkladů
   i dalších souborů. Nejasný název není důvodem zdroj bez nahlédnutí vyřadit.
-- Tematický rozcestník a karty v `docs/ZDROJE.md` používej k dohledání
-  pasáží, nikoli místo jejich čtení. U relevantních zdrojů před návrhem
+- Tematický rozcestník v `docs/ZDROJE.md` a odkazované karty
+  v `docs/zdroje/` používej k dohledání pasáží, nikoli místo jejich čtení.
+  U relevantních zdrojů před návrhem
   kapitoly prostuduj skutečný výklad, příklady, obrázky a podmínky použití.
   Samotný obsah knihy, textová extrakce ani starší záznam neprokazují
   podrobné prostudování či odbornou správnost dané pasáže.
@@ -399,7 +413,9 @@ s každou kapitolou, ne až při dokončení knihy.
   autorské dokumentaci `quarto/README.md`. Platné terminologické preference
   udržuj v `docs/SLOVNIK.md`, rozhodnutí s důvody a doklady v
   `docs/ROZHODNUTI.md`, aktuální obsah, návaznosti a oddělený plán pokračování
-  v `docs/OSNOVA.md`; pravidlo průběžné údržby mapy je v úvodním oddílu
+  v `docs/OSNOVA.md` a odkazovaných kartách v `docs/kapitoly/`;
+  zdrojovou evidenci v `docs/ZDROJE.md` a kartách v `docs/zdroje/`.
+  Pravidlo průběžné údržby mapy je v úvodním oddílu
   „Použití projektové dokumentace“.
   Nevydávej neexistující dokumenty či kontroly za již zavedené
   a neduplikuj provozní návody v těchto instrukcích.
