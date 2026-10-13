@@ -90,7 +90,7 @@ nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů
 - `quarto/_verification/`: kontrolní skripty.
 - `AGENTS.md`: společná pravidla tvorby, didaktické revize, ověřování a práce s Gitem.
 - [docs/PREZENTACE.md](docs/PREZENTACE.md): pravidla pro prezentace, poznámky a jejich exporty.
-- [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): platná autorská rozhodnutí s rozsahem a doklady.
+- [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): stručný registr autorských voleb, jejich aktuální platnosti a hlavních míst údržby; podrobné důvody, doklady a původní schválené plány jsou v tematických souborech `docs/rozhodnuti/`.
 - [docs/SLOVNIK.md](docs/SLOVNIK.md): hlavní autorský registr preferovaných českých termínů, anglických ekvivalentů, alternativ a pravidel použití; rozlišuje doklady jednotlivých voleb a starších schválených celků. Studentské definice zůstávají ve slovníčku.
 - [docs/OSNOVA.md](docs/OSNOVA.md): celková struktura a tematické návaznosti s odkazy na podrobné karty v `docs/kapitoly/`. Karty zachycují obsah, příklady, cvičení i vazby na podklady; [plán pokračování](docs/kapitoly/plan-pokracovani.md) je oddělený.
 - [docs/ZDROJE.md](docs/ZDROJE.md): inventář a tematický rozcestník podkladů v `sources/`. Samostatné karty v `docs/zdroje/` obsahují přesné lokátory, rozpory a rozsah ověření; [společná historie](docs/zdroje/HISTORIE.md) zachovává průřezové kontroly. Odkazy na podklady fungují pouze v místní kopii s neveřejnými zdroji.
@@ -105,13 +105,17 @@ Před psaním a při revizi vyhledejte platné termíny v [autorském registru](
 
 ## Kontroly a GitHub
 
-Odkazy autorských map a jejich příchozí odkazy z verzovaných dokumentů ověří
+Odkazy autorských map, registru rozhodnutí i tematických dokladů a jejich
+příchozí odkazy z verzovaných dokumentů ověří
 `node scripts/check-doc-maps.cjs`. V pracovní kopii s neveřejnými podklady
 přidejte `--require-sources`, aby kontrola vyžadovala také všechny místní
 cíle v `sources/`. Kontrola řeší cesty a kotvy; neověřuje obsah podkladů
 ani dostupnost externích webů. Při přesunu map lze jednorázově přidat
 `--baseline <commit-před-přesunem>` pro porovnání obsahu a starých kotev
-s předchozím stavem. Tento režim není určen pro pozdější obsahové změny.
+s předchozím stavem. U původního úplného přehledu rozhodnutí ověřuje také
+zachování každého záznamu v pořadí v jeho tematickém souboru. Běžná kontrola
+hlídá jedinečnost rozhodnutí a shodu registru s podrobnými záznamy.
+Režim s výchozím commitem není určen pro pozdější obsahové změny.
 
 Po změně společného vzhledu nebo navigace vykreslete celou knihu. Pro automatickou kontrolu HTML potřebujete Node.js, Playwright a Chromium. Závislosti nainstalujte jednorázově podle potřeby:
 

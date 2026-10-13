@@ -1080,7 +1080,7 @@ v tematické větvi `codex/chapter-04` pro uživatelovu kontrolu a sloučení.
 
 Na žádost autora proběhlo posouzení kapitoly 1 z hlediska věcné správnosti,
 didaktiky a jazyka. Hrubá věcná chyba nalezena nebyla. Autor rozhodl sporné
-body; platné konvence shrnuje [R10](../docs/ROZHODNUTI.md#r10-terminologie-kapitoly-1).
+body; platné konvence shrnuje [R10](../docs/rozhodnuti/kapitola-01.md#r10-terminologie-kapitoly-1).
 Úpravy jsou ve větvi `codex/chapter-01-review` z `main` (d30bd98).
 
 ### Terminologie
@@ -1235,7 +1235,7 @@ nebyl znovu spuštěn, protože sešity ani excelové vzorce se nemění.
 
 Na pokyn autora doplněno do `AGENTS.md` pravidlo, že úvodní blok s cíli
 kapitoly se formátuje jako seznam s odrážkami;
-[R16](../docs/ROZHODNUTI.md#r16-cile-kapitoly-odrazky). Změna se týká jen
+[R16](../docs/rozhodnuti/postupy-a-dokumentace.md#r16-cile-kapitoly-odrazky). Změna se týká jen
 instrukcí a autorské dokumentace, render nebyl potřeba. Úpravy kapitol 3
 a 4 jsou v jejich větvích.
 
@@ -1245,7 +1245,7 @@ Na žádost autora proběhlo posouzení kapitoly 2 z hlediska věcné správnost
 srozumitelnosti, návaznosti, didaktiky, jazyka a názvosloví. Hrubá věcná
 ani početní chyba nalezena nebyla; všechna čísla výkladu a řešení byla
 znovu přepočítána proti `data/kapitola_02.csv`. Autor rozhodl sporné body;
-platné konvence shrnuje [R13](../docs/ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu).
+platné konvence shrnuje [R13](../docs/rozhodnuti/kapitola-02.md#r13-platny-udaj-velikost-vyberu).
 Úpravy jsou ve větvi `codex/chapter-02` z `origin/main` (259f5c7).
 
 ### Terminologie
@@ -1313,7 +1313,7 @@ návaznosti, didaktiky, jazyka a konzistence názvosloví. Kapitola byla přečt
 celá; všechny příklady, tabulky a řešení čtrnácti cvičení byly ručně
 přepočítány. Početní chyba nalezena nebyla. Opravy jsou jazykové,
 terminologické a didaktické; rozhodnutí autora zachycuje
-[R14](../docs/ROZHODNUTI.md#r14-kvartily-spicatost-chvost).
+[R14](../docs/rozhodnuti/kapitola-03.md#r14-kvartily-spicatost-chvost).
 
 ### Rozhodnutí autora
 
@@ -1410,7 +1410,7 @@ větvi `codex/chapter-04` z `origin/main` (c4de22e).
 ### Rozhodnutí autora
 
 - Zápis normálního modelu je nově N(μ, σ) se směrodatnou odchylkou jako
-  druhým parametrem ([R15](../docs/ROZHODNUTI.md#r15-zapis-normalniho-modelu),
+  druhým parametrem ([R15](../docs/rozhodnuti/kapitola-04.md#r15-zapis-normalniho-modelu),
   nahrazuje příslušnou část R09). Ilustrační model je N(50, 10); výklad
   upozorňuje na častou konvenci N(μ, σ²). Úloha 3 používá N(80, 5).
 - Úvodní blok cílů je seznam s odrážkami. Věta o posouvání na úzké
@@ -1755,9 +1755,9 @@ P05, C03, D07–D09) a z nového čtení textu všech 36 snímků P05, snímků 
 P03, úloh X3_08–20 a X3_31 a Howellových s. 108–128 v textové extrakci.
 
 **Schváleno** (doklady a plné znění v
-[R21](../docs/ROZHODNUTI.md#r21-rozsah-kapitoly-5),
-[R22](../docs/ROZHODNUTI.md#r22-znaceni-pravdepodobnosti) a
-[R23](../docs/ROZHODNUTI.md#r23-terminologie-kapitoly-5)):
+[R21](../docs/rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5),
+[R22](../docs/rozhodnuti/kapitola-05.md#r22-znaceni-pravdepodobnosti) a
+[R23](../docs/rozhodnuti/kapitola-05.md#r23-terminologie-kapitoly-5)):
 
 - jedna kapitola ve dvou blocích, od pojetí pravděpodobnosti po normální
   aproximaci binomického rozdělení; chyby pravděpodobnostního úsudku povinně,
@@ -2135,7 +2135,7 @@ heslo. Konečná tabulka byla vizuálně prohlédnuta. Git diff --check prošel.
 
 ## Pedagogické příklady souvislosti — 2026-10-12
 
-Podle [R27](../docs/ROZHODNUTI.md#r27-souvislost-pedagogicka) je v kapitole 1
+Podle [R27](../docs/rozhodnuti/kapitola-01.md#r27-souvislost-pedagogicka) je v kapitole 1
 nové sbalené nepovinné rozšíření `souvislost-pedagogicka`. Tři mechanismy
 se týkají motivace a úspěšnosti, čtvrtý výslovně mění dvojici na inteligenci
 a motivaci. Text rozlišuje časovou posloupnost obou směrů, společnou příčinu
@@ -2272,9 +2272,9 @@ a výklad psát zvlášť. Předložený návrh potom čtyřikrát vrátil:
 Po zapracování autor návrh schválil.
 
 **Schváleno** (plné znění a doklady v
-[R28](../docs/ROZHODNUTI.md#r28-rozsah-kapitoly-6),
-[R29](../docs/ROZHODNUTI.md#r29-znaceni-kapitoly-6) a
-[R30](../docs/ROZHODNUTI.md#r30-terminologie-kapitoly-6)):
+[R28](../docs/rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6),
+[R29](../docs/rozhodnuti/kapitola-06.md#r29-znaceni-kapitoly-6) a
+[R30](../docs/rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6)):
 
 - dvanáct oddílů ve dvou blocích, tři vrstvy průběžného příkladu, pět
   nepovinných rozšíření a návrh čtrnácti cvičení podle
@@ -2457,7 +2457,7 @@ v přesném příkladu.
 
 Na výslovné zadání autora vznikl samostatný export kapitoly 3 do PDF,
 bez automatického spouštění s HTML. Dohodu eviduje
-[R31](../docs/ROZHODNUTI.md#r31-pracovni-pdf), provozní postup je
+[R31](../docs/rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf), provozní postup je
 v [README](../README.md#ruční-pdf-vybrané-kapitoly).
 
 - Zdrojový studentský text se neměnil. Skript čte aktuální kapitolu,
@@ -2507,7 +2507,7 @@ zatím není implementován ani ověřen.
 
 Na výslovný pokyn autora rozděleny [mapa obsahu](../docs/OSNOVA.md)
 a [mapa zdrojů](../docs/ZDROJE.md) do propojených Markdownových souborů
-podle [R32](../docs/ROZHODNUTI.md#r32-propojene-mapy). Celkový přehled
+podle [R32](../docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy). Celkový přehled
 a tematické rozcestníky zůstávají na původních cestách. V `docs/kapitoly/`
 je šest karet existujících kapitol a oddělený plán pokračování;
 v `docs/zdroje/` je 37 karet (U01–U12, P01–P07, C01–C05, D01–D11,
@@ -2550,3 +2550,48 @@ Jde o reorganizaci dokumentace: nebyl nově posuzován odborný obsah,
 otevírány originály, ověřována dostupnost externích webů ani spouštěn
 Excel či render studentského webu. Data dosavadních obsahových kontrol
 zůstávají zachována. Kontrola `git diff --check` prošla.
+
+<a id="registr-rozhodnuti-2026-10-13"></a>
+
+## Registr rozhodnutí a hlavní místa informací — 2026-10-13
+
+[ROZHODNUTI.md](../docs/ROZHODNUTI.md) nyní obsahuje stručný registr
+32 rozhodnutí s rozsahem, aktuální platností a odkazy na doklad a hlavní
+místo údržby. Podrobné původní záznamy jsou rozděleny do osmi souborů
+podle společných témat a kapitol; původní úvod a pokyny k návrhům jsou
+zachovány v [historii registru](../docs/rozhodnuti/historie-registru.md).
+Registr se při porovnání s jednotným LF zkrátil z 58 561 na 12 239 znaků
+(o 79,1 %). Původní znění dohod, jejich ID, data a historie zůstávají
+zachovány; nové odkazy vedou přímo k dokladům a staré kotvy registru
+zůstávají funkční.
+
+U R09, R10, R17 a R21 registr výslovně rozlišuje dosud platné části
+od částí nahrazených pozdější dohodou. Schválená reorganizace je datovaným
+doplněním [R32](../docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy),
+nikoli novým rozhodnutím. [AGENTS.md](../AGENTS.md#evidence-rozhodnuti)
+určuje jedno hlavní místo údržby každého typu informace, podmínky vzniku
+nového rozhodnutí a rozdíl mezi současným pravidlem, původní dohodou
+a záznamem provedené práce. Historické schválené plány se nadále
+nepřepisují podle pozdějšího skutečného obsahu kapitol.
+
+**Kontrola zachování:** výchozím stavem je commit
+`467fef02f22af5f2615faa3d06ea27816a412afc`. Původní soubor byl rozdělen
+na 34 souvislých bloků (32 rozhodnutí a dva úvodní bloky); jejich složení
+přesně obnovilo původní obsah s jednotným LF. Jeho SHA-256 je
+`ac28d93dbc75e442f3a222abc4934ab2bd3376e326759711620c3cf8de871f1c`.
+V cílových souborech bylo ověřeno všech 749 původních neprázdných řádků
+v původním pořadí včetně očekávaných nových adres místních odkazů.
+
+**Reprodukovatelná kontrola:**
+`node scripts/check-doc-maps.cjs --baseline 467fef0 --require-sources`
+prošla bez chyb. Kontrola zahrnuje místní odkazy a kotvy, zachování
+původního obsahu map, shodu 32 záznamů s registrem, jedinečnost ID
+a pořadí obsahu každého původního rozhodnutí v cílovém souboru.
+Všech 314 odkazů do místních podkladů má existující cíl. Běžný režim
+bez `--baseline` nově hlídá také chybějící a duplicitní rozhodnutí
+a nesprávné cíle registru. Kontrola `git diff --check` prošla.
+
+Jde pouze o reorganizaci autorské dokumentace. Nebyl nově ověřován
+odborný obsah podkladů ani dostupnost externích URL; historická data
+a omezení ověření zůstávají zachována. Excel ani render studentského
+webu nebyly pro tuto změnu spouštěny.

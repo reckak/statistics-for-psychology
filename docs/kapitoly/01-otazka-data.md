@@ -7,7 +7,7 @@
 **Podklad a stav:** existující [kapitola 1](../../quarto/kapitola_01.qmd#sec-kapitola-01),
 obsah karty zkontrolován 2026-10-12. Dohodnutý obsah a pozdější rozšíření
 rolí proměnných dokládá autorská historie; terminologii výběru, přiřazení
-a rolí shrnuje [R10](../ROZHODNUTI.md#r10-terminologie-kapitoly-1).
+a rolí shrnuje [R10](../rozhodnuti/kapitola-01.md#r10-terminologie-kapitoly-1).
 **Vstup:** matematika základní školy, bez předchozí statistiky či programování.
 
 **Cíle:** odlišit popis, zobecnění a příčinu; určit populaci, výběr, případ,
@@ -55,7 +55,7 @@ Experiment s tichem/nahrávkou slouží k odlišení manipulace a pozorování;
 odděluje oporu pro zobecnění a kauzální závěr. Tabulky měření, věku a codebooku
 umožňují porovnat význam stejných čísel a způsobů záznamu.
 
-Doplnění 2026-10-12 podle [R26](../ROZHODNUTI.md#r26-vizualizace-kapitoly-1):
+Doplnění 2026-10-12 podle [R26](../rozhodnuti/kapitola-01.md#r26-vizualizace-kapitoly-1):
 sedm schémat propojuje již vysvětlené pojmy. Populace/výběr/inference rozlišuje
 sampling a sample a rozsah popisné statistiky; souvislost/příčina ukazuje
 dvě slučitelná hypotetická vysvětlení. Schéma operacionalizace nahrazuje

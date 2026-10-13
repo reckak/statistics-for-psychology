@@ -42,7 +42,7 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 - **Směrodatná chyba a velikost výběru (C5_11, X5_09):** spojení dvou výběrů; mincovní úloha jako motivace odmocninového vztahu.
 - **Binomický test (X5_12):** 11 nebo méně z 20 při pravděpodobnosti 0,6, přesně 0,404.
 - **Jiné statistiky (X5_04):** odpovídá krátké zmínce o výběrových rozděleních mediánu, směrodatné odchylky a rozptylu.
-- **Nepoužije se:** úlohy závislé na chybějících sešitech `Simulace výběrů.xlsx` a `bootstrap.xlsx` ([R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6) předepisuje statická simulovaná data); bootstrap (X5_07–08); deset výkonů téhož dítěte (X5_11).
+- **Nepoužije se:** úlohy závislé na chybějících sešitech `Simulace výběrů.xlsx` a `bootstrap.xlsx` ([R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6) předepisuje statická simulovaná data); bootstrap (X5_07–08); deset výkonů téhož dítěte (X5_11).
 
 
 ## Související karty kapitol

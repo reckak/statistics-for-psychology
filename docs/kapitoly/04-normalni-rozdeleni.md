@@ -8,8 +8,8 @@
 karta zkontrolována 2026-10-11. Původní schválený plán byl nahrazen mapou
 skutečného textu; dohody z 2026-10-10 a úpravy z 2026-10-11 zůstávají doloženy
 v [historii přípravy](../../quarto/README.md#priprava-kapitoly-4) a rozhodnutích
-[R07](../ROZHODNUTI.md#r07-normovane-normalni), [R08](../ROZHODNUTI.md#r08-terminologie-kapitoly-4),
-[R09](../ROZHODNUTI.md#r09-kapitola-4-model-qq) a [R15](../ROZHODNUTI.md#r15-zapis-normalniho-modelu).
+[R07](../rozhodnuti/kapitola-04.md#r07-normovane-normalni), [R08](../rozhodnuti/kapitola-04.md#r08-terminologie-kapitoly-4),
+[R09](../rozhodnuti/kapitola-04.md#r09-kapitola-4-model-qq) a [R15](../rozhodnuti/kapitola-04.md#r15-zapis-normalniho-modelu).
 
 **Vstup:** populace/výběr, význam a meze měření, spojitost, histogram,
 relativní a kumulativní četnosti, průměr, SD, kvantily, percentilové pořadí
@@ -134,7 +134,7 @@ a rozdělení pravděpodobnosti, binomický model a jeho normální aproximace.
 **Odloženo:** výběrová rozdělení, centrální limitní věta, směrodatná chyba,
 intervaly spolehlivosti a testování. Tato zmínka sama neschvaluje žádné
 z těchto témat pro další kapitolu; rozsah kapitoly 6 určilo až
-[R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6).
+[R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6).
 
 Hlavní odbornou a didaktickou oporou původní přípravy je Howell, kapitola 3;
 podrobnosti pasáží a srovnání podkladů patří do [karty U01](../zdroje/U01-howell.md#u01)

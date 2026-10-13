@@ -5,11 +5,11 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 5](../../quarto/kapitola_05.qmd#sec-kapitola-05), karta
-sestavena podle výkladu, zadání a řešení a zkontrolována po odborné revizi 2026-10-12 ([R25](../ROZHODNUTI.md#r25-revize-kapitoly-5)).
+sestavena podle výkladu, zadání a řešení a zkontrolována po odborné revizi 2026-10-12 ([R25](../rozhodnuti/kapitola-05.md#r25-revize-kapitoly-5)).
 Schválený plán z 2026-10-11 byl nahrazen touto mapou skutečného textu;
-dohodu dokládají [R21](../ROZHODNUTI.md#r21-rozsah-kapitoly-5),
-[R22](../ROZHODNUTI.md#r22-znaceni-pravdepodobnosti),
-[R23](../ROZHODNUTI.md#r23-terminologie-kapitoly-5) a
+dohodu dokládají [R21](../rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5),
+[R22](../rozhodnuti/kapitola-05.md#r22-znaceni-pravdepodobnosti),
+[R23](../rozhodnuti/kapitola-05.md#r23-terminologie-kapitoly-5) a
 [historie](../../quarto/README.md#dohoda-kapitola-05).
 
 **Vstup:** relativní a kumulativní četnosti, určení celku, doplněk a sumace
@@ -149,7 +149,7 @@ poměr šancí, název úpravy hranice při aproximaci, binomický a znaménkov�
 test, multinomické a Poissonovo rozdělení, výběrová rozdělení, centrální
 limitní věta, směrodatná chyba, intervaly spolehlivosti. Žádná z těchto
 zmínek neschvaluje téma pro další kapitolu; rozsah kapitoly 6 určilo až
-[R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6).
+[R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6).
 
 Hlavní oporou pořadí je Howell, kapitola 5, a autorova přednáška
 `probability.pptx`; rozsah čtení a zjištěné rozpory jsou v kartách

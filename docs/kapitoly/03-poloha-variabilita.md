@@ -7,9 +7,9 @@
 **Podklad a stav:** existující [kapitola 3](../../quarto/kapitola_03.qmd#sec-kapitola-03),
 karta zkontrolována 2026-10-11. **Vstup:** význam měření z kapitoly 1;
 četnosti, procenta, sumace a grafy z kapitoly 2. Konvence upravují
-[R01](../ROZHODNUTI.md#r01-znaceni-a-reportovani), [R04](../ROZHODNUTI.md#r04-kvantily),
-[R05](../ROZHODNUTI.md#r05-zaokrouhlovani), [R06](../ROZHODNUTI.md#r06-robustni-shrnuti)
-a [R14](../ROZHODNUTI.md#r14-kvartily-spicatost-chvost).
+[R01](../rozhodnuti/spolecne-konvence.md#r01-znaceni-a-reportovani), [R04](../rozhodnuti/kapitola-03.md#r04-kvantily),
+[R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani), [R06](../rozhodnuti/kapitola-03.md#r06-robustni-shrnuti)
+a [R14](../rozhodnuti/kapitola-03.md#r14-kvartily-spicatost-chvost).
 
 **Cíle:** volit ukazatele podle otázky a měření; vysvětlit a provést výpočet
 středu, kvantilů a variability; sestavit boxplot; posoudit vzdálené hodnoty,
@@ -89,7 +89,7 @@ sbalená řešení na webu. Ručně vyžádané pracovní PDF kapitoly 3 přesou
 všechna řešení za všechna zadání, s obousměrnými odkazy; obsah úloh zachovává.
 Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
 [postup](../../README.md#ruční-pdf-vybrané-kapitoly) a
-[R31](../ROZHODNUTI.md#r31-pracovni-pdf).
+[R31](../rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf).
 Jednotlivé nadpisy ve zdroji nemají explicitní ID, proto tato mapa
 odkazuje na stabilní oddíl cvičení a používá číslo i název. Základem je
 kalkulačka, u úlohy 12 Excel; kvantily podle PERCENTIL.INC, výsledky zpravidla

@@ -52,7 +52,7 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 107–111 (PDF 128–132): §5.9 s binomickým testem (13 uzdravených z 15 při pravděpodobnosti úspěchu 0,6) a s příkladem férovosti mince při oboustranné alternativě; začátek §5.10 o znaménkovém testu. Využitelné pro blok B: postup od rozdělení za platnosti nulové hypotézy k množině krajních výsledků, rozdělení kritického oboru do obou chvostů a podmínka nezávislosti pokusů.
 
 - **Ověřeno výpočtem:** pravděpodobnost 13 a více úspěchů z 15 je 0,0271; součet krajních výsledků 0–3 a 12–15 při pravděpodobnosti 0,5 je 0,0352.
-- **Nálezy:** tabulka 5.2 na s. 110 uvádí u r = 2 a r = 13 hodnotu 0,00032, správně 105/32 768 = 0,0032; zjištěno v extrakci a 2026-10-12 potvrzeno v obraze strany. Text na s. 110 uvádí pravděpodobnost chybného zamítnutí 0,05, ačkoli popsaný kritický obor má pravděpodobnost 0,035. Závěr „the alternative hypothesis … is accepted“ (s. 109) se nepřebírá ([R30](../ROZHODNUTI.md#r30-terminologie-kapitoly-6)).
+- **Nálezy:** tabulka 5.2 na s. 110 uvádí u r = 2 a r = 13 hodnotu 0,00032, správně 105/32 768 = 0,0032; zjištěno v extrakci a 2026-10-12 potvrzeno v obraze strany. Text na s. 110 uvádí pravděpodobnost chybného zamítnutí 0,05, ačkoli popsaný kritický obor má pravděpodobnost 0,035. Závěr „the alternative hypothesis … is accepted“ (s. 109) se nepřebírá ([R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6)).
 - **Neověřeno:** vizuální kontrola ostatních stran; kap. 4, 6 a 7 zůstávají ve stavu mapy obsahu. Znaménkový test je mimo schválený rozsah kapitoly 6. V kapitole 6 se Russo necituje.
 
 

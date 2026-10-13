@@ -16,7 +16,7 @@ Přesun z původní mapy 2026-10-13 zachovává datované záznamy a jejich tehd
 | Normální model | Rozlišit CDF a kvantil, percentil a pořadí, Q–Q a P–P, interval hodnot a interval spolehlivosti. Starší podklady obsahují konkrétní záměny. |
 | Bibliografie | Baronova identita nyní ověřena v celé knize U12; zachovat doložený rozdíl copyrightu 2008 a prvního tisku 2007. Došetřit vydání de Vause a Morgana, rok/verzi Navarra, identitu mezinárodního Arona a přesný původ úloh C2/C3/C5. |
 | Nedostupné návazné materiály | U [U11](U11-russo.md#u11) jsou kap. 13–14 a další označené oddíly pouze na webu, nikoli v místním PDF. Odkazované externí datasety, `Datíčka.xls`, videa, QR odkazy, online aplikace, originály studií a navazující části knih nejsou automaticky pokryty inventářem. |
-| Nové inferenční podklady | P06: číselné p-hodnoty a zobecnění NHST; P07: rozdělení průměru versus t-statistiky, SE, bootstrap, interpretace intervalů a vzorce rozptylu; C05: modely, argumenty kvantilových funkcí a chybějící simulační sešity. Před použitím vyřešit konkrétní nálezy v kartách. Rozsah a pojetí kapitoly 6 určuje [R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6); U01 má v kap. 4 nesoulad kritických hodnot a β (karta U01). Kapitola 6 byla napsána 2026-10-12; nesouhlasné hodnoty se do ní nepřevzaly. |
+| Nové inferenční podklady | P06: číselné p-hodnoty a zobecnění NHST; P07: rozdělení průměru versus t-statistiky, SE, bootstrap, interpretace intervalů a vzorce rozptylu; C05: modely, argumenty kvantilových funkcí a chybějící simulační sešity. Před použitím vyřešit konkrétní nálezy v kartách. Rozsah a pojetí kapitoly 6 určuje [R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6); U01 má v kap. 4 nesoulad kritických hodnot a β (karta U01). Kapitola 6 byla napsána 2026-10-12; nesouhlasné hodnoty se do ní nepřevzaly. |
 | Parkovací studie | Souhrny Rubacka a Juienga (1997) jsou známy jen z U01 s. 86; původní článek není v `sources/`. Bibliografický záznam (Crossref) a uspořádání podle shrnutí článku byly ověřeny 2026-10-12; plný text čten nebyl. Kapitola 6 proto čísla uvádí „podle Howella“ a rozdíl z pozorovací části studie nevykládá jako prokázaný účinek čekajícího řidiče. |
 | Odborné ověření | Před použitím konkrétního příkladu nezávisle ověřit všechny vstupy, výpočty a řešení; před převzetím empirického tvrzení ověřit původní zdroj a relevantní současné poznatky. |
 
@@ -52,13 +52,13 @@ Na žádost autora o projednání kapitoly o výběrovém rozdělení a principu
 
 Rozsah nového čtení a nálezy jsou v kartách U01, U03, U04, U05, U08, U11, P06, P07 a C05. Čteno bylo v textové extrakci; v obraze jen U01 s. 95–96. Ve stavu mapy obsahu zůstávají U02 kap. 4–6, U06 kap. 7–8, U07 kap. 3–4, U09 kap. 7–8, U10 kap. 9 a 12, U03 kap. 6 a zbytek U08 kap. 10–11. D07 a D11 nebyly nově čteny; návrh se opírá o jejich karty. Vyhledání klíčových slov v U12 (PDF 150–175) nenašlo pasáž o vlivu velikosti výběru.
 
-Schválený rozsah a pojetí kapitoly určují [R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6)–[R30](../ROZHODNUTI.md#r30-terminologie-kapitoly-6) a [plán v osnově](../kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly). Tento záznam není odbornou revizí podkladů. Originály v `sources/` se neměnily a do složky se nic nepřidalo.
+Schválený rozsah a pojetí kapitoly určují [R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)–[R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) a [plán v osnově](../kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly). Tento záznam není odbornou revizí podkladů. Originály v `sources/` se neměnily a do složky se nic nepřidalo.
 
 <a id="pouziti-kapitola-06"></a>
 
 ### Použití podkladů při tvorbě kapitoly 6 — 2026-10-12
 
-Kapitola 6 byla napsána podle [R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6)–[R30](../ROZHODNUTI.md#r30-terminologie-kapitoly-6); skutečný obsah mapuje [karta v osnově](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Použití konkrétních pasáží je zapsáno v kartách U01, P06, D07 a D11; u U11 je doplněno potvrzení nálezu v obraze. Ostatní podklady z přípravy sloužily jako opora pojetí, nikoli jako zdroj formulací nebo dat:
+Kapitola 6 byla napsána podle [R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)–[R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6); skutečný obsah mapuje [karta v osnově](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Použití konkrétních pasáží je zapsáno v kartách U01, P06, D07 a D11; u U11 je doplněno potvrzení nálezu v obraze. Ostatní podklady z přípravy sloužily jako opora pojetí, nikoli jako zdroj formulací nebo dat:
 
 - **U04 (OpenIntro), s. 171:** citováno k tvrzení, že výběrové rozdělení ve skutečném výzkumu přímo nepozorujeme. Čteno v textové extrakci.
 - **U08 (Navarro), oddíl 11.1:** citováno k rozlišení výzkumné a statistické hypotézy. Lokátorem je oddíl, protože přesné strany nebyly ověřeny.
