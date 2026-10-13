@@ -2719,6 +2719,42 @@ upravit. Pomocné příznaky používají `KDYŽ` a `A`, zaokrouhlení dolů
 ruční úpravy formátu tohoto jediného slidu. Ostatní slidy nebyly znovu
 vykreslovány, protože se jejich části souboru nezměnily.
 
+## Obecné rovnice v sešitu k prezentaci kapitoly 3 (2026-10-14)
+
+Na žádost autora doplněn do `presentations/kapitola_03_poloha_a_variabilita_cviceni.xlsx`
+na každý list s úkolem (U1–U6) blok „Potřebné vztahy“: pod zadáním jsou
+obecné rovnice potřebné k výpočtu, zapsané ve značení učebnice, a pod každou
+legenda symbolů. Celkem jde o 15 objektů: průměr a medián; variační rozpětí,
+rozptyl a směrodatná odchylka; meze intervalu *m* ± 2*s* a podíl; pozice
+a interpolace kvantilu, mezikvartilové rozpětí a pomocné meze; ořezaný průměr;
+lineární transformace a její vliv na průměr a směrodatnou odchylku. Podle
+volby autora jsou rovnice nativní objekty editoru rovnic Excelu (editovatelné,
+s alternativním textem), nikoli obrázky ani text v buňkách. List `Prehled`
+blok vysvětluje. Data, pracovní oblast ani řešení po krocích se nezměnily;
+prezentace a DOCX zůstaly beze změny.
+
+Postup: Excel nenabízí spolehlivé automatizační rozhraní pro vložení rovnice.
+Dočasný generátor v `tmp/` proto po sestavení sešitu zapíše rovnice (OMML
+v textovém poli výkresu) přímo do souboru a skrytá instance Excelu jej otevře,
+ověří a uloží jako běžný sešit. Před přegenerováním bylo buňku po buňce
+ověřeno, že verzovaný sešit odpovídal výstupu generátoru, takže se nepřepsaly
+žádné ruční úpravy. Sdílené skripty v `scripts/` se neměnily.
+
+Kontroly v českém Excelu 16: soubor se otevírá bez opravy; všech 15 objektů
+Excel hlásí jako rovnice; žádné chybové buňky; 19 kontrolních funkcí se nadále
+shoduje s výpočtem po krocích; data jsou seřazená a pracovní buňky prázdné.
+Všechny bloky rovnic byly prohlédnuty z exportu listů (zlomky, sumace, indexy,
+odmocniny, překryvy). Rovnice odpovídají vztahům v kapitole 3 a krokům řešení
+na témže listu.
+
+Omezení: u ořezaného průměru je použito pomocné označení *k* (počet
+vynechaných hodnot na každém konci), které učebnice nezavádí; legenda to uvádí
+a do přehledu značení se nezapisuje. V legendách je pořadový index psán
+na řádku jako x(i), protože písmo buněk nezobrazuje dolní závorky spolehlivě.
+Zobrazení rovnic nebylo zkoušeno ve starších verzích Excelu, v Excelu pro Mac,
+ve webovém Excelu ani v jiných tabulkových programech; ty mohou místo rovnice
+ukázat náhradní text nebo obrázek.
+
 ## Rovnice u úloh v doprovodných sešitech: pravidlo (2026-10-14)
 
 K [R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
