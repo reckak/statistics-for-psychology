@@ -14,7 +14,7 @@ u postupu, který počítá s nejistotou odhadu směrodatné chyby
 ([odhad](../../quarto/kapitola_06.qmd#sec-odhad-chyby)), a u testu průměru
 při neznámé směrodatné odchylce ([z-test](../../quarto/kapitola_06.qmd#sec-z-test)).
 Odkazy odpovídají autorovým pokynům při projednání kapitoly 6
-([R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6): intervaly spolehlivosti
+([R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6): intervaly spolehlivosti
 „odložit do další kapitoly“, t-rozdělení a t-test „do další kapitoly“).
 Jde o dohodnutý směr, nikoli o schválený rozsah: bude-li obsah další
 kapitoly dohodnut jinak, je třeba tyto tři věty upravit.

@@ -36,8 +36,8 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Doplnění při přípravě kapitoly 6 (2026-10-12):** z PPTX znovu přečten text sn. 1–37 a poznámky; sn. 38–62 jen podle této karty.
 
-- **Využití pro blok A ([R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6)):** rozlišení náhodné výběrové chyby a systematického zkreslení (sn. 8–10); výběrové rozdělení jako rozdělení pravděpodobnosti hodnot statistiky a výstraha před záměnou s rozdělením proměnné (sn. 14); popis výběrového rozdělení polohou, rozptýleností a tvarem (sn. 17); termín směrodatná chyba (sn. 18); úvaha od N = 1 k většímu výběru jako podklad nepovinného odvození (sn. 22).
-- **Šíře termínu:** sn. 10 dokládá, že „sampling error“ se užívá pro celkovou chybu odhadu i jen pro její náhodnou složku; na tuto různou šíři má výklad podle [R30](../ROZHODNUTI.md#r30-terminologie-kapitoly-6) upozornit.
+- **Využití pro blok A ([R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)):** rozlišení náhodné výběrové chyby a systematického zkreslení (sn. 8–10); výběrové rozdělení jako rozdělení pravděpodobnosti hodnot statistiky a výstraha před záměnou s rozdělením proměnné (sn. 14); popis výběrového rozdělení polohou, rozptýleností a tvarem (sn. 17); termín směrodatná chyba (sn. 18); úvaha od N = 1 k většímu výběru jako podklad nepovinného odvození (sn. 22).
+- **Šíře termínu:** sn. 10 dokládá, že „sampling error“ se užívá pro celkovou chybu odhadu i jen pro její náhodnou složku; na tuto různou šíři má výklad podle [R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) upozornit.
 - **Nepřebírá se:** „SE vyjadřuje průměrnou, očekávanou chybu odhadu“ (sn. 18, 20, 31); hranice N > 30 a N > 100 (sn. 23, 25); tvrzení, že výběrové rozdělení průměru je při neznámém σ Studentovo (sn. 25, 29); hodnota 0,17 na sn. 24 (správně 0,16 podle nálezu výše).
 - **Mimo schválený rozsah kapitoly 6:** bootstrap (sn. 32–37) a intervaly spolehlivosti (sn. 38–62).
 

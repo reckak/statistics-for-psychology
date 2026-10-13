@@ -21,10 +21,10 @@
   rozlišuj dohodnutý směr, schválený rozsah a otevřené návrhy; po vytvoření
   kapitoly zmapuj skutečný výklad včetně zadání a řešení, nikoli jen původní
   osnovu. Definice, úplné značení a zdrojové karty v mapě neduplikuj.
-- Před obsahovou prací vyhledej relevantní platná rozhodnutí v
-  [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md). Nová schválená rozhodnutí zde
-  průběžně eviduj s rozsahem platnosti, důvodem a dokladem; nenahrazuj tím
-  studentský slovníček ani přehled značení. Samotný návrh není schválení.
+- Před obsahovou prací vyhledej relevantní řádky v
+  [registru rozhodnutí](docs/ROZHODNUTI.md), jejich aktuální platnost,
+  hlavní místo pravidla a podle potřeby odkazovaný doklad v `docs/rozhodnuti/`.
+  Zápisy udržuj podle oddílu [Evidence rozhodnutí](#evidence-rozhodnuti).
 - Pro volbu termínů před psaním i při revizi používej
   [docs/SLOVNIK.md](docs/SLOVNIK.md), hlavní autorský registr platných
   českých preferencí, anglických ekvivalentů, alternativ a významových hranic.
@@ -37,9 +37,10 @@
   více podkladů jsou v [historii ověřování](docs/zdroje/HISTORIE.md).
   Nabídka témat v mapě není schválenou osnovou; postup její údržby je níže
   v oddílu „Zdroje a jejich použití“.
-- Do kontextu načítej rozcestník, dotčené karty a relevantní pasáže;
-  nečti automaticky všechny soubory obou složek. Karta kapitoly odkazuje
-  na zdrojové karty a jejich konkrétní části, nekopíruje jejich evidenci.
+- Do kontextu načítej rozcestník či registr, dotčené karty nebo doklady
+  a relevantní pasáže; nečti automaticky celé složky dokumentace. Karta
+  kapitoly odkazuje na zdrojové karty a jejich konkrétní části, nekopíruje
+  jejich evidenci.
   Tematický odkaz sám nedokládá použití ani prostudování zdroje. Při novém
   propojení udržuj také odkazy ze zdrojové karty na dotčené kapitoly.
   Zachovávej stabilní ID i datované záznamy; při přesunu uprav příchozí
@@ -54,6 +55,53 @@
 - Výslovný pokyn uživatele pro aktuální úkol má přednost před těmito
   projektovými dokumenty. Při skutečně nejasném obsahovém rozporu se ptej
   a pokračuj na nezávislých částech. Již schválený postup znovu neschvaluj.
+
+<a id="evidence-rozhodnuti"></a>
+
+## Evidence rozhodnutí a hlavní místa informací
+
+Každý typ informace má jedno hlavní místo údržby. Ostatní dokumenty na ně
+odkazují; jejich stručné shrnutí nesmí vzniknout jako druhý úplný seznam
+pravidel. Studentský výklad musí zůstat samostatně srozumitelný: vysvětlení
+ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou funkci.
+
+| Typ informace | Hlavní místo údržby |
+|---|---|
+| Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md). |
+| Příkazy, závislosti a provozní návody | [README.md](README.md). |
+| Preferovaný termín, alternativy, významové hranice a výjimky | [SLOVNIK.md](docs/SLOVNIK.md); jeho doklad odkazuje na rozhodnutí. |
+| Studentský výklad, definice, značky a vzorce | Příslušná kapitola a její studentské referenční přehledy; autorská evidence je plně nekopíruje. |
+| Mapa skutečného obsahu, procvičení, návazností a otevřeného plánu | [OSNOVA.md](docs/OSNOVA.md) a odkazované kapitolové karty. |
+| Pokrytí příkladů a cvičení datovými sešity | [DATA.md](docs/DATA.md). |
+| Obsah zdroje, lokátory, nálezy, rozsah čtení a nezávislého ověření | [ZDROJE.md](docs/ZDROJE.md), odkazované zdrojové karty a společná historie kontrol podkladů. |
+| Stručný přehled schválených voleb a jejich aktuální platnost | [ROZHODNUTI.md](docs/ROZHODNUTI.md); řádek odkazuje na hlavní místo pravidla a podrobný doklad. |
+| Důvod, rozsah a doklad schválení včetně původního schváleného plánu | Tematický soubor v `docs/rozhodnuti/`, přístupný přes ID v registru. |
+| Provedené úpravy, výsledky kontrol a jejich omezení | [quarto/README.md](quarto/README.md); podrobné nálezy ke zdroji nebo datům odkazuje na příslušnou evidenci. |
+
+- Nové rozhodnutí eviduj při autorem schválené volbě, která omezuje budoucí
+  obsah, terminologii, značení nebo pracovní postup. Běžné opravy, realizace
+  již schváleného postupu a výsledky kontrol patří do historie práce.
+  Samotná žádost o posouzení, návrh nebo dokončení úpravy nejsou schválením
+  nové konvence.
+- Před založením ID ověř, zda jde o novou volbu, upřesnění, nebo nahrazení
+  existujícího rozhodnutí. U upřesnění připoj datovaný doklad ke stávajícímu
+  ID; samostatnou novou či nahrazující volbu zapiš pod novým ID. Nepřečísluj
+  starší záznamy. Eviduj stručný závěr, rozsah, důvod a konkrétní doklad
+  souhlasu; místo kopií slovníku, kapitol či návodů připoj přesné odkazy.
+- V registru udržuj stručné shrnutí, rozsah, platnost a odkazy. U změny
+  označ původní rozhodnutí jako částečně nebo úplně nahrazené a uveď,
+  které části a jakým rozhodnutím. Návrhy drž odděleně od schválených voleb.
+  „Platné“ nedokládá dokončení práce ani odborné ověření materiálů.
+- Původní schválené znění a doklady zachovej. Aktuální pravidlo aktualizuj
+  v jeho hlavním místě; historické seznamy preferencí ani návody zpětně
+  nesynchronizuj s dnešním stavem. Datovaný doplněk může vysvětlit změnu
+  či opravit evidenci, nesmí předstírat jiné původní schválení.
+- Schválený plán je dokladem dohody. Skutečný obsah a odchylky zachycuje
+  kapitolová karta; změna kapitoly nepřepisuje zpětně schválený plán.
+- Při dokončení dokumentační změny ověř hlavní místo každé nové informace,
+  funkčnost odkazů a ID a jednoznačnost aktuální platnosti. Obsahově posuď,
+  zda nevznikly dvě souběžně udržované kopie téhož pravidla. Automatická
+  kontrola odkazů podle README tuto redakční kontrolu nenahrazuje.
 
 ## Cíl a cílová skupina
 
@@ -250,7 +298,9 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - [Autorský registr](docs/SLOVNIK.md) určuje platné terminologické preference
   pro učebnici i související materiály; [studentský slovníček](quarto/slovnicek.qmd)
   poskytuje vysvětlení a odkazy na výklad. Důvody, rozsah a doklady nových
-  dohod zapisuj do [ROZHODNUTI.md](docs/ROZHODNUTI.md), v registru na ně odkazuj.
+  dohod zapisuj do příslušného dokladu v `docs/rozhodnuti/` a jeho stručný
+  záznam do [registru rozhodnutí](docs/ROZHODNUTI.md); terminologické heslo
+  odkazuje na doklad.
 - Při prvním zavedení odborného pojmu uveď schválený český termín a v závorce
   anglický ekvivalent. V dalším výkladu důsledně používej jednu schválenou
   českou variantu v kontextu určeném registrem. Alternativy eviduj v registru
@@ -280,7 +330,7 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   uživatelem. Schválené ukázky odborného reportování podle APA 7 používají
   značky *M*, *Mdn*, *SD*, *N* a *n*; výpočetní značení učebnice tím
   neměň. Rozsah této výjimky a rozlišující zkratky MeanAD a MedAD eviduje
-  [přehled rozhodnutí](docs/ROZHODNUTI.md#r01-znaceni-a-reportovani).
+  [přehled rozhodnutí](docs/rozhodnuti/spolecne-konvence.md#r01-znaceni-a-reportovani).
 - Předem dohodni i další nové značení, například dat, indexů, počtů
   a operátorů. Každý schválený symbol zaznamenej do přehledu značení,
   případně s běžnými alternativami a jasným označením používané varianty.
@@ -408,15 +458,9 @@ s každou kapitolou, ne až při dokončení knihy.
   interním R kódu ani konfiguraci a renderování Quarta.
 - Zachovej odborné citace, původ dat a vysvětlení analytických rozhodnutí,
   která student potřebuje pro porozumění příkladu.
-- Provozní postupy udržuj v kořenovém `README.md`; podrobnosti o zdrojích,
-  opravách, schválených rozhodnutích a provedeném ověření v historické
-  autorské dokumentaci `quarto/README.md`. Platné terminologické preference
-  udržuj v `docs/SLOVNIK.md`, rozhodnutí s důvody a doklady v
-  `docs/ROZHODNUTI.md`, aktuální obsah, návaznosti a oddělený plán pokračování
-  v `docs/OSNOVA.md` a odkazovaných kartách v `docs/kapitoly/`;
-  zdrojovou evidenci v `docs/ZDROJE.md` a kartách v `docs/zdroje/`.
-  Pravidlo průběžné údržby mapy je v úvodním oddílu
-  „Použití projektové dokumentace“.
+- Autorskou informaci udržuj v hlavním místě určeném oddílem
+  [Evidence rozhodnutí](#evidence-rozhodnuti). Pravidlo průběžné údržby
+  mapy je v úvodním oddílu „Použití projektové dokumentace“.
   Nevydávej neexistující dokumenty či kontroly za již zavedené
   a neduplikuj provozní návody v těchto instrukcích.
 

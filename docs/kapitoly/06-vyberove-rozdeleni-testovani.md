@@ -7,9 +7,9 @@
 **Podklad a stav:** existující [kapitola 6](../../quarto/kapitola_06.qmd#sec-kapitola-06), karta
 sestavena podle výkladu, zadání a řešení 2026-10-12. Schválený plán z téhož
 dne byl nahrazen touto mapou skutečného textu; dohodu dokládají
-[R28](../ROZHODNUTI.md#r28-rozsah-kapitoly-6),
-[R29](../ROZHODNUTI.md#r29-znaceni-kapitoly-6),
-[R30](../ROZHODNUTI.md#r30-terminologie-kapitoly-6) a
+[R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6),
+[R29](../rozhodnuti/kapitola-06.md#r29-znaceni-kapitoly-6),
+[R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) a
 [historie](../../quarto/README.md#dohoda-kapitola-06). Vznik textu, odchylky
 od plánu a rozsah ověření eviduje
 [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-6).

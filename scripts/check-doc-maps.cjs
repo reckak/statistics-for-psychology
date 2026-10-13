@@ -9,8 +9,8 @@ const posix = file => file.split(path.sep).join('/');
 const args = process.argv.slice(2);
 const baseline = args.includes('--baseline') ? args[args.indexOf('--baseline') + 1] : null;
 const requireSources = args.includes('--require-sources');
-const mapRoots = ['docs/OSNOVA.md', 'docs/ZDROJE.md'];
-const mapDirs = ['docs/kapitoly/', 'docs/zdroje/'];
+const mapRoots = ['docs/OSNOVA.md', 'docs/ZDROJE.md', 'docs/ROZHODNUTI.md'];
+const mapDirs = ['docs/kapitoly/', 'docs/zdroje/', 'docs/rozhodnuti/'];
 const isMap = file => mapRoots.includes(file) || mapDirs.some(dir => file.startsWith(dir));
 const fullCheck = file => isMap(file) || ['AGENTS.md','README.md','docs/ROZHODNUTI.md','docs/SLOVNIK.md'].includes(file);
 function walk(dir) {
@@ -84,7 +84,7 @@ for(const file of [...new Set([...maps, ...tracked])]) {
 }
 
 // Migration audit: compare every nonblank original line, including numbers,
-// external URLs and verification history. Only local link destinations, heading
+// external URLs, decision evidence and verification history. Only local link destinations, heading
 // levels, explicit alias anchors and four documented positional phrases differ.
 function normalize(text) {
  const replacements = [
@@ -105,6 +105,26 @@ function counter(lines) {
  for(const line of lines) counts.set(line,(counts.get(line)||0)+1);
  return counts;
 }
+// Each registered decision must have one complete record and one registry row.
+// IDs are retained even for superseded decisions; ordinary historical headings
+// and dated supplements are not separate decisions.
+const decisionRows=[...read('docs/ROZHODNUTI.md').matchAll(/^\| .*?\[(R\d{2,})\]\(([^)]+)\)/gm)];
+const decisionRecords=new Map();
+for(const file of maps.filter(f=>f.startsWith('docs/rozhodnuti/'))) {
+ for(const m of read(file).matchAll(/^## (R\d{2,}) — /gm)) {
+  if(decisionRecords.has(m[1])) errors.push(`Duplicate decision record: ${m[1]}`);
+  decisionRecords.set(m[1],file);
+ }
+}
+const rowIds=new Set();
+for(const [,id,url] of decisionRows) {
+ if(rowIds.has(id)) errors.push(`Duplicate registry row: ${id}`);
+ rowIds.add(id);
+ const link=resolveLink('docs/ROZHODNUTI.md',url);
+ if(!link || link.target!==decisionRecords.get(id)) errors.push(`Registry row has no matching record: ${id}`);
+}
+for(const id of decisionRecords.keys()) if(!rowIds.has(id)) errors.push(`Decision missing from registry: ${id}`);
+if(!decisionRows.length) errors.push('Decision registry is empty');
 let preservation=null;
 if(baseline) {
  cp.execFileSync('git',['rev-parse','--verify',`${baseline}^{commit}`],{cwd:root});
@@ -120,8 +140,28 @@ if(baseline) {
    if(!after.has(id)) errors.push(`Lost legacy anchor: ${f}#${id}`);
   }
  }
- preservation={baseline,originalNonblankLines:oldLines.length,legacyIds};
+ // When the baseline predates the split, additionally require every original
+ // decision to survive in order in its own thematic file, rather than only
+ // somewhere in the combined documentation.
+ let preservedDecisions=0;
+ const oldDecisionText=oldMaps.find(([f])=>f==='docs/ROZHODNUTI.md')[1];
+ const sections=[...oldDecisionText.matchAll(/^## .+$/gm)];
+ for(let i=0;i<sections.length;i++) {
+  const match=sections[i][0].match(/^## (R\d{2,}) — /);
+  if(!match) continue;
+  const id=match[1], file=decisionRecords.get(id);
+  if(!file) { errors.push(`Lost original decision: ${id}`); continue; }
+  const expected=normalize(oldDecisionText.slice(sections[i].index,sections[i+1]?.index??oldDecisionText.length));
+  const actual=normalize(read(file)); let cursor=0;
+  for(const line of expected) {
+   const at=actual.indexOf(line,cursor);
+   if(at<0) { errors.push(`Changed/lost original line in ${id}: ${line}`); break; }
+   cursor=at+1;
+  }
+  preservedDecisions++;
+ }
+ preservation={baseline,originalNonblankLines:oldLines.length,legacyIds,preservedDecisions};
 }
-const summary={mapFiles:maps.length,localLinks:checked,incomingLinks:incoming,sourceLinks,omittedSourceLinks:omittedSources,preservation,errors};
+const summary={mapFiles:maps.length,decisionRecords:decisionRecords.size,localLinks:checked,incomingLinks:incoming,sourceLinks,omittedSourceLinks:omittedSources,preservation,errors};
 console.log(JSON.stringify(summary,null,2));
 process.exitCode=errors.length ? 1 : 0;

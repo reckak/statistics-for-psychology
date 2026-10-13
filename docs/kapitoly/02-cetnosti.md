@@ -7,8 +7,8 @@
 **Podklad a stav:** existující [kapitola 2](../../quarto/kapitola_02.qmd#sec-kapitola-02),
 karta zkontrolována 2026-10-11. **Vstup:** případ, proměnná, úrovně měření,
 matice, chybění a meze zobecnění z kapitoly 1. Konvence určují
-[R02](../ROZHODNUTI.md#r02-indexy-a-cetnosti), [R03](../ROZHODNUTI.md#r03-hranice-intervalu),
-[R05](../ROZHODNUTI.md#r05-zaokrouhlovani) a [R13](../ROZHODNUTI.md#r13-platny-udaj-velikost-vyberu).
+[R02](../rozhodnuti/kapitola-02.md#r02-indexy-a-cetnosti), [R03](../rozhodnuti/kapitola-02.md#r03-hranice-intervalu),
+[R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani) a [R13](../rozhodnuti/kapitola-02.md#r13-platny-udaj-velikost-vyberu).
 
 **Cíle:** sestavit a interpretovat četnostní tabulku, určit základ procent,
 přečíst sumaci, třídit do jednoznačných intervalů, volit a kriticky číst grafy,
