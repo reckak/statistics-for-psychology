@@ -2681,3 +2681,40 @@ Jde pouze o změnu instrukcí a jejich evidence. Provedena obsahová kontrola
 rozdílů, `git diff --check` a `node scripts/check-doc-maps.cjs` bez chyb;
 render knihy není potřeba. Podle nového znění byl téhož dne upraven sešit
 k prezentaci kapitoly 3, starší sešit k prezentaci kapitoly 2 upravován nebyl.
+
+## Doprovodný sešit k prezentaci kapitoly 3: řešení po krocích (2026-10-13)
+
+Na žádost autora přestavěn místní sešit
+`presentations/kapitola_03_poloha_a_variabilita_cviceni.xlsx`. Pět úkolů
+k datům o vyprávění je nově na samostatných listech `U1_stred`,
+`U2_variabilita`, `U3_interval`, `U4_boxplot` a `U5_orezani` se stejnými
+daty na stejných adresách (C4:E53); hodnoty dětí i dospělých jsou seřazeny
+vzestupně, každá skupina zvlášť, a doplněny sloupcem pořadí. Úkol 6 je na
+listu `U6_transformace`, list `Prehled` byl aktualizován. Řešení každého
+úkolu je rozepsáno po krocích základními operacemi s pomocnými sloupci
+(odchylky, čtverce, příznaky 1/0, tabulka četností, pozice a interpolace
+kvartilů); speciální funkce (`VAR.S`, `SMODCH.VÝBĚR.S`, `PERCENTIL.INC`,
+`MEDIAN`, `MODE.SNGL`, `COUNTIFS`, `MINIFS`, `MAXIFS`, `TRIMMEAN`) slouží
+jen jako kontrola se sloupcem „Shoda s kroky“. Uspořádání odpovídá upřesnění
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci).
+
+V prezentaci byl beze změny ostatních částí souboru nahrazen pouze slide 29
+a jeho poznámky (nové názvy listů, popis řešení po krocích); autorem mezitím
+uložený soubor se textově nelišil od vytvořené verze. `kapitola_03_poznamky.docx`
+byl znovu vyexportován z aktuálního PPTX. Kapitola 3 ani studentská data se
+neměnily.
+
+Kontroly: sešit sestaven a přepočítán v českém Excelu 16, 1 360 vzorců bez
+chybových buněk; všech 19 kontrolních funkcí se shoduje s výpočtem po krocích
+a mezivýsledky i výsledky odpovídají nezávislému výpočtu v R z první verze
+sešitu. Ověřeno seřazení dat, pořadí 1–50, shodné součty dat na listech U1–U5
+a prázdné pracovní buňky; listy prohlédnuty z exportu. PowerPoint soubor
+otevřel (29 slidů, 29 poznámek), slide 29 byl vykreslen a prohlédnut; ve
+Wordu má DOCX 29 nadpisů a 15 stran.
+
+Omezení: krokové řešení odkazuje na konkrétní řádky pořadí (například 13 a 14
+pro 1. kvartil), platí tedy pro dané n = 50 a po změně počtu údajů by se muselo
+upravit. Pomocné příznaky používají `KDYŽ` a `A`, zaokrouhlení dolů
+`CELÁ.ČÁST`; sešit je vysvětluje. Na slidu 29 se nahrazením ztratily případné
+ruční úpravy formátu tohoto jediného slidu. Ostatní slidy nebyly znovu
+vykreslovány, protože se jejich části souboru nezměnily.
