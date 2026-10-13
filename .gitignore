@@ -6,6 +6,7 @@ sources/
 _book/
 .quarto/
 tmp/
+output/pdf/
 node_modules/
 presentations/
 prompts/

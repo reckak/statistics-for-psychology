@@ -2452,3 +2452,52 @@ v přesném příkladu.
 - Sešit lze obnovit jen na Windows s českým Excelem.
 - Interní didaktická revize není ověřením porozumění na studentech.
   Veřejné nasazení webu navazuje na autorovo sloučení pull requestu.
+
+## 2026-10-13 — Pracovní PDF kapitoly 3 na vyžádání
+
+Na výslovné zadání autora vznikl samostatný export kapitoly 3 do PDF,
+bez automatického spouštění s HTML. Dohodu eviduje
+[R31](../docs/ROZHODNUTI.md#r31-pracovni-pdf), provozní postup je
+v [README](../README.md#ruční-pdf-vybrané-kapitoly).
+
+- Zdrojový studentský text se neměnil. Skript čte aktuální kapitolu,
+  obnoví její grafy a v ignorovaném `tmp/` sestaví pracovní PDF.
+  Lua filtr přesune všech 14 řešení za všechna zadání, doplní obousměrné
+  odkazy a rozepíše nepovinné bloky. Pouze v pomocné kopii se pokyn
+  „Řešení otevírejte“ přizpůsobí četbě závěrečné části.
+- Výstup `output/pdf/kapitola_03.pdf` má 42 stran A4: obsah na s. 1,
+  výklad od s. 2, cvičení s. 35–37, řešení s. 38–40, citovanou literaturu
+  s. 41–42. Závěrečné přehledové kapitoly se nepřipojují.
+- Sazbu zajišťuje Quarto 1.9.38 / Typst 0.14.2. Číslování kapitoly,
+  oddílů, obrázků a tabulek zachovává předponu 3; použity jsou SVG grafy
+  a textová matematika. Citace zpracovává citeproc se společným APA CSL.
+  Bibliografie zahrnuje jen citované zdroje; rozlišující přípony stejných
+  let se proto mohou od celoknižní bibliografie lišit.
+
+### Provedené ověření
+
+- Opakovaný export včetně běhu z Windows PowerShellu 5.1; české znaky
+  chrání UTF-8 BOM skriptu a česká UTF-8 locale R.
+- `node scripts/check-chapter-pdf.cjs`: všech 14 řešení zachováno beze
+  změny obsahu, umístěno až za zadání a obousměrně propojeno; shoda
+  matematických výrazů, kódu, obrázků, tabulek a citačních uzlů před/po přesunu.
+- `check-chapter-03.R`: všechny číselné příklady a 14 řešení prošly,
+  včetně úplné enumerace výběrů a simulace. První běh narazil na výchozí
+  `C.UTF-8` ve Windows; s `Czech_Czechia.utf8` prošel.
+- Všech 42 stran vykresleno Popplerem a vizuálně prohlédnuto; po opravě
+  zalomení a bibliografie znovu prohlédnuty změněné s. 35–42, s. 1–34
+  byly obrazově totožné. Opraveno výchozí číslování od 1, duplicitní
+  nadpis bibliografie, odsazení literatury a oddělování nadpisů cvičení
+  či řešení od jejich textu.
+- Ve výsledném PDF ověřeno 65 vnitřních a 101 vnějších odkazových anotací,
+  včetně všech 14 odkazů na řešení a 14 návratů ke správnému zadání.
+  Textová kontrola nezjistila náhradní znak ani znaky mimo plochu stránek.
+
+### Hranice ověření
+
+Výstup je pracovní sazba, nikoli finální knižní vydání. Vnější odkazy jsou
+absolutní HTTPS adresy; dostupnost všech vzdálených zdrojů se znovu
+neověřovala. Nový HTML render a desktopové excelové kontroly se nespouštěly:
+zdroj kapitoly, sešit, konfigurace HTML a publikační workflow se neměnily.
+PDF se automaticky nepublikuje a do Gitu se neukládá. Export jiných kapitol
+zatím není implementován ani ověřen.

@@ -56,8 +56,12 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   potřebné znalosti připomeň a odkaž na jejich výklad.
 - Rozsah přizpůsob jednomu semestru. Pokročilá rozšíření zařazuj jen
   s didaktickým důvodem a zřetelně je označ jako nepovinná.
-- Nyní připravuj web. PDF a jeho sazbu budeme řešit samostatně při finalizaci
-  knihy; neomezuj kvůli tomu současnou podobu webových materiálů.
+- Hlavní výstup je web. Pracovní PDF vybrané kapitoly vytvářej pouze na
+  výslovné vyžádání, bez automatického spouštění nebo publikování s webem.
+  V PDF soustřeď řešení do samostatné části za všechna zadání; závěrečné
+  přehledy zatím vynech. Aktuálně je ověřen export kapitoly 3 (viz README).
+  Finální knižní sazbu budeme řešit samostatně při finalizaci knihy;
+  neomezuj kvůli ní současnou podobu webových materiálů.
 
 ## Příprava každé kapitoly
 
