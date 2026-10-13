@@ -273,3 +273,27 @@ a zkontroluj, že se nic neztratilo.“
 **Důvod:** omezit souběžně udržované kopie pravidel a oddělit aktuální stav od historického schválení a provedení.
 
 **Doklad:** autor dne 2026-10-13 přijal návrh a zadal: „zkrať ROZHODNUTI.md na registr, podrobné záznamy rozděl podle témat a kapitol, zachovej ID i historii a uprav AGENTS.md tak, aby se informace dál neduplikovaly. Aktualizuj odkazy a ověř, že se nic neztratilo.“ Původní text R32 výše je zachován.
+
+<a id="r33-excelova-cviceni-prezentaci"></a>
+
+## R33 — Excelová cvičení k prezentacím
+
+**Stav:** schváleno 2026-10-13. **Rozsah:** závěrečná početní cvičení
+vyžadující práci v Excelu u prezentací.
+
+**Volba a důvod:** autor požaduje přesun těchto cvičení z prezentace
+na místo jejich řešení: do samostatného sešitu se zadáním, vstupními daty
+a řešením. Úkoly sdílející dataset mají být na stejném listu, různé
+datasety na samostatných listech. Aktuální prováděcí pravidla jsou
+v [PREZENTACE.md](../PREZENTACE.md#excelova-cviceni).
+
+**Nahrazuje:** pro uvedený typ úloh dosavadní obecný požadavek v
+`PREZENTACE.md` „Samostatné úlohy zařazuj na konec prezentace“ a umístění
+jejich řešení do poznámek. Ostatní úlohy mohou zůstat v prezentaci.
+[R20](#r20-data-v-excelu) o datových sešitech kapitol učebnice se nemění.
+
+**Doklad:** zadání autora z 2026-10-13: „Chtěl bych cvičení na konci,
+pokud jsou početní a vyžadují práci v excelu, nevkládat do samotné
+prezentace ale, na samostatný excelovský sešit i se zadáním, vstupními
+daty a řešením.“ Dále: „Pokud by se více úkolů týkalo stejného datasetu,
+dal bych vše na tentýž sheet, v opačném případě na samostatné sheety.“

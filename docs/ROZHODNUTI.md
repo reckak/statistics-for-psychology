@@ -40,6 +40,7 @@ Postup zápisu, rozdělení odpovědnosti a kontrolu duplicit určuje [AGENTS.md
 | <a id="r30-terminologie-kapitoly-6"></a><a id="r30--terminologie-kapitoly-6"></a>[R30](rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) | Sjednotit terminologii výběrových rozdělení a testování. | Kap. 6 a další použití | Platné; mění pracovní termín v [R21](rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5). | [Slovník](SLOVNIK.md#kapitola-06) |
 | <a id="r31-pracovni-pdf"></a><a id="r31--ručně-vyžádané-pracovní-pdf-kapitoly"></a>[R31](rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf) | Vytvářet pracovní PDF jen na vyžádání s řešeními za zadáními. | Pracovní PDF kapitol | Platné | [Pravidla](../AGENTS.md#cíl-a-cílová-skupina); [export PDF](../README.md#ruční-pdf-vybrané-kapitoly) |
 | <a id="r32-propojene-mapy"></a><a id="r32--propojené-karty-obsahu-a-zdrojů"></a>[R32](rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy) | Udržovat propojené karty a stručné registry s jedním hlavním místem informace. | Autorská dokumentace | Platné; doplněno 2026-10-13 | [Rozdělení odpovědnosti a evidence](../AGENTS.md#evidence-rozhodnuti) |
+| <a id="r33-excelova-cviceni-prezentaci"></a>[R33](rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci) | Přesunout závěrečná početní cvičení vyžadující Excel do doprovodného sešitu s listy podle datasetů. | Prezentace a jejich cvičení | Platné | [Pravidla prezentací](PREZENTACE.md#excelova-cviceni) |
 
 ## Historické pokyny
 

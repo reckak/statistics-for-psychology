@@ -2595,3 +2595,16 @@ Jde pouze o reorganizaci autorské dokumentace. Nebyl nově ověřován
 odborný obsah podkladů ani dostupnost externích URL; historická data
 a omezení ověření zůstávají zachována. Excel ani render studentského
 webu nebyly pro tuto změnu spouštěny.
+
+## Excelová cvičení k prezentacím (2026-10-13)
+
+Podle [R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+upravena pravidla v [PREZENTACE.md](../docs/PREZENTACE.md#excelova-cviceni):
+závěrečné početní úlohy vyžadující Excel patří do doprovodného sešitu,
+členěného podle datasetů. Doplněny požadavky na zadání, data, řešení,
+oddělení pracovní oblasti, odkaz z prezentace a kontrolu sešitu.
+
+Jde pouze o změnu instrukcí; existující PPTX ani XLSX se v tomto úkolu
+neměnily. Provedena obsahová kontrola rozdílů, `git diff --check`
+a `node scripts/check-doc-maps.cjs` bez chyb. Render knihy není pro tuto
+změnu potřeba; kontrola konkrétních prezentací či sešitů nebyla součástí úkolu.

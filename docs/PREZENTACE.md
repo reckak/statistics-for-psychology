@@ -74,16 +74,44 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
   pokud to umožňuje jeho přehlednost.
 - Otázky mají podporovat použití pojmů, zdůvodnění a rozpoznání omylů,
   nikoli pouze opakování definic.
-- Samostatné úlohy zařazuj na konec prezentace. Pokryj hlavní cíle
-  výuky a ponech čas na samostatné přemýšlení i společný rozbor.
+- Samostatné procvičování zařazuj na konec výuky. Konceptuální otázky
+  a úlohy nevyžadující Excel ponech na konci prezentace. Početní úlohy
+  vyžadující práci v Excelu umísti do samostatného doprovodného sešitu
+  podle pravidel níže; jejich zadání ani řešení nevkládej do prezentace.
+  Pokryj hlavní cíle výuky a ponech čas na vlastní práci i společný rozbor.
 - Zadání musí obsahovat všechny potřebné údaje. Dlouhé případové
   studie rozděl do navazujících slidů a zachovej srozumitelný kontext.
-- Pokud není zadáno jinak, možné odpovědi a úplné zdůvodnění zapisuj
-  pouze do poznámek ke slidu se zadáním.
+- U úloh v prezentaci zapisuj možné odpovědi a úplné zdůvodnění pouze
+  do poznámek ke slidu se zadáním, pokud není zadáno jinak.
 - Samostatné slidy s řešením vytvářej pouze na výslovnou žádost.
   V takovém případě umísti řešení bezprostředně za příslušné zadání.
 - U otevřených úloh uváděj možné řešení a podmínky přijatelnosti
   dalších odpovědí; nepředstírej existenci jediné správné formulace.
+
+<a id="excelova-cviceni"></a>
+
+### Doprovodný sešit pro práci v Excelu
+
+- Pro závěrečná početní cvičení vyžadující Excel připrav jeden samostatný
+  soubor XLSX k prezentaci. Musí obsahovat úplná zadání, vstupní data
+  a řešení včetně vzorců, postupu a interpretace výsledků.
+- Listy čleň podle datasetů: všechny úkoly ke stejnému datasetu umísti
+  na tentýž list se společnými vstupními daty; úkoly k jinému datasetu
+  patří na jiný list. Stejně postupuj u společných souhrnných vstupů;
+  individuální data z nich nevymýšlej.
+- Na každém listu přehledně odděl zadání, vstupní data, prostor pro vlastní
+  výpočty a označený blok řešení. Řešení ponech na témže listu, ale mimo
+  pracovní oblast, aby hotové výpočty nenahrazovaly vlastní práci studenta.
+  Úkoly a jejich řešení jednoznačně očísluj a popiš proměnné i jednotky.
+- V závěru prezentace uveď odkaz na sešit a názvy příslušných listů.
+  Sešit musí být použitelný i samostatně, bez dohledávání zadání v PPTX
+  nebo přístupu k neveřejným podkladům.
+- Sešit ukládej vedle prezentace v `presentations/` pod stejným základem
+  názvu s příponou `_cviceni.xlsx`. Jde o doprovodný materiál k výuce;
+  nenahrazuje jediný studentský datový sešit příslušné kapitoly učebnice.
+- Pro reprodukovatelnou tvorbu, české vzorce a ověření v desktopovém Excelu
+  platí [společná pravidla pro sešity](../AGENTS.md#data-ke-kapitolám).
+  Zdejší členění podle datasetů určuje uspořádání cvičení k prezentaci.
 
 ## Zdroje a původ příkladů
 
@@ -113,6 +141,10 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 
 - Zkontroluj pokrytí zadání, správnost příkladů a řešení, úplnost
   poznámek a jejich shodu se slidy.
+- U doprovodného sešitu ověř úplnost zadání a dat, přiřazení úkolů
+  k datasetům, správnost vzorců a výsledků po přepočtu v Excelu,
+  čitelnost listů a oddělení pracovní oblasti od řešení. Zkontroluj
+  také odkaz z prezentace a shodu uvedených názvů listů.
 - Prezentaci vykresli a vizuálně zkontroluj čitelnost, diakritiku,
   zalamování, tabulky, překryvy a obsah přesahující plochu slidu.
   Při dílčí úpravě zvlášť porovnej změněné slidy s původní verzí.
