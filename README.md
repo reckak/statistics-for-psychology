@@ -92,8 +92,8 @@ nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů
 - [docs/PREZENTACE.md](docs/PREZENTACE.md): pravidla pro prezentace, poznámky a jejich exporty.
 - [docs/ROZHODNUTI.md](docs/ROZHODNUTI.md): platná autorská rozhodnutí s rozsahem a doklady.
 - [docs/SLOVNIK.md](docs/SLOVNIK.md): hlavní autorský registr preferovaných českých termínů, anglických ekvivalentů, alternativ a pravidel použití; rozlišuje doklady jednotlivých voleb a starších schválených celků. Studentské definice zůstávají ve slovníčku.
-- [docs/OSNOVA.md](docs/OSNOVA.md): podrobná mapa aktuálního obsahu kapitol, příkladů, cvičení a návazností s tematickým rozcestníkem; plán další kapitoly a neschválené náměty jsou oddělené.
-- [docs/ZDROJE.md](docs/ZDROJE.md): autorská mapa podkladů v `sources/`, tematický rozcestník, přesné lokátory, rozpory a rozsah ověření. Odkazy na podklady fungují pouze v místní kopii s neveřejnými zdroji.
+- [docs/OSNOVA.md](docs/OSNOVA.md): celková struktura a tematické návaznosti s odkazy na podrobné karty v `docs/kapitoly/`. Karty zachycují obsah, příklady, cvičení i vazby na podklady; [plán pokračování](docs/kapitoly/plan-pokracovani.md) je oddělený.
+- [docs/ZDROJE.md](docs/ZDROJE.md): inventář a tematický rozcestník podkladů v `sources/`. Samostatné karty v `docs/zdroje/` obsahují přesné lokátory, rozpory a rozsah ověření; [společná historie](docs/zdroje/HISTORIE.md) zachovává průřezové kontroly. Odkazy na podklady fungují pouze v místní kopii s neveřejnými zdroji.
 - `quarto/README.md`: historická autorská dokumentace, odborné zdroje, rozhodnutí a záznamy ověření.
 - `.github/workflows/book.yml`: sestavení, kontrola webu a publikování na GitHub Pages.
 
@@ -104,6 +104,14 @@ Novou kapitolu přidejte jako `.qmd` do `quarto/` a zařaďte ji do části **V�
 Před psaním a při revizi vyhledejte platné termíny v [autorském registru](docs/SLOVNIK.md), včetně významových hranic a dokladů. Novou schválenou volbu zaznamenejte do rozhodnutí a současně slaďte registr, studentský slovníček i všechny dotčené materiály. Návrhy zůstávají oddělené; postup údržby je v registru a [AGENTS.md](AGENTS.md#terminologie-a-značení).
 
 ## Kontroly a GitHub
+
+Odkazy autorských map a jejich příchozí odkazy z verzovaných dokumentů ověří
+`node scripts/check-doc-maps.cjs`. V pracovní kopii s neveřejnými podklady
+přidejte `--require-sources`, aby kontrola vyžadovala také všechny místní
+cíle v `sources/`. Kontrola řeší cesty a kotvy; neověřuje obsah podkladů
+ani dostupnost externích webů. Při přesunu map lze jednorázově přidat
+`--baseline <commit-před-přesunem>` pro porovnání obsahu a starých kotev
+s předchozím stavem. Tento režim není určen pro pozdější obsahové změny.
 
 Po změně společného vzhledu nebo navigace vykreslete celou knihu. Pro automatickou kontrolu HTML potřebujete Node.js, Playwright a Chromium. Závislosti nainstalujte jednorázově podle potřeby:
 

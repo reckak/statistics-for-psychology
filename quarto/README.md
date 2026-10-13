@@ -1503,7 +1503,7 @@ zdrojů zůstaly stejné. Tabulky, UTF-8 a `git diff --check` jsou bez chyb.
 
 ## 2026-10-11: doplnění prezentace probability.pptx do mapy
 
-Na žádost autora přidána karta [P05](../docs/ZDROJE.md#p05), inventární
+Na žádost autora přidána karta [P05](../docs/zdroje/P05-pravdepodobnost.md#p05), inventární
 řádek a odkazy v tematickém rozcestníku. Mapa nyní zahrnuje 29 podkladů,
 z toho pět starších přednáškových prezentací. Přečten text všech 36 snímků
 včetně matematických objektů a dostupných poznámek podle skutečných vazeb
@@ -1530,7 +1530,7 @@ původu převzatých obrázků ani ověření excelových funkcí snímku 36.
 ## 2026-10-11: doplnění Russovy učebnice do mapy zdrojů
 
 Na žádost autora přidán místní `sources/učebnice/russo.pdf` jako
-[U11](../docs/ZDROJE.md#u11). Inventář nyní zahrnuje 30 souborů, z toho
+[U11](../docs/zdroje/U11-russo.md#u11). Inventář nyní zahrnuje 30 souborů, z toho
 11 učebnic. Doplněna mapa kapitol a příslušné odkazy v tematickém
 rozcestníku; Howell zůstává hlavním východiskem a osnova se nemění.
 
@@ -1791,7 +1791,7 @@ deseti očekávaných úspěchů i neúspěchů s poznámkou o mírnější vari
 **Stav větve:** `codex/chapter-05` byla po sloučení PR #58 posunuta
 rychlým převinutím na aktuální `origin/main`; neobsahovala žádné
 neodeslané změny. Tento záznam, rozhodnutí, registr a plán v
-[osnově](../docs/OSNOVA.md#mapa-kapitola-05) jsou dokumentační změny;
+[osnově](../docs/kapitoly/05-pravdepodobnost.md#mapa-kapitola-05) jsou dokumentační změny;
 studentský text ani sešit jimi nevznikají a render není potřeba.
 
 **Neověřeno v okamžiku dohody:** Howell od s. 128; Gravetter, Privitera
@@ -1807,7 +1807,7 @@ kapitola `quarto/kapitola_05.qmd` (Pravděpodobnost) s dvanácti obrázky,
 dvanácti cvičeními a třemi nepovinnými rozšířeními, sešit
 `data/kapitola_05.xlsx`, padesát hesel slovníčku, dvacet řádků přehledu
 značení a šest funkcí v přehledu Excelu. Plán v osnově byl nahrazen
-[kartou skutečného obsahu](../docs/OSNOVA.md#mapa-kapitola-05).
+[kartou skutečného obsahu](../docs/kapitoly/05-pravdepodobnost.md#mapa-kapitola-05).
 
 ### Odborná a didaktická rozhodnutí při psaní
 
@@ -2278,7 +2278,7 @@ Po zapracování autor návrh schválil.
 
 - dvanáct oddílů ve dvou blocích, tři vrstvy průběžného příkladu, pět
   nepovinných rozšíření a návrh čtrnácti cvičení podle
-  [plánu v osnově](../docs/OSNOVA.md#plan-dalsi-kapitoly);
+  [plánu v osnově](../docs/kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly);
 - zásady výkladu včetně dvou kroků závěru u každého řešeného příkladu;
 - značení H₀, H₁, μ₀, směrodatná chyba jako σ s indexem m a její odhad
   jako s s indexem m, p-hodnota vypisovaná slovy;
@@ -2325,7 +2325,7 @@ rozšířeními a čtrnácti cvičeními (dvanáct základních, dvě nepovinná
 `data/kapitola_06.xlsx`, 29 hesel slovníčku (celkem 240) a dvanáct řádků
 přehledu značení (celkem 89). Přehled funkcí Excelu se nezměnil: kapitola
 nezavádí žádnou novou funkci. Plán v osnově byl nahrazen
-[kartou skutečného obsahu](../docs/OSNOVA.md#mapa-kapitola-06).
+[kartou skutečného obsahu](../docs/kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06).
 
 Před psaním byly na autorův pokyn odstraněny sloučené pracovní větve
 `codex/chapter-01`, `codex/chapter-05` a `codex/other` lokálně i na GitHubu
@@ -2375,7 +2375,7 @@ Interní revize není ověřením porozumění na studentech.
 ### Zdroje a citace
 
 Rozsah čtení a použití je v kartách U01, U04, U08, U11, P06, C05, D07 a D11
-a v [záznamu o použití](../docs/ZDROJE.md#pouziti-kapitola-06). Do
+a v [záznamu o použití](../docs/zdroje/HISTORIE.md#pouziti-kapitola-06). Do
 `references.bib` přibyly čtyři záznamy (celkem 83): Ruback a Juieng (1997),
 Wainer (2007), Wasserstein a Lazar (2016) a Simmons et al. (2011); údaje
 všech čtyř byly ověřeny v metadatech Crossref. Body otevřené při dohodě
@@ -2501,3 +2501,52 @@ neověřovala. Nový HTML render a desktopové excelové kontroly se nespouště
 zdroj kapitoly, sešit, konfigurace HTML a publikační workflow se neměnily.
 PDF se automaticky nepublikuje a do Gitu se neukládá. Export jiných kapitol
 zatím není implementován ani ověřen.
+<a id="reorganizace-autorskych-map"></a>
+
+## Reorganizace autorských map — 2026-10-13
+
+Na výslovný pokyn autora rozděleny [mapa obsahu](../docs/OSNOVA.md)
+a [mapa zdrojů](../docs/ZDROJE.md) do propojených Markdownových souborů
+podle [R32](../docs/ROZHODNUTI.md#r32-propojene-mapy). Celkový přehled
+a tematické rozcestníky zůstávají na původních cestách. V `docs/kapitoly/`
+je šest karet existujících kapitol a oddělený plán pokračování;
+v `docs/zdroje/` je 37 karet (U01–U12, P01–P07, C01–C05, D01–D11,
+E01 a dosavadní externí doplněk Griffith et al.) a
+[společná historie ověřování](../docs/zdroje/HISTORIE.md).
+
+Karty kapitol obsahují výběr odkazů na relevantní zdrojové karty; zpětné
+odkazy ve zdrojových kartách vyjadřují tematickou vazbu, nikoli nové použití
+či prostudování. Původní záznamy o skutečném použití, neověřených částech,
+nálezech a odstraněných Baronových výřezech zůstávají v úplnosti zachovány.
+Aktualizovány relativní a příchozí odkazy, provozní README a AGENTS.md.
+R17 zachovává původní text a odkazuje na R32 jako změnu organizace souborů.
+
+**Kontrola zachování:** výchozí commit
+`ba3b862f74c0d4dc0bf8eb8815e902b96eeaf84d`, čistý pracovní strom.
+Před přesunem pořízen pomocný snímek obou map v ignorovaném `tmp/`.
+Rozdělení pokrylo všech 53 souvislých bloků bez mezer a překryvů;
+jejich opětovné spojení je po sjednocení konců řádků na LF totožné
+s původními soubory a jejich SHA-256.
+V každém cílovém souboru byla ověřena úplnost a pořadí příslušných řádků
+včetně očekávaných nových adres. Dodatečná kontrola vůči Gitu nalezla
+všech 1 662 původních neprázdných obsahových řádků a všech 132 původních
+kotev (výslovných ID i kotev nadpisů). Porovnání zohledňuje nové cíle
+místních odkazů, úroveň nadpisů a čtyři navigační formulace typu „karty
+níže“ → „samostatné karty“; externí URL, čísla a historie ověřování
+se při obsahovém porovnání zachovávají. Staré adresy mají odkazy na nové
+umístění, aktuální příchozí odkazy vedou přímo do karet.
+
+**Reprodukovatelná kontrola:**
+`node scripts/check-doc-maps.cjs --baseline ba3b862 --require-sources`.
+Ověřeny místní cílové soubory a kotvy v mapách a jejich příchozí odkazy;
+také odkazy v AGENTS.md, README.md, ROZHODNUTI.md a SLOVNIK.md.
+Všech 314 odkazů do neveřejných `sources/` má v této pracovní kopii
+existující cíl. Běžná kontrola bez `--baseline` slouží další údržbě;
+postup je v [kořenovém README](../README.md#kontroly-a-github).
+
+Rozcestník osnovy se zkrátil o 83,9 % a zdrojů o 81,9 % znaků při
+srovnání s jednotným LF; obsah je přesunut do karet, nikoli odstraněn.
+Jde o reorganizaci dokumentace: nebyl nově posuzován odborný obsah,
+otevírány originály, ověřována dostupnost externích webů ani spouštěn
+Excel či render studentského webu. Data dosavadních obsahových kontrol
+zůstávají zachována. Kontrola `git diff --check` prošla.
