@@ -6,4 +6,6 @@ Tato učebnice provází prvním kurzem statistiky pro studenty psychologie. Cí
 
 Předpokládáme matematiku na úrovni základní školy. Nové pojmy a potřebné matematické postupy vysvětlujeme průběžně. Ve výkladu najdete komentované příklady; samostatná cvičení jsou na konci kapitol. Nejdříve si zkuste odpověď zdůvodnit vlastními slovy a teprve potom otevřete **Ukázat řešení**.
 
+Pokud není uvedeno jinak, jsou studie, účastníci a čísla v příkladech i cvičeních smyšlené a sestavené pro výuku. Slouží k vysvětlení postupů, nikoli jako doklad psychologických poznatků. Skutečná, převzatá nebo upravená data vždy výslovně označujeme a uvádíme jejich zdroj. Data náhodně vytvořená počítačem v simulaci označujeme tam, kde je rozdíl mezi modelem, simulací a pozorováním součástí výkladu.
+
 V části **Literatura a přehledy** najdete [společný seznam literatury](quarto/literatura.qmd) a tři průběžně doplňované přehledy: [slovníček pojmů](quarto/slovnicek.qmd), [značení a vzorce](quarto/znaceni.qmd) a [funkce Excelu](quarto/excel.qmd). Slouží k připomenutí látky a odkazují zpět k jejímu vysvětlení.

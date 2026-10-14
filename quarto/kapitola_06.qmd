@@ -1026,7 +1026,7 @@ Statisticky významně vyjde 125 výzkumů. U 45 z nich nulová hypotéza platí
 
 Jako u [dvou prevalencí](kapitola_05.qmd#sec-dve-prevalence) výsledek závisí na základní četnosti. Kdyby skutečný rozdíl existoval u 500 výzkumů z 1 000, vyšlo by statisticky významně $400+25=425$ výzkumů a nulová hypotéza by platila jen u 25 z nich, tedy u 6 %. A závisí na síle: při síle 0,30 a stejných 100 skutečných rozdílech by bylo oprávněných zamítnutí 30 proti 45 chybným.
 
-Čísla jsou smyšlená. Podíl výzkumů, v nichž rozdíl skutečně existuje, v praxi neznáme. Příklad neříká, kolik publikovaných výsledků je chybných. Ukazuje, proč p-hodnota není pravděpodobností nulové hypotézy a proč překvapivé tvrzení, pro které předem mluvilo málo, potřebuje silnější doklady než tvrzení dobře zdůvodněné.
+Podíl výzkumů, v nichž rozdíl skutečně existuje, v praxi neznáme. Příklad neříká, kolik publikovaných výsledků je chybných. Ukazuje, proč p-hodnota není pravděpodobností nulové hypotézy a proč překvapivé tvrzení, pro které předem mluvilo málo, potřebuje silnější doklady než tvrzení dobře zdůvodněné.
 :::
 
 ::: {#rozsireni-dve-tradice .callout-note collapse="true" title="Nepovinné rozšíření: dvě tradice testování"}

@@ -2,7 +2,7 @@
 
 Máme tabulku s odpověďmi a výsledky paměťové úlohy. Kolik účastníků se cítilo dost odpočatě? Kolik si vybavilo nejvýše šest slov? Jaké doby spánku byly uváděny nejčastěji a objevily se také nezvykle krátké nebo dlouhé časy? V datové matici můžeme hledat jednotlivé participanty; k odpovědím na tyto otázky však potřebujeme údaje uspořádat a shrnout.
 
-Navážeme na [modelovou studii spánku a vybavování slov](kapitola_01.qmd#sec-datova-matice). Všechny číselné příklady a grafy v této kapitole vycházejí z **modelových dat záměrně sestavených pro výuku**. Nejde o výsledky skutečného výzkumu ani o doklad vztahu mezi spánkem a pamětí. Postupy mají obecné použití; interpretace se vždy vztahuje k popisovanému souboru.
+Navážeme na [studii spánku a vybavování slov](kapitola_01.qmd#sec-datova-matice). Postupy mají obecné použití; interpretace se vždy vztahuje k popisovanému souboru.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_02.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
 
@@ -157,7 +157,7 @@ Představme si 36 studentů: 12 zvolilo čtení, 14 procvičování otázek a 10
 
 ## Větší soubor a tabulky jednotlivých hodnot {#sec-modelova-data-02}
 
-Nyní použijeme pevně sestavený soubor **36 modelových účastníků**. Prvních šest záznamů je shodných s původní maticí, dalších třicet slouží k názornějšímu zobrazení četností. Každý účastník absolvoval stejnou úlohu s dvanácti slovy jednou, v tichu. Odpočatost je zaznamenána u všech; dobu spánku neuvedli účastníci P05, P11 a P24.
+Nyní použijeme větší soubor **36 účastníků**. Prvních šest záznamů je shodných s původní maticí, dalších třicet slouží k názornějšímu zobrazení četností. Každý účastník absolvoval stejnou úlohu s dvanácti slovy jednou, v tichu. Odpočatost je zaznamenána u všech; dobu spánku neuvedli účastníci P05, P11 a P24.
 
 Úplná data i výpočty jsou v [excelovém sešitu ke kapitole](../data/kapitola_02.xlsx). List `Data` obsahuje původní hodnoty, list `Cetnosti` shrnutí odpočatosti a list `Histogram` intervalové třídění spánku. Chybějící spánek zůstává prázdnou buňkou. Definice proměnných navazují na [přehled v předchozí kapitole](kapitola_01.qmd#sec-codebook); identifikátory zde pokračují až po P36.
 
@@ -249,7 +249,7 @@ Tabulka pomáhá dohledat čísla, graf usnadňuje vnímání trendů, vzorců a
 
 **Sloupcový graf (*bar chart*)** přiřazuje kategoriím samostatné sloupce; výšky těchto sloupců vyjadřují četnosti. Vodorovná varianta využívá délky pruhů a bývá vhodná pro dlouhé slovní popisky. U ordinálních odpovědí zachováme jejich smysluplné pořadí. U nominálních kategorií volíme pořadí sami; můžeme je například seřadit sestupně podle četností.
 
-![Odpočatost v souboru 36 modelových účastníků.](../assets/chapter-02/plots/sloupce.svg){#fig-odpocatost fig-alt="Čtyři oddělené sloupce: vůbec 4, trochu 10, dost 14 a zcela 8 účastníků. Svislá osa začíná nulou."}
+![Odpočatost v souboru 36 účastníků.](../assets/chapter-02/plots/sloupce.svg){#fig-odpocatost fig-alt="Čtyři oddělené sloupce: vůbec 4, trochu 10, dost 14 a zcela 8 účastníků. Svislá osa začíná nulou."}
 
 @fig-odpocatost ukazuje, že „dost“ se vyskytuje nejčastěji a „vůbec“ nejméně často. Pořadí má význam, ale graf neopravňuje vykládat vzdálenosti mezi kategoriemi jako stejné rozdíly v prožitku. Oddělené sloupce připomínají, že zobrazujeme samostatné kategorie.
 
@@ -325,7 +325,7 @@ Celý postup můžeme zapsat jako $6+(7-6)/2=6{,}5$: nejprve rozdíl mezí v zá
 
 **Výsečový graf (*pie chart*)**, nazývaný také koláčový graf, rozděluje kruh na části odpovídající podílům. Hodí se pouze tam, kde části tvoří jeden vymezený celek. U otázek umožňujících více odpovědí patří jeden člověk do více kategorií, takže procenta netvoří části jednoho celku a výsečový graf smysl nedává.
 
-V samostatném modelovém příkladu si 36 studentů vybralo **jediný hlavní** způsob přípravy: 14 procvičování otázek, 12 čtení a 10 vysvětlování látky vlastními slovy. Jde o popis jejich volby, nikoli o důkaz účinnosti těchto způsobů.
+V jiném příkladu si 36 studentů vybralo **jediný hlavní** způsob přípravy: 14 procvičování otázek, 12 čtení a 10 vysvětlování látky vlastními slovy. Jde o popis jejich volby, nikoli o důkaz účinnosti těchto způsobů.
 
 ![Stejné volby zobrazené výsečemi a sloupci.](../assets/chapter-02/plots/vysecovy.svg){#fig-vysece-sloupce fig-alt="Výsečový a sloupcový graf stejných četností: procvičování 14, čtení 12, vysvětlování 10. Podíly jsou 38,9, 33,3 a 27,8 procenta."}
 
@@ -368,7 +368,7 @@ U grafu číselných dat se ptáme, kde se hodnoty soustřeďují, jak široce j
 
 **Efekt podlahy (*floor effect*)** vzniká, když měřicí nástroj nedokáže dostatečně rozlišit nízké úrovně a výsledky se hromadí u jeho dolní hranice. V příliš obtížném testu mnoho lidí nezíská žádný bod, přestože se jejich znalosti liší. **Efekt stropu (*ceiling effect*)** je obdobná situace u horní hranice: v příliš snadném testu mnoho lidí získá maximum bodů, i když se jejich znalosti liší.
 
-![Dva modelové příklady hromadění výsledků u hranic testu.](../assets/chapter-02/plots/podlaha-strop.svg){#fig-podlaha-strop fig-alt="Vlevo se nejvíce výsledků hromadí u nuly, vpravo u maxima dvanácti správných odpovědí; v obou případech četnosti postupně klesají v opačném směru."}
+![Dva příklady hromadění výsledků u hranic testu.](../assets/chapter-02/plots/podlaha-strop.svg){#fig-podlaha-strop fig-alt="Vlevo se nejvíce výsledků hromadí u nuly, vpravo u maxima dvanácti správných odpovědí; v obou případech četnosti postupně klesají v opačném směru."}
 
 Samotný výskyt maximální nebo minimální možné hodnoty ještě takový efekt nedokazuje. Potřebujeme znát nástroj a uvažovat, zda omezuje rozlišení právě v našem souboru. Také ne každé zešikmené rozdělení vzniká efektem podlahy či stropu. Pozorovaný tvar je podnětem k úvahám, nikoli hotovým vysvětlením toho, proč nastal.
 

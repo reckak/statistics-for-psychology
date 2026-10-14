@@ -44,6 +44,7 @@ Postup zápisu, rozdělení odpovědnosti a kontrolu duplicit určuje [AGENTS.md
 | <a id="r34-intuitivni-vysvetleni"></a>[R34](rozhodnuti/postupy-a-dokumentace.md#r34-intuitivni-vysvetleni) | Výslovně zahrnout analogie, přirovnání a metafory mezi prostředky intuitivního vysvětlení. | Didaktika knihy a souvisejících materiálů | Platné | [Didaktika](../AGENTS.md#didaktika-a-jazyk) |
 | <a id="r35-nekapitolove-vetve"></a>[R35](rozhodnuti/postupy-a-dokumentace.md#r35-nekapitolove-vetve) | Rozlišovat nekapitolové větve podle typu práce místo jediné other. | Repozitář | Platné; nahrazuje část [R11](rozhodnuti/postupy-a-dokumentace.md#r11-pracovni-vetve). | [Git](../AGENTS.md#git-a-dokončení-práce) |
 | <a id="r36-populacni-znacky-v-kapitole-3"></a>[R36](rozhodnuti/kapitola-03.md#r36-populacni-znacky-v-kapitole-3) | Zavést populační μ, σ² a σ už v kapitole 3 u dělení n − 1; popis souboru s dělením n neoznačovat σ². | Kap. 3–4, značení | Platné; mění místo prvního zavedení značek z [R09](rozhodnuti/kapitola-04.md#r09-kapitola-4-model-qq), nikoli jejich podobu. | [Výklad](../quarto/kapitola_03.qmd#populacni-parametry); [značení](../quarto/znaceni.qmd) |
+| <a id="r37-smyslena-data"></a>[R37](rozhodnuti/spolecne-konvence.md#r37-smyslena-data) | Smyšlenost dat uvést jednou v úvodu knihy; v kapitolách označovat jen skutečná, převzatá či upravená data a funkčně významné simulace. | Studentský text knihy | Platné; upřesňuje rozlišování původu dat v instrukcích. | [Úvod](../index.qmd); [didaktika](../AGENTS.md#didaktika-a-jazyk) |
 
 ## Historické pokyny
 
