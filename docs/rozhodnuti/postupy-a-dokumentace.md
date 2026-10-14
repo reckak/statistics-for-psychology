@@ -288,6 +288,22 @@ Aktuální odkazy na samostatné karty musí zůstat funkční. Výjimku vymezuj
 kotvy zachovávat nepotřebuji. Ověř, že aktuální odkazy zůstanou funkční.“
 Původní doklad reorganizace výše zůstává zachován.
 
+### Doplnění R32 — odstranění archivu obecných pokynů registru (2026-10-14)
+
+**Schválené upřesnění:** ruší se sekce „Historické pokyny“ v `ROZHODNUTI.md`
+včetně jejích kotev a soubor `historie-registru.md`. Výjimka z požadavku
+zachovat celý text při reorganizaci se týká pouze původních obecných
+pokynů k evidenci; doklady jednotlivých rozhodnutí zůstávají zachované.
+Aktuální pravidla evidence jsou v [AGENTS.md](../../AGENTS.md#evidence-rozhodnuti),
+původní znění odstraněných pokynů zůstává dohledatelné v Gitu.
+
+**Důvod:** archiv již nemá samostatnou funkci pro tvorbu knihy; platná
+pravidla mají jedno hlavní místo v projektových instrukcích.
+
+**Doklad:** autor dne 2026-10-14 zadal: „Ano, smaž sekci Historické pokyny
+i soubor historie-registru.md, uprav související odkazy a evidenci a ověř,
+že aktuální odkazy zůstanou funkční. Změny odešli na GitHub a připrav PR.“
+
 <a id="r33-excelova-cviceni-prezentaci"></a>
 
 ## R33 — Excelová cvičení k prezentacím

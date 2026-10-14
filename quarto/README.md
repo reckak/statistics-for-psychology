@@ -2559,7 +2559,11 @@ zůstávají zachována. Kontrola `git diff --check` prošla.
 32 rozhodnutí s rozsahem, aktuální platností a odkazy na doklad a hlavní
 místo údržby. Podrobné původní záznamy jsou rozděleny do osmi souborů
 podle společných témat a kapitol; původní úvod a pokyny k návrhům jsou
-zachovány v [historii registru](../docs/rozhodnuti/historie-registru.md).
+tehdy zachovány v souboru `docs/rozhodnuti/historie-registru.md`.
+**Doplnění 2026-10-14:** tento archiv obecných pokynů a jeho odkazovací
+sekce byly později na pokyn autora odstraněny; původní znění je v Gitu.
+Doklady jednotlivých rozhodnutí zůstávají zachované (doplnění
+[R32](../docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)).
 Registr se při porovnání s jednotným LF zkrátil z 58 561 na 12 239 znaků
 (o 79,1 %). Původní znění dohod, jejich ID, data a historie zůstávají
 zachovány; nové odkazy vedou přímo k dokladům a staré kotvy registru
@@ -2872,3 +2876,20 @@ Kontroly: `node scripts/check-doc-maps.cjs --require-sources` a
 a kotvy, nikoli dostupnost externích webů. Historické kotvy záměrně
 nejsou zachovány; migrační porovnání se starým commitem nebylo použito.
 Studentský web ani data se nemění, proto nebyl potřeba nový render.
+
+## Odstranění archivu obecných pokynů registru (2026-10-14)
+
+Na pokyn autora odstraněna sekce „Historické pokyny“ v `docs/ROZHODNUTI.md`
+a soubor `docs/rozhodnuti/historie-registru.md`. Odstraněn také odkaz v úvodu
+registru; záznam reorganizace z 2026-10-13 dostal datované vysvětlení
+pozdějšího odstranění místo nefunkčního odkazu. Výjimka je doložena
+v doplnění R32, registru a projektových instrukcích. Všech 37 dokladů
+rozhodnutí zůstává zachovaných.
+
+Kontroly: `node scripts/check-doc-maps.cjs --require-sources` prošel bez
+chyb (2 309 místních odkazů, z toho 314 na zdroje); `git diff --check`
+prošel. Odstranění bylo před kontrolou zařazeno do indexu, protože skript
+načítá seznam verzovaných souborů pomocí `git ls-files`. Zbývající zmínky
+názvu archivního souboru jsou historickou evidencí, nikoli aktivními odkazy.
+Kontrola nezahrnuje dostupnost externích webů. Studentský web ani data
+se nemění; nový render nebyl potřeba.
