@@ -4,7 +4,7 @@
 
 Označení **platné** se vztahuje k doloženému rozsahu rozhodnutí, nikoli k dokončení práce nebo ověření všech materiálů. U částečného nahrazení je uvedeno, která část se změnila. Historický schválený plán se neaktualizuje podle hotové kapitoly; její současný obsah a odchylky zachycuje kapitolová karta.
 
-Postup zápisu, rozdělení odpovědnosti a kontrolu duplicit určuje [AGENTS.md](../AGENTS.md#evidence-rozhodnuti). Původní úvodní pokyny jsou zachovány v [historii registru](rozhodnuti/historie-registru.md). Staré kotvy v tomto souboru vedou na řádky tabulky; nové odkazy na doklady směřují přímo do tematických souborů.
+Postup zápisu, rozdělení odpovědnosti a kontrolu duplicit určuje [AGENTS.md](../AGENTS.md#evidence-rozhodnuti). Staré kotvy v tomto souboru vedou na řádky tabulky; nové odkazy na doklady směřují přímo do tematických souborů.
 
 | ID a doklad | Stručný závěr | Rozsah | Aktuální platnost | Hlavní místo údržby |
 |---|---|---|---|---|
@@ -39,19 +39,9 @@ Postup zápisu, rozdělení odpovědnosti a kontrolu duplicit určuje [AGENTS.md
 | <a id="r29-znaceni-kapitoly-6"></a><a id="r29--značení-kapitoly-6"></a>[R29](rozhodnuti/kapitola-06.md#r29-znaceni-kapitoly-6) | Použít dohodnuté značky hypotéz, směrodatné chyby a testů. | Kap. 6 a další použití | Platné | [Značení](../quarto/znaceni.qmd) |
 | <a id="r30-terminologie-kapitoly-6"></a><a id="r30--terminologie-kapitoly-6"></a>[R30](rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) | Sjednotit terminologii výběrových rozdělení a testování. | Kap. 6 a další použití | Platné; mění pracovní termín v [R21](rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5). | [Slovník](SLOVNIK.md#kapitola-06) |
 | <a id="r31-pracovni-pdf"></a><a id="r31--ručně-vyžádané-pracovní-pdf-kapitoly"></a>[R31](rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf) | Vytvářet pracovní PDF jen na vyžádání s řešeními za zadáními. | Pracovní PDF kapitol | Platné | [Pravidla](../AGENTS.md#cíl-a-cílová-skupina); [export PDF](../README.md#ruční-pdf-vybrané-kapitoly) |
-| <a id="r32-propojene-mapy"></a><a id="r32--propojené-karty-obsahu-a-zdrojů"></a>[R32](rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy) | Udržovat propojené karty a stručné registry s jedním hlavním místem informace. | Autorská dokumentace | Platné; doplněno 2026-10-13 a 2026-10-14 (výjimka pro původní kotvy osnovy). | [Rozdělení odpovědnosti a evidence](../AGENTS.md#evidence-rozhodnuti) |
+| <a id="r32-propojene-mapy"></a><a id="r32--propojené-karty-obsahu-a-zdrojů"></a>[R32](rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy) | Udržovat propojené karty a stručné registry s jedním hlavním místem informace. | Autorská dokumentace | Platné; doplněno 2026-10-13 a 2026-10-14 (výjimky pro původní kotvy osnovy a archiv obecných pokynů registru). | [Rozdělení odpovědnosti a evidence](../AGENTS.md#evidence-rozhodnuti) |
 | <a id="r33-excelova-cviceni-prezentaci"></a>[R33](rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci) | Přesunout závěrečná početní cvičení vyžadující Excel do doprovodného sešitu s listy podle datasetů; rozsáhlejší úkoly ke stejným datům rozdělit na listy a řešení rozepsat po krocích, funkce jen jako kontrola (upřesnění 2026-10-13); u úloh uvádět obecné rovnice jako nativní rovnice Excelu (upřesnění 2026-10-14). | Prezentace a jejich cvičení | Platné | [Pravidla prezentací](PREZENTACE.md#excelova-cviceni) |
 | <a id="r34-intuitivni-vysvetleni"></a>[R34](rozhodnuti/postupy-a-dokumentace.md#r34-intuitivni-vysvetleni) | Výslovně zahrnout analogie, přirovnání a metafory mezi prostředky intuitivního vysvětlení. | Didaktika knihy a souvisejících materiálů | Platné | [Didaktika](../AGENTS.md#didaktika-a-jazyk) |
 | <a id="r35-nekapitolove-vetve"></a>[R35](rozhodnuti/postupy-a-dokumentace.md#r35-nekapitolove-vetve) | Rozlišovat nekapitolové větve podle typu práce místo jediné other. | Repozitář | Platné; nahrazuje část [R11](rozhodnuti/postupy-a-dokumentace.md#r11-pracovni-vetve). | [Git](../AGENTS.md#git-a-dokončení-práce) |
 | <a id="r36-populacni-znacky-v-kapitole-3"></a>[R36](rozhodnuti/kapitola-03.md#r36-populacni-znacky-v-kapitole-3) | Zavést populační μ, σ² a σ už v kapitole 3 u dělení n − 1; popis souboru s dělením n neoznačovat σ². | Kap. 3–4, značení | Platné; mění místo prvního zavedení značek z [R09](rozhodnuti/kapitola-04.md#r09-kapitola-4-model-qq), nikoli jejich podobu. | [Výklad](../quarto/kapitola_03.qmd#populacni-parametry); [značení](../quarto/znaceni.qmd) |
 | <a id="r37-smyslena-data"></a>[R37](rozhodnuti/spolecne-konvence.md#r37-smyslena-data) | Smyšlenost dat uvést jednou v úvodu knihy; v kapitolách označovat jen skutečná, převzatá či upravená data a funkčně významné simulace. | Studentský text knihy | Platné; upřesňuje rozlišování původu dat v instrukcích. | [Úvod](../index.qmd); [didaktika](../AGENTS.md#didaktika-a-jazyk) |
-
-## Historické pokyny
-
-<a id="platná-autorská-rozhodnutí"></a>
-
-- [Původní úvod registru](rozhodnuti/historie-registru.md#platná-autorská-rozhodnutí)
-
-<a id="návrhy-a-další-rozhodnutí"></a>
-
-- [Původní poznámka k návrhům](rozhodnuti/historie-registru.md#návrhy-a-další-rozhodnutí)

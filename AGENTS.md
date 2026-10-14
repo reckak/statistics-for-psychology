@@ -47,7 +47,10 @@
   a relativní odkazy a na původní adrese ponech odkaz na nové umístění.
   Výjimkou jsou původní kotvy přesunutých karet v `docs/OSNOVA.md`, které
   se podle doplnění [R32](docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)
-  z 2026-10-14 již nezachovávají; aktuální odkazy musí zůstat funkční.
+  z 2026-10-14 již nezachovávají. Stejně tak se neudržuje archiv obecných
+  pokynů `docs/rozhodnuti/historie-registru.md` ani jeho odkazovací sekce
+  v registru; jejich původní znění zůstává v Gitu. Aktuální odkazy musí
+  zůstat funkční. Výjimka se netýká dokladů jednotlivých rozhodnutí.
   Datum reorganizace nesmí nahrazovat datum skutečné obsahové kontroly.
 - Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
   a jejich exportech podle odkazu v příslušném oddílu níže.
