@@ -45,6 +45,9 @@
   propojení udržuj také odkazy ze zdrojové karty na dotčené kapitoly.
   Zachovávej stabilní ID i datované záznamy; při přesunu uprav příchozí
   a relativní odkazy a na původní adrese ponech odkaz na nové umístění.
+  Výjimkou jsou původní kotvy přesunutých karet v `docs/OSNOVA.md`, které
+  se podle doplnění [R32](docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)
+  z 2026-10-14 již nezachovávají; aktuální odkazy musí zůstat funkční.
   Datum reorganizace nesmí nahrazovat datum skutečné obsahové kontroly.
 - Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
   a jejich exportech podle odkazu v příslušném oddílu níže.

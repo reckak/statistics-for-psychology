@@ -274,6 +274,20 @@ a zkontroluj, že se nic neztratilo.“
 
 **Doklad:** autor dne 2026-10-13 přijal návrh a zadal: „zkrať ROZHODNUTI.md na registr, podrobné záznamy rozděl podle témat a kapitol, zachovej ID i historii a uprav AGENTS.md tak, aby se informace dál neduplikovaly. Aktualizuj odkazy a ověř, že se nic neztratilo.“ Původní text R32 výše je zachován.
 
+### Doplnění R32 — odstranění původních kotev osnovy (2026-10-14)
+
+**Schválené upřesnění:** v `docs/OSNOVA.md` se ruší sekce „Přesměrování
+původních odkazů“ včetně jejích kotev. Požadavek zachování původních adres
+se na tyto kotvy již nevztahuje; ostatní části R32 zůstávají platné.
+Aktuální odkazy na samostatné karty musí zůstat funkční. Výjimku vymezují
+[projektové instrukce](../../AGENTS.md#použití-projektové-dokumentace).
+
+**Důvod:** autor staré odkazy nepoužívá a jejich zachování nepožaduje.
+
+**Doklad:** výslovný pokyn autora z 2026-10-14: „Tak tu sekci smaž, staré
+kotvy zachovávat nepotřebuji. Ověř, že aktuální odkazy zůstanou funkční.“
+Původní doklad reorganizace výše zůstává zachován.
+
 <a id="r33-excelova-cviceni-prezentaci"></a>
 
 ## R33 — Excelová cvičení k prezentacím

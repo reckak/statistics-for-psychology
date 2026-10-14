@@ -2858,3 +2858,17 @@ Omezení: poznámky v excelových sešitech (`scripts/sesity-data.mjs`,
 `scripts/kapitola_0N-sešit.mjs`, listy `Prehled`) a prezentace dál uvádějí
 původ dat; dohoda R37 je zatím neupravuje. Interní didaktická revize,
 neověřená na studentech.
+
+## Odstranění původních kotev osnovy (2026-10-14)
+
+Na výslovný pokyn autora odstraněna sekce „Přesměrování původních odkazů“
+z `docs/OSNOVA.md` včetně starých kotev. Samostatné karty kapitol a aktuální
+rozcestník zůstávají zachované. Výjimka je doložena v doplnění
+[R32](../docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)
+a promítnuta do instrukcí a registru rozhodnutí.
+
+Kontroly: `node scripts/check-doc-maps.cjs --require-sources` a
+`git diff --check` prošly bez chyb. Kontrola zahrnuje aktuální místní odkazy
+a kotvy, nikoli dostupnost externích webů. Historické kotvy záměrně
+nejsou zachovány; migrační porovnání se starým commitem nebylo použito.
+Studentský web ani data se nemění, proto nebyl potřeba nový render.
