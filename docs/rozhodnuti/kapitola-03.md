@@ -34,6 +34,17 @@ a „Kapitola 3: jasné rozlišení konvencí kvantilů“ (2026-10-09) v
 [historii](../../quarto/README.md); [kvantily](../../quarto/kapitola_03.qmd#sec-kvantily)
 a [boxplot](../../quarto/kapitola_03.qmd#sec-boxplot).
 
+**Upřesnění 2026-10-14:** autor požádal, aby text formuloval lineární
+interpolaci (typ 7) jako primární pojem a pravidlo učebnice a funkci
+`PERCENTIL.INC` uváděl až jako její výpočet v Excelu. Spojení
+„konvence PERCENTIL.INC“ se ve výkladu nahrazuje interpolační konvencí.
+Pravidlo výpočtu, percentilové pořadí ani konstrukce boxplotu se nemění.
+Autor také výslovně požádal, aby text u výčtu konvencí percentilového
+pořadí uvedl, že učebnice používá inkluzivní konvenci; jde o realizaci
+původního pravidla. **Doklad:** konverzace autora s Claudem 2026-10-14
+(připomínky k řádkům 154 a 260 kapitoly 3); záznam „Kapitola 3: revize
+opakování, výjimek středu a populačních značek“ v [historii](../../quarto/README.md).
+
 <a id="r06-robustni-shrnuti"></a>
 
 ## R06 — Konvence robustního shrnutí
@@ -91,3 +102,25 @@ jako možnou alternativu“; „pro kurtosis bych jako primární překlad/term�
 volil ‚špičatost‘, kurtóza uvedl pouze jako možnou alternativu“; „vše dal
 do jednoho souboru, a to toho excelovského“. Záznam „Kapitola 3: revize
 po posouzení“ v [historii](../../quarto/README.md).
+
+<a id="r36-populacni-znacky-v-kapitole-3"></a>
+
+## R36 — Zavedení μ, σ² a σ v kapitole 3
+
+**Stav:** schváleno 2026-10-14. **Rozsah:** kapitoly 3 a 4, přehled značení.
+
+Populační průměr $\mathrm{μ}$, populační rozptyl $\mathrm{σ}^2$ a populační
+směrodatná odchylka $\mathrm{σ}$ se zavádějí už v kapitole 3, v oddílu
+o dělení $n-1$, kde se poprvé pracuje se skutečnou populací (simulace:
+μ = 6 minut, σ² = 8 min²). Varianta rozptylu s dělením $n$ u pozorovaného
+souboru se značkou σ² neoznačuje; text jen uvádí, že kdyby soubor tvořil
+celou populaci, šlo by o σ². Kapitola 4 značky připomíná a odkazuje na
+kapitolu 3. Typografie (stojaté řecké písmo) a význam značek se nemění.
+
+**Důvod:** autor navrhl zavést σ u výpočtu s dělením $n$. Claude upozornil,
+že pozorovaný soubor je výběr, a doporučil zavést značky u populace.
+Spolu s σ² se hodí i μ, protože výklad potřebuje rozlišit $m$ od populačního průměru.
+**Doklad:** konverzace 2026-10-14: autor odpověděl „Souhlasím s doporučeními
+toho, jak zavést σ²; také s tím, že lze již zavést μ pro populační průměr.“
+Hlavní místo: [výklad](../../quarto/kapitola_03.qmd#populacni-parametry)
+a [přehled značení](../../quarto/znaceni.qmd).

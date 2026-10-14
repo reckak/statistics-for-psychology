@@ -241,7 +241,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_03.html') {
         assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
-        assert.equal(await page.locator('main img').count(),15);
+        assert.equal(await page.locator('main img').count(),16);
         assert.equal(await page.locator('#refs .csl-entry').count(),expectedReferences);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);

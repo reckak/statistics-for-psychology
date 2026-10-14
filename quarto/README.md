@@ -2769,3 +2769,58 @@ Jde pouze o změnu instrukcí a jejich evidence. Obsahová kontrola rozdílů,
 `git diff --check` a `node scripts/check-doc-maps.cjs` bez chyb; render knihy
 není potřeba. Pravidlo bylo téhož dne uplatněno v sešitu k prezentaci
 kapitoly 3; sešit k prezentaci kapitoly 2 upravován nebyl.
+
+## Kapitola 3: revize opakování, výjimek středu a populačních značek (2026-10-14)
+
+Na základě autorovy revize kapitoly 3 a navazující dohody (konverzace
+2026-10-14) byly provedeny tyto úpravy. Navazují na autorovy rozpracované
+redakční změny, které byly převzaty beze změny kromě oprav níže.
+
+- **Obrázek 3.3** (`assets/chapter-03/plots/mode-median-mean.svg`): výchozí
+  popisky vícejazyčného SVG přepsány na modus, medián, průměr a „50 %“
+  (s mezerou; obě značky mírně odsunuty, aby se nepřekrývaly). Popisek
+  uvádí „upraveno (české popisky)“ podle CC BY-SA 3.0; alternativní text
+  a vysvětlující odstavec už nepoužívají anglická slova.
+- **Výjimky z pořadí středů:** nový obrázek `stred-vyjimky.svg`
+  (`scripts/kapitola_03.R`, `ch3_exceptions`) se dvěma autorskými
+  diskrétními modely. A: 100 lidí, 1–5 pokusů, četnosti 38, 49, 8, 3, 2;
+  delší pravý chvost, průměr 1,82 < medián = modus 2. B: 20 lidí, 0–4 chyby,
+  četnosti 8, 7, 3, 1, 1; nesouměrné, průměr = medián = 1, modus 0.
+  Text vysvětluje vyvážení odchylek vůči mediánu. Opora: von Hippel (2005),
+  oddíly 2–3 (ověřeno v plném textu JSE 2026-10-14: výjimky jsou nejčastější
+  u diskrétních proměnných, u jednovrcholových spojitých rozdělení vzácnější
+  a mírnější). Četnosti jsou v sešitu na novém listu `Vyjimky_stredu` A2:D6.
+- **Opakování:** vypuštěna nebo zkrácena opakovaná upozornění (souměrnost
+  ze shody průměru a mediánu, pořadí středů jako pravidlo, nepozorovatelné
+  výsledky, krajní hodnoty, ordinální kódy, transformace, pokrytí podílu
+  interpolovaným kvantilem, vratnost percentilu a pořadí). Hlavní výklad
+  každého tématu zůstal na jednom místě.
+- **Kvantily:** lineární interpolace (typ 7) je formulována jako pravidlo
+  učebnice a PERCENTIL.INC jako její výpočet v Excelu. Totéž ve značení,
+  zadání cvičení a u krabicového grafu; upřesnění k R04.
+- **Doplnění:** inkluzivní pořadí výslovně jako konvence učebnice; proč
+  přidání hodnoty nezmenší rozpětí; čím winsorizace nahrazuje; proč jsou
+  vousy modelového boxplotu stejně dlouhé; že b = 0 je krajní nevratná
+  afinní transformace; proč je podhodnocení s dělením n výrazné u malých n.
+- **Značky μ, σ² a σ** zavedeny v kapitole 3 (nové rozhodnutí R36). Upraven
+  autorův zápis vzorce na (n − 1)/n · σ² (předtím σ místo σ²). Kapitola 4
+  značky připomíná; přehled značení a slovníček odkazují na kapitolu 3.
+- **Technické opravy autorových změn:** překlep „slob“; obnoveny atributy
+  `tbl-colwidths` a ID obou tabulek, které nechtěně zmizely; obnoveny prázdné
+  řádky kolem bloků obrázků a před nadpisem percentilového pořadí. Bez prázdného
+  řádku se nadpis nevykreslil a odkazy na `#sec-percentilove-poradi` nefungovaly.
+- Nepotřebná anglická označení částí krabicového grafu (*fence*, *suspected
+  outliers*) z textu vypuštěna; *whiskers* zůstává u zavedení vousů.
+
+Kontroly: `check-chapter-03.R` (rozšířen o oba protipříklady: unimodalita,
+polohy středů, vyvážení odchylek, kladná šikmost) a `check-chapter-04.R`
+prošly. `build-workbooks.ps1 -Chapter 3 -Verify` sestavil sešit v českém
+Excelu 16 (32 listů, 149 vzorců, 247 vstupních buněk) a kontroly všech
+sešitů prošly. Celá kniha vykreslena; `check-html.cjs` prošel (počet obrázků
+kapitoly 3 zvýšen na 16). Vizuálně zkontrolovány obr. 3.3 a nový obrázek
+výjimek a oddíl o korekci rozptylu (stojaté μ a σ). `check-doc-maps.cjs`
+a `git diff --check` bez chyb.
+
+Omezení: prezentace a poznámky ke kapitole 3 (`presentations/`) nebyly
+upravovány; terminologie kvantilů v nich nebyla sjednocena (samostatná práce
+pro `codex/presentations`). Didaktická revize je interní, neověřená na studentech.
