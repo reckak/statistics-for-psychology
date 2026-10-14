@@ -42,6 +42,7 @@ export const inputs = {
     vector('Transformace','Výklad a obrázek: lineární a nelineární převod','Původní skór',[2,3,8,9],'Porovnejte pravidla y = 2 + 3x a y = x². Další příklad obrácení škály 0–10 používá y = 10 − x.'),
     item('Ordinalni_kvantily','Výklad: kvantil odpočatosti',['Kategorie','Četnost','Běžný kód','Alternativní kód'],[['Vůbec',1,1,1],['Trochu',2,2,2],['Dost',2,3,10],['Zcela',1,4,100]],'Stejných šest odpovědí při dvou kódováních. Kódy zachovávají pořadí, nikoli měřené vzdálenosti.'),
     item('Vazeny_prumer','Výklad: spojení skupin',['Skupina','Počet lidí','Průměrná doba (min)'],[['A',10,4],['B',30,8]],'Zadány jsou pouze velikosti skupin a průměry. Jednotlivé časy nejsou známy.'),
+    item('Vyjimky_stredu','Obrázek: výjimky z pořadí ukazatelů středu',['Počet pokusů (A)','Četnost A','Počet chyb (B)','Četnost B'],[[1,38,0,8],[2,49,1,7],[3,8,2,3],[4,3,3,1],[5,2,4,1]],'Autorské modelové četnosti: A 100 lidí, B 20 lidí. Řádek je hodnota s četností, nikoli jeden účastník.'),
     vector('Kvantily','Výklad interpolace; cvičení 3 (druhá část)','Doba (min)',[4,5,7,8,9,10,12,13,15,18,22]),
     vector('Orezani','Výklad: 10 %; cvičení 8: 20 % na každém konci','Doba (min)',[2,3,4,5,5,6,7,8,9,31]),
     vector('Boxplot','Výklad: krabicový graf','Skór (body)',[2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98]),

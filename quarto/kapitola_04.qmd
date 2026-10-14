@@ -78,7 +78,7 @@ Model nemusí být přesným popisem mechanismu, který data vytváří. Může 
 
 ### Dva parametry a zápis rozdělení {#sec-parametry-normalniho}
 
-Celou rodinu normálních rozdělení určují dva parametry. **Populační nebo modelový průměr** značíme stojatým řeckým písmenem $\mathrm{μ}$, čteme „mí“. Určuje polohu středu. **Populační nebo modelovou směrodatnou odchylku** značíme $\mathrm{σ}$, čteme „sigma“. Musí být kladná a určuje šířku rozdělení. Na rozdíl od nich $m$ a $s$ označují charakteristiky vypočtené z pozorovaného souboru. Když z dat model odhadujeme, mohou $m$ a $s$ sloužit jako odhady jeho parametrů; nejsou tím známy přesné populační hodnoty.
+Celou rodinu normálních rozdělení určují dva parametry. Jejich značky známe z [kapitoly o ukazatelích polohy a variability](kapitola_03.qmd#populacni-parametry). **Populační nebo modelový průměr** $\mathrm{μ}$ („mí“) určuje polohu středu. **Populační nebo modelová směrodatná odchylka** $\mathrm{σ}$ („sigma“) musí být kladná a určuje šířku rozdělení. Na rozdíl od nich $m$ a $s$ označují charakteristiky vypočtené z pozorovaného souboru. Když z dat model odhadujeme, mohou $m$ a $s$ sloužit jako odhady jeho parametrů; nejsou tím známy přesné populační hodnoty.
 
 Používáme stručný zápis
 
@@ -396,7 +396,7 @@ Každému pořadí přiřadíme podíl uvnitř intervalu od 0 do 1. Celý rozsah
 
 $$p=\frac{i-0{,}5}{n}.$$
 
-$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. **Nejde o novou definici empirického percentilového pořadí ani o algoritmus `PERCENTIL.INC`.** Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
+$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. **Nejde o novou definici empirického percentilového pořadí ani o naši interpolační konvenci kvantilů, kterou počítá `PERCENTIL.INC`.** Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
 
 ::: {.chapter-04-figure role="region" aria-label="Vznik jednoho bodu normálního Q–Q grafu" tabindex="0"}
 

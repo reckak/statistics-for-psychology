@@ -168,6 +168,44 @@ ch3_draw('stred-a-tvar',{
     text(50,-.025,'Skór (body)',xpd=NA,cex=.95)
   }
 },width=5.5,height=10.5)
+# Own discrete counterexamples after von Hippel (2005, sections 2-3); both are
+# unimodal with a longer right tail. Frequencies are printed in the chapter.
+ch3_exceptions <- list(
+  pokusy=list(values=1:5,freq=c(38,49,8,3,2)),
+  chyby=list(values=0:4,freq=c(8,7,3,1,1)))
+ch3_exception_stats <- do.call(rbind,lapply(ch3_exceptions,function(e) {
+  x<-rep(e$values,e$freq)
+  data.frame(n=length(x),mean=mean(x),median=median(x),
+    mode=e$values[which.max(e$freq)],g1=unname(ch3_moments(x)['g1']))
+}))
+ch3_draw('stred-vyjimky',{
+  par(mfrow=c(2,1),mar=c(6.2,4.4,2.8,1),mgp=c(2.4,.6,0))
+  titles<-c('A: Počet pokusů do splnění úlohy (100 lidí)',
+    'B: Počet chyb v krátkém testu pozornosti (20 lidí)')
+  xlabs<-c('Počet pokusů','Počet chyb')
+  for(j in 1:2) {
+    e<-ch3_exceptions[[j]]; s<-ch3_exception_stats[j,]
+    mids<-barplot(e$freq,names.arg=e$values,col='#E7EFF4',border='#315D80',
+      ylim=c(0,max(e$freq)*1.15),main=titles[j],cex.main=1,ylab='Četnost',
+      xlab=xlabs[j],space=.25)
+    # Map values to bar centres so the lines sit on the value axis.
+    at<-function(v) approx(e$values,mids,v)$y
+    fmt<-function(v) format(round(v,2),decimal.mark=',',trim=TRUE)
+    # Coinciding measures are spread symmetrically around their common value.
+    pos<-c(s$mean,s$median,s$mode)
+    dodge<-ave(pos,round(pos,9),FUN=function(z) (seq_along(z)-(length(z)+1)/2)*.08)
+    cols<-c('#B16A26','#267888','#72549B')
+    for(k in 1:3) segments(at(pos[k])+dodge[k],0,at(pos[k])+dodge[k],
+      max(e$freq)*1.1,col=cols[k],lty=k,lwd=2.5)
+    legend('topright',c('Průměr','Medián','Modus'),col=cols,lty=1:3,lwd=2.5,
+      bty='n',cex=.85)
+    label<-if(j==1) paste0('Průměr ',fmt(s$mean),' < medián ',fmt(s$median),
+      ' = modus ',fmt(s$mode),'; delší chvost vpravo') else
+      paste0('Modus ',fmt(s$mode),' < průměr ',fmt(s$mean),' = medián ',
+        fmt(s$median),'; rozdělení není souměrné')
+    mtext(label,side=1,line=4.6,cex=.9,font=2)
+  }
+},width=7,height=7.4)
 # Same observations as the chapter table. Squares are geometric areas, not
 # distances on the observation-number axis. Direction avoids overlapping areas.
 ch3_deviations <- ch3_x-mean(ch3_x)

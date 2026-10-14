@@ -65,7 +65,7 @@ příklady; `Tvary` a `Podlaha_strop` zachovávají schematické četnosti obrá
 
 Výklad: `Zaklad_data`, `Stejny_prumer`, `Dva_mody`, `Sudy_median`,
 `Vazeny_prumer`, `Kvantily`, `Percentil_ctyri`, `Ordinalni_kvantily`,
-`Orezani`, `Boxplot`, `Populace`, `Entropie_data`, `Spicatost`,
+`Vyjimky_stredu` (četnosti obrázku výjimek, A2:D6), `Orezani`, `Boxplot`, `Populace`, `Entropie_data`, `Spicatost`,
 `Transformace` a `Data` pokrývají zadané soubory i souhrnné vstupy.
 Varianty změny 10 na 30 a transformací jsou popsány u vstupů, původní
 hodnoty se nepřepisují. Hotové výpočty jsou na `Priklad`, `Souhrn`,

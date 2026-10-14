@@ -35,6 +35,19 @@ for(j in 1:nrow(ch3_centre_models)) {
 eq(as.numeric(ch3_centre_models[1,c('mean','median','mode')]),rep(50,3))
 eq(as.numeric(ch3_centre_models[2,c('mean','median','mode')])+as.numeric(ch3_centre_models[3,c('mean','median','mode')]),rep(100,3))
 stopifnot(with(ch3_centre_models,mean[2]<median[2] && median[2]<mode[2] && mode[3]<median[3] && median[3]<mean[3]))
+# Discrete counterexamples: unimodal, longer right tail, yet the usual order fails.
+for(e in ch3_exceptions) {
+  stopifnot(sum(e$freq==max(e$freq))==1)
+  m<-which.max(e$freq)
+  stopifnot(all(diff(e$freq[1:m])>=0),all(diff(e$freq[m:length(e$freq)])<=0))
+}
+a<-rep(ch3_exceptions$pokusy$values,ch3_exceptions$pokusy$freq)
+b<-rep(ch3_exceptions$chyby$values,ch3_exceptions$chyby$freq)
+eq(length(a),100);eq(mean(a),1.82);eq(median(a),2);eq(mean(a<2),.38);eq(mean(a==2),.49)
+eq(sum((a-2)[a<2]),-38);eq(sum((a-2)[a>2]),20)
+eq(length(b),20);eq(mean(b),1);eq(median(b),1);eq(sum((b-1)[b<1]),-8);eq(sum((b-1)[b>1]),8)
+eq(ch3_exception_stats$mode,c(2,0))
+stopifnot(all(ch3_exception_stats$g1>1),max(b)-median(b)>median(b)-min(b),max(a)-median(a)>median(a)-min(a))
 eq(ch3_quantile(ch3_interpolation,ch3_interpolation_levels),ch3_interpolation)
 eq(ch3_quantile(ch3_interpolation,.17),6.4)
 eq(mean(ch3_interpolation<=6.4),2/11)
