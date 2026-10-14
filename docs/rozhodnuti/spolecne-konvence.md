@@ -62,3 +62,33 @@ transformace a shodné momenty“ a „Kapitola 3: české reportování a zpře
 výkladu“ (2026-10-09) v [historii](../../quarto/README.md);
 [četnosti](../../quarto/kapitola_02.qmd#sec-zaokrouhlovani-02)
 a [reportování](../../quarto/kapitola_03.qmd#sec-reportovani-apa).
+
+<a id="r37-smyslena-data"></a>
+
+## R37 — Jednorázové upozornění na smyšlená data
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r37-smyslena-data). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-14. **Rozsah:** studentský text knihy
+(úvod a výkladové kapitoly); prezentace, poznámky a sešity tato dohoda
+zatím neupravila.
+
+Úvod knihy jednou uvádí, že studie, účastníci a čísla v příkladech
+i cvičeních jsou smyšlené a sestavené pro výuku, pokud není uvedeno jinak.
+V kapitolách se toto obecné upozornění neopakuje a datové soubory se
+neoznačují štítky typu „modelový“ či „autorský“ jen kvůli původu. Výslovně
+se označují skutečná, převzatá a upravená data se zdrojem. Simulace se
+označují tam, kde je rozdíl mezi modelem, simulací a pozorováním součástí
+výkladu, a smyšlená varianta tam, kde se odlišuje od skutečné studie.
+Zachovávají se věcné meze interpretace (například že průběžný příklad
+nedokládá vztah spánku a paměti nebo že model skóru není skutečný test
+s normami) a statistické užití slov model, modelový podíl či modelová
+populace.
+
+**Důvod:** opakovaná upozornění na smyšlenost dat působila didakticky
+rušivě a odváděla pozornost od výkladu.
+**Doklad:** pokyn autora v konverzaci 2026-10-14 („stačilo v některé
+z úvodních kapitol říci, že všechna data jsou smyšlená, pokud není
+explicitně uvedeno jinak“); volba úvodní stránky a ponechání funkčních
+zmínek potvrzena týž den. Provedení: [úvod](../../index.qmd)
+a záznam v [historii](../../quarto/README.md).

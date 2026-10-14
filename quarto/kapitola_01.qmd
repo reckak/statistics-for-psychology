@@ -2,7 +2,7 @@
 
 Když se po krátkém spánku obtížně soustředíme, nabízí se vysvětlení: málo spánku zhoršuje naši schopnost učit se. Co bychom však potřebovali vědět, abychom takový závěr mohli obhájit? Museli bychom upřesnit, co rozumíme krátkým spánkem a učením, získat vhodné údaje a posoudit i jiná vysvětlení. Samotná přesvědčivost příběhu tuto práci nenahradí.
 
-V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Všechny studie, jednotlivé záznamy a zadání v kapitole jsou **autorské modelové příklady**. Uvedená čísla jsou smyšlená pro výuku; nedokládají skutečný vztah mezi spánkem a pamětí.
+V této kapitole projdeme cestu od psychologické otázky k datům připraveným pro analýzu. Budeme se ptát, co jednotlivé údaje znamenají, odkud pocházejí a co z nich smíme vyvozovat. Čísla v průběžném příkladu o spánku a paměti slouží k výkladu postupů; nedokládají skutečný vztah mezi spánkem a pamětí.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_01.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
 
@@ -27,7 +27,7 @@ Nejistota není jen nepříjemnost, kterou by správný výpočet měl odstranit
 ::: worked-example
 **Od zkušenosti k otázce.** Výrok „Po krátkém spánku si nic nepamatuji“ obsahuje několik nejasností. Jak krátký spánek máme na mysli? Vzpomínání na osobní události, nebo zapamatování nového učiva? Jak a kdy budeme výkon posuzovat?
 
-Pro naši modelovou studii otázku zpřesníme: „Souvisí studentem uvedená doba spánku během předchozí noci s počtem slov, která si vybaví po předložení seznamu dvanácti slov?“ V této podobě ji už lze zkoumat. Zvolené zpřesnění ale nemusí zachycovat všechny důležité stránky spánku a paměti a případný vztah nemusí být příčinný.
+Pro naši studii otázku zpřesníme: „Souvisí studentem uvedená doba spánku během předchozí noci s počtem slov, která si vybaví po předložení seznamu dvanácti slov?“ V této podobě ji už lze zkoumat. Zvolené zpřesnění ale nemusí zachycovat všechny důležité stránky spánku a paměti a případný vztah nemusí být příčinný.
 :::
 
 ## Od otázky k proměnným a hodnotám {#sec-promenne}
@@ -36,7 +36,7 @@ Začněme tím, jak by vypadal záznam o jednom účastníkovi. Student označen
 
 **Případ (*case*)** je jednotka, o níž v daném výzkumu vedeme soubor údajů. V naší jednoduché studii odpovídá jeden případ jednomu účastníkovi při jedné návštěvě. Případem ale může být i rodina, školní třída nebo konkrétní návštěva klienta. Vždy potřebujeme určit, co jeden případ představuje.
 
-**Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V modelovém příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být nutně číselné.
+**Proměnná (*variable*)** je vlastnost nebo údaj, který může u různých případů nabývat různých hodnot. V našem příkladu sledujeme uvedenou dobu spánku, počet vybavených slov a část dne, kdy proběhlo měření. **Hodnota (*value*)** je konkrétní podoba údaje: například šest hodin, pět slov nebo kategorie „dopoledne“. Hodnoty tedy nemusí být nutně číselné.
 
 **Konstanta (*constant*)** má ve vymezeném souboru nebo za vymezených podmínek stále stejnou hodnotu. Jestliže zkoumáme pouze studenty druhého ročníku, ročník studia je v tomto souboru konstantní. Přidáme-li studenty prvního a třetího ročníku, bude se tento údaj mezi případy lišit. **Konstantnost tedy posuzujeme vzhledem ke konkrétnímu souboru či podmínkám.** Sloupec s hodnotami můžeme nadále označovat jako proměnnou, přestože v určitém souboru obsahuje jen jednu hodnotu a striktně vzato se jedná o konstantu. Přehled nabízí také [heslo konstanta](slovnicek.qmd#pojem-konstanta).
 
@@ -227,7 +227,7 @@ Psychologické otázky se často týkají paměti, úzkosti, motivace nebo dův�
 
 **Měření (*measurement*)** spojuje podle stanovených pravidel vlastnost či její projev se zaznamenanou hodnotou. **Operacionalizace (*operationalization*)** převádí obecné vymezení toho, co chceme zkoumat, do konkrétních pozorovatelných postupů. Jejich přesný popis představuje **operacionální definici (*operational definition*)**. Pro smysluplné čtení dat potřebujeme vědět, co účastník dělal, v jakých podmínkách, kdy a podle jakého pravidla mu byla přiřazena hodnota [@navarro, kap. 2; @howell, kap. 1].
 
-V naší modelové úloze účastník jednu minutu čte seznam dvanácti běžných českých slov. Seznam poté odstraníme a účastník má jednu minutu na zapsání slov, která si vybaví. Započítáme každé správné slovo jednou; opakované uvedení stejného slova nepřidává další bod. Předem určíme, jak posoudíme drobné pravopisné odchylky. Tak získáme počet správně vybavených slov.
+V naší úloze účastník jednu minutu čte seznam dvanácti běžných českých slov. Seznam poté odstraníme a účastník má jednu minutu na zapsání slov, která si vybaví. Započítáme každé správné slovo jednou; opakované uvedení stejného slova nepřidává další bod. Předem určíme, jak posoudíme drobné pravopisné odchylky. Tak získáme počet správně vybavených slov.
 
 @fig-od-konstruktu-k-zaznamu propojuje obecný cíl měření s konkrétním údajem. Operacionalizace zahrnuje volbu úlohy; její přesné časy, instrukce a skórování tvoří operacionální definici. Počet slov je zaznamenaná proměnná a číslo 5 je její hodnota u jednoho případu. Šipky zde ukazují postup vymezení a záznamu, nikoli příčinné působení.
 
@@ -429,7 +429,7 @@ Skutečnou změnu vlastnosti nezaměňujeme za chybu měření. Pokud člověk b
 Dalším zdrojem nejistoty je výběr. **Výběrová variabilita (*sampling variability*)** znamená, že různé pravděpodobnostní výběry z téže populace poskytují různé výsledky, i když měříme bezchybně a vybíráme vhodným postupem. Odlišujeme ji od **výběrového zkreslení (*sampling bias*)**, kdy způsob získávání účastníků soustavně zvýhodňuje určité složení výběru a tím posouvá závěr o populaci. Větší pravděpodobnostní výběr zpravidla zmenšuje kolísání odhadů, například podílu; zvětšováním nevhodně získaného výběru však zkreslení neodstraníme. Srovnejte také [heslo výběrové zkreslení](slovnicek.qmd#pojem-vyberove-zkresleni).
 
 ::: worked-example
-**Kdo odmítá odpovědět?** Chceme zjistit podporu určité politické strany: podíl lidí ve vymezené populaci, kteří ji podporují. Pozvané osoby řádně vylosujeme ze seznamu populace. V tomto modelovém příkladu však podporovatelé strany odmítají rozhovor častěji než ostatní. Pokud podíl spočítáme jen mezi odpovídajícími a tento rozdíl nezohledníme, bude mít postup sklon podporu strany podhodnocovat. Konkrétní výsledek může navíc kolísat náhodou.
+**Kdo odmítá odpovědět?** Chceme zjistit podporu určité politické strany: podíl lidí ve vymezené populaci, kteří ji podporují. Pozvané osoby řádně vylosujeme ze seznamu populace. V tomto příkladu však podporovatelé strany odmítají rozhovor častěji než ostatní. Pokud podíl spočítáme jen mezi odpovídajícími a tento rozdíl nezohledníme, bude mít postup sklon podporu strany podhodnocovat. Konkrétní výsledek může navíc kolísat náhodou.
 
 Jde o **zkreslení v důsledku neúčasti (*nonresponse bias*)**. Původní losování neochrání závěr před tím, že ochota odpovědět souvisí právě se zjišťovanou podporou. Samotná neúčast ještě neříká, jak velké zkreslení vzniklo; rozhoduje také, jak se neodpovídající liší od odpovídajících. Přesnější měření odpovědí ani přidání dalších stejně získaných respondentů tuto potíž nenapraví.
 :::
@@ -469,7 +469,7 @@ Vrátíme se ke studii spánku a vybavování slov. Každý student přichází 
 | P06 |        7 |     0 | odpoledne |          1 |
 :::
 
-Údaje jsou smyšlené. U P05 chybí odhad doby spánku. U P06 je naopak znám skutečný výsledek úlohy: účastník ji dokončil, ale nevybavil správně žádné slovo. **Chybějící údaj a nula nejsou zaměnitelné.** Z této malé tabulky nyní nebudeme vyvozovat vztah mezi spánkem a výkonem; slouží k porozumění struktuře záznamů.
+U P05 chybí odhad doby spánku. U P06 je naopak znám skutečný výsledek úlohy: účastník ji dokončil, ale nevybavil správně žádné slovo. **Chybějící údaj a nula nejsou zaměnitelné.** Z této malé tabulky nyní nebudeme vyvozovat vztah mezi spánkem a výkonem; slouží k porozumění struktuře záznamů.
 
 ### Identifikátory, názvy a kódy {#sec-kodovani}
 

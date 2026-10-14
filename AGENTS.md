@@ -250,7 +250,10 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Piš soustředěně a podpůrně. Pomáhej studentům vysvětlením obtížných míst
   a běžných omylů; nenahrazuj odborný výklad obecnou motivační řečí.
 - Preferuj příklady z psychologie a jasně popiš proměnné, jednotky a kontext.
-  U dat rozlišuj skutečná, upravená a simulovaná data.
+  U dat rozlišuj skutečná, upravená a simulovaná data. Úvod knihy jednou
+  uvádí, že data jsou smyšlená, pokud není uvedeno jinak; toto obecné
+  upozornění v kapitolách neopakuj. Výslovně označ skutečná, převzatá
+  a upravená data se zdrojem a simulaci tam, kde je součástí výkladu.
 - Rozvíjej porozumění principům, volbu metody, výpočet, interpretaci
   a rozpoznání chybných závěrů. Rozsah obsahu neomezuj pouze na metody,
   které lze celé pohodlně vypočítat ručně.

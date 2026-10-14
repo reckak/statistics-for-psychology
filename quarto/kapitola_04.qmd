@@ -2,7 +2,7 @@
 
 Výsledek 60 bodů sám o sobě neříká, zda člověk dosáhl neobvykle vysokého výkonu. Záleží na úloze, na skupině, s níž jej porovnáváme, i na tom, jak se výsledky této skupiny rozkládají. V této kapitole nejprve vyjádříme vzdálenost výsledku od průměru. Potom zavedeme normální rozdělení jako model, který umožní za určitých předpokladů odpovídat například na otázku, jaký podíl výsledků leží nad 60 body. Nakonec se naučíme posoudit, zda je takový model pro konkrétní data rozumný.
 
-Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **autorský ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy. Také malé datové soubory jsou sestavené pro výuku; simulované soubory u grafů výslovně označujeme. Výpočty si můžete zopakovat v [excelovém sešitu](../data/kapitola_04.xlsx). Samostatné vstupy pro konstrukci Q–Q grafu jsou na listu `QQ_data` v A2:A13; hotový postup s grafem je na listu `QQ`.
+Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy. Výpočty si můžete zopakovat v [excelovém sešitu](../data/kapitola_04.xlsx). Samostatné vstupy pro konstrukci Q–Q grafu jsou na listu `QQ_data` v A2:A13; hotový postup s grafem je na listu `QQ`.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_04.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
 
@@ -58,9 +58,9 @@ Převod všech hodnot na z-skóry nazveme **standardizací (*standardization*)**
 
 Takový převod zachovává pořadí i vzájemné poměry rozdílů. **Nemění však zešikmený tvar na souměrný.** V již známých dobách dokončení úlohy 4, 5, 5, 6 a 10 minut je $m=6$ a $s=\sqrt{5{,}5}\approx2{,}35$. Z-skóry jsou po zaokrouhlení −0,85; −0,43; −0,43; 0 a 1,71. Poslední hodnota zůstává od ostatních vzdálená a opakované pětky zůstávají shodné. Změnily se souřadnice, nikoli uspořádání dat.
 
-::: {.chapter-04-figure role="region" aria-label="Stejných pět autorských hodnot před standardizací a po ní." tabindex="0"}
+::: {.chapter-04-figure role="region" aria-label="Stejných pět hodnot před standardizací a po ní." tabindex="0"}
 
-![Stejných pět autorských hodnot před standardizací a po ní.](../assets/chapter-04/plots/standardizace.svg){#fig-standardizace-04 fig-alt="Doby 4, 5, 5, 6 a 10 minut a odpovídající z-skóry mají stejné rozmístění bodů při změně měřítka osy. Vzdálená pravá hodnota zůstává vzdálená."}
+![Stejných pět hodnot před standardizací a po ní.](../assets/chapter-04/plots/standardizace.svg){#fig-standardizace-04 fig-alt="Doby 4, 5, 5, 6 a 10 minut a odpovídající z-skóry mají stejné rozmístění bodů při změně měřítka osy. Vzdálená pravá hodnota zůstává vzdálená."}
 
 :::
 
@@ -386,7 +386,7 @@ Programy mohou osy zaměnit nebo jinak určit referenční přímku. Před čten
 
 ### Vytvoření Q–Q grafu v Excelu {#sec-excel-qq}
 
-Použijeme dvanáct autorských ilustračních skórů pozornosti, již seřazených od nejmenšího:
+Použijeme dvanáct skórů pozornosti, již seřazených od nejmenšího:
 
 $$35,\ 39,\ 42,\ 45,\ 47,\ 49,\ 51,\ 53,\ 55,\ 58,\ 61,\ 65.$$
 
@@ -432,9 +432,9 @@ První bod má vodorovnou souřadnici přibližně −1,73 a svislou 35 bodů. P
 2. Přidejte druhou řadu „Referenční přímka“: hodnoty X znovu `=QQ!$D$2:$D$13`, hodnoty Y `=QQ!$E$2:$E$13`. Této řadě nastavte bodový typ s **přímými spojnicemi bez značek**. Obě řady ponechte na stejných hlavních osách. Referenční přímku nevytvářejte automatickou regresní trendovou čarou; zde má přesně určený vztah $m+s z$.
 3. Vodorovnou osu pojmenujte „Teoretický kvantil normovaného normálního rozdělení (z)“, svislou „Pozorovaný skór pozornosti (body)“. Název grafu může být „Normální Q–Q graf“. Ověřte, že jde o dvanáct bodů a že nejnižší skór je vlevo dole.
 
-::: {.chapter-04-figure role="region" aria-label="Q–Q graf dvanácti autorských skórů z příkladu." tabindex="0"}
+::: {.chapter-04-figure role="region" aria-label="Q–Q graf dvanácti skórů z příkladu." tabindex="0"}
 
-![Q–Q graf dvanácti autorských skórů z příkladu.](../assets/chapter-04/plots/qq-priklad.svg){#fig-qq-priklad-04 fig-alt="Dvanáct seřazených skórů od 35 do 65 bodů je vyneseno proti normálním kvantilům přibližně od minus 1,73 do 1,73. Body se nacházejí blízko přímky určené průměrem 50 a směrodatnou odchylkou 8,99."}
+![Q–Q graf dvanácti skórů z příkladu.](../assets/chapter-04/plots/qq-priklad.svg){#fig-qq-priklad-04 fig-alt="Dvanáct seřazených skórů od 35 do 65 bodů je vyneseno proti normálním kvantilům přibližně od minus 1,73 do 1,73. Body se nacházejí blízko přímky určené průměrem 50 a směrodatnou odchylkou 8,99."}
 
 :::
 

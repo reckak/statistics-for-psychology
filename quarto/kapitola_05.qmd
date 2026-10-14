@@ -2,7 +2,7 @@
 
 Psycholožka má před sebou klienta, jehož screeningový dotazník vyšel pozitivně. Jak moc má počítat s tím, že klient poruchu skutečně má? Student uhodl v testu s výběrem odpovědí deset otázek z dvaceti. Dalo se to čekat i při pouhém tipování? Na obě otázky odpovídáme číslem, které vyjadřuje nejistotu: pravděpodobností. V této kapitole se naučíme, co takové číslo znamená, podle jakých pravidel se s pravděpodobnostmi počítá a jak z několika jednoduchých předpokladů odvodit, jak často nastane určitý počet „zásahů“ v řadě pokusů.
 
-Navazujeme na [relativní četnosti a doplněk](kapitola_02.qmd#sec-relativni-cetnost) a na [normální model](kapitola_04.qmd#sec-kapitola-04), v němž jsme plochu pod křivkou četli jako modelový podíl. Všechny číselné situace jsou **autorské modelové příklady**; simulovaná data výslovně označujeme. Příklady převzaté z literatury mají uvedený zdroj.
+Navazujeme na [relativní četnosti a doplněk](kapitola_02.qmd#sec-relativni-cetnost) a na [normální model](kapitola_04.qmd#sec-kapitola-04), v němž jsme plochu pod křivkou četli jako modelový podíl.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_05.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou na listech `Bayes`, `Binom`, `Binom_20` a `Aproximace`.
 
@@ -119,7 +119,7 @@ Obecně toto obrácení neplatí. Ve [spojitém normálním modelu](kapitola_04.
 
 ### Průnik a sjednocení {#sec-prunik-sjednoceni}
 
-Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, jak často se dvě vlastnosti vyskytují společně nebo jak často má člověk alespoň jednu z nich. Použijeme druhý průběžný příklad: modelový soubor 200 studentů, u nichž jsme zaznamenali pohlaví a to, zda v dotazníku uvedli vysoký stres (zkráceně „stres“), nebo nikoli („bez vysokého stresu“). Nepřítomnost vysokého stresu sama o sobě neznamená, že se člověk cítí dobře.
+Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, jak často se dvě vlastnosti vyskytují společně nebo jak často má člověk alespoň jednu z nich. Použijeme druhý průběžný příklad: soubor 200 studentů, u nichž jsme zaznamenali pohlaví a to, zda v dotazníku uvedli vysoký stres (zkráceně „stres“), nebo nikoli („bez vysokého stresu“). Nepřítomnost vysokého stresu sama o sobě neznamená, že se člověk cítí dobře.
 
 ::: {.table-scroll role="region" aria-label="Kontingenční tabulka pohlaví a stresu, 200 studentů" tabindex="0"}
 
@@ -129,7 +129,7 @@ Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, 
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 70 | 130 | 200 |
 
-: Modelový soubor 200 studentů podle pohlaví a uváděného stresu. {#tbl-zavislost}
+: Soubor 200 studentů podle pohlaví a uváděného stresu. {#tbl-zavislost}
 
 :::
 
@@ -248,7 +248,7 @@ Druhý činitel je podmíněná pravděpodobnost: výsledek prvního tahu změni
 
 ### Nezávislé jevy {#sec-nezavislost}
 
-Při tahu s vracením první tah nezměnil pravděpodobnost ve druhém. To je podstata nezávislosti. Vraťme se ke studentům a představme si jiný modelový soubor (list `Tabulka_nezavislost` A2:C3):
+Při tahu s vracením první tah nezměnil pravděpodobnost ve druhém. To je podstata nezávislosti. Vraťme se ke studentům a představme si jiný soubor (list `Tabulka_nezavislost` A2:C3):
 
 ::: {.table-scroll role="region" aria-label="Kontingenční tabulka, v níž jsou pohlaví a stres nezávislé" tabindex="0"}
 
@@ -258,7 +258,7 @@ Při tahu s vracením první tah nezměnil pravděpodobnost ve druhém. To je po
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 60 | 140 | 200 |
 
-: Druhý modelový soubor 200 studentů: stejný podíl stresu u žen i mužů. {#tbl-nezavislost}
+: Druhý soubor 200 studentů: stejný podíl stresu u žen i mužů. {#tbl-nezavislost}
 
 :::
 
@@ -294,7 +294,7 @@ Pojem nezávislosti se snadno splete s několika jinými. Čtyři rozlišení st
 
 **Závislost není příčina.** Že se podíl stresu u žen a mužů v souboru liší, neříká, proč tomu tak je. Platí vše, co jsme o [souvislosti a příčině](kapitola_01.qmd#sec-souvislost-pricina) uvedli v první kapitole.
 
-**Nezávislost v tabulce není nezávislost v populaci.** Kdybychom ze stejné populace vybrali jiných 200 studentů, podíly by vyšly trochu jinak. Přesná shoda 30 % a 30 % v tabulce [-@tbl-nezavislost] je vlastností tohoto modelového souboru. Malý rozdíl podílů ve skutečném výběru nedokazuje závislost v populaci a přesná shoda nedokazuje nezávislost [@russo, s. 64]. Jak z výběru usuzovat na populaci, je tématem inferenční statistiky.
+**Nezávislost v tabulce není nezávislost v populaci.** Kdybychom ze stejné populace vybrali jiných 200 studentů, podíly by vyšly trochu jinak. Přesná shoda 30 % a 30 % v tabulce [-@tbl-nezavislost] je vlastností tohoto souboru. Malý rozdíl podílů ve skutečném výběru nedokazuje závislost v populaci a přesná shoda nedokazuje nezávislost [@russo, s. 64]. Jak z výběru usuzovat na populaci, je tématem inferenční statistiky.
 
 **Nezávislost je předpoklad, který je třeba zdůvodnit.** Odpovědi dvou náhodně vybraných lidí na tutéž otázku lze obvykle považovat za nezávislé. U odpovědí dvou sourozenců nebo dvou studentů, kteří se spolu učili, nelze nezávislost bez dalšího předpokládat: jejich společné zkušenosti mohou odpovědi propojovat.
 
@@ -851,7 +851,7 @@ Rozdělení pravděpodobnosti je model toho, jakých hodnot může náhodná pro
 
 ## Samostatná cvičení {#sec-cviceni-05}
 
-V úlohách 1–9 stačí kalkulačka; úlohy 10 a 11 vyžadují Excel. Pravděpodobnosti uvádějte na tři desetinná místa, velmi malé pravděpodobnosti na čtyři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,001 způsobená závěrečným zaokrouhlením. Počty osob v přirozených četnostech mají souhlasit přesně. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj.
+V úlohách 1–9 stačí kalkulačka; úlohy 10 a 11 vyžadují Excel. Pravděpodobnosti uvádějte na tři desetinná místa, velmi malé pravděpodobnosti na čtyři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,001 způsobená závěrečným zaokrouhlením. Počty osob v přirozených četnostech mají souhlasit přesně.
 
 ### 1. Výsledek, jev a doplněk
 
@@ -903,7 +903,7 @@ c)  Neznamená. Relativní četnost se v dlouhé řadě pravděpodobnosti blíž
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_05.xlsx): `U03_tabulka` A2:C3.
 
-V modelovém souboru 150 studentů jsme zaznamenali, zda pravidelně sportují a zda hodnotí svůj spánek jako dobrý.
+V souboru 150 studentů jsme zaznamenali, zda pravidelně sportují a zda hodnotí svůj spánek jako dobrý.
 
 ::: {.table-scroll role="region" aria-label="Kontingenční tabulka sportu a kvality spánku, 150 studentů" tabindex="0"}
 
@@ -1031,7 +1031,7 @@ d)  Při stejném zastoupení: z 50 modrých označí svědek 40, z 50 zelených
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_05.xlsx): `U08_rozdeleni` A2:C5.
 
-Model předpokládá, že počet správně vybavených slov ze tří obtížných ($X$) má toto rozdělení. Poslední řádek obsahuje modelové četnosti, které představují výsledky vyšetření 20 lidí; nejde o skutečný výzkum.
+Model předpokládá, že počet správně vybavených slov ze tří obtížných ($X$) má toto rozdělení. Poslední řádek obsahuje četnosti pozorované při vyšetření 20 lidí.
 
 ::: {.table-scroll role="region" aria-label="Model a četnosti ve výběru dvaceti lidí" tabindex="0"}
 

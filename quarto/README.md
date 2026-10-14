@@ -2824,3 +2824,37 @@ a `git diff --check` bez chyb.
 Omezení: prezentace a poznámky ke kapitole 3 (`presentations/`) nebyly
 upravovány; terminologie kvantilů v nich nebyla sjednocena (samostatná práce
 pro `codex/presentations`). Didaktická revize je interní, neověřená na studentech.
+## Jednorázové upozornění na smyšlená data (2026-10-14)
+
+Na pokyn autora (nové rozhodnutí
+[R37](../docs/rozhodnuti/spolecne-konvence.md#r37-smyslena-data)) uvádí
+[úvod knihy](../index.qmd) jednou, že studie, účastníci a čísla jsou smyšlené
+a sestavené pro výuku, pokud není uvedeno jinak. Opakovaná upozornění byla
+z kapitol 1–6 odstraněna:
+
+- Úvodní odstavce kapitol 2, 3, 4 a 5 a pokyny ke cvičením kapitoly 5 už
+  obecně neopakují, že data jsou modelová či autorská. Kapitola 1 si ponechává
+  věcnou mez, že průběžný příklad nedokládá vztah spánku a paměti; kapitola 4,
+  že model skóru pozornosti není skutečný test s normami.
+- Štítky „modelový“, „autorský“ a věty typu „Údaje jsou smyšlené“ či „Jde
+  o vlastní didaktická data“ vypuštěny z textu, popisků obrázků a tabulek,
+  `aria-label` a zadání (kap. 1–6). Ve vzorovém popisu souboru (kap. 3,
+  cvičení) nahrazuje větu o datech sestavených pro výuku mez zobecnění.
+  V kap. 5, cvičení 8, jsou „modelové četnosti“ přejmenovány na četnosti
+  pozorované, aby se nepletly s modelem.
+- Ponecháno: statistické užití „model“, „modelový podíl“, „modelová
+  populace“; simulace tam, kde je rozdíl model–simulace–pozorování obsahem
+  (kap. 1 obrázky společné příčiny a výběru, kap. 3 korekce, kap. 4 Q–Q, kap. 5
+  a 6); v kap. 6 „smyšlený rozdíl“ a „smyšlená varianta“, protože průběžný
+  příklad je skutečná studie; Lordův „smyšlený příběh“ (citace).
+- `AGENTS.md` (didaktika) a karta kapitoly 6 upraveny podle nové konvence.
+
+Kontroly: celá kniha vykreslena bez varování; `check-html.cjs`,
+`check-doc-maps.cjs` a `git diff --check` bez chyb. Každý výskyt posouzen
+v kontextu (grep `smyšlen|modelov|autorsk|skutečného výzkumu`), bez hromadné
+náhrady.
+
+Omezení: poznámky v excelových sešitech (`scripts/sesity-data.mjs`,
+`scripts/kapitola_0N-sešit.mjs`, listy `Prehled`) a prezentace dál uvádějí
+původ dat; dohoda R37 je zatím neupravuje. Interní didaktická revize,
+neověřená na studentech.
