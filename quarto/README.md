@@ -2458,7 +2458,7 @@ v přesném příkladu.
 Na výslovné zadání autora vznikl samostatný export kapitoly 3 do PDF,
 bez automatického spouštění s HTML. Dohodu eviduje
 [R31](../docs/rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf), provozní postup je
-v [README](../README.md#ruční-pdf-vybrané-kapitoly).
+v [provozním návodu](../docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly).
 
 - Zdrojový studentský text se neměnil. Skript čte aktuální kapitolu,
   obnoví její grafy a v ignorovaném `tmp/` sestaví pracovní PDF.
@@ -2542,7 +2542,7 @@ Ověřeny místní cílové soubory a kotvy v mapách a jejich příchozí odkaz
 také odkazy v AGENTS.md, README.md, ROZHODNUTI.md a SLOVNIK.md.
 Všech 314 odkazů do neveřejných `sources/` má v této pracovní kopii
 existující cíl. Běžná kontrola bez `--baseline` slouží další údržbě;
-postup je v [kořenovém README](../README.md#kontroly-a-github).
+postup je v [provozním návodu](../docs/PROVOZ.md#kontroly-a-github).
 
 Rozcestník osnovy se zkrátil o 83,9 % a zdrojů o 81,9 % znaků při
 srovnání s jednotným LF; obsah je přesunut do karet, nikoli odstraněn.
@@ -2893,3 +2893,32 @@ načítá seznam verzovaných souborů pomocí `git ls-files`. Zbývající zmí
 názvu archivního souboru jsou historickou evidencí, nikoli aktivními odkazy.
 Kontrola nezahrnuje dostupnost externích webů. Studentský web ani data
 se nemění; nový render nebyl potřeba.
+
+## Stručné README a provozní návod (2026-10-14)
+
+Na pokyn autora zkráceno kořenové README z 313 na 79 řádků. Obsahuje
+představení knihy, rychlé spuštění, hlavní složky a rozcestník dokumentace.
+Pět provozních oddílů (práce s projektem, PDF, kontroly, obnova sešitů,
+publikování) bylo přesunuto do [PROVOZ.md](../docs/PROVOZ.md). Detailní
+výčty obsahu kapitol a sešitů nahrazují odkazy na osnovu a přehled dat;
+pravidla tvorby a evidence odkazy na AGENTS.md.
+
+Hlavní místo provozních postupů aktualizováno v AGENTS.md a doplnění R32.
+Příchozí odkazy vedou přímo na nový návod. Původní kotvy README zůstávají
+u odpovídajících položek rozcestníku, bez samostatné historické sekce.
+Kontrolní skript nyní zahrnuje také celý PROVOZ.md a příchozí odkazy
+na něj a README ze všech verzovaných dokumentů Markdown a Quarto.
+
+Ověření: strojové porovnání potvrdilo zachování všech pěti provozních
+oddílů; změnily se pouze relativní odkazy a popis rozšířeného rozsahu
+kontroly odkazů. Všech 12 bloků příkazů je shodných s původním README.
+Kontrola všech původních kotev README prošla. Dvě zkoušky s neexistující
+kotvou vloženou pouze do paměťové kopie dokumentu potvrdily, že kontrola
+odhalí chybný odkaz z PROVOZ.md i odkaz na něj z autorské historie.
+`node scripts/check-doc-maps.cjs --require-sources` a `git diff --check`
+prošly bez chyb.
+
+Rozsah: reorganizace autorské dokumentace; nové spuštění popsaných
+provozních příkazů ani kontrola dostupnosti externích webů neproběhly.
+Studentský výklad, data a konfigurace publikování se nemění, nový render
+knihy nebyl potřeba.
