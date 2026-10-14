@@ -88,7 +88,7 @@ modelů od náhodných výběrů. Tuto odlišnost je nutné zachovat i v pokrač
 sbalená řešení na webu. Ručně vyžádané pracovní PDF kapitoly 3 přesouvá
 všechna řešení za všechna zadání, s obousměrnými odkazy; obsah úloh zachovává.
 Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
-[postup](../../README.md#ruční-pdf-vybrané-kapitoly) a
+[postup](../PROVOZ.md#ruční-pdf-vybrané-kapitoly) a
 [R31](../rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf).
 Jednotlivé nadpisy ve zdroji nemají explicitní ID, proto tato mapa
 odkazuje na stabilní oddíl cvičení a používá číslo i název. Základem je

@@ -1,0 +1,281 @@
+# Provozní návody
+
+[Zpět na přehled projektu](../README.md)
+
+Tento dokument je hlavním místem pro provozní příkazy, závislosti a technické
+postupy. Příkazy spouštějte z kořene repozitáře, nikoli ze složky `docs/`;
+také cesty uvedené v kódu jsou relativní ke kořeni. Pravidla tvorby a volby
+kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
+
+## Obsah
+
+- [Sestavení a náhled webu](#práce-s-projektem)
+- [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
+- [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
+- [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-16)
+- [Publikování na GitHub Pages](#publikování-na-github-pages)
+
+## Práce s projektem
+
+Pro sestavení webu potřebujete Quarto; projekt je ověřován s verzí **1.9.38**. V RStudiu otevřete kořenovou složku projektu. R slouží k interním kontrolám výpočtů, jeho kód se studentům nezobrazuje. Render nyní vyžaduje také **R** (ověřeno 4.5.1), dostupné jako `Rscript`. Před sestavením vytváří grafy z pevných dat; nejsou potřeba žádné další balíčky R. Spouštěcí skript zajišťuje načtení českých popisků v UTF-8 i ve Windows. Matematiku Quarto převádí do nativního MathML, takže její zobrazení nevyžaduje přístup k externímu serveru.
+
+Z kořene projektu vykreslete celou učebnici:
+
+```sh
+quarto render
+```
+
+Pro prohlížení s průběžným obnovováním použijte:
+
+```sh
+quarto preview
+```
+
+Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pro přenos nebo publikování zachovejte celou složku `_book/` včetně podpůrných souborů. Generované HTML neupravujte ručně.
+
+## Ruční PDF vybrané kapitoly
+
+Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
+a ověřen export kapitoly 3. Z kořene projektu v PowerShellu spusťte:
+
+```powershell
+./scripts/render-chapter-pdf.ps1 -Chapter 3
+```
+
+Výsledek je `output/pdf/kapitola_03.pdf`. Skript používá aktuální
+`quarto/kapitola_03.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
+Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
+R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
+Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
+jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
+
+PDF obsahuje výklad, všech 14 zadání, samostatný oddíl řešení s obousměrnými
+odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
+Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
+Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
+pro práci offline si sešit stáhněte samostatně.
+
+Nastavení je v `scripts/pdf/`; izolované pomocné sestavení vzniká
+v `tmp/pdf-chapter-03/`. Pomocná kopie kapitoly není určena k editaci.
+Cílové PDF se nahradí až po úspěšném sestavení. PDF i pomocné soubory jsou
+ignorovány Gitem. Běžné `quarto render`, náhled a workflow GitHub Pages
+PDF nespouštějí ani nepublikují.
+
+Kontrolu zachování všech řešení, rovnic, tabulek, obrázků, kódu a citací
+při přesunu lze spustit pomocí Node.js:
+
+```powershell
+node scripts/check-chapter-pdf.cjs
+```
+
+Volitelný první argument kontroly je cesta ke Quartu. Kontrola transformace
+nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů.
+
+## Kontroly a GitHub
+
+Odkazy autorských map, registru rozhodnutí i tematických dokladů, kořenového
+README a tohoto provozního návodu včetně příchozích odkazů z verzovaných dokumentů ověří
+`node scripts/check-doc-maps.cjs`. V pracovní kopii s neveřejnými podklady
+přidejte `--require-sources`, aby kontrola vyžadovala také všechny místní
+cíle v `sources/`. Kontrola řeší cesty a kotvy; neověřuje obsah podkladů
+ani dostupnost externích webů. Při přesunu map lze jednorázově přidat
+`--baseline <commit-před-přesunem>` pro porovnání obsahu a starých kotev
+s předchozím stavem. U původního úplného přehledu rozhodnutí ověřuje také
+zachování každého záznamu v pořadí v jeho tematickém souboru. Běžná kontrola
+hlídá jedinečnost rozhodnutí a shodu registru s podrobnými záznamy.
+Režim s výchozím commitem není určen pro pozdější obsahové změny.
+
+Po změně společného vzhledu nebo navigace vykreslete celou knihu. Pro automatickou kontrolu HTML potřebujete Node.js, Playwright a Chromium. Závislosti nainstalujte jednorázově podle potřeby:
+
+```sh
+npm install --no-save --package-lock=false playwright@1.55.0
+npx playwright install chromium
+```
+
+Po renderování spusťte:
+
+```sh
+node quarto/_verification/check-html.cjs
+```
+
+Alternativně lze cestu k modulu Playwright předat proměnnou `PLAYWRIGHT_MODULE` a cestu k existujícímu prohlížeči proměnnou `CHROME_PATH`.
+
+Kontrola prochází všechny stránky knihy: ověřuje místní odkazy, jedinečné identifikátory, pravý obsah kapitoly, rozložení stránky, skrytí a rozbalení řešení, ovládání přehledových tabulek a mobilní zobrazení. Snímky pro vizuální kontrolu ukládá do `tmp/verification/`. Na úzkých obrazovkách se pravý obsah skrývá, aby zůstal prostor pro text. Stránky bez podnadpisů samostatný obsah nepotřebují.
+
+Po obsahové změně spusťte také příslušnou kontrolu modelových dat a číselných odpovědí (vyžaduje R, bez dalších balíčků):
+
+```sh
+Rscript --vanilla quarto/_verification/check-chapter-01.R
+Rscript --vanilla quarto/_verification/check-chapter-02.R
+Rscript --vanilla quarto/_verification/check-chapter-03.R
+Rscript --vanilla quarto/_verification/check-chapter-04.R
+Rscript --vanilla quarto/_verification/check-chapter-05.R
+Rscript --vanilla quarto/_verification/check-chapter-06.R
+```
+
+Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
+
+Třetí kapitolu ověřuje `check-chapter-03-excel.ps1` stejným způsobem: české vzorce, původní vstupy včetně listu `Kontrola_prikladu` a samostatných vstupů a chybění, oba výpočty rozptylu, MAD, entropii, momentové koeficienty a přepočet při změně vstupu. Její R kontrola navíc porovnává simulaci korekce rozptylu s přesným výčtem všech výběrů velikosti pět z použité modelové populace.
+
+Čtvrtou kapitolu ověřuje `check-chapter-04.R`: plochy, kvantily, řešení,
+mezní hodnoty stenů a staninů a souřadnice Q–Q grafu. Skript
+`check-chapter-04-excel.ps1` skutečně spouští české vzorce, kontroluje
+inverzní převody, nepřípustné krajní argumenty, změny vstupů a vazby
+dvou řad bodového grafu. Přepínač `-Finalize` také nastaví jeho nativní
+značky a referenční přímku, uloží sešit a vytvoří kontrolní PDF
+sešitu do `tmp/chapter-04/`. Běžný běh změny neukládá.
+
+Pátou kapitolu ověřuje `check-chapter-05.R`: hodnoty citované ve výkladu
+(včetně pěti simulovaných řad a 40 simulovaných studentů), tabulky, nepovinná
+rozšíření, řešení všech dvanácti cvičení a dvanáct obrázků. Skript
+`check-chapter-05-excel.ps1` otevře sešit pouze pro čtení v samostatné skryté
+instanci Excelu a nic neukládá: porovná 74 uložených výsledků, zadá 28 českých
+vzorců citovaných v textu a řešeních, ověří chybové hodnoty u nepřípustných
+argumentů a přepočet při změně žlutých vstupů. Očekávané hodnoty jsou
+v `check-chapter-05-excel.json`; vytváří je
+`python quarto/_verification/check-chapter-05-excel-expected.py quarto/_verification/check-chapter-05-excel.json`
+přesnou racionální aritmetikou nezávisle na Excelu i R.
+
+Šestou kapitolu ověřuje `check-chapter-06.R`: přesný příklad devíti výběrů,
+hodnoty normálního a binomického modelu, všechny údaje ze tří simulací
+citované ve výkladu, nepovinná rozšíření, řešení čtrnácti cvičení
+a šestnáct obrázků. Skript `check-chapter-06-excel.ps1` otevře sešit pouze
+pro čtení v samostatné skryté instanci Excelu a nic neukládá: porovná
+47 uložených výsledků, zadá 33 českých vzorců citovaných v textu a řešeních
+(včetně počtů COUNTIFS nad 10 000 simulovanými rozdíly), ověří chybové
+hodnoty u nepřípustných argumentů, přepočet při deseti změnách žlutých vstupů
+a zápis osmi vzorců listů v češtině. Očekávané hodnoty jsou
+v `check-chapter-06-excel.json`; vytváří je
+`python quarto/_verification/check-chapter-06-excel-expected.py quarto/_verification/check-chapter-06-excel.json`
+standardní knihovnou Pythonu nezávisle na Excelu i R. Počty nad uloženými
+simulovanými daty jsou v něm konstanty; ze stejných seedů je nezávisle
+ověřuje `check-chapter-06.R`.
+
+Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
+
+Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
+
+## Obnova sešitů a podkladů kapitol 1–6
+
+Všech šest sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
+Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
+5.1, Node.js a pro simulované vstupy kapitol 1 a 4–6 také R. Příkazy `node`
+a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze
+standardní moduly Node.js a rozhraní COM instalovaného Excelu; nepotřebují
+žádný balíček npm, `@oai/artifact-tool` ani prostředí konkrétního LLM.
+Spouštějte je lokálně v uživatelské relaci, kde lze spustit Excel.
+
+Z kořene projektu obnovte všechny sešity a spusťte jejich kontroly:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Verify
+```
+
+Jedinou kapitolu lze obnovit například takto (bez `-Verify` se pouze
+sestaví a zkontrolují chyby vzorců; nespustí se kapitolové zkoušky):
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Chapter 4 -Verify
+```
+
+Přepínač `-Verify` spustí numerické kontroly a změny vstupů vybrané kapitoly
+(pro kapitoly 2–6) a kontrolu chyb vzorců ve všech šesti uložených sešitech.
+Samotné kontroly sešity neukládají. Přepočet a konečnou podobu grafů zajišťuje
+již generátor; dřívější dokončování pomocí `-Finalize` není k obnově potřeba.
+Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu změny.
+
+### Zdroje a průběh sestavení
+
+- `scripts/sesity-data.mjs`: společné vstupy, jejich původ a studentské přehledy.
+- `scripts/kapitola_NN-sešit.mjs`: rozložení, vzorce a grafy dané kapitoly.
+- `scripts/excel-workbook.mjs`: malá místní vrstva zapisující deklarace
+  do JSON; sama nepočítá vzorce ani nevytváří XLSX.
+- `scripts/build-workbook-excel.ps1`: společný zápis deklarací do skutečného
+  Excelu, formátování, ověření vstupů, nativní grafy, přepočet a uložení.
+- `scripts/sesity-simulace.R`: stejné pevně reprodukovatelné simulace jako
+  v obrázcích; společný spouštěč jej pro kapitoly 4–6 zavolá automaticky.
+- `scripts/kapitola_01-simulace.R`: společné simulace pedagogických příkladů
+  pro grafy a sešit; generátor kapitoly 1 jej zavolá automaticky.
+
+Každý sešit vzniká v samostatné skryté instanci Excelu. Skript se nepřipojuje
+k otevřeným uživatelským sešitům. Nejprve uloží hotový přepočtený soubor
+do `tmp/`, poté jej zkopíruje do `data/kapitola_NN.xlsx`; při chybě sestavení
+zůstane předchozí studentský sešit zachován. Cílový sešit před obnovou zavřete.
+Výstup se otevírá na listu `Prehled` a při ukládání se odstraňují osobní
+údaje z vlastností dokumentu.
+
+Generátory kapitol 1–4 zadávají vzorce prostřednictvím `Formula`
+ve standardním anglickém zápisu. Kapitoly 5 a 6 používají české `FormulaLocal`.
+České vzorce z učebnice navíc skutečně spouštějí kapitolové kontroly.
+Číselné formáty buněk a os respektují místní oddělovače. Textové hodnoty
+zůstávají textem i tehdy, když vypadají jako číslo; chybění zůstává prázdné.
+Čistě číselné bloky od 1 000 řádků (zatím jen simulovaná data kapitoly 6)
+zapisuje generátor jedním přiřazením celé oblasti; menší bloky zůstávají
+u zápisu po buňkách se zachováním typů. Kontrola chyb vzorců přeskakuje listy,
+které žádný vzorec neobsahují.
+Nové soubory PowerShellu používají ASCII a české texty čtou z UTF-8 JSON;
+skripty s českými literály musí mít pro Windows PowerShell 5.1 UTF-8 BOM.
+
+### Ověření obsahu a vzhledu
+
+Kontrola vstupů používá standardní Python bez dalších knihoven:
+
+```powershell
+python quarto/_verification/check-workbooks.py
+```
+
+Porovnává uložené vstupy, typy, chybění a odkazy na listy a buňky v kapitolách.
+Deklarace vznikají při sestavení v `tmp/chapter-NN-build/inputs.json`
+(kapitola 4: `tmp/chapter-04/inputs.json`). Jejich shoda nenahrazuje
+redakční porovnání s textem; pokrytí eviduje [docs/DATA.md](DATA.md).
+Kontrolu spusťte **po renderování knihy**, protože kontroluje také totožnost
+sešitů v `data/` a `_book/data/`. Při renderování se sešity pouze kopírují;
+Excel se nespouští a na GitHubu není k sestavení webu potřeba.
+
+Kontrola kapitoly 5 navíc ověřuje přepočet popisků při změně hranic,
+krajní pravděpodobnosti 0 a 1 a ochranu pevných počtů pokusů.
+Na listu `Binom` lze upravit pouze B3; na `Binom_20` B3:B5. Ochrana listů
+bez hesla chrání výukové vzorce před náhodným přepsáním.
+
+Pro vizuální prohlídku všech listů vytvořte náhledy přímo z Excelu:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File quarto/_verification/preview-workbooks-excel.ps1
+```
+
+Kontrolní PDF a přehled oblastí vznikají v `tmp/workbook-previews/`.
+U dlouhých vstupních listů náhled ukazuje prvních 15 řádků; kontrola hodnot
+prochází všechna data. Výpočtové listy a přehledy se zobrazují celé.
+Volitelné parametry `-Chapter 4 -Sheet QQ` omezí náhled na dotčený list.
+Tisková nastavení náhledů se do studentských sešitů neukládají.
+
+Při migraci generátoru nejprve odložte kontrolní kopie původních pěti
+sešitů do ignorované složky. Nástroj `compare-workbooks.py` pak porovná
+všechny vyplněné buňky, vzorce, uložené výsledky, pořadí listů, sloučení
+buněk, ukotvení, ověření vstupů, číselné formáty, vazby a meze os grafů. Pouze tato doplňková
+kontrola vyžaduje veřejnou knihovnu `openpyxl` (`python -m pip install openpyxl`):
+
+```powershell
+python quarto/_verification/compare-workbooks.py tmp/excel-migration/before
+```
+
+Grafy učebnice se obnovují při každém renderování; samostatně příkazem
+`Rscript --vanilla scripts/render-figures.R`. Názorné rekonstrukce listů
+jsou editovatelné SVG; obnovuje je `python scripts/kapitola_02-ukazky.py`
+(standardní knihovna Pythonu). Při změně vstupů obnovte sešit, související
+ilustrace a knihu a ověřte navazující výklad. Pomocné výstupy patří do `tmp/`.
+
+## Publikování na GitHub Pages
+
+Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–6. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
+
+Při prvním zprovoznění:
+
+1. V repozitáři na GitHubu otevřete **Settings → Pages**.
+2. V části **Build and deployment → Source** vyberte **GitHub Actions**. Projekt již vlastní workflow obsahuje.
+3. Slučte připravený pull request do `main`.
+4. Na kartě **Actions** zkontrolujte úspěšné dokončení sestavení i publikování.
+
+Pokud jste Pages zapnuli až po sloučení, spusťte **Actions → Ověřit a publikovat učebnici → Run workflow** pro větev `main`. Ruční běh na jiné větvi web nepublikuje. Není potřeba větev `gh-pages` ani ukládání generovaného HTML do zdrojové větve.
+
+Po nasazení ověřte [veřejnou učebnici](https://reckak.github.io/statistics-for-psychology/), přechody mezi kapitolami a načtení podpůrných souborů. Lokální render ani úspěšná kontrola pull requestu samy nepotvrzují zveřejnění změn.

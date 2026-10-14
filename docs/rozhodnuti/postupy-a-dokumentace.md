@@ -202,7 +202,7 @@ a ověření chování v cílové aplikaci.
 **Doklad:** pokyn autora: „Převeď tedy tvorbu všech sešitů na skripty
 ovládající desktopový Excel, odstraň závislost na artifact-tool a uprav
 příslušné instrukce. Zachovej obsah i funkčnost sešitů a ověř je.“
-Provozní postup je v [README](../../README.md#obnova-sešitů-a-podkladů-kapitol-16),
+Provozní postup je v [provozním návodu](../PROVOZ.md#obnova-sešitů-a-podkladů-kapitol-16),
 pravidla v [AGENTS.md](../../AGENTS.md#data-ke-kapitolám).
 
 <a id="r31-pracovni-pdf"></a>
@@ -228,7 +228,7 @@ knižní sazbu a bez prodlužování běžného sestavení webu.
 spouští automaticky, ale pouze tehdy, když si o něj výslovně řeknu“,
 „Závěrečné přehledy bych zatím vynechal“ a „Řešení cvičení by byly posunuty
 do samostatné části umístěné za zadání cvičení“. Následná volba „Kapitolu 3“.
-Postup a závislosti jsou v [README](../../README.md#ruční-pdf-vybrané-kapitoly).
+Postup a závislosti jsou v [provozním návodu](../PROVOZ.md#ruční-pdf-vybrané-kapitoly).
 
 <a id="r32-propojene-mapy"></a>
 
@@ -303,6 +303,24 @@ pravidla mají jedno hlavní místo v projektových instrukcích.
 **Doklad:** autor dne 2026-10-14 zadal: „Ano, smaž sekci Historické pokyny
 i soubor historie-registru.md, uprav související odkazy a evidenci a ověř,
 že aktuální odkazy zůstanou funkční. Změny odešli na GitHub a připrav PR.“
+
+### Doplnění R32 — stručné README a samostatný provozní návod (2026-10-14)
+
+**Schválené upřesnění:** kořenové README slouží jako vstupní rozcestník
+s představením knihy, rychlým spuštěním a odkazy na dokumentaci. Hlavním
+místem provozních příkazů, závislostí a technických postupů je
+[PROVOZ.md](../PROVOZ.md). Podrobný obsah kapitol a pokrytí daty nadále
+spravují osnova a přehled dat; pravidla tvorby a evidence zůstávají
+v [AGENTS.md](../../AGENTS.md#evidence-rozhodnuti).
+
+**Důvod:** zlepšit orientaci ve vstupním dokumentu a zachovat podrobné
+návody na jednom místě bez opakování autorských pravidel.
+
+**Doklad:** výslovný pokyn autora z 2026-10-14: „Ano, zkrať README.md
+podle návrhu a provozní návody přesuň do docs/PROVOZ.md. Zachovej důležité
+informace, aktualizuj AGENTS.md, odkazy a evidenci, ověř funkčnost odkazů
+a změny odešli na GitHub s PR.“ Toto doplnění mění hlavní místo údržby
+provozních návodů; původní doklady předchozího uspořádání zůstávají zachované.
 
 <a id="r33-excelova-cviceni-prezentaci"></a>
 

@@ -54,7 +54,8 @@
   Datum reorganizace nesmí nahrazovat datum skutečné obsahové kontroly.
 - Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
   a jejich exportech podle odkazu v příslušném oddílu níže.
-- Provozní postupy jsou v [README.md](README.md), historické autorské
+- Vstupní rozcestník projektu je [README.md](README.md); provozní postupy
+  a závislosti jsou v [docs/PROVOZ.md](docs/PROVOZ.md), historické autorské
   záznamy v [quarto/README.md](quarto/README.md). Historický záznam zachovej
   i po nahrazení rozhodnutí; jeho tehdejší stav není automaticky současným
   pravidlem. V přehledu rozhodnutí označ, co novější dohoda nahrazuje.
@@ -74,7 +75,7 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 | Typ informace | Hlavní místo údržby |
 |---|---|
 | Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md). |
-| Příkazy, závislosti a provozní návody | [README.md](README.md). |
+| Příkazy, závislosti a provozní návody | [PROVOZ.md](docs/PROVOZ.md); kořenové README obsahuje jen rychlé spuštění a rozcestník. |
 | Preferovaný termín, alternativy, významové hranice a výjimky | [SLOVNIK.md](docs/SLOVNIK.md); jeho doklad odkazuje na rozhodnutí. |
 | Studentský výklad, definice, značky a vzorce | Příslušná kapitola a její studentské referenční přehledy; autorská evidence je plně nekopíruje. |
 | Mapa skutečného obsahu, procvičení, návazností a otevřeného plánu | [OSNOVA.md](docs/OSNOVA.md) a odkazované kapitolové karty. |
@@ -107,7 +108,8 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 - Při dokončení dokumentační změny ověř hlavní místo každé nové informace,
   funkčnost odkazů a ID a jednoznačnost aktuální platnosti. Obsahově posuď,
   zda nevznikly dvě souběžně udržované kopie téhož pravidla. Automatická
-  kontrola odkazů podle README tuto redakční kontrolu nenahrazuje.
+  kontrola odkazů podle [provozního návodu](docs/PROVOZ.md#kontroly-a-github)
+  tuto redakční kontrolu nenahrazuje.
 
 ## Cíl a cílová skupina
 
@@ -126,7 +128,8 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Hlavní výstup je web. Pracovní PDF vybrané kapitoly vytvářej pouze na
   výslovné vyžádání, bez automatického spouštění nebo publikování s webem.
   V PDF soustřeď řešení do samostatné části za všechna zadání; závěrečné
-  přehledy zatím vynech. Aktuálně je ověřen export kapitoly 3 (viz README).
+  přehledy zatím vynech. Aktuálně je ověřen export kapitoly 3
+  (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly)).
   Finální knižní sazbu budeme řešit samostatně při finalizaci knihy;
   neomezuj kvůli ní současnou podobu webových materiálů.
 
@@ -378,7 +381,7 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   pro Windows. Používej společný generátor `scripts/build-workbooks.ps1`
   a místní deklarace listů; tvorba ani ověřování nesmějí vyžadovat
   `@oai/artifact-tool`, runtime konkrétního LLM ani jinou neveřejnou knihovnu.
-  Provozní příkazy a závislosti udržuj v kořenovém README.
+  Provozní příkazy a závislosti udržuj v [docs/PROVOZ.md](docs/PROVOZ.md).
 - Excel spouštěj v samostatné skryté instanci, bez zásahu do otevřených
   uživatelských sešitů. Výsledek nejprve sestav a přepočítej v `tmp/`,
   teprve po úspěchu nahraď cílový sešit. Při chybě ukonči vlastní instanci

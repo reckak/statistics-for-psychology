@@ -12,7 +12,9 @@ const requireSources = args.includes('--require-sources');
 const mapRoots = ['docs/OSNOVA.md', 'docs/ZDROJE.md', 'docs/ROZHODNUTI.md'];
 const mapDirs = ['docs/kapitoly/', 'docs/zdroje/', 'docs/rozhodnuti/'];
 const isMap = file => mapRoots.includes(file) || mapDirs.some(dir => file.startsWith(dir));
-const fullCheck = file => isMap(file) || ['AGENTS.md','README.md','docs/ROZHODNUTI.md','docs/SLOVNIK.md'].includes(file);
+const entryDocs = ['README.md', 'docs/PROVOZ.md'];
+const isLinkTarget = file => isMap(file) || entryDocs.includes(file);
+const fullCheck = file => isMap(file) || entryDocs.includes(file) || ['AGENTS.md','docs/ROZHODNUTI.md','docs/SLOVNIK.md'].includes(file);
 function walk(dir) {
  return fs.readdirSync(path.join(root, dir), {withFileTypes:true}).flatMap(e =>
   e.isDirectory() ? walk(`${dir}/${e.name}`) : [`${dir}/${e.name}`]);
@@ -59,7 +61,7 @@ function resolveLink(file, url) {
 }
 const errors=[]; const cached=new Map();
 let checked=0, sourceLinks=0, omittedSources=0, incoming=0;
-for(const file of [...new Set([...maps, ...tracked])]) {
+for(const file of [...new Set([...maps, ...entryDocs, ...tracked])]) {
  const text=read(file);
  if(isMap(file)) {
   const {explicit}=anchors(text);
@@ -68,7 +70,7 @@ for(const file of [...new Set([...maps, ...tracked])]) {
  for(const {url} of links(text)) {
   let link;
   try { link=resolveLink(file,url); } catch(e) { errors.push(`${file}: invalid link ${url}`); continue; }
-  if(!link || (!fullCheck(file) && !isMap(link.target))) continue;
+  if(!link || (!fullCheck(file) && !isLinkTarget(link.target))) continue;
   checked++;
   if(!isMap(file) && isMap(link.target)) incoming++;
   if(link.target.startsWith('sources/')) {
