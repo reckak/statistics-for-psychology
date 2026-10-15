@@ -176,21 +176,24 @@ V experimentu s rušivými zvuky výzkumník záměrně mění podmínku učení
 
 S těmito názvy se setkáme také mimo experiment. V širším užití nezávislá proměnná označuje proměnnou, pomocí níž se snažíme vysvětlit nebo odhadnout hodnoty závislé proměnné. Můžeme například zkoumat, zda se počet vybavených slov liší podle zaznamenané délky spánku. Délku spánku přitom nemusíme nijak ovlivňovat. Může nás zajímat jako možná příčina rozdílů v paměti, ale také pouze jako údaj užitečný pro odhad výkonu. **Samotné pojmenování proměnných neurčuje, zda je jejich vztah příčinný.**
 
-Terminologie není jednotná. Užší pojetí spojuje nezávislou proměnnou s experimentální manipulací; širší pojetí používá tento název i pro proměnnou pouze měřenou. V literatuře proto potkáme také následující označení, která zdůrazňují různé stránky její role:
+Terminologie není jednotná. Užší pojetí spojuje nezávislou proměnnou s experimentální manipulací; širší pojetí používá tento název i pro proměnnou pouze měřenou. Různé obory navíc pojmenovávají obě role po svém. Jejich označení se zčásti překrývají, ale každé zdůrazňuje jinou stránku role: záměrnou změnu podmínek, odhad hodnot, vystavení určitému vlivu nebo užitečnost testu. @tbl-role-promennych proto ukazuje, s jakými názvy se setkáme v jednotlivých oblastech a na co si u nich dát pozor. V bodovém grafu obvykle kreslíme vysvětlující proměnnou na vodorovnou osu a výslednou proměnnou na svislou osu.
 
-::: {.table-scroll aria-label="Označení rolí proměnných"}
-| Označení | Co zdůrazňuje a na co si dát pozor |
-|---|---|
-| **Explanační proměnná (*explanatory variable*)**, česky také vysvětlující proměnná | Pomocí jejích hodnot se snažíme objasnit rozdíly v jiné proměnné. „Vysvětlení“ zde může znamenat zachycení statistického vztahu, nikoli objasnění příčiny. |
-| **Prediktor (*predictor*)** | Poskytuje informace pro odhad hodnot jiné proměnné. Navzdory běžnému významu slova „předpověď“ nemusí jít o budoucnost: můžeme například odhadovat současný výkon z jiného současného měření. |
-| **Výsledná proměnná (*outcome variable*)**, případně výsledek (*outcome*) | Proměnná, jejíž hodnoty se snažíme vysvětlit nebo odhadnout. Název sám nepotvrzuje, že je důsledkem působení jiné proměnné. |
-| **Kritérium (*criterion*, *criterion variable*)** | Označení používané například pro proměnnou, kterou předpovídáme. V psychologickém testování může zároveň znamenat měřítko, vůči němuž posuzujeme užitečnost testu, například studijní úspěšnost. |
-| **Odhadovaná (predikovaná) proměnná (*predictand*)**, také prediktand | Proměnná, jejíž hodnotu předpovídáme či odhadujeme; protějšek prediktoru. Nejde o samotnou vypočtenou předpověď, ale o proměnnou, ke které se předpověď vztahuje. |
+::: {.table-scroll tabindex="0" role="region" aria-label="Označení rolí proměnných v různých oborech"}
+| Kontext | Proměnná, pomocí níž vysvětlujeme nebo odhadujeme | Proměnná, jejíž hodnoty vysvětlujeme nebo odhadujeme | Co označení zdůrazňuje a na co si dát pozor |
+|---|---|---|---|
+| Experiment | **Nezávislá proměnná (*independent variable*)** | **Závislá proměnná (*dependent variable*)** | Hodnoty nezávislé proměnné výzkumník záměrně mění. Označení „závislá“ neznamená, že účinek už byl prokázán. |
+| Obecný popis vztahů; tato učebnice | **Vysvětlující proměnná (*explanatory variable*)**, také explanační proměnná | **Výsledná proměnná (*outcome variable*)**, také výsledek (*outcome*), vysvětlovaná proměnná nebo odezva (*response*) | Pomocí hodnot vysvětlující proměnné se snažíme objasnit rozdíly ve výsledné proměnné. „Vysvětlení“ zde může znamenat zachycení statistického vztahu, nikoli objasnění příčiny. Ani název „výsledná“ nepotvrzuje, že jde o důsledek působení jiné proměnné. |
+| Predikce a regrese | **Prediktor (*predictor*)**, také regresor (*regressor*) | **Odhadovaná (predikovaná) proměnná (*predictand*)**, také prediktand nebo regresand (*regressand*) | Navzdory běžnému významu slova „předpověď“ nemusí jít o budoucnost: můžeme odhadovat současný výkon z jiného současného měření. Odhadovaná proměnná není samotná vypočtená předpověď, ale proměnná, ke které se předpověď vztahuje. |
+| Psychologické testování | Prediktor, například výsledek přijímacího testu | **Kritérium (*criterion*, *criterion variable*)**, například studijní úspěšnost | Kritérium je proměnná, kterou předpovídáme, a zároveň měřítko, vůči němuž posuzujeme užitečnost testu. |
+| Epidemiologie a klinický výzkum | Expozice (*exposure*), rizikový faktor (*risk factor*) | Výsledek (*outcome*), cílový ukazatel (*endpoint*) | Expozici výzkumník často neovlivňuje, pouze zaznamenává, zda a jak byli lidé určitému vlivu vystaveni. Rizikový faktor souvisí s vyšším výskytem obtíže; sám o sobě nedokládá, že ji způsobuje. |
+| Strojové učení | Příznak (*feature*), vstup (*input*) | Cílová proměnná (*target*), štítek (*label*), výstup (*output*) | Důraz je na co nejpřesnější předpovědi nových případů, nikoli na vysvětlení vztahu. |
+
+: Různé obory pojmenovávají tytéž dvě role různě. Označení se zčásti překrývají, ale každé zdůrazňuje jinou stránku role a žádné samo nedokládá příčinný vztah. {#tbl-role-promennych}
 :::
 
-V této učebnici budeme pro obecné rozlišení rolí používat dvojici **explanační a výsledná proměnná**; při popisu experimentu také tradiční označení **nezávislá a závislá proměnná**. Jde o role vzhledem k určité otázce, nikoli o neměnné vlastnosti proměnných. Délka spánku může být explanační proměnnou při zkoumání paměťového výkonu a výslednou proměnnou při zkoumání souvislosti stresu se spánkem. I když nás zajímá pouze vzájemná souvislost dvou proměnných, vyplatí se o jejich rolích uvažovat, protože jejich rozlišení pomáhá formulovat vysvětlení a rozvíjet psychologickou teorii.
+V této učebnici budeme pro obecné rozlišení rolí používat dvojici **vysvětlující a výsledná proměnná**; při popisu experimentu také tradiční označení **nezávislá a závislá proměnná**. Jde o role vzhledem k určité otázce, nikoli o neměnné vlastnosti proměnných. Délka spánku může být vysvětlující proměnnou při zkoumání paměťového výkonu a výslednou proměnnou při zkoumání souvislosti stresu se spánkem. I když nás zajímá pouze vzájemná souvislost dvou proměnných, vyplatí se o jejich rolích uvažovat, protože jejich rozlišení pomáhá formulovat vysvětlení a rozvíjet psychologickou teorii.
 
-Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slovnicek.qmd#pojem-nezavisla-promenna), [závislá proměnná](slovnicek.qmd#pojem-zavisla-promenna), [explanační proměnná](slovnicek.qmd#pojem-explanacni-promenna), [prediktor](slovnicek.qmd#pojem-prediktor), [výsledná proměnná](slovnicek.qmd#pojem-vysledna-promenna), [kritérium](slovnicek.qmd#pojem-kriterium) a [odhadovaná proměnná](slovnicek.qmd#pojem-odhadovana-promenna).
+Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slovnicek.qmd#pojem-nezavisla-promenna), [závislá proměnná](slovnicek.qmd#pojem-zavisla-promenna), [vysvětlující proměnná](slovnicek.qmd#pojem-explanacni-promenna), [prediktor](slovnicek.qmd#pojem-prediktor), [výsledná proměnná](slovnicek.qmd#pojem-vysledna-promenna), [kritérium](slovnicek.qmd#pojem-kriterium) a [odhadovaná proměnná](slovnicek.qmd#pojem-odhadovana-promenna).
 
 ### Interní a externí validita {#sec-interni-externi-validita}
 
@@ -629,7 +632,7 @@ d)  Vysvětlete vlastními slovy, jak se při posuzování příčiny doplňují
 
 e)  Rozlište dvě námitky: „Skupiny dostaly různě obtížné seznamy.“ a „Nevíme, zda se účinek projeví také při učení starších lidí doma.“ Která se týká interní a která externí validity? Vyřešil by pravděpodobnostní výběr účastníků problém různých seznamů?
 
-f)  Výkon měříme počtem správně vybavených slov. Určete nezávislou a závislou proměnnou. V jiné studii pouze zaznamenáme délku spánku a počet vybavených slov. Která proměnná by byla explanační a která výsledná, pokud chceme pomocí délky spánku odhadovat paměťový výkon? Dokazuje toto rozlišení, že spánek výkon ovlivňuje?
+f)  Výkon měříme počtem správně vybavených slov. Určete nezávislou a závislou proměnnou. V jiné studii pouze zaznamenáme délku spánku a počet vybavených slov. Která proměnná by byla vysvětlující a která výsledná, pokud chceme pomocí délky spánku odhadovat paměťový výkon? Dokazuje toto rozlišení, že spánek výkon ovlivňuje?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Použili jsme náhodné přiřazení již získaných dobrovolníků do podmínek. Zadání nepopisuje pravděpodobnostní výběr z vymezené populace.
@@ -642,7 +645,7 @@ d)  Náhodné přiřazení zajišťuje, že o zařazení lidí nerozhodují jeji
 
 e)  Různě obtížné seznamy ohrožují interní validitu: případný rozdíl může způsobit obtížnost, nikoli zvuk. Otázka starších lidí a domácího prostředí se týká externí validity: potřebujeme zdůvodnit přenos závěru. Ani pravděpodobnostní výběr účastníků by neodstranil rozdíl v seznamech. Zobecnitelnost a opora pro příčinu jsou odlišné otázky.
 
-f)  V experimentu je nezávislou proměnnou podmínka učení (ticho, nebo zvuková nahrávka) a závislou proměnnou počet správně vybavených slov. Ve druhé studii je vzhledem k uvedené otázce explanační proměnnou zaznamenaná délka spánku a výslednou proměnnou počet vybavených slov. Tyto názvy vyjadřují role v otázce a analýze; samy nedokazují, že spánek způsobuje rozdíly ve výkonu. Pozorovanou souvislost mohou ovlivňovat další okolnosti, například úzkost ve zkouškovém období.
+f)  V experimentu je nezávislou proměnnou podmínka učení (ticho, nebo zvuková nahrávka) a závislou proměnnou počet správně vybavených slov. Ve druhé studii je vzhledem k uvedené otázce vysvětlující proměnnou zaznamenaná délka spánku a výslednou proměnnou počet vybavených slov. Tyto názvy vyjadřují role v otázce a analýze; samy nedokazují, že spánek způsobuje rozdíly ve výkonu. Pozorovanou souvislost mohou ovlivňovat další okolnosti, například úzkost ve zkouškovém období.
 :::
 
 ### Úloha 5: Co je „dobrá paměť“ {#sec-uloha-01-5}
