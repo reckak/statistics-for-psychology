@@ -35,6 +35,8 @@ závisí statistická síla; provést binomický test a z-test; zformulovat
 rozhodnutí testu i věcnou interpretaci, vyjádřit velikost účinku v původních
 jednotkách a odlišit statistickou, věcnou a praktickou významnost.
 
+**Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_06.qmd#sec-shrnuti-06) (osm myšlenek s odkazy na oddíly), dva bloky „Častý omyl“ (`.callout-warning`: větší výběr „neznormální“ data v [mezích věty](../../quarto/kapitola_06.qmd#sec-clv-meze), nezamítnutí není důkazem, že rozdíl není, v [nezamítnutí](../../quarto/kapitola_06.qmd#sec-nezamitnuti)) a jedno „Připomenutí“ (`.callout-tip`: co zákon velkých čísel neslibuje, se zpětným odkazem do kapitoly 5); rozděleny vybrané věty nad zhruba 35 slov. Oddíl cvičení se jmenuje „Cvičení“ místo „Samostatná cvičení“ (ID beze změny). Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
+
 <a id="skutečný-obsah-oddílů-5"></a>
 
 ### Skutečný obsah oddílů
@@ -85,7 +87,7 @@ pořadí schválenému v R28; řádky tabulky sledují jejich pododdíly.
 | [Rozhodnutí učiněná až podle dat](../../quarto/kapitola_06.qmd#sec-volby-po-datech) | Dodatečný výběr analýzy a zastavování sběru podle průběžné p-hodnoty; čtyři zásady poctivého zacházení s testy. | 7c, 9d, 12d. |
 | [Nepovinné: test jako screening](../../quarto/kapitola_06.qmd#rozsireni-test-screening) | Obdoba senzitivita–síla, falešně pozitivní výsledek–α, prevalence–podíl skutečných rozdílů. Tisíc výzkumů: 45 ze 125 zamítnutí při platné nulové hypotéze (0,36); závislost na základní četnosti a síle. | 14. |
 | [Nepovinné: dvě tradice testování](../../quarto/kapitola_06.qmd#rozsireni-dve-tradice) | Fisher; Neyman a Pearson; co z které tradice zůstalo v dnešní praxi. Návrh Jonese a Tukeyho jen zmínkou s jeho předpokladem. | Bez cvičení. |
-| [Shrnutí](../../quarto/kapitola_06.qmd#sec-shrnuti-06) | Výběrové rozdělení; směrodatná chyba a obě věty; test; dva kroky závěru. | Souhrnně 1–12. |
+| [Shrnutí](../../quarto/kapitola_06.qmd#sec-shrnuti-06) | Osm odkazovaných myšlenek: kolísání statistiky, výběrové rozdělení a jeho odlišení, směrodatná chyba a zákon velkých čísel, centrální limitní věta, hypotézy, p-hodnota, dvě chyby a nezamítnutí, dva kroky závěru. | Souhrnně 1–12. |
 
 <a id="příklady-vizualizace-a-soubory-4"></a>
 

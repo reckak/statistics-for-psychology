@@ -29,6 +29,8 @@ popsat diskrétní rozdělení pravděpodobnosti a odlišit je od dat a hustoty;
 použít binomický model ručně i v Excelu a posoudit jeho předpoklady;
 použít normální aproximaci a posoudit její přesnost.
 
+**Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_05.qmd#sec-shrnuti-05) (osm myšlenek s odkazy na oddíly), blok „Častý omyl“ (`.callout-warning`) o záměně P(A | B) a P(B | A) v [podmíněné pravděpodobnosti](../../quarto/kapitola_05.qmd#sec-podminena); rozděleny vybrané věty nad zhruba 35 slov. Oddíl cvičení se jmenuje „Cvičení“ místo „Samostatná cvičení“ (ID beze změny). Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
+
 <a id="skutečný-obsah-oddílů-4"></a>
 
 ### Skutečný obsah oddílů
@@ -67,7 +69,7 @@ sloupec určuje konkrétní **procvičení**.
 | [Právě, nejvýše, alespoň](../../quarto/kapitola_05.qmd#sec-binom-kumulace) | List `Binom_20` s pevným n = 20, měnitelnými B3:B5 a navázanými popisky; doplněk „alespoň 10“ je „nejvýše 9“; BINOM.DIST.RANGE a BINOM.INV; KDYŽ vysvětleno znovu pro ošetření krajních vstupů, bez předpokladu znalosti nepovinné části kapitoly 3. Co výsledek říká a co ne: nedokazuje znalost, neobrací podmínku, platí za předpokladů modelu. Právě devět versus alespoň devět z deseti (podle Howella). | 10c–d. |
 | [Normální aproximace](../../quarto/kapitola_05.qmd#sec-aproximace-postup) a [její přesnost](../../quarto/kapitola_05.qmd#sec-aproximace-presnost) | Orientační podmínka deseti očekávaných úspěchů i neúspěchů (mírnější varianta zmíněna); čtyři kroky pro 135 a více z 200. Přesná hodnota 0,0173, aproximace 0,0152 (přibližně o 12 % nižší), od hranice 134,5 hodnota 0,0182; selhání při n = 20, π = 0,25. Úprava hranice je popsána bez pojmenování. | 11a–c. |
 | [Od počtu k podílu](../../quarto/kapitola_05.qmd#sec-od-poctu-k-podilu) | p = k/n jako změna jednotky; střední hodnota π a směrodatná odchylka √[π(1 − π)/n]; stejný z-skór; čtyřnásobek pokusů půlí kolísání. | 11d. |
-| [Shrnutí](../../quarto/kapitola_05.qmd#sec-shrnuti-05) | Pravidla, obrácení podmínky, model versus data; pravděpodobnost výsledku za modelu není pravděpodobnost modelu. | Souhrnně 1–12. |
+| [Shrnutí](../../quarto/kapitola_05.qmd#sec-shrnuti-05) | Osm odkazovaných myšlenek: pojetí pravděpodobnosti, jev a doplněk, sjednocení a průnik, podmínka a nezávislost, Bayesova věta, rozdělení jako model, binomický model, normální aproximace a podíl; pravděpodobnost výsledku za modelu není pravděpodobnost modelu. | Souhrnně 1–12. |
 
 <a id="příklady-vizualizace-a-soubory-3"></a>
 

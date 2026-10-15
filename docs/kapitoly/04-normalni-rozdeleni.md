@@ -20,6 +20,8 @@ převádět hodnoty a modelové podíly oběma směry; používat standardní sk
 steny/staniny; sestavit a interpretovat Q–Q graf a společně s kontextem
 a histogramem posoudit přiměřenost modelu.
 
+**Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_04.qmd#sec-shrnuti-04) (sedm myšlenek s odkazy na oddíly), blok „Častý omyl“ (`.callout-warning`) o konvenci zápisu N(μ, σ²) v [parametrech](../../quarto/kapitola_04.qmd#sec-parametry-normalniho); rozděleny vybrané věty nad zhruba 35 slov. Oddíl cvičení se jmenuje „Cvičení“ místo „Samostatná cvičení“ (ID beze změny). Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
+
 <a id="skutečný-obsah-oddílů-3"></a>
 
 ### Skutečný obsah oddílů
@@ -44,7 +46,7 @@ a histogramem posoudit přiměřenost modelu.
 | [Princip Q–Q](../../quarto/kapitola_04.qmd#sec-qq-graf) | Teoretický normální kvantil na X, seřazený skór na Y; nikoli dvojice měření dvou vlastností. Přímka m + sz plyne ze změny měřítka, nemusí mít úhel 45°. Náhodné odchylky a slabá informace z malého souboru. | 9–10. |
 | [Tvorba Q–Q v Excelu](../../quarto/kapitola_04.qmd#sec-excel-qq) | Dvanáct seřazených skórů; středy pořadových dílků p = (i − 0,5)/n, NORM.S.INV a přímka. Teoretický kvantil není standardizovaný pozorovaný skór; postup není PERCENTIL.INC ani percentilové pořadí. Bodový XY graf se dvěma řadami a přesně určenými osami. | 9; povinná dovednost. |
 | [Čtení odchylek](../../quarto/kapitola_04.qmd#sec-qq-odchylky) a závěr oddílu o přiměřenosti | Čtyři dvojice histogram/Q–Q pro 200 simulovaných hodnot: normální tvar, rozdělení zešikmené doprava, těžší chvosty a směs. Uveden i opačný směr u kratších chvostů. Graf neověřuje reprezentativnost, měření ani nezávislost; větší n nenormalizuje hodnoty. | 10 výslovně těžší chvosty i rozdělení zešikmené doprava; směs je řešenou ilustrací. |
-| [Shrnutí](../../quarto/kapitola_04.qmd#sec-shrnuti-04) | Relativní poloha, dodatečný modelový předpoklad a meze interpretace; neobvyklost není sama klinická závažnost. | Souhrnně 1–10. |
+| [Shrnutí](../../quarto/kapitola_04.qmd#sec-shrnuti-04) | Sedm odkazovaných myšlenek: z-skór a standardizace, normální model jako předpoklad, plocha, oba převody v Excelu, standardní skóry a pásma, přiměřenost modelu; neobvyklost není sama klinická závažnost. | Souhrnně 1–10. |
 
 <a id="příklady-vizualizace-a-soubory-2"></a>
 

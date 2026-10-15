@@ -2940,3 +2940,46 @@ takže příchozí odkazy zůstávají funkční; ruční porovnání se starým
 oddíl po oddílu a kontrola výskytu klíčových pojmů, cest a odkazů.
 `node scripts/check-doc-maps.cjs --require-sources` a `git diff --check`
 prošly bez chyb. Studentský výklad se nemění, nový render nebyl potřeba.
+
+## Kapitoly 3–6: provedení pravidel čitelnosti (2026-10-15)
+
+Provedení [R38](../docs/rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)
+v kapitolách 3–6 beze změny odborného obsahu, terminologie, dat a cvičení;
+nové rozhodnutí nevzniklo. Autor v témže úkolu zvolil převést vybrané
+existující odstavce na nové typy bloků a v kap. 4–6 sjednotit názvy
+závěrečných oddílů.
+
+- **Úvody hlavních oddílů:** doplněno 35 úvodů o jedné až dvou větách
+  (otázka oddílu a návaznost) tam, kde oddíl začínal rovnou pododdílem,
+  definicí nebo příkladem (kap. 3: 9, kap. 4: 7, kap. 5: 8, kap. 6: 11).
+- **Shrnutí:** kap. 3 má nový oddíl `sec-shrnuti-03`; v kap. 4–6 je
+  „Co si z kapitoly odnést“ přejmenováno na „Shrnutí“ a souvislý text převeden
+  na 7–8 odrážek s odkazy na oddíly (ID zachována). Věcně přebírá dřívější
+  shrnutí, v kap. 3 výklad kapitoly.
+- **Bloky:** „Častý omyl“ (`.callout-warning`) kap. 3 ×2, kap. 4, kap. 5,
+  kap. 6 ×2; „Připomenutí“ (`.callout-tip`) kap. 3 a kap. 6. Vznikly
+  z existujících odstavců; první věty byly upraveny, aby blok obstál
+  samostatně. Nepovinná rozšíření beze změny.
+- **Dlouhé věty:** rozděleno 7 vět nad 35 slov (kap. 3: 1, kap. 4: 1,
+  kap. 5: 1, kap. 6: 4). Zbylé nálezy kontrolního výpočtu jsou výčty dat,
+  ukázka zápisu APA nebo chybné dělení vět skriptem.
+- **Cvičení:** „Samostatná cvičení“ → „Cvičení“ v kap. 4–6 (ID zachována).
+- Karty kapitol 3–6 doplněny o datovaný záznam a řádek Shrnutí.
+
+Didaktická revize: čtení očima začátečníka samostatným agentem nad všemi
+změnami. Opraveny jeho nálezy: tři bloky závislé na okolním textu (kap. 5
+obrácení podmínky, kap. 6 nezamítnutí a připomenutí zákona velkých čísel,
+kde nové tvrzení o zkresleném výběru zůstalo mimo blok připomenutí),
+zdvojený text v kap. 3, chybějící entropie ve shrnutí kap. 3 a předčasně
+použitý pojem v úvodu oddílu kap. 4. Ponecháno: titulek „Častý omyl“
+u konvence N(μ, σ²) v kap. 4 (studenti ji při čtení jiných zdrojů zaměňují).
+
+Kontroly: celá kniha vykreslena; `check-html.cjs`,
+`check-doc-maps.cjs --require-sources` a `git diff --check`. Kontrola
+odstraněných řádků potvrdila, že ubyly jen přeformulované či přesunuté věty.
+
+Omezení: povinná část kap. 3 a 6 přesahuje orientačních 12 000 slov
+(soubory mají přibližně 18 000 a 22 000 slov včetně cvičení a rozšíření);
+zkrácení by měnilo obsah, a proto se v tomto úkolu neprovádí. Hustota nových
+pojmů v pododdílech nebyla systematicky přepočítána. Shrnutí kap. 1–2 zůstávají
+souvislým textem. Interní revize, neověřená na studentech.
