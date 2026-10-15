@@ -295,14 +295,18 @@ Podobně deset správně vybavených slov je dvojnásobný počet oproti pěti. 
 Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psychické obtíže. Vlastnost záznamu nesmíme bez argumentu přenést na vlastnost člověka.
 :::
 
-::: table-scroll
-| Úroveň měření | Co potřebujeme zdůvodnit | Co z toho samo neplyne |
-|------------------------|------------------------|------------------------|
-| Nominální | Hodnoty rozlišují kategorie | Pořadí podle množství vlastnosti |
-| Ordinální | Hodnoty vyjadřují i pořadí | Rovnost rozdílů mezi kategoriemi |
-| Intervalová | Stejné rozdíly reprezentují stejné změny veličiny | Smysluplnost poměrů hodnot |
-| Poměrová | Rozdíly i poměry mají význam vzhledem k určenému nulovému bodu | Stejné vlastnosti u jiného konstruktu, který ukazatelem zkoumáme |
+::: {.table-scroll tabindex="0" role="region" aria-label="Souhrn úrovní měření"}
+| Úroveň měření | Co potřebujeme zdůvodnit | Které výroky mají smysl | Co z toho samo neplyne | Příklady |
+|---|---|---|---|---|
+| Nominální | Hodnoty rozlišují kategorie | Stejná, nebo odlišná kategorie (=, ≠); kolik případů patří do které kategorie | Pořadí podle množství vlastnosti | Podmínka experimentu (ticho / rušivé zvuky); obor studia |
+| Ordinální | Hodnoty vyjadřují i pořadí | Navíc vyšší, nebo nižší (<, >) | Rovnost rozdílů mezi kategoriemi | Odpověď vůbec / trochu / dost / zcela; věková pásma; pořadí v soutěži |
+| Intervalová | Stejné rozdíly reprezentují stejné změny veličiny | Navíc o kolik se hodnoty liší a zda jsou dva rozdíly stejné | Smysluplnost poměrů hodnot | Teplota ve °C; kalendářní rok narození |
+| Poměrová | Rozdíly i poměry mají význam vzhledem k určenému nulovému bodu | Navíc kolikrát je jedna hodnota větší než druhá | Stejné vlastnosti u jiného konstruktu, který ukazatelem zkoumáme | Doba spánku; počet správně vybavených slov; doba reakce |
+
+: Každá další úroveň měření přidává k předchozím jeden věcně interpretovatelný vztah hodnot. Příklady se týkají zaznamenaných údajů, nikoli konstruktů, které jimi zkoumáme. {#tbl-urovne-shrnuti}
 :::
+
+Skóry psychologických testů a dotazníků, například IQ nebo součet odpovědí na stupnici souhlasu, v @tbl-urovne-shrnuti záměrně neuvádíme. Zda je lze vykládat intervalově, rozebíráme v [oddílu o psychologických skórech](#sec-kvaziintervalove).
 
 Čtyři úrovně můžeme shrnout také otázkou: **Jak můžeme změnit číselný zápis, aniž bychom změnili věcnou informaci, kterou má zachycovat?** Na tomto rozlišení stojí klasické vymezení úrovní měření [@stevens1946, s. 677–679].
 
