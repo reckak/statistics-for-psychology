@@ -17,6 +17,8 @@ Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficie
 
 ## Co souhrnné ukazatele zachycují {#sec-poloha-variabilita}
 
+Než začneme počítat, ujasníme si, které dvě vlastnosti rozdělení budeme souhrnnými čísly popisovat. Odlišíme také číslo vypočtené z dat od charakteristiky populace.
+
 **Ukazatele polohy (*measures of location*)** vyjadřují, kde se rozdělení na škále nachází; při popisu jeho středu se používá také označení ukazatele střední (centrální) tendence. **Ukazatele variability (*measures of variability, measures of dispersion*)** zachycují, jak se hodnoty navzájem liší, například jak široce jsou rozloženy nebo jak daleko bývají od určitého středu. Vypočítané charakteristice výběru říkáme také **statistika (*statistic*)**. Toto užití slova odlišíme od statistiky (v ang. ***statistics*** se „s“ na konci) jako oboru [@howell, oddíly 2.7–2.8].
 
 Číselnou charakteristiku celé populace nebo modelu označujeme jako **parametr (*parameter*)**. Rozlišujme například průměr vypočtený u účastníků studie (výběrový průměr) a průměr v populaci (populační průměr), o kterou se zajímáme. Výběrová statistika může sloužit k odhadu populačního parametru, ale její konkrétní hodnota závisí na získaných datech. K významu modelu se [vrátíme na konci výkladu](#sec-popis-a-model).
@@ -28,6 +30,8 @@ V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však v
 Význam čísel závisí také na úrovni měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nemusí vyjadřovat přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
 
 ## Tři způsoby vyjádření středu {#sec-stred-rozdeleni}
+
+Kde na škále leží „typický“ výsledek? Na tuto otázku nabízejí modus, medián a průměr tři různé odpovědi; každá vystihuje jiný význam slova střed.
 
 Průběžný malý příklad obsahuje doby dokončení úlohy měřící pozornost u pěti účastníků, v minutách:
 
@@ -105,7 +109,11 @@ Při volbě proto společně zvažujeme **otázku, úroveň měření a tvar roz
 
 ### Střed a tvar rozdělení {#sec-stred-tvar}
 
-Jak spolu souvisejí polohy průměru, mediánu a modu, když změníme tvar rozdělení? Připomeňme si [souměrnost a směr zešikmení](kapitola_02.qmd#sec-tvar-rozdeleni). Směr zešikmení pojmenováváme podle **delšího (těžšího) chvostu**, tedy podle strany, do níž rozdělení vybíhá k vzdálenějším hodnotám; nikoli podle strany, kde leží vrchol.
+Jak spolu souvisejí polohy průměru, mediánu a modu, když změníme tvar rozdělení?
+
+::: {.callout-tip title="Připomenutí: souměrnost a směr zešikmení"}
+Směr zešikmení pojmenováváme podle **delšího (těžšího) chvostu**, tedy podle strany, do níž rozdělení vybíhá k vzdálenějším hodnotám; nikoli podle strany, kde leží vrchol. Podrobněji viz [výklad tvaru rozdělení](kapitola_02.qmd#sec-tvar-rozdeleni).
+:::
 
 U **přesně souměrného rozdělení s jediným vrcholem ve středu** (horní graf) leží průměr, medián i modus na stejném místě. Protilehlé hodnoty se při výpočtu průměru vyvažují, medián odděluje obě poloviny a modus označuje vrchol. V reálném souboru, který je pouze přibližně souměrný, očekáváme spíše blízkost těchto ukazatelů než jejich přesnou shodu. Samotná souměrnost také nezaručuje jediný modus: souměrné rozdělení se dvěma vrcholy může mít mody po obou stranách středu.
 
@@ -117,7 +125,7 @@ Při **zešikmení doprava** (spodní graf) je situace zrcadlová: vzdálené vy
 
 Hladká křivka znázorňuje tvar rozdělení; větší plocha pod ní v určitém rozmezí znamená větší podíl výsledků v tomto rozmezí. Modus zde označuje polohu vrcholu křivky, medián dělí její plochu na poloviny a průměr zohledňuje polohu všech výsledků. Barvy i typy čar rozlišují ukazatele.
 
-**Pořadí z obrázku nepoužívejme jako definici ani jako neomylný test šikmosti.** Průměr ovlivňuje nejen vzdálenost krajních hodnot, ale i to, kolik hodnot leží na které straně. Výjimky z obvyklého pořadí se nejčastěji objevují u diskrétních proměnných s několika možnými hodnotami, například u počtů. Méně často a méně výrazně je najdeme i u jednovrcholových spojitých rozdělení [@vonHippel2005, oddíly 2–3]. Dva vlastní modelové příklady ukazuje @fig-stred-vyjimky; jejich četnosti najdete v [sešitu ke kapitole](../data/kapitola_03.xlsx) na listu `Vyjimky_stredu` v A2:D6.
+Obvyklé pořadí z obrázku však neplatí vždy. Průměr ovlivňuje nejen vzdálenost krajních hodnot, ale i to, kolik hodnot leží na které straně. Výjimky z obvyklého pořadí se nejčastěji objevují u diskrétních proměnných s několika možnými hodnotami, například u počtů. Méně často a méně výrazně je najdeme i u jednovrcholových spojitých rozdělení [@vonHippel2005, oddíly 2–3]. Dva vlastní modelové příklady ukazuje @fig-stred-vyjimky; jejich četnosti najdete v [sešitu ke kapitole](../data/kapitola_03.xlsx) na listu `Vyjimky_stredu` v A2:D6.
 
 ![Dvě výjimky z obvyklého pořadí ukazatelů středu. Obě modelová rozdělení mají jediný vrchol a delší pravý chvost. Shodné ukazatele jsou kresleny těsně vedle sebe, aby byly vidět všechny tři čáry.](../assets/chapter-03/plots/stred-vyjimky.svg){#fig-stred-vyjimky fig-alt="Dva sloupcové grafy četností. A: počet pokusů do splnění úlohy u 100 lidí; jeden pokus 38 lidí, dva pokusy 49, tři 8, čtyři 3 a pět 2. Delší chvost je vpravo, přesto průměr 1,82 leží pod mediánem a modem 2. B: počet chyb u 20 lidí; žádná chyba 8 lidí, jedna 7, dvě 3, tři 1 a čtyři 1. Modus je 0, průměr i medián jsou 1, přestože rozdělení není souměrné."}
 
@@ -125,7 +133,9 @@ Hladká křivka znázorňuje tvar rozdělení; větší plocha pod ní v určit�
 
 **V panelu B** neudělalo v krátkém testu pozornosti žádnou chybu 8 z 20 lidí, jednu chybu 7 lidí, dvě chyby 3 lidé a po jednom člověku tři a čtyři chyby. Rozdělení zjevně není souměrné: vlevo končí nulou, vpravo sahá ke čtyřem chybám. Přesto se průměr rovná mediánu, obojí je 1 chyba. Vzhledem k jedničce leží osm nul celkem o 8 chyb níže a hodnoty nad ní celkem o $3\times1+1\times2+1\times3=8$ chyb výše; obě strany se přesně vyváží. Shoda průměru a mediánu tedy sama nedokazuje souměrnost.
 
-Pro posouzení tvaru proto vždy potřebujeme graf celého rozdělení; pořadí tří ukazatelů je jen doplňkovým vodítkem.
+::: {.callout-warning title="Častý omyl: pořadí středů jako test šikmosti"}
+Z pořadí průměru a mediánu nelze spolehlivě vyčíst tvar: průměr může ležet pod mediánem i při delším pravém chvostu (panel A) a jejich shoda neprokazuje souměrnost (panel B). Pro posouzení tvaru proto vždy potřebujeme graf celého rozdělení; pořadí tří ukazatelů je jen doplňkovým vodítkem.
+:::
 
 ### Průměr více skupin {#sec-vazeny-prumer}
 
@@ -179,7 +189,9 @@ Nejprve hodnoty seřadíme vzestupně podle velikosti. Zápis $x_{(i)}$ označuj
 
 Mezi jedenácti pozicemi je **deset mezer**. Naše interpolační konvence přiřadí první hodnotě úroveň 0 % a poslední 100 %; mezi sousedními pozicemi proto postupujeme vždy o deset procentních bodů. Druhá hodnota je v této konvenci 10% kvantilem čili 10. percentilem, třetí 20% kvantilem čili 20. percentilem a tak dále. Mezi časy samotnými však stejně velké rozdíly být nemusejí: z 5 na 7 minut jsou to dvě minuty, ze 7 na 8 pouze jedna.
 
+::: {.callout-warning title="Častý omyl: úrovně kvantilů jako podíly lidí"}
 **Nejde o rozdělení pozorování na deset skupin po 10 %.** Procenta ve třetím sloupci jsou úrovně přiřazené pozicím pro výpočet kvantilů. Každý člověk zde tvoří $1/11$ souboru, tedy přibližně 9,1 %. Například nejvýše 5 minut potřebovali dva z jedenácti lidí, přibližně 18,2 %, přestože času 5 minut je pro interpolaci přiřazena úroveň 10 %.
+:::
 
 Pro libovolný počet hodnot větší než jedna odpovídá pozici $i$ úroveň
 
@@ -296,6 +308,8 @@ Při interpretaci norem psychologického testu proto vždy potřebujeme znát po
 
 ## Rozpětí celého souboru a jeho prostřední části {#sec-rozpeti}
 
+Od polohy se nyní obracíme k variabilitě: jak široce jsou hodnoty rozloženy? Nejjednodušší odpovědi poskytují vzdálenosti mezi krajními hodnotami a mezi kvartily z předchozího oddílu.
+
 **Minimum (*minimum*)** je nejmenší pozorovaná hodnota, **maximum (*maximum*)** největší. Nezaměňujeme je s nejnižší a nejvyšší možnou hodnotou měřicího nástroje. **Variační rozpětí (*range*)** zde znamená rozdíl maxima a minima. U pěti dob je to $10-4=6$ minut. Interval od 4 do 10 minut popisuje obě krajní hodnoty, zatímco jeho šířka 6 minut je jedno číslo.
 
 Rozpětí využívá pouze dvě krajní hodnoty. Nahradíme-li 10 hodnotou 30, vzroste na $30-4=26$ minut. Pokud k souboru přidáváme další pozorování, jeho rozpětí se nemůže zmenšit. Každá nová hodnota totiž leží buď uvnitř dosavadního rozmezí, tedy mezi minimem a maximem včetně nich, nebo mimo ně. V prvním případě zůstanou minimum i maximum stejné a rozpětí se nezmění. Ve druhém se nová hodnota stane novým minimem či maximem a rozpětí vzroste. Zmenšit by se mohlo jen tehdy, kdybychom některou krajní hodnotu odebrali. Pokud bychom například k našim pěti dobám přidali 7 minut, rozpětí zůstane 6 minut; přidáním 12 minut vzroste na $12-4=8$ minut. Pro dva samostatné pravděpodobnostní výběry ale nemusí nutně platit, že „větší soubor = větší rozpětí“; jde o tendenci při opakovaném výběru ze stejné populace, nikoli záruku u konkrétní dvojice souborů.
@@ -309,6 +323,8 @@ Pro naše data je to $6-5=1$ minuta. Zachycuje šířku prostřední části roz
 Kvartily lze určit i u ordinálních kategorií, ale **jejich číselný rozdíl vyžaduje smysluplné vzdálenosti na škále**. Rozdíl kódů dvou slovních odpovědí není automaticky měřitelnou velikostí variability.
 
 ## Odchylky, rozptyl a směrodatná odchylka {#sec-odchylky-rozptyl}
+
+Rozpětí využívá jen dvě hodnoty. Nyní hledáme ukazatel variability, do něhož přispěje každé pozorování svou vzdáleností od průměru.
 
 ### Proč průměr odchylek nestačí {#sec-odchylky}
 
@@ -415,6 +431,8 @@ Nestrannost rozptylu se automaticky nepřenáší na jeho odmocninu. V simulaci 
 
 ## Odolnější shrnutí: medián odchylek, ořezání a winsorizace {#sec-odolne-shrnuti}
 
+Průměr i směrodatná odchylka citlivě reagují na vzdálené hodnoty. Tento oddíl ukazuje tři postupy, které jejich vliv omezují, a vysvětluje, kdy jsou vhodné.
+
 ### Medián absolutních odchylek od mediánu {#sec-median-absolutnich}
 
 Chceme-li omezit vliv několika vzdálených pozorování, můžeme zvolit střed i typickou vzdálenost pomocí mediánu. **Medián absolutních odchylek od mediánu (*median absolute deviation about the median*, MedAD)** vypočteme ve třech krocích: určíme medián dat, spočítáme absolutní vzdálenost každé hodnoty od tohoto mediánu a vezmeme medián získaných vzdáleností [@nistScale; @rMad].
@@ -431,7 +449,7 @@ Zde vždy uvádíme **nepřepočtený** medián absolutních odchylek. Některý
 
 Další možností je upravit příspěvek krajních hodnot. **Ořezání (*trimming*)** při výpočtu dané statistiky vynechá předem určený počet nejnižších a nejvyšších hodnot. **Winsorizace (*winsorization*)** tyto hodnoty nevynechá, ale pro výpočet je nahradí nejbližšími ponechanými hodnotami. Původní data v obou případech uchováme [@howell, s. 35 a 39].
 
-V této učebnici se **procentní úroveň ořezání či winsorizace vztahuje ke každému konci zvlášť**: 10% ořezání znamená vynechat 10 % nejnižších i 10 % nejvyšších hodnot, tedy celkem 20 %, pokud tyto podíly odpovídají celým počtům. U winsorizace stejný počet hodnot na obou koncích nahrazujeme: nejnižší hodnoty nejnižší ponechanou hodnotou a nejvyšší hodnoty nejvyšší ponechanou hodnotou. Jiné zdroje mohou udávat celkový podíl nebo používat jiné zaokrouhlení, proto konvenci vždy uvedeme [@rMean; @scipyWinsorize].
+V této učebnici se **procentní úroveň ořezání či winsorizace vztahuje ke každému konci zvlášť**: 10% ořezání znamená vynechat 10 % nejnižších i 10 % nejvyšších hodnot, celkem tedy 20 %. To platí, pokud tyto podíly odpovídají celým počtům. U winsorizace stejný počet hodnot na obou koncích nahrazujeme: nejnižší hodnoty nejnižší ponechanou hodnotou a nejvyšší hodnoty nejvyšší ponechanou hodnotou. Jiné zdroje mohou udávat celkový podíl nebo používat jiné zaokrouhlení, proto konvenci vždy uvedeme [@rMean; @scipyWinsorize].
 
 **Nejprve spočítáme počet pro jeden konec a zaokrouhlíme jej dolů.** Například při 10% ořezání 18 hodnot je $0{,}10\times18=1{,}8$. Na každém konci tedy vynecháme **jednu** hodnotu, nikoli dvě. Celkem odstraníme dvě z osmnácti, tedy přibližně 11,1 %, a průměrujeme zbývajících 16. Při stejné winsorizaci jednu nejnižší hodnotu nahradíme druhou nejnižší a jednu nejvyšší druhou nejvyšší; průměrujeme všech 18. U pěti hodnot dává 10 % pouze 0,5, po zaokrouhlení dolů nulu: podle tohoto pravidla se neupraví žádná hodnota.
 
@@ -460,6 +478,8 @@ V @fig-orezani-winsorizace zachovávají políčka původní pořadové pozice; 
 Ořezání ani winsorizaci nevolíme dodatečně proto, aby vyšel žádoucí výsledek. Ve zprávě uvedeme pravidlo a důvod použití. Oba postupy omezují vliv krajních hodnot, ale obecně také mění to, kterou charakteristiku populace chceme vystihnout. Ořezaný průměr například při zešikmeném rozdělení nemusí odhadovat totéž, co běžný průměr. Pokud je otázkou celkový čas potřebný pro všechny účastníky, dlouhé platné časy nelze prostě „odsunout“ jako nepodstatné.
 
 ## Krabicový graf {#sec-boxplot}
+
+Jak zobrazit medián, kvartily a vzdálené hodnoty v jediném obrázku? Krabicový graf spojuje kvartily z [oddílu o kvantilech](#sec-kvantily) s pravidlem pro označení neobvyklých pozorování.
 
 **Krabicový graf (*boxplot, box-and-whisker plot*)** zobrazuje medián, kvartily a další informace o variabilitě. Je úsporný při porovnávání několika skupin, ale nemusí zachytit všechny vlastnosti rozdělení. Nemusí z něj být patrné například to, že rozdělení má dva vrcholy místo jednoho [@howell, s. 47–50].
 
@@ -518,6 +538,8 @@ Počet $k$ zde zahrnuje **všechny předem vymezené možné kategorie**, i ty s
 :::
 
 ## Co mění posun a změna jednotek {#sec-zmena-skaly}
+
+Co se stane se statistikami, když ke všem hodnotám něco přičteme nebo je převedeme do jiných jednotek? Odpověď umožní předpovědět výsledek bez nového výpočtu a odlišit skutečnou změnu variability od pouhé změny jednotky.
 
 **Transformace (*transformation*)** je pravidlo, podle něhož každou původní hodnotu převedeme na novou. **Lineární transformace (*linear transformation*)** má v běžném statistickém vyjadřování podobu
 
@@ -633,6 +655,8 @@ Rozdělení lze také popisovat přímo pomocí četností a kvantilů, bez volb
 
 ## Nepovinné rozšíření: momentová šikmost a špičatost {#sec-momenty}
 
+Tvar rozdělení jsme dosud posuzovali z grafu. Nepovinný oddíl ukazuje, jak lze šikmost a špičatost shrnout také čísly a proč je třeba takové koeficienty vykládat opatrně.
+
 ::: {#rozsireni-momenty .callout-note collapse="true" title="Nepovinné rozšíření: princip, výpočty a meze interpretace"}
 Průměry mocnin hodnot nebo jejich odchylek označujeme jako **momenty (*moments*)**. **Řád momentu (*order of a moment*) říká, kterou mocninu průměrujeme:** první řád používá první mocninu (samotnou hodnotu), druhý její čtverec, třetí třetí mocninu a tak dále.
 
@@ -686,6 +710,8 @@ Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; varia
 :::
 
 ## Výpočty v Excelu {#sec-excel-poloha}
+
+Jak provést výpočty z této kapitoly rychle i u většího souboru? Oddíl ukazuje odpovídající funkce Excelu; ruční postup z předchozích oddílů pomáhá jejich výsledkům rozumět.
 
 Otevřete [sešit ke kapitole](../data/kapitola_03.xlsx). List `Priklad` obsahuje v **A2:A6** časy 4, 5, 5, 6, 10 minut, v řádku 1 je záhlaví. List `Souhrn` shrnuje známá data o spánku a paměti z listu `Data`; list `Rozsireni` ukazuje entropii a momentové výpočty. Samostatné vstupy pro [výpočet kvantilů](#sec-vypocet-kvantilu) jsou na listu `Kvantily` v A2:A12, pro [ořezání a winsorizaci](#sec-orezani-winsorizace) na listu `Orezani` v A2:A11 a pro [krabicový graf](#sec-boxplot) na listu `Boxplot` v A2:A42. List `Kontrola_prikladu` z těchto vstupů přebírá hodnoty a počítá kontrolní výsledky. Pět základních časů bez hotových výpočtů najdete na listu `Zaklad_data` v A2:A6. Další příklady i cvičení mají vlastní listy uvedené v přehledu. Číselné buňky obsahují čísla, jednotky jsou v popiscích. Žluté vstupy lze měnit, modré buňky obsahují výpočty. Prázdné údaje o spánku zůstávají prázdné.
 
@@ -749,6 +775,19 @@ Pro tvar průběžného příkladu jsou na listu `Priklad` ve F2:F6 třetí mocn
 
 **SKEW.P (*SKEW.P*)**, **SKEW (*SKEW*)** a **KURT (*KURT*)** přijímají oblast číselných dat. První odpovídá základnímu koeficientu, druhá a třetí výběrovým korekcím uvedeným v rozšíření. KURT už obsahuje odečtení odpovídající referenční normální hodnotě; další trojku od jeho výsledku neodečítáme. Při nulové variabilitě nejsou tyto koeficienty definovány [@msSkewP; @msSkew; @msKurt].
 ::::
+
+## Shrnutí {#sec-shrnuti-03}
+
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
+
+- Modus, medián a průměr odpovídají na různé otázky: co je nejčastější, kde leží prostředek uspořádaných hodnot a kolik připadá na jeden případ. Volbu řídí otázka, úroveň měření a tvar rozdělení ([Tři způsoby vyjádření středu](#sec-stred-rozdeleni)).
+- Kvantily číselných dat počítáme lineární interpolací; výsledek nemusí být pozorovanou hodnotou ani oddělit přesně dané procento dat. U ordinálních kategorií vybíráme první kategorii, u níž kumulativní podíl dosáhne zvolené úrovně. Percentilové pořadí odpovídá na opačnou otázku ([Kvartily, percentily a kvantily](#sec-kvantily)).
+- Rozptyl a směrodatná odchylka shrnují vzdálenosti od průměru pomocí čtverců odchylek. Při odhadu populačního rozptylu z výběru dělíme $n-1$; směrodatná odchylka vrací výsledek do původních jednotek ([Odchylky, rozptyl a směrodatná odchylka](#sec-odchylky-rozptyl)).
+- Medián absolutních odchylek, ořezaný a winsorizovaný průměr omezují vliv krajních hodnot. Pravidlo volíme předem podle otázky, nikoli podle žádoucího výsledku ([Odolnější shrnutí](#sec-odolne-shrnuti)).
+- Variabilitu nominálních kategorií popisují četnosti; jedním souhrnným ukazatelem je entropie, nulová při úplné koncentraci a pro daný počet kategorií nejvyšší při jejich rovnoměrném zastoupení ([Variabilita kategorií a entropie](#sec-entropie)).
+- Krabicový graf ukazuje medián, kvartily a pozorování za mezemi vzdálenými 1,5 IQR od kvartilů. Tyto body jsou podnětem k prověření, nikoli důvodem k vyřazení ([Krabicový graf](#sec-boxplot)).
+- Přičtení konstanty posune ukazatele polohy, ale variabilitu nezmění; násobení číslem $b$ změní směrodatnou odchylku $|b|$krát a rozptyl $b^2$krát. Po nelineárním převodu statistiky počítáme znovu z převedených hodnot ([Co mění posun a změna jednotek](#sec-zmena-skaly)).
+- Souhrnné ukazatele popisují dvě různé vlastnosti rozdělení, polohu a variabilitu, a stejný průměr může skrývat velmi odlišné rozložení výsledků. Popis dat proto vychází z otázky a z grafu rozdělení, uvádí počty platných údajů a odlišuje výpočet z dat od předpokladů modelu ([Co souhrnné ukazatele zachycují](#sec-poloha-variabilita); [Jak vybrat a sdělit popisné statistiky](#sec-komunikace-statistik); [Od popisu dat k modelu](#sec-popis-a-model)).
 
 ## Cvičení {#sec-cviceni-03}
 

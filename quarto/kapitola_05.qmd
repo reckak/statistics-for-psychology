@@ -21,6 +21,8 @@ Tři nepovinná rozšíření vysvětlují šance, obecný výpočet střední h
 
 ## Co pravděpodobnost vyjadřuje {#sec-co-je-pravdepodobnost}
 
+Co znamená, že je něco pravděpodobné? Oddíl propojuje pravděpodobnost s relativní četností z kapitoly o četnostech a ukazuje tři způsoby, jak jí rozumět.
+
 ### Od podílu k pravděpodobnosti {#sec-podil-pravdepodobnost}
 
 V kapitole o četnostech jsme zjišťovali, jaká část případů má určitou hodnotu. Na otázku, jak odpočatě se cítí, odpovědělo 14 z 36 účastníků „dost“. [Relativní četnost](kapitola_02.qmd#sec-relativni-cetnost) této odpovědi je $14/36\doteq0{,}389$. Popisuje soubor, který už máme před sebou.
@@ -64,6 +66,8 @@ Z obrázku lze vyčíst ještě jednu věc. Řada, která měla po deseti tipech
 Opačné očekávání se nazývá **hráčský klam (*gambler’s fallacy*)**: přesvědčení, že po sérii stejných výsledků je opačný výsledek „na řadě“ [@baron2008, s. 152]. Kdo pětkrát za sebou tipoval špatně, má při šestém tipu stále pravděpodobnost úspěchu 0,25. Otázka si nepamatuje, jak dopadly předchozí tipy. Tato úvaha platí pro pokusy, které se navzájem neovlivňují; co to přesně znamená, vysvětlíme v [oddílu o nezávislosti](#sec-nezavislost). Kdyby se člověk během řady učil, pravděpodobnost úspěchu by se měnila z jiného důvodu.
 
 ## Náhodný pokus, výběrový prostor a jev {#sec-jevy}
+
+Abychom mohli s pravděpodobností počítat, potřebujeme přesně říct, čemu ji přiřazujeme. Oddíl zavádí výsledky náhodného pokusu, jejich množiny a první pravidlo pro jejich pravděpodobnost.
 
 ### Výsledek a výběrový prostor {#sec-vyberovy-prostor}
 
@@ -116,6 +120,8 @@ V našem příkladu platí i opačný směr: jev s pravděpodobností 0 nastat n
 Obecně toto obrácení neplatí. Ve [spojitém normálním modelu](kapitola_04.qmd#sec-bod-a-interval) má každá jednotlivá přesná hodnota nulovou pravděpodobnost, protože nad jediným bodem nevzniká žádná plocha. Přesto nějaká hodnota vždy nastane. Nulová pravděpodobnost tam neznamená nemožnost, ale to, že smysluplně se lze ptát jen na intervaly hodnot.
 
 ## Více jevů najednou {#sec-vice-jevu}
+
+Jak určit pravděpodobnost, že nastanou dva jevy současně, nebo alespoň jeden z nich? Oddíl k tomu využívá tabulku četností dvou proměnných a ukazuje, kde u takových otázek selhává intuice.
 
 ### Průnik a sjednocení {#sec-prunik-sjednoceni}
 
@@ -196,6 +202,8 @@ Mnoha lidem připadá možnost b) pravděpodobnější, protože lépe odpovíd�
 
 ## Podmíněná pravděpodobnost a nezávislost {#sec-podminena-nezavislost}
 
+Jak se změní pravděpodobnost, když už o člověku něco víme? Oddíl ukazuje, že podmínka zužuje celek, a odvozuje z toho pravidlo pro průnik jevů a pojem nezávislosti.
+
 ### Podmínka zužuje celek {#sec-podminena}
 
 Jaká je pravděpodobnost, že náhodně vybraná **žena** uvedla stres? Otázka se už netýká všech 200 studentů. Víme, že vybraná osoba je žena, a do úvahy proto bereme jen 100 žen. Stres z nich uvedlo 40:
@@ -228,7 +236,11 @@ Při čtení tabulky je nejdůležitější otázka: **z koho počítám?** Spol
 
 :::
 
-Poslední dva řádky ukazují, že $P(A\mid B)$ a $P(B\mid A)$ jsou obecně různá čísla, protože se vztahují k různým celkům. Jejich záměna patří k nejčastějším chybám v práci s pravděpodobností. Vrátíme se k ní u [obrácení podmínky](#sec-bayes).
+Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto dávají 0,40 a 0,57.
+
+::: {.callout-warning title="Častý omyl: obrácení podmínky"}
+Podíl studentů se stresem mezi ženami není totéž co podíl žen mezi studenty se stresem. Pravděpodobnosti $P(A\mid B)$ a $P(B\mid A)$ jsou obecně různá čísla, protože se vztahují k různým celkům. Jejich záměna patří k nejčastějším chybám v práci s pravděpodobností. Vrátíme se k ní u [obrácení podmínky](#sec-bayes).
+:::
 
 Podmínka nevyjadřuje časové pořadí ani příčinu. $P(\text{žena}\mid\text{stres})$ neříká, že stres předchází pohlaví nebo je ovlivňuje. Říká jen, že jsme pozornost zúžili na studenty se stresem [@russo, s. 64].
 
@@ -299,6 +311,8 @@ Pojem nezávislosti se snadno splete s několika jinými. Čtyři rozlišení st
 **Nezávislost je předpoklad, který je třeba zdůvodnit.** Odpovědi dvou náhodně vybraných lidí na tutéž otázku lze obvykle považovat za nezávislé. U odpovědí dvou sourozenců nebo dvou studentů, kteří se spolu učili, nelze nezávislost bez dalšího předpokládat: jejich společné zkušenosti mohou odpovědi propojovat.
 
 ## Obrácení podmínky a Bayesova věta {#sec-bayes}
+
+Podmíněnou pravděpodobnost nelze jednoduše obrátit. Oddíl na příkladu screeningového dotazníku ukazuje, jak z vlastností dotazníku a ze základní četnosti zjistit, co znamená jeho pozitivní výsledek.
 
 ### Screening: co víme a na co se ptáme {#sec-screening}
 
@@ -463,6 +477,8 @@ V příkladu se screeningem jsou šance poruchy před testem $0{,}10/0{,}90$, te
 
 ## Náhodná proměnná a rozdělení pravděpodobnosti {#sec-nahodna-promenna}
 
+Jak popsat všechny možné číselné výsledky, například počty správných odpovědí, spolu s jejich pravděpodobnostmi? Odpověď nabízí náhodná proměnná a její rozdělení pravděpodobnosti.
+
 ### Od jevů k číslům {#sec-rozdeleni-pravdepodobnosti}
 
 Dosud jsme se ptali, zda určitý jev nastane. Statistika ale většinou pracuje s čísly: kolik odpovědí bylo správně, kolik bodů člověk získal, jak dlouho mu úloha trvala. Potřebujeme proto spojit výsledky náhodného pokusu s čísly.
@@ -603,6 +619,8 @@ Obecně je kombinační číslo rovno počtu variací dělenému $k!$.
 
 ## Binomické rozdělení {#sec-binomicke}
 
+Oddíl spojuje předchozí nástroje do prvního konkrétního modelu rozdělení: pravděpodobností počtu úspěchů v opakovaných pokusech.
+
 ### Kdy binomický model použít {#sec-binomicke-predpoklady}
 
 Mnoho psychologických situací má stejnou stavbu: několikrát opakujeme pokus, který může dopadnout dvěma způsoby, a počítáme, kolikrát dopadl jedním z nich. Kolik otázek student uhodl. V kolika pokusech účastník správně rozpoznal podnět. Kolik oslovených souhlasilo s účastí. Pro počet takových „zásahů“ existuje společný model, **binomické rozdělení (*binomial distribution*)**. Lze jej použít, jsou-li splněny čtyři podmínky [@howell, s. 124–125; @msBinomDist]:
@@ -618,7 +636,7 @@ Slova úspěch a neúspěch jsou technická označení. Úspěchem nazveme ten v
 
 Řecké písmeno $\mathrm{π}$ zde neoznačuje známé číslo 3,14. Je to parametr modelu, a parametry v této učebnici píšeme řeckými písmeny, stejně jako $\mathrm{μ}$ a $\mathrm{σ}$. Excel i mnoho učebnic používají pro pravděpodobnost úspěchu písmeno $p$; v této učebnici používáme malé $p$ pro relativní četnost a pro úroveň kvantilu; pravděpodobnost úspěchu v binomickém modelu označujeme $\mathrm{π}$. Písmeno $n$ znamenalo dosud velikost výběru; zde je to počet pokusů, tedy opět počet pozorování, z nichž výsledek skládáme.
 
-Náš test podmínky splňuje, pokud opravdu platí vše, co jsme o něm řekli: má pevně pět otázek ($n=5$), každý tip je buď správný, nebo ne, každá otázka má čtyři možnosti s jedinou správnou a student volí zcela náhodně ($\mathrm{π}=0{,}25$) a tip u jedné otázky nesouvisí s tipem u jiné. Podmínky je třeba vždy výslovně posoudit, protože se snadno poruší:
+Náš test podmínky splňuje, pokud opravdu platí vše, co jsme o něm řekli. Má pevně pět otázek ($n=5$) a každý tip je buď správný, nebo ne. Každá otázka má čtyři možnosti s jedinou správnou a student volí zcela náhodně ($\mathrm{π}=0{,}25$). Tip u jedné otázky navíc nesouvisí s tipem u jiné. Podmínky je třeba vždy výslovně posoudit, protože se snadno poruší:
 
 - Student část látky umí. Pravděpodobnost správné odpovědi pak není u všech otázek stejná.
 - Účastník se během úlohy zlepšuje nebo unavuje. Pravděpodobnost úspěchu se mění od pokusu k pokusu.
@@ -768,6 +786,8 @@ Ptáme-li se, jak pravděpodobný je při tipování **alespoň tak dobrý** vý
 
 ## Normální aproximace binomického rozdělení {#sec-normalni-aproximace}
 
+Při velkém počtu pokusů je sčítání binomických pravděpodobností pracné. Oddíl ukazuje, kdy lze binomické rozdělení přiblížit normálním modelem a co z toho plyne pro podíly úspěchů.
+
 ### Kdy a jak ji použít {#sec-aproximace-postup}
 
 @fig-binomicke-tvar naznačil, že při větším počtu pokusů připomíná binomické rozdělení normální křivku. Toho lze využít: místo sčítání mnoha binomických pravděpodobností použijeme [normální model](kapitola_04.qmd#sec-normalni-model) se stejnou střední hodnotou a směrodatnou odchylkou,
@@ -841,15 +861,20 @@ stejný jako při výpočtu s počty. Poloha výsledku vzhledem k rozdělení se
 
 Vzorec říká něco důležitého: **čím více pokusů, tím méně podíl kolísá kolem** $\mathrm{π}$. Při $\mathrm{π}=0{,}6$ je směrodatná odchylka podílu 0,069 pro 50 pokusů, 0,035 pro 200 pokusů a 0,017 pro 800 pokusů. Čtyřnásobný počet pokusů ji zmenší na polovinu. Je to přesnější vyjádření toho, co jsme viděli na [simulovaných řadách](#sec-dlouha-rada), a zároveň popis [výběrové variability](kapitola_01.qmd#sec-nejistota) podílu: říká, jak moc se budou lišit podíly zjištěné v různých stejně velkých výběrech. Na této úvaze staví inferenční statistika.
 
-## Co si z kapitoly odnést {#sec-shrnuti-05}
+## Shrnutí {#sec-shrnuti-05}
 
-Pravděpodobnost je číslo od 0 do 1, které vyjadřuje, nakolik lze očekávat, že jev nastane. Lze jí rozumět jako podílu příznivých mezi stejně pravděpodobnými výsledky, jako relativní četnosti v dlouhé řadě opakování nebo jako míře přesvědčení; pravidla počítání jsou ve všech případech stejná. Jev je množina výsledků náhodného pokusu. Pravděpodobnost doplňku dopočítáme do jedné, sjednocení určíme součtovým pravidlem a průnik součinovým.
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
-Podmíněná pravděpodobnost mění celek, ke kterému se vztahujeme, a $P(A\mid B)$ je obecně jiné číslo než $P(B\mid A)$. Obrátit podmínku umožňuje Bayesova věta; k tomu je třeba znát i základní četnost. Proto táž senzitivita a specificita vedou při různé prevalenci k velmi různé prediktivní hodnotě. Nezávislost znamená, že jeden jev nemění pravděpodobnost druhého; je to předpoklad, který je třeba zdůvodnit. Závislost zjištěná v tabulce sama neříká nic o příčině ani o populaci.
+- Pravděpodobnost je číslo od 0 do 1, které vyjadřuje, nakolik lze očekávat, že jev nastane. Lze jí rozumět jako podílu příznivých mezi stejně pravděpodobnými výsledky, jako relativní četnosti v dlouhé řadě opakování nebo jako míře přesvědčení; pravidla počítání jsou ve všech případech stejná ([Co pravděpodobnost vyjadřuje](#sec-co-je-pravdepodobnost)).
+- Jev je množina výsledků náhodného pokusu. Pravděpodobnost doplňku dopočítáme do jedné ([Náhodný pokus, výběrový prostor a jev](#sec-jevy)).
+- Sjednocení dvou jevů určíme součtovým pravidlem. Průnik nemůže být pravděpodobnější než kterýkoli z obou jevů, přestože podrobnější popis může působit věrohodněji ([Více jevů najednou](#sec-vice-jevu)).
+- Podmíněná pravděpodobnost mění celek, ke kterému se vztahujeme, a $P(A\mid B)$ je obecně jiné číslo než $P(B\mid A)$. Průnik určíme součinovým pravidlem. Nezávislost znamená, že jeden jev nemění pravděpodobnost druhého; je to předpoklad, který je třeba zdůvodnit. Závislost zjištěná v tabulce sama neříká nic o příčině ani o populaci ([Podmíněná pravděpodobnost a nezávislost](#sec-podminena-nezavislost)).
+- Obrátit podmínku umožňuje Bayesova věta; k tomu je třeba znát i základní četnost. Proto táž senzitivita a specificita vedou při různé prevalenci k velmi různé prediktivní hodnotě ([Obrácení podmínky a Bayesova věta](#sec-bayes)).
+- Rozdělení pravděpodobnosti je model toho, jakých hodnot může náhodná proměnná nabýt; data se od něj kvůli náhodě ve výběru liší ([Náhodná proměnná a rozdělení pravděpodobnosti](#sec-nahodna-promenna)).
+- Binomické rozdělení popisuje počet úspěchů v pevném počtu nezávislých pokusů se stejnou pravděpodobností úspěchu; počet možných rozmístění úspěchů určuje kombinační číslo. Pravděpodobnost výsledku za předpokladu určitého modelu není pravděpodobností, že tento model platí ([Počítání možností](#sec-pocitani-moznosti); [Binomické rozdělení](#sec-binomicke)).
+- Při dostatečném počtu očekávaných úspěchů i neúspěchů lze binomické rozdělení přiblížit normálním modelem. Směrodatná odchylka podílu úspěchů se s rostoucím počtem pokusů zmenšuje ([Normální aproximace binomického rozdělení](#sec-normalni-aproximace)).
 
-Rozdělení pravděpodobnosti je model toho, jakých hodnot může náhodná proměnná nabýt; data se od něj kvůli náhodě ve výběru liší. Binomické rozdělení popisuje počet úspěchů v pevném počtu nezávislých pokusů se stejnou pravděpodobností úspěchu. Při dostatečném počtu očekávaných úspěchů i neúspěchů je lze přiblížit normálním modelem. Pravděpodobnost výsledku za předpokladu určitého modelu není pravděpodobností, že tento model platí.
-
-## Samostatná cvičení {#sec-cviceni-05}
+## Cvičení {#sec-cviceni-05}
 
 V úlohách 1–9 stačí kalkulačka; úlohy 10 a 11 vyžadují Excel. Pravděpodobnosti uvádějte na tři desetinná místa, velmi malé pravděpodobnosti na čtyři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,001 způsobená závěrečným zaokrouhlením. Počty osob v přirozených četnostech mají souhlasit přesně.
 

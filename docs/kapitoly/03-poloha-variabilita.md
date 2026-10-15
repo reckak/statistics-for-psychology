@@ -17,6 +17,8 @@ ořezání a winsorizaci; předpovědět změnu statistik při převodu jednotek
 a srozumitelně popsat data. Výpočty entropie a momentových koeficientů
 jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
 
+**Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_03.qmd#sec-shrnuti-03) (osm myšlenek s odkazy na oddíly), dva bloky „Častý omyl“ (`.callout-warning`: pořadí středů jako test šikmosti v [středu a tvaru](../../quarto/kapitola_03.qmd#sec-stred-tvar), úrovně kvantilů jako podíly lidí ve [výpočtu kvantilů](../../quarto/kapitola_03.qmd#sec-vypocet-kvantilu)) a jedno „Připomenutí“ (`.callout-tip`: směr zešikmení z kapitoly 2); rozděleny vybrané věty nad zhruba 35 slov. Název oddílu cvičení se nemění. Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
+
 <a id="skutečný-obsah-oddílů-2"></a>
 
 ### Skutečný obsah oddílů
@@ -50,6 +52,7 @@ jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
 | [Excel: základní ukazatele](../../quarto/kapitola_03.qmd#sec-excel-zaklad-03) | POČET, PRŮMĚR, MEDIAN, MODE.SNGL, MIN/MAX, PERCENTIL.INC a rozpětí. Omezení MODE.SNGL a inkluzivní pořadí přes COUNTIFS/POČET, nikoli automaticky PERCENTRANK. | 12. |
 | [Excel: odchylky](../../quarto/kapitola_03.qmd#sec-excel-odchylky-03) a [MedAD](../../quarto/kapitola_03.qmd#sec-excel-mad-03) | Pomocné sloupce odchylek, ABS a mocnin; SUMA, VAR.P/VAR.S, SMODCH.VÝBĚR.S/ODMOCNINA. MedAD přes medián a absolutní vzdálenosti; souhrn spánku/paměti s vlastními počty platných údajů. | 12 pro základní souhrn; mezikroky ručně v 5 a 7. |
 | [Nepovinný Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) | LOGZ se základem 2 a KDYŽ pro nulový podíl; sloupce mocnin a SKEW.P, SKEW, KURT. KURT vrací korigovaný exces, další trojka se neodečítá. | Rozšíření lze použít ke kontrole 13–14; úlohy jej výslovně nevyžadují. |
+| [Shrnutí](../../quarto/kapitola_03.qmd#sec-shrnuti-03) | Osm odkazovaných myšlenek: volba středu, kvantily a percentilové pořadí, rozptyl/SD a n − 1, odolná shrnutí, entropie kategorií, boxplot, transformace a společně poloha/variabilita s popisem dat versus model. Nezavádí nové pojmy. | Souhrnně 1–12. |
 
 <a id="příklady-vizualizace-a-soubory-1"></a>
 
