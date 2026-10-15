@@ -242,6 +242,36 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   které závěry na předpokladech závisejí; modelové uvažování nepředstavuj
   jako oblast oddělenou od popisné a inferenční statistiky.
 
+## Čitelnost a struktura textu
+
+Číselné hodnoty níže jsou orientační vodítka; přednost má srozumitelnost
+konkrétního místa.
+
+- Úvod každého hlavního oddílu jednou až dvěma větami řekne, na jakou
+  otázku oddíl odpovídá a jak navazuje na předchozí. Nadpisy formuluj
+  obsahově, aby z nich bylo poznat, co se student dozví, nikoli jen téma.
+- Každá výkladová kapitola končí před cvičeními oddílem „Shrnutí“
+  s 5–8 klíčovými myšlenkami, z nichž každá odkazuje na oddíl s výkladem.
+  Shrnutí nezavádí nové pojmy.
+- Odstavec nese jednu hlavní myšlenku, kterou vyjadřuje jeho první věta.
+  Věty delší než zhruba 35 slov rozděl, pokud tím neutrpí souvislost.
+  Preferuj slovesné vyjádření před řetězci podstatných jmen („porovnáme
+  průměry“, ne „provedení porovnání průměrů“). Nový odborný pojem při
+  zavedení zvýrazni tučně.
+- V jednom pododdílu zaváděj nejvýše dva až tři nové pojmy. Povinná část
+  kapitoly má orientačně do 12 000 slov; odbočky, které cíle učení
+  nevyžadují, přesuň do nepovinného rozšíření.
+- Bloky používej jednotně a střídmě:
+  - nepovinné rozšíření: `.callout-note collapse="true"` s titulkem
+    „Nepovinné rozšíření: …“ a ID `#rozsireni-…`;
+  - častý omyl: krátký `.callout-warning` s titulkem „Častý omyl: …“
+    a ukázkou správné interpretace;
+  - připomenutí dřívějšího učiva: krátký `.callout-tip` s titulkem
+    „Připomenutí: …“ a odkazem na původní výklad;
+  - řešení cvičení podle oddílu „Cvičení a řešení“.
+- Popisek obrázku či tabulky sdělí hlavní zjištění nebo to, čeho si má
+  student všimnout, nejen co je zobrazeno.
+
 ## Didaktická revize
 
 - Po vytvoření nebo podstatné obsahové úpravě proveď didaktickou revizi
@@ -267,6 +297,10 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   a opakování bez nové funkce. Nedostatky oprav v rámci schváleného rozsahu
   bez nového schvalování a bez prodlužování textu bez didaktického přínosu;
   nový pojem, změna značení či rozšíření obsahu vyžadují dohodu.
+- Součástí revize je čtení očima začátečníka se vstupními znalostmi podle
+  kapitoly, případně samostatným agentem v roli studenta: vypiš místa, kde
+  by se čtenář zasekl, a ověř vodítka oddílu „Čitelnost a struktura textu“.
+  Délku vět a hustotu nových pojmů lze doplňkově zkontrolovat výpočtem.
 - Interní didaktickou revizi nevydávej za ověření porozumění na studentech.
 
 ## Terminologie a značení
