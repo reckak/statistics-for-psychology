@@ -2922,3 +2922,21 @@ Rozsah: reorganizace autorské dokumentace; nové spuštění popsaných
 provozních příkazů ani kontrola dostupnosti externích webů neproběhly.
 Studentský výklad, data a konfigurace publikování se nemění, nový render
 knihy nebyl potřeba.
+
+## Zhuštění AGENTS.md (2026-10-15)
+
+Na pokyn autora redakčně zhuštěny projektové instrukce z 570 řádků
+a 4 951 slov na 516 řádků a 4 396 slov (přibližně −11 %), bez věcné změny
+pravidel. Sloučena opakovaná pravidla: popis SLOVNIK.md a ZDROJE.md
+z úvodního oddílu přesunut do oddílů „Terminologie a značení“ a „Zdroje
+a jejich použití“, odkaz na pravidla prezentací ponechán jen v jejich oddílu,
+zachování historických záznamů jen v evidenci rozhodnutí, duplicitní
+pokyny didaktiky, revize, cvičení a Gitu sloučeny. Výjimky podle doplnění
+R32 z 2026-10-14 zůstávají vymezeny v úvodním oddílu. Nové rozhodnutí
+nevzniklo.
+
+Ověření: všechny nadpisy oddílů a kotva `evidence-rozhodnuti` zachovány,
+takže příchozí odkazy zůstávají funkční; ruční porovnání se starým zněním
+oddíl po oddílu a kontrola výskytu klíčových pojmů, cest a odkazů.
+`node scripts/check-doc-maps.cjs --require-sources` a `git diff --check`
+prošly bez chyb. Studentský výklad se nemění, nový render nebyl potřeba.

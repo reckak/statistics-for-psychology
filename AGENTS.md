@@ -3,12 +3,17 @@
 ## Použití projektové dokumentace
 
 - Tento soubor obsahuje společná pravidla tvorby i ověřování. Další
-  dokumenty načítej podle úkolu, nikoli všechny při každé drobné úpravě.
+  dokumenty načítej podle úkolu: rozcestník či registr, dotčené karty nebo
+  doklady a relevantní pasáže; nečti automaticky celé složky dokumentace.
 - Před obsahovou prací otevři [mapu obsahu učebnice](docs/OSNOVA.md),
-  prostuduj relevantní návaznosti a odkazovanou kartu dotčené kapitoly
-  v `docs/kapitoly/`, potom příslušné pasáže kapitoly.
-  Mapa zachycuje skutečný obsah existujících kapitol a odděleně plán další
-  kapitoly; nenahrazuje čtení textu ani dohodu o novém rozsahu.
+  relevantní návaznosti a kartu dotčené kapitoly v `docs/kapitoly/`, potom
+  příslušné pasáže kapitoly. Mapa zachycuje skutečný obsah existujících
+  kapitol a odděleně plán další; nenahrazuje čtení textu ani dohodu o rozsahu.
+  Vyhledej také relevantní řádky [registru rozhodnutí](docs/ROZHODNUTI.md),
+  jejich platnost, hlavní místo pravidla a podle potřeby doklad
+  v `docs/rozhodnuti/`. Termíny vybírej a reviduj podle
+  [SLOVNIK.md](docs/SLOVNIK.md) a podklady podle [ZDROJE.md](docs/ZDROJE.md);
+  postup určují oddíly „Terminologie a značení“ a „Zdroje a jejich použití“.
 - Při každé obsahové změně průběžně aktualizuj dotčenou část mapy: obsah
   oddílů, cíle a vstupní znalosti, pojmy a postupy, příklady a vizualizace,
   soubory, pokrytí cvičeními, povinný/nepovinný rozsah a hranice učiva.
@@ -21,44 +26,20 @@
   rozlišuj dohodnutý směr, schválený rozsah a otevřené návrhy; po vytvoření
   kapitoly zmapuj skutečný výklad včetně zadání a řešení, nikoli jen původní
   osnovu. Definice, úplné značení a zdrojové karty v mapě neduplikuj.
-- Před obsahovou prací vyhledej relevantní řádky v
-  [registru rozhodnutí](docs/ROZHODNUTI.md), jejich aktuální platnost,
-  hlavní místo pravidla a podle potřeby odkazovaný doklad v `docs/rozhodnuti/`.
-  Zápisy udržuj podle oddílu [Evidence rozhodnutí](#evidence-rozhodnuti).
-- Pro volbu termínů před psaním i při revizi používej
-  [docs/SLOVNIK.md](docs/SLOVNIK.md), hlavní autorský registr platných
-  českých preferencí, anglických ekvivalentů, alternativ a významových hranic.
-  Čti také pravidlo použití a doklad hesla; samotný seznam synonym nestačí.
-  Rozdělení odpovědnosti a údržbu určuje oddíl „Terminologie a značení“ níže.
-- Pro výběr podkladů používej [docs/ZDROJE.md](docs/ZDROJE.md): inventář
-  a tematický rozcestník odkazující na samostatné karty v `docs/zdroje/`.
-  Karta zdroje obsahuje jeho identitu, obsahovou mapu, přesné lokátory,
-  zjištěné rozpory a rozsah ověření. Společné nálezy a datované kontroly
-  více podkladů jsou v [historii ověřování](docs/zdroje/HISTORIE.md).
-  Nabídka témat v mapě není schválenou osnovou; postup její údržby je níže
-  v oddílu „Zdroje a jejich použití“.
-- Do kontextu načítej rozcestník či registr, dotčené karty nebo doklady
-  a relevantní pasáže; nečti automaticky celé složky dokumentace. Karta
-  kapitoly odkazuje na zdrojové karty a jejich konkrétní části, nekopíruje
-  jejich evidenci.
-  Tematický odkaz sám nedokládá použití ani prostudování zdroje. Při novém
-  propojení udržuj také odkazy ze zdrojové karty na dotčené kapitoly.
-  Zachovávej stabilní ID i datované záznamy; při přesunu uprav příchozí
+- Karta kapitoly odkazuje na zdrojové karty a jejich konkrétní části,
+  nekopíruje jejich evidenci; při novém propojení doplň i zpětný odkaz ze
+  zdrojové karty. Tematický odkaz sám nedokládá použití ani prostudování zdroje.
+- Zachovávej stabilní ID i datované záznamy; při přesunu uprav příchozí
   a relativní odkazy a na původní adrese ponech odkaz na nové umístění.
-  Výjimkou jsou původní kotvy přesunutých karet v `docs/OSNOVA.md`, které
-  se podle doplnění [R32](docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)
-  z 2026-10-14 již nezachovávají. Stejně tak se neudržuje archiv obecných
-  pokynů `docs/rozhodnuti/historie-registru.md` ani jeho odkazovací sekce
-  v registru; jejich původní znění zůstává v Gitu. Aktuální odkazy musí
-  zůstat funkční. Výjimka se netýká dokladů jednotlivých rozhodnutí.
+  Podle doplnění [R32](docs/rozhodnuti/postupy-a-dokumentace.md#r32-propojene-mapy)
+  z 2026-10-14 se již nezachovávají původní kotvy přesunutých karet
+  v `docs/OSNOVA.md` ani archiv obecných pokynů `docs/rozhodnuti/historie-registru.md`
+  s odkazovací sekcí v registru (původní znění je v Gitu); výjimka se netýká
+  dokladů jednotlivých rozhodnutí. Aktuální odkazy musí zůstat funkční.
   Datum reorganizace nesmí nahrazovat datum skutečné obsahové kontroly.
-- Pravidla pro prezentace načítej při práci na prezentacích, poznámkách
-  a jejich exportech podle odkazu v příslušném oddílu níže.
 - Vstupní rozcestník projektu je [README.md](README.md); provozní postupy
   a závislosti jsou v [docs/PROVOZ.md](docs/PROVOZ.md), historické autorské
-  záznamy v [quarto/README.md](quarto/README.md). Historický záznam zachovej
-  i po nahrazení rozhodnutí; jeho tehdejší stav není automaticky současným
-  pravidlem. V přehledu rozhodnutí označ, co novější dohoda nahrazuje.
+  záznamy v [quarto/README.md](quarto/README.md).
 - Výslovný pokyn uživatele pro aktuální úkol má přednost před těmito
   projektovými dokumenty. Při skutečně nejasném obsahovém rozporu se ptej
   a pokračuj na nezávislých částech. Již schválený postup znovu neschvaluj.
@@ -88,20 +69,20 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 - Nové rozhodnutí eviduj při autorem schválené volbě, která omezuje budoucí
   obsah, terminologii, značení nebo pracovní postup. Běžné opravy, realizace
   již schváleného postupu a výsledky kontrol patří do historie práce.
-  Samotná žádost o posouzení, návrh nebo dokončení úpravy nejsou schválením
-  nové konvence.
-- Před založením ID ověř, zda jde o novou volbu, upřesnění, nebo nahrazení
-  existujícího rozhodnutí. U upřesnění připoj datovaný doklad ke stávajícímu
-  ID; samostatnou novou či nahrazující volbu zapiš pod novým ID. Nepřečísluj
-  starší záznamy. Eviduj stručný závěr, rozsah, důvod a konkrétní doklad
-  souhlasu; místo kopií slovníku, kapitol či návodů připoj přesné odkazy.
+  Žádost o posouzení, návrh nebo dokončení úpravy není schválením nové konvence.
+- Před založením ID ověř, zda jde o novou volbu, upřesnění, nebo nahrazení.
+  Upřesnění připoj jako datovaný doklad ke stávajícímu ID; novou či
+  nahrazující volbu zapiš pod novým ID. Starší záznamy nepřečísluj.
+  Eviduj stručný závěr, rozsah, důvod a konkrétní doklad souhlasu; místo
+  kopií slovníku, kapitol či návodů připoj přesné odkazy.
 - V registru udržuj stručné shrnutí, rozsah, platnost a odkazy. U změny
   označ původní rozhodnutí jako částečně nebo úplně nahrazené a uveď,
   které části a jakým rozhodnutím. Návrhy drž odděleně od schválených voleb.
   „Platné“ nedokládá dokončení práce ani odborné ověření materiálů.
-- Původní schválené znění a doklady zachovej. Aktuální pravidlo aktualizuj
-  v jeho hlavním místě; historické seznamy preferencí ani návody zpětně
-  nesynchronizuj s dnešním stavem. Datovaný doplněk může vysvětlit změnu
+- Původní schválené znění, doklady i historické záznamy zachovej, i když
+  jsou nahrazeny; jejich tehdejší stav není automaticky současným pravidlem.
+  Aktuální pravidlo aktualizuj v jeho hlavním místě; historické seznamy
+  ani návody zpětně nesynchronizuj. Datovaný doplněk může vysvětlit změnu
   či opravit evidenci, nesmí předstírat jiné původní schválení.
 - Schválený plán je dokladem dohody. Skutečný obsah a odchylky zachycuje
   kapitolová karta; změna kapitoly nepřepisuje zpětně schválený plán.
@@ -118,8 +99,8 @@ pro jednosemestrální kurz Základy statistiky pro psychology 1, určený
 studentům druhého ročníku bakalářského studia psychologie. Výstupem je
 Quarto Book průběžně publikovaný na GitHubu jako web.
 
-- Předpokládej pouze matematické znalosti na úrovni dokončené základní školy.
-  Nepředpokládej předchozí znalost statistiky, R ani programování.
+- Předpokládej pouze matematiku dokončené základní školy, žádnou
+  předchozí znalost statistiky, R ani programování.
 - Piš pro samostudium: text nesmí vyžadovat ústní dovysvětlení ani přístup
   k autorským podkladům. Pozdější kapitoly mohou navazovat na předchozí;
   potřebné znalosti připomeň a odkaž na jejich výklad.
@@ -128,61 +109,65 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 - Hlavní výstup je web. Pracovní PDF vybrané kapitoly vytvářej pouze na
   výslovné vyžádání, bez automatického spouštění nebo publikování s webem.
   V PDF soustřeď řešení do samostatné části za všechna zadání; závěrečné
-  přehledy zatím vynech. Aktuálně je ověřen export kapitoly 3
+  přehledy zatím vynech. Ověřen je export kapitoly 3
   (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly)).
-  Finální knižní sazbu budeme řešit samostatně při finalizaci knihy;
-  neomezuj kvůli ní současnou podobu webových materiálů.
+  Finální knižní sazbu budeme řešit při finalizaci knihy; neomezuj kvůli
+  ní současnou podobu webových materiálů.
 
 ## Příprava každé kapitoly
 
 - Pracuj vždy na jedné výkladové kapitole. Před jejím napsáním s uživatelem
-  prodiskutuj a dohodni rozsah, cíle učení, návaznosti, zdroje, příklady
-  a očekávané dovednosti. Howell je východiskem osnovy, nikoli požadavkem
-  probrat celou knihu během jednoho semestru.
-- Součástí této přípravy je seznam nových pojmů a symbolů: nabídni české
-  překlady, anglické ekvivalenty, případné alternativy a zdůvodněné doporučení.
-  Nové odborné termíny a značení ve studentském textu používej až po dohodě.
-- Pokud potřeba nového pojmu nebo symbolu vyvstane během psaní, předlož ji
-  k dohodě; pokračuj v práci na částech, které na rozhodnutí nezávisí.
+  dohodni rozsah, cíle učení, návaznosti, zdroje, příklady a očekávané
+  dovednosti. Howell je východiskem osnovy, nikoli požadavkem probrat celou
+  knihu během jednoho semestru.
+- Součástí přípravy je seznam nových pojmů a symbolů s českými překlady,
+  anglickými ekvivalenty, případnými alternativami a zdůvodněným doporučením.
+  Nové termíny a značení používej ve studentském textu až po dohodě.
+  Vyvstane-li potřeba během psaní, předlož ji k dohodě a pokračuj na
+  nezávislých částech.
 - Již schválené termíny a symboly znovu neotevírej bez věcného důvodu.
   Při změně aktualizuj všechna dotčená místa i přehledové kapitoly.
 - Před zavedením referenční kapitoly nevydávej žádnou kapitolu za závaznou
   šablonu. Strukturu a délku přizpůsob tématu.
-- Úvodní blok s cíli kapitoly („Co budete po prostudování umět“) formátuj
-  jako seznam s odrážkami, jedna dovednost nebo úzce související skupina
-  dovedností na odrážku, nikoli jako souvislý odstavec. Doplňující poznámku,
-  například o nepovinných rozšířeních, uveď jako větu pod seznamem.
+- Úvodní blok „Co budete po prostudování umět“ formátuj jako seznam
+  s odrážkami (jedna dovednost či úzce související skupina na odrážku),
+  nikoli jako odstavec. Doplňující poznámku, například o nepovinných
+  rozšířeních, uveď jako větu pod seznamem.
 
 ## Zdroje a jejich použití
 
-- Citace v textu i seznam literatury ve všech kapitolách formátuj podle
-  APA 7. Používej společný styl `styles/apa.csl` nastavený v `_quarto.yml`,
-  bibliografické údaje v `references.bib` a citační zápis Quarta; výsledné
-  citace ani bibliografii nesestavuj ručně. Zachovej českou lokalizaci
-  citačních popisků. Je-li autor součástí věty, rok připoj přímo za jeho
-  jméno a neopakuj jméno v závorce. U konkrétní pasáže uveď ověřenou
-  stránku, kapitolu či oddíl, u doslovné citace vždy dostupný lokátor.
-  Ověřuj úplnost záznamů včetně vydání, ročníku, čísla časopisu a DOI,
-  pokud existuje; chybějící údaje nevymýšlej. Po změně citací zkontroluj
-  vykreslené odkazy i seznam literatury, včetně iniciál, pořadí autorů,
-  letopočtů, kurzivy, velikosti písmen v názvech a funkčních DOI/URL.
+- Citace v textu i seznam literatury formátuj podle APA 7 společným stylem
+  `styles/apa.csl` nastaveným v `_quarto.yml`, údaji v `references.bib`
+  a citačním zápisem Quarta; citace ani bibliografii nesestavuj ručně.
+  Zachovej českou lokalizaci citačních popisků. Je-li autor součástí věty,
+  rok připoj přímo za jeho jméno a neopakuj jméno v závorce. U konkrétní
+  pasáže uveď ověřenou stránku, kapitolu či oddíl, u doslovné citace vždy
+  dostupný lokátor. Ověřuj úplnost záznamů včetně vydání, ročníku, čísla
+  časopisu a DOI, pokud existuje; chybějící údaje nevymýšlej. Po změně
+  citací zkontroluj vykreslené odkazy i seznam literatury včetně iniciál,
+  pořadí autorů, letopočtů, kurzivy, velikosti písmen a funkčních DOI/URL.
 - Hlavní odbornou a didaktickou oporou i východiskem pořadí témat je Howellova
   učebnice v `sources/učebnice/howell.pdf`. Před použitím ověř její přesný titul,
   vydání a bibliografické údaje; nevymýšlej čísla stran ani odkazy.
-- Před návrhem obsahu nové kapitoly projdi aktuální obsah `sources/`
-  včetně všech podsložek a porovnej jej s inventářem v `docs/ZDROJE.md`.
-  U nových, změněných či nahrazených souborů ověř identitu, obsah a lokátory
-  a aktualizuj příslušnou kartu; zachovej její stabilní ID, pokud jde
-  o tentýž zdroj. Přejmenování či nové vydání nesmí ponechat neplatné odkazy.
-  Posuď relevanci všech podkladů: učebnic, starších prezentací, příkladů
-  i dalších souborů. Nejasný název není důvodem zdroj bez nahlédnutí vyřadit.
-- Tematický rozcestník v `docs/ZDROJE.md` a odkazované karty
-  v `docs/zdroje/` používej k dohledání pasáží, nikoli místo jejich čtení.
-  U relevantních zdrojů před návrhem
-  kapitoly prostuduj skutečný výklad, příklady, obrázky a podmínky použití.
-  Samotný obsah knihy, textová extrakce ani starší záznam neprokazují
-  podrobné prostudování či odbornou správnost dané pasáže.
-- V mapě rozlišuj identifikaci zdroje, mapu obsahu, skutečně prostudované
+  Ani Howell či jiné podklady nejsou nezpochybnitelnou autoritou: sporná
+  tvrzení ověřuj v odborné literatuře a oficiální dokumentaci, věcné rozpory
+  a významné odchylky projednej s uživatelem.
+- [ZDROJE.md](docs/ZDROJE.md) je inventář a tematický rozcestník; každý zdroj
+  má kartu v `docs/zdroje/` s identitou, obsahovou mapou, přesnými lokátory,
+  zjištěnými rozpory a rozsahem ověření. Společné nálezy a datované kontroly
+  více podkladů jsou v [historii ověřování](docs/zdroje/HISTORIE.md).
+  Rozcestník a karty slouží k dohledání pasáží, nikoli místo jejich čtení;
+  nabídka témat není schválenou osnovou.
+- Před návrhem nové kapitoly projdi aktuální obsah `sources/` včetně
+  podsložek a porovnej jej s inventářem. U nových, změněných či nahrazených
+  souborů ověř identitu, obsah a lokátory a aktualizuj kartu; u téhož zdroje
+  zachovej její ID. Přejmenování či nové vydání nesmí ponechat neplatné
+  odkazy. Posuď relevanci všech podkladů (učebnic, starších prezentací,
+  příkladů i dalších souborů); nejasný název není důvodem k vyřazení bez
+  nahlédnutí. U relevantních zdrojů prostuduj skutečný výklad, příklady,
+  obrázky a podmínky použití. Obsah knihy, textová extrakce ani starší
+  záznam neprokazují podrobné prostudování či odbornou správnost pasáže.
+- V kartě rozlišuj identifikaci zdroje, mapu obsahu, skutečně prostudované
   části a nezávislé ověření. Uváděj datum a verzi souboru, konkrétní použití,
   zjištěné rozpory a přesně vymezené neověřené části. U PDF rozlišuj tištěnou
   stranu a pořadí stránky souboru; u prezentace číslo snímku, u úloh ID
@@ -192,185 +177,162 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
   schválené změny rozsahu či konvencí patří také do osnovy či rozhodnutí.
 - Při projednávání kapitoly uveď, které podklady navrhuješ využít, k čemu
   a zda se v důležitých bodech rozcházejí. Starší prezentace a úlohy využij
-  také k pochopení dosavadních obsahových priorit autora a způsobu
-  procvičování; jejich věcnou správnost ověřuj stejně jako u ostatních
-  zdrojů. Howell zůstává hlavním odborným a didaktickým východiskem.
-  Pokud relevantní soubor nelze přečíst, uveď tuto mezeru při projednávání
-  a nevydávej jej za prostudovaný.
+  také k pochopení dosavadních priorit autora a způsobu procvičování; jejich
+  věcnou správnost ověřuj jako u ostatních zdrojů. Relevantní soubor, který
+  nelze přečíst, uveď jako mezeru a nevydávej jej za prostudovaný.
 - Piš vlastní český výklad. U převzatých nebo upravených příkladů a zadání
   uveď konkrétní zdroj a rozlišuj převzetí, úpravu a vlastní inspiraci.
   Nepřebírej automaticky celé pasáže, tabulky či obrázky.
-- Howell ani jiné podklady nejsou nezpochybnitelnou autoritou. Sporná tvrzení
-  ověřuj v odborných zdrojích; věcné rozpory a významné odchylky projednej
-  s uživatelem. Upřednostňuj odbornou literaturu a oficiální dokumentaci.
 - Původní podklady zachovej. Složku `sources/` nezahrnuj do veřejného
-  repozitáře ani publikovaného webu. Studentská cvičení nesmějí záviset
-  na přístupu k této neveřejné složce. Do veřejně verzované autorské mapy
-  nevkládej kopie podkladů, celé extrahované texty, skeny ani neveřejná data.
-  Odkazy mapy do `sources/` označ jako místní; mapa není studentská kapitola.
+  repozitáře ani webu; studentská cvičení na ní nesmějí záviset. Do veřejně
+  verzované autorské mapy nevkládej kopie podkladů, celé extrahované texty,
+  skeny ani neveřejná data. Odkazy mapy do `sources/` označ jako místní;
+  mapa není studentská kapitola.
 
 ## Didaktika a jazyk
 
-- Upřednostňuj konceptuální porozumění a přesné uvažování. Výpočetní postupy
-  používej k objasnění principů a k získání výsledků, které student dokáže
-  interpretovat; nezahlcuj text samoúčelným početním nácvikem.
+- Upřednostňuj konceptuální porozumění a přesné uvažování. Výpočty používej
+  k objasnění principů a k získání výsledků, které student dokáže
+  interpretovat; nezahlcuj text samoúčelným početním nácvikem. Odvození
+  zařazuj, kde podporuje porozumění; náročnější může být nepovinné.
 - Preferuj posloupnost: intuice → psychologický příklad → formální zápis
-  → výpočet → interpretace a omezení. Intuitivní vysvětlení může využívat
-  také analogie, přirovnání nebo metafory, pokud pomáhají pochopit podstatu
-  probíraného pojmu či vztahu. Posloupnost používej smysluplně, nikoli jako
-  povinné nadpisy každého oddílu.
-- Intuitivní vysvětlení a analogie propojuj s přesným uvažováním. Nesmějí
-  nahrazovat zdůvodnění závěru; upozorni na jejich meze tam, kde by mohly
-  vést k chybnému pochopení.
-- Přizpůsobuj podrobnost výkladu začátečníkům, ale zachovej význam pojmů
-  a logiku argumentace. Nepoužívej zjednodušení, která vytvářejí mylné
-  představy nebo by se studenti později museli odnaučovat. Pokud zjednodušení
-  podstatně omezuje platnost tvrzení, toto omezení vysvětli.
-- Nový statistický i matematický pojem vysvětli před použitím. U nového
-  vzorce vysvětli všechny symboly, význam vztahu, dosazení a podstatné mezikroky.
-  Přehledové kapitoly nenahrazují vysvětlení přímo ve výkladu.
-- Každý nově zaváděný abstraktní pojem nebo vztah pokud možno objasni
-  konkrétním, přednostně psychologickým příkladem. Výslovně vysvětli, jak
-  příklad ilustruje obecný význam pojmu či vztahu; samotné uvedení příkladu
-  nestačí.
+  → výpočet → interpretace a omezení, smysluplně, nikoli jako povinné nadpisy.
+  Intuice může využívat analogie, přirovnání či metafory, pokud pomáhají
+  pochopit podstatu; propoj je s přesným uvažováním, nenahrazuj jimi
+  zdůvodnění závěru a upozorni na jejich meze, kde by mohly mást.
+- Přizpůsobuj podrobnost začátečníkům, ale zachovej význam pojmů a logiku
+  argumentace. Nepoužívej zjednodušení vytvářející mylné představy, které
+  by se studenti museli odnaučovat; podstatné omezení platnosti vysvětli.
+- Nový statistický i matematický pojem vysvětli před použitím, pokud možno
+  na konkrétním, přednostně psychologickém příkladu, a výslovně ukaž, jak
+  příklad ilustruje obecný význam. Přehledové kapitoly nenahrazují
+  vysvětlení ve výkladu.
+- Matematickou notaci používej střídmě: každý vzorec má objasnit vztah
+  veličin, princip výpočtu nebo strukturu a předpoklady modelu. U nového
+  vzorce vysvětli všechny symboly, co vztah říká, proč jej zavádíme,
+  dosazení a podstatné mezikroky.
 - Výklad nestav převážně na tom, co pojem neznamená nebo co z výsledku
   nelze vyvodit. Nejprve vysvětli, co pojem znamená, k čemu slouží a jaké
-  závěry umožňuje za uvedených podmínek. Upozornění na časté omyly a neplatné
-  závěry zařazuj účelně a vyvažuj je konkrétními ukázkami správného použití
-  a interpretace.
-- Matematickou notaci používej střídmě a účelně. Každý vzorec má pomoci
-  pochopit vztah mezi veličinami, princip výpočtu nebo strukturu a předpoklady
-  modelu. Vedle vysvětlení symbolů vždy objasni, co vztah říká a proč jej
-  zavádíme.
-- Odvození zařazuj tam, kde podporuje porozumění; náročnější odvození může
-  být nepovinným rozšířením. Nezahlcuj studenty mechanickými výpočty.
-- Alternativní interpretace a odborné spory uváděj tehdy, když ovlivňují
-  význam pojmu, volbu postupu nebo interpretaci výsledku. Pokročilé
-  podrobnosti, které pro daný cíl učení nejsou potřebné, přesuň do nepovinného
-  rozšíření.
-- Piš odbornou, přirozenou češtinou v souvislém výkladu. Výčty, tabulky
-  a zvýrazněné bloky používej, když pomáhají porozumění.
-- Tam, kde usnadní pochopení pojmu, vztahu mezi pojmy nebo principu postupu,
-  zařazuj do kapitoly názorné diagramy, schémata či grafy. Propoj je
-  s výkladem a vysvětli, co znázorňují a čeho si má student všimnout.
-  Příkladem je schéma odlišující výběr z populace od přiřazení k podmínkám
-  v první kapitole. Volbu a počet vizualizací řiď jejich didaktickým přínosem;
-  nejsou samoúčelnou ilustrací ani povinnou součástí každého oddílu.
-- Piš soustředěně a podpůrně. Pomáhej studentům vysvětlením obtížných míst
-  a běžných omylů; nenahrazuj odborný výklad obecnou motivační řečí.
+  závěry za daných podmínek umožňuje. Upozornění na časté omyly zařazuj
+  účelně a vyvažuj je ukázkami správného použití a interpretace.
+- Alternativní interpretace a odborné spory uváděj, když ovlivňují význam
+  pojmu, volbu postupu nebo interpretaci. Pokročilé podrobnosti nepotřebné
+  pro cíl učení přesuň do nepovinného rozšíření.
+- Piš odbornou, přirozenou češtinou v souvislém výkladu, soustředěně
+  a podpůrně: vysvětluj obtížná místa a běžné omyly, nenahrazuj výklad
+  motivační řečí. Výčty, tabulky a zvýrazněné bloky používej, když pomáhají.
+- Kde to usnadní pochopení pojmu, vztahu nebo principu postupu, zařazuj
+  diagramy, schémata či grafy (např. schéma odlišující výběr z populace
+  od přiřazení k podmínkám v první kapitole). Propoj je s výkladem
+  a vysvětli, co znázorňují a čeho si všimnout. Volbu a počet řiď
+  didaktickým přínosem; nejsou povinnou součástí každého oddílu.
 - Preferuj příklady z psychologie a jasně popiš proměnné, jednotky a kontext.
-  U dat rozlišuj skutečná, upravená a simulovaná data. Úvod knihy jednou
-  uvádí, že data jsou smyšlená, pokud není uvedeno jinak; toto obecné
-  upozornění v kapitolách neopakuj. Výslovně označ skutečná, převzatá
-  a upravená data se zdrojem a simulaci tam, kde je součástí výkladu.
+  Úvod knihy jednou uvádí, že data jsou smyšlená, pokud není uvedeno jinak;
+  v kapitolách to neopakuj. Výslovně označ skutečná, převzatá a upravená
+  data se zdrojem a simulaci tam, kde je součástí výkladu.
 - Rozvíjej porozumění principům, volbu metody, výpočet, interpretaci
-  a rozpoznání chybných závěrů. Rozsah obsahu neomezuj pouze na metody,
-  které lze celé pohodlně vypočítat ručně.
-- U výsledků vysvětli jejich význam v kontextu otázky. U grafů a tabulek
-  komentuj podstatné vzorce, rozdíly či nejistotu; pouhý výpis čísel nestačí.
+  a rozpoznání chybných závěrů. Rozsah neomezuj na metody pohodlně
+  vypočitatelné ručně.
+- U výsledků vysvětli jejich význam v kontextu otázky; u grafů a tabulek
+  komentuj podstatné vzorce, rozdíly či nejistotu, nejen čísla.
 - Rozlišuj popis dat, statistickou inferenci a kauzální závěry. Vysvětluj
   relevantní předpoklady a omezení metod; nezaměňuj statistickou významnost
   za praktickou důležitost. Nevymýšlej výsledky ani citace.
-- Při práci s modely rozlišuj pozorovaná data, model a jeho předpoklady.
-  Vysvětluj, které závěry závisejí na přijatých předpokladech; nepředstavuj
-  modelové uvažování jako oblast oddělenou od popisné a inferenční statistiky.
+- U modelů rozlišuj pozorovaná data, model a jeho předpoklady a vysvětluj,
+  které závěry na předpokladech závisejí; modelové uvažování nepředstavuj
+  jako oblast oddělenou od popisné a inferenční statistiky.
 
 ## Didaktická revize
 
 - Po vytvoření nebo podstatné obsahové úpravě proveď didaktickou revizi
   dotčeného výkladu z hlediska vstupních znalostí studentů a cílů kapitoly.
-  Kontrola výpočtů a vykreslení ji nenahrazuje; sama zase nenahrazuje
-  odborné a technické ověřování popsané níže.
-- Ověř, že student pozná, jakou otázku pojem či postup pomáhá zodpovědět.
-  Hledej nevysvětlené pojmy, nevyřčené předpoklady, příliš mnoho nových
-  pojmů současně a chybějící myšlenkové kroky, které mohou odborníkovi
-  připadat samozřejmé. Posuď návaznost příkladu, obecného tvrzení, vzorce,
-  dosazení a interpretace; u důležitých vztahů také vysvětlení toho,
-  proč platí a za jakých podmínek.
-- Hledej místa umožňující podstatnou chybnou interpretaci nebo záměnu
-  souvisejících pojmů. Podle potřeby doplň srovnání či kontrastní příklad
-  a vysvětli, co zůstává stejné a co se mění. Nepředbíhej dohodnutý rozsah
-  ani nezaváděj dosud nevysvětlené pojmy jen kvůli takovému srovnání.
-- Ověř, že příklady, vzorce, tabulky a grafy mají vysvětlený význam
-  a podporují zamýšlenou dovednost. Posuď, zda výklad poskytuje podklady
-  pro řešení navazujících cvičení, včetně zdůvodnění a interpretace.
-  Hledej chybějící odpovědi na otázky „proč tento krok?“, „co výsledek
-  znamená?“ a „jak to navazuje na předchozí učivo?“; nevytvářej z nich
-  povinné bloky otázek ani další samostatná cvičení uvnitř výkladu.
+  Nenahrazuje ji kontrola výpočtů a vykreslení, ani ona nenahrazuje odborné
+  a technické ověřování. Rozsah přizpůsob změně: u drobné opravy dotčené
+  místo a návaznosti, celou kapitolu při změně struktury či hlavního výkladu.
+- Ověř, že student pozná, na jakou otázku pojem či postup odpovídá. Hledej
+  nevysvětlené pojmy, nevyřčené předpoklady, příliš mnoho nových pojmů
+  najednou a myšlenkové kroky samozřejmé jen odborníkovi. Posuď návaznost
+  příkladu, obecného tvrzení, vzorce, dosazení a interpretace; u důležitých
+  vztahů i vysvětlení, proč platí a za jakých podmínek.
+- Hledej místa umožňující podstatnou chybnou interpretaci či záměnu
+  souvisejících pojmů; podle potřeby doplň srovnání nebo kontrastní příklad
+  (co zůstává stejné a co se mění), aniž bys předbíhal rozsah či zaváděl
+  dosud nevysvětlené pojmy.
+- Ověř, že příklady, vzorce, tabulky a grafy mají vysvětlený význam,
+  podporují zamýšlenou dovednost a dávají podklady pro řešení cvičení
+  včetně zdůvodnění a interpretace. Hledej chybějící odpovědi na „proč tento
+  krok?“, „co výsledek znamená?“ a „jak to navazuje?“; nedělej z nich
+  povinné bloky otázek ani cvičení uvnitř výkladu.
 - Posuď hlavní myšlenku a návaznost odstavců, zbytečnou abstrakci
-  a opakování bez nové vysvětlující funkce. Zjištěné nedostatky oprav
-  v rámci schváleného rozsahu, bez nového schvalování běžných oprav
-  a bez prodlužování textu bez jasného didaktického přínosu.
-- Vyžaduje-li oprava nový odborný pojem, změnu značení nebo rozšíření
-  obsahu, postupuj podle pravidel pro jejich dohodnutí. Rozsah revize
-  přizpůsob změně: u drobné opravy posuď dotčené místo a návaznosti,
-  celou kapitolu při změně její struktury nebo hlavního výkladu.
+  a opakování bez nové funkce. Nedostatky oprav v rámci schváleného rozsahu
+  bez nového schvalování a bez prodlužování textu bez didaktického přínosu;
+  nový pojem, změna značení či rozšíření obsahu vyžadují dohodu.
 - Interní didaktickou revizi nevydávej za ověření porozumění na studentech.
 
 ## Terminologie a značení
 
 - [Autorský registr](docs/SLOVNIK.md) určuje platné terminologické preference
-  pro učebnici i související materiály; [studentský slovníček](quarto/slovnicek.qmd)
-  poskytuje vysvětlení a odkazy na výklad. Důvody, rozsah a doklady nových
-  dohod zapisuj do příslušného dokladu v `docs/rozhodnuti/` a jeho stručný
-  záznam do [registru rozhodnutí](docs/ROZHODNUTI.md); terminologické heslo
-  odkazuje na doklad.
+  pro učebnici i související materiály; před psaním i při revizi čti také
+  pravidlo použití a doklad hesla, samotný seznam synonym nestačí.
+  [Studentský slovníček](quarto/slovnicek.qmd) poskytuje vysvětlení a odkazy
+  na výklad. Důvody, rozsah a doklady nových dohod zapisuj do dokladu
+  v `docs/rozhodnuti/` a stručně do [registru rozhodnutí](docs/ROZHODNUTI.md);
+  heslo odkazuje na doklad.
 - Při prvním zavedení odborného pojmu uveď schválený český termín a v závorce
-  anglický ekvivalent. V dalším výkladu důsledně používej jednu schválenou
-  českou variantu v kontextu určeném registrem. Alternativy eviduj v registru
-  a studentském slovníčku; upozorni na ně při zavedení, je-li to užitečné,
-  ale systematicky je nestřídej ve výkladu. Rozlišuj skutečná synonyma,
-  související či širší/užší pojmy, protiklady a chybné podoby i v angličtině.
+  anglický ekvivalent. Dále důsledně používej jednu schválenou českou
+  variantu v kontextu určeném registrem. Alternativy eviduj v registru
+  a slovníčku; při zavedení na ně případně upozorni, ve výkladu je
+  nestřídej. Rozlišuj skutečná synonyma, související či širší/užší pojmy,
+  protiklady a chybné podoby i v angličtině.
 - Nové heslo nebo změnu preference zařaď mezi platná až po dohodě s autorem;
   připoj stav, doklad, rozsah použití, stabilní ID a odkazy na studentské
   heslo a první výklad. Návrhy a nejasně doložené volby drž odděleně.
-  Samotný výskyt termínu v kapitole, zdroji či slovníčku není jeho schválení.
+  Výskyt termínu v kapitole, zdroji či slovníčku není jeho schválení.
   Registr rozlišuje konkrétní schválení od převzetí staršího dohodnutého celku.
-- Při terminologické změně v témže úkolu aktualizuj registr, studentský
-  slovníček a všechna dotčená místa včetně cvičení, popisků a alternativních
-  textů grafů, generátorů, sešitů, prezentací a poznámek; podle dopadu také
+- Při terminologické změně v témže úkolu aktualizuj registr, slovníček
+  a všechna dotčená místa včetně cvičení, popisků a alternativních textů
+  grafů, generátorů, sešitů, prezentací a poznámek; podle dopadu také
   značení, přehled Excelu a osnovu. Zkontroluj shodu názvů, významové výjimky
   a odkazy; rozsah kontroly, datum a omezení zapiš do autorské historie.
   Neprováděj slepé hromadné náhrady ani neoznačuj nezkontrolované materiály
   za sjednocené. Při přejmenování zachovej ID hesla.
 - Aktuální výslovná dohoda má přednost před starším záznamem. Při rozporu
-  ověř doklad a rozsah, slaď dokumenty a označ nahrazené rozhodnutí;
-  historické záznamy zachovej. Skutečně nejasnou volbu projednej s autorem,
-  již doloženou platnou konvenci znovu neschvaluj.
+  ověř doklad a rozsah, slaď dokumenty a postupuj podle oddílu
+  [Evidence rozhodnutí](#evidence-rozhodnuti). Skutečně nejasnou volbu
+  projednej s autorem, doloženou platnou konvenci znovu neschvaluj.
 - Výběrové charakteristiky označuj malými písmeny latinky v kurzivě;
-  populační parametry řeckými písmeny ve stojatém řezu, bez kurzivy.
-- Výběrový průměr označuj konzistentně kurzivním *m*.
-- Výjimky z pravidla značení jsou možné pouze po předchozím schválení
-  uživatelem. Schválené ukázky odborného reportování podle APA 7 používají
-  značky *M*, *Mdn*, *SD*, *N* a *n*; výpočetní značení učebnice tím
-  neměň. Rozsah této výjimky a rozlišující zkratky MeanAD a MedAD eviduje
+  populační parametry řeckými písmeny ve stojatém řezu. Výběrový průměr
+  označuj konzistentně kurzivním *m*.
+- Výjimky ze značení jsou možné jen po předchozím schválení uživatelem.
+  Schválené ukázky reportování podle APA 7 používají *M*, *Mdn*, *SD*, *N*
+  a *n*; výpočetní značení učebnice tím neměň. Rozsah výjimky a zkratky
+  MeanAD a MedAD eviduje
   [přehled rozhodnutí](docs/rozhodnuti/spolecne-konvence.md#r01-znaceni-a-reportovani).
-- Předem dohodni i další nové značení, například dat, indexů, počtů
-  a operátorů. Každý schválený symbol zaznamenej do přehledu značení,
-  případně s běžnými alternativami a jasným označením používané varianty.
-- Řecký znak sám o sobě nezaručuje stojatý řez: výslednou typografii ověř
-  ve vykreslených rovnicích. Matematiku zapisuj jako přístupný textový
-  matematický zápis, nikoli jako obrázky vzorců.
+- Předem dohodni i další značení, například dat, indexů, počtů a operátorů.
+  Každý schválený symbol zaznamenej do přehledu značení, případně
+  s běžnými alternativami a jasným označením používané varianty.
+- Řecký znak sám nezaručuje stojatý řez: typografii ověř ve vykreslených
+  rovnicích. Matematiku zapisuj přístupným textovým zápisem, ne obrázky.
 
 ## Výpočty, kalkulačka, Excel a interní R
 
-- Preferuj ruční výpočty s kalkulačkou, pokud pomáhají pochopit postup.
-  Používej k nim přiměřeně malá data a komentované mezikroky.
-- Excel využívej pro obtížné výpočty, rozsáhlejší data, opakované výpočty
-  a jako možnost kontroly či usnadnění práce po zvládnutí ručního postupu.
-  Není nutné každý příklad řešit oběma způsoby.
-- Statistické tabulky nevyžaduj; potřebné hodnoty zpřístupni pomocí Excelu.
-- Používej české názvy funkcí a českou syntaxi Excelu. Při zavedení funkce
-  vždy připoj poznámku s jejím anglickým názvem. Název, argumenty a chování
-  ověřuj; názvy funkcí nepřekládej odhadem.
-- U excelového příkladu uveď vstupy, jejich umístění v buňkách, vzorec,
-  význam argumentů, vracený výsledek a interpretaci. Upozorni na relevantní
-  nároky na verzi Excelu. Student musí mít vše potřebné k zopakování postupu.
+- Preferuj ruční výpočty s kalkulačkou, pokud pomáhají pochopit postup,
+  s přiměřeně malými daty a komentovanými mezikroky.
+- Excel využívej pro obtížné či opakované výpočty, rozsáhlejší data
+  a ke kontrole či usnadnění po zvládnutí ručního postupu; každý příklad
+  nemusí být řešen oběma způsoby. Statistické tabulky nevyžaduj; potřebné
+  hodnoty zpřístupni pomocí Excelu.
+- Používej české názvy funkcí a českou syntaxi Excelu; při zavedení funkce
+  připoj její anglický název. Název, argumenty a chování ověřuj, nepřekládej
+  odhadem.
+- U excelového příkladu uveď vstupy a jejich buňky, vzorec, význam argumentů,
+  vracený výsledek a interpretaci, případně nároky na verzi Excelu. Student
+  musí mít vše potřebné k zopakování postupu.
 - Dohodni a jednotně používej pravidla zaokrouhlování. Rozlišuj přesnost
   mezivýpočtů a prezentaci výsledku; u úloh uveď potřebnou toleranci.
-- R používej interně pro ověřování výsledků, simulace a tvorbu grafů.
-  R kód ani technické výpisy nezobrazuj ve studentském webu. Smysluplné
-  výsledky, grafy a tabulky zobraz s českými popisky a interpretací.
+- R používej interně pro ověřování výsledků, simulace a grafy. R kód ani
+  technické výpisy nezobrazuj ve studentském webu; výsledky, grafy a tabulky
+  zobraz s českými popisky a interpretací.
 - Interní výpočty musí být reprodukovatelné bez objektů z předchozí
   interaktivní relace. Uveď závislosti a vstupy, používej relativní cesty
   a u náhodných postupů nastav seed. Neinstaluj balíčky během renderování.
@@ -378,69 +340,66 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 ## Data ke kapitolám
 
 - Sešity sestavuj reprodukovatelnými skripty ovládajícími desktopový Excel
-  pro Windows. Používej společný generátor `scripts/build-workbooks.ps1`
-  a místní deklarace listů; tvorba ani ověřování nesmějí vyžadovat
+  pro Windows, společným generátorem `scripts/build-workbooks.ps1`
+  a místními deklaracemi listů; tvorba ani ověřování nesmějí vyžadovat
   `@oai/artifact-tool`, runtime konkrétního LLM ani jinou neveřejnou knihovnu.
   Provozní příkazy a závislosti udržuj v [docs/PROVOZ.md](docs/PROVOZ.md).
 - Excel spouštěj v samostatné skryté instanci, bez zásahu do otevřených
-  uživatelských sešitů. Výsledek nejprve sestav a přepočítej v `tmp/`,
-  teprve po úspěchu nahraď cílový sešit. Při chybě ukonči vlastní instanci
-  a zachovej předchozí výstup. Běžné kontrolní skripty změny neukládají.
-- Rozlišuj standardní anglický zápis vzorců pro `Formula` od českého
-  zápisu pro `FormulaLocal`; české vzorce z učebnice skutečně ověřuj
-  v českém Excelu. Číselné formáty přizpůsob místním oddělovačům a zachovej
-  datové typy včetně číselně vypadajícího textu a prázdných buněk.
+  uživatelských sešitů. Výsledek sestav a přepočítej v `tmp/`, teprve po
+  úspěchu nahraď cílový sešit. Při chybě ukonči vlastní instanci a zachovej
+  předchozí výstup. Běžné kontrolní skripty změny neukládají.
+- Rozlišuj anglický zápis vzorců pro `Formula` od českého pro `FormulaLocal`;
+  české vzorce z učebnice skutečně ověřuj v českém Excelu. Číselné formáty
+  přizpůsob místním oddělovačům a zachovej datové typy včetně číselně
+  vypadajícího textu a prázdných buněk.
 - Při změně generátoru porovnej obsah a výsledky s předchozími sešity,
   ověř zachování listů, adres, vzorců, grafů a ověření vstupů. Spusť
-  kapitolové kontroly Excelu, nezávislé číselné kontroly a vizuálně
-  prohlédni dotčené listy a grafy. Zachovej obsah i didaktické oddělení
-  vstupů od řešení; samotný úspěšný zápis XLSX není ověřením funkčnosti.
-- Ke každé výkladové kapitole poskytuj studentům jediný excelový sešit
-  `data/kapitola_NN.xlsx`. Obsahuje všechny zadané datové soubory i souhrnné
-  číselné vstupy potřebné k zopakování příkladů a vyřešení cvičení.
-  Souběžné CSV studentům nenabízej; interní CSV mohou zůstat pro generátory
-  a kontroly, ale nesmějí být součástí publikovaných studentských dat.
-- Datové soubory rozděluj do výstižně pojmenovaných listů podle příkladů
-  a cvičení. Stejná data sdílená více úlohami mohou používat jeden list.
-  Na prvním listu `Prehled` uveď návaznost na text a přesné oblasti buněk.
-  Vysvětli proměnné, jednotky, kódování, chybění a původ dat.
-- Vstupy pro vlastní procvičení odděl od hotových výpočtů a řešení.
-  Zachovej záměrně chybná data, pokud jsou předmětem úlohy. Ze zadaných
-  souhrnů nevymýšlej individuální pozorování; u čistě slovních úloh a
-  modelových křivek bez datového souboru tuto skutečnost v přehledu vysvětli.
+  kapitolové kontroly Excelu a nezávislé číselné kontroly a vizuálně
+  prohlédni dotčené listy a grafy. Zachovej obsah i oddělení vstupů od
+  řešení; úspěšný zápis XLSX není ověřením funkčnosti.
+- Ke každé výkladové kapitole poskytuj studentům jediný sešit
+  `data/kapitola_NN.xlsx` se všemi zadanými datovými soubory i souhrnnými
+  vstupy potřebnými k zopakování příkladů a vyřešení cvičení. Souběžné CSV
+  studentům nenabízej; interní CSV pro generátory a kontroly nesmějí být
+  součástí publikovaných studentských dat.
+- Data rozděluj do výstižně pojmenovaných listů podle příkladů a cvičení;
+  sdílená data mohou mít jeden list. Na prvním listu `Prehled` uveď
+  návaznost na text, přesné oblasti buněk a vysvětli proměnné, jednotky,
+  kódování, chybění a původ dat.
+- Vstupy pro procvičení odděl od hotových výpočtů a řešení. Zachovej
+  záměrně chybná data, jsou-li předmětem úlohy. Ze zadaných souhrnů
+  nevymýšlej individuální pozorování; u čistě slovních úloh a modelových
+  křivek bez datového souboru to v přehledu vysvětli.
 - V kapitole odkazuj na jediný sešit a u konkrétní práce uveď list a buňky.
   Při každé změně příkladu či cvičení ověř úplnost, hodnoty, datové typy
-  a chybění proti textu, uprav reprodukovatelný generátor i kontrolu sešitu.
-  Ověř rovněž dostupnost sešitu ve vykresleném webu. Přehled pokrytí
-  příkladů a všech cvičení udržuj v autorské dokumentaci.
+  a chybění proti textu, uprav generátor i kontrolu sešitu a ověř dostupnost
+  sešitu ve vykresleném webu. Pokrytí příkladů a cvičení udržuj v autorské
+  dokumentaci.
 
 ## Cvičení a řešení
 
-- Samostatná cvičení soustřeď na konec každé výkladové kapitoly.
-  Nevkládej je povinně za každý nový postup jako v R101. Ve výkladu používej
-  komentované řešené příklady.
-- Střídej výpočty, konceptuální otázky, volbu metody, interpretaci výsledků
-  a rozpoznávání chybných argumentů. Obtížnost přiměřeně odstupňuj.
-- Soubor cvičení má pokrýt celý obsah kapitoly a její cíle učení bez
-  zbytečného opakování obdobných úloh. Opakování zařazuj jen tehdy, má-li
-  jasný didaktický účel.
-- Cvičení mají ověřovat především skutečné porozumění: schopnost vysvětlit
-  princip, zdůvodnit postup, použít poznatky v nové situaci a rozpoznat
-  chybnou interpretaci. Neomezuj je na memorování definic ani mechanické
-  dosazování do vzorců.
-- Zadání musí uvádět všechny potřebné vstupy a očekávané pomůcky a vycházet
+- Samostatná cvičení soustřeď na konec každé výkladové kapitoly, nikoli
+  povinně za každý postup jako v R101; ve výkladu používej komentované
+  řešené příklady.
+- Soubor cvičení má pokrýt celý obsah a cíle kapitoly s přiměřeně
+  odstupňovanou obtížností a bez zbytečného opakování obdobných úloh
+  (opakování jen s jasným didaktickým účelem). Střídej výpočty, konceptuální
+  otázky, volbu metody, interpretaci výsledků a rozpoznávání chybných argumentů.
+- Cvičení mají ověřovat především porozumění: vysvětlit princip, zdůvodnit
+  postup, použít poznatky v nové situaci a rozpoznat chybnou interpretaci,
+  nikoli jen memorovat definice či mechanicky dosazovat.
+- Zadání uvádí všechny potřebné vstupy a očekávané pomůcky a vychází
   z již vysvětlených pojmů a postupů.
-- Ke každému cvičení připoj úplné vzorové nebo možné řešení, včetně
-  vysvětlení, mezikroků a relevantní interpretace. Samotný výsledek nestačí.
-- Zadání je vždy viditelné. Celé řešení umísti bezprostředně pod něj do
-  výchozím stavem sbaleného bloku Quarto
-  `.callout-note collapse="true" title="Ukázat řešení"`.
-  Skryté musí být i výsledky, tabulky, grafy a vysvětlení řešení.
+- Ke každému cvičení připoj úplné vzorové nebo možné řešení s vysvětlením,
+  mezikroky a relevantní interpretací; samotný výsledek nestačí.
+- Zadání je vždy viditelné. Celé řešení včetně výsledků, tabulek, grafů
+  a vysvětlení umísti bezprostředně pod něj do výchozím stavem sbaleného
+  bloku `.callout-note collapse="true" title="Ukázat řešení"`.
 
 ## Tři závěrečné přehledové kapitoly
 
 Za všemi výkladovými kapitolami udržuj vždy tyto tři kapitoly v uvedeném
-pořadí. Nové výkladové kapitoly zařazuj před ně. Přehledy doplňuj současně
+pořadí; nové výkladové kapitoly zařazuj před ně. Přehledy doplňuj současně
 s každou kapitolou, ne až při dokončení knihy.
 
 1. **Slovníček pojmů:** preferovaný český termín, anglický ekvivalent,
@@ -453,56 +412,55 @@ s každou kapitolou, ne až při dokončení knihy.
 3. **Užitečné funkce Excelu:** český název, anglický název, účel, argumenty,
    vracený výsledek, konkrétní příklad použití s výsledkem a odkaz na výklad.
 
-- Všechny tři kapitoly musí mít tabelární podobu; tematické členění
-  do několika tabulek je možné, pokud zachová dobrou dohledatelnost.
-- Tabulky opatři vyhledáváním napříč všemi řádky, nejen aktuální stránkou.
-  Vyhledávání musí zahrnout české a anglické názvy, alternativy a vysvětlení.
+- Všechny tři mají tabelární podobu; členění do více tematických tabulek
+  je možné při zachování dobré dohledatelnosti.
+- Vyhledávání prochází všechny řádky, nejen aktuální stránku, včetně
+  českých a anglických názvů, alternativ a vysvětlení.
 - Výchozí stránka má 10 řádků; nabídni také 25, 50 a všechny řádky.
-  Používej srozumitelné české ovládací prvky.
-- Zajisti stabilní odkazy na jednotlivé položky. Odkaz z výkladu musí
-  zpřístupnit cílový řádek i přes stránkování nebo aktivní filtr.
+  Ovládací prvky jsou srozumitelně česky.
+- Jednotlivé položky mají stabilní odkazy; odkaz z výkladu zpřístupní
+  cílový řádek i přes stránkování nebo aktivní filtr.
 - Při zavádění tabulek ověř filtrování, stránkování, odkazy, čitelnost
-  matematiky, ovládání klávesnicí a zobrazení na mobilu. Konkrétní knihovnu
-  zvol podle těchto požadavků; její pouhé připojení není ověřením funkčnosti.
+  matematiky, ovládání klávesnicí a zobrazení na mobilu. Knihovnu zvol
+  podle těchto požadavků; její připojení není ověřením funkčnosti.
 
 ## Studentský text a autorská dokumentace
 
 - Studentský text musí obstát bez znalosti historie jeho vzniku.
   Neuváděj v něm zprávy o převodu podkladů, opravách původních materiálů,
-  interním R kódu ani konfiguraci a renderování Quarta.
-- Zachovej odborné citace, původ dat a vysvětlení analytických rozhodnutí,
-  která student potřebuje pro porozumění příkladu.
-- Autorskou informaci udržuj v hlavním místě určeném oddílem
-  [Evidence rozhodnutí](#evidence-rozhodnuti). Pravidlo průběžné údržby
-  mapy je v úvodním oddílu „Použití projektové dokumentace“.
-  Nevydávej neexistující dokumenty či kontroly za již zavedené
-  a neduplikuj provozní návody v těchto instrukcích.
+  interním R kódu ani konfiguraci a renderování Quarta. Zachovej odborné
+  citace, původ dat a vysvětlení analytických rozhodnutí potřebná
+  k porozumění příkladu.
+- Autorskou informaci udržuj v hlavním místě podle oddílu
+  [Evidence rozhodnutí](#evidence-rozhodnuti). Nevydávej neexistující
+  dokumenty či kontroly za zavedené a neduplikuj zde provozní návody.
 
 ## Uspořádání a ověřování Quarto Book
 
-- Při založení knihy použij `index.qmd` pro úvod, `quarto/` pro kapitoly
-  a `_quarto.yml` pro společnou konfiguraci a pořadí `book.chapters`.
-  Sdílené styly drž samostatně; lokální nastavení přepisuj jen z důvodu.
-- Používej stabilní jedinečné identifikátory a křížové odkazy.
-  Čísla kapitol, obrázků a tabulek nevpisuj do odkazů ručně.
+- Kniha používá `index.qmd` pro úvod, `quarto/` pro kapitoly a `_quarto.yml`
+  pro společnou konfiguraci a pořadí `book.chapters`. Sdílené styly drž
+  samostatně; lokální nastavení přepisuj jen z důvodu.
+- Používej stabilní jedinečné identifikátory a křížové odkazy; čísla
+  kapitol, obrázků a tabulek nevpisuj do odkazů ručně.
 - Upravuj zdroje, nikoli generované HTML v `_book/`. Generované výstupy
   a dočasné soubory neukládej do Gitu; zdrojové kontrolní skripty do něj patří.
 - Po obsahové změně ověř výpočty, všechny vzorové odpovědi a render dotčené
   kapitoly. Po přidání kapitoly či změně společné konfigurace, stylů nebo
   navigace vykresli celou knihu a zkontroluj dotčené stránky a odkazy.
+  Při změně pouze instrukcí či autorské dokumentace bez dopadu na web
+  stačí kontrola obsahu a rozdílů.
 - Ruční postupy i excelové příklady ověř proti nezávislému výpočtu.
-  Shoda s interním R výpočtem sama nepotvrzuje funkčnost vzorce v Excelu;
-  ověř i správnost použité funkce a syntaxe. Rozlišuj skutečně spuštěný
-  excelový příklad od kontroly pomocí dokumentace a jiného nástroje.
-- Konkrétní interpretace opírej o skutečně ověřené výsledky; grafy prohlédni
+  Shoda s interním R nepotvrzuje funkčnost vzorce v Excelu; ověř i správnost
+  funkce a syntaxe a rozlišuj skutečně spuštěný excelový příklad od kontroly
+  podle dokumentace či jiným nástrojem.
+- Interpretace opírej o skutečně ověřené výsledky; grafy prohlédni
   i vizuálně. Po změně dat či výpočtu zkontroluj navazující text a řešení.
 - Ve webu ověř úplné skrytí a rozbalení řešení, nezobrazení R kódu,
   typografii symbolů, obrázky, přehledové tabulky a mobilní zobrazení
   bez nechtěného vodorovného přetékání celé stránky.
-- Pokud kontrolu nelze provést, přesně uveď co a proč zůstalo neověřené,
-  v autorské dokumentaci i ve zprávě uživateli. Nedeklaruj úplné ověření.
-- Při změně pouze instrukcí či autorské dokumentace bez dopadu na web
-  zkontroluj obsah a rozdíly; nový render není nutný.
+- Kontrolu, kterou nelze provést, přesně uveď (co a proč zůstalo
+  neověřené) v autorské dokumentaci i ve zprávě uživateli; nedeklaruj
+  úplné ověření.
 
 ## Prezentace a poznámky pro vyučujícího
 
@@ -513,58 +471,46 @@ konkrétní formát slidů a poznámek určuje specializovaný dokument.
 
 ## Git a dokončení práce
 
-- Před prací ověř stav repozitáře a zachovej rozpracované uživatelské změny.
-- Výchozím postupem je upravovat soubory přímo v hlavní pracovní složce
-  projektu, také když již obsahují necommitované změny. Ty nejsou překážkou
-  práce ani samy o sobě důvodem k další žádosti o souhlas. Před úpravou
-  přečti aktuální obsah a rozdíly vůči Gitu, navazuj na uživatelovu redakci
-  a začleň nové změny do téhož souboru. Zachování rozpracovaných změn
-  znamená zachovat jejich obsah a záměr, nikoli se úpravě souboru vyhnout.
-- Kvůli samotným necommitovaným změnám nevytvářej paralelní pracovní kopie,
-  worktrees ani dočasné verze kapitoly, které by se staly druhým místem
-  pro úpravy. Oddělenou pracovní kopii použij jen na výslovnou žádost
-  uživatele nebo při konkrétní potřebě izolace, kterou předem vysvětlíš.
-  Případná záloha či pomocný soubor pro kontrolu nesmí nahrazovat úpravu
-  cílového souboru ani zanechat více soupeřících verzí výsledku.
-- Tematická větev nevyžaduje jinou pracovní složku. Při změně větve
-  bezpečně zachovej rozpracované změny; neodstraňuj je ani neobnovuj starší
-  obsah jen pro získání čistého pracovního stromu. Pokud se změny překrývají,
-  spoj je podle dohodnutého záměru; ptej se pouze při skutečně nejasném
-  obsahovém konfliktu. Po dokončení ověř, že úplný aktuální výsledek je
-  v souboru na uživatelem očekávané cestě, nikoli jen v jiné kopii či na GitHubu.
-- Pro každou kapitolu používej nejvýše jednu aktivní pracovní větev
-  `codex/chapter-01`, `codex/chapter-02` atd. Nevytvářej další větve
-  s příponami podle dílčích úprav. Jednotlivé změny rozlišuj commity a PR;
-  další úpravy před sloučením patří do stejné větve.
-- Pro práci mimo výklad jednotlivé kapitoly používej větve podle typu změny:
-  `codex/instructions` pro autorská pravidla a samostatnou údržbu autorské
-  dokumentace, `codex/presentations` pro prezentace, poznámky a jejich
-  doprovodné sešity, `codex/infrastructure` pro sestavení, publikování,
-  společné styly a technické nástroje a `codex/cross-chapter` pro obsahové
-  změny napříč více kapitolami. Obecnou větev `codex/other` nově nepoužívej.
-- Pro každý uvedený typ používej nejvýše jednu aktivní větev. Nesouvisející
-  úkoly stejného typu dokončuj postupně v samostatných PR. Větev vybírej
-  podle hlavního účelu úkolu; související změny nerozděluj mechanicky
-  podle typu souboru. Aktualizace přehledů, dokumentace, dat a kontrol
-  vyvolané změnou jedné kapitoly patří do větve této kapitoly. Samostatná
-  práce na prezentaci patří do `codex/presentations`, i když se týká
-  jediné kapitoly; úprava pravidel prezentací patří do `codex/instructions`.
+- Před prací ověř stav repozitáře. Soubory upravuj přímo v hlavní pracovní
+  složce, i když obsahují necommitované změny; ty nejsou překážkou ani
+  důvodem k další žádosti o souhlas. Přečti aktuální obsah a rozdíly vůči
+  Gitu, navazuj na uživatelovu redakci a začleň změny do téhož souboru —
+  zachovat rozpracované změny znamená zachovat jejich obsah a záměr.
+- Kvůli necommitovaným změnám nevytvářej paralelní pracovní kopie,
+  worktrees ani dočasné verze, které by se staly druhým místem úprav;
+  oddělenou kopii použij jen na výslovnou žádost nebo při předem
+  vysvětlené potřebě izolace. Záloha či pomocný soubor nesmí nahrazovat
+  úpravu cílového souboru ani zanechat soupeřící verze výsledku.
+- Při změně větve rozpracované změny bezpečně zachovej; neodstraňuj je
+  ani neobnovuj starší obsah kvůli čistému stromu. Překrývající se změny
+  spoj podle dohodnutého záměru, ptej se jen při skutečně nejasném konfliktu.
+  Po dokončení ověř, že úplný výsledek je v souboru na očekávané cestě,
+  nikoli jen v jiné kopii či na GitHubu.
+- Větve: pro každou kapitolu nejvýše jedna `codex/chapter-01`,
+  `codex/chapter-02` atd.; mimo výklad jedné kapitoly `codex/instructions`
+  (autorská pravidla a samostatná údržba autorské dokumentace),
+  `codex/presentations` (prezentace, poznámky a jejich sešity),
+  `codex/infrastructure` (sestavení, publikování, společné styly, nástroje)
+  a `codex/cross-chapter` (obsah napříč kapitolami). `codex/other` nově
+  nepoužívej. Pro každý typ nejvýše jedna aktivní větev bez přípon dílčích
+  úprav; změny rozlišuj commity a PR, nesouvisející úkoly dokončuj
+  postupně v samostatných PR, další úpravy před sloučením patří do téže větve.
+- Větev vybírej podle hlavního účelu úkolu, ne mechanicky podle typu
+  souboru: přehledy, dokumentace, data a kontroly vyvolané změnou jedné
+  kapitoly patří do její větve; samostatná práce na prezentaci do
+  `codex/presentations`, i pro jedinou kapitolu; pravidla prezentací do
+  `codex/instructions`. Nezakládej prázdné větve.
 - Po uživatelově sloučení PR ověř zachování všech změn v aktuálním `main`
-  a odstraň dokončenou pracovní větev lokálně i na GitHubu, pokud ještě
-  existuje. Při další práci ji vytvoř z aktuálního `origin/main` pod stejným
-  názvem. Nezakládej prázdné větve pro kapitoly ani typy práce, na kterých
-  se nepracuje.
-- Před odstraněním větve aktualizuj stav z GitHubu a prověř neodeslané
-  commity i připojené pracovní kopie včetně nesledovaných a ignorovaných
-  souborů. Pokud změny přešly do `main` pod jinými identifikátory commitů,
-  ověř jejich obsahovou shodu. Jedinečné nebo rozpracované změny zachovej;
-  samotné uzavření PR ani odstranění vzdálené větve není dokladem sloučení.
-- Do commitu zahrň pouze změny patřící k úkolu. Po kontrole vytvoř commit
-  a odešli pracovní větev na GitHub; připrav změny k uživatelské kontrole
-  a sloučení prostřednictvím pull requestu.
-- Sloučení do `main` provádí uživatel. Neposílej pracovní změny přímo
-  do `main`, neslučuj je za uživatele a nepřepisuj vzdálenou historii.
-  Publikování webu navaž na schválené změny.
+  a odstraň dokončenou větev lokálně i na GitHubu; další práci začni
+  stejně pojmenovanou větví z aktuálního `origin/main`. Před odstraněním
+  aktualizuj stav z GitHubu, prověř neodeslané commity a připojené pracovní
+  kopie včetně nesledovaných a ignorovaných souborů; u změn převzatých pod
+  jinými commity ověř obsahovou shodu. Jedinečné či rozpracované změny
+  zachovej; uzavření PR ani smazání vzdálené větve nedokládá sloučení.
+- Do commitu zahrň jen změny patřící k úkolu. Po kontrole commit odešli
+  na GitHub a připrav pull request. Sloučení do `main` provádí uživatel:
+  neposílej změny přímo do `main`, neslučuj za uživatele a nepřepisuj
+  vzdálenou historii. Publikování webu navaž na schválené změny.
 - V závěrečné zprávě shrň změny, podstatné opravy s místem a důvodem,
-  výsledky kontrol a jejich omezení. Uveď commit a odkaz na větev nebo PR.
+  výsledky kontrol a jejich omezení; uveď commit a odkaz na větev nebo PR.
   Pokud commit či odeslání selže, popiš skutečný stav a překážku.
