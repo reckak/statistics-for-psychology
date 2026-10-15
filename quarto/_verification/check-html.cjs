@@ -516,6 +516,13 @@ const server = http.createServer((req, res) => {
         ['outcome variable', 'pojem-vysledna-promenna'],
         ['criterion variable', 'pojem-kriterium'],
         ['predictand', 'pojem-odhadovana-promenna'],
+        // Adjacent entries need different ids: an unchanged hash fires no hashchange.
+        ['vysvetlujici promenna', 'pojem-explanacni-promenna'],
+        ['regresor', 'pojem-prediktor'],
+        ['exposure', 'pojem-explanacni-promenna'],
+        ['endpoint', 'pojem-vysledna-promenna'],
+        ['explanacni', 'pojem-explanacni-promenna'],
+        ['regresand', 'pojem-odhadovana-promenna'],
         ['probability sampling', 'pojem-pravdepodobnostni-vyber'],
         ['random assignment', 'pojem-nahodne-prideleni']
       ]) {

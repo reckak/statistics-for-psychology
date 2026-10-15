@@ -3020,3 +3020,37 @@ tabulka prohlédnuta při šířce 1360 a 390 px (bez přetečení stránky,
 odkaz na tabulku vykreslen jako „Tabulka 1.1“). Následující tabulka
 `tbl-urovne-hodnoty` se přečíslovala na 1.2; ručně vepsaná čísla nikde nejsou.
 Omezení: interní didaktická kontrola dotčeného místa, neověřená na studentech.
+
+## Kapitola 1: označení rolí proměnných podle oboru (2026-10-16)
+
+Podle [R39](../docs/rozhodnuti/kapitola-01.md#r39-role-podle-oboru) byla
+tabulka označení rolí v oddílu [Role proměnných](kapitola_01.qmd#sec-role-promennych)
+přestavěna podle kontextu: experiment, obecný popis vztahů, predikce a regrese,
+psychologické testování, epidemiologie a klinický výzkum, strojové učení.
+Dostala popisek, ID `tbl-role-promennych`, přístupný posuvný obal a minimální
+šířku 720 px (na počítači se vejde do sloupce textu, na mobilu se posouvá).
+Tabulky kapitoly 1 se přečíslovaly: role proměnných 1.1, souhrn úrovní měření 1.2,
+možné hodnoty 1.3; ručně vepsaná čísla nikde nejsou. Úvodní odstavec doplněn o částečnou synonymii označení a o osy
+bodového grafu. Zachovány nuance původní tabulky (vysvětlení není příčina,
+predikce nemusí mířit do budoucnosti, kritérium v testování, odhadovaná
+proměnná není vypočtená předpověď). Oborová označení jsou pouze zmíněna.
+Exogenní/endogenní vynecháno (viz R39).
+
+Preferovaný termín změněn z „explanační proměnná“ na „vysvětlující proměnná“
+(explanační je alternativou). Ručně upraveno: kapitola 1 (odstavec o preferenci,
+odkaz do slovníčku, úloha 4f zadání i řešení), slovníček (heslo, nezávislá
+proměnná, prediktor; doplněna oborová označení u souvisejících hesel kvůli
+vyhledávání), registr SLOVNIK.md (včetně poznámky u H05), karta kapitoly 1,
+poznámky ke slidu 9 v `presentations/kapitola_01_od_otazky_k_datum.pptx`
+a `kapitola_01_poznamky.docx` (jediný výskyt, nahrazen v XML a ověřen otevřením
+v PowerPointu a Wordu). PDF prezentace termín neobsahuje, a proto nebyl znovu
+exportován. ID hesla `pojem-explanacni-promenna` zachováno. Historické záznamy
+výše se nemění.
+
+Kontroly: celá kniha vykreslena; `check-html.cjs`, `check-doc-maps.cjs
+--require-sources`, `git diff --check`; vyhledávání vysvětlující/explanační, exposure, regresor, endpoint
+a regresand ve slovníčku nově ověřuje `check-html.cjs`;
+tabulka prohlédnuta při 1360 a 390 px. Omezení: věta poznámek ke slidu 9
+nadále označuje prediktor a vysvětlující proměnnou jako „synonyma“ nezávislé
+proměnné; rozbor nuancí v prezentaci nebyl součástí úkolu. Interní didaktická
+kontrola, neověřená na studentech.

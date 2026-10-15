@@ -101,3 +101,40 @@ a není obecným směrem tohoto zkreslení.
 na upřesnění odlišné dvojice proměnných, simulací a termínu odpověděl
 „Ano, souhlasím.“ **Důvod:** názorně rozlišit společnou příčinu a společný
 následek bez rozšiřování povinného učiva. Nová výpočetní úloha se nepřidává.
+
+<a id="r39-role-podle-oboru"></a>
+
+## R39 — Vysvětlující proměnná a označení rolí podle oboru
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r39-role-podle-oboru). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-16. **Rozsah:** kapitola 1 (oddíl o rolích
+proměnných a úloha 4f), slovníček, terminologický registr, prezentace
+a poznámky ke kapitole 1 a další použití v učebnici.
+
+- Preferovaným překladem *explanatory variable* je **vysvětlující
+  proměnná**; „explanační proměnná“ je alternativa. Nahrazuje tuto část
+  schválení [H05](../SLOVNIK.md#doklad-h05); ostatní volby H05 a R10
+  platí. Obecná dvojice rolí je „vysvětlující a výsledná proměnná“, při
+  popisu experimentu „nezávislá a závislá proměnná“. ID hesla
+  `pojem-explanacni-promenna` zůstává.
+- Přehled označení rolí je uspořádán podle kontextu: experiment, obecný
+  popis vztahů, predikce a regrese, psychologické testování, epidemiologie
+  a klinický výzkum, strojové učení. Oborová označení (regresor, regresand,
+  vysvětlovaná proměnná, odezva, expozice, rizikový faktor, cílový ukazatel,
+  příznak, vstup, cílová proměnná, štítek, výstup) jsou jen zmíněna,
+  nikoli zavedena jako pojmy učebnice. Strojové učení česky s anglickým
+  ekvivalentem.
+- Ekonometrická dvojice exogenní/endogenní proměnná se do přehledu
+  nezařazuje: neodpovídá dvojici vysvětlující–výsledná (endogenní může být
+  i vysvětlující proměnná) a její výklad vyžaduje pojmy modelu a chyby.
+
+**Důvod:** autor upřednostňuje český termín; přehled podle oborů ukazuje,
+že označení jsou zčásti synonymní, ale zdůrazňují různé stránky role.
+
+**Doklad:** pokyny autora v chatu 2026-10-16: tabulku „formuloval podle
+oboru“ s upozorněním na částečnou synonymii a významové nuance; volby
+„Vynechat (Doporučeno)“ u exogenní/endogenní a „Česky + anglicky
+(Doporučeno)“ u strojového učení; „jako primární překlad explanatory
+variable bych zvolil vysvětlující proměnná, a explanační bych uvedl naopak
+jako alternativu“.
