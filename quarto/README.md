@@ -2996,3 +2996,27 @@ Omezení: povinná část kap. 3 a 6 přesahuje orientačních 12 000 slov
 zkrácení by měnilo obsah, a proto se v tomto úkolu neprovádí. Hustota nových
 pojmů v pododdílech nebyla systematicky přepočítána. Shrnutí kap. 1–2 zůstávají
 souvislým textem. Interní revize, neověřená na studentech.
+
+## Kapitola 1: souhrnná tabulka úrovní měření (2026-10-15)
+
+Na podnět autora (návrh vycházel ze dvou anglických přehledových tabulek)
+byla tabulka na konci oddílu [Poměrová úroveň](kapitola_01.qmd#sec-pomerova)
+rozšířena o sloupce „Které výroky mají smysl“ (kumulativně =/≠, </>,
+o kolik, kolikrát) a „Příklady“. Dostala popisek a ID `tbl-urovne-shrnuti`,
+přístupný posuvný obal a v `assets/styles.css` minimální šířku 760 px.
+
+Odchylky od předlohy: sloupec „přípustné matematické operace“ formulován
+jako interpretovatelné výroky, nikoli jako seznam povolených výpočtů
+(v souladu s výkladem sporu Lord / Zand Scholten a Borsboom a se zápisem
+v `docs/ZDROJE.md`); u nominální úrovně uvedeny počty v kategoriích místo
+„žádné operace“; modus nepoužit (zaveden až v kap. 2–3); IQ a stupnice
+souhlasu nezařazeny k žádné úrovni, věta pod tabulkou odkazuje na oddíl
+o kvaziintervalovosti. Příklady převzaty z výkladu kapitoly, doplněny
+obor studia, pořadí v soutěži a doba reakce. Nové pojmy ani značení nevznikly.
+
+Kontroly: celá kniha vykreslena; `check-html.cjs`,
+`check-doc-maps.cjs --require-sources`, `git diff --check`; vykreslená
+tabulka prohlédnuta při šířce 1360 a 390 px (bez přetečení stránky,
+odkaz na tabulku vykreslen jako „Tabulka 1.1“). Následující tabulka
+`tbl-urovne-hodnoty` se přečíslovala na 1.2; ručně vepsaná čísla nikde nejsou.
+Omezení: interní didaktická kontrola dotčeného místa, neověřená na studentech.
