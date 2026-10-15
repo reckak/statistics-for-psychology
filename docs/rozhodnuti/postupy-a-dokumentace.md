@@ -412,3 +412,33 @@ a bezpečného úklidu po sloučení se nemění. Původní doklad R11 je zachov
 prezentace apod.“ Prováděcí rozdělení používá kategorie instrukce
 a autorská dokumentace, prezentace, infrastruktura a obsahové změny
 napříč kapitolami; nejde o doslovný seznam názvů zadaný autorem.
+
+<a id="r38-citelnost-textu"></a>
+
+## R38 — Pravidla čitelnosti studentského textu
+
+**Stav:** schváleno 2026-10-15. **Rozsah:** studentský text knihy;
+úprava existujících kapitol proběhne v samostatných PR.
+
+**Volba:** úvod hlavního oddílu uvádí jeho otázku a návaznost; nadpisy
+jsou obsahové. Výkladová kapitola končí oddílem „Shrnutí“ s 5–8 myšlenkami
+a odkazy na výklad. Odstavec má hlavní myšlenku v první větě, dlouhé věty
+(orientačně nad 35 slov) se dělí, preferuje se slovesný styl a nový pojem
+je při zavedení tučně. Pododdíl zavádí nejvýše dva až tři nové pojmy,
+povinná část kapitoly má orientačně do 12 000 slov. Bloky: dosavadní podoba
+nepovinného rozšíření (`.callout-note collapse="true"`, ID `#rozsireni-…`),
+nově „Častý omyl“ (`.callout-warning`) a „Připomenutí“ (`.callout-tip`).
+Popisky obrázků a tabulek sdělují hlavní zjištění. Didaktická revize
+zahrnuje čtení očima začátečníka. Číselné hodnoty jsou orientační vodítka.
+Aktuální znění je v [AGENTS.md](../../AGENTS.md#čitelnost-a-struktura-textu).
+
+**Důvod:** kapitoly se prodlužují (kap. 6 přes 20 000 slov), závěrečné
+shrnutí mají jen kapitoly 1 a 2 a typy bloků nejsou vizuálně odlišeny.
+Pravidla mají zlepšit orientaci v textu a čitelnost vět a odstavců.
+
+**Doklad:** na dotaz autora „Napadá tě ještě způsob, jak vylepšit
+instrukce, aby učebnice byla čitelnější a srozumitelnější?“ byla
+předložena čtyři skupiny pravidel; autor 2026-10-15 vybral všechny
+(„Shrnutí + orientace, Jazyková čitelnost, Zátěž a typy bloků, Revize
+očima studenta“), zvolil rozsah „Jen instrukce“ a schválil plán
+s konkrétními třídami bloků a orientačními prahy.

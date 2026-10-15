@@ -2941,6 +2941,19 @@ oddíl po oddílu a kontrola výskytu klíčových pojmů, cest a odkazů.
 `node scripts/check-doc-maps.cjs --require-sources` a `git diff --check`
 prošly bez chyb. Studentský výklad se nemění, nový render nebyl potřeba.
 
+## Pravidla čitelnosti studentského textu (2026-10-15)
+
+Podle [R38](../docs/rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)
+doplněn do AGENTS.md oddíl „Čitelnost a struktura textu“ a krok čtení
+očima začátečníka v didaktické revizi. Výchozí průzkum: kapitoly mají
+8–20 tisíc slov, „Shrnutí“ mají jen kapitoly 1 a 2, jediným typem bloku
+je `callout-note`; v kapitole 6 má přibližně 8 % vět přes 40 slov
+(hrubý odhad dělením podle interpunkce).
+
+Kapitoly zatím upraveny nebyly; doplnění shrnutí do kapitol 3–6 a sjednocení
+bloků proběhne v samostatných PR. Ověření: kontrola odkazů skriptem
+`check-doc-maps.cjs` a `git diff --check`; render nebyl potřeba.
+
 ## Kapitoly 3–6: provedení pravidel čitelnosti (2026-10-15)
 
 Provedení [R38](../docs/rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)
