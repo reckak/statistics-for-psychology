@@ -118,7 +118,7 @@ export const existing = {
   1: [],
   2: [['Data','A2:E37','36 osob; výklad a cvičení 10'],['Cetnosti','A4:H8','Hotové výpočty a graf odpočatosti'],['Histogram','A4:E10','Hotové intervalové četnosti a histogram']],
   3: [['Data','A2:E37','Spánek a paměť; cvičení 12'],['Priklad','A1:J21','Hotové výpočty pro pět časů'],['Souhrn','A1:D16','Hotový souhrn spánku a paměti'],['Rozsireni','A1:J14','Hotové nepovinné výpočty'],['Kontrola_prikladu','A1:H42','Kontrolní výpočty; vstupy na Kvantily, Orezani, Boxplot']],
-  4: [['Model','A1:D25','Hotové převody modelu N(50, 10)'],['QQ','A1:N24','Hotový Q–Q graf a mezivýpočty']],
+  4: [['Model','A1:D25','Hotové převody modelu N(50, 10)'],['QQ','A1:N44','Hotový Q–Q graf, nepovinný P–P graf a mezivýpočty']],
   5: [['Bayes','A1:B20','Hotové přirozené četnosti, úplná pravděpodobnost a Bayesova věta'],['Binom','A1:D19','Hotové binomické rozdělení pro pět otázek'],['Binom_20','A1:E22','Hotové výpočty právě, nejvýše a alespoň pro dvacet otázek'],['Aproximace','A1:B16','Hotová normální aproximace, přesná hodnota a převod na podíl']],
   6: [['Chyba','A1:B13','Hotový výpočet pravděpodobnosti výběrového průměru'],['Test_rozdilu','A1:B11','Hotový test rozdílu dvou průměrů ve výukovém modelu'],['Binom_test','A1:E22','Hotový binomický test a pravděpodobnosti alespoň k úspěchů'],['Z_test','A1:B16','Hotový z-test průměru při známé směrodatné odchylce'],['Sila','A1:B8','Hotový výpočet statistické síly; nepovinné rozšíření']]
 };

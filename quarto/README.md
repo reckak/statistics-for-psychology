@@ -3239,3 +3239,35 @@ o tuto kontrolu a prošel; vizuálně ověřeno v Chromiu (mobil 390 px).
 Neověřeno: Firefox a Safari; ruční PDF se nemění (vlastní konfigurace bez
 filtru). Zjištěno mimo rozsah: úvodní minus se v MathML vykresluje jako
 `<mi>−</mi>` (stav i před filtrem).
+
+## Kapitola 4: hodnoty zpaměti, steny u nenormálních dat, P–P graf (2026-10-16)
+
+Doplňky na žádost autora po revizi kapitoly:
+
+- Nový oddíl `sec-hodnoty-zpameti` s tabulkou osmi hodnot z (1; 1,645;
+  1,960; 2; 2,326; 2,576; 3; 3,291), podíly v jednom chvostu a uprostřed
+  a zápisem kvantilu. Výchozí podklad dodal autor; opraveno 99,74 % na
+  99,73 %, sloupec „Kvantil“ přejmenován na podíl (kvantil je hodnota),
+  zrušeny zdvojené záporné řádky a hodnotící popisy. Studenti se hodnoty
+  učí zpaměti (R40, výjimka v AGENTS.md).
+- Zápis $z_p$ (podíl vlevo) v `sec-normalni-kvantil` s upozorněním na
+  konvenci podílu vpravo v cizích textech a na $z_i$; nový řádek v přehledu
+  značení (R41).
+- Steny a staniny: tabulky mají kumulativní meze percentilového pořadí;
+  nový pododdíl `sec-steny-nenormalni` porovnává lineární zařazení podle z
+  se zařazením přes percentilové pořadí na 15 dobách z normalizace
+  (podklady: autorova přednáška P03 sn. 58, GL Assessment).
+- Nepovinné rozšíření `rozsireni-pp-graf`: konstrukce P–P grafu na 12
+  skórech (list QQ, sloupec F a nový graf), srovnání s Q–Q na simulaci
+  `sikme` (obrázek `fig-pp-qq-04`), shody, rozdíly, výhody a nevýhody;
+  citace Nolan (2001), oddíl Diagnostics for assessing stability (ověřeno
+  v plném textu přes scite). Wilk a Gnanadesikan (1968) nebyli citováni:
+  plný text nebyl dostupný. Nový termín P–P graf ve slovníku a slovníčku.
+- Generátor sešitů: bodové grafy mohou mít vlastní meze os (`xMin` atd.);
+  výchozí osa −2 až 2 pro Q–Q se nemění (jiné kapitoly bodové grafy
+  nepoužívají). Kontrola Excelu ověřuje sloupec F, vazby a osy P–P grafu.
+
+Ověření: hodnoty v R (`check-chapter-04.R`, nově i tabulka hodnot,
+kumulativní meze, staniny pro 15 dob a souřadnice P–P; 19 SVG); sešit
+`build-workbooks.ps1 -Chapter 4 -Verify` a vizuální kontrola obou grafů
+exportovaných z Excelu; render celé knihy a webové kontroly.

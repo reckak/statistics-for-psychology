@@ -284,6 +284,15 @@ for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   plot(z,sort(v),pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
 },width=9,height=4.4)
+# Optional extension: the same right-skewed simulation as a Q-Q plot and a P-P plot.
+ch4_draw('pp-qq', {
+  v<-sort(ch4_simulations$sikme); n<-length(v); p<-(seq_len(n)-.5)/n; z<-qnorm(p)
+  par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.8))
+  plot(z,v,pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Q–Q graf: porovnává hodnoty',bty='l')
+  abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
+  plot(p,pnorm((v-mean(v))/sd(v)),pch=19,cex=.55,col=ch4_blue,xlab='Empirický podíl (i − 0,5)/n',ylab='Modelový podíl podle normálního modelu',main='P–P graf: porovnává podíly',bty='l',xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i')
+  abline(0,1,lty=2,col=ch4_orange,lwd=2)
+},width=9,height=4.4)
 # Same normal simulation: the curve matches bar heights only on the density scale.
 ch4_draw('histogram-krivka', {
   v<-ch4_simulations$normalni; h<-hist(v,breaks='FD',plot=FALSE)

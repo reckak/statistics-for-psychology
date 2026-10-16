@@ -245,6 +245,8 @@ Nyní známe podíl a hledáme hranici. **Devadesátý percentil** normálního 
 
 Funkce **`NORM.S.INV`** (shodně anglicky) provádí opačný převod než distribuční funkce: ze zadaného podílu vlevo vrátí z-skór hranice. Má jediný argument, číslo **mezi 0 a 1, bez obou krajních hodnot**. Pro 90 % zadáváme `0,9`, případně `90%`, nikoli `90`. Výsledkem `=NORM.S.INV(0,9)` je přibližně 1,281551566 [@msNormSInv].
 
+Kvantil normovaného normálního rozdělení se často značí místo obecného $q_p$ písmenem $z$ s dolním indexem: $z_p$ je hodnota, vlevo od níž leží podíl $p$. Tedy $z_{0{,}9}\approx1{,}282$, $z_{0{,}975}\approx1{,}960$ a $z_{0{,}159}\approx-1$. Index je zde podíl mezi 0 a 1, nikoli pořadí pozorování jako u z-skóru $z_i$. V jiných učebnicích index často označuje **podíl vpravo**, takže $z_{0{,}05}$ tam znamená 1,645. U cizího textu si proto konvenci ověřte; v této učebnici index vždy znamená podíl vlevo, stejně jako u $q_p$.
+
 Chceme-li hranici na původní škále, použijeme zpětný převod
 
 $$x=\mathrm{μ}+\mathrm{σ}z.$$
@@ -287,6 +289,29 @@ Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vp
 :::
 
 Interval v pravé části @fig-kvantily-04 popisuje rozložení **jednotlivých výsledků při zadaném modelu**. Není intervalem spolehlivosti průměru: ten by vyjadřoval nejistotu odhadu parametru a bude předmětem pozdějšího výkladu [@howell, s. 74–75]. Ani hranice prostředních 95 % není sama o sobě hranicí zdraví nebo vhodným diagnostickým prahem.
+
+### Hodnoty, které je užitečné znát zpaměti {#sec-hodnoty-zpameti}
+
+Některé hranice se v praxi i v dalších kapitolách stále opakují. **Je užitečné si je zapamatovat**: s nimi a se zpětným převodem $x=\mathrm{μ}+\mathrm{σ}z$ zvládnete běžné výpočty i bez Excelu, jen s kalkulačkou. Například horních 5 % v modelu $N(50,10)$ začíná přibližně u $50+10\times1{,}645=66{,}45$ bodu. Pro ostatní podíly a hranice použijete funkce `NORM.S.DIST` a `NORM.S.INV`. Řádky pro 1 a 2 směrodatné odchylky známe z [orientačního pravidla](#sec-pravidlo-normalni).
+
+::: {.table-scroll .chapter-04-wide role="region" aria-label="Hodnoty normovaného normálního rozdělení k zapamatování" tabindex="0"}
+
+| $z$ | Zápis kvantilu | Podíl pod $-z$ (= nad $+z$) | Podíl mezi $-z$ a $+z$ | Typické použití |
+|---:|---|---:|---:|---|
+| 1 | $z_{0{,}841}\approx1$ | 15,9 % | 68,3 % | Jedna směrodatná odchylka od průměru |
+| 1,645 | $z_{0{,}95}$ | 5 % | 90 % | Horních 5 % (95. percentil); meze prostředních 90 % |
+| 1,960 | $z_{0{,}975}$ | 2,5 % | 95 % | Meze prostředních 95 % |
+| 2 | $z_{0{,}977}\approx2$ | 2,3 % | 95,4 % | Dvě směrodatné odchylky od průměru |
+| 2,326 | $z_{0{,}99}$ | 1 % | 98 % | Horní 1 % (99. percentil); meze prostředních 98 % |
+| 2,576 | $z_{0{,}995}$ | 0,5 % | 99 % | Meze prostředních 99 % |
+| 3 | $z_{0{,}9987}\approx3$ | 0,13 % | 99,73 % | Tři směrodatné odchylky od průměru |
+| 3,291 | $z_{0{,}9995}$ | 0,05 % | 99,9 % | Meze prostředních 99,9 % |
+
+: Stejné $z$ odpovídá jednostranné i oboustranné otázce; rozhoduje, zda podíl přiřazujeme jednomu chvostu, nebo oběma. Dolní meze jsou díky souměrnosti tytéž hodnoty se záporným znaménkem. {#tbl-hodnoty-zpameti-04 tbl-colwidths="[10,16,18,18,38]"}
+
+:::
+
+Například $z_{0{,}995}\approx2{,}576$: vlevo leží 99,5 %, vpravo 0,5 %. Mimo prostřední interval od $-2{,}576$ do $2{,}576$ tak zbývá 0,5 % v každém chvostu, celkem 1 %, a uvnitř leží 99 %. Prostředních 99 % modelu $N(50,10)$ proto leží přibližně mezi $50-25{,}76=24{,}24$ a $50+25{,}76=75{,}76$ bodu.
 
 ## Standardní skóry v psychologii {#sec-standardni-skory}
 
@@ -337,38 +362,38 @@ Následující tabulky používají obvyklé hranice na škále z-skórů. Pro j
 
 ::: {.table-scroll role="region" aria-label="Pásma stenů" tabindex="0"}
 
-| Sten | Interval z-skórů | Modelový podíl v pásmu |
-|---:|---|---:|
-| 1 | $z\leq-2$ | 2,3 % |
-| 2 | $-2<z\leq-1{,}5$ | 4,4 % |
-| 3 | $-1{,}5<z\leq-1$ | 9,2 % |
-| 4 | $-1<z\leq-0{,}5$ | 15,0 % |
-| 5 | $-0{,}5<z\leq0$ | 19,1 % |
-| 6 | $0<z\leq0{,}5$ | 19,1 % |
-| 7 | $0{,}5<z\leq1$ | 15,0 % |
-| 8 | $1<z\leq1{,}5$ | 9,2 % |
-| 9 | $1{,}5<z\leq2$ | 4,4 % |
-| 10 | $z>2$ | 2,3 % |
+| Sten | Interval z-skórů | Modelový podíl v pásmu | Percentilové pořadí nejvýše |
+|---:|---|---:|---:|
+| 1 | $z\leq-2$ | 2,3 % | 2,3 |
+| 2 | $-2<z\leq-1{,}5$ | 4,4 % | 6,7 |
+| 3 | $-1{,}5<z\leq-1$ | 9,2 % | 15,9 |
+| 4 | $-1<z\leq-0{,}5$ | 15,0 % | 30,9 |
+| 5 | $-0{,}5<z\leq0$ | 19,1 % | 50,0 |
+| 6 | $0<z\leq0{,}5$ | 19,1 % | 69,1 |
+| 7 | $0{,}5<z\leq1$ | 15,0 % | 84,1 |
+| 8 | $1<z\leq1{,}5$ | 9,2 % | 93,3 |
+| 9 | $1{,}5<z\leq2$ | 4,4 % | 97,7 |
+| 10 | $z>2$ | 2,3 % | 100 |
 
 :::
 
 ::: {.table-scroll role="region" aria-label="Pásma staninů" tabindex="0"}
 
-| Stanin | Interval z-skórů | Modelový podíl v pásmu |
-|---:|---|---:|
-| 1 | $z\leq-1{,}75$ | 4,0 % |
-| 2 | $-1{,}75<z\leq-1{,}25$ | 6,6 % |
-| 3 | $-1{,}25<z\leq-0{,}75$ | 12,1 % |
-| 4 | $-0{,}75<z\leq-0{,}25$ | 17,5 % |
-| 5 | $-0{,}25<z\leq0{,}25$ | 19,7 % |
-| 6 | $0{,}25<z\leq0{,}75$ | 17,5 % |
-| 7 | $0{,}75<z\leq1{,}25$ | 12,1 % |
-| 8 | $1{,}25<z\leq1{,}75$ | 6,6 % |
-| 9 | $z>1{,}75$ | 4,0 % |
+| Stanin | Interval z-skórů | Modelový podíl v pásmu | Percentilové pořadí nejvýše |
+|---:|---|---:|---:|
+| 1 | $z\leq-1{,}75$ | 4,0 % | 4,0 |
+| 2 | $-1{,}75<z\leq-1{,}25$ | 6,6 % | 10,6 |
+| 3 | $-1{,}25<z\leq-0{,}75$ | 12,1 % | 22,7 |
+| 4 | $-0{,}75<z\leq-0{,}25$ | 17,5 % | 40,1 |
+| 5 | $-0{,}25<z\leq0{,}25$ | 19,7 % | 59,9 |
+| 6 | $0{,}25<z\leq0{,}75$ | 17,5 % | 77,3 |
+| 7 | $0{,}75<z\leq1{,}25$ | 12,1 % | 89,4 |
+| 8 | $1{,}25<z\leq1{,}75$ | 6,6 % | 96,0 |
+| 9 | $z>1{,}75$ | 4,0 % | 100 |
 
 :::
 
-Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nepředstavují stejně početné desetiny (pro steny) ani devítiny (pro staniny)**. Ve středu je v pásmech více výsledků než na okrajích. U staninů se běžně uvádějí zaokrouhlené podíly 4, 7, 12, 17, 20, 17, 12, 7 a 4 %. Hranice se nemusíte učit zpaměti; cílem je správně použít tabulku.
+Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nepředstavují stejně početné desetiny (pro steny) ani devítiny (pro staniny)**. Ve středu je v pásmech více výsledků než na okrajích. U staninů se běžně uvádějí zaokrouhlené podíly 4, 7, 12, 17, 20, 17, 12, 7 a 4 %. Hranice se nemusíte učit zpaměti; cílem je správně použít tabulku. Poslední sloupec udává kumulativní podíl v procentech, tedy nejvyšší percentilové pořadí, které ještě do pásma patří. Podle něj lze pásmo určit i přímo z percentilového pořadí; proč je to užitečné u nenormálních dat, ukážeme v oddílu o [normalizaci](#sec-steny-nenormalni).
 
 Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, nikoli univerzální kategorizací schopnosti.
 
@@ -425,6 +450,12 @@ U norem založených na normalizaci přes pořadí je princip obdobný: výsledn
 Normálně vypadající **normalizované** skóry proto samy nedokazují, že normální rozdělení mají původní hrubé skóry: normální tvar jim dal až převod přes pořadí. U lineárně převedených skórů, jako jsou z-skóry nebo T-skóry ze standardizace, je tomu jinak: jejich tvar je stejný jako tvar hrubých skórů. Ani pak ale nevíme, zda je stejně rozložena i měřená psychologická vlastnost; tvar rozdělení skórů ovlivňuje i konstrukce testu, například obtížnost položek. Při práci se skutečným testem použijeme jeho normy, věkové členění a převodní pravidla; nepřepočítáváme automaticky všechny skóry pomocí jednoho průměru a směrodatné odchylky.
 
 Také [percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi) vyjadřuje relativní polohu, ale nemá rovnoměrné rozestupy. Jak ukázala poslední řada v @fig-skaly-04, stejný rozdíl z-skórů odpovídá uprostřed normálního rozdělení většímu rozdílu percentilových pořadí než na jeho okraji. Percentilové pořadí 90 proto neznamená dvakrát vyšší výkon než percentilové pořadí 45.
+
+#### Steny a staniny, když rozdělení není normální {#sec-steny-nenormalni}
+
+Pásma stenů a staninů lze přiřadit dvěma způsoby. **Lineárně** spočítáme z-skór podle průměru a směrodatné odchylky normativního souboru a výsledek zařadíme podle mezí z-skórů. **Přes percentilové pořadí** zjistíme pořadí výsledku v normativním souboru a pásmo určíme podle posledního sloupce tabulek stenů a staninů. Druhý postup odpovídá normalizaci: výsledek nejprve dostane normální kvantil podle svého pořadí a teprve ten zařadíme do pásma. U normálně rozdělených skórů vedou oba postupy ke stejným pásmům. Liší se právě tehdy, když rozdělení normální není.
+
+Ukážeme to na patnácti dobách z @tbl-normalizace-04, kde $m=20{,}8$ a $s\approx11{,}74$ sekundy. Nejkratší doba 11 sekund má kompromisní percentilové pořadí 3,3, a patří proto do staninu 1. Lineárně má $z=(11-20{,}8)/11{,}74\approx-0{,}84$ a patří do staninu 3. Lineárně by do staninu 4 spadlo 8 z 15 dob, tedy víc než polovina, protože krátké doby leží těsně u sebe a dlouhý pravý chvost zvětšuje směrodatnou odchylku. Přes percentilové pořadí se doby rozloží do pásem přibližně v poměru, s jakým pásma počítají. U staninů se běžně uvádí zastoupení 4, 7, 12, 17, 20, 17, 12, 7 a 4 % [@glStanine, oddíl Stanines (ST)]; zařazením podle percentilového pořadí ho normativní soubor dosáhne bez ohledu na tvar rozdělení hrubých skórů. Který postup konkrétní test používá, určuje jeho manuál.
 
 ## Je normální model přiměřený? {#sec-primerenost-modelu}
 
@@ -551,6 +582,24 @@ V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od stře
 :::
 
 V @fig-qq-smes-04 pocházejí data ze dvou skupin s odlišnými průměry. Jeden společný normální model by jejich strukturu vystihoval špatně. Pokud skupiny mají věcný význam, může být užitečné popsat je zvlášť. Skupiny však nevytváříme dodatečně jen proto, aby jednotlivé grafy odpovídaly normálnímu rozdělení. Krabicový graf může dobře upozornit na vzdálené hodnoty, ale nemusí odhalit rozdělení s více vrcholy. Různé typy grafů se tak mohou vzájemně doplňovat, protože poskytují jiné informace.
+
+:::: {#rozsireni-pp-graf .callout-note collapse="true" title="Nepovinné rozšíření: P–P graf"}
+Kromě Q–Q grafu se používá **P–P graf (*P–P plot, probability–probability plot*)**. Q–Q graf porovnává hodnoty: seřazený skór s normálním kvantilem. P–P graf naopak porovnává podíly: pro každé pořadí staví vedle sebe empirický podíl $p=(i-0{,}5)/n$ a podíl, který by normální model se stejným průměrem a směrodatnou odchylkou přiřadil pozorované hodnotě. Ten získáme distribuční funkcí. Obě osy proto vedou od 0 do 1 a při dobré shodě leží body blízko úhlopříčky z bodu (0; 0) do bodu (1; 1).
+
+Pro dvanáct skórů z [konstrukce Q–Q grafu](#sec-excel-qq) stačí na listu `QQ` doplnit do F2 vzorec `=NORM.S.DIST((B2-$H$3)/$H$4;PRAVDA)` a zkopírovat jej do F13. Bodový graf má vodorovně podíly ze sloupce C a svisle podíly ze sloupce F. První bod má souřadnice přibližně (0,042; 0,048), poslední (0,958; 0,952). Přiložený sešit obsahuje tento graf pod Q–Q grafem.
+
+::: {.chapter-04-figure role="region" aria-label="Tatáž data zešikmená doprava v Q–Q a P–P grafu" tabindex="0"}
+
+![Q–Q graf zvýrazní odchylky ve chvostech, P–P graf ve středu rozdělení.](../assets/chapter-04/plots/pp-qq.svg){#fig-pp-qq-04 fig-alt="Vlevo Q–Q graf dvou set simulovaných hodnot zešikmených doprava: nejvyšší hodnoty výrazně stoupají nad přímku. Vpravo P–P graf týchž dat: body se od úhlopříčky odchylují hlavně ve střední části a začínají nad nulou, zatímco u horního konce se k úhlopříčce stáčejí."}
+
+:::
+
+@fig-pp-qq-04 ukazuje simulovaná data zešikmená doprava z oddílu o [odchylkách od přímky](#sec-qq-odchylky). **Oba grafy mají společný princip**: porovnávají seřazená data s normálním modelem pořadí po pořadí, potřebují zvolit polohy pořadí a odhadnout $m$ a $s$, přímá čára znamená shodu a ani jeden graf normalitu nedokazuje.
+
+**Liší se tím, kde nesoulad zvýrazní.** V Q–Q grafu jsou nejvyšší hodnoty výrazně nad přímkou, protože osa je v původních jednotkách a vzdálené hodnoty jsou na ní dobře vidět. V P–P grafu se tytéž hodnoty stáhnou do pravého horního rohu: rozdíl mezi podíly 0,99 a 0,999 je na ose sotva znatelný. P–P graf naopak zdůrazňuje střed rozdělení, kde se podíly s pořadím mění nejrychleji [@nolan2001, oddíl Diagnostics for assessing stability]. Výhodou P–P grafu je stejná škála 0–1 pro jakoukoli proměnnou; nevýhodou je, že na něm snadno přehlédneme právě odchylky ve chvostech. Proto pro posouzení chvostů dáváme přednost Q–Q grafu.
+
+Programy i starší materiály oba grafy někdy zaměňují nebo označují stejně. Než graf začnete číst, podívejte se na osy: podíly od 0 do 1 na obou osách znamenají P–P graf, hodnoty v jednotkách měření Q–Q graf.
+::::
 
 ### Přiměřenost je závěr s omezeními
 

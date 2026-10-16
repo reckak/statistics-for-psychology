@@ -139,3 +139,51 @@ z R09 zůstává.
 zápisu N(μ,σ2) používal pro jednoduchost konzistentně N(μ,σ), tedy jako
 druhý parametr uvádět směrodatnou odchylku“. Záznam „Kapitola 4: revize
 po posouzení“ v [historii](../../quarto/README.md).
+
+<a id="r40-hodnoty-zpameti"></a>
+
+## R40 — Vybrané hodnoty normovaného normálního rozdělení zpaměti
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r40-hodnoty-zpameti). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-16. **Rozsah:** kapitola 4 (oddíl
+[Hodnoty, které je užitečné znát zpaměti](../../quarto/kapitola_04.qmd#sec-hodnoty-zpameti))
+a navazující výpočty v dalších kapitolách.
+
+Osm hodnot z (1; 1,645; 1,960; 2; 2,326; 2,576; 3; 3,291) s podíly
+v jednom chvostu a uprostřed je učivem, které si mají studenti zapamatovat,
+aby obvyklé výpočty zvládli bez Excelu jen s kalkulačkou. Ostatní hodnoty
+se dál získávají funkcemi Excelu. Obecné pravidlo AGENTS.md „Statistické
+tabulky nevyžaduj“ se tím mění jen pro tento krátký seznam; hranice stenů
+a staninů se zpaměti učit nemusí.
+
+**Důvod:** zápočtový test probíhá bez Excelu.
+
+**Doklad:** autor 2026-10-16 k návrhu tabulky: „Uvedl bych naopak, že je
+užitečné se je naučit nazpaměť, aby některé obvyklé výpočty byli studenti
+schopni provádět bez pomocí excelu. U zápočtového textu totiž nebudou mít
+excel k dispozici.“ Původní podklad tabulky dodal autor; opravy a úpravy
+formy jsou v [historii](../../quarto/README.md).
+
+<a id="r41-zp-a-pp-graf"></a>
+
+## R41 — Zápis $z_p$ a termín P–P graf
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r41-zp-a-pp-graf). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-16. **Rozsah:** kapitola 4, přehled značení,
+slovníček a další použití.
+
+- **$z_p$** značí kvantil normovaného normálního rozdělení, vlevo od něhož
+  leží podíl p (obdoba $q_p$, R04). Index je vždy podíl vlevo; výklad
+  upozorňuje na jinou konvenci (podíl vpravo) v cizích textech a na odlišení
+  od $z_i$.
+- **P–P graf** (*P–P plot, probability–probability plot*) je termín pro
+  graf porovnávající empirické a modelové podíly; v kapitole 4 jen
+  v nepovinném rozšíření vedle povinného Q–Q grafu (R09).
+
+**Doklad:** autor 2026-10-16: „Někde v kapitole 4 bych také uvedl, že
+speciálně pro kvantily normovaného normálního rozdělení se používá často
+používá místo ‚q‘ zápis ‚z‘ s dolním indexem, např. z0,159 = –1.“ a „Kromě
+Q-Q grafu bych jako nepovinné rozšíření ukázal příklad tvorby P-P grafu“;
+schválení plánu s navrženou konvencí indexu a názvem.

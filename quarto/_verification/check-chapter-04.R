@@ -44,7 +44,7 @@ x<-ch4_x;x[12]<-90;eq(mean(x),625/12);eq(sd(x),14.1835906040831)
 stopifnot(x[12]>mean(x)+sd(x)*ch4_z[12])
 # All generated figures exist and have nonempty SVG content.
 files<-list.files(ch4_out,pattern='\\.svg$',full.names=TRUE)
-stopifnot(length(files)==18,all(file.info(files)$size>1000),all(vapply(ch4_simulations,length,integer(1))==200))
+stopifnot(length(files)==19,all(file.info(files)$size>1000),all(vapply(ch4_simulations,length,integer(1))==200))
 eq(round(100*pnorm(-2:2),1),c(2.3,15.9,50,84.1,97.7))
 eq(round(100*diff(pnorm(0:2)),1),c(34.1,13.6))
 eq(ch4_sten(c(1.1,1.4)),c(8,8))
@@ -56,4 +56,19 @@ pr<-100*(lower+ties/2)/length(nx);eq(round(pr,1),c(3.3,13.3,23.3,36.7,50,56.7,63
 eq(round(qnorm(pr/100),3),c(-1.834,-1.111,-.728,-.341,0,.168,.341,.524,.728,.967,1.282,1.834))
 eq(ch4_norm_z,qnorm(pr[match(nx,u)]/100));eq(round(sd(ch4_norm_z),2),.99);stopifnot(abs(mean(ch4_norm_z))<.01)
 eq(round(diff(qnorm(pr[c(11,12,1,2)]/100))[c(1,3)],2),c(.55,.72))
-cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table and 18 SVGs passed.\n')
+# Values to memorize: one-tail and central proportions; z_p notation examples.
+zm<-c(1,1.645,1.960,2,2.326,2.576,3,3.291)
+eq(round(c(qnorm(.95),qnorm(.975),qnorm(.99),qnorm(.995),qnorm(.9995)),3),zm[c(2,3,5,6,8)])
+eq(round(100*pnorm(-zm[c(1,4)]),1),c(15.9,2.3));eq(round(100*pnorm(-3),2),.13)
+eq(round(100*(pnorm(zm)-pnorm(-zm)),2)[c(1,4,7)],c(68.27,95.45,99.73))
+eq(round(qnorm(c(.841,.977,.9987)),0),c(1,2,3));eq(round(qnorm(.159),2),-1)
+eq(round(50+c(-1,1)*10*qnorm(.995),2),c(24.24,75.76))
+# Stanines: linear z versus percentile rank for the normalization data.
+cumst<-100*pnorm(seq(-1.75,1.75,.5));eq(round(cumst,1),c(4,10.6,22.7,40.1,59.9,77.3,89.4,96))
+eq(round(100*pnorm(seq(-2,2,.5)),1),c(2.3,6.7,15.9,30.9,50,69.1,84.1,93.3,97.7))
+zl<-(nx-mean(nx))/sd(nx);prx<-pr[match(nx,u)]
+eq(ch4_stanine(zl[1]),3);eq(1+sum(prx[1]>cumst),1);eq(round(zl[1],2),-.84)
+eq(sum(ch4_stanine(zl)==4),8)
+# P-P coordinates for the twelve Q-Q scores.
+ppf<-pnorm((ch4_x-mean(ch4_x))/sd(ch4_x));eq(round(ppf[c(1,12)],3),c(.048,.952));eq(round(ch4_p[c(1,12)],3),c(.042,.958))
+cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table, memorized z values, stanine methods, P-P coordinates and 19 SVGs passed.\n')

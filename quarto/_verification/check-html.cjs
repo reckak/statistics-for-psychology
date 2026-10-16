@@ -226,7 +226,13 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
-        assert.equal(await page.locator('main img').count(),18);
+        assert.equal(await page.locator('main img').count(),19);
+        // The P-P figure sits in a collapsed optional extension: closed by default, opens by keyboard.
+        const pp = page.locator('#rozsireni-pp-graf');
+        assert.equal(await pp.locator('.callout-collapse').isVisible(), false, 'P-P extension is collapsed by default');
+        await pp.locator('[data-bs-toggle="collapse"]').focus();
+        await page.keyboard.press('Enter');
+        await pp.locator('.callout-collapse').waitFor({state:'visible'});
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));

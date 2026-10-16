@@ -355,7 +355,9 @@ konkrétního místa.
 - Excel využívej pro obtížné či opakované výpočty, rozsáhlejší data
   a ke kontrole či usnadnění po zvládnutí ručního postupu; každý příklad
   nemusí být řešen oběma způsoby. Statistické tabulky nevyžaduj; potřebné
-  hodnoty zpřístupni pomocí Excelu.
+  hodnoty zpřístupni pomocí Excelu. Výjimkou je krátký seznam hodnot
+  normovaného normálního rozdělení k zapamatování podle
+  [R40](docs/rozhodnuti/kapitola-04.md#r40-hodnoty-zpameti).
 - Používej české názvy funkcí a českou syntaxi Excelu; při zavedení funkce
   připoj její anglický název. Název, argumenty a chování ověřuj, nepřekládej
   odhadem.
