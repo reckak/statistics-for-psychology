@@ -3077,3 +3077,26 @@ deseti řešení a 15 SVG. Prošla kontrola dokumentačních odkazů a git diff 
 kapitola 3 nebyla znovu renderována. HTML ani Excel nebyly nově ověřovány,
 protože se jejich obsah a nastavení neměnily. Dostupnost externích URL nebyla
 nově kontrolována. PDF zůstává místní ignorovaný výstup, vytvářený pouze na žádost.
+
+## Kapitola 3: grafy korekce rozptylu a transformace (2026-10-16)
+
+Na žádost autora upraveny dva obrázky v `scripts/kapitola_03.R`:
+
+- `fig-transformace`: popisky přírůstků (+3, +3, +5, +17) přesunuty vpravo
+  vedle svislých úseček, aby nepřekrývaly křivku, body ani úsečky.
+- `fig-korekce-rozptylu`: sloupcový graf průměrů nahrazen bodovým grafem
+  s vodorovným jitterem. Body jsou rozptyly prvních 400 z 20 000 simulovaných
+  výběrů pro každé n (kvůli velikosti SVG, asi 0,7 MB), křížky průměry ze všech
+  20 000; barvy pro dělení n a n − 1 zachovány. Jitter má vlastní seed
+  20261016, simulace a její seed se nezměnily.
+
+V kapitole nový popisek, alternativní text a odstavec za obrázkem: korekce
+zvětší každý výsledek v poměru n/(n − 1), rozptýlenost jednotlivých výsledků
+zůstává (nestrannost postupu vs. přesnost jednoho výsledku). Bez nových pojmů.
+Karta kapitoly 3 aktualizována.
+
+Ověření: `simulation.csv` se po přegenerování shoduje s předchozí verzí;
+`check-chapter-03.R` prošel (14 řešení); render kapitoly 3 a `check-html.cjs`
+bez chyb; obě SVG vizuálně prohlédnuty samostatně i ve webu na šířce 1360
+a 390 px, bez vodorovného přetečení. Celá kniha nebyla znovu renderována
+(změna se týká jen kapitoly 3).
