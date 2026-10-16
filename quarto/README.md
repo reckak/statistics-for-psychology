@@ -3054,3 +3054,26 @@ tabulka prohlédnuta při 1360 a 390 px. Omezení: věta poznámek ke slidu 9
 nadále označuje prediktor a vysvětlující proměnnou jako „synonyma“ nezávislé
 proměnné; rozbor nuancí v prezentaci nebyl součástí úkolu. Interní didaktická
 kontrola, neověřená na studentech.
+
+
+## 2026-10-16: Ruční PDF kapitoly 4
+
+Rozšířen stávající ruční export podle R31 na kapitoly 3 a 4. Číslo kapitoly,
+číslování obrázků a záhlaví se doplňují do izolované konfigurace; krátké
+tabulky kapitoly 4 zůstávají na jedné stránce. Příkazy a závislosti jsou
+v [provozním návodu](../docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly).
+Studentský zdroj, HTML konfigurace a publikační workflow se neměnily.
+
+Výsledek kapitoly 4: 26 stran, deset zadání na stranách 20–22, úplná řešení
+na stranách 23–25, citovaná literatura na straně 26. Bez závěrečných přehledů.
+Vizuálně prohlédnuto všech 26 stran; po úpravě tabulek znovu strany 9, 10,
+12 a 13, ostatní náhledy zůstaly pixelově shodné. Ověřeny interní cíle odkazů,
+deset zpětných odkazů a absence textu mimo stránku. Kontrola transformace
+pro kapitoly 3 i 4 potvrdila úplnost řešení, matematiky, tabulek, obrázků,
+kódu a citací. Číselná kontrola kapitoly 4 v čisté relaci R prošla včetně
+deseti řešení a 15 SVG. Prošla kontrola dokumentačních odkazů a git diff --check.
+
+Šablony po dosazení kapitoly 3 jsou obsahově shodné s předchozí verzí;
+kapitola 3 nebyla znovu renderována. HTML ani Excel nebyly nově ověřovány,
+protože se jejich obsah a nastavení neměnily. Dostupnost externích URL nebyla
+nově kontrolována. PDF zůstává místní ignorovaný výstup, vytvářený pouze na žádost.

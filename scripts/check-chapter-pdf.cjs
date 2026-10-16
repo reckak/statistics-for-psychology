@@ -1,14 +1,20 @@
 // Verify the PDF-only rearrangement without changing or rendering the HTML book.
-// Usage: node scripts/check-chapter-pdf.cjs [path/to/quarto.exe]
+// Usage: node scripts/check-chapter-pdf.cjs [path/to/quarto.exe] [--chapter 3|4]
 const assert = require('node:assert/strict');
 const {spawnSync} = require('node:child_process');
 const path = require('node:path');
 const fs = require('node:fs');
 const root = path.resolve(__dirname, '..');
 const bundled = 'C:/Program Files/RStudio/resources/app/bin/quarto/bin/quarto.exe';
-const quarto = process.argv[2] || (fs.existsSync(bundled) ? bundled : 'quarto');
+const args = process.argv.slice(2);
+const chapterOption = args.indexOf('--chapter');
+const chapter = chapterOption < 0 ? 3 : Number(args.splice(chapterOption, 2)[1]);
+assert([3, 4].includes(chapter), 'Supported chapters: 3, 4');
+assert(args.length <= 1, 'Expected an optional Quarto path and --chapter 3|4');
+const quarto = args[0] || (fs.existsSync(bundled) ? bundled : 'quarto');
+const number = String(chapter).padStart(2, '0');
 function parse(filtered) {
-  const args = ['pandoc', 'quarto/kapitola_03.qmd', '--from=markdown', '--to=json'];
+  const args = ['pandoc', `quarto/kapitola_${number}.qmd`, '--from=markdown', '--to=json'];
   if (filtered) args.push('--lua-filter=scripts/pdf/chapter.lua');
   const run = spawnSync(quarto, args, {cwd: root, encoding: 'utf8'});
   assert.equal(run.status, 0, run.stderr);
@@ -33,7 +39,7 @@ for (const type of ['Math', 'Code', 'Image', 'Table', 'Cite']) {
 }
 const solutions = before.blocks.filter(b => b.t === 'Div' &&
   b.c[0][2].some(([k,v]) => k === 'title' && v === 'Ukázat řešení'));
-assert.equal(solutions.length, 14);
+assert.equal(solutions.length, {3: 14, 4: 10}[chapter]);
 const start = after.blocks.findIndex(b => b.t === 'Header' && b.c[1][0] === 'pdf-solutions');
 assert(start > 0);
 for (let i = 1; i <= solutions.length; i++) {
@@ -50,4 +56,4 @@ for (let i = 1; i <= solutions.length; i++) {
 }
 assert(!links.some(x => /\.qmd(?:#|$)|^\.\.\/data\//.test(x)));
 assert(!nodes(after, 'Div').some(b => b.c[0][2].some(([k,v]) => k === 'title' && v === 'Ukázat řešení')));
-console.log('PDF transformation: all 14 solutions preserved and moved, reciprocal links present; math, code, images, tables and citations unchanged.');
+console.log(`Chapter ${chapter} PDF transformation: all ${solutions.length} solutions preserved and moved, reciprocal links present; math, code, images, tables and citations unchanged.`);
