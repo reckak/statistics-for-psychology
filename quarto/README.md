@@ -1,5 +1,19 @@
 # Autorská dokumentace
 
+## 2026-10-17 — Zpřesnění polohy popisků kapitoly 2
+
+Na základě následné vizuální připomínky autora přiblížen popisek
+16 z 33 (48,5 %) mírně doleva a nahoru k bodu. V levém panelu srovnání
+os zvýšena horní mez z 33 na 35, aby se popisek 32 vešel celý do
+vykreslovacího pole. Odstup popisků od sloupců zůstává v obou panelech
+shodný. Předchozí vizuální kontrola ořezání čísla 32 nezachytila.
+
+Ověření: nový render kapitoly 2 a zvětšené snímky obou grafů při šířce
+stránky 1360 a 390 px; žádné překrytí spojnic ani ořezání popisků.
+Kontrola rozdílů `git diff --check`. Data, výpočty a studentský výklad
+se neměnily; numerické kontroly a celková kontrola HTML se neopakovaly.
+Render dokončen i přes stejné upozornění R na LC_* jako při minulé kontrole.
+
 ## 2026-10-16 — Popisky grafů kapitoly 2 a dělení stonků
 
 V generátoru kapitoly 2 přesunut popisek 16 z 33 (48,5 %) v kumulativním

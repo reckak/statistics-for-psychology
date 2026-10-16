@@ -60,7 +60,7 @@ draw('kumulativni-seskupene', {
   abline(h = c(.25, .5, .75, 1), col = '#E6EBED', lty = 1)
   lines(boundaries, cumulative, col = blue, lwd = 2, lty = 2)
   points(boundaries, cumulative, col = blue, pch = 16, cex = 1.15)
-  text(7.25, cumulative[4] - .07, '16 z 33 (48,5 %)', adj = c(0, 1), col = ink, cex = .95)
+  text(7.12, cumulative[4] - .025, '16 z 33 (48,5 %)', adj = c(0, 1), col = ink, cex = .95)
   legend('topleft', legend = c('Body: známé podíly až po mez včetně', 'Spojnice: uvnitř intervalu průběh neznáme'),
     col = blue, pch = c(16, NA), lty = c(NA, 2), lwd = c(NA, 2), bty = 'n', cex = .83)
 }, width = 7.4, height = 4.6)
@@ -105,7 +105,9 @@ draw('osa', {
   par(mfrow=c(1,2), mar=c(4,4,2.2,.5))
   for(i in 1:2) {
     low <- if(i==1) 0 else 27
-    plot(c(.4,2.6), c(low,33), type='n', xaxt='n', xlab='Soubor', ylab='Počet odpovědí ano',
+    # Keep the complete label inside the panel even on the wider left scale.
+    high <- if(i==1) 35 else 33
+    plot(c(.4,2.6), c(low,high), type='n', xaxt='n', xlab='Soubor', ylab='Počet odpovědí ano',
       main=if(i==1) 'Osa od nuly' else 'Osa začíná na 27', bty='l')
     rect(c(.65,1.65), low, c(1.35,2.35), c(30,32), col=blue,border=NA)
     axis(1,at=1:2,labels=c('A','B'))
