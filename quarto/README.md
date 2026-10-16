@@ -3118,3 +3118,24 @@ zachovány. Na základě připomínek k pěti místům:
 
 Aktualizována karta kapitoly 4 a karta U01. Ověření: render kapitoly 4
 a kontrola dotčených míst ve vykresleném HTML.
+
+## Kapitola 4: grafy hustoty a distribuční funkce (2026-10-16)
+
+Druhé kolo připomínek autora. Text: škála 10/3 se uvádí hlavně
+u inteligenčních a neuropsychologických baterií, s doloženým příkladem WISC-V
+(nový zdroj `pearsonWiscV`, vzorová zpráva Pearsonu, s. 2: subtesty 10/3,
+rozsah 1–19; pro WAIS oficiální veřejný doklad nalezen nebyl, proto není
+uveden). V komentáři k obrázku škál je výslovně řečeno, že jde o krok
+z-skóru. Autorovy rozpracované úpravy ř. 306 a 318 zachovány.
+
+Grafy (`scripts/kapitola_04.R`): `distribucni` a `oblasti` mají nově hustotu
+nahoře a distribuční funkci dole se společnou osou x a jednou čárkovanou
+čarou hranice přes oba panely. Plocha se do distribuční funkce přenáší jako
+sloupec téže barvy a hodnoty; hledaný podíl je oranžový, odečítaná část
+modrá. Nový obrázek `mezi` (`fig-mezi-04`) ukazuje plochu 60–70 jako
+rozdíl ploch do 70 a do 60 a totéž jako rozdíl výšek 0,977 − 0,841 = 0,136.
+Nové popisky, alternativní texty a odstavce; obrázky jsou doplněny do
+kontroly `check-html.cjs`. Hodnoty z `pnorm`: 0,841345; 0,977250; 0,135905.
+
+Ověření: render kapitoly 4, `check-html.cjs`, vizuální kontrola tří SVG
+a stránky na šířce 1360 a 390 px. Celá kniha nebyla renderována.

@@ -168,11 +168,11 @@ Známe-li hranici, například 60 bodů, můžeme se ptát, jaký podíl výsled
 
 ::: {.chapter-04-figure role="region" aria-label="Dvě zobrazení téhož podílu do 60 bodů." tabindex="0"}
 
-![Dvě zobrazení téhož podílu do 60 bodů.](../assets/chapter-04/plots/distribucni.svg){#fig-distribucni-04 fig-alt="Vlevo je 84,1 procenta vyznačeno plochou pod hustotou vlevo od 60 bodů. Vpravo má distribuční funkce při 60 bodech výšku 0,841. Hustota má zvonovitý tvar, distribuční funkce roste od 0 k 1."}
+![Plocha pod hustotou vlevo od 60 bodů je stejně velká jako výška distribuční funkce v 60 bodech: obojí je 0,841.](../assets/chapter-04/plots/distribucni.svg){#fig-distribucni-04 fig-alt="Nahoře je pod zvonovitou hustotou oranžově vybarvena plocha vlevo od 60 bodů s hodnotou 0,841. Dole je distribuční funkce, která roste od 0 k 1; v 60 bodech z ní vystupuje oranžový sloupec vysoký 0,841. Čárkovaná svislá čára spojuje hranici 60 v obou grafech."}
 
 :::
 
-V @fig-distribucni-04 zobrazuje levý graf hustotu, pravý distribuční funkci. U hustoty čteme podíl hodnot v daném intervalu z **plochy** pod křivkou, u distribuční funkce přímo z její **výšky**. Když posouváme hranici doprava, plocha se rozšiřuje, takže distribuční funkce nemůže klesat. Pro průměr souměrného normálního rozdělení má hodnotu 0,5.
+V @fig-distribucni-04 je nahoře hustota a dole distribuční funkce se stejnou vodorovnou osou. Čárkovaná čára vyznačuje v obou grafech tutéž hranici 60 bodů. U hustoty čteme podíl hodnot z **plochy** pod křivkou, u distribuční funkce přímo z její **výšky**. Oranžová plocha nahoře a oranžový sloupec dole proto znázorňují totéž číslo 0,841. Když posouváme hranici doprava, plocha se rozšiřuje, takže distribuční funkce nemůže klesat. Pro průměr souměrného normálního rozdělení má hodnotu 0,5.
 
 ### Výpočet v Excelu {#sec-excel-normalni}
 
@@ -209,6 +209,14 @@ Jaký podíl výsledků leží **nad 60 a nejvýše na 70 bodech**? Meze interva
 
 $$0{,}97725-0{,}84134=0{,}13591.$$
 
+::: {.chapter-04-figure role="region" aria-label="Podíl mezi dvěma mezemi jako rozdíl dvou levých ploch a dvou výšek." tabindex="0"}
+
+![Plocha mezi 60 a 70 body vznikne odečtením plochy do 60 od plochy do 70; na distribuční funkci jde o rozdíl výšek 0,977 a 0,841.](../assets/chapter-04/plots/mezi.svg){#fig-mezi-04 fig-alt="Horní řada: oranžová plocha mezi 60 a 70 body se rovná ploše do 70 bodů, složené z modré části do 60 a oranžové části 60 až 70, minus modrá plocha do 60 bodů. Dolní graf: distribuční funkce s modrým sloupcem vysokým 0,841 v 60 bodech a sloupcem vysokým 0,977 v 70 bodech; jeho horní oranžová část mezi 0,841 a 0,977 odpovídá rozdílu 0,136."}
+
+:::
+
+V horní řadě @fig-mezi-04 obsahuje plocha do 70 bodů dvě části: modrou plochu do 60 a oranžovou plochu mezi 60 a 70. Odečteme-li modrou část, zůstane jen hledaná oranžová plocha. Dolní graf ukazuje totéž na distribuční funkci: sloupec v 70 bodech je vyšší než sloupec v 60 bodech právě o hledaný podíl 0,136.
+
 Excel počítá s nezaokrouhlenými hodnotami. V listu `Model` zapište dolní mez 60 do B11 a horní 70 do B12. Do B13 patří
 
 ```text
@@ -219,11 +227,13 @@ Vzorec standardizuje obě meze, určí obě levé plochy a odečte je. Výsledke
 
 ::: {.chapter-04-figure role="region" aria-label="Podíl pod hranicí, nad hranicí a v intervalu." tabindex="0"}
 
-![Podíl pod hranicí, nad hranicí a v intervalu.](../assets/chapter-04/plots/oblasti.svg){#fig-oblasti-04 fig-alt="Tři stejné normální křivky mají vyznačenu plochu vlevo od 60, vpravo od 60 a mezi 60 a 70 body. Příslušné podíly jsou 84,1, 15,9 a 13,6 procenta."}
+![Každou ze tří otázek lze vyjádřit plochou pod hustotou i výškou nebo rozdílem výšek distribuční funkce.](../assets/chapter-04/plots/oblasti.svg){#fig-oblasti-04 fig-alt="Tři sloupce grafů, nahoře hustota a dole distribuční funkce. Nejvýše 60: oranžová plocha 0,841 a oranžový sloupec vysoký 0,841. Nad 60: modrá plocha 0,841 a oranžová plocha 0,159 vpravo; sloupec v 60 bodech je dole modrý do 0,841 a nahoře oranžový do 1, tedy 1 minus 0,841 je 0,159. Nad 60 a nejvýše 70: modrá plocha do 60 a oranžová plocha 0,136 mezi 60 a 70; sloupec v 70 bodech je modrý do 0,841 a oranžový do 0,977."}
 
 :::
 
-@fig-oblasti-04 připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporná plocha po odečtení upozorňuje na obrácené pořadí mezí, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
+V @fig-oblasti-04 má hledaný podíl vždy oranžovou barvu a odečítaná část modrou, v hustotě i v distribuční funkci. Podíl **nejvýše 60** je přímo výška distribuční funkce v 60 bodech. Podíl **nad 60** je úsek od této výšky až po 1, tedy $1-0{,}841$. Podíl **nad 60 a nejvýše 70** je úsek mezi výškami v 60 a 70 bodech.
+
+Obrázek také připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporná plocha po odečtení upozorňuje na obrácené pořadí mezí, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
 
 ## Od podílu zpět k hodnotě {#sec-podil-hodnota}
 
@@ -235,7 +245,7 @@ Nyní známe podíl a hledáme hranici. **Devadesátý percentil** normálního 
 
 Funkce **`NORM.S.INV`** (shodně anglicky) provádí opačný převod než distribuční funkce: ze zadaného podílu vlevo vrátí z-skór hranice. Má jediný argument, číslo **mezi 0 a 1, bez obou krajních hodnot**. Pro 90 % zadáváme `0,9`, případně `90%`, nikoli `90`. Výsledkem `=NORM.S.INV(0,9)` je přibližně 1,281551566 [@msNormSInv].
 
-Chceme-li hranici v bodech, použijeme zpětný převod
+Chceme-li hranici na původní škále, použijeme zpětný převod
 
 $$x=\mathrm{μ}+\mathrm{σ}z.$$
 
@@ -260,7 +270,7 @@ V listu `Model` ponecháme B2 = 50 a B3 = 10 a doplníme:
 
 **`NORM.INV`**, se stejným anglickým názvem, má argumenty podíl vlevo, průměr a směrodatná odchylka. Vrací rovnou hranici v původních jednotkách [@msNormInv]. Funkce `NORM.DIST` a `NORM.INV` vyžadují kladnou směrodatnou odchylku. Funkcím `NORM.S.INV` a `NORM.INV` říkáme inverzní, protože provádějí opačný převod než distribuční funkce. Krajní podíly 0 a 1 u nich vedou k chybě, protože normální model nemá konečnou nejmenší a největší hodnotu.
 
-Převod můžete zkontrolovat vložením nalezeného z-skóru do `NORM.S.DIST` s argumentem `PRAVDA`: dostanete původní podíl 0,9. Funkce `PERCENTIL.INC` naopak potřebuje konkrétní data a její výsledek závisí na jejich hodnotách. Shodný průměr a směrodatná odchylka dvou souborů nezaručují shodný empirický 90. percentil.
+Převod můžete zkontrolovat vložením nalezeného z-skóru do `NORM.S.DIST` s argumentem `PRAVDA`: dostanete původní podíl 0,9. Funkce `PERCENTIL.INC` naopak potřebuje konkrétní data a její výsledek závisí na hodnotách těchto dat. Shodný průměr a směrodatná odchylka dvou souborů proto nezaručují shodný empirický 90. percentil.
 
 ### Prostředních 95 % a horních 5 % jsou různé úlohy {#sec-centralni-podil}
 
@@ -268,7 +278,7 @@ Chceme-li vymezit **prostředních 95 %** normálního rozdělení, zbývá mimo
 
 Hodnoty `=NORM.S.INV(0,025)` a `=NORM.S.INV(0,975)` jsou přibližně −1,959964 a 1,959964. V modelu $N(50,10)$ tak získáme meze **30,40 a 69,60 bodu**. Na listu `Model` je podíl 0,95 v B22, podíl v jednom chvostu `=(1-B22)/2` v B23 a meze `=NORM.INV(B23;B2;B3)` v B24 a `=NORM.INV(1-B23;B2;B3)` v B25. Používáme skutečné nezaokrouhlené výsledky funkcí; hodnota 1,96 je jejich běžné zaokrouhlení.
 
-Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vpravo 5 %. Výpočet `=NORM.INV(0,95;50;10)` dává **66,45 bodu**. Nepůlíme zde chvost mezi dvě strany.
+Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vpravo 5 %. Výpočet `=NORM.INV(0,95;50;10)` dává **66,45 bodu**. Nepůlíme zde chvost mezi dvě strany rozdělení.
 
 ::: {.chapter-04-figure role="region" aria-label="Jednostranná hranice a prostřední interval." tabindex="0"}
 
@@ -284,7 +294,7 @@ Psychologické testy neuvádějí výsledky jen jako z-skóry. Oddíl ukazuje, j
 
 ### Společná poloha, různá čísla {#sec-prepocty-skoru}
 
-**Standardní skór (*standard score*)** vyjadřuje výsledek na škále s určeným středem a variabilitou. Z-skór je jedním druhem standardního skóru. V psychologii se používají i škály, na nichž se většinou vyhneme záporným číslům a desetinným hodnotám. Pro lineární převod platí
+**Standardní skór (*standard score*)** vyjadřuje výsledek na škále s určeným středem a variabilitou. Z-skór je pouze jedním z druhů standardního skóru. V psychologii se používají i škály, na nichž se většinou vyhneme záporným číslům a desetinným hodnotám. Pro lineární převod platí
 
 **Nový skór = nový průměr + nová směrodatná odchylka × $z$.**
 
@@ -301,11 +311,11 @@ Násobení přizpůsobí jednotku a přičtení posune střed. Proto se při lin
 
 :::
 
-**T-skór (*T score*)** používá průměr 50 a směrodatnou odchylku 10; velké kurzivní $T$ označuje tento druh skóru. **IQ-skór (*IQ score*)** zde označuje výsledek na škále s průměrem 100 a směrodatnou odchylkou 15. Tuto škálu lze použít i u jiných než inteligenčních testů, ale samotný převod nemění to, co měříme. U testu pozornosti proto napíšeme „výsledek vyjádřený na škále IQ-skórů“, nikoli „inteligence 122,5“. U skutečných testů ověříme konkrétní parametry škály v manuálu.
+**T-skór (*T score*)** používá průměr 50 a směrodatnou odchylku 10; velké kurzivní $T$ označuje tento druh skóru. **IQ-skór (*IQ score*)** zde označuje výsledek na škále s průměrem 100 a směrodatnou odchylkou 15. Tuto škálu lze použít i u jiných než inteligenčních testů; samotný převod na tuto škálu pochopitelně nemění to, daný test měří. U testu pozornosti proto napíšeme „výsledek vyjádřený na škále IQ-skórů“, nikoli „inteligence 122,5“. U skutečných testů ověříme konkrétní parametry škály v manuálu.
 
-**Standardní subtestový skór (*scaled subtest score*)** je převedený skór jednotlivého subtestu, tedy dílčí části testové baterie. Častá škála má průměr 10 a směrodatnou odchylku 3; není to však univerzální definice všech subtestových skórů. V českých materiálech se setkáte také s názvem **vážený skór**. Zde se jím obvykle označuje převedená hodnota, nikoli výsledek násobení různých položek vahami a jejich sčítání. Proto ve výkladu používáme přesnější označení standardní subtestový skór [@pearsonScaled, s. 4].
+**Standardní subtestový skór (*scaled subtest score*)** je převedený skór jednotlivého subtestu, tedy dílčí části testové baterie. Pro subtesty se často používá škála, která má průměr 10 a směrodatnou odchylku 3; není to však univerzální definice všech subtestových skórů. Setkáme se s ní hlavně u subtestů inteligenčních a neuropsychologických testových baterií. Například ve Wechslerově inteligenční škále pro děti (WISC-V) mají subtesty právě tuto škálu s rozsahem 1 až 19 [@pearsonWiscV, s. 2]. V českých materiálech se setkáte také s názvem **vážený skór**. Zde se jím obvykle označuje převedená hodnota, nikoli výsledek násobení různých položek vahami a jejich sčítání. Proto ve výkladu používáme přesnější označení standardní subtestový skór [@pearsonScaled, s. 4].
 
-Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-skór je $100+15\times1{,}5=122{,}5$. Tyto dva kroky mají stejný princip jako převod z hrubého skóru na z-skór a zpět. **K samotnému lineárnímu převodu normalitu nepotřebujeme.** Teprve při převodu z-skóru na podíl pomocí normální křivky je normální model dalším předpokladem.
+Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-skór je $100+15\times1{,}5=122{,}5$. Tyto dva kroky mají stejný princip jako převod z hrubého skóru na z-skór a zpět. **K samotnému lineárnímu převodu normalitu nepotřebujeme.** Teprve při převodu z-skóru na podíl pomocí normální křivky je normální model předpokladem validity výsledku.
 
 ::: {.chapter-04-figure role="region" aria-label="Odpovídající hodnoty na čtyřech standardních škálách." tabindex="0"}
 
@@ -315,7 +325,7 @@ Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-s
 
 @fig-skaly-04 porovnává pouze různá vyjádření téhož z-skóru. Neznamená, že člověk musí mít stejnou relativní polohu ve všech skutečných testech. Ta závisí na jeho výsledku, obsahu testu a referenční skupině. Pokud normativní soubor nebo převod změníme, může se změnit také přiřazený standardní skór.
 
-Poslední řada v @fig-skaly-04 přidává percentilové pořadí **pouze za předpokladu normálního modelu**. První čtyři řady jsou lineární převody a tento předpoklad nepotřebují. Při kroku z 0 na 1 vzroste modelové percentilové pořadí přibližně o 34,1 procentního bodu, při stejně velkém kroku z 1 na 2 jen o 13,6 procentního bodu. Stejné rozestupy bodů v obrázku znamenají stejné rozdíly z-skóru, nikoli stejné rozdíly percentilových pořadí.
+Poslední řada v @fig-skaly-04 vyjadřuje adekvátní percentilové pořadí **pouze za předpokladu normálního modelu**. První čtyři řady jsou lineární převody a tento předpoklad nepotřebují. Když z-skór vzroste z 0 na 1, modelové percentilové pořadí vzroste přibližně o 34,1 procentního bodu; při stejně velkém zvýšení z-skóru z 1 na 2 jen o 13,6 procentního bodu. Stejné rozestupy bodů v obrázku znamenají stejné rozdíly z-skóru, nikoli stejné rozdíly percentilových pořadí.
 
 ### Steny a staniny: intervaly místo jemné škály {#sec-steny-staniny}
 
@@ -358,9 +368,9 @@ Následující tabulky používají obvyklé hranice na škále z-skórů. Pro j
 
 :::
 
-Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nepředstavují stejně početné desetiny nebo devítiny**. Ve středu je v pásmech více výsledků než na okrajích. U staninů se běžně uvádějí zaokrouhlené podíly 4, 7, 12, 17, 20, 17, 12, 7 a 4 %. Hranice se nemusíte učit zpaměti; cílem je správně použít tabulku.
+Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nepředstavují stejně početné desetiny (pro steny) ani devítiny (pro staniny)**. Ve středu je v pásmech více výsledků než na okrajích. U staninů se běžně uvádějí zaokrouhlené podíly 4, 7, 12, 17, 20, 17, 12, 7 a 4 %. Hranice se nemusíte učit zpaměti; cílem je správně použít tabulku.
 
-Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, ne univerzální kategorií schopnosti.
+Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, nikoli univerzální kategorizaci schopnosti.
 
 ::: {.chapter-04-figure role="region" aria-label="Stenová a staninová pásma normálního modelu" tabindex="0"}
 
@@ -368,7 +378,7 @@ Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože 
 
 :::
 
-Svislé čáry v @fig-pasma-skoru vymezují pásma, jejichž čísla jsou pod osou. Stejně široké vnitřní intervaly mají pod křivkou větší plochu uprostřed než na okrajích; steny proto nejsou stejně početné desetiny. Krajní pásma pokračují i za výřez obrázku. Například $z=1{,}1$ i $z=1{,}4$ patří do stejného zvýrazněného stenu 8: samotné číslo stenu už tyto výsledky nerozliší. Přesné meze přiřazujeme podle tabulek výše, včetně pravidla horní zahrnuté meze.
+Svislé čáry v @fig-pasma-skoru vymezují pásma, jejichž čísla jsou pod osou. Stejně široké vnitřní intervaly mají pod křivkou větší plochu uprostřed než na okrajích; steny proto nejsou stejně početně zastoupené desetiny. Krajní pásma pokračují i za výřez obrázku. Například $z=1{,}1$ i $z=1{,}4$ patří do stejného zvýrazněného stenu 8: samotné číslo stenu už tyto výsledky nerozliší. Přesné meze přiřazujeme podle tabulek výše, včetně pravidla horní zahrnuté meze.
 
 ### Standardizace, normalizace a percentilové pořadí {#sec-normalizace}
 
