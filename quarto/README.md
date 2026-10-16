@@ -3100,3 +3100,21 @@ Ověření: `simulation.csv` se po přegenerování shoduje s předchozí verzí
 bez chyb; obě SVG vizuálně prohlédnuty samostatně i ve webu na šířce 1360
 a 390 px, bez vodorovného přetečení. Celá kniha nebyla znovu renderována
 (změna se týká jen kapitoly 3).
+
+## Kapitola 4: redakce podle připomínek autora (2026-10-16)
+
+Navazuje na autorovy necommitované redakční úpravy kapitoly 4, které zůstaly
+zachovány. Na základě připomínek k pěti místům:
+
+- `sec-standardizace`: nejasná věta o normách jiné skupiny nahrazena
+  vysvětlením, že z-skóry pak popisují polohu vůči této skupině a průměr 0
+  a SD 1 mají v našem souboru jen při shodě s normami.
+- `sec-normalni-model`: „meze“ upřesněny jako nejnižší a nejvyšší možný skór;
+  doplněn původ názvu „normální“ podle Howella (s. 68).
+- `sec-parametry-normalniho`: konvence N(μ, σ²) převedena z bloku „Častý
+  omyl“ do běžného odstavce, protože popisuje konvenci, ne omyl.
+- `sec-bod-a-interval`: doplněno, kdy je normální aproximace počtu přesná;
+  opravena poškozená věta o četnostech „nejvýše 60“ a „méně než 60“.
+
+Aktualizována karta kapitoly 4 a karta U01. Ověření: render kapitoly 4
+a kontrola dotčených míst ve vykresleném HTML.
