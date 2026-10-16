@@ -22,6 +22,8 @@ a histogramem posoudit přiměřenost modelu.
 
 **Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_04.qmd#sec-shrnuti-04) (sedm myšlenek s odkazy na oddíly), blok „Častý omyl“ (`.callout-warning`) o konvenci zápisu N(μ, σ²) v [parametrech](../../quarto/kapitola_04.qmd#sec-parametry-normalniho); rozděleny vybrané věty nad zhruba 35 slov. Oddíl cvičení se jmenuje „Cvičení“ místo „Samostatná cvičení“ (ID beze změny). Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
 
+**Revize 2026-10-16 (celá kapitola):** opraveny jazykové a věcné chyby (tvar rozdělení, percentilové pořadí × percentil, normalizované versus jiné normy, podmínky normální aproximace, model jako jedna z cest k podílu, platnost výpočtů pro model, porovnání histogramu s křivkou hustoty), zpřesněny citace (Cumming s. 80, Howell s. 74–75, Pearson primer u škály 10/3), Q–Q graf popsán modelovou srovnávací hodnotou, normalizace doplněna do cílů. Rozsah, data a cvičení beze změny. Soulad karty s textem zkontrolován 2026-10-16.
+
 **Redakce 2026-10-16:** konvence N(μ, σ²) převedena z bloku „Častý omyl“ do běžného odstavce (jde o konvenci učebnice, ne o omyl); vysvětleny z-skóry vůči normám jiné skupiny, meze omezeného skóru, původ názvu „normální“ (Howell s. 68), přesnost normální aproximace počtu a rozdíl četností ≤ 60 a < 60. Bez nových pojmů a značení; data a cvičení beze změny. Soulad dotčených řádků karty s textem zkontrolován 2026-10-16. Druhé kolo téhož dne: grafy podílů přepracovány na hustotu nad distribuční funkcí s barevně provázanou plochou a výškou, nový obrázek rozdílu dvou mezí, upřesněno použití škály 10/3 a krok z-skóru v obrázku škál.
 
 <a id="skutečný-obsah-oddílů-3"></a>
@@ -137,7 +139,9 @@ výuku na dva bloky (poloha/model/plochy a převody/interpretace) není odhadem,
 že celý rozsah lze zvládnout v jedné hodině, ani novým dělením kapitol.
 
 **Vysvětleno omezeně:** pravděpodobnost jako modelový podíl při náhodném
-výběru jedné osoby; normalizace jako princip bez algoritmu. **Pouze zmíněno
+výběru jedné osoby; normalizace ilustrovaná konkrétním převodem přes
+kompromisní percentilové pořadí (tvorba testových norem ani samostatný
+nácvik algoritmu se nevyžadují). **Pouze zmíněno
 pro odlišení:** interval spolehlivosti parametru, obecná nezávislost pozorování,
 formální testy normality. **Vyloženo až v kapitole 5:** jevy a jejich operace,
 podmíněná pravděpodobnost, nezávislost a Bayesova věta, náhodná proměnná

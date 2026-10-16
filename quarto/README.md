@@ -3184,3 +3184,36 @@ Připomínky autora k oddílům o normalizaci a přiměřenosti modelu:
 
 Kontroly: `check-chapter-04.R` čeká 18 SVG, `check-html.cjs` 18 obrázků
 kapitoly 4 a nový obrázek v kontrole mobilního zobrazení.
+
+## Kapitola 4: komplexní revize (2026-10-16)
+
+Odborná, didaktická, jazyková a technická revize celé kapitoly 4 a následné
+opravy schválené autorem (s jeho úpravami nálezů):
+
+- Chyby: porušená věta o tvaru rozdělení; „percentil 90/45“ nahrazeno
+  percentilovým pořadím (R04); princip normalizovaných norem už není
+  zobecněn na všechny normy; podmínky normální aproximace počtu; model jako
+  jedna z cest k podílu; platnost výpočtů jen pro podíly a kvantily
+  z normální křivky; porovnání histogramu s křivkou hustoty (popisek
+  `fig-histogram-krivka-04`); gramatické a překlepové opravy (ř. 27, 115,
+  167, 314, 373, 537, alt text diagnostika-sikme).
+- Citace: Cumming zpřesněn na s. 80 (zaokrouhlený IQ-skór jako interval
+  99,5–100,5, ověřil autor vizuálně); Howell s. 74–75 přesunut k rozlišení
+  intervalu jednotlivých výsledků a intervalu spolehlivosti; Pearson primer
+  přesunut k větě o škále 10/3; vypuštěna věta o autorských příkladech
+  u cvičení (smyšlenost dat uvádí úvod knihy).
+- Didaktika: Q–Q graf popsán modelovou srovnávací hodnotou (nikoli
+  očekávanou hodnotou pořadové statistiky); nezaokrouhlený mezivýpočet
+  `NORM.S.INV((4+3/2)/15)` a odkaz na list `Normalizace`; vazba poloh
+  (i − 0,5)/n na kompromisní pořadí; normalizace v cílech kapitoly; spojení
+  odkazů na sešit; drobné přeformulování (validita, záporný výsledek,
+  devadesátý percentil, pořadí vět o velikosti souboru).
+
+Revizí ověřeno: nezávislý přepočet všech čísel výkladu a řešení v R (vše
+souhlasí), sešit otevřený jen pro čtení v českém Excelu (vzorce a hodnoty
+listů Model a QQ odpovídají textu), Howell s. 66–79 a Dostál 2.7 v textové
+extrakci, odkazy a mapy dokumentace, vykreslená stránka (obrázky, řešení,
+mobil 390 px). Neověřeno: dokumentace Microsoftu, NIST, R ppoints, SHL
+a GL Assessment nebyly znovu otevřeny; Firefox/Safari. Sešit se nemění.
+Zjištěná mezera za desetinnou čárkou v MathML (celá kniha) se řeší
+samostatně v `codex/infrastructure`.

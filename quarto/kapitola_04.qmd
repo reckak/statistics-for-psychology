@@ -2,13 +2,13 @@
 
 Výsledek 60 bodů sám o sobě neříká, zda člověk dosáhl neobvykle vysokého výkonu. Záleží na úloze, na skupině, s níž jej porovnáváme, i na tom, jak se výsledky této skupiny rozkládají. V této kapitole nejprve vyjádříme vzdálenost výsledku od průměru. Potom zavedeme normální rozdělení jako model, který umožní za určitých předpokladů odpovídat například na otázku, jaký podíl výsledků leží nad 60 body. Nakonec se naučíme posoudit, zda je takový model pro konkrétní data rozumný.
 
-Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy. Výpočty si můžete zopakovat v [excelovém sešitu](../data/kapitola_04.xlsx). Samostatné vstupy pro konstrukci Q–Q grafu jsou na listu `QQ_data` v A2:A13; hotový postup s grafem je na listu `QQ`.
+Navazujeme na [průměr, směrodatnou odchylku a kvantily](kapitola_03.qmd#sec-kapitola-03). Průběžným příkladem je **ilustrační model skóru pozornosti**, nikoli skutečný psychologický test nebo jeho normy.
 
-**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_04.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť.
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_04.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou v přehledu označeny zvlášť. Vstupy pro konstrukci Q–Q grafu jsou na listu `QQ_data` v A2:A13, hotový postup s grafem na listu `QQ`.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Vypočítáte a vysvětlíte z-skór.
-- Rozlišíte standardizaci a normalitu a přečtete zápis normálního modelu.
+- Rozlišíte standardizaci, normalizaci a normalitu a přečtete zápis normálního modelu.
 - Pomocí Excelu určíte podíl pod hranicí, nad ní či mezi dvěma hodnotami a najdete hodnotu zadaného percentilu.
 - Převedete standardní skóry a s tabulkou určíte sten a stanin.
 - Přečtete a vytvoříte normální Q–Q graf a spolu s histogramem a významem měření jej použijete k posouzení modelu.
@@ -24,7 +24,7 @@ Jak poznat, zda je výsledek 60 bodů vysoký? Oddíl ukazuje, proč výsledek v
 
 **Hrubý skór (*raw score*)** je výsledek před převodem na společnou standardní škálu, například počet správně vyřešených úloh. **Referenční skupina (*reference group*)** je skupina, vůči níž výsledek posuzujeme. V psychologické diagnostice se opíráme o **normativní soubor (*normative sample*)**, tedy konkrétní soubor lidí, jehož údaje slouží k tvorbě norem testu. Normy spojují dosažený výsledek s jeho polohou v určité skupině; jejich použitelnost závisí například na věku, jazyce, době získání a způsobu výběru účastníků. Normativní soubor není automaticky reprezentativní jen proto, že je velký.
 
-Představme si, že student získal 60 bodů. Ve skupině s průměrem 50 je deset bodů nad průměrem. Stejná odchylka od průměru ale může znamenat něco jiného v závislosti na variabilitě: tam, kde se výsledky navzájem málo liší, může představovat extrémní hodnotu, zatímco ve velmi různorodé skupině nikoli. Proto musíme při interpretaci přihléhdnot např. ke [směrodatné odchylce](kapitola_03.qmd#sec-smerodatna-odchylka), která popisuje variabilitu hodnot ve stejných jednotkách jako původní měření.
+Představme si, že student získal 60 bodů. Ve skupině s průměrem 50 je deset bodů nad průměrem. Stejná odchylka od průměru ale může znamenat něco jiného v závislosti na variabilitě: tam, kde se výsledky navzájem málo liší, může představovat extrémní hodnotu, zatímco ve velmi různorodé skupině nikoli. Proto musíme při interpretaci přihlédnout např. ke [směrodatné odchylce](kapitola_03.qmd#sec-smerodatna-odchylka), která popisuje variabilitu hodnot ve stejných jednotkách jako původní měření.
 
 ### Od bodového rozdílu k jednotkám směrodatné odchylky
 
@@ -58,7 +58,7 @@ V @fig-z-jako-jednotka představuje stejná délka kroku vždy jednu směrodatno
 
 Převod všech hodnot na z-skóry nazveme **standardizací (*standardization*)**. Jestliže každou hodnotu téhož souboru převedeme s jeho vlastním $m$ a $s$, nové hodnoty mají průměr 0 a výběrovou směrodatnou odchylku 1. Odečtení průměru posune střed k nule a dělení $s$ zvolí takovou jednotku, aby směrodatná odchylka byla jedna. Jde o zvláštní případ [lineární transformace](kapitola_03.qmd#sec-zmena-skaly).
 
-Takový převod zachovává pořadí i vzájemné poměry rozdílů. **Nemění však tvar na rozdělení**, např. ze šikmého na souměrné. Připomeňme si příklad z minulé kapitoly s dobami dokončení úlohy (4, 5, 5, 6 a 10 minut), kde $m=6$ a $s=\sqrt{5{,}5}\approx2{,}35$. Z-skóry jsou po zaokrouhlení −0,85; −0,43; −0,43; 0 a 1,71. Poslední hodnota zůstává od ostatních vzdálená a opakované časy pěti minut mají stejný z-skór (−0,43). Změnily se souřadnice, nikoli uspořádání dat.
+Takový převod zachovává pořadí i vzájemné poměry rozdílů. **Nemění však tvar rozdělení**: šikmé rozdělení nezmění na souměrné. Připomeňme si příklad z minulé kapitoly s dobami dokončení úlohy (4, 5, 5, 6 a 10 minut), kde $m=6$ a $s=\sqrt{5{,}5}\approx2{,}35$. Z-skóry jsou po zaokrouhlení −0,85; −0,43; −0,43; 0 a 1,71. Poslední hodnota zůstává od ostatních vzdálená a opakované časy pěti minut mají stejný z-skór (−0,43). Změnily se souřadnice, nikoli uspořádání dat.
 
 ::: {.chapter-04-figure role="region" aria-label="Stejných pět hodnot před standardizací a po ní." tabindex="0"}
 
@@ -72,7 +72,7 @@ Slovo standardizace má v psychologii také širší význam, například sjedno
 
 ## Normální rozdělení jako model {#sec-normalni-model}
 
-Z-skór popisuje polohu výsledku, ale sám neříká, kolik lidí má nižší výsledek. K tomu potřebujeme model rozdělení. Následující oddíl zavádí normální rozdělení, jeho parametry a zápis.
+Z-skór popisuje polohu výsledku, ale sám neříká, kolik lidí má nižší výsledek. Podíl lidí s nižším výsledkem můžeme určit z dat nebo jej odhadnout pomocí modelu rozdělení. Následující oddíl zavádí normální rozdělení, jeho parametry a zápis.
 
 ### Od pozorovaných dat k hladké křivce
 
@@ -112,7 +112,7 @@ Vlevo v @fig-parametry-04 mají obě křivky stejný tvar a šířku, ale jiný 
 
 $$z=\frac{x-\mathrm{μ}}{\mathrm{σ}}.$$
 
-Hodnota $x$ je původní skór, $\mathrm{μ}$ a $\mathrm{σ}$ jsou parametry modelu, $z$ je odpovídající poloha v jednotkách směrodatné odchylky. Pro 60 bodů v modelu $N(50,10)$ dostáváme $(60-50)/10=1$. Pro 40 bodů je $z=-1$. V obou měřítcích popisujeme stejnou polohu vzhledem k rozdělení. Stačí proto umět pracovat s jedním normovaným modelem a výsledky si převést podle potřeby zpět. Tato vlastnost platí pro **normální model**; standardizací libovolných dat normalitu nezajišťuje.
+Hodnota $x$ je původní skór, $\mathrm{μ}$ a $\mathrm{σ}$ jsou parametry modelu, $z$ je odpovídající poloha v jednotkách směrodatné odchylky. Pro 60 bodů v modelu $N(50,10)$ dostáváme $(60-50)/10=1$. Pro 40 bodů je $z=-1$. V obou měřítcích popisujeme stejnou polohu vzhledem k rozdělení. Stačí proto umět pracovat s jedním normovaným modelem a výsledky si převést podle potřeby zpět. Tato vlastnost platí pro **normální model**; standardizace libovolných dat normalitu nezajistí.
 
 ## Podíly jako plochy pod křivkou {#sec-plochy-normalniho}
 
@@ -136,9 +136,9 @@ Plochu můžeme číst jako **modelový podíl** v populaci popisované daným r
 
 ### Jednotlivá hodnota a zaokrouhlený výsledek {#sec-bod-a-interval}
 
-Přesně jediný bod na číselné ose má nulovou šířku. Ve **spojitém normálním modelu** proto nad jedinou přesnou hodnotou nevzniká plocha a její pravděpodobnost je nulová. Není to výrok, že člověk nemůže získat skór zaznamenaný jako 50. Zaznamenané číslo totiž může představovat interval: při zaokrouhlování spojitého výsledku na celé body odpovídá 50 přibližně hodnotám od 49,5 do 50,5. Tento interval už kladnou plochu má. V modelu s $\mathrm{μ}=50$ a $\mathrm{σ}=10$ jde přibližně o 4,0 % [srov. @cumming, kap. 4].
+Přesně jediný bod na číselné ose má nulovou šířku. Ve **spojitém normálním modelu** proto nad jedinou přesnou hodnotou nevzniká plocha a její pravděpodobnost je nulová. Není to výrok, že člověk nemůže získat skór zaznamenaný jako 50. Zaznamenané číslo totiž může představovat interval: při zaokrouhlování spojitého výsledku na celé body odpovídá 50 přibližně hodnotám od 49,5 do 50,5. Tento interval už kladnou plochu má. V modelu s $\mathrm{μ}=50$ a $\mathrm{σ}=10$ jde přibližně o 4,0 % [@cumming, s. 80].
 
-Počet správných odpovědí je navíc od počátku diskrétní; jeho přesná hodnota může mít nenulový podíl. Normální model pak používáme jen jako aproximaci. Ta může být velmi přesná, pokud má počet mnoho možných hodnot, například u testu s desítkami položek, a sousední hodnoty jsou ve srovnání se směrodatnou odchylkou blízko sebe. Je třeba vždy odlišit skutečně spojitou veličinu, zaokrouhlené měření a počet.
+Počet správných odpovědí je navíc od počátku diskrétní; jeho přesná hodnota může mít nenulový podíl. Normální model může být užitečnou aproximací, pokud přiměřeně vystihuje tvar rozdělení v oblasti, o kterou se zajímáme. Velký počet možných hodnot a malý krok vůči směrodatné odchylce usnadňují spojité přiblížení, samy však nestačí. Je třeba vždy odlišit skutečně spojitou veličinu, zaokrouhlené měření a počet.
 
 Pro plochy normálního modelu se „méně než 60“ a „nejvýše 60“ neliší: přidáváme jediný bod s nulovou plochou. V datech, kde se pozorované hodnoty mohou opakovat, se ovšem četnosti pro „nejvýše 60“ ($x\leq60$) a „méně než 60“ ($x<60$) lišit mohou: liší se o počet výsledků přesně rovných 60.
 
@@ -164,7 +164,7 @@ Známe-li hranici, například 60 bodů, můžeme se ptát, jaký podíl výsled
 
 ### Distribuční funkce kumuluje plochu zleva {#sec-distribucni-funkce}
 
-**Distribuční funkce (*cumulative distribution function*)** přiřazuje zvolené hranici podíl hodnot, které jsou jí menší nebo rovny. V normálním modelu jde o plochu pod křivkou **od levého chvostu až po tuto hranici**. Je to modelový protějšek [kumulativní relativní četnosti](kapitola_02.qmd#sec-kumulativni-cetnosti), kterou jsme v konkrétním souboru získali sčítáním četností.
+**Distribuční funkce (*cumulative distribution function*)** přiřazuje zvolené hranici podíl hodnot menších nebo rovných této hranici. V normálním modelu jde o plochu pod křivkou **od levého chvostu až po tuto hranici**. Je to modelový protějšek [kumulativní relativní četnosti](kapitola_02.qmd#sec-kumulativni-cetnosti), kterou jsme v konkrétním souboru získali sčítáním četností.
 
 ::: {.chapter-04-figure role="region" aria-label="Dvě zobrazení téhož podílu do 60 bodů." tabindex="0"}
 
@@ -233,7 +233,7 @@ Vzorec standardizuje obě meze, určí obě levé plochy a odečte je. Výsledke
 
 V @fig-oblasti-04 má hledaný podíl vždy oranžovou barvu a odečítaná část modrou, v hustotě i v distribuční funkci. Podíl **nejvýše 60** je přímo výška distribuční funkce v 60 bodech. Podíl **nad 60** je úsek od této výšky až po 1, tedy $1-0{,}841$. Podíl **nad 60 a nejvýše 70** je úsek mezi výškami v 60 a 70 bodech.
 
-Obrázek také připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporná plocha po odečtení upozorňuje na obrácené pořadí mezí, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
+Obrázek také připomíná, že stejná funkce v Excelu může být součástí různých otázek. Než začnete počítat, vyznačte hledanou oblast. Záporný výsledek odečtení upozorňuje na obrácené pořadí mezí, nikoli na záporný podíl lidí. Souměrnost lze využít ke kontrole: podíl nad $z=1$ musí být stejný jako podíl pod $z=-1$.
 
 ## Od podílu zpět k hodnotě {#sec-podil-hodnota}
 
@@ -253,7 +253,7 @@ Při průměru 50 a směrodatné odchylce 10 je tedy
 
 $$x=50+10\times1{,}281551566\ldots=62{,}81551566\ldots.$$
 
-Devadesátý percentil našeho modelu je **62,82 bodu**. Asi 90 % modelových výsledků leží pod touto hranicí a 10 % nad ní. Protože jde o horní část rozdělení, je výsledek nad průměrem, jak jsme očekávali.
+Hledaná hranice, devadesátý percentil našeho modelu, odděluje dolních 90 % modelového rozdělení od horních 10 %; po zaokrouhlení je to **62,82 bodu**. Protože jde o horní část rozdělení, je výsledek nad průměrem, jak jsme očekávali.
 
 V listu `Model` ponecháme B2 = 50 a B3 = 10 a doplníme:
 
@@ -286,7 +286,7 @@ Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vp
 
 :::
 
-Interval v pravé části @fig-kvantily-04 popisuje rozložení **jednotlivých výsledků při zadaném modelu**. Není intervalem spolehlivosti průměru: ten by vyjadřoval nejistotu odhadu parametru a bude předmětem pozdějšího výkladu. Ani hranice prostředních 95 % není sama o sobě hranicí zdraví nebo vhodným diagnostickým prahem [@howell, s. 74–75].
+Interval v pravé části @fig-kvantily-04 popisuje rozložení **jednotlivých výsledků při zadaném modelu**. Není intervalem spolehlivosti průměru: ten by vyjadřoval nejistotu odhadu parametru a bude předmětem pozdějšího výkladu [@howell, s. 74–75]. Ani hranice prostředních 95 % není sama o sobě hranicí zdraví nebo vhodným diagnostickým prahem.
 
 ## Standardní skóry v psychologii {#sec-standardni-skory}
 
@@ -311,11 +311,11 @@ Násobení přizpůsobí jednotku a přičtení posune střed. Proto se při lin
 
 :::
 
-**T-skór (*T score*)** používá průměr 50 a směrodatnou odchylku 10; velké kurzivní $T$ označuje tento druh skóru. **IQ-skór (*IQ score*)** zde označuje výsledek na škále s průměrem 100 a směrodatnou odchylkou 15. Tuto škálu lze použít i u jiných než inteligenčních testů; samotný převod na tuto škálu pochopitelně nemění to, daný test měří. U testu pozornosti proto napíšeme „výsledek vyjádřený na škále IQ-skórů“, nikoli „inteligence 122,5“. U skutečných testů ověříme konkrétní parametry škály v manuálu.
+**T-skór (*T score*)** používá průměr 50 a směrodatnou odchylku 10; velké kurzivní $T$ označuje tento druh skóru. **IQ-skór (*IQ score*)** zde označuje výsledek na škále s průměrem 100 a směrodatnou odchylkou 15. Tuto škálu lze použít i u jiných než inteligenčních testů; samotný převod na tuto škálu pochopitelně nemění to, co daný test měří. U testu pozornosti proto napíšeme „výsledek vyjádřený na škále IQ-skórů“, nikoli „inteligence 122,5“. U skutečných testů ověříme konkrétní parametry škály v manuálu.
 
-**Standardní subtestový skór (*scaled subtest score*)** je převedený skór jednotlivého subtestu, tedy dílčí části testové baterie. Pro subtesty se často používá škála, která má průměr 10 a směrodatnou odchylku 3; není to však univerzální definice všech subtestových skórů. Setkáme se s ní hlavně u subtestů inteligenčních a neuropsychologických testových baterií. Například ve Wechslerově inteligenční škále pro děti (WISC-V) mají subtesty právě tuto škálu s rozsahem 1 až 19 [@pearsonWiscV, s. 2]. V českých materiálech se setkáte také s názvem **vážený skór**. Zde se jím obvykle označuje převedená hodnota, nikoli výsledek násobení různých položek vahami a jejich sčítání. Proto ve výkladu používáme přesnější označení standardní subtestový skór [@pearsonScaled, s. 4].
+**Standardní subtestový skór (*scaled subtest score*)** je převedený skór jednotlivého subtestu, tedy dílčí části testové baterie. Pro subtesty se často používá škála, která má průměr 10 a směrodatnou odchylku 3 [@pearsonScaled, s. 4]; není to však univerzální definice všech subtestových skórů. Setkáme se s ní hlavně u subtestů inteligenčních a neuropsychologických testových baterií. Například ve Wechslerově inteligenční škále pro děti (WISC-V) mají subtesty právě tuto škálu s rozsahem 1 až 19 [@pearsonWiscV, s. 2]. V českých materiálech se setkáte také s názvem **vážený skór**. Zde se jím obvykle označuje převedená hodnota, nikoli výsledek násobení různých položek vahami a jejich sčítání. Proto ve výkladu používáme přesnější označení standardní subtestový skór.
 
-Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-skór je $100+15\times1{,}5=122{,}5$. Tyto dva kroky mají stejný princip jako převod z hrubého skóru na z-skór a zpět. **K samotnému lineárnímu převodu normalitu nepotřebujeme.** Teprve při převodu z-skóru na podíl pomocí normální křivky je normální model předpokladem validity výsledku.
+Převody lze obrátit: T-skór 65 má $z=(65-50)/10=1{,}5$. Odpovídající IQ-skór je $100+15\times1{,}5=122{,}5$. Tyto dva kroky mají stejný princip jako převod z hrubého skóru na z-skór a zpět. **K samotnému lineárnímu převodu normalitu nepotřebujeme.** Teprve při převodu z-skóru na podíl pomocí normální křivky je normální model předpokladem správnosti výsledku.
 
 ::: {.chapter-04-figure role="region" aria-label="Odpovídající hodnoty na čtyřech standardních škálách." tabindex="0"}
 
@@ -370,7 +370,7 @@ Následující tabulky používají obvyklé hranice na škále z-skórů. Pro j
 
 Podíly jsou vypočteny z normálního modelu, jednotlivě zaokrouhleny a **nepředstavují stejně početné desetiny (pro steny) ani devítiny (pro staniny)**. Ve středu je v pásmech více výsledků než na okrajích. U staninů se běžně uvádějí zaokrouhlené podíly 4, 7, 12, 17, 20, 17, 12, 7 a 4 %. Hranice se nemusíte učit zpaměti; cílem je správně použít tabulku.
 
-Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, nikoli univerzální kategorizaci schopnosti.
+Pro $z=1{,}2$ najdeme sten 8, protože $1<1{,}2\leq1{,}5$, a stanin 7, protože $0{,}75<1{,}2\leq1{,}25$. Ze samotného stenu 8 už přesný z-skór zpět nezískáme: víme pouze, do kterého intervalu patřil. Stejně označené pásmo navíc zůstává relativním srovnáním s příslušnými normami, nikoli univerzální kategorizací schopnosti.
 
 ::: {.chapter-04-figure role="region" aria-label="Stenová a staninová pásma normálního modelu" tabindex="0"}
 
@@ -384,7 +384,7 @@ Svislé čáry v @fig-pasma-skoru vymezují pásma, jejichž čísla jsou pod os
 
 V testových normách se nepoužívá pouze prostý lineární převod hrubého skóru. **Normalizací rozdělení (*rank-based normal-score transformation*)** zde rozumíme převod založený na pořadí: poloze v původním souboru se přiřadí odpovídající kvantil normálního modelu. Ten může následně dostat například měřítko T-skórů. Takový převod mění rozestupy mezi hodnotami; kvůli konečnému souboru a shodným hodnotám nemusí vytvořit přesné normální rozdělení. Je to jiný postup než standardizace.
 
-Princip si ukážeme na patnácti dobách řešení úlohy v sekundách: 11, 12, 12, 13, 14, 14, 14, 16, 17, 19, 22, 26, 31, 39 a 52. Většina lidí skončila do 20 sekund, několik jich potřebovalo mnohem déle; rozdělení má dlouhý pravý chvost. Postupujeme ve dvou krocích:
+Princip si ukážeme na patnácti dobách řešení úlohy v sekundách (list `Normalizace`, oblast A2:A16): 11, 12, 12, 13, 14, 14, 14, 16, 17, 19, 22, 26, 31, 39 a 52. Většina lidí skončila do 20 sekund, několik jich potřebovalo mnohem déle; rozdělení má dlouhý pravý chvost. Postupujeme ve dvou krocích:
 
 1. Každé hodnotě přiřadíme [kompromisní percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi): počet menších hodnot plus polovinu počtu shodných vydělíme $n=15$ a vynásobíme 100.
 2. Pořadí vydělené stem použijeme jako podíl vlevo a funkcí `NORM.S.INV` z oddílu o [modelovém percentilu](#sec-normalni-kvantil) najdeme odpovídající z-skór.
@@ -410,7 +410,7 @@ Princip si ukážeme na patnácti dobách řešení úlohy v sekundách: 11, 12,
 
 :::
 
-Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní pořadí je $(4+3/2)/15\times100\approx36{,}7$ a `=NORM.S.INV(0,3667)` vrátí přibližně −0,341. Všechny tři shodné doby dostanou stejný z-skór. Kompromisní konvenci volíme proto, že nikdy nedá pořadí 0 ani 100. Inkluzivní konvence by nejdelší době přiřadila 100 % a `NORM.S.INV(1)` není definováno. Bez shodných hodnot dává kompromisní konvence podíly $(i-0{,}5)/n$, tedy tytéž, které později použijeme pro [Q–Q graf](#sec-excel-qq).
+Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní pořadí je $(4+3/2)/15\times100\approx36{,}7$ a `=NORM.S.INV((4+3/2)/15)` vrátí přibližně −0,341. Všechny tři shodné doby dostanou stejný z-skór. Kompromisní konvenci volíme proto, že nikdy nedá pořadí 0 ani 100. Inkluzivní konvence by nejdelší době přiřadila 100 % a `NORM.S.INV(1)` není definováno. Bez shodných hodnot dává kompromisní konvence podíly $(i-0{,}5)/n$, tedy tytéž, které později použijeme pro [Q–Q graf](#sec-excel-qq).
 
 ::: {.chapter-04-figure role="region" aria-label="Histogramy dob před normalizací a po ní se spojnicemi jednotlivých hodnot" tabindex="0"}
 
@@ -420,15 +420,15 @@ Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní p
 
 V @fig-normalizace-04 jsou hodnoty na svislých osách, vlevo původní doby a vpravo z-skóry. Uprostřed spojuje čára každou dobu s jejím z-skórem. Čáry se nikde nekříží: pořadí zůstává stejné. Od krátkých dob 11 až 14 sekund se ale rozbíhají, protože tyto blízké hodnoty představují velkou část pořadí. Od dlouhých dob se sbíhají: rozdíl 13 sekund mezi 39 a 52 sekundami odpovídá kroku z-skóru 0,55, kdežto jediná sekunda mezi 11 a 12 sekundami kroku 0,72. Pravý histogram je proto souměrnější než levý. Přesně normální není: shodné doby mají stejný z-skór a u 15 hodnot nemůže z-skór přesáhnout ±1,834. Normalizované hodnoty mají průměr přibližně 0 a směrodatnou odchylku 0,99. Naproti tomu [standardizace](#sec-standardizace) v @fig-standardizace-04 tvar rozdělení nezměnila.
 
-Skutečné normy testů vycházejí z velkých normativních souborů a jejich konkrétní postup popisuje manuál testu. Princip je však stejný: o výsledném skóru rozhoduje poloha v referenční skupině, nikoli původní rozestupy hrubých skórů.
+U norem založených na normalizaci přes pořadí je princip obdobný: výsledný skór závisí na poloze v referenční skupině, nikoli na původních rozestupech hrubých skórů. Ne všechny testové normy však vznikají tímto postupem; konkrétní převod určuje manuál testu.
 
 Normálně vypadající **normalizované** skóry proto samy nedokazují, že normální rozdělení mají původní hrubé skóry: normální tvar jim dal až převod přes pořadí. U lineárně převedených skórů, jako jsou z-skóry nebo T-skóry ze standardizace, je tomu jinak: jejich tvar je stejný jako tvar hrubých skórů. Ani pak ale nevíme, zda je stejně rozložena i měřená psychologická vlastnost; tvar rozdělení skórů ovlivňuje i konstrukce testu, například obtížnost položek. Při práci se skutečným testem použijeme jeho normy, věkové členění a převodní pravidla; nepřepočítáváme automaticky všechny skóry pomocí jednoho průměru a směrodatné odchylky.
 
-Také [percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi) vyjadřuje relativní polohu, ale nemá rovnoměrné rozestupy. Jak ukázala poslední řada v @fig-skaly-04, stejný rozdíl z-skórů odpovídá uprostřed normálního rozdělení většímu rozdílu percentilových pořadí než na jeho okraji. Percentil 90 proto není dvakrát vyšší výkon než percentil 45.
+Také [percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi) vyjadřuje relativní polohu, ale nemá rovnoměrné rozestupy. Jak ukázala poslední řada v @fig-skaly-04, stejný rozdíl z-skórů odpovídá uprostřed normálního rozdělení většímu rozdílu percentilových pořadí než na jeho okraji. Percentilové pořadí 90 proto neznamená dvakrát vyšší výkon než percentilové pořadí 45.
 
 ## Je normální model přiměřený? {#sec-primerenost-modelu}
 
-Všechny dosavadní výpočty platí pro zadaný model. Zbývá otázka, kdy je normální model pro konkrétní data vhodný a jak to posoudit z významu měření a grafů.
+Dosavadní výpočty podílů a kvantilů z normální křivky platí pro zadaný model. Zbývá otázka, kdy je normální model pro konkrétní data vhodný a jak to posoudit z významu měření a grafů.
 
 ### Začínáme významem měření a histogramem
 
@@ -436,11 +436,11 @@ Výpočty podílů dávají přesnou odpověď pro zadaný normální model. Jej
 
 Zkontrolujeme přípustné hodnoty, jednotky, chybějící údaje a možné chyby záznamu. Má proměnná jen několik kategorií? Hromadí se výsledky u nejvyššího dosažitelného skóru? Mohly se smíchat skupiny s různými průměry? Takové okolnosti mají pro vhodnost modelu přímý význam. Například reakční časy nemohou být záporné a mohou mít dlouhý pravý chvost; normální model nelze odůvodnit jen tím, že měříme psychologickou proměnnou.
 
-Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněný jednotlivými body u malého souboru nebo [krabicovým grafem](kapitola_03.qmd#sec-boxplot). Hledáme asymetrii, více vrcholů, vzdálené hodnoty a nahromadění na mezích. U histogramu vyzkoušíme několik rozumných šířek a poloh intervalů: jeden výběr může zakrýt důležité rysy. Histogram lze proložit křivkou normálního rozdělení s průměrem $m$ a směrodatnou odchylkou $s$ z dat. Aby měly oba útvary porovnatelnou výšku, histogram musí mít na svislé ose hustotu; plocha jeho sloupců je pak stejně jako plocha pod křivkou rovna 1.
+Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněný jednotlivými body u malého souboru nebo [krabicovým grafem](kapitola_03.qmd#sec-boxplot). Hledáme asymetrii, více vrcholů, vzdálené hodnoty a nahromadění na mezích. U histogramu vyzkoušíme několik rozumných šířek a poloh intervalů: jeden výběr může zakrýt důležité rysy. Histogram lze proložit křivkou normálního rozdělení s průměrem $m$ a směrodatnou odchylkou $s$ z dat. Křivku hustoty můžeme přímo porovnat s histogramem, který má na svislé ose také hustotu; plocha jeho sloupců je pak stejně jako plocha pod křivkou rovna 1. Jinou možností by bylo přepočítat křivku na četnosti.
 
 ::: {.chapter-04-figure role="region" aria-label="Histogram s četnostmi a s hustotou proložený normální křivkou" tabindex="0"}
 
-![Křivku lze s histogramem porovnat jen tehdy, když histogram ukazuje hustotu.](../assets/chapter-04/plots/histogram-krivka.svg){#fig-histogram-krivka-04 fig-alt="Dva histogramy týchž dvou set simulovaných hodnot s normální křivkou podle jejich průměru a směrodatné odchylky. Vlevo má histogram na svislé ose četnosti až kolem čtyřiceti a křivka leží téměř na vodorovné ose. Vpravo má histogram na svislé ose hustotu a křivka prochází přibližně vrcholy sloupců."}
+![Křivku hustoty lze přímo porovnat s histogramem převedeným na hustotu.](../assets/chapter-04/plots/histogram-krivka.svg){#fig-histogram-krivka-04 fig-alt="Dva histogramy týchž dvou set simulovaných hodnot s normální křivkou podle jejich průměru a směrodatné odchylky. Vlevo má histogram na svislé ose četnosti až kolem čtyřiceti a křivka leží téměř na vodorovné ose. Vpravo má histogram na svislé ose hustotu a křivka prochází přibližně vrcholy sloupců."}
 
 :::
 
@@ -454,9 +454,9 @@ Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale neza
 
 V našich grafech je **vodorovně teoretický kvantil normovaného normálního rozdělení**, vyjádřený z-skórem. **Svisle je seřazená pozorovaná hodnota v původních jednotkách.** Nejde o dvojice měření dvou vlastností u stejných lidí. Každý bod spojuje malou, střední či vysokou polohu v datech s odpovídající polohou v normálním modelu.
 
-Pro každé pozorování se vlastně ptáme: **jakou hodnotu by mělo pozorování s tímto pořadím, kdyby data pocházela z normálního rozdělení?** Vodorovná souřadnice udává tuto očekávanou polohu v z-skórech a orientační přímka ji převádí do původních jednotek. Q–Q graf pak porovnává očekávanou hodnotu se skutečně pozorovanou.
+Pro každé pozorování se vlastně ptáme: **jaká hodnota by odpovídala pozorování s tímto pořadím, kdyby data pocházela z normálního rozdělení?** Vodorovná souřadnice udává tuto modelovou srovnávací polohu v z-skórech a orientační přímka ji převádí do původních jednotek. Q–Q graf pak porovnává modelovou srovnávací hodnotu se skutečně pozorovanou.
 
-Kdyby data dobře odpovídala normálnímu modelu, jejich kvantily by se od normovaných lišily přibližně jen posunem a změnou měřítka. Zpětný převod $x=\mathrm{μ}+\mathrm{σ}z$ je rovnice přímky. Proto očekáváme **přibližně přímé uspořádání bodů**, nikoli nutně přímku svírající úhel 45 stupňů. Úhel v obrázku závisí i na jednotkách a rozsahu os. Jako orientační přímku zde použijeme $m+s z$, kde střední hodnotu (průměr) a variabilitu (směrodatnou odchylku) odhadujeme z dat.
+Kdyby data dobře odpovídala normálnímu modelu, jejich kvantily by se od normovaných lišily přibližně jen posunem a změnou měřítka. Zpětný převod $x=\mathrm{μ}+\mathrm{σ}z$ je rovnice přímky. Proto očekáváme **přibližně přímé uspořádání bodů**, nikoli nutně přímku svírající úhel 45 stupňů. Úhel v obrázku závisí i na jednotkách a rozsahu os. Jako orientační přímku zde použijeme $m+s z$, kde průměr $m$ a směrodatnou odchylku $s$ vypočteme z dat jako odhady $\mathrm{μ}$ a $\mathrm{σ}$.
 
 Různé programy používají různé konvence: některé mají teoretické kvantily na svislé ose a pozorované hodnoty na vodorovné, jiné vedou referenční přímku jinak, například prvním a třetím kvartilem dat. Před čtením proto vždy zkontrolujte popisky. Ani u náhodného souboru z normálního modelu body nemusejí ležet na přímce dokonale. Zejména krajní pořadí kolísají a v malém souboru je těžké rozpoznat systematický tvar. Pokud body přibližně leží na přímce, znamená to, že data jsou **slučitelná s normálním modelem**, nejedná se ovšem o definitivní důkaz toho, že tomu tak skutečně je [@nistNormalPlot]. Takový důkaz ostatně nemáme téměř nikdy, protože populační rozdělení neznáme. Známe je jen tehdy, když data sami vytvoříme ze zvoleného modelu, jako v simulacích v oddílu [Jak číst odchylky od přímky](#sec-qq-odchylky).
 
@@ -472,7 +472,7 @@ Každému pořadí přiřadíme podíl uvnitř intervalu od 0 do 1. Celý rozsah
 
 $$p=\frac{i-0{,}5}{n}.$$
 
-$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. **Nejde o novou definici empirického percentilového pořadí.** Není to ani naše interpolační konvence kvantilů, kterou počítá `PERCENTIL.INC`. Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
+$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. Bez shodných hodnot jde o totéž jako kompromisní percentilové pořadí dělené stem (viz [normalizace](#sec-normalizace)); **nejde tedy o novou definici empirického percentilového pořadí.** Není to ani naše interpolační konvence kvantilů, kterou počítá `PERCENTIL.INC`. Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
 
 ::: {.chapter-04-figure role="region" aria-label="Vznik jednoho bodu normálního Q–Q grafu" tabindex="0"}
 
@@ -500,7 +500,7 @@ Na listu `QQ` vytvořte následující rozložení; stejné obsahuje přiložen�
 
 :::
 
-Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy obsahuje hodnotu, kterou bychom pro dané pořadí očekávali, kdyby data pocházela z normálního rozdělení.
+Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy pro každé pořadí obsahuje modelovou srovnávací hodnotu normálního rozdělení s průměrem a směrodatnou odchylkou souboru.
 
 První bod má vodorovnou souřadnici přibližně −1,73 a svislou 35 bodů. Poslední má přibližně 1,73 a 65 bodů. Referenční hodnoty v E jsou hodnoty přímky, nikoli náhrada pozorovaných skórů v B.
 
@@ -530,11 +530,11 @@ V následujících obrázcích jsou **simulovaná data**, vždy 200 hodnot. Kaž
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s rozdělením zešikmeným doprava." tabindex="0"}
 
-![Simulovaný soubor s rozdělením zešikmeným doprava.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Hodnoty jsou v histogram nahromaděny vlevo a vidíme dlouhý pravý chvost. Body Q–Q grafu se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
+![Simulovaný soubor s rozdělením zešikmeným doprava.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Hodnoty jsou v histogramu nahromaděny vlevo a vidíme dlouhý pravý chvost. Body Q–Q grafu se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
 
 :::
 
-V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od středu vzdálenější, než normální model předpokládá, a dolní část je stlačená. Normální podíly horního chvostu by zde mohly skutečný výskyt vysokých výsledků podstatně zkreslit. Odečtení průměru a dělení směrodatnou odchylkou toto zakřivení neodstraní, protože se jedná o lineární tranformaci, neměnící tvar rozdělení.
+V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od středu vzdálenější, než normální model předpokládá, a dolní část je stlačená. Normální podíly horního chvostu by zde mohly skutečný výskyt vysokých výsledků podstatně zkreslit. Odečtení průměru a dělení směrodatnou odchylkou toto zakřivení neodstraní, protože se jedná o lineární transformaci, která tvar rozdělení nemění.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s těžšími chvosty." tabindex="0"}
 
@@ -556,7 +556,7 @@ V @fig-qq-smes-04 pocházejí data ze dvou skupin s odlišnými průměry. Jeden
 
 Při posouzení spojíme význam měření, histogram a Q–Q graf. Napíšeme, **pro jaký účel** model přijímáme a kde vidíme omezení. Například: „Ve středu rozdělení seřazené skóry přibližně sledují přímku; nejvyšší hodnoty jsou však větší, než odpovídá normálnímu modelu. Model proto zatím nepoužijeme k odhadu podílu velmi vysokých skórů.“ Takový závěr sděluje více než zjednodušující výrok „data jsou (přibližně) normálně rozdělena“.
 
-Větší soubor umožňuje tvar posoudit podrobněji, **nedělá však rozdělení původních hodnot normálnějším**. U náhodného výběru obvykle platí, že čím je větší, tím věrněji jeho rozdělení odráží rozdělení populace. Populační rozdělení přitom může, ale nemusí být normální. Malý soubor naopak může vypadat přijatelně jen proto, že chybí informace o okrajích. Žádný z těchto grafů neověřuje reprezentativnost výběru, kvalitu měření ani nezávislost jednotlivých pozorování. Deset opakovaných výsledků téhož člověka nemůžeme bez dalšího považovat za údaje o deseti různých lidech.
+Větší soubor umožňuje tvar posoudit podrobněji, **nedělá však rozdělení původních hodnot normálnějším**. Malý soubor naopak může vypadat přijatelně jen proto, že chybí informace o okrajích. U náhodného výběru obvykle platí, že čím je větší, tím věrněji jeho rozdělení odráží rozdělení populace. Populační rozdělení přitom může, ale nemusí být normální. Žádný z těchto grafů neověřuje reprezentativnost výběru, kvalitu měření ani nezávislost jednotlivých pozorování. Deset opakovaných výsledků téhož člověka nemůžeme bez dalšího považovat za údaje o deseti různých lidech.
 
 Pokud model nevyhovuje, vrátíme se k otázce a datům: pro popis konkrétního souboru můžeme použít pozorované četnosti a empirické kvantily, případně odlišit skupiny, zdůvodníme-li to rozumnými argumenty. Neodstraňujeme správně zaznamenaná pozorování jen za účelem „hezčího“ grafu. Formální testy normality zatím nepotřebujeme; jejich význam lze pochopit až s výkladem statistického testování.
 
@@ -574,7 +574,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
 ## Cvičení {#sec-cviceni-04}
 
-V úlohách 1–3 a 7–8 stačí kalkulačka a tabulky z výkladu. Pro normální plochy a kvantily použijte Excel; výsledné skóry uvádějte na dvě desetinná místa, procenta na jedno. Zachovejte plnou přesnost mezivýpočtů. Při kontrole je přijatelná odchylka 0,01 bodu nebo 0,1 procentního bodu způsobená závěrečným zaokrouhlením. Všechny číselné situace jsou autorské ilustrační příklady.
+V úlohách 1–3 a 7–8 stačí kalkulačka a tabulky z výkladu. Pro normální plochy a kvantily použijte Excel; výsledné skóry uvádějte na dvě desetinná místa, procenta na jedno. Zachovejte plnou přesnost mezivýpočtů. Při kontrole je přijatelná odchylka 0,01 bodu nebo 0,1 procentního bodu způsobená závěrečným zaokrouhlením.
 
 ### 1. Skór a referenční skupina
 
