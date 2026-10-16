@@ -311,15 +311,31 @@ ch3_draw('boxplot',{
   arrows(2.48,1,1.75,5,length=.07,col='#B16A26')
 },width=6.8,height=9)
 ch3_draw('korekce-rozptylu',{
-  z<-ch3_simulation_summary
-  mat<-rbind(z$variance_n,z$variance_n1)
-  pos<-barplot(mat,beside=TRUE,names.arg=paste0('n = ',z$n),ylim=c(0,11),
-    col=c('#B16A26','#267888'),border=NA,ylab='Průměr vypočtených rozptylů (min²)',xlab='Velikost výběru')
-  abline(h=8,lty=2,lwd=2);text(pos,mat+.65,format(round(mat,2),decimal.mark=','),cex=.9)
-  legend('top',legend=c('Dělení n','Dělení n − 1','Populační rozptyl 8'),
-    col=c('#B16A26','#267888','#223744'),pch=c(15,15,NA),
-    lty=c(NA,NA,2),lwd=2,bty='n',cex=.85,horiz=TRUE)
-},height=5)
+  # Points: the first 400 replications of each size (jittered); crosses: means of all 20 000.
+  z<-ch3_simulation_summary;cols<-c('#B16A26','#267888');xc<-c(1,4,7);off<-c(-.45,.45)
+  plot(NA,xlim=c(-.4,8.4),ylim=c(0,23),xaxt='n',bty='l',xaxs='i',
+    ylab='Rozptyl jednoho výběru (min²)',xlab='Velikost výběru')
+  axis(1,at=xc,labels=paste0('n = ',z$n),tick=FALSE)
+  abline(h=8,lty=2,lwd=2)
+  set.seed(20261016)
+  for(k in seq_along(ch3_simulations)) for(j in 1:2) {
+    v<-head(ch3_simulations[[k]][[c('variance_n','variance_n1')[j]]],400)
+    points(xc[k]+off[j]+runif(length(v),-.28,.28),v,pch=16,cex=.55,col=adjustcolor(cols[j],.3))
+  }
+  means<-rbind(z$variance_n,z$variance_n1)
+  for(j in 1:2) {
+    points(xc+off[j],means[j,],pch=4,cex=1.9,lwd=5,col='white')
+    points(xc+off[j],means[j,],pch=4,cex=1.9,lwd=2.5,col='#223744')
+    lab<-format(round(means[j,],2),decimal.mark=',')
+    w<-strwidth(lab,cex=.85,font=2);h<-strheight(lab,cex=.85,font=2)
+    lx<-xc+off[j]+c(-.42,.42)[j];l0<-if(j==1) lx-w else lx
+    rect(l0-.05,means[j,]-.8*h,l0+w+.05,means[j,]+.8*h,col='white',border=NA)
+    text(l0,means[j,],lab,adj=0,cex=.85,font=2,col=cols[j])
+  }
+  legend('topright',legend=c('Dělení n','Dělení n − 1','Průměr','Populační rozptyl 8'),
+    col=c(cols,'#223744','#223744'),pch=c(16,16,4,NA),pt.cex=c(1,1,1.3,NA),
+    lty=c(NA,NA,NA,2),lwd=c(NA,NA,2.5,2),bty='n',cex=.85,ncol=2)
+},height=5.2)
 ch3_draw('entropie',{
   par(mfrow=c(1,3),mar=c(4,3.4,3,.4),cex=.9)
   entropies <- list(c(1,0,0,0),c(.5,.25,.25,0),rep(.25,4))
@@ -364,7 +380,8 @@ ch3_draw('transformace',{
     points(c(2,3,8,9),f(c(2,3,8,9)),pch=19,col='#B16A26')
     segments(c(2,8),f(c(2,8)),c(3,9),f(c(2,8)),lty=3)
     arrows(c(3,9),f(c(2,8)),c(3,9),f(c(3,9)),code=3,angle=90,length=.08)
-    text(c(3,9)-.25,(f(c(2,8))+f(c(3,9)))/2,
-      if(i==1) c('+3','+3') else c('+5','+17'),pos=2,cex=.9)
+    # Labels sit right of the increment bars, clear of the line and points.
+    text(c(3,9)+.1,(f(c(2,8))+f(c(3,9)))/2,
+      if(i==1) c('+3','+3') else c('+5','+17'),pos=4,cex=.9)
   }
 },width=6,height=8)

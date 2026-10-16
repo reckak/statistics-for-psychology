@@ -5,7 +5,7 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 3](../../quarto/kapitola_03.qmd#sec-kapitola-03),
-karta zkontrolována 2026-10-14. **Vstup:** význam měření z kapitoly 1;
+karta zkontrolována 2026-10-14; obrázek korekce rozptylu a navazující odstavec 2026-10-16. **Vstup:** význam měření z kapitoly 1;
 četnosti, procenta, sumace a grafy z kapitoly 2. Konvence upravují
 [R01](../rozhodnuti/spolecne-konvence.md#r01-znaceni-a-reportovani), [R04](../rozhodnuti/kapitola-03.md#r04-kvantily),
 [R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani), [R06](../rozhodnuti/kapitola-03.md#r06-robustni-shrnuti)
@@ -72,7 +72,7 @@ souhrnů. První list `Prehled` uvádí umístění. [Pokrytí cvičení](../DAT
 | [Dvě skupiny 10 a 30 osob](../../quarto/kapitola_03.qmd#fig-vazeny-prumer) | Příspěvky k součtu zdůvodňují vážení průměrů, nikoli mechanický průměr dvou čísel. |
 | [Jedenáct různých časů](../../quarto/kapitola_03.qmd#fig-kvantil-interpolace) a [percentil/pořadí](../../quarto/kapitola_03.qmd#fig-percentil-a-poradi) | Úrovně přiřazené pozicím, detail 17. percentilu a opačné otázky „podíl → hodnota“ / „hodnota → zastoupení“. |
 | [Odchylky a čtverce](../../quarto/kapitola_03.qmd#fig-odchylky-ctverce) | Délky a plochy vysvětlují absolutní a kvadratické příspěvky; plocha nemění jednotku svislé osy. |
-| [Simulace korekce](../../quarto/kapitola_03.qmd#fig-korekce-rozptylu) | Opakované náhodné výběry s vracením ze známé modelové populace ilustrují dlouhodobé podhodnocení při dělení n. |
+| [Simulace korekce](../../quarto/kapitola_03.qmd#fig-korekce-rozptylu) | Opakované náhodné výběry s vracením ze známé modelové populace: bodový graf s jitterem ukazuje rozptyly jednotlivých výběrů (prvních 400 z 20 000 pro každé n) a křížkem průměry; ilustruje dlouhodobé podhodnocení při dělení n i trvající rozptýlenost jednotlivých výsledků (nestrannost ≠ přesnost). |
 | [Deset časů](../../quarto/kapitola_03.qmd#fig-orezani-winsorizace) | Stejné krajní hodnoty, ale jiný počet členů/jmenovatel při ořezání a winsorizaci. |
 | [41 skórů](../../quarto/kapitola_03.qmd#fig-boxplot-03) | Vedle původních bodů ukazuje krabici, pomocné meze, skutečné konce vousů a samostatné body. |
 | [Strategie učení](../../quarto/kapitola_03.qmd#fig-entropie) | Tři rozdělení mezi čtyři kategorie oddělují koncentraci a rovnoměrnost bez nutnosti výpočtu logaritmů. |
