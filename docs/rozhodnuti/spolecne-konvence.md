@@ -92,3 +92,33 @@ z úvodních kapitol říci, že všechna data jsou smyšlená, pokud není
 explicitně uvedeno jinak“); volba úvodní stránky a ponechání funkčních
 zmínek potvrzena týž den. Provedení: [úvod](../../index.qmd)
 a záznam v [historii](../../quarto/README.md).
+
+<a id="r42-citace-dokumentace"></a>
+
+## R42 — Společné citace příruček a dokumentace
+
+**Stav:** schváleno 2026-10-16. **Rozsah:** celá učebnice.
+**Hlavní místo pravidla:** [AGENTS.md](../../AGENTS.md#zdroje-a-jejich-použití).
+
+Autor schválil jednu položku pro ucelené dílo či dokumentační celek,
+přímé odkazy na konkrétní části v citacích a roky podle poslední aktualizace.
+Schválená realizace používá NIST e-Handbook 2022, Microsoft Excel 2026,
+R Core Team 2026 a SciPy 2026 (verze 1.18.0). Samostatná díla stejné
+organizace se neslučují: Shannonův index z dokumentace Dataplot zůstává
+samostatnou položkou s doloženým rokem 2016.
+
+**Důvod:** zkrátit seznam literatury bez ztráty dohledatelnosti konkrétních
+tvrzení; odstranit řady písmen za chybějícím rokem u jednotlivých funkcí.
+Jde o redakční konvenci dokumentačních celků, nikoli změnu APA pro články
+a samostatné publikace. Rok Microsoftu 2026 je výslovná autorská volba
+pro používanou průběžnou dokumentaci, nikoli prokázané datum revize všech
+jejích stránek. Datum přístupu se uchovává odděleně.
+
+**Doklad souhlasu:** pokyn autora v této konverzaci dne 2026-10-16:
+„Souhlasím, uprav podle toho citace a seznam literatury v celé učebnici.
+U NIST použij rok 2022 a toto pravidlo zaznamenej také do projektové
+dokumentace. Pro MS Excel a R Core Team bych použil současný rok (2026).“
+Autor dále uvedl SciPy 1.18.0 z 19. června 2026 a požadoval konzistentní
+uvádění roků podle posledního updatu.
+
+Bibliografické ověření a jeho meze: [záznam kontroly](../zdroje/HISTORIE.md#kontrola-dokumentace-2026-10-16).

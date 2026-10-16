@@ -2,5 +2,7 @@
 
 Společný seznam obsahuje zdroje citované v celé učebnici. Odkazy u citací v jednotlivých kapitolách vedou přímo k příslušným bibliografickým záznamům.
 
+U online příruček a dokumentace uvádíme společný záznam celého díla. Název oddílu nebo funkce v citaci odkazuje přímo na příslušnou stránku. Zkratka NIST označuje National Institute of Standards and Technology.
+
 ::: {#refs}
 :::

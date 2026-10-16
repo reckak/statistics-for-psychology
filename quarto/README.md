@@ -1,5 +1,31 @@
 # Autorská dokumentace
 
+## 2026-10-16 — Sjednocení citací online dokumentace
+
+Podle [R42](../docs/rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace)
+nahrazeno 41 samostatných bibliografických položek čtyřmi dokumentačními
+celky (NIST e-Handbook 2022, Excel 2026, R-devel 2026 a SciPy 1.18.0 z roku
+2026). Celkový seznam má 48 místo 85 položek. Ve všech studentských QMD
+vyhledány dotčené klíče; 49 výskytů v kapitolách 2–5 nyní odkazuje na
+společný záznam a přímo na konkrétní část. Vícenásobné odkazy na Excel
+v jedné citaci sdílejí autora a rok. Zbývajících 44 bibliografických
+záznamů zachováno, včetně samostatné dokumentace Dataplot k Shannonovu
+indexu (2016). Výklad, data, vzorce a rozsah učiva se nemění; kapitolové
+mapy proto nebyly obsahově revidovány ani přeznačeny novým datem kontroly.
+
+Ověření: render všech 11 stránek; kontrola dokumentačních map (42 rozhodnutí,
+bez chyb); porovnání všech 49 přímých odkazů proti původním citacím;
+kontrola roků a 48 záznamů v HTML; vizuální prohlídka seznamu literatury
+a citace NIST u Q–Q grafu. Kontroly HTML byly přizpůsobeny novým společným
+záznamům a ověřují i přímé odkazy na jednotlivé části.
+Celková kontrola HTML prošla na všech 11 stránkách: místní odkazy,
+68 řešení, klávesnice, společné přehledy, mobilní šířka 390 px a zobrazení
+bez JavaScriptu i přes file://.
+Podklady dat a jejich omezení jsou v [historii zdrojů](../docs/zdroje/HISTORIE.md#kontrola-dokumentace-2026-10-16).
+R při sestavení ohlásilo neúspěšné nastavení LC_* na C.UTF-8; render
+doběhl a český text byl vizuálně ověřen. Neproběhla nová odborná revize
+všech odkazovaných stránek ani nové přepočítání nezměněných úloh v Excelu.
+
 Historické záznamy níže popisují stav v době vzniku a zůstávají zachovány.
 Pro současné konvence používejte [přehled rozhodnutí](../docs/ROZHODNUTI.md),
 pro preferované názvy, alternativy a významové hranice

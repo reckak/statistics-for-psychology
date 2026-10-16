@@ -136,6 +136,21 @@ Quarto Book průběžně publikovaný na GitHubu jako web.
 
 ## Zdroje a jejich použití
 
+- U ucelených online příruček a dokumentace používej jednu bibliografickou
+  položku pro celé dílo či dokumentační celek, nikoli pro jednotlivé stránky
+  ani automaticky pro všechny publikace jedné organizace. V citaci v textu
+  připoj název konkrétního oddílu či funkce jako přímý hypertextový odkaz;
+  zachovej i potřebný podrobnější lokátor. Více částí téhož díla v jedné
+  citaci sdruž pod jediného autora a rok. Rok odvozuj od poslední doložené
+  aktualizace citovaného celku/verze, ne automaticky od data přístupu;
+  přesné datum, dostupnou verzi a datum přístupu eviduj v bibliografii.
+  Nedoložený rok nevymýšlej: výslovně schválenou redakční volbu odliš
+  v autorské evidenci od ověřeného data. Schválené roky a výjimky uvádí
+  [R42](docs/rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace).
+  V textu lze použít zavedenou zkratku NIST, v bibliografii celý název.
+  Použij citační prefix `NIST, -@nistHandbook` a odkaz v příponě citace;
+  rok i bibliografii nadále vytváří citeproc. Jde o schválenou redakční
+  konvenci pro dokumentaci; ostatní publikace nadále cituj podle APA 7.
 - Citace v textu i seznam literatury formátuj podle APA 7 společným stylem
   `styles/apa.csl` nastaveným v `_quarto.yml`, údaji v `references.bib`
   a citačním zápisem Quarta; citace ani bibliografii nesestavuj ručně.

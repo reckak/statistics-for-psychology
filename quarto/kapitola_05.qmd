@@ -571,7 +571,7 @@ $$n!=n\times(n-1)\times\cdots\times2\times1.$$
 
 Například $3!=6$, $4!=24$ a $5!=120$. Faktoriál udává, kolika způsoby lze seřadit $n$ různých věcí. Roste velmi rychle: deset úloh lze seřadit $10!=3\,628\,800$ způsoby, a proto se při vyvažování pořadí úloh obvykle nepoužívají všechna pořadí, ale jen některá, často náhodně zvolená [@howell, s. 119]. Pro úplnost se definuje $0!=1$: „nic“ lze uspořádat jediným způsobem a vzorce, které faktoriál obsahují, díky tomu platí i v krajních případech.
 
-V Excelu počítá faktoriál funkce **`FAKTORIÁL`** (anglicky `FACT`) s jediným argumentem: `=FAKTORIÁL(5)` vrátí 120 [@msFact].
+V Excelu počítá faktoriál funkce **`FAKTORIÁL`** (anglicky `FACT`) s jediným argumentem: `=FAKTORIÁL(5)` vrátí 120 [@msExcel, [FAKTORIÁL (funkce)](https://support.microsoft.com/cs-cz/excel/functions/fact-function)].
 
 ### Kombinace a kombinační číslo {#sec-kombinace}
 
@@ -597,7 +597,7 @@ $$\binom{5}{2}=\frac{5!}{2!\times3!}=\frac{120}{2\times6}=10.$$
 
 Dvě krajní hodnoty stojí za povšimnutí. Žádnou otázku lze „vybrat“ jediným způsobem, $\binom{5}{0}=1$, a všech pět také jediným, $\binom{5}{5}=1$. Vybrat dvě správné otázky je totéž jako vybrat tři nesprávné, proto $\binom{5}{2}=\binom{5}{3}=10$.
 
-V Excelu počítá kombinační číslo funkce **`KOMBINACE`** (anglicky `COMBIN`). Prvním argumentem je počet všech prvků, druhým počet vybíraných: `=KOMBINACE(5;2)` vrátí 10 [@msCombin].
+V Excelu počítá kombinační číslo funkce **`KOMBINACE`** (anglicky `COMBIN`). Prvním argumentem je počet všech prvků, druhým počet vybíraných: `=KOMBINACE(5;2)` vrátí 10 [@msExcel, [KOMBINACE](https://support.microsoft.com/cs-cz/excel/functions/combin-function)].
 
 ::: {#rozsireni-variace .callout-note collapse="true" title="Nepovinné rozšíření: když na pořadí záleží"}
 Někdy na pořadí vybraných prvků záleží. Sto studentů se účastní losování o tři **různé** ceny: první vylosovaný dostane poukaz za 2 000 Kč, druhý za 1 000 Kč a třetí za 500 Kč. Kolik je možných výsledků? První cenu může získat kterýkoli ze 100 studentů, druhou jeden z 99 zbývajících, třetí jeden z 98:
@@ -614,7 +614,7 @@ $$\binom{100}{3}=\frac{970\,200}{6}=161\,700.$$
 
 Obecně je kombinační číslo rovno počtu variací dělenému $k!$.
 
-**Permutace** je v české terminologii uspořádání **všech** prvků skupiny; jejich počet je $n!$. Je to zvláštní případ variace, v němž vybíráme všechny prvky. Anglická literatura a také Excel používají slovo *permutation* i pro uspořádaný výběr jen části prvků. Funkce Excelu se proto jmenuje **`PERMUTACE`** (anglicky `PERMUT`), přestože počítá variace bez opakování: `=PERMUTACE(100;3)` vrátí 970 200 [@msPermut].
+**Permutace** je v české terminologii uspořádání **všech** prvků skupiny; jejich počet je $n!$. Je to zvláštní případ variace, v němž vybíráme všechny prvky. Anglická literatura a také Excel používají slovo *permutation* i pro uspořádaný výběr jen části prvků. Funkce Excelu se proto jmenuje **`PERMUTACE`** (anglicky `PERMUT`), přestože počítá variace bez opakování: `=PERMUTACE(100;3)` vrátí 970 200 [@msExcel, [PERMUTACE](https://support.microsoft.com/cs-cz/excel/functions/permut-function)].
 :::
 
 ## Binomické rozdělení {#sec-binomicke}
@@ -623,7 +623,7 @@ Oddíl spojuje předchozí nástroje do prvního konkrétního modelu rozdělen�
 
 ### Kdy binomický model použít {#sec-binomicke-predpoklady}
 
-Mnoho psychologických situací má stejnou stavbu: několikrát opakujeme pokus, který může dopadnout dvěma způsoby, a počítáme, kolikrát dopadl jedním z nich. Kolik otázek student uhodl. V kolika pokusech účastník správně rozpoznal podnět. Kolik oslovených souhlasilo s účastí. Pro počet takových „zásahů“ existuje společný model, **binomické rozdělení (*binomial distribution*)**. Lze jej použít, jsou-li splněny čtyři podmínky [@howell, s. 124–125; @msBinomDist]:
+Mnoho psychologických situací má stejnou stavbu: několikrát opakujeme pokus, který může dopadnout dvěma způsoby, a počítáme, kolikrát dopadl jedním z nich. Kolik otázek student uhodl. V kolika pokusech účastník správně rozpoznal podnět. Kolik oslovených souhlasilo s účastí. Pro počet takových „zásahů“ existuje společný model, **binomické rozdělení (*binomial distribution*)**. Lze jej použít, jsou-li splněny čtyři podmínky [@howell, s. 124–125; @msExcel, [BINOM.DIST (funkce)](https://support.microsoft.com/cs-cz/excel/functions/binom-dist-function)]:
 
 1.  **Počet pokusů je předem daný.** Značíme jej $n$. Jednotlivému opakování říkáme **pokus (*trial*)**.
 2.  **Každý pokus má jen dva možné výsledky.** Jednomu říkáme **úspěch (*success*)**, druhému **neúspěch (*failure*)**.
@@ -705,7 +705,7 @@ Na obrázku [-@fig-binomicke-tvar] mají všechny grafy stejné měřítko svisl
 
 ### Výpočet v Excelu {#sec-excel-binom}
 
-Binomické pravděpodobnosti počítá funkce **`BINOM.DIST`**; anglický název je shodný. Má čtyři argumenty v tomto pořadí: počet úspěchů $k$, počet pokusů $n$, pravděpodobnost úspěchu $\mathrm{π}$ a logickou hodnotu. S hodnotou `NEPRAVDA` vrátí pravděpodobnost **právě** $k$ úspěchů, s hodnotou `PRAVDA` kumulativní pravděpodobnost **nejvýše** $k$ úspěchů [@msBinomDist]. Je to stejné rozlišení jako u funkce [NORM.DIST](kapitola_04.qmd#sec-excel-normalni), jen `NEPRAVDA` zde vrací skutečnou pravděpodobnost, nikoli hustotu.
+Binomické pravděpodobnosti počítá funkce **`BINOM.DIST`**; anglický název je shodný. Má čtyři argumenty v tomto pořadí: počet úspěchů $k$, počet pokusů $n$, pravděpodobnost úspěchu $\mathrm{π}$ a logickou hodnotu. S hodnotou `NEPRAVDA` vrátí pravděpodobnost **právě** $k$ úspěchů, s hodnotou `PRAVDA` kumulativní pravděpodobnost **nejvýše** $k$ úspěchů [@msExcel, [BINOM.DIST (funkce)](https://support.microsoft.com/cs-cz/excel/functions/binom-dist-function)]. Je to stejné rozlišení jako u funkce [NORM.DIST](kapitola_04.qmd#sec-excel-normalni), jen `NEPRAVDA` zde vrací skutečnou pravděpodobnost, nikoli hustotu.
 
 Na listu `Binom` je počet pokusů v B2 pevně nastaven na $n=5$. Měnit lze pouze žlutou buňku B3 s pravděpodobností úspěchu; ostatní buňky jsou uzamčené. Tabulka obsahuje celé rozdělení pro těchto pět pokusů:
 
@@ -766,9 +766,9 @@ $$P(X\ge10)=1-P(X\le9).$$
 
 Proto je ve vzorci B9 výraz `B5-1`. Kdybychom odečetli $P(X\le10)$, hodnotu 10 bychom vynechali. Stejně tak „méně než 10“ je totéž co „nejvýše 9“. V [normálním modelu](kapitola_04.qmd#sec-bod-a-interval) jsme mezi „méně než“ a „nejvýše“ rozlišovat nemuseli, protože jediný bod tam má nulovou pravděpodobnost. Zde má každá hodnota pravděpodobnost kladnou.
 
-Funkce **`BINOM.DIST.RANGE`** (anglicky shodně) vrátí přímo pravděpodobnost, že počet úspěchů leží mezi dvěma hodnotami včetně obou krajních. Argumenty jsou v jiném pořadí než u `BINOM.DIST`: počet pokusů, pravděpodobnost úspěchu, dolní a horní počet úspěchů [@msBinomDistRange].
+Funkce **`BINOM.DIST.RANGE`** (anglicky shodně) vrátí přímo pravděpodobnost, že počet úspěchů leží mezi dvěma hodnotami včetně obou krajních. Argumenty jsou v jiném pořadí než u `BINOM.DIST`: počet pokusů, pravděpodobnost úspěchu, dolní a horní počet úspěchů [@msExcel, [BINOM.DIST.RANGE](https://support.microsoft.com/cs-cz/excel/functions/binom-dist-range-function)].
 
-Opačnou otázku, od pravděpodobnosti k počtu, zodpoví funkce **`BINOM.INV`** (anglicky shodně). Vzorec `=BINOM.INV(20;0,25;0,95)` vrátí 8: je to nejmenší počet úspěchů, pro který kumulativní pravděpodobnost dosáhne alespoň 0,95 [@msBinomInv]. Tipující student tedy získá nejvýše 8 správných odpovědí s pravděpodobností přibližně 0,96 a nejvýše 7 s pravděpodobností přibližně 0,90. Na listu `Binom_20` vrací B13 stejný výsledek s ošetřením krajního případu: `=KDYŽ(B3=0;0;KDYŽ(B3=1;B2;BINOM.INV(B2;B3;0,95)))`. Při pravděpodobnosti úspěchu 0 není žádná odpověď správná, takže výsledkem je 0. Při pravděpodobnosti 1 jsou všechny odpovědi správné a výsledkem je počet otázek B2. Je to obdoba [kvantilu](kapitola_03.qmd#sec-kvantil-kumulativni) určeného první hodnotou, která dosáhne požadovaného kumulativního podílu.
+Opačnou otázku, od pravděpodobnosti k počtu, zodpoví funkce **`BINOM.INV`** (anglicky shodně). Vzorec `=BINOM.INV(20;0,25;0,95)` vrátí 8: je to nejmenší počet úspěchů, pro který kumulativní pravděpodobnost dosáhne alespoň 0,95 [@msExcel, [BINOM.INV (funkce)](https://support.microsoft.com/cs-cz/excel/functions/binom-inv-function)]. Tipující student tedy získá nejvýše 8 správných odpovědí s pravděpodobností přibližně 0,96 a nejvýše 7 s pravděpodobností přibližně 0,90. Na listu `Binom_20` vrací B13 stejný výsledek s ošetřením krajního případu: `=KDYŽ(B3=0;0;KDYŽ(B3=1;B2;BINOM.INV(B2;B3;0,95)))`. Při pravděpodobnosti úspěchu 0 není žádná odpověď správná, takže výsledkem je 0. Při pravděpodobnosti 1 jsou všechny odpovědi správné a výsledkem je počet otázek B2. Je to obdoba [kvantilu](kapitola_03.qmd#sec-kvantil-kumulativni) určeného první hodnotou, která dosáhne požadovaného kumulativního podílu.
 
 **Co výsledek říká.** Student získal 10 bodů z 20. Kdyby jen tipoval, dosáhl by 10 nebo více bodů s pravděpodobností přibližně 0,014, tedy asi v jednom případě ze sedmdesáti. Model pouhého tipování činí takový výsledek vzácným, a to je důvod pochybovat, že student jen tipoval. Tři věci však výpočet netvrdí:
 
