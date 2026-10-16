@@ -69,7 +69,7 @@ Výklad: `Zaklad_data`, `Stejny_prumer`, `Dva_mody`, `Sudy_median`,
 `Vyjimky_stredu` (četnosti obrázku výjimek, A2:D6), `Orezani`, `Boxplot`, `Populace`, `Entropie_data`, `Spicatost`,
 `Transformace` a `Data` pokrývají zadané soubory i souhrnné vstupy.
 Varianty změny 10 na 30 a transformací jsou popsány u vstupů, původní
-hodnoty se nepřepisují. Hotové výpočty jsou na `Priklad`, `Souhrn`,
+hodnoty se nepřepisují. Hotové výpočty jsou na `Priklad`, `Souhrn` (od 2026-10-17 včetně SKEW a KURT v řádcích 12–13 k povinnému oddílu o ukazatelích tvaru),
 `Rozsireni` a `Kontrola_prikladu`; poslední list čte hodnoty ze samostatných
 listů `Kvantily`, `Orezani` a `Boxplot`.
 
@@ -87,8 +87,9 @@ listů `Kvantily`, `Orezani` a `Boxplot`.
 | 10 | `U10_transformace` A2:C6 |
 | 11 | `U11_strategie` A2:C5 |
 | 12 | `Data` C2:C37 |
-| 13 | `Entropie_data` A2:B5 |
-| 14 | `U14_sikmost` A2:B5 a `Spicatost` A2:C6 |
+| 13 | `Data` C2:C37 (SKEW, KURT; kopie bez nuly v řádku 7 vzniká až při řešení) |
+| 14 | `Entropie_data` A2:B5 |
+| 15 | `U15_sikmost` A2:B5 a `Spicatost` A2:C6 |
 
 ## Kapitola 4
 
@@ -98,7 +99,7 @@ Výklad: `Z_skory`, `Standardizace`, `Normalizace`, `Modely`, `Skaly` a `QQ_data
 obsahují vstupy pro převody a konstrukci grafu; `Model` a `QQ` zachovávají
 hotové výpočty (`QQ` od 2026-10-16 také sloupec F a graf pro nepovinný P–P graf). Listy `Sim_normalni`, `Sim_sikme`, `Sim_chvosty` a
 `Sim_smes` přebírají po 200 skutečně vygenerovaných skórů z téhož běhu
-a seedu jako čtyři porovnávané obrázky; `Sim_normalni` slouží také obrázku histogramu s četnostmi a hustotou proloženého normální křivkou. Nejsou to dodatečně vymyšlená
+a seedu jako čtyři porovnávané obrázky (A2:A201; od 2026-10-17 z nich výklad počítá také SKEW a KURT v tabulce Q–Q grafů a koeficientů); `Sim_normalni` slouží také obrázku histogramu s četnostmi a hustotou proloženého normální křivkou. Nejsou to dodatečně vymyšlená
 individuální data ke slovnímu cvičení 10.
 
 | Cvičení | List a oblast / povaha zadání |

@@ -113,6 +113,28 @@ eq(integrate(function(z) z^2*dgamma(z+2,4,rate=2),-2,Inf)$value,1)
 eq(mean(2+3*x),2+3*mean(x));eq(sd(2+3*x),3*sd(x))
 eq(var(2-3*x),9*var(x));eq(mean(x^2),40.4)
 eq(diff(c(2,3)^2),5);eq(diff(c(8,9)^2),17)
+# Core shape section: model moments, tail shares and Excel-equivalent coefficients.
+for(k in seq_along(ch3_skew_models)) {
+  f<-ch3_skew_models[[k]]$density; lo<-if(k==1) -Inf else c(NA,-2,-1)[k]
+  eq(integrate(f,lo,Inf)$value,1,1e-7); eq(integrate(function(z) z*f(z),lo,Inf)$value,0,1e-7)
+  eq(integrate(function(z) z^2*f(z),lo,Inf)$value,1,1e-7)
+  eq(integrate(function(z) z^3*f(z),lo,Inf)$value,ch3_skew_models[[k]]$skew,1e-6)
+}
+eq(integrate(function(z) z^4*ch3_skew_models[[2]]$density(z),-2,Inf)$value-3,1.5,1e-6)
+eq(integrate(function(z) z^4*ch3_skew_models[[3]]$density(z),-1,Inf)$value-3,6,1e-6)
+for(m in ch3_excess_models) {
+  eq(integrate(function(z) z^2*m$density(z),-Inf,Inf)$value,1,1e-6)
+  eq(integrate(function(z) z^4*m$density(z),-Inf,Inf)$value-3,m$excess,1e-5)
+  eq(1-integrate(m$density,-3,3)$value,m$tail,1e-6)
+}
+eq(round(100*sapply(ch3_excess_models,`[[`,'tail'),2),c(.27,.73,1.17))
+eq(mean(c(-1,1)^4)/mean(c(-1,1)^2)^2-3,-2)
+eq(round(ch3_corrected(na.omit(ch3_previous$spanek_h)),2),c(-.13,-.55))
+eq(round(ch3_moments(na.omit(ch3_previous$spanek_h)),2),c(-.12,-.65))
+eq(round(ch3_corrected(ch3_previous$slova),2),c(-.47,.48))
+z<-ch3_previous$slova;eq(round(ch3_corrected(z[z!=0]),2),c(-.09,-.25));eq(sum(z==0),1);eq(z[6],0)
+eq(round((0-mean(z))/sd(z),1),-2.7)
+eq(round(ch3_corrected(x),2),c(1.74,3.32));eq(round(ch3_corrected(c(4,5,5,6,30))[2],2),4.92)
 # Quantitative exercise solutions.
 # Cumulative selection preserves observed values and ordinal categories.
 first_reached <- function(values,p) {
@@ -149,7 +171,7 @@ z<-c(rep(-2,4),rep(-1,5),rep(1,10),3);eq(c(sum(z),sum(z^3),mean(z^2)),c(0,0,2));
 stopifnot(sum(z==1)!=sum(z== -1))
 # Definitions must explicitly include ties, unscaled MAD and n/n-1 distinctions.
 text<-paste(readLines('quarto/kapitola_03.qmd',encoding='UTF-8'),collapse='\n')
-stopifnot(length(gregexpr('title="Ukázat řešení"',text,fixed=TRUE)[[1]])==14,
+stopifnot(length(gregexpr('title="Ukázat řešení"',text,fixed=TRUE)[[1]])==15,
   !grepl('=LOG(',text,fixed=TRUE),grepl('LOGZ',text,fixed=TRUE),
   !grepl('```{r',text,fixed=TRUE))
-cat('Chapter 3: all numerical examples and 14 solutions checked; exact sampling enumeration and Monte Carlo targets agree.\n')
+cat('Chapter 3: all numerical examples and 15 solutions checked; exact sampling enumeration and Monte Carlo targets agree.\n')

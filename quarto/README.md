@@ -1,5 +1,49 @@
 # Autorská dokumentace
 
+## 2026-10-17 — Kapitoly 3 a 4: povinné ukazatele tvaru
+
+Podle [R44](../docs/rozhodnuti/kapitola-03.md#r44-ukazatele-tvaru):
+
+- Kapitola 3: nový povinný oddíl `sec-ukazatele-tvaru` za `sec-popis-a-model`
+  s pododdíly `sec-koeficient-sikmosti`, `sec-spicatost` (ID zachováno, nyní
+  povinný výklad excesu) a `sec-excel-tvar`. Nový obrázek
+  `fig-ukazatele-tvaru` (gama modely se šikmostí 0/1/2; t s 10 a 5 st. v.
+  s excesem 0/1/6; podíly mimo ±3 SD 0,27/0,73/1,17 %; zvětšené pravé
+  chvosty; skript `scripts/kapitola_03.R`). Obrázek `fig-spicatost`
+  a nový blok „Častý omyl: exces jako výška vrcholu“ přesunuty do povinné
+  části (Westfall, 2014, s. 191–195). SKEW/KURT na době spánku
+  (−0,13; −0,55) a tři meze koeficientů. Původní nepovinné rozšíření
+  (`sec-momenty`, `rozsireni-momenty`) zachovává momenty, g₁, g₂ a korekce,
+  doplněno sbližování variant u 33 dob spánku.
+- Úvodní cíle doplněny o odrážku; Shrnutí ponechává osm bodů (poslední bod
+  spojuje shodné m/s, ukazatele tvaru a popis dat). Nové povinné cvičení 13
+  (SKEW/KURT počtu slov −0,47/0,48; kopie bez platné nuly −0,09/−0,25);
+  nepovinná cvičení přečíslována na 14–15, list `U14_sikmost` přejmenován
+  na `U15_sikmost`; `Souhrn` B12:C13 obsahuje SKEW a KURT.
+- Kapitola 4: odkaz v úvodu přiměřenosti vede na povinný oddíl; v
+  `sec-qq-odchylky` tabulka `tbl-qq-koeficienty-04` (SKEW/KURT čtyř
+  simulací z listů `Sim_*`) a výklad konvergentní informace i mezí;
+  cvičení 10 a poslední bod Shrnutí rozšířeny.
+- Slovníček (nové heslo Ukazatele tvaru; šikmost, špičatost, exces),
+  přehled Excelu, registr SLOVNIK, kapitolové karty, OSNOVA a DATA.
+
+Ověření: `check-chapter-03.R` (integrace momentů a podílů chvostů modelů,
+hodnoty SKEW/KURT, 15 řešení) a `check-chapter-04.R` (koeficienty
+simulací; nestálost excesu u t se 3 st. v. ověřena 1000 výběry se seedem
+20261017: 10. percentil pod 2,5, 90. nad 10); `build-workbooks.ps1
+-Chapter 3 -Verify` a `-Chapter 4 -Verify` včetně skutečně spuštěných
+českých vzorců SKEW/KURT v Excelu 16; `check-workbooks.py`; render celé
+knihy; `check-html.cjs` (včetně mobilu a stavu bez JavaScriptu);
+`check-doc-maps.cjs`; vizuální prohlídka nového obrázku a oddílů.
+PDF kapitoly 4 ověřeno. **Neověřeno:** PDF kapitoly 3 se nevykreslí kvůli
+staršímu problému nezávislému na této změně (prázdný span
+`populacni-parametry` na začátku odstavce za nadpisem `sec-korekce-rozptylu`
+vede v Typstu ke dvojímu štítku; zavedeno v ad5d17b); kontrolní skript
+PDF je připraven na 15 řešení. Didaktická revize provedena autorsky
+(čtení očima začátečníka, délka vět), nikoli na studentech ani
+samostatným agentem. Westfall (2014) nemá zdrojovou kartu v `docs/zdroje/`;
+použitý lokátor je převzat z dosavadního textu kapitoly.
+
 ## 2026-10-17 — Jednotná přibližná rovnost a první výklad těsného násobení
 
 Podle schváleného [R43](../docs/rozhodnuti/spolecne-konvence.md#r43-priblizna-rovnost)

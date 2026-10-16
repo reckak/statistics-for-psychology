@@ -10,9 +10,10 @@ Navazujeme na [četnosti a grafické zobrazení](kapitola_02.qmd#sec-kapitola-02
 - Zvolíte ukazatele polohy a variability podle otázky, významu měření a tvaru rozdělení.
 - Na malém souboru vysvětlíte a vypočítáte průměr, medián, kvantily, rozpětí, absolutní odchylky, rozptyl a směrodatnou odchylku.
 - Přečtete a sestavíte krabicový graf, rozpoznáte vliv vzdáleného pozorování a odlišíte ořezání od winsorizace.
+- Vysvětlíte, co vyjadřuje šikmost a exces, získáte je v Excelu a jejich hodnoty propojíte s grafem rozdělení.
 - Předpovíte důsledky změny jednotek a napíšete srozumitelný popis dat.
 
-Nepovinná rozšíření vysvětlují výpočet entropie a momentových koeficientů tvaru; jejich vzorce nejsou součástí povinných dovedností.
+Nepovinná rozšíření vysvětlují výpočet entropie a vzorce šikmosti a excesu; tyto vzorce nejsou součástí povinných dovedností.
 :::
 
 ## Co souhrnné ukazatele zachycují {#sec-poloha-variabilita}
@@ -657,18 +658,72 @@ Věta „rozdělení má průměr 0 a směrodatnou odchylku 1“ sama neurčuje,
 
 Rozdělení lze také popisovat přímo pomocí četností a kvantilů, bez volby určité parametrické rodiny. V tomto smyslu mluvíme o **neparametrickém popisu (*nonparametric description*)**. Neznamená to „bez čísel“ nebo „bez předpokladů“. Také samotný populační průměr můžeme zkoumat bez předpokladu normálního modelu. Podrobnosti rozvineme v [kapitole o normálním rozdělení](kapitola_04.qmd#sec-kapitola-04); zatím je důležité odlišit, co jsme vypočítali z dat, od toho, co o tvaru rozdělení předpokládáme při použití modelu.
 
-## Nepovinné rozšíření: momentová šikmost a špičatost {#sec-momenty}
+## Ukazatele tvaru: šikmost a exces {#sec-ukazatele-tvaru}
 
-Tvar rozdělení jsme dosud posuzovali z grafu. Nepovinný oddíl ukazuje, jak lze šikmost a špičatost shrnout také čísly a proč je třeba takové koeficienty vykládat opatrně.
+Tři modely v @fig-stejne-statistiky mají stejný průměr i směrodatnou odchylku, a přesto vypadají zcela odlišně. Lze rozdíly v jejich tvaru shrnout také čísly? Tento oddíl ukazuje dva nejběžnější ukazatele tvaru, šikmost a exces, a vysvětluje, co jejich hodnoty sdělují.
 
-::: {#rozsireni-momenty .callout-note collapse="true" title="Nepovinné rozšíření: princip, výpočty a meze interpretace"}
+**Ukazatele tvaru (*measures of shape*)** doplňují ukazatele polohy a variability. Vzdálenosti hodnot od průměru posuzují v násobcích směrodatné odchylky, a jsou proto bez jednotek. Podle [oddílu o změně jednotek](#sec-zmena-skaly) posun ani převod jednotek tyto násobky nemění, a tak nemění ani výsledek. Ukazatele tvaru tedy popisují vlastnost, která zbývá, když od rozdělení „odečteme“ jeho polohu a šíři. Jedinou výjimkou je obrácení škály, tedy násobení záporným číslem: levá a pravá strana se prohodí, takže šikmost změní znaménko, zatímco exces zůstane stejný.
+
+![Modelová rozdělení se stejným průměrem a směrodatnou odchylkou. Šikmost roste s tím, jak se jeden chvost protahuje. Vyšší exces znamená více velmi vzdálených hodnot: podíl za hranicemi ±3 směrodatné odchylky stoupá z 0,27 % na 1,17 %, jak ukazují zvětšené pravé chvosty dole. Přerušovaná křivka je pro srovnání normální model.](../assets/chapter-03/plots/ukazatele-tvaru.svg){#fig-ukazatele-tvaru fig-alt="Devět grafů hustoty ve třech řádcích, vodorovná osa v násobcích směrodatné odchylky od průměru. Horní řádek: souměrný zvonovitý model se šikmostí 0, model se šikmostí 1 a mírně protaženým pravým chvostem a model se šikmostí 2, který začíná prudce vlevo a má dlouhý pravý chvost. Prostřední řádek: souměrné modely s excesem 0, 1 a 6; mimo hranice ±3 směrodatné odchylky leží 0,27 %, 0,73 % a 1,17 % hodnot. Dolní řádek zvětšuje pravé chvosty týchž tří modelů: s rostoucím excesem leží křivka nad hranicí 3 stále výše nad přerušovanou normální křivkou."}
+
+V @fig-ukazatele-tvaru mají všechny modely průměr 0 a směrodatnou odchylku 1, liší se jen tvarem. Jde o vybrané pravděpodobnostní modely, nikoli o psychologická data. Horní řádek ukazuje šikmost, prostřední a dolní exces; čísla v titulcích jsou přesné hodnoty modelů.
+
+### Šikmost: kterým směrem a jak výrazně se rozdělení protahuje {#sec-koeficient-sikmosti}
+
+Směr zešikmení umíme pojmenovat slovně podle [delšího chvostu](kapitola_02.qmd#sec-tvar-rozdeleni). **Šikmost (*skewness*)** lze vyjádřit také číslem, koeficientem šikmosti. Koeficient porovnává, jak daleko od průměru sahají hodnoty na jeho levé a pravé straně. Vzdálené hodnoty přitom mají mnohem větší váhu než hodnoty blízké průměru, takže o výsledku rozhoduje hlavně strana, na které leží vzdálenější hodnoty.
+
+**Znaménko** proto udává směr: kladná šikmost znamená delší pravý chvost, záporná delší levý chvost. **Absolutní hodnota** udává, jak výrazná nesouměrnost je. Modely v horním řádku @fig-ukazatele-tvaru mají šikmost 0, 1 a 2: s rostoucí hodnotou se hodnoty hromadí vlevo a pravý chvost se protahuje. U lehkého testu, kde většina lidí dosahuje vysokých skórů a jen několik velmi nízkých, bychom naopak očekávali zápornou šikmost.
+
+Každé souměrné rozdělení má šikmost nulovou, protože vzdálenosti na obou stranách se přesně vyváží. Obrácené tvrzení ale neplatí: k vyvážení může dojít i u nesouměrného souboru, například když jedna strana obsahuje několik vzdálených hodnot a druhá mnoho bližších. Konkrétní protipříklad ukazuje nepovinné cvičení na konci kapitoly. Šikmost blízká nule je tedy slučitelná se souměrností, ale sama ji nedokazuje. Podobně ji nedokazuje ani [shoda průměru a mediánu](#sec-stred-tvar).
+
+### Exces: jak často se objevují velmi vzdálené hodnoty {#sec-spicatost}
+
+**Exces (*excess kurtosis*)** porovnává rozdělení s normálním modelem, který má stejný průměr a stejnou směrodatnou odchylku. Normální model je souměrné zvonovité rozdělení zmíněné v [předchozím oddílu](#sec-popis-a-model); slouží jako srovnávací měřítko, protože se v psychologii často používá jako výchozí model, a podrobně se mu věnuje další kapitola. Jeho exces je 0. **Kladný exces** znamená, že se velmi vzdálené hodnoty vyskytují častěji než u normálního modelu; říkáme, že rozdělení má **těžší chvosty**. **Záporný exces** znamená, že velmi vzdálené hodnoty jsou vzácnější nebo zcela chybějí.
+
+Prostřední řádek @fig-ukazatele-tvaru ukazuje tři souměrné modely s excesem 0, 1 a 6. Za hranicemi tří směrodatných odchylek od průměru leží 0,27 %, 0,73 % a 1,17 % hodnot. Rozdíly jsou v absolutních číslech malé, ale relativně velké: v modelu s excesem 6 je takových hodnot více než čtyřikrát víc než v normálním modelu. Zvětšené chvosty v dolním řádku ukazují, kde se modely liší: s rostoucím excesem leží křivka za hranicí 3 stále výše nad přerušovanou normální křivkou.
+
+Záporný exces najdeme například u hodnot omezených na úzké rozmezí bez vzdálených výsledků nebo u směsi dvou zřetelně oddělených skupin. Nejnižší možnou hodnotu −2 má první model v @fig-stejne-statistiky: obě jeho hodnoty leží přesně jednu směrodatnou odchylku od průměru a žádná dál. Druhý, normální model tam má exces 0 a šikmost 0. Třetí model má šikmost 1 a exces 1,5. Zešikmené modely v horním řádku @fig-ukazatele-tvaru mají také kladný exces (1,5 a 6), protože jejich dlouhý chvost obsahuje vzdálené hodnoty. Šikmost a exces tedy nejsou dvě na sobě nezávislé vlastnosti.
+
+Exces souvisí se **špičatostí (*kurtosis*)**, označovanou také přejatým slovem kurtóza: špičatost je exces zvětšený o 3. Normální model má tedy špičatost 3 a exces 0. Programy obvykle uvádějí exces, ale ne vždy, proto je třeba ověřit, kterou z obou veličin výsledek představuje. V této učebnici budeme uvádět exces.
+
+V prostředním řádku si můžeme všimnout ještě jedné věci: modely s vyšším excesem mají také vyšší a užší střední část. Má-li rozdělení se stejnou směrodatnou odchylkou více velmi vzdálených hodnot, musejí zbylé hodnoty ležet celkově blíže středu, aby rozptyl zůstal stejný. Tento průvodní jev však není tím, co exces vyjadřuje. Velmi vzdálené hodnoty mají ve výpočtu excesu tak velkou váhu, že o výsledku rozhodují především chvosty [@westfall2014, s. 191–195].
+
+![Stejně vysoký centrální sloupec neznamená stejný exces.](../assets/chapter-03/plots/spicatost.svg){#fig-spicatost fig-alt="Oba soubory mají 80 ze 100 hodnot ve středu. První má dalších deset hodnot na minus jedné a deset na plus jedné, exces 2. Druhý přesouvá po jedné hodnotě do minus tří a plus tří, exces přibližně 10,89."}
+
+V @fig-spicatost má každý soubor sto pozorování a osmdesát z nich leží přesně ve středu. Vlevo jsou zbývající hodnoty rozděleny po deseti mezi −1 a 1; vpravo po devíti mezi −1 a 1 a po jedné na −3 a 3. Vrchol má v obou obrázcích stejnou četnost 80. Přesto je exces vlevo 2 a vpravo 10,89. Rozdíl vznikl jen tím, že se dvě hodnoty přesunuly dál od středu. Jde o autorský diskrétní příklad, nikoli o návod odhadovat exces z výšky sloupců histogramu. Změna měřítka os či šířky intervalů by mohla vzhled vrcholu změnit bez změny vypočteného koeficientu.
+
+::: {.callout-warning title="Častý omyl: exces jako výška vrcholu"}
+Název špičatost svádí k představě, že kladný exces znamená ostrý nebo vysoký vrchol. Exces však vypovídá hlavně o chvostech. Správná interpretace kladného excesu zní: ve srovnání s normálním modelem se stejnou směrodatnou odchylkou se častěji vyskytují velmi vzdálené hodnoty. Záporný exces naopak znamená, že takové hodnoty jsou vzácnější; neznamená „plochý vrchol“ ani záporný rozptyl.
+:::
+
+### Koeficienty tvaru v Excelu a jejich meze {#sec-excel-tvar}
+
+Funkce **SKEW (*SKEW*)** vrací šikmost a **KURT (*KURT*)** exces. Obě přijímají oblast buněk s čísly; prázdné buňky a text ignorují. Pro doby spánku z [listu `Data`](#sec-excel-poloha) zapíšeme `=SKEW(Data!B2:B37)` a `=KURT(Data!B2:B37)`. Výsledky jsou na listu `Souhrn` v buňkách B12 a B13: šikmost přibližně **−0,13** a exces přibližně **−0,55**. Funkce použily 33 platných údajů a tři prázdné buňky vynechaly.
+
+Šikmost blízká nule odpovídá tomu, že žádný chvost není výrazně delší. Mírně záporný exces říká, že velmi vzdálené doby spánku jsou vzácnější, než by odpovídalo normálnímu modelu se stejnou směrodatnou odchylkou. Obojí souhlasí s [histogramem spánku](kapitola_02.qmd#sec-histogram): doby leží mezi 4,5 a 9,5 hodiny, nejvíce jich je uprostřed a žádná nestojí osamoceně daleko od ostatních.
+
+Funkce KURT už od výsledku odečítá trojku; další trojku proto neodečítáme. SKEW i KURT obsahují korekci pro výběr, podobně jako výběrový rozptyl s dělením $n-1$. Jiné funkce a programy proto mohou u stejných dat vrátit poněkud odlišná čísla, výrazněji u malých souborů; přesné vzorce vysvětluje nepovinné rozšíření níže. SKEW potřebuje alespoň tři hodnoty a KURT alespoň čtyři; při nulové variabilitě nejsou koeficienty definovány [@msExcel, [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
+
+Při interpretaci pamatujme na tři meze:
+
+- **V malých souborech jsou koeficienty velmi nestabilní.** Pro pět časů 4, 5, 5, 6, 10 minut vrací SKEW 1,74 a KURT 3,32. Nahradíme-li 10 minut hodnotou 30, vzroste exces na 4,92. Z pěti hodnot o chvostech rozdělení téměř nic nevíme, ať koeficient vyjde jakkoli.
+- **Univerzální hranice neexistují.** Žádná hodnota šikmosti ani excesu sama nerozhoduje, zda jsou data „v pořádku“. Význam stejné hodnoty závisí na otázce, velikosti souboru a na tom, co zkoumáme.
+- **Jedno číslo neukáže, kde se tvar liší.** Koeficient může vzniknout z jediné vzdálené hodnoty i z celého protaženého chvostu. Nepozná dva vrcholy a nulová hodnota nedokazuje souměrnost ani normální tvar. Koeficienty proto čteme vždy spolu s grafem.
+
+Jak se tyto koeficienty shodují s grafickým posouzením tvaru, ukážeme v [kapitole o normálním rozdělení](kapitola_04.qmd#sec-qq-odchylky).
+
+### Nepovinné rozšíření: výpočet z momentů {#sec-momenty}
+
+Odkud se vzorce šikmosti a excesu berou a proč se výsledky různých funkcí liší, vysvětluje nepovinné rozšíření.
+
+::: {#rozsireni-momenty .callout-note collapse="true" title="Nepovinné rozšíření: momenty, vzorce a korekce"}
 Průměry mocnin hodnot nebo jejich odchylek označujeme jako **momenty (*moments*)**. **Řád momentu (*order of a moment*) říká, kterou mocninu průměrujeme:** první řád používá první mocninu (samotnou hodnotu), druhý její čtverec, třetí třetí mocninu a tak dále.
 
 Vedle řádu rozlišujeme, **co umocňujeme**. Průměr původních hodnot je moment prvního řádu kolem nuly, protože $x_i^1=x_i$. Průměr čtverců odchylek $(x_i-m)^2$ je centrální moment druhého řádu. Slovo **centrální** zde znamená „počítaný z odchylek od průměru“; druhý řád určuje mocninu 2. Průměr původních čtverců $x_i^2$ by byl také momentem druhého řádu, ale kolem nuly, nikoli centrálním momentem. Ne každá charakteristika odchylek je ovšem momentem: směrodatná odchylka je odmocninou rozptylu, nikoli průměrem mocnin.
 
 **Třetí mocnina (*cube*)** je součin tří stejných čísel, například $(-2)^3=-8$. Zachovává znaménko a současně zdůrazní vzdálené hodnoty. **Čtvrtá mocnina (*fourth power*)**, například $(-2)^4=16$, je nezáporná a vzdálené hodnoty zvýrazní ještě silněji. K porovnání rozdělení v různých jednotkách musíme tyto průměry mocnin přepočítat vzhledem k variabilitě.
 
-### Koeficient šikmosti
+#### Koeficient šikmosti
 
 Základní **momentový koeficient šikmosti (*moment coefficient of skewness*)** označíme $g_1$:
 
@@ -681,24 +736,18 @@ Pro náš soubor časových hodnot 4, 5, 5, 6, 10 činí odchylky od průměru �
 
 $$g_1=\frac{10{,}8}{(\sqrt{4{,}4})^3}\approx1{,}17.$$
 
-Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Obrácené tvrzení však nemusí platit: **nulová momentová šikmost sama nedokazuje souměrnost**. Také silně nesouměrné příspěvky se mohou v součtu vyrušit. Velikost koeficientu nemá univerzální hranice oddělující „dobrá“ a „špatná“ data.
+Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Také silně nesouměrné příspěvky se však mohou v součtu vyrušit, proto nulová momentová šikmost sama souměrnost nedokazuje.
 
-### Špičatost a exces {#sec-spicatost}
+#### Špičatost a exces
 
-**Špičatost (*kurtosis*)**, označovaná také přejatým slovem kurtóza, porovnává průměr čtvrtých mocnin odchylek s druhou mocninou průměru čtverců. Pro normální rozdělení má populační špičatost hodnotu 3. Odečtením tří získáme **exces (*excess kurtosis*)**, který označíme $g_2$:
+Špičatost porovnává průměr čtvrtých mocnin odchylek s druhou mocninou průměru čtverců. Pro normální rozdělení má populační špičatost hodnotu 3. Odečtením tří získáme exces, který označíme $g_2$:
 
 $$g_2=\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^4}
 {\left(\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2\right)^2}-3.$$
 
-Čtvrté mocniny našich odchylek jsou 16, 1, 1, 0, 256. Jejich součet je 274 a průměr 54,8 min⁴. Druhá mocnina 4,4 min² je 19,36 min⁴. Špičatost je tedy $54{,}8/19{,}36\approx2{,}83$ a exces $g_2\approx-0{,}17$. Výsledek je bez jednotky. Záporný exces neznamená záporný rozptyl; je to porovnání špičatosti s referenční hodnotou 3.
+Čtvrté mocniny našich odchylek jsou 16, 1, 1, 0, 256. Jejich součet je 274 a průměr 54,8 min⁴. Druhá mocnina 4,4 min² je 19,36 min⁴. Špičatost je tedy $54{,}8/19{,}36\approx2{,}83$ a exces $g_2\approx-0{,}17$. Výsledek je bez jednotky. Čtvrtá mocnina vysvětluje, proč o excesu rozhodují chvosty: odchylka 4 přispěla 256, kdežto tři odchylky velikosti 1 dohromady jen 3.
 
-Samotné slovo špičatost může svádět k představě, že koeficient měří ostrost či výšku vrcholu. **Tato interpretace je nesprávná.** Čtvrté mocniny zdůrazňují velmi vzdálené hodnoty vzhledem k celkové variabilitě. Špičatost proto informuje o krajních odchylkách, sama však neurčuje tvar vrcholu [@westfall2014, s. 191–195].
-
-![Stejně vysoký centrální sloupec neznamená stejnou špičatost.](../assets/chapter-03/plots/spicatost.svg){#fig-spicatost fig-alt="Oba soubory mají 80 ze 100 hodnot ve středu. První má dalších deset hodnot na minus jedné a deset na plus jedné, exces 2. Druhý přesouvá po jedné hodnotě do minus tří a plus tří, exces přibližně 10,89."}
-
-V @fig-spicatost má každý soubor sto pozorování a osmdesát z nich leží přesně ve středu. Vlevo jsou zbývající hodnoty rozděleny po deseti mezi −1 a 1; vpravo po devíti mezi −1 a 1 a po jedné na −3 a 3. Vrchol má v obou obrázcích stejnou četnost 80. Přesto jsou excesy **2 a 10,89**. Jde o autorský diskrétní příklad významu vzdálených hodnot, nikoli o návod odhadovat špičatost z výšky sloupců histogramu. Změna měřítka os či šířky intervalů by mohla vzhled vrcholu změnit bez změny vypočteného koeficientu.
-
-### Korekce pro výběr a malé soubory
+#### Korekce pro výběr a malé soubory
 
 Excelová funkce SKEW vrací korigovanou výběrovou variantu, nikoli přímo $g_1$; základnímu $g_1$ odpovídá SKEW.P. Funkce KURT vrací korigovaný **exces**, nikoli špičatost bez odečtení tří. Korigovanou šikmost získáme jako
 
@@ -710,7 +759,7 @@ $$\frac{n-1}{(n-2)(n-3)}\bigl[(n+1)g_2+6\bigr].$$
 
 V obou výrazech je $n$ počet platných hodnot a $g_1$, $g_2$ základní koeficienty definované výše. Nejprve vyhodnotíme závorky a až potom násobení a dělení. V našem příkladu první násobitel činí $\sqrt{20}/3$, takže korigovaná šikmost vyjde přibližně **1,74**. Druhý vztah dává přibližně **3,32**. Rozdíl od základních výsledků 1,17 a −0,17 je u pouhých pěti hodnot značný. Nejde o chybu zaokrouhlení [@msExcel, [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
 
-Pro první korekci potřebujeme alespoň tři hodnoty, pro druhou čtyři; variabilita nesmí být nulová. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Oba ukazatele mohou v malých souborech silně kolísat a reagovat na jedinou hodnotu. Graf a věcný kontext proto zůstávají nezbytné. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít (kvůli výběrové variabilitě) ani jeden vypočtený koeficient přesně nulový. Ani opačné uvažování by nebylo oprávněné: nulová výběrová šikmost a exces samy o sobě nedokládají, že výběr pochází z normálního rozdělení.
+U 33 dob spánku jsou rozdíly malé: základní $g_1\approx-0{,}12$ a $g_2\approx-0{,}65$ proti korigovaným −0,13 a −0,55. S rostoucím $n$ se obě varianty sbližují. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít (kvůli výběrové variabilitě) ani jeden vypočtený koeficient přesně nulový. Ani opačné uvažování by nebylo oprávněné: nulová výběrová šikmost a exces samy o sobě nedokládají, že výběr pochází z normálního rozdělení.
 :::
 
 ## Výpočty v Excelu {#sec-excel-poloha}
@@ -777,7 +826,7 @@ Pro tvar průběžného příkladu jsou na listu `Priklad` ve F2:F6 třetí mocn
 | J6 | `=KURT(Priklad!A2:A6)` | korigovaný exces 3,32 |
 :::
 
-**SKEW.P (*SKEW.P*)**, **SKEW (*SKEW*)** a **KURT (*KURT*)** přijímají oblast číselných dat. První odpovídá základnímu koeficientu, druhá a třetí výběrovým korekcím uvedeným v rozšíření. KURT už obsahuje odečtení odpovídající referenční normální hodnotě; další trojku od jeho výsledku neodečítáme. Při nulové variabilitě nejsou tyto koeficienty definovány [@msExcel, [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
+**SKEW.P (*SKEW.P*)** přijímá oblast číselných dat stejně jako [SKEW a KURT](#sec-excel-tvar). Odpovídá základnímu koeficientu $g_1$, zatímco SKEW a KURT používají výběrové korekce uvedené v rozšíření o momentech. KURT už obsahuje odečtení odpovídající referenční normální hodnotě; další trojku od jeho výsledku neodečítáme. Při nulové variabilitě nejsou tyto koeficienty definovány [@msExcel, [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
 ::::
 
 ## Shrnutí {#sec-shrnuti-03}
@@ -791,7 +840,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Variabilitu nominálních kategorií popisují četnosti; jedním souhrnným ukazatelem je entropie, nulová při úplné koncentraci a pro daný počet kategorií nejvyšší při jejich rovnoměrném zastoupení ([Variabilita kategorií a entropie](#sec-entropie)).
 - Krabicový graf ukazuje medián, kvartily a pozorování za mezemi vzdálenými 1,5 IQR od kvartilů. Tyto body jsou podnětem k prověření, nikoli důvodem k vyřazení ([Krabicový graf](#sec-boxplot)).
 - Přičtení konstanty posune ukazatele polohy, ale variabilitu nezmění; násobení číslem $b$ změní směrodatnou odchylku $|b|$krát a rozptyl $b^2$krát. Po nelineárním převodu statistiky počítáme znovu z převedených hodnot ([Co mění posun a změna jednotek](#sec-zmena-skaly)).
-- Souhrnné ukazatele popisují dvě různé vlastnosti rozdělení, polohu a variabilitu, a stejný průměr může skrývat velmi odlišné rozložení výsledků. Popis dat proto vychází z otázky a z grafu rozdělení, uvádí počty platných údajů a odlišuje výpočet z dat od předpokladů modelu ([Co souhrnné ukazatele zachycují](#sec-poloha-variabilita); [Jak vybrat a sdělit popisné statistiky](#sec-komunikace-statistik); [Od popisu dat k modelu](#sec-popis-a-model)).
+- Stejný průměr i směrodatná odchylka mohou skrývat velmi odlišná rozdělení. Tvar doplňkově shrnuje šikmost, jejíž znaménko a velikost říkají, kterým směrem a jak výrazně se rozdělení protahuje, a exces, který říká, zda se velmi vzdálené hodnoty vyskytují častěji (kladný), nebo vzácněji (záporný) než u normálního modelu se stejnou směrodatnou odchylkou. Exces neměří výšku vrcholu a v malých souborech oba koeficienty silně kolísají. Popis dat proto vychází z otázky a z grafu rozdělení, uvádí počty platných údajů a odlišuje výpočet z dat od předpokladů modelu ([Co souhrnné ukazatele zachycují](#sec-poloha-variabilita); [Od popisu dat k modelu](#sec-popis-a-model); [Ukazatele tvaru](#sec-ukazatele-tvaru); [Jak vybrat a sdělit popisné statistiky](#sec-komunikace-statistik)).
 
 ## Cvičení {#sec-cviceni-03}
 
@@ -927,7 +976,21 @@ Možný popis: „V souboru 36 účastníků připadalo na jednoho člověka v p
 Odborný zápis: „Účastníci vybavili v průměru sedm slov z dvanácti (*N* = 36; *M* = 7,0; *SD* = 2,6; *Mdn* = 7).“ Počet slov je celočíselný, proto průměr a směrodatnou odchylku uvádíme [na jedno desetinné místo](#sec-zaokrouhlovani-03); ve výpočetní části řešení jsme ponechali dvě.
 :::
 
-### 13. Nepovinně: entropie od četností
+### 13. Šikmost a exces počtu vybavených slov
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Data` C2:C37.
+
+V Excelu vypočtěte šikmost a exces počtů vybavených slov v buňkách C2:C37 listu `Data`. Popište, co výsledky říkají o tvaru rozdělení, a porovnejte je s [tečkovým grafem](kapitola_02.qmd#sec-teckovy-graf) týchž výsledků. Potom hodnoty zkopírujte do volného sloupce, například L, vymažte v kopii buňku s jedinou nulou (řádek 7) a oba koeficienty vypočtěte znovu. Co porovnání ukazuje o citlivosti koeficientů? Nakonec posuďte výrok: „Šikmost i exces jsou blízko nuly, takže počty slov mají normální rozdělení.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Vzorce `=SKEW(Data!C2:C37)` a `=KURT(Data!C2:C37)` vracejí šikmost přibližně **−0,47** a exces přibližně **0,48** (36 platných údajů). Záporná šikmost říká, že delší je levý chvost. V tečkovém grafu to odpovídá několika nízkým výsledkům a hlavně jediné nule, která leží daleko od soustředění kolem 7–8 slov. Vpravo jsou výsledky omezeny maximem 12 slov a nejvyšší hodnoty leží blíže průměru. Mírně kladný exces znamená, že velmi vzdálené hodnoty jsou o něco častější než u normálního modelu se stejnou směrodatnou odchylkou; takovou hodnotou je zde právě nula, přibližně 2,7 směrodatné odchylky pod průměrem.
+
+Bez nuly vrací `=SKEW(L2:L37)` přibližně **−0,09** a `=KURT(L2:L37)` přibližně **−0,25**; prázdnou buňku funkce vynechají, takže pracují s 35 hodnotami. Jediný výsledek z 36 tedy výrazně zmenšil šikmost a změnil znaménko excesu. Koeficienty tvaru jsou silně citlivé na vzdálené hodnoty, a to právě proto, že jim přisuzují velkou váhu. Nula je přitom platný výkon a z popisu dat ji nevyřazujeme; kopie bez ní slouží jen k pochopení citlivosti.
+
+Výrok je chybný. Hodnoty blízké nule jsou slučitelné s normálním tvarem, ale nedokazují jej: podobné koeficienty může mít i rozdělení jiného tvaru. Počty slov jsou navíc celá čísla omezená na rozmezí 0–12, kdežto normální model popisuje spojitou veličinu bez takových mezí. U 36 hodnot jsou oba koeficienty také dost nejisté. Zda je normální model pro konkrétní účel přiměřený, posoudíme podle významu měření a grafů, jak ukazuje [kapitola o normálním rozdělení](kapitola_04.qmd#sec-primerenost-modelu).
+:::
+
+### 14. Nepovinně: entropie od četností
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Entropie_data` A2:B5.
 
@@ -939,14 +1002,14 @@ Celkem je osm případů, podíly jsou 0,5; 0,25; 0,25. Jejich záporné dvojkov
 Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\approx0{,}946$, tedy přibližně 94,6 % maxima; pro čtyři $1{,}5/2=0{,}75$, tedy 75 % maxima. Rozdíl vznikl změnou referenčního maxima, nikoli změnou pozorovaných četností. Pokud všichni patří do jediné ze čtyř vymezených kategorií, je i normalizovaná entropie $0/2=0$.
 :::
 
-### 14. Nepovinně: nulová šikmost a stejný vrchol
+### 15. Nepovinně: nulová šikmost a stejný vrchol
 
-Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U14_sikmost` A2:B5 a `Spicatost` A2:C6.
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U15_sikmost` A2:B5 a `Spicatost` A2:C6.
 
-Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom vysvětlete, proč stejná výška vrcholu v @fig-spicatost nezaručuje stejnou špičatost.
+Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom výpočtem vysvětlete, proč stejná výška vrcholu v @fig-spicatost nezaručuje stejný exces.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Počet hodnot je 20 a součet $4(-2)+5(-1)+10(1)+1(3)=0$, tedy průměr 0. Odchylky jsou totožné s hodnotami. Součet třetích mocnin je $4(-8)+5(-1)+10(1)+1(27)=0$. Rozptyl s dělením $n$ je $(4\times4+5\times1+10\times1+1\times9)/20=2$, takže jmenovatel koeficientu není nulový a $g_1=0$. Soubor přesto není souměrný: například hodnota 3 nemá protějšek −3 a četnosti hodnot −1 a 1 se liší. Nulový součet třetích mocnin je slabší podmínka než souměrnost.
 
-Špičatost používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: špičatost je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: špičatost je $1{,}8/0{,}36^2\approx13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot. Výšku sloupce nelze zaměňovat za špičatost.
+Špičatost používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: špičatost je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: špičatost je $1{,}8/0{,}36^2\approx13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot; rozhodly dvě hodnoty vzdálené tři body od středu, jejichž čtvrté mocniny jsou 81. Výšku sloupce nelze zaměňovat za exces ani špičatost.
 :::

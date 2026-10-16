@@ -47,7 +47,7 @@ export const inputs = {
     vector('Orezani','Výklad: 10 %; cvičení 8: 20 % na každém konci','Doba (min)',[2,3,4,5,5,6,7,8,9,31]),
     vector('Boxplot','Výklad: krabicový graf','Skór (body)',[2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98]),
     vector('Populace','Simulace korekce rozptylu','Doba (min)',[2,4,6,8,10],'Známá modelová populace. Nezávislé výběry s vracením: velikosti 5, 20 a 100; po 20 000 opakováních. Graf shrnuje simulaci, nikoli další měření lidí.'),
-    item('Spicatost','Obrázek: stejný vrchol; cvičení 14',['Skór','Četnost vlevo','Četnost vpravo'],[[-3,0,1],[-1,10,9],[0,80,80],[1,10,9],[3,0,1]]),
+    item('Spicatost','Obrázek: stejný vrchol; nepovinné cvičení 15',['Skór','Četnost vlevo','Četnost vpravo'],[[-3,0,1],[-1,10,9],[0,80,80],[1,10,9],[3,0,1]]),
     vector('U01_stred','Cvičení 1','Doba (min)',[3,4,4,5,6,20]),
     item('U02_skupiny','Cvičení 2',['Skupina','Počet lidí','Průměr (slova)'],[['A',8,6],['B',12,9]],'Alternativní otázka: co kdyby údaje 6 a 9 byly pouze mediány? Individuální výkony nejsou zadány.'),
     vector('U03_kvantily','Cvičení 3 (první část)','Skór (body)',[1,1,1,3,4,8]),
@@ -58,8 +58,8 @@ export const inputs = {
     vector('U09_boxplot','Cvičení 9','Doba (min)',[1,2,2,3,4,5,6,15]),
     item('U10_transformace','Cvičení 10',['Vstup','Hodnota','Jednotka'],[['Průměr',4,'min'],['Směrodatná odchylka',1.5,'min'],['Medián',3.5,'min'],['Přičítaný čas',2,'min'],['Sekund za minutu',60,'s/min']], 'Zadány jsou souhrny, nikoli jednotlivé doby.'),
     item('U11_strategie','Cvičení 11',['Strategie','Skupina A','Skupina B'],[['A',20,5],['B',0,5],['C',0,5],['D',0,5]]),
-    item('Entropie_data','Výklad; nepovinné cvičení 13',['Kategorie','Četnost'],[['A',4],['B',2],['C',2],['D',0]],'Výchozí tři kategorie A–C; D je rozšíření s nulovou četností. Další varianta: 8, 0, 0, 0.'),
-    item('U14_sikmost','Nepovinné cvičení 14',['Skór (body)','Četnost'],[[-2,4],[-1,5],[1,10],[3,1]])
+    item('Entropie_data','Výklad; nepovinné cvičení 14',['Kategorie','Četnost'],[['A',4],['B',2],['C',2],['D',0]],'Výchozí tři kategorie A–C; D je rozšíření s nulovou četností. Další varianta: 8, 0, 0, 0.'),
+    item('U15_sikmost','Nepovinné cvičení 15',['Skór (body)','Četnost'],[[-2,4],[-1,5],[1,10],[3,1]])
   ],
   4: [
     item('Z_skory','Výklad: dvě různé referenční skupiny',['Test','Skór (body)','Průměr (body)','Směrodatná odchylka (body)'],[['A',60,50,10],['B',42,30,6]]),
@@ -136,7 +136,7 @@ export async function addStudentInputs(wb,chapter,out) {
     const q=(await fs.readFile('data/kapitola_04.csv','utf8')).trim().split(/\r?\n/).slice(1).map(l=>+l.split(',')[1]);
     specs.push(vector('QQ_data','Výklad Q–Q; cvičení 9','Skór (body)',q,'Seřazené autorské skóry. Sestavte vlastní graf; hotová kontrola je na listu QQ. V úloze 9 změňte 65 na 90 a poté obnovte 65.'));
     const sim=JSON.parse(await fs.readFile('tmp/sesity-simulace.json','utf8'));
-    for(const [key,values] of Object.entries(sim))specs.push(vector(`Sim_${key}`,'Obrázky histogramů a Q–Q grafů','Simulovaný skór (body)',values,'Simulovaná data z obrázků kapitoly, 200 hodnot. Nejde o skutečný test ani o nezadaná individuální data cvičení 10.'));
+    for(const [key,values] of Object.entries(sim))specs.push(vector(`Sim_${key}`,'Obrázky histogramů a Q–Q grafů; šikmost a exces','Simulovaný skór (body)',values,'Simulovaná data z obrázků kapitoly, 200 hodnot. Nejde o skutečný test ani o nezadaná individuální data cvičení 10.'));
   }
   await populateStudentInputs(wb,chapter,out,specs);
 }

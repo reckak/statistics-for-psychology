@@ -357,6 +357,48 @@ ch3_draw('spicatost',{
     text(4,84,'80 pozorování',cex=.85)
   }
 },width=8,height=4.2)
+# Shape models standardised to mean 0 and SD 1: gamma (skewness 2/sqrt(k)), t (excess 6/(df-4)).
+ch3_skew_models <- list(
+  list(skew=0,density=dnorm),
+  list(skew=1,density=function(z) 2*dgamma(2*z+4,shape=4)),
+  list(skew=2,density=function(z) dgamma(z+1,shape=1)))
+ch3_t_scale <- function(df) sqrt(df/(df-2))
+ch3_excess_models <- list(
+  list(excess=0,density=dnorm,tail=2*pnorm(-3)),
+  list(excess=1,density=function(z) ch3_t_scale(10)*dt(ch3_t_scale(10)*z,10),tail=2*pt(-3*ch3_t_scale(10),10)),
+  list(excess=6,density=function(z) ch3_t_scale(5)*dt(ch3_t_scale(5)*z,5),tail=2*pt(-3*ch3_t_scale(5),5)))
+ch3_draw('ukazatele-tvaru',{
+  layout(matrix(1:9,3,byrow=TRUE),heights=c(1,1,.8))
+  par(mar=c(4.2,4.9,2.8,.6),mgp=c(2.9,.7,0),cex=.85)
+  z<-seq(-4,5,length.out=901); pct<-function(v) paste0(format(round(100*v,2),decimal.mark=',',nsmall=2),' %')
+  xl<-'Směrodatné odchylky od průměru'
+  for(i in 1:3) {
+    m<-ch3_skew_models[[i]]
+    plot(z,m$density(z),type='n',ylim=c(0,1.02),xlab=xl,ylab='Hustota',bty='l',
+      main=paste0('Šikmost ',m$skew,c(' (souměrné)',' (střední)',' (vysoká)')[i]),xaxt='n',yaxt='n')
+    axis(1,at=-4:5);axis(2,at=seq(0,1,.25),labels=format(seq(0,1,.25),decimal.mark=','))
+    polygon(c(z,rev(z)),c(m$density(z),rep(0,length(z))),col='#BBD9E1',border=NA)
+    lines(z,m$density(z),lwd=2,col='#267888')
+    if(i>1) lines(z,dnorm(z),lty=2,col='#667078')
+  }
+  for(pass in 1:2) for(i in 1:3) {
+    m<-ch3_excess_models[[i]]; zz<-if(pass==1) seq(-5,5,length.out=1001) else seq(2,5,length.out=301)
+    ym<-if(pass==1) .52 else .03
+    plot(zz,m$density(zz),type='n',ylim=c(0,ym),bty='l',xlab=xl,ylab='Hustota',yaxt='n',
+      main=if(pass==1) paste0('Exces ',m$excess,c(' (normální model)',' (střední)',' (vysoký)')[i]) else 'Pravý chvost, zvětšeno')
+    ticks<-if(pass==1) seq(0,.5,.1) else seq(0,.03,.01)
+    axis(2,at=ticks,labels=format(ticks,decimal.mark=','))
+    out<-zz[abs(zz)>=3]
+    for(side in c(-1,1)) { o<-sort(out[sign(out)==side]); if(length(o))
+      polygon(c(o,rev(o)),c(m$density(o),rep(0,length(o))),col='#E8B98A',border=NA) }
+    lines(zz,m$density(zz),lwd=2,col='#267888')
+    if(i>1) lines(zz,dnorm(zz),lty=2,col='#667078')
+    abline(v=c(-3,3),lty=3,col='#B16A26')
+    if(pass==1) { lab<-paste0('Mimo ±3:\n',pct(m$tail))
+      rect(-5.3,.47-1.1*strheight(lab,cex=.9),-5.15+1.05*strwidth(lab,cex=.9),.47+1.1*strheight(lab,cex=.9),col='white',border=NA)
+      text(-5.15,.47,lab,adj=0,cex=.9,col='#8A4E14') }
+  }
+},width=9,height=8.6)
 ch3_draw('stejne-dve-statistiky',{
   par(mfrow=c(3,1),mar=c(3.5,4.5,3,.7),cex=1)
   for(i in 1:3) {

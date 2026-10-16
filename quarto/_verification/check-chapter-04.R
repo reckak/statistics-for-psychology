@@ -71,4 +71,11 @@ eq(ch4_stanine(zl[1]),3);eq(1+sum(prx[1]>cumst),1);eq(round(zl[1],2),-.84)
 eq(sum(ch4_stanine(zl)==4),8)
 # P-P coordinates for the twelve Q-Q scores.
 ppf<-pnorm((ch4_x-mean(ch4_x))/sd(ch4_x));eq(round(ppf[c(1,12)],3),c(.048,.952));eq(round(ch4_p[c(1,12)],3),c(.042,.958))
-cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table, memorized z values, stanine methods, P-P coordinates and 19 SVGs passed.\n')
+# Shape coefficients beside the four Q-Q diagnostics (Excel SKEW/KURT conventions) and their stated instability.
+ch4_shape<-function(x){n<-length(x);z<-x-mean(x);v<-mean(z^2);g1<-mean(z^3)/v^1.5;g2<-mean(z^4)/v^2-3
+  c(sqrt(n*(n-1))/(n-2)*g1,(n-1)/((n-2)*(n-3))*((n+1)*g2+6))}
+eq(round(sapply(ch4_simulations,ch4_shape),2),c(.16,-.41,2.01,7.10,.20,5.01,-.04,-1.55))
+set.seed(20261017)
+ch4_t3_kurt<-replicate(1000,ch4_shape(50+8*rt(200,df=3))[2])
+stopifnot(quantile(ch4_t3_kurt,.1)<5.01/2,quantile(ch4_t3_kurt,.9)>2*5.01)
+cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table, memorized z values, stanine methods, P-P coordinates, shape coefficients and 19 SVGs passed.\n')

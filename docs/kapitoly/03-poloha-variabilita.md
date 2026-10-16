@@ -4,6 +4,8 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Kontrola souladu s textem 2026-10-17 (ukazatele tvaru):** podle [R44](../rozhodnuti/kapitola-03.md#r44-ukazatele-tvaru) nový povinný oddíl [Ukazatele tvaru](../../quarto/kapitola_03.qmd#sec-ukazatele-tvaru), obrázek modelů tří úrovní šikmosti a excesu, přesun protipříkladu stejného vrcholu do povinné části, SKEW/KURT v Excelu, nové cvičení 13 a přečíslování nepovinných 14–15; ověřeny dotčené oddíly, shrnutí, cvičení a sešit.
+
 **Dílčí kontrola 2026-10-17:** u vzorce pro průměr vysvětleno násobení těsným zápisem (1/n krát součet), bez samostatného nového cvičení. Přibližná rovnost sjednocena podle [R43](../rozhodnuti/spolecne-konvence.md#r43-priblizna-rovnost); hodnoty a řešení se nemění.
 
 **Podklad a stav:** existující [kapitola 3](../../quarto/kapitola_03.qmd#sec-kapitola-03),
@@ -11,13 +13,14 @@ karta zkontrolována 2026-10-14; obrázek korekce rozptylu a navazující odstav
 četnosti, procenta, sumace a grafy z kapitoly 2. Konvence upravují
 [R01](../rozhodnuti/spolecne-konvence.md#r01-znaceni-a-reportovani), [R04](../rozhodnuti/kapitola-03.md#r04-kvantily),
 [R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani), [R06](../rozhodnuti/kapitola-03.md#r06-robustni-shrnuti)
-a [R14](../rozhodnuti/kapitola-03.md#r14-kvartily-spicatost-chvost).
+a [R14](../rozhodnuti/kapitola-03.md#r14-kvartily-spicatost-chvost); povinný rozsah ukazatelů tvaru určuje [R44](../rozhodnuti/kapitola-03.md#r44-ukazatele-tvaru).
 
 **Cíle:** volit ukazatele podle otázky a měření; vysvětlit a provést výpočet
 středu, kvantilů a variability; sestavit boxplot; posoudit vzdálené hodnoty,
 ořezání a winsorizaci; předpovědět změnu statistik při převodu jednotek
-a srozumitelně popsat data. Výpočty entropie a momentových koeficientů
-jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
+a srozumitelně popsat data; vysvětlit význam šikmosti a excesu, získat je
+v Excelu (SKEW, KURT) a propojit s grafem. Výpočty entropie a vzorce
+momentových koeficientů jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
 
 **Čitelnost ([R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)):** 2026-10-15 doplněny úvodní věty hlavních oddílů, závěrečné [Shrnutí](../../quarto/kapitola_03.qmd#sec-shrnuti-03) (osm myšlenek s odkazy na oddíly), dva bloky „Častý omyl“ (`.callout-warning`: pořadí středů jako test šikmosti v [středu a tvaru](../../quarto/kapitola_03.qmd#sec-stred-tvar), úrovně kvantilů jako podíly lidí ve [výpočtu kvantilů](../../quarto/kapitola_03.qmd#sec-vypocet-kvantilu)) a jedno „Připomenutí“ (`.callout-tip`: směr zešikmení z kapitoly 2); rozděleny vybrané věty nad zhruba 35 slov. Název oddílu cvičení se nemění. Odborný obsah, terminologie, data ani zadání a řešení cvičení se nezměnily. Soulad karty s textem zkontrolován 2026-10-15.
 
@@ -50,11 +53,12 @@ jsou nepovinné, základní význam entropie je součástí hlavního výkladu.
 | [Volba a komunikace statistik](../../quarto/kapitola_03.qmd#sec-komunikace-statistik) | Otázka → význam měření → graf → souhrn; tabulka doporučených popisů a omezení. Slovní zpráva o 33 spáncích a 36 paměťových výkonech bez tvrzení o populaci. | 1 a 12. |
 | [APA 7](../../quarto/kapitola_03.qmd#sec-reportovani-apa), [zaokrouhlení](../../quarto/kapitola_03.qmd#sec-zaokrouhlovani-03), [nula v grafu](../../quarto/kapitola_03.qmd#sec-nula-graf) | Výpočetní m/s versus reportovací M/Mdn/SD/N/n; anglická a česká ukázka, přesnost podle účelu. Tvar se čte z grafu, ± SD není interval nejistoty průměru. Přirozená nula je jiná otázka než nulová základna délky sloupce. | 12; grafická zásada navazuje na 2/9. |
 | [Od dat k modelu](../../quarto/kapitola_03.qmd#sec-popis-a-model) | Tři modely se stejným průměrem a SD, různým tvarem a počtem možných hodnot. Parametrická rodina přidává předpoklad; neparametrický popis není „bez čísel/předpokladů“. Normální rodina uvedena jako most ke 4. | 11. |
-| [Nepovinné momenty](../../quarto/kapitola_03.qmd#sec-momenty) včetně [špičatosti](../../quarto/kapitola_03.qmd#sec-spicatost) | Řád a centrum momentu, třetí/čtvrtá mocnina, g₁ a g₂, rozlišení špičatosti a excesu. Nulová šikmost nedokazuje symetrii, výška vrcholu neurčuje špičatost; korekce SKEW/KURT, malá n a nulová variabilita. | Nepovinná 14. |
+| [Ukazatele tvaru](../../quarto/kapitola_03.qmd#sec-ukazatele-tvaru): [šikmost](../../quarto/kapitola_03.qmd#sec-koeficient-sikmosti), [exces](../../quarto/kapitola_03.qmd#sec-spicatost), [Excel a meze](../../quarto/kapitola_03.qmd#sec-excel-tvar) | Povinně (R44): bezrozměrnost a neměnnost vůči posunu/jednotkám, změna znaménka šikmosti při obrácení škály. Šikmost: znaménko = delší chvost, velikost = míra; nula souměrnost nedokazuje. Exces vůči normálnímu modelu se stejnou SD: kladný = častější velmi vzdálené hodnoty (těžší chvosty), záporný = vzácnější; dvoubodový model −2, zešikmené modely mají i kladný exces; špičatost = exces + 3 jen zmíněna. Vyšší vrchol modelů s vyšším excesem vyložen jako průvodní jev; protipříklad stejného vrcholu a „Častý omyl: exces jako výška vrcholu“. SKEW/KURT na době spánku (−0,13; −0,55) s propojením na histogram; tři meze (malé n, žádné prahy, jedno číslo neukáže kde). Odkaz na srovnání s Q–Q grafy v kap. 4. | 13; nepovinně 15. |
+| [Nepovinné momenty](../../quarto/kapitola_03.qmd#sec-momenty) | Řád a centrum momentu, třetí/čtvrtá mocnina, g₁ a g₂ na pěti časech, korekce SKEW/KURT, sbližování variant u 33 dob spánku, malá n a nulová variabilita. | Nepovinná 15. |
 | [Excel: základní ukazatele](../../quarto/kapitola_03.qmd#sec-excel-zaklad-03) | POČET, PRŮMĚR, MEDIAN, MODE.SNGL, MIN/MAX, PERCENTIL.INC a rozpětí. Omezení MODE.SNGL a inkluzivní pořadí přes COUNTIFS/POČET, nikoli automaticky PERCENTRANK. | 12. |
 | [Excel: odchylky](../../quarto/kapitola_03.qmd#sec-excel-odchylky-03) a [MedAD](../../quarto/kapitola_03.qmd#sec-excel-mad-03) | Pomocné sloupce odchylek, ABS a mocnin; SUMA, VAR.P/VAR.S, SMODCH.VÝBĚR.S/ODMOCNINA. MedAD přes medián a absolutní vzdálenosti; souhrn spánku/paměti s vlastními počty platných údajů. | 12 pro základní souhrn; mezikroky ručně v 5 a 7. |
-| [Nepovinný Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) | LOGZ se základem 2 a KDYŽ pro nulový podíl; sloupce mocnin a SKEW.P, SKEW, KURT. KURT vrací korigovaný exces, další trojka se neodečítá. | Rozšíření lze použít ke kontrole 13–14; úlohy jej výslovně nevyžadují. |
-| [Shrnutí](../../quarto/kapitola_03.qmd#sec-shrnuti-03) | Osm odkazovaných myšlenek: volba středu, kvantily a percentilové pořadí, rozptyl/SD a n − 1, odolná shrnutí, entropie kategorií, boxplot, transformace a společně poloha/variabilita s popisem dat versus model. Nezavádí nové pojmy. | Souhrnně 1–12. |
+| [Nepovinný Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) | LOGZ se základem 2 a KDYŽ pro nulový podíl; sloupce mocnin a SKEW.P, SKEW, KURT. KURT vrací korigovaný exces, další trojka se neodečítá. | Rozšíření lze použít ke kontrole 14–15; úlohy jej výslovně nevyžadují. SKEW a KURT jsou od R44 také v povinném oddílu. |
+| [Shrnutí](../../quarto/kapitola_03.qmd#sec-shrnuti-03) | Osm odkazovaných myšlenek: volba středu, kvantily a percentilové pořadí, rozptyl/SD a n − 1, odolná shrnutí, entropie kategorií, boxplot, transformace a společně shodné m/s, ukazatele tvaru a popis dat versus model. Nezavádí nové pojmy. | Souhrnně 1–13. |
 
 <a id="příklady-vizualizace-a-soubory-1"></a>
 
@@ -65,8 +69,8 @@ souborem této kapitoly. Podle výkladu obsahuje `Priklad` (pět časů v A2:A6)
 `Data` a `Souhrn` (spánek/paměť), `Rozsireni` a oddělené vstupy
 `Kvantily` A2:A12, `Orezani` A2:A11 a `Boxplot` A2:A42. Kontrolní výpočty
 jsou na `Kontrola_prikladu`, pět časů bez výpočtů na `Zaklad_data`.
-Další listy pokrývají menší příklady a všech 14 cvičení včetně zadaných
-souhrnů. První list `Prehled` uvádí umístění. [Pokrytí cvičení](../DATA.md).
+Další listy pokrývají menší příklady a všech 15 cvičení včetně zadaných
+souhrnů; `Souhrn` B12:C13 obsahuje SKEW a KURT spánku a paměti. První list `Prehled` uvádí umístění. [Pokrytí cvičení](../DATA.md).
 
 | Příklad / lokátor | Didaktický účel a původ |
 |---|---|
@@ -78,6 +82,7 @@ souhrnů. První list `Prehled` uvádí umístění. [Pokrytí cvičení](../DAT
 | [Deset časů](../../quarto/kapitola_03.qmd#fig-orezani-winsorizace) | Stejné krajní hodnoty, ale jiný počet členů/jmenovatel při ořezání a winsorizaci. |
 | [41 skórů](../../quarto/kapitola_03.qmd#fig-boxplot-03) | Vedle původních bodů ukazuje krabici, pomocné meze, skutečné konce vousů a samostatné body. |
 | [Strategie učení](../../quarto/kapitola_03.qmd#fig-entropie) | Tři rozdělení mezi čtyři kategorie oddělují koncentraci a rovnoměrnost bez nutnosti výpočtu logaritmů. |
+| [Ukazatele tvaru](../../quarto/kapitola_03.qmd#fig-ukazatele-tvaru) | Hustoty modelů se stejným průměrem a SD: gama (šikmost 0/1/2), t s 10 a 5 st. v. (exces 0/1/6), podíly mimo ±3 SD 0,27/0,73/1,17 % a zvětšené pravé chvosty; bez náhody, ověřeno integrací v kontrole kapitoly. |
 | [Transformace](../../quarto/kapitola_03.qmd#fig-transformace) a [stejné dvě statistiky](../../quarto/kapitola_03.qmd#fig-stejne-statistiky) | Lineární versus nelineární změna vzdáleností; přesně shodné parametry tří modelů nepředstavují shodné rozdělení. |
 | [Geometrie středu](../../quarto/kapitola_03.qmd#fig-vyznam-stredu), [střed/tvar](../../quarto/kapitola_03.qmd#fig-stred-tvar), [výjimky](../../quarto/kapitola_03.qmd#fig-stred-vyjimky), [špičatost](../../quarto/kapitola_03.qmd#fig-spicatost) | První obrázek je upravený (české popisky) podle Cmglee s licencí CC BY-SA 3.0 uvedenou v kapitole; ostatní jsou modelové ilustrace. Výjimky používají autorské četnosti (100 lidí, 1–5 pokusů; 20 lidí, 0–4 chyby) na listu `Vyjimky_stredu`. Špičatost se vysvětluje na odlišných krajních hodnotách při stejné četnosti vrcholu. |
 
@@ -89,7 +94,7 @@ modelů od náhodných výběrů. Tuto odlišnost je nutné zachovat i v pokrač
 
 ### Cvičení a očekávané dovednosti
 
-[Úlohy 1–14](../../quarto/kapitola_03.qmd#sec-cviceni-03) mají bezprostřední
+[Úlohy 1–15](../../quarto/kapitola_03.qmd#sec-cviceni-03) mají bezprostřední
 sbalená řešení na webu. Ručně vyžádané pracovní PDF kapitoly 3 přesouvá
 všechna řešení za všechna zadání, s obousměrnými odkazy; obsah úloh zachovává.
 Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
@@ -97,7 +102,7 @@ Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
 [R31](../rozhodnuti/postupy-a-dokumentace.md#r31-pracovni-pdf).
 Jednotlivé nadpisy ve zdroji nemají explicitní ID, proto tato mapa
 odkazuje na stabilní oddíl cvičení a používá číslo i název. Základem je
-kalkulačka, u úlohy 12 Excel; kvantily lineární interpolací (Excel PERCENTIL.INC), výsledky zpravidla
+kalkulačka, u úloh 12–13 Excel; kvantily lineární interpolací (Excel PERCENTIL.INC), výsledky zpravidla
 na dvě místa s tolerancí 0,01. Reportovací část 12 má vlastní přesnost.
 
 | Úloha | Co student samostatně dělá |
@@ -114,8 +119,9 @@ na dvě místa s tolerancí 0,01. Reportovací část 12 má vlastní přesnost.
 | 10. Změna jednotek a obrácení škály | Převede polohu, SD a rozptyl po přičtení dvou minut a změně na sekundy; zdůvodní nezápornost SD. |
 | 11. Rozmanitost kategorií a meze souhrnu | Slovně porovná entropii koncentrace/rovnoměrnosti a odmítne odvozování stejného či normálního rozdělení ze stejného průměru/SD. |
 | 12. Samostatný popis dat v Excelu | Spočítá souhrn 36 paměťových výkonů, napíše přístupný popis a omezení, poté českou reportovací ukázku APA. |
-| 13. Nepovinně: entropie od četností | Spočítá entropii i normalizovanou variantu; odliší přidání prázdné kategorie od změny zastoupení a interpretuje úplnou koncentraci. |
-| 14. Nepovinně: nulová šikmost a stejný vrchol | Ověří nesouměrný protipříklad s g₁ = 0 a výpočtem vysvětlí různou špičatost při stejné četnosti vrcholu. |
+| 13. Šikmost a exces počtu vybavených slov | V Excelu získá SKEW −0,47 a KURT 0,48, propojí je s tečkovým grafem, na kopii bez platné nuly (−0,09; −0,25) ukáže citlivost bez vyřazení údaje a odmítne závěr o normalitě z koeficientů blízkých nule. |
+| 14. Nepovinně: entropie od četností | Spočítá entropii i normalizovanou variantu; odliší přidání prázdné kategorie od změny zastoupení a interpretuje úplnou koncentraci. |
+| 15. Nepovinně: nulová šikmost a stejný vrchol | Ověří nesouměrný protipříklad s g₁ = 0 a výpočtem vysvětlí různý exces při stejné četnosti vrcholu. |
 
 <a id="pojmy-hranice-a-návaznosti-2"></a>
 
@@ -123,7 +129,8 @@ na dvě místa s tolerancí 0,01. Reportovací část 12 má vlastní přesnost.
 
 Nové pojmy zahrnují statistiku/parametr, ukazatele středu a variability,
 kvantily/interpolaci/percentilové pořadí, odchylky, stupně volnosti,
-nestranný odhad, robustnost, boxplot, entropii a transformace. Značení
+nestranný odhad, robustnost, boxplot, entropii, transformace a ukazatele
+tvaru (šikmost, exces; špičatost jen zmíněna). Značení
 zahrnuje `x_i`, `x_(i)`, `m`, medián, `q_p`, `s²`, `s`, populační `μ`, `σ²` a `σ`, absolutní hodnotu,
 odmocninu, `a`, `b`, `y_i` a `h` u entropie. Výpočet entropie,
 logaritmus a koeficienty `g₁` a `g₂` patří do nepovinného rozšíření.
@@ -137,7 +144,7 @@ interval nejistoty průměru se odlišuje od ± SD, nekonstruuje se.
 
 **Nepovinné:** [logaritmus, entropie a její normalizace](../../quarto/kapitola_03.qmd#rozsireni-entropie),
 [momenty a koeficienty](../../quarto/kapitola_03.qmd#rozsireni-momenty),
-[odpovídající Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) a úlohy 13–14.
+[odpovídající Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) a úlohy 14–15.
 Kapitola 4 může předpokládat průměr, SD, kvantily, lineární převod, grafy
 a rozlišení dat/modelu; znalost logaritmů, entropického vzorce a momentů
 předpokládat nesmí. Na konci výkladu již existuje most k normální rodině,
