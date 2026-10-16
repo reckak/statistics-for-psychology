@@ -1,5 +1,28 @@
 # Autorská dokumentace
 
+## 2026-10-16 — Popisky grafů kapitoly 2 a dělení stonků
+
+V generátoru kapitoly 2 přesunut popisek 16 z 33 (48,5 %) v kumulativním
+grafu doprava a dolů. U srovnání os mají popisky 30 a 32 v obou panelech
+stejný odstup od vrcholu sloupce v jednotkách velikosti písma.
+Na výslovnou žádost autora doplněn výklad dělení stonků po pěticích
+a dvojicích na stejných osmi původních časech, včetně opakovaných stonků,
+prázdných řádků a volby přiměřené podrobnosti. Aktualizována kapitolová
+karta a pokrytí daty; vstupy a generátor sešitu se nemění.
+
+Ověření: render kapitoly 2, číselná kontrola kapitoly v R včetně řešení,
+nezávislá rekonstrukce všech tří zápisů v Node.js a přímá kontrola uložených
+hodnot listu Stonek A2:A9 v XLSX. Vizuálně zkontrolovány oba upravené grafy
+a výklad stonků na desktopu i při šířce 390 px; popisky se nepřekrývají.
+Didaktická revize doplnění ověřila význam klíče, zachování opakování
+a rozdíl mezi dvojicí možných číslic a počtem pozorování.
+Kontrola dokumentačních map prošla (42 rozhodnutí, bez chyb).
+Celková kontrola HTML prošla na všech 11 stránkách: místní odkazy,
+68 řešení včetně klávesnice a skrytí, přehledy, navigace bez JavaScriptu
+i přes file:// a mobilní šířka 390 px; bez chyb.
+R při renderu hlásilo nastavení LC_*; české popisky se vykreslily správně.
+Excel nebyl znovu spuštěn, protože data ani vzorce sešitu se neměnily.
+
 ## 2026-10-16 — Sjednocení citací online dokumentace
 
 Podle [R42](../docs/rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace)

@@ -44,6 +44,7 @@ Výklad: `Sest_osob` pokrývá úvodní četnosti a různé jmenovatele;
 `Data` všech 36 záznamů pro tabulky, tečkový graf, histogram, kumulativní
 grafy a polygon. `Strategie`, `Stonek` a `Podpora` doplňují samostatné
 příklady; `Tvary` a `Podlaha_strop` zachovávají schematické četnosti obrázků.
+`Stonek` A2:A9 pokrývá i obě ukázky dělení stonků: všechna tři zobrazení používají stejných osm časů.
 `Cetnosti` a `Histogram` jsou oddělené hotové výpočty a grafy.
 
 | Cvičení | List a oblast / povaha zadání |
