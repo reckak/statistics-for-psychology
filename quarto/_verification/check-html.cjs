@@ -135,12 +135,15 @@ const server = http.createServer((req, res) => {
         assert.match(await page.locator('#ref-cleveland1984').innerText(), /Cleveland, W. S., & McGill, R. \(1984\)/);
         assert.equal(await page.locator('#ref-cleveland1984 a').getAttribute('href'), 'https://doi.org/10.1080/01621459.1984.10478080');
         assert.match(await page.locator('#ref-howell').innerText(), /8\. vyd\./);
-        assert.equal(await page.locator('#ref-nistOutliers a').getAttribute('href'), 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm');
-        assert.equal(await page.locator('#ref-nistUniform a').getAttribute('href'), 'https://www.itl.nist.gov/div898/handbook/eda/section3/eda3662.htm');
+        assert.equal(await page.locator('#ref-nistHandbook a').getAttribute('href'), 'https://doi.org/10.18434/M32189');
+        for (const section of ['eda35h.htm', 'eda3662.htm']) {
+          assert.equal(await page.locator(`.citation[data-cites="nistHandbook"] a[href="https://www.itl.nist.gov/div898/handbook/eda/section3/${section}"]`).count(), 1, 'Specific NIST section remains directly linked');
+        }
         assert(await page.locator('#tbl-hranice-intervalu').isVisible(), 'Both boundary conventions are available');
 
-        for (const id of ['msCount','msCountifs','msSum','msHistogram']) {
-          assert((await page.locator(`#ref-${id} a`).getAttribute('href')).startsWith('https://support.microsoft.com/cs-cz/'));
+        assert.equal(await page.locator('#ref-msExcel a').getAttribute('href'), 'https://support.microsoft.com/cs-cz/excel/');
+        for (const section of ['functions/count-function','functions/countifs-function','functions/sum-function','create-a-histogram']) {
+          assert.equal(await page.locator(`.citation[data-cites="msExcel"] a[href="https://support.microsoft.com/cs-cz/excel/${section}"]`).count(), 1, 'Specific Excel documentation remains directly linked');
         }
         for (const id of ['sec-sumace','sec-excel-histogram','sec-hranice-intervalu','sec-kumulativni-graf','sec-polygon-cetnosti','sec-tvar-rozdeleni']) {
           await page.locator(`#${id}`).screenshot({path:`tmp/verification/ch02-${id}-desktop.png`});
@@ -150,9 +153,11 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/literatura.html') {
         assert.equal(await page.locator('#refs .csl-entry:visible').count(),expectedReferences,'All cited sources appear in the shared bibliography');
         assert.equal(await page.locator('h1 .chapter-number').count(),0,'Bibliography is unnumbered');
-        for (const key of ['nistOutliers', 'nistUniform']) {
-          assert.match(await page.locator(`#ref-${key}`).innerText(), /Získáno\s+5\. října 2026, z/, 'Czech retrieval date in the shared bibliography');
+        for (const [key, year] of Object.entries({nistHandbook: 2022, msExcel: 2026, rDocumentation: 2026, scipyDocumentation: 2026, nistShannon: 2016})) {
+          assert.equal(await page.locator(`#ref-${key}`).count(), 1, 'One reference per documentation work');
+          assert.match(await page.locator(`#ref-${key}`).innerText(), new RegExp(`\\(${year}[,)]`), 'Agreed documentation year');
         }
+        assert.match(await page.locator('#ref-onsBar').innerText(), /Získáno\s+5\. října 2026, z/, 'Czech retrieval date for an undated source');
         assert.doesNotMatch(await page.locator('#refs').innerText(), /Retrieved|n\.d\./, 'Czech citation labels');
         await page.locator('#refs').screenshot({path:'tmp/verification/bibliography-desktop.png'});
       }

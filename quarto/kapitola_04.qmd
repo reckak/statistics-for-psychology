@@ -178,7 +178,7 @@ V @fig-distribucni-04 je nahoře hustota a dole distribuční funkce se stejnou 
 
 Hledáme podíl výsledků nejvýše 60 v ilustračním modelu $N(50,10)$. Nejprve si představíme křivku se středem 50 a vybarvíme vše vlevo od 60. Výsledný podíl musí být větší než polovina. Poté spočítáme $z=(60-50)/10=1$ a zjistíme odpovídající plochu.
 
-V českém Excelu slouží k tomuto poslednímu kroku **`NORM.S.DIST`**; anglický název je shodný. Prvním argumentem je z-skór, druhým logická hodnota `PRAVDA`, která požaduje distribuční funkci, tedy kumulativní plochu. `PRAVDA` se nepíše do uvozovek. Volba `NEPRAVDA` vrací hustotu v daném bodě a neodpovídá na naši otázku [@msNormSDist].
+V českém Excelu slouží k tomuto poslednímu kroku **`NORM.S.DIST`**; anglický název je shodný. Prvním argumentem je z-skór, druhým logická hodnota `PRAVDA`, která požaduje distribuční funkci, tedy kumulativní plochu. `PRAVDA` se nepíše do uvozovek. Volba `NEPRAVDA` vrací hustotu v daném bodě a neodpovídá na naši otázku [@msExcel, [NORM.S.DIST](https://support.microsoft.com/cs-cz/excel/functions/norm-s-dist-function)].
 
 Na listu `Model` v přiloženém sešitu jsou vstupy a vzorce uspořádány takto. Totéž můžete zapsat do prázdného listu:
 
@@ -199,7 +199,7 @@ Z modelu tedy vychází přibližně **84,1 % výsledků nejvýše 60 bodů** a 
 
 Modelové percentilové pořadí také není procento správně vyřešených úloh: říká, jaký podíl výsledků odpovídá nejvýše určené hodnotě, nikoli jaký podíl položek člověk úspěšně vyřešil.
 
-Funkce **`NORM.DIST`** (anglicky rovněž `NORM.DIST`) dovoluje zadat rovnou původní hranici, průměr a **směrodatnou odchylku**, následované `PRAVDA`. V B9 je `=NORM.DIST(B4;B2;B3;PRAVDA)` a vrátí stejný podíl jako B7. Argumenty průměr a směrodatná odchylka odpovídají přímo zápisu $N(50,10)$; rozptyl se do funkce nezadává [@msNormDist].
+Funkce **`NORM.DIST`** (anglicky rovněž `NORM.DIST`) dovoluje zadat rovnou původní hranici, průměr a **směrodatnou odchylku**, následované `PRAVDA`. V B9 je `=NORM.DIST(B4;B2;B3;PRAVDA)` a vrátí stejný podíl jako B7. Argumenty průměr a směrodatná odchylka odpovídají přímo zápisu $N(50,10)$; rozptyl se do funkce nezadává [@msExcel, [NORM.DIST (funkce)](https://support.microsoft.com/cs-cz/excel/functions/norm-dist-function)].
 
 Uvedené funkce jsou dostupné v Excelu 2016 a novějších verzích včetně Microsoft 365. Používáme českou desetinnou čárku a středníky mezi argumenty. Výsledek lze zobrazit procentním formátem; není pak třeba jej navíc násobit stem. V mezivýpočtech ponecháme plnou přesnost a zaokrouhlujeme až při prezentaci: podíl obvykle na tři desetinná místa, procento na jedno.
 
@@ -243,7 +243,7 @@ Nyní postupujeme opačně: známe požadovaný podíl a hledáme odpovídajíc�
 
 Nyní známe podíl a hledáme hranici. **Devadesátý percentil** normálního modelu je hodnota, po kterou leží 90 % jeho plochy. Navazujeme na [kvantily](kapitola_03.qmd#sec-kvantily), ale nyní hledáme kvantil modelu, nikoli kvantil vypočtený z konkrétních dat. Podíl vlevo označujeme již známým $p$, zde $p=0{,}90$. Vlevo má ležet více než polovina plochy, proto musí hledaná hranice ležet nad průměrem a její z-skór bude kladný.
 
-Funkce **`NORM.S.INV`** (shodně anglicky) provádí opačný převod než distribuční funkce: ze zadaného podílu vlevo vrátí z-skór hranice. Má jediný argument, číslo **mezi 0 a 1, bez obou krajních hodnot**. Pro 90 % zadáváme `0,9`, případně `90%`, nikoli `90`. Výsledkem `=NORM.S.INV(0,9)` je přibližně 1,281551566 [@msNormSInv].
+Funkce **`NORM.S.INV`** (shodně anglicky) provádí opačný převod než distribuční funkce: ze zadaného podílu vlevo vrátí z-skór hranice. Má jediný argument, číslo **mezi 0 a 1, bez obou krajních hodnot**. Pro 90 % zadáváme `0,9`, případně `90%`, nikoli `90`. Výsledkem `=NORM.S.INV(0,9)` je přibližně 1,281551566 [@msExcel, [NORM.S.INV (funkce)](https://support.microsoft.com/cs-cz/excel/functions/norm-s-inv-function)].
 
 Kvantil normovaného normálního rozdělení se často značí místo obecného $q_p$ písmenem $z$ s dolním indexem: $z_p$ je hodnota, vlevo od níž leží podíl $p$. Tedy $z_{0{,}9}\approx1{,}282$, $z_{0{,}975}\approx1{,}960$ a $z_{0{,}159}\approx-1$. Index je zde podíl mezi 0 a 1, nikoli pořadí pozorování jako u z-skóru $z_i$. V jiných učebnicích index často označuje **podíl vpravo**, takže $z_{0{,}05}$ tam znamená 1,645. U cizího textu si proto konvenci ověřte; v této učebnici index vždy znamená podíl vlevo, stejně jako u $q_p$.
 
@@ -270,7 +270,7 @@ V listu `Model` ponecháme B2 = 50 a B3 = 10 a doplníme:
 
 :::
 
-**`NORM.INV`**, se stejným anglickým názvem, má argumenty podíl vlevo, průměr a směrodatná odchylka. Vrací rovnou hranici v původních jednotkách [@msNormInv]. Funkce `NORM.DIST` a `NORM.INV` vyžadují kladnou směrodatnou odchylku. Funkcím `NORM.S.INV` a `NORM.INV` říkáme inverzní, protože provádějí opačný převod než distribuční funkce. Krajní podíly 0 a 1 u nich vedou k chybě, protože normální model nemá konečnou nejmenší a největší hodnotu.
+**`NORM.INV`**, se stejným anglickým názvem, má argumenty podíl vlevo, průměr a směrodatná odchylka. Vrací rovnou hranici v původních jednotkách [@msExcel, [NORM.INV (funkce)](https://support.microsoft.com/cs-cz/excel/functions/norm-inv-function)]. Funkce `NORM.DIST` a `NORM.INV` vyžadují kladnou směrodatnou odchylku. Funkcím `NORM.S.INV` a `NORM.INV` říkáme inverzní, protože provádějí opačný převod než distribuční funkce. Krajní podíly 0 a 1 u nich vedou k chybě, protože normální model nemá konečnou nejmenší a největší hodnotu.
 
 Převod můžete zkontrolovat vložením nalezeného z-skóru do `NORM.S.DIST` s argumentem `PRAVDA`: dostanete původní podíl 0,9. Funkce `PERCENTIL.INC` naopak potřebuje konkrétní data a její výsledek závisí na hodnotách těchto dat. Shodný průměr a směrodatná odchylka dvou souborů proto nezaručují shodný empirický 90. percentil.
 
@@ -489,7 +489,7 @@ Pro každé pozorování se vlastně ptáme: **jaká hodnota by odpovídala pozo
 
 Kdyby data dobře odpovídala normálnímu modelu, jejich kvantily by se od normovaných lišily přibližně jen posunem a změnou měřítka. Zpětný převod $x=\mathrm{μ}+\mathrm{σ}z$ je rovnice přímky. Proto očekáváme **přibližně přímé uspořádání bodů**, nikoli nutně přímku svírající úhel 45 stupňů. Úhel v obrázku závisí i na jednotkách a rozsahu os. Jako orientační přímku zde použijeme $m+s z$, kde průměr $m$ a směrodatnou odchylku $s$ vypočteme z dat jako odhady $\mathrm{μ}$ a $\mathrm{σ}$.
 
-Různé programy používají různé konvence: některé mají teoretické kvantily na svislé ose a pozorované hodnoty na vodorovné, jiné vedou referenční přímku jinak, například prvním a třetím kvartilem dat. Před čtením proto vždy zkontrolujte popisky. Ani u náhodného souboru z normálního modelu body nemusejí ležet na přímce dokonale. Zejména krajní pořadí kolísají a v malém souboru je těžké rozpoznat systematický tvar. Pokud body přibližně leží na přímce, znamená to, že data jsou **slučitelná s normálním modelem**, nejedná se ovšem o definitivní důkaz toho, že tomu tak skutečně je [@nistNormalPlot]. Takový důkaz ostatně nemáme téměř nikdy, protože populační rozdělení neznáme. Známe je jen tehdy, když data sami vytvoříme ze zvoleného modelu, jako v simulacích v oddílu [Jak číst odchylky od přímky](#sec-qq-odchylky).
+Různé programy používají různé konvence: některé mají teoretické kvantily na svislé ose a pozorované hodnoty na vodorovné, jiné vedou referenční přímku jinak, například prvním a třetím kvartilem dat. Před čtením proto vždy zkontrolujte popisky. Ani u náhodného souboru z normálního modelu body nemusejí ležet na přímce dokonale. Zejména krajní pořadí kolísají a v malém souboru je těžké rozpoznat systematický tvar. Pokud body přibližně leží na přímce, znamená to, že data jsou **slučitelná s normálním modelem**, nejedná se ovšem o definitivní důkaz toho, že tomu tak skutečně je [NIST, -@nistHandbook, oddíl [Normal Probability Plot](https://www.itl.nist.gov/div898/handbook/eda/section3/normprpl.htm)]. Takový důkaz ostatně nemáme téměř nikdy, protože populační rozdělení neznáme. Známe je jen tehdy, když data sami vytvoříme ze zvoleného modelu, jako v simulacích v oddílu [Jak číst odchylky od přímky](#sec-qq-odchylky).
 
 ### Vytvoření Q–Q grafu v Excelu {#sec-excel-qq}
 
@@ -503,7 +503,7 @@ Každému pořadí přiřadíme podíl uvnitř intervalu od 0 do 1. Celý rozsah
 
 $$p=\frac{i-0{,}5}{n}.$$
 
-$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. Bez shodných hodnot jde o totéž jako kompromisní percentilové pořadí dělené stem (viz [normalizace](#sec-normalizace)); **nejde tedy o novou definici empirického percentilového pořadí.** Není to ani naše interpolační konvence kvantilů, kterou počítá `PERCENTIL.INC`. Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rPpoints].
+$i$ je zde pořadí po seřazení, od 1 do $n$; $n$ je počet hodnot. Při $n=12$ má první hodnota $p=(1-0{,}5)/12=0{,}041666\ldots$, poslední $(12-0{,}5)/12=0{,}958333\ldots$. Vyhneme se tak podílům 0 a 1, pro něž neexistuje konečný normální kvantil. Bez shodných hodnot jde o totéž jako kompromisní percentilové pořadí dělené stem (viz [normalizace](#sec-normalizace)); **nejde tedy o novou definici empirického percentilového pořadí.** Není to ani naše interpolační konvence kvantilů, kterou počítá `PERCENTIL.INC`. Jde o jednu běžnou volbu poloh pro kreslení Q–Q grafu; jiné programy mohou používat mírně jiné polohy, zvláště na krajích [@rDocumentation, [Ordinates for probability plotting](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/ppoints.html)].
 
 ::: {.chapter-04-figure role="region" aria-label="Vznik jednoho bodu normálního Q–Q grafu" tabindex="0"}
 

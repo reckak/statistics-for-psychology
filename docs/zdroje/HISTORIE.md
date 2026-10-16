@@ -74,3 +74,35 @@ Tři citované zdroje nejsou v `sources/` a nemají vlastní kartu:
 | Simmons, J. P., Nelson, L. D., a Simonsohn, U. (2011). *False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant.* *Psychological Science, 22*(11), 1359–1366. DOI 10.1177/0956797611417632 | Jen bibliografický záznam v metadatech Crossref. | Jedna věta: rozhodnutí přizpůsobená výsledku zvyšují pravděpodobnost chyby I. druhu nad uvedenou hladinu. Plný text nebyl při tvorbě kapitoly čten; tvrzení odpovídá názvu a obecně známému obsahu článku a před případným rozšířením výkladu je třeba je ověřit v textu. Konkrétní čísla z článku se neuvádějí. |
 
 Originály v `sources/` se neměnily a do složky se nic nepřidalo.
+
+<a id="kontrola-dokumentace-2026-10-16"></a>
+
+## 2026-10-16 — Bibliografická kontrola online dokumentace
+
+Kontrola identifikace, dat a hranic dokumentačních celků pro [R42](../rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace), nikoli nové odborné ověření celého jejich obsahu.
+
+- [NIST e-Handbook](https://www.itl.nist.gov/div898/handbook/index2.htm):
+  úvod uvádí významnou revizi duben 2012 a Last updated 04/27/2022;
+  dle dohody citujeme celek datem 2022-04-27 a DOI 10.18434/M32189.
+  Nejde o tvrzení, že všechny jednotlivé oddíly byly změněny v roce 2022.
+- [Microsoft Excel](https://support.microsoft.com/cs-cz/excel/):
+  ověřen název Nápověda a výuka pro Excel a vymezení celku. Datum
+  obsahové revize není uvedeno; rok 2026 je autorem schválené označení
+  používané průběžné dokumentace. Přesný den aktualizace se nedoplňuje.
+- [R-devel](https://stat.ethz.ch/R-manual/R-devel/doc/html/index.html):
+  ověřen dokumentační rozcestník Statistical Data Analysis; stávající
+  odkazy míří do společné dokumentace base/stats. [Adresář](https://stat.ethz.ch/R-manual/R-devel/)
+  uvádí změny v roce 2026. Rok 2026 dle dohody, verze označena R-devel;
+  nejde o archivovanou stabilní verzi ani důkaz data změny každého hesla.
+- [SciPy 1.18.0](https://docs.scipy.org/doc/scipy-1.18.0/):
+  ověřeno Date: June 19, 2026, Version: 1.18.0. Bibliografie i konkrétní
+  odkazy směřují na tuto verzi namísto proměnlivého rozcestníku. Stránky
+  percentileofscore a winsorize této verze vracejí HTTP 200; ověřena
+  jejich dostupnost a titulky, nikoli nově celý odborný obsah.
+- [Shannon Diversity Index](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/shannon.htm):
+  samostatná dokumentace Dataplot, mimo e-Handbook; Last updated 10/07/2016.
+  Zachována položka nistShannon s datem 2016-10-07.
+
+U průběžných celků datum přístupu 2026-10-16. Odkazy konkrétních částí
+byly převzaty ze stávající bibliografie; změna jejich umístění nedokládá
+nové prostudování všech stránek ani nezávislé ověření jejich tvrzení.

@@ -292,7 +292,7 @@ Zvolené členění porovnáme s několika blízkými šířkami i posuny mezí.
 ::: {.callout-note collapse="true" title="Rozšíření: nestejně široké intervaly"}
 Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případů v intervalu šířky 1 hodina dá výšku 10 případů na hodinu; 10 případů v intervalu šířky 2 hodiny dá výšku 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
 
-Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U relativní varianty vydělíme šířkou intervalu relativní četnost; celková plocha je pak 1. Výška sama už není podíl a může být větší než 1. V základních příkladech této kapitoly používáme stejně široké intervaly a osu s absolutními četnostmi. Rozdílná měřítka histogramu popisuje @nistHistogram [oddíl Definition].
+Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U relativní varianty vydělíme šířkou intervalu relativní četnost; celková plocha je pak 1. Výška sama už není podíl a může být větší než 1. V základních příkladech této kapitoly používáme stejně široké intervaly a osu s absolutními četnostmi. Rozdílná měřítka histogramu popisuje statistická příručka [National Institute of Standards and Technology (NIST), -@nistHandbook, oddíl [Histogram](https://www.itl.nist.gov/div898/handbook/eda/section3/eda33e.htm), část Definition].
 :::
 
 ### Graf kumulativních četností {#sec-kumulativni-graf}
@@ -360,9 +360,9 @@ U grafu číselných dat se ptáme, kde se hodnoty soustřeďují, jak široce j
 
 **Jednovrcholové (unimodální) rozdělení (*unimodal distribution*)** má jeden výrazný vrchol; **dvouvrcholové čili bimodální (*bimodal distribution*)** dva. Při více než dvou výrazných vrcholech mluvíme o **vícevrcholovém neboli multimodálním rozdělení (*multimodal distribution*)**. V širším významu se toto označení používá pro dva či více vrcholů, takže zahrnuje i dvouvrcholové rozdělení [@aron, s. 16]. Vrcholy nemusí být stejně vysoké. Dva vrcholy mohou upozornit například na smíšení výsledků dvou skupin, ale samy existenci takových skupin neprokazují. Sousední stejně vysoké sloupce u 7 a 8 slov v našem příkladu netvoří automaticky dvě oddělená seskupení. Počet viditelných vrcholů navíc ovlivňuje intervalové třídění.
 
-**Rovnoměrné rozdělení (*uniform distribution*)** nemá žádný výrazný vrchol: žádná oblast není zastoupena více než jiné srovnatelné oblasti. Má-li proměnná konečně mnoho možných hodnot, znamená to stejné zastoupení každé z nich; v prostředním dolním panelu @fig-tvary-rozdeleni má například každá z devíti hodnot četnost 4. U spojité číselné proměnné porovnáváme stejně široké intervaly uvnitř vymezeného rozsahu hodnot: při rovnoměrném rozdělení mají stejné zastoupení a histogram má plochý průběh. O rovnoměrnosti má smysl mluvit jen v takto vymezeném rozsahu, nikoli pro všechna čísla bez omezení [@nistUniform, oddíl Probability Density Function]. V reálných datech bývá tento obraz pouze přibližný; rozdělení pak popíšeme jako přibližně rovnoměrné.
+**Rovnoměrné rozdělení (*uniform distribution*)** nemá žádný výrazný vrchol: žádná oblast není zastoupena více než jiné srovnatelné oblasti. Má-li proměnná konečně mnoho možných hodnot, znamená to stejné zastoupení každé z nich; v prostředním dolním panelu @fig-tvary-rozdeleni má například každá z devíti hodnot četnost 4. U spojité číselné proměnné porovnáváme stejně široké intervaly uvnitř vymezeného rozsahu hodnot: při rovnoměrném rozdělení mají stejné zastoupení a histogram má plochý průběh. O rovnoměrnosti má smysl mluvit jen v takto vymezeném rozsahu, nikoli pro všechna čísla bez omezení [NIST, -@nistHandbook, oddíl [Uniform distribution](https://www.itl.nist.gov/div898/handbook/eda/section3/eda3662.htm), část Probability Density Function]. V reálných datech bývá tento obraz pouze přibližný; rozdělení pak popíšeme jako přibližně rovnoměrné.
 
-**Odlehlé pozorování (*outlier*)** je pozorování nápadně vzdálené od ostatních v daném kontextu. Odlehlost sama o sobě neznamená, že je údaj chybný nebo neplatný. Takové pozorování vždy nejprve prozkoumáme; nevyřazujeme je automaticky jen kvůli jeho vzdálenosti od ostatních. Může jít o překlep, neobvyklé podmínky nebo správně zaznamenaný vzácný výsledek. Zkontrolujeme původní záznam, okolnosti měření a pravidla pro zahrnutí údajů do analýzy. Prokazatelnou chybu opravíme, je-li to možné; případné vyřazení konkrétně zdůvodníme a zaznamenáme. Údaj neodstraníme jen proto, aby graf vypadal pravidelněji [@nistOutliers, oddíl Introduction]. Výrazy odlehlá hodnota a odlehlý případ se používají jako alternativy. Označení extrémní hodnota či případ je širší: nejvyšší hodnota v každém souboru existuje, ale nemusí být nutně odlehlá.
+**Odlehlé pozorování (*outlier*)** je pozorování nápadně vzdálené od ostatních v daném kontextu. Odlehlost sama o sobě neznamená, že je údaj chybný nebo neplatný. Takové pozorování vždy nejprve prozkoumáme; nevyřazujeme je automaticky jen kvůli jeho vzdálenosti od ostatních. Může jít o překlep, neobvyklé podmínky nebo správně zaznamenaný vzácný výsledek. Zkontrolujeme původní záznam, okolnosti měření a pravidla pro zahrnutí údajů do analýzy. Prokazatelnou chybu opravíme, je-li to možné; případné vyřazení konkrétně zdůvodníme a zaznamenáme. Údaj neodstraníme jen proto, aby graf vypadal pravidelněji [NIST, -@nistHandbook, oddíl [Detection of outliers](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35h.htm), část Introduction]. Výrazy odlehlá hodnota a odlehlý případ se používají jako alternativy. Označení extrémní hodnota či případ je širší: nejvyšší hodnota v každém souboru existuje, ale nemusí být nutně odlehlá.
 
 ### Hranice měření: efekt podlahy a stropu {#sec-podlaha-strop}
 
@@ -398,7 +398,7 @@ Na listu `Cetnosti` jsou v A5:A8 kódy 1 až 4 a v B5:B8 jejich slovní popisy. 
 =POČET(Data!E2:E37)
 ```
 
-**POČET (*COUNT*)** spočítá buňky obsahující čísla. Argument `Data!E2:E37` určuje oblast: vykřičník odděluje název listu od adresy buněk. Výsledek je **36**, počet číselně zaznamenaných odpovědí odpočatosti. Funkce ignoruje prázdné a textové buňky, ale zahrne skutečnou nulu. Sama neověřuje přípustnost kódu: i chybně zadaná pětka by se započítala [@msCount].
+**POČET (*COUNT*)** spočítá buňky obsahující čísla. Argument `Data!E2:E37` určuje oblast: vykřičník odděluje název listu od adresy buněk. Výsledek je **36**, počet číselně zaznamenaných odpovědí odpočatosti. Funkce ignoruje prázdné a textové buňky, ale zahrne skutečnou nulu. Sama neověřuje přípustnost kódu: i chybně zadaná pětka by se započítala [@msExcel, [POČET (funkce)](https://support.microsoft.com/cs-cz/excel/functions/count-function)].
 
 Do C5 vložíme:
 
@@ -406,11 +406,11 @@ Do C5 vložíme:
 =COUNTIFS(Data!$E$2:$E$37;A5)
 ```
 
-**COUNTIFS (anglický název funkce je stejný: *COUNTIFS*)** počítá případy splňující zadané podmínky. První argument je oblast odpovědí, druhý požadovaný kód v A5, zde číslo 1. Dostaneme **4**. Vzorec zkopírujeme dolů do C8; pro další kódy dostaneme 10, 14 a 8. Dolarové znaky zajišťují, že při kopírování zůstane oblast `$E$2:$E$37` pevná, zatímco odkaz A5 se změní na A6, A7 a A8. Dolar není součástí statistického značení, ale pravidlem adresování buněk v Excelu [@msCountifs].
+**COUNTIFS (anglický název funkce je stejný: *COUNTIFS*)** počítá případy splňující zadané podmínky. První argument je oblast odpovědí, druhý požadovaný kód v A5, zde číslo 1. Dostaneme **4**. Vzorec zkopírujeme dolů do C8; pro další kódy dostaneme 10, 14 a 8. Dolarové znaky zajišťují, že při kopírování zůstane oblast `$E$2:$E$37` pevná, zatímco odkaz A5 se změní na A6, A7 a A8. Dolar není součástí statistického značení, ale pravidlem adresování buněk v Excelu [@msExcel, [COUNTIFS (funkce)](https://support.microsoft.com/cs-cz/excel/functions/countifs-function)].
 
 ![Názorná rekonstrukce listu Cetnosti: výpočet absolutních četností.](../assets/chapter-02/excel-absolutni.svg){#fig-excel-absolutni fig-alt="Ukázka tabulky v podobě excelového listu s kódy 1 až 4 a výsledky 4, 10, 14, 8. Řádek vzorců ukazuje COUNTIFS odkazující na sloupec odpočatosti a buňku A5."}
 
-Do C10 vložíme `=SUMA(C5:C8)`. **SUMA (*SUM*)** sečte číselné hodnoty v uvedené oblasti a vrátí **36** [@msSum]. Porovnáme ji s C2. Nerovnost by nás upozornila například na nepokrytou kategorii nebo chybný odkaz. Shoda sama nezaručuje, že každý původní záznam je věcně správný.
+Do C10 vložíme `=SUMA(C5:C8)`. **SUMA (*SUM*)** sečte číselné hodnoty v uvedené oblasti a vrátí **36** [@msExcel, [SUMA (funkce)](https://support.microsoft.com/cs-cz/excel/functions/sum-function)]. Porovnáme ji s C2. Nerovnost by nás upozornila například na nepokrytou kategorii nebo chybný odkaz. Shoda sama nezaručuje, že každý původní záznam je věcně správný.
 
 ### Relativní a kumulativní četnosti {#sec-excel-relativni-kumulativni}
 
@@ -454,7 +454,7 @@ Pro sloupcový graf odpočatosti označíme na listu `Cetnosti` B4:C8 a zvolíme
 
 Pro histogram z již připravené intervalové tabulky označíme na listu `Histogram` oblast C4:D10: sloupec C obsahuje slovní popisky intervalů, sloupec D jejich četnosti. Vložíme rovněž skupinový sloupcový graf a v **Formátu datové řady** nastavíme **Šířku mezery na 0 %**. Zůstanou v něm i intervaly s nulovou četností a zachováme číselné pořadí. Tento postup je vhodný, protože všechny naše intervaly mají stejnou šířku; popisky v C5:C10 jednoznačně uvádějí meze. Osa ukazuje „Doba spánku (h)“ a „Počet účastníků“, počet platných údajů je 33. Oba upravitelné grafy jsou v sešitu vedle tabulek.
 
-Excel obsahuje také samostatný typ grafu **Histogram**, který se vytváří z původních číselných dat, nikoli z již spočítaných četností. Jeho automatické intervaly a pravidla zahrnutí mezí nemusí odpovídat naší tabulce. Pokud jej použijeme, ověříme nastavení i zařazení hodnot rovných mezím intervalů; pouhý podobný vzhled nestačí [@msHistogram].
+Excel obsahuje také samostatný typ grafu **Histogram**, který se vytváří z původních číselných dat, nikoli z již spočítaných četností. Jeho automatické intervaly a pravidla zahrnutí mezí nemusí odpovídat naší tabulce. Pokud jej použijeme, ověříme nastavení i zařazení hodnot rovných mezím intervalů; pouhý podobný vzhled nestačí [@msExcel, [Vytvoření histogramu](https://support.microsoft.com/cs-cz/excel/create-a-histogram)].
 
 ## Shrnutí {#sec-shrnuti-02}
 
