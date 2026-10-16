@@ -25,7 +25,7 @@ Co znamená, že je něco pravděpodobné? Oddíl propojuje pravděpodobnost s r
 
 ### Od podílu k pravděpodobnosti {#sec-podil-pravdepodobnost}
 
-V kapitole o četnostech jsme zjišťovali, jaká část případů má určitou hodnotu. Na otázku, jak odpočatě se cítí, odpovědělo 14 z 36 účastníků „dost“. [Relativní četnost](kapitola_02.qmd#sec-relativni-cetnost) této odpovědi je $14/36\doteq0{,}389$. Popisuje soubor, který už máme před sebou.
+V kapitole o četnostech jsme zjišťovali, jaká část případů má určitou hodnotu. Na otázku, jak odpočatě se cítí, odpovědělo 14 z 36 účastníků „dost“. [Relativní četnost](kapitola_02.qmd#sec-relativni-cetnost) této odpovědi je $14/36\approx0{,}389$. Popisuje soubor, který už máme před sebou.
 
 Teď otázku obrátíme do budoucnosti. Všech 36 jmen napíšeme na lístky, zamícháme je a jeden vytáhneme. Dopředu nevíme, čí jméno to bude. Víme však, že čtrnáct z 36 stejně dobře dosažitelných lístků patří účastníkům s odpovědí „dost“. Tuto míru očekávání zapíšeme stejným číslem, 0,389, a nazveme ji **pravděpodobností (*probability*)**.
 
@@ -33,7 +33,7 @@ Pravděpodobnost je číslo od 0 do 1, které vyjadřuje, nakolik lze očekávat
 
 Pravděpodobnost zapisujeme velkým písmenem $P$ a do závorky uvedeme, čeho se týká:
 
-$$P(\text{odpověď „dost“})=\frac{14}{36}\doteq0{,}389.$$
+$$P(\text{odpověď „dost“})=\frac{14}{36}\approx0{,}389.$$
 
 Velké $P$ odlišuje pravděpodobnost od malého $p$, kterým jsme dosud značili relativní četnost a úroveň kvantilu. Relativní četnost popisuje data, která jsme získali. Pravděpodobnost se týká toho, co může nastat.
 
@@ -254,7 +254,7 @@ Slovy: aby nastaly oba jevy, musí nastat $B$ a potom, mezi případy, kdy $B$ n
 
 Pravidlo je užitečné zejména tehdy, když pokus probíhá ve dvou krocích. Z krabice se 100 kartičkami vytáhneme dvě po sobě a první **nevracíme**. Jaká je pravděpodobnost, že obě nesou podstatné jméno? V prvním tahu je to $40/100$. Jestliže první kartička byla podstatné jméno, zůstalo jich v krabici 39 mezi 99 kartičkami:
 
-$$\begin{aligned}&P(\text{obě podstatná jména})\\&\quad=\dfrac{40}{100}\times\dfrac{39}{99}=\dfrac{1560}{9900}\doteq0{,}158.\end{aligned}$$
+$$\begin{aligned}&P(\text{obě podstatná jména})\\&\quad=\dfrac{40}{100}\times\dfrac{39}{99}=\dfrac{1560}{9900}\approx0{,}158.\end{aligned}$$
 
 Druhý činitel je podmíněná pravděpodobnost: výsledek prvního tahu změnil složení krabice. Kdybychom první kartičku **vrátili** a znovu zamíchali, zůstala by pravděpodobnost ve druhém tahu $40/100$ a výsledek by byl $0{,}40\times0{,}40=0{,}16$ [@howell, s. 112].
 
@@ -361,13 +361,13 @@ Stejné počty můžeme uspořádat do kontingenční tabulky:
 
 Senzitivita a specificita se čtou **po řádcích**: $95/100$ a $810/900$. Otázka psycholožky se čte **po sloupcích**. Pozitivní výsledek má $95+90=185$ studentů a poruchu z nich má 95:
 
-$$P(\text{porucha}\mid\text{pozitivní})=\frac{95}{185}\doteq0{,}514.$$
+$$P(\text{porucha}\mid\text{pozitivní})=\frac{95}{185}\approx0{,}514.$$
 
 Této pravděpodobnosti se říká **pozitivní prediktivní hodnota (*positive predictive value*)**. Přestože dotazník zachytí 95 % lidí s poruchou, má poruchu jen o málo více než polovina těch, u nichž vyšel pozitivně. Důvodem je, že lidí bez poruchy je devětkrát více. I malá část z nich, která má falešně pozitivní výsledek (90), je početně srovnatelná se správně zachycenými (95).
 
 Obdobně **negativní prediktivní hodnota (*negative predictive value*)** je pravděpodobnost, že člověk s negativním výsledkem poruchu skutečně nemá:
 
-$$P(\text{bez poruchy}\mid\text{negativní})=\frac{810}{815}\doteq0{,}994.$$
+$$P(\text{bez poruchy}\mid\text{negativní})=\frac{810}{815}\approx0{,}994.$$
 
 Negativní výsledek je v této situaci velmi spolehlivý; pozitivní je důvodem k podrobnějšímu vyšetření, nikoli diagnózou. Stejným způsobem postupuje Baron [-@baron2008, s. 121–123]: nejprve počty osob a tabulka, potom strom a teprve nakonec vzorec. Uttsová [-@utts2003, s. 77] označuje tabulku s počty pro pomyslnou skupinu lidí za nejsnazší způsob, jak tuto úvahu studentům ukázat.
 
@@ -393,7 +393,7 @@ $$\begin{aligned}&P(A\mid B)\\&\quad=\dfrac{P(A)\times P(B\mid A)}{P(A)\times P(
 
 V čitateli je jedna cesta stromem: ta, která vede k $B$ přes $A$. Ve jmenovateli jsou všechny cesty, které k $B$ vedou. Bayesova věta tedy odpovídá na otázku, jakou část všech případů, v nichž nastal $B$, tvoří ty, v nichž nastal i $A$. Pro screening je $A$ jev „porucha“ a $B$ jev „pozitivní výsledek“:
 
-$$\begin{aligned}&P(\text{porucha}\mid\text{pozitivní})\\&\quad=\dfrac{0{,}10\times0{,}95}{0{,}10\times0{,}95+0{,}90\times0{,}10}\\&\quad=\dfrac{0{,}095}{0{,}185}\doteq0{,}514.\end{aligned}$$
+$$\begin{aligned}&P(\text{porucha}\mid\text{pozitivní})\\&\quad=\dfrac{0{,}10\times0{,}95}{0{,}10\times0{,}95+0{,}90\times0{,}10}\\&\quad=\dfrac{0{,}095}{0{,}185}\approx0{,}514.\end{aligned}$$
 
 Výsledek je stejný jako $95/185$ z přirozených četností; vzorec a tabulka jsou dva zápisy téhož výpočtu. Věta nevyžaduje nic nového: skládá se z definice podmíněné pravděpodobnosti, součinového pravidla a úplné pravděpodobnosti.
 
@@ -433,9 +433,9 @@ Co se stane, když stejný dotazník použijeme plošně u všech studentů univ
 
 Pozitivní výsledek má $95+990=1085$ studentů a poruchu z nich má 95:
 
-$$P(\text{porucha}\mid\text{pozitivní})=\frac{95}{1085}\doteq0{,}088.$$
+$$P(\text{porucha}\mid\text{pozitivní})=\frac{95}{1085}\approx0{,}088.$$
 
-Pro srovnání přepočítáme na 10 000 osob i poradnu s desetiprocentním výskytem: 1 000 studentů s poruchou, z nich 950 pozitivních; 9 000 bez poruchy, z nich 900 falešně pozitivních; $950/1850\doteq0{,}514$, stejně jako dříve. Přirozené četnosti lze počítat z libovolně velké výchozí skupiny, výsledný podíl se nemění.
+Pro srovnání přepočítáme na 10 000 osob i poradnu s desetiprocentním výskytem: 1 000 studentů s poruchou, z nich 950 pozitivních; 9 000 bez poruchy, z nich 900 falešně pozitivních; $950/1850\approx0{,}514$, stejně jako dříve. Přirozené četnosti lze počítat z libovolně velké výchozí skupiny, výsledný podíl se nemění.
 
 ::: {.teaching-figure role="region" aria-label="Pozitivní výsledky téhož dotazníku při prevalenci 10 % a 1 %" tabindex="0"}
 
@@ -457,7 +457,7 @@ V předchozím textu jsme použili tři blízké pojmy. V diagnostickém příkl
 
 **Prevalence (*prevalence*)** je užší pojem: vyjadřuje zastoupení osob s určitým onemocněním nebo stavem ve vymezené populaci a čase. V diagnostickém příkladu nám právě prevalence poskytuje základní četnost. Proto jsme museli pokaždé říci, o kterou skupinu jde: 10 % v poradně, 1 % mezi všemi studenty.
 
-**Apriorní pravděpodobnost (*prior probability*)** je pravděpodobnost jevu před tím, než vezmeme v úvahu novou informaci; zde před tím, než známe výsledek dotazníku. **Aposteriorní pravděpodobnost (*posterior probability*)** je pravděpodobnost téhož jevu poté, co jsme novou informaci zohlednili. V našem příkladu je apriorní pravděpodobnost poruchy 0,10 a aposteriorní po pozitivním výsledku 0,514; po negativním výsledku by klesla na $5/815\doteq0{,}006$.
+**Apriorní pravděpodobnost (*prior probability*)** je pravděpodobnost jevu před tím, než vezmeme v úvahu novou informaci; zde před tím, než známe výsledek dotazníku. **Aposteriorní pravděpodobnost (*posterior probability*)** je pravděpodobnost téhož jevu poté, co jsme novou informaci zohlednili. V našem příkladu je apriorní pravděpodobnost poruchy 0,10 a aposteriorní po pozitivním výsledku 0,514; po negativním výsledku by klesla na $5/815\approx0{,}006$.
 
 Slova „před novou informací“ neznamenají „bez podkladů“. Apriorní pravděpodobnost jsme stanovili podle základní četnosti, tedy podle údajů o výskytu poruchy. Obecně může vycházet i z dalších informací: psycholožka, která už s klientem mluvila, může odůvodněně začít od jiné hodnoty než od prevalence v poradně. Bayesova věta pak říká, jak tuto výchozí pravděpodobnost upravit podle výsledku testu. Aposteriorní pravděpodobnost se může stát apriorní pro další krok, například před dalším vyšetřením [@howell, s. 121–122]. Přitom je třeba zohlednit, zda nové vyšetření přináší novou informaci, nebo částečně opakuje informaci již použitou. Stejnou informaci nesmíme započítat dvakrát; pravděpodobnosti výsledků dalšího vyšetření musejí odpovídat tomu, co už o člověku víme.
 
@@ -466,13 +466,13 @@ Nejistotu lze vyjádřit i jinak než pravděpodobností. **Šance (*odds*)** po
 
 $$O(A)=\frac{P(A)}{1-P(A)}.$$
 
-Písmeno $O$ pochází z anglického *odds*. Pro $P(A)=0{,}75$ jsou šance $0{,}75/0{,}25=3$; říkáme také „tři ku jedné“. Znamená to, že jev je třikrát pravděpodobnější než jeho doplněk. Pro $P(A)=0{,}5$ jsou šance 1 („jedna ku jedné“), pro $P(A)=0{,}10$ jsou $0{,}10/0{,}90\doteq0{,}11$, tedy „jedna ku devíti“.
+Písmeno $O$ pochází z anglického *odds*. Pro $P(A)=0{,}75$ jsou šance $0{,}75/0{,}25=3$; říkáme také „tři ku jedné“. Znamená to, že jev je třikrát pravděpodobnější než jeho doplněk. Pro $P(A)=0{,}5$ jsou šance 1 („jedna ku jedné“), pro $P(A)=0{,}10$ jsou $0{,}10/0{,}90\approx0{,}11$, tedy „jedna ku devíti“.
 
 Zpětný převod: $P(A)=O(A)/(1+O(A))$. Šance 3 odpovídají pravděpodobnosti $3/(1+3)=0{,}75$.
 
 Pravděpodobnost a šance nejsou totéž číslo a nelze je zaměňovat. Pravděpodobnost leží mezi 0 a 1; šance mohou být libovolně velké. U vzácných jevů jsou si obě hodnoty blízké (0,01 a přibližně 0,0101), u častých se výrazně liší (0,90 a 9). Statistické šance také nejsou totéž co sázkový kurz, který vyjadřuje podmínky výplaty sázky.
 
-V příkladu se screeningem jsou šance poruchy před testem $0{,}10/0{,}90$, tedy jedna ku devíti, a po pozitivním výsledku $95/90\doteq1{,}06$, tedy přibližně jedna ku jedné. Šance se uplatní v pokročilejších metodách, například při porovnávání skupin podle výskytu určitého jevu.
+V příkladu se screeningem jsou šance poruchy před testem $0{,}10/0{,}90$, tedy jedna ku devíti, a po pozitivním výsledku $95/90\approx1{,}06$, tedy přibližně jedna ku jedné. Šance se uplatní v pokročilejších metodách, například při porovnávání skupin podle výskytu určitého jevu.
 :::
 
 ## Náhodná proměnná a rozdělení pravděpodobnosti {#sec-nahodna-promenna}
@@ -525,7 +525,7 @@ Data shrnujeme průměrem a směrodatnou odchylkou. Podobné charakteristiky má
 
 Pro počet správných tipů v testu s pěti otázkami je $\mathrm{μ}=1{,}25$. Nikdo nemůže uhodnout jednu a čtvrt otázky; střední hodnota nemusí být hodnotou, která může nastat. Říká, že kdyby tímto způsobem test vyplnilo velmi mnoho studentů, vycházelo by na jednoho v průměru přibližně 1,25 správného tipu. U 40 simulovaných studentů byl průměr $m=41/40=1{,}025$. Písmeno $m$ označuje průměr vypočtený z dat, $\mathrm{μ}$ vlastnost modelu; že se liší, je opět projev náhody ve výběru.
 
-Rozdělení má také **směrodatnou odchylku** $\mathrm{σ}$, která vyjadřuje, jak daleko od střední hodnoty hodnoty náhodné proměnné typicky leží. Pro náš test je $\mathrm{σ}\doteq0{,}97$. Pro binomické rozdělení se obě charakteristiky počítají jednoduchými vzorci, které uvedeme [dále](#sec-binomicke-tvar).
+Rozdělení má také **směrodatnou odchylku** $\mathrm{σ}$, která vyjadřuje, jak daleko od střední hodnoty hodnoty náhodné proměnné typicky leží. Pro náš test je $\mathrm{σ}\approx0{,}97$. Pro binomické rozdělení se obě charakteristiky počítají jednoduchými vzorci, které uvedeme [dále](#sec-binomicke-tvar).
 
 ::: {#rozsireni-stredni-hodnota .callout-note collapse="true" title="Nepovinné rozšíření: střední hodnota a rozptyl z tabulky rozdělení"}
 Střední hodnotu jakékoli diskrétní náhodné proměnné lze spočítat přímo z tabulky rozdělení: každou hodnotu vynásobíme její pravděpodobností a součiny sečteme,
@@ -554,7 +554,7 @@ Pro test s pěti otázkami (pravděpodobnosti na čtyři desetinná místa, výp
 
 :::::
 
-Střední hodnota je 1,25 a rozptyl 0,9375, takže $\mathrm{σ}=\sqrt{0{,}9375}\doteq0{,}968$. Dělení počtem hodnot zde chybí, protože pravděpodobnosti už mají součet 1. Na rozdíl od [výběrového rozptylu](kapitola_03.qmd#sec-rozptyl) se také nedělí $n-1$: nepočítáme z výběru, ale z úplného modelu.
+Střední hodnota je 1,25 a rozptyl 0,9375, takže $\mathrm{σ}=\sqrt{0{,}9375}\approx0{,}968$. Dělení počtem hodnot zde chybí, protože pravděpodobnosti už mají součet 1. Na rozdíl od [výběrového rozptylu](kapitola_03.qmd#sec-rozptyl) se také nedělí $n-1$: nepočítáme z výběru, ale z úplného modelu.
 :::
 
 ## Počítání možností {#sec-pocitani-moznosti}
@@ -649,7 +649,7 @@ Spočítáme pravděpodobnost, že student uhodne právě dvě otázky z pěti, 
 
 **Krok 1: jedna konkrétní posloupnost.** Vezměme případ, kdy student uhodne první dvě otázky a zbylé tři ne: S, S, N, N, N. Tipy jsou nezávislé, takže podle [součinového pravidla](#sec-nezavislost) násobíme:
 
-$$\begin{aligned}&0{,}25\times0{,}25\times0{,}75\times0{,}75\times0{,}75\\&\quad=0{,}25^2\times0{,}75^3\doteq0{,}0264.\end{aligned}$$
+$$\begin{aligned}&0{,}25\times0{,}25\times0{,}75\times0{,}75\times0{,}75\\&\quad=0{,}25^2\times0{,}75^3\approx0{,}0264.\end{aligned}$$
 
 Číslo 0,75 je pravděpodobnost neúspěchu, doplněk k 0,25.
 
@@ -657,7 +657,7 @@ $$\begin{aligned}&0{,}25\times0{,}25\times0{,}75\times0{,}75\times0{,}75\\&\quad
 
 **Krok 3: kolik takových posloupností je.** Tolik, kolika způsoby lze z pěti otázek vybrat dvě správné: $\binom{5}{2}=10$ (@fig-kombinace). Posloupnosti jsou vzájemně výlučné, nemůže nastat více než jedna. Podle [součtového pravidla](#sec-souctove-pravidlo) jejich pravděpodobnosti sečteme; protože jsou stejné, stačí násobit:
 
-$$\begin{aligned}P(X=2)&=10\times0{,}25^2\times0{,}75^3\\&=10\times0{,}0263671875\doteq0{,}264.\end{aligned}$$
+$$\begin{aligned}P(X=2)&=10\times0{,}25^2\times0{,}75^3\\&=10\times0{,}0263671875\approx0{,}264.\end{aligned}$$
 
 To je hodnota z tabulky [-@tbl-rozdeleni-pet]. Mezivýpočet jsme pro násobení nezaokrouhlili; kdybychom použili 0,0264, dostali bychom rovněž 0,264, ale u jiných hodnot by se zaokrouhlení mohlo projevit.
 
@@ -693,7 +693,7 @@ Střední hodnota a směrodatná odchylka binomického rozdělení se počítaj�
 
 $$\mathrm{μ}=n\times\mathrm{π},\qquad\mathrm{σ}=\sqrt{n\times\mathrm{π}\times(1-\mathrm{π})}.$$
 
-První vztah odpovídá intuici: má-li každý z pěti tipů pravděpodobnost úspěchu čtvrtinu, čekáme v průměru čtvrtinu z pěti, $5\times0{,}25=1{,}25$ správného tipu. Směrodatná odchylka je $\sqrt{5\times0{,}25\times0{,}75}=\sqrt{0{,}9375}\doteq0{,}97$. Součin $\mathrm{π}\times(1-\mathrm{π})$ je největší pro $\mathrm{π}=0{,}5$, kdy je výsledek jednoho pokusu nejméně předvídatelný, a nulový pro $\mathrm{π}=0$ nebo 1, kdy všechny pokusy dopadnou stejně a počet úspěchů nekolísá.
+První vztah odpovídá intuici: má-li každý z pěti tipů pravděpodobnost úspěchu čtvrtinu, čekáme v průměru čtvrtinu z pěti, $5\times0{,}25=1{,}25$ správného tipu. Směrodatná odchylka je $\sqrt{5\times0{,}25\times0{,}75}=\sqrt{0{,}9375}\approx0{,}97$. Součin $\mathrm{π}\times(1-\mathrm{π})$ je největší pro $\mathrm{π}=0{,}5$, kdy je výsledek jednoho pokusu nejméně předvídatelný, a nulový pro $\mathrm{π}=0$ nebo 1, kdy všechny pokusy dopadnou stejně a počet úspěchů nekolísá.
 
 ::: {.teaching-figure role="region" aria-label="Čtyři binomická rozdělení s různým počtem pokusů a pravděpodobností úspěchu" tabindex="0"}
 
@@ -737,7 +737,7 @@ Funkce jsou dostupné v Excelu 2016 a novějších verzích včetně Microsoft 3
 
 ### Právě, nejvýše, alespoň {#sec-binom-kumulace}
 
-Skutečné testy mají více otázek. Uvažujme test s 20 otázkami, opět se čtyřmi možnostmi, a studenta, který jen tipuje: $n=20$, $\mathrm{π}=0{,}25$, střední hodnota $20\times0{,}25=5$ a směrodatná odchylka $\sqrt{20\times0{,}25\times0{,}75}\doteq1{,}94$. Tři nejčastější typy otázek jsou na listu `Binom_20`:
+Skutečné testy mají více otázek. Uvažujme test s 20 otázkami, opět se čtyřmi možnostmi, a studenta, který jen tipuje: $n=20$, $\mathrm{π}=0{,}25$, střední hodnota $20\times0{,}25=5$ a směrodatná odchylka $\sqrt{20\times0{,}25\times0{,}75}\approx1{,}94$. Tři nejčastější typy otázek jsou na listu `Binom_20`:
 
 ::: {.table-scroll .chapter-05-wide role="region" aria-label="Excel: právě, nejvýše a alespoň na listu Binom_20" tabindex="0"}
 
@@ -780,9 +780,9 @@ Jak z takových úvah udělat pravidla pro rozhodování, je předmětem statist
 
 **Právě, nebo alespoň?** Záleží na otázce, kterou jsme si položili předem. Howell [-@howell, s. 125–126] uvádí pokus, v němž účastník desetkrát určuje, který ze dvou velmi krátce promítnutých podnětů viděl. Při pouhém tipování je $\mathrm{π}=0{,}5$. Pravděpodobnost **právě** devíti správných odpovědí je
 
-$$\begin{aligned}P(X=9)&=\binom{10}{9}\times0{,}5^9\times0{,}5^1\\&=10\times0{,}5^{10}\doteq0{,}0098.\end{aligned}$$
+$$\begin{aligned}P(X=9)&=\binom{10}{9}\times0{,}5^9\times0{,}5^1\\&=10\times0{,}5^{10}\approx0{,}0098.\end{aligned}$$
 
-Ptáme-li se, jak pravděpodobný je při tipování **alespoň tak dobrý** výkon, přičteme i deset správných odpovědí: $0{,}0098+0{,}0010\doteq0{,}0107$. Oba výpočty jsou správné; odpovídají na různé otázky. Pro posouzení, zda je výkon při tipování neobvyklý, se hodí druhá. Pravděpodobnost jedné přesné hodnoty totiž s rostoucím počtem pokusů klesá u všech hodnot, i u těch nejobvyklejších: při 200 pokusech a $\mathrm{π}=0{,}6$ má nejpravděpodobnější počet úspěchů, 120, pravděpodobnost jen 0,058. Ani jedno z čísel samo neprokazuje, že účastník podněty vnímal; říká jen, že model tipování takový výsledek vysvětluje špatně.
+Ptáme-li se, jak pravděpodobný je při tipování **alespoň tak dobrý** výkon, přičteme i deset správných odpovědí: $0{,}0098+0{,}0010\approx0{,}0107$. Oba výpočty jsou správné; odpovídají na různé otázky. Pro posouzení, zda je výkon při tipování neobvyklý, se hodí druhá. Pravděpodobnost jedné přesné hodnoty totiž s rostoucím počtem pokusů klesá u všech hodnot, i u těch nejobvyklejších: při 200 pokusech a $\mathrm{π}=0{,}6$ má nejpravděpodobnější počet úspěchů, 120, pravděpodobnost jen 0,058. Ani jedno z čísel samo neprokazuje, že účastník podněty vnímal; říká jen, že model tipování takový výsledek vysvětluje špatně.
 
 ## Normální aproximace binomického rozdělení {#sec-normalni-aproximace}
 
@@ -805,15 +805,15 @@ Není to přesná hranice. Některé učebnice uvádějí mírnější požadave
 **Příklad.** V rozpoznávací úloze má účastník 200 pokusů. Předpokládejme, že v každém odpoví správně s pravděpodobností 0,6 a že jsou pokusy nezávislé. Jaká je pravděpodobnost, že správně odpoví 135krát nebo vícekrát?
 
 1.  *Podmínka.* Očekáváme $200\times0{,}6=120$ úspěchů a $200\times0{,}4=80$ neúspěchů. Obě hodnoty jsou větší než 10.
-2.  *Parametry.* $\mathrm{μ}=120$ a $\mathrm{σ}=\sqrt{200\times0{,}6\times0{,}4}$, tedy $\sqrt{48}\doteq6{,}928$.
-3.  *Z-skór hranice.* $z=(135-120)/6{,}928\doteq2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme malou pravděpodobnost.
+2.  *Parametry.* $\mathrm{μ}=120$ a $\mathrm{σ}=\sqrt{200\times0{,}6\times0{,}4}$, tedy $\sqrt{48}\approx6{,}928$.
+3.  *Z-skór hranice.* $z=(135-120)/6{,}928\approx2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme malou pravděpodobnost.
 4.  *Plocha nad hranicí.* `=1-NORM.S.DIST(2,165;PRAVDA)` vrátí přibližně 0,015.
 
 Podle normální aproximace dosáhne účastník 135 nebo více správných odpovědí s pravděpodobností přibližně 1,5 %.
 
 ### Jak přesná aproximace je {#sec-aproximace-presnost}
 
-Excel umí spočítat i přesnou hodnotu: `=1-BINOM.DIST(134;200;0,6;PRAVDA)` vrátí 0,0173. Aproximace 0,0152 je přibližně o dvě tisíciny nižší, tedy asi o 12 % přesné hodnoty této malé pravděpodobnosti. Malý rozdíl na škále od 0 do 1 tak může znamenat znatelnou odchylku při odhadu vzácného výsledku. Část rozdílu má jednoduchou příčinu. Počet úspěchů je celé číslo, kdežto normální model je spojitý. Sloupec pro 135 úspěchů zabírá na číselné ose úsek od 134,5 do 135,5, podobně jako [zaokrouhlený skór](kapitola_04.qmd#sec-bod-a-interval) představuje interval. Když plochu počítáme až od 135, polovinu tohoto sloupce vynecháme. Začneme-li od 134,5, dostaneme $z=(134{,}5-120)/6{,}928\doteq2{,}093$ a pravděpodobnost 0,0182, bližší přesné hodnotě.
+Excel umí spočítat i přesnou hodnotu: `=1-BINOM.DIST(134;200;0,6;PRAVDA)` vrátí 0,0173. Aproximace 0,0152 je přibližně o dvě tisíciny nižší, tedy asi o 12 % přesné hodnoty této malé pravděpodobnosti. Malý rozdíl na škále od 0 do 1 tak může znamenat znatelnou odchylku při odhadu vzácného výsledku. Část rozdílu má jednoduchou příčinu. Počet úspěchů je celé číslo, kdežto normální model je spojitý. Sloupec pro 135 úspěchů zabírá na číselné ose úsek od 134,5 do 135,5, podobně jako [zaokrouhlený skór](kapitola_04.qmd#sec-bod-a-interval) představuje interval. Když plochu počítáme až od 135, polovinu tohoto sloupce vynecháme. Začneme-li od 134,5, dostaneme $z=(134{,}5-120)/6{,}928\approx2{,}093$ a pravděpodobnost 0,0182, bližší přesné hodnotě.
 
 Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pravděpodobnost úspěchu) a B4 (hranice).
 
@@ -831,7 +831,7 @@ Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pra
 
 :::
 
-Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximace se z-skórem $(10-5)/1{,}94\doteq2{,}58$ dává 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
+Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximace se z-skórem $(10-5)/1{,}94\approx2{,}58$ dává 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
 
 ::: {.teaching-figure role="region" aria-label="Normální křivka přes binomické rozdělení při nesplněné a splněné podmínce" tabindex="0"}
 
@@ -853,9 +853,9 @@ $$\text{střední hodnota podílu}=\frac{n\times\mathrm{π}}{n}=\mathrm{π},$$
 
 $$\begin{aligned}&\text{směrodatná odchylka podílu}\\&\quad=\dfrac{\sqrt{n\times\mathrm{π}\times(1-\mathrm{π})}}{n}=\sqrt{\dfrac{\mathrm{π}\times(1-\mathrm{π})}{n}}.\end{aligned}$$
 
-Ze střední hodnoty počet pokusů zmizí, ze směrodatné odchylky nikoli: zůstává ve jmenovateli pod odmocninou. Pro náš příklad je směrodatná odchylka podílu $\sqrt{0{,}6\times0{,}4/200}\doteq0{,}03464$ a z-skór pozorovaného podílu
+Ze střední hodnoty počet pokusů zmizí, ze směrodatné odchylky nikoli: zůstává ve jmenovateli pod odmocninou. Pro náš příklad je směrodatná odchylka podílu $\sqrt{0{,}6\times0{,}4/200}\approx0{,}03464$ a z-skór pozorovaného podílu
 
-$$z=\frac{0{,}675-0{,}6}{0{,}03464}\doteq2{,}165,$$
+$$z=\frac{0{,}675-0{,}6}{0{,}03464}\approx2{,}165,$$
 
 stejný jako při výpočtu s počty. Poloha výsledku vzhledem k rozdělení se změnou jednotky nemění.
 
@@ -954,9 +954,9 @@ a)  $P(\text{dobrý spánek})=81/150=0{,}540$. Číslo 81 je součet přes obě 
 
 b)  $P(\text{sportuje}\cap\text{dobrý spánek})$ je $54/150=0{,}360$.
 
-c)  $P(\text{dobrý spánek}\mid\text{sportuje})$ je $54/80=0{,}675$; celek tvoří 80 sportujících. $P(\text{sportuje}\mid\text{dobrý spánek})$ je $54/81\doteq0{,}667$; celek tvoří 81 studentů s dobrým spánkem. Čitatel je stejný, ale dělíme jiným celkem, protože podmínka je jiná. Že jsou zde čísla blízká, je náhoda daná podobnou velikostí obou skupin.
+c)  $P(\text{dobrý spánek}\mid\text{sportuje})$ je $54/80=0{,}675$; celek tvoří 80 sportujících. $P(\text{sportuje}\mid\text{dobrý spánek})$ je $54/81\approx0{,}667$; celek tvoří 81 studentů s dobrým spánkem. Čitatel je stejný, ale dělíme jiným celkem, protože podmínka je jiná. Že jsou zde čísla blízká, je náhoda daná podobnou velikostí obou skupin.
 
-d)  Výčtem polí: $54+26+27=107$, tedy $107/150\doteq0{,}713$. Součtovým pravidlem: $80/150+81/150-54/150$, tedy $107/150\doteq0{,}713$. Průnik odečítáme, protože jevy nejsou vzájemně výlučné.
+d)  Výčtem polí: $54+26+27=107$, tedy $107/150\approx0{,}713$. Součtovým pravidlem: $80/150+81/150-54/150$, tedy $107/150\approx0{,}713$. Průnik odečítáme, protože jevy nejsou vzájemně výlučné.
 
 e)  Nezávislé nejsou. Podmíněná pravděpodobnost $0{,}675$ se liší od marginální $0{,}540$. Součin $P(\text{sportuje})\times P(\text{dobrý spánek})$ je $(80/150)\times(81/150)=0{,}288$, kdežto společná pravděpodobnost je $0{,}360$.
 
@@ -974,7 +974,7 @@ c)  Spolužačka tvrdí: „Jevy A a B se vylučují, takže jsou nezávislé.�
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Tipy jsou nezávislé, proto je $P(\text{obě správně})$ rovno $0{,}25\times0{,}25=0{,}0625$, po zaokrouhlení 0,063. Pro „alespoň jednu“ použijeme doplněk „obě špatně“: $0{,}75\times0{,}75=0{,}5625$, tedy $1-0{,}5625=0{,}4375$, po zaokrouhlení 0,438.
 
-b)  V prvním tahu je pravděpodobnost cílového slova $4/10$. Jestliže první kartička cílová byla, zbývají 3 cílové mezi 9 kartičkami. Podle součinového pravidla $(4/10)\times(3/9)=12/90\doteq0{,}133$. Druhý činitel je podmíněná pravděpodobnost, protože první tah změnil složení sady. Při vracení by tahy byly nezávislé: $0{,}4\times0{,}4=0{,}160$.
+b)  V prvním tahu je pravděpodobnost cílového slova $4/10$. Jestliže první kartička cílová byla, zbývají 3 cílové mezi 9 kartičkami. Podle součinového pravidla $(4/10)\times(3/9)=12/90\approx0{,}133$. Druhý činitel je podmíněná pravděpodobnost, protože první tah změnil složení sady. Při vracení by tahy byly nezávislé: $0{,}4\times0{,}4=0{,}160$.
 
 c)  Vylučují-li se jevy, nemohou nastat zároveň a $P(A\cap B)=0$. Mají-li oba kladnou pravděpodobnost, je součin $P(A)\times P(B)$ kladný. Rovnost $P(A\cap B)=P(A)\times P(B)$ proto neplatí a jevy jsou závislé. Odpovídá to i úvaze: dozvíme-li se, že nastal A, víme jistě, že B nenastal; jeden jev tedy o druhém vypovídá.
 :::
@@ -1020,13 +1020,13 @@ a)  Stav má $1000\times0{,}05=50$ lidí, nemá jej 950. Z 50 lidí se stavem m�
 
     :::::
 
-b)  Pozitivní prediktivní hodnota: $40/135\doteq0{,}296$. Negativní prediktivní hodnota: $855/865\doteq0{,}988$. Z lidí s pozitivním výsledkem má stav méně než třetina.
+b)  Pozitivní prediktivní hodnota: $40/135\approx0{,}296$. Negativní prediktivní hodnota: $855/865\approx0{,}988$. Z lidí s pozitivním výsledkem má stav méně než třetina.
 
-c)  $P(\text{pozitivní})$ je $0{,}05\times0{,}80+0{,}95\times0{,}10$, tedy $0{,}040+0{,}095=0{,}135$, což odpovídá 135 z 1 000. Bayesova věta: $0{,}040/0{,}135\doteq0{,}296$.
+c)  $P(\text{pozitivní})$ je $0{,}05\times0{,}80+0{,}95\times0{,}10$, tedy $0{,}040+0{,}095=0{,}135$, což odpovídá 135 z 1 000. Bayesova věta: $0{,}040/0{,}135\approx0{,}296$.
 
-d)  Při prevalenci 20 %: stav má 200 lidí, pozitivních z nich 160; bez stavu 800, falešně pozitivních 80. Pozitivní prediktivní hodnota je $160/240\doteq0{,}667$. Senzitivita a specificita se podle zadání nezměnily. Změnilo se složení skupiny: lidí se stavem přibylo a lidí bez stavu ubylo, takže mezi pozitivními výsledky je více správných a méně falešných.
+d)  Při prevalenci 20 %: stav má 200 lidí, pozitivních z nich 160; bez stavu 800, falešně pozitivních 80. Pozitivní prediktivní hodnota je $160/240\approx0{,}667$. Senzitivita a specificita se podle zadání nezměnily. Změnilo se složení skupiny: lidí se stavem přibylo a lidí bez stavu ubylo, takže mezi pozitivními výsledky je více správných a méně falešných.
 
-e)  Apriorní pravděpodobnost stavu je 0,05 (ve druhé skupině 0,20): pravděpodobnost před tím, než známe výsledek dotazníku. Zde ji určuje prevalence ve skupině. Aposteriorní pravděpodobnost po pozitivním výsledku je 0,296 (ve druhé skupině 0,667), po negativním $10/865\doteq0{,}012$.
+e)  Apriorní pravděpodobnost stavu je 0,05 (ve druhé skupině 0,20): pravděpodobnost před tím, než známe výsledek dotazníku. Zde ji určuje prevalence ve skupině. Aposteriorní pravděpodobnost po pozitivním výsledku je 0,296 (ve druhé skupině 0,667), po negativním $10/865\approx0{,}012$.
 :::
 
 ### 7. Svědek a taxíky
@@ -1041,11 +1041,11 @@ c)  Většina lidí odhaduje hledanou pravděpodobnost přibližně na 0,80. Kte
 d)  Jak by výsledek vyšel, kdyby bylo modrých a zelených taxíků stejně?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Ze 100 taxíků je 15 modrých a 85 zelených. Modrý taxík označí svědek jako modrý v 80 % případů: $15\times0{,}80=12$. Zelený označí chybně jako modrý ve 20 % případů: $85\times0{,}20=17$. Výpověď „modrý“ tedy zazní ve $12+17=29$ případech a jen ve 12 z nich je taxík skutečně modrý: $12/29\doteq0{,}414$.
+a)  Ze 100 taxíků je 15 modrých a 85 zelených. Modrý taxík označí svědek jako modrý v 80 % případů: $15\times0{,}80=12$. Zelený označí chybně jako modrý ve 20 % případů: $85\times0{,}20=17$. Výpověď „modrý“ tedy zazní ve $12+17=29$ případech a jen ve 12 z nich je taxík skutečně modrý: $12/29\approx0{,}414$.
 
 b)  Dosadíme do Bayesovy věty:
 
-    $$\begin{aligned}&P(\text{modrý}\mid\text{řekl modrý})\\&\quad=\dfrac{0{,}15\times0{,}80}{0{,}15\times0{,}80+0{,}85\times0{,}20}\\&\quad=\dfrac{0{,}12}{0{,}12+0{,}17}=\dfrac{0{,}12}{0{,}29}\doteq0{,}414.\end{aligned}$$
+    $$\begin{aligned}&P(\text{modrý}\mid\text{řekl modrý})\\&\quad=\dfrac{0{,}15\times0{,}80}{0{,}15\times0{,}80+0{,}85\times0{,}20}\\&\quad=\dfrac{0{,}12}{0{,}12+0{,}17}=\dfrac{0{,}12}{0{,}29}\approx0{,}414.\end{aligned}$$
 
 c)  Pomíjejí základní četnost: modrých taxíků je ve městě jen 15 %. Číslo 0,80 je $P(\text{řekl modrý}\mid\text{modrý})$, nikoli hledané $P(\text{modrý}\mid\text{řekl modrý})$. Zelených taxíků je tolik, že i pětina chybně určených (17) převýší správně určené modré (12). Navzdory výpovědi je pravděpodobnější, že taxík byl zelený.
 
@@ -1118,7 +1118,7 @@ c)  Určete pravděpodobnost alespoň sedmi správných tipů. Zapište vzorec a
 d)  Student získal 7 bodů. Napište dvěma až třemi větami, co z výsledku c) plyne a co neplyne.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  $n=15$, $\mathrm{π}=1/5=0{,}2$. Střední hodnota $15\times0{,}2=3$ správné tipy; směrodatná odchylka $\sqrt{15\times0{,}2\times0{,}8}=\sqrt{2{,}4}\doteq1{,}549$.
+a)  $n=15$, $\mathrm{π}=1/5=0{,}2$. Střední hodnota $15\times0{,}2=3$ správné tipy; směrodatná odchylka $\sqrt{15\times0{,}2\times0{,}8}=\sqrt{2{,}4}\approx1{,}549$.
 
 b)  `=BINOM.DIST(3;15;0,2;NEPRAVDA)` vrátí 0,250. `=BINOM.DIST(3;15;0,2;PRAVDA)` vrátí 0,648.
 

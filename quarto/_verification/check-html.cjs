@@ -40,6 +40,12 @@ const server = http.createServer((req, res) => {
       const ids = documents[file].ids;
       assert.equal(ids.length, new Set(ids).size, `Duplicate IDs: ${file}`);
       assert.equal(await page.locator('pre.sourceCode.r, div.cell-output-stderr').count(), 0, `Leaked R: ${file}`);
+      // R43: approximate equality uses one symbol, including text and MathML.
+      assert.ok(!(await page.locator('main').textContent()).includes('≐'), `Obsolete approximate equality: ${file}`);
+      const approximateOperators = await page.locator('math').evaluateAll(items => items
+        .filter(m => (m.querySelector('annotation[encoding="application/x-tex"]')?.textContent || '').includes('\\approx'))
+        .filter(m => ![...m.querySelectorAll('mo')].some(op => op.textContent === '≈')).length);
+      assert.equal(approximateOperators, 0, `Approximate equality missing in MathML: ${file}`);
       // Decimal commas written as {,} must stay inside one <mn>, never become a spaced <mo>,</mo>.
       const decimalCommas = await page.evaluate(() => [...document.querySelectorAll('math')].map(m => {
         const tex = m.querySelector('annotation[encoding="application/x-tex"]')?.textContent || '';

@@ -67,7 +67,7 @@ U slovních ordinálních kategorií můžeme hledat prostřední kategorii, pro
 
 $$m=\frac{1}{n}\sum_{i=1}^{n}x_i.$$
 
-$n$ je počet zahrnutých pozorování, $x_i$ jednotlivá hodnota a [sumace](kapitola_02.qmd#sec-sumace) říká, že sčítáme od prvního do posledního pozorování. Násobit $1/n$ znamená dělit $n$. Zde tedy
+$n$ je počet zahrnutých pozorování, $x_i$ jednotlivá hodnota a [sumace](kapitola_02.qmd#sec-sumace) říká, že sčítáme od prvního do posledního pozorování. **Těsný zápis bez znaménka mezi činiteli znamená násobení**: $\frac{1}{n}\sum_{i=1}^{n}x_i$ lze rozepsat jako $\frac{1}{n}\times\sum_{i=1}^{n}x_i$. Součet hodnot tedy násobíme číslem $1/n$, což je totéž jako dělit jej $n$. Zde tedy
 
 $$m=\frac{4+5+5+6+10}{5}=\frac{30}{5}=6\ \text{minut}.$$
 
@@ -252,12 +252,14 @@ Tento odečet se hodí například tehdy, když se ptáme: **„Jaký nejnižš�
 
 **Ordinální příklad: odpočatost.** Vraťme se k šesti odpovědím z [výkladu kumulativních četností](kapitola_02.qmd#sec-kumulativni-cetnosti): „vůbec“, „trochu“, „trochu“, „dost“, „dost“, „zcela“. Pořadí kategorií známe, velikosti rozdílů mezi nimi nikoli.
 
+Značka $\approx$ znamená **přibližnou rovnost**: v následující tabulce jsou procenta zaokrouhlena na jedno desetinné místo. Přesnou rovnost zapisujeme $=$.
+
 ::: {.table-scroll tabindex="0" role="region" aria-label="Kumulativní četnosti odpočatosti; tabulku lze posouvat vodorovně"}
 | Odpočatost | Četnost | Kumulativní četnost |     Kumulativní podíl |
 |:-----------|--------:|--------------------:|----------------------:|
-| Vůbec      |       1 |                   1 | $1/6\doteq16{,}7\,\%$ |
+| Vůbec      |       1 |                   1 | $1/6\approx16{,}7\,\%$ |
 | Trochu     |       2 |                   3 |      $3/6=50{,}0\,\%$ |
-| Dost       |       2 |                   5 | $5/6\doteq83{,}3\,\%$ |
+| Dost       |       2 |                   5 | $5/6\approx83{,}3\,\%$ |
 | Zcela      |       1 |                   6 |     $6/6=100{,}0\,\%$ |
 :::
 
@@ -423,13 +425,13 @@ Rozptyl je ve „čtverečních“ jednotkách (zde v min²), nikoli v původní
 
 **Směrodatná (standardní) odchylka (*standard deviation*)** je odmocnina rozptylu. Pro výběrovou variantu:
 
-$$s=\sqrt{s^2}=\sqrt{5{,}5}\doteq2{,}35\ \text{minuty}.$$
+$$s=\sqrt{s^2}=\sqrt{5{,}5}\approx2{,}35\ \text{minuty}.$$
 
-Značka $\doteq$ znamená přibližnou rovnost: výsledek jsme pro prezentaci zaokrouhlili na dvě desetinná místa. Mezivýpočty nezaokrouhlujeme. **Populační směrodatnou odchylku** značíme $\mathrm{σ}=\sqrt{\mathrm{σ}^2}$, čteme „sigma“. Směrodatná odchylka je mírou vzdáleností od průměru založenou na druhých mocninách; **není totožná s průměrnou absolutní odchylkou**, která zde činí 1,6 minuty. Kvůli druhým mocninám je citlivější ke vzdálenějším hodnotám.
+Výsledek jsme pro prezentaci zaokrouhlili na dvě desetinná místa, proto používáme znak $\approx$. Mezivýpočty nezaokrouhlujeme. **Populační směrodatnou odchylku** značíme $\mathrm{σ}=\sqrt{\mathrm{σ}^2}$, čteme „sigma“. Směrodatná odchylka je mírou vzdáleností od průměru založenou na druhých mocninách; **není totožná s průměrnou absolutní odchylkou**, která zde činí 1,6 minuty. Kvůli druhým mocninám je citlivější ke vzdálenějším hodnotám.
 
 Průměr 6 a směrodatná odchylka 2,35 minuty neříkají, že se každý účastník lišil od průměru právě o 2,35 minuty. Bez dalšího předpokladu o rozdělení také neurčují, jaký podíl pozorování leží mezi $m-s$ a $m+s$. Pravidla pro takové podíly probereme až u [normálního rozdělení](kapitola_04.qmd#sec-pravidlo-normalni). Nulová směrodatná odchylka při alespoň dvou platných údajích znamená, že všechny hodnoty jsou stejné; není tím ale prokázána přesnost měření.
 
-Nestrannost rozptylu se automaticky nepřenáší na jeho odmocninu. V simulaci pro $n=5$ byl průměr výběrových směrodatných odchylek 2,73 minuty, zatímco populační směrodatná odchylka je $\mathrm{σ}=\sqrt{8}\doteq2{,}83$ minuty. Odmocnění je nelineární operace: průměr odmocnin obecně není odmocninou průměru.
+Nestrannost rozptylu se automaticky nepřenáší na jeho odmocninu. V simulaci pro $n=5$ byl průměr výběrových směrodatných odchylek 2,73 minuty, zatímco populační směrodatná odchylka je $\mathrm{σ}=\sqrt{8}\approx2{,}83$ minuty. Odmocnění je nelineární operace: průměr odmocnin obecně není odmocninou průměru.
 
 ## Odolnější shrnutí: medián odchylek, ořezání a winsorizace {#sec-odolne-shrnuti}
 
@@ -551,7 +553,7 @@ $x_i$ je původní hodnota $i$-tého člověka, $y_i$ je jeho nová hodnota. Kon
 
 Přičteme-li ke každé době dvě minuty přípravy, všechny hodnoty se posunou stejně. Průměr, medián i všechny kvantily se zvýší o dvě minuty, ale rozdíly mezi hodnotami zůstanou stejné. Rozpětí, absolutní odchylky, rozptyl a směrodatná odchylka se proto nezmění.
 
-Převedeme-li minuty na sekundy, násobíme každou hodnotu 60. Průměr, medián, kvantily, rozpětí i absolutní odchylky se násobí 60. Směrodatná odchylka rovněž; **rozptyl se násobí** $60^2=3\,600$, protože pracuje se čtverci odchylek. Pro náš příklad dostaneme $m=360$ sekund, $s\doteq140{,}71$ sekundy a $s^2=19\,800$ s². Vyšší číselná směrodatná odchylka po změně jednotky neznamená, že se lidé začali více lišit; odráží pouze změnu jednotky [@howell, oddíl 2.12].
+Převedeme-li minuty na sekundy, násobíme každou hodnotu 60. Průměr, medián, kvantily, rozpětí i absolutní odchylky se násobí 60. Směrodatná odchylka rovněž; **rozptyl se násobí** $60^2=3\,600$, protože pracuje se čtverci odchylek. Pro náš příklad dostaneme $m=360$ sekund, $s\approx140{,}71$ sekundy a $s^2=19\,800$ s². Vyšší číselná směrodatná odchylka po změně jednotky neznamená, že se lidé začali více lišit; odráží pouze změnu jednotky [@howell, oddíl 2.12].
 
 Při **obrácení skórování (*reverse scoring*)** se obrátí i pořadí. Převedeme-li číselné skóry od 0 do 10 pravidlem „nový skór = 10 − původní skór“, jde o lineární transformaci $y_i=10+(-1)x_i$, tedy s $a=10$ a $b=-1$. Průměr i medián se změní stejným způsobem jako jednotlivé skóry, ale směrodatná odchylka zůstane stejná. Kvartily si vymění role: nový 1. kvartil je 10 minus původní 3. kvartil. Obecně se při násobení záporným číslem násobí směrodatná odchylka a rozpětí **absolutní hodnotou** tohoto čísla; nemohou být záporné.
 
@@ -631,7 +633,7 @@ Slovní popis i obě jazykové verze odborného zápisu ukazují tatáž data; v
 
 APA 7 doporučuje volit přesnost podle měření a účelu, nikoli mechanicky ponechávat tolik míst, kolik zobrazuje statistický program. U průměrů a směrodatných odchylek **celočíselných dat** doporučuje zpravidla jedno desetinné místo, u ostatních dvě. Proto v odborné ukázce uvádíme počet slov jako 7.0 a 2.6, ale dobu spánku jako 7.06 a 1.29. Počty osob zůstávají celá čísla [@apaNumbers2024, s. 2].
 
-**Pro procenta v této učebnici volíme zpravidla jedno desetinné místo**, například $33/36\times100\doteq91{,}7\,\%$. Je to naše redakční konvence, nikoli univerzální požadavek APA na všechna procenta. U malých souborů uvádíme také četnost a základ procenta: „33 z 36 účastníků (91,7 %)“. Procenta po zaokrouhlení nemusejí dávat přesně 100 %.
+**Pro procenta v této učebnici volíme zpravidla jedno desetinné místo**, například $33/36\times100\approx91{,}7\,\%$. Je to naše redakční konvence, nikoli univerzální požadavek APA na všechna procenta. U malých souborů uvádíme také četnost a základ procenta: „33 z 36 účastníků (91,7 %)“. Procenta po zaokrouhlení nemusejí dávat přesně 100 %.
 
 Pro srovnatelné hodnoty v tabulce zachováme stejný počet desetinných míst. V přesném anglickém formátu APA se před desetinnou tečkou vynechává nula u statistik, které nemohou přesáhnout hodnotu 1, například u podílu .92; u směrodatné odchylky 0.85 zůstává. Český výklad používá zápis podílu 0,92 [@apaManual2020, oddíl 6.36]. Mezivýpočty ponecháváme v plné přesnosti a zaokrouhlujeme až sdělovaný výsledek. Přesnost výpočtu není přesností měřicího nástroje; pro kontrolu ručního postupu můžeme ukázat více číslic než ve výsledné zprávě určené k prezentaci či publikaci.
 
@@ -677,7 +679,7 @@ V čitateli průměrujeme třetí mocniny odchylek. Ve jmenovateli nejprve spoč
 
 Pro náš soubor časových hodnot 4, 5, 5, 6, 10 činí odchylky od průměru −2, −1, −1, 0, 4. Jejich třetí mocniny jsou −8, −1, −1, 0, 64; součet těchto třetích mocnin je 54 a průměr $54/5=10{,}8$ min³. Čtverce odchylek jsou 4, 1, 1, 0, 16 a jejich průměr je $22/5=4{,}4$ min². Dostaneme tedy
 
-$$g_1=\frac{10{,}8}{(\sqrt{4{,}4})^3}\doteq1{,}17.$$
+$$g_1=\frac{10{,}8}{(\sqrt{4{,}4})^3}\approx1{,}17.$$
 
 Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá doba 10 minut výrazně převažuje nad menšími zápornými odchylkami. U souměrného souboru se třetí mocniny protilehlých odchylek vyruší. Obrácené tvrzení však nemusí platit: **nulová momentová šikmost sama nedokazuje souměrnost**. Také silně nesouměrné příspěvky se mohou v součtu vyrušit. Velikost koeficientu nemá univerzální hranice oddělující „dobrá“ a „špatná“ data.
 
@@ -688,7 +690,7 @@ Kladný výsledek zde vyjadřuje převahu kladných třetích mocnin: dlouhá do
 $$g_2=\frac{\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^4}
 {\left(\frac{1}{n}\sum_{i=1}^{n}(x_i-m)^2\right)^2}-3.$$
 
-Čtvrté mocniny našich odchylek jsou 16, 1, 1, 0, 256. Jejich součet je 274 a průměr 54,8 min⁴. Druhá mocnina 4,4 min² je 19,36 min⁴. Špičatost je tedy $54{,}8/19{,}36\doteq2{,}83$ a exces $g_2\doteq-0{,}17$. Výsledek je bez jednotky. Záporný exces neznamená záporný rozptyl; je to porovnání špičatosti s referenční hodnotou 3.
+Čtvrté mocniny našich odchylek jsou 16, 1, 1, 0, 256. Jejich součet je 274 a průměr 54,8 min⁴. Druhá mocnina 4,4 min² je 19,36 min⁴. Špičatost je tedy $54{,}8/19{,}36\approx2{,}83$ a exces $g_2\approx-0{,}17$. Výsledek je bez jednotky. Záporný exces neznamená záporný rozptyl; je to porovnání špičatosti s referenční hodnotou 3.
 
 Samotné slovo špičatost může svádět k představě, že koeficient měří ostrost či výšku vrcholu. **Tato interpretace je nesprávná.** Čtvrté mocniny zdůrazňují velmi vzdálené hodnoty vzhledem k celkové variabilitě. Špičatost proto informuje o krajních odchylkách, sama však neurčuje tvar vrcholu [@westfall2014, s. 191–195].
 
@@ -768,10 +770,10 @@ Pro tvar průběžného příkladu jsou na listu `Priklad` ve F2:F6 třetí mocn
 ::: table-scroll
 | Buňka | Český vzorec | Výsledek |
 |:-----------------------|:-----------------------|-----------------------:|
-| J2 | `=PRŮMĚR(Priklad!F2:F6)/(ODMOCNINA(Priklad!J14)^3)` | $g_1\doteq1{,}17$ |
-| J3 | `=SKEW.P(Priklad!A2:A6)` | $g_1\doteq1{,}17$ |
+| J2 | `=PRŮMĚR(Priklad!F2:F6)/(ODMOCNINA(Priklad!J14)^3)` | $g_1\approx1{,}17$ |
+| J3 | `=SKEW.P(Priklad!A2:A6)` | $g_1\approx1{,}17$ |
 | J4 | `=SKEW(Priklad!A2:A6)` | korigovaná šikmost 1,74 |
-| J5 | `=PRŮMĚR(Priklad!G2:G6)/(Priklad!J14^2)-3` | $g_2\doteq-0{,}17$ |
+| J5 | `=PRŮMĚR(Priklad!G2:G6)/(Priklad!J14^2)-3` | $g_2\approx-0{,}17$ |
 | J6 | `=KURT(Priklad!A2:A6)` | korigovaný exces 3,32 |
 :::
 
@@ -828,7 +830,7 @@ Dále uvažujte jedenáct **různých** časů: jejich interpolovaný 17. percen
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Medián je $(1+3)/2=2$. První kvartil má pozici $1+5\times0{,}25=2{,}25$; mezi druhou a třetí hodnotou 1 vyjde opět 1. Třetí kvartil má pozici $1+5\times0{,}75=4{,}75$, tedy $3+0{,}75(4-3)=3{,}75$. Mezikvartilové rozpětí je $3{,}75-1=2{,}75$ bodu. Tři ze šesti skórů jsou nejvýše rovny 1, takže jeho percentilové pořadí je 50. Pořadí je relativní postavení daného skóru; percentil je hodnota na škále vypočtená pro zvolenou úroveň. Medián 2 a percentilové pořadí 50 pro skór 1 se nevylučují: používáme dva různé postupy a data obsahují shody.
 
-U jedenácti různých časů je pozice $1+10\times0{,}17=2{,}7$. Výsledek leží přísně mezi druhou a třetí hodnotou, takže jsou mu nejvýše rovny **dva časy**. Jde o $2/11\times100\doteq18{,}2$ % pozorování, nikoli 17 %. K určení tohoto počtu a podílu stačí jejich pořadí a informace, že jsou všechny různé; konkrétní časy bychom potřebovali až pro číselnou hodnotu percentilu v minutách.
+U jedenácti různých časů je pozice $1+10\times0{,}17=2{,}7$. Výsledek leží přísně mezi druhou a třetí hodnotou, takže jsou mu nejvýše rovny **dva časy**. Jde o $2/11\times100\approx18{,}2$ % pozorování, nikoli 17 %. K určení tohoto počtu a podílu stačí jejich pořadí a informace, že jsou všechny různé; konkrétní časy bychom potřebovali až pro číselnou hodnotu percentilu v minutách.
 :::
 
 ### 4. Co je na ordinální škále přípustné
@@ -848,7 +850,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U05_variabilita` A2:A
 Pro tři doby 2, 4 a 6 minut vypočtěte průměr, jednotlivé odchylky, průměrnou absolutní odchylku, součet čtverců odchylek, výběrový rozptyl a směrodatnou odchylku. Proč nelze variabilitu měřit průměrem podepsaných odchylek? Kolik stupňů volnosti mají tyto odchylky a jak určíte třetí, znáte-li první dvě?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průměr jsou nulové, přestože hodnoty se liší. Absolutní odchylky 2, 0, 2 dávají průměr $4/3\doteq1{,}33$ minuty. Čtverce 4, 0, 4 mají součet 8 min². Výběrový rozptyl je $8/(3-1)=4$ min² a směrodatná odchylka $\sqrt4=2$ minuty. Průměr čtverců s dělením $n$ by byl $8/3\doteq2{,}67$ min²; jde o jinou popisnou konvenci, nikoli totéž $s^2$. Odchylky mají $3-1=2$ stupně volnosti. Po určení −2 a 0 musí třetí odchylka být 2, aby součet byl nula; do rozptylu přesto vstupují všechny tři.
+Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průměr jsou nulové, přestože hodnoty se liší. Absolutní odchylky 2, 0, 2 dávají průměr $4/3\approx1{,}33$ minuty. Čtverce 4, 0, 4 mají součet 8 min². Výběrový rozptyl je $8/(3-1)=4$ min² a směrodatná odchylka $\sqrt4=2$ minuty. Průměr čtverců s dělením $n$ by byl $8/3\approx2{,}67$ min²; jde o jinou popisnou konvenci, nikoli totéž $s^2$. Odchylky mají $3-1=2$ stupně volnosti. Po určení −2 a 0 musí třetí odchylka být 2, aby součet byl nula; do rozptylu přesto vstupují všechny tři.
 :::
 
 ### 6. Co dokládá simulace korekce
@@ -878,7 +880,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Orezani` A2:A11.
 Použijte deset časů 2, 3, 4, 5, 5, 6, 7, 8, 9, 31 minut. Nyní předem stanovíme ořezání **20 % na každém konci**. Vypočtěte ořezaný průměr a průměr po odpovídající winsorizaci. Kolik hodnot vstupuje do každého výpočtu a znamená postup, že jsou vynechané hodnoty chybné? Dále určete pouze počty upravovaných a ponechaných hodnot při 10% ořezání souboru 18 hodnot. Proč se skutečný odstraněný podíl liší od 20 %?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Na každém konci upravujeme dvě hodnoty, celkem tedy čtyři. Při ořezání zůstává 4, 5, 5, 6, 7, 8, součet 35 a průměr $35/6\doteq5{,}83$ minuty. Při winsorizaci nahradíme 2 a 3 hodnotou 4 a 9 a 31 hodnotou 8. Pro výpočet použijeme 4, 4, 4, 5, 5, 6, 7, 8, 8, 8; součet je 59 a průměr $59/10=5{,}9$ minuty. První výpočet používá šest hodnot, druhý deset. Shoda winsorizovaného průměru s výsledkem 5,9 minuty pro 10% winsorizaci ve výkladu je náhodná vlastnost těchto dat; obecně se oba výsledky liší. Pravidlo samo neprokazuje chybu žádného původního záznamu a nenahrazuje jeho kontrolu. Původní údaje zachováme a úpravu popíšeme. U 18 hodnot je počet na jednom konci $0{,}10\times18=1{,}8$, po zaokrouhlení dolů 1. Celkem vynecháme 2 a ponecháme 16; odstraněný podíl je $2/18\times100\doteq11{,}1$ %, nikoli 20 %, protože na každé straně pracujeme s celými pozorováními.
+Na každém konci upravujeme dvě hodnoty, celkem tedy čtyři. Při ořezání zůstává 4, 5, 5, 6, 7, 8, součet 35 a průměr $35/6\approx5{,}83$ minuty. Při winsorizaci nahradíme 2 a 3 hodnotou 4 a 9 a 31 hodnotou 8. Pro výpočet použijeme 4, 4, 4, 5, 5, 6, 7, 8, 8, 8; součet je 59 a průměr $59/10=5{,}9$ minuty. První výpočet používá šest hodnot, druhý deset. Shoda winsorizovaného průměru s výsledkem 5,9 minuty pro 10% winsorizaci ve výkladu je náhodná vlastnost těchto dat; obecně se oba výsledky liší. Pravidlo samo neprokazuje chybu žádného původního záznamu a nenahrazuje jeho kontrolu. Původní údaje zachováme a úpravu popíšeme. U 18 hodnot je počet na jednom konci $0{,}10\times18=1{,}8$, po zaokrouhlení dolů 1. Celkem vynecháme 2 a ponecháme 16; odstraněný podíl je $2/18\times100\approx11{,}1$ %, nikoli 20 %, protože na každé straně pracujeme s celými pozorováními.
 :::
 
 ### 9. Krabicový graf
@@ -918,7 +920,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `Data` C2:C37.
 V sešitu použijte počty vybavených slov z listu `Data`, buňky C2:C37. Určete počet platných údajů, průměr, medián, výběrovou směrodatnou odchylku, 1. a 3. kvartil a mezikvartilové rozpětí. Napište tři až čtyři věty pro čtenáře bez statistického školení a uveďte jedno omezení interpretace. Nakonec zapište průměr, směrodatnou odchylku a medián tak, jak byste je uvedli v českém odborném textu se značkami APA 7.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Vzorce jsou `=POČET(Data!C2:C37)`, `=PRŮMĚR(Data!C2:C37)`, `=MEDIAN(Data!C2:C37)`, `=SMODCH.VÝBĚR.S(Data!C2:C37)` a `=PERCENTIL.INC(Data!C2:C37;0,25)`, respektive tentýž vzorec s 0,75. Výsledky jsou $n=36$, $m\doteq7{,}03$, medián 7, $s\doteq2{,}59$, 1. kvartil 5,75 a 3. kvartil 9 slov. Jejich rozdíl je 3,25 slova.
+Vzorce jsou `=POČET(Data!C2:C37)`, `=PRŮMĚR(Data!C2:C37)`, `=MEDIAN(Data!C2:C37)`, `=SMODCH.VÝBĚR.S(Data!C2:C37)` a `=PERCENTIL.INC(Data!C2:C37;0,25)`, respektive tentýž vzorec s 0,75. Výsledky jsou $n=36$, $m\approx7{,}03$, medián 7, $s\approx2{,}59$, 1. kvartil 5,75 a 3. kvartil 9 slov. Jejich rozdíl je 3,25 slova.
 
 Možný popis: „V souboru 36 účastníků připadalo na jednoho člověka v průměru 7,03 vybaveného slova z dvanácti. Prostřední výsledek v seřazené řadě byl sedm slov. Rozdíly mezi výkony shrnuje směrodatná odchylka 2,59 slova, která vyjadřuje míru vzdáleností od průměru; prostřední část rozdělení vymezují vypočtené hodnoty 5,75 a 9 slov. Výsledky popisují jen tento soubor a samy o sobě nevypovídají o paměťovém výkonu všech studentů.“ Podle účelu zprávy můžeme poslední číselný údaj nahradit grafem; čtenář nemá z interpolovaného kvartilu usuzovat, že někdo vybavil část slova.
 
@@ -934,7 +936,7 @@ Tři kategorie mají četnosti 4, 2 a 2. Vypočtěte entropii se základem logar
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Celkem je osm případů, podíly jsou 0,5; 0,25; 0,25. Jejich záporné dvojkové logaritmy jsou 1, 2, 2. Vážený průměr je $0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5$ bitu. Kategorie s nulovou četností přidá nulový příspěvek, takže hodnota zůstane stejná; změní se však počet vymezených kategorií, vůči němuž bychom posuzovali teoretické maximum. Při úplné koncentraci je jediný nenulový podíl 1 a $\log_2 1=0$, takže entropie činí 0 bitů.
 
-Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\doteq0{,}946$, tedy přibližně 94,6 % maxima; pro čtyři $1{,}5/2=0{,}75$, tedy 75 % maxima. Rozdíl vznikl změnou referenčního maxima, nikoli změnou pozorovaných četností. Pokud všichni patří do jediné ze čtyř vymezených kategorií, je i normalizovaná entropie $0/2=0$.
+Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\approx0{,}946$, tedy přibližně 94,6 % maxima; pro čtyři $1{,}5/2=0{,}75$, tedy 75 % maxima. Rozdíl vznikl změnou referenčního maxima, nikoli změnou pozorovaných četností. Pokud všichni patří do jediné ze čtyř vymezených kategorií, je i normalizovaná entropie $0/2=0$.
 :::
 
 ### 14. Nepovinně: nulová šikmost a stejný vrchol
@@ -946,5 +948,5 @@ Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body.
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Počet hodnot je 20 a součet $4(-2)+5(-1)+10(1)+1(3)=0$, tedy průměr 0. Odchylky jsou totožné s hodnotami. Součet třetích mocnin je $4(-8)+5(-1)+10(1)+1(27)=0$. Rozptyl s dělením $n$ je $(4\times4+5\times1+10\times1+1\times9)/20=2$, takže jmenovatel koeficientu není nulový a $g_1=0$. Soubor přesto není souměrný: například hodnota 3 nemá protějšek −3 a četnosti hodnot −1 a 1 se liší. Nulový součet třetích mocnin je slabší podmínka než souměrnost.
 
-Špičatost používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: špičatost je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: špičatost je $1{,}8/0{,}36^2\doteq13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot. Výšku sloupce nelze zaměňovat za špičatost.
+Špičatost používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: špičatost je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: špičatost je $1{,}8/0{,}36^2\approx13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot. Výšku sloupce nelze zaměňovat za špičatost.
 :::

@@ -1,5 +1,38 @@
 # Autorská dokumentace
 
+## 2026-10-17 — Jednotná přibližná rovnost a první výklad těsného násobení
+
+Podle schváleného [R43](../docs/rozhodnuti/spolecne-konvence.md#r43-priblizna-rovnost)
+nahrazeno 106 výskytů původního symbolu přibližné rovnosti: 22 v kapitole 3,
+37 v kapitole 5, 37 v kapitole 6 a 10 v přehledu značení. Kapitola 4
+a generátor jejího grafu konstrukce Q–Q již používaly ≈. Ve studentských
+QMD nezůstal původní znak ani příkaz; prohledány i zdroje grafů a XML
+šesti datových sešitů, kde další výskyty nebyly. Historické doklady
+nejsou zpětně přepisovány. Prezentace a poznámky mimo webovou učebnici
+nebyly předmětem této kontroly.
+
+Význam ≈ vysvětlen před prvním použitím v tabulce kumulativních podílů
+kapitoly 3; přehled značení odkazuje na toto místo. Těsné násobení
+vysvětleno při prvním výskytu, ve vzorci pro průměr (1/n krát součet),
+a jednou připomenuto u zpětného převodu z-skóru v kapitole 4 s odkazem.
+Doplněn přehled násobení a mapy návazností. Didaktická revize ověřila,
+že čtenář zná oba činitele a vazbu násobení 1/n na dělení počtem hodnot.
+
+Ověření: render celé knihy, číselné kontroly kapitol 3–6 včetně řešení,
+kontrola dokumentačních map (43 rozhodnutí, bez chyb) a git diff --check.
+U kapitol 5 a 6 navíc přesné porovnání proti předchozímu obsahu po
+normalizaci jediného změněného symbolu. Vizuálně zkontrolován první
+výklad násobení, jeho připomenutí, tabulka s ≈, řádek přehledu značení
+a graf konstrukce Q–Q; oba dotčené odstavce také na mobilní šířce 390 px.
+Kontrola HTML nově hlídá nepřítomnost původního znaku a správný operátor
+≈ v MathML pro vzorce s příkazem approx.
+Celková kontrola HTML prošla na 11 stránkách včetně 68 řešení, místních
+odkazů, přehledů, klávesnice, mobilní šířky 390 px a navigace bez
+JavaScriptu i přes file://; bez chyb.
+Kontrola kapitoly 3 vyžadovala výslovné nastavení LC_CTYPE na .UTF-8;
+po něm prošla. Render doběhl i přes úvodní upozornění R na LC_*.
+Excel nebyl znovu spuštěn; vstupy ani vzorce sešitů se neměnily.
+
 ## 2026-10-17 — Zpřesnění polohy popisků kapitoly 2
 
 Na základě následné vizuální připomínky autora přiblížen popisek
