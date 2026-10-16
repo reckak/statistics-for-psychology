@@ -40,6 +40,14 @@ const server = http.createServer((req, res) => {
       const ids = documents[file].ids;
       assert.equal(ids.length, new Set(ids).size, `Duplicate IDs: ${file}`);
       assert.equal(await page.locator('pre.sourceCode.r, div.cell-output-stderr').count(), 0, `Leaked R: ${file}`);
+      // Decimal commas written as {,} must stay inside one <mn>, never become a spaced <mo>,</mo>.
+      const decimalCommas = await page.evaluate(() => [...document.querySelectorAll('math')].map(m => {
+        const tex = m.querySelector('annotation[encoding="application/x-tex"]')?.textContent || '';
+        const marked = (tex.match(/\{,\}/g) || []).length;
+        const inNumbers = [...m.querySelectorAll('mn')].reduce((sum, n) => sum + (n.textContent.match(/,/g) || []).length, 0);
+        return { tex, marked, inNumbers };
+      }).filter(x => x.marked !== x.inNumbers));
+      assert.deepEqual(decimalCommas, [], `Decimal commas split in MathML: ${file}`);
       for (const width of [1360, 1920]) {
         await page.setViewportSize({ width, height: 1000 });
         const layout = await page.locator('main').boundingBox();
