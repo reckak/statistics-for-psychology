@@ -221,6 +221,33 @@ ch4_draw('pasma-skoru', {
     }
   }
 },width=8.5,height=8.4)
+ch4_norm_x <- c(11,12,12,13,14,14,14,16,17,19,22,26,31,39,52)
+ch4_norm_z <- qnorm((rank(ch4_norm_x)-.5)/length(ch4_norm_x))
+ch4_draw('normalizace', {
+  par(mar=c(4.3,4.6,2.6,4.6))
+  x <- ch4_norm_x; z <- ch4_norm_z; g <- 2.6; w <- 7.6
+  ux <- function(v) (v-10)/45; uz <- function(v) (v+2.25)/4.5
+  hx <- hist(x,breaks=seq(10,55,5),right=FALSE,plot=FALSE)
+  hz <- hist(z,breaks=seq(-2,2,.5),right=FALSE,plot=FALSE)
+  plot(NA,xlim=c(-g-w,g+w),ylim=c(0,1),xaxs='i',yaxs='i',axes=FALSE,xlab='',ylab='')
+  abline(h=ux(seq(10,55,5)),col='#EEF2F4'); box(bty='l',col='#223744'); box(bty='7',col='#223744')
+  rect(-g-hx$counts,ux(head(hx$breaks,-1)),-g,ux(hx$breaks[-1]),col=ch4_fill,border=ch4_blue,lwd=.8)
+  rect(g,uz(head(hz$breaks,-1)),g+hz$counts,uz(hz$breaks[-1]),col=ch4_hi,border=ch4_hi_text,lwd=.8)
+  # Tied values sit side by side; each pair of dots is joined by a translucent line.
+  tie <- ave(x,x,FUN=function(v) seq_along(v)-(length(v)+1)/2)*.32
+  xl <- -g+.75+tie; xr <- g-.75+tie
+  segments(xl,ux(x),xr,uz(z),col=adjustcolor(ch4_gray,.5),lwd=1.3)
+  points(xl,ux(x),pch=21,bg=ch4_blue,col='white',cex=1.25)
+  points(xr,uz(z),pch=21,bg=ch4_hi_text,col='white',cex=1.25)
+  axis(2,at=ux(seq(10,50,10)),labels=seq(10,50,10))
+  axis(4,at=uz(-2:2),labels=c('−2','−1','0','1','2'))
+  mtext('Doba řešení (s)',side=2,line=2.8,las=0); mtext('z-skór po normalizaci',side=4,line=2.8,las=0)
+  cnt <- 0:7
+  axis(1,at=c(-g-cnt,g+cnt),labels=c(cnt,cnt))
+  mtext('Četnost',side=1,line=2.5)
+  mtext('Původní doby',side=3,line=.6,at=-g-w/2,font=2)
+  mtext('Po normalizaci',side=3,line=.6,at=g+w/2,font=2)
+},width=8,height=5.6)
 ch4_draw('qq-konstrukce', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,9),xaxs='i',yaxs='i')
   box_label<-function(x,y,w,h,label,fill=ch4_fill) {

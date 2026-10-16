@@ -3139,3 +3139,27 @@ kontroly `check-html.cjs`. Hodnoty z `pnorm`: 0,841345; 0,977250; 0,135905.
 
 Ověření: render kapitoly 4, `check-html.cjs`, vizuální kontrola tří SVG
 a stránky na šířce 1360 a 390 px. Celá kniha nebyla renderována.
+
+## Kapitola 4: názorná normalizace rozdělení (2026-10-16)
+
+Na žádost autora oddíl `sec-normalizace` nově ukazuje postup na patnácti
+vlastních ilustračních dobách řešení (11–52 s, pravý chvost, shody): tabulka
+`tbl-normalizace-04` převádí každou různou hodnotu přes kompromisní
+percentilové pořadí z kapitoly 3 na z-skór funkcí `NORM.S.INV`. Text
+zdůvodňuje kompromisní konvenci (inkluzivní by dala 100 % a NORM.S.INV(1)
+není definováno) a navazuje na podíly (i − 0,5)/n u Q–Q grafu. Původní věta
+„konkrétní provedení zde neprobíráme“ byla nahrazena; tvorba norem ani
+samostatné cvičení se nepřidávají.
+
+Obrázek `fig-normalizace-04` (`scripts/kapitola_04.R`, `normalizace`) je
+zrcadlový histogram podle autorova vzoru: hodnoty na svislých osách,
+původní doby se sloupci doleva, z-skóry doprava, uprostřed mezera s body
+jednotlivých hodnot spojenými poloprůhlednými čarami. Nový vstupní list
+`Normalizace` v `data/kapitola_04.xlsx`.
+
+Ověření: `check-chapter-04.R` nezávisle přepočítává tabulku (pořadí, z,
+průměr ≈ 0, SD 0,99, kroky 0,55 a 0,72) a nově čeká 17 SVG; při této
+příležitosti opravena očekávaná hodnota, kterou předchozí přidání obrázku
+`mezi` nechalo na 15. Sešit přestavěn a ověřen `build-workbooks.ps1
+-Chapter 4 -Verify`; render celé knihy a `check-html.cjs` (17 obrázků
+kapitoly 4, nový obrázek v kontrole mobilního zobrazení).

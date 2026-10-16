@@ -382,7 +382,45 @@ Svislé čáry v @fig-pasma-skoru vymezují pásma, jejichž čísla jsou pod os
 
 ### Standardizace, normalizace a percentilové pořadí {#sec-normalizace}
 
-V reálných testových normách se nepoužívá vždy prostý lineární převod hrubého skóru. **Normalizací rozdělení (*rank-based normal-score transformation*)** zde rozumíme převod založený na pořadí: poloze v původním souboru se přiřadí odpovídající kvantil normálního modelu. Ten může následně dostat například měřítko T-skórů. Takový převod mění rozestupy mezi hodnotami; kvůli konečnému souboru a shodným hodnotám nemusí vytvořit přesné normální rozdělení. Je to jiný postup než standardizace; jeho konkrétní provedení zde neprobíráme.
+V testových normách se nepoužívá pouze prostý lineární převod hrubého skóru. **Normalizací rozdělení (*rank-based normal-score transformation*)** zde rozumíme převod založený na pořadí: poloze v původním souboru se přiřadí odpovídající kvantil normálního modelu. Ten může následně dostat například měřítko T-skórů. Takový převod mění rozestupy mezi hodnotami; kvůli konečnému souboru a shodným hodnotám nemusí vytvořit přesné normální rozdělení. Je to jiný postup než standardizace.
+
+Princip si ukážeme na patnácti dobách řešení úlohy v sekundách: 11, 12, 12, 13, 14, 14, 14, 16, 17, 19, 22, 26, 31, 39 a 52. Většina lidí skončila do 20 sekund, několik jich potřebovalo mnohem déle; rozdělení má dlouhý pravý chvost. Postupujeme ve dvou krocích:
+
+1. Každé hodnotě přiřadíme [kompromisní percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi): počet menších hodnot plus polovinu počtu shodných vydělíme $n=15$ a vynásobíme 100.
+2. Pořadí vydělené stem použijeme jako podíl vlevo a funkcí `NORM.S.INV` z oddílu o [modelovém percentilu](#sec-normalni-kvantil) najdeme odpovídající z-skór.
+
+::: {.table-scroll .chapter-04-wide role="region" aria-label="Normalizace patnácti dob přes kompromisní percentilové pořadí" tabindex="0"}
+
+| Doba (s) | Počet menších | Počet shodných | Kompromisní percentilové pořadí | z-skór po normalizaci |
+|---:|---:|---:|---:|---:|
+| 11 | 0 | 1 | 3,3 | −1,834 |
+| 12 | 1 | 2 | 13,3 | −1,111 |
+| 13 | 3 | 1 | 23,3 | −0,728 |
+| 14 | 4 | 3 | 36,7 | −0,341 |
+| 16 | 7 | 1 | 50,0 | 0,000 |
+| 17 | 8 | 1 | 56,7 | 0,168 |
+| 19 | 9 | 1 | 63,3 | 0,341 |
+| 22 | 10 | 1 | 70,0 | 0,524 |
+| 26 | 11 | 1 | 76,7 | 0,728 |
+| 31 | 12 | 1 | 83,3 | 0,967 |
+| 39 | 13 | 1 | 90,0 | 1,282 |
+| 52 | 14 | 1 | 96,7 | 1,834 |
+
+: Normalizace závisí jen na pořadí: jedna sekunda mezi 11 a 12 s i třináct sekund mezi 39 a 52 s se promítnou do podobně velkých kroků z-skóru. {#tbl-normalizace-04}
+
+:::
+
+Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní pořadí je $(4+3/2)/15\times100\approx36{,}7$ a `=NORM.S.INV(0,3667)` vrátí přibližně −0,341. Všechny tři shodné doby dostanou stejný z-skór. Kompromisní konvenci volíme proto, že nikdy nedá pořadí 0 ani 100. Inkluzivní konvence by nejdelší době přiřadila 100 % a `NORM.S.INV(1)` není definováno. Bez shodných hodnot dává kompromisní konvence podíly $(i-0{,}5)/n$, tedy tytéž, které později použijeme pro [Q–Q graf](#sec-excel-qq).
+
+::: {.chapter-04-figure role="region" aria-label="Histogramy dob před normalizací a po ní se spojnicemi jednotlivých hodnot" tabindex="0"}
+
+![Normalizace zachová pořadí, ale změní rozestupy: dlouhý pravý chvost se stáhne a shluk krátkých dob se roztáhne.](../assets/chapter-04/plots/normalizace.svg){#fig-normalizace-04 fig-alt="Zrcadlový histogram. Vlevo vodorovné sloupce původních dob od 10 do 55 sekund, nejvíce sedm dob mezi 10 a 15 sekundami a jednotlivé dlouhé doby až 52 sekund. Vpravo sloupce z-skórů po normalizaci od −2 do 2, souměrnější rozložení s nejvýše třemi hodnotami v intervalu. Uprostřed jsou body jednotlivých hodnot vlevo a vpravo spojené čarami: čáry od krátkých dob se rozbíhají, čáry od dlouhých dob se sbíhají."}
+
+:::
+
+V @fig-normalizace-04 jsou hodnoty na svislých osách, vlevo původní doby a vpravo z-skóry. Uprostřed spojuje čára každou dobu s jejím z-skórem. Čáry se nikde nekříží: pořadí zůstává stejné. Od krátkých dob 11 až 14 sekund se ale rozbíhají, protože tyto blízké hodnoty představují velkou část pořadí. Od dlouhých dob se sbíhají: rozdíl 13 sekund mezi 39 a 52 sekundami odpovídá kroku z-skóru 0,55, kdežto jediná sekunda mezi 11 a 12 sekundami kroku 0,72. Pravý histogram je proto souměrnější než levý. Přesně normální není: shodné doby mají stejný z-skór a u 15 hodnot nemůže z-skór přesáhnout ±1,834. Normalizované hodnoty mají průměr přibližně 0 a směrodatnou odchylku 0,99. Naproti tomu [standardizace](#sec-standardizace) v @fig-standardizace-04 tvar rozdělení nezměnila.
+
+Skutečné normy testů vycházejí z velkých normativních souborů a jejich konkrétní postup popisuje manuál testu. Princip je však stejný: o výsledném skóru rozhoduje poloha v referenční skupině, nikoli původní rozestupy hrubých skórů.
 
 Normálně vypadající standardní skóry proto samy nedokazují, že původní hrubé skóry nebo měřená psychologická vlastnost mají normální rozdělení. Při práci se skutečným testem použijeme jeho normy, věkové členění a převodní pravidla; nepřepočítáváme automaticky všechny skóry pomocí jednoho průměru a směrodatné odchylky.
 

@@ -64,6 +64,7 @@ export const inputs = {
   4: [
     item('Z_skory','Výklad: dvě různé referenční skupiny',['Test','Skór (body)','Průměr (body)','Směrodatná odchylka (body)'],[['A',60,50,10],['B',42,30,6]]),
     vector('Standardizace','Výklad: standardizace pěti časů','Doba (min)',[4,5,5,6,10]),
+    vector('Normalizace','Výklad: normalizace rozdělení přes pořadí','Doba řešení (s)',[11,12,12,13,14,14,14,16,17,19,22,26,31,39,52],'Patnáct seřazených dob; převod přes kompromisní percentilové pořadí a NORM.S.INV ukazuje tabulka ve výkladu.'),
     item('Modely','Výklad: poloha a šířka normálního modelu',['Model','Průměr (body)','Směrodatná odchylka (body)'],[['Základní',50,10],['Posunutý',65,10],['Širší',50,15]]),
     item('Skaly','Výklad a cvičení 7: lineární převody',['Škála','Průměr','Směrodatná odchylka'],[['z',0,1],['T',50,10],['IQ',100,15],['Subtest',10,3]]),
     item('U01_reference','Cvičení 1',['Skupina','Skór (body)','Průměr (body)','Směrodatná odchylka (body)','Z pro zpětný převod'],[['A',62,50,8,-.75],['B',62,65,6,null]]),
