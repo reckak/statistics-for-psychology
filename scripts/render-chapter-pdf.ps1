@@ -1,10 +1,10 @@
 ﻿<#
 .SYNOPSIS
-Render chapter 3 to PDF on explicit request; the HTML build never calls this script.
+Render a supported chapter to PDF on explicit request; never called by the HTML build.
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet(3)][int]$Chapter = 3,
+    [ValidateSet(3, 4)][int]$Chapter = 3,
     [string]$QuartoPath,
     [string]$RscriptPath
 )
@@ -34,8 +34,14 @@ try {
     Copy-Item -LiteralPath "assets/chapter-$number" -Destination "$build/assets" -Recurse -Force
     Copy-Item -LiteralPath 'references.bib' -Destination $build -Force
     Copy-Item -LiteralPath 'styles/apa.csl' -Destination "$build/apa.csl" -Force
-    Copy-Item -LiteralPath 'scripts/pdf/chapter.lua', 'scripts/pdf/layout.typ' -Destination $build -Force
-    Copy-Item -LiteralPath 'scripts/pdf/chapter.yml' -Destination "$build/_quarto.yml" -Force
+    Copy-Item -LiteralPath 'scripts/pdf/chapter.lua' -Destination $build -Force
+    $config = [IO.File]::ReadAllText((Join-Path $repo 'scripts/pdf/chapter.yml'))
+    [IO.File]::WriteAllText("$build/_quarto.yml", $config.Replace('@NN@', $number), $utf8)
+    $layout = [IO.File]::ReadAllText((Join-Path $repo 'scripts/pdf/layout.typ'))
+    $layout = $layout.Replace('@CHAPTER@', [string]$Chapter).Replace('@OFFSET@', [string]($Chapter - 1))
+    # Chapter 4 contains short lookup tables; keep each table on one page.
+    if ($Chapter -eq 4) { $layout += "`n#show table: it => block(breakable: false, it)`n" }
+    [IO.File]::WriteAllText("$build/layout.typ", $layout, $utf8)
     $source = [IO.File]::ReadAllText((Join-Path $repo "quarto/kapitola_$number.qmd"))
     # Adapt the one instruction that otherwise refers to the web's disclosure control.
     $source = $source.Replace('Řešení otevírejte až po vlastním pokusu.', 'Řešení v závěrečné části čtěte až po vlastním pokusu.')

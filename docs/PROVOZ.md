@@ -36,27 +36,29 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitoly 3. Z kořene projektu v PowerShellu spusťte:
+a ověřen export kapitol 3 a 4. Z kořene projektu v PowerShellu spusťte
+příkaz pro požadovanou kapitolu, například:
 
 ```powershell
-./scripts/render-chapter-pdf.ps1 -Chapter 3
+./scripts/render-chapter-pdf.ps1 -Chapter 4
 ```
 
-Výsledek je `output/pdf/kapitola_03.pdf`. Skript používá aktuální
-`quarto/kapitola_03.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
+Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 nebo 04. Skript používá aktuální
+`quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všech 14 zadání, samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (14 v kapitole 3, 10 v kapitole 4), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
 pro práci offline si sešit stáhněte samostatně.
 
 Nastavení je v `scripts/pdf/`; izolované pomocné sestavení vzniká
-v `tmp/pdf-chapter-03/`. Pomocná kopie kapitoly není určena k editaci.
+v `tmp/pdf-chapter-NN/`. Pomocná kopie kapitoly není určena k editaci.
 Cílové PDF se nahradí až po úspěšném sestavení. PDF i pomocné soubory jsou
 ignorovány Gitem. Běžné `quarto render`, náhled a workflow GitHub Pages
 PDF nespouštějí ani nepublikují.
@@ -65,10 +67,11 @@ Kontrolu zachování všech řešení, rovnic, tabulek, obrázků, kódu a citac
 při přesunu lze spustit pomocí Node.js:
 
 ```powershell
-node scripts/check-chapter-pdf.cjs
+node scripts/check-chapter-pdf.cjs --chapter 4
 ```
 
-Volitelný první argument kontroly je cesta ke Quartu. Kontrola transformace
+Volba `--chapter 3` kontroluje kapitolu 3; bez této volby je výchozí kapitola 3.
+Další volitelný argument kontroly je cesta ke Quartu. Kontrola transformace
 nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů.
 
 ## Kontroly a GitHub

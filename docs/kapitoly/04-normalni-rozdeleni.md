@@ -85,6 +85,10 @@ předchází [hotovému Q–Q](../../quarto/kapitola_04.qmd#fig-qq-priklad-04).
 
 ### Cvičení a očekávané dovednosti
 
+Od 2026-10-16 je ověřen také [ruční PDF export](../PROVOZ.md#ruční-pdf-vybrané-kapitoly):
+všech deset zadání předchází samostatné části s úplnými řešeními a obousměrnými odkazy.
+Závěrečné přehledové kapitoly se nepřipojují.
+
 [Deset úloh](../../quarto/kapitola_04.qmd#sec-cviceni-04) má úplná sbalená řešení.
 Nadpisy jednotlivých úloh nemají explicitní ID; lokátorem je tento stabilní
 oddíl, číslo a název. Kalkulačka/tabulky stačí v 1–3 a 7–8; normální funkce
