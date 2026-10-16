@@ -4,6 +4,8 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Dílčí kontrola 2026-10-17:** u vzorce pro průměr vysvětleno násobení těsným zápisem (1/n krát součet), bez samostatného nového cvičení. Přibližná rovnost sjednocena podle [R43](../rozhodnuti/spolecne-konvence.md#r43-priblizna-rovnost); hodnoty a řešení se nemění.
+
 **Podklad a stav:** existující [kapitola 3](../../quarto/kapitola_03.qmd#sec-kapitola-03),
 karta zkontrolována 2026-10-14; obrázek korekce rozptylu a navazující odstavec 2026-10-16. **Vstup:** význam měření z kapitoly 1;
 četnosti, procenta, sumace a grafy z kapitoly 2. Konvence upravují

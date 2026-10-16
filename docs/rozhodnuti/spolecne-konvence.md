@@ -122,3 +122,24 @@ Autor dále uvedl SciPy 1.18.0 z 19. června 2026 a požadoval konzistentní
 uvádění roků podle posledního updatu.
 
 Bibliografické ověření a jeho meze: [záznam kontroly](../zdroje/HISTORIE.md#kontrola-dokumentace-2026-10-16).
+
+<a id="r43-priblizna-rovnost"></a>
+
+## R43 — Jednotná přibližná rovnost
+
+**Stav:** schváleno 2026-10-17. **Rozsah:** celá učebnice včetně výkladu,
+řešení, přehledů a grafů.
+
+**Volba a důvod:** pro přibližnou rovnost používat jednotně ≈, včetně
+zaokrouhlených výsledků. Přesnou rovnost nadále zapisovat =; mezivýpočty
+nezaokrouhlovat. Odstraňuje se střídání dvou symbolů bez významového
+rozlišení. Nahrazuje se dosavadní preference ≐ v přehledu značení;
+pravidla přesnosti podle R05 se nemění. Aktuální zápis a význam udržuje
+[přehled značení](../../quarto/znaceni.qmd#znak-priblizne).
+
+**Doklad:** autor 2026-10-17 výslovně schválil: „Souhlasím, sjednoť
+přibližnou rovnost na ≈ v celé učebnici včetně řešení, přehledů a grafů.“
+Ve stejné žádosti požadoval vysvětlit těsný zápis násobení při prvním
+použití v kapitole 3 a jednou připomenout v kapitole 4. Realizace navazuje
+na první výskyt ve vzorci pro [průměr](../../quarto/kapitola_03.qmd#sec-prumer)
+a na [zpětný převod z-skóru](../../quarto/kapitola_04.qmd#sec-z-skor).

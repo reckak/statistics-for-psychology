@@ -88,7 +88,7 @@ Důležitý je tento krok v uvažování. Počet správných odpovědí konkrét
 
 Výsledek testu se často uvádí jako podíl správných odpovědí, $p=k/n$. Sedm správných odpovědí z dvaceti je $p=0{,}35$. V [minulé kapitole](kapitola_05.qmd#sec-od-poctu-k-podilu) jsme ukázali, že přechod od počtu k podílu je změna jednotky: pravděpodobnosti zůstávají, hodnoty se dělí počtem pokusů. Výběrové rozdělení podílu má proto střední hodnotu $\mathrm{π}=0{,}25$ a směrodatnou odchylku
 
-$$\sqrt{\frac{\mathrm{π}\times(1-\mathrm{π})}{n}}=\sqrt{\frac{0{,}25\times0{,}75}{20}}\doteq0{,}097.$$
+$$\sqrt{\frac{\mathrm{π}\times(1-\mathrm{π})}{n}}=\sqrt{\frac{0{,}25\times0{,}75}{20}}\approx0{,}097.$$
 
 Směrodatná odchylka výběrového rozdělení je pro nás tak důležitá, že dostala vlastní jméno. **Směrodatná chyba (*standard error*)** je směrodatná odchylka výběrového rozdělení statistiky. V jiných textech se setkáte také s názvy standardní chyba nebo střední chyba. Číslo 0,097 je tedy směrodatná chyba podílu správných odpovědí v testu s dvaceti otázkami.
 
@@ -102,7 +102,7 @@ K čemu nám to je? Směrodatná chyba říká, jak daleko od hodnoty $\mathrm{�
 
 Při čtení obrázku [-@fig-podil-rozdeleni] si ujasněme, co která část znamená. **Jedna hodnota na vodorovné ose je podíl správných odpovědí v celém jednom testu**, tedy výsledek jednoho výběru. Výška sloupce je pravděpodobnost, že výběr dá právě tento podíl. Sloupec není student a obrázek není rozdělením odpovědí uvnitř jednoho testu. Uvnitř jednoho testu jsou jen dva druhy hodnot, správně a špatně; například 7 správných a 13 špatných odpovědí. Výběrové rozdělení popisuje, co se děje **mezi** výběry, ne uvnitř jednoho z nich.
 
-Z rozdělení lze číst pravděpodobnosti stejně jako v minulé kapitole. Podíl mezi 0,15 a 0,35 znamená 3 až 7 správných odpovědí z dvaceti a nastane s pravděpodobností 0,807. V testu s 80 otázkami je směrodatná chyba poloviční, $\sqrt{0{,}25\times0{,}75/80}\doteq0{,}048$, a podíl mezi 0,15 a 0,35 nastane s pravděpodobností 0,973. Čtyřnásobný výběr zmenšil směrodatnou chybu na polovinu. S tímto vztahem se za chvíli setkáme znovu.
+Z rozdělení lze číst pravděpodobnosti stejně jako v minulé kapitole. Podíl mezi 0,15 a 0,35 znamená 3 až 7 správných odpovědí z dvaceti a nastane s pravděpodobností 0,807. V testu s 80 otázkami je směrodatná chyba poloviční, $\sqrt{0{,}25\times0{,}75/80}\approx0{,}048$, a podíl mezi 0,15 a 0,35 nastane s pravděpodobností 0,973. Čtyřnásobný výběr zmenšil směrodatnou chybu na polovinu. S tímto vztahem se za chvíli setkáme znovu.
 
 Výběrové rozdělení podílu známe přesně, protože jsme přijali předpoklady [binomického modelu](kapitola_05.qmd#sec-binomicke-predpoklady): pevný počet nezávislých pokusů se stejnou pravděpodobností úspěchu. Bez nich by sloupce na obrázku vypadaly jinak.
 
@@ -116,7 +116,7 @@ U podílu nám výběrové rozdělení dodal hotový vzorec. U průměru si je n
 
 Představme si maličkou modelovou populaci, v níž doba opuštění parkovacího místa nabývá jen tří hodnot: 20, 35 nebo 50 sekund, každé se stejnou pravděpodobností 1/3. Průměr této populace je $\mathrm{μ}=(20+35+50)/3=35$ s. Směrodatnou odchylku spočítáme z odchylek −15, 0 a 15 od průměru:
 
-$$\mathrm{σ}=\sqrt{\frac{(-15)^2+0^2+15^2}{3}}=\sqrt{150}\doteq12{,}25\ \text{s}.$$
+$$\mathrm{σ}=\sqrt{\frac{(-15)^2+0^2+15^2}{3}}=\sqrt{150}\approx12{,}25\ \text{s}.$$
 
 Dělíme třemi, nikoli dvěma, protože popisujeme [celé rozdělení](kapitola_03.qmd#sec-rozptyl), ne výběr z něj.
 
@@ -171,7 +171,7 @@ tedy přesně průměr populace. Jednotlivé výběry průměr populace nadhodno
 
 Druhá se týká rozptýlenosti. Odchylky devíti průměrů od hodnoty 35 jsou −15; −7,5; 0; −7,5; 0; 7,5; 0; 7,5 a 15. Součet jejich čtverců je 675, takže směrodatná odchylka výběrového rozdělení, tedy směrodatná chyba průměru, je
 
-$$\sqrt{\frac{675}{9}}=\sqrt{75}\doteq8{,}66\ \text{s}.$$
+$$\sqrt{\frac{675}{9}}=\sqrt{75}\approx8{,}66\ \text{s}.$$
 
 To je méně než 12,25 s, směrodatná odchylka jednotlivých dob. **Průměry kolísají méně než jednotlivé hodnoty.** Důvod je vidět v tabulce: krajní průměr 20 s vznikne jen tehdy, když jsou krátké obě vylosované doby, kdežto k prostřednímu průměru 35 s vedou tři různé cesty. Krátká a dlouhá doba se v průměru navzájem vyrovnávají.
 
@@ -282,7 +282,7 @@ Ve výukovém modelu známe $\mathrm{σ}=15$ s, protože jsme si je zvolili. Ve 
 
 $$s_m=\frac{s}{\sqrt{n}}.$$
 
-Značku píšeme latinkou, protože ji počítáme z dat. Simulovaný výběr 30 řidičů z obrázku [-@fig-tri-urovne] má směrodatnou odchylku 14,9 s, takže $s_m=14{,}9/\sqrt{30}\doteq2{,}72$ s. Skutečná směrodatná chyba je v modelu 2,74 s; odhad se tentokrát trefil velmi dobře.
+Značku píšeme latinkou, protože ji počítáme z dat. Simulovaný výběr 30 řidičů z obrázku [-@fig-tri-urovne] má směrodatnou odchylku 14,9 s, takže $s_m=14{,}9/\sqrt{30}\approx2{,}72$ s. Skutečná směrodatná chyba je v modelu 2,74 s; odhad se tentokrát trefil velmi dobře.
 
 Nemusí tomu tak být vždy. Směrodatná odchylka $s$ je statistika jako každá jiná a mezi výběry kolísá. Osm výběrů, jejichž průměry jsme vypsali výše, mělo směrodatné odchylky od 11,93 do 17,55 s. Odhady směrodatné chyby z nich vycházejí od 2,18 do 3,20 s, ačkoli skutečná hodnota je pro všechny stejná. Větší výběr odhad zpřesní: u výběrů po 100 řidičích leželo 95 % odhadů mezi 1,25 a 1,77 s při skutečné hodnotě 1,5 s.
 
@@ -487,7 +487,7 @@ Průměr simulovaných rozdílů je 0,02 s, tedy prakticky nula: žádná ze sku
 
 **Otázka.** S jakou pravděpodobností se průměry dvou takových výběrů liší o více než 3 s, ať už kterýmkoli směrem?
 
-**Postup.** Výběrové rozdělení rozdílu přiblížíme normálním modelem se střední hodnotou 0 s a směrodatnou odchylkou 2,12 s. Rozdílu 3 s odpovídá $z=3/2{,}1213\doteq1{,}41$. Nad touto hodnotou leží 0,0786 plochy a stejně tolik pod hodnotou −1,41. Dohromady $2\times0{,}0786\doteq0{,}157$.
+**Postup.** Výběrové rozdělení rozdílu přiblížíme normálním modelem se střední hodnotou 0 s a směrodatnou odchylkou 2,12 s. Rozdílu 3 s odpovídá $z=3/2{,}1213\approx1{,}41$. Nad touto hodnotou leží 0,0786 plochy a stejně tolik pod hodnotou −1,41. Dohromady $2\times0{,}0786\approx0{,}157$.
 
 **Odpověď.** Rozdíl větší než 3 s vznikne přibližně u 16 % dvojic výběrů, přestože obě skupiny pocházejí z téže populace. V simulaci to bylo 16,0 %. Třísekundový rozdíl mezi průměry dvou stovek řidičů tedy není nic neobvyklého.
 
@@ -510,11 +510,11 @@ $$\mathrm{σ}_m=\frac{\mathrm{σ}\times\sqrt{n}}{n}=\frac{\mathrm{σ}}{\sqrt{n}}
 
 Součet tedy kolísá s rostoucím $n$ stále více, ale pomaleji, než roste sám. Průměr proto kolísá stále méně.
 
-Ověření na příkladu se třemi dobami: součty devíti výběrů jsou 40, 55, 70, 55, 70, 85, 70, 85 a 100 s. Jejich průměr je 70 s a rozptyl 300, tedy $2\times150$. Směrodatná odchylka součtu je $\sqrt{300}\doteq17{,}32$ s a po vydělení dvěma dostaneme 8,66 s.
+Ověření na příkladu se třemi dobami: součty devíti výběrů jsou 40, 55, 70, 55, 70, 85, 70, 85 a 100 s. Jejich průměr je 70 s a rozptyl 300, tedy $2\times150$. Směrodatná odchylka součtu je $\sqrt{300}\approx17{,}32$ s a po vydělení dvěma dostaneme 8,66 s.
 
 **Rozdíl dvou průměrů.** Pravidlo o součtu rozptylů platí i pro rozdíl nezávislých proměnných: odečítáním se kolísání nezmenšuje, protože se může sejít vysoká hodnota první proměnné s nízkou hodnotou druhé. Rozptyl rozdílu dvou nezávislých průměrů je součtem jejich rozptylů:
 
-$$\begin{aligned}&\text{směrodatná chyba rozdílu}=\sqrt{\frac{\mathrm{σ}_1^2}{n_1}+\frac{\mathrm{σ}_2^2}{n_2}}\\&\quad=\sqrt{\frac{15^2}{100}+\frac{15^2}{100}}=\sqrt{4{,}5}\doteq2{,}1213\ \text{s}.\end{aligned}$$
+$$\begin{aligned}&\text{směrodatná chyba rozdílu}=\sqrt{\frac{\mathrm{σ}_1^2}{n_1}+\frac{\mathrm{σ}_2^2}{n_2}}\\&\quad=\sqrt{\frac{15^2}{100}+\frac{15^2}{100}}=\sqrt{4{,}5}\approx2{,}1213\ \text{s}.\end{aligned}$$
 
 Indexy 1 a 2 označují obě skupiny. Vzorec připouští různé směrodatné odchylky i různé velikosti skupin; v našem modelu jsou stejné.
 
@@ -576,7 +576,7 @@ Máme hypotézy a směr. Nyní se zeptáme, jak dobře se pozorovaný rozdíl sn
 
 Číslu, které spočítáme z dat a porovnáme s tímto rozdělením, se říká **testová statistika (*test statistic*)**. Zde je jí rozdíl průměrů, 6,88 s. Stejně dobře jej můžeme vyjádřit jako z-skór, tedy v jednotkách směrodatné chyby:
 
-$$z=\frac{6{,}88-0}{2{,}1213}\doteq3{,}24.$$
+$$z=\frac{6{,}88-0}{2{,}1213}\approx3{,}24.$$
 
 Pozorovaný rozdíl leží více než tři směrodatné chyby od hodnoty, kterou předpokládá nulová hypotéza.
 
@@ -619,7 +619,7 @@ Rozhodovací pravidlo má dvě možná vyústění:
 
 Totéž pravidlo lze vyjádřit bez p-hodnoty, přímo v hodnotách testové statistiky. **Kritický obor (*critical region*, *rejection region*)** je množina hodnot testové statistiky, při nichž podle zvoleného pravidla nulovou hypotézu zamítáme. Doslovnější překlad anglického názvu, oblast zamítnutí, je méně zavedený, ale přímo říká, k čemu obor slouží. **Kritická hodnota (*critical value*)** je hranice kritického oboru.
 
-U oboustranného testu s $\mathrm{α}=0{,}05$ dělíme pět procent mezi oba chvosty, po 2,5 %. V normovaném normálním rozdělení tomu odpovídají hodnoty $z=-1{,}96$ a $z=1{,}96$, které známe z [prostředních 95 %](kapitola_04.qmd#sec-centralni-podil). V sekundách jsou kritické hodnoty $\pm1{,}96\times2{,}1213\doteq\pm4{,}16$ s. Kritický obor tvoří rozdíly menší než −4,16 s a větší než 4,16 s.
+U oboustranného testu s $\mathrm{α}=0{,}05$ dělíme pět procent mezi oba chvosty, po 2,5 %. V normovaném normálním rozdělení tomu odpovídají hodnoty $z=-1{,}96$ a $z=1{,}96$, které známe z [prostředních 95 %](kapitola_04.qmd#sec-centralni-podil). V sekundách jsou kritické hodnoty $\pm1{,}96\times2{,}1213\approx\pm4{,}16$ s. Kritický obor tvoří rozdíly menší než −4,16 s a větší než 4,16 s.
 
 ::: {.teaching-figure role="region" aria-label="Rozdělení rozdílu průměrů za platnosti nulové hypotézy s kritickým oborem a pozorovaným rozdílem" tabindex="0"}
 
@@ -733,7 +733,7 @@ Sílu ovlivňuje několik okolností:
 
 ### Když nulovou hypotézu nezamítneme {#sec-nezamitnuti}
 
-Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně přečíst opačný výsledek. Představme si smyšlenou variantu: rozdíl výběrových průměrů by vyšel 2,9 s. Pak $z=2{,}9/2{,}1213\doteq1{,}37$ a oboustranná p-hodnota je 0,17.
+Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně přečíst opačný výsledek. Představme si smyšlenou variantu: rozdíl výběrových průměrů by vyšel 2,9 s. Pak $z=2{,}9/2{,}1213\approx1{,}37$ a oboustranná p-hodnota je 0,17.
 
 **Rozhodnutí testu.** Na hladině významnosti 0,05 nulovou hypotézu nezamítáme. Rozdíl 2,9 s neleží v kritickém oboru.
 
@@ -752,8 +752,8 @@ Postup pro skutečný rozdíl 5 s:
 
 1. *Kritické hodnoty* určuje nulová hypotéza: −4,158 s a 4,158 s.
 2. *Křivka alternativy* má střed 5 s a stejnou směrodatnou chybu 2,1213 s.
-3. *Plocha nad horní kritickou hodnotou:* $z=(4{,}158-5)/2{,}1213\doteq-0{,}397$; nad touto hodnotou leží 0,654 plochy.
-4. *Plocha pod dolní kritickou hodnotou:* $z=(-4{,}158-5)/2{,}1213\doteq-4{,}32$; pod ní leží méně než 0,0001 plochy.
+3. *Plocha nad horní kritickou hodnotou:* $z=(4{,}158-5)/2{,}1213\approx-0{,}397$; nad touto hodnotou leží 0,654 plochy.
+4. *Plocha pod dolní kritickou hodnotou:* $z=(-4{,}158-5)/2{,}1213\approx-4{,}32$; pod ní leží méně než 0,0001 plochy.
 5. *Síla* je součet obou ploch, 0,654.
 
 Na listu `Sila` je tento výpočet připraven pro libovolný skutečný rozdíl v buňce B2:
@@ -823,7 +823,7 @@ Platí to i opačně. Velký rozdíl zjištěný na několika lidech nemusí bý
 ::: {#rozsireni-standardizovany-rozdil .callout-note collapse="true" title="Nepovinné rozšíření: standardizovaný rozdíl průměrů"}
 Sekundy jsou srozumitelná jednotka. Body dotazníku nebo testu takové nejsou: zda je rozdíl čtyř bodů velký, závisí na tom, jak moc se lidé v daném testu liší. Tehdy pomáhá vyjádřit rozdíl průměrů v jednotkách směrodatné odchylky. **Standardizovaný rozdíl průměrů (*standardized mean difference*)**, známý také jako Cohenovo *d*, je rozdíl průměrů dělený směrodatnou odchylkou jednotlivých hodnot:
 
-$$d=\frac{m_1-m_2}{s}=\frac{6{,}88}{14{,}6}\doteq0{,}47.$$
+$$d=\frac{m_1-m_2}{s}=\frac{6{,}88}{14{,}6}\approx0{,}47.$$
 
 Průměry obou skupin řidičů se liší o necelou polovinu směrodatné odchylky [@howell, s. 102]. Je to obdoba [z-skóru](kapitola_04.qmd#sec-z-skor): vzdálenost vyjádřená tím, kolikrát se do ní vejde typická odlišnost mezi lidmi.
 
@@ -1006,9 +1006,9 @@ Test odpovídá na úzkou, ale užitečnou otázku: jsou data těžko slučiteln
 
 ### Více testů najednou {#sec-vice-testu}
 
-Hladina významnosti se týká jednoho testu. Výzkumy ale zřídka končí u jednoho. Představme si, že výzkumník porovná dvě skupiny ve dvaceti různých vlastnostech a ke každé provede test na hladině 0,05. Předpokládejme, že **všechny nulové hypotézy platí a testy jsou navzájem nezávislé**. Pravděpodobnost, že žádný test nevyjde statisticky významně, je $0{,}95^{20}\doteq0{,}36$. Pravděpodobnost, že vyjde alespoň jeden, spočítáme [doplňkem](kapitola_05.qmd#sec-nezavislost):
+Hladina významnosti se týká jednoho testu. Výzkumy ale zřídka končí u jednoho. Představme si, že výzkumník porovná dvě skupiny ve dvaceti různých vlastnostech a ke každé provede test na hladině 0,05. Předpokládejme, že **všechny nulové hypotézy platí a testy jsou navzájem nezávislé**. Pravděpodobnost, že žádný test nevyjde statisticky významně, je $0{,}95^{20}\approx0{,}36$. Pravděpodobnost, že vyjde alespoň jeden, spočítáme [doplňkem](kapitola_05.qmd#sec-nezavislost):
 
-$$1-0{,}95^{20}\doteq0{,}64.$$
+$$1-0{,}95^{20}\approx0{,}64.$$
 
 Při dvaceti testech je tedy pravděpodobnější, že alespoň jeden „statisticky významný“ výsledek vznikne, než že nevznikne žádný, ačkoli mezi skupinami není vůbec žádný rozdíl. V průměru by vyšel jeden: $20\times0{,}05=1$.
 
@@ -1106,7 +1106,7 @@ a)  1.  Rozdělení hodnot v jednom výběru. Jedna hodnota je doba spánku jedn
     2.  Rozdělení v populaci. Jedna hodnota je doba spánku jednoho studenta fakulty; křivka je model, protože všechny studenty jsme nezměřili.
     3.  Výběrové rozdělení průměru. Jedna hodnota je průměrná doba spánku v jednom celém výběru 50 studentů.
 
-b)  1,2 h je výběrová směrodatná odchylka: říká, jak moc se od sebe liší doby spánku jednotlivých studentů ve výběru. 0,17 h je směrodatná chyba průměru zjištěná simulací: říká, jak moc se od sebe liší průměry různých výběrů po 50 studentech. Obě čísla spolu souvisejí vzorcem $\mathrm{σ}/\sqrt{n}$; jako odhad dostaneme $1{,}2/\sqrt{50}\doteq0{,}170$ h.
+b)  1,2 h je výběrová směrodatná odchylka: říká, jak moc se od sebe liší doby spánku jednotlivých studentů ve výběru. 0,17 h je směrodatná chyba průměru zjištěná simulací: říká, jak moc se od sebe liší průměry různých výběrů po 50 studentech. Obě čísla spolu souvisejí vzorcem $\mathrm{σ}/\sqrt{n}$; jako odhad dostaneme $1{,}2/\sqrt{50}\approx0{,}170$ h.
 
 c)  Velikost výběru je 50, počet opakování 5 000. Při 50 000 opakováních by byl histogram průměrů hladší a jeho směrodatná odchylka by vyšla o něco přesněji, ale stále kolem 0,17 h: zobrazovali bychom totéž výběrové rozdělení. Při výběrech po 200 studentech by se změnilo samo výběrové rozdělení. Čtyřnásobný výběr zmenší směrodatnou chybu na polovinu, přibližně na 0,085 h, a histogram průměrů by byl poloviční šířky.
 :::
@@ -1125,7 +1125,7 @@ e)  Spočítejte směrodatnou chybu průměru přímo z devíti průměrů a ov�
 f)  S jakou pravděpodobností bude průměr výběru alespoň 4 body? Je výběrové rozdělení souměrné? Čím to je?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  $\mathrm{μ}=(1+2+6)/3=3$ body. Odchylky jsou −2, −1 a 3, jejich čtverce 4, 1 a 9. Rozptyl je $14/3\doteq4{,}667$ a $\mathrm{σ}=\sqrt{14/3}\doteq2{,}160$ bodu. Dělíme třemi, protože popisujeme celé rozdělení.
+a)  $\mathrm{μ}=(1+2+6)/3=3$ body. Odchylky jsou −2, −1 a 3, jejich čtverce 4, 1 a 9. Rozptyl je $14/3\approx4{,}667$ a $\mathrm{σ}=\sqrt{14/3}\approx2{,}160$ bodu. Dělíme třemi, protože popisujeme celé rozdělení.
 
 b)  Každý výběr má pravděpodobnost $1/3\times1/3=1/9$.
 
@@ -1157,9 +1157,9 @@ c)  Sečteme pravděpodobnosti výběrů se stejným průměrem.
 
 d)  Součet devíti výběrových průměrů je 27, takže jejich průměr je $27/9=3$ body. Shoduje se s průměrem populace: výběrový průměr populační průměr soustavně nenadhodnocuje ani nepodhodnocuje.
 
-e)  Odchylky devíti průměrů od hodnoty 3 jsou −2; −1,5; 0,5; −1,5; −1; 1; 0,5; 1 a 3. Součet čtverců je $4+2{,}25+0{,}25+2{,}25+1+1+0{,}25+1+9=21$. Směrodatná chyba je $\sqrt{21/9}\doteq1{,}528$ bodu. Vzorcem: $2{,}160/\sqrt{2}\doteq1{,}528$ bodu. Obě hodnoty se shodují přesně, protože jsme vypsali všechny výběry.
+e)  Odchylky devíti průměrů od hodnoty 3 jsou −2; −1,5; 0,5; −1,5; −1; 1; 0,5; 1 a 3. Součet čtverců je $4+2{,}25+0{,}25+2{,}25+1+1+0{,}25+1+9=21$. Směrodatná chyba je $\sqrt{21/9}\approx1{,}528$ bodu. Vzorcem: $2{,}160/\sqrt{2}\approx1{,}528$ bodu. Obě hodnoty se shodují přesně, protože jsme vypsali všechny výběry.
 
-f)  Průměr alespoň 4 body mají tři výběry z devíti: $3/9\doteq0{,}333$. Rozdělení souměrné není: má delší chvost směrem k vysokým hodnotám, protože populace je zešikmená (hodnota 6 leží daleko od zbylých dvou) a výběr je velmi malý. Podle centrální limitní věty by se při větších výběrech tvar blížil normálnímu.
+f)  Průměr alespoň 4 body mají tři výběry z devíti: $3/9\approx0{,}333$. Rozdělení souměrné není: má delší chvost směrem k vysokým hodnotám, protože populace je zešikmená (hodnota 6 leží daleko od zbylých dvou) a výběr je velmi malý. Podle centrální limitní věty by se při větších výběrech tvar blížil normálnímu.
 :::
 
 ### 3. Výběrové rozdělení podílu
@@ -1176,7 +1176,7 @@ d)  Výzkumník našel ve výběru 100 studentů podíl 0,52 a usoudil, že popu
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Počet takových studentů ve výběru je celé číslo od 0 do 25, takže podíl nabývá hodnot 0; 0,04; 0,08; … až 1. Rozdělení je diskrétní. Za předpokladu nezávislých pozorování se stejnou pravděpodobností 0,4 jde o binomické rozdělení přepočtené na podíl.
 
-b)  Pro 25 studentů: $\sqrt{0{,}4\times0{,}6/25}\doteq0{,}098$. Pro 100 studentů: $\sqrt{0{,}4\times0{,}6/100}\doteq0{,}049$. Čtyřnásobný výběr má poloviční směrodatnou chybu.
+b)  Pro 25 studentů: $\sqrt{0{,}4\times0{,}6/25}\approx0{,}098$. Pro 100 studentů: $\sqrt{0{,}4\times0{,}6/100}\approx0{,}049$. Čtyřnásobný výběr má poloviční směrodatnou chybu.
 
 c)  Podíl alespoň 0,52 znamená alespoň 13 studentů z 25, respektive alespoň 52 ze 100.
 
@@ -1202,9 +1202,9 @@ d)  Která čísla v úloze popisují rozdíly mezi studenty a která kolísán�
 e)  Stopky se u všech měření spouštěly o sekundu později, než student začal. Jak se to projeví? Pomohlo by změřit devadesát studentů místo devíti?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Výběr A: součet 288, průměr 32 s. Odchylky od průměru jsou −10, −7, −4, −2, −1, 1, 4, 8 a 11; součet jejich čtverců je 372. Výběrový rozptyl je $372/8=46{,}5$, směrodatná odchylka $s\doteq6{,}82$ s a odhad směrodatné chyby $s_m=6{,}82/\sqrt{9}\doteq2{,}27$ s.
+a)  Výběr A: součet 288, průměr 32 s. Odchylky od průměru jsou −10, −7, −4, −2, −1, 1, 4, 8 a 11; součet jejich čtverců je 372. Výběrový rozptyl je $372/8=46{,}5$, směrodatná odchylka $s\approx6{,}82$ s a odhad směrodatné chyby $s_m=6{,}82/\sqrt{9}\approx2{,}27$ s.
 
-    Výběr B: součet 324, průměr 36 s. Odchylky jsou −16, −10, −7, −3, −1, 2, 5, 11 a 19; součet čtverců 926. Výběrový rozptyl je $926/8=115{,}75$, $s\doteq10{,}76$ s a $s_m=10{,}76/\sqrt{9}\doteq3{,}59$ s.
+    Výběr B: součet 324, průměr 36 s. Odchylky jsou −16, −10, −7, −3, −1, 2, 5, 11 a 19; součet čtverců 926. Výběrový rozptyl je $926/8=115{,}75$, $s\approx10{,}76$ s a $s_m=10{,}76/\sqrt{9}\approx3{,}59$ s.
 
 b)  $\mathrm{σ}_m=9/\sqrt{9}=3$ s. Odhady 2,27 s a 3,59 s vycházejí z výběrových směrodatných odchylek, a ty jsou statistikami: mezi výběry kolísají, u devíti pozorování značně. Oba výběry pocházejí z téže populace a skutečná směrodatná chyba je pro oba stejná.
 
@@ -1228,7 +1228,7 @@ d)  Jak se odpověď z bodu b) změní pro výběr 36 lidí?
 e)  Spolužák označil rozmezí z bodu c) za interval spolehlivosti. V čem se mýlí?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  $z=(105-100)/15\doteq0{,}333$. `=1-NORM.DIST(105;100;15;PRAVDA)` vrátí 0,369.
+a)  $z=(105-100)/15\approx0{,}333$. `=1-NORM.DIST(105;100;15;PRAVDA)` vrátí 0,369.
 
 b)  Model: $\mathrm{μ}=100$, $\mathrm{σ}=15$, $n=9$. Směrodatná chyba: $15/\sqrt{9}=5$. Tvar: populace je normální, takže rozdělení průměru je normální i pro malý výběr, $N(100,5)$. Z-skór průměru: $(105-100)/5=1$. Plocha: `=1-NORM.DIST(105;100;5;PRAVDA)` vrátí 0,159.
 
@@ -1307,9 +1307,9 @@ a)  $\mathrm{π}$ je pravděpodobnost správné odpovědi v jednom pokusu. $H_0{
 
 b)  Binomické s $n=8$ a $\mathrm{π}=0{,}5$. Každá posloupnost osmi odpovědí má pravděpodobnost $0{,}5^8=1/256$. Sedm správných odpovědí lze rozmístit $\binom{8}{7}=8$ způsoby, osm jediným. P-hodnota je
 
-    $$P(X\ge7)=\frac{8+1}{256}=\frac{9}{256}\doteq0{,}035.$$
+    $$P(X\ge7)=\frac{8+1}{256}=\frac{9}{256}\approx0{,}035.$$
 
-c)  Sčítáme od konce: $P(X\ge8)=1/256\doteq0{,}004$; $P(X\ge7)\doteq0{,}035$; $P(X\ge6)=(28+8+1)/256=37/256\doteq0{,}145$. Hranici 0,05 jako první splní hodnota 7. Kritický obor tvoří počty 7 a 8 a jeho pravděpodobnost je 0,035. To je skutečná pravděpodobnost chyby I. druhu; hladiny 0,05 přesně dosáhnout nelze, protože rozdělení je diskrétní.
+c)  Sčítáme od konce: $P(X\ge8)=1/256\approx0{,}004$; $P(X\ge7)\approx0{,}035$; $P(X\ge6)=(28+8+1)/256=37/256\approx0{,}145$. Hranici 0,05 jako první splní hodnota 7. Kritický obor tvoří počty 7 a 8 a jeho pravděpodobnost je 0,035. To je skutečná pravděpodobnost chyby I. druhu; hladiny 0,05 přesně dosáhnout nelze, protože rozdělení je diskrétní.
 
 d)  **Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že pravděpodobnost správné odpovědi je nejvýše 0,5; p-hodnota je 0,035.
 
@@ -1338,7 +1338,7 @@ b)  $\mathrm{σ}_m=15/\sqrt{36}=2{,}5$ bodu. $z=(104{,}5-100)/2{,}5=1{,}8$. `=2*
 
 c)  $100\pm1{,}96\times2{,}5$, tedy 95,1 a 104,9 bodu. Průměr 104,5 leží mezi nimi, mimo kritický obor. **Rozhodnutí testu:** na hladině významnosti 0,05 nulovou hypotézu nezamítáme; p-hodnota je 0,072.
 
-d)  Jednostranná p-hodnota by byla `=1-NORM.S.DIST(1,8;PRAVDA)`, tedy 0,036, a kritická hodnota $100+1{,}645\times2{,}5\doteq104{,}1$ bodu. Jednostranný test by nulovou hypotézu zamítl. Změnit test teď ale nelze: směr patří k pravidlu stanovenému před sběrem dat. Kdyby jej výzkumnice změnila podle výsledku, nebyla by pravděpodobnost chyby I. druhu 0,05, ale větší.
+d)  Jednostranná p-hodnota by byla `=1-NORM.S.DIST(1,8;PRAVDA)`, tedy 0,036, a kritická hodnota $100+1{,}645\times2{,}5\approx104{,}1$ bodu. Jednostranný test by nulovou hypotézu zamítl. Změnit test teď ale nelze: směr patří k pravidlu stanovenému před sběrem dat. Kdyby jej výzkumnice změnila podle výsledku, nebyla by pravděpodobnost chyby I. druhu 0,05, ale větší.
 
 e)  Průměr studentů po tréninku byl o 4,5 bodu vyšší než norma, tedy ve směru, v němž by trénink měl působit. Rozdíl je od hodnoty 100 vzdálen 1,8 směrodatné chyby a podobný nebo větší by při nulovém rozdílu vznikl asi u 7 % výběrů. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že se studenti po tréninku od normy liší; takový rozdíl však nevylučují. I kdyby rozdíl byl statisticky významný, nešlo by jej připsat tréninku: chybí srovnávací skupina, studenti mohli mít vyšší skóry už před tréninkem a test psali podruhé.
 
@@ -1430,7 +1430,7 @@ a)  První studie: $\mathrm{σ}_m=10/\sqrt{25}=2$; $z=(51-50)/2=0{,}5$; `=2*(1-N
 
 b)  V obou studiích je rozdíl stejný: 1 bod, desetina směrodatné odchylky. Statisticky významný je jen ve druhé studii, protože ta jej díky velkému výběru změřila přesně. Věcná významnost závisí na zkoumané otázce: pro teorii může být i malý, ale spolehlivě doložený rozdíl zajímavý. Praktická významnost je sporná: jednobodový posun na škále, kde se lidé běžně liší o deset bodů, se v životě jednotlivce sotva projeví. Ani jedno z toho test neřeší; vyžaduje to znalost oboru.
 
-c)  Je třeba předpokládat, že všech dvacet nulových hypotéz platí a že testy jsou navzájem nezávislé. Pak je pravděpodobnost žádného statisticky významného výsledku $0{,}95^{20}\doteq0{,}358$ a alespoň jednoho $1-0{,}358=0{,}642$. Jeden statisticky významný výsledek z dvaceti je tedy přesně to, co lze čekat i bez jakéhokoli rozdílu. Výzkumník má uvést všech dvacet testů, statisticky významný výsledek označit za podnět k ověření v novém výzkumu a nevydávat jej za doklad rozdílu.
+c)  Je třeba předpokládat, že všech dvacet nulových hypotéz platí a že testy jsou navzájem nezávislé. Pak je pravděpodobnost žádného statisticky významného výsledku $0{,}95^{20}\approx0{,}358$ a alespoň jednoho $1-0{,}358=0{,}642$. Jeden statisticky významný výsledek z dvaceti je tedy přesně to, co lze čekat i bez jakéhokoli rozdílu. Výzkumník má uvést všech dvacet testů, statisticky významný výsledek označit za podnět k ověření v novém výzkumu a nevydávat jej za doklad rozdílu.
 
 d)  Hladina 0,05 platí pro jeden test provedený při předem stanovené velikosti výběru. P-hodnota během sběru kolísá a každé průběžné nahlédnutí je další příležitostí, aby náhodně klesla pod hranici. Kdo skončí při prvním takovém poklesu, zamítá pravdivou nulovou hypotézu častěji než v 5 % případů. Velikost výběru má být určena předem.
 :::
@@ -1484,7 +1484,7 @@ a)  Skutečný rozdíl existuje u 200 výzkumů, u 800 platí nulová hypotéza.
 
 b)  $40/160=0{,}25$. Čtvrtina statisticky významných výsledků je v tomto modelu chybou I. druhu.
 
-c)  Oprávněných zamítnutí by bylo $200\times0{,}90=180$, chybných stále 40. Podíl: $40/220\doteq0{,}182$. Vyšší síla zvyšuje podíl oprávněných zamítnutí mezi všemi zamítnutími.
+c)  Oprávněných zamítnutí by bylo $200\times0{,}90=180$, chybných stále 40. Podíl: $40/220\approx0{,}182$. Vyšší síla zvyšuje podíl oprávněných zamítnutí mezi všemi zamítnutími.
 
 d)  Hladina 0,05 je podmíněná pravděpodobnost: z 800 výzkumů, v nichž nulová hypotéza platí, jich statisticky významně vyšlo 40, tedy 5 %. Podíl 0,25 odpovídá na obrácenou otázku: z výzkumů, které vyšly statisticky významně, v kolika nulová hypotéza platí. To je obrácení podmínky a závisí na základní četnosti i na síle, stejně jako prediktivní hodnota screeningu závisí na prevalenci.
 :::

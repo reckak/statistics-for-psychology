@@ -42,7 +42,7 @@ Ze z-skóru lze získat původní hodnotu, např. původní hrubý skór. Dělen
 
 $$x_i=m+s z_i.$$
 
-Například $z_i=-1{,}5$ dává $x_i=50+10\times(-1{,}5)=50-15=35$ bodů. Těsný zápis $s z_i$ znamená násobení. Převod vyžaduje kladnou směrodatnou odchylku: při $s=0$ jsou všechny hodnoty stejné a dělení nulou není definováno. Pro výběrovou směrodatnou odchylku navíc potřebujeme alespoň dvě pozorování.
+Například $z_i=-1{,}5$ dává $x_i=50+10\times(-1{,}5)=50-15=35$ bodů. Připomeňme si [těsný zápis násobení z kapitoly 3](kapitola_03.qmd#sec-prumer): $s z_i=s\times z_i$. Převod vyžaduje kladnou směrodatnou odchylku: při $s=0$ jsou všechny hodnoty stejné a dělení nulou není definováno. Pro výběrovou směrodatnou odchylku navíc potřebujeme alespoň dvě pozorování.
 
 Z-skóry dovolují porovnat **relativní polohu** na různých škálách. V ilustračním testu A má člověk 60 bodů při $m=50$, $s=10$, tedy $z=1$. V testu B má 42 bodů při $m=30$, $s=6$, tedy $z=(42-30)/6=2$. Ve druhém testu je tudíž relativně dále nad průměrem své referenční skupiny, přestože původní hrubý skór je nižší. Nemůžeme z toho bez dalšího zdůvodnění ale vyvodit, že je „dvakrát schopnější“ nebo že dva testy měří totéž. U škály obtíží může vyšší hodnota znamenat více potíží; kladný z-skór proto neznamená automaticky „lepší“ výsledek.
 

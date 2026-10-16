@@ -4,6 +4,8 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Dílčí kontrola 2026-10-17:** u zpětného převodu z-skóru jediné připomenutí těsného zápisu násobení s odkazem na první výklad u průměru v kapitole 3; bez změny výpočtů a cvičení.
+
 **Podklad a stav:** existující [kapitola 4](../../quarto/kapitola_04.qmd#sec-kapitola-04),
 karta zkontrolována 2026-10-11. Původní schválený plán byl nahrazen mapou
 skutečného textu; dohody z 2026-10-10 a úpravy z 2026-10-11 zůstávají doloženy
