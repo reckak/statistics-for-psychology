@@ -7,7 +7,7 @@ const model=wb.worksheets.add('Model'),qq=wb.worksheets.add('QQ');
 const out='tmp/chapter-04';await fs.mkdir(out,{recursive:true});
 for(const sh of [model,qq]){
   sh.showGridLines=true;
-  sh.getRange(sh===model?'A1:F29':'A1:N25').format={font:{name:'Arial',size:11,color:'#223744'},rowHeight:24,columnWidth:15,verticalAlignment:'center'};
+  sh.getRange(sh===model?'A1:F29':'A1:N44').format={font:{name:'Arial',size:11,color:'#223744'},rowHeight:24,columnWidth:15,verticalAlignment:'center'};
 }
 const header=r=>{r.format={fill:'#234F62',font:{name:'Arial',size:11,color:'#FFFFFF',bold:true},wrapText:true,rowHeight:44};};
 const input=r=>{r.format.fill='#FFF1CB';r.setNumberFormat('0.00');};
@@ -37,17 +37,25 @@ qq.getRange('G2:G4').values=[['Počet'],['Průměr'],['Směrodatná odchylka']];
 qq.getRange('H2:H4').formulas=[['=COUNT(B2:B13)'],['=AVERAGE(B2:B13)'],['=STDEV.S(B2:B13)']];calc(qq.getRange('H2:H4'));qq.getRange('H2').setNumberFormat('0');
 qq.getRange('C2:E2').formulas=[['=(A2-0.5)/$H$2','=NORM.S.INV(C2)','=$H$3+$H$4*D2']];
 qq.getRange('C2:E13').fillDown();calc(qq.getRange('C2:E13'));qq.getRange('C2:C13').setNumberFormat('0.000000');
+// Optional P-P plot: model proportion for each observed score.
+qq.getRange('F1').values=[['Modelový podíl (P–P)']];header(qq.getRange('F1'));
+qq.getRange('F2').formulas=[['=NORM.S.DIST((B2-$H$3)/$H$4,TRUE)']];qq.getRange('F2:F13').fillDown();calc(qq.getRange('F2:F13'));qq.getRange('F2:F13').setNumberFormat('0.000000');
 qq.getRange('A1:A13').format.columnWidth=9;qq.getRange('B1:C13').format.columnWidth=15;qq.getRange('D1:E13').format.columnWidth=20;
-qq.getRange('F1:F25').format.columnWidth=3;qq.getRange('G1:G25').format.columnWidth=26;qq.getRange('H1:H25').format.columnWidth=12;
+qq.getRange('F1:F44').format.columnWidth=16;qq.getRange('G1:G25').format.columnWidth=26;qq.getRange('H1:H25').format.columnWidth=12;
 qq.getRange('A16').values=[['Autorská ilustrační data, již seřazená vzestupně.']];
 qq.getRange('A18').values=[['Podíl: střed pořadového dílku (i − 0,5) / n.']];
 qq.getRange('A19').values=[['Přímka používá průměr a odchylku těchto dat.']];
 qq.getRange('A21').values=[['Měňte skóry ve žlutých buňkách a zachovejte pořadí.']];
 qq.getRange('A22').values=[['Graf a vzorce se přepočítají. Data nemají být prázdná.']];
+qq.getRange('A24').values=[['Sloupec F a druhý graf: nepovinný P–P graf (podíl C proti F).']];
 wb.addChart({sheet:'QQ',type:'scatter',title:'Normální Q–Q graf',start:'G7',end:'N24',
  xTitle:'Teoretický normální kvantil (z)',yTitle:'Pozorovaný skór (body)',legend:true,
  series:[{name:'Pozorované skóry',x:'D2:D13',y:'B2:B13',color:'#245D78'},
  {name:'Referenční přímka',x:'D2:D13',y:'E2:E13',color:'#B54E24',line:true}]});
+wb.addChart({sheet:'QQ',type:'scatter',title:'P–P graf (nepovinné)',start:'G26',end:'N43',
+ xTitle:'Empirický podíl (i − 0,5)/n',yTitle:'Modelový podíl',legend:true,xMin:0,xMax:1,xMajor:.2,yMin:0,yMax:1,yMajor:.2,
+ series:[{name:'Pozorované skóry',x:'C2:C13',y:'F2:F13',color:'#245D78'},
+ {name:'Úhlopříčka',x:'C2:C13',y:'C2:C13',color:'#B54E24',line:true}]});
 await fs.mkdir('tmp/chapter-04',{recursive:true});
 await addStudentInputs(wb,4,'tmp/chapter-04');
 await wb.build(4, 'tmp/chapter-04');

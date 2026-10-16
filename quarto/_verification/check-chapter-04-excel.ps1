@@ -17,7 +17,8 @@ try {
   foreach($a in $local.Keys){$m.Range($a).FormulaLocal=$local[$a]}
   $q.Range('H2').FormulaLocal='=POČET(B2:B13)';$q.Range('H3').FormulaLocal='=PRŮMĚR(B2:B13)';$q.Range('H4').FormulaLocal='=SMODCH.VÝBĚR.S(B2:B13)'
   $q.Range('C2').FormulaLocal='=(A2-0,5)/$H$2';$q.Range('D2').FormulaLocal='=NORM.S.INV(C2)';$q.Range('E2').FormulaLocal='=$H$3+$H$4*D2'
-  [void]$q.Range('C2:E13').FillDown();$taskExcel.CalculateFullRebuild()
+  $q.Range('F2').FormulaLocal='=NORM.S.DIST((B2-$H$3)/$H$4;PRAVDA)'
+  [void]$q.Range('C2:F13').FillDown();$taskExcel.CalculateFullRebuild()
   $expected=@{B6=1;B7=0.841344746068543;B8=0.158655253931457;B9=0.841344746068543;B13=0.135905121983278;B17=1.28155156554460;B18=62.8155156554460;B19=62.8155156554460;B23=.025;B24=30.4003601545995;B25=69.5996398454005}
   foreach($a in $expected.Keys){Assert-Cell $m $a $expected[$a]}
   Assert-Cell $q 'H2' 12;Assert-Cell $q 'H3' 50;Assert-Cell $q 'H4' ([math]::Sqrt(890/11))
@@ -29,6 +30,7 @@ try {
     Assert-Cell $q "E$r" (50+[math]::Sqrt(890/11)*$q.Range("D$r").Value2)
   }
   Assert-Cell $q 'D2' -1.73166439612225;Assert-Cell $q 'D13' 1.73166439612225
+  Assert-Cell $q 'F2' 0.047697307646064;Assert-Cell $q 'F13' 0.952302692353936
   # All direct formulas used in solved exercises, including rounded-score interval.
   $exercise=@(@('=NORM.S.DIST(-0,5;PRAVDA)',.308537538725987),@('=1-NORM.S.DIST(1,5;PRAVDA)',.0668072012688581),@('=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)',.624655260005155),@('=NORM.INV(0,2;50;10)',41.5837876642709),@('=NORM.INV(0,05;50;10)',33.5514637304853),@('=NORM.INV(0,95;50;10)',66.4485362695147),@('=NORM.S.DIST(0,05;PRAVDA)-NORM.S.DIST(-0,05;PRAVDA)',.0398776116767449))
   foreach($e in $exercise){$m.Range('F28').FormulaLocal=$e[0];$taskExcel.CalculateFullRebuild();Assert-Cell $m 'F28' $e[1]}
@@ -44,9 +46,12 @@ try {
   $m.Range('B4').Value2=60;$m.Range('B16').Value2=.5;$taskExcel.CalculateFullRebuild();Assert-Cell $m 'B17' 0;Assert-Cell $m 'B18' 50
   $m.Range('B16').Value2=.9
   $q.Range('B13').Value2=90;$taskExcel.CalculateFullRebuild();Assert-Cell $q 'H3' (625/12);Assert-Cell $q 'H4' ([math]::Sqrt((34765-625*625/12)/11))
-  Assert-Cell $q 'D13' 1.73166439612225
+  Assert-Cell $q 'D13' 1.73166439612225;Assert-Cell $q 'F13' 0.996244290188928
   # Native scatter chart: observed markers, reference line. No secondary axes.
-  if($q.ChartObjects().Count -ne 1){throw 'Missing editable Q-Q chart'}
+  if($q.ChartObjects().Count -ne 2){throw 'Missing editable Q-Q or P-P chart'}
+  $pp=$q.ChartObjects(2).Chart
+  if($pp.SeriesCollection().Count -ne 2 -or $pp.SeriesCollection(1).Formula -notmatch '\$C\$2:\$C\$13' -or $pp.SeriesCollection(1).Formula -notmatch '\$F\$2:\$F\$13'){throw 'Wrong P-P binding'}
+  if($pp.Axes(1).MinimumScale -ne 0 -or $pp.Axes(1).MaximumScale -ne 1 -or $pp.Axes(2).MinimumScale -ne 0 -or $pp.Axes(2).MaximumScale -ne 1){throw 'P-P axes must run from 0 to 1'}
   $chart=$q.ChartObjects(1).Chart
   if($chart.SeriesCollection().Count -ne 2){throw 'Wrong chart series count'}
   $observed=$chart.SeriesCollection(1);$reference=$chart.SeriesCollection(2)
@@ -67,7 +72,7 @@ try {
     $chart.Axes(1).HasMajorGridlines=$false;$chart.Axes(2).HasMajorGridlines=$false
     $chart.Axes(1).AxisTitle.Text='Teoretický normální kvantil (z)';$chart.Axes(2).AxisTitle.Text='Pozorovaný skór (body)'
     $chart.Legend.Position=-4107
-    $m.PageSetup.PrintArea='$A$1:$D$25';$q.PageSetup.PrintArea='$A$1:$N$24'
+    $m.PageSetup.PrintArea='$A$1:$D$25';$q.PageSetup.PrintArea='$A$1:$N$44'
     foreach($sh in @($m,$q)){$sh.PageSetup.Orientation=2;$sh.PageSetup.Zoom=$false;$sh.PageSetup.FitToPagesWide=1;$sh.PageSetup.FitToPagesTall=1}
     $taskBook.Save()
     $taskBook.ExportAsFixedFormat(0,(Join-Path $taskRoot 'tmp/chapter-04/excel-native.pdf'))
@@ -77,5 +82,5 @@ try {
 } finally {
   if($null -ne $taskBook){$taskBook.Close($false)}
   if($null -ne $taskExcel){$taskExcel.Quit()}
-  foreach($o in @($observed,$reference,$chart,$m,$q,$taskBook,$taskExcel)){if($null -ne $o -and [System.Runtime.InteropServices.Marshal]::IsComObject($o)){[void][System.Runtime.InteropServices.Marshal]::FinalReleaseComObject($o)}}
+  foreach($o in @($observed,$reference,$chart,$pp,$m,$q,$taskBook,$taskExcel)){if($null -ne $o -and [System.Runtime.InteropServices.Marshal]::IsComObject($o)){[void][System.Runtime.InteropServices.Marshal]::FinalReleaseComObject($o)}}
 }

@@ -130,8 +130,14 @@ try {
     $chart.Axes(2).TickLabels.NumberFormat='0'
     if($cs.type -eq 'scatter'){
       $chart.Axes(1).TickLabels.NumberFormatLocal=('0'+$decimal+'0')
-      $chart.Axes(1).MinimumScale=-2;$chart.Axes(1).MaximumScale=2;$chart.Axes(1).MajorUnit=1
-      $chart.Axes(1).CrossesAt=-2;$chart.Axes(2).Crosses=-4105
+      # Default z axis for Q-Q plots; a spec may set other limits (e.g. 0-1 for P-P plots).
+      $xMin=if($null -ne $cs.xMin){[double]$cs.xMin}else{-2};$xMax=if($null -ne $cs.xMax){[double]$cs.xMax}else{2};$xMajor=if($null -ne $cs.xMajor){[double]$cs.xMajor}else{1}
+      $chart.Axes(1).MinimumScale=[double]$xMin;$chart.Axes(1).MaximumScale=[double]$xMax;$chart.Axes(1).MajorUnit=[double]$xMajor
+      $chart.Axes(1).CrossesAt=[double]$xMin;$chart.Axes(2).Crosses=-4105
+      if($null -ne $cs.yMin){
+        $chart.Axes(2).MinimumScale=[double]$cs.yMin;$chart.Axes(2).MaximumScale=[double]$cs.yMax;$chart.Axes(2).MajorUnit=[double]$cs.yMajor
+        $chart.Axes(2).TickLabels.NumberFormatLocal=('0'+$decimal+'0')
+      }
       $chart.Axes(1).HasMajorGridlines=$false;$chart.Axes(2).HasMajorGridlines=$false
     }else{
       $chart.Axes(2).MinimumScale=0

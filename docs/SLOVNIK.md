@@ -291,6 +291,7 @@ obsahovat samostatné výslovné schválení každé doprovodné formulace.
 | <a id="pojem-stanin"></a>**Stanin** | stanine; standard nine | stanina | — | S — [R08](rozhodnuti/kapitola-04.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-stanin); [výklad](../quarto/kapitola_04.qmd#sec-steny-staniny) |
 | <a id="pojem-normalizace"></a>**Normalizace rozdělení** | rank-based normal-score transformation | normalizace přes pořadí (v tomto významu) | Zde převod přes pořadí na normální kvantily, nikoli standardizace na z-skóry. | S — [R08](rozhodnuti/kapitola-04.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normalizace); [výklad](../quarto/kapitola_04.qmd#sec-normalizace) |
 | <a id="pojem-normalni-qq"></a>**Normální Q–Q graf** | normal Q–Q plot; quantile–quantile plot (širší označení) | kvantilový graf vůči normálnímu modelu | Obecný Q–Q graf je širší pojem. Zde srovnání s normálním modelem; nejde o P–P graf. | S — [R08](rozhodnuti/kapitola-04.md#r08-terminologie-kapitoly-4) | [Heslo](../quarto/slovnicek.qmd#pojem-normalni-qq); [výklad](../quarto/kapitola_04.qmd#sec-qq-graf) |
+| <a id="pojem-pp-graf"></a>**P–P graf** | P–P plot; probability–probability plot | — („pravděpodobnostní graf“ je nejednoznačné) | Porovnává empirické a modelové podíly; odlišit od Q–Q grafu, který porovnává hodnoty. V kap. 4 jen nepovinně. | S — [R41](rozhodnuti/kapitola-04.md#r41-zp-a-pp-graf) | [Heslo](../quarto/slovnicek.qmd#pojem-pp-graf); [výklad](../quarto/kapitola_04.qmd#rozsireni-pp-graf) |
 
 <a id="kapitola-05"></a>
 
