@@ -5,7 +5,7 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 2](../../quarto/kapitola_02.qmd#sec-kapitola-02),
-karta zkontrolována 2026-10-11. **Vstup:** případ, proměnná, úrovně měření,
+karta zkontrolována 2026-10-11; dotčený výklad grafu stonek a list a jeho mapování zkontrolovány 2026-10-16. **Vstup:** případ, proměnná, úrovně měření,
 matice, chybění a meze zobecnění z kapitoly 1. Konvence určují
 [R02](../rozhodnuti/kapitola-02.md#r02-indexy-a-cetnosti), [R03](../rozhodnuti/kapitola-02.md#r03-hranice-intervalu),
 [R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani) a [R13](../rozhodnuti/kapitola-02.md#r13-platny-udaj-velikost-vyberu).
@@ -31,7 +31,7 @@ popsat tvar rozdělení a vytvořit četnosti, sloupcový graf a histogram v Exc
 | [Graf kumulativních četností](../../quarto/kapitola_02.qmd#sec-kumulativni-graf) | Schody pro jednotlivé hodnoty versus body na horních mezích seskupených dat. Přesný význam bodů včetně hranice; spojnice uvnitř intervalu není přesně zjištěný podíl. | 4 a 6d; samostatná tvorba tohoto grafu není zadána. |
 | [Polygon](../../quarto/kapitola_02.qmd#sec-polygon-cetnosti) | Výpočet středu intervalu po krocích; bod zastupuje všechny hodnoty intervalu. Spojnice nevyjadřuje časový průběh ani přesné hodnoty jednotlivců. | 5: střed intervalu; bez samostatné tvorby polygonu. |
 | [Výsečový graf](../../quarto/kapitola_02.qmd#sec-vysecovy-graf) | Části jediného celku, omezení vícečetných odpovědí; přímé srovnání tří strategií se sloupci a omezení vnímání výsečí/3D efektů. | 3b a 6a. |
-| [Stonek a list](../../quarto/kapitola_02.qmd#sec-stonek-list) | Rozklad osmi časů na desítky a jednotky, klíč a opakované hodnoty; rekonstrukce zachovaných čísel, nikoli pořadí nebo identity osob. | 8. |
+| [Stonek a list](../../quarto/kapitola_02.qmd#sec-stonek-list) | Rozklad osmi časů na desítky a jednotky, klíč a opakované hodnoty; rekonstrukce zachovaných čísel, nikoli pořadí nebo identity osob. Stejných osm časů také s dělením stonků po pěticích a dvojicích; význam opakovaných stonků, prázdných řádků a volba podrobnosti. | 8; dělení stonků vysvětleno na řešené ukázce, samostatně neprocvičeno. |
 | [Tvar rozdělení](../../quarto/kapitola_02.qmd#sec-tvar-rozdeleni) a [podlaha/strop](../../quarto/kapitola_02.qmd#sec-podlaha-strop) | Souměrnost, chvost a směr šikmosti, jeden/dva/více vrcholů, rovnoměrnost a odlehlost. Dva sousední nejvyšší sloupce nejsou automaticky dvě skupiny. Meze nástroje a nahromadění nejsou samy vysvětlením tvaru. | 7. |
 | [Zavádějící zobrazení](../../quarto/kapitola_02.qmd#sec-zavadejici-grafy) | Čtení os, základu a velikosti výběru; nula u délky sloupců, srovnatelná měřítka histogramů, plochy zvětšovaných ikon. Graf není sám důkazem o populaci či příčině. | 9 a argumentace v 6–7. |
 | [Excel: absolutní četnosti](../../quarto/kapitola_02.qmd#sec-excel-pocet-countifs) | POČET, COUNTIFS a SUMA; oblast, název listu, pevné a posuvné odkazy. Počet čísel nekontroluje jejich přípustnost. | 10. |
