@@ -3184,3 +3184,25 @@ Připomínky autora k oddílům o normalizaci a přiměřenosti modelu:
 
 Kontroly: `check-chapter-04.R` čeká 18 SVG, `check-html.cjs` 18 obrázků
 kapitoly 4 a nový obrázek v kontrole mobilního zobrazení.
+
+## Desetinná čárka v MathML (2026-10-16)
+
+Revize kapitoly 4 ukázala, že MathML převádí `0{,}841` na
+`<mn>0</mn><mo>,</mo><mn>841</mn>` a Chromium za čárkou zobrazuje mezeru
+(„0, 841344746…“); týkalo se všech 766 desetinných čárek v matematice knihy.
+Podle postupu navrženého autorem byl přidán filtr
+`filters/desetinna-carka.lua` (jen HTML): výraz s `{,}` mezi číslicemi se
+převede s dočasnou desetinnou tečkou, takže Pandoc vytvoří jediné `<mn>`,
+tečka se uvnitř `<mn>` vrátí na čárku a anotace zachová původní TeX.
+Obyčejné čárky (`N(50,10)`, výčty `35,\ 39`, `0,1,\ldots,n`) se nemění;
+prohledáním všech `.qmd` nebyla nalezena desetinná čárka v matematice bez
+`{,}` ani desetinná tečka.
+
+Ověření: testovací dokument (samostatné, záporné číslo, procento, mocnina,
+zlomek, `N(50,10)`, `N(0{,}5,1)`, výčet, nerovnost, blok rovnice) –
+struktura MathML zkontrolována; celý render; ve vykreslených stránkách
+odpovídá všech 766 `{,}` čárkám uvnitř `<mn>`; `check-html.cjs` rozšířen
+o tuto kontrolu a prošel; vizuálně ověřeno v Chromiu (mobil 390 px).
+Neověřeno: Firefox a Safari; ruční PDF se nemění (vlastní konfigurace bez
+filtru). Zjištěno mimo rozsah: úvodní minus se v MathML vykresluje jako
+`<mi>−</mi>` (stav i před filtrem).
