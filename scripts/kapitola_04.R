@@ -56,24 +56,100 @@ ch4_draw('hustota', {
   ch4_area(50,60)
   text(68,.025,'Plocha\n0,341',cex=.95)
 },width=9)
+# Density above, distribution function below: the coloured area equals the coloured height.
+ch4_hi <- '#F0B08C'; ch4_hi_text <- '#9A3F17'; ch4_lo <- ch4_fill; ch4_lo_text <- '#1D5670'
+ch4_fmt <- function(v) format(round(v,3),nsmall=3)
+ch4_F <- function(x) pnorm(x,50,10)
+ch4_top_mar <- c(1.6,4.7,2.2,.8); ch4_bottom_mar <- c(4.5,4.7,1.4,.8)
+ch4_density_panel <- function(title,ylab='Hustota (na bod)') {
+  par(mar=ch4_top_mar)
+  x <- seq(10,90,length.out=1001)
+  plot(x,dnorm(x,50,10),type='n',xlab='',ylab=ylab,xlim=c(10,90),ylim=c(0,.044),bty='l',xaxt='n')
+  axis(1,at=seq(10,90,20),labels=FALSE)
+  title(main=title,adj=0,cex.main=1)
+}
+ch4_density_line <- function() curve(dnorm(x,50,10),from=10,to=90,add=TRUE,lwd=2.3,col=ch4_blue)
+ch4_cdf_panel <- function(title,ylab='Podíl nejvýše po hranici') {
+  par(mar=ch4_bottom_mar)
+  plot(NA,xlim=c(10,90),ylim=c(0,1.04),yaxs='i',xlab='Skór pozornosti (body)',ylab=ylab,bty='l',yaxt='n')
+  axis(2,at=seq(0,1,.25),labels=c('0','0,25','0,5','0,75','1'))
+  abline(h=1,col='#C9D3D8',lty=3)
+  title(main=title,adj=0,cex.main=1)
+}
+ch4_cdf_line <- function() curve(ch4_F(x),from=10,to=90,add=TRUE,lwd=2.5,col=ch4_blue)
+# Column at the boundary: stacked pieces c(y0,y1,fill).
+ch4_column <- function(x,pieces,w=2.6) for(p in pieces) rect(x-w/2,p[[1]],x+w/2,p[[2]],col=p[[3]],border=ch4_gray,lwd=.8)
+# One dashed boundary line through both panels; call in the top panel, then link() in the bottom one.
+ch4_link_start <- function(xs) { segments(xs,0,xs,.044,lty=2,lwd=1.4,col=ch4_orange); grconvertY(0,'user','ndc') }
+ch4_link_end <- function(xs,ndc) { op <- par(xpd=NA); segments(xs,0,xs,grconvertY(ndc,'ndc','user'),lty=2,lwd=1.4,col=ch4_orange); par(op) }
 ch4_draw('distribucni', {
-  par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.7))
-  ch4_curve(main='Hustota: podíl jako plocha');ch4_area(-Inf,60)
-  abline(v=60,lty=2,col=ch4_orange);text(47,.019,'84,1 %')
-  curve(pnorm(x,50,10),from=10,to=90,col=ch4_blue,lwd=2.5,xlab='Skór pozornosti (body)',ylab='Podíl vlevo od hranice',main='Distribuční funkce: podíl jako výška',bty='l',ylim=c(0,1),yaxs='i')
-  segments(60,0,60,pnorm(60,50,10),lty=2,col=ch4_orange)
-  segments(10,pnorm(60,50,10),60,pnorm(60,50,10),lty=2,col=ch4_orange)
-  points(60,pnorm(60,50,10),pch=19,col=ch4_orange);text(32,.9,'0,841',col=ch4_orange)
-},width=10)
+  layout(matrix(1:2,2))
+  ch4_density_panel('Hustota: podíl je plocha')
+  ch4_area(-Inf,60,fill=ch4_hi); ch4_density_line()
+  text(43,.014,ch4_fmt(ch4_F(60)),col=ch4_hi_text,font=2,cex=1.15)
+  ndc <- ch4_link_start(60)
+  ch4_cdf_panel('Distribuční funkce: podíl je výška')
+  ch4_column(60,list(list(0,ch4_F(60),ch4_hi)))
+  segments(10,ch4_F(60),60,ch4_F(60),lty=3,col=ch4_gray)
+  ch4_cdf_line(); ch4_link_end(60,ndc)
+  text(63,ch4_F(60)/2,ch4_fmt(ch4_F(60)),col=ch4_hi_text,font=2,cex=1.15,adj=0)
+},width=7,height=6.6)
 ch4_draw('oblasti', {
-  par(mfrow=c(1,3),mar=c(4.5,3.7,2.5,.6),mgp=c(2.3,.6,0),cex=.85)
+  layout(matrix(1:6,2))
+  ttl <- c('Nejvýše 60','Nad 60','Nad 60 a nejvýše 70')
   for(k in 1:3) {
-    ch4_curve(main=c('Nejvýše 60','Nad 60','Nad 60 a nejvýše 70')[k]);
-    ch4_area(c(-Inf,60,60)[k],c(60,Inf,70)[k])
-    text(50,.043,c('84,1 %','15,9 %','13,6 %')[k],cex=1)
-    abline(v=c(60,70)[seq_len(if(k==3)2 else 1)],lty=3,col=ch4_gray)
+    yl <- if(k==1) 'Hustota (na bod)' else ''
+    ch4_density_panel(ttl[k],ylab=yl)
+    if(k==1) { ch4_area(-Inf,60,fill=ch4_hi); text(43,.014,ch4_fmt(ch4_F(60)),col=ch4_hi_text,font=2) }
+    if(k==2) { ch4_area(-Inf,60,fill=ch4_lo); ch4_area(60,Inf,fill=ch4_hi)
+      text(43,.014,ch4_fmt(ch4_F(60)),col=ch4_lo_text,font=2); text(76,.016,ch4_fmt(1-ch4_F(60)),col=ch4_hi_text,font=2) }
+    if(k==3) { ch4_area(-Inf,60,fill=ch4_lo); ch4_area(60,70,fill=ch4_hi)
+      text(43,.014,ch4_fmt(ch4_F(60)),col=ch4_lo_text,font=2); text(78,.02,ch4_fmt(ch4_F(70)-ch4_F(60)),col=ch4_hi_text,font=2) }
+    ch4_density_line()
+    xs <- if(k==3) c(60,70) else 60
+    ndc <- ch4_link_start(xs)
+    ch4_cdf_panel('',ylab=if(k==1) 'Podíl nejvýše po hranici' else '')
+    if(k==1) { ch4_column(60,list(list(0,ch4_F(60),ch4_hi)))
+      text(63,.42,ch4_fmt(ch4_F(60)),col=ch4_hi_text,font=2,adj=0) }
+    if(k==2) { ch4_column(60,list(list(0,ch4_F(60),ch4_lo),list(ch4_F(60),1,ch4_hi)))
+      text(63,.42,ch4_fmt(ch4_F(60)),col=ch4_lo_text,font=2,adj=0)
+      text(12,.9,paste0('1 − ',ch4_fmt(ch4_F(60)),' = ',ch4_fmt(1-ch4_F(60))),col=ch4_hi_text,font=2,adj=0,cex=.9) }
+    if(k==3) { segments(60,ch4_F(60),70,ch4_F(60),lty=3,col=ch4_gray)
+      ch4_column(70,list(list(0,ch4_F(60),ch4_lo),list(ch4_F(60),ch4_F(70),ch4_hi)))
+      text(73,.42,ch4_fmt(ch4_F(60)),col=ch4_lo_text,font=2,adj=0)
+      text(12,.9,paste0(ch4_fmt(ch4_F(70)),' − ',ch4_fmt(ch4_F(60)),' = ',ch4_fmt(ch4_F(70)-ch4_F(60))),col=ch4_hi_text,font=2,adj=0,cex=.9) }
+    ch4_cdf_line(); ch4_link_end(xs,ndc)
   }
-},width=10,height=3.8)
+},width=10.5,height=6.4)
+ch4_draw('mezi', {
+  layout(matrix(c(1,2,3,4,5,6,6,6,6,6),2,byrow=TRUE),widths=c(1,.22,1,.22,1),heights=c(1,1.25))
+  mini <- function(parts,lab,labcol,ticks) {
+    par(mar=c(2.2,.6,2,.6))
+    plot(NA,xlim=c(15,85),ylim=c(0,.044),axes=FALSE,xlab='',ylab='')
+    for(p in parts) ch4_area(p[[1]],p[[2]],fill=p[[3]])
+    ch4_density_line(); axis(1,at=ticks,cex.axis=.9); abline(h=0,col=ch4_gray)
+    title(main=lab,col.main=labcol,cex.main=1.05)
+  }
+  sym <- function(s) { par(mar=c(2.2,0,2,0)); plot.new(); text(.5,.45,s,cex=2.6,font=2,col='#223744') }
+  mini(list(list(60,70,ch4_hi)),paste('Mezi 60 a 70:',ch4_fmt(ch4_F(70)-ch4_F(60))),ch4_hi_text,c(60,70))
+  sym('=')
+  mini(list(list(-Inf,60,ch4_lo),list(60,70,ch4_hi)),paste('Do 70:',ch4_fmt(ch4_F(70))),'#223744',70)
+  sym('−')
+  mini(list(list(-Inf,60,ch4_lo)),paste('Do 60:',ch4_fmt(ch4_F(60))),ch4_lo_text,60)
+  par(mar=c(4.5,4.7,2.2,.8))
+  plot(NA,xlim=c(10,90),ylim=c(0,1.04),yaxs='i',xlab='Skór pozornosti (body)',ylab='Podíl nejvýše po hranici',bty='l',yaxt='n')
+  axis(2,at=seq(0,1,.25),labels=c('0','0,25','0,5','0,75','1'))
+  title(main='Distribuční funkce: tentýž rozdíl jako rozdíl dvou výšek',adj=0,cex.main=1)
+  abline(v=c(60,70),lty=2,lwd=1.4,col=ch4_orange)
+  segments(10,c(ch4_F(60),ch4_F(70)),c(60,70),c(ch4_F(60),ch4_F(70)),lty=3,col=ch4_gray)
+  ch4_column(60,list(list(0,ch4_F(60),ch4_lo)),w=3)
+  ch4_column(70,list(list(0,ch4_F(60),ch4_lo),list(ch4_F(60),ch4_F(70),ch4_hi)),w=3)
+  ch4_cdf_line()
+  text(58,.1,paste('Výška v 60:',ch4_fmt(ch4_F(60))),col=ch4_lo_text,font=2,adj=1)
+  text(72,.42,paste('Výška v 70:',ch4_fmt(ch4_F(70))),col='#223744',font=2,adj=0)
+  arrows(73,ch4_F(60),73,ch4_F(70),code=3,length=.05,col=ch4_hi_text,lwd=1.5)
+  text(74.5,(ch4_F(60)+ch4_F(70))/2-.07,paste0(ch4_fmt(ch4_F(70)),' − ',ch4_fmt(ch4_F(60)),' = ',ch4_fmt(ch4_F(70)-ch4_F(60))),col=ch4_hi_text,font=2,adj=0,cex=.95)
+},width=10,height=6.6)
 ch4_draw('kvantily', {
   par(mfrow=c(1,2),mar=c(4.7,4.7,2.7,.7))
   ch4_curve(main='Horních 5 %');a<-qnorm(.95,50,10);ch4_area(a,Inf)
@@ -145,6 +221,33 @@ ch4_draw('pasma-skoru', {
     }
   }
 },width=8.5,height=8.4)
+ch4_norm_x <- c(11,12,12,13,14,14,14,16,17,19,22,26,31,39,52)
+ch4_norm_z <- qnorm((rank(ch4_norm_x)-.5)/length(ch4_norm_x))
+ch4_draw('normalizace', {
+  par(mar=c(4.3,4.6,2.6,4.6))
+  x <- ch4_norm_x; z <- ch4_norm_z; g <- 2.6; w <- 7.6
+  ux <- function(v) (v-10)/45; uz <- function(v) (v+2.25)/4.5
+  hx <- hist(x,breaks=seq(10,55,5),right=FALSE,plot=FALSE)
+  hz <- hist(z,breaks=seq(-2,2,.5),right=FALSE,plot=FALSE)
+  plot(NA,xlim=c(-g-w,g+w),ylim=c(0,1),xaxs='i',yaxs='i',axes=FALSE,xlab='',ylab='')
+  abline(h=ux(seq(10,55,5)),col='#EEF2F4'); box(bty='l',col='#223744'); box(bty='7',col='#223744')
+  rect(-g-hx$counts,ux(head(hx$breaks,-1)),-g,ux(hx$breaks[-1]),col=ch4_fill,border=ch4_blue,lwd=.8)
+  rect(g,uz(head(hz$breaks,-1)),g+hz$counts,uz(hz$breaks[-1]),col=ch4_hi,border=ch4_hi_text,lwd=.8)
+  # Tied values sit side by side; each pair of dots is joined by a translucent line.
+  tie <- ave(x,x,FUN=function(v) seq_along(v)-(length(v)+1)/2)*.32
+  xl <- -g+.75+tie; xr <- g-.75+tie
+  segments(xl,ux(x),xr,uz(z),col=adjustcolor(ch4_gray,.5),lwd=1.3)
+  points(xl,ux(x),pch=21,bg=ch4_blue,col='white',cex=1.25)
+  points(xr,uz(z),pch=21,bg=ch4_hi_text,col='white',cex=1.25)
+  axis(2,at=ux(seq(10,50,10)),labels=seq(10,50,10))
+  axis(4,at=uz(-2:2),labels=c('−2','−1','0','1','2'))
+  mtext('Doba řešení (s)',side=2,line=2.8,las=0); mtext('z-skór po normalizaci',side=4,line=2.8,las=0)
+  cnt <- 0:7
+  axis(1,at=c(-g-cnt,g+cnt),labels=c(cnt,cnt))
+  mtext('Četnost',side=1,line=2.5)
+  mtext('Původní doby',side=3,line=.6,at=-g-w/2,font=2)
+  mtext('Po normalizaci',side=3,line=.6,at=g+w/2,font=2)
+},width=8,height=5.6)
 ch4_draw('qq-konstrukce', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,9),xaxs='i',yaxs='i')
   box_label<-function(x,y,w,h,label,fill=ch4_fill) {
@@ -180,5 +283,15 @@ for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   plot(h,freq=FALSE,col=ch4_fill,border='white',main=ch4_titles[nm],xlab='Simulovaný skór',ylab='Hustota',ylim=c(0,1.12*max(h$density,dnorm(xx,mean(v),sd(v)))));lines(xx,dnorm(xx,mean(v),sd(v)),col=ch4_orange,lwd=2)
   plot(z,sort(v),pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
+},width=9,height=4.4)
+# Same normal simulation: the curve matches bar heights only on the density scale.
+ch4_draw('histogram-krivka', {
+  v<-ch4_simulations$normalni; h<-hist(v,breaks='FD',plot=FALSE)
+  xx<-seq(min(h$breaks),max(h$breaks),length.out=500); yy<-dnorm(xx,mean(v),sd(v))
+  par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))
+  plot(h,freq=TRUE,col=ch4_fill,border='white',main='Svislá osa: četnost',xlab='Simulovaný skór',ylab='Četnost',ylim=c(0,1.12*max(h$counts)))
+  lines(xx,yy,col=ch4_orange,lwd=2)
+  plot(h,freq=FALSE,col=ch4_fill,border='white',main='Svislá osa: hustota',xlab='Simulovaný skór',ylab='Hustota (na bod)',ylim=c(0,1.12*max(h$density,yy)))
+  lines(xx,yy,col=ch4_orange,lwd=2)
 },width=9,height=4.4)
 options(ch4_old_options)

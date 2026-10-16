@@ -93,11 +93,11 @@ listů `Kvantily`, `Orezani` a `Boxplot`.
 
 [Sešit](../data/kapitola_04.xlsx)
 
-Výklad: `Z_skory`, `Standardizace`, `Modely`, `Skaly` a `QQ_data`
+Výklad: `Z_skory`, `Standardizace`, `Normalizace`, `Modely`, `Skaly` a `QQ_data`
 obsahují vstupy pro převody a konstrukci grafu; `Model` a `QQ` zachovávají
 hotové výpočty. Listy `Sim_normalni`, `Sim_sikme`, `Sim_chvosty` a
 `Sim_smes` přebírají po 200 skutečně vygenerovaných skórů z téhož běhu
-a seedu jako čtyři porovnávané obrázky. Nejsou to dodatečně vymyšlená
+a seedu jako čtyři porovnávané obrázky; `Sim_normalni` slouží také obrázku histogramu s četnostmi a hustotou proloženého normální křivkou. Nejsou to dodatečně vymyšlená
 individuální data ke slovnímu cvičení 10.
 
 | Cvičení | List a oblast / povaha zadání |

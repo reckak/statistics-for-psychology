@@ -218,7 +218,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
-        assert.equal(await page.locator('main img').count(),15);
+        assert.equal(await page.locator('main img').count(),18);
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
@@ -408,7 +408,7 @@ const server = http.createServer((req, res) => {
       const conceptFigures = {
         'quarto/kapitola_02.html': ['fig-zaklad-procent','fig-princip-kumulace','fig-meze-intervalu','fig-sirka-intervalu'],
         'quarto/kapitola_03.html': ['fig-vazeny-prumer','fig-percentil-a-poradi','fig-orezani-winsorizace'],
-        'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
+        'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-distribucni-04','fig-mezi-04','fig-oblasti-04','fig-normalizace-04','fig-histogram-krivka-04','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
         'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace'],
         'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-stejny-rozdil','fig-dva-testy']
       };
