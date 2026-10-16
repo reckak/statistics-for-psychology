@@ -3163,3 +3163,24 @@ příležitosti opravena očekávaná hodnota, kterou předchozí přidání obr
 `mezi` nechalo na 15. Sešit přestavěn a ověřen `build-workbooks.ps1
 -Chapter 4 -Verify`; render celé knihy a `check-html.cjs` (17 obrázků
 kapitoly 4, nový obrázek v kontrole mobilního zobrazení).
+
+## Kapitola 4: přiměřenost modelu a Q–Q graf (2026-10-16)
+
+Připomínky autora k oddílům o normalizaci a přiměřenosti modelu:
+
+- Věta o „normálně vypadajících standardních skórech“ nyní platí výslovně
+  pro normalizované skóry; u lineárně převedených skórů je tvar stejný jako
+  u hrubých, ani to však nedokládá rozdělení měřené vlastnosti.
+- Upřesněno „shoda modelu s daty ve středu rozdělení“.
+- Nový obrázek `fig-histogram-krivka-04` (`histogram-krivka`): táž simulace
+  `normalni` s četnostní a hustotní osou a normální křivkou; zjednodušena
+  věta o hustotě a ploše 1.
+- Neutrální popis konvencí programů (osy, přímka prvním a třetím kvartilem
+  dat podle dokumentace R `qqline`); doplněno, že populační rozdělení
+  známe jen v simulaci; opraveno zdvojené „body“.
+- Q–Q graf vysvětlen jako otázka „jakou hodnotu by mělo pozorování s tímto
+  pořadím v normálním modelu“, včetně významu sloupce E v Excelu.
+- Doplněno, že větší náhodný výběr věrněji odráží rozdělení populace.
+
+Kontroly: `check-chapter-04.R` čeká 18 SVG, `check-html.cjs` 18 obrázků
+kapitoly 4 a nový obrázek v kontrole mobilního zobrazení.

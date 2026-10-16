@@ -284,4 +284,14 @@ for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   plot(z,sort(v),pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
 },width=9,height=4.4)
+# Same normal simulation: the curve matches bar heights only on the density scale.
+ch4_draw('histogram-krivka', {
+  v<-ch4_simulations$normalni; h<-hist(v,breaks='FD',plot=FALSE)
+  xx<-seq(min(h$breaks),max(h$breaks),length.out=500); yy<-dnorm(xx,mean(v),sd(v))
+  par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))
+  plot(h,freq=TRUE,col=ch4_fill,border='white',main='Svislá osa: četnost',xlab='Simulovaný skór',ylab='Četnost',ylim=c(0,1.12*max(h$counts)))
+  lines(xx,yy,col=ch4_orange,lwd=2)
+  plot(h,freq=FALSE,col=ch4_fill,border='white',main='Svislá osa: hustota',xlab='Simulovaný skór',ylab='Hustota (na bod)',ylim=c(0,1.12*max(h$density,yy)))
+  lines(xx,yy,col=ch4_orange,lwd=2)
+},width=9,height=4.4)
 options(ch4_old_options)

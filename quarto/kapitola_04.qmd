@@ -422,33 +422,43 @@ V @fig-normalizace-04 jsou hodnoty na svislých osách, vlevo původní doby a v
 
 Skutečné normy testů vycházejí z velkých normativních souborů a jejich konkrétní postup popisuje manuál testu. Princip je však stejný: o výsledném skóru rozhoduje poloha v referenční skupině, nikoli původní rozestupy hrubých skórů.
 
-Normálně vypadající standardní skóry proto samy nedokazují, že původní hrubé skóry nebo měřená psychologická vlastnost mají normální rozdělení. Při práci se skutečným testem použijeme jeho normy, věkové členění a převodní pravidla; nepřepočítáváme automaticky všechny skóry pomocí jednoho průměru a směrodatné odchylky.
+Normálně vypadající **normalizované** skóry proto samy nedokazují, že normální rozdělení mají původní hrubé skóry: normální tvar jim dal až převod přes pořadí. U lineárně převedených skórů, jako jsou z-skóry nebo T-skóry ze standardizace, je tomu jinak: jejich tvar je stejný jako tvar hrubých skórů. Ani pak ale nevíme, zda je stejně rozložena i měřená psychologická vlastnost; tvar rozdělení skórů ovlivňuje i konstrukce testu, například obtížnost položek. Při práci se skutečným testem použijeme jeho normy, věkové členění a převodní pravidla; nepřepočítáváme automaticky všechny skóry pomocí jednoho průměru a směrodatné odchylky.
 
 Také [percentilové pořadí](kapitola_03.qmd#sec-percentilove-poradi) vyjadřuje relativní polohu, ale nemá rovnoměrné rozestupy. Jak ukázala poslední řada v @fig-skaly-04, stejný rozdíl z-skórů odpovídá uprostřed normálního rozdělení většímu rozdílu percentilových pořadí než na jeho okraji. Percentil 90 proto není dvakrát vyšší výkon než percentil 45.
 
 ## Je normální model přiměřený? {#sec-primerenost-modelu}
 
-Všechny dosavadní výpočty platí pro zadaný model. Zbývá otázka, kdy je normální model pro konkrétní data rozumný a jak to posoudit z významu měření a grafů.
+Všechny dosavadní výpočty platí pro zadaný model. Zbývá otázka, kdy je normální model pro konkrétní data vhodný a jak to posoudit z významu měření a grafů.
 
 ### Začínáme významem měření a histogramem
 
-Výpočty ploch dávají přesnou odpověď pro zadaný normální model. Jejich užitečnost pro skutečná data však závisí na tom, zda model vystihuje podstatné vlastnosti daného rozdělení. Nejprve ujasníme, **kterou proměnnou, kterou skupinu a kterou otázku** posuzujeme. Pro odhad podílu velmi vysokých skórů potřebujeme věrný pravý chvost; dobrá shoda ve středu sama nestačí.
+Výpočty podílů dávají přesnou odpověď pro zadaný normální model. Jejich užitečnost pro skutečná data však závisí na tom, zda model vystihuje podstatné vlastnosti daného rozdělení. Nejprve ujasníme, **kterou proměnnou, kterou skupinu a kterou otázku** posuzujeme. Pro odhad podílu velmi vysokých skórů potřebujeme věrný pravý chvost; dobrá shoda modelu s daty ve středu rozdělení sama nestačí.
 
-Zkontrolujeme přípustné hodnoty, jednotky, chybějící údaje a možné chyby záznamu. Má proměnná jen několik kategorií? Hromadí se výsledky u nejvyššího dosažitelného skóru? Mohly se smíchat skupiny s různými průměry? Takové okolnosti mají pro vhodnost modelu přímý význam. Například doby reakce nemohou být záporné a mohou mít dlouhý pravý chvost; normální model nelze odůvodnit jen tím, že měříme psychologickou proměnnou.
+Zkontrolujeme přípustné hodnoty, jednotky, chybějící údaje a možné chyby záznamu. Má proměnná jen několik kategorií? Hromadí se výsledky u nejvyššího dosažitelného skóru? Mohly se smíchat skupiny s různými průměry? Takové okolnosti mají pro vhodnost modelu přímý význam. Například reakční časy nemohou být záporné a mohou mít dlouhý pravý chvost; normální model nelze odůvodnit jen tím, že měříme psychologickou proměnnou.
 
-Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněný jednotlivými body u malého souboru nebo [krabicovým grafem](kapitola_03.qmd#sec-boxplot). Hledáme asymetrii, více vrcholů, vzdálené hodnoty a nahromadění na mezích. U histogramu vyzkoušíme několik rozumných šířek a poloh intervalů: jeden výběr může zakrýt důležité rysy. Přes histogram lze přiložit normální křivku s průměrem $m$ a směrodatnou odchylkou $s$ z dat. Aby měly oba útvary porovnatelnou výšku, histogram musí mít svislou osu hustoty a celkovou plochu 1.
+Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněný jednotlivými body u malého souboru nebo [krabicovým grafem](kapitola_03.qmd#sec-boxplot). Hledáme asymetrii, více vrcholů, vzdálené hodnoty a nahromadění na mezích. U histogramu vyzkoušíme několik rozumných šířek a poloh intervalů: jeden výběr může zakrýt důležité rysy. Histogram lze proložit křivkou normálního rozdělení s průměrem $m$ a směrodatnou odchylkou $s$ z dat. Aby měly oba útvary porovnatelnou výšku, histogram musí mít na svislé ose hustotu; plocha jeho sloupců je pak stejně jako plocha pod křivkou rovna 1.
 
-Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Koeficienty šikmosti a excesu mohou popis doplnit, pokud je známe z nepovinného [rozšíření](kapitola_03.qmd#sec-momenty), ale jeden univerzální číselný práh nenahrazuje posouzení tvaru a účelu modelu [@howell, s. 75–78].
+::: {.chapter-04-figure role="region" aria-label="Histogram s četnostmi a s hustotou proložený normální křivkou" tabindex="0"}
+
+![Křivku lze s histogramem porovnat jen tehdy, když histogram ukazuje hustotu.](../assets/chapter-04/plots/histogram-krivka.svg){#fig-histogram-krivka-04 fig-alt="Dva histogramy týchž dvou set simulovaných hodnot s normální křivkou podle jejich průměru a směrodatné odchylky. Vlevo má histogram na svislé ose četnosti až kolem čtyřiceti a křivka leží téměř na vodorovné ose. Vpravo má histogram na svislé ose hustotu a křivka prochází přibližně vrcholy sloupců."}
+
+:::
+
+V @fig-histogram-krivka-04 jsou v obou grafech tytéž simulované hodnoty a tatáž normální křivka; vrátíme se k nim u [Q–Q grafů](#sec-qq-odchylky). Vlevo udává výška sloupce počet hodnot v intervalu, kdežto výška křivky hustotu na bod. Obě veličiny mají jiné měřítko, a křivka proto splývá s osou. Vpravo jsou sloupce převedené na hustotu, takže jejich výšky lze s křivkou přímo porovnat: vidíme, kde data modelu odpovídají a kde se od něj odchylují.
+
+Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Koeficienty šikmosti a excesu mohou popis doplnit, pokud je známe z nepovinného [rozšíření](kapitola_03.qmd#sec-momenty), ale jeden univerzální číselný práh nenahrazuje důkladné posouzení tvaru a účelu modelu [@howell, s. 75–78].
 
 ### Co porovnává normální Q–Q graf {#sec-qq-graf}
 
-**Normální Q–Q graf (*normal Q–Q plot*)** porovnává seřazené datové hodnoty s odpovídajícími kvantily normálního modelu. Zkratka Q–Q pochází z *quantile–quantile*: srovnáváme polohy v obou rozděleních. Zatímco histogram sdružuje hodnoty do sloupců, Q–Q graf pracuje s jednotlivými pořadími. Ukáže proto i odchylky, které volba intervalů histogramu může zakrýt [@howell, s. 75–78].
+**Normální Q–Q graf (*normal Q–Q plot*)** porovnává seřazené hodnoty s odpovídajícími kvantily normálního modelu. Zkratka Q–Q pochází z *quantile–quantile*: srovnáváme polohy v obou rozděleních. Zatímco histogram sdružuje hodnoty do sloupců, Q–Q graf pracuje s jednotlivými pořadími. Ukáže proto i odchylky, které volba intervalů histogramu může zakrýt [@howell, s. 75–78].
 
-V našich grafech je **vodorovně teoretický kvantil normovaného normálního rozdělení**, vyjádřený z-skórem. **Svisle je seřazená pozorovaná hodnota v původních jednotkách.** Nejde o dvojice měření dvou vlastností u stejných lidí. Každý bod spojuje malou, střední či vysokou polohu v datech s obdobnou polohou v modelu.
+V našich grafech je **vodorovně teoretický kvantil normovaného normálního rozdělení**, vyjádřený z-skórem. **Svisle je seřazená pozorovaná hodnota v původních jednotkách.** Nejde o dvojice měření dvou vlastností u stejných lidí. Každý bod spojuje malou, střední či vysokou polohu v datech s odpovídající polohou v normálním modelu.
 
-Kdyby data dobře odpovídala normálnímu modelu, jejich kvantily by se od normovaných lišily přibližně jen posunem a změnou měřítka. Zpětný převod $x=\mathrm{μ}+\mathrm{σ}z$ je rovnice přímky. Proto očekáváme **přibližně přímé uspořádání bodů**, nikoli nutně přímku svírající úhel 45 stupňů. Úhel v obrázku závisí i na jednotkách a rozsahu os. Jako orientační přímku zde použijeme $m+s z$, kde střed a variabilitu odhadujeme z dat.
+Pro každé pozorování se vlastně ptáme: **jakou hodnotu by mělo pozorování s tímto pořadím, kdyby data pocházela z normálního rozdělení?** Vodorovná souřadnice udává tuto očekávanou polohu v z-skórech a orientační přímka ji převádí do původních jednotek. Q–Q graf pak porovnává očekávanou hodnotu se skutečně pozorovanou.
 
-Programy mohou osy zaměnit nebo jinak určit referenční přímku. Před čtením proto vždy zkontrolujte popisky. U náhodného souboru z normálního modelu body neleží na přímce dokonale. Zejména krajní pořadí kolísají a v malém souboru je těžké rozpoznat systematický tvar. Přibližná přímka je **slučitelná s normálním modelem**, není jeho důkazem [@nistNormalPlot].
+Kdyby data dobře odpovídala normálnímu modelu, jejich kvantily by se od normovaných lišily přibližně jen posunem a změnou měřítka. Zpětný převod $x=\mathrm{μ}+\mathrm{σ}z$ je rovnice přímky. Proto očekáváme **přibližně přímé uspořádání bodů**, nikoli nutně přímku svírající úhel 45 stupňů. Úhel v obrázku závisí i na jednotkách a rozsahu os. Jako orientační přímku zde použijeme $m+s z$, kde střední hodnotu (průměr) a variabilitu (směrodatnou odchylku) odhadujeme z dat.
+
+Různé programy používají různé konvence: některé mají teoretické kvantily na svislé ose a pozorované hodnoty na vodorovné, jiné vedou referenční přímku jinak, například prvním a třetím kvartilem dat. Před čtením proto vždy zkontrolujte popisky. Ani u náhodného souboru z normálního modelu body nemusejí ležet na přímce dokonale. Zejména krajní pořadí kolísají a v malém souboru je těžké rozpoznat systematický tvar. Pokud body přibližně leží na přímce, znamená to, že data jsou **slučitelná s normálním modelem**, nejedná se ovšem o definitivní důkaz toho, že tomu tak skutečně je [@nistNormalPlot]. Takový důkaz ostatně nemáme téměř nikdy, protože populační rozdělení neznáme. Známe je jen tehdy, když data sami vytvoříme ze zvoleného modelu, jako v simulacích v oddílu [Jak číst odchylky od přímky](#sec-qq-odchylky).
 
 ### Vytvoření Q–Q grafu v Excelu {#sec-excel-qq}
 
@@ -456,7 +466,7 @@ Použijeme dvanáct skórů pozornosti, již seřazených od nejmenšího:
 
 $$35,\ 39,\ 42,\ 45,\ 47,\ 49,\ 51,\ 53,\ 55,\ 58,\ 61,\ 65.$$
 
-Malý soubor slouží k pochopení konstrukce. Při práci s vlastními daty nejprve zkontrolujte jejich význam a seřaďte číselné hodnoty vzestupně, například pomocí **Data → Seřadit od nejmenšího k největšímu**. Pokud třídíte záznamy s více sloupci, seřaďte celé řádky společně, aby se nerozpojily údaje jednotlivých lidí. Zde stačí jediný sloupec skórů.
+Malý soubor slouží k pochopení konstrukce Q-Q grafu. Při práci s vlastními daty nejprve zkontrolujte jejich význam a seřaďte číselné hodnoty vzestupně, například pomocí **Data → Seřadit od nejmenšího k největšímu**. Pokud třídíte záznamy s více sloupci, seřaďte celé řádky společně, aby se nerozpojily údaje jednotlivých lidí. Zde stačí jediný sloupec skórů.
 
 Každému pořadí přiřadíme podíl uvnitř intervalu od 0 do 1. Celý rozsah rozdělíme na $n$ stejně širokých dílků a použijeme jejich **středy**. Pro pořadí $i$ tak počítáme
 
@@ -490,7 +500,7 @@ Na listu `QQ` vytvořte následující rozložení; stejné obsahuje přiložen�
 
 :::
 
-Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru.
+Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy obsahuje hodnotu, kterou bychom pro dané pořadí očekávali, kdyby data pocházela z normálního rozdělení.
 
 První bod má vodorovnou souřadnici přibližně −1,73 a svislou 35 bodů. Poslední má přibližně 1,73 a 65 bodů. Referenční hodnoty v E jsou hodnoty přímky, nikoli náhrada pozorovaných skórů v B.
 
@@ -512,19 +522,19 @@ V následujících obrázcích jsou **simulovaná data**, vždy 200 hodnot. Kaž
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor z normálního modelu." tabindex="0"}
 
-![Simulovaný soubor z normálního modelu.](../assets/chapter-04/plots/diagnostika-normalni.svg){#fig-qq-normalni-04 fig-alt="Histogram dvou set simulovaných normálních hodnot není dokonale hladký. Q–Q graf přesto sleduje přímku s menšími nepravidelnými odchylkami, zejména na krajích."}
+![Simulovaný soubor z normálního modelu.](../assets/chapter-04/plots/diagnostika-normalni.svg){#fig-qq-normalni-04 fig-alt="Histogram dvou set simulovaných hodnot z normálního rozdělení nekopíruje dokonale červenou křivku normálního rozdělení. Q–Q graf přesto sleduje přímku s menšími nepravidelnými odchylkami, zejména na krajích."}
 
 :::
 
-@fig-qq-normalni-04 ukazuje běžné kolísání. Ani při generování z normálního modelu nedostaneme dokonale souměrný histogram nebo body přesně na čáře. Samotná nepravidelnost proto není dostatečným důvodem model odmítnout.
+@fig-qq-normalni-04 ukazuje běžné kolísání. Ani při generování z normálního modelu nedostaneme dokonale souměrný histogram nebo body Q-Q grafu ležící přesně na přímce. Drobné odchylky proto nejsou dostatečným důvodem (normální) model odmítnout.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s rozdělením zešikmeným doprava." tabindex="0"}
 
-![Simulovaný soubor s rozdělením zešikmeným doprava.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Histogram je nahromaděný vlevo a má dlouhý pravý chvost. Q–Q body se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
+![Simulovaný soubor s rozdělením zešikmeným doprava.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Hodnoty jsou v histogram nahromaděny vlevo a vidíme dlouhý pravý chvost. Body Q–Q grafu se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
 
 :::
 
-V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od středu vzdálenější, než normální model předpokládá, a dolní část je stlačená. Normální podíly horního chvostu by zde mohly skutečný výskyt vysokých výsledků podstatně zkreslit. Odečtení průměru a dělení směrodatnou odchylkou toto zakřivení neodstraní.
+V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od středu vzdálenější, než normální model předpokládá, a dolní část je stlačená. Normální podíly horního chvostu by zde mohly skutečný výskyt vysokých výsledků podstatně zkreslit. Odečtení průměru a dělení směrodatnou odchylkou toto zakřivení neodstraní, protože se jedná o lineární tranformaci, neměnící tvar rozdělení.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s těžšími chvosty." tabindex="0"}
 
@@ -532,7 +542,7 @@ V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od stře
 
 :::
 
-@fig-qq-chvosty-04 připomíná, že **souměrnost nestačí**. U těžších chvostů jsou oba konce vzdálenější od středu: při našich osách leží levý konec pod přímkou a pravý nad ní. U kratších, více omezených chvostů očekáváme opačné stáčení. Čteme celé uspořádání; referenční přímku může sama ovlivnit několik velmi vzdálených hodnot.
+@fig-qq-chvosty-04 připomíná, že **souměrnost nestačí**. U těžších chvostů jsou oba konce vzdálenější od středu: při našich osách leží levý konec pod přímkou a pravý nad ní. U kratších, více omezených chvostů očekáváme opačné stáčení. Čteme celé uspořádání; referenční přímku samotnou totiž může ovlivnit několik velmi vzdálených hodnot.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaná směs dvou skupin s různými průměry." tabindex="0"}
 
@@ -540,15 +550,15 @@ V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od stře
 
 :::
 
-V @fig-qq-smes-04 pocházejí data ze dvou skupin s odlišnými středy. Jeden společný normální model by jejich strukturu potlačil. Pokud skupiny mají věcný význam, může být užitečné popsat je zvlášť. Skupiny však nevytváříme dodatečně jen proto, aby jednotlivé obrázky vypadaly normálně. Krabicový graf může dobře upozornit na vzdálené hodnoty, ale právě dva vrcholy v něm často nejsou vidět; proto se různé grafy doplňují.
+V @fig-qq-smes-04 pocházejí data ze dvou skupin s odlišnými průměry. Jeden společný normální model by jejich strukturu vystihoval špatně. Pokud skupiny mají věcný význam, může být užitečné popsat je zvlášť. Skupiny však nevytváříme dodatečně jen proto, aby jednotlivé grafy odpovídaly normálnímu rozdělení. Krabicový graf může dobře upozornit na vzdálené hodnoty, ale nemusí odhalit rozdělení s více vrcholy. Různé typy grafů se tak mohou vzájemně doplňovat, protože poskytují jiné informace.
 
 ### Přiměřenost je závěr s omezeními
 
-Při posouzení spojíme význam měření, histogram a Q–Q graf. Napíšeme, **pro jaký účel** model přijímáme a kde vidíme omezení. Například: „Ve středu rozdělení seřazené skóry přibližně sledují přímku; nejvyšší hodnoty jsou však větší, než odpovídá normálnímu modelu. Model proto zatím nepoužijeme k odhadu podílu velmi vysokých skórů.“ Takový závěr sděluje více než samotné „data jsou normální“.
+Při posouzení spojíme význam měření, histogram a Q–Q graf. Napíšeme, **pro jaký účel** model přijímáme a kde vidíme omezení. Například: „Ve středu rozdělení seřazené skóry přibližně sledují přímku; nejvyšší hodnoty jsou však větší, než odpovídá normálnímu modelu. Model proto zatím nepoužijeme k odhadu podílu velmi vysokých skórů.“ Takový závěr sděluje více než zjednodušující výrok „data jsou (přibližně) normálně rozdělena“.
 
-Větší soubor umožňuje tvar posoudit podrobněji, **nedělá však rozdělení původních hodnot normálnějším**. Malý soubor naopak může vypadat přijatelně jen proto, že chybí informace o okrajích. Žádný z těchto grafů neověřuje reprezentativnost výběru, kvalitu měření ani nezávislost jednotlivých pozorování. Deset opakovaných výsledků téhož člověka nemůžeme bez dalšího považovat za údaje o deseti různých lidech.
+Větší soubor umožňuje tvar posoudit podrobněji, **nedělá však rozdělení původních hodnot normálnějším**. U náhodného výběru obvykle platí, že čím je větší, tím věrněji jeho rozdělení odráží rozdělení populace. Populační rozdělení přitom může, ale nemusí být normální. Malý soubor naopak může vypadat přijatelně jen proto, že chybí informace o okrajích. Žádný z těchto grafů neověřuje reprezentativnost výběru, kvalitu měření ani nezávislost jednotlivých pozorování. Deset opakovaných výsledků téhož člověka nemůžeme bez dalšího považovat za údaje o deseti různých lidech.
 
-Pokud model nevyhovuje, vrátíme se k otázce a datům: pro popis konkrétního souboru můžeme použít pozorované četnosti a empirické kvantily, případně zdůvodněně odlišit skupiny. Neodstraňujeme správně zaznamenaná pozorování jen kvůli hezčímu grafu. Formální testy normality zde nepotřebujeme; jejich význam lze pochopit až s výkladem statistického testování.
+Pokud model nevyhovuje, vrátíme se k otázce a datům: pro popis konkrétního souboru můžeme použít pozorované četnosti a empirické kvantily, případně odlišit skupiny, zdůvodníme-li to rozumnými argumenty. Neodstraňujeme správně zaznamenaná pozorování jen za účelem „hezčího“ grafu. Formální testy normality zatím nepotřebujeme; jejich význam lze pochopit až s výkladem statistického testování.
 
 ## Shrnutí {#sec-shrnuti-04}
 
