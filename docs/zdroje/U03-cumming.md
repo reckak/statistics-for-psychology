@@ -38,6 +38,17 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 83–94 (PDF 118–129): výběrové rozdělení průměru jako hromada průměrů („mean heap“) a „dance of the means“, směrodatná chyba σ/√N, čtyřnásobný výběr a poloviční chyba, centrální limitní věta a výběry z rovnoměrné, zešikmené a vlastní populace. Využitelné pro blok A: zobrazení jednotlivých výběrů pod sebou s vyznačeným průměrem, oddělení empirické hromady průměrů od teoretické křivky a upozornění, že při zešikmené populaci a malém výběru zůstává rozdělení průměru zešikmené (obr. 4.10, N = 4). Řečnická formulace o normálním rozdělení jako základním rysu vesmíru (s. 90) se nepřebírá. Obrázky nebyly prohlédnuty v obraze, aplikace dances a esci nebyly spuštěny; kap. 6 o p-hodnotách zůstává ve stavu mapy obsahu.
 
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Přečteny pasáže s. 101–115, 117–119, 122–123 a 145–149 (PDF +35), dále část diskuse s. 120–121: přechod od chyby odhadu k intervalu, opakované intervaly, t-rozdělení a stupně volnosti, šířka a věcná interpretace, vztah k oboustrannému testu. V obrazu prohlédnuty s. 110 a 119. Navržené využití: struktura vysvětlení a vlastní simulace opakovaných intervalů; nepřebírat autorovu konvenci indexů kvantilů podle centrální plochy.
+
+**Hranice použití:** metafory plauzibility a „cat’s-eye“ se nebudou vydávat za posteriorní rozdělení parametru. S. 122 sama doporučuje vyhýbat se pravděpodobnostní řeči o konkrétním intervalu. Výklad replikací na s. 123 není podkladem pro tvrzení, že 95% interval obsahuje 95 % budoucích výběrových průměrů. Rozšíření o replikacích nebylo úplně prostudováno. Dances/esci nebyly spuštěny, neproběhla kompletní obrazová kontrola ani přepočet všech úloh. Konkrétní plánované grafy a znění jsou dosud návrhem.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

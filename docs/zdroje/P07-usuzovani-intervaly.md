@@ -42,6 +42,17 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 - **Mimo schválený rozsah kapitoly 6:** bootstrap (sn. 32–37) a intervaly spolehlivosti (sn. 38–62).
 
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Z originálního PPTX znovu extrahován text a poznámky; podrobně přečteny sn. 23–31 a 38–50, orientačně návaznosti a rozšíření. Sn. 46 prohlédnut v dřívějším obrazovém exportu; aktuální soubor souhlasí s inventářem podle SHA-256. Potvrzeno, že označení t-rozdělení samotného průměru a koeficient 2,4 v horní mezi jsou skutečně na snímku, nikoli jen v extrakci.
+
+Souhrny příkladu potřeby struktury znovu přepočteny v R: s/√n ≈ 0,16086679, kvantil ≈ 2,03951345, interval (3,62191001; 4,27808999). Příklad je kandidátem vedlejší aplikace; původ empirických dat zůstává neověřený a individuální pozorování se ze souhrnů nebudou rekonstruovat. Navržený rozsah nepřebírá bootstrap, interval podílu ani bayesovské rozšíření. Nebyly znovu prohlédnuty všechny snímky ani spuštěny animace, vložené aplikace a externí simulace.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

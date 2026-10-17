@@ -167,3 +167,22 @@ Tematický rozcestník nově rozlišuje korelace, kategoriální data, porovnáv
 průměrů a bayesovské modelování. Nejde o schválení nových kapitol,
 terminologie či změny hlavního didaktického zdroje. Originály, extrakce
 a obrazové exporty nebyly přidány do veřejné dokumentace.
+
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Úkol: po souhlasu autora se zaměřením na odhad průměru, intervaly spolehlivosti a jednovýběrový t-test připravit podrobný návrh k projednání. Studentská kapitola nevznikla; níže se eviduje čtení a ověřování, nikoli schválení podrobného rozsahu, nových termínů nebo značení.
+
+Inventář ověřen proti všem 44 místním souborům: cesty, počty a všechny 16místné prefixy SHA-256 souhlasí. Žádný nový nebo změněný soubor. Při výběru byly zohledněny všechny skupiny podkladů v tematickém rozcestníku; ostatní učebnice a mimotematické zdroje nebyly nově podrobně přečteny.
+
+Nové čtení a přesné hranice: [Howell](U01-howell.md#priprava-07-20261017), [Cumming](U03-cumming.md#priprava-07-20261017), [OpenIntro](U04-openintro.md#priprava-07-20261017), [Dostál](U05-dostal.md#priprava-07-20261017), [intervalová prezentace](P07-usuzovani-intervaly.md#priprava-07-20261017), [prezentace průměrů](P08-prumery.md#priprava-07-20261017), [úlohy týdne 4](C05-ulohy-tyden-4.md#priprava-07-20261017) a [výběr úloh týdne 9](C08-ulohy-tyden-9.md#priprava-07-20261017). P09 byl pro hranici vůči porovnávání skupin posouzen podle aktuální karty, nikoli novým úplným čtením.
+
+Nezávislá odborná kontrola vztahů a četnostního pokrytí: [NIST, Confidence Limits for the Mean](https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm), přístup 2026-10-17. České názvy a argumenty ověřeny také v dokumentaci Microsoftu: [T.INV](https://support.microsoft.com/cs-cz/excel/functions/t-inv-function), [T.DIST](https://support.microsoft.com/cs-cz/excel/functions/t-dist-function), [T.DIST.2T](https://support.microsoft.com/cs-cz/excel/functions/t-dist-2t-function), [T.INV.2T](https://support.microsoft.com/cs-cz/excel/functions/t-inv-2t-function).
+
+V čisté relaci R 4.5.1 přepočteny vybrané souhrny a příklady vymezené v kartách. U vlastní návrhové varianty pozornosti m = 46, s = 10, n = 25 vychází s_m = 2, t = −2, 24 stupňů volnosti, 95% interval (41,87220288; 50,12779712), oboustranná p-hodnota 0,05693985 a levostranná 0,02846992. Varianta s výběrovou s = 10 je nově navržený modelový vstup, nikoli údaj dodatečně nalezený v kapitole 6. Při použití násobku 1,96 místo t-kvantilu má interval m ± 1,96 s_m za nezávislého normálního modelu a n = 10 pokrytí přibližně 91,835 %, nikoli 95 % (kontrola přes t-rozdělení, nikoli simulací).
+
+Šest vzorců pro návrhový příklad skutečně spuštěno přes FormulaLocal v samostatné skryté instanci českého desktopového Excelu: T.INV(0,975;24), T.DIST(-2;24;PRAVDA), T.DIST.2T(ABS(-2);24), T.INV.2T(0,05;24) a obě meze 46 ± T.INV(0,975;24)*10/ODMOCNINA(25). Výsledky souhlasí s R. Pomocný sešit uzavřen bez uložení; studentský sešit nebyl vytvořen. Nejde o validaci budoucího generátoru nebo všech funkcí.
+
+Původní soubory, studentský text a terminologické registry se nezměnily. Úplná obrazová kontrola všech zdrojů, originální empirické studie, externí simulace a zbývající výpočty nejsou doloženy tímto záznamem. Výřezy a extrakce zůstávají pouze v ignorovaném tmp/, nejsou určeny k publikaci.

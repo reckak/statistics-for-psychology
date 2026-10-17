@@ -36,6 +36,17 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny s. 170–172: bodový odhad a jeho chyba rozdělená na výběrovou chybu a zkreslení (s. 170), simulace 10 000 výběrových podílů při podílu 0,88 a n = 1 000 a popis výběrového rozdělení středem, rozptýleností a tvarem (s. 171), centrální limitní věta pro podíl s podmínkou alespoň deseti očekávaných úspěchů i neúspěchů (s. 172; shodné s orientačním pravidlem kapitoly 5). Podnět pro blok A: výběrové rozdělení ve skutečném výzkumu nepozorujeme, a přesto o odhadu uvažujeme jako o jedné hodnotě z něj. „Sampling error“ zde označuje kolísání odhadu mezi výběry, tedy širší užití než v [R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6). Vizuální kontrola neproběhla; §5.2–5.3 nebyly čteny.
 
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Pro návrh kapitoly 7 přečten §7.1, s./PDF 251–258 a vybraná zadání s. 259–261: podmínky inference, t-rozdělení, interval a jednovýběrový test. Využití jako srovnávací opory čtyř kroků příprava → podmínky → výpočet → interpretace a konceptuálních úloh.
+
+**Hranice:** formulace o modelování samotného průměru pomocí t-rozdělení (s. 253) je nutné zpřesnit na statistiku (m − μ)/(s/√n). Pravidlo n = 30 ani nepřítomnost nápadného odlehlého pozorování nejsou důkazem normality nebo univerzální zárukou použitelnosti. Prostý náhodný výběr bez vracení neznamená přesnou nezávislost; pro navržené vzorce se musí vymezit odpovídající model. Neproběhla obrazová kontrola této pasáže, přepočet zdrojových příkladů ani ověření původních studií.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

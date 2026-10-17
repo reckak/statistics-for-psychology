@@ -65,6 +65,19 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Doplnění při přípravě prezentace ke kapitole 3 (2026-10-13):** přečtena cvičení kapitoly 2, s. 55–62 (PDF 79–86), úlohy 2.1–2.55; čísla stran ověřena podle záhlaví stránek. V obrazu stránek zvlášť zkontrolována data úloh 2.1 (s. 55), 2.4 (s. 56), 2.33 (s. 60), 2.34–2.36 (s. 61) a 2.45 (s. 62). U úlohy 2.33 textová extrakce slučuje četnosti „1 0“ do „10“; správné četnosti jsou 1, 0, 4, 3, 3, 3, 1 (15 potkanů). Úloha 2.15 odkazuje na „Exercise 2.17“, zřejmě místo 2.14, a úloha 2.22 na „Exercise 2.23“, zřejmě místo 2.20; v prezentaci nepoužito. Howell u dat úloh 2.1 a 2.4 neuvádí konkrétní empirickou studii. **Použití:** místní prezentace ke kapitole 3 adaptuje úlohy 2.30–2.36 a 2.54, její doprovodný sešit úlohy 2.1, 2.4, 2.40–2.46 a 2.51 (u 2.51 jen postup, s jinými daty). Hodnoty řešení nezávisle přepočítány v R a v Excelu; Howellova vlastní řešení ani výklad §2.1–2.12 nebyly tímto čtením znovu ověřovány.
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Nově ověřena identita v PDF 3 a 6: *Statistical Methods for Psychology*, 8. vydání, 2013. Přečteny relevantní pasáže s. 181–183, 186–189 a 191–195 (PDF +24): přechod od známé σ k odhadu s, stupně volnosti, příklad PDI, měsíční iluze, interval a jeho vztah k testu. V obrazu prohlédnuty s. 192, 194 a 195, včetně obr. 7.6. Návaznost slouží návrhu jednoho průměru; párové a nezávislé testy nejsou tímto čtením zahrnuty.
+
+**Důležitá odchylka navrženého výkladu:** na s. 194 autor po popisu četnostní interpretace výslovně připouští pro výuku bayesovsky znějící pravděpodobnostní formulaci konkrétního intervalu. Pro kapitolu 7 se navrhuje zachovat četnostní pokrytí postupu a bez modelu a prioru nepřisuzovat konkrétnímu intervalu posteriorní pravděpodobnost. Porovnáno s NIST (odkaz ve společném záznamu). Není to schválení nové formulace autora učebnice. Kvantily označené horním chvostem nepřebírat do zavedené konvence podílu vlevo.
+
+**Číselná kontrola:** ze souhrnů PDI m = 104,125, s = 12,584, n = 56 vychází v R t ≈ 2,45301, oboustranná p-hodnota ≈ 0,017365 a 95% interval (100,75498; 107,49502). Jde o kontrolu souhrnů, nikoli původní studie, celého datasetu nebo všech příkladů. Originální empirické práce, bootstrapový postup a zbývající kapitola nebyly nezávisle ověřeny.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

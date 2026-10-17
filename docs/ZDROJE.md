@@ -374,3 +374,5 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 - [Použití podkladů při tvorbě kapitoly 6 — 2026-10-12](zdroje/HISTORIE.md#pouziti-kapitola-06)
 
 - [Aktualizace inventáře a nových podkladů — 2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17)
+
+- [Čtení pro návrh kapitoly 7 — 2026-10-17](zdroje/HISTORIE.md#priprava-07-20261017)

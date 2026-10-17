@@ -38,6 +38,17 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 - **Neověřeno:** vizuální kontrola stran, §5.3 a dále, kap. 4 mimo vyhledané termíny.
 
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Přečteny s./PDF 79–84 a 105–106: definice intervalového odhadu, spolehlivost postupu, odvození pro známý a neznámý rozptyl, jednovýběrový test. Využití: česká terminologie a formální kontrola vztahů, nikoli převzetí náročného odvození přes chí-kvadrát.
+
+**Hranice:** odmítnutí pravděpodobnosti pro pevné neznámé skutečnosti na s. 80 nelze převzít jako obecný zákaz napříč pojetími pravděpodobnosti; vymezení se týká četnostního postupu. Terminologické varianty z opory nejsou automaticky schválené pro učebnici. Vzorce porovnány s NIST, ale strany nebyly v tomto průchodu obrazově prohlédnuty; úplné důkazy a cvičení se neověřovaly.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

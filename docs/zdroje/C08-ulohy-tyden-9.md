@@ -23,3 +23,12 @@
 **Rozpory k potvrzení v originálním vykreslení:** u X11_03 klíč vybírá pro t-rozdělení s malým počtem stupňů volnosti možnost „platykurtický“. T-rozdělení má těžší chvosty než normální rozdělení; žádná z uvedených možností nepopisuje jeho tvar správně. U X11_05 vysvětlení připisuje centrálnímu t-rozdělení SD = 1. Jeho rozptyl je však ν/(ν − 2) pro ν > 2; SD tedy přesahuje 1 a při malých ν nemusí být konečná. Vlastnost nezávisle ověřena v [R, `TDist`, Details](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) (R-devel, přístup 2026-10-17). Toto ověřuje matematickou vlastnost; vzhledem k chybějícímu vykreslení se zde neuzavírá vizuální kontrola zadání a klíče.
 
 **Použití a neověřeno:** sada vhodná pro výběr testu podle designu a čtení souhrnných výsledků; srovnat [P08](P08-prumery.md#p08) a [P09](P09-nezavisly-ttest.md#p09). Početní řešení nebyla kompletně reprodukována a empirický původ dat ani validita porovnání jednoho systému s lidským vzorkem nejsou ověřeny. Před použitím přezkoumat předpoklady každého designu, zacházení s nestejnými rozptyly a dostupnost vstupních dat. Excel ani externí zdroje úloh nebyly testovány.
+
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Při výběru podkladů kapitoly 7 přečten úvod souboru z OOXML: X11_02–10, X11_12/15–16 a X11_18–19. Většina materiálu patří budoucímu porovnávání skupin. Pro kapitolu 7 jsou využitelné náměty symetrie t-rozdělení, vlivu stupňů volnosti a čtení kvantilů; nikoli automatické převzetí odpovědí. X11_19 pracuje s rozdíly a s úlohami jako jednotkami a zůstává mimo navržený základ. Řešení, vložený excelový objekt, úplné vykreslení a zbytek sady se v tomto průchodu neověřovaly.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
