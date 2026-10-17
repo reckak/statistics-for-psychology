@@ -17,3 +17,12 @@ ch6_json <- function(x) paste0('[',paste(format(round(x,3),nsmall=3,decimal.mark
 writeLines(paste0('{"prumery":{',paste(vapply(seq_along(ch6_sizes),function(j) paste0('"n',ch6_sizes[j],'":',ch6_json(ch6_means[,j])),character(1)),collapse=','),
   '},"rozdily":',ch6_json(ch6_diffs),',"vyber":',ch6_json(ch6_one_sample),
   ',"skupiny_n":[',paste(ch6_group_n,collapse=','),'],"skupiny_m":',ch6_json(ch6_group_m),'}'),'tmp/sesity-simulace-06.json',useBytes=TRUE)
+# Chapter 7: the 100 simulated samples of the repeated-interval figure, summarized per sample.
+# Interval bounds come from unrounded means and SDs; the 0/1 hits are computed before rounding.
+source('scripts/kapitola_07.R', encoding='UTF-8')
+ch7_json <- function(x) paste0('[',paste(format(round(x,3),nsmall=3,decimal.mark='.',trim=TRUE,scientific=FALSE),collapse=','),']')
+writeLines(paste0('{"prumer":',ch7_json(ch7_sim_m),',"sd":',ch7_json(ch7_sim_s),
+  ',"z_dolni":',ch7_json(ch7_sim_z[,1]),',"z_horni":',ch7_json(ch7_sim_z[,2]),
+  ',"t_dolni":',ch7_json(ch7_sim_t[,1]),',"t_horni":',ch7_json(ch7_sim_t[,2]),
+  ',"z_zachytil":[',paste(as.integer(ch7_hit_z),collapse=','),'],"t_zachytil":[',paste(as.integer(ch7_hit_t),collapse=','),']}'),
+  'tmp/sesity-simulace-07.json',useBytes=TRUE)

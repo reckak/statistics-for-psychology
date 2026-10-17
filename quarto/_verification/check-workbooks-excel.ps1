@@ -6,7 +6,7 @@ $taskExcel=$null;$taskBook=$null
 try {
   $taskExcel=New-Object -ComObject Excel.Application
   $taskExcel.Visible=$false;$taskExcel.DisplayAlerts=$false
-  foreach($n in 1,2,3,4,5,6){
+  foreach($n in 1,2,3,4,5,6,7){
     $taskBook=$taskExcel.Workbooks.Open((Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $n)),0,$false)
     if($taskBook.Worksheets.Item(1).Name -ne 'Prehled'){throw 'Overview is not first'}
     $taskExcel.CalculateFullRebuild()

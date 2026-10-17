@@ -4,23 +4,25 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
-**Stav k 2026-10-12: po kapitole 6 není schválen žádný plán.** Směr, rozsah
-ani pořadí dalších kapitol nebyly projednány; platí postup přípravy kapitoly
-podle [projektových instrukcí](../../AGENTS.md).
+**Stav k 2026-10-17: kapitola 7 je schválena a napsána, po ní není schválen
+žádný plán.** Rozsah kapitoly 7 „Interval spolehlivosti pro populační průměr,
+jednovýběrový t-test a test ekvivalence“ určuje
+[R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7); skutečný obsah
+eviduje [karta kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07).
+Tři odkazy kapitoly 6 na „další kapitolu“ (interval spolehlivosti, nejistota
+odhadu směrodatné chyby, test průměru při neznámé σ) nyní vedou křížovými
+odkazy do kapitoly 7.
 
-Kapitola 6 na třech místech odkazuje studenty na „další kapitolu“: u intervalu
-spolehlivosti ([řešený výpočet](../../quarto/kapitola_06.qmd#sec-pravdepodobnost-prumeru)),
-u postupu, který počítá s nejistotou odhadu směrodatné chyby
-([odhad](../../quarto/kapitola_06.qmd#sec-odhad-chyby)), a u testu průměru
-při neznámé směrodatné odchylce ([z-test](../../quarto/kapitola_06.qmd#sec-z-test)).
-Odkazy odpovídají autorovým pokynům při projednání kapitoly 6
-([R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6): intervaly spolehlivosti
-„odložit do další kapitoly“, t-rozdělení a t-test „do další kapitoly“).
-Jde o dohodnutý směr, nikoli o schválený rozsah: bude-li obsah další
-kapitoly dohodnut jinak, je třeba tyto tři věty upravit.
+Směr, rozsah ani pořadí kapitol po kapitole 7 nebyly projednány; platí postup
+přípravy kapitoly podle [projektových instrukcí](../../AGENTS.md).
 
-**Mimo kapitolu 6 a bez schváleného umístění:** intervaly spolehlivosti,
-t-rozdělení a t-testy, bootstrap, znaménkový test, funkce Z.TEST, korekce
-pro více testů, chí-kvadrát, korelace, bayesovské testování a plánování
-velikosti výběru. Podklady k nim eviduje [mapa zdrojů](../ZDROJE.md); jejich
-zmínka zde není schválením tématu ani pořadí.
+**Mimo kapitoly 6 a 7 a bez schváleného umístění:** párový t-test a t-test pro
+dva nezávislé výběry, překrývání intervalů dvou skupin, interval pro podíl,
+bootstrap, znaménkový test, funkce Z.TEST, korekce pro více testů,
+chí-kvadrát, korelace, bayesovské testování, plánování velikosti výběru
+a test minimálního účinku. Podklady k nim eviduje [mapa zdrojů](../ZDROJE.md);
+jejich zmínka zde není schválením tématu ani pořadí.
+
+**Historický stav k 2026-10-12** (původní znění je v Gitu): po kapitole 6 nebyl
+schválen žádný plán; R28 odložil intervaly spolehlivosti, t-rozdělení
+a t-test „do další kapitoly“ jako dohodnutý směr, nikoli schválený rozsah.

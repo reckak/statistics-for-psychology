@@ -1,5 +1,111 @@
 # Autorská dokumentace
 
+## 2026-10-17 — P-hodnota v české ukázce APA
+
+Autor rozhodl otevřenou otázku z [vytvoření kapitoly 7](#vytvoreni-kapitoly-7): v české ukázce APA zůstává p-hodnota s nulou před desetinnou čárkou (*p* = 0,003). Zapsáno jako datované upřesnění [R05](../docs/rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani) a řádku registru; v kapitole 7 doplněna jedna věta u [ukázky sdělení](kapitola_07.qmd#sec-ukazka-sdeleni). Ostatní kapitoly českou ukázku s p-hodnotou neobsahují (prohledány kapitoly 1–7), takže jinde se nic neměnilo. Ověření: render kapitoly 7, kontrola HTML, kontrola dokumentačních map a git diff --check.
+
+<a id="dohoda-kapitola-07"></a>
+
+## Kapitola 7: dohoda o obsahu (2026-10-17)
+
+Na doporučení zaměřit další kapitolu na průměry autor odpověděl, že kapitola
+má představit jen jednovýběrový z-test a t-test, podrobněji intervaly
+spolehlivosti a jejich vztah k p-hodnotám a pomocí intervalů test ekvivalence
+(výsledek může být statisticky, ale ne věcně významný; intervaly různé šířky
+zasahují do různých pásem), a připojil vlastní schéma intervalů studií A–I.
+Na otázky zvolil povinný výklad TOST přes 90% interval (výpočet p-hodnot
+nepovinně) a neinferioritu jen nepovinně.
+
+**Průběh.** První plán autor vrátil se čtrnácti připomínkami: zpřesnit název;
+z-test jen připomenout; v simulaci se známou σ mají intervaly stejnou šířku
+a ze 100 jich nemusí přesně 95 zachytit μ; oddělit modelový předpoklad σ = 10
+od výběrové s = 10 a model popsat slovně; předpoklady uvést u prvních
+intervalů a zmínit zkreslení a chybu měření; 91,8 % označit jako teoretické
+pokrytí chybného postupu; přesně formulovat vztah intervalu a p-hodnoty včetně
+hraničního případu; doplnit přesné hypotézy TOST a vysvětlení 90% intervalu;
+zúžit závěr o online verzi; v tabulce studií oddělit oba testy od věcného
+závěru; doplnit cíle a cvičení k ekvivalenci včetně volby hranic podle
+výsledku; upravit terminologii (intervalový odhad, přesnost odhadu, mezní
+chyba odhadu, TOST jako konkrétní postup, popis Δ); zpřesnit nepovinná
+rozšíření a reportování; prostudovat Lakense a Cumminga před schválením
+a zkrátit opakování z-testu. Druhou verzi vrátil s pokynem zapisovat kvantil
+t-rozdělení jako $t_{0{,}025\,(v=10)}$ a poté plán schválil. Dohodu
+eviduje [R44](../docs/rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7)–[R46](../docs/rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7).
+
+<a id="vytvoreni-kapitoly-7"></a>
+
+## Kapitola 7: vytvoření výkladu (2026-10-17)
+
+Podle dohody vznikla kapitola `quarto/kapitola_07.qmd` s jedenácti
+výkladovými oddíly, sedmi obrázky, třemi nepovinnými rozšířeními a čtrnácti
+cvičeními (dvanáct základních, dvě nepovinná), sešit `data/kapitola_07.xlsx`
+(19 listů), skript `scripts/kapitola_07.R`, 15 hesel slovníčku, pět řádků
+přehledu značení a čtyři funkce Excelu (T.INV, T.DIST, T.DIST.2T, T.INV.2T).
+Tři odkazy kapitoly 6 na „další kapitolu“ vedou nově do kapitoly 7. Do
+bibliografie přibyly Lakens (2017), Lakens, Scheel a Isager (2018)
+a Nurcombe et al. (1984); zdroje mají karty E02 a E03 a doplněk U03.
+
+### Odborná a didaktická rozhodnutí při psaní
+
+- **Simulace opakovaných intervalů** (seed 20261017, výukový model μ = 47,
+  σ = 10, 100 výběrů po 25) dala 94 zachycení při známé σ a 96 s výběrovou s.
+  Seed nebyl vybírán podle výsledku; text oba počty využívá k ukázce, že
+  95 % je dlouhodobé pokrytí. Simulace výběrů po pěti (seed 20261018) dává
+  4,8 % a 12,4 % statistik mimo ±1,96.
+- **Hypotézy t-testu** zůstaly jednostranné jako u z-testu v kapitole 6,
+  protože směr výzkumnice zvolila předem. Vztah k 95% intervalu, který normu
+  50 obsahuje, vysvětluje oddíl o jednostranné mezi (49,42 = horní mez 90%
+  intervalu); tento most vede přímo k TOST.
+- **PDI.** Interpretace se drží Howella (s. 188): nečekaně vyšší průměr,
+  výhoda oboustranného testu, kontrola skórování a podobné průměry jiných
+  studií. První koncept přisuzoval Howellovi nedoložené vysvětlení o původu
+  norem a tvrdil, že výzkumníci nečekali směr; obojí opraveno po kontrole
+  v PDF.
+- **Zdůvodnění hranic ±3** je vlastní modelová úvaha (podíl lidí pod
+  hranicí 40 se mění z 15,9 % na 24,2 % nebo 9,7 %), rozhodnutí je výslovně
+  přisouzeno vydavateli a označeno jako hodnotová volba předem.
+- **Ukázka reportování** odděluje statistiky středníky podle R05 a uvádí
+  *p* s nulou před desetinnou čárkou (*p* = 0,003). APA 7 v angličtině nulu
+  před desetinnou tečkou u p-hodnot vynechává; česká podoba tohoto detailu
+  dosud nebyla dohodnuta a je ponechána k rozhodnutí autora.
+- **Funkce A a MAX** se používají jen na listu `Ekvivalence` (slovní závěr
+  a výsledná p-hodnota TOST); do přehledu funkcí Excelu nebyly zařazeny,
+  protože je student v úlohách nepotřebuje.
+
+**Didaktická revize** proběhla po dokončení konceptu čtením očima
+začátečníka se vstupy kapitol 1–6. Opraveny: věta o „náhodě zvolené pro
+jednoduchost“ u s = 10 (protimluv), formulace o shodě odhadu směrodatné
+chyby s modelem, dva výpočty zapsané jako excelový vzorec uvnitř matematiky
+(nyní kód v textu) a odkaz na rozsahy listů `U07_uzkost`, `U08_intervaly`,
+`U11_studie` a `U14_neinferiorita`. Povinná část má asi 8 700 slov; jedna
+věta má mírně přes 35 slov a byla ponechána kvůli souvislosti. Interní
+revize není ověřením porozumění na studentech.
+
+### Ověření
+
+- `quarto/_verification/check-chapter-07.R`: všechna čísla výkladu, tabulky
+  studií, simulací a řešení všech 14 úloh nezávisle přepočtena (t-rozdělení
+  přes neúplnou beta funkci); prošlo.
+- Sešit sestaven `scripts/build-workbooks.ps1 -Chapter 7` v českém Excelu
+  a ověřen `quarto/_verification/check-chapter-07-excel.ps1`: 32 uložených
+  výsledků, 52 vzorců z textu a řešení zadaných přes FormulaLocal, 3 chybové
+  argumenty, 58 výsledků a 12 popisků po změně vstupů, 9 českých vzorců.
+  Očekávané hodnoty počítá `check-chapter-07-excel-expected.py` nezávisle
+  na Excelu i R. Kontrola vstupů (`check-workbooks.py`) prošla pro kapitoly
+  4–7; běh pro všechny kapitoly se zastavil na kapitole 3, protože
+  `tmp/chapter-03-build/inputs.json` je zastaralý pracovní manifest
+  (sešit kapitoly 3 se neměnil a nebyl znovu sestaven).
+- Render celé knihy a `check-html.cjs` (12 stránek, 82 řešení, 256 hesel,
+  odkazy, klávesnice, bez JavaScriptu, file://, mobilní šířka 390 px): prošlo;
+  kontrola nově hlídá řešení, obrázky, stojaté řecké symboly, zápis kvantilů
+  t a sbalená rozšíření kapitoly 7.
+- Vizuálně zkontrolovány všechny obrázky kapitoly (PNG náhledy i snímky
+  vykreslené stránky) a oddíly s tabulkami Excelu, testem a čtyřmi
+  kombinacemi.
+- Neověřeno: porozumění na studentech; úvodní oddíly Lakense, Scheela
+  a Isagera (2018) a čísla stran obou Lakensových článků; původní studie
+  Nurcomba et al.; odolnost t-postupů simulací zešikmených populací.
+
 ## 2026-10-17 — Jednotná přibližná rovnost a první výklad těsného násobení
 
 Podle schváleného [R43](../docs/rozhodnuti/spolecne-konvence.md#r43-priblizna-rovnost)

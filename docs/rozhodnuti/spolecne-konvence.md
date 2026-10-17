@@ -63,6 +63,8 @@ výkladu“ (2026-10-09) v [historii](../../quarto/README.md);
 [četnosti](../../quarto/kapitola_02.qmd#sec-zaokrouhlovani-02)
 a [reportování](../../quarto/kapitola_03.qmd#sec-reportovani-apa).
 
+**Upřesnění 2026-10-17 (p-hodnota v české ukázce):** v české ukázce se značkami APA se p-hodnota zapisuje s nulou před desetinnou čárkou, například *p* = 0,003, stejně jako ostatní desetinná čísla českého textu. Anglická ukázka APA zachovává anglickou typografii bez nuly (*p* = .003). Jde o místní přizpůsobení, nikoli požadavek APA. První použití: [ukázka sdělení v kapitole 7](../../quarto/kapitola_07.qmd#sec-ukazka-sdeleni). **Doklad:** autor po dotazu při tvorbě kapitoly 7 (2026-10-17): „V české ukázce APA ponech p-hodnotu s nulou před desetinnou čárkou (p = 0,003) a zapiš to jako dohodnutou konvenci.“
+
 <a id="r37-smyslena-data"></a>
 
 ## R37 — Jednorázové upozornění na smyšlená data

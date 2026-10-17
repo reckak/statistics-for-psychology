@@ -44,6 +44,7 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](zdroje/U01-howell.md#u01) §5.3–5.9; [U04](zdroje/U04-openintro.md#u04) §3.4 a kap. 4; [U10](zdroje/U10-sahu.md#u10) kap. 5–7; [U11](zdroje/U11-russo.md#u11) §5.1–5.8 | [P02](zdroje/P02-popisne-statistiky.md#p02) sn. 36, 45–48; [P03](zdroje/P03-transformace-rozdeleni.md#p03) sn. 33–44; [P05](zdroje/P05-pravdepodobnost.md#p05) sn. 14–18, 20–23 a 29–36; [C03](zdroje/C03-ulohy-tyden-3.md#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
 | Výběrová rozdělení, SE, CLT, intervaly | [U01](zdroje/U01-howell.md#u01) kap. 4 a 7; [U03](zdroje/U03-cumming.md#u03) kap. 4–5; [U06](zdroje/U06-gravetter.md#u06) kap. 7; [U08](zdroje/U08-navarro.md#u08) kap. 10; [U11](zdroje/U11-russo.md#u11) §7.2–7.5 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) sn. 2–6; [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 3–54; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5 a X6; [D11](zdroje/D11-wainer.md#d11) s. 249–253 | Kapitola 6 (napsána 2026-10-12 podle [R28](rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)) vykládá výběrové rozdělení, směrodatnou chybu a její odhad, zákon velkých čísel a centrální limitní větu; intervaly spolehlivosti a t-rozdělení zůstávají mimo. Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. |
 | Testování, velikost účinku, síla, plánování | [U01](zdroje/U01-howell.md#u01) kap. 4, §5.9, 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10; [U04](zdroje/U04-openintro.md#u04) kap. 5–7; [U05](zdroje/U05-dostal.md#u05) §5.2; [U08](zdroje/U08-navarro.md#u08) kap. 11; [U11](zdroje/U11-russo.md#u11) kap. 4, §5.9 a 7–9 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) sn. 7–25; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_11–12, X6_20–21; [D07](zdroje/D07-utts.md#d07) s. 75–76; [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_01–29 a X10_36 | Princip testování je vyložen v kapitole 6 (2026-10-12, [R28](rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)): průběžným příkladem je parkovací studie podle U01 s. 86–88 a P06, binomický test a z-test jsou řešené příklady. Kapitola cituje také tři zdroje mimo `sources/` ([záznam o použití](zdroje/HISTORIE.md#pouziti-kapitola-06)). t-testy, plánování velikosti výběru a výpočty síly nad rámec nepovinného bloku schváleny nejsou. Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Interval spolehlivosti, t-test a test ekvivalence | [U01](zdroje/U01-howell.md#u01) kap. 7 (s. 181–196); [U03](zdroje/U03-cumming.md#u03) kap. 5 a s. 151–152; [E02](zdroje/E02-lakens-2017.md#e02-lakens-2017); [E03](zdroje/E03-lakens-2018.md#e03-lakens-2018) | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 23–50; [P08](zdroje/P08-prumery.md#p08) sn. 11–28; [C05](zdroje/C05-ulohy-tyden-4.md#c05); [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Kapitola 7 podle [R44](rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7). Interval jako vlastnost postupu; t-rozdělení má statistika, ne průměr; hranice ekvivalence předem a v původních jednotkách; párový a dvouvýběrový t-test mimo kapitolu. |
 | Bootstrap a odhad nejistoty různých statistik | [U01](zdroje/U01-howell.md#u01) kap. 18; [U03](zdroje/U03-cumming.md#u03); [U08](zdroje/U08-navarro.md#u08) | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 32–37, 53 a 57–60; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
 | Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](zdroje/D11-wainer.md#d11) s. 250–253; [U12](zdroje/U12-baron.md#u12) kap. 8 | [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_09 (mince); [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
 | Porovnávání průměrů a velikost rozdílu | [U01](zdroje/U01-howell.md#u01) kap. 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10 | [P08](zdroje/P08-prumery.md#p08) sn. 11–46; [P09](zdroje/P09-nezavisly-ttest.md#p09); [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_20–21; [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Rozlišit jeden výběr, párová a nezávislá data. Opravit konkrétní rozpory v mezikrocích a intervalu P08/P09; rozsah budoucí kapitoly není schválen samotnou mapou. |
@@ -348,6 +349,14 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E01 — Mulherin a Miller: přenos diagnostické přesnosti mezi skupinami](zdroje/E01-mulherin-miller.md#e01-mulherin-miller)
 
+<a id="e02-lakens-2017"></a>
+
+- [E02 — Lakens: testy ekvivalence pro t-testy, korelace a metaanalýzy](zdroje/E02-lakens-2017.md#e02-lakens-2017)
+
+<a id="e03-lakens-2018"></a>
+
+- [E03 — Lakens, Scheel a Isager: test ekvivalence v psychologickém výzkumu](zdroje/E03-lakens-2018.md#e03-lakens-2018)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)
@@ -374,3 +383,5 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 - [Použití podkladů při tvorbě kapitoly 6 — 2026-10-12](zdroje/HISTORIE.md#pouziti-kapitola-06)
 
 - [Aktualizace inventáře a nových podkladů — 2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17)
+
+- [Čtení pro návrh kapitoly 7 — 2026-10-17](zdroje/HISTORIE.md#priprava-07-20261017)
