@@ -32,3 +32,7 @@
 Při výběru podkladů kapitoly 7 přečten úvod souboru z OOXML: X11_02–10, X11_12/15–16 a X11_18–19. Většina materiálu patří budoucímu porovnávání skupin. Pro kapitolu 7 jsou využitelné náměty symetrie t-rozdělení, vlivu stupňů volnosti a čtení kvantilů; nikoli automatické převzetí odpovědí. X11_19 pracuje s rozdíly a s úlohami jako jednotkami a zůstává mimo navržený základ. Řešení, vložený excelový objekt, úplné vykreslení a zbytek sady se v tomto průchodu neověřovaly.
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

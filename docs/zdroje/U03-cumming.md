@@ -49,6 +49,21 @@ Přečteny pasáže s. 101–115, 117–119, 122–123 a 145–149 (PDF +35), d�
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
 
+<a id="ekvivalence-07-20261017"></a>
+
+## Zanedbatelné účinky a test ekvivalence — 2026-10-17
+
+Po vrácení prvního plánu kapitoly 7 přečteny s. 151–152 (PDF 186–187),
+oddíl o „klouzavém svahu nevýznamnosti“ a Red Flag 3. Autoři doporučují
+místo přijímání nulové hypotézy odhadnout velikost účinku: leží-li celý
+interval blízko nuly v hodnotách považovaných za zanedbatelné, lze účinek pro
+praktické účely považovat za blízký nule, a to bez testování nulové hypotézy.
+Využití: myšlenka pásma zanedbatelných hodnot v kapitole 7; formální test
+ekvivalence (TOST a 90% interval) se opírá o [E02](E02-lakens-2017.md#e02-lakens-2017)
+a [E03](E03-lakens-2018.md#e03-lakens-2018), protože Cumming jej na této
+straně nevykládá. Strana byla ověřena v textu PDF (pdftotext), nikoli
+v obrazovém exportu.
+
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

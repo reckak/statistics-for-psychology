@@ -29,7 +29,7 @@ def read_book(path):
  return sheets
 
 checked=0
-for n in range(1,7):
+for n in range(1,8):
  path=ROOT/f'data/kapitola_{n:02}.xlsx';sheets=read_book(path)
  assert next(iter(sheets))=='Prehled',(n,'First tab')
  folder=f'chapter-{n:02}-build' if n!=4 else 'chapter-04'

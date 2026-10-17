@@ -286,7 +286,7 @@ Značku píšeme latinkou, protože ji počítáme z dat. Simulovaný výběr 30
 
 Nemusí tomu tak být vždy. Směrodatná odchylka $s$ je statistika jako každá jiná a mezi výběry kolísá. Osm výběrů, jejichž průměry jsme vypsali výše, mělo směrodatné odchylky od 11,93 do 17,55 s. Odhady směrodatné chyby z nich vycházejí od 2,18 do 3,20 s, ačkoli skutečná hodnota je pro všechny stejná. Větší výběr odhad zpřesní: u výběrů po 100 řidičích leželo 95 % odhadů mezi 1,25 a 1,77 s při skutečné hodnotě 1,5 s.
 
-Z toho plyne důležité omezení. Kdykoli v této kapitole počítáme pravděpodobnost pomocí normálního modelu, používáme směrodatnou chybu, kterou **známe**: z výukového modelu nebo z norem testu. Dosadíme-li místo ní odhad $s_m$, přibude do výpočtu další zdroj nejistoty a pravděpodobnosti z normálního modelu už nejsou přesné, zvlášť u malých výběrů. Postup, který s touto nejistotou počítá, patří do další kapitoly.
+Z toho plyne důležité omezení. Kdykoli v této kapitole počítáme pravděpodobnost pomocí normálního modelu, používáme směrodatnou chybu, kterou **známe**: z výukového modelu nebo z norem testu. Dosadíme-li místo ní odhad $s_m$, přibude do výpočtu další zdroj nejistoty a pravděpodobnosti z normálního modelu už nejsou přesné, zvlášť u malých výběrů. Postup, který s touto nejistotou počítá, vykládá [kapitola 7](kapitola_07.qmd#sec-t-rozdeleni).
 
 V parkovací studii byla směrodatná odchylka v obou skupinách 14,6 s. Odhad směrodatné chyby každého z obou průměrů je tedy $14{,}6/\sqrt{100}=1{,}46$ s. Je to odhad ze studie, nikoli hodnota z výukového modelu.
 
@@ -475,7 +475,7 @@ Buňky B12 a B13 odpovídají na obrácenou otázku: mezi kterými hodnotami le�
 Toto rozmezí je třeba odlišit od dvou jiných:
 
 - Není to rozmezí pro jednotlivé řidiče. Prostředních 95 % dob jednotlivých řidičů leží ve výukovém modelu přibližně mezi 12 a 70 s.
-- Není to interval spolehlivosti. Zde populační průměr známe a ptáme se, kde budou ležet průměry výběrů. Interval spolehlivosti odpovídá na opačnou otázku: z jednoho výběru usuzuje na neznámý populační průměr. Tomu se věnuje další kapitola.
+- Není to interval spolehlivosti. Zde populační průměr známe a ptáme se, kde budou ležet průměry výběrů. Interval spolehlivosti odpovídá na opačnou otázku: z jednoho výběru usuzuje na neznámý populační průměr. Tomu se věnuje [kapitola 7](kapitola_07.qmd#sec-interval-zname-sigma).
 
 ### Rozdíl dvou průměrů {#sec-rozdil-dvou-prumeru}
 
@@ -973,7 +973,7 @@ Ke z-testu dvě upozornění.
 
 **Z-skór ještě není test.** Ve [čtvrté kapitole](kapitola_04.qmd#sec-z-skor) jsme z-skórem popisovali polohu jednoho člověka mezi ostatními. To je popis. Testem se výpočet stává teprve tehdy, když k němu patří hypotézy, výběrové rozdělení statistiky za platnosti nulové hypotézy a předem stanovené pravidlo. Liší se i jmenovatel: ve z-skóru člověka je směrodatná odchylka, ve z-testu směrodatná chyba.
 
-**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a p-hodnota 0,023 by neplatila. Jde o jiný test, kterému se věnuje další kapitola.
+**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a p-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový t-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
 
 ### Co mají testy společného a čím se liší {#sec-kroky-testu}
 

@@ -186,3 +186,15 @@ V čisté relaci R 4.5.1 přepočteny vybrané souhrny a příklady vymezené v 
 Šest vzorců pro návrhový příklad skutečně spuštěno přes FormulaLocal v samostatné skryté instanci českého desktopového Excelu: T.INV(0,975;24), T.DIST(-2;24;PRAVDA), T.DIST.2T(ABS(-2);24), T.INV.2T(0,05;24) a obě meze 46 ± T.INV(0,975;24)*10/ODMOCNINA(25). Výsledky souhlasí s R. Pomocný sešit uzavřen bez uložení; studentský sešit nebyl vytvořen. Nejde o validaci budoucího generátoru nebo všech funkcí.
 
 Původní soubory, studentský text a terminologické registry se nezměnily. Úplná obrazová kontrola všech zdrojů, originální empirické studie, externí simulace a zbývající výpočty nejsou doloženy tímto záznamem. Výřezy a extrakce zůstávají pouze v ignorovaném tmp/, nejsou určeny k publikaci.
+
+<a id="pouziti-kapitola-07"></a>
+
+## Použití podkladů při tvorbě kapitoly 7 — 2026-10-17
+
+Kapitola 7 vznikla podle [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7)–[R46](../rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7). Použití podkladů:
+
+- [U01](U01-howell.md#u01): Gosset a t-rozdělení (s. 185), prohlídka dat PDI (s. 186–188), souhrny PDI a výklad nečekaného směru (s. 188), normy jako pevná hodnota jen u velkých normativních výběrů (s. 195). Howellova bayesovsky znějící formulace konkrétního intervalu (s. 194) a kvantily podle horního chvostu převzaty nebyly. Pasáže s. 188 a 195 ověřeny v textu PDF při psaní.
+- [U03](U03-cumming.md#u03): myšlenka pásma zanedbatelných hodnot (s. 151–152) a opakovaných intervalů (kap. 5); bez převzetí obrázků a metafor.
+- [E02](E02-lakens-2017.md#e02-lakens-2017) a [E03](E03-lakens-2018.md#e03-lakens-2018): hypotézy testu ekvivalence, TOST, 90% interval (pozn. 2), reportování větší p-hodnoty, zdůvodnění hranic, volba hranic předem, čtyři kombinace výsledků. Plný text z Europe PMC (E02) a indexu scite (E03), přístup 2026-10-17.
+- Nově citovaná původní studie Nurcomba et al. (1984) se uvádí jen jako původ souhrnů převzatých od Howella; metadata ověřena v Crossref (DOI 10.1016/S0002-7138(09)60511-2), článek nebyl čten.
+- [P07](P07-usuzovani-intervaly.md#p07), [P08](P08-prumery.md#p08), [C05](C05-ulohy-tyden-4.md#c05) a [C08](C08-ulohy-tyden-9.md#c08) sloužily k pochopení priorit autora a jako náměty cvičení (vlivy na šířku, výklad 95 %, kvantily, známá a neznámá σ). Žádná úloha ani číselný příklad z nich převzat nebyl; nálezy evidované v kartách (t-rozdělení průměru, koeficient 2,4, hranice n > 30) se do textu nedostaly.

@@ -1,6 +1,6 @@
 # Pokrytí dat v sešitech
 
-Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4) a 2026-10-12 (kapitoly 1, 5 a 6). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
+Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4), 2026-10-12 (kapitoly 1, 5 a 6) a 2026-10-17 (kapitola 7). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
 
 Slovní situace bez individuálních pozorování nejsou doplňovány smyšlenými daty. Hladké křivky znázorňují modely, nikoli nezveřejněné výběry. U simulace korekce v kapitole 3 je vstupem známá populace a parametry opakování; interní miliony náhodných tahů nejsou studentským datovým souborem. Kapitola 4 obsahuje všech 800 simulovaných skórů ze čtyř porovnávaných obrázků.
 
@@ -204,3 +204,48 @@ a cvičení 11 hotové p-hodnoty; nejde o jednotlivá pozorování.
 | 12 | `U12_studie` A2:B8 |
 | 13 (nepovinné) | `U13_sila` A2:B7 |
 | 14 (nepovinné) | `U14_screening` A2:B6; smyšlené hodnoty |
+
+## Kapitola 7
+
+[Sešit](../data/kapitola_07.xlsx). Kontrola proti výkladu a zadáním: 2026-10-17.
+
+Výklad: `Pozornost` (průběžný příklad: norma 50, modelový předpoklad σ = 10,
+výběrová s = 10, n = 25, m = 46), `PDI` (souhrny podle Howella, s. 186–188,
+ze studie Nurcomba et al., 1984) a `Studie_ekv` (pět smyšlených studií online
+verze testu, hranice ekvivalence 47 a 53). Hotové výpočty jsou odděleně
+na listech `Interval_z`, `Interval_t`, `T_test` a `Ekvivalence`; žluté buňky
+jsou vstupy, modré vzorce. `Ekvivalence` je nastavena na studii B a počítá
+test rozdílu (95% interval, oboustranná p-hodnota), test ekvivalence
+(90% interval a slovní závěr) a nepovinně obě p-hodnoty TOST (B22:B26).
+
+Simulovaná data obrázku opakovaných intervalů jsou v sešitu úplná a statická:
+`Sim_intervaly` A2:H101 (100 výběrů po 25 z výukového modelu s průměrem 47
+a σ = 10; pro každý výběr průměr, s, meze intervalu se známou σ a s výběrovou s
+a ukazatel zachycení). Meze jsou počítány z nezaokrouhlených hodnot a uloženy
+na tři desetinná místa; vznikají v `scripts/sesity-simulace.R` ze stejného
+seedu jako obrázek (`scripts/kapitola_07.R`). Počty 94 a 96 citované v textu
+jsou ověřeny funkcí SUMA i COUNTIFS přímo na uložených hodnotách. Jednotlivé
+simulované skóry studentským datovým souborem nejsou; simulace 10 000 výběrů
+po pěti lidech (obrázek t-rozdělení) v sešitu není, text z ní cituje jen
+dva podíly.
+
+PDI je v sešitu jen čtyřmi souhrnnými čísly; individuální hodnoty dětí se
+nesestavují. Cvičení 8 a 11 zadávají hotové meze intervalů, cvičení 9 parametry
+normálního modelu; nejde o jednotlivá pozorování.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1 | `U01_IQ` A2:B4; čísla jako v úloze 9 kapitoly 6 |
+| 2 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 3 | `U03_sirka` A2:B4 |
+| 4 | Bez datového listu; kvantily funkcí T.INV. |
+| 5 | `U05_slova` A2:A11 |
+| 6 | `U06_pohoda` A2:B5; k výpočtu lze použít list `T_test` |
+| 7 | `U07_uzkost` A2:A21 |
+| 8 | `U08_intervaly` A2:D6; zadané meze intervalů |
+| 9 | `U09_deprese` A2:B5; parametry normálního modelu |
+| 10 | `U10_spokojenost` A2:B6; k výpočtu lze použít list `Ekvivalence` |
+| 11 | `U11_studie` A2:E6; zadané meze intervalů |
+| 12 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 13 (nepovinné) | `U10_spokojenost` A2:B6; list `Ekvivalence` B22:B26 |
+| 14 (nepovinné) | `U14_neinferiorita` A2:B6 |

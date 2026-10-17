@@ -1,9 +1,9 @@
 # Autorský registr terminologie
 
-**Poslední kontrola: 2026-10-12.** Registr pokrývá 240 hesel současného
-studentského slovníčku pro kapitoly 1–6 a výslovně zachycuje i názvy
+**Poslední kontrola: 2026-10-17.** Registr pokrývá 255 hesel současného
+studentského slovníčku pro kapitoly 1–7 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
-Dvacet devět hesel [kapitoly 6](#kapitola-06) má od 2026-10-12 studentská
+Patnáct hesel [kapitoly 7](#kapitola-07) má od 2026-10-17 studentská
 hesla i první výklad.
 
 ## Účel a platnost
@@ -395,12 +395,39 @@ téhož dne.
 | <a id="pojem-z-test"></a>**z-test** | z-test | — | Test průměru při známé populační směrodatné odchylce. Samotný z-skór není test. | S — [R30](rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) | [Heslo](../quarto/slovnicek.qmd#pojem-z-test); [výklad](../quarto/kapitola_06.qmd#sec-z-test) |
 | <a id="pojem-binomicky-test"></a>**Binomický test** | binomial test | — | Rozdělení testové statistiky je diskrétní; skutečná chybovost nemusí dosáhnout zvolené hladiny. | S — [R30](rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) | [Heslo](../quarto/slovnicek.qmd#pojem-binomicky-test); [výklad](../quarto/kapitola_06.qmd#sec-binomicky-test) |
 
+<a id="kapitola-07"></a>
+
+## Interval spolehlivosti, t-test a test ekvivalence
+
+Hesla schválená při projednání kapitoly 7 ([R44](rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7)–[R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7)).
+Značení určuje [R45](rozhodnuti/kapitola-07.md#r45-znaceni-kapitoly-7). Studentská hesla
+a první výklad vznikly s kapitolou 2026-10-17 pod zde uvedenými stabilními ID.
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-bodovy-odhad"></a>**Bodový odhad** | point estimate | — | Jedno číslo vypočtené z výběru jako odhad parametru, například m pro μ. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-bodovy-odhad); [výklad](../quarto/kapitola_07.qmd#sec-bodovy-intervalovy) |
+| <a id="pojem-intervalovy-odhad"></a>**Intervalový odhad** | interval estimate | — | Rozmezí hodnot parametru vypočtené z výběru. Nadřazený pojem k intervalu spolehlivosti. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-intervalovy-odhad); [výklad](../quarto/kapitola_07.qmd#sec-bodovy-intervalovy) |
+| <a id="pojem-interval-spolehlivosti"></a>**Interval spolehlivosti** | confidence interval; CI | konfidenční interval | Interval vytvořený postupem, který při opakování za předpokladů modelu zachytí parametr v daném podílu případů. Není to rozmezí jednotlivých hodnot ani rozmezí výběrových průměrů kolem známého μ (kap. 6). Zkratka CI jen v ukázkách reportování. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-interval-spolehlivosti); [výklad](../quarto/kapitola_07.qmd#sec-interval-z-vypocet) |
+| <a id="pojem-hladina-spolehlivosti"></a>**Hladina spolehlivosti** | confidence level | spolehlivost intervalu | Například 95 %; rovná se 1 − α odpovídajícího oboustranného testu. Odlišit od hladiny významnosti. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-hladina-spolehlivosti); [výklad](../quarto/kapitola_07.qmd#sec-interval-z-vypocet) |
+| <a id="pojem-meze-intervalu-spolehlivosti"></a>**Dolní a horní mez intervalu spolehlivosti** | lower and upper confidence limit | — | Krajní body intervalu. Odlišit od hranic ekvivalence a od mezí třídních intervalů v kapitole 2 ([H07](#doklad-h07)). | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-meze-intervalu-spolehlivosti); [výklad](../quarto/kapitola_07.qmd#sec-interval-z-vypocet) |
+| <a id="pojem-mezni-chyba"></a>**Mezní chyba odhadu** | margin of error | — | Polovina šířky souměrného intervalu: kvantil krát směrodatná chyba nebo její odhad. Úplné označení; neplést s hranicí ekvivalence (*equivalence margin*). | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-mezni-chyba); [výklad](../quarto/kapitola_07.qmd#sec-interval-z-vypocet) |
+| <a id="pojem-pokryti"></a>**Pokrytí** | coverage | — | Dlouhodobý podíl intervalů obsahujících parametr při opakování postupu; vlastnost postupu, ne jednoho intervalu. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-pokryti); [výklad](../quarto/kapitola_07.qmd#sec-co-znamena-95) |
+| <a id="pojem-presnost-odhadu"></a>**Přesnost odhadu** | precision | — | Vyjadřuje ji šířka intervalu, tedy malá výběrová nejistota. Neznamená nepřítomnost zkreslení výběru ani systematické chyby měření. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-presnost-odhadu); [výklad](../quarto/kapitola_07.qmd#sec-sirka-intervalu) |
+| <a id="pojem-t-rozdeleni"></a>**t-rozdělení** | t distribution; Student's t distribution | Studentovo rozdělení | Rozdělení statistiky (m − μ)/(s/√n) při nezávislém výběru z normální populace; parametrem jsou stupně volnosti. Netvrdit, že t-rozdělení má sám průměr. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-t-rozdeleni); [výklad](../quarto/kapitola_07.qmd#sec-t-rozdeleni) |
+| <a id="pojem-jednovyberovy-t-test"></a>**Jednovýběrový t-test** | one-sample t-test | — | Test populačního průměru proti hodnotě μ₀ při neznámé σ. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-jednovyberovy-t-test); [výklad](../quarto/kapitola_07.qmd#sec-t-test) |
+| <a id="pojem-test-ekvivalence"></a>**Test ekvivalence** | equivalence test | — | Obecný pojem: nulová hypotéza tvrdí, že rozdíl je alespoň tak velký jako hranice ekvivalence; zamítnutí podporuje rozdíl uvnitř pásma. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-test-ekvivalence); [výklad](../quarto/kapitola_07.qmd#sec-test-ekvivalence) |
+| <a id="pojem-tost"></a>**Dva jednostranné testy (TOST)** | two one-sided tests; TOST | — | Konkrétní postup testu ekvivalence; není synonymem každého testu ekvivalence. Při hladině 0,05 odpovídá 90% intervalu. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-tost); [výklad](../quarto/kapitola_07.qmd#sec-test-ekvivalence) |
+| <a id="pojem-hranice-ekvivalence"></a>**Hranice ekvivalence; pásmo ekvivalence** | equivalence bounds; equivalence region; equivalence margin | — | Stanovují se předem, nezávisle na výsledku, podle zamýšleného použití. Odlišit od mezí intervalu a od mezní chyby odhadu. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-hranice-ekvivalence); [výklad](../quarto/kapitola_07.qmd#sec-pasmo-ekvivalence) |
+| <a id="pojem-nejmensi-dulezity-rozdil"></a>**Nejmenší věcně důležitý rozdíl** | smallest effect size of interest; SESOI | — | Překlad zvolený touto učebnicí. Velikost rozdílu, od které je výsledek pro danou otázku důležitý; odlišit od pozorované velikosti účinku. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-nejmensi-dulezity-rozdil); [výklad](../quarto/kapitola_07.qmd#sec-pasmo-ekvivalence) |
+| <a id="pojem-neinferiorita"></a>**Neinferiorita** | non-inferiority | — | Jen v nepovinném rozšíření: jednostranná otázka, zda výsledek není horší o více než předem určenou mez; závisí na směru škály. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-neinferiorita); [výklad](../quarto/kapitola_07.qmd#rozsireni-neinferiorita) |
+
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
-Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 6 byla schválena
-2026-10-12 a je v [platné tabulce](#kapitola-06); názvy pro témata ponechaná
-mimo kapitolu 6 (intervaly spolehlivosti, t-rozdělení a další) zůstávají
-k dohodě. Terminologie kapitoly 5 byla schválena
+Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 7 byla schválena
+2026-10-17 a je v [platné tabulce](#kapitola-07); názvy pro témata ponechaná
+mimo kapitolu 7 (párový t-test, t-test pro dva výběry a další) zůstávají
+k dohodě. Terminologie kapitoly 6 byla schválena
+2026-10-12 a je v [platné tabulce](#kapitola-06). Terminologie kapitoly 5 byla schválena
 a je v [platné tabulce](#kapitola-05). Při její přípravě nebyly schváleny
 a ve studentském textu se jako termíny nezavádějí: věrohodnost (*likelihood*),
 poměr šancí (*odds ratio*) a název úpravy hranice při normální aproximaci

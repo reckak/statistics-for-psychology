@@ -35,3 +35,7 @@ Z originálu přečten text a poznámky relevantního bloku sn. 11–28, zejmén
 Výpočet PDI ze souhrnů znovu ověřen v R, viz [U01](U01-howell.md#priprava-07-20261017); jiné části prezentace nebyly v tomto průchodu kompletně přepočteny. Odborný závěr o rychlosti vývoje nebo původní empirická studie nebyly nezávisle ověřeny.
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

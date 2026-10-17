@@ -80,4 +80,4 @@ Nově ověřena identita v PDF 3 a 6: *Statistical Methods for Psychology*, 8. v
 
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

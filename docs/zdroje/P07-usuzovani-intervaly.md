@@ -55,4 +55,4 @@ Souhrny příkladu potřeby struktury znovu přepočteny v R: s/√n ≈ 0,16086
 
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.
