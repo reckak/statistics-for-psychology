@@ -4,7 +4,7 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
-**Kontrola souladu s textem 2026-10-17 (koeficienty tvaru):** podle [R44](../rozhodnuti/kapitola-03.md#r44-ukazatele-tvaru) odkaz v úvodu přiměřenosti modelu vede na povinný oddíl kap. 3; v [čtení odchylek](../../quarto/kapitola_04.qmd#sec-qq-odchylky) přibyla tabulka Q–Q tvar / SKEW / KURT a výklad shody i mezí; rozšířeno cvičení 10 a bod shrnutí; ověřeny dotčené oddíly, řešení a sešit (listy `Sim_*`).
+**Kontrola souladu s textem 2026-10-17 (koeficienty tvaru):** podle [R47](../rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru) odkaz v úvodu přiměřenosti modelu vede na povinný oddíl kap. 3; v [čtení odchylek](../../quarto/kapitola_04.qmd#sec-qq-odchylky) přibyla tabulka Q–Q tvar / SKEW / KURT a výklad shody i mezí; rozšířeno cvičení 10 a bod shrnutí; ověřeny dotčené oddíly, řešení a sešit (listy `Sim_*`).
 
 **Dílčí kontrola 2026-10-17:** u zpětného převodu z-skóru jediné připomenutí těsného zápisu násobení s odkazem na první výklad u průměru v kapitole 3; bez změny výpočtů a cvičení.
 

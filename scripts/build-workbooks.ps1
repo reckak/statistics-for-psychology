@@ -1,11 +1,11 @@
-param([ValidateRange(1,6)][int[]]$Chapter=@(1,2,3,4,5,6),[switch]$Verify)
+param([ValidateRange(1,7)][int[]]$Chapter=@(1,2,3,4,5,6,7),[switch]$Verify)
 # Common entry point. Requires ordinary Node.js, Windows PowerShell and Excel;
-# Rscript (base R only) supplies fixed simulations for chapters 1, 4, 5 and 6.
+# Rscript (base R only) supplies fixed simulations for chapters 1, 4, 5, 6 and 7.
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 Push-Location $taskRoot
 try {
-  if(@($Chapter | Where-Object {$_ -in 4,5,6}).Count){
+  if(@($Chapter | Where-Object {$_ -in 4,5,6,7}).Count){
     & Rscript --vanilla scripts/sesity-simulace.R
     if($LASTEXITCODE -ne 0){throw 'Simulation inputs failed'}
   }

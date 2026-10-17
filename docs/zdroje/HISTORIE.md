@@ -106,3 +106,95 @@ Kontrola identifikace, dat a hranic dokumentačních celků pro [R42](../rozhodn
 U průběžných celků datum přístupu 2026-10-16. Odkazy konkrétních částí
 byly převzaty ze stávající bibliografie; změna jejich umístění nedokládá
 nové prostudování všech stránek ani nezávislé ověření jejich tvrzení.
+
+<a id="inventura-2026-10-17"></a>
+
+## 2026-10-17 — McElreath, nové přednášky a soubory procvičování
+
+Na žádost autora doplněna mapa nových podkladů. Inventura zahrnula všech
+**44 souborů** v `sources/` včetně podsložek a porovnání SHA-256 se starším
+inventářem: **11 nových souborů**, **1 obsahově změněný soubor** (P04)
+a **1 přesunutý soubor se stejným otiskem** (C04). Z původních 33 souborů
+má 32 nezměněný obsah; žádný z nich nechybí. Starší odstraněné výřezy D08/D09
+zůstávají mimo inventář podle záznamu z 2026-10-12.
+
+Nové karty:
+
+- [U13 — McElreath](U13-mcelreath.md#u13): druhé vydání z roku 2020,
+  identita podle titulní a nakladatelské strany, mapa všech 17 kapitol
+  a vybrané pododdíly. Ověřeny začátky kapitol a převod tištěné/PDF stránky;
+  čteny předmluvy a vybrané pasáže o konstrukci modelu, nikoli celá kniha.
+- [P08](P08-prumery.md#p08) a [P09](P09-nezavisly-ttest.md#p09): porovnávání
+  průměrů, intervaly a velikosti účinku.
+- [P10](P10-korelace-stps.md#p10) a [P11](P11-korelace-psyb1170.md#p11):
+  kovariance, korelace, grafická interpretace a různé koeficienty.
+- [P12](P12-kategorialni-data.md#p12) a [P13](P13-chikvadrat-neparametricke.md#p13):
+  kategoriální data, chí-kvadrát, párová data a dílčí neparametrické metody.
+- [C06](C06-ulohy-tyden-5.md#c06), [C07](C07-ulohy-tyden-8.md#c07),
+  [C08](C08-ulohy-tyden-9.md#c08), [C09](C09-ulohy-tyden-12.md#c09):
+  soubory týdnů 5, 8, 9 a 12, mapované podle původních ID zadání a řešení,
+  nikoli podle stránkování nebo přečíslovaných úloh.
+
+**Rozsah kontroly prezentací:** extrahován text a dostupné poznámky;
+v PowerPointu exportovány všechny snímky P08–P13 a nové verze P04,
+prohlédnuty všechny jejich obrazové přehledy včetně skrytých snímků.
+Vybrané problematické vzorce zkontrolovány ve větší velikosti.
+Nejde o otestování animací, vložených interaktivních objektů ani všech
+externích odkazů. Konkrétní lokátory nálezů a rozsah nezávislého přepočtu
+jsou pouze v příslušných kartách.
+
+**Rozsah kontroly DOCX:** zmapována zadání i místní řešení podle textu
+a tabulek z OOXML, podrobněji přečteny vybrané pasáže uvedené v kartách.
+Export pouze pro čtení ve Wordu se zablokoval; vlastní automatizační
+instance byla ukončena bez změny originálů. Úplné vykreslení, stránkování
+a kontrola všech vložených grafů a obrázků **nejsou dokončeny**. Rozpory
+z textu jsou proto označeny k potvrzení v originálním vykreslení; tam,
+kde proběhl nezávislý přepočet, je oddělen od tohoto vizuálního omezení.
+Externí řešení C7/C10 a jejich původní vydání nejsou ověřena.
+
+**Nezávislé kontroly:** vybrané mezikroky, interval rozdílu průměrů,
+kappa, korelace a kontingenční tabulka přepočteny v čisté relaci R 4.5.1.
+Karty odkazují také na přečtené příslušné oddíly NIST a dokumentace
+R a effectsize. Nebyl přepočten celý soubor řešení ani vyzkoušeny české
+vzorce v Excelu. Původní empirické studie, historická tvrzení a úplný
+kód McElreathovy knihy nebyly nezávisle ověřeny.
+
+**Údržba stávajících karet:** [P04](P04-normalni-rozdeleni.md#p04) zachovává
+historický nález, ale odděluje autorovu částečnou opravu sn. 21 od
+přetrvávajících problémů. [C04](C04-seminar-4.md#c04) má opravenou cestu
+do `sources/starší přednášky/`; stejné ID a původní historie zůstávají.
+Tematický rozcestník nově rozlišuje korelace, kategoriální data, porovnávání
+průměrů a bayesovské modelování. Nejde o schválení nových kapitol,
+terminologie či změny hlavního didaktického zdroje. Originály, extrakce
+a obrazové exporty nebyly přidány do veřejné dokumentace.
+
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Úkol: po souhlasu autora se zaměřením na odhad průměru, intervaly spolehlivosti a jednovýběrový t-test připravit podrobný návrh k projednání. Studentská kapitola nevznikla; níže se eviduje čtení a ověřování, nikoli schválení podrobného rozsahu, nových termínů nebo značení.
+
+Inventář ověřen proti všem 44 místním souborům: cesty, počty a všechny 16místné prefixy SHA-256 souhlasí. Žádný nový nebo změněný soubor. Při výběru byly zohledněny všechny skupiny podkladů v tematickém rozcestníku; ostatní učebnice a mimotematické zdroje nebyly nově podrobně přečteny.
+
+Nové čtení a přesné hranice: [Howell](U01-howell.md#priprava-07-20261017), [Cumming](U03-cumming.md#priprava-07-20261017), [OpenIntro](U04-openintro.md#priprava-07-20261017), [Dostál](U05-dostal.md#priprava-07-20261017), [intervalová prezentace](P07-usuzovani-intervaly.md#priprava-07-20261017), [prezentace průměrů](P08-prumery.md#priprava-07-20261017), [úlohy týdne 4](C05-ulohy-tyden-4.md#priprava-07-20261017) a [výběr úloh týdne 9](C08-ulohy-tyden-9.md#priprava-07-20261017). P09 byl pro hranici vůči porovnávání skupin posouzen podle aktuální karty, nikoli novým úplným čtením.
+
+Nezávislá odborná kontrola vztahů a četnostního pokrytí: [NIST, Confidence Limits for the Mean](https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm), přístup 2026-10-17. České názvy a argumenty ověřeny také v dokumentaci Microsoftu: [T.INV](https://support.microsoft.com/cs-cz/excel/functions/t-inv-function), [T.DIST](https://support.microsoft.com/cs-cz/excel/functions/t-dist-function), [T.DIST.2T](https://support.microsoft.com/cs-cz/excel/functions/t-dist-2t-function), [T.INV.2T](https://support.microsoft.com/cs-cz/excel/functions/t-inv-2t-function).
+
+V čisté relaci R 4.5.1 přepočteny vybrané souhrny a příklady vymezené v kartách. U vlastní návrhové varianty pozornosti m = 46, s = 10, n = 25 vychází s_m = 2, t = −2, 24 stupňů volnosti, 95% interval (41,87220288; 50,12779712), oboustranná p-hodnota 0,05693985 a levostranná 0,02846992. Varianta s výběrovou s = 10 je nově navržený modelový vstup, nikoli údaj dodatečně nalezený v kapitole 6. Při použití násobku 1,96 místo t-kvantilu má interval m ± 1,96 s_m za nezávislého normálního modelu a n = 10 pokrytí přibližně 91,835 %, nikoli 95 % (kontrola přes t-rozdělení, nikoli simulací).
+
+Šest vzorců pro návrhový příklad skutečně spuštěno přes FormulaLocal v samostatné skryté instanci českého desktopového Excelu: T.INV(0,975;24), T.DIST(-2;24;PRAVDA), T.DIST.2T(ABS(-2);24), T.INV.2T(0,05;24) a obě meze 46 ± T.INV(0,975;24)*10/ODMOCNINA(25). Výsledky souhlasí s R. Pomocný sešit uzavřen bez uložení; studentský sešit nebyl vytvořen. Nejde o validaci budoucího generátoru nebo všech funkcí.
+
+Původní soubory, studentský text a terminologické registry se nezměnily. Úplná obrazová kontrola všech zdrojů, originální empirické studie, externí simulace a zbývající výpočty nejsou doloženy tímto záznamem. Výřezy a extrakce zůstávají pouze v ignorovaném tmp/, nejsou určeny k publikaci.
+
+<a id="pouziti-kapitola-07"></a>
+
+## Použití podkladů při tvorbě kapitoly 7 — 2026-10-17
+
+Kapitola 7 vznikla podle [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7)–[R46](../rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7). Použití podkladů:
+
+- [U01](U01-howell.md#u01): Gosset a t-rozdělení (s. 185), prohlídka dat PDI (s. 186–188), souhrny PDI a výklad nečekaného směru (s. 188), normy jako pevná hodnota jen u velkých normativních výběrů (s. 195). Howellova bayesovsky znějící formulace konkrétního intervalu (s. 194) a kvantily podle horního chvostu převzaty nebyly. Pasáže s. 188 a 195 ověřeny v textu PDF při psaní.
+- [U03](U03-cumming.md#u03): myšlenka pásma zanedbatelných hodnot (s. 151–152) a opakovaných intervalů (kap. 5); bez převzetí obrázků a metafor.
+- [E02](E02-lakens-2017.md#e02-lakens-2017) a [E03](E03-lakens-2018.md#e03-lakens-2018): hypotézy testu ekvivalence, TOST, 90% interval (pozn. 2), reportování větší p-hodnoty, zdůvodnění hranic, volba hranic předem, čtyři kombinace výsledků. Plný text z Europe PMC (E02) a indexu scite (E03), přístup 2026-10-17.
+- Nově citovaná původní studie Nurcomba et al. (1984) se uvádí jen jako původ souhrnů převzatých od Howella; metadata ověřena v Crossref (DOI 10.1016/S0002-7138(09)60511-2), článek nebyl čten.
+- [P07](P07-usuzovani-intervaly.md#p07), [P08](P08-prumery.md#p08), [C05](C05-ulohy-tyden-4.md#c05) a [C08](C08-ulohy-tyden-9.md#c08) sloužily k pochopení priorit autora a jako náměty cvičení (vlivy na šířku, výklad 95 %, kvantily, známá a neznámá σ). Žádná úloha ani číselný příklad z nich převzat nebyl; nálezy evidované v kartách (t-rozdělení průměru, koeficient 2,4, hranice n > 30) se do textu nedostaly.

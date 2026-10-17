@@ -2,7 +2,7 @@
 
 **Uspořádání dokumentace od 2026-10-13:** zde je inventář a tematický rozcestník; každý zdroj má samostatnou kartu ve složce `zdroje/`. Společné nálezy a datované souhrny kontrol jsou v [historii ověřování](zdroje/HISTORIE.md). Karty kapitol a jejich vazby na zdroje najdeš v [osnově](OSNOVA.md). Datum reorganizace není novou inventurou ani odborným ověřením podkladů. Kotvy u odkazů na karty zachovávají původní adresy; nové odkazy veď přímo do cílových souborů.
 
-Stav inventury: **12. října 2026**. Mapa zahrnuje všech **33 souborů** v aktuální složce `sources/` a jejích podsložkách: 12 učebnic a monografií, 7 přednáškových prezentací, 4 soubory úloh, 1 seminární prezentaci a 9 dalších podkladů. Nově zmapovány U12, P06, P07, C05 a D11; odstraněné samostatné výřezy Barona se již do inventáře nepočítají. Karty D08 a D09 zůstávají jako podrobné karty kapitol celé knihy U12.
+Stav inventury: **17. října 2026**. Mapa zahrnuje všech **44 souborů** v aktuální složce `sources/` a jejích podsložkách: 13 učebnic a monografií, 13 přednáškových prezentací, 8 souborů úloh, 1 seminární prezentaci a 9 dalších podkladů. Nově zmapovány U13, P08–P13 a C06–C09; aktualizována změněná verze P04 a umístění nezměněného C04. Rozsah nové kontroly uvádí [záznam z 2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17). Odstraněné samostatné výřezy Barona se do inventáře nepočítají; D08 a D09 zůstávají podrobnými kartami kapitol celé knihy U12.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -14,7 +14,7 @@ Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou d
 4. Při návrhu kapitoly uveď, který podklad slouží pro pořadí výkladu, vysvětlení, příklad, procvičování nebo odbornou kontrolu; připoj přesný lokátor a otevřené otázky.
 5. Aktualizuj příslušnou kartu, pokud se prohloubí ověření, přibude nález nebo se změní soubor. Schválený rozsah kapitoly zapisuj do osnovy, schválené konvence do rozhodnutí; terminologické preference současně do [SLOVNIK.md](SLOVNIK.md). Překlad nalezený v podkladu není automaticky preferencí učebnice. Před převzetím ověř význam a platné heslo registru, novou volbu nejprve dohodni.
 
-**Rozsah provedené práce.** Následující souhrn zachycuje průzkum z 11. října; rozsah nového čtení a omezení aktualizace z 12. října uvádějí jednotlivé nové či převedené karty. Všechny původně evidované soubory byly otevřeny a jejich obsah byl posouzen. U rozsáhlých učebnic byl zmapován obsah celé knihy a přečteny vybrané pasáže; nejde o přečtení všech několika tisíc stran ani o kontrolu všech důkazů a příkladů. Konkrétní rozsah je uveden v kartách. U kratších podkladů byly čteny texty, zadání a dostupná řešení; skeny vyžadovaly OCR. Textová extrakce ani OCR samy o sobě nejsou odborným ověřením. Obrázky prezentací byly kontrolovány z exportů PowerPointu, obrázky DOCX a XLSX také samostatně. Neproběhla úplná kontrola všech animací, vložených objektů a odkazovaného externího obsahu.
+**Rozsah provedené práce.** Následující souhrn zachycuje průzkum z 11. října; rozsah nového čtení a omezení aktualizací z 12. a 17. října uvádějí jednotlivé nové či aktualizované karty a historie kontrol. Všechny původně evidované soubory byly otevřeny a jejich obsah byl posouzen. U rozsáhlých učebnic byl zmapován obsah celé knihy a přečteny vybrané pasáže; nejde o přečtení všech několika tisíc stran ani o kontrolu všech důkazů a příkladů. Konkrétní rozsah je uveden v kartách. U kratších podkladů byly čteny texty, zadání a dostupná řešení; skeny vyžadovaly OCR. Textová extrakce ani OCR samy o sobě nejsou odborným ověřením. Obrázky prezentací byly kontrolovány z exportů PowerPointu, obrázky DOCX a XLSX také samostatně. Neproběhla úplná kontrola všech animací, vložených objektů a odkazovaného externího obsahu.
 
 Použité označení:
 
@@ -43,11 +43,16 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Pravděpodobnostní úsudky a statistická gramotnost | [D07](zdroje/D07-utts.md#d07), [U12](zdroje/U12-baron.md#u12) kap. 5–9 a 20; podrobně [D08](zdroje/D08-baron-normativni.md#d08), [D09](zdroje/D09-baron-deskriptivni.md#d09); [D11](zdroje/D11-wainer.md#d11) | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 18–21; příklady v [C03](zdroje/C03-ulohy-tyden-3.md#c03) | V kapitole 5 čtyři chyby úsudku u příslušných pravidel, citováno podle Barona a Uttsové; původní studie nebyly čteny ani aktualizovány. |
 | Náhodná proměnná, diskrétní modely, očekávaná hodnota | [U01](zdroje/U01-howell.md#u01) §5.3–5.9; [U04](zdroje/U04-openintro.md#u04) §3.4 a kap. 4; [U10](zdroje/U10-sahu.md#u10) kap. 5–7; [U11](zdroje/U11-russo.md#u11) §5.1–5.8 | [P02](zdroje/P02-popisne-statistiky.md#p02) sn. 36, 45–48; [P03](zdroje/P03-transformace-rozdeleni.md#p03) sn. 33–44; [P05](zdroje/P05-pravdepodobnost.md#p05) sn. 14–18, 20–23 a 29–36; [C03](zdroje/C03-ulohy-tyden-3.md#c03) X3_31 | V kapitole 5: náhodná proměnná, kombinace, binomické rozdělení a normální aproximace povinně; obecná střední hodnota a variace nepovinně. Chyby P05 opraveny v textu kapitoly, originál beze změny. |
 | Výběrová rozdělení, SE, CLT, intervaly | [U01](zdroje/U01-howell.md#u01) kap. 4 a 7; [U03](zdroje/U03-cumming.md#u03) kap. 4–5; [U06](zdroje/U06-gravetter.md#u06) kap. 7; [U08](zdroje/U08-navarro.md#u08) kap. 10; [U11](zdroje/U11-russo.md#u11) §7.2–7.5 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) sn. 2–6; [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 3–54; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5 a X6; [D11](zdroje/D11-wainer.md#d11) s. 249–253 | Kapitola 6 (napsána 2026-10-12 podle [R28](rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)) vykládá výběrové rozdělení, směrodatnou chybu a její odhad, zákon velkých čísel a centrální limitní větu; intervaly spolehlivosti a t-rozdělení zůstávají mimo. Odlišit rozdělení dat a statistiky, SD a SE, interval hodnot a interval spolehlivosti; opravné podmínky P07 a C05 jsou zásadní. |
-| Testování, velikost účinku, síla, plánování | [U01](zdroje/U01-howell.md#u01) kap. 4, §5.9, 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10; [U04](zdroje/U04-openintro.md#u04) kap. 5–7; [U05](zdroje/U05-dostal.md#u05) §5.2; [U08](zdroje/U08-navarro.md#u08) kap. 11; [U11](zdroje/U11-russo.md#u11) kap. 4, §5.9 a 7–9 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) sn. 7–25; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_11–12, X6_20–21; [D07](zdroje/D07-utts.md#d07) s. 75–76 | Princip testování je vyložen v kapitole 6 (2026-10-12, [R28](rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)): průběžným příkladem je parkovací studie podle U01 s. 86–88 a P06, binomický test a z-test jsou řešené příklady. Kapitola cituje také tři zdroje mimo `sources/` ([záznam o použití](zdroje/HISTORIE.md#pouziti-kapitola-06)). t-testy, plánování velikosti výběru a výpočty síly nad rámec nepovinného bloku schváleny nejsou. Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Testování, velikost účinku, síla, plánování | [U01](zdroje/U01-howell.md#u01) kap. 4, §5.9, 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10; [U04](zdroje/U04-openintro.md#u04) kap. 5–7; [U05](zdroje/U05-dostal.md#u05) §5.2; [U08](zdroje/U08-navarro.md#u08) kap. 11; [U11](zdroje/U11-russo.md#u11) kap. 4, §5.9 a 7–9 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) sn. 7–25; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_11–12, X6_20–21; [D07](zdroje/D07-utts.md#d07) s. 75–76; [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_01–29 a X10_36 | Princip testování je vyložen v kapitole 6 (2026-10-12, [R28](rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6)): průběžným příkladem je parkovací studie podle U01 s. 86–88 a P06, binomický test a z-test jsou řešené příklady. Kapitola cituje také tři zdroje mimo `sources/` ([záznam o použití](zdroje/HISTORIE.md#pouziti-kapitola-06)). t-testy, plánování velikosti výběru a výpočty síly nad rámec nepovinného bloku schváleny nejsou. Cumming doplňuje orientaci na odhad, přesnost a otevřenou vědu; nepřebírat bez dohody jeho pořadí místo Howella. |
+| Interval spolehlivosti, t-test a test ekvivalence | [U01](zdroje/U01-howell.md#u01) kap. 7 (s. 181–196); [U03](zdroje/U03-cumming.md#u03) kap. 5 a s. 151–152; [E02](zdroje/E02-lakens-2017.md#e02-lakens-2017); [E03](zdroje/E03-lakens-2018.md#e03-lakens-2018) | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 23–50; [P08](zdroje/P08-prumery.md#p08) sn. 11–28; [C05](zdroje/C05-ulohy-tyden-4.md#c05); [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Kapitola 7 podle [R44](rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7). Interval jako vlastnost postupu; t-rozdělení má statistika, ne průměr; hranice ekvivalence předem a v původních jednotkách; párový a dvouvýběrový t-test mimo kapitolu. |
 | Bootstrap a odhad nejistoty různých statistik | [U01](zdroje/U01-howell.md#u01) kap. 18; [U03](zdroje/U03-cumming.md#u03); [U08](zdroje/U08-navarro.md#u08) | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 32–37, 53 a 57–60; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
 | Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](zdroje/D11-wainer.md#d11) s. 250–253; [U12](zdroje/U12-baron.md#u12) kap. 8 | [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_09 (mince); [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
-| Kategoriální data, korelace a regrese | [U01](zdroje/U01-howell.md#u01) kap. 6, 9–10; [U04](zdroje/U04-openintro.md#u04) kap. 6, 8–9; [U07](zdroje/U07-judd.md#u07); [U11](zdroje/U11-russo.md#u11) kap. 10–12 | Pozdější témata; v lokálních úlohách není systematická odpovídající sada | Rozsah a pořadí v tomto kurzu nejsou samotnou mapou stanoveny. |
-| ANOVA, více prediktorů, meta-analýza, neparametrické a bayesovské metody | [U01](zdroje/U01-howell.md#u01) kap. 11–18; [U03](zdroje/U03-cumming.md#u03) kap. 9, 14–15; [U07](zdroje/U07-judd.md#u07); [U08](zdroje/U08-navarro.md#u08) kap. 14–17; [U10](zdroje/U10-sahu.md#u10) části IV–V; [U11](zdroje/U11-russo.md#u11) kap. 9 (bayesovský t-test; kap. 14 pouze na webu) | Bez úplného pokrytí staršími podklady zde | Rezerva pro autora a případná další skripta; nepovažovat za povinnou náplň jednoho semestru. |
+| Porovnávání průměrů a velikost rozdílu | [U01](zdroje/U01-howell.md#u01) kap. 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10 | [P08](zdroje/P08-prumery.md#p08) sn. 11–46; [P09](zdroje/P09-nezavisly-ttest.md#p09); [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_20–21; [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Rozlišit jeden výběr, párová a nezávislá data. Opravit konkrétní rozpory v mezikrocích a intervalu P08/P09; rozsah budoucí kapitoly není schválen samotnou mapou. |
+| Korelace, kovariance a interpretace vztahu | [U01](zdroje/U01-howell.md#u01) kap. 9; [U04](zdroje/U04-openintro.md#u04) kap. 8; [U07](zdroje/U07-judd.md#u07); [U11](zdroje/U11-russo.md#u11) kap. 10 | [P10](zdroje/P10-korelace-stps.md#p10); [P11](zdroje/P11-korelace-psyb1170.md#p11); [C06](zdroje/C06-ulohy-tyden-5.md#c06) C7 a X7 | Graf, koeficient a omezení závěrů. Převod d na r v P10 není správný; grafické úlohy C06 nebyly úplně vizuálně ověřeny. |
+| Kategoriální data, dobrá shoda a nezávislost | [U01](zdroje/U01-howell.md#u01) kap. 6; [U04](zdroje/U04-openintro.md#u04) kap. 6; [U11](zdroje/U11-russo.md#u11) kap. 12 | [P12](zdroje/P12-kategorialni-data.md#p12); [P13](zdroje/P13-chikvadrat-neparametricke.md#p13); [C09](zdroje/C09-ulohy-tyden-12.md#c09) X12 | Rozlišit nezávislá a párová data, test a velikost účinku; původní vzorce a klíče nelze převzít bez kontroly uvedené v kartách. |
+| Regrese, kontrola proměnných, predikce a kauzalita | [U01](zdroje/U01-howell.md#u01) kap. 10; [U04](zdroje/U04-openintro.md#u04) kap. 8–9; [U07](zdroje/U07-judd.md#u07); [U11](zdroje/U11-russo.md#u11) kap. 11; [U13](zdroje/U13-mcelreath.md#u13) kap. 4–8 | [P11](zdroje/P11-korelace-psyb1170.md#p11) sn. 1–14 jako úvod k souvislostem | U13 nabízí autorskou inspiraci, zmapované kapitoly nebyly podrobně prostudovány. Rozsah a pořadí kurzu určuje samostatná dohoda. |
+| Bayesovské modelování a simulovaná predikce | [U13](zdroje/U13-mcelreath.md#u13) §2.2–2.4, §3.1–3.3; diskrétní modely kap. 11 | Bez nové odpovídající samostatné sady úloh; cvičení U13 §2.6 a §3.5 jsou pouze zmapována | Doplňková autorská opora pro vztah dat, modelu a předpokladů. Bayesovské intervaly, R/Stan a pokročilé modely nejsou přidáním zdroje schváleny jako studentský rozsah. |
+| ANOVA, více prediktorů, meta-analýza, neparametrické a bayesovské metody | [U01](zdroje/U01-howell.md#u01) kap. 11–18; [U03](zdroje/U03-cumming.md#u03) kap. 9, 14–15; [U07](zdroje/U07-judd.md#u07); [U08](zdroje/U08-navarro.md#u08) kap. 14–17; [U10](zdroje/U10-sahu.md#u10) části IV–V; [U11](zdroje/U11-russo.md#u11) kap. 9 (bayesovský t-test; kap. 14 pouze na webu); [U13](zdroje/U13-mcelreath.md#u13) kap. 7–16 | [P13](zdroje/P13-chikvadrat-neparametricke.md#p13) sn. 41–44 poskytují jen dílčí úvod do neparametrických testů | Rezerva pro autora a případná další skripta; nepovažovat za povinnou náplň jednoho semestru. |
 
 ## Inventář souborů
 
@@ -67,18 +72,29 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [U10](zdroje/U10-sahu.md#u10) | [sahu.pdf](../sources/u%C4%8Debnice/sahu.pdf) | 560 stran PDF | `6c0a39f1de739519` |
 | [U11](zdroje/U11-russo.md#u11) | [russo.pdf](../sources/u%C4%8Debnice/russo.pdf) | 331 stran PDF | `8939c8698b119e74` |
 | [U12](zdroje/U12-baron.md#u12) | [baron.pdf](../sources/u%C4%8Debnice/baron.pdf) | 600 stran PDF | `75bc974f0f0411f7` |
+| [U13](zdroje/U13-mcelreath.md#u13) | [mcelreath.pdf](../sources/u%C4%8Debnice/mcelreath.pdf) | 612 stran PDF | `14e2f9d07647e349` |
 | [P01](zdroje/P01-uvod-cetnosti.md#p01) | [PSYb1170_P01_2025_-_Uvod__cetnosti.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P01_2025_-_Uvod__cetnosti.pptx) | 69 snímků | `077197470a4b781d` |
 | [P02](zdroje/P02-popisne-statistiky.md#p02) | [PSYb1170_P02_2026_-_Popisne_statistiky.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P02_2026_-_Popisne_statistiky.pptx) | 53 snímků | `a241d36fb9152355` |
 | [P03](zdroje/P03-transformace-rozdeleni.md#p03) | [PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P03_2026_-_Transformace__rozdeleni_pravdedpodobnosti_.pptx) | 60 snímků | `c36178e0a58eb3d0` |
-| [P04](zdroje/P04-normalni-rozdeleni.md#p04) | [normal_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/normal_distribution.pptx) | 22 snímků | `e96b31993c914185` |
+| [P04](zdroje/P04-normalni-rozdeleni.md#p04) | [normal_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/normal_distribution.pptx) | 22 snímků | `f2202b9fd67bd3af` |
 | [P05](zdroje/P05-pravdepodobnost.md#p05) | [probability.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/probability.pptx) | 36 snímků | `3f65f85091f08242` |
 | [P06](zdroje/P06-vyberove-rozdeleni.md#p06) | [sampling_distribution.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/sampling_distribution.pptx) | 25 snímků | `23b4d53d6f84082d` |
 | [P07](zdroje/P07-usuzovani-intervaly.md#p07) | [PSYb1170_P04_2026_-_Indukce_a_CI.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P04_2026_-_Indukce_a_CI.pptx) | 62 snímků | `8587c9d38fdbc988` |
+| [P08](zdroje/P08-prumery.md#p08) | [prezentace_průměry.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/prezentace_pr%C5%AFm%C4%9Bry.pptx) | 46 snímků | `9924a1284797f8e6` |
+| [P09](zdroje/P09-nezavisly-ttest.md#p09) | [PSYb1170_P09_2026_-_nezavisly_ttest_ES.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P09_2026_-_nezavisly_ttest_ES.pptx) | 50 snímků | `9650a709387b3dbb` |
+| [P10](zdroje/P10-korelace-stps.md#p10) | [korelace_prezentace.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/korelace_prezentace.pptx) | 55 snímků | `7c541491dcbd617c` |
+| [P11](zdroje/P11-korelace-psyb1170.md#p11) | [PSYb1170_P05_2026_-_Korelace.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P05_2026_-_Korelace.pptx) | 58 snímků | `3b3e954d7d84e9be` |
+| [P12](zdroje/P12-kategorialni-data.md#p12) | [categorical_data_prezentace.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/categorical_data_prezentace.pptx) | 53 snímků | `0e96d488baee9428` |
+| [P13](zdroje/P13-chikvadrat-neparametricke.md#p13) | [PSYb1170_P11_2026_-_chi-square_dvjyqruf.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/PSYb1170_P11_2026_-_chi-square_dvjyqruf.pptx) | 44 snímků | `8d6b2e360be765fa` |
 | [C01](zdroje/C01-ulohy-tyden-1.md#c01) | [ulohy_tyden01_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden01_2025.docx) | DOCX | `748e3395728f4f81` |
 | [C02](zdroje/C02-ulohy-tyden-2.md#c02) | [ulohy_tyden02_2026.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden02_2026.docx) | DOCX | `eb503ae2273185eb` |
 | [C03](zdroje/C03-ulohy-tyden-3.md#c03) | [ulohy_tyden03_2024.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden03_2024.docx) | DOCX | `2dc558b65cba9540` |
-| [C04](zdroje/C04-seminar-4.md#c04) | [Seminar4_-_na_zed_-_2024.pptx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/Seminar4_-_na_zed_-_2024.pptx) | 9 snímků | `007c056ae95ddd72` |
+| [C04](zdroje/C04-seminar-4.md#c04) | [Seminar4_-_na_zed_-_2024.pptx](../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/Seminar4_-_na_zed_-_2024.pptx) | 9 snímků | `007c056ae95ddd72` |
 | [C05](zdroje/C05-ulohy-tyden-4.md#c05) | [ulohy_tyden04_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden04_2025.docx) | DOCX | `46c371ac09021077` |
+| [C06](zdroje/C06-ulohy-tyden-5.md#c06) | [ulohy_tyden05_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden05_2025.docx) | DOCX | `027fa279369e903b` |
+| [C07](zdroje/C07-ulohy-tyden-8.md#c07) | [ulohy_tyden08_2024_qjyyvduj.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden08_2024_qjyyvduj.docx) | DOCX | `41004f74e5794cc6` |
+| [C08](zdroje/C08-ulohy-tyden-9.md#c08) | [ulohy_tyden09_2025.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden09_2025.docx) | DOCX | `6c9a99a243a4cab7` |
+| [C09](zdroje/C09-ulohy-tyden-12.md#c09) | [ulohy_tyden12_2021_v1.0.docx](../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/ulohy_tyden12_2021_v1.0.docx) | DOCX | `b3a012997108fc8c` |
 | [D01](zdroje/D01-datova-matice-docx.md#d01) | [1. Základy tvorby datové matice.docx](../sources/ostatn%C3%AD%20zdroje/1.%20Z%C3%A1klady%20tvorby%20datov%C3%A9%20matice.docx) | DOCX | `eb639ba5a54af039` |
 | [D02](zdroje/D02-datova-matice-pdf.md#d02) | [1. Základy tvorby datové matice.pdf](../sources/ostatn%C3%AD%20zdroje/1.%20Z%C3%A1klady%20tvorby%20datov%C3%A9%20matice.pdf) | 6 stran PDF | `3e2a6cec5170dd39` |
 | [D03](zdroje/D03-de-vaus.md#d03) | [de_Vaus_-_Variable_coding_rules.pdf](../sources/ostatn%C3%AD%20zdroje/de_Vaus_-_Variable_coding_rules.pdf) | 9 stran PDF | `d2dc9a9796ed557d` |
@@ -155,9 +171,13 @@ V tabulkách jsou uvedeny začátky kapitol nebo konkrétních oddílů. Rozsah 
 
 - [U12 — Baron — Thinking and Deciding, celá monografie](zdroje/U12-baron.md#u12)
 
+<a id="u13"></a>
+
+- [U13 — McElreath — Statistical Rethinking, 2. vydání](zdroje/U13-mcelreath.md#u13)
+
 ## Starší přednáškové prezentace
 
-Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímků a poznámky dohledané podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly přehledové kontaktní listy (u P01–P04 vybrané, u P05 všechny). Rozsah nového čtení a obrazové kontroly P06–P07 uvádějí jejich karty. To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
+Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímků a poznámky dohledané podle skutečných vazeb v PPTX. Pro vizuální kontrolu byly všechny snímky vyexportovány v PowerPointu; prohlédnuty byly přehledové kontaktní listy (u P01–P04 vybrané, u P05 všechny). Rozsah nového čtení a obrazové kontroly P06–P13 a změněné P04 uvádějí jejich karty. To nepotvrzuje správnost každého vzorce, všech odkazů ani animací. Názvy kurzů, ročníky, zkouškové podmínky a organizační údaje jsou historické.
 
 <a id="p01"></a>
 <a id="p01--úvod-a-četnosti-psyb1170-2025"></a>
@@ -194,9 +214,33 @@ Původní průzkum pěti prezentací P01–P05 zahrnul extrahovaný text snímk�
 
 - [P07 — Statistické usuzování, PSYb1170, 2026](zdroje/P07-usuzovani-intervaly.md#p07)
 
+<a id="p08"></a>
+
+- [P08 — Testování hypotéz o průměrech, STPS 2025](zdroje/P08-prumery.md#p08)
+
+<a id="p09"></a>
+
+- [P09 — Nezávislý t-test a velikost účinku, PSYb1170, 2026](zdroje/P09-nezavisly-ttest.md#p09)
+
+<a id="p10"></a>
+
+- [P10 — Korelace, STPS 2025](zdroje/P10-korelace-stps.md#p10)
+
+<a id="p11"></a>
+
+- [P11 — Souvislosti mezi proměnnými a korelační koeficient, PSYb1170, 2026](zdroje/P11-korelace-psyb1170.md#p11)
+
+<a id="p12"></a>
+
+- [P12 — Práce s kategorickými daty, STPS 2025](zdroje/P12-kategorialni-data.md#p12)
+
+<a id="p13"></a>
+
+- [P13 — Testy pro kategorické proměnné a neparametrické metody, PSYb1170, 2026](zdroje/P13-chikvadrat-neparametricke.md#p13)
+
 ## Procvičování a seminář
 
-Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jednou v zadání a podruhé v oddílu řešení. Mezery v číselné řadě jsou součástí originálu. Původní průzkum zahrnul texty, tabulky a vložené obrázky C01–C03; nový rozsah čtení C05 je vymezen v jeho kartě. **Všechna řešení nebyla nezávisle přepočítána.** Zjištěné konkrétní chyby v kartách neznamenají, že zbytek klíče je ověřený.
+Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jednou v zadání a podruhé v oddílu řešení. Mezery v číselné řadě jsou součástí originálu. Původní průzkum zahrnul texty, tabulky a vložené obrázky C01–C03; nový rozsah čtení C05–C09 je vymezen v jejich kartách. U C06–C09 byla provedena kontrola textu a tabulek z OOXML; úplné vykreslení ve Wordu a kontrola všech vložených obrázků zůstávají neověřené. **Všechna řešení nebyla nezávisle přepočítána.** Zjištěné konkrétní chyby v kartách neznamenají, že zbytek klíče je ověřený.
 
 <a id="c01"></a>
 <a id="c01--úlohy-týden-1-2025"></a>
@@ -222,6 +266,22 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 <a id="c05--úlohy-týden-4-2025-výběrová-rozdělení-a-intervaly"></a>
 
 - [C05 — Úlohy, týden 4, 2025: výběrová rozdělení a intervaly](zdroje/C05-ulohy-tyden-4.md#c05)
+
+<a id="c06"></a>
+
+- [C06 — Úlohy, týden 5, 2025: souvislost mezi proměnnými](zdroje/C06-ulohy-tyden-5.md#c06)
+
+<a id="c07"></a>
+
+- [C07 — Úlohy, týden 8, 2024: principy testování hypotéz](zdroje/C07-ulohy-tyden-8.md#c07)
+
+<a id="c08"></a>
+
+- [C08 — Úlohy, týden 9, 2025: porovnání průměrů](zdroje/C08-ulohy-tyden-9.md#c08)
+
+<a id="c09"></a>
+
+- [C09 — Úlohy, týden 12, 2021: kategoriální data a chí-kvadrát](zdroje/C09-ulohy-tyden-12.md#c09)
 
 ## Další podklady
 
@@ -289,6 +349,14 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E01 — Mulherin a Miller: přenos diagnostické přesnosti mezi skupinami](zdroje/E01-mulherin-miller.md#e01-mulherin-miller)
 
+<a id="e02-lakens-2017"></a>
+
+- [E02 — Lakens: testy ekvivalence pro t-testy, korelace a metaanalýzy](zdroje/E02-lakens-2017.md#e02-lakens-2017)
+
+<a id="e03-lakens-2018"></a>
+
+- [E03 — Lakens, Scheel a Isager: test ekvivalence v psychologickém výzkumu](zdroje/E03-lakens-2018.md#e03-lakens-2018)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)
@@ -313,3 +381,7 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 <a id="použití-podkladů-při-tvorbě-kapitoly-6--2026-10-12"></a>
 
 - [Použití podkladů při tvorbě kapitoly 6 — 2026-10-12](zdroje/HISTORIE.md#pouziti-kapitola-06)
+
+- [Aktualizace inventáře a nových podkladů — 2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17)
+
+- [Čtení pro návrh kapitoly 7 — 2026-10-17](zdroje/HISTORIE.md#priprava-07-20261017)

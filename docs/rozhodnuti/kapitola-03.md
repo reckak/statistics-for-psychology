@@ -125,11 +125,13 @@ toho, jak zavést σ²; také s tím, že lze již zavést μ pro populační pr
 Hlavní místo: [výklad](../../quarto/kapitola_03.qmd#populacni-parametry)
 a [přehled značení](../../quarto/znaceni.qmd).
 
-<a id="r44-ukazatele-tvaru"></a>
+<a id="r47-ukazatele-tvaru"></a>
 
-## R44 — Šikmost a exces jako povinné ukazatele tvaru
+## R47 — Šikmost a exces jako povinné ukazatele tvaru
 
-*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r44-ukazatele-tvaru). Původní záznam dohody:*
+*Číslo přiděleno při slučování s `main` 2026-10-17: návrh v PR #102 používal R44, které mezitím získal rozsah kapitoly 7 ([R44](kapitola-07.md#r44-rozsah-kapitoly-7)). Obsah ani doklad dohody se nezměnil.*
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r47-ukazatele-tvaru). Původní záznam dohody:*
 
 **Stav:** schváleno 2026-10-17. **Rozsah:** kapitola 3 (povinný oddíl,
 cvičení, sešit), kapitola 4 (oddíl o čtení Q–Q grafů, cvičení 10), slovníček,

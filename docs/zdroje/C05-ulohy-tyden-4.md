@@ -45,6 +45,19 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 - **Nepoužije se:** úlohy závislé na chybějících sešitech `Simulace výběrů.xlsx` a `bootstrap.xlsx` ([R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6) předepisuje statická simulovaná data); bootstrap (X5_07–08); deset výkonů téhož dítěte (X5_11).
 
 
+
+<a id="priprava-07-20261017"></a>
+
+## Čtení pro návrh kapitoly 7 — 2026-10-17
+
+Z originálního DOCX přečteny texty a tabulky zadání i místních řešení X6_01–22 (včetně ID rozdělených formátováním) a vybrané konceptuální položky C5. Doporučené náměty: pokrytí a replikace X6_01, vlivy na šířku X6_02/06/09, hospitalizované děti X6_11, čtení X6_12, známá/neznámá σ X6_15, vztah k testu a vnoření X6_17–18. Párové rozdíly X6_13 a podíly X6_21–22 se do navržené povinné části nezařazují; plánování X6_20 je pouze kandidát nepovinného rozšíření.
+
+**Nový přepočet v R:** X6_11: 95% interval (93,89253250; 102,10746750). X6_12: m ≈ 366,666667, s ≈ 149,354165, kvantil t(5) ≈ 2,57058184 a interval (209,9290827; 523,4042506). Potvrzen číselný výsledek intervalu; z klíče nepřebírat kladný kvantil při argumentu T.INV(0,025;5), t-rozdělení samotného průměru ani jistotu přesně 95 pokrytých intervalů ve stovce opakování. Šest rychlostí čtení je vhodnější pro kritické posouzení podmínek než jako bezproblémový první příklad. Předstírání většího n nezvyšuje skutečnou přesnost.
+
+Úplné vykreslení DOCX, vložené obrázky, externí klíče a empirický původ dat nebyly v tomto průchodu ověřeny. Nejde o kontrolu celé sady X5 ani všech výpočtů X6.
+
+[Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
+
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.
