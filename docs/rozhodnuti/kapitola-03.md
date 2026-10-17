@@ -124,3 +124,48 @@ Spolu s σ² se hodí i μ, protože výklad potřebuje rozlišit $m$ od popula�
 toho, jak zavést σ²; také s tím, že lze již zavést μ pro populační průměr.“
 Hlavní místo: [výklad](../../quarto/kapitola_03.qmd#populacni-parametry)
 a [přehled značení](../../quarto/znaceni.qmd).
+
+<a id="r47-ukazatele-tvaru"></a>
+
+## R47 — Šikmost a exces jako povinné ukazatele tvaru
+
+*Číslo přiděleno při slučování s `main` 2026-10-17: návrh v PR #102 používal R44, které mezitím získal rozsah kapitoly 7 ([R44](kapitola-07.md#r44-rozsah-kapitoly-7)). Obsah ani doklad dohody se nezměnil.*
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r47-ukazatele-tvaru). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-17. **Rozsah:** kapitola 3 (povinný oddíl,
+cvičení, sešit), kapitola 4 (oddíl o čtení Q–Q grafů, cvičení 10), slovníček,
+přehled funkcí Excelu.
+
+- Šikmost a exces se v kapitole 3 vysvětlují v povinné části pod názvem
+  **Ukazatele tvaru**: význam znaménka a velikosti, srovnání s normálním
+  modelem a grafy modelů s nulovou, střední a vysokou šikmostí a excesem.
+  Výklad nesmí vytvářet miskoncepci „exces = výška či ostrost vrcholu“;
+  řádek excesu proto zvýrazňuje chvosty a protipříklad se stejným vrcholem
+  je součástí povinné části.
+- Studenti povinně získávají a interpretují **SKEW** a **KURT** v Excelu.
+  Přesný výpočet (momenty, g₁, g₂, korekce, SKEW.P) zůstává v nepovinném
+  rozšíření. Ve výkladu a výsledcích se uvádí exces; špičatost = exces + 3
+  se jen zmiňuje (terminologie podle [R14](#r14-kvartily-spicatost-chvost)).
+- Kapitola 4 v oddílu o odchylkách od přímky ukazuje, že Q–Q grafy
+  a koeficienty šikmosti a excesu poskytují konvergentní informaci, a uvádí
+  meze koeficientů; cvičení 10 se o koeficienty rozšiřuje.
+
+**Důvod:** studenti mají chápat, co koeficienty vyjadřují, protože je běžně
+potkávají ve výstupech programů; interpretace bez výpočtu je pro semestr
+přiměřená a navazuje na posouzení tvaru v kapitole 4.
+
+**Nahrazuje:** zařazení šikmosti a špičatosti pouze do nepovinného rozšíření
+(kapitola 3 před 2026-10-17); ostatní části H08 a R14 platí.
+
+**Doklad:** pokyn autora 2026-10-17: „v kapitole 3 bych aspoň šikmost
+a špičatost/exces … aspoň jednoduše, ale bez miskoncepcí vysvětlil
+v ‚povinné‘ části (asi bych to nazval Ukazatele tvaru) a zobrazil pro
+názornost grafy rozdělení s různou mírou šikmosti a špičatosti/excesu
+(žádná, střední, vysoká) … Přesný výpočet bych ponechal v nepovinné
+rozšiřující části“ a „těmito koeficienty ‚obohatil‘ kapitolu 4.7.4, aby
+bylo jasné, že Q-Q grafy i koeficienty šikmosti a excesu poskytují
+konvergentní informace“. Odpovědi na upřesňující otázky téhož dne:
+„SKEW a KURT povinně“, „Zvýraznit chvosty“, „4.7.4 + rozšířit cvičení 10“.
+Provedení: záznam „Kapitoly 3 a 4: povinné ukazatele tvaru“ v
+[historii](../../quarto/README.md).

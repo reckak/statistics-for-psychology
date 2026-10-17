@@ -28,12 +28,12 @@ note(p,'A19:J19','Kvartily: PERCENTIL.INC. Medián absolutních odchylek je bez 
 note(p,'A21:J21','Výsledky se zobrazují na dvě desetinná místa; vzorce pracují s plnou přesností.');
 s.getRange('A1:D1').values=[['Ukazatel','Spánek (hodiny)','Paměť (slova)','Význam']];header(s,'A1:D1');
 s.getRange('A1:A16').format.columnWidth=27;s.getRange('B1:C16').format.columnWidth=19;s.getRange('D1:D16').format.columnWidth=42;
-const summary=[['Počet','COUNT','Počet zaznamenaných čísel'],['Průměr','AVERAGE','Součet dělený platným počtem'],['Medián','MEDIAN','Prostřední poloha'],['Minimum','MIN','Nejnižší hodnota'],['Maximum','MAX','Nejvyšší hodnota'],['1. kvartil','PERCENTILE.INC','Interpolace při podílu 0,25'],['3. kvartil','PERCENTILE.INC','Interpolace při podílu 0,75'],['Mezikvartilové rozpětí',null,'3. kvartil minus 1. kvartil'],['Výběrový rozptyl','VAR.S','Ve čtvercích příslušných jednotek'],['Směrodatná odchylka','STDEV.S','V původních jednotkách']];
+const summary=[['Počet','COUNT','Počet zaznamenaných čísel'],['Průměr','AVERAGE','Součet dělený platným počtem'],['Medián','MEDIAN','Prostřední poloha'],['Minimum','MIN','Nejnižší hodnota'],['Maximum','MAX','Nejvyšší hodnota'],['1. kvartil','PERCENTILE.INC','Interpolace při podílu 0,25'],['3. kvartil','PERCENTILE.INC','Interpolace při podílu 0,75'],['Mezikvartilové rozpětí',null,'3. kvartil minus 1. kvartil'],['Výběrový rozptyl','VAR.S','Ve čtvercích příslušných jednotek'],['Směrodatná odchylka','STDEV.S','V původních jednotkách'],['Šikmost','SKEW','Znaménko: delší chvost; bez jednotky'],['Exces','KURT','Kladný: více velmi vzdálených hodnot než u normálního modelu']];
 summary.forEach(([label,fn,desc],i)=>{
  const row=i+2;s.getRange(`A${row}`).values=[[label]];s.getRange(`D${row}`).values=[[desc]];
  s.getRange(`B${row}:C${row}`).formulas=[['B','C'].map(c=>fn?`=${fn}(Data!${c}2:${c}37${i===5?',0.25':i===6?',0.75':''})`:`=${c}8-${c}7`)];
 });
-s.getRange('B2:C11').format.fill='#EAF4F8';s.getRange('B2:C11').setNumberFormat('0.00');s.getRange('B2:C2').setNumberFormat('0');
+s.getRange('B2:C13').format.fill='#EAF4F8';s.getRange('B2:C13').setNumberFormat('0.00');s.getRange('B2:C2').setNumberFormat('0');
 note(s,'A14:D14','Spánek: tři údaje chybějí. Paměť: nula vybavených slov je platný výsledek.');
 note(s,'A16:D16','Při přidávání řádků rozšiřte oblasti ve vzorcích. Každý sloupec má vlastní počet platných údajů.');
 r.getRange('A1:D1').values=[['Strategie','Četnost','Podíl','Příspěvek k entropii']];header(r,'A1:D1');r.getRange('D1:D7').format.columnWidth=23;

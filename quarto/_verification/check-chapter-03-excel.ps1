@@ -38,6 +38,18 @@ try {
     $expected=@(5,6,5,5,4,10,5,6,6,1,1.6,22,4.4,5.5,[math]::Sqrt(5.5),1)
     for($i=0;$i -lt $expected.Count;$i++){Assert-Cell $p ('J'+($i+2)) $expected[$i]}
     foreach($entry in @(@('B2',33),@('C2',36),@('B3',(233.1/33)),@('C3',(253/36)),@('B4',7.1),@('C4',7),@('B7',6.2),@('C7',5.75),@('B8',8),@('C8',9),@('B9',1.8),@('C9',3.25),@('B10',1.66051136363636),@('C10',6.71349206349206),@('B11',1.28860830574538),@('C11',2.59104072903065))) {Assert-Cell $s $entry[0] $entry[1]}
+    # Core shape coefficients: Souhrn rows 12-13 and the Czech formulas of the section and exercise 13.
+    foreach($entry in @(@('B12',-0.125053652430),@('C12',-0.470577746102),@('B13',-0.553794484616),@('C13',0.481406247640))) {
+        $actual=$s.Range($entry[0]).Value2; if([math]::Abs([double]$actual-$entry[1]) -gt 1e-6){throw "Wrong shape result in Souhrn!$($entry[0]): $actual"}
+    }
+    $d.Range('L1').Value2='kopie slov'
+    for($i=2;$i -le 37;$i++){ $d.Range('L'+$i).Value2=$d.Range('C'+$i).Value2 }
+    $d.Range('L7').ClearContents() | Out-Null
+    foreach($entry in @(@('=SKEW(Data!B2:B37)',-0.125053652430),@('=KURT(Data!B2:B37)',-0.553794484616),@('=SKEW(Data!C2:C37)',-0.470577746102),@('=KURT(Data!C2:C37)',0.481406247640),@('=SKEW(L2:L37)',-0.085876925435),@('=KURT(L2:L37)',-0.251080429086))) {
+        $d.Range('N1').FormulaLocal=$entry[0]; $taskExcel.CalculateFullRebuild()
+        if([math]::Abs([double]$d.Range('N1').Value2-$entry[1]) -gt 1e-6){throw "Wrong shape formula $($entry[0]): $($d.Range('N1').Value2)"}
+    }
+    $d.Range('L1:N37').ClearContents() | Out-Null
     Assert-Cell $r 'D7' 1.5; Assert-Cell $r 'D5' 0
     foreach($entry in @(@('J2',1.17015863225595),@('J3',1.17015863225595),@('J4',1.74436949745499),@('J5',-0.169421487603306),@('J6',3.32231404958677))) {Assert-Cell $r $entry[0] $entry[1]}
     # Remaining worked examples: fixed inputs and the Czech formulas printed in the chapter.

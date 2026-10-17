@@ -477,7 +477,7 @@ Potom prohlédneme [histogram](kapitola_02.qmd#sec-histogram), vhodně doplněn�
 
 V @fig-histogram-krivka-04 jsou v obou grafech tytéž simulované hodnoty a tatáž normální křivka; vrátíme se k nim u [Q–Q grafů](#sec-qq-odchylky). Vlevo udává výška sloupce počet hodnot v intervalu, kdežto výška křivky hustotu na bod. Obě veličiny mají jiné měřítko, a křivka proto splývá s osou. Vpravo jsou sloupce převedené na hustotu, takže jejich výšky lze s křivkou přímo porovnat: vidíme, kde data modelu odpovídají a kde se od něj odchylují.
 
-Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Koeficienty šikmosti a excesu mohou popis doplnit, pokud je známe z nepovinného [rozšíření](kapitola_03.qmd#sec-momenty), ale jeden univerzální číselný práh nenahrazuje důkladné posouzení tvaru a účelu modelu [@howell, s. 75–78].
+Zvonovitý a přibližně souměrný histogram je užitečnou indicií, ale nezaručuje shodu chvostů. Ani podobný průměr a medián nedokazují normalitu. Popis mohou doplnit [koeficienty šikmosti a excesu](kapitola_03.qmd#sec-ukazatele-tvaru); jak se shodují s grafy, ukážeme v [oddílu o odchylkách od přímky](#sec-qq-odchylky). Jeden univerzální číselný práh však nenahrazuje důkladné posouzení tvaru a účelu modelu [@howell, s. 75–78].
 
 ### Co porovnává normální Q–Q graf {#sec-qq-graf}
 
@@ -583,6 +583,27 @@ V @fig-qq-sikme-04 se body systematicky ohýbají: vysoké hodnoty jsou od stře
 
 V @fig-qq-smes-04 pocházejí data ze dvou skupin s odlišnými průměry. Jeden společný normální model by jejich strukturu vystihoval špatně. Pokud skupiny mají věcný význam, může být užitečné popsat je zvlášť. Skupiny však nevytváříme dodatečně jen proto, aby jednotlivé grafy odpovídaly normálnímu rozdělení. Krabicový graf může dobře upozornit na vzdálené hodnoty, ale nemusí odhalit rozdělení s více vrcholy. Různé typy grafů se tak mohou vzájemně doplňovat, protože poskytují jiné informace.
 
+Tvar týchž čtyř souborů můžeme shrnout také [šikmostí a excesem](kapitola_03.qmd#sec-ukazatele-tvaru). Simulované hodnoty najdete v [sešitu ke kapitole](../data/kapitola_04.xlsx) na listech `Sim_normalni`, `Sim_sikme`, `Sim_chvosty` a `Sim_smes`, vždy v A2:A201. Například `=SKEW(Sim_sikme!A2:A201)` vrací šikmost a `=KURT(Sim_sikme!A2:A201)` exces zešikmeného souboru. @tbl-qq-koeficienty-04 staví výsledky vedle tvaru Q–Q grafu.
+
+::: {.table-scroll role="region" aria-label="Q–Q grafy a koeficienty tvaru čtyř simulovaných souborů" tabindex="0"}
+
+| Soubor | Co ukazuje Q–Q graf | Šikmost (SKEW) | Exces (KURT) |
+|:---|:---|---:|---:|
+| Normální model (@fig-qq-normalni-04) | Body kolísají kolem přímky bez systematického tvaru. | 0,16 | −0,41 |
+| Zešikmení doprava (@fig-qq-sikme-04) | Oblouk: dolní část stlačená, horní konec vysoko nad přímkou. | 2,01 | 7,10 |
+| Těžší chvosty (@fig-qq-chvosty-04) | Oba konce se vzdalují od středu: levý pod přímkou, pravý nad ní. | 0,20 | 5,01 |
+| Směs dvou skupin (@fig-qq-smes-04) | Oba konce jsou blíže středu: levý nad přímkou, pravý pod ní; uprostřed strmý přechod mezi shluky. | −0,04 | −1,55 |
+
+: Q–Q graf a koeficienty tvaru vypovídají o stejných rysech: oblouk doprovází vysoká kladná šikmost, oddálené konce kladný exces a přiblížené konce záporný exces. {#tbl-qq-koeficienty-04 tbl-colwidths="[24,46,15,15]"}
+
+:::
+
+Obě cesty se shodují ve směru. Oblouk zešikmeného souboru odpovídá vysoké kladné šikmosti, tedy delšímu pravému chvostu. U těžších chvostů je šikmost blízko nuly, protože se oba konce od přímky vzdalují souměrně, a kladný exces vyjadřuje právě tyto vzdálené hodnoty. U směsi jsou konce blíže středu, než normální model předpokládá, a exces je záporný. Q–Q graf a koeficienty tvaru tak poskytují **konvergentní informaci**: dvěma různými postupy docházíme k témuž popisu tvaru. Pokud by si odporovaly, například výrazný oblouk v grafu a šikmost blízká nule, je to důvod prověřit výpočet i data.
+
+Ani soubor vygenerovaný z normálního modelu nemá koeficienty nulové: jeho exces −0,41 je běžným výběrovým kolísáním, podobně jako drobné nepravidelnosti bodů kolem přímky. Zešikmený soubor má vedle šikmosti také vysoký exces, protože jeho dlouhý chvost obsahuje velmi vzdálené hodnoty. Exces sám tedy nerozliší, zda vzdálené hodnoty leží na jedné straně, nebo na obou; to ukáže šikmost a především graf.
+
+Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: jiný výběr dvou set hodnot ze stejného modelu by mohl dát exces několikanásobně nižší i vyšší než 5,01. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
+
 :::: {#rozsireni-pp-graf .callout-note collapse="true" title="Nepovinné rozšíření: P–P graf"}
 Kromě Q–Q grafu se používá **P–P graf (*P–P plot, probability–probability plot*)**. Q–Q graf porovnává hodnoty: seřazený skór s normálním kvantilem. P–P graf naopak porovnává podíly: pro každé pořadí staví vedle sebe empirický podíl $p=(i-0{,}5)/n$ a podíl, který by normální model se stejným průměrem a směrodatnou odchylkou přiřadil pozorované hodnotě. Ten získáme distribuční funkcí. Obě osy proto vedou od 0 do 1 a při dobré shodě leží body blízko úhlopříčky z bodu (0; 0) do bodu (1; 1).
 
@@ -619,7 +640,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Distribuční funkce dává podíl vlevo od zvolené hranice; v Excelu ji počítají `NORM.S.DIST` a `NORM.DIST`. Podíl nad hranicí a v intervalu získáme odečtením ([Od hodnoty k podílu](#sec-hodnota-podil)).
 - Inverzní funkce `NORM.S.INV` a `NORM.INV` převádějí podíl vlevo na odpovídající hranici. Prostředních 95 % a horních 5 % jsou různé úlohy ([Od podílu zpět k hodnotě](#sec-podil-hodnota)).
 - Standardní skóry vyjadřují tutéž relativní polohu na různých škálách, zatímco steny a staniny ji shrnují do pásem. Lineární převod normalitu nepotřebuje, převod na percentilové pořadí pomocí normální křivky ano ([Standardní skóry v psychologii](#sec-standardni-skory)).
-- Přesný výpočet nezaručuje přiměřenost použitého modelu. Posuzujeme ji podle účelu z významu měření, histogramu a normálního Q–Q grafu. Statisticky neobvyklý výsledek není automaticky chybný, závažný nebo klinicky významný ([Je normální model přiměřený?](#sec-primerenost-modelu)).
+- Přesný výpočet nezaručuje přiměřenost použitého modelu. Posuzujeme ji podle účelu z významu měření, histogramu a normálního Q–Q grafu; šikmost a exces vypovídají o týchž rysech tvaru a grafy stručně doplňují. Statisticky neobvyklý výsledek není automaticky chybný, závažný nebo klinicky významný ([Je normální model přiměřený?](#sec-primerenost-modelu)).
 
 ## Cvičení {#sec-cviceni-04}
 
@@ -747,14 +768,14 @@ Podíl $12/12=1$ by požadoval konečný 100. percentil normálního modelu, kte
 
 ### 10. Posouzení modelu a oprava závěru
 
-U 200 skórů má histogram jeden přibližně souměrný vrchol. V Q–Q grafu s teoretickými kvantily vodorovně leží dolní krajní body výrazně pod přímkou a horní výrazně nad ní. Výzkumník chce z normální křivky odhadnout podíl mimořádně vysokých skórů a říká: „Máme dost lidí, takže jsou data normální; každý výsledek nad dvěma směrodatnými odchylkami je klinicky závažný.“ Posuďte jeho argument a navrhněte další postup. Jak by se čtení grafu změnilo u jiného souboru, v němž je histogram nahromaděný vlevo a v Q–Q grafu leží dolní i horní krajní body nad přímkou a střední pod ní?
+U 200 skórů má histogram jeden přibližně souměrný vrchol. V Q–Q grafu s teoretickými kvantily vodorovně leží dolní krajní body výrazně pod přímkou a horní výrazně nad ní. Funkce SKEW vrací u těchto skórů přibližně 0,1 a funkce KURT přibližně 4,2. Výzkumník chce z normální křivky odhadnout podíl mimořádně vysokých skórů a říká: „Máme dost lidí, takže jsou data normální; každý výsledek nad dvěma směrodatnými odchylkami je klinicky závažný.“ Jsou oba koeficienty v souladu s popisem Q–Q grafu? Posuďte argument výzkumníka a navrhněte další postup. Jak by se čtení grafu změnilo u jiného souboru, v němž je histogram nahromaděný vlevo a v Q–Q grafu leží dolní i horní krajní body nad přímkou a střední pod ní? Jaké znaménko šikmosti byste u něj očekávali?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Popis Q–Q grafu ukazuje těžší chvosty vůči normálnímu modelu: v obou směrech se objevují vzdálenější hodnoty, než přímka předpokládá. Souměrný vrchol tento nesoulad nevylučuje. Právě pro odhad velmi vysokých skórů je odchylka pravého chvostu důležitá. Velikost výběru $n=200$ zlepšuje možnost tvar posoudit, ale nenormalizuje původní hodnoty.
+Popis Q–Q grafu ukazuje těžší chvosty vůči normálnímu modelu: v obou směrech se objevují vzdálenější hodnoty, než přímka předpokládá. Souměrný vrchol tento nesoulad nevylučuje. Koeficienty s grafem souhlasí: šikmost blízká nule odpovídá tomu, že se oba konce od přímky vzdalují podobně, a výrazně kladný exces vyjadřuje právě častější velmi vzdálené hodnoty. Šikmost blízká nule by sama normalitu nedokládala. Právě pro odhad velmi vysokých skórů je odchylka pravého chvostu důležitá. Velikost výběru $n=200$ zlepšuje možnost tvar posoudit, ale nenormalizuje původní hodnoty.
 
 Prověříme záznamy, rozsah škály, způsob získání dat a případné věcně odlišné skupiny. Pro popis získaného souboru uvedeme skutečnou četnost vysokých skórů a empirické kvantily; zobecnění na populaci bude potřebovat další zdůvodnění. Platná krajní pozorování automaticky nevyřadíme.
 
 Statistická neobvyklost vůči skupině není klinická závažnost. K té je potřeba význam měřené vlastnosti, kvalita testu, důsledky výsledku a odpovídající diagnostické podklady. Ani při přesném normálním modelu nejsou dvě směrodatné odchylky samy o sobě diagnostickým pravidlem.
 
-Ve druhém souboru jde o rozdělení zešikmené doprava. Nízké hodnoty jsou blíže středu, než normální model předpokládá, proto leží nad přímkou; vysoké hodnoty jsou naopak vzdálenější a leží také nad ní. Body tvoří oblouk, nikoli dvě opačně stočené části jako u těžších chvostů. Normální křivka by podíl velmi vysokých skórů zkreslila, zpravidla podhodnotila. Standardizace toto prohnutí neodstraní.
+Ve druhém souboru jde o rozdělení zešikmené doprava. Nízké hodnoty jsou blíže středu, než normální model předpokládá, proto leží nad přímkou; vysoké hodnoty jsou naopak vzdálenější a leží také nad ní. Body tvoří oblouk, nikoli dvě opačně stočené části jako u těžších chvostů. Očekáváme proto kladnou šikmost; exces bývá u takového souboru rovněž kladný, protože dlouhý pravý chvost obsahuje vzdálené hodnoty. Normální křivka by podíl velmi vysokých skórů zkreslila, zpravidla podhodnotila. Standardizace toto prohnutí neodstraní, protože šikmost ani exces lineární převod nemění.
 :::

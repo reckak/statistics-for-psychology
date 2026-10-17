@@ -294,9 +294,12 @@ const server = http.createServer((req, res) => {
         fs.writeFileSync('tmp/verification/ch04-citations.json',JSON.stringify(await page.locator('.citation,#refs .csl-entry').allTextContents(),null,2));
       }
       if (file === 'quarto/kapitola_03.html') {
-        assert.equal(await solutions.count(),14,'Twelve core and two optional exercises');
+        assert.equal(await solutions.count(),15,'Thirteen core and two optional exercises');
         assert.equal(await page.locator('merror').count(),0,'Chapter 3 formulas parse');
-        assert.equal(await page.locator('main img').count(),16);
+        assert.equal(await page.locator('main img').count(),17);
+        // Shape coefficients are core material; only their formulas stay in the collapsed extension.
+        assert(await page.locator('#sec-ukazatele-tvaru').isVisible(),'Shape section is core material');
+        assert(await page.locator('#fig-ukazatele-tvaru img').isVisible() && await page.locator('#fig-spicatost img').isVisible(),'Shape figures are outside collapsed blocks');
         assert.equal(await page.locator('#refs .csl-entry').count(),expectedReferences);
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
           const block=page.locator('#'+id);
@@ -314,7 +317,7 @@ const server = http.createServer((req, res) => {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch03-${id}.png`});
         }
-        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-stred-tvar','sec-vypocet-kvantilu','sec-kvantil-kumulativni','sec-orezani-winsorizace','sec-percentilove-poradi','sec-rozptyl','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-zmena-skaly','sec-reportovani-apa','sec-entropie','sec-momenty','sec-excel-poloha']) {
+        for(const id of ['sec-modus','sec-median','sec-volba-stredu','sec-stred-tvar','sec-vypocet-kvantilu','sec-kvantil-kumulativni','sec-orezani-winsorizace','sec-percentilove-poradi','sec-rozptyl','sec-korekce-rozptylu','sec-median-absolutnich','sec-boxplot','sec-zmena-skaly','sec-reportovani-apa','sec-entropie','sec-ukazatele-tvaru','sec-excel-tvar','sec-momenty','sec-excel-poloha']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch03-${id}-desktop.png`});
         }
         for(const id of ['rozsireni-entropie','rozsireni-momenty','rozsireni-excel-03']) {
@@ -681,7 +684,7 @@ const server = http.createServer((req, res) => {
     await plain.goto(base + 'quarto/kapitola_02.html');
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(), 10);
     await plain.goto(base + 'quarto/kapitola_03.html');
-    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),14);
+    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),15);
     assert(await plain.locator('#rozsireni-momenty .callout-collapse').isVisible());
     await plain.goto(base + 'quarto/kapitola_04.html');
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),10);
