@@ -106,3 +106,64 @@ Kontrola identifikace, dat a hranic dokumentačních celků pro [R42](../rozhodn
 U průběžných celků datum přístupu 2026-10-16. Odkazy konkrétních částí
 byly převzaty ze stávající bibliografie; změna jejich umístění nedokládá
 nové prostudování všech stránek ani nezávislé ověření jejich tvrzení.
+
+<a id="inventura-2026-10-17"></a>
+
+## 2026-10-17 — McElreath, nové přednášky a soubory procvičování
+
+Na žádost autora doplněna mapa nových podkladů. Inventura zahrnula všech
+**44 souborů** v `sources/` včetně podsložek a porovnání SHA-256 se starším
+inventářem: **11 nových souborů**, **1 obsahově změněný soubor** (P04)
+a **1 přesunutý soubor se stejným otiskem** (C04). Z původních 33 souborů
+má 32 nezměněný obsah; žádný z nich nechybí. Starší odstraněné výřezy D08/D09
+zůstávají mimo inventář podle záznamu z 2026-10-12.
+
+Nové karty:
+
+- [U13 — McElreath](U13-mcelreath.md#u13): druhé vydání z roku 2020,
+  identita podle titulní a nakladatelské strany, mapa všech 17 kapitol
+  a vybrané pododdíly. Ověřeny začátky kapitol a převod tištěné/PDF stránky;
+  čteny předmluvy a vybrané pasáže o konstrukci modelu, nikoli celá kniha.
+- [P08](P08-prumery.md#p08) a [P09](P09-nezavisly-ttest.md#p09): porovnávání
+  průměrů, intervaly a velikosti účinku.
+- [P10](P10-korelace-stps.md#p10) a [P11](P11-korelace-psyb1170.md#p11):
+  kovariance, korelace, grafická interpretace a různé koeficienty.
+- [P12](P12-kategorialni-data.md#p12) a [P13](P13-chikvadrat-neparametricke.md#p13):
+  kategoriální data, chí-kvadrát, párová data a dílčí neparametrické metody.
+- [C06](C06-ulohy-tyden-5.md#c06), [C07](C07-ulohy-tyden-8.md#c07),
+  [C08](C08-ulohy-tyden-9.md#c08), [C09](C09-ulohy-tyden-12.md#c09):
+  soubory týdnů 5, 8, 9 a 12, mapované podle původních ID zadání a řešení,
+  nikoli podle stránkování nebo přečíslovaných úloh.
+
+**Rozsah kontroly prezentací:** extrahován text a dostupné poznámky;
+v PowerPointu exportovány všechny snímky P08–P13 a nové verze P04,
+prohlédnuty všechny jejich obrazové přehledy včetně skrytých snímků.
+Vybrané problematické vzorce zkontrolovány ve větší velikosti.
+Nejde o otestování animací, vložených interaktivních objektů ani všech
+externích odkazů. Konkrétní lokátory nálezů a rozsah nezávislého přepočtu
+jsou pouze v příslušných kartách.
+
+**Rozsah kontroly DOCX:** zmapována zadání i místní řešení podle textu
+a tabulek z OOXML, podrobněji přečteny vybrané pasáže uvedené v kartách.
+Export pouze pro čtení ve Wordu se zablokoval; vlastní automatizační
+instance byla ukončena bez změny originálů. Úplné vykreslení, stránkování
+a kontrola všech vložených grafů a obrázků **nejsou dokončeny**. Rozpory
+z textu jsou proto označeny k potvrzení v originálním vykreslení; tam,
+kde proběhl nezávislý přepočet, je oddělen od tohoto vizuálního omezení.
+Externí řešení C7/C10 a jejich původní vydání nejsou ověřena.
+
+**Nezávislé kontroly:** vybrané mezikroky, interval rozdílu průměrů,
+kappa, korelace a kontingenční tabulka přepočteny v čisté relaci R 4.5.1.
+Karty odkazují také na přečtené příslušné oddíly NIST a dokumentace
+R a effectsize. Nebyl přepočten celý soubor řešení ani vyzkoušeny české
+vzorce v Excelu. Původní empirické studie, historická tvrzení a úplný
+kód McElreathovy knihy nebyly nezávisle ověřeny.
+
+**Údržba stávajících karet:** [P04](P04-normalni-rozdeleni.md#p04) zachovává
+historický nález, ale odděluje autorovu částečnou opravu sn. 21 od
+přetrvávajících problémů. [C04](C04-seminar-4.md#c04) má opravenou cestu
+do `sources/starší přednášky/`; stejné ID a původní historie zůstávají.
+Tematický rozcestník nově rozlišuje korelace, kategoriální data, porovnávání
+průměrů a bayesovské modelování. Nejde o schválení nových kapitol,
+terminologie či změny hlavního didaktického zdroje. Originály, extrakce
+a obrazové exporty nebyly přidány do veřejné dokumentace.

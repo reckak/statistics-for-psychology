@@ -3367,3 +3367,26 @@ Ověření: hodnoty v R (`check-chapter-04.R`, nově i tabulka hodnot,
 kumulativní meze, staniny pro 15 dob a souřadnice P–P; 19 SVG); sešit
 `build-workbooks.ps1 -Chapter 4 -Verify` a vizuální kontrola obou grafů
 exportovaných z Excelu; render celé knihy a webové kontroly.
+
+## Doplnění mapy zdrojů (2026-10-17)
+
+Na žádost autora přidány zdrojové karty U13 (McElreath, druhé vydání),
+P08–P13 (šest přednášek) a C06–C09 (čtyři soubory úloh). Inventář nyní
+odpovídá všem 44 souborům v `sources/`; tematický rozcestník rozlišuje
+porovnávání průměrů, korelace, kategoriální data a bayesovské modelování.
+Aktualizována změněná P04 a cesta k nezměněnému C04 se zachováním ID
+a starších nálezů. Kapitoly, osnovu kurzu ani původní podklady tato práce
+nemění. Přesné lokátory, rozsah čtení, početní nálezy a omezení jsou
+v jednotlivých kartách a v [historii kontroly](../docs/zdroje/HISTORIE.md#inventura-2026-10-17).
+
+Ověření: `node scripts/check-doc-maps.cjs --require-sources` bez chyb;
+samostatná kontrola pokrytí inventáře a všech 44 otisků SHA-256, rozsahů
+snímků šesti nových prezentací a 17 kapitolových lokátorů U13; vybrané
+výpočty v R 4.5.1; `git diff --check`. Vizuálně prohlédnuty obrazové
+přehledy všech snímků P08–P13 a P04 a identifikační strany, obsah
+a začátky kapitol U13. Úplné vykreslení čtyř DOCX a kontrola všech jejich
+vložených obrázků zůstávají neověřené kvůli zablokovanému exportu Wordu.
+Neproběhla úplná revize knihy ani všech řešení, animací a externích
+demonstrací; Excel nebyl spuštěn. Změna je pouze autorská dokumentace,
+proto se studentský web znovu nerenderoval. Do Gitu nepatří originály,
+extrahované texty, obrazové exporty ani pomocné pracovní skripty v `tmp/`.
