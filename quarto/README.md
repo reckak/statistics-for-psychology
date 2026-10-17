@@ -1,5 +1,9 @@
 # Autorská dokumentace
 
+## 2026-10-17 — P-hodnota v české ukázce APA
+
+Autor rozhodl otevřenou otázku z [vytvoření kapitoly 7](#vytvoreni-kapitoly-7): v české ukázce APA zůstává p-hodnota s nulou před desetinnou čárkou (*p* = 0,003). Zapsáno jako datované upřesnění [R05](../docs/rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani) a řádku registru; v kapitole 7 doplněna jedna věta u [ukázky sdělení](kapitola_07.qmd#sec-ukazka-sdeleni). Ostatní kapitoly českou ukázku s p-hodnotou neobsahují (prohledány kapitoly 1–7), takže jinde se nic neměnilo. Ověření: render kapitoly 7, kontrola HTML, kontrola dokumentačních map a git diff --check.
+
 <a id="dohoda-kapitola-07"></a>
 
 ## Kapitola 7: dohoda o obsahu (2026-10-17)

@@ -511,7 +511,7 @@ Závěr o ekvivalenci je také vždy vázán na **zvolené hranice**. Se stejný
 
 ### Ukázka sdělení výsledků {#sec-ukazka-sdeleni}
 
-V odborné zprávě podle APA 7 se používají zkratky *M* a *SD* a interval spolehlivosti se značí CI; jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa), výpočetní značení učebnice se nemění. Ve zprávě se kurzivou píše i *p* pro p-hodnotu. Pro studii B:
+V odborné zprávě podle APA 7 se používají zkratky *M* a *SD* a interval spolehlivosti se značí CI; jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa), výpočetní značení učebnice se nemění. Ve zprávě se kurzivou píše i *p* pro p-hodnotu. V české ukázce ji píšeme s nulou před desetinnou čárkou, *p* = 0,003, jako ostatní desetinná čísla; anglický text podle APA nulu vynechává (*p* = .003). Pro studii B:
 
 > Průměrný skór v online verzi testu pozornosti (*n* = 400; *M* = 48,5; *SD* = 10,0) byl statisticky významně nižší než normová hodnota 50 (*t*(399) = −3,00; *p* = 0,003; 95% CI [47,52; 49,48]). Hranice ekvivalence ±3 body byly stanoveny před analýzou podle vlivu posunu průměru na podíl osob pod hranicí 40 bodů. Test ekvivalence (dva jednostranné testy) doložil, že rozdíl od normy leží uvnitř těchto hranic (90% CI [47,68; 49,32]; *t*(399) = 3,00; *p* = 0,001 pro větší z obou p-hodnot). Rozdíl přibližně 1,5 bodu je pro zamýšlené použití norem zanedbatelný.
 
