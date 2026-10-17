@@ -6,7 +6,7 @@
 
 Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklady. Stav prostudování a omezení určují záznamy níže.
 
-**Soubor:** [Seminar4_-_na_zed_-_2024.pptx](../../sources/p%C5%99%C3%ADklady%20k%20procvi%C4%8Dov%C3%A1n%C3%AD/Seminar4_-_na_zed_-_2024.pptx); 9 snímků. Text všech snímků i celá obrazová přehledová sestava byly prohlédnuty.
+**Soubor:** [Seminar4_-_na_zed_-_2024.pptx](../../sources/star%C5%A1%C3%AD%20p%C5%99edn%C3%A1%C5%A1ky/Seminar4_-_na_zed_-_2024.pptx); 9 snímků. Text všech snímků i celá obrazová přehledová sestava byly prohlédnuty.
 
 | Snímky | Obsah a využití |
 |---|---|
@@ -24,3 +24,5 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04). Konkrétní použití a stav ověření určují záznamy výše.
+
+**Kontrola umístění 2026-10-17:** soubor je nyní ve složce `sources/starší přednášky/`, dříve byl v `sources/příklady k procvičování/`. SHA-256 `007c056ae95ddd72` se nezměnil; původní ID C04 i historie čtení zůstávají. Opraven místní odkaz, obsah nebyl nově odborně revidován.
