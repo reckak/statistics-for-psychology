@@ -31,17 +31,30 @@ eq(ch7_t(46,10,25,50),-2);rq(tl(-2,24),.028,3);rq(tl(-2,24),.0285,4);rq(1-tl(-2,
 rq(qt(.05,24),-1.711,3);rq(50+qt(.05,24)*2,46.58,2);rq(46+qt(.95,24)*2,49.42,2);rq(46+c(-1,1)*qt(.95,24)*2,c(42.58,49.42),2)
 # PDI (Howell, 2013, pp. 186-189).
 se <- 12.584/sqrt(56);rq(se,1.682,3);rq(4.125/se,2.45,2);rq(2*tl(-4.125/se,55),.017,3);rq(104.125+c(-1,1)*qt(.975,55)*se,c(100.75,107.50),2)
-# Interval as the set of non-rejected values; p-value function points.
+# Interior of the interval as the set of non-rejected values (reject at p <= alpha).
 u <- ch7_ci_att_t[2];eq(ch7_p2(46,10,25,u),.05,1e-12);rq(u,50.128,3);rq(ch7_p2(46,10,25,48),.33,2);rq(ch7_p2(46,10,25,50),.057,3)
-mu <- seq(38,54,by=.001);inside <- mu[ch7_p2(46,10,25,mu)>=.05];rq(range(inside),ch7_ci_att_t,2)
+mu <- seq(38,54,by=.001);inside <- mu[ch7_p2(46,10,25,mu)>.05];rq(range(inside),ch7_ci_att_t,2)
+# Independent tail probabilities at and on both sides of both exact limits.
+for (side in c(-1,1)) {
+  boundary <- 46+side*qt(.975,24)*2
+  probs <- 2*tl(-abs((46-(boundary+side*c(-1e-5,0,1e-5)))/2),24)
+  stopifnot(probs[1]>.05,probs[3]<.05);eq(probs[2],.05,1e-12)
+}
+stopifnot(ch7_p2(46,10,25,50.128)<.05)
 # Equivalence: consequences of shifts and the five studies.
 rq(100*ch7_share,c(24.2,15.9,9.7),1)
 e <- ch7_eq
 rq(cbind(e$ci95_d,e$ci95_h),cbind(c(41.87,47.52,49.42,42.02,45.02),c(50.13,49.48,51.38,45.98,48.98)),2)
 rq(cbind(e$ci90_d,e$ci90_h),cbind(c(42.58,47.68,49.58,42.34,45.34),c(49.42,49.32,51.22,45.66,48.66)),2)
 rq(e$p_rozdil[c(1,2,3,5)],c(.057,.003,.42,.003),c(3,3,2,3));stopifnot(e$p_rozdil[4]<.001)
-equiv <- e$ci90_d>47 & e$ci90_h<53;stopifnot(identical(equiv,c(FALSE,TRUE,TRUE,FALSE,FALSE)))
-stopifnot(identical(equiv,e$p_tost<.05));stopifnot(identical(e$p_rozdil<.05,c(FALSE,TRUE,FALSE,TRUE,TRUE)))
+equiv <- e$ci90_d>=47 & e$ci90_h<=53;stopifnot(identical(equiv,c(FALSE,TRUE,TRUE,FALSE,FALSE)))
+stopifnot(identical(equiv,e$p_tost<=.05));stopifnot(identical(e$p_rozdil<=.05,c(FALSE,TRUE,FALSE,TRUE,TRUE)))
+# Touching either equivalence bound: p = alpha; nearby positions on opposite sides.
+for (side in c(-1,1)) {
+  q <- qt(.95,399);boundary_m <- 50+side*(3-q*.5)
+  ps <- sapply(boundary_m+side*c(-1e-5,0,1e-5),function(m) max(ch7_tost(m,10,400,50,3)[c('p_dolni','p_horni')]))
+  stopifnot(ps[1]<.05,ps[3]>.05);eq(ps[2],.05,1e-12)
+}
 stopifnot(e$ci95_h[4]<47,e$ci90_h[4]<47,e$ci90_d[5]<47,e$ci90_h[5]>47)
 # Optional TOST p-values for studies B and A.
 eq(ch7_eq_tost[2,c('t_dolni','t_horni')],c(3,-9));rq(ch7_eq_tost[2,'p_dolni'],.0014,4);stopifnot(ch7_eq_tost[2,'p_horni']<.001)
@@ -62,9 +75,14 @@ eq(c(4.8/4,(32.4-30)/1.2),c(1.2,2));rq(2*tl(-2,15),.064,3);rq(tl(-2,15),.032,3);
 y <- ch7_u07;stopifnot(length(y)==20,range(y)==c(17,28));rq(mean(y),22.2,1);rq(sd(y),3.122,3);rq(sd(y)/sqrt(20),.698,3)
 ty <- (mean(y)-20)/(sd(y)/sqrt(20));rq(ty,3.15,2);rq(2*tl(-ty,19),.005,3);rq(qt(.975,19)*sd(y)/sqrt(20),1.461,3)
 rq(mean(y)+c(-1,1)*qt(.975,19)*sd(y)/sqrt(20),c(20.74,23.66),2)
+# Q-Q solution uses the chapter-4 midpoint positions, not qqnorm's default.
+eq(ch7_qq_p,(1:20-.5)/20);eq(ch7_qq_y,sort(y))
+eq(pnorm(ch7_qq_z),ch7_qq_p);rq(range(ch7_qq_z),c(-1.959964,1.959964),6)
 # Exercise 9.
 rq(100*(1-pnorm(25,c(15,16,17,14,13),6)),c(4.8,6.7,9.1,3.3,2.3),1)
 d <- 100*(1-pnorm(25,c(16,14,17),6))-100*(1-pnorm(25,15,6));rq(abs(d),c(1.9,1.4,4.3),1)
+screen18 <- pnorm(25,18,6,lower.tail=FALSE);screen15 <- pnorm(25,15,6,lower.tail=FALSE)
+rq(100*screen18,12.2,1);rq(screen18/screen15,2.546,3)
 # Exercise 10 and 13.
 for (n in c(150,30)) {
   se <- 6/sqrt(n);t1 <- (25.6-23)/se;t2 <- (25.6-27)/se;p1 <- 1-tl(t1,n-1);p2 <- tl(t2,n-1)

@@ -70,7 +70,7 @@ výstupy a dočasné soubory se do Gitu neukládají.
 
 - <a id="ruční-pdf-vybrané-kapitoly"></a>[Pracovní PDF kapitoly](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly) — pouze na vyžádání; ověřen export kapitoly 3.
 - <a id="kontroly-a-github"></a>[Kontroly dokumentace, webu a výpočtů](docs/PROVOZ.md#kontroly-a-github).
-- <a id="obnova-sešitů-a-podkladů-kapitol-16"></a>[Obnova sešitů](docs/PROVOZ.md#obnova-sešitů-a-podkladů-kapitol-16) — vyžaduje místní český desktopový Excel pro Windows.
+- <a id="obnova-sešitů-a-podkladů-kapitol-16"></a>[Obnova sešitů](docs/PROVOZ.md#obnova-sešitů-a-podkladů-kapitol-17) — vyžaduje místní český desktopový Excel pro Windows.
 - <a id="zdroje-a-průběh-sestavení"></a>[Generátory a průběh sestavení](docs/PROVOZ.md#zdroje-a-průběh-sestavení).
 - <a id="ověření-obsahu-a-vzhledu"></a>[Kontrola dat a náhledy sešitů](docs/PROVOZ.md#ověření-obsahu-a-vzhledu).
 - <a id="publikování-na-github-pages"></a>[Publikování na GitHub Pages](docs/PROVOZ.md#publikování-na-github-pages).

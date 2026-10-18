@@ -237,7 +237,12 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_07.html') {
         assert.equal(await solutions.count(),14,'Chapter 7 has twelve core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 7 mathematics parses');
-        assert.equal(await page.locator('main img').count(),7);
+        assert.equal(await page.locator('main img').count(),8);
+        assert.equal(await page.locator('.callout-body-container #fig-qq-uzkost-07').count(),1,'Exercise 7 Q-Q plot is inside the solution');
+        const qq7=page.locator('#fig-qq-uzkost-07');
+        assert.equal(await qq7.isVisible(),false,'Exercise Q-Q plot is hidden initially');
+        const qqToggle=qq7.locator('xpath=ancestor::div[contains(@class,"callout") and contains(@class,"callout-style-default")][1]').locator('[data-bs-toggle="collapse"]');
+        await qqToggle.focus();await page.keyboard.press('Enter');await qq7.waitFor({state:'visible'});
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
@@ -263,6 +268,7 @@ const server = http.createServer((req, res) => {
         for(const id of ['sec-interval-z-vypocet','sec-co-znamena-95','sec-interval-t-excel','sec-t-test-pozornost','sec-mnozina-nezamitnutych','sec-proc-90','sec-ctyri-kombinace','sec-ukazka-sdeleni']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch07-${id}-desktop.png`});
         }
+        await qqToggle.click();await qq7.waitFor({state:'hidden'});
       }
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
@@ -469,10 +475,13 @@ const server = http.createServer((req, res) => {
         'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-distribucni-04','fig-mezi-04','fig-oblasti-04','fig-normalizace-04','fig-histogram-krivka-04','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
         'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace'],
         'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-stejny-rozdil','fig-dva-testy'],
-        'quarto/kapitola_07.html': ['fig-opakovane-intervaly','fig-sirka-intervalu','fig-t-rozdeleni','fig-p-funkce','fig-pasmo-pouziti','fig-hypotezy-ekvivalence','fig-ctyri-kombinace']
+        'quarto/kapitola_07.html': ['fig-opakovane-intervaly','fig-sirka-intervalu','fig-t-rozdeleni','fig-p-funkce','fig-pasmo-pouziti','fig-hypotezy-ekvivalence','fig-ctyri-kombinace','fig-qq-uzkost-07']
       };
       for (const id of conceptFigures[file] || []) {
         const fig = page.locator('#'+id);
+        const hiddenSolution=id==='fig-qq-uzkost-07';
+        const toggle=hiddenSolution ? fig.locator('xpath=ancestor::div[contains(@class,"callout") and contains(@class,"callout-style-default")][1]').locator('[data-bs-toggle="collapse"]') : null;
+        if(hiddenSolution){await toggle.click();await fig.waitFor({state:'visible'});}
         const region = fig.locator('xpath=ancestor::div[contains(@class,"teaching-figure") or contains(@class,"chapter-04-figure")][1]');
         assert.equal(await region.getAttribute('tabindex'),'0',`Keyboard region: ${id}`);
         assert((await region.getAttribute('aria-label')).length>10);
@@ -487,6 +496,7 @@ const server = http.createServer((req, res) => {
         await region.screenshot({path:`tmp/verification/${id}-mobile-right.png`});
         await region.evaluate(e=>e.scrollLeft=0);
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`No page overflow: ${id}`);
+        if(hiddenSolution){await toggle.click();await fig.waitFor({state:'hidden'});}
       }
       await page.screenshot({ path: `tmp/verification/${path.basename(file, '.html')}-mobile.png` });
       await page.setViewportSize({ width: 1360, height: 1000 });
