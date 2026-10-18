@@ -78,6 +78,39 @@ Nově ověřena identita v PDF 3 a 6: *Statistical Methods for Psychology*, 8. v
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
 
+<a id="revize-07-20261018"></a>
+
+## Ověření při revizi kapitoly 7 — 2026-10-18
+
+**Verze:** tentýž místní soubor, SHA-256
+`9cb60cbe267019d61c41358ae509e235762b635ab2bbb4adb6409ae9422f8d64`.
+V rámci auditu znovu přečteny s. 181–189 a 192–195 (PDF 205–213 a 216–219).
+Tabulka 7.1 a Q–Q graf na [s. 187, PDF 211](../../sources/u%C4%8Debnice/howell.pdf#page=211)
+byly ověřeny také v obrazu originálu. Jde o místní odkaz do neveřejných podkladů.
+
+**Rozpor uvnitř zdroje:** slovní komentář u příkladu PDI na s. 186–188
+charakterizuje chvosty jako těžší. Q–Q graf s teoretickými kvantily na ose X
+však má dolní krajní body nad přímkou a horní pod ní. Přepis 56 hodnot
+tabulky 7.1 zkontrolovaný proti originálu dává v R průměr 104,125,
+výběrovou směrodatnou odchylku 12,58435, momentovou šikmost přibližně 0,275
+a momentový exces −1,14810 (nekorigovaný poměr čtvrtého centrálního momentu
+k druhé mocnině druhého, minus 3). Tyto údaje nepodporují popis těžších
+chvostů vzhledem k normálnímu modelu. Nejde o domnělou chybu OCR; slovní
+komentář a graf se rozcházejí. Ze samotného výběru nevyvozujeme definitivní
+charakteristiku populačních chvostů.
+
+**Použití:** [kapitola 7, předpoklady t-postupů](../../quarto/kapitola_07.qmd#sec-t-predpoklady)
+nově uvádí pouze nepřesnou normalitu bez výrazné šikmosti a závažných
+odlehlých hodnot. Původní souhrny příkladu a výpočty zůstávají zachovány;
+individuální hodnoty se do veřejné dokumentace ani studentského sešitu
+nekopírují. Dřívější záznam kontroly souhrnů se zpětně nepřepisuje.
+
+**Omezení:** původní studie Nurcomba et al. nebyla přečtena v plném textu;
+ověřeny byly její bibliografické údaje a abstrakt. Není tím ověřen celý
+Howellův výklad, všechny obrázky uvedených stran ani zbývající kapitola.
+Odchylka od Howellovy formulace interpretace intervalu na s. 194 nadále
+platí podle výše uvedeného záznamu. [Provedené změny a kontroly](../../quarto/README.md#revize-kapitoly-7-20261018).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

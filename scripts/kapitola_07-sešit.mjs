@@ -24,7 +24,7 @@ const sheets=[
   L('A9','Mezní chyba odhadu'),C('B9','=B8*B7','0.0000'),
   L('A10','Dolní mez'),C('B10','=B2-B9','0.00'),L('A11','Horní mez'),C('B11','=B2+B9','0.00'),
   N('D2','Autorský ilustrační model skóru pozornosti.'),N('D3','Platí jen za předpokladu, že σ známe.'),N('D5','Žlutě: vstupy. Modře: výpočty.'),
-  N('D8','Pro 0,95 je úroveň kvantilu 0,975.'),N('D10','Interval zachytí μ v 95 % opakování postupu;'),N('D11','jeden interval μ buď obsahuje, nebo ne.')]},
+  N('D8','Pro 0,95 je úroveň kvantilu 0,975.'),N('D10','="Interval zachytí μ v "&(100*B5)&" % opakování postupu;"'),N('D11','jeden interval μ buď obsahuje, nebo ne.')]},
  {name:'Interval_t',widths:{A:50,B:14,C:3,D:60},cells:[
   H('A1','Interval spolehlivosti s t-kvantilem'),H('B1','Hodnota'),
   L('A2','Výběrový průměr m'),I('B2',46,'0.00'),L('A3','Výběrová směrodatná odchylka s'),I('B3',10,'0.00'),
@@ -54,21 +54,21 @@ const sheets=[
   L('A6','Velikost výběru n'),I('B6',400,'0'),L('A7','Hladina významnosti'),I('B7',.05,'0.00'),
   L('A9','Odhad směrodatné chyby'),C('B9','=B5/ODMOCNINA(B6)','0.000'),L('A10','Stupně volnosti'),C('B10','=B6-1','0'),
   L('A11','Dolní hranice ekvivalence'),C('B11','=B2-B3','0.00'),L('A12','Horní hranice ekvivalence'),C('B12','=B2+B3','0.00'),
-  L('A14','Test rozdílu: dolní mez 95% intervalu'),C('B14','=B4-T.INV(1-B7/2;B10)*B9','0.00'),
-  L('A15','Test rozdílu: horní mez 95% intervalu'),C('B15','=B4+T.INV(1-B7/2;B10)*B9','0.00'),
+  L('A14','="Test rozdílu: dolní mez "&(100*(1-B7))&"% intervalu"'),C('B14','=B4-T.INV(1-B7/2;B10)*B9','0.00'),
+  L('A15','="Test rozdílu: horní mez "&(100*(1-B7))&"% intervalu"'),C('B15','=B4+T.INV(1-B7/2;B10)*B9','0.00'),
   L('A16','Test rozdílu: oboustranná p-hodnota'),C('B16','=T.DIST.2T(ABS((B4-B2)/B9);B10)','0.0000'),
   L('A17','Test rozdílu: rozhodnutí'),C('B17','=KDYŽ(B16<=B7;"zamítáme nulovou hypotézu";"nulovou hypotézu nezamítáme")','General'),
-  L('A18','Test ekvivalence: dolní mez 90% intervalu'),C('B18','=B4-T.INV(1-B7;B10)*B9','0.00'),
-  L('A19','Test ekvivalence: horní mez 90% intervalu'),C('B19','=B4+T.INV(1-B7;B10)*B9','0.00'),
-  L('A20','Test ekvivalence: závěr'),C('B20','=KDYŽ(A(B18>B11;B19<B12);"ekvivalence doložena";"ekvivalence nedoložena")','General'),
+  L('A18','="Test ekvivalence: dolní mez "&(100*(1-2*B7))&"% intervalu"'),C('B18','=B4-T.INV(1-B7;B10)*B9','0.00'),
+  L('A19','="Test ekvivalence: horní mez "&(100*(1-2*B7))&"% intervalu"'),C('B19','=B4+T.INV(1-B7;B10)*B9','0.00'),
+  L('A20','Test ekvivalence: závěr'),C('B20','=KDYŽ(A(B18>=B11;B19<=B12);"ekvivalence doložena";"ekvivalence nedoložena")','General'),
   L('A22','Nepovinně: t vůči dolní hranici'),C('B22','=(B4-B11)/B9','0.000'),
   L('A23','Nepovinně: p-hodnota vůči dolní hranici'),C('B23','=1-T.DIST(B22;B10;PRAVDA)','0.0000'),
   L('A24','Nepovinně: t vůči horní hranici'),C('B24','=(B4-B12)/B9','0.000'),
   L('A25','Nepovinně: p-hodnota vůči horní hranici'),C('B25','=T.DIST(B24;B10;PRAVDA)','0.0000'),
   L('A26','Nepovinně: výsledná p-hodnota TOST'),C('B26','=MAX(B23;B25)','0.0000'),
   N('D2','Výchozí vstupy jsou studie B z listu Studie_ekv.'),N('D3','Hranice stanovte před analýzou, ne podle výsledku.'),N('D7','Žlutě: vstupy. Modře: výpočty.'),
-  N('D14','95% interval slouží testu rozdílu od normy.'),N('D18','90% interval slouží testu ekvivalence:'),N('D19','dva jednostranné testy, každý na hladině B7.'),
-  N('D20','Ekvivalence jen tehdy, leží-li celý 90% interval v pásmu.'),N('D26','Větší z obou p-hodnot; menší než B7 znamená ekvivalenci.')]}
+  N('D14','=(100*(1-B7))&"% interval slouží testu rozdílu od normy."'),N('D18','=(100*(1-2*B7))&"% interval slouží testu ekvivalence:"'),N('D19','dva jednostranné testy, každý na hladině B7.'),
+  N('D20','Interval nesmí přesáhnout hranice; přesný dotyk připouštíme.'),N('D26','Větší z obou p-hodnot; nejvýše B7 znamená ekvivalenci.')]}
 ];
 const wb=new ExcelWorkbook();wb.worksheets.add('Prehled');
 for(const spec of sheets){
@@ -80,9 +80,10 @@ for(const spec of sheets){
   if(typeof value==='string'&&value.startsWith('='))r.formulasLocal=[[value]];else r.values=[[value]];
   if(kind==='head')r.format={fill:'#234F62',font:{color:'#FFFFFF',bold:true},wrapText:true,rowHeight:34};
   if(kind==='input'||kind==='calc'){r.format.fill=kind==='input'?'#FFF1CB':'#EAF4F8';r.setNumberFormat(format);}
-  if(kind==='note')r.format.font={color:'#526775'};
+  if(kind==='note')r.format={font:{color:'#526775'},wrapText:true,rowHeight:32};
  }
 }
+wb.worksheets.getItem('Interval_z').getRange('A3').format={wrapText:true,rowHeight:32};
 await populateStudentInputs(wb,7,out,specs);
 const overview=wb.worksheets.getItem('Prehled');
 overview.getRange('A5').values=[['Slovní úlohy 2, 4 a 12 nevyžadují vlastní datový list.']];

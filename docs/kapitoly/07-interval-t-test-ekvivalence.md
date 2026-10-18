@@ -11,7 +11,7 @@ sestavena podle výkladu, zadání a řešení 2026-10-17. Dohodu dokládají
 [R46](../rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-07). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-7).
-Soulad karty s textem zkontrolován 2026-10-17.
+Soulad karty s textem zkontrolován 2026-10-18 po [cílené revizi](../../quarto/README.md#revize-kapitoly-7-20261018); schválený rozsah R44–R46 se nemění.
 
 **Vstup:** výběrová variabilita a zkreslení (kap. 1); stupně volnosti a dělení
 n − 1, krabicový graf (kap. 3); normovaný kvantil $z_p$, hodnoty zpaměti,
@@ -50,7 +50,7 @@ sloupec určuje konkrétní **procvičení**.
 | [Nepovinné: proč s zvětšuje chvosty](../../quarto/kapitola_07.qmd#rozsireni-tezsi-chvosty) | s menší než σ asi v 59 % výběrů po pěti; nezávislost m a s jen u normální populace. | Bez cvičení. |
 | [Interval s t-kvantilem](../../quarto/kapitola_07.qmd#sec-interval-t) | Pět kroků: (41,87; 50,13); list `Interval_t`; pravý panel simulace (šířky 5,6–12,0, 96 ze 100); teoretické pokrytí chybného postupu 93,8/91,8/87,8 %; odolnost, prohlídka dat (Howell, PDI), důležitost nezávislosti. | 4, 5, 7d. |
 | [Jednovýběrový t-test](../../quarto/kapitola_07.qmd#sec-t-test) | Šest kroků s hypotézami z kap. 6: t = −2, p-hodnota 0,028 (jednostranně), 0,057 (oboustranně); kritická hodnota −1,711; list `T_test` s T.DIST, T.DIST.2T, T.INV.2T. PDI (Howell): t ≈ 2,45, p-hodnota 0,017, (100,75; 107,50), nečekaný směr, výhoda oboustranného testu. | 6, 7. |
-| [Interval a p-hodnota](../../quarto/kapitola_07.qmd#sec-interval-a-p) | Funkce p-hodnoty a interval jako množina nezamítnutých hodnot; platí pro odpovídající test; hraniční případ p = 0,05 a zaokrouhlení; co interval sděluje navíc; jednostranná mez 49,42 = horní mez 90% intervalu. | 1c, 2e, 8. |
+| [Interval a p-hodnota](../../quarto/kapitola_07.qmd#sec-interval-a-p) | Funkce p-hodnoty a vnitřek intervalu jako množina nezamítnutých hodnot; platí pro odpovídající test; hraniční případ p = 0,05 podle pravidla p ≤ α a odlišení přesné meze od zaokrouhlení; co interval sděluje navíc; jednostranná mez 49,42 = horní mez 90% intervalu. | 1c, 2e, 8. |
 | [Pásmo ekvivalence](../../quarto/kapitola_07.qmd#sec-pasmo-ekvivalence) | Online verze testu; nejmenší věcně důležitý rozdíl; hranice μ₀ ± Δ; zdůvodnění podle Lakense et al. (2018); posun o 3 body mění podíl pod 40 z 15,9 % na 24,2 % / 9,7 %; volba předem; nesouměrné hranice možné. | 9. |
 | [Test ekvivalence](../../quarto/kapitola_07.qmd#sec-test-ekvivalence) | Obrácené hypotézy, obrázek hypotéz; TOST (oba testy musí zamítnout); proč celý test na hladině 0,05; proč 90% interval (Lakens, 2017, pozn. 2); dva intervaly s odlišnou funkcí. | 10. |
 | [Čtyři kombinace](../../quarto/kapitola_07.qmd#sec-ctyri-kombinace) | Studie A–E s odděleným testem rozdílu, testem ekvivalence a závěrem vůči hranicím; statisticky, ale ne věcně významný výsledek (B); omyl „nezamítli, tedy stejné“; neprokázaná ekvivalence nedokládá důležitý rozdíl. | 10c, 11, 12b. |
@@ -79,10 +79,11 @@ používá čísla úlohy 9 kapitoly 6.
 | [Opakované intervaly](../../quarto/kapitola_07.qmd#fig-opakovane-intervaly) | Stejná šířka při známé σ, kolísající šířka s výběrovou s; pokrytí jako vlastnost postupu. |
 | [Šířka intervalu](../../quarto/kapitola_07.qmd#fig-sirka-intervalu) | Hladina spolehlivosti a velikost výběru; cena přesnosti. |
 | [t-rozdělení](../../quarto/kapitola_07.qmd#fig-t-rozdeleni) | Těžší chvosty po dosazení s; blížení normálnímu modelu. |
-| [Funkce p-hodnoty](../../quarto/kapitola_07.qmd#fig-p-funkce) | Interval jako množina nezamítnutých hodnot. |
+| [Funkce p-hodnoty](../../quarto/kapitola_07.qmd#fig-p-funkce) | Vnitřek intervalu jako množina nezamítnutých hodnot; na mezích p = α a zamítáme. |
 | [Posun a podíl pod 40](../../quarto/kapitola_07.qmd#fig-pasmo-pouziti) | Zdůvodnění hranic zamýšleným použitím. |
 | [Hypotézy ekvivalence](../../quarto/kapitola_07.qmd#fig-hypotezy-ekvivalence) | Dvoudílná nulová hypotéza a dva jednostranné testy. |
 | [Čtyři kombinace](../../quarto/kapitola_07.qmd#fig-ctyri-kombinace) | 90% a 95% intervaly souběžně vůči pásmu. |
+| [Q–Q graf úzkosti](../../quarto/kapitola_07.qmd#fig-qq-uzkost-07) | Vzorová konstrukce podle kap. 4 uvnitř sbaleného řešení 7d; omezení posouzení normality z 20 hodnot. |
 
 ### Cvičení a očekávané dovednosti
 
@@ -97,10 +98,10 @@ meze na dvě desetinná místa, p-hodnoty na tři. Úlohy 13 a 14 jsou nepovinn�
 | 3. Šířka a přesnost | Šířky 7,84/3,92, 6,58/10,30; 400 studentů pro poloviční šířku; velký výběr dobrovolníků. |
 | 4. Kvantily t | T.INV pro 4–99 stupňů volnosti; souměrnost; omyl „od 30 je to normální“. |
 | 5. Interval z dat | Deset hodnot: m = 12,6, s = 2,221, (11,01; 14,19); srovnání s 1,96; populace a předpoklady. |
-| 6. t-test ze souhrnů | t = 2, 15 stupňů volnosti, p-hodnota 0,064; (29,84; 34,96); dodatečná změna směru. |
-| 7. t-test v Excelu | Dvacet hodnot: t ≈ 3,15, p-hodnota 0,005, (20,74; 23,66); Q–Q graf a nezávislost. |
+| 6. t-test ze souhrnů | t = 2, 15 stupňů volnosti, p-hodnota 0,064; (29,84; 34,96); rozdíl vůči normě není změna způsobená kurzem; dodatečná změna směru. |
+| 7. t-test v Excelu | Dvacet hodnot: t ≈ 3,15, p-hodnota 0,005, (20,74; 23,66); Q–Q graf s obrázkem v řešení, omezení posouzení normality a nezávislost. |
 | 8. Interval a p-hodnota | Rozhodnutí z intervalů; hraniční případ; jednostranný test a 90% interval; přesnost. |
-| 9. Hranice ekvivalence | Podíly nad 25 bodů při posunech; volba ±1 podle požadavku; kritika benchmarku, volby podle dat a zdůvodnění očekávaným směrem. |
+| 9. Hranice ekvivalence | Podíly nad 25 bodů při posunech; volba ±1 podle požadavku; kritika benchmarku (posun o 3 body: podíl 4,8 % → 12,2 %), hranic přizpůsobených týmž datům a zdůvodnění očekávaným směrem; oddělená pilotáž pro budoucí studii. |
 | 10. Test ekvivalence | 150 studentů: 90% (24,79; 26,41), ekvivalence doložena, test rozdílu nezamítá; 30 studentů: nerozhodné. |
 | 11. Čtyři kombinace | Pět zadaných studií P–T zařadí a interpretuje. |
 | 12. Chybné postupy | Hranice podle výsledku; nezamítnutí jako shoda; ekvivalence průměru jako zaměnitelnost verzí. |
@@ -118,8 +119,8 @@ ABS, KDYŽ, A, MAX, NORM.S.INV, NORM.DIST, PRŮMĚR, SMODCH.VÝBĚR.S z dřívě
 Další kapitola je nesmí předpokládat.
 
 **Vysvětleno omezeně:** odolnost t-postupů vůči nenormalitě (bez simulace pro
-zešikmené populace); funkce Excelu A a MAX jen na listu `Ekvivalence`, bez řádku
-v přehledu funkcí. **Pouze zmíněno:** jiné postupy testu ekvivalence než TOST,
+zešikmené populace); funkce Excelu A je použita jen na listu `Ekvivalence`, bez řádku
+v přehledu funkcí (MAX je vyložena již v kap. 3). **Pouze zmíněno:** jiné postupy testu ekvivalence než TOST,
 nesouměrné hranice, porovnání dvou odhadů (norma z malého výběru), test shody
 týchž lidí oběma verzemi. **Nevyloženo:** párový a dvouvýběrový t-test,
 překrývání intervalů, interval pro podíl, bootstrap, bayesovské intervaly,
@@ -127,7 +128,7 @@ plánování velikosti výběru, test minimálního účinku, standardizované h
 
 ## Vazby na podklady
 
-- [U01](../zdroje/U01-howell.md#u01) — kap. 7, s. 181–196 (t-rozdělení, PDI, interval, s. 195 normy).
+- [U01](../zdroje/U01-howell.md#u01) — kap. 7, s. 181–196 (t-rozdělení, PDI, interval, s. 195 normy); [rozpor komentáře o chvostech s tabulkou a Q–Q grafem](../zdroje/U01-howell.md#revize-07-20261018) se nepřebírá.
 - [U03](../zdroje/U03-cumming.md#u03) — kap. 5 a s. 151–152.
 - [E02](../zdroje/E02-lakens-2017.md#e02-lakens-2017) — TOST, pozn. 2, jednovýběrový test.
 - [E03](../zdroje/E03-lakens-2018.md#e03-lakens-2018) — zdůvodnění hranic, čtyři kombinace, Discussion.

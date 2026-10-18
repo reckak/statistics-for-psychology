@@ -1,5 +1,75 @@
 # Autorská dokumentace
 
+<a id="revize-kapitoly-7-20261018"></a>
+
+## 2026-10-18 — Cílená revize kapitoly 7
+
+Proveden autorem schválený plán patnácti oprav po komplexním auditu celého
+výkladu, čtrnácti zadání a řešení, grafů, tabulek, přehledů a datového
+sešitu. Rozsah, základní struktura a konvence R44–R46 zůstávají zachovány;
+nejde o nová obsahová rozhodnutí.
+
+- Ekvivalence umožňuje závěr o zanedbatelnosti také při statisticky
+  významném rozdílu. Řešení 12c nevyvozuje použitelnost norem z pouhé
+  ekvivalence průměru. Řešení 6d interpretuje rozdíl vůči normě, nikoli
+  změnu způsobenou kurzem.
+- Vztah intervalu a testu v textu, shrnutí, grafu, slovníčku a sešitu
+  respektuje zavedené p ≤ α. Přesná rovnost je oddělena od zaokrouhlení;
+  řešení 8 respektuje výslovně přesnou mez v zadání.
+- Opraven screeningový poměr v 9c (4,8 % → 12,2 %, asi 2,5násobek),
+  nepodložené tvrzení o budoucím výběrovém průměru v 2d a příliš silné
+  zdůvodnění normality v 5d. Pilotáž pro budoucí studii je odlišena od
+  hranic přizpůsobených týmž testovaným datům.
+- Před prvním odvozením jsou připomenuty předpoklady; shrnutí zpřesňuje
+  podmínku širšího t-intervalu. Řešení 7d obsahuje nový Q–Q graf podle
+  konstrukce kapitoly 4, včetně omezení posouzení z dvaceti hodnot.
+- Upraven popisek grafu šířky intervalu, zalamování poznámek sešitu a
+  modelového předpokladu v `Interval_z!A3`. Procenta v popiscích se mění
+  podle zadané hladiny. Struktura 19 listů, vstupní data a oddělení
+  zadání od řešení jsou zachovány.
+- Kapitolová numerická kontrola je zapojena do GitHub Actions; doplněny
+  provozní příkazy a aktualizovány mapa kapitoly a evidence dat.
+
+Rozpor Howellova komentáře o chvostech s tabulkou a Q–Q grafem je doložen
+v [U01](../docs/zdroje/U01-howell.md#revize-07-20261018), včetně lokátorů,
+verze souboru, nezávislého přepočtu a omezení. Historické záznamy ani
+schválený plán se zpětně nemění. Další podklady auditu: Cumming s. 151–152,
+Lakens (2017: čtyři výsledky, jednovýběrový TOST, pozn. 2) a Lakens et al.
+(2018: zdůvodnění hranic, Discussion); nové termíny se nezavádějí.
+
+**Didaktická revize:** znovu přečtena upravená místa a návaznosti očima
+začátečníka. Kontrola se soustředila na oddělení parametru, odhadu a
+výsledku testu, přesných a zaokrouhlených mezí, rozdílu a změny, ekvivalence
+průměru a individuální shody. Q–Q úloha má nyní vizuální vzor uvnitř řešení;
+cíle a vstupní znalosti se nemění. Nejde o test porozumění na studentech.
+
+**Provedené kontroly realizace:** R kontrola včetně hranic a Q–Q
+souřadnic prošla. Nezávislé reference obnoveny v Pythonu. Obnova sešitu
+v Excelu 16.0 a kontroly: 32 uložených hodnot, 53 českých vzorců,
+3 očekávané chyby, 79 výsledků po změnách vstupů, 33 popisků,
+9 hraničních rozhodnutí a 9 kontrol uložených českých formulí; žádná
+neočekávaná chyba. Read-only kontroly sešity neukládají. Porovnání před/po
+potvrdilo pořadí listů, vstupy, formáty čísel, sloučené oblasti, validace
+a počet grafů; obsah se změnil jen v deseti plánovaných buňkách výpočtových
+listů. Původní číselné výsledky jsou shodné.
+
+Úplné sestavení knihy prošlo; po konečném doladění grafu a hraničního
+pravidla neinferiority byla znovu vykreslena kapitola 7. Následná úplná
+HTML kontrola prošla: 12 stránek, 257 hesel, 83 řešení v celé knize,
+místní odkazy, klávesnice, obsah i bez JavaScriptu a přes `file://`,
+šířky 1360/1920 a mobilní šířka 390 px. Kapitola 7 má 14 řešení a osm
+obrázků; nový Q–Q graf je skrytý spolu s řešením a po otevření na mobilu
+posuvný klávesnicí bez přetékání stránky. Vizuálně ověřeny upravené grafy
+šířky a p-hodnoty, Q–Q graf na desktopu i mobilu a nativní náhledy
+výpočtových listů. Kontrola studentských sešitů včetně zveřejňované kopie
+prošla; kontrola map s místními zdroji prošla pro 72 dokumentů, 47 rozhodnutí,
+2 881 místních odkazů a 409 odkazů do zdrojů. `git diff --check` bez chyb.
+
+**Omezení auditu:** nebyl přečten plný původní článek Nurcomba et al.
+(ověřena metadata a abstrakt) ani celé podkladové knihy. Ověření se týká
+místního Excelu 16.0 a místního webu; jiné verze Excelu, všechny prohlížeče
+a aktuální veřejné nasazení nejsou tímto záznamem ověřeny.
+
 ## 2026-10-18 — Discovering Statistics Using JASP v mapě zdrojů
 
 Doplněna [karta U14](../docs/zdroje/U14-field.md#u14), inventář a tematický

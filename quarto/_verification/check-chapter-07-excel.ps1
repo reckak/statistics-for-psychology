@@ -63,7 +63,44 @@ try {
     $hasFormula=$used.HasFormula
     if($hasFormula -eq $true -or $null -eq $hasFormula -or $hasFormula -is [DBNull]){throw "Simulated sheet contains formulas: $name"}
   }
-  [pscustomobject]@{Cells=@($spec.cells).Count;Formulas=@($spec.formulas).Count;Errors=@($spec.errors).Count;ChangedResults=$changed;ChangedLabels=$labels;LocalFormulas=@($spec.locals).Count;ExcelVersion=$taskExcel.Version;Saved=$false}|ConvertTo-Json -Compress
+  # 7. Exact endpoint comparisons and both neighboring decisions, without rounding
+  # or numerical tolerance in the workbook's decision rule. Set the bound from
+  # Excel's own unrounded limit so quantile implementation error is irrelevant.
+  $sh=$taskBook.Worksheets.Item('Ekvivalence')
+  $yes=[string]$spec.texts[1].expected
+  $no=[string]($spec.changes|Where-Object {$_.sheet -eq 'Ekvivalence' -and $_.set.B4 -eq 46}|Select-Object -First 1).labels.B20
+  $boundaryChecks=0
+  foreach($side in @(-1,1)){
+    $sh.Range('B4').Value2=50+1.5*$side
+    $taskExcel.CalculateFullRebuild()
+    $limit=if($side -eq -1){'B18'}else{'B19'}
+    $bound=if($side -eq -1){'B11'}else{'B12'}
+    $delta=[math]::Abs(50-[double]$sh.Range($limit).Value2)
+    foreach($shift in @(-0.000001,0,0.000001)){
+      $sh.Range('B3').Value2=$delta+$shift
+      $taskExcel.CalculateFullRebuild()
+      $expected=if($shift -lt 0){$no}else{$yes}
+      if([string]$sh.Range('B20').Value2 -cne $expected){throw "Wrong TOST boundary decision: side=$side shift=$shift"}
+      if($shift -eq 0){
+        if($sh.Range($limit).Value2 -ne $sh.Range($bound).Value2){throw 'Boundary case is not exact'}
+        Assert-Cell $sh 'B26' .05 1e-10
+      }
+      $boundaryChecks++
+    }
+  }
+  $sh.Range('B3').Value2=3.0;$sh.Range('B4').Value2=48.5
+  # Equality p = alpha in the difference-test decision, then both neighbors.
+  $taskExcel.CalculateFullRebuild();$p=[double]$sh.Range('B16').Value2
+  foreach($shift in @(-0.000001,0,0.000001)){
+    $sh.Range('B7').Value2=$p+$shift;$taskExcel.CalculateFullRebuild()
+    $expected=if($shift -lt 0){[string]($spec.changes|Where-Object {$_.sheet -eq 'Ekvivalence' -and $_.set.B4 -eq 46}|Select-Object -First 1).labels.B17}else{[string]$spec.texts[0].expected}
+    if([string]$sh.Range('B17').Value2 -cne $expected){throw "Wrong difference-test boundary: shift=$shift"}
+    $boundaryChecks++
+  }
+  $sh.Range('B7').Value2=.05;$taskExcel.CalculateFullRebuild();Assert-Stored
+  $wrap=$taskBook.Worksheets.Item('Interval_z').Range('A3')
+  if(-not $wrap.WrapText -or $wrap.RowHeight -lt 30){throw 'Model assumption label is not wrapped'}
+  [pscustomobject]@{Cells=@($spec.cells).Count;Formulas=@($spec.formulas).Count;Errors=@($spec.errors).Count;ChangedResults=$changed;ChangedLabels=$labels;BoundaryDecisions=$boundaryChecks;LocalFormulas=@($spec.locals).Count;ExcelVersion=$taskExcel.Version;Saved=$false}|ConvertTo-Json -Compress
 } finally {
   if($null -ne $taskBook){$taskBook.Close($false);[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($taskBook)}
   if($null -ne $taskExcel){$taskExcel.Quit();[void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($taskExcel)}

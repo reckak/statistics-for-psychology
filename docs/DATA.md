@@ -1,6 +1,6 @@
 # Pokrytí dat v sešitech
 
-Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4), 2026-10-12 (kapitoly 1, 5 a 6) a 2026-10-17 (kapitola 7). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
+Kontrola proti zadáním a výkladu: 2026-10-11 (kapitoly 2–4), 2026-10-12 (kapitoly 1, 5 a 6) a 2026-10-18 (kapitola 7). Jednotlivé datové sady, popisy a původ eviduje reprodukovatelný generátor `scripts/sesity-data.mjs`; studentské přehledy jsou uvnitř sešitů.
 
 Slovní situace bez individuálních pozorování nejsou doplňovány smyšlenými daty. Hladké křivky znázorňují modely, nikoli nezveřejněné výběry. U simulace korekce v kapitole 3 je vstupem známá populace a parametry opakování; interní miliony náhodných tahů nejsou studentským datovým souborem. Kapitola 4 obsahuje všech 800 simulovaných skórů ze čtyř porovnávaných obrázků.
 
@@ -208,7 +208,7 @@ a cvičení 11 hotové p-hodnoty; nejde o jednotlivá pozorování.
 
 ## Kapitola 7
 
-[Sešit](../data/kapitola_07.xlsx). Kontrola proti výkladu a zadáním: 2026-10-17.
+[Sešit](../data/kapitola_07.xlsx). Kontrola proti výkladu a zadáním: 2026-10-18.
 
 Výklad: `Pozornost` (průběžný příklad: norma 50, modelový předpoklad σ = 10,
 výběrová s = 10, n = 25, m = 46), `PDI` (souhrny podle Howella, s. 186–188,
@@ -218,6 +218,10 @@ na listech `Interval_z`, `Interval_t`, `T_test` a `Ekvivalence`; žluté buňky
 jsou vstupy, modré vzorce. `Ekvivalence` je nastavena na studii B a počítá
 test rozdílu (95% interval, oboustranná p-hodnota), test ekvivalence
 (90% interval a slovní závěr) a nepovinně obě p-hodnoty TOST (B22:B26).
+Uvedená procenta platí pro výchozí α = 0,05; při změně B7 se mění
+meze i popisky (1 − α a 1 − 2α). Rozhodnutí respektují p ≤ α včetně
+přesného dotyku meze intervalu s hranicí ekvivalence. Na listu `Interval_z`
+se poznámka o pokrytí mění s hladinou v B5; modelový předpoklad v A3 je celý viditelný.
 
 Simulovaná data obrázku opakovaných intervalů jsou v sešitu úplná a statická:
 `Sim_intervaly` A2:H101 (100 výběrů po 25 z výukového modelu s průměrem 47
@@ -242,7 +246,7 @@ normálního modelu; nejde o jednotlivá pozorování.
 | 4 | Bez datového listu; kvantily funkcí T.INV. |
 | 5 | `U05_slova` A2:A11 |
 | 6 | `U06_pohoda` A2:B5; k výpočtu lze použít list `T_test` |
-| 7 | `U07_uzkost` A2:A21 |
+| 7 | `U07_uzkost` A2:A21; ze stejných hodnot vzniká Q–Q graf ve sbaleném řešení, vstupní list neobsahuje hotové řešení. |
 | 8 | `U08_intervaly` A2:D6; zadané meze intervalů |
 | 9 | `U09_deprese` A2:B5; parametry normálního modelu |
 | 10 | `U10_spokojenost` A2:B6; k výpočtu lze použít list `Ekvivalence` |

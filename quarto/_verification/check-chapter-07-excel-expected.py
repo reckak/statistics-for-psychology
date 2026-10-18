@@ -84,9 +84,9 @@ for a, v, t in [('B8', 2, None), ('B9', 24, None), ('B10', -2, None), ('B11', t_
     add('T_test', a, v, t)
 
 
-def eq_expect(m, s, n, mu0=50, delta=3):
+def eq_expect(m, s, n, mu0=50, delta=3, alpha=0.05):
     se, v = s / math.sqrt(n), n - 1
-    q975, q95 = t_quant(0.975, v), t_quant(0.95, v)
+    q975, q95 = t_quant(1-alpha/2, v), t_quant(1-alpha, v)
     tl, tu = (m - (mu0 - delta)) / se, (m - (mu0 + delta)) / se
     pl, pu = 1 - t_lower(tl, v), t_lower(tu, v)
     return {'B9': se, 'B10': v, 'B11': mu0 - delta, 'B12': mu0 + delta,
@@ -113,7 +113,7 @@ F('=1-T.DIST(2,373;29;PRAVDA)', 1 - t_lower(2.373, 29)); F('=T.DIST(-1,278;29;PR
 F('=1-T.DIST(1,697;199;PRAVDA)', 1 - t_lower(1.697, 199))
 F('=T.DIST.2T(3,151;19)', 2 * t_lower(-3.151, 19))
 F('=NORM.S.INV(0,995)', z_quant(0.995)); F('=NORM.S.INV(0,95)', z_quant(0.95))
-for mean in (15, 16, 17, 14, 13):
+for mean in (15, 16, 17, 14, 13, 18):
     F(f'=1-NORM.DIST(25;{mean};6;PRAVDA)', upper_z((25 - mean) / 6))
 for mean in (47, 50, 53):
     F(f'=NORM.DIST(40;{mean};10;PRAVDA)', lower_z((40 - mean) / 10))
@@ -152,6 +152,24 @@ for n in (150, 30):
     changes.append({'sheet': 'Ekvivalence', 'set': {'B2': 25, 'B3': 2, 'B4': 25.6, 'B5': 6, 'B6': n}, 'expect': {k: e[k] for k in ('B14', 'B15', 'B16', 'B18', 'B19', 'B23', 'B25', 'B26')},
                     'tolerance': QT, 'labels': {'B17': 'nulovou hypotézu nezamítáme', 'B20': 'ekvivalence doložena' if n == 150 else 'ekvivalence nedoložena'}})
 
+# Levels must change numerical limits and their visible labels together.
+for level in (0.90, 0.95, 0.99):
+    q = z_quant((1+level)/2)
+    changes.append({'sheet': 'Interval_z', 'set': {'B5': level},
+                    'expect': {'B8': q, 'B10': 46-2*q, 'B11': 46+2*q}, 'tolerance': QT,
+                    'labels': {'D10': f'Interval zachytí μ v {100*level:.0f} % opakování postupu;'}})
+for alpha in (0.01, 0.05, 0.10):
+    e = eq_expect(48.5, 10, 400, alpha=alpha)
+    diff, equiv = f'{100*(1-alpha):.0f}', f'{100*(1-2*alpha):.0f}'
+    changes.append({'sheet': 'Ekvivalence', 'set': {'B7': alpha},
+                    'expect': {k: e[k] for k in ('B14','B15','B18','B19')}, 'tolerance': QT,
+                    'labels': {'A14': f'Test rozdílu: dolní mez {diff}% intervalu',
+                               'A15': f'Test rozdílu: horní mez {diff}% intervalu',
+                               'A18': f'Test ekvivalence: dolní mez {equiv}% intervalu',
+                               'A19': f'Test ekvivalence: horní mez {equiv}% intervalu',
+                               'D14': f'{diff}% interval slouží testu rozdílu od normy.',
+                               'D18': f'{equiv}% interval slouží testu ekvivalence:'}})
+
 out = {
     'note': 'Expected values: regularized incomplete beta (continued fraction) for the t distribution, erfc for the normal distribution and bisection quantiles in Python (check-chapter-07-excel-expected.py); counts on Sim_intervaly are properties of the stored data. Not produced by Excel.',
     'cells': cells,
@@ -163,7 +181,7 @@ out = {
                {'sheet': 'T_test', 'cell': 'B11', 'formula': '=T.DIST(B10;B9;PRAVDA)'}, {'sheet': 'T_test', 'cell': 'B13', 'formula': '=T.DIST.2T(ABS(B10);B9)'},
                {'sheet': 'T_test', 'cell': 'B14', 'formula': '=T.INV.2T(B6;B9)'},
                {'sheet': 'Ekvivalence', 'cell': 'B18', 'formula': '=B4-T.INV(1-B7;B10)*B9'},
-               {'sheet': 'Ekvivalence', 'cell': 'B20', 'formula': '=KDYŽ(A(B18>B11;B19<B12);"ekvivalence doložena";"ekvivalence nedoložena")'},
+               {'sheet': 'Ekvivalence', 'cell': 'B20', 'formula': '=KDYŽ(A(B18>=B11;B19<=B12);"ekvivalence doložena";"ekvivalence nedoložena")'},
                {'sheet': 'Ekvivalence', 'cell': 'B26', 'formula': '=MAX(B23;B25)'}],
     'changes': changes,
 }

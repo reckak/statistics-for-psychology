@@ -12,7 +12,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 - [Sestavení a náhled webu](#práce-s-projektem)
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
-- [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-16)
+- [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-17)
 - [Publikování na GitHub Pages](#publikování-na-github-pages)
 
 ## Práce s projektem
@@ -116,6 +116,7 @@ Rscript --vanilla quarto/_verification/check-chapter-03.R
 Rscript --vanilla quarto/_verification/check-chapter-04.R
 Rscript --vanilla quarto/_verification/check-chapter-05.R
 Rscript --vanilla quarto/_verification/check-chapter-06.R
+Rscript --vanilla quarto/_verification/check-chapter-07.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -156,15 +157,28 @@ standardní knihovnou Pythonu nezávisle na Excelu i R. Počty nad uloženými
 simulovanými daty jsou v něm konstanty; ze stejných seedů je nezávisle
 ověřuje `check-chapter-06.R`.
 
+Sedmou kapitolu ověřuje `check-chapter-07.R`: intervaly, t-testy, TOST,
+řešení, obě simulace, screeningové podíly, Q–Q souřadnice a hraniční
+p-hodnoty. Skript `check-chapter-07-excel.ps1` kontroluje v samostatném
+skrytém Excelu uložené výsledky, české vzorce, přepočet při změně vstupů,
+popisky pro hladiny 0,01/0,05/0,10 a spolehlivosti 0,90/0,95/0,99,
+přesný dotyk obou hranic ekvivalence a pravidlo p ≤ α. Změny neukládá.
+Nezávislé reference jsou v `check-chapter-07-excel.json`; obnoví je
+`python quarto/_verification/check-chapter-07-excel-expected.py quarto/_verification/check-chapter-07-excel.json`.
+K obnově sešitu včetně kontrol použijte
+`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Chapter 7 -Verify`.
+
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 
 Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
 
-## Obnova sešitů a podkladů kapitol 1–6
+<a id="obnova-sešitů-a-podkladů-kapitol-16"></a>
 
-Všech šest sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
+## Obnova sešitů a podkladů kapitol 1–7
+
+Všech sedm sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
 Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
-5.1, Node.js a pro simulované vstupy kapitol 1 a 4–6 také R. Příkazy `node`
+5.1, Node.js a pro simulované vstupy kapitol 1 a 4–7 také R. Příkazy `node`
 a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze
 standardní moduly Node.js a rozhraní COM instalovaného Excelu; nepotřebují
 žádný balíček npm, `@oai/artifact-tool` ani prostředí konkrétního LLM.
@@ -184,7 +198,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 
 ```
 
 Přepínač `-Verify` spustí numerické kontroly a změny vstupů vybrané kapitoly
-(pro kapitoly 2–6) a kontrolu chyb vzorců ve všech šesti uložených sešitech.
+(pro kapitoly 2–7) a kontrolu chyb vzorců ve všech sedmi uložených sešitech.
 Samotné kontroly sešity neukládají. Přepočet a konečnou podobu grafů zajišťuje
 již generátor; dřívější dokončování pomocí `-Finalize` není k obnově potřeba.
 Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu změny.
@@ -198,7 +212,7 @@ Numerické kontroly v R a vizuální prohlídku proveďte také podle rozsahu zm
 - `scripts/build-workbook-excel.ps1`: společný zápis deklarací do skutečného
   Excelu, formátování, ověření vstupů, nativní grafy, přepočet a uložení.
 - `scripts/sesity-simulace.R`: stejné pevně reprodukovatelné simulace jako
-  v obrázcích; společný spouštěč jej pro kapitoly 4–6 zavolá automaticky.
+  v obrázcích; společný spouštěč jej pro kapitoly 4–7 zavolá automaticky.
 - `scripts/kapitola_01-simulace.R`: společné simulace pedagogických příkladů
   pro grafy a sešit; generátor kapitoly 1 jej zavolá automaticky.
 
@@ -210,7 +224,7 @@ Výstup se otevírá na listu `Prehled` a při ukládání se odstraňují osobn
 údaje z vlastností dokumentu.
 
 Generátory kapitol 1–4 zadávají vzorce prostřednictvím `Formula`
-ve standardním anglickém zápisu. Kapitoly 5 a 6 používají české `FormulaLocal`.
+ve standardním anglickém zápisu. Kapitoly 5–7 používají české `FormulaLocal`.
 České vzorce z učebnice navíc skutečně spouštějí kapitolové kontroly.
 Číselné formáty buněk a os respektují místní oddělovače. Textové hodnoty
 zůstávají textem i tehdy, když vypadají jako číslo; chybění zůstává prázdné.
@@ -272,7 +286,7 @@ ilustrace a knihu a ověřte navazující výklad. Pomocné výstupy patří do 
 
 ## Publikování na GitHub Pages
 
-Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–6. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
+Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–7. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
 
 Při prvním zprovoznění:
 

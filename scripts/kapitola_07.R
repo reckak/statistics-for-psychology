@@ -80,7 +80,7 @@ ch7_draw('sirka-intervalu', {
   plot(NA,xlim=c(0,200),ylim=c(0,26),xlab='Velikost výběru n',ylab='Šířka intervalu (body)',main='Šířka intervalu při známé σ = 10',bty='l',yaxs='i')
   for(j in 1:3) lines(n,2*qnorm(1-(1-lev[j])/2)*10/sqrt(n),lwd=2.2,col=cols[j])
   k <- c(25,100); points(k,2*qnorm(.975)*10/sqrt(k),pch=21,bg=ch7_blue,col=ch7_ink,cex=1.3)
-  text(k+3,2*qnorm(.975)*10/sqrt(k)-1.3,paste0('n = ',k,': ',ch7_num(2*qnorm(.975)*10/sqrt(k)),' bodu'),adj=c(0,1),cex=.84,col=ch7_blue)
+  text(k,2*qnorm(.975)*10/sqrt(k),paste0('n = ',k,': ',ch7_num(2*qnorm(.975)*10/sqrt(k)),' bodu'),pos=c(1,3),offset=2.1,cex=.84,col=ch7_blue)
   legend('topright',c('99% interval','95% interval','90% interval'),lwd=2.2,col=rev(cols),bty='n',cex=.86)
 },width=8.6,height=4.4)
 ch7_draw('t-rozdeleni', {
@@ -106,7 +106,7 @@ ch7_draw('p-funkce', {
   rect(ch7_ci_att_t[1],-.1,ch7_ci_att_t[2],.05,col=adjustcolor(ch7_fill,.8),border=NA)
   lines(mu,p,lwd=2.4,col=ch7_blue)
   segments(ch7_ci_att_t,0,ch7_ci_att_t,.05,lwd=1.6,col=ch7_ink)
-  text(46,.025,'95% interval: hodnoty, které test nezamítá',cex=.8,col=ch7_ink)
+  text(46,.025,'Vnitřek 95% intervalu: nezamítnuté hodnoty',cex=.8,col=ch7_ink)
   points(c(50,48),ch7_p2(46,10,25,c(50,48)),pch=21,bg=ch7_orange,col=ch7_ink,cex=1.3)
   text(50.3,ch7_p2(46,10,25,50)+.06,bquote(mu[0]*' = 50: '*.(ch7_num(ch7_p2(46,10,25,50),3))),adj=0,cex=.82)
   text(48.3,ch7_p2(46,10,25,48)+.05,bquote(mu[0]*' = 48: '*.(ch7_num(ch7_p2(46,10,25,48),2))),adj=0,cex=.82)
@@ -147,4 +147,15 @@ ch7_draw('ctyri-kombinace', {
   points(e$m,y,pch=21,bg='white',col=ch7_ink,cex=1.2)
   legend(53.4,5.6,c('95% interval: test rozdílu od 50','90% interval: test ekvivalence','pásmo ekvivalence','norma 50'),lwd=c(1.4,6,NA,1.5),lty=c(1,1,NA,3),col=c(ch7_ink,ch7_blue,NA,ch7_gray),fill=c(NA,NA,adjustcolor(ch7_fill,.55),NA),border=NA,bty='n',cex=.78)
 },width=9.4,height=4.8)
+# Exercise 7: the same plotting positions and reference line as chapter 4.
+ch7_qq_y <- sort(ch7_u07)
+ch7_qq_p <- (seq_along(ch7_qq_y)-.5)/length(ch7_qq_y)
+ch7_qq_z <- qnorm(ch7_qq_p)
+ch7_draw('qq-uzkost', {
+  plot(ch7_qq_z,ch7_qq_y,xlab='Teoretický kvantil normovaného normálního rozdělení',
+       ylab='Seřazený skór úzkosti (body)',main='Q–Q graf skórů zkouškové úzkosti',
+       pch=21,bg=ch7_blue,col=ch7_ink,bty='l',cex=1.1)
+  abline(a=mean(ch7_u07),b=sd(ch7_u07),col=ch7_orange,lwd=1.8)
+  legend('topleft','Referenční přímka: m + s × z',col=ch7_orange,lwd=1.8,bty='n',cex=.85)
+},width=8.6,height=4.6)
 options(ch7_old_options)
