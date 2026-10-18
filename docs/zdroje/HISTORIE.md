@@ -198,3 +198,24 @@ Kapitola 7 vznikla podle [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-
 - [E02](E02-lakens-2017.md#e02-lakens-2017) a [E03](E03-lakens-2018.md#e03-lakens-2018): hypotézy testu ekvivalence, TOST, 90% interval (pozn. 2), reportování větší p-hodnoty, zdůvodnění hranic, volba hranic předem, čtyři kombinace výsledků. Plný text z Europe PMC (E02) a indexu scite (E03), přístup 2026-10-17.
 - Nově citovaná původní studie Nurcomba et al. (1984) se uvádí jen jako původ souhrnů převzatých od Howella; metadata ověřena v Crossref (DOI 10.1016/S0002-7138(09)60511-2), článek nebyl čten.
 - [P07](P07-usuzovani-intervaly.md#p07), [P08](P08-prumery.md#p08), [C05](C05-ulohy-tyden-4.md#c05) a [C08](C08-ulohy-tyden-9.md#c08) sloužily k pochopení priorit autora a jako náměty cvičení (vlivy na šířku, výklad 95 %, kvantily, známá a neznámá σ). Žádná úloha ani číselný příklad z nich převzat nebyl; nálezy evidované v kartách (t-rozdělení průměru, koeficient 2,4, hranice n > 30) se do textu nedostaly.
+
+<a id="field-2026-10-18"></a>
+
+## Doplnění Fielda, van Doorna a Wagenmakerse — 2026-10-18
+
+Na žádost autora doplněn nový soubor `sources/učebnice/field.pdf` jako
+[U14](U14-field.md#u14). Aktuální inventář má 45 souborů; cesty a všech
+44 dosavadních prefixů SHA-256 ověřeny proti místním originálům, bez změny.
+Jediný přírůstek je nová učebnice. Starší ID a datované záznamy zachovány.
+
+Karta U14 obsahuje ověřenou bibliografickou identitu, místní rozsah a otisk,
+mapu všech 17 kapitol, vybrané tematické lokátory a přesně vymezené čtení,
+obrazovou kontrolu a neověřené části. Podrobnosti a upozornění pro použití
+jsou pouze [v kartě](U14-field.md#u14-overeni). Tematický rozcestník doplněn
+u metodologie, popisu dat, grafů, inference, předpokladů a navazujících metod.
+Jde o nabídku podkladu, nikoli o doklad použití ve studentských kapitolách,
+změnu hlavního zdroje nebo schválení výuky JASP.
+
+Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
+studentům se nic nového nepublikuje. Kontrola ostatních 44 souborů byla
+inventární, nikoli novým odborným čtením.

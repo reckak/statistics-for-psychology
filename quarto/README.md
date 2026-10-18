@@ -1,5 +1,19 @@
 # Autorská dokumentace
 
+## 2026-10-18 — Discovering Statistics Using JASP v mapě zdrojů
+
+Doplněna [karta U14](../docs/zdroje/U14-field.md#u14), inventář a tematický
+rozcestník. Bibliografická identita ověřena v PDF a u Sage; zmapováno všech
+17 kapitol s tištěnými/PDF lokátory. Rozsah skutečného čtení, obrazové
+kontroly a omezení je v kartě, inventární kontrola 45 místních souborů
+v [historii zdrojů](../docs/zdroje/HISTORIE.md#field-2026-10-18).
+Studentský text, bibliografie citovaných děl a osnovy se neměnily.
+
+Ověření: `node scripts/check-doc-maps.cjs --require-sources`, inventární
+kontrola cest a SHA-256, kontrola rozsahu nových PDF odkazů a
+`git diff --check`. Render knihy se pro tuto čistě autorskou dokumentační
+změnu nespouští. Příklady nebyly nezávisle přepočítány a JASP nebyl spuštěn.
+
 ## 2026-10-17 — Kapitoly 3 a 4: povinné ukazatele tvaru
 
 Podle [R47](../docs/rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru):
