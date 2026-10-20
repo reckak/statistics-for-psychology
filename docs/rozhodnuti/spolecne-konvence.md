@@ -145,3 +145,24 @@ Ve stejné žádosti požadoval vysvětlit těsný zápis násobení při první
 použití v kapitole 3 a jednou připomenout v kapitole 4. Realizace navazuje
 na první výskyt ve vzorci pro [průměr](../../quarto/kapitola_03.qmd#sec-prumer)
 a na [zpětný převod z-skóru](../../quarto/kapitola_04.qmd#sec-z-skor).
+
+<a id="r49-sklonovani-odkazu"></a>
+
+## R49 — Skloňování odkazů na obrázky a tabulky
+
+**Stav:** schváleno 2026-10-20. **Rozsah:** celá učebnice (výklad, cvičení,
+řešení, přehledy) a související materiály vytvářené v Quartu.
+
+**Volba a důvod:** Quarto vykresluje holý odkaz `@fig-…` či `@tbl-…`
+v 1. pádě s velkým písmenem („Obrázek 4.11“). Holý odkaz proto používáme
+jen jako podmět věty nebo v závorce. V ostatních pádech píšeme skloňované
+slovo malým písmenem a odkaz jen na číslo (`Na obrázku [-@fig-x]`,
+`v tabulce [-@tbl-x]`, `z tabulky [-@tbl-x]`, `levá část obrázku [-@fig-x]`).
+Odstraňují se negramatické vazby typu „V Obrázek 4.11“; vzor již používaly
+kapitoly 5–7. Pravidlo udržuje
+[AGENTS.md](../../AGENTS.md#uspořádání-a-ověřování-quarto-book); vykreslené
+stránky hlídá `quarto/_verification/check-html.cjs`.
+
+**Doklad:** autor 2026-10-20: „Odkazy na obrázky nejsou skloňovány, např.
+‚V Obrázek 4.11‘, i když správně česky je ‚Na Obrázku‘ nebo ‚v obrázku‘; lze
+toto napravit a přidat do instrukcí?“ a schválení plánu s tímto pravidlem.

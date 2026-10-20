@@ -1,5 +1,25 @@
 # Autorská dokumentace
 
+<a id="sklonovani-odkazu-20261020"></a>
+
+## 2026-10-20 — Skloňování odkazů na obrázky a tabulky
+
+Podle nového pravidla [R49](../docs/rozhodnuti/spolecne-konvence.md#r49-sklonovani-odkazu)
+opraveno 55 negramatických vazeb v kapitolách 1–4 („V @fig-…“, „Na @fig-…“,
+„z @tbl-…“, „Levá část @fig-…“, „odpovídá @fig-…“) na skloňované slovo
+a odkaz jen na číslo (`v obrázku [-@fig-…]`). Každý výskyt byl posouzen
+podle vazby; holé odkazy zůstaly jen jako podmět nebo v závorce, což
+odpovídá dosavadní praxi kapitol 5–7. Pravidlo je v `AGENTS.md`
+(Uspořádání a ověřování Quarto Book) a registru rozhodnutí. Mapy kapitol se
+nemění, jde o jazykovou opravu bez změny významu.
+
+**Ověření:** render celé knihy bez varování; `check-html.cjs` s novou
+kontrolou předložek a řídicích slov před „Obrázek/Tabulka N.N“ na všech
+stránkách prošel (kontrolní výraz otestován i na původních vazbách);
+ruční procházka všech vykreslených výskytů „Obrázek/Tabulka N.N“
+v kapitolách 1–7. Kontrola pokrývá typické vazby, nikoli všechny možné
+pády (např. dativ po jiných slovesech); ty hlídá redakční pravidlo.
+
 <a id="revize-kapitoly-4-20261020"></a>
 
 ## 2026-10-20 — Revize kapitoly 4 podle připomínek autora
