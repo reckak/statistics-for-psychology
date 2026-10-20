@@ -1,5 +1,20 @@
 # Autorská dokumentace
 
+<a id="popisek-z-pasma-20261020"></a>
+
+## 2026-10-20 — Popisek osy z-skórů v obrázku stenů a staninů
+
+Podle připomínky autora byl popisek „Z-skór“ v obrázku
+[pásem](kapitola_04.qmd#sec-steny-staniny) (`pasma-skoru`) i po předchozí
+úpravě opticky blíže číslům pásem než hodnotám z. V `scripts/kapitola_04.R`
+posunut popisek výš (řádek okraje 1,75 místo 1,9) a řádek s čísly stenů
+a staninů níž (4,4 místo 4,1). Obsah obrázku se nemění.
+
+**Ověření:** obrázek vykreslen znovu a obě části prohlédnuty v rastru
+(popisek těsně pod hodnotami z bez překryvu, čísla pásem odděleně níže);
+render kapitoly 4 a `check-html.cjs` bez chyb. Stejný obrázek používá
+prezentace ke kapitole 4; ta se upravuje samostatně.
+
 <a id="prezentace-kapitoly-4-20261020"></a>
 
 ## 2026-10-20 — Prezentace ke kapitole 4
