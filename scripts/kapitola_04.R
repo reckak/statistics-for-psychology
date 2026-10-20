@@ -219,9 +219,9 @@ ch4_draw('pasma-skoru', {
     mids<-(head(finite_breaks,-1)+tail(finite_breaks,-1))/2
     axis(1,at=inner,cex.axis=.78)
     # Axis title right under the z values; band numbers form a separate row below.
-    mtext('Z-skór',side=1,line=1.9,cex=.95)
-    mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=4.1,at=-3.3,cex=.8)
-    mtext(seq_along(mids),side=1,line=4.1,at=mids,cex=.85)
+    mtext('Z-skór',side=1,line=1.75,cex=.95)
+    mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=4.4,at=-3.3,cex=.8)
+    mtext(seq_along(mids),side=1,line=4.4,at=mids,cex=.85)
     # Model share of every band just above the axis; cumulative share above each boundary.
     text(mids,ifelse(is.finite(head(breaks,-1))&is.finite(breaks[-1]),.016,.035),pct(props),cex=.6,col='#223744')
     mtext(pct(pnorm(inner)),side=3,line=.25,at=inner,cex=.62,col=ch4_hi_text)
