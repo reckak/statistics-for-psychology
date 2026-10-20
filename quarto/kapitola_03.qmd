@@ -26,7 +26,7 @@ Než začneme počítat, ujasníme si, které dvě vlastnosti rozdělení budeme
 
 ![Dva soubory dob dokončení úlohy se stejným průměrem a různou variabilitou.](../assets/chapter-03/plots/stejny-prumer.svg){#fig-stejny-prumer fig-alt="První soubor obsahuje hodnoty 5, 6, 6, 6 a 7 minut; druhý 2, 4, 6, 8 a 10 minut. Oba mají průměr 6 minut, druhý má větší variabilitu."}
 
-V @fig-stejny-prumer je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření může být tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
+V obrázku [-@fig-stejny-prumer] je v obou skupinách průměr šest minut. V první však všichni dokončili úlohu mezi pěti a sedmi minutami, ve druhé mezi dvěma a deseti. Pro plánování délky vyšetření může být tento rozdíl podstatný. Co přesně znamená směrodatná odchylka v popisku, si vysvětlíme níže.
 
 Význam čísel závisí také na úrovni měření. Rozdíl dvou minut má srozumitelný význam; rozdíl kódů „1 = dopoledne, 2 = odpoledne“ nemusí vyjadřovat přesnou délku časového úseku. Připomeňte si proto [úrovně měření](kapitola_01.qmd#sec-mereni). Tvar rozdělení, jeho poloha, variabilita a význam hodnot společně určují, co je rozumné sdělit.
 
@@ -154,7 +154,7 @@ Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstru
 
 :::
 
-Šipky v @fig-vazeny-prumer nejprve spojují celkové časy, teprve potom dělíme počtem všech lidí. Společný průměr leží mezi oběma skupinovými průměry, ale není v polovině: skupina s průměrem 8 minut obsahuje třikrát více lidí.
+Šipky v obrázku [-@fig-vazeny-prumer] nejprve spojují celkové časy, teprve potom dělíme počtem všech lidí. Společný průměr leží mezi oběma skupinovými průměry, ale není v polovině: skupina s průměrem 8 minut obsahuje třikrát více lidí.
 
 ## Kvartily, percentily a kvantily {#sec-kvantily}
 
@@ -214,7 +214,7 @@ $$q_{0{,}17}=5+0{,}7\times(7-5)=6{,}4\ \text{minuty}.$$
 
 ![Výpočet kvantilů z jedenácti časů: přiřazené úrovně a detail lineární interpolace pro 17. percentil.](../assets/chapter-03/plots/kvantil-interpolace.svg){#fig-kvantil-interpolace fig-alt="Horní graf spojuje jedenáct časů s přiřazenými úrovněmi od 0 do 100 procent. Dolní graf zvětšuje úsek od 10 procent a 5 minut do 20 procent a 7 minut. Hledaných 17 procent leží v sedmi desetinách vodorovné vzdálenosti; na spojnici mu odpovídá 6,4 minuty."}
 
-V horním panelu @fig-kvantil-interpolace jsou rozestupy bodů na vodorovné ose stejné, ale rozdíly časů na svislé ose se mění. Dolní panel ukazuje, proč mluvíme o **lineární** interpolaci: mezi dvěma sousedními body vedeme přímou úsečku a hledanou hodnotu odečteme na ní. Spojnice je pravidlo výpočtu; netvrdí, že jsme mezi 5 a 7 minutami pozorovali další lidi nebo že jsou tam časy v populaci rovnoměrně rozloženy. Výsledek 6,4 minuty leží blíže k 7 než k 5 minutám, protože úroveň 17 % je blíže k 20 % než k 10 %.
+V horním panelu obrázku [-@fig-kvantil-interpolace] jsou rozestupy bodů na vodorovné ose stejné, ale rozdíly časů na svislé ose se mění. Dolní panel ukazuje, proč mluvíme o **lineární** interpolaci: mezi dvěma sousedními body vedeme přímou úsečku a hledanou hodnotu odečteme na ní. Spojnice je pravidlo výpočtu; netvrdí, že jsme mezi 5 a 7 minutami pozorovali další lidi nebo že jsou tam časy v populaci rovnoměrně rozloženy. Výsledek 6,4 minuty leží blíže k 7 než k 5 minutám, protože úroveň 17 % je blíže k 20 % než k 10 %.
 
 Obecně označíme $i$ jako **celou část necelé pozice**: například u pozice 2,7 je $i=2$. Nižší sousední hodnota je $x_{(i)}$, vyšší $x_{(i+1)}$. Rozdíl $\text{pozice}-i$ udává, jakou část cesty mezi nimi urazíme. Přesný výpočet je
 
@@ -278,7 +278,7 @@ Kdybychom kategoriím přiřadili kódy 1, 2, 3, 4 a interpolovali např. 90. pe
 
 :::
 
-V @fig-percentil-a-poradi jsou značky uspořádány podle pořadí, nikoli podle časových vzdáleností. Nahoře známe kvantilovou úroveň a hledáme čas; dole známe čas a počítáme jeho kumulativní zastoupení. Dvě pětky jsou dvě pozorování, proto se dole započítají obě.
+V obrázku [-@fig-percentil-a-poradi] jsou značky uspořádány podle pořadí, nikoli podle časových vzdáleností. Nahoře známe kvantilovou úroveň a hledáme čas; dole známe čas a počítáme jeho kumulativní zastoupení. Dvě pětky jsou dvě pozorování, proto se dole započítají obě.
 
 **Percentilové pořadí zapisujeme bez tečky:** „percentilové pořadí 60“, protože jde o číselnou hodnotu na stupnici od 0 do 100, nikoli o šedesáté místo mezi účastníky. Může být i desetinné, například 62,5. Naproti tomu „60. percentil“ píšeme s tečkou: jde o šedesátý percentil. Podobně tečka patří k zápisu „2. pozice“, ale nikoli ke spojení „pozice 2“.
 
@@ -416,7 +416,7 @@ Všechny rozptyly jsou v min². Při dělení $n-1$ se průměry od přesné hod
 
 ![Rozptyly jednotlivých simulovaných výběrů a jejich průměry. Při dělení $n$ leží průměr pod populačním rozptylem 8, při dělení $n-1$ na něm; jednotlivé výsledky přitom kolísají, nejvíce u malých výběrů.](../assets/chapter-03/plots/korekce-rozptylu.svg){#fig-korekce-rozptylu fig-alt="Bodový graf pro velikosti výběru 5, 20 a 100. Každý bod je rozptyl jednoho výběru, oranžově při dělení n, modrozeleně při dělení n minus jedna; zobrazeno je prvních 400 výběrů každé velikosti. Křížky značí průměry ze všech 20 000 výběrů: při dělení n přibližně 6,41, 7,62 a 7,93, při dělení n minus jedna přibližně 8,01, 8,02 a 8,01, blízko populačnímu rozptylu 8 vyznačenému čárkovanou čarou. Při n = 5 leží jednotlivé rozptyly zhruba mezi 0 a 19, při n = 100 těsně kolem 8."}
 
-Na @fig-korekce-rozptylu každý bod představuje rozptyl jednoho výběru; kvůli přehlednosti je zobrazeno prvních 400 výběrů každé velikosti, křížky jsou průměry ze všech 20 000. Dělení $n-1$ zvětší každý výsledek v poměru $n/(n-1)$, takže se celý oblak bodů posune nahoru a jeho průměr dosáhne populačního rozptylu. Rozptýlenost jednotlivých výsledků však zůstává: při $n=5$ může jeden výběr dát rozptyl blízký nule i více než dvojnásobek skutečné hodnoty. S rostoucím $n$ se body stahují k osmi a obě varianty se k sobě přibližují. To je přesně rozdíl mezi nestranností postupu a přesností jednoho výsledku.
+Na obrázku [-@fig-korekce-rozptylu] každý bod představuje rozptyl jednoho výběru; kvůli přehlednosti je zobrazeno prvních 400 výběrů každé velikosti, křížky jsou průměry ze všech 20 000. Dělení $n-1$ zvětší každý výsledek v poměru $n/(n-1)$, takže se celý oblak bodů posune nahoru a jeho průměr dosáhne populačního rozptylu. Rozptýlenost jednotlivých výsledků však zůstává: při $n=5$ může jeden výběr dát rozptyl blízký nule i více než dvojnásobek skutečné hodnoty. S rostoucím $n$ se body stahují k osmi a obě varianty se k sobě přibližují. To je přesně rozdíl mezi nestranností postupu a přesností jednoho výsledku.
 
 Korekce se týká tohoto konkrétního problému odhadování. Sama nenapravuje nereprezentativní výběr, chybné měření ani závislost pozorování. V uvedené simulaci jsou podmínky záměrně splněny.
 
@@ -476,7 +476,7 @@ Při winsorizaci nahradíme 2 hodnotou 3 a 31 hodnotou 9. Pro výpočet dostanem
 
 :::
 
-V @fig-orezani-winsorizace zachovávají políčka původní pořadové pozice; jejich rozestupy neznázorňují rozdíly časů. Přeškrtnuté hodnoty v prostřední řadě do výpočtu nevstupují, proto dělíme osmi. Ve spodní řadě se započítá všech deset políček, včetně obou nahrazených hodnot. Obrázek ukazuje úpravu pro výpočet statistiky, nikoli přepis či mazání původních záznamů.
+V obrázku [-@fig-orezani-winsorizace] zachovávají políčka původní pořadové pozice; jejich rozestupy neznázorňují rozdíly časů. Přeškrtnuté hodnoty v prostřední řadě do výpočtu nevstupují, proto dělíme osmi. Ve spodní řadě se započítá všech deset políček, včetně obou nahrazených hodnot. Obrázek ukazuje úpravu pro výpočet statistiky, nikoli přepis či mazání původních záznamů.
 
 **Medián jako krajní případ ořezaného průměru.** Odebíráme-li postupně stejně mnoho hodnot z obou konců, zůstane nakonec při lichém počtu jediná prostřední hodnota a při sudém počtu dvě prostřední hodnoty. Jejich průměr je právě medián. U našich deseti časů po odstranění čtyř z každého konce zbývá 5 a 6, tedy medián 5,5. Proto lze medián chápat i jako „50% ořezaný průměr“: jde o krajní případ při přibližování úrovně ořezání k 50 % z každé strany. **Neznamená to doslova odstranit obě poloviny a průměrovat prázdný soubor.** Při přesně 50 % je pro sudý počet hodnot nutné toto zvláštní vymezení pomocí mediánu; běžné pravidlo pro počet vynechaných hodnot používáme pro úrovně nižší než 50 %.
 
@@ -502,7 +502,7 @@ Při naší konvenci je pozice 1. kvartilu $1+(41-1)\times0{,}25=11$, mediánu 2
 
 ![Konstrukce krabicového grafu pro 41 testových skórů. Vlevo jsou všechna pozorování; shodné hodnoty jsou rozloženy vedle sebe. Pomocné meze a vyznačené vzdálenosti vysvětlují konstrukci a v běžném krabicovém grafu se zpravidla nekreslí.](../assets/chapter-03/plots/boxplot.svg){#fig-boxplot-03 fig-alt="Svislý krabicový graf: 1. kvartil 40, medián 50, 3. kvartil 60, IQR 20 bodů. Od každého kvartilu směrem ven je vyznačeno 1,5 IQR, tedy 30 bodů, k dolní mezi 10 a horní mezi 90. Dolní vous končí na 15, horní na 85. Podezřelá odlehlá pozorování jsou 2 a 5 dole a 95 a 98 nahoře. Vlevo jsou původní skóry."}
 
-**Meze určují nejzazší přípustný dosah vousů**, nikoli nutně jejich skutečné konce. V běžném krabicovém grafu se pomocné meze nekreslí; zde jsou zobrazeny jen kvůli výkladu. Na @fig-boxplot-03 rozdíl vidíme přímo: mezi dolní mezí 10 a koncem vousu 15 ani mezi koncem vousu 85 a horní mezí 90 nejsou žádná pozorování. Oba vousy zde měří 25 bodů ($40-15$ i $85-60$), protože modelová data jsou kolem mediánu souměrná. U nesouměrných dat mívají vousy různou délku. Platí jen horní hranice: **1,5 IQR je maximální povolená délka od příslušného kvartilu, nikoli povinná délka vousu**.
+**Meze určují nejzazší přípustný dosah vousů**, nikoli nutně jejich skutečné konce. V běžném krabicovém grafu se pomocné meze nekreslí; zde jsou zobrazeny jen kvůli výkladu. Na obrázku [-@fig-boxplot-03] rozdíl vidíme přímo: mezi dolní mezí 10 a koncem vousu 15 ani mezi koncem vousu 85 a horní mezí 90 nejsou žádná pozorování. Oba vousy zde měří 25 bodů ($40-15$ i $85-60$), protože modelová data jsou kolem mediánu souměrná. U nesouměrných dat mívají vousy různou délku. Platí jen horní hranice: **1,5 IQR je maximální povolená délka od příslušného kvartilu, nikoli povinná délka vousu**.
 
 Pravidlo 1,5násobku rozpětí je **pomůcka k označení neobvyklých pozorování**, nikoli důkaz chyby či pokyn k vyřazení. Navazujeme na [zásady práce s odlehlými pozorováními](kapitola_02.qmd#sec-tvar-rozdeleni). U zešikmeného rozdělení může být více bodů za jednou mezí přirozenou vlastností dat. Je-li mezikvartilové rozpětí nulové, mohou být samostatně označeny i nepříliš vzdálené odlišné hodnoty; pak je zvlášť důležité zobrazit jednotlivá pozorování.
 
@@ -516,7 +516,7 @@ Entropie zachycuje nejistotu ohledně výskytu kategorie při náhodném výběr
 
 ![Tři rozdělení mezi čtyři strategie učení a jejich entropie.](../assets/chapter-03/plots/entropie.svg){#fig-entropie fig-alt="Ve čtyřech kategoriích jsou postupně podíly 1, 0, 0, 0 s entropií 0; 0,5, 0,25, 0,25, 0 s entropií 1,5; a čtyři podíly 0,25 s entropií 2 bity."}
 
-Na @fig-entropie je první skupina zcela jednotná, poslední vykazuje rovnoměrné zastoupení čtyř strategií. Prostřední leží mezi nimi. K vyjádření míry entropie můžeme použít jako jednotku **bit (*bit*)**; její souvislost s výpočtem vysvětluje nepovinné okénko. Číselnou entropii neporovnáváme bez znalosti kategorií: podrobnější rozdělení jedné kategorie do několika podkategorií může entropii změnit, přestože se chování lidí nezměnilo. Nejde ani o ukazatel kvality strategií nebo kvality dat.
+Na obrázku [-@fig-entropie] je první skupina zcela jednotná, poslední vykazuje rovnoměrné zastoupení čtyř strategií. Prostřední leží mezi nimi. K vyjádření míry entropie můžeme použít jako jednotku **bit (*bit*)**; její souvislost s výpočtem vysvětluje nepovinné okénko. Číselnou entropii neporovnáváme bez znalosti kategorií: podrobnější rozdělení jedné kategorie do několika podkategorií může entropii změnit, přestože se chování lidí nezměnilo. Nejde ani o ukazatel kvality strategií nebo kvality dat.
 
 ::: {#rozsireni-entropie .callout-note collapse="true" title="Nepovinné rozšíření: logaritmus a výpočet entropie"}
 **Logaritmus (*logarithm*)** odpovídá na otázku, na jakou mocninu musíme umocnit zvolený základ, abychom dostali dané kladné číslo. Pro logaritmus o základu 2 (binární logaritmus) píšeme $\log_2$. Platí $2^3=8$, a proto $\log_2 8=3$. Také $2^0=1$, takže $\log_2 1=0$. Záporný exponent vyjadřuje „obrácenou“ mocninu: $2^{-1}=1/2$ a $2^{-2}=1/4$. Odtud $\log_2(1/2)=-1$ a $\log_2(1/4)=-2$.
@@ -644,7 +644,7 @@ Při grafickém porovnání průměrů je užitečné zobrazit body a rozdělen�
 
 ## Od popisu dat k modelu rozdělení {#sec-popis-a-model}
 
-Několik souhrnných ukazatelů neuchová veškerou informaci. Tři **modelová populační rozdělení** v @fig-stejne-statistiky mají shodný průměr 0, rozptyl 1 a směrodatnou odchylku 1. První připouští jen hodnoty −1 a 1, každou s pravděpodobností 50 %. Druhé je souměrné a zvonovité. Třetí má delší pravý chvost. Nejde o tři výběry z populací: shoda ukazatelů je přesnou vlastností zvolených modelů. Ani průměr spolu se směrodatnou odchylkou tedy obecně neurčuje celé rozdělení.
+Několik souhrnných ukazatelů neuchová veškerou informaci. Tři **modelová populační rozdělení** v obrázku [-@fig-stejne-statistiky] mají shodný průměr 0, rozptyl 1 a směrodatnou odchylku 1. První připouští jen hodnoty −1 a 1, každou s pravděpodobností 50 %. Druhé je souměrné a zvonovité. Třetí má delší pravý chvost. Nejde o tři výběry z populací: shoda ukazatelů je přesnou vlastností zvolených modelů. Ani průměr spolu se směrodatnou odchylkou tedy obecně neurčuje celé rozdělení.
 
 ![Tři výrazně odlišná modelová rozdělení se stejným průměrem 0 a směrodatnou odchylkou 1. Sloupce zobrazují pravděpodobnosti v intervalech šířky 0,2; vodorovné osy jsou shodné, svislá měřítka se kvůli čitelnosti tvarů liší. Přerušovaná čára označuje společný průměr.](../assets/chapter-03/plots/stejne-dve-statistiky.svg){#fig-stejne-statistiky fig-alt="Tři panely se shodnou vodorovnou osou a různými svislými měřítky: nahoře dvě stejně pravděpodobné hodnoty minus 1 a 1, uprostřed souměrné zvonovité rozdělení, dole rozdělení zešikmené doprava. Všechny modely mají průměr 0 a směrodatnou odchylku 1."}
 
@@ -660,19 +660,19 @@ Rozdělení lze také popisovat přímo pomocí četností a kvantilů, bez volb
 
 ## Ukazatele tvaru: šikmost a exces {#sec-ukazatele-tvaru}
 
-Tři modely v @fig-stejne-statistiky mají stejný průměr i směrodatnou odchylku, a přesto vypadají zcela odlišně. Lze rozdíly v jejich tvaru shrnout také čísly? Tento oddíl ukazuje dva nejběžnější ukazatele tvaru, šikmost a exces, a vysvětluje, co jejich hodnoty sdělují.
+Tři modely v obrázku [-@fig-stejne-statistiky] mají stejný průměr i směrodatnou odchylku, a přesto vypadají zcela odlišně. Lze rozdíly v jejich tvaru shrnout také čísly? Tento oddíl ukazuje dva nejběžnější ukazatele tvaru, šikmost a exces, a vysvětluje, co jejich hodnoty sdělují.
 
 **Ukazatele tvaru (*measures of shape*)** doplňují ukazatele polohy a variability. Vzdálenosti hodnot od průměru posuzují v násobcích směrodatné odchylky, a jsou proto bez jednotek. Podle [oddílu o změně jednotek](#sec-zmena-skaly) posun ani převod jednotek tyto násobky nemění, a tak nemění ani výsledek. Ukazatele tvaru tedy popisují vlastnost, která zbývá, když od rozdělení „odečteme“ jeho polohu a šíři. Jedinou výjimkou je obrácení škály, tedy násobení záporným číslem: levá a pravá strana se prohodí, takže šikmost změní znaménko, zatímco exces zůstane stejný.
 
 ![Modelová rozdělení se stejným průměrem a směrodatnou odchylkou. Šikmost roste s tím, jak se jeden chvost protahuje. Vyšší exces znamená více velmi vzdálených hodnot: podíl za hranicemi ±3 směrodatné odchylky stoupá z 0,27 % na 1,17 %, jak ukazují zvětšené pravé chvosty dole. Přerušovaná křivka je pro srovnání normální model.](../assets/chapter-03/plots/ukazatele-tvaru.svg){#fig-ukazatele-tvaru fig-alt="Devět grafů hustoty ve třech řádcích, vodorovná osa v násobcích směrodatné odchylky od průměru. Horní řádek: souměrný zvonovitý model se šikmostí 0, model se šikmostí 1 a mírně protaženým pravým chvostem a model se šikmostí 2, který začíná prudce vlevo a má dlouhý pravý chvost. Prostřední řádek: souměrné modely s excesem 0, 1 a 6; mimo hranice ±3 směrodatné odchylky leží 0,27 %, 0,73 % a 1,17 % hodnot. Dolní řádek zvětšuje pravé chvosty týchž tří modelů: s rostoucím excesem leží křivka nad hranicí 3 stále výše nad přerušovanou normální křivkou."}
 
-V @fig-ukazatele-tvaru mají všechny modely průměr 0 a směrodatnou odchylku 1, liší se jen tvarem. Jde o vybrané pravděpodobnostní modely, nikoli o psychologická data. Horní řádek ukazuje šikmost, prostřední a dolní exces; čísla v titulcích jsou přesné hodnoty modelů.
+V obrázku [-@fig-ukazatele-tvaru] mají všechny modely průměr 0 a směrodatnou odchylku 1, liší se jen tvarem. Jde o vybrané pravděpodobnostní modely, nikoli o psychologická data. Horní řádek ukazuje šikmost, prostřední a dolní exces; čísla v titulcích jsou přesné hodnoty modelů.
 
 ### Šikmost: kterým směrem a jak výrazně se rozdělení protahuje {#sec-koeficient-sikmosti}
 
 Směr zešikmení umíme pojmenovat slovně podle [delšího chvostu](kapitola_02.qmd#sec-tvar-rozdeleni). **Šikmost (*skewness*)** lze vyjádřit také číslem, koeficientem šikmosti. Koeficient porovnává, jak daleko od průměru sahají hodnoty na jeho levé a pravé straně. Vzdálené hodnoty přitom mají mnohem větší váhu než hodnoty blízké průměru, takže o výsledku rozhoduje hlavně strana, na které leží vzdálenější hodnoty.
 
-**Znaménko** proto udává směr: kladná šikmost znamená delší pravý chvost, záporná delší levý chvost. **Absolutní hodnota** udává, jak výrazná nesouměrnost je. Modely v horním řádku @fig-ukazatele-tvaru mají šikmost 0, 1 a 2: s rostoucí hodnotou se hodnoty hromadí vlevo a pravý chvost se protahuje. U lehkého testu, kde většina lidí dosahuje vysokých skórů a jen několik velmi nízkých, bychom naopak očekávali zápornou šikmost.
+**Znaménko** proto udává směr: kladná šikmost znamená delší pravý chvost, záporná delší levý chvost. **Absolutní hodnota** udává, jak výrazná nesouměrnost je. Modely v horním řádku obrázku [-@fig-ukazatele-tvaru] mají šikmost 0, 1 a 2: s rostoucí hodnotou se hodnoty hromadí vlevo a pravý chvost se protahuje. U lehkého testu, kde většina lidí dosahuje vysokých skórů a jen několik velmi nízkých, bychom naopak očekávali zápornou šikmost.
 
 Každé souměrné rozdělení má šikmost nulovou, protože vzdálenosti na obou stranách se přesně vyváží. Obrácené tvrzení ale neplatí: k vyvážení může dojít i u nesouměrného souboru, například když jedna strana obsahuje několik vzdálených hodnot a druhá mnoho bližších. Konkrétní protipříklad ukazuje nepovinné cvičení na konci kapitoly. Šikmost blízká nule je tedy slučitelná se souměrností, ale sama ji nedokazuje. Podobně ji nedokazuje ani [shoda průměru a mediánu](#sec-stred-tvar).
 
@@ -680,9 +680,9 @@ Každé souměrné rozdělení má šikmost nulovou, protože vzdálenosti na ob
 
 **Exces (*excess kurtosis*)** porovnává rozdělení s normálním modelem, který má stejný průměr a stejnou směrodatnou odchylku. Normální model je souměrné zvonovité rozdělení zmíněné v [předchozím oddílu](#sec-popis-a-model); slouží jako srovnávací měřítko, protože se v psychologii často používá jako výchozí model, a podrobně se mu věnuje další kapitola. Jeho exces je 0. **Kladný exces** znamená, že se velmi vzdálené hodnoty vyskytují častěji než u normálního modelu; říkáme, že rozdělení má **těžší chvosty**. **Záporný exces** znamená, že velmi vzdálené hodnoty jsou vzácnější nebo zcela chybějí.
 
-Prostřední řádek @fig-ukazatele-tvaru ukazuje tři souměrné modely s excesem 0, 1 a 6. Za hranicemi tří směrodatných odchylek od průměru leží 0,27 %, 0,73 % a 1,17 % hodnot. Rozdíly jsou v absolutních číslech malé, ale relativně velké: v modelu s excesem 6 je takových hodnot více než čtyřikrát víc než v normálním modelu. Zvětšené chvosty v dolním řádku ukazují, kde se modely liší: s rostoucím excesem leží křivka za hranicí 3 stále výše nad přerušovanou normální křivkou.
+Prostřední řádek obrázku [-@fig-ukazatele-tvaru] ukazuje tři souměrné modely s excesem 0, 1 a 6. Za hranicemi tří směrodatných odchylek od průměru leží 0,27 %, 0,73 % a 1,17 % hodnot. Rozdíly jsou v absolutních číslech malé, ale relativně velké: v modelu s excesem 6 je takových hodnot více než čtyřikrát víc než v normálním modelu. Zvětšené chvosty v dolním řádku ukazují, kde se modely liší: s rostoucím excesem leží křivka za hranicí 3 stále výše nad přerušovanou normální křivkou.
 
-Záporný exces najdeme například u hodnot omezených na úzké rozmezí bez vzdálených výsledků nebo u směsi dvou zřetelně oddělených skupin. Nejnižší možnou hodnotu −2 má první model v @fig-stejne-statistiky: obě jeho hodnoty leží přesně jednu směrodatnou odchylku od průměru a žádná dál. Druhý, normální model tam má exces 0 a šikmost 0. Třetí model má šikmost 1 a exces 1,5. Zešikmené modely v horním řádku @fig-ukazatele-tvaru mají také kladný exces (1,5 a 6), protože jejich dlouhý chvost obsahuje vzdálené hodnoty. Šikmost a exces tedy nejsou dvě na sobě nezávislé vlastnosti.
+Záporný exces najdeme například u hodnot omezených na úzké rozmezí bez vzdálených výsledků nebo u směsi dvou zřetelně oddělených skupin. Nejnižší možnou hodnotu −2 má první model v obrázku [-@fig-stejne-statistiky]: obě jeho hodnoty leží přesně jednu směrodatnou odchylku od průměru a žádná dál. Druhý, normální model tam má exces 0 a šikmost 0. Třetí model má šikmost 1 a exces 1,5. Zešikmené modely v horním řádku obrázku [-@fig-ukazatele-tvaru] mají také kladný exces (1,5 a 6), protože jejich dlouhý chvost obsahuje vzdálené hodnoty. Šikmost a exces tedy nejsou dvě na sobě nezávislé vlastnosti.
 
 Exces souvisí se **špičatostí (*kurtosis*)**, označovanou také přejatým slovem kurtóza: špičatost je exces zvětšený o 3. Normální model má tedy špičatost 3 a exces 0. Programy obvykle uvádějí exces, ale ne vždy, proto je třeba ověřit, kterou z obou veličin výsledek představuje. V této učebnici budeme uvádět exces.
 
@@ -690,7 +690,7 @@ V prostředním řádku si můžeme všimnout ještě jedné věci: modely s vy�
 
 ![Stejně vysoký centrální sloupec neznamená stejný exces.](../assets/chapter-03/plots/spicatost.svg){#fig-spicatost fig-alt="Oba soubory mají 80 ze 100 hodnot ve středu. První má dalších deset hodnot na minus jedné a deset na plus jedné, exces 2. Druhý přesouvá po jedné hodnotě do minus tří a plus tří, exces přibližně 10,89."}
 
-V @fig-spicatost má každý soubor sto pozorování a osmdesát z nich leží přesně ve středu. Vlevo jsou zbývající hodnoty rozděleny po deseti mezi −1 a 1; vpravo po devíti mezi −1 a 1 a po jedné na −3 a 3. Vrchol má v obou obrázcích stejnou četnost 80. Přesto je exces vlevo 2 a vpravo 10,89. Rozdíl vznikl jen tím, že se dvě hodnoty přesunuly dál od středu. Jde o autorský diskrétní příklad, nikoli o návod odhadovat exces z výšky sloupců histogramu. Změna měřítka os či šířky intervalů by mohla vzhled vrcholu změnit bez změny vypočteného koeficientu.
+V obrázku [-@fig-spicatost] má každý soubor sto pozorování a osmdesát z nich leží přesně ve středu. Vlevo jsou zbývající hodnoty rozděleny po deseti mezi −1 a 1; vpravo po devíti mezi −1 a 1 a po jedné na −3 a 3. Vrchol má v obou obrázcích stejnou četnost 80. Přesto je exces vlevo 2 a vpravo 10,89. Rozdíl vznikl jen tím, že se dvě hodnoty přesunuly dál od středu. Jde o autorský diskrétní příklad, nikoli o návod odhadovat exces z výšky sloupců histogramu. Změna měřítka os či šířky intervalů by mohla vzhled vrcholu změnit bez změny vypočteného koeficientu.
 
 ::: {.callout-warning title="Častý omyl: exces jako výška vrcholu"}
 Název špičatost svádí k představě, že kladný exces znamená ostrý nebo vysoký vrchol. Exces však vypovídá hlavně o chvostech. Správná interpretace kladného excesu zní: ve srovnání s normálním modelem se stejnou směrodatnou odchylkou se častěji vyskytují velmi vzdálené hodnoty. Záporný exces naopak znamená, že takové hodnoty jsou vzácnější; neznamená „plochý vrchol“ ani záporný rozptyl.
@@ -1006,7 +1006,7 @@ Pro tři kategorie je normalizovaná entropie $1{,}5/\log_2 3\approx0{,}946$, te
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U15_sikmost` A2:B5 a `Spicatost` A2:C6.
 
-Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom výpočtem vysvětlete, proč stejná výška vrcholu v @fig-spicatost nezaručuje stejný exces.
+Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body. Ověřte, že má průměr i momentový koeficient šikmosti nulové, přestože není souměrný. Potom výpočtem vysvětlete, proč stejná výška vrcholu v obrázku [-@fig-spicatost] nezaručuje stejný exces.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Počet hodnot je 20 a součet $4(-2)+5(-1)+10(1)+1(3)=0$, tedy průměr 0. Odchylky jsou totožné s hodnotami. Součet třetích mocnin je $4(-8)+5(-1)+10(1)+1(27)=0$. Rozptyl s dělením $n$ je $(4\times4+5\times1+10\times1+1\times9)/20=2$, takže jmenovatel koeficientu není nulový a $g_1=0$. Soubor přesto není souměrný: například hodnota 3 nemá protějšek −3 a četnosti hodnot −1 a 1 se liší. Nulový součet třetích mocnin je slabší podmínka než souměrnost.

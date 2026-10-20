@@ -493,6 +493,11 @@ s každou kapitolou, ne až při dokončení knihy.
   samostatně; lokální nastavení přepisuj jen z důvodu.
 - Používej stabilní jedinečné identifikátory a křížové odkazy; čísla
   kapitol, obrázků a tabulek nevpisuj do odkazů ručně.
+- Odkazy na obrázky a tabulky skloňuj. Holý `@fig-…` či `@tbl-…` se
+  vykresluje v 1. pádě („Obrázek 4.1“); použij jej jen jako podmět věty
+  nebo v závorce. V ostatních pádech napiš skloňované slovo malým písmenem
+  a odkaz jen na číslo: `Na obrázku [-@fig-x]`, `v tabulce [-@tbl-x]`,
+  `levá část obrázku [-@fig-x]` (viz [R49](docs/rozhodnuti/spolecne-konvence.md#r49-sklonovani-odkazu)).
 - Upravuj zdroje, nikoli generované HTML v `_book/`. Generované výstupy
   a dočasné soubory neukládej do Gitu; zdrojové kontrolní skripty do něj patří.
 - Po obsahové změně ověř výpočty, všechny vzorové odpovědi a render dotčené

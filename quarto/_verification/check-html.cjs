@@ -46,6 +46,9 @@ const server = http.createServer((req, res) => {
         .filter(m => (m.querySelector('annotation[encoding="application/x-tex"]')?.textContent || '').includes('\\approx'))
         .filter(m => ![...m.querySelectorAll('mo')].some(op => op.textContent === '≈')).length);
       assert.equal(approximateOperators, 0, `Approximate equality missing in MathML: ${file}`);
+      // R49: a bare @fig/@tbl renders in the nominative ("Obrázek 4.1"); after a preposition or governing noun it must be declined.
+      const undeclined = (await page.locator('main').textContent()).match(/(?<!\p{L})(?:[Vv]e?|[Nn]a|[Zz]e?|[Kk]e?|[Oo]|[Pp]o|část[iy]?|řad[aěy]|řád(?:ek|ku)|panel[u]?|grafu|odpovídá)\s+(?:Obrázek|Tabulka)\s+\d+\.\d+/gu) || [];
+      assert.deepEqual(undeclined, [], `Undeclined figure/table reference: ${file}`);
       // Decimal commas written as {,} must stay inside one <mn>, never become a spaced <mo>,</mo>.
       const decimalCommas = await page.evaluate(() => [...document.querySelectorAll('math')].map(m => {
         const tex = m.querySelector('annotation[encoding="application/x-tex"]')?.textContent || '';

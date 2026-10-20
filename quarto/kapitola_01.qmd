@@ -134,7 +134,7 @@ Studijní motivace ← podpora vyučujícího → školní úspěšnost
 
 Vyučující srozumitelně vysvětluje látku, poskytuje užitečnou zpětnou vazbu a vytváří prostor pro otázky. Taková podpora může zároveň zvyšovat motivaci studentů a zlepšovat jejich porozumění učivu. Motivace a výsledky potom mohou souviset alespoň částečně proto, že je ovlivňuje **společná příčina**. Možná mají studenti větší chuť se učit i lepší výsledky proto, že dostávají kvalitnější podporu. To nevylučuje další působení motivace na výsledky.
 
-V @fig-podpora-motivace představuje každý bod jednoho simulovaného studenta. Vodorovná osa zachycuje studijní motivaci, svislá školní úspěšnost; vyšší hodnota vždy znamená více dané vlastnosti. Obě škály jsou pro ilustraci vyjádřeny v bodech, nejde o skutečný dotazník ani známky. Barva a tvar rozlišují nízkou, střední a vysokou podporu vyučujícího.
+V obrázku [-@fig-podpora-motivace] představuje každý bod jednoho simulovaného studenta. Vodorovná osa zachycuje studijní motivaci, svislá školní úspěšnost; vyšší hodnota vždy znamená více dané vlastnosti. Obě škály jsou pro ilustraci vyjádřeny v bodech, nejde o skutečný dotazník ani známky. Barva a tvar rozlišují nízkou, střední a vysokou podporu vyučujícího.
 
 ::: {.teaching-figure role="region" aria-label="Motivace a úspěšnost podle podpory vyučujícího" tabindex="0"}
 ![Společná příčina v simulovaných datech: podpora vyučujícího posouvá motivaci i úspěšnost.](../assets/chapter-01/plots/podpora-motivace.svg){#fig-podpora-motivace fig-alt="Tři skupiny podle nízké, střední a vysoké podpory tvoří postupně výše a vpravo umístěné shluky. V celém souboru motivace a úspěšnost zřetelně souvisejí, uvnitř jednotlivých skupin je souvislost slabá."}
@@ -154,7 +154,7 @@ Inteligence → školní úspěšnost ← studijní motivace
 ![Výběr podle společného následku: zvýraznění jedničkáři jsou částí téhož simulovaného souboru. Vlastní simulace inspirovaná principem ilustrace v odborné literatuře [@griffith2020, obr. 1].](../assets/chapter-01/plots/jednickari-motivace.svg){#fig-jednickari-motivace fig-alt="Na vodorovné ose je inteligence, na svislé motivace. Celý soubor bodů nemá zřetelný směr vztahu. Mezi oranžovými trojúhelníky označujícími jedničkáře se objevuje klesající vztah. Oranžové a šedé body se překrývají, výběr nemá ostrou hranici."}
 :::
 
-V @fig-jednickari-motivace nejprve sledujte všechny body včetně zvýrazněných: inteligence a motivace v celém simulovaném souboru spolu téměř nesouvisejí. Potom sledujte jen jedničkáře. Mezi nimi se objevuje **záporná souvislost**: s vyšší inteligencí bývá spojena nižší motivace. Neznamená to, že inteligence motivaci snižuje. Rozdíl vznikl tím, že nyní posuzujeme pouze studenty s výborným výsledkem. Skupiny se překrývají, protože do výsledku kromě obou vlastností vstupují i další vlivy, například podmínky při zkoušení. Ani vysoké hodnoty obou vlastností tedy v simulaci výborný výsledek nezaručují.
+V obrázku [-@fig-jednickari-motivace] nejprve sledujte všechny body včetně zvýrazněných: inteligence a motivace v celém simulovaném souboru spolu téměř nesouvisejí. Potom sledujte jen jedničkáře. Mezi nimi se objevuje **záporná souvislost**: s vyšší inteligencí bývá spojena nižší motivace. Neznamená to, že inteligence motivaci snižuje. Rozdíl vznikl tím, že nyní posuzujeme pouze studenty s výborným výsledkem. Skupiny se překrývají, protože do výsledku kromě obou vlastností vstupují i další vlivy, například podmínky při zkoušení. Ani vysoké hodnoty obou vlastností tedy v simulaci výborný výsledek nezaručují.
 
 Tento problém označujeme jako **zkreslení při výběru podle společného následku (*collider bias*)**. Obecněji se mluví o podmiňování společným následkem: zde to znamená omezit posuzování na studenty splňující určitou podmínku školní úspěšnosti. Na rozdíl od předchozího příkladu šipky do třetí proměnné vstupují, místo aby z ní vycházely. Takové omezení může souvislost vytvořit nebo změnit; záporný směr je vlastností našeho příkladu, nikoli všech situací tohoto typu [@griffith2020, oddíl Introduction a obr. 1].
 
@@ -309,7 +309,7 @@ Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psyc
 : Každá další úroveň měření přidává k předchozím jeden věcně interpretovatelný vztah hodnot. Příklady se týkají zaznamenaných údajů, nikoli konstruktů, které jimi zkoumáme. {#tbl-urovne-shrnuti}
 :::
 
-Skóry psychologických testů a dotazníků, například IQ nebo součet odpovědí na stupnici souhlasu, v @tbl-urovne-shrnuti záměrně neuvádíme. Zda je lze vykládat intervalově, rozebíráme v [oddílu o psychologických skórech](#sec-kvaziintervalove).
+Skóry psychologických testů a dotazníků, například IQ nebo součet odpovědí na stupnici souhlasu, v tabulce [-@tbl-urovne-shrnuti] záměrně neuvádíme. Zda je lze vykládat intervalově, rozebíráme v [oddílu o psychologických skórech](#sec-kvaziintervalove).
 
 Čtyři úrovně můžeme shrnout také otázkou: **Jak můžeme změnit číselný zápis, aniž bychom změnili věcnou informaci, kterou má zachycovat?** Na tomto rozlišení stojí klasické vymezení úrovní měření [@stevens1946, s. 677–679].
 
