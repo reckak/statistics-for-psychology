@@ -1,5 +1,54 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-4-20261020"></a>
+
+## 2026-10-20 — Prezentace ke kapitole 4
+
+Vytvořeny soubory v `presentations/`: `kapitola_04_normalni_rozdeleni.pptx`
+(37 slidů), `kapitola_04_poznamky.docx` a
+`kapitola_04_normalni_rozdeleni_cviceni.xlsx`. Rozsah dohodnut s autorem:
+jedna výuka za celou kapitolu, 22 výkladových slidů (45 minut) v pěti
+tematických oddílech a procvičování (45 minut). Podle
+[R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci)
+je 2. slide přehled obsahu, oddíly oddělují slidy s jejich názvy a nadpisy
+v DOCX mají tvar „Slide N: titulek“. Normalizace je jen stručně, P–P graf
+(nepovinný) vynechán. Šest úloh bez Excelu je adaptováno z Howella
+(3.3 a 3.5, 3.6–3.7, 3.10, 3.11–3.12, 3.19, 3.24; s. 79–81), řešení jsou jen
+v poznámkách. Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+má osm listů s jedním úkolem (U1–U8; úlohy 3.1–3.4, 3.6, 3.8, 3.13–3.15,
+3.18 a postup 3.20–3.21), řešení po krocích, kontroly přímými funkcemi
+a 24 nativních rovnic; U8 obsahuje Q–Q graf. Rozsah čtení Howella eviduje
+[karta U01](../docs/zdroje/U01-howell.md#u01). Kapitola 4, slovník, osnova
+ani `data/kapitola_04.xlsx` se neměnily; věcný rozpor mezi kapitolou
+a prezentací nebyl zjištěn.
+
+Postup: generátor v `tmp/chapter04-presentation/` navazuje na generátor
+kapitoly 3 (OOXML s předlohou kapitoly 2, obrázky převedené z
+`assets/chapter-04/plots/`, Q–Q grafy simulací oříznuté na pravou polovinu).
+Nově umí přehledový a oddělovací slide, mřížku obrázků s popisky a titulek
+pojmenovaný „Nadpis“, z něhož export DOCX čte nadpis slidu. Vkládání rovnic
+do sešitu nově připojí rovnice i k výkresu listu, který už má graf. Plochu
+a kvantil normálního modelu dávají v řešení NORM.S.DIST a NORM.S.INV
+(základními operacemi je spočítat nelze); NORM.DIST a NORM.INV slouží jako
+kontrola. Sdílené skripty v `scripts/` se neměnily.
+
+**Ověření:** všech 37 slidů vykresleno v PowerPointu a prohlédnuto;
+každý slide má poznámky a jazyk textů i poznámek je čeština (objektový model
+PowerPointu). Čísla slidů, poznámek a sešitu přepočítána nezávisle v R
+(`check.R` v tmp). Sešit přepočítán v českém Excelu 16: 0 chybových buněk,
+všech 20 kontrol „Shoda s kroky“ = ano, 24 rovnic se zónou rovnice, jeden
+graf, prázdné pracovní buňky; listy prohlédnuty z exportu do PDF. DOCX otevřen
+ve Wordu: 37 nadpisů „Slide N: titulek“ shodných s titulky slidů, 17 stran.
+Zadání 3.1 (μ = 4, σ = 1,63) ověřeno v obraze strany 79.
+
+**Omezení:** popisky uvnitř převzatých grafů jsou při projekci drobné;
+hlavní hodnoty opakuje text slidu. Výklad trvá podle součtu časů 45 minut,
+skutečná délka nebyla vyzkoušena. Starší verze Excelu a PowerPointu, Excel
+pro Mac ani webový Excel nebyly zkoušeny. Didaktická revize byla interní,
+bez ověření na studentech. Studentský web se nemění, render knihy nebyl
+potřeba.
+
 <a id="struktura-prezentaci-20261020"></a>
 
 ## 2026-10-20 — Přehled obsahu a oddělovací slidy v prezentacích
