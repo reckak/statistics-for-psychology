@@ -273,7 +273,10 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_04.html') {
         assert.equal(await solutions.count(),10,'Chapter 4 has ten complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 4 mathematics parses');
-        assert.equal(await page.locator('main img').count(),19);
+        assert.equal(await page.locator('main img').count(),21);
+        // The finished Q-Q plot is shown in the principle section, before its Excel construction.
+        assert.equal(await page.locator('#sec-qq-graf #fig-qq-priklad-04').count(),1,'Q-Q example appears with the principle');
+        for(const id of ['fig-qq-sikme-vlevo-04','fig-qq-lehke-04']) assert.equal(await page.locator('#'+id).count(),1,`New diagnostic figure: ${id}`);
         // The P-P figure sits in a collapsed optional extension: closed by default, opens by keyboard.
         const pp = page.locator('#rozsireni-pp-graf');
         assert.equal(await pp.locator('.callout-collapse').isVisible(), false, 'P-P extension is collapsed by default');

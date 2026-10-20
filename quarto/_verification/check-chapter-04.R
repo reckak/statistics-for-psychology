@@ -44,7 +44,7 @@ x<-ch4_x;x[12]<-90;eq(mean(x),625/12);eq(sd(x),14.1835906040831)
 stopifnot(x[12]>mean(x)+sd(x)*ch4_z[12])
 # All generated figures exist and have nonempty SVG content.
 files<-list.files(ch4_out,pattern='\\.svg$',full.names=TRUE)
-stopifnot(length(files)==19,all(file.info(files)$size>1000),all(vapply(ch4_simulations,length,integer(1))==200))
+stopifnot(length(files)==21,all(file.info(files)$size>1000),all(vapply(ch4_simulations,length,integer(1))==200))
 eq(round(100*pnorm(-2:2),1),c(2.3,15.9,50,84.1,97.7))
 eq(round(100*diff(pnorm(0:2)),1),c(34.1,13.6))
 eq(ch4_sten(c(1.1,1.4)),c(8,8))
@@ -74,8 +74,26 @@ ppf<-pnorm((ch4_x-mean(ch4_x))/sd(ch4_x));eq(round(ppf[c(1,12)],3),c(.048,.952))
 # Shape coefficients beside the four Q-Q diagnostics (Excel SKEW/KURT conventions) and their stated instability.
 ch4_shape<-function(x){n<-length(x);z<-x-mean(x);v<-mean(z^2);g1<-mean(z^3)/v^1.5;g2<-mean(z^4)/v^2-3
   c(sqrt(n*(n-1))/(n-2)*g1,(n-1)/((n-2)*(n-3))*((n+1)*g2+6))}
-eq(round(sapply(ch4_simulations,ch4_shape),2),c(.16,-.41,2.01,7.10,.20,5.01,-.04,-1.55))
+eq(round(sapply(ch4_simulations,ch4_shape),2),c(.16,-.41,2.01,7.10,.20,5.01,-.04,-1.55,-2.05,4.67,.03,-1.06))
+# Quantile distortions stated in the text: empirical versus normal-model 1st, 25th, 50th, 75th, 99th percentiles.
+ch4_qcmp<-function(v,p=c(.01,.25,.5,.75,.99)) rbind(emp=quantile(v,p,names=FALSE),mod=qnorm(p,mean(v),sd(v)))
+q<-ch4_qcmp(ch4_simulations$sikme);stopifnot(q['mod',1]<q['emp',1]-10,q['mod',3]>q['emp',3],q['mod',5]<q['emp',5]-10)
+q<-ch4_qcmp(ch4_simulations$sikme_vlevo);stopifnot(q['mod',1]>q['emp',1]+10,q['mod',3]<q['emp',3],q['mod',5]>70,max(ch4_simulations$sikme_vlevo)<70)
+q<-ch4_qcmp(ch4_simulations$chvosty);stopifnot(q['mod',5]<q['emp',5]-5,q['mod',2]<q['emp',2],q['mod',4]>q['emp',4])
+q<-ch4_qcmp(ch4_simulations$lehke);stopifnot(q['mod',1]<q['emp',1]-5,q['mod',5]>q['emp',5]+5,q['mod',2]>q['emp',2],q['mod',4]<q['emp',4])
+q<-ch4_qcmp(ch4_simulations$smes);stopifnot(q['mod',1]<q['emp',1]-5,q['mod',5]>q['emp',5]+5,q['mod',2]>q['emp',2],q['mod',4]<q['emp',4])
+r1<-function(v,p) round(c(quantile(v,p,names=FALSE),qnorm(p,mean(v),sd(v))),1)
+s<-ch4_simulations
+eq(r1(s$sikme,.99),c(92.5,78.5));eq(r1(s$sikme,.01),c(30.3,12.5));eq(r1(s$sikme,.5),c(41.0,45.5))
+eq(r1(s$sikme_vlevo,.01),c(21.8,35.9));eq(r1(s$sikme_vlevo,.99)[2],84.7)
+eq(r1(s$chvosty,.99),c(88.6,79.9));eq(r1(s$chvosty,.25),c(42.1,39.5));eq(r1(s$chvosty,.75),c(55.1,57.6))
+eq(r1(s$lehke,.01)[2],24.8);eq(r1(s$lehke,.99)[2],77.0);eq(r1(s$lehke,.25),c(41.8,43.3));eq(r1(s$lehke,.75),c(59.5,58.5));stopifnot(min(s$lehke)>30,max(s$lehke)<70)
+eq(r1(s$smes,.25),c(36.8,40.3));eq(r1(s$smes,.75),c(63.7,59.7));eq(r1(s$smes,.99),c(72.0,83.5))
+eq(round(dnorm(1),3),.242)
+# Third quartile row of the memorized values; sten and stanine as rounded auxiliary scores.
+eq(round(qnorm(.75),3),.674);eq(pnorm(-qnorm(.75)),.25)
+zg<-seq(-4,4,by=.0005);eq(ch4_sten(zg),pmin(10,pmax(1,ceiling(5.5+2*zg-.5))));eq(ch4_stanine(zg),pmin(9,pmax(1,ceiling(5+2*zg-.5))))
 set.seed(20261017)
 ch4_t3_kurt<-replicate(1000,ch4_shape(50+8*rt(200,df=3))[2])
 stopifnot(quantile(ch4_t3_kurt,.1)<5.01/2,quantile(ch4_t3_kurt,.9)>2*5.01)
-cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table, memorized z values, stanine methods, P-P coordinates, shape coefficients and 19 SVGs passed.\n')
+cat('Chapter 4: numerical examples, ten solutions, category boundaries, Q-Q construction, normalization table, memorized z values, stanine methods, P-P coordinates, shape coefficients, quantile distortions and 21 SVGs passed.\n')
