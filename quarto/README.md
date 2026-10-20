@@ -1,5 +1,53 @@
 # Autorská dokumentace
 
+<a id="revize-kapitoly-4-20261020"></a>
+
+## 2026-10-20 — Revize kapitoly 4 podle připomínek autora
+
+Zapracováno patnáct připomínek k jednotlivým místům a čtyři obecné poznámky
+autora podle schváleného plánu. Nová rozhodnutí a upřesnění: širší definice
+standardizace (doklad k R08), doplnění $z_{0{,}75}=0{,}674$ do hodnot zpaměti
+(doklad k R40), termíny leptokurtické, mezokurtické a platykurtické rozdělení
+([R48](../docs/rozhodnuti/kapitola-04.md#r48-typy-podle-excesu)) a výklad H07
+pro kap. 4: „mez“ u intervalů se dvěma konci, „hranice“ u jediné dělicí hodnoty
+([slovník](../docs/SLOVNIK.md#pojem-meze-intervalu)).
+
+- Výklad: kontrast 60 bodů pod průměrem jiné skupiny; chvosty vysvětleny jako
+  oblasti stále vzácnějších hodnot; nezávislá volba μ a σ oproti rozdělením
+  se stropem či podlahou; „NEPRAVDA“ jako výška křivky (0,242 pro z = 1);
+  rozdíl funkcí s písmenem S a bez něj; steny a staniny jako pomocná hodnota,
+  zaokrouhlení a sloučení krajů (pravidlo ověřeno v R proti tabulkám);
+  „Tento oddíl…“ v úvodech; omezeno opakování o manuálu testu a neměnnosti
+  tvaru; obraty „nenormální / není normální“ nahrazeny opisem; opraven
+  překlep „povůdní“.
+- Q–Q: hotový graf dvanácti skórů přesunut do oddílu o principu; úvod
+  diagnostik vysvětluje, že jen první soubor je z normálního modelu. Přidány
+  simulace `sikme_vlevo` (70 − Exp, průměr 10) a `lehke` (rovnoměrné 30–70),
+  připojené na konec téhož náhodného běhu, takže dosavadní čtyři soubory,
+  jejich koeficienty i listy zůstaly beze změny (ověřeno kontrolou
+  koeficientů). U každého typu uvedena zkreslení empirických versus modelových
+  percentilů; tvrzení i čísla ověřuje `check-chapter-04.R`. Z kontroly vyplynulo,
+  že u těžších chvostů tohoto souboru je výrazně podhodnocen hlavně horní konec
+  (1. percentil se shoduje), což text výslovně uvádí. P–P rozšíření doplněno
+  o rozlišení otázek: kvantily (Q–Q) versus percentilové pořadí (P–P).
+- Grafy: `skaly` na z −3 až 3; `pasma-skoru` s podíly pásem nad osou a
+  kumulativními podíly nad mezemi; dvě nové diagnostiky. Sešit má nové listy
+  `Sim_sikme_vlevo` a `Sim_lehke`; popisky `Model!A11:A13` používají „mez“.
+- Přehledy: slovníček (standardizace, tři nová hesla), značení ($z_{0{,}75}$),
+  funkce Excelu (N(0, 1) versus libovolné μ, σ; hustota jako výška křivky).
+
+**Ověření:** `Rscript quarto/_verification/check-chapter-04.R` (včetně nových
+koeficientů, percentilů, pravidla stenů/staninů a 21 SVG);
+`scripts/build-workbooks.ps1 -Chapter 4 -Verify` v českém Excelu 16.0
+(23 listů; české SKEW/KURT pro šest listů, PERCENTIL.INC a NORM.INV
+z textu, hustota pro z = 1; kontrola chyb všech sedmi sešitů); render
+kapitoly 4, slovníčku, značení a přehledu Excelu bez varování;
+`check-html.cjs` (21 obrázků, Q–Q graf v oddílu o principu, odkazy,
+řešení, slovníček, mobilní šířka) prošel. Vizuálně prohlédnuty nové a
+upravené obrázky a oddíl stenů a staninů. **Omezení:** celá kniha nebyla
+znovu vykreslena (změna se netýká společné konfigurace); didaktická revize
+byla interní, bez ověření na studentech.
+
 <a id="revize-kapitoly-7-20261018"></a>
 
 ## 2026-10-18 — Cílená revize kapitoly 7

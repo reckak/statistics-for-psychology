@@ -76,6 +76,17 @@ v pořádku.“ Toto potvrzení se týká terminologie; neoznačuje za schválen
 nové symboly ani konečný rozsah nepovinných témat. Nahrazuje příslušné
 neschválené názvy v původním návrhu osnovy; R07 zůstává v platnosti.
 
+**Upřesnění 2026-10-20 (standardizace):** standardizaci vymezujeme šířeji jako
+lineární převod hodnot na škálu se zvoleným průměrem a směrodatnou odchylkou.
+Převod na z-skóry je jejím základním případem; T-skóry, IQ-skóry a další
+standardní skóry z něj vznikají dalším lineárním převodem. Odlišení od
+normalizace přes pořadí a od standardizace metody zůstává. Doklad: autor
+k definici v kap. 4 „Nevím, jestli toto není spíš jen jeden z typů
+standardizace.“ a „Protože tvrdíme, že z-skór je pouze jedním z druhů
+standardního skóru, možná bych upravil definici standardizace?“; v následném
+dotazu zvolil navrženou širší definici. Aktuální znění je ve
+[slovníku](../SLOVNIK.md#pojem-standardizace) a ve výkladu kapitoly.
+
 <a id="r09-kapitola-4-model-qq"></a>
 
 ## R09 — Zápis normálního modelu a povinné Q–Q grafy
@@ -165,6 +176,12 @@ schopni provádět bez pomocí excelu. U zápočtového textu totiž nebudou mí
 excel k dispozici.“ Původní podklad tabulky dodal autor; opravy a úpravy
 formy jsou v [historii](../../quarto/README.md).
 
+**Doplnění 2026-10-20:** seznam se rozšiřuje o devátou hodnotu
+z = 0,674 ($z_{0{,}75}$; 25 % nad, 50 % uprostřed), zařazenou na první řádek
+tabulky jako horní čtvrtina a meze prostředních 50 %. Doklad: autor při revizi
+kap. 4 „Ještě bych do tabulky přidal na první řádek 75% kvantil.“ a schválení
+plánu revize.
+
 <a id="r41-zp-a-pp-graf"></a>
 
 ## R41 — Zápis $z_p$ a termín P–P graf
@@ -187,3 +204,33 @@ speciálně pro kvantily normovaného normálního rozdělení se používá ča
 používá místo ‚q‘ zápis ‚z‘ s dolním indexem, např. z0,159 = –1.“ a „Kromě
 Q-Q grafu bych jako nepovinné rozšíření ukázal příklad tvorby P-P grafu“;
 schválení plánu s navrženou konvencí indexu a názvem.
+
+<a id="r48-typy-podle-excesu"></a>
+
+## R48 — Leptokurtické, mezokurtické a platykurtické rozdělení
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r48-typy-podle-excesu). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-20. **Rozsah:** kapitola 4 (oddíl o čtení
+odchylek v Q–Q grafu), slovníček, autorský slovník a další použití.
+
+Zavádíme termíny **leptokurtické** (*leptokurtic*), **mezokurtické**
+(*mesokurtic*) a **platykurtické** (*platykurtic*) rozdělení. Vymezují se podle
+excesu, tedy podle tíhy chvostů vůči normálnímu modelu se stejnou směrodatnou
+odchylkou: kladný exces (těžší chvosty), exces blízký nule, záporný exces
+(lehčí chvosty). V souladu s [R14](kapitola-03.md#r14-kvartily-spicatost-chvost)
+je nevykládáme jako výšku či ostrost vrcholu; výklad na tuto past upozorní.
+Q–Q diagnostika v kap. 4 současně rozšiřuje simulované ukázky o zešikmení
+doleva a lehčí chvosty a u každého typu uvádí, které kvantily by normální
+model zkreslil.
+
+**Doklad:** autor 2026-10-20 k oddílu o odchylkách od přímky: „Kromě grafů,
+které již v kapitole jsou, bych doplnil příklad levostranně zešikmeného
+rozdělení a rozdělení s lehkými chvosty s odpovídajícím popisem v textu. Jako
+pojmy bych přidal ‚leptokurtické‘ a ‚platykurtické‘ rozdělení při představení
+těch dvou typů s těžkými a lehkými chvosty.“ a „U každého z těch druhů
+nenormálních rozdělení bych i vysvětlil, odhad kterých kvantilů by byl
+zkreslen“; na dotaz k rozsahu hesel odpověď „Zavedl bych všechny tři.“
+(tedy včetně mezokurtického rozdělení). Citace jsou uvedeny s opravenými
+překlepy.
+

@@ -34,13 +34,20 @@ try {
   # All direct formulas used in solved exercises, including rounded-score interval.
   $exercise=@(@('=NORM.S.DIST(-0,5;PRAVDA)',.308537538725987),@('=1-NORM.S.DIST(1,5;PRAVDA)',.0668072012688581),@('=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)',.624655260005155),@('=NORM.INV(0,2;50;10)',41.5837876642709),@('=NORM.INV(0,05;50;10)',33.5514637304853),@('=NORM.INV(0,95;50;10)',66.4485362695147),@('=NORM.S.DIST(0,05;PRAVDA)-NORM.S.DIST(-0,05;PRAVDA)',.0398776116767449))
   foreach($e in $exercise){$m.Range('F28').FormulaLocal=$e[0];$taskExcel.CalculateFullRebuild();Assert-Cell $m 'F28' $e[1]}
-  # Czech SKEW/KURT formulas printed beside the four simulated Q-Q diagnostics.
-  foreach($e in @(@('Sim_normalni',0.16,-0.41),@('Sim_sikme',2.01,7.10),@('Sim_chvosty',0.20,5.01),@('Sim_smes',-0.04,-1.55))){
+  # Czech SKEW/KURT formulas printed beside the six simulated Q-Q diagnostics.
+  foreach($e in @(@('Sim_normalni',0.16,-0.41),@('Sim_sikme',2.01,7.10),@('Sim_sikme_vlevo',-2.05,4.67),@('Sim_chvosty',0.20,5.01),@('Sim_lehke',0.03,-1.06),@('Sim_smes',-0.04,-1.55))){
     foreach($f in @(@('SKEW',$e[1]),@('KURT',$e[2]))){
       $m.Range('F28').FormulaLocal="=$($f[0])($($e[0])!A2:A201)";$taskExcel.CalculateFullRebuild()
       if([math]::Round([double]$m.Range('F28').Value2,2) -ne $f[1]){throw "Wrong $($f[0]) for $($e[0]): $($m.Range('F28').Value2)"}
     }
   }
+  # Empirical versus model 99th percentile of the right-skewed set, as printed in the text.
+  foreach($e in @(@('=PERCENTIL.INC(Sim_sikme!A2:A201;0,99)',92.5),@('=NORM.INV(0,99;PRŮMĚR(Sim_sikme!A2:A201);SMODCH.VÝBĚR.S(Sim_sikme!A2:A201))',78.5))){
+    $m.Range('F28').FormulaLocal=$e[0];$taskExcel.CalculateFullRebuild()
+    if([math]::Round([double]$m.Range('F28').Value2,1) -ne $e[1]){throw "Wrong percentile $($e[0]): $($m.Range('F28').Value2)"}
+  }
+  $m.Range('F28').FormulaLocal='=NORM.S.DIST(1;NEPRAVDA)';$taskExcel.CalculateFullRebuild()
+  if([math]::Round([double]$m.Range('F28').Value2,3) -ne 0.242){throw 'Wrong density at z = 1'}
   # Densities must not accidentally be treated as cumulative proportions.
   $m.Range('F28').FormulaLocal='=NORM.S.DIST(0;NEPRAVDA)';$taskExcel.CalculateFullRebuild();Assert-Cell $m 'F28' (1/[math]::Sqrt(2*[math]::PI))
   foreach($e in @('=NORM.S.INV(0)','=NORM.S.INV(1)','=NORM.DIST(60;50;0;PRAVDA)')){

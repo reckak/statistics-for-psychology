@@ -160,17 +160,18 @@ ch4_draw('kvantily', {
 },width=9)
 ch4_draw('skaly', {
   par(mar=c(1,9,1,1))
-  plot(NA,xlim=c(-2.15,2.15),ylim=c(-1.3,4.5),axes=FALSE,xlab='',ylab='')
-  abline(v=-2:2,col='#D6E0E5',lty=3)
+  zz<--3:3
+  plot(NA,xlim=c(-3.2,3.2),ylim=c(-1.3,4.5),axes=FALSE,xlab='',ylab='')
+  abline(v=zz,col='#D6E0E5',lty=3)
   for(k in 1:4) {
-    y<-5-k;segments(-2,y,2,y,col=ch4_blue,lwd=1.5)
-    points(-2:2,rep(y,5),pch=19,col=ch4_blue)
-    text(-2:2,y+.23,list(-2:2,50+10*(-2:2),100+15*(-2:2),10+3*(-2:2))[[k]])
+    y<-5-k;segments(-3,y,3,y,col=ch4_blue,lwd=1.5)
+    points(zz,rep(y,7),pch=19,col=ch4_blue)
+    text(zz,y+.23,list(zz,50+10*zz,100+15*zz,10+3*zz)[[k]])
     mtext(c('z-skór','T-skór','IQ-skór (100/15)','Subtestový skór (10/3)')[k],side=2,at=y,line=.5,las=1,cex=.85)
   }
-  segments(-2,0,2,0,col=ch4_orange,lwd=1.5)
-  points(-2:2,rep(0,5),pch=19,col=ch4_orange)
-  text(-2:2,.23,format(round(100*pnorm(-2:2),1),decimal.mark=','),col=ch4_orange)
+  segments(-3,0,3,0,col=ch4_orange,lwd=1.5)
+  points(zz,rep(0,7),pch=19,col=ch4_orange)
+  text(zz,.23,format(round(100*pnorm(zz),1),decimal.mark=',',trim=TRUE),col=ch4_orange)
   mtext('Percentilové pořadí\nJEN normální model',side=2,at=0,line=.5,las=1,cex=.8,col=ch4_orange)
   text(0,-.85,'Krok z = 0 → 1: +34,1     Krok z = 1 → 2: +13,6\nRozdíly na stupnici percentilového pořadí',cex=.82)
 },height=5.8)
@@ -193,34 +194,48 @@ ch4_draw('z-jako-jednotka', {
   text(.5,.25,'Porovnáváme počet kroků od průměru, nikoli počty hrubých bodů.',adj=0,cex=.85)
 },width=8,height=5.4)
 ch4_draw('pasma-skoru', {
-  par(mfrow=c(2,1),mar=c(5.7,4.4,3,1),cex=.95)
+  par(mfrow=c(2,1),mar=c(5.7,4.4,4.6,1),cex=.95)
+  pct<-function(v) paste0(format(round(100*v,1),nsmall=1,decimal.mark=',',trim=TRUE),' %')
+  # Text on a white box so that it stays legible over the band boundaries.
+  boxed<-function(x,y,label,adj=0,cex=.8,col='#223744') {
+    w<-strwidth(label,cex=cex);h<-strheight(label,cex=cex)
+    x0<-x-adj*w;rect(x0-.05,y-h/2-.012,x0+w+.05,y+h/2+.012,col='white',border=NA)
+    text(x0,y,label,adj=c(0,.5),cex=cex,col=col)
+  }
   for(k in 1:2) {
     breaks<-if(k==1) ch4_sten_breaks else ch4_stanine_breaks
+    props<-if(k==1) ch4_sten_proportions else ch4_stanine_proportions
+    inner<-breaks[is.finite(breaks)]
     finite_breaks<-pmax(-3.5,pmin(3.5,breaks));target<-if(k==1) ch4_sten(1.2) else ch4_stanine(1.2)
-    plot(NA,xlim=c(-3.5,3.5),ylim=c(0,.48),xlab='Z-skór',ylab='Hustota',bty='l',
-      main=if(k==1)'Deset stenových pásem' else 'Devět staninových pásem',xaxt='n',yaxs='i')
+    plot(NA,xlim=c(-3.5,3.5),ylim=c(0,.48),xlab='Z-skór',ylab='Hustota',bty='l',xaxt='n',yaxs='i')
+    title(main=if(k==1)'Deset stenových pásem' else 'Devět staninových pásem',line=3)
     for(j in seq_len(length(breaks)-1)) {
       v<-seq(finite_breaks[j],finite_breaks[j+1],length.out=150)
       polygon(c(v[1],v,tail(v,1)),c(0,dnorm(v),0),border=NA,
         col=if(j==target)'#F3C395' else c('#DAEBF1','#B8DDE8')[(j%%2)+1])
     }
     curve(dnorm(x),add=TRUE,col=ch4_blue,lwd=2)
-    abline(v=breaks[is.finite(breaks)],col='#667078',lty=3)
+    abline(v=inner,col='#667078',lty=3)
     mids<-(head(finite_breaks,-1)+tail(finite_breaks,-1))/2
-    axis(1,at=breaks[is.finite(breaks)],cex.axis=.78)
+    axis(1,at=inner,cex.axis=.78)
     mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=3.5,at=-3.3,cex=.8)
     mtext(seq_along(mids),side=1,line=3.5,at=mids,cex=.85)
+    # Model share of every band just above the axis; cumulative share above each boundary.
+    text(mids,ifelse(is.finite(head(breaks,-1))&is.finite(breaks[-1]),.016,.035),pct(props),cex=.6,col='#223744')
+    mtext(pct(pnorm(inner)),side=3,line=.25,at=inner,cex=.62,col=ch4_hi_text)
+    mtext('Kumulativně:',side=3,line=.25,at=-3.5,adj=0,cex=.62,col=ch4_hi_text)
     points(1.2,dnorm(1.2),pch=19,col=ch4_orange)
-    arrows(1.2,.4,1.2,dnorm(1.2)+.02,length=.08,col=ch4_orange)
-    text(1.35,.43,paste0('z = 1,2 → ',if(k==1)'sten ' else 'stanin ',target),adj=0,cex=.9)
-    arrows(c(-2.8,2.8),c(.06,.06),c(-3.4,3.4),c(.06,.06),length=.08)
+    arrows(1.2,.36,1.2,dnorm(1.2)+.02,length=.08,col=ch4_orange)
+    boxed(1.25,.39,paste0('z = 1,2 → ',if(k==1)'sten ' else 'stanin ',target),cex=.85)
+    arrows(c(-2.8,2.8),c(.07,.07),c(-3.4,3.4),c(.07,.07),length=.08)
     text(c(-2.8,2.8),c(.1,.1),'pokračuje',cex=.7)
     if(k==1) {
-      points(c(1.1,1.4),c(.025,.025),pch=21,bg='white',col=ch4_orange,cex=.9)
-      text(-3.2,.4,'Malé kroužky: z = 1,1 a 1,4\nOba výsledky patří do stenu 8.',adj=0,cex=.8)
+      points(c(1.1,1.4),c(.07,.07),pch=21,bg='white',col=ch4_orange,cex=.9)
+      boxed(-3.35,.41,'Malé kroužky: z = 1,1 a 1,4',cex=.75)
+      boxed(-3.35,.36,'Oba výsledky patří do stenu 8.',cex=.75)
     }
   }
-},width=8.5,height=8.4)
+},width=8.5,height=8.8)
 ch4_norm_x <- c(11,12,12,13,14,14,14,16,17,19,22,26,31,39,52)
 ch4_norm_z <- qnorm((rank(ch4_norm_x)-.5)/length(ch4_norm_x))
 ch4_draw('normalizace', {
@@ -274,8 +289,11 @@ ch4_draw('qq-priklad', {
 },width=7)
 # Distinct simulations for graphical diagnosis; not empirical psychological data.
 set.seed(20261010)
-ch4_simulations <- list(normalni=rnorm(200,50,10),sikme=30+rexp(200,rate=1/15),chvosty=50+8*rt(200,df=3),smes=c(rnorm(100,36,5),rnorm(100,64,5)))
-ch4_titles <- c(normalni='Normální model',sikme='Rozdělení zešikmené doprava',chvosty='Těžší chvosty',smes='Směs dvou skupin')
+# New sets are appended so that the earlier draws keep their values.
+ch4_simulations <- list(normalni=rnorm(200,50,10),sikme=30+rexp(200,rate=1/15),chvosty=50+8*rt(200,df=3),smes=c(rnorm(100,36,5),rnorm(100,64,5)),
+  sikme_vlevo=70-rexp(200,rate=1/10),lehke=runif(200,30,70))
+ch4_titles <- c(normalni='Normální model',sikme='Rozdělení zešikmené doprava',chvosty='Těžší chvosty',smes='Směs dvou skupin',
+  sikme_vlevo='Rozdělení zešikmené doleva',lehke='Lehčí chvosty')
 for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   v<-ch4_simulations[[nm]]; z<-qnorm((seq_along(v)-.5)/length(v))
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))

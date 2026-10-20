@@ -99,7 +99,7 @@ Výklad: `Z_skory`, `Standardizace`, `Normalizace`, `Modely`, `Skaly` a `QQ_data
 obsahují vstupy pro převody a konstrukci grafu; `Model` a `QQ` zachovávají
 hotové výpočty (`QQ` od 2026-10-16 také sloupec F a graf pro nepovinný P–P graf). Listy `Sim_normalni`, `Sim_sikme`, `Sim_chvosty` a
 `Sim_smes` přebírají po 200 skutečně vygenerovaných skórů z téhož běhu
-a seedu jako čtyři porovnávané obrázky (A2:A201; od 2026-10-17 z nich výklad počítá také SKEW a KURT v tabulce Q–Q grafů a koeficientů); `Sim_normalni` slouží také obrázku histogramu s četnostmi a hustotou proloženého normální křivkou. Nejsou to dodatečně vymyšlená
+a seedu jako čtyři porovnávané obrázky (A2:A201; od 2026-10-17 z nich výklad počítá také SKEW a KURT v tabulce Q–Q grafů a koeficientů). Od 2026-10-20 přibyly listy `Sim_sikme_vlevo` a `Sim_lehke` (A2:A201) k obrázkům zešikmení doleva a lehčích chvostů; simulace jsou připojeny na konec téhož náhodného běhu, takže původní čtyři soubory se nezměnily. Výklad na listech ukazuje také empirické a modelové percentily (`PERCENTIL.INC`, `NORM.INV`); `Sim_normalni` slouží také obrázku histogramu s četnostmi a hustotou proloženého normální křivkou. Nejsou to dodatečně vymyšlená
 individuální data ke slovnímu cvičení 10.
 
 | Cvičení | List a oblast / povaha zadání |
