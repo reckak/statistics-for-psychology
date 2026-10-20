@@ -48,6 +48,11 @@ upravené obrázky a oddíl stenů a staninů. **Omezení:** celá kniha nebyla
 znovu vykreslena (změna se netýká společné konfigurace); didaktická revize
 byla interní, bez ověření na studentech.
 
+**Doplnění (po sloučení PR #107):** v obrázku pásem stenů a staninů leží
+popisek osy „Z-skór“ těsně pod hodnotami z; řada čísel pásem je posunuta níž
+a oddělena mezerou (připomínka autora, že popisek byl blíže číslům pásem).
+Ověřeno vizuálně, kontrolou `check-chapter-04.R` a renderem kapitoly 4.
+
 <a id="revize-kapitoly-7-20261018"></a>
 
 ## 2026-10-18 — Cílená revize kapitoly 7

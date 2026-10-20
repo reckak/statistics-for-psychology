@@ -194,7 +194,7 @@ ch4_draw('z-jako-jednotka', {
   text(.5,.25,'Porovnáváme počet kroků od průměru, nikoli počty hrubých bodů.',adj=0,cex=.85)
 },width=8,height=5.4)
 ch4_draw('pasma-skoru', {
-  par(mfrow=c(2,1),mar=c(5.7,4.4,4.6,1),cex=.95)
+  par(mfrow=c(2,1),mar=c(6.2,4.4,4.6,1),cex=.95)
   pct<-function(v) paste0(format(round(100*v,1),nsmall=1,decimal.mark=',',trim=TRUE),' %')
   # Text on a white box so that it stays legible over the band boundaries.
   boxed<-function(x,y,label,adj=0,cex=.8,col='#223744') {
@@ -207,7 +207,7 @@ ch4_draw('pasma-skoru', {
     props<-if(k==1) ch4_sten_proportions else ch4_stanine_proportions
     inner<-breaks[is.finite(breaks)]
     finite_breaks<-pmax(-3.5,pmin(3.5,breaks));target<-if(k==1) ch4_sten(1.2) else ch4_stanine(1.2)
-    plot(NA,xlim=c(-3.5,3.5),ylim=c(0,.48),xlab='Z-skór',ylab='Hustota',bty='l',xaxt='n',yaxs='i')
+    plot(NA,xlim=c(-3.5,3.5),ylim=c(0,.48),xlab='',ylab='Hustota',bty='l',xaxt='n',yaxs='i')
     title(main=if(k==1)'Deset stenových pásem' else 'Devět staninových pásem',line=3)
     for(j in seq_len(length(breaks)-1)) {
       v<-seq(finite_breaks[j],finite_breaks[j+1],length.out=150)
@@ -218,8 +218,10 @@ ch4_draw('pasma-skoru', {
     abline(v=inner,col='#667078',lty=3)
     mids<-(head(finite_breaks,-1)+tail(finite_breaks,-1))/2
     axis(1,at=inner,cex.axis=.78)
-    mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=3.5,at=-3.3,cex=.8)
-    mtext(seq_along(mids),side=1,line=3.5,at=mids,cex=.85)
+    # Axis title right under the z values; band numbers form a separate row below.
+    mtext('Z-skór',side=1,line=1.9,cex=.95)
+    mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=4.1,at=-3.3,cex=.8)
+    mtext(seq_along(mids),side=1,line=4.1,at=mids,cex=.85)
     # Model share of every band just above the axis; cumulative share above each boundary.
     text(mids,ifelse(is.finite(head(breaks,-1))&is.finite(breaks[-1]),.016,.035),pct(props),cex=.6,col='#223744')
     mtext(pct(pnorm(inner)),side=3,line=.25,at=inner,cex=.62,col=ch4_hi_text)
