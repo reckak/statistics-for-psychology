@@ -1,5 +1,20 @@
 # Autorská dokumentace
 
+<a id="struktura-prezentaci-20261020"></a>
+
+## 2026-10-20 — Přehled obsahu a oddělovací slidy v prezentacích
+
+Podle nového pravidla [R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci)
+doplněn `docs/PREZENTACE.md`: druhý slide je heslovitý přehled obsahu,
+tematické oddíly oddělují slidy jen s názvem oddílu, nadpisy exportu
+poznámek do DOCX mají tvar „Slide N: titulek slidu“. Upřesněno, že přehled
+a oddělovací slidy se nepočítají mezi obsahové slidy, nemají otázku
+k zamyšlení a stačí jim krátké poznámky; doplněny kontroly před předáním.
+Existující prezentace kapitol 1–3 a jejich exporty se touto změnou neupravují.
+
+**Ověření:** kontrola odkazů a ID (`check-doc-maps.cjs`), `git diff --check`
+a redakční kontrola, že pravidla jsou udržována jen v `PREZENTACE.md`.
+
 <a id="sklonovani-odkazu-20261020"></a>
 
 ## 2026-10-20 — Skloňování odkazů na obrázky a tabulky

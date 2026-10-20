@@ -442,3 +442,29 @@ předložena čtyři skupiny pravidel; autor 2026-10-15 vybral všechny
 („Shrnutí + orientace, Jazyková čitelnost, Zátěž a typy bloků, Revize
 očima studenta“), zvolil rozsah „Jen instrukce“ a schválil plán
 s konkrétními třídami bloků a orientačními prahy.
+
+<a id="r50-struktura-prezentaci"></a>
+
+## R50 — Přehled obsahu, oddělovací slidy a nadpisy v poznámkách
+
+**Stav:** schváleno 2026-10-20. **Rozsah:** nové prezentace, jejich další
+úpravy a exporty poznámek do DOCX. Existující prezentace se zpětně
+nepřepracovávají bez pokynu autora.
+
+**Volba:** druhý slide prezentace je vždy krátký heslovitý přehled obsahu.
+Tematicky odlišné oddíly oddělují slidy pouze s názvem oddílu podle jeho
+tématu. Nadpis slidu v exportu poznámek obsahuje kromě čísla i titulek
+slidu. Aktuální znění je v [PREZENTACE.md](../PREZENTACE.md#struktura-prezentace)
+a v oddílu o exportu poznámek; přehled ani oddělovací slidy se nezapočítávají
+do orientačního počtu obsahových slidů a nemají otázku k zamyšlení.
+
+**Důvod:** zpřehlednit stavbu prezentace a usnadnit orientaci v poznámkách.
+**Upřesňuje:** dosavadní tvar nadpisů exportu „Slide 1:“ v PREZENTACE.md;
+[R33](#r33-excelova-cviceni-prezentaci) se nemění.
+
+**Doklad:** zadání autora z 2026-10-20: „Chtěl bych, ať druhý slide
+prezentace vždy ukázal krátký heslovitý přehled obsahu/témat prezentace.“
+„Pokud má prezentace více tematicky odlišných oddílů, chtěl bych, ať je
+oddělují slidy, kde bude jen název oddílu podle jeho tématu, aby prezentace
+byla přehlednější.“ „V poznámkách k prezentaci bych chtěl uvádět nejen
+číslo slidu, ale i nadpis slidu.“ Autor schválil plán úpravy téhož dne.
