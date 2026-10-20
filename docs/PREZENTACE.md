@@ -21,13 +21,24 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
   a 45 minut procvičování včetně společné diskuse.
 - Pro výklad orientačně počítej s 15–20 obsahovými slidy. Počet přizpůsob
   přehlednosti, náročnosti látky a času; není cílem splnit přesný počet.
-  Slidy s úlohami do tohoto počtu nezahrnuj.
+  Slidy s úlohami, přehled obsahu ani oddělovací slidy oddílů do tohoto
+  počtu nezahrnuj.
 - Již dohodnuté požadavky znovu neověřuj. Chybějící podrobnosti řeš
   podle těchto výchozích pravidel; ptej se při rozhodnutí, které podstatně
   mění obsah nebo způsob použití prezentace.
 
 ## Obsah a podoba slidů
 
+<a id="struktura-prezentace"></a>
+
+- Druhým slidem, hned za úvodním slidem s názvem, je vždy krátký heslovitý
+  přehled obsahu: hlavní témata v pořadí výkladu včetně závěrečného
+  procvičování. Má-li prezentace oddíly, uveď v přehledu jejich názvy
+  shodně s oddělovacími slidy.
+- Tematicky odlišné oddíly prezentace odděl slidem, na kterém je pouze
+  název oddílu. Název formuluj podle tématu oddílu, ne jen pořadím
+  („Část 2“). Krátká prezentace bez zřetelně odlišných oddílů oddělovací
+  slidy nepotřebuje.
 - Jeden slide má mít jednu hlavní myšlenku nebo přehledně vymezené
   srovnání. Používej výstižné názvy, stručný text a dobře čitelné písmo.
 - Podrobný výklad patří do poznámek. Na slidu ponech pojmy, vztahy,
@@ -46,6 +57,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 ## Poznámky ke každému slidu
 
 - Každý slide musí mít poznámky odpovídající jeho aktuálnímu obsahu.
+  U přehledu obsahu a oddělovacích slidů stačí krátce uvést, k čemu
+  prezentace nebo oddíl směřuje a jak navazuje na předchozí výklad.
 - Poznámky tvoří samostatně srozumitelný výklad. Student, který
   ve výuce chyběl, má porozumět slidu při jejich čtení nebo poslechu.
 - Piš úplné věty v logické návaznosti. Poznámky by měly být rozděleny
@@ -70,7 +83,7 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 ## Otázky, procvičování a řešení
 
 - Ke každému výkladovému slidu navrhni jednu krátkou otázku
-  k zamyšlení. Výchozím místem je závěr poznámek; na slide ji přidej,
+  k zamyšlení; přehled obsahu a oddělovací slidy ji nepotřebují. Výchozím místem je závěr poznámek; na slide ji přidej,
   pokud to umožňuje jeho přehlednost.
 - Otázky mají podporovat použití pojmů, zdůvodnění a rozpoznání omylů,
   nikoli pouze opakování definic.
@@ -145,8 +158,9 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Po vložení nebo odstranění slidů zkontroluj pořadí, číslování,
   návaznosti a přiřazení poznámek.
 - DOCX s poznámkami vytvářej na žádost z aktuálního PPTX.
-  Použij nadpisy „Slide 1:“, „Slide 2:“ atd. a pod nimi poznámky
-  v odrážkách. Zachovej pořadí, text a smysluplné zvýraznění.
+  Nadpis u každého slidu tvoří jeho číslo a titulek slidu, například
+  „Slide 3: Průměr jako těžiště dat“; u slidu bez titulku uveď jen
+  „Slide 3:“. Pod nadpisem uveď poznámky v odrážkách. Zachovej pořadí, text a smysluplné zvýraznění.
   Bez zadání nepřidávej výklad ani text samotných slidů.
 - Respektuj pravidla `.gitignore`. Ignorované prezentace a jejich
   exporty nepřidávej do Gitu násilně bez výslovného pokynu.
@@ -154,7 +168,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 ## Ověření před předáním
 
 - Zkontroluj pokrytí zadání, správnost příkladů a řešení, úplnost
-  poznámek a jejich shodu se slidy.
+  poznámek a jejich shodu se slidy. Ověř, že přehled obsahu na 2. slidu
+  odpovídá skutečnému pořadí témat a názvům oddělovacích slidů.
 - U doprovodného sešitu ověř úplnost zadání a dat, přiřazení úkolů
   k datasetům či listům, úplnost, značení a vykreslení rovnic u úloh,
   shodu krokového řešení s kontrolní funkcí,
@@ -164,8 +179,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Prezentaci vykresli a vizuálně zkontroluj čitelnost, diakritiku,
   zalamování, tabulky, překryvy a obsah přesahující plochu slidu.
   Při dílčí úpravě zvlášť porovnej změněné slidy s původní verzí.
-- U exportu do DOCX ověř úplnost textu, pořadí slidů, odrážky
-  a výsledné stránkování.
+- U exportu do DOCX ověř úplnost textu, pořadí slidů, shodu nadpisů
+  s čísly a titulky slidů, odrážky a výsledné stránkování.
 - Tvrzení o ověření v PowerPointu nebo Wordu uváděj pouze tehdy,
   pokud kontrola skutečně proběhla v dané aplikaci.
 - Předávej odkaz na výsledný soubor. Případná omezení kontroly
