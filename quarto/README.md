@@ -1,5 +1,30 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-4-qq-20261020"></a>
+
+## 2026-10-20 — Prezentace ke kapitole 4: histogram a Q–Q graf na samostatných slidech
+
+Podle připomínek autora nahrazeny dva slidy se třemi Q–Q grafy (dosavadní
+27–28) šesti slidy 27–32, na nichž je vždy histogram s normální křivkou
+a Q–Q graf téhož simulovaného souboru (normální model, zešikmení doprava
+a doleva, těžší a lehčí chvosty, směs) s krátkými poznámkami. Na slidu 21
+je obrázek pásem s opraveným umístěním popisku „Z-skór“ (oprava
+v `scripts/kapitola_04.R`, samostatný PR do větve kapitoly 4). Prezentace má 41 slidů;
+časy slidů 24 a 33 v poznámkách zkráceny na 1 min, výklad trvá podle součtu
+nadále 45 minut. DOCX s poznámkami exportován znovu.
+
+Úpravy byly provedeny přímo v autorem uloženém PPTX, ne novým generováním:
+autor mezitím zvětšil obrázky na slidech 6, 9, 15, 17, 20–22 a 24, přeskládal
+slide 21, upravil tabulku na slidu 20 a doplnil znak × na slidech 5 a 25.
+Nové slidy vytvořil generátor v `tmp/chapter04-presentation/` a skript
+`transplant.cjs` je vložil, vyměnil obrázek na slidu 21 a přečísloval slidy.
+PPTX je od této chvíle hlavní verzí; generátor jeho ruční úpravy neobsahuje.
+
+**Ověření:** u všech 35 ponechaných slidů se text i rozmístění shodují
+s autorovou verzí (kromě čísla slidu); soubor otevřen a uložen v PowerPointu,
+všech 41 slidů vykresleno a nové slidy prohlédnuty; každý slide má poznámky
+v češtině. DOCX otevřen ve Wordu: 41 nadpisů „Slide N: titulek“, 18 stran.
+
 <a id="popisek-z-pasma-20261020"></a>
 
 ## 2026-10-20 — Popisek osy z-skórů v obrázku stenů a staninů
