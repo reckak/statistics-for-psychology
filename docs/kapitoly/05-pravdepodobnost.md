@@ -176,3 +176,9 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D09](../zdroje/D09-baron-deskriptivni.md#d09) — deskriptivní pojetí.
 - [E01-MULHERIN-MILLER](../zdroje/E01-mulherin-miller.md#e01-mulherin-miller) — přenos diagnostické přesnosti.
 - [Doplnění kontroly podkladů kapitoly 5](../zdroje/HISTORIE.md#doplnění-kontroly-podkladů-kapitoly-5--2026-10-12) — společný datovaný záznam.
+
+### Pracovní PDF
+
+Od 2026-10-23 je ověřen [ruční PDF export](../PROVOZ.md#ruční-pdf-vybrané-kapitoly).
+Všech dvanáct zadání předchází samostatné části s úplnými řešeními
+a obousměrnými odkazy; závěrečné přehledové kapitoly se nepřipojují.

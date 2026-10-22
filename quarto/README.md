@@ -3800,3 +3800,28 @@ Neproběhla úplná revize knihy ani všech řešení, animací a externích
 demonstrací; Excel nebyl spuštěn. Změna je pouze autorská dokumentace,
 proto se studentský web znovu nerenderoval. Do Gitu nepatří originály,
 extrahované texty, obrazové exporty ani pomocné pracovní skripty v `tmp/`.
+
+
+## 2026-10-23: Ruční PDF kapitoly 5
+
+Stávající export rozšířen o explicitní volbu kapitoly 5 podle R31.
+Krátké tabulky zůstávají na jedné straně; vzorce Excelu v tabulkách této
+kapitoly mají menší písmo, aby nezasahovaly do výsledků. Zdroj kapitoly,
+HTML konfigurace ani publikační workflow se nemění. Příkazy jsou
+v [provozním návodu](../docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly).
+
+Výsledek má 40 stran: zadání na stranách 30–34, všech dvanáct úplných
+řešení od strany 35, citovaná literatura na straně 40. Závěrečné přehledy
+se nepřipojují. Prohlédnuto všech 40 stran, po úpravách znovu dotčené
+strany; ověřeny interní cíle odkazů, dvanáct zpětných odkazů a absence
+textu mimo stránku. Kontroly transformace pro kapitoly 3, 4 a 5 potvrdily
+zachování řešení, rovnic, kódu, tabulek, obrázků a citací. Číselná kontrola
+kapitoly 5 v čisté relaci R prošla včetně dvanácti úloh a dvanácti grafů.
+Prošla kontrola dokumentačních odkazů a git diff --check.
+
+Kapitoly 3 a 4 nebyly nově renderovány. HTML, Excel a dostupnost externích
+URL nebyly znovu ověřovány. Typst úspěšně zkompiloval průniky množin,
+ale u jejich automatického převodu vypisuje upozornění na zastaralý
+alias `sect`; symboly byly ve výsledku zkontrolovány. PDF je pouze místní
+ignorovaný výstup. Rozpracované změny prezentace kapitoly 4 a související
+záznam historie byly zachovány a nejsou součástí této úpravy.
