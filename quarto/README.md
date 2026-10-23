@@ -1,5 +1,28 @@
 # Autorská dokumentace
 
+<a id="kapitola-05-kruh-20261024"></a>
+
+## 2026-10-24 — Kapitola 5: nepovinné rozšíření o kruhovosti klasického pojetí
+
+Na žádost autora doplněno sbalené rozšíření `#rozsireni-klasicke-pojeti`
+na konec oddílu [Jev a jeho pravděpodobnost](kapitola_05.qmd#sec-jev).
+Odpovídá na otázku, zda klasické pojetí nedefinuje pravděpodobnost kruhem:
+klasický podíl je výpočet uvnitř modelu se stejně pravděpodobnými výsledky,
+stejnou pravděpodobnost zdůvodňuje souměrnost postupu (ověřitelná četnostmi)
+nebo nedostatek důvodů (závislý na členění výsledků). Úvodní blok kapitoly
+nově uvádí čtyři nepovinná rozšíření; karta kapitoly doplněna. Nezavedeny
+nové termíny ani značky (axiomy a princip indiference se nejmenují);
+text je vlastní úvaha bez citace, nový zdroj nepřidán. Bez cvičení.
+
+**Ověření:** kapitola 5 se vykreslila bez chyb. Ve webu (Chromium, místní
+server) je blok výchozím stavem sbalený a jde rozbalit; matematika se
+vykresluje, odkazy na součtové pravidlo a na kapitolu 1 vedou na existující
+kotvy; při šířce 375 px bez vodorovného přetékání stránky. Didaktická
+kontrola dotčeného místa: pojem „vzájemně výlučné“ je zaveden až později,
+proto je v rozšíření odkazem dopředu. Celá kniha nebyla znovu vykreslena
+(beze změny konfigurace a navigace). Neproběhlo ověření porozumění
+na studentech ani nezávislé odborné ověření v literatuře.
+
 <a id="prezentace-kapitoly-4-qq-20261020"></a>
 
 ## 2026-10-20 — Prezentace ke kapitole 4: histogram a Q–Q graf na samostatných slidech
