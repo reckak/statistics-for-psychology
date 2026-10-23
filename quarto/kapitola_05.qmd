@@ -16,7 +16,7 @@ Navazujeme na [relativní četnosti a doplněk](kapitola_02.qmd#sec-relativni-ce
 - Rozpoznáte situaci vhodnou pro binomický model, ověříte jeho předpoklady a spočítáte pravděpodobnosti ručně i v Excelu.
 - Použijete normální aproximaci binomického rozdělení a posoudíte její přesnost.
 
-Tři nepovinná rozšíření vysvětlují šance, obecný výpočet střední hodnoty a variace bez opakování; nejsou součástí povinných dovedností ani cvičení.
+Čtyři nepovinná rozšíření vysvětlují, proč klasické pojetí nedefinuje pravděpodobnost kruhem, a dále šance, obecný výpočet střední hodnoty a variace bez opakování; nejsou součástí povinných dovedností ani cvičení.
 :::
 
 ## Co pravděpodobnost vyjadřuje {#sec-co-je-pravdepodobnost}
@@ -96,6 +96,19 @@ Pro jev „podstatné jméno“ dostáváme $P(\text{podstatné jméno})=40/100=
 Vzorec platí jen tehdy, když jsou stejně pravděpodobné **výsledky, které počítáme**. Kdybychom za výsledky považovali tři slovní druhy, mohli bychom chybně usoudit, že každý má pravděpodobnost $1/3$. Slovní druhy však stejně pravděpodobné nejsou, protože jim odpovídá různý počet kartiček. Stejně pravděpodobné jsou jednotlivé kartičky, a proto počítáme je. Před použitím podílu se tedy vždy ptáme: které možnosti jsou stejně pravděpodobné a proč? [@howell, s. 109]
 
 Tam, kde stejně pravděpodobné výsledky nemáme, vycházíme z relativních četností nebo z modelu. Pravděpodobnost, že náhodně vybraný student uvede vysoký stres, nezjistíme výčtem možností, ale z údajů o studentech. Pravidla počítání, která následují, platí pro pravděpodobnosti získané kterýmkoli z těchto způsobů.
+
+::: {#rozsireni-klasicke-pojeti .callout-note collapse="true" title="Nepovinné rozšíření: nedefinuje klasické pojetí pravděpodobnost kruhem?"}
+Klasické pojetí počítá pravděpodobnost jako podíl příznivých a všech výsledků, *jsou-li výsledky stejně pravděpodobné*. Kdybychom tím chtěli vysvětlit, co pravděpodobnost vůbec je, narazili bychom na potíž: v podmínce už pojem pravděpodobnosti používáme. Taková definice by byla kruhová, podobně jako slovník, který vysvětlí „rychlý“ jako „ne pomalý“ a „pomalý“ jako „ne rychlý“.
+
+Kruh zmizí, když klasický podíl nechápeme jako definici, ale jako výpočet uvnitř modelu. Model krabice obsahuje předpoklad, že každá ze 100 kartiček má stejnou pravděpodobnost. Protože pravděpodobnosti všech výsledků dávají dohromady 1, má každá kartička $1/100$. Kartičky jsou [vzájemně výlučné](#sec-souctove-pravidlo), takže jev se 40 kartičkami má pravděpodobnost $40 \cdot 1/100 = 40/100$. Podíl tedy není samostatné vymezení pravděpodobnosti, ale důsledek předpokladu a pravidel počítání.
+
+Otázka „proč jsou kartičky stejně pravděpodobné?“ tím ovšem nezmizela; jen se přesunula mimo vzorec. Odpovídáme na ni dvojím způsobem:
+
+- **Souměrností postupu.** Kartičky jsou stejně velké, dobře zamíchané a taháme poslepu, takže žádná nemá přednost. Je to tvrzení o skutečném postupu a může být mylné: slepené nebo navrch odložené kartičky souměrnost poruší. Ověřit je lze jen pozorováním, například dlouhou řadou tahů. Tím se opíráme o četnostní pojetí.
+- **Nedostatkem důvodů.** Nevíme nic, co by jeden výsledek upřednostňovalo. Tato úvaha popisuje naši znalost, a blíží se tedy subjektivnímu pojetí. Sama však neříká, co máme za výsledky považovat. Kdybychom o krabici věděli jen to, že obsahuje podstatná jména, slovesa a přídavná jména, mohli bychom dát každému slovnímu druhu $1/3$. Stejnou nevědomost bychom ale mohli rozdělit i na „podstatné jméno“ a „jiný slovní druh“ a dostat $1/2$.
+
+Klasické pojetí proto nestojí samo: opírá se o souměrnost, kterou zdůvodňujeme znalostí postupu nebo ověřujeme četnostmi. Právě proto je cenné losování a [náhodné přiřazení k podmínkám](kapitola_01.qmd#sec-souvislost-pricina): stejnou pravděpodobnost v nich nepředpokládáme, ale zajišťujeme ji tím, jak postup navrhneme.
+:::
 
 ### Doplňkový jev {#sec-doplnkovy-jev}
 
