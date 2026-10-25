@@ -77,3 +77,29 @@ výstupy a dočasné soubory se do Gitu neukládají.
 
 Změny se předkládají prostřednictvím PR z tematické větve `codex/`.
 Sloučení do `main` provádí autor projektu.
+
+## Licence
+
+© 2026 Karel Rečka. Obsah a kód mají odlišné licence:
+
+| Část | Licence |
+|---|---|
+| Text učebnice (`index.qmd`, kapitoly a přehledy v `quarto/`), vlastní obrázky a grafy, datové sešity v `data/`, prezentace, poznámky a cvičení v `presentations/`, bibliografické údaje a autorská dokumentace | [Creative Commons Uveďte původ 4.0 Mezinárodní (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.cs), úplné znění v [LICENSE](LICENSE) |
+| Zdrojový kód: skripty v `scripts/` a `quarto/_verification/`, filtry v `filters/`, konfigurace (`_quarto.yml`, `.github/`), styly a skripty webu v `assets/` | [MIT](LICENSE-CODE) |
+
+Při dalším použití obsahu uveďte autora, název učebnice, odkaz na
+[webovou učebnici](https://reckak.github.io/statistics-for-psychology/),
+odkaz na licenci CC BY 4.0 a informaci, zda jste materiál upravili.
+
+Licence se nevztahují na materiály třetích stran, které mají v knize
+nebo v souboru uvedeného jiného autora a vlastní licenci. Jde zejména o:
+
+- `styles/apa.csl` — citační styl APA 7 z repozitáře Citation Style
+  Language (B. M. Wiernik, A. Dunning a další), licence
+  [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/);
+- `assets/chapter-03/plots/mode-median-mean.svg` — obrázek od CMG Lee
+  (Cmglee) z Wikimedia Commons, licence
+  [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/);
+- citované práce a upravené příklady z literatury, jejichž práva zůstávají
+  jejich autorům a vydavatelům; licence CC BY 4.0 se týká pouze vlastního
+  zpracování.

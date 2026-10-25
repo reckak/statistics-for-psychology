@@ -1,5 +1,28 @@
 # Autorská dokumentace
 
+<a id="licence-20261025"></a>
+
+## 2026-10-25 — Licence CC BY 4.0 pro obsah a MIT pro kód
+
+Na žádost autora nahrazena dosavadní licence MIT pro celý repozitář
+rozdělenou licencí podle [R51](../docs/rozhodnuti/postupy-a-dokumentace.md#r51-licence).
+`LICENSE` nově obsahuje úplné anglické znění CC BY 4.0 staženého
+z creativecommons.org (legalcode.txt, beze změn kromě konců řádků),
+původní text MIT přesunut beze změny do `LICENSE-CODE`. Vymezení částí
+a výjimky (citační styl `styles/apa.csl` a obrázek Cmglee, obojí
+CC BY-SA 3.0; citovaná literatura) jsou v oddílu [Licence](../README.md#licence)
+kořenového README. Web má v patičce každé stránky údaj o autorovi,
+odkazy na obě licence a na podrobnosti v README.
+
+**Ověření:** celá kniha se vykreslila bez chyb; `check-html.cjs`
+bez chyb; patička vizuálně zkontrolována na šířce 1280 a 375 px bez
+vodorovného přetékání; `check-doc-maps.cjs` bez chyb. **Neověřeno:**
+původ obrázků vložených v prezentacích kapitol 2–4 (16, 13 a 19 médií)
+nebyl jednotlivě prověřen; snímky neuvádějí cizí zdroj ani licenci, proto
+se předpokládá vlastní tvorba. Případné cizí obrázky by spadaly pod
+obecnou výjimku pro materiály třetích stran a bylo by třeba je doplnit
+do seznamu výjimek. Nejde o právní posouzení.
+
 <a id="kapitola-05-kruh-20261024"></a>
 
 ## 2026-10-24 — Kapitola 5: nepovinné rozšíření o kruhovosti klasického pojetí
