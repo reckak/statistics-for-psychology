@@ -51,6 +51,35 @@ proto je v rozšíření odkazem dopředu. Celá kniha nebyla znovu vykreslena
 (beze změny konfigurace a navigace). Neproběhlo ověření porozumění
 na studentech ani nezávislé odborné ověření v literatuře.
 
+<a id="audio-kapitoly-4-20261020"></a>
+
+## 2026-10-20 — Zvukový doprovod výkladové části prezentace ke kapitole 4
+
+Na výslovnou žádost autora vytvořena samostatná nahrávka
+`kapitola_04_normalni_rozdeleni_vyklad.mp3` pro snímky 1–33 aktuálních
+`presentations/kapitola_04_normalni_rozdeleni.pptx` a
+`presentations/kapitola_04_poznamky.docx`. Závěrečné procvičování není
+součástí nahrávky. Poznámky upraveny pro poslech: slovní výklad rovnic,
+čtení značek a názvů funkcí, popis obrázků, oznámení čísel snímků,
+vynechání organizačních pokynů a podkladových URL. Původní PPTX a DOCX
+nebyly tímto úkolem upravovány. Rozsah učiva ani schválené konvence
+se nemění.
+
+Český syntetický hlas Microsoft Jakub; délka 55:29, MP3 mono 22 050 Hz,
+80 kb/s, 33 navigačních kapitol podle snímků. Soubor předán samostatně;
+není připojen k webu ani zařazen do verzovaných výstupů. Pracovní scénář,
+časování, syntéza a záznam kontroly jsou v ignorovaném `tmp/audio04/`.
+
+**Ověření:** shoda pořadí a témat 33 snímků s poznámkami, vizuální
+prohlídka všech 19 použitých rastrových obrázků, redakce scénáře pro
+začátečníka. Technicky zkontrolovány všechny zvukové úseky (nenulový
+signál, bez ořezu na krajní hodnotu PCM), všech 127 444 MPEG rámců
+souboru a shoda délky MP3 se spojenými vstupy s rozdílem pod 0,15 s.
+Souvislý poslech nahrávky a poslechové ověření výslovnosti čísel
+neproběhly; technická kontrola je nenahrazuje. Neproběhlo nové odborné
+ověření původních podkladů ani ověření porozumění na studentech.
+
+
 <a id="prezentace-kapitoly-4-qq-20261020"></a>
 
 ## 2026-10-20 — Prezentace ke kapitole 4: histogram a Q–Q graf na samostatných slidech
