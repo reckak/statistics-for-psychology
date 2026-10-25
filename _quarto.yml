@@ -24,7 +24,7 @@ book:
     style: floating
     search: true
   page-footer:
-    center: "© 2026 Karel Rečka · Text a data: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.cs), kód: [MIT](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE-CODE) · [Podrobnosti](https://github.com/reckak/statistics-for-psychology#licence)"
+    center: "© 2026 Karel Rečka · Text a data: [CC BY 4.0](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE-TEXT.md) · Kód: [MIT](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE)"
   chapters:
     - index.qmd
     - part: "Výkladové kapitoly"

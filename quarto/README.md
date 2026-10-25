@@ -6,17 +6,22 @@
 
 Na žádost autora nahrazena dosavadní licence MIT pro celý repozitář
 rozdělenou licencí podle [R51](../docs/rozhodnuti/postupy-a-dokumentace.md#r51-licence).
-`LICENSE` nově obsahuje úplné anglické znění CC BY 4.0 staženého
-z creativecommons.org (legalcode.txt, beze změn kromě konců řádků),
-původní text MIT přesunut beze změny do `LICENSE-CODE`. Vymezení částí
-a výjimky (citační styl `styles/apa.csl` a obrázek Cmglee, obojí
-CC BY-SA 3.0; citovaná literatura) jsou v oddílu [Licence](../README.md#licence)
-kořenového README. Web má v patičce každé stránky údaj o autorovi,
-odkazy na obě licence a na podrobnosti v README.
+Uspořádání podle vzoru R101-textbook: `LICENSE` ponechává původní text
+MIT pro kód, nový [LICENSE-TEXT.md](../LICENSE-TEXT.md) je český text
+licence CC BY 4.0 pro obsah se vzorem uvedení původu a odkazy na české
+i anglické závazné znění. Proti R101 spadají pod CC BY 4.0 i datové
+sešity (data jsou vlastní). LICENSE-TEXT.md udržuje také seznam výjimek
+(citační styl `styles/apa.csl` a obrázek Cmglee, obojí CC BY-SA 3.0;
+citovaná literatura). Oddíl [Licence](../README.md#licence) kořenového
+README na něj odkazuje; patička každé stránky webu uvádí autora a odkazy
+na `LICENSE-TEXT.md` a `LICENSE`. Dočasná podoba v PR (plné anglické
+znění v `LICENSE`, MIT v `LICENSE-CODE`) byla před sloučením nahrazena.
 
 **Ověření:** celá kniha se vykreslila bez chyb; `check-html.cjs`
 bez chyb; patička vizuálně zkontrolována na šířce 1280 a 375 px bez
-vodorovného přetékání; `check-doc-maps.cjs` bez chyb. **Neověřeno:**
+vodorovného přetékání; `check-doc-maps.cjs` bez chyb; odkazy na znění
+licencí na creativecommons.org vracejí HTTP 200. Rozpoznání licence MIT
+GitHubem lze ověřit až po sloučení do `main`. **Neověřeno:**
 původ obrázků vložených v prezentacích kapitol 2–4 (16, 13 a 19 médií)
 nebyl jednotlivě prověřen; snímky neuvádějí cizí zdroj ani licenci, proto
 se předpokládá vlastní tvorba. Případné cizí obrázky by spadaly pod
