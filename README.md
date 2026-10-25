@@ -77,3 +77,11 @@ výstupy a dočasné soubory se do Gitu neukládají.
 
 Změny se předkládají prostřednictvím PR z tematické větve `codex/`.
 Sloučení do `main` provádí autor projektu.
+
+## Licence
+
+Text učebnice včetně vlastních obrázků, cvičení, datových sešitů, prezentací
+a autorské dokumentace je k dispozici pod licencí [CC BY 4.0](LICENSE-TEXT.md).
+Zdrojový kód, tedy skripty, kontroly, filtry, konfigurace a styly a skripty
+webu, je pod [licencí MIT](LICENSE). Žádná z obou licencí se nevztahuje
+na materiály třetích stran; jejich seznam uvádí [LICENSE-TEXT.md](LICENSE-TEXT.md#materiály-třetích-stran).

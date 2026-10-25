@@ -23,6 +23,8 @@ book:
   sidebar:
     style: floating
     search: true
+  page-footer:
+    center: "© 2026 Karel Rečka · Text a data: [CC BY 4.0](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE-TEXT.md) · Kód: [MIT](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE)"
   chapters:
     - index.qmd
     - part: "Výkladové kapitoly"

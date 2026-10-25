@@ -468,3 +468,36 @@ prezentace vždy ukázal krátký heslovitý přehled obsahu/témat prezentace.�
 oddělují slidy, kde bude jen název oddílu podle jeho tématu, aby prezentace
 byla přehlednější.“ „V poznámkách k prezentaci bych chtěl uvádět nejen
 číslo slidu, ale i nadpis slidu.“ Autor schválil plán úpravy téhož dne.
+
+<a id="r51-licence"></a>
+
+## R51 — Licence: CC BY 4.0 pro obsah, MIT pro kód
+
+**Stav:** schváleno 2026-10-25. **Rozsah:** celý veřejný repozitář a web.
+Nahrazuje dosavadní licenci MIT pro celý repozitář (soubor `LICENSE`
+z počátku projektu), která byla určena pro software.
+
+**Volba:** text učebnice, vlastní obrázky a grafy, datové sešity,
+prezentace, poznámky, cvičení, bibliografické údaje a autorská dokumentace
+jsou pod licencí CC BY 4.0; zdrojový kód, konfigurace, styly a skripty
+webu pod licencí MIT. Uspořádání souborů podle vzoru R101-textbook:
+`LICENSE` obsahuje text MIT, `LICENSE-TEXT.md` český text licence obsahu
+s odkazy na české i anglické závazné znění CC BY 4.0. Materiály třetích
+stran si ponechávají svou licenci a autorství. Aktuální vymezení částí
+a seznam výjimek udržuje [LICENSE-TEXT.md](../../LICENSE-TEXT.md); README
+a patička webu na licence jen odkazují.
+
+**Důvod:** MIT je licence pro software; pro text učebnice je obvyklá
+licence Creative Commons, v kombinaci s MIT pro kód.
+
+**Důsledek pro další práci:** převzaté obrázky, data či jiný materiál
+zařazuj jen s licencí slučitelnou se zveřejněním a s uvedením autora,
+zdroje a licence u materiálu; novou výjimku doplň do seznamu
+v LICENSE-TEXT.md.
+
+**Doklad:** zadání autora z 2026-10-25: „MIT je licence na software.
+Na text učebnic se častěji používá Creative Commons, například CC BY 4.0,
+obvykle v kombinaci s MIT pro kód. Můžeš licence takto upravit?“
+Téhož dne k uspořádání souborů: „Myslím, že soubor LICENCE by mohl vypadat
+více jako u R101 s odkazy na české i anglické znění“ (odkaz na licenci
+repozitáře reckak/R101-textbook). Autor schválil plán úpravy téhož dne.
