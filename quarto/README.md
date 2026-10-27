@@ -1,5 +1,58 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-5-20261027"></a>
+
+## 2026-10-27 — Prezentace ke kapitole 5
+
+Vytvořeny soubory v `presentations/`: `kapitola_05_pravdepodobnost.pptx`
+(43 slidů), `kapitola_05_poznamky.docx` a
+`kapitola_05_pravdepodobnost_cviceni.xlsx`. Rozsah dohodnut s autorem:
+jedna výuka za celou kapitolu, 27 výkladových slidů (45 minut) v šesti
+tematických oddílech a procvičování (45 minut); výstupy PPTX, sešit a DOCX,
+bez PDF. Nepovinná rozšíření kapitoly (kruhovost klasického pojetí, šance,
+výpočet μ a σ z tabulky, variace) vynechána. Podle
+[R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci)
+je 2. slide přehled obsahu, oddíly oddělují slidy s jejich názvy a nadpisy
+v DOCX mají tvar „Slide N: titulek“. Šest úloh bez Excelu (řešení jen
+v poznámkách): adaptace Howella (5.1 a 5.35; 5.2–5.5; 5.8–5.9; 5.26, 5.27
+a 5.30, u 5.27 bez pořadí; s. 132–135) a vlastní úlohy na chyby úsudku
+a předpoklady binomického modelu. Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+má pět listů (U1 modelová kontingenční tabulka; U2 úlohy 5.36–5.38; U3
+5.21–5.23 se sloupcovým grafem; U4 5.31; U5 5.33 bez rozhodování
+o hypotéze), řešení po krocích s pomocnou binomickou tabulkou, kontroly
+funkcemi BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV a NORM.DIST a 17 nativních
+rovnic. Rozsah čtení Howella eviduje
+[karta U01](../docs/zdroje/U01-howell.md#u01). Kapitola 5, slovník, osnova
+ani `data/kapitola_05.xlsx` se neměnily; věcný rozpor mezi kapitolou
+a prezentací nebyl zjištěn. Všech 13 obrázků prezentace jsou obrázky
+kapitoly 5 z `assets/chapter-05/plots/` (vlastní tvorba).
+
+Postup: generátor v `tmp/chapter05-presentation/` navazuje na generátor
+kapitoly 4 (stejná předloha a vzhled). Nově umí rovnice pravděpodobnosti
+s kombinačním číslem, menší písmo a mezery na slidech s obrázkem pod textem
+(větší obrázky), horní indexy v poznámkách jako znaky Unicode a v sešitu
+osu sloupcového grafu s desetinnými čísly. Sdílené skripty v `scripts/`
+se neměnily.
+
+**Ověření:** všech 43 slidů vykresleno v PowerPointu a prohlédnuto (po
+opravě dvou zalomených titulků, kurzívy uvnitř tučného textu a zvětšení
+obrázků); každý slide má poznámky, u výkladových slidů s otázkou k zamyšlení,
+a jazyk textů i poznámek je čeština (objektový model PowerPointu). 62 čísel
+ze slidů, poznámek a sešitu přepočítáno nezávisle v R (`check.R` v tmp).
+Sešit přepočítán v českém Excelu 16: 0 chybových buněk, všech 17 kontrol
+„Shoda s kroky“ = ano, 17 rovnic se zónou rovnice, jeden graf, prázdné
+pracovní buňky; listy prohlédnuty z exportu do PDF. DOCX otevřen ve Wordu:
+43 nadpisů „Slide N: titulek“, 20 stran. Zadání 5.35–5.38 ověřeno v obraze
+strany 135.
+
+**Omezení:** výklad trvá podle součtu časů 45 minut, skutečná délka nebyla
+vyzkoušena; látka kapitoly je rozsáhlá, proto jsou některé slidy počítány
+na 1 minutu. Čísla úlohy 5.36 (mamografie) jsou Howellova učebnicová
+ilustrace, ne současné údaje. Starší verze Excelu a PowerPointu, Excel pro
+Mac ani webový Excel nebyly zkoušeny. Didaktická revize byla interní, bez
+ověření na studentech. Studentský web se nemění, render knihy nebyl potřeba.
+
 <a id="licence-20261025"></a>
 
 ## 2026-10-25 — Licence CC BY 4.0 pro obsah a MIT pro kód
