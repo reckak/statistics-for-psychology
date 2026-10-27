@@ -1,5 +1,27 @@
 # Autorská dokumentace
 
+## 2026-10-28 — Výslovnostní přepisy bez podmínky nedostupného poslechu
+
+Na autorovo upřesnění upraven [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md):
+tvrdě vyslovované skupiny di/ti/ni v cizích a odborných výrazech se
+ve scénáři přepisují dy/ty/ny, při zachování délky samohlásek a příslušných
+tvarů slov. Autorem požadované přepisy jsou závazné; „kvantyly“ již není
+pouhým kandidátem. Před syntézou se kontroluje slovník a zbylé původní
+rizikové podoby, vedle čísel a matematických značek.
+
+Odstraněn postup vyžadující poslechovou kontrolu a reprezentativní ukázku
+jako předpoklad dlouhého převodu, když takovou kontrolu prostředí neumí.
+Zůstává rozlišení textové a technické kontroly od skutečně doloženého
+poslechu; ukázky se nevytvářejí automaticky. Upřesnění připojeno
+k [R53](../docs/rozhodnuti/postupy-a-dokumentace.md#r53-doprovodne-audio),
+původní datovaný doklad zachován a v registru aktualizována platnost.
+Tento krok upravuje pouze pravidla a jejich evidenci; existující scénář
+ani nahrávka se nepřepisovaly a syntéza nebyla spuštěna.
+
+Ověření: redakční kontrola všech navazujících pokynů pro výslovnost,
+ukázky a předání, `git diff --check` a `node scripts/check-doc-maps.cjs`
+bez chyb (73 mapových souborů, 53 rozhodnutí).
+
 ## 2026-10-27 — Scénář k výkladové části prezentace kapitoly 5
 
 Na výslovnou žádost autora připraven
