@@ -64,6 +64,7 @@ výstupy a dočasné soubory se do Gitu neukládají.
 | [ZDROJE.md](docs/ZDROJE.md) | Podklady, přesné lokátory a rozsah jejich ověření; odkazy do `sources/` jsou místní. |
 | [ROZHODNUTI.md](docs/ROZHODNUTI.md) | Schválené volby, platnost a odkazy na doklady. |
 | [PREZENTACE.md](docs/PREZENTACE.md) | Pravidla prezentací, poznámek a doprovodných cvičení. |
+| [TEXT2SPEECH.md](docs/TEXT2SPEECH.md) | Scénáře a doprovodné audio k prezentacím, pouze na výslovné vyžádání. |
 | [Autorská historie](quarto/README.md) | Provedené změny, výsledky kontrol a jejich omezení. |
 
 ## Provozní návody
