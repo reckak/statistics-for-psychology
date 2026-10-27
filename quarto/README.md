@@ -1,5 +1,22 @@
 # Autorská dokumentace
 
+## 2026-10-27 — Instrukce pro scénáře a doprovodné audio
+
+Přidán [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md) jako hlavní místo postupu
+pro výklad k prezentacím: mluvený zápis čísel a značek, stručné čtení
+funkcí Excelu, spojovníky, slovník výslovnosti s rozlišením kandidátních
+a poslechem ověřených přepisů, kontrola před placenou syntézou, obnova
+úloh bez duplicit, cílené opravy a jeden výsledný MP3. AGENTS.md obsahuje
+stručný odkaz a výslovné vyžádání scénáře i audia; požadavek na samotný
+text nespouští placený převod. Doplněn autorský rozcestník a doklad
+[R53](../docs/rozhodnuti/postupy-a-dokumentace.md#r53-doprovodne-audio).
+Kapitoly, prezentace, scénáře ani nahrávky se při této změně neupravovaly.
+
+Ověření: redakční kontrola obsahu a rozdílů, návaznosti a relativních
+odkazů nových instrukcí; `git diff --check` a `node scripts/check-doc-maps.cjs`
+bez chyb (53 rozhodnutí). Neproběhla syntéza ani poslech; „kvantyly“
+zůstává kandidátní zápis.
+
 <a id="prezentace-kapitoly-5-20261027"></a>
 
 ## 2026-10-27 — Prezentace ke kapitole 5

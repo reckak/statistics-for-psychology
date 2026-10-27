@@ -55,7 +55,7 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 
 | Typ informace | Hlavní místo údržby |
 |---|---|
-| Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md). |
+| Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md), scénářů a audia v [TEXT2SPEECH.md](docs/TEXT2SPEECH.md). |
 | Příkazy, závislosti a provozní návody | [PROVOZ.md](docs/PROVOZ.md); kořenové README obsahuje jen rychlé spuštění a rozcestník. |
 | Preferovaný termín, alternativy, významové hranice a výjimky | [SLOVNIK.md](docs/SLOVNIK.md); jeho doklad odkazuje na rozhodnutí. |
 | Studentský výklad, definice, značky a vzorce | Příslušná kapitola a její studentské referenční přehledy; autorská evidence je plně nekopíruje. |
@@ -524,6 +524,15 @@ Před tvorbou nebo úpravou prezentace, poznámek či jejich exportu načti
 a dodržuj [docs/PREZENTACE.md](docs/PREZENTACE.md). Společná odborná,
 didaktická a terminologická pravidla tohoto souboru platí i pro ně;
 konkrétní formát slidů a poznámek určuje specializovaný dokument.
+
+## Doprovodné zvukové nahrávky k prezentacím
+
+Scénáře pro syntézu řeči a zvukové nahrávky vytvářej nebo aktualizuj pouze
+na výslovné vyžádání uživatele, nikdy automaticky při tvorbě či úpravě
+kapitoly, prezentace nebo poznámek. Požadavek na samotný scénář neopravňuje
+spustit placenou syntézu. Před prací na scénáři nebo audiu načti a dodržuj
+[docs/TEXT2SPEECH.md](docs/TEXT2SPEECH.md), kde se udržují podrobná pravidla
+výkladu, mluveného zápisu, výslovnosti, syntézy, ověření a předání.
 
 ## Git a dokončení práce
 

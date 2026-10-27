@@ -501,3 +501,32 @@ obvykle v kombinaci s MIT pro kód. Můžeš licence takto upravit?“
 Téhož dne k uspořádání souborů: „Myslím, že soubor LICENCE by mohl vypadat
 více jako u R101 s odkazy na české i anglické znění“ (odkaz na licenci
 repozitáře reckak/R101-textbook). Autor schválil plán úpravy téhož dne.
+
+<a id="r53-doprovodne-audio"></a>
+
+## R53 — Scénáře a doprovodné audio pouze na vyžádání
+
+**Stav:** schváleno 2026-10-27. **Rozsah:** příprava a úpravy scénářů
+pro syntézu řeči a doprovodných nahrávek k prezentacím.
+
+**Volba:** AGENTS.md obsahuje pravidlo výslovného vyžádání a odkaz;
+podrobný postup se udržuje v [TEXT2SPEECH.md](../TEXT2SPEECH.md).
+Nahrávka doprovází snímky a nahrazuje výklad. Před placeným převodem
+se dokončí a zkontroluje scénář v mluveném zápisu se slovníkem
+výslovnosti pro konkrétní hlas. Funkce Excelu se čtou stručně po částech,
+výrazy tvořící celek se pro syntézu spojují spojovníky. Dílčí úseky
+se před předáním spojí do jednoho MP3; opravuje se jen nezbytná část.
+
+**Důvod:** omezit placené opakování, chybnou výslovnost a nežádoucí
+pauzy; zachovat návaznost na prezentaci a jeden snadno použitelný výstup.
+Pravopisné úpravy pro syntézu nemění odbornou terminologii učebnice.
+
+**Doklad:** autor v této konverzaci požadoval čísla slovy, mluvené názvy
+písmen, přípravu pro správnou nahrávku „na první dobrou“, ošetření chybného
+změkčování slova „kvantily“, čtení NORM.S.DIST jako
+„norm-tečka-es-tečka-dyst“ a zápis „kvé-kvé-graf“. Dne 2026-10-27 zadal:
+„Můžeš tedy instrukce pro tvorbu zvukových nahrávek zapsat?“ a navrhl
+stručný odkaz v AGENTS.md, podrobnosti v docs/TEXT2SPEECH.md a výslovně
+vymezil, že nahrávky vznikají na vyžádání, nikoli automaticky při práci
+na kapitole. Zápis „kvantyly“ byl navržen k ověření; autorův popis chyby
+není dokladem úspěšného poslechu této opravy.
