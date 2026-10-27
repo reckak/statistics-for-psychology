@@ -53,8 +53,11 @@ PPTX, jeho poznámky, kapitola a datové sešity nebyly upraveny.
 
 Výchozí konfigurace případného budoucího převodu podle projektu:
 Creative Claw, `speech/heygen-voice-1`, Adam, čeština, rychlost 1.
-Nastavení je evidováno v manifestu; aktuální dostupnost služby,
-limity ani podpora parametrů nebyly při přípravě samotného textu ověřovány.
+Nastavení je evidováno v manifestu. Při následné tvorbě nahrávky
+2026-10-27 byly načteny aktuální parametry modelu a katalog, který
+potvrdil přesné ID českého hlasu Adam. Použity byly pouze ovladače
+`extras.speed: 1` a `extras.language: cs`, s `voice_id` na hlavní úrovni.
+Popis hlasu nebyl odesílán jako pokyn a expressiveness boost nebyl použit.
 
 **Žádný z níže uvedených zápisů nebyl v tomto úkolu ověřen poslechem.**
 Jde o projektové konvence nebo kandidáty pro konkrétní konfiguraci,
@@ -77,9 +80,38 @@ nikoli o tvrzení o skutečné výslovnosti. Scénář nepoužívá SSML ani IPA
 | senzitivita, specificita, prevalence | odborný pravopis | Při převodu zkontrolovat výslovnost přejatých slov. |
 | apriorní, aposteriorní, binomické | odborný pravopis | Při převodu zkontrolovat srozumitelnost a přízvuk. |
 
-## Stav předání
+## Dokončená nahrávka — 2026-10-27
 
-Připraven je celý textový scénář. Syntéza nebyla spuštěna a žádná
-nahrávka nevznikla. Výslovnost ani tempo proto nejsou ověřeny poslechem.
-Před případným placeným převodem je třeba dořešit skutečně problematické
-výrazy v dané hlasové konfiguraci podle projektových pravidel.
+Na následnou výslovnou žádost autora byla celá výkladová část převedena
+hlasem Adam pomocí Creative Claw. Místní výstup je
+`presentations/kapitola_05_pravdepodobnost_Adam.mp3`; generované audio
+je podle pravidel ignorované Gitem, není součástí veřejného PR ani webu.
+
+Skutečná délka je **51 minut 15,63 sekundy**, velikost 98 524 007 bajtů,
+MP3, mono, 44 100 Hz. Původní odhad délky z počtu slov se nepotvrdil;
+skutečná nahrávka je delší. Všechny úseky používají rychlost 1.
+
+Limit modelu 5 000 znaků vyžadoval deset požadavků, vždy na hranicích
+snímků. Souvislý text nebyl zkrácen ani přepsán; nebyly použity automatické
+výslovnostní náhrady (seznam českých pravidel pro HeyGen byl prázdný).
+Všechny části byly dokončeny jedním převodem každého úseku. Služba vykázala
+celkem **806 kreditů** za syntézu.
+
+Části byly lokálně spojeny pomocí FFmpeg kopírováním zvukového proudu,
+bez dalšího ztrátového kódování, prolínání, překrytí nebo zkracování.
+Přidány jsou značky 35 snímků v metadatech ID3 CHAP/CTOC. Časy vycházejí
+z časování slov vráceného HeyGenem a ze skutečných délek částí;
+podpora navigace po kapitolách závisí na přehrávači.
+
+Technická kontrola potvrdila správné pořadí úseků, shodu poskytovatelem
+vrácených slov s celým scénářem, všechna oznámení snímků a soulad celkové
+délky se součtem částí. Celé MP3 prošlo dekódováním; zvuk není prázdný,
+průměrná úroveň je −17,7 dB a detekce při prahu −45 dB nenašla ticha delší
+než tři sekundy. Identita souboru, délky úseků, přesná mapa začátků snímků
+a výsledky kontrol jsou v manifestu. Pracovní texty, identifikátory úloh,
+hotové části, zdrojové časování a protokol dekódování zůstávají v `tmp/`.
+
+**Omezení:** neproběhl skutečný poslech celé nahrávky ani nezávislý
+automatický přepis. Poskytovatelovo přiřazení slov k časům není nezávislou
+kontrolou výslovnosti nebo zárukou bezchybného vyslovení textu.
+Slovník výslovnosti výše proto zůstává poslechem neověřený.

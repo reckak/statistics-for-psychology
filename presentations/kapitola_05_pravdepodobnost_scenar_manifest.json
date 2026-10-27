@@ -270,7 +270,7 @@
     },
     "visual_source_review": "13 embedded figures inspected; slide texts, tables and notes read",
     "didactic_review": "transitions, denominators, operators, model assumptions and interpretations reviewed",
-    "audio_generated": false,
+    "audio_generated": true,
     "pronunciation_listening_verified": false
   },
   "future_synthesis_defaults": {
@@ -280,6 +280,414 @@
     "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
     "language": "cs",
     "speed": 1,
-    "status": "project preference only; service availability and parameters not checked; no synthesis requested"
+    "status": "selected configuration verified via get_model_params and Czech Adam catalog; used for all ten completed segments"
+  },
+  "audio_generation": {
+    "date": "2026-10-27",
+    "provider": "Creative Claw / HeyGen",
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
+    "language": "cs",
+    "speed": 1,
+    "apply_saved_pronunciations": false,
+    "credits_used": 806,
+    "output": {
+      "path": "presentations/kapitola_05_pravdepodobnost_Adam.mp3",
+      "sha256": "0360b36716a5fa2ee350c7e905307466b37779a30b6af4b4e748df0c1e180cd8",
+      "duration_seconds": 3075.6310204081633,
+      "bytes": 98524007,
+      "sample_rate": 44100,
+      "channels": 1,
+      "mean_volume_db": -17.7,
+      "max_volume_db": 0.0
+    },
+    "segments": [
+      {
+        "chunk": 1,
+        "slides": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "duration_seconds": 307.27834375,
+        "provider_end_seconds": 307.27836734693875,
+        "credits_used": 82,
+        "sha256": "ab08d1b6e0669ce4b61e450c9006f7bdb4d1b85bae234f0b22843f31c2902495"
+      },
+      {
+        "chunk": 2,
+        "slides": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "duration_seconds": 305.92,
+        "provider_end_seconds": 305.92,
+        "credits_used": 80,
+        "sha256": "1fe486a0bc19aa90d773d3d00bedc768c59b72ae6e8469b105e98746bf5d3d56"
+      },
+      {
+        "chunk": 3,
+        "slides": [
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "duration_seconds": 352.73140625,
+        "provider_end_seconds": 352.7314285714286,
+        "credits_used": 93,
+        "sha256": "fd19a0892f141b4f6e31a6ba84f93a1ac4a0908e48e46a187709efaa43d8d216"
+      },
+      {
+        "chunk": 4,
+        "slides": [
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "duration_seconds": 365.2440625,
+        "provider_end_seconds": 365.24408163265304,
+        "credits_used": 97,
+        "sha256": "be06cd5643d84cfccb8a7c021648784bbf5d7950db206ddbaf3a6f31ede3eff3"
+      },
+      {
+        "chunk": 5,
+        "slides": [
+          20,
+          21,
+          22
+        ],
+        "duration_seconds": 320.5746875,
+        "provider_end_seconds": 320.574693877551,
+        "credits_used": 84,
+        "sha256": "3921f462366ac83162ad6e1200d7f6155e54d2cb7227884131e7d409fe1f8e81"
+      },
+      {
+        "chunk": 6,
+        "slides": [
+          23,
+          24,
+          25
+        ],
+        "duration_seconds": 299.10203125,
+        "provider_end_seconds": 299.1020408163265,
+        "credits_used": 78,
+        "sha256": "4de0e7bc1d4748837bf34bfc8c8c7b4e0a2ac8d01d446c052f988e6d8c6e2d6e"
+      },
+      {
+        "chunk": 7,
+        "slides": [
+          26,
+          27,
+          28
+        ],
+        "duration_seconds": 333.50528125,
+        "provider_end_seconds": 333.505306122449,
+        "credits_used": 86,
+        "sha256": "ea28e1a912682ab6e25e0467c12e5055ada1ea0e525e5c57debea5fbfe23d7c0"
+      },
+      {
+        "chunk": 8,
+        "slides": [
+          29,
+          30,
+          31
+        ],
+        "duration_seconds": 380.23834375,
+        "provider_end_seconds": 380.2383673469388,
+        "credits_used": 97,
+        "sha256": "756fcd5e0b8d8b55f9e0dbd0fd9dc3def99bf517124da42ae28236d88f02d683"
+      },
+      {
+        "chunk": 9,
+        "slides": [
+          32,
+          33,
+          34
+        ],
+        "duration_seconds": 272.03915625,
+        "provider_end_seconds": 272.0391836734694,
+        "credits_used": 72,
+        "sha256": "8340bcf3a0ff05668209027495529164091bde9546b74d71f549f84eb0b4b9f1"
+      },
+      {
+        "chunk": 10,
+        "slides": [
+          35
+        ],
+        "duration_seconds": 138.99753125,
+        "provider_end_seconds": 138.99755102040817,
+        "credits_used": 37,
+        "sha256": "adcf799e610c7e1f24a9f5790759a4de4b6395c2a1b9b820da9f54865dc544ed"
+      }
+    ],
+    "chapters": [
+      {
+        "slide": 1,
+        "start_seconds": 0,
+        "provider_start_seconds": 0.299,
+        "chunk": 1,
+        "title": "Snímek jedna."
+      },
+      {
+        "slide": 2,
+        "start_seconds": 64.682,
+        "provider_start_seconds": 64.682,
+        "chunk": 1,
+        "title": "Snímek dva."
+      },
+      {
+        "slide": 3,
+        "start_seconds": 110.216,
+        "provider_start_seconds": 110.216,
+        "chunk": 1,
+        "title": "Snímek tři."
+      },
+      {
+        "slide": 4,
+        "start_seconds": 125.499,
+        "provider_start_seconds": 125.499,
+        "chunk": 1,
+        "title": "Snímek čtyři."
+      },
+      {
+        "slide": 5,
+        "start_seconds": 211.403,
+        "provider_start_seconds": 211.403,
+        "chunk": 1,
+        "title": "Snímek pět."
+      },
+      {
+        "slide": 6,
+        "start_seconds": 307.57734374999995,
+        "provider_start_seconds": 0.299,
+        "chunk": 2,
+        "title": "Snímek šest."
+      },
+      {
+        "slide": 7,
+        "start_seconds": 426.28834374999997,
+        "provider_start_seconds": 119.01,
+        "chunk": 2,
+        "title": "Snímek sedm."
+      },
+      {
+        "slide": 8,
+        "start_seconds": 443.03434374999995,
+        "provider_start_seconds": 135.756,
+        "chunk": 2,
+        "title": "Snímek osm."
+      },
+      {
+        "slide": 9,
+        "start_seconds": 533.52434375,
+        "provider_start_seconds": 226.246,
+        "chunk": 2,
+        "title": "Snímek devět."
+      },
+      {
+        "slide": 10,
+        "start_seconds": 613.49734375,
+        "provider_start_seconds": 0.299,
+        "chunk": 3,
+        "title": "Snímek deset."
+      },
+      {
+        "slide": 11,
+        "start_seconds": 719.4853437500001,
+        "provider_start_seconds": 106.287,
+        "chunk": 3,
+        "title": "Snímek jedenáct."
+      },
+      {
+        "slide": 12,
+        "start_seconds": 799.2893437500001,
+        "provider_start_seconds": 186.091,
+        "chunk": 3,
+        "title": "Snímek dvanáct."
+      },
+      {
+        "slide": 13,
+        "start_seconds": 869.2723437500001,
+        "provider_start_seconds": 256.074,
+        "chunk": 3,
+        "title": "Snímek třináct."
+      },
+      {
+        "slide": 14,
+        "start_seconds": 887.61634375,
+        "provider_start_seconds": 274.418,
+        "chunk": 3,
+        "title": "Snímek čtrnáct."
+      },
+      {
+        "slide": 15,
+        "start_seconds": 966.22875,
+        "provider_start_seconds": 0.299,
+        "chunk": 4,
+        "title": "Snímek patnáct."
+      },
+      {
+        "slide": 16,
+        "start_seconds": 1039.96675,
+        "provider_start_seconds": 74.037,
+        "chunk": 4,
+        "title": "Snímek šestnáct."
+      },
+      {
+        "slide": 17,
+        "start_seconds": 1125.62275,
+        "provider_start_seconds": 159.693,
+        "chunk": 4,
+        "title": "Snímek sedmnáct."
+      },
+      {
+        "slide": 18,
+        "start_seconds": 1233.26975,
+        "provider_start_seconds": 267.34,
+        "chunk": 4,
+        "title": "Snímek osmnáct."
+      },
+      {
+        "slide": 19,
+        "start_seconds": 1311.83275,
+        "provider_start_seconds": 345.903,
+        "chunk": 4,
+        "title": "Snímek devatenáct."
+      },
+      {
+        "slide": 20,
+        "start_seconds": 1331.4728125,
+        "provider_start_seconds": 0.299,
+        "chunk": 5,
+        "title": "Snímek dvacet."
+      },
+      {
+        "slide": 21,
+        "start_seconds": 1428.3308124999999,
+        "provider_start_seconds": 97.157,
+        "chunk": 5,
+        "title": "Snímek dvacet jedna."
+      },
+      {
+        "slide": 22,
+        "start_seconds": 1543.8028124999998,
+        "provider_start_seconds": 212.629,
+        "chunk": 5,
+        "title": "Snímek dvacet dva."
+      },
+      {
+        "slide": 23,
+        "start_seconds": 1652.0475,
+        "provider_start_seconds": 0.299,
+        "chunk": 6,
+        "title": "Snímek dvacet tři."
+      },
+      {
+        "slide": 24,
+        "start_seconds": 1794.1335,
+        "provider_start_seconds": 142.385,
+        "chunk": 6,
+        "title": "Snímek dvacet čtyři."
+      },
+      {
+        "slide": 25,
+        "start_seconds": 1813.9444999999998,
+        "provider_start_seconds": 162.196,
+        "chunk": 6,
+        "title": "Snímek dvacet pět."
+      },
+      {
+        "slide": 26,
+        "start_seconds": 1951.1495312499999,
+        "provider_start_seconds": 0.299,
+        "chunk": 7,
+        "title": "Snímek dvacet šest."
+      },
+      {
+        "slide": 27,
+        "start_seconds": 2070.0605312499997,
+        "provider_start_seconds": 119.21,
+        "chunk": 7,
+        "title": "Snímek dvacet sedm."
+      },
+      {
+        "slide": 28,
+        "start_seconds": 2165.30053125,
+        "provider_start_seconds": 214.45,
+        "chunk": 7,
+        "title": "Snímek dvacet osm."
+      },
+      {
+        "slide": 29,
+        "start_seconds": 2284.6548125,
+        "provider_start_seconds": 0.299,
+        "chunk": 8,
+        "title": "Snímek dvacet devět."
+      },
+      {
+        "slide": 30,
+        "start_seconds": 2414.0828125,
+        "provider_start_seconds": 129.727,
+        "chunk": 8,
+        "title": "Snímek třicet."
+      },
+      {
+        "slide": 31,
+        "start_seconds": 2513.8118125,
+        "provider_start_seconds": 229.456,
+        "chunk": 8,
+        "title": "Snímek třicet jedna."
+      },
+      {
+        "slide": 32,
+        "start_seconds": 2664.89315625,
+        "provider_start_seconds": 0.299,
+        "chunk": 9,
+        "title": "Snímek třicet dva."
+      },
+      {
+        "slide": 33,
+        "start_seconds": 2684.7131562500003,
+        "provider_start_seconds": 20.119,
+        "chunk": 9,
+        "title": "Snímek třicet tři."
+      },
+      {
+        "slide": 34,
+        "start_seconds": 2804.9301562500004,
+        "provider_start_seconds": 140.336,
+        "chunk": 9,
+        "title": "Snímek třicet čtyři."
+      },
+      {
+        "slide": 35,
+        "start_seconds": 2936.9323125,
+        "provider_start_seconds": 0.299,
+        "chunk": 10,
+        "title": "Snímek třicet pět."
+      }
+    ],
+    "validation": {
+      "ordered_slides_1_to_35": true,
+      "provider_alignment_matches_script": true,
+      "all_frames_decoded": true,
+      "duration_matches_segment_sum": true,
+      "id3_chapters": 35,
+      "lossy_reencoding": false,
+      "listening_verified": false,
+      "independent_transcription": false
+    },
+    "silences_over_3_seconds": [],
+    "recovery_record": "tmp/ch05_audio/final_manifest.json (local, ignored; contains job and asset references)",
+    "note": "MP3 is local and ignored by Git. Word timing alignment is provider-supplied; it does not replace listening or independent transcription."
   }
 }

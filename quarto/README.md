@@ -1,5 +1,31 @@
 # Autorská dokumentace
 
+## 2026-10-27 — Nahrávka prezentace kapitoly 5 hlasem Adam
+
+Na následnou výslovnou žádost autora převeden celý připravený scénář
+pro snímky 1–35 pomocí Creative Claw, model `speech/heygen-voice-1`,
+český hlas Adam, rychlost 1. Předem načteny aktuální parametry a ověřeno
+ID hlasu v rozšířeném katalogu. Limit 5 000 znaků vyžadoval deset úseků
+na hranicích snímků; každý byl vytvořen jednou, bez krácení textu.
+Služba vykázala 806 kreditů za syntézu.
+
+Místní výstup `presentations/kapitola_05_pravdepodobnost_Adam.mp3`
+má 51:15,63 a 35 značek snímků ID3 CHAP/CTOC. Části byly spojeny
+FFmpeg bez dalšího ztrátového kódování nebo překryvu řeči. Soubor zůstává
+ignorovaný Gitem, není publikován na webu. Přesné délky, mapování časů,
+otisk výsledku a kontroly jsou v
+[manifestu](../presentations/kapitola_05_pravdepodobnost_scenar_manifest.json),
+postup a omezení v
+[průvodním dokumentu](../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md).
+Identifikátory úloh a pracovní zvukové soubory jsou uchovány v `tmp/`.
+
+Ověření: původní podklady i scénář mají shodné otisky; poskytovatelem
+vrácené časované tokeny pokrývají scénář a všech 35 oznámení; součet délek
+částí souhlasí s výsledkem; celé MP3 prošlo dekódováním bez chyby,
+průměrná úroveň −17,7 dB, bez tich delších než 3 s při prahu −45 dB.
+Neproběhl skutečný poslech ani nezávislý automatický přepis; správnost
+výslovnosti se tím nedokládá. Učebnice a PPTX se neupravovaly.
+
 ## 2026-10-27 — Scénář k výkladové části prezentace kapitoly 5
 
 Na výslovnou žádost autora připraven
