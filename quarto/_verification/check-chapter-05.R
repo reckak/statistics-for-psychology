@@ -28,6 +28,9 @@ eq(i['Žena','Zvýšený stres']/sum(i),.5*.3)
 # Reverse direction: stress level does not change the probability of being a woman.
 eq(c(i['Žena','Zvýšený stres']/sum(i[,'Zvýšený stres']),i['Žena','Nízký stres']/sum(i[,'Nízký stres']),sum(i['Žena',])/sum(i)),rep(.50,3))
 eq(c(sum(i[,'Zvýšený stres']),sum(i[,'Nízký stres'])),c(60,140))
+# Diagram from experiment to distribution: two tips, four outcomes, X = number correct.
+eq(ch5_two,c(.5625,.1875,.1875,.0625));eq(sum(ch5_two),1)
+eq(ch5_two_dist,dbinom(0:2,2,.25));eq(ch5_two['NS']+ch5_two['SN'],.375);eq(sum(ch5_two_dist),1)
 # Two independent tips; at least one correct through the complement.
 eq(.25^2,.0625);eq(1-.75^2,.4375)
 # Screening: natural frequencies, predictive values, total probability, Bayes.
@@ -101,5 +104,5 @@ eq(c(sqrt(.5*.5/100),(.65-.5)/.05),c(.05,3))
 eq(1-.3^3,1-dbinom(0,3,.7));eq(7/12*6/11*5/10,choose(7,3)/choose(12,3))
 # All generated figures exist and have nonempty SVG content.
 files <- list.files(ch5_out,pattern='\\.svg$',full.names=TRUE)
-stopifnot(length(files)==12,all(file.info(files)$size>1000))
-cat('Chapter 5: values of the text, optional boxes, twelve exercises and 12 figures passed.\n')
+stopifnot(length(files)==13,all(file.info(files)$size>1000))
+cat('Chapter 5: values of the text, optional boxes, twelve exercises and 13 figures passed.\n')

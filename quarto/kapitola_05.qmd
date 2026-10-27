@@ -531,7 +531,21 @@ Vezměme krátký test s pěti otázkami. Každá má čtyři možnosti, z nich�
 
 Náhodná proměnná navazuje na [proměnnou](kapitola_01.qmd#sec-promenne) z první kapitoly, ale není totožná se sloupcem zaznamenaných dat. Sloupec obsahuje hodnoty, které proměnná u konkrétních lidí už nabyla. Náhodná proměnná je pravidlo, které určuje, jaké číslo dostaneme podle toho, jak pokus dopadne; je vymezena dříve, než pokus proběhne. Které hodnoty jsou možné a s jakou pravděpodobností nastanou, nepopisuje proměnná sama, ale její rozdělení pravděpodobnosti, které zavedeme vzápětí. Pojem také nevyžaduje, aby se pokus opakoval: počet správných tipů jednoho studenta v jednom testu je náhodná proměnná.
 
-**Rozdělení pravděpodobnosti (*probability distribution*)** popisuje, jak je pravděpodobnost rozdělena mezi možné hodnoty náhodné proměnné. Navazuje přitom na výběrový prostor. Každá hodnota náhodné proměnné odpovídá jevu: zápis $X=2$ označuje množinu všech pětic tipů, v nichž jsou právě dva správné. Pravděpodobnost hodnoty je pravděpodobnost tohoto jevu, tedy součet pravděpodobností všech výsledků, které do něj patří. Rozdělení tak převádí pravděpodobnosti z výběrového prostoru na čísla, která nás zajímají. U diskrétní proměnné je můžeme uvést v tabulce hodnot a jejich pravděpodobností. Pro počet správných tipů v našem testu vypadá takto (jak se k číslům dojde, ukážeme v oddílu o [binomickém rozdělení](#sec-binomicke)):
+**Rozdělení pravděpodobnosti (*probability distribution*)** popisuje, jak je pravděpodobnost rozdělena mezi možné hodnoty náhodné proměnné. Navazuje přitom na výběrový prostor. Každá hodnota náhodné proměnné odpovídá jevu: zápis $X=2$ označuje množinu všech pětic tipů, v nichž jsou právě dva správné. Pravděpodobnost hodnoty je pravděpodobnost tohoto jevu, tedy součet pravděpodobností všech výsledků, které do něj patří. Rozdělení tak převádí pravděpodobnosti z výběrového prostoru na čísla, která nás zajímají.
+
+Celý řetězec od pokusu k rozdělení je nejlépe vidět na zmenšeném testu se dvěma otázkami, opět se čtyřmi možnostmi a náhodným tipováním.
+
+::: {.teaching-figure role="region" aria-label="Od náhodného pokusu k rozdělení pravděpodobnosti na testu se dvěma otázkami" tabindex="0"}
+
+![Náhodná proměnná přiřazuje výsledkům čísla; pravděpodobnost každé hodnoty je součtem pravděpodobností výsledků, které na ni vedou.](../assets/chapter-05/plots/od-pokusu-k-rozdeleni.svg){#fig-od-pokusu-k-rozdeleni fig-alt="Diagram shora dolů. Nahoře náhodný pokus: tip na dvě otázky se čtyřmi možnostmi, pravděpodobnost úspěchu 0,25. Pod ním rámec výběrového prostoru se čtyřmi výsledky: NN s pravděpodobností 0,75 krát 0,75, tedy 0,5625, označený jako jeden výsledek; NS a SN, každý 0,1875; SS 0,0625. Součet všech čtyř je 1, výběrový prostor je jistý jev. Výsledky NS a SN jsou v přerušovaném rámečku jevu A, právě jedna správná odpověď, který je totéž co X rovno 1; P(A) = 0,1875 plus 0,1875 = 0,375. Šipky náhodné proměnné X, počtu správných odpovědí, vedou z NN k hodnotě 0, z NS i SN k hodnotě 1 a z SS k hodnotě 2. Dole sloupcový graf rozdělení pravděpodobnosti: P(X = 0) = 0,5625, P(X = 1) = 0,375, P(X = 2) = 0,0625, součet 1."}
+
+:::
+
+Obrázek [-@fig-od-pokusu-k-rozdeleni] čteme shora dolů. Náhodný pokus, tip na dvě otázky, může skončit čtyřmi výsledky: NN, NS, SN a SS (S znamená správně, N nesprávně). Dohromady tvoří výběrový prostor. Pravděpodobnost každého výsledku je součin pravděpodobností obou tipů, protože tipy jsou nezávislé; součet všech čtyř je 1, protože výběrový prostor je jistý jev. Výsledky NS a SN tvoří jev A „právě jedna správná odpověď“ s pravděpodobností $0{,}1875+0{,}1875=0{,}375$.
+
+Náhodná proměnná $X$ je pravidlo „spočítej správné odpovědi“. Každému výsledku přiřadí jedno číslo, jednu z hodnot 0, 1 nebo 2. Výsledky NS a SN jsou dva různé výsledky, ale pravidlo jim přiřadí stejnou hodnotu 1. Jev „$X=1$“ je proto tentýž jev jako A a platí $P(X=1)=P(A)=0{,}375$. Rozdělení pravděpodobnosti v dolní části obrázku shrnuje pravděpodobnosti všech tří hodnot. Součet je opět 1: převodem výsledků na čísla se žádná pravděpodobnost neztratí ani nepřibude.
+
+U diskrétní proměnné můžeme rozdělení uvést v tabulce hodnot a jejich pravděpodobností. Pro počet správných tipů v testu s pěti otázkami vypadá takto (jak se k číslům dojde, ukážeme v oddílu o [binomickém rozdělení](#sec-binomicke)):
 
 ::: {.table-scroll role="region" aria-label="Rozdělení pravděpodobnosti počtu správných tipů z pěti" tabindex="0"}
 

@@ -3955,3 +3955,20 @@ Omezení: tištěné číslo strany citovaného oddílu Gigerenzera a Hoffrage
 neověřeno (citace používá název oddílu). Rok Navarro 2026 je redakční volba,
 ne doložené datum vydání. PDF export kapitoly nebyl znovu vytvořen.
 Didaktická revize proběhla interně jen u dotčených míst, nikoli na studentech.
+
+### Doplnění 2026-10-27: diagram od pokusu k rozdělení
+
+Na podnět autora (vlastní návrh diagramu se dvěma otázkami) přidán obrázek
+`fig-od-pokusu-k-rozdeleni` do oddílu Od jevů k číslům. Proti návrhu je
+použita pravděpodobnost úspěchu 0,25, aby výsledky nebyly stejně
+pravděpodobné a navazovaly na čtyři možnosti v celé kapitole. Podle autora
+doplněna pravděpodobnost jevu A a rovnost P(A) = P(X = 1), popisek hodnot
+náhodné proměnné odlišený od pravidla X a součty 1 u výběrového prostoru
+(jistý jev) i u rozdělení. Průvodní text čte obrázek shora dolů; nové pojmy
+ani značky se nezavádějí. Kontrola kapitoly ověřuje čtyři pravděpodobnosti
+výsledků, rozdělení podle dbinom a počet 13 grafů. Obrázek byl vykreslen
+a vizuálně prohlédnut (bez křížení šipek a překryvů popisků); render a
+kontrola webu: kapitola 5 vykreslena, check-html.cjs prošel bez chyb
+(očekávaný počet obrázků kapitoly zvýšen na 13); obrázek prohlédnut na
+šířce 390 px (vodorovný posun uvnitř obrázku jako u ostatních, stránka
+nepřetéká).

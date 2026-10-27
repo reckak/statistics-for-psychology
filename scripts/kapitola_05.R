@@ -130,6 +130,58 @@ ch5_draw('rozdeleni-model-data', {
   plot(k,obs,type='h',lwd=9,lend=1,col=ch5_gray,xlim=c(-.4,5.4),ylim=c(0,.5),xlab='Počet správných tipů z pěti',ylab='Relativní četnost',main='Data: 40 simulovaných studentů',bty='l')
   text(k,obs+.03,ch5_num(obs),cex=.74)
 },width=10,height=4.4)
+# Two guesses with four options: from the random experiment to the distribution of X.
+ch5_two <- c(NN=.75*.75,NS=.75*.25,SN=.25*.75,SS=.25*.25)
+ch5_two_dist <- c(ch5_two['NN'],ch5_two['NS']+ch5_two['SN'],ch5_two['SS'])
+ch5_draw('od-pokusu-k-rozdeleni', {
+  par(mar=c(.3,.3,.3,.3))
+  plot(NA,xlim=c(0,10),ylim=c(0,10),axes=FALSE,xlab='',ylab='')
+  ink <- '#223744'
+  # Random experiment
+  rect(1.5,9.27,8.5,9.85,col=ch5_pale,border=ink)
+  text(5,9.56,'Náhodný pokus: tip na dvě otázky se čtyřmi možnostmi (π = 0,25)',cex=.9,font=2)
+  arrows(5,9.27,5,8.98,length=.07,col=ink)
+  # Sample space
+  rect(.15,5.55,9.85,8.95,border=ink,lwd=1.3)
+  text(.35,8.72,'Výběrový prostor: všechny možné výsledky',adj=0,cex=.88,font=2)
+  text(9.65,8.72,'jistý jev, součet pravděpodobností:',adj=1,cex=.74,col=ch5_gray)
+  text(9.65,8.45,'0,5625 + 0,1875 + 0,1875 + 0,0625 = 1',adj=1,cex=.74,col=ch5_gray)
+  # Event A = {X = 1}
+  rect(2.85,5.72,7.15,8.25,col='#EEF6F9',border=ch5_blue,lty=2,lwd=1.5)
+  text(5,6.72,'Jev A = {X = 1}: právě jedna správná odpověď',cex=.8,font=2,col=ch5_blue)
+  text(5,6.33,'P(A) = 0,1875 + 0,1875 = 0,375',cex=.8,col=ch5_blue)
+  text(5,5.97,'Tentýž jev jako X = 1, proto P(A) = P(X = 1).',cex=.76,col=ch5_blue)
+  # Outcomes
+  xs <- c(NN=1.4,NS=4,SN=6,SS=8.6)
+  calc <- c(NN='0,75 × 0,75 = 0,5625',NS='0,75 × 0,25 = 0,1875',SN='0,25 × 0,75 = 0,1875',SS='0,25 × 0,25 = 0,0625')
+  for(o in names(xs)) {
+    hl <- o=='NN'
+    rect(xs[o]-.98,7.07,xs[o]+.98,8.02,col='white',border=if(hl) ch5_orange else ink,lwd=if(hl) 2.6 else 1)
+    text(xs[o],7.75,o,cex=1.05,font=2)
+    text(xs[o],7.33,calc[o],cex=.7)
+  }
+  text(xs['NN'],8.25,'jeden výsledek',cex=.8,col=ch5_orange,font=2)
+  text(xs['SS'],6.9,'S = správně, N = nesprávně',cex=.68,col=ch5_gray)
+  # Random variable: rule and values
+  vx <- c(1.4,5,8.6); tgt <- c(NN=1,NS=2,SN=2,SS=3)
+  for(o in names(xs)) arrows(xs[o],5.55,vx[tgt[o]],4.3,length=.08,col=ink,lwd=1.2)
+  text(2.95,5.08,'náhodná proměnná X (pravidlo):',cex=.78,font=2)
+  text(2.95,4.78,'počet správných odpovědí',cex=.78)
+  for(i in 1:3) { rect(vx[i]-.42,3.73,vx[i]+.42,4.28,col=ch5_sand,border=ink); text(vx[i],4.0,i-1,cex=1.05,font=2) }
+  text(3.2,4.0,'hodnoty náhodné proměnné',cex=.74,font=3,col=ch5_gray)
+  text(6.8,4.0,'hodnoty náhodné proměnné',cex=.74,font=3,col=ch5_gray)
+  # Distribution
+  text(.35,3.3,'Rozdělení pravděpodobnosti X',adj=0,cex=.88,font=2)
+  text(9.65,3.3,'součet: 0,5625 + 0,375 + 0,0625 = 1',adj=1,cex=.74,col=ch5_gray)
+  segments(.3,.55,9.7,.55,col=ink)
+  h <- ch5_two_dist*3.6
+  lab <- c('P(X = 0) = 0,5625','P(X = 1) = 0,1875 + 0,1875 = 0,375','P(X = 2) = 0,0625')
+  for(i in 1:3) {
+    rect(vx[i]-.45,.55,vx[i]+.45,.55+h[i],col=if(i==2) ch5_fill else ch5_pale,border=ink,lwd=if(i==2) 2 else 1)
+    text(vx[i],.55+h[i]+.22,lab[i],cex=.78,font=if(i==2) 2 else 1)
+    text(vx[i],.3,paste0('X = ',i-1),cex=.78)
+  }
+},width=9,height=8)
 ch5_draw('kombinace', {
   par(mar=c(.5,.5,2.4,.5))
   cmb <- combn(5,2)
