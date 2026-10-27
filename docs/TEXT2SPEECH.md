@@ -64,7 +64,7 @@ a před generováním doprovodného audia. Platí společně s
   spojovníky, aby mezi částmi nevznikaly nežádoucí dlouhé pauzy:
   „zed-skór“, „té-skór“, „í-kvé-skór“, „kvé-kvé-graf“ a
   „v kvé-kvé-grafu“. Zápis zachovej i v dalších skloňovaných tvarech.
-  Účinek ověřuj pro konkrétní hlas; spojovník není univerzální záruka.
+  Spojovník není univerzální záruka správného přednesu.
 
 ## Názvy funkcí Excelu
 
@@ -82,27 +82,32 @@ a před generováním doprovodného audia. Platí společně s
 
 ## Slovník výslovnosti
 
-- Rozlišuj odborný pravopis od účelového zápisu pro syntézu. Správně
-  napsané slovo nemusí konkrétní hlas správně vyslovit. Zvlášť kontroluj
-  přejaté a odborné výrazy, skupiny „di“, „ti“ a „ni“, vlastní jména,
-  zkratky a názvy funkcí.
+- Rozlišuj odborný pravopis od účelového zápisu pro syntézu. Cizí slova
+  a odborné výrazy se skupinami „di“, „ti“ a „ni“ zapisuj ve scénáři jako
+  „dy“, „ty“ a „ny“, **pokud se daná skupina vyslovuje tvrdě**. Zachovej
+  délku samohlásky také u „dí“, „tí“ a „ní“. Měkce vyslovované skupiny
+  neměň; neprováděj plošnou náhradu bez posouzení konkrétního slova.
+  Prověř také vlastní jména, zkratky a názvy funkcí.
 - Pro projekt nahrávky udržuj jeden slovník: odborný výraz, zápis pro
-  syntézu, poskytovatel/model/hlas, stav ověření a případná omezení.
-  Rozlišuj přepis požadovaný autorem, kandidátní opravu a přepis ověřený
-  poslechem. Záznam o ověření platí pro uvedenou konfiguraci, nikoli
-  automaticky pro každý hlas, model nebo budoucí verzi služby.
-- Známý problém: hlas Adam v dosavadní nahrávce změkčoval „kvantily“
-  přibližně na „kvanťili“. Zápis „kvantyly“ je kandidát k ověření,
-  nikoli doložená oprava. Ověř tvrdé „t“ i zbytek slova; bez poslechu
-  neoznačuj náhradu za úspěšnou. Obdobně kontroluj další tvary, například
-  „kvantilů“ a „kvantilový“; nepřenášej náhradu slepě na jiné kontexty.
-- Ověřené náhrady uplatni důsledně ve všech odpovídajících výskytech.
-  Používej kontrolované náhrady slov a tvarů, které nezasáhnou jiné výrazy.
+  syntézu, poskytovatel/model/hlas, původ přepisu (požadavek autora nebo
+  jazykové posouzení), stav textové kontroly a případná nejistota.
+  Autorem požadovaný přepis je závazný; jeho použití nepodmiňuj
+  poslechovým ověřením a kvůli chybějícímu poslechu jej nevracej
+  k odbornému pravopisu.
+- Pro „kvantil“ používej v podkladu pro syntézu „kvantyl“, například
+  „kvantyly“, „kvantylu“, „kvantylů“ a „kvantylový“. Jde o požadovaný
+  zápis, nikoli pouze kandidátní návrh. Uplatni jej ve všech příslušných
+  tvarech; zkontroluj, že ve scénáři nezůstal původní základ „kvantil“.
+- Přepisy uplatni důsledně ve všech odpovídajících výskytech. Kontroluj
+  konkrétní slova a jejich skloňované či odvozené tvary tak, aby náhrada
+  nezasáhla jiné výrazy. Textovou kontrolu doplň vyhledáním původních
+  rizikových podob; každý zbývající výskyt posuď a případnou výjimku zdůvodni.
   Výslovnostní přepisy patří pouze do scénáře pro syntézu a jeho slovníku,
   nikoli do prezentace, učebnice ani obecného registru odborné terminologie.
 - Používej jen značky a možnosti výslovnosti podporované vybraným modelem.
   Nevkládej neověřené SSML, IPA ani režijní značky, které by hlas mohl
-  předčítat. Samotný textový přepis není důkaz správné výslovnosti.
+  předčítat. Textová kontrola dokládá použití požadovaných přepisů,
+  nikoli skutečnou výslovnost vytvořeného zvuku.
 
 ## Příprava před placenou syntézou
 
@@ -111,22 +116,23 @@ a před generováním doprovodného audia. Platí společně s
   zaručit bezchybnou generaci. Nejprve dokonči a zkontroluj celý scénář.
   Nesyntetizuj průběžně rozepsané části, které ještě čekají obsahové úpravy.
 - Před úplným převodem ověř pokrytí snímků, odbornou správnost, hodnoty
-  a výpočty proti podkladům, srozumitelnost při poslechu, mluvený zápis,
-  konzistenci termínů a výslovnostní rizika. Vyhledej zbylé číslice,
-  matematické značky, zkratky a nerozepsaná písmena; nálezy posuď v kontextu.
+  a výpočty proti podkladům, srozumitelnost textu pro poslech, mluvený zápis,
+  konzistenci termínů a použití výslovnostních přepisů podle slovníku.
+  Vyhledej zbylé číslice, matematické značky, zkratky, nerozepsaná písmena
+  a původní rizikové podoby slov; nálezy posuď v kontextu. Kontrola čísel
+  a značek sama nenahrazuje kontrolu požadovaných výslovnostních přepisů.
 - Použij hlas a nastavení zadané uživatelem. Aktuálně dohodnutá volba
   pro pokračování dosavadních nahrávek je Creative Claw, hlas Adam,
   model `speech/heygen-voice-1`, veřejné `voice_id`
   `32bb79c6f93241b7b956c219aa9bcf75`, čeština a rychlost jedna.
   Jiný výslovný požadavek má přednost. Dostupnost, limity a podporované
   parametry vždy ověř v aktuálním rozhraní; neposílej nastavení jiného modelu.
-- Využij předchozí ukázky a ověřené zápisy pro daný hlas. Nevytvářej znovu
-  ukázku již vybraného hlasu bez důvodu. Pro nový hlas nebo skutečně
-  nevyřešenou výslovnost soustřeď potřebné výrazy do jedné krátké
-  reprezentativní ukázky, pokud to rozsah zadání dovoluje; neprováděj
-  nevyžádané placené porovnávání hlasů či modelů. Před dlouhým převodem
-  vyřeš zjištěné chyby ukázky. Je-li k posouzení nutný poslech uživatele,
-  předlož mu konkrétní ukázku a uveď, co potřebuje ověřit.
+- Využij dříve určené přepisy a autorovy připomínky k danému hlasu.
+  Poslechovou kontrolu neukládej jako povinný krok, pokud ji dostupné
+  prostředí neumí provést. Její nedostupnost nebrání použití závazných
+  přepisů ani dokončení zadaného převodu. Krátké zvukové ukázky
+  a placené porovnávání hlasů či modelů vytvářej jen na výslovnou žádost;
+  nevyžaduj je automaticky jako podmínku další práce.
 - Zkontroluj dostupnost služby a případné omezení kredity, pokud je lze
   zjistit. Cenu ani zůstatek neodhaduj ze staré nahrávky. Respektuj zadaný
   rozpočet a pravidla nástroje; při blokaci ji vysvětli a neopakuj stejné
@@ -169,12 +175,12 @@ a před generováním doprovodného audia. Platí společně s
   správné pořadí, úplnost začátku a konce, přehratelnost, přítomnost zvuku
   a délku odpovídající součtu skutečně spojených úseků. Zkontroluj také
   časové značky kapitol a vazbu na snímky. Úspěšný zápis souboru nestačí.
-- Poslechovou kontrolu zaměř na problematické odborné termíny, čísla,
-  vzorce, názvy funkcí, změny snímků a spoje úseků. Rozlišuj technickou
-  kontrolu souboru, automatický přepis a skutečný poslech. Pokud poslech
-  není dostupný, konkrétně uveď toto omezení; netvrď, že výslovnost nebo
-  celá nahrávka byla poslechem ověřena. Automatický přepis nezaručuje
-  správnou výslovnost ani neodhalí všechny zvukové chyby.
+- Rozlišuj textovou kontrolu přepisů, technickou kontrolu souboru
+  a automatický přepis zvuku. Žádnou z nich nevydávej za skutečný poslech
+  ani za potvrzení správné výslovnosti. Uveď skutečně provedené kontroly
+  a jejich omezení; automatický přepis nemusí odhalit chybné změkčení
+  souhlásek ani všechny jiné zvukové chyby. Poslechové ověření deklaruj
+  pouze tehdy, pokud skutečně proběhlo.
 - Scénář ulož jako samostatný text v UTF-8. U každé dokončené nahrávky
   uchovej identitu/verzi podkladů, rozsah snímků, scénář, slovník,
   nastavení hlasu, mapování úseků a výsledky kontrol pro cílené opravy.
