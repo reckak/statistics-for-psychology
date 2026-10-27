@@ -1,5 +1,30 @@
 # Autorská dokumentace
 
+## 2026-10-27 — Scénář k výkladové části prezentace kapitoly 5
+
+Na výslovnou žádost autora připraven
+[mluvený scénář v UTF-8](../presentations/kapitola_05_pravdepodobnost_scenar.txt)
+pro snímky 1–35 aktuálního PPTX, včetně předělů a řešených příkladů.
+Samostatné procvičování na snímcích 36–43 a diskusní otázky v poznámkách
+nejsou zahrnuty, podle [pravidel scénářů](../docs/TEXT2SPEECH.md).
+Text má 5 708 slov; čísla, značky a vzorce jsou přepsány pro poslech.
+Průběžně pojmenovává osy a relevantní části grafů, vysvětluje celek
+při podmínění, předpoklady modelů a význam výsledků.
+
+[Průvodní dokument](../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md)
+obsahuje rozsah, omezení kontroly a jediný slovník výslovnosti projektu
+této nahrávky; [manifest](../presentations/kapitola_05_pravdepodobnost_scenar_manifest.json)
+uchovává otisky podkladů a scénáře, přiřazení 35 úseků k titulům snímků,
+počty slov a nezávisle přepočtené hodnoty.
+
+Ověření: načtení textu, tabulek a poznámek PPTX, vizuální prohlídka
+13 vložených obrázků, porovnání relevantního výkladu s kapitolou,
+kontrola číslování a mluveného zápisu, nezávislé číselné přepočty
+a interní didaktická revize. `git diff --check` a kontrola map
+`node scripts/check-doc-maps.cjs` bez chyb (73 mapových souborů,
+53 rozhodnutí). Syntéza nebyla spuštěna; výslovnost a tempo
+nejsou poslechem ověřeny. Původní prezentace, kapitola a sešity beze změny.
+
 ## 2026-10-27 — Instrukce pro scénáře a doprovodné audio
 
 Přidán [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md) jako hlavní místo postupu

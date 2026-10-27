@@ -180,6 +180,17 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [E04-GIGERENZER-HOFFRAGE](../zdroje/E04-gigerenzer-hoffrage.md#e04-gigerenzer-hoffrage) — vymezení přirozených četností.
 - [Doplnění kontroly podkladů kapitoly 5](../zdroje/HISTORIE.md#doplnění-kontroly-podkladů-kapitoly-5--2026-10-12) — společný datovaný záznam.
 
+### Doprovodný scénář k prezentaci
+
+K aktuální [prezentaci](../../presentations/kapitola_05_pravdepodobnost.pptx)
+je od 2026-10-27 připraven
+[mluvený scénář](../../presentations/kapitola_05_pravdepodobnost_scenar.txt)
+pro výkladové snímky 1–35, bez závěrečného procvičování. Identitu podkladů,
+mapu úseků, slovník výslovnosti a omezení ověření uvádí
+[průvodní dokument](../../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md).
+Jde o textový podklad; nahrávka v tomto kroku nevznikla. Obsah kapitoly
+ani její hranice učiva se tím nemění.
+
 ### Pracovní PDF
 
 Od 2026-10-23 je ověřen [ruční PDF export](../PROVOZ.md#ruční-pdf-vybrané-kapitoly).

@@ -1,0 +1,285 @@
+{
+  "date": "2026-10-27",
+  "script": "presentations/kapitola_05_pravdepodobnost_scenar.txt",
+  "script_sha256": "a7883d4e67e3ee41a92a6ba1fa703547c335be670a052aa32d4b0ea6b4410da6",
+  "word_count": 5708,
+  "character_count": 40122,
+  "sources": [
+    {
+      "path": "presentations/kapitola_05_pravdepodobnost.pptx",
+      "sha256": "96e1692748c4f4f7e2e91b1e904f80ce2aa08c55febaa1a19570acbe5962cb4e"
+    },
+    {
+      "path": "quarto/kapitola_05.qmd",
+      "sha256": "49ccd5f0b8b7d82aaaea4098161579b392ac4ee49f1de1f10858471ae22ba1e2"
+    },
+    {
+      "path": "docs/TEXT2SPEECH.md",
+      "sha256": "eabfd91175025e027201a71a09d484e15c2773d0537abaf54db2b78611652f2a"
+    },
+    {
+      "path": "docs/SLOVNIK.md",
+      "sha256": "a153edc876cecaa9dd584c3d59b6beba4f50596a99f465e779bf91eba8b2d6dc"
+    }
+  ],
+  "slides": [
+    {
+      "number": 1,
+      "title": "Pravděpodobnost",
+      "announcement": "Snímek jedna.",
+      "word_count": 119
+    },
+    {
+      "number": 2,
+      "title": "Obsah přednášky",
+      "announcement": "Snímek dva.",
+      "word_count": 80
+    },
+    {
+      "number": 3,
+      "title": "Co pravděpodobnost vyjadřuje",
+      "announcement": "Snímek tři.",
+      "word_count": 25
+    },
+    {
+      "number": 4,
+      "title": "Od relativní četnosti k pravděpodobnosti",
+      "announcement": "Snímek čtyři.",
+      "word_count": 156
+    },
+    {
+      "number": 5,
+      "title": "Tři pojetí: odkud číslo pochází",
+      "announcement": "Snímek pět.",
+      "word_count": 175
+    },
+    {
+      "number": 6,
+      "title": "Dlouhá řada kolísání zmenšuje, nic nevyrovnává",
+      "announcement": "Snímek šest.",
+      "word_count": 221
+    },
+    {
+      "number": 7,
+      "title": "Jevy a pravidla počítání",
+      "announcement": "Snímek sedm.",
+      "word_count": 29
+    },
+    {
+      "number": 8,
+      "title": "Jev je množina výsledků",
+      "announcement": "Snímek osm.",
+      "word_count": 158
+    },
+    {
+      "number": 9,
+      "title": "Opačný jev: dopočet do jedné",
+      "announcement": "Snímek devět.",
+      "word_count": 143
+    },
+    {
+      "number": 10,
+      "title": "Průnik, sjednocení a součtové pravidlo",
+      "announcement": "Snímek deset.",
+      "word_count": 205
+    },
+    {
+      "number": 11,
+      "title": "Společná a marginální pravděpodobnost",
+      "announcement": "Snímek jedenáct.",
+      "word_count": 141
+    },
+    {
+      "number": 12,
+      "title": "Konjunkční klam: věrohodnější není pravděpodobnější",
+      "announcement": "Snímek dvanáct.",
+      "word_count": 132
+    },
+    {
+      "number": 13,
+      "title": "Podmíněná pravděpodobnost a nezávislost",
+      "announcement": "Snímek třináct.",
+      "word_count": 30
+    },
+    {
+      "number": 14,
+      "title": "Podmínka zužuje celek",
+      "announcement": "Snímek čtrnáct.",
+      "word_count": 150
+    },
+    {
+      "number": 15,
+      "title": "Z koho počítám? P(A | B) ≠ P(B | A)",
+      "announcement": "Snímek patnáct.",
+      "word_count": 137
+    },
+    {
+      "number": 16,
+      "title": "Součinové pravidlo: průnik krok za krokem",
+      "announcement": "Snímek šestnáct.",
+      "word_count": 156
+    },
+    {
+      "number": 17,
+      "title": "Nezávislé jevy: jeden nemění pravděpodobnost druhého",
+      "announcement": "Snímek sedmnáct.",
+      "word_count": 197
+    },
+    {
+      "number": 18,
+      "title": "Co nezávislost neznamená",
+      "announcement": "Snímek osmnáct.",
+      "word_count": 143
+    },
+    {
+      "number": 19,
+      "title": "Obrácení podmínky: Bayesova věta",
+      "announcement": "Snímek devatenáct.",
+      "word_count": 35
+    },
+    {
+      "number": 20,
+      "title": "Screening: co víme a na co se ptáme",
+      "announcement": "Snímek dvacet.",
+      "word_count": 178
+    },
+    {
+      "number": 21,
+      "title": "Přirozené četnosti: tisíc studentů ve stromu",
+      "announcement": "Snímek dvacet jedna.",
+      "word_count": 221
+    },
+    {
+      "number": 22,
+      "title": "Úplná pravděpodobnost a Bayesova věta",
+      "announcement": "Snímek dvacet dva.",
+      "word_count": 189
+    },
+    {
+      "number": 23,
+      "title": "Stejný dotazník, jiná prevalence",
+      "announcement": "Snímek dvacet tři.",
+      "word_count": 264
+    },
+    {
+      "number": 24,
+      "title": "Rozdělení pravděpodobnosti a binomický model",
+      "announcement": "Snímek dvacet čtyři.",
+      "word_count": 33
+    },
+    {
+      "number": 25,
+      "title": "Náhodná proměnná přiřazuje výsledkům čísla",
+      "announcement": "Snímek dvacet pět.",
+      "word_count": 233
+    },
+    {
+      "number": 26,
+      "title": "Rozdělení je model, data se od něj liší",
+      "announcement": "Snímek dvacet šest.",
+      "word_count": 221
+    },
+    {
+      "number": 27,
+      "title": "Kdy použít binomický model",
+      "announcement": "Snímek dvacet sedm.",
+      "word_count": 177
+    },
+    {
+      "number": 28,
+      "title": "Kombinační číslo: kolika způsoby lze vybrat",
+      "announcement": "Snímek dvacet osm.",
+      "word_count": 225
+    },
+    {
+      "number": 29,
+      "title": "Binomický vzorec",
+      "announcement": "Snímek dvacet devět.",
+      "word_count": 245
+    },
+    {
+      "number": 30,
+      "title": "Tvar, střední hodnota a směrodatná odchylka",
+      "announcement": "Snímek třicet.",
+      "word_count": 189
+    },
+    {
+      "number": 31,
+      "title": "Právě, nejvýše, alespoň",
+      "announcement": "Snímek třicet jedna.",
+      "word_count": 254
+    },
+    {
+      "number": 32,
+      "title": "Normální aproximace a podíl",
+      "announcement": "Snímek třicet dva.",
+      "word_count": 33
+    },
+    {
+      "number": 33,
+      "title": "Normální aproximace: postup",
+      "announcement": "Snímek třicet tři.",
+      "word_count": 219
+    },
+    {
+      "number": 34,
+      "title": "Jak přesná aproximace je",
+      "announcement": "Snímek třicet čtyři.",
+      "word_count": 249
+    },
+    {
+      "number": 35,
+      "title": "Od počtu k podílu: víc pokusů, menší kolísání",
+      "announcement": "Snímek třicet pět.",
+      "word_count": 262
+    }
+  ],
+  "excluded_slides": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+  ],
+  "checks": {
+    "ordered_slide_coverage": true,
+    "spoken_text_scan": true,
+    "numeric_checks": {
+      "odpocinek": 0.3888888888888889,
+      "sjednoceni": 0.6499999999999999,
+      "opacna_podminka": 0.5714285714285714,
+      "karticky_bez_vraceni": 0.1575757575757576,
+      "alespon_jeden_ze_dvou": 0.4375,
+      "ppv_10pct": 0.5135135135135135,
+      "npv_10pct": 0.9938650306748467,
+      "ppv_1pct": 0.08755760368663594,
+      "dva_z_peti": 0.263671875,
+      "alespon_tri_z_peti": 0.103515625,
+      "prave_pet_z_dvaceti": 0.2023311518569244,
+      "nejvyse_pet_z_dvaceti": 0.6171726543871046,
+      "alespon_deset_z_dvaceti": 0.01386441694376117,
+      "alespon_135_z_200": 0.017307341051347895,
+      "aproximace_135": 0.015191410988288754,
+      "aproximace_134_5": 0.018179276586395357,
+      "aproximace_10_z_20": 0.004911637253759626,
+      "sd_podilu_200": 0.034641016151377546,
+      "z_podilu": 2.1650635094610986
+    },
+    "visual_source_review": "13 embedded figures inspected; slide texts, tables and notes read",
+    "didactic_review": "transitions, denominators, operators, model assumptions and interpretations reviewed",
+    "audio_generated": false,
+    "pronunciation_listening_verified": false
+  },
+  "future_synthesis_defaults": {
+    "provider": "Creative Claw",
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
+    "language": "cs",
+    "speed": 1,
+    "status": "project preference only; service availability and parameters not checked; no synthesis requested"
+  }
+}
