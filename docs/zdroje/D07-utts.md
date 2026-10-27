@@ -25,6 +25,8 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Použití v kapitole 5 (2026-10-12):** s. 77–78 prohlédnuty v obraze. Ověřeno: oddíl o záměně obrácených podmíněných pravděpodobností, studie se 100 lékaři (odpovědi kolem 75 % při správné hodnotě přibližně 7,5 %) a doporučení tabulky s počty pro pomyslnou skupinu lidí. DOI 10.1198/0003130031630, ročník 57, číslo 2, s. 74–79 ověřeny v metadatech Crossref a zapsány do společné bibliografie. Empirické údaje článku se do kapitoly nepřebírají.
 
+**Změna použití v kapitole 5 (2026-10-27):** na pokyn autora byla odstraněna metakomentářová věta o doporučení tabulky s počty (s. 77). Kapitola nadále cituje s. 77–78 u záměny obrácených podmíněných pravděpodobností.
+
 **Použití v kapitole 6 (2026-10-12):** s. 75–76 (PDF 2–3) prohlédnuty v obraze. Kapitola cituje rozlišení statistické a praktické významnosti s příkladem 507 125 branců a rozdílu 0,6 cm ve výšce podle období narození, rozdíl mezi výroky „nenašli jsme statisticky významný rozdíl“ a „žádný rozdíl není“ včetně vazby na malé výběry a nízkou sílu a požadavek uvádět všechny provedené testy. Původní studie o brancích čtena nebyla; údaj se uvádí jako příklad z článku.
 
 

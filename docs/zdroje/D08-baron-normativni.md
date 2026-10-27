@@ -34,6 +34,8 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Použití v kapitole 5 (2026-10-12):** s. 121–123 prohlédnuty v obraze: příklad se 100 ženami, tabulka počtů, strom a teprve potom vzorec. Kapitola cituje jen tento postup, nikoli klinické hodnoty. **Bibliografická identita ověřena mimo úryvek:** Jonathan Baron, *Thinking and Deciding*, 4. vydání, Cambridge University Press; rok 2008 a označení vydání podle záznamu Kongresové knihovny pro ISBN 978-0-521-68043-1; DOI knihy 10.1017/CBO9780511840265; metadata Crossref uvádějí kapitolu „Normative theory of probability“ na s. 103–136 a „Descriptive theory of probability judgment“ na s. 137–160, což odpovídá stránkování úryvků. Metadata vydavatele uvádějí odlišné datum 2006; v bibliografii je rok 2008. Copyrightová strana knihy nebyla k dispozici.
 
 
+**Změna použití v kapitole 5 (2026-10-27):** na pokyn autora byla z oddílu o přirozených četnostech odstraněna metakomentářová věta o Baronově postupu (s. 121–123). Kapitola nadále cituje Barona u hráčského a konjunkčního klamu a u zanedbání základních četností.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05). Konkrétní použití a stav ověření určují záznamy výše.

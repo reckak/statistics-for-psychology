@@ -15,16 +15,19 @@ eq(ch5_cards/sum(ch5_cards),c(.40,.35,.25));eq(1-.40,60/100);eq(.40+.35,.75)
 eq(40/100*39/99,1560/9900);eq(round(1560/9900,3),.158);eq(.4*.4,.16)
 # Dependent table: joint, marginal, conditional, union, addition rule, product check.
 d <- ch5_dependent;n <- sum(d)
-eq(n,200);eq(d['Žena','Stres']/n,.20);eq(sum(d['Žena',],d['Muž','Stres'])/n,.65)
-eq(sum(d['Žena',])/n+sum(d[,'Stres'])/n-d['Žena','Stres']/n,.65);eq(sum(d[,'Stres'])/n,.35)
-eq(d['Muž','Bez vysokého stresu']/n,.35);eq(d['Žena','Stres']/n+d['Muž','Stres']/n,.35)
-eq(d['Žena','Stres']/sum(d['Žena',]),.40);eq(round(d['Žena','Stres']/sum(d[,'Stres']),2),.57)
-eq((d['Žena','Stres']/n)/(sum(d['Žena',])/n),.40);eq(.50*.40,.20);eq(.35*(40/70),.20)
-stopifnot(abs(d['Žena','Stres']/n-.5*.35)>.02);eq(.5*.35,.175);eq(.5+.35,.85)
+eq(n,200);eq(d['Žena','Zvýšený stres']/n,.20);eq(sum(d['Žena',],d['Muž','Zvýšený stres'])/n,.65)
+eq(sum(d['Žena',])/n+sum(d[,'Zvýšený stres'])/n-d['Žena','Zvýšený stres']/n,.65);eq(sum(d[,'Zvýšený stres'])/n,.35)
+eq(d['Muž','Nízký stres']/n,.35);eq(d['Žena','Zvýšený stres']/n+d['Muž','Zvýšený stres']/n,.35)
+eq(d['Žena','Zvýšený stres']/sum(d['Žena',]),.40);eq(round(d['Žena','Zvýšený stres']/sum(d[,'Zvýšený stres']),2),.57)
+eq((d['Žena','Zvýšený stres']/n)/(sum(d['Žena',])/n),.40);eq(.50*.40,.20);eq(.35*(40/70),.20)
+stopifnot(abs(d['Žena','Zvýšený stres']/n-.5*.35)>.02);eq(.5*.35,.175);eq(.5+.35,.85)
 # Independent table: equal conditional proportions and the product rule.
 i <- ch5_independent
-eq(c(i['Žena','Stres']/sum(i['Žena',]),i['Muž','Stres']/sum(i['Muž',]),sum(i[,'Stres'])/sum(i)),rep(.30,3))
-eq(i['Žena','Stres']/sum(i),.5*.3)
+eq(c(i['Žena','Zvýšený stres']/sum(i['Žena',]),i['Muž','Zvýšený stres']/sum(i['Muž',]),sum(i[,'Zvýšený stres'])/sum(i)),rep(.30,3))
+eq(i['Žena','Zvýšený stres']/sum(i),.5*.3)
+# Reverse direction: stress level does not change the probability of being a woman.
+eq(c(i['Žena','Zvýšený stres']/sum(i[,'Zvýšený stres']),i['Žena','Nízký stres']/sum(i[,'Nízký stres']),sum(i['Žena',])/sum(i)),rep(.50,3))
+eq(c(sum(i[,'Zvýšený stres']),sum(i[,'Nízký stres'])),c(60,140))
 # Two independent tips; at least one correct through the complement.
 eq(.25^2,.0625);eq(1-.75^2,.4375)
 # Screening: natural frequencies, predictive values, total probability, Bayes.

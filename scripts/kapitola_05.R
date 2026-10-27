@@ -12,7 +12,7 @@ ch5_draw <- function(name,code,width=8,height=4.5) {
 }
 # Fixed teaching inputs -------------------------------------------------------
 ch5_cards <- c(podstatna=40,slovesa=35,pridavna=25)
-ch5_dependent <- matrix(c(40,60,30,70),2,byrow=TRUE,dimnames=list(c('Žena','Muž'),c('Stres','Bez vysokého stresu')))
+ch5_dependent <- matrix(c(40,60,30,70),2,byrow=TRUE,dimnames=list(c('Žena','Muž'),c('Zvýšený stres','Nízký stres')))
 ch5_independent <- matrix(c(30,70,30,70),2,byrow=TRUE,dimnames=dimnames(ch5_dependent))
 ch5_sens <- .95; ch5_spec <- .90
 # Natural frequencies: state present/absent by positive/negative result.
@@ -74,24 +74,24 @@ ch5_mosaic <- function(tab,highlight,main,dim_row=integer(0)) {
 }
 ch5_draw('prunik-sjednoceni', {
   par(mfrow=c(1,2),mar=c(2.6,.6,2.6,.6))
-  ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,FALSE,FALSE),2,byrow=TRUE),'Průnik: žena a zároveň stres')
+  ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,FALSE,FALSE),2,byrow=TRUE),'Průnik: žena a zároveň zvýšený stres')
   mtext('40 z 200, tedy 0,20',1,line=.6,cex=.9)
-  ch5_mosaic(ch5_dependent,matrix(c(TRUE,TRUE,TRUE,FALSE),2,byrow=TRUE),'Sjednocení: žena nebo stres')
+  ch5_mosaic(ch5_dependent,matrix(c(TRUE,TRUE,TRUE,FALSE),2,byrow=TRUE),'Sjednocení: žena nebo zvýšený stres')
   mtext('40 + 60 + 30 = 130 z 200, tedy 0,65',1,line=.6,cex=.9)
 },width=10,height=4.2)
 ch5_draw('podmineni', {
   par(mfrow=c(1,2),mar=c(2.6,.6,2.6,.6))
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Celek: všech 200 studentů')
-  mtext('P(stres) = 70/200 = 0,35',1,line=.6,cex=.9)
+  mtext('P(zvýšený stres) = 70/200 = 0,35',1,line=.6,cex=.9)
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,FALSE,FALSE),2,byrow=TRUE),'Podmínka: jen 100 žen',dim_row=2)
-  mtext('P(stres | žena) = 40/100 = 0,40',1,line=.6,cex=.9)
+  mtext('P(zvýšený stres | žena) = 40/100 = 0,40',1,line=.6,cex=.9)
 },width=10,height=4.2)
 ch5_draw('nezavislost', {
-  par(mfrow=c(1,2),mar=c(2.6,.6,2.6,.6))
+  par(mfrow=c(1,2),mar=c(3.6,.6,2.6,.6))
   ch5_mosaic(ch5_independent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Nezávislost: v obou řádcích 30 %')
-  mtext('P(stres | žena) = P(stres | muž) = P(stres) = 0,30',1,line=.6,cex=.9)
+  mtext('P(zvýšený stres | žena) = P(zvýšený stres | muž)',1,line=.6,cex=.9); mtext('= P(zvýšený stres) = 0,30',1,line=1.8,cex=.9)
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Závislost: 40 % a 30 %')
-  mtext('P(stres | žena) = 0,40; P(stres | muž) = 0,30',1,line=.6,cex=.9)
+  mtext('P(zvýšený stres | žena) = 0,40',1,line=.6,cex=.9); mtext('P(zvýšený stres | muž) = 0,30',1,line=1.8,cex=.9)
 },width=10,height=4.2)
 ch5_box <- function(x,y,w,h,label,fill='white',lwd=1,cex=.86) { rect(x-w/2,y-h/2,x+w/2,y+h/2,col=fill,border='#223744',lwd=lwd); text(x,y,label,cex=cex) }
 ch5_draw('strom', {
@@ -101,12 +101,13 @@ ch5_draw('strom', {
   ch5_box(5,6.3,2.6,.8,'1 000 studentů')
   ch5_box(2.5,4.2,3,.9,paste0(f['present'],'\nporucha přítomna')); ch5_box(7.5,4.2,3,.9,paste0(f['absent'],'\nporucha nepřítomna'))
   segments(5,5.9,2.5,4.65); segments(5,5.9,7.5,4.65)
-  text(3.25,5.45,'0,10',cex=.84,adj=1); text(6.75,5.45,'0,90',cex=.84,adj=0)
+  text(3.4,5.45,'0,10\n(prevalence)',cex=.8,adj=1); text(6.6,5.45,'0,90\n(1 − prevalence)',cex=.8,adj=0)
   xs <- c(1.15,3.85,6.15,8.85); labs <- c(paste0(f['tp'],'\npozitivní'),paste0(f['fn'],'\nnegativní'),paste0(f['fp'],'\npozitivní'),paste0(f['tn'],'\nnegativní'))
   for(i in 1:4) { ch5_box(xs[i],2,2.1,.9,labs[i],fill=if(i %in% c(1,3)) ch5_fill else 'white',lwd=if(i %in% c(1,3)) 2.2 else 1); segments(c(2.5,2.5,7.5,7.5)[i],3.75,xs[i],2.45) }
-  text(c(1.55,3.45,6.55,8.45),3.15,c('0,95','0,05','0,10','0,90'),cex=.84,adj=c(1,0,1,0))
+  text(c(1.65,6.65),3.12,c('0,95\n(senzitivita)','0,10\n(1 − specificita)'),cex=.76,adj=1)
+  text(c(3.35,8.35),3.12,c('0,05\n(1 − senzitivita)','0,90\n(specificita)'),cex=.76,adj=0)
   text(5,.75,'Pozitivní výsledek má 95 + 90 = 185 studentů; poruchu z nich má 95.',cex=.9)
-  text(5,.25,'Pozitivní prediktivní hodnota: 95/185 = 0,514',cex=.9,font=2)
+  text(5,.25,'Prediktivní hodnota pozitivního testu: 95/185 = 0,514',cex=.9,font=2)
 },width=8.6,height=5.4)
 ch5_draw('dve-prevalence', {
   par(mar=c(4.5,10.5,2.6,1))
@@ -117,7 +118,7 @@ ch5_draw('dve-prevalence', {
     f <- list(a,b)[[k]]; y <- c(2.2,1)[k]
     rect(0,y-.28,f['tp'],y+.28,col=ch5_blue,border='white'); rect(f['tp'],y-.28,f['tp']+f['fp'],y+.28,col=ch5_sand,border='#223744')
     text(f['tp']/2,y+.45,f['tp'],cex=.9,col=ch5_blue); text(f['tp']+f['fp']/2,y,f['fp'],cex=.9)
-    text(f['tp']+f['fp']+30,y,paste0('prediktivní hodnota ',ch5_num(ch5_ppv(f))),adj=0,cex=.9,font=2,xpd=NA)
+    text(f['tp']+f['fp']+30,y,paste0('prediktivní hodnota\npozitivního testu ',ch5_num(ch5_ppv(f))),adj=0,cex=.9,font=2,xpd=NA)
   }
   legend('topright',c('správně pozitivní','falešně pozitivní'),fill=c(ch5_blue,ch5_sand),bty='n',cex=.85,inset=c(0,-.02))
 },width=9,height=4.2)
@@ -134,7 +135,7 @@ ch5_draw('kombinace', {
   cmb <- combn(5,2)
   plot(NA,xlim=c(-.4,12.4),ylim=c(-.2,6.2),axes=FALSE,xlab='',ylab='',main='Deset způsobů, jak mít právě 2 z 5 tipů správně')
   for(j in 1:10) {
-    x0 <- ((j-1)%%2)*6.6; y <- 5-(j-1)%/%2
+    x0 <- ((j-1)%/%5)*6.6; y <- 5-(j-1)%%5
     text(x0-.1,y,paste0(j,'.'),adj=1,cex=.85)
     for(q in 1:5) {
       hit <- q %in% cmb[,j]

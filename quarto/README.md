@@ -3905,3 +3905,53 @@ ale u jejich automatického převodu vypisuje upozornění na zastaralý
 alias `sect`; symboly byly ve výsledku zkontrolovány. PDF je pouze místní
 ignorovaný výstup. Rozpracované změny prezentace kapitoly 4 a související
 záznam historie byly zachovány a nejsou součástí této úpravy.
+
+<a id="revize-kapitoly-5-2026-10-27"></a>
+
+## 2026-10-27: Kapitola 5 podle autorových připomínek
+
+Zapracováno 25 autorových připomínek a zachovány jeho redakční úpravy
+kapitoly (dvě z nich jazykově dokončeny: věta o přímém výpočtu
+„alespoň jednou“ a vymezení kombinace). Terminologii mění
+[R52](../docs/rozhodnuti/kapitola-05.md#r52-terminologie-revize-kapitoly-5):
+opačný jev (číslo 1 − P zůstává doplněk do jedné), prediktivní hodnota
+pozitivního/negativního testu, úrovně „zvýšený“ a „nízký stres“ i ve
+vzorcích. Navarro se cituje s rokem 2026 (doplněk
+[R42](../docs/rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace)).
+
+Obsahové změny: úvody oddílů „Tento oddíl…“; četnostní pojetí jako hodnota,
+k níž se relativní četnost ustaluje v nekonečné řadě; odstraněna předbíhající
+věta o kartičkách; poznámka k okrajům čtyřpolní tabulky; odvození součinového
+pravidla s krácením; obrácený směr nezávislosti (P(žena | úroveň stresu) = 0,50)
+a odvození součinového tvaru ve třech krocích; přiřazení obou tabulek
+k panelům obrázku nezávislosti; význam pozitivního a negativního výsledku;
+nová tabulka čtyř kombinací stavu a výsledku (`tbl-ctyri-vysledky`) s hesly
+správně pozitivní/negativní výsledek; přesnější vymezení přirozených četností
+s kontrastem k normalizovaným četnostem a novým zdrojem
+[E04](../docs/zdroje/E04-gigerenzer-hoffrage.md#e04-gigerenzer-hoffrage);
+odstraněny metakomentáře o Baronovi a Uttsové; vysvětlení blízkosti šancí
+a pravděpodobnosti u vzácných jevů; náhodná proměnná odlišena od rozdělení
+a rozdělení navázáno na výběrový prostor; 2⁵ u počtu pětic; „nízká/vysoká“
+místo „malá/velká“ pravděpodobnost. Strom má u větví popisky (prevalence,
+senzitivita, specificita a jejich doplňky do jedné), graf kombinací řadí
+způsoby po sloupcích. Upraveny sešit (záhlaví tabulek stresu, popisky
+A16:A17 listu `Bayes`, popis listu `Karticky`), kontrola kapitoly, slovníček,
+přehled značení, autorský registr, karta kapitoly, DATA.md a karty U08,
+D07 a D08.
+
+Ověření: `check-chapter-05.R` prošel včetně nové kontroly obráceného směru
+nezávislosti. Upravených šest grafů bylo znovu vykresleno a prohlédnuto
+(strom bez překryvů popisků). `build-workbooks.ps1 -Chapter 5 -Verify`
+prošel v Excelu 16.0 (78 vzorců, pět záměrných chybových případů, kontrola
+chyb vzorců všech sedmi sešitů); nové popisky ověřeny v uloženém XLSX.
+Celá kniha vykreslena; `check-html.cjs` prošel bez chyb (12 stránek, 262
+řádků přehledů, 83 řešení, šířky 1360/1920/390 px). Vizuálně prohlédnuty
+oddíly o součinovém pravidle a screeningu na šířce 390 px a oddíl
+o nezávislosti na desktopu; ověřeny citace Navarro (2026) a Gigerenzer
+a Hoffrage (1995) i v seznamu literatury. Prošla `check-doc-maps.cjs`
+a `git diff --check`.
+
+Omezení: tištěné číslo strany citovaného oddílu Gigerenzera a Hoffrage
+neověřeno (citace používá název oddílu). Rok Navarro 2026 je redakční volba,
+ne doložené datum vydání. PDF export kapitoly nebyl znovu vytvořen.
+Didaktická revize proběhla interně jen u dotčených míst, nikoli na studentech.
