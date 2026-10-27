@@ -1,0 +1,353 @@
+Snímek jedna.
+
+Tato nahrávka provází výkladovou část prezentace o pravděpodobnosti. Při poslechu sledujte odpovídající snímek. Na začátku každého úseku zazní jeho číslo. Přehrávání si můžete kdykoli pozastavit, zejména u tabulek, diagramů a výpočtů.
+
+Psycholožka má před sebou klienta, jehož screeningový dotazník vyšel pozitivně. Jak moc má počítat s tím, že klient poruchou skutečně trpí? Student správně odpověděl na deset otázek z dvaceti. Dalo by se takového výsledku dosáhnout i pouhým tipováním? V obou situacích potřebujeme uvažovat o nejistotě. K jejímu číselnému vyjádření slouží pravděpodobnost.
+
+Navážeme na relativní četnosti a na plochu pod normální křivkou. Naučíme se pravidla pro pravděpodobnosti různých jevů a model pro počet úspěchů v řadě pokusů. Příklady se screeningovým dotazníkem používají výukové hodnoty. Nepopisují vlastnosti skutečného diagnostického nástroje.
+
+Snímek dva.
+
+Obsah přednášky postupuje od významu pravděpodobnosti k jejímu použití. Nejprve si vysvětlíme, co pravděpodobnost vyjadřuje. Potom vymezíme jevy a pravidla počítání. Podmíněná pravděpodobnost ukáže, jak se změní naše otázka, když už něco víme. Nezávislost popíše situaci, kdy tato informace pravděpodobnost druhého jevu nemění.
+
+Na screeningu si ukážeme obrácení podmínky a Bayesovu větu. Pak přejdeme k náhodné proměnné a binomickému modelu. Výklad uzavře normální aproximace a převod počtu úspěchů na podíl. Prezentace obsahuje také závěrečné procvičování. To už tato nahrávka nezahrnuje.
+
+Snímek tři.
+
+Začínáme otázkou, co pravděpodobnost vyjadřuje. Stejné číslo může jednou popisovat získaná data a podruhé vyjadřovat očekávání před výsledkem náhodného pokusu. Rozdíl si ukážeme na losování.
+
+Snímek čtyři.
+
+Ve známém souboru účastníků odpovědělo čtrnáct z třiceti šesti, že se cítí dost odpočatě. Čtrnáct děleno třiceti šesti je přibližně nula celých tři sta osmdesát devět tisícin. Jako relativní četnost toto číslo shrnuje odpovědi, které už máme.
+
+Teď napíšeme jména všech účastníků na stejné lístky, promícháme je a jeden naslepo vytáhneme. Každý lístek má stejnou pravděpodobnost vytažení. Čtrnáct z nich patří lidem s odpovědí dost. Pravděpodobnost, že vytáhneme některý z těchto lístků, je proto opět čtrnáct děleno třiceti šesti.
+
+Číslo je stejné, ale nyní odpovídá na otázku položenou před tahem. Vyjadřuje, nakolik lze očekávat daný výsledek. Pravděpodobnost leží mezi nulou a jednou. Můžeme ji vyjádřit také procenty: zde přibližně třicet osm celých devět desetin procenta.
+
+Pravděpodobnost značíme velkým písmenem pé. Do závorky píšeme, čeho se týká. Malé pé jsme používali pro relativní četnost nebo úroveň kvantilu. U normálního modelu jsme stejnou myšlenku potkali jako plochu nad intervalem: pravděpodobnost, že do něj hodnota náhodně vybraného člověka spadne.
+
+Snímek pět.
+
+Tabulka rozlišuje tři pojetí pravděpodobnosti podle toho, z čeho číslo vychází a jak mu rozumíme.
+
+Klasické pojetí vychází z konečného počtu stejně pravděpodobných výsledků. Spočítáme příznivé výsledky a vydělíme je počtem všech výsledků. Tak jsme postupovali u lístků. Rozhodující je předpoklad, že každý lístek může být vytažen se stejnou pravděpodobností.
+
+Četnostní pojetí chápe pravděpodobnost jako hodnotu, ke které se relativní četnost ustaluje v nekonečně dlouhé řadě opakování za stejných podmínek. U lístků bychom po každém tahu lístek vrátili a znovu zamíchali. Odpověď dost bychom v dlouhé řadě očekávali přibližně ve třiceti devíti procentech tahů. Každá skutečně provedená konečná řada je pouze přiblížením.
+
+Subjektivní pojetí vyjadřuje míru přesvědčení člověka podle dostupných informací. Terapeutka například odhaduje, že klient dokončí terapii s pravděpodobností nula celých sedm desetin. Zvažuje zkušenost s podobnými klienty a informace o tomto člověku. Jiný terapeut s jinými informacemi může dospět k jinému odhadu.
+
+Tato pojetí nemusí v každé situaci vést ke stejnému číslu. U klienta například nemáme přirozený seznam stejně pravděpodobných možností. Jakmile však pravděpodobnosti číselně vyjádříme, používáme ve všech pojetích stejná pravidla počítání.
+
+Snímek šest.
+
+Grafy ukazují počítačovou simulaci tipování. Každá otázka má čtyři možnosti a právě jedna je správná. Při náhodné volbě má správný tip pravděpodobnost jedné čtvrtiny. Simulovali jsme pět řad po tisíci nezávislých tipech.
+
+Na vodorovné ose je počet dosavadních tipů. Na svislé ose je relativní četnost správných odpovědí od začátku řady po daný okamžik. Každá čára představuje jednu řadu. Vodorovná přerušovaná čára označuje modelovou pravděpodobnost jedné čtvrtiny.
+
+Levý graf ukazuje prvních padesát tipů. Po deseti tipech ležely relativní četnosti mezi dvěma desetinami a šesti desetinami. Po padesáti mezi dvěma desetinami a třiceti čtyřmi setinami. Pravý graf ukazuje celých tisíc tipů. Konečné podíly jsou mezi nulou celých dvě stě čtyřicet čtyři tisícin a nulou celých dvě stě šedesát sedm tisícin. Čáry se soustředí blíže jedné čtvrtině, ale přibližování není pravidelné.
+
+Jedna řada měla z prvních deseti tipů šest správných. Nakonec její podíl klesl přibližně ke čtvrtině. Neznamená to, že později muselo přijít neobvykle mnoho chyb. V dalších devíti stech devadesáti tipech bylo správně dvacet šest celých čtyři desetiny procenta. Počáteční náskok pouze ztratil váhu v mnohem delší řadě.
+
+Přesvědčení, že po sérii neúspěchů už musí přijít úspěch, nazýváme hráčský klam. Při nezávislém náhodném tipování má další odpověď stále pravděpodobnost úspěchu jedné čtvrtiny. Kdyby se člověk během úlohy učil, mohla by se pravděpodobnost změnit. Důvodem by ale bylo učení, nikoli potřeba vyrovnat předchozí výsledky.
+
+Snímek sedm.
+
+Přejdeme k jevům a pravidlům počítání. Potřebujeme rozlišit jednotlivý výsledek pokusu od skupiny výsledků, která nás zajímá. Na tomto rozlišení založíme výpočet pravděpodobnosti opačného jevu i spojování dvou jevů.
+
+Snímek osm.
+
+V krabici je sto kartiček se slovy. Čtyřicet nese podstatné jméno, třicet pět sloveso a dvacet pět přídavné jméno. Jednu kartičku naslepo vytáhneme.
+
+Tento děj je náhodný pokus. Známe možné výsledky, ale předem nevíme, který nastane. Nezaměňujme jej s výzkumným experimentem. Náhodný pokus označuje nejistotu výsledku; sám neříká, zda ve výzkumu manipulujeme podmínkami.
+
+Jedním výsledkem je konkrétní vytažená kartička. Množinu všech možných výsledků nazýváme výběrový prostor. Na obrázku mu odpovídá celá mřížka sta čtverečků. Výběrový prostor není výběrový soubor lidí. Vymezuje, co se může stát v jednom pokusu.
+
+Jev je množina výsledků s určitou vlastností. Jev vytáhneme podstatné jméno obsahuje čtyřicet kartiček. Na obrázku jde o čtverečky označené písmenem pé. Protože každou kartičku taháme se stejnou pravděpodobností, pravděpodobnost tohoto jevu je čtyřicet děleno stem, tedy nula celých čtyři desetiny.
+
+Stejně pravděpodobné jsou jednotlivé kartičky. Tři slovní druhy stejně pravděpodobné nejsou, protože jim odpovídají různě velké skupiny kartiček. Samotná existence tří možností proto neznamená pravděpodobnost jedné třetiny pro každou.
+
+Snímek devět.
+
+Opačný jev obsahuje právě ty výsledky, které do původního jevu nepatří. Jestliže původní jev označíme písmenem á, opačný jev značíme á s čárkou. Pro výpočet si jej můžeme přečíst jako nenastane á.
+
+Ke čtyřiceti kartičkám s podstatným jménem patří šedesát ostatních. Původní a opačný jev se nepřekrývají a společně obsahují všechny výsledky. Jejich pravděpodobnosti proto dávají dohromady jednu. Pravděpodobnost opačného jevu získáme odečtením pravděpodobnosti původního jevu od jedné. Zde jedna minus čtyři desetiny, tedy šest desetin.
+
+Jistý jev obsahuje všechny výsledky a má pravděpodobnost jedna. Nemožný jev neobsahuje žádný výsledek a má pravděpodobnost nula. V našem konečném modelu má každá kartička kladnou pravděpodobnost. Nulovou pravděpodobnost proto má jen prázdný jev.
+
+Ve spojitém modelu toto obrácení neplatí. Připomeňme si normální křivku: nad jediným přesným bodem není žádná plocha. Každá přesná hodnota má nulovou pravděpodobnost, přesto nějaká hodnota nastane. Nulová pravděpodobnost tedy obecně neznamená nemožnost.
+
+Snímek deset.
+
+Nyní pracujeme s modelovým souborem dvou set studentů. Sto jsou ženy a sto muži. Zvýšený stres uvádí sedmdesát studentů, z toho čtyřicet žen. Náhodně vybereme jednoho člověka, přičemž každý má stejnou pravděpodobnost výběru. Následující čísla popisují tento soubor.
+
+Průnik dvou jevů znamená, že nastanou oba zároveň. V levém obrázku je zvýrazněno jediné pole: žena a zároveň zvýšený stres. Je v něm čtyřicet studentek z celkových dvou set. Pravděpodobnost průniku je dvě desetiny.
+
+Sjednocení znamená, že nastane alespoň jeden z jevů. Slovo nebo zde připouští také oba současně. V pravém obrázku jsou zvýrazněna tři pole: všechny ženy a navíc muži se zvýšeným stresem. Celkem jde o sto třicet lidí ze dvou set, tedy pravděpodobnost nula celých šedesát pět setin.
+
+Součtové pravidlo dává stejný výsledek jinou cestou. Sečteme pravděpodobnost prvního jevu a druhého jevu a jednou odečteme pravděpodobnost jejich průniku. Polovina plus třicet pět setin minus dvě desetiny dává šedesát pět setin. Průnik odečítáme proto, že čtyřicet žen se zvýšeným stresem už bylo zahrnuto v obou sčítancích.
+
+Vzájemně výlučné jevy nemohou nastat zároveň. Jejich průnik je prázdný a nic odečítat nemusíme. Při jednom tahu kartičky jsou výlučné podstatné jméno a sloveso. Pravděpodobnost podstatného jména nebo slovesa je čtyřicet setin plus třicet pět setin, tedy sedmdesát pět setin.
+
+Snímek jedenáct.
+
+Tabulka třídící případy podle dvou proměnných současně se nazývá kontingenční tabulka. V našem příkladu jsou v řádcích ženy a muži, ve sloupcích zvýšený a nízký stres. Uvnitř jsou počty jednotlivých kombinací. Na okrajích jsou součty.
+
+Společná pravděpodobnost je pravděpodobnost průniku. Chceme-li zjistit pravděpodobnost výběru muže s nízkým stresem, vezmeme příslušné vnitřní pole. Sedmdesát vydělíme dvěma sty a dostaneme třicet pět setin.
+
+Marginální pravděpodobnost se týká jedné proměnné bez ohledu na druhou. Pravděpodobnost zvýšeného stresu čteme z dolního okraje: sedmdesát děleno dvěma sty, opět třicet pět setin. Stejná hodnota je zde náhodná shoda dvou různých otázek.
+
+Okrajový počet sedmdesát vznikl sečtením čtyřiceti žen a třiceti mužů se zvýšeným stresem. Marginální pravděpodobnost proto získáme také sečtením odpovídajících společných pravděpodobností: dvě desetiny plus patnáct setin. Při obou výpočtech zůstává celkem všech dvě stě studentů. Za chvíli uvidíme, co se stane, když tento celek zúžíme.
+
+Snímek dvanáct.
+
+Z průniku plyne jednoduché omezení: pravděpodobnost obou jevů zároveň nemůže být vyšší než pravděpodobnost kteréhokoli z nich samostatně. Každá žena se zvýšeným stresem je také žena. Přidáním další podmínky žádné nové případy nepřibudou.
+
+Přečtěme si příklad Kláry. Studuje psychologii, ráda čte detektivky a o víkendech hraje deskové hry. Porovnáváme možnost, že pracuje při studiu jako knihovnice, s možností, že pracuje jako knihovnice a je členkou čtenářského klubu.
+
+Druhá možnost může působit jako přesvědčivější příběh. Každá knihovnice ve čtenářském klubu je však zároveň knihovnice. Podrobnější možnost proto nemůže být pravděpodobnější než ta obecnější. Může mít nižší nebo stejnou pravděpodobnost.
+
+Porušení tohoto pravidla nazýváme konjunkční klam. Při úsudku nahradíme otázku, jak je něco pravděpodobné, otázkou, jak dobře to odpovídá popisu. Shoda s příběhem ale nemění vztah mezi jevem a jeho průnikem s dalším jevem.
+
+Snímek třináct.
+
+Třetí část se věnuje podmíněné pravděpodobnosti a nezávislosti. Budeme se ptát, co se změní, když víme, že nastal určitý jev. Změna spočívá především v tom, z jaké skupiny pravděpodobnost počítáme.
+
+Snímek čtrnáct.
+
+Jaká je pravděpodobnost zvýšeného stresu, víme-li, že vybraný člověk je žena? Už nevybíráme ze všech dvou set studentů. Ve hře zůstává jen sto žen. Zvýšený stres jich uvedlo čtyřicet. Pravděpodobnost je proto čtyřicet děleno stem, tedy čtyři desetiny.
+
+To je podmíněná pravděpodobnost. Zápis na snímku čteme: pravděpodobnost zvýšeného stresu za podmínky, že jde o ženu. Jev za svislou čarou určuje, které případy tvoří celek.
+
+Levý obrázek připomíná původní otázku pro všech dvě stě studentů. Podíl zvýšeného stresu byl třicet pět setin. Pravý obrázek potlačuje řádek mužů. Mezi zbývajícími ženami je podíl čtyřicet setin. Nezměnili jsme žádný záznam o stresu. Změnili jsme skupinu, ke které se otázka vztahuje.
+
+Obecný vztah na snímku říká, že podmíněná pravděpodobnost je pravděpodobnost průniku vydělená pravděpodobností podmínky. V našem souboru jde o dvě desetiny dělené jednou polovinou, tedy čtyři desetiny. Je to tentýž výpočet jako čtyřicet děleno stem. Podmínka musí mít kladnou pravděpodobnost, abychom nedělili nulou.
+
+Snímek patnáct.
+
+Tabulka porovnává tři otázky o týchž čtyřiceti studentkách. Nejprve se ptáme, jakou část všech studentů tvoří ženy se zvýšeným stresem. Čtyřicet děleno dvěma sty je dvě desetiny. To je společná pravděpodobnost.
+
+Druhá otázka zní, jaká část žen uvedla zvýšený stres. Čtyřicet děleno stem je čtyřicet setin. Třetí otázka obrací podmínku: jaká část studentů se zvýšeným stresem jsou ženy? Nyní dělíme čtyřicet sedmdesáti a dostáváme přibližně padesát sedm setin.
+
+Čitatel zůstal stejný, jmenovatel se změnil. Proto nelze podmíněné pravděpodobnosti zaměňovat pouhým prohozením jevů. Obecně platí, že pravděpodobnost á za podmínky bé nemusí být stejná jako pravděpodobnost bé za podmínky á. Při každém výpočtu si nejprve řekněte, z koho počítáte.
+
+Podmínka nevyjadřuje příčinu ani časové pořadí. Otázka na pohlaví mezi studenty se zvýšeným stresem neříká, že stres pohlaví předcházel nebo je způsobil. Pouze vymezuje skupinu, na kterou se zaměřujeme.
+
+Snímek šestnáct.
+
+Ze vztahu pro podmíněnou pravděpodobnost získáme součinové pravidlo. Obě strany vynásobíme pravděpodobností podmínky. Tím se dělení na jedné straně zruší. Pravděpodobnost průniku se rovná pravděpodobnosti jednoho jevu krát podmíněná pravděpodobnost druhého při prvním.
+
+Polovina studentů jsou ženy. Z nich čtyřicet procent uvádí zvýšený stres. V celém souboru proto ženy se zvýšeným stresem tvoří polovinu krát čtyři desetiny, tedy dvě desetiny. První činitel vybere skupinu, druhý její příslušnou část.
+
+U dvou tahů kartiček se význam podmínky projeví přímo. První kartičku nevrátíme. Pravděpodobnost, že první je podstatné jméno, je čtyřicet ze sta. Pokud skutečně byla, zbývá třicet devět podstatných jmen mezi devadesáti devíti kartičkami. Pravděpodobnost obou podstatných jmen je součin těchto dvou podílů, přibližně nula celých sto padesát osm tisícin.
+
+Při vracení první kartičky a novém zamíchání by druhý podíl zůstal čtyřicet ze sta. Výsledek by byl čtyři desetiny krát čtyři desetiny, tedy šestnáct setin. Rozdíl mezi oběma postupy ukazuje, proč v obecném součinovém pravidle potřebujeme podmíněnou pravděpodobnost.
+
+Snímek sedmnáct.
+
+Představme si druhý modelový soubor dvou set studentů. Stále je v něm polovina žen. Zvýšený stres ale nyní uvádí třicet procent žen i třicet procent mužů. Mezi všemi studenty je tedy také třicet procent se zvýšeným stresem. Informace o pohlaví tuto pravděpodobnost nemění.
+
+Takové jevy jsou nezávislé. Jejich průnik má pravděpodobnost rovnou součinu pravděpodobností obou jevů. Součinové pravidlo se tak zjednoduší: podmíněnou pravděpodobnost můžeme nahradit nepodmíněnou pravděpodobností daného jevu. Zde polovina krát tři desetiny dává patnáct setin. Totéž vyjde přímo z třiceti žen se zvýšeným stresem mezi dvěma sty studenty.
+
+V levém obrázku mají oba řádky hranici stresu na stejném místě. Pravý obrázek ukazuje původní soubor, kde se podíly liší. Průnik má pravděpodobnost dvě desetiny, zatímco součin jedné poloviny a třiceti pěti setin je sto sedmdesát pět tisícin. Rovnost neplatí, a v tomto souboru jsou jevy závislé.
+
+Nezávislost využijeme i při tipování. Dva nezávislé tipy mají oba správný výsledek s pravděpodobností jedna čtvrtina krát jedna čtvrtina, tedy jedna šestnáctina. Pro alespoň jeden správný tip je výhodný opačný jev. Oba nesprávné mají pravděpodobnost tři čtvrtiny krát tři čtvrtiny, tedy devět šestnáctin. Alespoň jeden správný má zbývajících sedm šestnáctin, tedy nula celých čtyři tisíce tři sta sedmdesát pět desetitisícin.
+
+Snímek osmnáct.
+
+Nezávislost potřebujeme odlišit od několika jiných tvrzení. Vzájemně výlučné jevy s kladnými pravděpodobnostmi jsou závislé. Když víme, že jeden nastal, druhý už nastat nemůže. Například kartička nemůže být při jednom tahu současně podstatným jménem a slovesem. Znalost jednoho jevu proto pravděpodobnost druhého mění na nulu.
+
+Závislost sama nevysvětluje příčinu. Rozdílné podíly stresu mohou být popisem souvislosti, ale neříkají, jak vznikla. Zůstává v platnosti rozlišení souvislosti a příčiny z první kapitoly.
+
+Také musíme odlišit danou tabulku od populace. Jiných dvě stě studentů by poskytlo jiné počty. Malý rozdíl ve výběru sám nedokazuje závislost v populaci. Ani přesná shoda podílů v jednom výběru nezaručuje populační nezávislost.
+
+U modelu bývá nezávislost předpokladem, který je třeba zdůvodnit. U sourozenců, společně se učících spolužáků nebo opakovaných měření téhož člověka může existovat společný vliv či návaznost. Před prostým násobením pravděpodobností proto zvažujeme, zda je nezávislost v dané situaci přiměřená.
+
+Snímek devatenáct.
+
+Vrátíme se k úvodní otázce psycholožky. Známe vlastnosti dotazníku u lidí s poruchou a bez ní. Potřebujeme však zjistit pravděpodobnost poruchy u člověka s pozitivním výsledkem. K obrácení podmínky použijeme přirozené četnosti a Bayesovu větu.
+
+Snímek dvacet.
+
+Výukový screeningový dotazník upozorňuje na možnou úzkostnou poruchu. Pozitivní výsledek znamená, že na ni upozornil. Negativní, že neupozornil. Tato slova zde nehodnotí, zda je výsledek pro člověka žádoucí.
+
+Tabulka kombinuje skutečný stav v řádcích s výsledkem dotazníku ve sloupcích. U člověka s poruchou je pozitivní výsledek správně pozitivní a negativní falešně negativní. U člověka bez poruchy je pozitivní výsledek falešně pozitivní a negativní správně negativní.
+
+Senzitivita je pravděpodobnost pozitivního výsledku za podmínky, že člověk poruchu má. V našem modelu činí devadesát pět procent. Specificita je pravděpodobnost negativního výsledku za podmínky, že člověk poruchu nemá. Zde činí devadesát procent.
+
+Senzitivita se tedy vztahuje jen k prvnímu řádku, specificita k druhému. Mezi lidmi bez poruchy je deset procent falešně pozitivních. Mezi lidmi s poruchou je pět procent falešně negativních. Oba podíly jsou doplňky příslušných pravděpodobností do jedné.
+
+Psycholožka ale zná výsledek, nikoli skutečný stav. Ptá se na poruchu za podmínky pozitivního výsledku. Senzitivita tuto obrácenou otázku nezodpovídá. Potřebujeme ještě prevalenci, tedy zastoupení lidí s daným stavem ve vymezené populaci a čase. V naší modelové poradně má poruchu deset procent příchozích.
+
+Snímek dvacet jedna.
+
+Stromový diagram začíná tisícem studentů. Čtěme jej shora dolů. Deset procent, tedy sto lidí, má poruchu. Zbývajících devět set ji nemá. Každou skupinu potom rozdělíme podle výsledku dotazníku.
+
+Ze sta lidí s poruchou dostane devadesát pět pozitivní výsledek a pět negativní. Z devíti set bez poruchy dostane osm set deset negativní výsledek a devadesát pozitivní. Čísla na koncích větví jsou vždy částí skupiny o úroveň výše.
+
+Takto postupně členěné počty jedné společné výchozí skupiny nazýváme přirozené četnosti. Zachovávají informaci, že lidí bez poruchy je devětkrát více než lidí s poruchou. Kdybychom místo toho začali stejně velkými skupinami s poruchou a bez ní, toto zastoupení by se ve výpočtu ztratilo.
+
+Teď se zaměřme na obě větve končící pozitivním výsledkem. Dohromady obsahují devadesát pět plus devadesát, tedy sto osmdesát pět studentů. Poruchu má devadesát pět z nich. Devadesát pět děleno stem osmdesáti pěti je přibližně nula celých pět set čtrnáct tisícin. To je prediktivní hodnota pozitivního testu. Mezi pozitivními má poruchu jen o málo více než polovina, přestože senzitivita dosahuje devadesáti pěti procent.
+
+Podobně mezi negativními je osm set deset lidí bez poruchy a pět s poruchou. Prediktivní hodnota negativního testu je osm set deset děleno osmi sty patnácti, přibližně nula celých devět set devadesát čtyři tisícin. Odpovídá pravděpodobnosti nepřítomnosti poruchy při negativním výsledku. Pozitivní screeningový výsledek je zde podnětem k podrobnějšímu vyšetření.
+
+Snímek dvacet dva.
+
+Výpočet ze stromu můžeme zapsat pomocí pravděpodobností. K pozitivnímu výsledku vedou dvě vzájemně výlučné cesty. Člověk poruchu buď má, nebo nemá.
+
+První cestu počítáme jako jednu desetinu krát devadesát pět setin. Dostáváme devadesát pět tisícin. Druhou cestu počítáme jako devět desetin krát jednu desetinu, tedy devadesát tisícin. Součet je sto osmdesát pět tisícin. To je pravděpodobnost pozitivního výsledku mezi všemi příchozími.
+
+Použili jsme úplnou pravděpodobnost: rozdělili jsme jev podle dvou možností, které se vylučují a dohromady pokrývají všechny případy. Podél každé cesty násobíme, pravděpodobnosti obou cest sečteme. Obecný vzorec na snímku používá pro rozdělující jev písmeno á a pro jeho opačný jev á s čárkou. Jev, jehož celkovou pravděpodobnost hledáme, označuje bé.
+
+Bayesova věta potom obrátí podmínku. V čitateli je společná pravděpodobnost poruchy a pozitivního výsledku, tedy jedna cesta stromem. Ve jmenovateli je pravděpodobnost všech pozitivních výsledků, tedy součet obou cest. Devadesát pět tisícin vydělíme stem osmdesáti pěti tisícinami a získáme přibližně pět set čtrnáct tisícin.
+
+Vzorec spojuje podmíněnou pravděpodobnost se součinovým pravidlem a úplnou pravděpodobností. Výsledek je stejný jako z počtů lidí, protože jde o dva zápisy téhož postupu. V Excelu k němu stačí násobení, sčítání a dělení.
+
+Snímek dvacet tři.
+
+Prediktivní hodnota pozitivního testu se změní, když test použijeme ve skupině s jinou prevalencí. Předpokládejme, že senzitivita i specificita zůstaly stejné. Tento předpoklad je součástí modelového srovnání; při skutečném přenosu do jiné skupiny by se musel ověřit.
+
+Při desetiprocentní prevalenci by mezi deseti tisíci lidmi bylo devět set padesát správně pozitivních a devět set falešně pozitivních. Poměr správně pozitivních ke všem pozitivním je opět přibližně pět set čtrnáct tisícin.
+
+Při jednoprocentní prevalenci má z deseti tisíc lidí poruchu jen sto. Dotazník zachytí devadesát pět z nich. Bez poruchy je devět tisíc devět set lidí a deset procent z nich, tedy devět set devadesát, dostane falešně pozitivní výsledek. Celkem je pozitivních tisíc osmdesát pět. Poruchu má devadesát pět z nich, tedy přibližně nula celých osmdesát osm tisícin.
+
+V grafu jsou na vodorovné ose počty pozitivních výsledků z deseti tisíc testovaných. Každý pruh rozlišuje správně a falešně pozitivní. Při nižší prevalenci zaujímá část lidí s poruchou mnohem menší podíl všech pozitivních výsledků. Prediktivní hodnota proto není vlastností samotného testu. Závisí také na jeho použití v konkrétní skupině.
+
+Přehlédnutí výchozího zastoupení jevu nazýváme zanedbání základních četností. Základní četnost je obecně podíl jevu ve zvolené skupině. Prevalence je konkrétnější pojem pro výskyt určitého stavu v populaci a čase.
+
+Apriorní pravděpodobnost je pravděpodobnost před novou informací. V poradně jsme před výsledkem testu vycházeli z jedné desetiny. Aposteriorní pravděpodobnost je pravděpodobnost po nové informaci: po pozitivním výsledku přibližně pět set čtrnáct tisícin. Před novou informací tedy neznamená bez podkladů. Výchozí odhad zde vycházel z prevalence. Pro další vyšetření může aktualizovaná pravděpodobnost sloužit jako výchozí, ale stejnou informaci nesmíme započítat znovu.
+
+Snímek dvacet čtyři.
+
+Dosud jsme určovali pravděpodobnost, že nastane určitý jev. Nyní přejdeme k číslům, například k počtu správných odpovědí. Propojíme náhodný pokus s náhodnou proměnnou a jejím rozdělením. Potom odvodíme binomický model pro počet úspěchů.
+
+Snímek dvacet pět.
+
+Náhodná proměnná je pravidlo, které každému výsledku náhodného pokusu přiřadí číslo. Zde pravidlo zní: spočítej správné tipy. Náhodnou proměnnou značíme velkým písmenem iks a konkrétní hodnotu zde malým ká.
+
+Diagram čteme shora dolů. Máme dvě otázky, každou se čtyřmi možnostmi. U každé rozlišujeme správně a nesprávně. Písmeno es na obrázku znamená správně, písmeno en nesprávně. Na této úrovni mohou nastat čtyři posloupnosti: obě nesprávně, první nesprávně a druhá správně, první správně a druhá nesprávně, obě správně.
+
+Při nezávislém tipování má každá správná odpověď pravděpodobnost jedné čtvrtiny, nesprávná tří čtvrtin. Obě nesprávné proto mají pravděpodobnost tři čtvrtiny krát tři čtvrtiny. Smíšené posloupnosti mají každá pravděpodobnost tři čtvrtiny krát jednu čtvrtinu. Obě správné mají pravděpodobnost jedna čtvrtina krát jedna čtvrtina.
+
+Pravidlo spočítání správných odpovědí přiřadí první posloupnosti nulu. Oběma smíšeným posloupnostem přiřadí jedničku a poslední dvojku. Dva různé výsledky tedy mohou vést ke stejné hodnotě náhodné proměnné. Jev iks rovno jedna obsahuje obě smíšené posloupnosti. Jejich pravděpodobnosti sečteme: třikrát jedna šestnáctina plus třikrát jedna šestnáctina, celkem šest šestnáctin, tedy tři osminy.
+
+Dolní graf je rozdělení pravděpodobnosti. Na vodorovné ose jsou možné počty správných tipů, na svislé pravděpodobnosti. Pro nulu je to devět šestnáctin, pro jedničku šest šestnáctin, pro dvojku jedna šestnáctina. Součet je jedna.
+
+Náhodná proměnná není sloupec už zaznamenaných dat. Vymezuje pravidlo přiřazení čísla ještě před výsledkem pokusu. Nevyžaduje ani opakování celého testu: počet správných tipů jediného studenta v jednom testu je náhodná proměnná.
+
+Snímek dvacet šest.
+
+Na tomto snímku už má test pět otázek. Levý graf ukazuje modelové rozdělení počtu správných tipů. Pravý graf ukazuje data čtyřiceti simulovaných studentů, kteří odpovídali právě podle tohoto modelu. Na vodorovných osách je počet správných tipů. Vlevo svislá osa udává pravděpodobnost, vpravo relativní četnost.
+
+Model například přisuzuje nule správných přibližně dvacet tři celých sedm desetin procenta. V simulovaných datech ale neuhodlo žádnou otázku třináct ze čtyřiceti studentů, tedy třicet dva celých pět desetin procenta. Čtyři ani pět otázek neuhodl nikdo, přestože jim model přisuzuje kladné pravděpodobnosti. Takové rozdíly mohou vzniknout náhodným kolísáním. Zde to víme, protože data byla podle modelu simulována.
+
+Střední hodnota rozdělení je dlouhodobý průměr při velmi mnoha opakováních. Značíme ji řeckým písmenem mí. V našem modelu je jedna celá dvacet pět setin. Žádný student nemůže uhodnout jednu a čtvrt otázky. Střední hodnota ale nemusí být možným jednotlivým výsledkem.
+
+Průměr ve čtyřiceti simulovaných záznamech je čtyřicet jedna děleno čtyřiceti, tedy jedna celá dvacet pět tisícin. Jde o průměr dat, značený malým em, a může se od parametru modelu lišit. Model má také směrodatnou odchylku, označenou řeckým sigma, zde přibližně devadesát sedm setin.
+
+Počet správných tipů je diskrétní proměnná. Jednotlivým hodnotám přiřazujeme pravděpodobnosti. U spojité proměnné naproti tomu používáme hustotu a pravděpodobnost intervalu čteme jako plochu. Výška sloupce v tomto diskrétním grafu je pravděpodobnost; samotná výška křivky hustoty jí není.
+
+Snímek dvacet sedm.
+
+Binomické rozdělení je model pro počet úspěchů v předem daném počtu pokusů. Než jej použijeme, ověříme čtyři podmínky uvedené na snímku.
+
+Zaprvé, počet pokusů je předem pevný. Označujeme jej malým en. Zadruhé, každý pokus rozlišujeme na úspěch a neúspěch. Úspěch je technický název výsledku, který počítáme. Může jít také o chybu, pokud nás zajímá počet chyb.
+
+Zatřetí, pravděpodobnost úspěchu je ve všech pokusech stejná. Značíme ji řeckým písmenem pí. Zde toto písmeno označuje parametr modelu, nikoli známou kruhovou konstantu. Začtvrté, jednotlivé pokusy jsou nezávislé.
+
+U pěti otázek se čtyřmi možnostmi při čistém nezávislém tipování máme en rovno pěti a pí rovno jedné čtvrtině. Otázka má sice čtyři odpovědi, ale pro počítání úspěchů je třídíme jen na správnou a nesprávnou.
+
+Skutečná situace podmínky splňovat nemusí. Když student některé odpovědi zná a jiné tipuje, nemají všechny otázky stejnou pravděpodobnost úspěchu. Při učení nebo únavě se pravděpodobnost může měnit. Navazující otázky mohou být závislé. Také výběr z malé skupiny bez vracení mění složení zbývající skupiny. Model proto volíme podle průběhu pokusů, nikoli pouze podle toho, že máme nějaký počet úspěchů.
+
+Snímek dvacet osm.
+
+Pro výpočet binomických pravděpodobností potřebujeme vědět, kolika způsoby může nastat daný počet úspěchů. Kolika způsoby můžeme z pěti otázek vybrat právě dvě správně zodpovězené?
+
+Na pořadí uvnitř vybrané dvojice nezáleží. První a třetí otázka je stejná dvojice jako třetí a první. Takový výběr nazýváme kombinace a jejich počet udává kombinační číslo. Zde čteme pět nad dvěma. Není to zlomek.
+
+První člen dvojice bychom mohli vybrat pěti způsoby, druhý čtyřmi. Součin je dvacet. Každou dvojici jsme ale započítali dvakrát, a proto dělíme dvěma. Dostaneme deset různých dvojic. Obrázek je všechny ukazuje; vyplněná kolečka označují správné otázky a jejich poloha pořadí otázek v testu.
+
+Obecný vzorec používá faktoriál. Faktoriál čísla je součin celých čísel od tohoto čísla dolů k jedné. Pět faktoriál je pět krát čtyři krát tři krát dva krát jedna, tedy sto dvacet. Nula faktoriál se rovná jedné.
+
+Kombinační číslo en nad ká vypočteme jako en faktoriál děleno součinem ká faktoriál a faktoriálu rozdílu en minus ká. V našem příkladu pět faktoriál dělíme součinem dva faktoriál a tři faktoriál. Sto dvacet děleno součinem dvou a šesti dává deset. Dělení odstraní opakované započítání pořadí uvnitř vybrané skupiny a uvnitř zbytku.
+
+Excel má pro tyto výpočty funkce kombinace a faktoriál. U funkce kombinace zadáme nejprve počet všech prvků, potom počet vybíraných. Pro pět a dvě dostaneme deset. U faktoriálu zadáme jedno číslo; pro pět dostaneme sto dvacet.
+
+Snímek dvacet devět.
+
+Odvodíme pravděpodobnost právě dvou správných tipů z pěti. Každý správný tip má pravděpodobnost jedné čtvrtiny a nesprávný tří čtvrtin. Začněme jedinou posloupností: dvě správné odpovědi a potom tři nesprávné.
+
+Protože jsou tipy nezávislé, pravděpodobnosti násobíme. Jednu čtvrtinu násobíme dvakrát a tři čtvrtiny třikrát. Pomocí mocnin je to jedna čtvrtina na druhou krát tři čtvrtiny na třetí. Přibližný výsledek je nula celých dvě stě šedesát čtyři desetitisícin.
+
+Každá jiná posloupnost se dvěma úspěchy a třemi neúspěchy má stejný součin, jen v jiném pořadí. Na předchozím snímku jsme zjistili, že těchto posloupností je deset. Nemohou nastat současně, takže jejich pravděpodobnosti sečteme. Desetkrát stejná hodnota dává přibližně nula celých dvě stě šedesát čtyři tisícin.
+
+Obecný binomický vzorec má stejnou stavbu. Pravděpodobnost, že iks je rovno ká, získáme jako kombinační číslo en nad ká krát pí na ká krát závorka jedna minus pí, celá na mocninu en minus ká. Poslední exponent je celý rozdíl en minus ká. První mocnina vyjadřuje úspěchy, druhá neúspěchy. Kombinační číslo vyjadřuje, kolika různými způsoby je můžeme rozmístit mezi pokusy.
+
+Tabulka obsahuje všechny počty od nuly do pěti. Jejich přesné pravděpodobnosti dávají dohromady jednu; součet zobrazených zaokrouhlených hodnot je jedna celá jedna tisícina. Pro alespoň tři správné sečteme hodnoty u tří, čtyř a pěti: osmdesát osm tisícin plus patnáct tisícin plus jednu tisícinu. Přibližně sto čtyři tisícin, tedy asi jeden případ z deseti.
+
+Možných pětic úspěchů a neúspěchů je třicet dva. Nejsou ale všechny stejně pravděpodobné. Nemůžeme proto jednoduše dělit počet příznivých pětic třiceti dvěma.
+
+Snímek třicet.
+
+Binomické rozdělení můžeme shrnout střední hodnotou a směrodatnou odchylkou. Střední hodnota mí se rovná počtu pokusů en krát pravděpodobnost úspěchu pí. Při pěti pokusech s pravděpodobností jedné čtvrtiny vychází jedna celá dvacet pět setin úspěchu. Je to očekávaný dlouhodobý průměr počtu úspěchů.
+
+Směrodatná odchylka sigma je odmocnina z celého součinu en krát pí krát závorka jedna minus pí. Zde odmocňujeme pět krát jednu čtvrtinu krát tři čtvrtiny. Součin pod odmocninou je nula celých devět tisíc tři sta sedmdesát pět desetitisícin. Odmocnina je přibližně nula celých devadesát sedm setin.
+
+Čtyři grafy mají na vodorovné ose počet úspěchů a na svislé pravděpodobnost. Porovnejte nejprve grafy s pravděpodobností úspěchu jedné čtvrtiny. Při dvaceti pokusech se možné výsledky rozkládají kolem vyššího středu a rozdělení počtu je širší než při pěti. Současně se více podobá souměrnému zvonu.
+
+Dolní grafy ukazují vliv pravděpodobnosti úspěchu při stejném počtu dvaceti pokusů. Při jedné polovině je rozdělení souměrné. Při vysoké pravděpodobnosti devíti desetin se většina výsledků soustředí blízko maximálního počtu a delší chvost směřuje doleva. Při nízké pravděpodobnosti je tomu obráceně. Více pokusů tedy zvětšuje kolísání samotného počtu; na konci výkladu si ukážeme, proč přitom klesá kolísání podílu.
+
+Snímek třicet jedna.
+
+Nyní má test dvacet otázek, každou se čtyřmi možnostmi. Při čistém náhodném tipování zůstává pravděpodobnost úspěchu jedna čtvrtina. Tři grafy ukazují tři různé otázky. Vodorovná osa je počet úspěchů, svislá pravděpodobnost jednotlivé hodnoty. Zvýrazněné sloupce určují, co sčítáme.
+
+Právě pět znamená jediný sloupec u pětky. Pravděpodobnost je přibližně dvě stě dva tisícin. Nejvýše pět zahrnuje nulu, jedničku a všechny další hodnoty až po pět včetně. Součet je přibližně šest set sedmnáct tisícin. Alespoň deset zahrnuje deset a všechny vyšší hodnoty až do dvaceti. Pravděpodobnost je přibližně čtrnáct tisícin.
+
+U diskrétního rozdělení má krajní hodnota vlastní kladnou pravděpodobnost. Proto na jejím zahrnutí záleží. Opačný jev k alespoň deseti je nejvýše devět. Pravděpodobnost alespoň deseti tedy získáme jako jedna minus pravděpodobnost nejvýše devíti.
+
+V Excelu použijeme funkci zapisovanou binom-tečka-dyst. Má čtyři argumenty: počet úspěchů, počet pokusů, pravděpodobnost úspěchu a logickou hodnotu. Nepravda znamená právě daný počet. Pravda znamená nejvýše daný počet. Pro alespoň deset od jedné odečteme tuto funkci s argumenty devět, dvacet, jedna čtvrtina a pravda.
+
+Stejný součet lze získat funkcí binom-tečka-dyst-tečka-rejndž. U ní zadáme dvacet pokusů, pravděpodobnost jedné čtvrtiny a dolní a horní počet úspěchů deset a dvacet. Obě krajní hodnoty do intervalu patří.
+
+Výsledek říká, že při pouhém tipování by deset a více správných vyšlo přibližně v jednom případě ze sedmdesáti. Výkon je za tohoto modelu poměrně vzácný. Není to ale pravděpodobnost, že student tipoval. Opět rozlišujeme výsledek za podmínky tipování od tipování za podmínky výsledku. Závěr také závisí na předpokladech modelu. K systematickému rozhodování se vrátíme v další kapitole o testování hypotéz.
+
+Snímek třicet dva.
+
+Poslední výkladová část propojí binomické rozdělení s normálním modelem. Ukážeme si přibližný výpočet, zhodnotíme jeho přesnost a nakonec převedeme počet úspěchů na podíl. Tím se vrátíme ke kolísání relativní četnosti ze začátku přednášky.
+
+Snímek třicet tři.
+
+Normální aproximace binomického rozdělení znamená nahrazení diskrétního modelu přibližným normálním modelem se stejnou střední hodnotou a směrodatnou odchylkou. Pravděpodobnost pak získáváme jako plochu pod křivkou.
+
+Používáme orientační podmínku: očekávaný počet úspěchů i očekávaný počet neúspěchů mají být alespoň deset. Ve vzorci jsou to součiny en krát pí a en krát závorka jedna minus pí. Nejde o ostrou hranici zaručené přesnosti. Čím blíže je pravděpodobnost úspěchu nule nebo jedné, tím více pokusů potřebujeme.
+
+V modelové rozpoznávací úloze máme dvě stě nezávislých pokusů. V každém je pravděpodobnost správné odpovědi šest desetin. Ptáme se na sto třicet pět a více správných. Očekáváme sto dvacet úspěchů a osmdesát neúspěchů, takže obě orientační podmínky jsou splněny.
+
+Střední hodnota je sto dvacet. Směrodatná odchylka je odmocnina ze součinu dvou set, šesti desetin a čtyř desetin. Pod odmocninou je čtyřicet osm a výsledkem přibližně šest celých devět set dvacet osm tisícin.
+
+Hranici převedeme na zed-skór. Od sta třiceti pěti odečteme sto dvacet a celý rozdíl vydělíme směrodatnou odchylkou. Dostaneme přibližně dvě celé sto šedesát pět tisícin. Hranice leží více než dvě směrodatné odchylky nad středem.
+
+Funkce norm-tečka-es-tečka-dyst s touto hodnotou a argumentem pravda vrací plochu nalevo. My potřebujeme plochu napravo, proto výsledek odečteme od jedné. Pravděpodobnost je přibližně patnáct tisícin, tedy asi jeden a půl procenta. Jde o aproximaci; přesnou binomickou hodnotu porovnáme na dalším snímku.
+
+Snímek třicet čtyři.
+
+Přesný binomický výpočet pro sto třicet pět a více správných dává přibližně nula celých sto sedmdesát tři desetitisícin. Normální aproximace bez úpravy hranice dává přibližně nula celých sto padesát dva desetitisícin. Rozdíl je malý na celé škále od nuly do jedné, ale odpovídá asi dvanácti procentům přesné hodnoty této nízké pravděpodobnosti.
+
+Část rozdílu souvisí s převodem celého počtu na spojitou osu. Hodnotu sto třicet pět si při tomto přiblížení představujeme jako interval od sta třiceti čtyř a půl do sta třiceti pěti a půl. Když začneme plochu počítat až od sta třiceti pěti, polovinu tohoto intervalu vynecháme. Posuneme-li hranici na sto třicet čtyři a půl, dostaneme přibližně nula celých sto osmdesát dva desetitisícin, což je přesné hodnotě blíže.
+
+Nesplněná podmínka může vést k podstatně větší chybě. U dvaceti otázek s pravděpodobností úspěchu jedné čtvrtiny očekáváme jen pět úspěchů. Přesná pravděpodobnost alespoň deseti je přibližně sto třicet devět desetitisícin. Normální aproximace bez úpravy hranice dává jen čtyřicet devět desetitisícin.
+
+Obrázek porovnává ještě krajnější situaci vlevo s vhodnější situací vpravo. Na vodorovné ose je počet úspěchů. Sloupce udávají binomické pravděpodobnosti a křivka normální hustotu. Vlevo očekáváme z dvaceti pokusů při pravděpodobnosti pěti setin pouze jeden úspěch. Rozdělení je silně zešikmené a normální křivka zasahuje i k nemožným záporným počtům. Vpravo při dvou stech pokusech a pravděpodobnosti šesti desetin křivka vystihuje sloupce mnohem lépe.
+
+Excel umí přesnou binomickou pravděpodobnost, takže aproximaci nepotřebujeme kvůli dostupnosti výpočtu. Pomáhá nám ale porozumět tomu, proč počty úspěchů v mnoha nezávislých pokusech mohou mít přibližně normální rozdělení.
+
+Snímek třicet pět.
+
+Sto třicet pět správných odpovědí ze dvou set můžeme vyjádřit jako podíl. Sto třicet pět děleno dvěma sty je nula celých šest set sedmdesát pět tisícin. Tento pozorovaný podíl značíme malým pé. Modelová pravděpodobnost úspěchu, řecké pí, zůstává šest desetin.
+
+Převod počtu na podíl znamená dělení počtem pokusů. Tímto číslem se vydělí také střední hodnota a směrodatná odchylka rozdělení. Střední hodnota podílu je proto přímo pí. Směrodatná odchylka podílu je odmocnina z podílu, v jehož čitateli je pí krát závorka jedna minus pí a ve jmenovateli počet pokusů en. Pod odmocninou je celý tento podíl.
+
+Dosadíme šest desetin krát čtyři desetiny, vydělíme dvěma sty a potom odmocníme. Výsledek je přibližně nula celých tři sta čtyřicet šest desetitisícin. Zed-skór pozorovaného podílu získáme odečtením šesti desetin od šesti set sedmdesáti pěti tisícin a vydělením celého rozdílu touto směrodatnou odchylkou. Při výpočtu s nezaokrouhlenými mezivýsledky vyjde přibližně dvě celé sto šedesát pět tisícin, stejně jako u počtu. Změna jednotky nezměnila relativní polohu výsledku.
+
+Vzorec zároveň vysvětluje, proč se podíly ve větších souborech méně rozcházejí. Při pravděpodobnosti šesti desetin je směrodatná odchylka podílu pro padesát pokusů přibližně šedesát devět tisícin. Pro dvě stě pokusů přibližně třicet pět tisícin a pro osm set přibližně sedmnáct tisícin. Čtyřnásobek pokusů zmenší směrodatnou odchylku na polovinu, protože počet pokusů je ve jmenovateli pod odmocninou.
+
+Tím se vracíme k úvodní simulaci. Ve větším počtu nezávislých pokusů při stejné pravděpodobnosti úspěchu podíl méně kolísá kolem modelové hodnoty. Předchozí odchylky se nemusí vyrovnávat opačnými výsledky. Jejich váha v celku postupně klesá. Zde výkladová část končí; na další snímky s procvičováním můžete navázat samostatně.
