@@ -186,7 +186,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_05.html') {
         assert.equal(await solutions.count(),12,'Chapter 5 has twelve complete exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 5 mathematics parses');
-        assert.equal(await page.locator('main img').count(),12);
+        assert.equal(await page.locator('main img').count(),13);
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
