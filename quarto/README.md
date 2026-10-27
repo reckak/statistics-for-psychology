@@ -15,8 +15,7 @@ Kapitoly, prezentace, scénáře ani nahrávky se při této změně neupravoval
 Ověření: redakční kontrola obsahu a rozdílů, návaznosti a relativních
 odkazů nových instrukcí; `git diff --check` a `node scripts/check-doc-maps.cjs`
 bez chyb (53 rozhodnutí). Neproběhla syntéza ani poslech; „kvantyly“
-zůstává kandidátní zápis. Založení větve blokuje odepřený zápis
-do `.git/index.lock`; změny jsou přímo v hlavní pracovní složce.
+zůstává kandidátní zápis.
 
 <a id="prezentace-kapitoly-5-20261027"></a>
 
