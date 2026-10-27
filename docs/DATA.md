@@ -134,7 +134,7 @@ brání náhodným změnám pevného n, rozsahu hodnot a výpočtů.
 Krajní π = 0 a π = 1 jsou podporovány: P(X = 0) používá přímý součin
 neúspěchů; bodový dotaz a inverzní funkce na `Binom_20` mají ošetření
 pomocí KDYŽ. Tyto případy se skutečně přepočítávají v kontrole Excelu.
-V tabulkách stresu je druhá kategorie „Bez vysokého stresu“, nikoli „Pohoda“.
+V tabulkách stresu jsou kategorie „Zvýšený stres“ a „Nízký stres“ (R52, 2026-10-27; dříve „Stres“ a „Bez vysokého stresu“).
 U screeningu je stálost senzitivity a specificity předpokladem srovnání;
 u taxíků předpokládáme stejnou pravděpodobnost nehody pro každý taxík.
 Cvičení 8 používá autorské ilustrační četnosti, nikoli skutečně vyšetřené osoby.

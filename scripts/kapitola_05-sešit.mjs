@@ -19,7 +19,7 @@ const sheets=[
   L('A9','Správně pozitivní'),C('B9','=B7*B4','#,##0'),L('A10','Falešně negativní'),C('B10','=B7-B9','#,##0'),
   L('A11','Falešně pozitivní'),C('B11','=B8*(1-B5)','#,##0'),L('A12','Správně negativní'),C('B12','=B8-B11','#,##0'),
   L('A13','Pozitivní celkem'),C('B13','=B9+B11','#,##0'),L('A14','Negativní celkem'),C('B14','=B10+B12','#,##0'),
-  L('A16','Pozitivní prediktivní hodnota'),C('B16','=B9/B13'),L('A17','Negativní prediktivní hodnota'),C('B17','=B12/B14'),
+  L('A16','Prediktivní hodnota pozitivního testu'),C('B16','=B9/B13'),L('A17','Prediktivní hodnota negativního testu'),C('B17','=B12/B14'),
   L('A19','Úplná pravděpodobnost pozitivního výsledku'),C('B19','=B3*B4+(1-B3)*(1-B5)'),L('A20','Bayesova věta: porucha při pozitivním výsledku'),C('B20','=B3*B4/B19'),
   N('D2','Modelové hodnoty zvolené pro výklad.'),N('D3','Nejde o vlastnosti skutečného dotazníku.'),N('D5','Žlutě: vstupy. Modře: výpočty.'),
   N('D7','Přirozené četnosti: postupné členění téže skupiny.'),N('D9','Při prevalenci 0,01 zvolte 10 000 osob,'),N('D10','aby vycházely celé počty.'),

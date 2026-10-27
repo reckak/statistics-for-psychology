@@ -194,3 +194,41 @@ nebo nesprávnému čtení výsledků po změně vstupů sešitu.
 „Zapracuj všechny uvedené opravy i didaktická doporučení do kapitoly 5
 a souvisejících souborů. Na listu Binom ponech n = 5 a umožni měnit jen B3.“
 Rozsah ověření zaznamenává [autorská historie](../../quarto/README.md#revize-kapitoly-5-2026-10-12).
+
+<a id="r52-terminologie-revize-kapitoly-5"></a>
+
+## R52 — Opačný jev, prediktivní hodnoty testu a úrovně stresu
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r52-terminologie-revize-kapitoly-5). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-27. **Rozsah:** kapitola 5, její grafy, sešit,
+kontroly, slovníček, přehled značení a autorský registr; další použití
+pojmů v pozdějších kapitolách. Částečně nahrazuje
+[R23](#r23-terminologie-kapitoly-5) (preferovaný název jevu A′)
+a [R25](#r25-revize-kapitoly-5) (název druhé úrovně stresu).
+
+- Jev A′ se nazývá **opačný jev**; „doplňkový jev“ a „komplementární jev“
+  jsou alternativy. Číslo 1 − P zůstává **doplněk do jedné** (doplněk
+  specificity, senzitivity či síly testu); kapitola 6 se proto nemění.
+- Primární termíny jsou **prediktivní hodnota pozitivního testu**
+  a **prediktivní hodnota negativního testu**; „pozitivní/negativní
+  prediktivní hodnota“ jsou alternativy. Stabilní ID hesel se nemění.
+- Úrovně stresu v příkladu kontingenční tabulky se nazývají **zvýšený stres**
+  a **nízký stres**, a to v textu, tabulkách, grafech, sešitu i ve vzorcích
+  (celými názvy, nikoli zkratkou „stres“).
+- Do slovníčku se doplňují **správně pozitivní** a **správně negativní
+  výsledek**, které výklad zavádí v nové tabulce čtyř kombinací stavu
+  a výsledku.
+
+**Důvod:** přirozenější a v české literatuře běžnější termíny; symetrické
+pojmenování obou úrovní stresu bez dvojího záporu. Doplněk do jedné zůstává
+pro aritmetický vztah, protože se na něj odkazují kapitoly 2, 4 a 6.
+
+**Doklad:** autorovy připomínky ke kapitole 5 dne 2026-10-27: „Myslím, že
+bude lepší používat jako primární překlad ‚opačný jev‘ a ‚doplňkový jev‘ či
+‚doplněk‘ pouze jako alternativu“; „častěji se používá ‚prediktivní hodnota
+pozitivního/negativního testu‘ … Takže bych pojmy … používal jako primární
+překlad“; „Asi by bylo lepší tyto úrovně konzistentně nazývat jako ‚nízký
+stres‘ a ‚zvýšený stres‘.“ Na doplňující dotazy autor zvolil „Číslo:
+‚doplněk do 1‘“ a ve vzorcích „Celé názvy“. Rozsah ověření zaznamenává
+[autorská historie](../../quarto/README.md#revize-kapitoly-5-2026-10-27).

@@ -5,7 +5,7 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 5](../../quarto/kapitola_05.qmd#sec-kapitola-05), karta
-sestavena podle výkladu, zadání a řešení a zkontrolována po odborné revizi 2026-10-12 ([R25](../rozhodnuti/kapitola-05.md#r25-revize-kapitoly-5)).
+sestavena podle výkladu, zadání a řešení a zkontrolována po odborné revizi 2026-10-12 ([R25](../rozhodnuti/kapitola-05.md#r25-revize-kapitoly-5)); soulad s textem znovu zkontrolován 2026-10-27 po zapracování autorových připomínek ([R52](../rozhodnuti/kapitola-05.md#r52-terminologie-revize-kapitoly-5)).
 Schválený plán z 2026-10-11 byl nahrazen touto mapou skutečného textu;
 dohodu dokládají [R21](../rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5),
 [R22](../rozhodnuti/kapitola-05.md#r22-znaceni-pravdepodobnosti),
@@ -24,7 +24,7 @@ vymezit výsledek, výběrový prostor a jev a použít doplněk, součtové
 a součinové pravidlo; z kontingenční tabulky určit marginální, společnou
 a podmíněnou pravděpodobnost a posoudit nezávislost; obrátit podmínku
 přirozenými četnostmi, úplnou pravděpodobností a Bayesovou větou a vysvětlit
-závislost prediktivní hodnoty na prevalenci; rozpoznat čtyři chyby úsudku;
+závislost prediktivní hodnoty pozitivního testu na prevalenci; rozpoznat čtyři chyby úsudku;
 popsat diskrétní rozdělení pravděpodobnosti a odlišit je od dat a hustoty;
 použít binomický model ručně i v Excelu a posoudit jeho předpoklady;
 použít normální aproximaci a posoudit její přesnost.
@@ -42,23 +42,23 @@ sloupec určuje konkrétní **procvičení**.
 |---|---|---|
 | [Od podílu k pravděpodobnosti](../../quarto/kapitola_05.qmd#sec-podil-pravdepodobnost) | Relativní četnost odpovědi „dost“ (14 z 36, data kapitoly 2) → losování lístku; škála 0–1, procenta, zápis velkým P a jeho odlišení od malého p. Návaznost na plochu v normálním modelu. | 1. |
 | [Tři pojetí](../../quarto/kapitola_05.qmd#sec-pojeti-pravdepodobnosti) | Klasické, četnostní a subjektivní pojetí jako různé interpretace se společnými pravidly; u lístků se shodnou, u klienta v terapii nikoli. | 2a. |
-| [Relativní četnost v dlouhé řadě](../../quarto/kapitola_05.qmd#sec-dlouha-rada) | Simulace pěti řad po 1 000 tipech (π = 0,25): rozsah po 10, 50 a 1 000 tipech; přibližování není pravidelné a počáteční odchylka se „nevyrovnává“, jen ztrácí váhu. Hráčský klam a jeho vazba na nezávislost. | 2b–c. |
+| [Relativní četnost v dlouhé řadě](../../quarto/kapitola_05.qmd#sec-dlouha-rada) | Pravděpodobnost jako hodnota, k níž se relativní četnost ustaluje v nekonečné řadě; konečná řada jen přibližuje. Simulace pěti řad po 1 000 tipech (π = 0,25): rozsah po 10, 50 a 1 000 tipech; přibližování není pravidelné a počáteční odchylka se „nevyrovnává“, jen ztrácí váhu. Hráčský klam a jeho vazba na nezávislost. | 2b–c. |
 | [Výsledek a výběrový prostor](../../quarto/kapitola_05.qmd#sec-vyberovy-prostor), [jev](../../quarto/kapitola_05.qmd#sec-jev) | Náhodný pokus odlišen od výzkumného experimentu, výběrový prostor od výběru. Sto kartiček se slovy; jev jako množina výsledků; klasický podíl jen pro stejně pravděpodobné výsledky (kartičky, ne slovní druhy). | 1. |
 | [Nepovinné: klasické pojetí a kruh](../../quarto/kapitola_05.qmd#rozsireni-klasicke-pojeti) | Klasický podíl jako výpočet uvnitř modelu, ne definice; stejná pravděpodobnost zdůvodněná souměrností postupu (ověřitelná četnostmi), nebo nedostatkem důvodů (závisí na členění výsledků: 1/3 versus 1/2); losování a náhodné přiřazení stejnou pravděpodobnost zajišťují. Bez nových termínů; axiomy ani princip indiference se nejmenují. Přidáno 2026-10-24. | Bez cvičení. |
-| [Doplňkový jev](../../quarto/kapitola_05.qmd#sec-doplnkovy-jev), [jistý a nemožný jev](../../quarto/kapitola_05.qmd#sec-jisty-nemozny) | A′ a P(A′) = 1 − P(A). Obrácení „pravděpodobnost 0 = nenastane“ platí v konečném modelu s kladnými pravděpodobnostmi výsledků; ve spojitém modelu nikoli. | 1d, 1f, 12a. |
-| [Průnik a sjednocení](../../quarto/kapitola_05.qmd#sec-prunik-sjednoceni), [součtové pravidlo](../../quarto/kapitola_05.qmd#sec-souctove-pravidlo) | Modelový soubor 200 studentů (pohlaví × vysoký stres / bez vysokého stresu); pravděpodobnosti popisují soubor, ne populaci. Obecné součtové pravidlo zdůvodněné dvojím započtením; vzájemně výlučné jevy jako zvláštní případ. | 1c, 3d, 12b. |
-| [Kontingenční tabulka](../../quarto/kapitola_05.qmd#sec-kontingencni-tabulka) | Společná pravděpodobnost z pole, marginální jako součet přes možnosti druhé proměnné; čtyřpolní tabulka jako zvláštní případ. | 3a–b. |
+| [Opačný jev](../../quarto/kapitola_05.qmd#sec-doplnkovy-jev), [jistý a nemožný jev](../../quarto/kapitola_05.qmd#sec-jisty-nemozny) | Opačný jev A′ (alternativy doplňkový, komplementární) a P(A′) = 1 − P(A); číslo 1 − P je doplněk do jedné. Obrácení „pravděpodobnost 0 = nenastane“ platí v konečném modelu s kladnými pravděpodobnostmi výsledků; ve spojitém modelu nikoli. | 1d, 1f, 12a. |
+| [Průnik a sjednocení](../../quarto/kapitola_05.qmd#sec-prunik-sjednoceni), [součtové pravidlo](../../quarto/kapitola_05.qmd#sec-souctove-pravidlo) | Modelový soubor 200 studentů (pohlaví × zvýšený / nízký stres); pravděpodobnosti popisují soubor, ne populaci. Obecné součtové pravidlo zdůvodněné dvojím započtením; vzájemně výlučné jevy jako zvláštní případ. | 1c, 3d, 12b. |
+| [Kontingenční tabulka](../../quarto/kapitola_05.qmd#sec-kontingencni-tabulka) | Společná pravděpodobnost z pole, marginální jako součet přes možnosti druhé proměnné; čtyřpolní tabulka jako zvláštní případ (bez okrajového řádku a sloupce). | 3a–b. |
 | [Konjunkční klam](../../quarto/kapitola_05.qmd#sec-konjunkcni-klam) | Průnik není pravděpodobnější než kterýkoli z jevů; autorská vinětka „Klára“; nahrazení otázky pravděpodobnosti otázkou shody s popisem. | 5a. |
 | [Podmíněná pravděpodobnost](../../quarto/kapitola_05.qmd#sec-podminena) | Podmínka zužuje celek; vztah s průnikem a požadavek P(B) > 0; „z koho počítám?“; tři čísla o týchž 40 studentkách; P(A∣B) ≠ P(B∣A); podmínka není čas ani příčina. | 3c, 5b. |
-| [Součinové pravidlo](../../quarto/kapitola_05.qmd#sec-soucinove-pravidlo) | Obecný tvar s podmíněnou pravděpodobností; dvě kartičky bez vracení a s vracením. | 4b, 12f. |
-| [Nezávislé jevy](../../quarto/kapitola_05.qmd#sec-nezavislost) a [meze nezávislosti](../../quarto/kapitola_05.qmd#sec-nezavislost-meze) | Druhý modelový soubor se stejnými podíly; definice součinovým tvarem, intuitivní tvar přes podmíněnou pravděpodobnost; „alespoň jednou“ přes doplněk. Nezávislost není výlučnost, závislost není příčina, tabulka není populace, nezávislost je předpoklad. | 3e–f, 4a, 4c, 12c. |
-| [Screening](../../quarto/kapitola_05.qmd#sec-screening) a [přirozené četnosti](../../quarto/kapitola_05.qmd#sec-prirozene-cetnosti) | Senzitivita, specificita, falešně pozitivní a negativní výsledek s výslovným vymezením podmínky; obrácená otázka psycholožky. 1 000 studentů, strom, tabulka; prediktivní hodnoty 95/185 a 810/815. | 6a–b, 7a. |
-| [Úplná pravděpodobnost](../../quarto/kapitola_05.qmd#sec-uplna-pravdepodobnost) | Samostatný krok: jmenovatel jako součet dvou cest stromem; rozklad podle jevu a doplňku bez indexovaného zápisu; vztah k marginální pravděpodobnosti. | 6c. |
+| [Součinové pravidlo](../../quarto/kapitola_05.qmd#sec-soucinove-pravidlo) | Odvozeno vynásobením definice podmíněné pravděpodobnosti hodnotou P(B) s ukázaným krácením; dvě kartičky bez vracení a s vracením. | 4b, 12f. |
+| [Nezávislé jevy](../../quarto/kapitola_05.qmd#sec-nezavislost) a [meze nezávislosti](../../quarto/kapitola_05.qmd#sec-nezavislost-meze) | Druhý modelový soubor se stejnými podíly v obou směrech (P(zvýšený stres | pohlaví) = 0,30, P(žena | úroveň stresu) = 0,50); součinový tvar odvozen krok za krokem ze součinového pravidla a P(A∣B) = P(A); obrázek výslovně přiřazen k oběma tabulkám; „alespoň jednou“ přes opačný jev. Nezávislost není výlučnost, závislost není příčina, tabulka není populace, nezávislost je předpoklad. | 3e–f, 4a, 4c, 12c. |
+| [Screening](../../quarto/kapitola_05.qmd#sec-screening) a [přirozené četnosti](../../quarto/kapitola_05.qmd#sec-prirozene-cetnosti) | Význam pozitivního a negativního výsledku (nesouvisí se žádoucností); senzitivita, specificita; tabulka čtyř kombinací stavu a výsledku (správně/falešně pozitivní a negativní) s vazbou senzitivity a specificity na řádky; obrácená otázka psycholožky. Přirozené četnosti jako přirozené vzorkování bez pevných okrajových součtů, kontrast s normalizovanými četnostmi (Gigerenzer a Hoffrage, 1995). 1 000 studentů, strom s popisky větví (prevalence, senzitivita, specificita a jejich doplňky do jedné), tabulka; prediktivní hodnota pozitivního a negativního testu 95/185 a 810/815. | 6a–b, 7a. |
+| [Úplná pravděpodobnost](../../quarto/kapitola_05.qmd#sec-uplna-pravdepodobnost) | Samostatný krok: jmenovatel jako součet dvou cest stromem; rozklad podle jevu a opačného jevu bez indexovaného zápisu; vztah k marginální pravděpodobnosti. | 6c. |
 | [Bayesova věta](../../quarto/kapitola_05.qmd#sec-bayesova-veta) | Složena z definice podmíněné pravděpodobnosti, součinového pravidla a úplné pravděpodobnosti; čitatel jedna cesta, jmenovatel všechny. List `Bayes` bez zvláštních funkcí. Věrohodnost se nezavádí. | 6c, 7b, 12d. |
-| [Dvě prevalence](../../quarto/kapitola_05.qmd#sec-dve-prevalence) | Týž dotazník při 10 % a 1 %, s výslovně předpokládanou stejnou senzitivitou a specificitou: 0,514 versus 0,088 (z 10 000 osob); prediktivní hodnota není vlastností testu. Zanedbání základních četností a záměna podmínky. | 6d, 7c–d. |
+| [Dvě prevalence](../../quarto/kapitola_05.qmd#sec-dve-prevalence) | Týž dotazník při 10 % a 1 %, s výslovně předpokládanou stejnou senzitivitou a specificitou: 0,514 versus 0,088 (z 10 000 osob); prediktivní hodnota pozitivního testu není vlastností testu. Zanedbání základních četností a záměna podmínky. | 6d, 7c–d. |
 | [Základní četnost, prevalence, apriorní pravděpodobnost](../../quarto/kapitola_05.qmd#sec-zakladni-cetnost) | Tři související, ale různé pojmy; „před novou informací“ neznamená „bez podkladů“; aposteriorní pravděpodobnost jako východisko dalšího kroku a riziko dvojího použití téže informace. | 6e. |
-| [Nepovinné: šance](../../quarto/kapitola_05.qmd#rozsireni-sance) | Poměr P(A) a 1 − P(A), převod oběma směry, rozdíl od pravděpodobnosti a od sázkového kurzu. Poměr šancí se nezavádí. | Bez cvičení. |
-| [Náhodná proměnná a rozdělení](../../quarto/kapitola_05.qmd#sec-rozdeleni-pravdepodobnosti) | Počet správných tipů z pěti; X a k; náhodná proměnná není sloupec dat ani nevyžaduje opakování. Tabulka rozdělení, součet 1, sčítání hodnot. Model versus 40 simulovaných studentů; diskrétní rozdělení versus hustota. | 8. |
+| [Nepovinné: šance](../../quarto/kapitola_05.qmd#rozsireni-sance) | Poměr P(A) a 1 − P(A), převod oběma směry, rozdíl od pravděpodobnosti (u vzácných jevů blízké, protože jmenovatel je blízko 1) a od sázkového kurzu. Poměr šancí se nezavádí. | Bez cvičení. |
+| [Náhodná proměnná a rozdělení](../../quarto/kapitola_05.qmd#sec-rozdeleni-pravdepodobnosti) | Počet správných tipů z pěti; X a k; náhodná proměnná jako pravidlo přiřazující číslo výsledku (možné hodnoty a pravděpodobnosti popisuje rozdělení), není sloupec dat ani nevyžaduje opakování. Hodnota X = k jako jev ve výběrovém prostoru. Tabulka rozdělení, součet 1, sčítání hodnot. Model versus 40 simulovaných studentů; diskrétní rozdělení versus hustota. | 8. |
 | [Střední hodnota](../../quarto/kapitola_05.qmd#sec-stredni-hodnota) | Dlouhodobý průměr jako parametr μ, nemusí být dosažitelnou hodnotou; m z dat versus μ; σ rozdělení. | 9d, 10a. |
 | [Nepovinné: výpočet z tabulky](../../quarto/kapitola_05.qmd#rozsireni-stredni-hodnota) | Vážený součet hodnot a pravděpodobností, rozptyl a σ pro test s pěti otázkami. | Bez cvičení. |
 | [Faktoriál](../../quarto/kapitola_05.qmd#sec-faktorial), [kombinace a kombinační číslo](../../quarto/kapitola_05.qmd#sec-kombinace) | Pořadí tří úloh; výběr dvou otázek z pěti vypsaný i odvozený; kombinace versus kombinační číslo; vzorec, krajní hodnoty a symetrie. FAKTORIÁL, KOMBINACE. | 9a. |
@@ -86,7 +86,7 @@ studentů), `Rozpoznavani` a `Losovani`; cvičení listy `U01_emoce`,
 [Pokrytí cvičení](../DATA.md).
 
 Průběžné příklady jsou autorské a modelové: krabice 100 kartiček se slovy,
-dva soubory 200 studentů (pohlaví × stres; podle autorovy přednášky),
+dva soubory 200 studentů (pohlaví × zvýšený/nízký stres; podle autorovy přednášky),
 screeningový dotazník se senzitivitou 0,95 a specificitou 0,90 a test
 s výběrem odpovědí. Simulovaná jsou data dvou obrázků a jsou tak označena.
 Z literatury jsou převzaty dva příklady s uvedením zdroje: pokus se dvěma
@@ -98,9 +98,9 @@ ve cvičení 7 (Howell, s. 122–123).
 | [Pět simulovaných řad](../../quarto/kapitola_05.qmd#fig-relativni-cetnost) | Kolísání relativní četnosti; žádný slib pravidelného přibližování. |
 | [Sto kartiček](../../quarto/kapitola_05.qmd#fig-karticky) | Výsledek versus jev; proč počítat kartičky, ne slovní druhy. |
 | [Průnik a sjednocení](../../quarto/kapitola_05.qmd#fig-prunik-sjednoceni), [podmínění](../../quarto/kapitola_05.qmd#fig-podmineni), [nezávislost](../../quarto/kapitola_05.qmd#fig-nezavislost) | Tatáž tabulka jako plocha: která pole se počítají, jak podmínka mění celek a jak vypadá stejný podíl v obou řádcích. |
-| [Strom](../../quarto/kapitola_05.qmd#fig-strom), [dvě prevalence](../../quarto/kapitola_05.qmd#fig-dve-prevalence) | Přirozené četnosti a složení pozitivních výsledků při 10 % a 1 %. |
+| [Strom](../../quarto/kapitola_05.qmd#fig-strom), [dvě prevalence](../../quarto/kapitola_05.qmd#fig-dve-prevalence) | Přirozené četnosti s významem pravděpodobností u větví a složení pozitivních výsledků při 10 % a 1 %. |
 | [Model a data](../../quarto/kapitola_05.qmd#fig-rozdeleni-model-data) | Rozdělení pravděpodobnosti versus relativní četnosti 40 simulovaných studentů. |
-| [Deset kombinací](../../quarto/kapitola_05.qmd#fig-kombinace) | Kombinační číslo jako vypsatelný počet. |
+| [Deset kombinací](../../quarto/kapitola_05.qmd#fig-kombinace) | Kombinační číslo jako vypsatelný počet; způsoby 1–5 a 6–10 ve dvou sloupcích. |
 | [Tvar](../../quarto/kapitola_05.qmd#fig-binomicke-tvar), [právě/nejvýše/alespoň](../../quarto/kapitola_05.qmd#fig-binom-oblasti), [aproximace](../../quarto/kapitola_05.qmd#fig-aproximace) | Vliv n a π; které sloupce se sčítají; kdy normální křivka sedí a kdy ne. |
 
 <a id="cvičení-a-očekávané-dovednosti-4"></a>
@@ -176,6 +176,7 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D08](../zdroje/D08-baron-normativni.md#d08) — normativní pojetí.
 - [D09](../zdroje/D09-baron-deskriptivni.md#d09) — deskriptivní pojetí.
 - [E01-MULHERIN-MILLER](../zdroje/E01-mulherin-miller.md#e01-mulherin-miller) — přenos diagnostické přesnosti.
+- [E04-GIGERENZER-HOFFRAGE](../zdroje/E04-gigerenzer-hoffrage.md#e04-gigerenzer-hoffrage) — vymezení přirozených četností.
 - [Doplnění kontroly podkladů kapitoly 5](../zdroje/HISTORIE.md#doplnění-kontroly-podkladů-kapitoly-5--2026-10-12) — společný datovaný záznam.
 
 ### Pracovní PDF

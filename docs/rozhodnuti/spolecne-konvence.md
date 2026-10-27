@@ -125,6 +125,13 @@ uvádění roků podle posledního updatu.
 
 Bibliografické ověření a jeho meze: [záznam kontroly](../zdroje/HISTORIE.md#kontrola-dokumentace-2026-10-16).
 
+**Doplněk 2026-10-27 (upřesnění rozsahu):** autor rozšířil redakční volbu
+roku i na průběžně aktualizovanou online učebnici Navarro, *Learning
+Statistics with R*: v citacích se uvádí rok 2026. Datum vydání tohoto PDF
+zůstává nedoložené ([karta U08](../zdroje/U08-navarro.md#u08)). Doklad:
+pokyn autora v připomínkách ke kapitole 5 dne 2026-10-27: „U Navarrovy
+učebnice by měl být rok 2026“.
+
 <a id="r43-priblizna-rovnost"></a>
 
 ## R43 — Jednotná přibližná rovnost

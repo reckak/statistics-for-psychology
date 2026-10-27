@@ -1,14 +1,14 @@
 # Pravděpodobnost {#sec-kapitola-05}
 
-Psycholožka má před sebou klienta, jehož screeningový dotazník vyšel pozitivně. Jak moc má počítat s tím, že klient poruchu skutečně má? Student uhodl v testu s výběrem odpovědí deset otázek z dvaceti. Dalo se to čekat i při pouhém tipování? Na obě otázky odpovídáme číslem, které vyjadřuje nejistotu: pravděpodobností. V této kapitole se naučíme, co takové číslo znamená, podle jakých pravidel se s pravděpodobnostmi počítá a jak z několika jednoduchých předpokladů odvodit, jak často nastane určitý počet „zásahů“ v řadě pokusů.
+Psycholožka má před sebou klienta, jehož screeningový dotazník vyšel pozitivně. Jak moc má počítat s tím, že klient poruchou skutečně trpí? Student uhodl v testu s výběrem odpovědí deset otázek z dvaceti. Dalo se to čekat i při pouhém tipování? Na obě otázky odpovídáme číslem, které vyjadřuje nejistotu: pravděpodobností. V této kapitole se naučíme, co takové číslo znamená, podle jakých pravidel se s pravděpodobnostmi počítá a jak z několika jednoduchých předpokladů odvodit, jak často nastane určitý počet „zásahů“ v řadě pokusů.
 
-Navazujeme na [relativní četnosti a doplněk](kapitola_02.qmd#sec-relativni-cetnost) a na [normální model](kapitola_04.qmd#sec-kapitola-04), v němž jsme plochu pod křivkou četli jako modelový podíl.
+Navazujeme na [relativní četnosti a jejich doplněk do jedné](kapitola_02.qmd#sec-relativni-cetnost) a na [normální model](kapitola_04.qmd#sec-kapitola-04), v němž jsme plochu pod křivkou četli jako modelový podíl.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_05.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Vstupní listy slouží k vlastnímu řešení; hotové výpočty jsou na listech `Bayes`, `Binom`, `Binom_20` a `Aproximace`.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Vysvětlíte, co pravděpodobnost vyjadřuje, a rozlišíte klasické, četnostní a subjektivní pojetí.
-- Vymezíte výsledek náhodného pokusu, výběrový prostor a jev a použijete doplněk, součtové a součinové pravidlo.
+- Vymezíte výsledek náhodného pokusu, výběrový prostor a jev a použijete opačný jev, součtové a součinové pravidlo.
 - Z kontingenční tabulky určíte marginální, společnou a podmíněnou pravděpodobnost a posoudíte nezávislost.
 - Rozlišíte $P(A\mid B)$ a $P(B\mid A)$; pomocí přirozených četností, úplné pravděpodobnosti a Bayesovy věty určíte prediktivní hodnotu testu a vysvětlíte, proč závisí na prevalenci.
 - Rozpoznáte hráčský a konjunkční klam, záměnu podmínky a zanedbání základních četností.
@@ -21,7 +21,7 @@ Navazujeme na [relativní četnosti a doplněk](kapitola_02.qmd#sec-relativni-ce
 
 ## Co pravděpodobnost vyjadřuje {#sec-co-je-pravdepodobnost}
 
-Co znamená, že je něco pravděpodobné? Oddíl propojuje pravděpodobnost s relativní četností z kapitoly o četnostech a ukazuje tři způsoby, jak jí rozumět.
+Co znamená, že je něco pravděpodobné? Tento oddíl propojuje pravděpodobnost s relativní četností z kapitoly o četnostech a ukazuje tři způsoby, jak jí rozumět.
 
 ### Od podílu k pravděpodobnosti {#sec-podil-pravdepodobnost}
 
@@ -43,7 +43,7 @@ Kde se číslo 0,389 vzalo a co přesně tvrdí? Existuje několik interpretací
 
 **Klasické pojetí pravděpodobnosti (*classical view of probability*)** vychází z výčtu možností. Jestliže může nastat konečný počet stejně pravděpodobných výsledků, je pravděpodobnost rovna počtu příznivých výsledků dělenému počtem všech. Tak jsme postupovali u lístků se jmény: 14 příznivých z 36 možných. Podmínka stejné pravděpodobnosti všech výsledků je podstatná; vrátíme se k ní v [oddílu o jevech](#sec-jev).
 
-**Četnostní pojetí pravděpodobnosti (*frequentist view of probability*)**, v jiné literatuře označované také jako frekventistické, chápe pravděpodobnost jako relativní četnost, k níž se blížíme při velmi mnoha opakováních téhož pokusu za stejných podmínek. Výrok „pravděpodobnost je 0,389“ pak znamená: kdybychom lístek tahali znovu a znovu a pokaždé jej vrátili, byla by odpověď „dost“ v dlouhé řadě tahů zastoupena přibližně v 39 % případů.
+**Četnostní pojetí pravděpodobnosti (*frequentist view of probability*)**, v jiné literatuře označované také jako frekventistické, chápe pravděpodobnost jako relativní četnost, k níž se blížíme při velmi mnoha opakováních téhož pokusu za stejných podmínek. Pravděpodobnost je tedy hodnota, ke které se relativní četnost ustaluje, když řadu pokusů neomezeně prodlužujeme; relativní četnost v každé skutečně provedené, a tedy konečné řadě je jen jejím přiblížením. Výrok „pravděpodobnost je 0,389“ pak znamená: kdybychom lístek tahali znovu a znovu a pokaždé jej vrátili, byla by odpověď „dost“ v dlouhé řadě tahů zastoupena přibližně v 39 % případů.
 
 **Subjektivní pojetí pravděpodobnosti (*subjective probability*)** chápe pravděpodobnost jako míru přesvědčení, které má určitý člověk na základě informací, jež má k dispozici. Terapeutka může říci, že klient dokončí terapii s pravděpodobností 0,7. Nejde o počítání lístků ani o dlouhou řadu opakování: tento klient podstoupí tuto terapii jednou. Číslo shrnuje její zkušenost s podobnými klienty, informace o tomto člověku a jejich zvážení. Jiný terapeut s jinými informacemi může dospět k jinému číslu.
 
@@ -51,7 +51,7 @@ Různá pojetí proto nemusí vést ke stejnému číselnému hodnocení téže 
 
 ### Relativní četnost v dlouhé řadě pokusů {#sec-dlouha-rada}
 
-Četnostní pojetí slibuje, že se relativní četnost v dlouhé řadě pokusů přiblíží pravděpodobnosti. Jak takové přibližování vypadá, ukazuje počítačová simulace. Představme si otázku se čtyřmi možnostmi, z nichž právě jedna je správná, a člověka, který odpověď pokaždé tipuje zcela náhodně. Pravděpodobnost správného tipu je $1/4=0{,}25$. Nasimulovali jsme pět řad po 1 000 takových tipech a po každém tipu jsme spočítali, jaká část dosavadních tipů byla správná.
+Podle četnostního pojetí je pravděpodobnost hodnotou, ke které se relativní četnost ustaluje v nekonečně dlouhé řadě pokusů. Žádnou skutečnou řadu však nekonečně prodloužit nemůžeme. Proto nás zajímá, jak se relativní četnost chová v konečných řadách, které provést lze. Ukazuje to počítačová simulace. Představme si otázku se čtyřmi možnostmi, z nichž právě jedna je správná, a člověka, který odpověď pokaždé tipuje zcela náhodně. Pravděpodobnost správného tipu je $1/4=0{,}25$. Nasimulovali jsme pět řad po 1 000 takových tipech a po každém tipu jsme spočítali, jaká část dosavadních tipů byla správná.
 
 ::: {.teaching-figure role="region" aria-label="Relativní četnost správných tipů v pěti simulovaných řadách" tabindex="0"}
 
@@ -67,15 +67,15 @@ Opačné očekávání se nazývá **hráčský klam (*gambler’s fallacy*)**: 
 
 ## Náhodný pokus, výběrový prostor a jev {#sec-jevy}
 
-Abychom mohli s pravděpodobností počítat, potřebujeme přesně říct, čemu ji přiřazujeme. Oddíl zavádí výsledky náhodného pokusu, jejich množiny a první pravidlo pro jejich pravděpodobnost.
+Abychom mohli s pravděpodobností počítat, potřebujeme přesně říct, čemu ji přiřazujeme. Tento oddíl zavádí výsledky náhodného pokusu, jejich množiny a první pravidlo pro jejich pravděpodobnost.
 
 ### Výsledek a výběrový prostor {#sec-vyberovy-prostor}
 
-Abychom mohli s pravděpodobnostmi počítat, potřebujeme přesně říci, čeho se týkají. **Náhodný pokus (*random experiment*)** je děj, u něhož umíme vymezit možné výsledky, ale předem nevíme, jak dopadne tentokrát. Příkladem je vytažení lístku, hod kostkou, tip odpovědi nebo náhodný výběr člověka z populace. Náhodný pokus je jiný pojem než výzkumný experiment z [první kapitoly](kapitola_01.qmd#sec-souvislost-pricina). Sám neříká, zda při výzkumu manipulujeme podmínkami; popisuje nejistotu výsledku a může být součástí experimentální i observační studie.
+Abychom mohli s pravděpodobnostmi počítat, potřebujeme přesně říci, čeho se týkají. **Náhodný pokus (*random experiment*)** je děj, u něhož umíme vymezit možné výsledky, ale předem nevíme, jak dopadne tentokrát. Příkladem je vytažení lístku, hod kostkou, tip odpovědi nebo náhodný výběr a změření člověka z populace. Náhodný pokus je jiný pojem než výzkumný experiment z [první kapitoly](kapitola_01.qmd#sec-souvislost-pricina). Sám neříká, zda při výzkumu manipulujeme podmínkami; popisuje nejistotu výsledku a může být součástí experimentální i observační studie.
 
-Jeden konkrétní způsob, jak může pokus dopadnout, je **výsledek náhodného pokusu (*outcome*)**. Množina všech možných výsledků se nazývá **výběrový prostor (*sample space*)**; v literatuře se setkáte i s vysvětlujícím názvem prostor výsledků. Výběrový prostor není totéž co [výběr](kapitola_01.qmd#sec-populace-vyber) neboli výběrový soubor. Výběr je skupina lidí, které jsme do studie skutečně zahrnuli. Výběrový prostor vymezuje vše, co se v jednom náhodném pokusu může stát. U kartiček jej můžeme vypsat jako seznam jednotlivých kartiček.
+Jeden konkrétní způsob, jak může pokus dopadnout, je **výsledek náhodného pokusu (*outcome*)**. Množina všech možných výsledků se nazývá **výběrový prostor (*sample space*)**; v literatuře se setkáte i s alternativním názvem prostor výsledků. Výběrový prostor není totéž co [výběr](kapitola_01.qmd#sec-populace-vyber) neboli výběrový soubor. Výběr je skupina lidí, které jsme do studie skutečně zahrnuli. Výběrový prostor vymezuje vše, co se v jednom náhodném pokusu může stát.
 
-Použijeme příklad, který nás provede několika oddíly. Pro pokus o paměti máme krabici se 100 kartičkami. Na každé je jedno slovo: na 40 kartičkách podstatné jméno, na 35 sloveso a na 25 přídavné jméno. Kartičky zamícháme a poslepu jednu vytáhneme. Náhodným pokusem je vytažení kartičky. Výsledkem je konkrétní kartička. Výběrový prostor tvoří všech 100 kartiček a každá má stejnou pravděpodobnost, že bude vytažena, tedy $1/100$.
+Použijeme příklad, který nás provede několika oddíly. Paměťová úloha pracuje s krabicí, kde je 100 kartiček. Na každé je jedno slovo: na 40 kartičkách podstatné jméno, na 35 sloveso a na 25 přídavné jméno. Kartičky zamícháme a poslepu jednu vytáhneme. Náhodným pokusem je vytažení kartičky. Výsledkem je konkrétní kartička. Výběrový prostor tvoří všech 100 kartiček a každá má stejnou pravděpodobnost, že bude vytažena, tedy $1/100$.
 
 ### Jev a jeho pravděpodobnost {#sec-jev}
 
@@ -93,9 +93,9 @@ $$P(A)=\frac{\text{počet výsledků v jevu } A}{\text{počet všech výsledků}
 
 Pro jev „podstatné jméno“ dostáváme $P(\text{podstatné jméno})=40/100=0{,}40$, pro sloveso $0{,}35$ a pro přídavné jméno $0{,}25$.
 
-Vzorec platí jen tehdy, když jsou stejně pravděpodobné **výsledky, které počítáme**. Kdybychom za výsledky považovali tři slovní druhy, mohli bychom chybně usoudit, že každý má pravděpodobnost $1/3$. Slovní druhy však stejně pravděpodobné nejsou, protože jim odpovídá různý počet kartiček. Stejně pravděpodobné jsou jednotlivé kartičky, a proto počítáme je. Před použitím podílu se tedy vždy ptáme: které možnosti jsou stejně pravděpodobné a proč? [@howell, s. 109]
+Vzorec platí jen tehdy, když jsou **výsledky, které počítáme, stejně pravděpodobné**. Kdybychom za výsledky považovali tři slovní druhy, mohli bychom chybně usoudit, že každý má pravděpodobnost $1/3$. Slovní druhy však stejně pravděpodobné nejsou, protože jim odpovídá různý počet kartiček. Stejně pravděpodobné jsou jednotlivé kartičky, a proto počítáme je. Před použitím podílu se tedy vždy ptáme: které možnosti jsou stejně pravděpodobné a proč? [@howell, s. 109]
 
-Tam, kde stejně pravděpodobné výsledky nemáme, vycházíme z relativních četností nebo z modelu. Pravděpodobnost, že náhodně vybraný student uvede vysoký stres, nezjistíme výčtem možností, ale z údajů o studentech. Pravidla počítání, která následují, platí pro pravděpodobnosti získané kterýmkoli z těchto způsobů.
+Tam, kde stejně pravděpodobné výsledky nemáme, vycházíme z relativních četností nebo z modelu. Pravděpodobnost, že náhodně vybraný student uvede, že zažívá zvýšený stres, nezjistíme výčtem možností, ale z údajů o studentech. Pravidla počítání, která následují, platí pro pravděpodobnosti získané kterýmkoli z těchto způsobů.
 
 ::: {#rozsireni-klasicke-pojeti .callout-note collapse="true" title="Nepovinné rozšíření: nedefinuje klasické pojetí pravděpodobnost kruhem?"}
 Klasické pojetí počítá pravděpodobnost jako podíl příznivých a všech výsledků, *jsou-li výsledky stejně pravděpodobné*. Kdybychom tím chtěli vysvětlit, co pravděpodobnost vůbec je, narazili bychom na potíž: v podmínce už pojem pravděpodobnosti používáme. Taková definice by byla kruhová, podobně jako slovník, který vysvětlí „rychlý“ jako „ne pomalý“ a „pomalý“ jako „ne rychlý“.
@@ -110,9 +110,9 @@ Otázka „proč jsou kartičky stejně pravděpodobné?“ tím ovšem nezmizel
 Klasické pojetí proto nestojí samo: opírá se o souměrnost, kterou zdůvodňujeme znalostí postupu nebo ověřujeme četnostmi. Právě proto je cenné losování a [náhodné přiřazení k podmínkám](kapitola_01.qmd#sec-souvislost-pricina): stejnou pravděpodobnost v nich nepředpokládáme, ale zajišťujeme ji tím, jak postup navrhneme.
 :::
 
-### Doplňkový jev {#sec-doplnkovy-jev}
+### Opačný jev {#sec-doplnkovy-jev}
 
-Ke každému jevu $A$ existuje **doplňkový jev (*complement*)**, který obsahuje právě ty výsledky, jež do $A$ nepatří. Značíme jej $A'$ a čteme „A s čárkou“ nebo „ne A“. V jiné literatuře se mu říká také opačný jev. Doplňkem jevu „podstatné jméno“ je jev „není to podstatné jméno“, tedy sloveso nebo přídavné jméno: 60 kartiček.
+Ke každému jevu $A$ existuje **opačný jev (*complement*)**, který obsahuje právě ty výsledky, jež do $A$ nepatří. Značíme jej $A'$ a čteme „A s čárkou“ nebo „ne A“. V jiné literatuře se mu říká také doplňkový nebo komplementární jev. Opačným jevem k jevu „podstatné jméno“ je jev „není to podstatné jméno“, tedy sloveso nebo přídavné jméno: 60 kartiček.
 
 Každý výsledek patří buď do $A$, nebo do $A'$, nikdy do obou. Jejich pravděpodobnosti proto dohromady dávají celek:
 
@@ -122,7 +122,7 @@ a tedy
 
 $$P(A')=1-P(A).$$
 
-Pro kartičky je $P(\text{není podstatné jméno})$ rovno $1-0{,}40=0{,}60$, což souhlasí s přímým výpočtem $60/100$. Stejnou úvahu jsme používali u [kumulativních četností](kapitola_02.qmd#sec-kumulativni-cetnosti) a u [podílu nad hranicí v normálním modelu](kapitola_04.qmd#sec-excel-normalni). Doplněk se vyplatí tehdy, když je snazší spočítat, že něco nenastane. Uvidíme to u otázek typu „alespoň jednou“.
+Pro kartičky je $P(\text{není podstatné jméno})$ rovno $1-0{,}40=0{,}60$, což souhlasí s přímým výpočtem $60/100$. Stejnou úvahu jsme používali u [kumulativních četností](kapitola_02.qmd#sec-kumulativni-cetnosti) a u [podílu nad hranicí v normálním modelu](kapitola_04.qmd#sec-excel-normalni). Opačný jev se vyplatí tehdy, když je snazší spočítat, že něco nenastane. Uvidíme to u otázek typu „alespoň jednou“.
 
 ### Jistý a nemožný jev {#sec-jisty-nemozny}
 
@@ -134,73 +134,73 @@ Obecně toto obrácení neplatí. Ve [spojitém normálním modelu](kapitola_04.
 
 ## Více jevů najednou {#sec-vice-jevu}
 
-Jak určit pravděpodobnost, že nastanou dva jevy současně, nebo alespoň jeden z nich? Oddíl k tomu využívá tabulku četností dvou proměnných a ukazuje, kde u takových otázek selhává intuice.
+Jak určit pravděpodobnost, že nastanou dva jevy současně, nebo alespoň jeden z nich? Tento oddíl k tomu využívá tabulku četností dvou proměnných a ukazuje, kde u takových otázek selhává intuice.
 
 ### Průnik a sjednocení {#sec-prunik-sjednoceni}
 
-Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, jak často se dvě vlastnosti vyskytují společně nebo jak často má člověk alespoň jednu z nich. Použijeme druhý průběžný příklad: soubor 200 studentů, u nichž jsme zaznamenali pohlaví a to, zda v dotazníku uvedli vysoký stres (zkráceně „stres“), nebo nikoli („bez vysokého stresu“). Nepřítomnost vysokého stresu sama o sobě neznamená, že se člověk cítí dobře.
+Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, jak často se dvě vlastnosti vyskytují společně nebo jak často má člověk alespoň jednu z nich. Použijeme druhý průběžný příklad: soubor 200 studentů, u nichž jsme zaznamenali pohlaví a to, zda podle dotazníku zažívají zvýšený, nebo nízký stres. Každý student tedy patří do jedné ze dvou úrovní stresu: „zvýšený stres“, nebo „nízký stres“.
 
 ::: {.table-scroll role="region" aria-label="Kontingenční tabulka pohlaví a stresu, 200 studentů" tabindex="0"}
 
-| | Stres | Bez vysokého stresu | Celkem |
+| | Zvýšený stres | Nízký stres | Celkem |
 |---|---:|---:|---:|
 | **Žena** | 40 | 60 | 100 |
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 70 | 130 | 200 |
 
-: Soubor 200 studentů podle pohlaví a uváděného stresu. {#tbl-zavislost}
+: Soubor 200 studentů podle pohlaví a uváděné úrovně stresu. {#tbl-zavislost}
 
 :::
 
 Údaje jsou v sešitu na listu `Tabulka_zavislost` A2:C3. Náhodným pokusem bude výběr jednoho z těchto 200 studentů tak, že každý má stejnou pravděpodobnost $1/200$. Pravděpodobnosti, které spočítáme, popisují tento soubor. Zda podobné hodnoty platí pro všechny studenty, je [otázka zobecnění](kapitola_01.qmd#sec-populace-vyber), kterou tabulka sama nezodpoví.
 
-**Průnik jevů (*intersection*)** $A$ a $B$ je jev, který nastane, když nastanou **oba zároveň**. Značíme jej $A\cap B$ a čteme „A a zároveň B“. Průnik jevů „žena“ a „stres“ tvoří 40 studentek, které uvedly stres:
+**Průnik jevů (*intersection*)** $A$ a $B$ je jev, který nastane, když nastanou **oba zároveň**. Značíme jej $A\cap B$ a čteme „A a zároveň B“. Průnik jevů „žena“ a „zvýšený stres“ tvoří 40 studentek, které uvedly zvýšený stres:
 
-$$P(\text{žena}\cap\text{stres})=\frac{40}{200}=0{,}20.$$
+$$P(\text{žena}\cap\text{zvýšený stres})=\frac{40}{200}=0{,}20.$$
 
-**Sjednocení jevů (*union*)** $A$ a $B$ je jev, který nastane, když nastane **alespoň jeden z nich**. Značíme jej $A\cup B$ a čteme „A nebo B“. Slovo „nebo“ zde nevylučuje, že nastanou oba. Do sjednocení jevů „žena“ a „stres“ patří všechny ženy a navíc muži, kteří uvedli stres: $40+60+30=130$ studentů,
+**Sjednocení jevů (*union*)** $A$ a $B$ je jev, který nastane, když nastane **alespoň jeden z nich**. Značíme jej $A\cup B$ a čteme „A nebo B“. Slovo „nebo“ zde nevylučuje, že nastanou oba. Do sjednocení jevů „žena“ a „zvýšený stres“ patří všechny ženy a navíc muži, kteří uvedli zvýšený stres: $40+60+30=130$ studentů,
 
-$$P(\text{žena}\cup\text{stres})=\frac{130}{200}=0{,}65.$$
+$$P(\text{žena}\cup\text{zvýšený stres})=\frac{130}{200}=0{,}65.$$
 
-::: {.teaching-figure role="region" aria-label="Průnik a sjednocení jevů žena a stres v souboru 200 studentů" tabindex="0"}
+::: {.teaching-figure role="region" aria-label="Průnik a sjednocení jevů žena a zvýšený stres v souboru 200 studentů" tabindex="0"}
 
-![Průnik obsahuje jedno pole tabulky, sjednocení tři.](../assets/chapter-05/plots/prunik-sjednoceni.svg){#fig-prunik-sjednoceni fig-alt="Dvě schémata tabulky dva krát dva. Vlevo je zvýrazněno jen pole žena a stres se 40 studenty: 40 z 200 je 0,20. Vpravo jsou zvýrazněna pole žena a stres, žena bez vysokého stresu a muž a stres: 40 plus 60 plus 30 je 130 z 200, tedy 0,65."}
+![Průnik obsahuje jedno pole tabulky, sjednocení tři.](../assets/chapter-05/plots/prunik-sjednoceni.svg){#fig-prunik-sjednoceni fig-alt="Dvě schémata tabulky dva krát dva. Vlevo je zvýrazněno jen pole žena a zvýšený stres se 40 studenty: 40 z 200 je 0,20. Vpravo jsou zvýrazněna pole žena a zvýšený stres, žena a nízký stres a muž a zvýšený stres: 40 plus 60 plus 30 je 130 z 200, tedy 0,65."}
 
 :::
 
-Na obrázku [-@fig-prunik-sjednoceni] odpovídá šířka každého pole podílu v příslušném řádku. Průnik je jediné pole, v němž se řádek „žena“ a sloupec „stres“ potkávají. Sjednocení zahrnuje vše, co leží v řádku „žena“ nebo ve sloupci „stres“.
+Na obrázku [-@fig-prunik-sjednoceni] odpovídá šířka každého pole podílu v příslušném řádku. Průnik je jediné pole, v němž se řádek „žena“ a sloupec „zvýšený stres“ potkávají. Sjednocení zahrnuje vše, co leží v řádku „žena“ nebo ve sloupci „zvýšený stres“.
 
 ### Součtové pravidlo {#sec-souctove-pravidlo}
 
-Sjednocení lze spočítat i z pravděpodobností jednotlivých jevů. Žen je 100 a studentů se stresem 70. Kdybychom tato čísla jen sečetli, dostali bychom 170 a 40 studentek, které patří do obou skupin, bychom započítali dvakrát. Jednou je proto odečteme: $100+70-40=130$. Totéž v pravděpodobnostech vyjadřuje **součtové pravidlo (*addition rule*)**:
+Sjednocení lze spočítat i z pravděpodobností jednotlivých jevů. Žen je 100 a studentů se zvýšeným stresem 70. Kdybychom tato čísla jen sečetli, dostali bychom 170 a 40 studentek, které patří do obou skupin (jsou ženami a zároveň zažívají zvýšený stres), bychom započítali dvakrát. Jednou je proto odečteme: $100+70-40=130$. Totéž v pravděpodobnostech vyjadřuje **součtové pravidlo (*addition rule*)**:
 
 $$P(A\cup B)=P(A)+P(B)-P(A\cap B).$$
 
-Po dosazení je $P(\text{žena}\cup\text{stres})$ rovno $0{,}50+0{,}35-0{,}20=0{,}65$.
+Po dosazení je $P(\text{žena}\cup\text{zvýšený stres})$ rovno $0{,}50+0{,}35-0{,}20=0{,}65$.
 
 Dva jevy jsou **vzájemně výlučné (*mutually exclusive*)**, jestliže nemohou nastat zároveň; v jiné literatuře se jim říká také neslučitelné nebo disjunktní. Jejich průnik je nemožný jev, takže $P(A\cap B)=0$ a součtové pravidlo se pro vzájemně výlučné jevy zjednoduší:
 
 $$P(A\cup B)=P(A)+P(B).$$
 
-Kartička nemůže nést zároveň podstatné jméno a sloveso, proto je $P(\text{podstatné jméno}\cup\text{sloveso})$ rovno $0{,}40+0{,}35=0{,}75$. Jevy „žena“ a „stres“ výlučné nejsou, a prostý součet by proto dal chybný výsledek 0,85. Stejnou podmínku jsme potkali u [četnostních tabulek](kapitola_02.qmd#sec-sumace): procenta kategorií smíme sčítat jen tehdy, když se kategorie nepřekrývají. Jev a jeho doplněk jsou zvláštním případem vzájemně výlučných jevů, které navíc společně pokrývají celý výběrový prostor.
+Kartička nemůže nést zároveň podstatné jméno a sloveso, proto je $P(\text{podstatné jméno}\cup\text{sloveso})$ rovno $0{,}40+0{,}35=0{,}75$. Jevy „žena“ a „zvýšený stres“ výlučné nejsou, a prostý součet by proto dal chybný výsledek 0,85. Stejnou podmínku jsme potkali u [četnostních tabulek](kapitola_02.qmd#sec-sumace): procenta kategorií smíme sčítat jen tehdy, když se kategorie nepřekrývají. Jev a jeho opačný jev jsou zvláštním případem vzájemně výlučných jevů, které navíc společně pokrývají celý výběrový prostor.
 
 ### Kontingenční tabulka a tři druhy pravděpodobností {#sec-kontingencni-tabulka}
 
-Tabulka, která třídí případy podle dvou proměnných současně, se nazývá **kontingenční tabulka (*contingency table*)**. @tbl-zavislost má dva řádky a dva sloupce; takovému zvláštnímu případu se říká také čtyřpolní tabulka. Vnitřní pole obsahují počty případů s danou kombinací hodnot, okraje obsahují součty řádků a sloupců. Z jedné tabulky lze vyčíst tři druhy pravděpodobností a je užitečné je od začátku nezaměňovat.
+Tabulka, která třídí případy podle dvou proměnných současně, se nazývá **kontingenční tabulka (*contingency table*)**. @tbl-zavislost má dva řádky a dva sloupce, nepočítáme-li okrajový řádek a sloupec se součty; takovému zvláštnímu případu se říká také čtyřpolní tabulka. Vnitřní pole obsahují počty případů s danou kombinací hodnot, okraje obsahují součty řádků a sloupců. Z jedné tabulky lze vyčíst tři druhy pravděpodobností a je užitečné je od začátku nezaměňovat.
 
-**Společná pravděpodobnost (*joint probability*)**, v jiné literatuře sdružená, je pravděpodobnost průniku: obě vlastnosti zároveň. Čteme ji z vnitřního pole a dělíme celkovým počtem. Například $P(\text{muž}\cap\text{bez vysokého stresu})=70/200=0{,}35$.
+**Společná pravděpodobnost (*joint probability*)**, v jiné literatuře sdružená, je pravděpodobnost průniku: obě vlastnosti zároveň. Čteme ji z vnitřního pole (buňky) a dělíme celkovým počtem. Například $P(\text{muž}\cap\text{nízký stres})=70/200=0{,}35$.
 
-**Marginální pravděpodobnost (*marginal probability*)**, také okrajová, se týká jediné proměnné bez ohledu na druhou. Čteme ji z okraje tabulky: $P(\text{stres})=70/200=0{,}35$. Okrajové číslo 70 vzniklo sečtením přes obě možnosti druhé proměnné, $40+30$. Totéž platí pro pravděpodobnosti: marginální pravděpodobnost je součtem společných pravděpodobností přes všechny možnosti druhé proměnné,
+**Marginální pravděpodobnost (*marginal probability*)**, také okrajová, se týká jediné proměnné bez ohledu na druhou. Čteme ji z okraje tabulky: $P(\text{zvýšený stres})=70/200=0{,}35$. Okrajové číslo 70 vzniklo sečtením přes obě možnosti druhé proměnné, $40+30$. Totéž platí pro pravděpodobnosti: marginální pravděpodobnost je součtem společných pravděpodobností přes všechny možnosti druhé proměnné,
 
-$$\begin{aligned}P(\text{stres})&=P(\text{žena}\cap\text{stres})\\&\quad+P(\text{muž}\cap\text{stres})\\&=0{,}20+0{,}15=0{,}35.\end{aligned}$$
+$$\begin{aligned}P(\text{zvýšený stres})&=P(\text{žena}\cap\text{zvýšený stres})\\&\quad+P(\text{muž}\cap\text{zvýšený stres})\\&=0{,}20+0{,}15=0{,}35.\end{aligned}$$
 
-Sčítat můžeme proto, že jevy „žena a stres“ a „muž a stres“ jsou vzájemně výlučné.
+Sčítat můžeme proto, že jevy „žena a zvýšený stres“ a „muž a zvýšený stres“ jsou vzájemně výlučné.
 
 Třetím druhem je podmíněná pravděpodobnost, u níž se mění celek, ke kterému počty vztahujeme. Věnujeme jí celý další oddíl.
 
 ### Konjunkční klam {#sec-konjunkcni-klam}
 
-Průnik dvou jevů obsahuje jen ty výsledky, které patří do obou. Nemůže jich proto být více než v kterémkoli z nich. Studentek se stresem (40) je méně než žen (100) i méně než studentů se stresem (70). Obecně platí obě nerovnosti zároveň:
+Průnik dvou jevů obsahuje jen ty výsledky, které patří do obou. Nemůže jich proto být více než v kterémkoli z nich. Studentek se zvýšeným stresem (40) je méně než žen (100) i méně než studentů se zvýšeným stresem (70). Obecně platí obě nerovnosti zároveň:
 
 $$\begin{aligned}P(A\cap B)&\le P(A),\\P(A\cap B)&\le P(B).\end{aligned}$$
 
@@ -215,27 +215,27 @@ Mnoha lidem připadá možnost b) pravděpodobnější, protože lépe odpovíd�
 
 ## Podmíněná pravděpodobnost a nezávislost {#sec-podminena-nezavislost}
 
-Jak se změní pravděpodobnost, když už o člověku něco víme? Oddíl ukazuje, že podmínka zužuje celek, a odvozuje z toho pravidlo pro průnik jevů a pojem nezávislosti.
+Jak se změní pravděpodobnost, když už o člověku něco víme? Tento oddíl ukazuje, že podmínka zužuje celek, a odvozuje z toho pravidlo pro průnik jevů a pojem nezávislosti.
 
 ### Podmínka zužuje celek {#sec-podminena}
 
-Jaká je pravděpodobnost, že náhodně vybraná **žena** uvedla stres? Otázka se už netýká všech 200 studentů. Víme, že vybraná osoba je žena, a do úvahy proto bereme jen 100 žen. Stres z nich uvedlo 40:
+Jaká je pravděpodobnost, že náhodně vybraná **žena** uvedla zvýšený stres? Otázka se už netýká všech 200 studentů. Víme, že vybraná osoba je žena, a do úvahy proto bereme jen 100 žen. Zvýšený stres z nich uvedlo 40:
 
-$$P(\text{stres}\mid\text{žena})=\frac{40}{100}=0{,}40.$$
+$$P(\text{zvýšený stres}\mid\text{žena})=\frac{40}{100}=0{,}40.$$
 
 **Podmíněná pravděpodobnost (*conditional probability*)** $P(A\mid B)$ je pravděpodobnost jevu $A$, jestliže víme, že nastal jev $B$. Svislou čáru čteme „za podmínky“ nebo „je-li dáno“. Jev za čarou je podmínka: určuje, které výsledky zůstávají ve hře.
 
 ::: {.teaching-figure role="region" aria-label="Podmíněná pravděpodobnost jako zúžení celku na ženy" tabindex="0"}
 
-![Podmínka mění celek: místo 200 studentů uvažujeme jen 100 žen.](../assets/chapter-05/plots/podmineni.svg){#fig-podmineni fig-alt="Dvě schémata téže tabulky. Vlevo tvoří celek všech 200 studentů a zvýrazněna jsou obě pole stres: 70 z 200 je 0,35. Vpravo je řádek muž vybledlý, celek tvoří jen 100 žen a zvýrazněno je pole žena a stres: 40 ze 100 je 0,40."}
+![Podmínka mění celek: místo 200 studentů uvažujeme jen 100 žen.](../assets/chapter-05/plots/podmineni.svg){#fig-podmineni fig-alt="Dvě schémata téže tabulky. Vlevo tvoří celek všech 200 studentů a zvýrazněna jsou obě pole se zvýšeným stresem: 70 z 200 je 0,35. Vpravo je řádek muž vybledlý, celek tvoří jen 100 žen a zvýrazněno je pole žena a zvýšený stres: 40 ze 100 je 0,40."}
 
 :::
 
-@fig-podmineni ukazuje, co podmínka dělá. Vlevo tvoří celek celý soubor a ptáme se na marginální pravděpodobnost stresu. Vpravo podmínka „žena“ vyřadila druhý řádek; nový celek tvoří 100 žen a v něm hledáme podíl těch, které uvedly stres. V původních 200 studentech je to podíl průniku „žena a stres“ na jevu „žena“. Tím dostáváme obecný vztah [@sahu, s. 64–65]:
+@fig-podmineni ukazuje, co podmínka dělá. Vlevo tvoří celek celý soubor a ptáme se na marginální pravděpodobnost zvýšeného stresu. Vpravo podmínka „žena“ vyřadila druhý řádek; nový celek tvoří 100 žen a v něm hledáme podíl těch, které uvedly zvýšený stres. V původních 200 studentech je to podíl průniku „žena a zvýšený stres“ na jevu „žena“. Tím dostáváme obecný vztah [@sahu, s. 64–65]:
 
 $$P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad\text{pokud } P(B)>0.$$
 
-Pro náš příklad $P(\text{stres}\mid\text{žena})=0{,}20/0{,}50=0{,}40$, stejně jako z počtů. Tento vzorec používáme pouze tehdy, má-li podmínka $B$ kladnou pravděpodobnost. Při $P(B)=0$ bychom dělili nulou. Jak jsme viděli u spojitého modelu, nulová pravděpodobnost sama o sobě neznamená nemožnost.
+Pro náš příklad $P(\text{zvýšený stres}\mid\text{žena})=0{,}20/0{,}50=0{,}40$, stejně jako z počtů. Tento vzorec používáme pouze tehdy, má-li podmínka $B$ kladnou pravděpodobnost. Při $P(B)=0$ bychom dělili nulou. Jak jsme viděli u spojitého modelu, nulová pravděpodobnost sama o sobě neznamená nemožnost.
 
 Při čtení tabulky je nejdůležitější otázka: **z koho počítám?** Společnou a marginální pravděpodobnost dělíme celkovým počtem. Podmíněnou dělíme součtem řádku nebo sloupce, který odpovídá podmínce [@diez, s. 95–96]. Tři čísla se týkají stejných 40 studentek, ale odpovídají na různé otázky:
 
@@ -243,27 +243,31 @@ Při čtení tabulky je nejdůležitější otázka: **z koho počítám?** Spol
 
 | Otázka | Zápis | Výpočet | Výsledek |
 |---|---|---|---:|
-| Jaká část všech studentů jsou ženy, které uvedly stres? | $P(\text{žena}\cap\text{stres})$ | 40/200 | 0,20 |
-| Jaká část žen uvedla stres? | $P(\text{stres}\mid\text{žena})$ | 40/100 | 0,40 |
-| Jaká část studentů se stresem jsou ženy? | $P(\text{žena}\mid\text{stres})$ | 40/70 | 0,57 |
+| Jaká část všech studentů jsou ženy, které uvedly zvýšený stres? | $P(\text{žena}\cap\text{zvýšený stres})$ | 40/200 | 0,20 |
+| Jaká část žen uvedla zvýšený stres? | $P(\text{zvýšený stres}\mid\text{žena})$ | 40/100 | 0,40 |
+| Jaká část studentů se zvýšeným stresem jsou ženy? | $P(\text{žena}\mid\text{zvýšený stres})$ | 40/70 | 0,57 |
 
 :::
 
-Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto dávají 0,40 a 0,57.
+Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto dávají rozdílné výsledky: 0,40 a 0,57.
 
 ::: {.callout-warning title="Častý omyl: obrácení podmínky"}
-Podíl studentů se stresem mezi ženami není totéž co podíl žen mezi studenty se stresem. Pravděpodobnosti $P(A\mid B)$ a $P(B\mid A)$ jsou obecně různá čísla, protože se vztahují k různým celkům. Jejich záměna patří k nejčastějším chybám v práci s pravděpodobností. Vrátíme se k ní u [obrácení podmínky](#sec-bayes).
+Podíl studentů se zvýšeným stresem mezi ženami není totéž co podíl žen mezi studenty se zvýšeným stresem. Pravděpodobnosti $P(A\mid B)$ a $P(B\mid A)$ jsou obecně různá čísla, protože se vztahují k různým celkům. Jejich záměna patří k nejčastějším chybám v práci s pravděpodobností. Vrátíme se k ní u [obrácení podmínky](#sec-bayes).
 :::
 
-Podmínka nevyjadřuje časové pořadí ani příčinu. $P(\text{žena}\mid\text{stres})$ neříká, že stres předchází pohlaví nebo je ovlivňuje. Říká jen, že jsme pozornost zúžili na studenty se stresem [@russo, s. 64].
+Podmínka nevyjadřuje časové pořadí ani příčinu. $P(\text{žena}\mid\text{zvýšený stres})$ neříká, že zvýšený stres předchází pohlaví nebo je ovlivňuje. Říká jen, že jsme pozornost zúžili na studenty se zvýšeným stresem [@russo, s. 64].
 
 ### Součinové pravidlo {#sec-soucinove-pravidlo}
 
-Vztah pro podmíněnou pravděpodobnost můžeme přečíst opačně. Vynásobíme-li obě strany hodnotou $P(B)$, dostaneme **součinové pravidlo (*multiplication rule*)** pro pravděpodobnost průniku [@sahu, s. 66]:
+Vztah pro podmíněnou pravděpodobnost můžeme přečíst opačně. Vynásobíme obě jeho strany hodnotou $P(B)$. Na pravé straně se $P(B)$ v čitateli a ve jmenovateli vykrátí:
+
+$$\begin{aligned}P(B)\times P(A\mid B)&=P(B)\times\frac{P(A\cap B)}{P(B)}\\&=P(A\cap B).\end{aligned}$$
+
+Zapíšeme-li výsledek obráceně, dostaneme **součinové pravidlo (*multiplication rule*)** pro pravděpodobnost průniku [@sahu, s. 66]:
 
 $$P(A\cap B)=P(B)\times P(A\mid B).$$
 
-Slovy: aby nastaly oba jevy, musí nastat $B$ a potom, mezi případy, kdy $B$ nastal, ještě $A$. Polovina studentů jsou ženy a 40 % z nich uvedlo stres, takže žen se stresem je $0{,}50\times0{,}40=0{,}20$ všech studentů. Na pořadí nezáleží: stejně dobře platí $P(A\cap B)=P(A)\times P(B\mid A)$, zde $0{,}35\times(40/70)=0{,}20$.
+Slovy: aby nastaly oba jevy, musí nastat $B$ a potom, mezi případy, kdy $B$ nastal, ještě $A$. Polovina studentů jsou ženy a 40 % z nich uvedlo zvýšený stres, takže žen se zvýšeným stresem je $0{,}50\times0{,}40=0{,}20$ všech studentů. Na pořadí nezáleží: stejně dobře platí $P(A\cap B)=P(A)\times P(B\mid A)$, zde $0{,}35\times(40/70)=0{,}20$.
 
 Pravidlo je užitečné zejména tehdy, když pokus probíhá ve dvou krocích. Z krabice se 100 kartičkami vytáhneme dvě po sobě a první **nevracíme**. Jaká je pravděpodobnost, že obě nesou podstatné jméno? V prvním tahu je to $40/100$. Jestliže první kartička byla podstatné jméno, zůstalo jich v krabici 39 mezi 99 kartičkami:
 
@@ -277,39 +281,47 @@ Při tahu s vracením první tah nezměnil pravděpodobnost ve druhém. To je po
 
 ::: {.table-scroll role="region" aria-label="Kontingenční tabulka, v níž jsou pohlaví a stres nezávislé" tabindex="0"}
 
-| | Stres | Bez vysokého stresu | Celkem |
+| | Zvýšený stres | Nízký stres | Celkem |
 |---|---:|---:|---:|
 | **Žena** | 30 | 70 | 100 |
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 60 | 140 | 200 |
 
-: Druhý soubor 200 studentů: stejný podíl stresu u žen i mužů. {#tbl-nezavislost}
+: Druhý soubor 200 studentů: stejný podíl zvýšeného stresu u žen i mužů. {#tbl-nezavislost}
 
 :::
 
-V tomto souboru uvedlo stres 30 % žen, 30 % mužů i 30 % všech studentů. Informace o pohlaví vybraného člověka pravděpodobnost stresu nemění:
+V tomto souboru uvedlo zvýšený stres 30 % žen, 30 % mužů i 30 % všech studentů. Informace o pohlaví vybraného člověka pravděpodobnost zvýšeného stresu nemění:
 
-$$\begin{aligned}P(\text{stres}\mid\text{žena})&=P(\text{stres}\mid\text{muž})\\&=P(\text{stres})=0{,}30.\end{aligned}$$
+$$\begin{aligned}&P(\text{zvýšený stres}\mid\text{žena})\\&\quad=P(\text{zvýšený stres}\mid\text{muž})\\&\quad=P(\text{zvýšený stres})=0{,}30.\end{aligned}$$
 
-Takovým jevům říkáme **nezávislé (*independent events*)**. Dosadíme-li rovnost $P(A\mid B)=P(A)$ do součinového pravidla, dostaneme vztah, který se používá jako definice: jevy $A$ a $B$ jsou nezávislé právě tehdy, když
+Platí to i obráceně: informace o úrovni stresu nemění pravděpodobnost, že vybraný člověk je žena. Mezi 60 studenty se zvýšeným stresem je 30 žen a mezi 140 studenty s nízkým stresem 70 žen:
+
+$$\begin{aligned}&P(\text{žena}\mid\text{zvýšený stres})=\frac{30}{60}=0{,}50,\\&P(\text{žena}\mid\text{nízký stres})=\frac{70}{140}=0{,}50,\\&P(\text{žena})=\frac{100}{200}=0{,}50.\end{aligned}$$
+
+Takovým jevům říkáme **nezávislé (*independent events*)**: znalost jednoho nemění pravděpodobnost druhého. Obecnou podmínku odvodíme ze součinového pravidla. Platí-li $P(A\mid B)=P(A)$, můžeme v pravidle podmíněnou pravděpodobnost nahradit nepodmíněnou:
+
+$$\begin{aligned}P(A\cap B)&=P(B)\times P(A\mid B)\\&=P(B)\times P(A).\end{aligned}$$
+
+Odtud plyne vztah, který se jako definice nezávislosti používá nejčastěji: jevy $A$ a $B$ jsou nezávislé právě tehdy, když
 
 $$P(A\cap B)=P(A)\times P(B).$$
 
-Součinový tvar je výhodnější než porovnávání podmíněných pravděpodobností, protože nevyžaduje, aby měla podmínka kladnou pravděpodobnost. V tabulce [-@tbl-nezavislost] jej můžeme ověřit: $P(\text{žena}\cap\text{stres})=30/200=0{,}15$ a $P(\text{žena})\times P(\text{stres})=0{,}50\times0{,}30=0{,}15$.
+Součinový tvar je výhodnější než porovnávání podmíněných pravděpodobností, protože nevyžaduje, aby měla podmínka kladnou pravděpodobnost. V tabulce [-@tbl-nezavislost] jej můžeme ověřit: $P(\text{žena}\cap\text{zvýšený stres})=30/200=0{,}15$ a $P(\text{žena})\times P(\text{zvýšený stres})=0{,}50\times0{,}30=0{,}15$.
 
-V prvním souboru rovnost neplatí. Podíl stresu je 40 % u žen a 30 % u mužů; společná pravděpodobnost $0{,}20$ se liší od součinu $0{,}50\times0{,}35=0{,}175$. Jevy „žena“ a „stres“ jsou tam závislé.
+V původním souboru z tabulky [-@tbl-zavislost] rovnost neplatí. Podíl zvýšeného stresu je tam 40 % u žen a 30 % u mužů; společná pravděpodobnost $0{,}20$ se liší od součinu $0{,}50\times0{,}35=0{,}175$. Jevy „žena“ a „zvýšený stres“ jsou tam závislé.
 
 ::: {.teaching-figure role="region" aria-label="Srovnání nezávislosti a závislosti ve dvou tabulkách" tabindex="0"}
 
-![Při nezávislosti je podíl stresu v obou řádcích stejný; při závislosti se liší.](../assets/chapter-05/plots/nezavislost.svg){#fig-nezavislost fig-alt="Dvě schémata tabulek. Vlevo mají ženy i muži 30 a 70, hranice mezi vysokým stresem a jeho nepřítomností je v obou řádcích na stejném místě, tedy nezávislost. Vpravo mají ženy 40 a 60, muži 30 a 70, hranice jsou posunuté, tedy závislost."}
+![Při nezávislosti je podíl zvýšeného stresu v obou řádcích stejný; při závislosti se liší.](../assets/chapter-05/plots/nezavislost.svg){#fig-nezavislost fig-alt="Dvě schémata tabulek. Vlevo mají ženy i muži 30 a 70, hranice mezi zvýšeným a nízkým stresem je v obou řádcích na stejném místě, tedy nezávislost. Vpravo mají ženy 40 a 60, muži 30 a 70, hranice jsou posunuté, tedy závislost."}
 
 :::
 
-Na obrázku [-@fig-nezavislost] poznáme nezávislost podle toho, že svislá hranice mezi vysokým stresem a jeho nepřítomností leží v obou řádcích na stejném místě. Při závislosti je posunutá.
+@fig-nezavislost ukazuje vlevo druhý soubor z tabulky [-@tbl-nezavislost] a vpravo původní soubor z tabulky [-@tbl-zavislost]. Nezávislost poznáme podle toho, že svislá hranice mezi zvýšeným a nízkým stresem leží v obou řádcích na stejném místě. Při závislosti je posunutá.
 
 Pro nezávislé jevy se součinové pravidlo zjednoduší na součin jednotlivých pravděpodobností. Toto zjednodušení je velmi užitečné, ale smíme je použít jen tehdy, když nezávislost zdůvodníme. Dva tipy na dvě různé otázky se čtyřmi možnostmi jsou nezávislé, pokud tip na první otázku nijak neovlivňuje tip na druhou. Pravděpodobnost, že budou oba správně, je pak $0{,}25\times0{,}25=0{,}0625$.
 
-Spojíme-li nezávislost s doplňkem, zvládneme i otázky „alespoň jednou“. Jaká je pravděpodobnost, že alespoň jeden ze dvou tipů bude správný? Doplňkem je jev „oba tipy jsou špatně“ s pravděpodobností $0{,}75\times0{,}75=0{,}5625$. Hledaná pravděpodobnost je proto $1-0{,}5625=0{,}4375$. Přímý výpočet by vyžadoval sečíst tři možnosti (správně jen první, jen druhý, oba).
+Spojíme-li nezávislost s opačným jevem, zvládneme i otázky „alespoň jednou“. Jaká je pravděpodobnost, že alespoň jeden ze dvou tipů bude správný? Opačným jevem je jev „oba tipy jsou špatně“ s pravděpodobností $0{,}75\times0{,}75=0{,}5625$. Hledaná pravděpodobnost je proto $1-0{,}5625=0{,}4375$. Přímý výpočet by byl obtížnější: museli bychom vypočítat pravděpodobnosti tří jednotlivých možností (správně jen první, jen druhý, oba) a poté je sečíst.
 
 ### Co nezávislost neznamená {#sec-nezavislost-meze}
 
@@ -317,7 +329,7 @@ Pojem nezávislosti se snadno splete s několika jinými. Čtyři rozlišení st
 
 **Nezávislé není totéž co vzájemně výlučné.** Výlučné jevy nemohou nastat zároveň. Jakmile víme, že jeden nastal, pravděpodobnost druhého klesne na nulu; jeden o druhém tedy vypovídá velmi mnoho. Mají-li oba kladnou pravděpodobnost, je jejich průnik nulový, kdežto součin pravděpodobností kladný. Vzájemně výlučné jevy s kladnými pravděpodobnostmi jsou proto vždy závislé.
 
-**Závislost není příčina.** Že se podíl stresu u žen a mužů v souboru liší, neříká, proč tomu tak je. Platí vše, co jsme o [souvislosti a příčině](kapitola_01.qmd#sec-souvislost-pricina) uvedli v první kapitole.
+**Závislost není příčina.** Že se podíl zvýšeného stresu u žen a mužů v souboru liší, neříká, proč tomu tak je. Platí vše, co jsme o [souvislosti a příčině](kapitola_01.qmd#sec-souvislost-pricina) uvedli v první kapitole.
 
 **Nezávislost v tabulce není nezávislost v populaci.** Kdybychom ze stejné populace vybrali jiných 200 studentů, podíly by vyšly trochu jinak. Přesná shoda 30 % a 30 % v tabulce [-@tbl-nezavislost] je vlastností tohoto souboru. Malý rozdíl podílů ve skutečném výběru nedokazuje závislost v populaci a přesná shoda nedokazuje nezávislost [@russo, s. 64]. Jak z výběru usuzovat na populaci, je tématem inferenční statistiky.
 
@@ -325,16 +337,31 @@ Pojem nezávislosti se snadno splete s několika jinými. Čtyři rozlišení st
 
 ## Obrácení podmínky a Bayesova věta {#sec-bayes}
 
-Podmíněnou pravděpodobnost nelze jednoduše obrátit. Oddíl na příkladu screeningového dotazníku ukazuje, jak z vlastností dotazníku a ze základní četnosti zjistit, co znamená jeho pozitivní výsledek.
+Podmíněnou pravděpodobnost nelze jednoduše obrátit. Tento oddíl na příkladu screeningového dotazníku ukazuje, jak z vlastností dotazníku a ze základní četnosti zjistit, co znamená jeho pozitivní výsledek.
 
 ### Screening: co víme a na co se ptáme {#sec-screening}
 
-Vraťme se k úvodní otázce. Univerzitní poradna používá krátký screeningový dotazník úzkostné poruchy. O dotazníku víme, jak se chová u lidí, jejichž stav známe z podrobného klinického vyšetření. Tyto vlastnosti mají ustálené názvy:
+Vraťme se k úvodní otázce. Univerzitní poradna používá krátký screeningový dotazník úzkostných poruch. O dotazníku víme, jaké vykazuje vlastnosti u lidí, jejichž stav známe z podrobného klinického vyšetření.
+
+Výsledek dotazníku je buď pozitivní, nebo negativní. **Pozitivní** znamená, že dotazník na poruchu upozorňuje, například skór překročil stanovenou hranici. **Negativní** znamená, že na ni neupozorňuje. Slova se tu nevztahují k tomu, zda je výsledek žádoucí: pozitivní výsledek si člověk obvykle nepřeje. Vlastnosti dotazníku mají ustálené názvy:
 
 - **Senzitivita (*sensitivity*)** je pravděpodobnost pozitivního výsledku u člověka, který poruchu má: $P(\text{pozitivní}\mid\text{porucha})$. V našem příkladu 0,95.
 - **Specificita (*specificity*)** je pravděpodobnost negativního výsledku u člověka, který poruchu nemá: $P(\text{negativní}\mid\text{bez poruchy})$. V našem příkladu 0,90.
 
-Obě čísla jsou podmíněné pravděpodobnosti, jejichž podmínkou je skutečný stav. Dotazník se může mýlit dvěma způsoby. **Falešně pozitivní výsledek (*false positive*)** je pozitivní výsledek u člověka bez poruchy. Mezi lidmi bez poruchy je pravděpodobnost pozitivního výsledku doplňkem specificity, $1-0{,}90=0{,}10$. **Falešně negativní výsledek (*false negative*)** je negativní výsledek u člověka s poruchou. Mezi lidmi s poruchou je pravděpodobnost negativního výsledku doplňkem senzitivity, $1-0{,}95=0{,}05$. Tato čísla se vztahují ke dvěma různým skupinám; neudávají podíl falešných výsledků mezi všemi testovanými.
+Obě čísla jsou podmíněné pravděpodobnosti, jejichž podmínkou je skutečný stav. Zkřížíme-li skutečný stav s výsledkem dotazníku, vzniknou čtyři možnosti. Dvě z nich jsou správné a dvě chybné:
+
+::: {.table-scroll role="region" aria-label="Čtyři možné kombinace skutečného stavu a výsledku dotazníku" tabindex="0"}
+
+| Skutečný stav | Pozitivní výsledek | Negativní výsledek |
+|---|---|---|
+| **Porucha přítomna** | správně pozitivní | falešně negativní |
+| **Porucha nepřítomna** | falešně pozitivní | správně negativní |
+
+: Dotazník se může mýlit dvěma různými způsoby: u lidí s poruchou falešně negativním výsledkem, u lidí bez poruchy falešně pozitivním. {#tbl-ctyri-vysledky}
+
+:::
+
+V tabulce [-@tbl-ctyri-vysledky] se senzitivita týká jen prvního řádku: je to podíl správně pozitivních výsledků mezi lidmi s poruchou. Specificita se týká jen druhého řádku: je to podíl správně negativních výsledků mezi lidmi bez poruchy. **Správně pozitivní výsledek (*true positive*)** je pozitivní výsledek u člověka s poruchou, **správně negativní výsledek (*true negative*)** negativní výsledek u člověka bez poruchy. **Falešně pozitivní výsledek (*false positive*)** je pozitivní výsledek u člověka bez poruchy. Mezi lidmi bez poruchy je pravděpodobnost pozitivního výsledku doplňkem specificity, $1-0{,}90=0{,}10$. **Falešně negativní výsledek (*false negative*)** je negativní výsledek u člověka s poruchou. Mezi lidmi s poruchou je pravděpodobnost negativního výsledku doplňkem senzitivity, $1-0{,}95=0{,}05$. Tato čísla se vztahují ke dvěma různým skupinám; neudávají podíl falešných výsledků mezi všemi testovanými.
 
 Psycholožka ale stojí před opačnou otázkou. Nezná skutečný stav klienta; zná výsledek dotazníku. Zajímá ji $P(\text{porucha}\mid\text{pozitivní})$, tedy pravděpodobnost s **obrácenou podmínkou**. Odpověď 0,95 by byla záměnou $P(A\mid B)$ za $P(B\mid A)$, před kterou jsme varovali. K správné odpovědi chybí ještě jeden údaj: jak častá porucha mezi lidmi, kteří dotazník vyplňují, vůbec je. Předpokládejme, že mezi studenty přicházejícími do poradny ji má 10 %.
 
@@ -348,11 +375,13 @@ Nejsnáze se úloha řeší, když pravděpodobnosti převedeme na počty lidí.
 2.  Ze 100 studentů s poruchou má pozitivní výsledek 95 % (senzitivita): 95 studentů. Zbylých 5 má výsledek falešně negativní.
 3.  Z 900 studentů bez poruchy má negativní výsledek 90 % (specificita): 810 studentů. Zbylých 90 má výsledek falešně pozitivní.
 
-Počtům, které vznikají takovým postupným členěním jedné společné výchozí skupiny, se říká **přirozené četnosti (*natural frequencies*)**. Nejsou to libovolné absolutní četnosti: každé číslo je částí čísla o úroveň výše a všechna se vztahují ke stejným tisíci lidem. Postup přehledně zachycuje **stromový diagram (*tree diagram*)**.
+Počtům, které vznikají takovým postupným členěním jedné společné výchozí skupiny, se říká **přirozené četnosti (*natural frequencies*)**. Odpovídají tomu, jak bychom případy zaznamenávali, kdybychom tisíc příchozích postupně vyšetřovali: kolik lidí poruchu má, nikdo předem neurčuje, vyplyne to až z jejího výskytu [@gigerenzer1995, oddíl Natural Sampling of Frequencies]. Každé číslo je proto částí čísla o úroveň výše a všechna se vztahují ke stejným tisíci lidem.
+
+Právě tím se přirozené četnosti liší od jiných absolutních četností. Údaje „95 ze 100 lidí s poruchou má pozitivní výsledek“ a „10 ze 100 lidí bez poruchy má pozitivní výsledek“ nesou stejnou informaci o senzitivitě a specificitě jako strom. Obě skupiny jsou však uměle stejně velké, a informace o tom, že lidí bez poruchy je devětkrát více, se tak ztratila. V přirozených četnostech základní četnost zůstává obsažena: 100 lidí s poruchou proti 900 bez ní. Postup přehledně zachycuje **stromový diagram (*tree diagram*)**.
 
 ::: {.teaching-figure role="region" aria-label="Stromový diagram přirozených četností pro screening tisíce studentů" tabindex="0"}
 
-![Strom přirozených četností: tisíc studentů se dělí nejprve podle stavu, potom podle výsledku dotazníku.](../assets/chapter-05/plots/strom.svg){#fig-strom fig-alt="Strom. Nahoře 1 000 studentů. Větev 0,10 vede ke 100 studentům s poruchou, větev 0,90 k 900 bez poruchy. Ze 100 s poruchou je 95 pozitivních a 5 negativních. Z 900 bez poruchy je 90 pozitivních a 810 negativních. Zvýrazněny jsou obě skupiny pozitivních: 95 a 90, dohromady 185. Pozitivní prediktivní hodnota je 95 lomeno 185, tedy 0,514."}
+![Strom přirozených četností: tisíc studentů se dělí nejprve podle stavu, potom podle výsledku dotazníku.](../assets/chapter-05/plots/strom.svg){#fig-strom fig-alt="Strom. Nahoře 1 000 studentů. Větev 0,10, označená jako prevalence, vede ke 100 studentům s poruchou, větev 0,90, tedy 1 minus prevalence, k 900 bez poruchy. Ze 100 s poruchou je 95 pozitivních (větev 0,95, senzitivita) a 5 negativních (0,05, 1 minus senzitivita). Z 900 bez poruchy je 90 pozitivních (0,10, 1 minus specificita) a 810 negativních (0,90, specificita). Zvýrazněny jsou obě skupiny pozitivních: 95 a 90, dohromady 185. Prediktivní hodnota pozitivního testu je 95 lomeno 185, tedy 0,514."}
 
 :::
 
@@ -376,13 +405,13 @@ Senzitivita a specificita se čtou **po řádcích**: $95/100$ a $810/900$. Otá
 
 $$P(\text{porucha}\mid\text{pozitivní})=\frac{95}{185}\approx0{,}514.$$
 
-Této pravděpodobnosti se říká **pozitivní prediktivní hodnota (*positive predictive value*)**. Přestože dotazník zachytí 95 % lidí s poruchou, má poruchu jen o málo více než polovina těch, u nichž vyšel pozitivně. Důvodem je, že lidí bez poruchy je devětkrát více. I malá část z nich, která má falešně pozitivní výsledek (90), je početně srovnatelná se správně zachycenými (95).
+Této pravděpodobnosti se říká **prediktivní hodnota pozitivního testu (*positive predictive value*)**; v literatuře se setkáte i s označením pozitivní prediktivní hodnota. Přestože dotazník zachytí 95 % lidí s poruchou, má poruchu jen o málo více než polovina těch, u nichž vyšel pozitivně. Důvodem je, že lidí bez poruchy je devětkrát více. I malá část z nich, která má falešně pozitivní výsledek (90), je početně srovnatelná se správně zachycenými (95).
 
-Obdobně **negativní prediktivní hodnota (*negative predictive value*)** je pravděpodobnost, že člověk s negativním výsledkem poruchu skutečně nemá:
+Obdobně **prediktivní hodnota negativního testu (*negative predictive value*)** je pravděpodobnost, že člověk s negativním výsledkem poruchu skutečně nemá:
 
 $$P(\text{bez poruchy}\mid\text{negativní})=\frac{810}{815}\approx0{,}994.$$
 
-Negativní výsledek je v této situaci velmi spolehlivý; pozitivní je důvodem k podrobnějšímu vyšetření, nikoli diagnózou. Stejným způsobem postupuje Baron [-@baron2008, s. 121–123]: nejprve počty osob a tabulka, potom strom a teprve nakonec vzorec. Uttsová [-@utts2003, s. 77] označuje tabulku s počty pro pomyslnou skupinu lidí za nejsnazší způsob, jak tuto úvahu studentům ukázat.
+Negativní výsledek je v této situaci velmi spolehlivý; pozitivní je důvodem k podrobnějšímu vyšetření, nikoli diagnózou.
 
 ### Úplná pravděpodobnost {#sec-uplna-pravdepodobnost}
 
@@ -390,7 +419,7 @@ Než zapíšeme obecný vzorec, podíváme se na jmenovatele. Číslo 185 jsme z
 
 $$\begin{aligned}P(\text{pozitivní})&=\underbrace{0{,}10\times0{,}95}_{\text{přes poruchu}}+\underbrace{0{,}90\times0{,}10}_{\text{bez poruchy}}\\&=0{,}095+0{,}090=0{,}185.\end{aligned}$$
 
-Obecně: jev $B$ může nastat buď společně s jevem $A$, nebo společně s jeho doplňkem $A'$. Tyto dvě možnosti jsou vzájemně výlučné a pokrývají všechny případy, takže jejich pravděpodobnosti sečteme podle součtového pravidla. Každou z nich rozepíšeme součinovým pravidlem [@sahu, s. 67–68]:
+Obecně: jev $B$ může nastat buď společně s jevem $A$, nebo společně s opačným jevem $A'$. Tyto dvě možnosti jsou vzájemně výlučné a pokrývají všechny případy, takže jejich pravděpodobnosti sečteme podle součtového pravidla. Každou z nich rozepíšeme součinovým pravidlem [@sahu, s. 67–68]:
 
 $$\begin{aligned}P(B)&=P(A)\times P(B\mid A)\\&\quad+P(A')\times P(B\mid A').\end{aligned}$$
 
@@ -428,8 +457,8 @@ V sešitu je výpočet na listu `Bayes`. Vstupy jsou ve žlutých buňkách B2:B
 | B12 | Správně negativní | `=B8-B11` | 810 |
 | B13 | Pozitivní celkem | `=B9+B11` | 185 |
 | B14 | Negativní celkem | `=B10+B12` | 815 |
-| B16 | Pozitivní prediktivní hodnota | `=B9/B13` | 0,514 |
-| B17 | Negativní prediktivní hodnota | `=B12/B14` | 0,994 |
+| B16 | Prediktivní hodnota pozitivního testu | `=B9/B13` | 0,514 |
+| B17 | Prediktivní hodnota negativního testu | `=B12/B14` | 0,994 |
 | B19 | Úplná pravděpodobnost pozitivního výsledku | `=B3*B4+(1-B3)*(1-B5)` | 0,185 |
 | B20 | Bayesova věta | `=B3*B4/B19` | 0,514 |
 
@@ -452,13 +481,13 @@ Pro srovnání přepočítáme na 10 000 osob i poradnu s desetiprocentním výs
 
 ::: {.teaching-figure role="region" aria-label="Pozitivní výsledky téhož dotazníku při prevalenci 10 % a 1 %" tabindex="0"}
 
-![Složení pozitivních výsledků z 10 000 testovaných při dvou prevalencích.](../assets/chapter-05/plots/dve-prevalence.svg){#fig-dve-prevalence fig-alt="Dva vodorovné pruhy. Při prevalenci 10 procent je mezi pozitivními 950 správně a 900 falešně pozitivních, prediktivní hodnota 0,514. Při prevalenci 1 procento je 95 správně a 990 falešně pozitivních, prediktivní hodnota 0,088."}
+![Složení pozitivních výsledků z 10 000 testovaných při dvou prevalencích.](../assets/chapter-05/plots/dve-prevalence.svg){#fig-dve-prevalence fig-alt="Dva vodorovné pruhy. Při prevalenci 10 procent je mezi pozitivními 950 správně a 900 falešně pozitivních, prediktivní hodnota pozitivního testu 0,514. Při prevalenci 1 procento je 95 správně a 990 falešně pozitivních, prediktivní hodnota pozitivního testu 0,088."}
 
 :::
 
 @fig-dve-prevalence ukazuje jen ty, jejichž výsledek vyšel pozitivně. Při plošném použití tvoří lidé s poruchou malou část pozitivních výsledků: přibližně 9 ze 100. Senzitivita a specificita se v našem modelu nezměnily. Změnilo se složení skupiny, v níž jej používáme: lidí bez poruchy je teď 99krát více než lidí s poruchou, a i desetina z nich představuje mnohem více osob než téměř všichni lidé s poruchou.
 
-Odtud plyne důležitý závěr: **pozitivní prediktivní hodnota není vlastností samotného testu.** Závisí na tom, jak častý je sledovaný stav ve skupině, kde test používáme. Tentýž pozitivní výsledek znamená něco jiného v poradně a něco jiného při plošném šetření. Na listu `Bayes` si to ověříte změnou buňky B3 na `0,01`.
+Odtud plyne důležitý závěr: **prediktivní hodnota pozitivního testu není vlastností samotného testu.** Závisí na tom, jak častý je sledovaný stav ve skupině, kde test používáme. Tentýž pozitivní výsledek znamená něco jiného v poradně a něco jiného při plošném šetření. Na listu `Bayes` si to ověříte změnou buňky B3 na `0,01`.
 
 Lidé tuto závislost při intuitivním úsudku často přehlížejí. Soustředí se na to, jak dobře výsledek „sedí“ na poruchu (95 %), a nevezmou v úvahu, jak vzácná porucha je. Této chybě se říká **zanedbání základních četností (*base-rate neglect*)** [@baron2008, s. 149–150]. Úzce souvisí se záměnou podmínky: kdo odpoví 0,95, zaměnil $P(\text{pozitivní}\mid\text{porucha})$ za $P(\text{porucha}\mid\text{pozitivní})$. Uttsová [-@utts2003, s. 77–78] řadí rozlišení těchto dvou pravděpodobností mezi to, co by měl o statistice vědět každý vzdělaný člověk, a ukazuje, že chybují i lékaři.
 
@@ -472,18 +501,18 @@ V předchozím textu jsme použili tři blízké pojmy. V diagnostickém příkl
 
 **Apriorní pravděpodobnost (*prior probability*)** je pravděpodobnost jevu před tím, než vezmeme v úvahu novou informaci; zde před tím, než známe výsledek dotazníku. **Aposteriorní pravděpodobnost (*posterior probability*)** je pravděpodobnost téhož jevu poté, co jsme novou informaci zohlednili. V našem příkladu je apriorní pravděpodobnost poruchy 0,10 a aposteriorní po pozitivním výsledku 0,514; po negativním výsledku by klesla na $5/815\approx0{,}006$.
 
-Slova „před novou informací“ neznamenají „bez podkladů“. Apriorní pravděpodobnost jsme stanovili podle základní četnosti, tedy podle údajů o výskytu poruchy. Obecně může vycházet i z dalších informací: psycholožka, která už s klientem mluvila, může odůvodněně začít od jiné hodnoty než od prevalence v poradně. Bayesova věta pak říká, jak tuto výchozí pravděpodobnost upravit podle výsledku testu. Aposteriorní pravděpodobnost se může stát apriorní pro další krok, například před dalším vyšetřením [@howell, s. 121–122]. Přitom je třeba zohlednit, zda nové vyšetření přináší novou informaci, nebo částečně opakuje informaci již použitou. Stejnou informaci nesmíme započítat dvakrát; pravděpodobnosti výsledků dalšího vyšetření musejí odpovídat tomu, co už o člověku víme.
+Slova „před novou informací“ neznamenají „bez podkladů“. Apriorní pravděpodobnost jsme stanovili podle základní četnosti, tedy podle údajů o výskytu poruchy. Obecně může vycházet i z dalších informací: psycholožka, která už s klientem mluvila, může odůvodněně začít od jiné hodnoty než od prevalence v poradně. Bayesova věta pak říká, jak tuto výchozí pravděpodobnost aktualizovat podle výsledku testu. Aposteriorní pravděpodobnost se může stát apriorní pro další krok, například před dalším vyšetřením [@howell, s. 121–122]. Přitom je třeba zohlednit, zda nové vyšetření přináší novou informaci, nebo částečně opakuje informaci již použitou. Stejnou informaci nesmíme započítat dvakrát; pravděpodobnosti výsledků dalšího vyšetření musejí odpovídat tomu, co už o člověku víme.
 
 ::: {#rozsireni-sance .callout-note collapse="true" title="Nepovinné rozšíření: šance"}
-Nejistotu lze vyjádřit i jinak než pravděpodobností. **Šance (*odds*)** porovnávají pravděpodobnost, že jev nastane, s pravděpodobností, že nenastane:
+Nejistotu lze vyjádřit i jinak než pravděpodobností. **Šance (*odds*)** porovnávají pravděpodobnost, že jev nastane, s pravděpodobností, že nenastane. Jedná se tedy o poměr dvou pravděpodobností:
 
 $$O(A)=\frac{P(A)}{1-P(A)}.$$
 
-Písmeno $O$ pochází z anglického *odds*. Pro $P(A)=0{,}75$ jsou šance $0{,}75/0{,}25=3$; říkáme také „tři ku jedné“. Znamená to, že jev je třikrát pravděpodobnější než jeho doplněk. Pro $P(A)=0{,}5$ jsou šance 1 („jedna ku jedné“), pro $P(A)=0{,}10$ jsou $0{,}10/0{,}90\approx0{,}11$, tedy „jedna ku devíti“.
+Písmeno $O$ pochází z anglického *odds*. Pro $P(A)=0{,}75$ jsou šance $0{,}75/0{,}25=3$; říkáme také „tři ku jedné“. Znamená to, že jev je třikrát pravděpodobnější než opačný jev. Pro $P(A)=0{,}5$ jsou šance 1 („jedna ku jedné“), pro $P(A)=0{,}10$ jsou $0{,}10/0{,}90\approx0{,}11$, tedy „jedna ku devíti“.
 
 Zpětný převod: $P(A)=O(A)/(1+O(A))$. Šance 3 odpovídají pravděpodobnosti $3/(1+3)=0{,}75$.
 
-Pravděpodobnost a šance nejsou totéž číslo a nelze je zaměňovat. Pravděpodobnost leží mezi 0 a 1; šance mohou být libovolně velké. U vzácných jevů jsou si obě hodnoty blízké (0,01 a přibližně 0,0101), u častých se výrazně liší (0,90 a 9). Statistické šance také nejsou totéž co sázkový kurz, který vyjadřuje podmínky výplaty sázky.
+Pravděpodobnost a šance nejsou totéž číslo a nelze je zaměňovat. Pravděpodobnost leží mezi 0 a 1; šance mohou být libovolně velké. U vzácných jevů jsou si obě hodnoty blízké (0,01 a přibližně 0,0101). Je to proto, že jmenovatel $1-P(A)$ je u vzácného jevu téměř roven jedné, zde 0,99, a dělení číslem blízkým jedné hodnotu téměř nemění. U častých jevů je jmenovatel malý a obě hodnoty se výrazně liší (0,90 a 9). Statistické šance také nejsou totéž co sázkový kurz, který vyjadřuje podmínky výplaty sázky.
 
 V příkladu se screeningem jsou šance poruchy před testem $0{,}10/0{,}90$, tedy jedna ku devíti, a po pozitivním výsledku $95/90\approx1{,}06$, tedy přibližně jedna ku jedné. Šance se uplatní v pokročilejších metodách, například při porovnávání skupin podle výskytu určitého jevu.
 :::
@@ -500,9 +529,9 @@ Vezměme krátký test s pěti otázkami. Každá má čtyři možnosti, z nich�
 
 **Náhodná proměnná (*random variable*)**, v jiné literatuře náhodná veličina, je pravidlo, které každému výsledku náhodného pokusu přiřadí číslo. Zde pětici tipů přiřadí počet těch správných. Náhodné proměnné označujeme velkými písmeny, nejčastěji $X$; konkrétní hodnotu, které může nabýt, malým písmenem, zde $k$. (V kapitole o četnostech označovalo $k$ počet kategorií; zde je to počet správných tipů.) Zápis $X=2$ označuje jev „student má právě dva tipy správně“ a $P(X=2)$ jeho pravděpodobnost.
 
-Náhodná proměnná navazuje na [proměnnou](kapitola_01.qmd#sec-promenne) z první kapitoly, ale není totožná se sloupcem zaznamenaných dat. Sloupec obsahuje hodnoty, které proměnná u konkrétních lidí už nabyla. Náhodná proměnná popisuje, jakých hodnot může nabýt a s jakou pravděpodobností, ještě než pokus proběhne. Pojem také nevyžaduje, aby se pokus opakoval: počet správných tipů jednoho studenta v jednom testu je náhodná proměnná.
+Náhodná proměnná navazuje na [proměnnou](kapitola_01.qmd#sec-promenne) z první kapitoly, ale není totožná se sloupcem zaznamenaných dat. Sloupec obsahuje hodnoty, které proměnná u konkrétních lidí už nabyla. Náhodná proměnná je pravidlo, které určuje, jaké číslo dostaneme podle toho, jak pokus dopadne; je vymezena dříve, než pokus proběhne. Které hodnoty jsou možné a s jakou pravděpodobností nastanou, nepopisuje proměnná sama, ale její rozdělení pravděpodobnosti, které zavedeme vzápětí. Pojem také nevyžaduje, aby se pokus opakoval: počet správných tipů jednoho studenta v jednom testu je náhodná proměnná.
 
-**Rozdělení pravděpodobnosti (*probability distribution*)** popisuje, jak je pravděpodobnost rozdělena mezi možné hodnoty náhodné proměnné. U diskrétní proměnné je můžeme uvést v tabulce hodnot a jejich pravděpodobností. Pro počet správných tipů v našem testu vypadá takto (jak se k číslům dojde, ukážeme v oddílu o [binomickém rozdělení](#sec-binomicke)):
+**Rozdělení pravděpodobnosti (*probability distribution*)** popisuje, jak je pravděpodobnost rozdělena mezi možné hodnoty náhodné proměnné. Navazuje přitom na výběrový prostor. Každá hodnota náhodné proměnné odpovídá jevu: zápis $X=2$ označuje množinu všech pětic tipů, v nichž jsou právě dva správné. Pravděpodobnost hodnoty je pravděpodobnost tohoto jevu, tedy součet pravděpodobností všech výsledků, které do něj patří. Rozdělení tak převádí pravděpodobnosti z výběrového prostoru na čísla, která nás zajímají. U diskrétní proměnné je můžeme uvést v tabulce hodnot a jejich pravděpodobností. Pro počet správných tipů v našem testu vypadá takto (jak se k číslům dojde, ukážeme v oddílu o [binomickém rozdělení](#sec-binomicke)):
 
 ::: {.table-scroll role="region" aria-label="Rozdělení pravděpodobnosti počtu správných tipů z pěti" tabindex="0"}
 
@@ -528,15 +557,15 @@ Rozdělení pravděpodobnosti připomíná tabulku relativních četností z [dr
 
 :::
 
-Na obrázku [-@fig-rozdeleni-model-data] se oba grafy podobají, ale neshodují se. Žádnou otázku neuhodlo 13 ze 40 simulovaných studentů, tedy 32,5 %, zatímco model udává 23,7 %. Čtyři ani pět otázek neuhodl nikdo, ačkoli model těmto hodnotám dává malou kladnou pravděpodobnost. Neznamená to, že je model chybný: jde o simulaci, která se jím řídila přesně. Rozdíly jsou důsledkem náhody ve výběru čtyřiceti lidí, stejné jako u [kolísání relativní četnosti](#sec-dlouha-rada). Ve větším výběru by se relativní četnosti pravděpodobnostem zpravidla blížily více.
+Na obrázku [-@fig-rozdeleni-model-data] se oba grafy podobají, ale neshodují se. Žádnou otázku neuhodlo 13 ze 40 simulovaných studentů, tedy 32,5 %, zatímco model udává 23,7 %. Čtyři ani pět otázek neuhodl nikdo, ačkoli model těmto hodnotám dává nízkou kladnou pravděpodobnost. Neznamená to, že je model chybný: jde o simulaci, která se jím řídila přesně. Rozdíly jsou důsledkem náhody ve výběru čtyřiceti lidí, stejné jako u [kolísání relativní četnosti](#sec-dlouha-rada). Ve větším výběru by se relativní četnosti pravděpodobnostem zpravidla blížily více.
 
-Počet správných tipů je [diskrétní proměnná](kapitola_01.qmd#sec-diskretni-spojite): její možné hodnoty lze vyjmenovat a každé přiřadit pravděpodobnost. U spojité proměnné, například reakčního času, to nejde. Jednotlivá přesná hodnota má nulovou pravděpodobnost a rozdělení popisujeme [hustotou](kapitola_04.qmd#sec-hustota), z níž čteme pravděpodobnosti intervalů jako plochy. Sloupec v grafu diskrétního rozdělení ukazuje přímo pravděpodobnost své hodnoty; výška křivky hustoty pravděpodobností není.
+Počet správných tipů je [diskrétní proměnná](kapitola_01.qmd#sec-diskretni-spojite): její možné hodnoty lze vyjmenovat a každé přiřadit pravděpodobnost. U spojité proměnné, například reakčního času, to nejde. Jednotlivá přesná hodnota má nulovou pravděpodobnost a rozdělení popisujeme [hustotou](kapitola_04.qmd#sec-hustota), z níž čteme pravděpodobnosti intervalů jako plochy. Sloupec v grafu diskrétního rozdělení ukazuje přímo pravděpodobnost konkrétní hodnoty; výška křivky hustoty pravděpodobností není.
 
 ### Střední hodnota {#sec-stredni-hodnota}
 
 Data shrnujeme průměrem a směrodatnou odchylkou. Podobné charakteristiky má i rozdělení pravděpodobnosti. **Střední hodnota (*expected value*)**, také očekávaná hodnota, je průměr, ke kterému by se blížil průměr hodnot náhodné proměnné při velmi mnoha opakováních pokusu. Je to parametr rozdělení, proto ji značíme stojatým řeckým $\mathrm{μ}$, stejně jako průměr [normálního modelu](kapitola_04.qmd#sec-parametry-normalniho).
 
-Pro počet správných tipů v testu s pěti otázkami je $\mathrm{μ}=1{,}25$. Nikdo nemůže uhodnout jednu a čtvrt otázky; střední hodnota nemusí být hodnotou, která může nastat. Říká, že kdyby tímto způsobem test vyplnilo velmi mnoho studentů, vycházelo by na jednoho v průměru přibližně 1,25 správného tipu. U 40 simulovaných studentů byl průměr $m=41/40=1{,}025$. Písmeno $m$ označuje průměr vypočtený z dat, $\mathrm{μ}$ vlastnost modelu; že se liší, je opět projev náhody ve výběru.
+Pro počet správných tipů v testu s pěti otázkami je $\mathrm{μ}=1{,}25$. Nikdo nemůže uhodnout jednu a čtvrt otázky; střední hodnota nemusí být hodnotou, která může nastat. Říká, že kdyby tímto způsobem test vyplnilo velmi mnoho studentů, vycházelo by na jednoho v průměru přibližně 1,25 správného tipu. U 40 simulovaných studentů byl průměr $m=41/40=1{,}025$. Písmeno $m$ označuje průměr vypočtený z dat (tzn. výběrový průměr), $\mathrm{μ}$ vlastnost modelu; že se liší, je opět projev náhody ve výběru.
 
 Rozdělení má také **směrodatnou odchylku** $\mathrm{σ}$, která vyjadřuje, jak daleko od střední hodnoty hodnoty náhodné proměnné typicky leží. Pro náš test je $\mathrm{σ}\approx0{,}97$. Pro binomické rozdělení se obě charakteristiky počítají jednoduchými vzorci, které uvedeme [dále](#sec-binomicke-tvar).
 
@@ -590,11 +619,11 @@ V Excelu počítá faktoriál funkce **`FAKTORIÁL`** (anglicky `FACT`) s jedin�
 
 Vraťme se k testu s pěti otázkami. Kolika způsoby může student uhodnout **právě dvě** z nich? Ptáme se, kolika způsoby lze z pěti otázek vybrat dvojici těch, které budou správně. Na pořadí ve dvojici nezáleží: „první a třetí“ je totéž jako „třetí a první“.
 
-**Kombinace (*combination*)** je výběr několika prvků z dané skupiny, při němž nezáleží na pořadí. Jednou kombinací je například dvojice otázek 1 a 3. Počet všech takových výběrů udává **kombinační číslo (*binomial coefficient*)**. Kombinace je tedy výběr sám, kombinační číslo počet výběrů.
+**Kombinace (*combination*)** je výběr několika prvků z dané skupiny, při němž nezáleží na pořadí. Jednou kombinací je například dvojice otázek 1 a 3. Počet všech takových výběrů udává **kombinační číslo (*binomial coefficient*)**. Kombinace je tedy jeden konkrétní způsob výběru prvků, zatímco kombinační číslo udává, kolik takových způsobů existuje.
 
 ::: {.teaching-figure role="region" aria-label="Deset kombinací: které dvě z pěti otázek jsou správně" tabindex="0"}
 
-![Všech deset způsobů, jak mít právě dvě z pěti otázek správně.](../assets/chapter-05/plots/kombinace.svg){#fig-kombinace fig-alt="Deset řádků po pěti kroužcích. V každém řádku jsou dva kroužky vyplněné a označené S jako správně, tři prázdné označené N jako nesprávně. Řádky ukazují všech deset různých dvojic otázek: 1 a 2, 1 a 3, 1 a 4, 1 a 5, 2 a 3, 2 a 4, 2 a 5, 3 a 4, 3 a 5, 4 a 5."}
+![Všech deset způsobů, jak mít právě dvě z pěti otázek správně.](../assets/chapter-05/plots/kombinace.svg){#fig-kombinace fig-alt="Dva sloupce po pěti řádcích; vlevo způsoby 1 až 5, vpravo 6 až 10. Každý řádek má pět kroužků. V každém řádku jsou dva kroužky vyplněné a označené S jako správně, tři prázdné označené N jako nesprávně. Řádky ukazují postupně všech deset různých dvojic otázek: 1 a 2, 1 a 3, 1 a 4, 1 a 5, 2 a 3, 2 a 4, 2 a 5, 3 a 4, 3 a 5, 4 a 5."}
 
 :::
 
@@ -632,7 +661,7 @@ Obecně je kombinační číslo rovno počtu variací dělenému $k!$.
 
 ## Binomické rozdělení {#sec-binomicke}
 
-Oddíl spojuje předchozí nástroje do prvního konkrétního modelu rozdělení: pravděpodobností počtu úspěchů v opakovaných pokusech.
+Tento oddíl spojuje předchozí nástroje do prvního konkrétního modelu rozdělení: pravděpodobností počtu úspěchů v opakovaných pokusech.
 
 ### Kdy binomický model použít {#sec-binomicke-predpoklady}
 
@@ -641,7 +670,7 @@ Mnoho psychologických situací má stejnou stavbu: několikrát opakujeme pokus
 1.  **Počet pokusů je předem daný.** Značíme jej $n$. Jednotlivému opakování říkáme **pokus (*trial*)**.
 2.  **Každý pokus má jen dva možné výsledky.** Jednomu říkáme **úspěch (*success*)**, druhému **neúspěch (*failure*)**.
 3.  **Pravděpodobnost úspěchu je ve všech pokusech stejná.** Značíme ji $\mathrm{π}$.
-4.  **Pokusy jsou navzájem nezávislé.** Výsledek jednoho neovlivňuje pravděpodobnost úspěchu v jiném.
+4.  **Pokusy jsou vzájemně nezávislé.** Výsledek jednoho neovlivňuje pravděpodobnost úspěchu v jiném.
 
 Náhodná proměnná $X$ je pak počet úspěchů v $n$ pokusech a může nabýt hodnot $0,1,\ldots,n$.
 
@@ -649,11 +678,11 @@ Slova úspěch a neúspěch jsou technická označení. Úspěchem nazveme ten v
 
 Řecké písmeno $\mathrm{π}$ zde neoznačuje známé číslo 3,14. Je to parametr modelu, a parametry v této učebnici píšeme řeckými písmeny, stejně jako $\mathrm{μ}$ a $\mathrm{σ}$. Excel i mnoho učebnic používají pro pravděpodobnost úspěchu písmeno $p$; v této učebnici používáme malé $p$ pro relativní četnost a pro úroveň kvantilu; pravděpodobnost úspěchu v binomickém modelu označujeme $\mathrm{π}$. Písmeno $n$ znamenalo dosud velikost výběru; zde je to počet pokusů, tedy opět počet pozorování, z nichž výsledek skládáme.
 
-Náš test podmínky splňuje, pokud opravdu platí vše, co jsme o něm řekli. Má pevně pět otázek ($n=5$) a každý tip je buď správný, nebo ne. Každá otázka má čtyři možnosti s jedinou správnou a student volí zcela náhodně ($\mathrm{π}=0{,}25$). Tip u jedné otázky navíc nesouvisí s tipem u jiné. Podmínky je třeba vždy výslovně posoudit, protože se snadno poruší:
+Náš test podmínky splňuje, pokud opravdu platí vše, co jsme o něm řekli. Má pevně pět otázek ($n=5$) a každý tip je buď správný, nebo ne. Každá otázka má čtyři možnosti s jedinou správnou a student volí zcela náhodně ($\mathrm{π}=0{,}25$). Uhádnutí jedné otázky navíc nesouvisí s uhádnutím jiné. Podmínky je třeba vždy výslovně posoudit, protože se snadno poruší:
 
 - Student část látky umí. Pravděpodobnost správné odpovědi pak není u všech otázek stejná.
 - Účastník se během úlohy zlepšuje nebo unavuje. Pravděpodobnost úspěchu se mění od pokusu k pokusu.
-- Druhá otázka vyžaduje výsledek první. Chyba v první otázce proto mění pravděpodobnost správné odpovědi ve druhé; výsledky nejsou nezávislé.
+- Pozdější otázka staví na výsledku předchozí. Chyba v předchozí otázce proto mění pravděpodobnost správné odpovědi v otázce následující; výsledky nejsou nezávislé.
 - Z malé skupiny vybíráme bez vracení. Každý výběr mění složení zbytku, jako u [kartiček](#sec-soucinove-pravidlo).
 
 ### Odvození na malém příkladu {#sec-binomicke-odvozeni}
@@ -698,7 +727,7 @@ Celé rozdělení pro $n=5$ a $\mathrm{π}=0{,}25$:
 
 :::
 
-Součet počtů způsobů, 32, je počet všech možných pětic úspěchů a neúspěchů: $2\times2\times2\times2\times2$. Tyto pětice nejsou stejně pravděpodobné, proto nemůžeme pravděpodobnost počítat jako pouhý podíl počtů. Součet pravděpodobností je 1, protože jsme prošli všechny možné hodnoty.
+Součet počtů způsobů, 32, je počet všech možných pětic úspěchů a neúspěchů. Každý z pěti pokusů může dopadnout dvěma způsoby a každý způsob jednoho pokusu lze spojit s každým způsobem ostatních, proto je pětic $2\times2\times2\times2\times2=2^5=32$. Tyto pětice nejsou stejně pravděpodobné, proto nemůžeme pravděpodobnost počítat jako pouhý podíl počtů. Součet pravděpodobností je 1, protože jsme prošli všechny možné hodnoty.
 
 ### Tvar, střední hodnota a směrodatná odchylka {#sec-binomicke-tvar}
 
@@ -714,11 +743,11 @@ První vztah odpovídá intuici: má-li každý z pěti tipů pravděpodobnost �
 
 :::
 
-Na obrázku [-@fig-binomicke-tvar] mají všechny grafy stejné měřítko svislé osy. Při $\mathrm{π}=0{,}5$ je rozdělení [souměrné](kapitola_02.qmd#sec-tvar-rozdeleni). Při malé pravděpodobnosti úspěchu je zešikmené doprava: počet úspěchů nemůže klesnout pod nulu, ale směrem nahoru má prostor. Při velké pravděpodobnosti je zešikmené doleva. Srovnání obou grafů s $\mathrm{π}=0{,}25$ ukazuje, že s rostoucím počtem pokusů se rozdělení rozšiřuje, jednotlivé hodnoty mají menší pravděpodobnost a tvar se blíží souměrnému zvonu. Tuto vlastnost využijeme v [posledním oddílu](#sec-normalni-aproximace).
+Na obrázku [-@fig-binomicke-tvar] mají všechny grafy stejné měřítko svislé osy. Při $\mathrm{π}=0{,}5$ je rozdělení [souměrné](kapitola_02.qmd#sec-tvar-rozdeleni). Při nízké pravděpodobnosti úspěchu je zešikmené doprava: počet úspěchů nemůže klesnout pod nulu, ale směrem nahoru má prostor. Při vysoké pravděpodobnosti je zešikmené doleva. Srovnání obou grafů s $\mathrm{π}=0{,}25$ ukazuje, že s rostoucím počtem pokusů se rozdělení rozšiřuje, jednotlivé hodnoty mají menší pravděpodobnost a tvar se blíží souměrnému zvonu. Tuto vlastnost využijeme v [posledním oddílu](#sec-normalni-aproximace).
 
 ### Výpočet v Excelu {#sec-excel-binom}
 
-Binomické pravděpodobnosti počítá funkce **`BINOM.DIST`**; anglický název je shodný. Má čtyři argumenty v tomto pořadí: počet úspěchů $k$, počet pokusů $n$, pravděpodobnost úspěchu $\mathrm{π}$ a logickou hodnotu. S hodnotou `NEPRAVDA` vrátí pravděpodobnost **právě** $k$ úspěchů, s hodnotou `PRAVDA` kumulativní pravděpodobnost **nejvýše** $k$ úspěchů [@msExcel, [BINOM.DIST (funkce)](https://support.microsoft.com/cs-cz/excel/functions/binom-dist-function)]. Je to stejné rozlišení jako u funkce [NORM.DIST](kapitola_04.qmd#sec-excel-normalni), jen `NEPRAVDA` zde vrací skutečnou pravděpodobnost, nikoli hustotu.
+Binomické pravděpodobnosti počítá funkce **`BINOM.DIST`**; anglický název je shodný. Má čtyři argumenty v tomto pořadí: počet úspěchů $k$, počet pokusů $n$, pravděpodobnost úspěchu $\mathrm{π}$ a logickou hodnotu. S hodnotou `NEPRAVDA` vrátí pravděpodobnost **právě** $k$ úspěchů, s hodnotou `PRAVDA` kumulativní pravděpodobnost **nejvýše** $k$ úspěchů [@msExcel, [BINOM.DIST (funkce)](https://support.microsoft.com/cs-cz/excel/functions/binom-dist-function)]. Je to stejné rozlišení jako u funkce [NORM.DIST](kapitola_04.qmd#sec-excel-normalni), jen `NEPRAVDA` zde vrací skutečnou pravděpodobnost, nikoli hustotu, protože pracujeme s diskrétní proměnnou, nikoli spojitou.
 
 Na listu `Binom` je počet pokusů v B2 pevně nastaven na $n=5$. Měnit lze pouze žlutou buňku B3 s pravděpodobností úspěchu; ostatní buňky jsou uzamčené. Tabulka obsahuje celé rozdělení pro těchto pět pokusů:
 
@@ -773,7 +802,7 @@ Na tomto listu je počet otázek v B2 pevně nastaven na 20. Měnit lze B3 (prav
 
 :::
 
-@fig-binom-oblasti je obdobou [ploch pod normální křivkou](kapitola_04.qmd#sec-hodnota-podil): tam jsme vybarvovali plochu, zde sčítáme zvýrazněné sloupce. U diskrétního rozdělení ale záleží na tom, zda krajní hodnotu zahrnujeme. „Alespoň 10“ znamená 10, 11, …, 20. Doplňkem je „nejvýše 9“, nikoli „nejvýše 10“:
+@fig-binom-oblasti je obdobou [ploch pod normální křivkou](kapitola_04.qmd#sec-hodnota-podil): tam jsme vybarvovali plochu, zde sčítáme zvýrazněné sloupce. U diskrétního rozdělení ale záleží na tom, zda krajní hodnotu zahrnujeme. „Alespoň 10“ znamená 10, 11, …, 20. Opačným jevem je „nejvýše 9“, nikoli „nejvýše 10“:
 
 $$P(X\ge10)=1-P(X\le9).$$
 
@@ -785,11 +814,11 @@ Opačnou otázku, od pravděpodobnosti k počtu, zodpoví funkce **`BINOM.INV`**
 
 **Co výsledek říká.** Student získal 10 bodů z 20. Kdyby jen tipoval, dosáhl by 10 nebo více bodů s pravděpodobností přibližně 0,014, tedy asi v jednom případě ze sedmdesáti. Model pouhého tipování činí takový výsledek vzácným, a to je důvod pochybovat, že student jen tipoval. Tři věci však výpočet netvrdí:
 
-- Nedokazuje, že student látku umí. Z 500 studentů, kteří by jen tipovali, by 10 a více bodů získalo v průměru asi sedm.
+- Nedokazuje, že student látku umí. Z 500 studentů, kteří by správnou odpověď vždy pouze tipovali, by 10 a více bodů získalo v průměru asi sedm.
 - Neříká, s jakou pravděpodobností student tipoval. Spočítali jsme $P(\text{výsledek}\mid\text{tipování})$. Pravděpodobnost $P(\text{tipování}\mid\text{výsledek})$ je [obrácená podmínka](#sec-bayes) a vyžadovala by další údaje, například jak častí jsou mezi studenty ti, kteří jen tipují.
 - Platí jen za předpokladů modelu. Kdyby student uměl vyloučit dvě ze čtyř možností, byla by pravděpodobnost úspěchu 0,5 a deset bodů by bylo nejčastějším výsledkem.
 
-Jak z takových úvah udělat pravidla pro rozhodování, je předmětem statistického testování hypotéz, které do této kapitoly nepatří.
+Jak z takových úvah udělat pravidla pro rozhodování, je předmětem statistického testování hypotéz, které si představíme až v další kapitole.
 
 **Právě, nebo alespoň?** Záleží na otázce, kterou jsme si položili předem. Howell [-@howell, s. 125–126] uvádí pokus, v němž účastník desetkrát určuje, který ze dvou velmi krátce promítnutých podnětů viděl. Při pouhém tipování je $\mathrm{π}=0{,}5$. Pravděpodobnost **právě** devíti správných odpovědí je
 
@@ -799,7 +828,7 @@ Ptáme-li se, jak pravděpodobný je při tipování **alespoň tak dobrý** vý
 
 ## Normální aproximace binomického rozdělení {#sec-normalni-aproximace}
 
-Při velkém počtu pokusů je sčítání binomických pravděpodobností pracné. Oddíl ukazuje, kdy lze binomické rozdělení přiblížit normálním modelem a co z toho plyne pro podíly úspěchů.
+Při velkém počtu pokusů je sčítání binomických pravděpodobností pracné. Tento oddíl ukazuje, kdy lze binomické rozdělení přiblížit normálním modelem a co z toho plyne pro podíly úspěchů.
 
 ### Kdy a jak ji použít {#sec-aproximace-postup}
 
@@ -819,14 +848,14 @@ Není to přesná hranice. Některé učebnice uvádějí mírnější požadave
 
 1.  *Podmínka.* Očekáváme $200\times0{,}6=120$ úspěchů a $200\times0{,}4=80$ neúspěchů. Obě hodnoty jsou větší než 10.
 2.  *Parametry.* $\mathrm{μ}=120$ a $\mathrm{σ}=\sqrt{200\times0{,}6\times0{,}4}$, tedy $\sqrt{48}\approx6{,}928$.
-3.  *Z-skór hranice.* $z=(135-120)/6{,}928\approx2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme malou pravděpodobnost.
+3.  *Z-skór hranice.* $z=(135-120)/6{,}928\approx2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme nízkou pravděpodobnost.
 4.  *Plocha nad hranicí.* `=1-NORM.S.DIST(2,165;PRAVDA)` vrátí přibližně 0,015.
 
 Podle normální aproximace dosáhne účastník 135 nebo více správných odpovědí s pravděpodobností přibližně 1,5 %.
 
 ### Jak přesná aproximace je {#sec-aproximace-presnost}
 
-Excel umí spočítat i přesnou hodnotu: `=1-BINOM.DIST(134;200;0,6;PRAVDA)` vrátí 0,0173. Aproximace 0,0152 je přibližně o dvě tisíciny nižší, tedy asi o 12 % přesné hodnoty této malé pravděpodobnosti. Malý rozdíl na škále od 0 do 1 tak může znamenat znatelnou odchylku při odhadu vzácného výsledku. Část rozdílu má jednoduchou příčinu. Počet úspěchů je celé číslo, kdežto normální model je spojitý. Sloupec pro 135 úspěchů zabírá na číselné ose úsek od 134,5 do 135,5, podobně jako [zaokrouhlený skór](kapitola_04.qmd#sec-bod-a-interval) představuje interval. Když plochu počítáme až od 135, polovinu tohoto sloupce vynecháme. Začneme-li od 134,5, dostaneme $z=(134{,}5-120)/6{,}928\approx2{,}093$ a pravděpodobnost 0,0182, bližší přesné hodnotě.
+Excel umí spočítat i přesnou hodnotu: `=1-BINOM.DIST(134;200;0,6;PRAVDA)` vrátí 0,0173. Aproximace 0,0152 je přibližně o dvě tisíciny nižší, tedy asi o 12 % přesné hodnoty této nízké pravděpodobnosti. Malý rozdíl na škále od 0 do 1 tak může znamenat znatelnou odchylku při odhadu vzácného výsledku. Část rozdílu má jednoduchou příčinu. Počet úspěchů je celé číslo, kdežto normální model je spojitý. Sloupec pro 135 úspěchů zabírá na číselné ose úsek od 134,5 do 135,5, podobně jako [zaokrouhlený skór](kapitola_04.qmd#sec-bod-a-interval) představuje interval. Když plochu počítáme až od 135, polovinu tohoto sloupce vynecháme. Začneme-li od 134,5, dostaneme $z=(134{,}5-120)/6{,}928\approx2{,}093$ a pravděpodobnost 0,0182, bližší přesné hodnotě.
 
 Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pravděpodobnost úspěchu) a B4 (hranice).
 
@@ -852,9 +881,9 @@ Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test 
 
 :::
 
-Levý panel obrázku [-@fig-aproximace] ukazuje krajní případ, v němž očekáváme jediný úspěch: křivka přisuzuje znatelnou plochu záporným počtům, které nastat nemohou. V pravém grafu křivka vrcholy sloupců vystihuje dobře a rozdíl se projevuje až v malých pravděpodobnostech chvostů.
+Levý panel obrázku [-@fig-aproximace] ukazuje krajní případ, v němž očekáváme jediný úspěch: křivka přisuzuje znatelnou plochu záporným počtům, které nastat nemohou. V pravém grafu křivka vrcholy sloupců vystihuje dobře a rozdíl se projevuje až v nízkých pravděpodobnostech chvostů.
 
-Dnes aproximaci k výpočtu nepotřebujeme, přesnou hodnotu vrátí Excel okamžitě. Její význam je jiný. Ukazuje, že počet úspěchů v mnoha nezávislých pokusech se chová přibližně normálně, i když jednotlivý pokus má jen dva výsledky. Na této vlastnosti stojí velká část inferenční statistiky.
+Dnes aproximaci k výpočtu nepotřebujeme, přesnou hodnotu vrátí Excel okamžitě. Její význam je jiný. Ukazuje, že počet úspěchů v mnoha nezávislých pokusech vykazuje přibližně normální rozdělení, i když jednotlivý pokus má jen dva výsledky. Na této vlastnosti stojí velká část inferenční statistiky.
 
 ### Od počtu k podílu {#sec-od-poctu-k-podilu}
 
@@ -879,19 +908,19 @@ Vzorec říká něco důležitého: **čím více pokusů, tím méně podíl ko
 Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
 - Pravděpodobnost je číslo od 0 do 1, které vyjadřuje, nakolik lze očekávat, že jev nastane. Lze jí rozumět jako podílu příznivých mezi stejně pravděpodobnými výsledky, jako relativní četnosti v dlouhé řadě opakování nebo jako míře přesvědčení; pravidla počítání jsou ve všech případech stejná ([Co pravděpodobnost vyjadřuje](#sec-co-je-pravdepodobnost)).
-- Jev je množina výsledků náhodného pokusu. Pravděpodobnost doplňku dopočítáme do jedné ([Náhodný pokus, výběrový prostor a jev](#sec-jevy)).
+- Jev je množina výsledků náhodného pokusu. Pravděpodobnost opačného jevu dopočítáme do jedné ([Náhodný pokus, výběrový prostor a jev](#sec-jevy)).
 - Sjednocení dvou jevů určíme součtovým pravidlem. Průnik nemůže být pravděpodobnější než kterýkoli z obou jevů, přestože podrobnější popis může působit věrohodněji ([Více jevů najednou](#sec-vice-jevu)).
 - Podmíněná pravděpodobnost mění celek, ke kterému se vztahujeme, a $P(A\mid B)$ je obecně jiné číslo než $P(B\mid A)$. Průnik určíme součinovým pravidlem. Nezávislost znamená, že jeden jev nemění pravděpodobnost druhého; je to předpoklad, který je třeba zdůvodnit. Závislost zjištěná v tabulce sama neříká nic o příčině ani o populaci ([Podmíněná pravděpodobnost a nezávislost](#sec-podminena-nezavislost)).
-- Obrátit podmínku umožňuje Bayesova věta; k tomu je třeba znát i základní četnost. Proto táž senzitivita a specificita vedou při různé prevalenci k velmi různé prediktivní hodnotě ([Obrácení podmínky a Bayesova věta](#sec-bayes)).
+- Obrátit podmínku umožňuje Bayesova věta; k tomu je třeba znát i základní četnost. Proto táž senzitivita a specificita vedou při různé prevalenci k velmi různé prediktivní hodnotě pozitivního testu ([Obrácení podmínky a Bayesova věta](#sec-bayes)).
 - Rozdělení pravděpodobnosti je model toho, jakých hodnot může náhodná proměnná nabýt; data se od něj kvůli náhodě ve výběru liší ([Náhodná proměnná a rozdělení pravděpodobnosti](#sec-nahodna-promenna)).
 - Binomické rozdělení popisuje počet úspěchů v pevném počtu nezávislých pokusů se stejnou pravděpodobností úspěchu; počet možných rozmístění úspěchů určuje kombinační číslo. Pravděpodobnost výsledku za předpokladu určitého modelu není pravděpodobností, že tento model platí ([Počítání možností](#sec-pocitani-moznosti); [Binomické rozdělení](#sec-binomicke)).
 - Při dostatečném počtu očekávaných úspěchů i neúspěchů lze binomické rozdělení přiblížit normálním modelem. Směrodatná odchylka podílu úspěchů se s rostoucím počtem pokusů zmenšuje ([Normální aproximace binomického rozdělení](#sec-normalni-aproximace)).
 
 ## Cvičení {#sec-cviceni-05}
 
-V úlohách 1–9 stačí kalkulačka; úlohy 10 a 11 vyžadují Excel. Pravděpodobnosti uvádějte na tři desetinná místa, velmi malé pravděpodobnosti na čtyři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,001 způsobená závěrečným zaokrouhlením. Počty osob v přirozených četnostech mají souhlasit přesně.
+V úlohách 1–9 stačí kalkulačka; úlohy 10 a 11 vyžadují Excel. Pravděpodobnosti uvádějte na tři desetinná místa, velmi nízké pravděpodobnosti na čtyři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,001 způsobená závěrečným zaokrouhlením. Počty osob v přirozených četnostech mají souhlasit přesně.
 
-### 1. Výsledek, jev a doplněk
+### 1. Výsledek, jev a opačný jev
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_05.xlsx): `U01_emoce` A2:B5.
 
@@ -900,7 +929,7 @@ Pro pokus o rozpoznávání emocí je připraveno 60 fotografií tváří: 24 vy
 a)  Co je zde náhodným pokusem, co výsledkem a kolik výsledků má výběrový prostor?
 b)  Určete pravděpodobnost jevu „fotografie vyjadřuje smutek“.
 c)  Určete pravděpodobnost jevu „radost nebo strach“. Které pravidlo jste použili a proč je zde lze použít v jednodušším tvaru?
-d)  Určete pomocí doplňku pravděpodobnost, že fotografie nevyjadřuje radost.
+d)  Určete pomocí opačného jevu pravděpodobnost, že fotografie nevyjadřuje radost.
 e)  Spolužák tvrdí: „Emoce jsou čtyři, takže pravděpodobnost strachu je 1/4.“ V čem se mýlí?
 f)  Uveďte pro tento pokus jeden jistý a jeden nemožný jev.
 
@@ -976,7 +1005,7 @@ e)  Nezávislé nejsou. Podmíněná pravděpodobnost $0{,}675$ se liší od mar
 f)  Tabulka popisuje souvislost v tomto souboru. Neříká, že sport spánek zlepšuje: lidé s dobrým spánkem mohou mít více energie na sport, nebo obojí může souviset s něčím třetím, například se zdravotním stavem. Bez znalosti způsobu výběru také nevíme, zda podobné podíly platí pro všechny studenty; a i při pravděpodobnostním výběru by se v jiném výběru lišily.
 :::
 
-### 4. Součinové pravidlo, doplněk a výběr bez vracení
+### 4. Součinové pravidlo, opačný jev a výběr bez vracení
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_05.xlsx): `U04_vstupy` A2:B5.
 
@@ -985,7 +1014,7 @@ b)  V sadě 10 kartiček jsou 4 cílová slova. Účastník náhodně vytáhne d
 c)  Spolužačka tvrdí: „Jevy A a B se vylučují, takže jsou nezávislé.“ Vyvraťte to pro jevy s kladnou pravděpodobností.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Tipy jsou nezávislé, proto je $P(\text{obě správně})$ rovno $0{,}25\times0{,}25=0{,}0625$, po zaokrouhlení 0,063. Pro „alespoň jednu“ použijeme doplněk „obě špatně“: $0{,}75\times0{,}75=0{,}5625$, tedy $1-0{,}5625=0{,}4375$, po zaokrouhlení 0,438.
+a)  Tipy jsou nezávislé, proto je $P(\text{obě správně})$ rovno $0{,}25\times0{,}25=0{,}0625$, po zaokrouhlení 0,063. Pro „alespoň jednu“ použijeme opačný jev „obě špatně“: $0{,}75\times0{,}75=0{,}5625$, tedy $1-0{,}5625=0{,}4375$, po zaokrouhlení 0,438.
 
 b)  V prvním tahu je pravděpodobnost cílového slova $4/10$. Jestliže první kartička cílová byla, zbývají 3 cílové mezi 9 kartičkami. Podle součinového pravidla $(4/10)\times(3/9)=12/90\approx0{,}133$. Druhý činitel je podmíněná pravděpodobnost, protože první tah změnil složení sady. Při vracení by tahy byly nezávislé: $0{,}4\times0{,}4=0{,}160$.
 
@@ -1015,9 +1044,9 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_05.xlsx): `U06_screening` A2:B6.
 Screeningový dotazník má senzitivitu 0,80 a specificitu 0,90. Používá se ve skupině, v níž má sledovaný stav 5 % lidí.
 
 a)  Sestavte přirozené četnosti pro 1 000 lidí a zapište je do tabulky.
-b)  Určete pozitivní a negativní prediktivní hodnotu.
-c)  Určete úplnou pravděpodobnost pozitivního výsledku a ověřte pozitivní prediktivní hodnotu Bayesovou větou.
-d)  Jak se pozitivní prediktivní hodnota změní ve skupině, kde má stav 20 % lidí? Předpokládejte stejnou senzitivitu i specificitu jako v první skupině. Vysvětlete, proč se prediktivní hodnota přesto změnila.
+b)  Určete prediktivní hodnotu pozitivního a negativního testu.
+c)  Určete úplnou pravděpodobnost pozitivního výsledku a ověřte prediktivní hodnotu pozitivního testu Bayesovou větou.
+d)  Jak se prediktivní hodnota pozitivního testu změní ve skupině, kde má stav 20 % lidí? Předpokládejte stejnou senzitivitu i specificitu jako v první skupině. Vysvětlete, proč se prediktivní hodnota přesto změnila.
 e)  Kterou z pravděpodobností v této úloze označíme jako apriorní a kterou jako aposteriorní?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -1033,11 +1062,11 @@ a)  Stav má $1000\times0{,}05=50$ lidí, nemá jej 950. Z 50 lidí se stavem m�
 
     :::::
 
-b)  Pozitivní prediktivní hodnota: $40/135\approx0{,}296$. Negativní prediktivní hodnota: $855/865\approx0{,}988$. Z lidí s pozitivním výsledkem má stav méně než třetina.
+b)  Prediktivní hodnota pozitivního testu: $40/135\approx0{,}296$. Prediktivní hodnota negativního testu: $855/865\approx0{,}988$. Z lidí s pozitivním výsledkem má stav méně než třetina.
 
 c)  $P(\text{pozitivní})$ je $0{,}05\times0{,}80+0{,}95\times0{,}10$, tedy $0{,}040+0{,}095=0{,}135$, což odpovídá 135 z 1 000. Bayesova věta: $0{,}040/0{,}135\approx0{,}296$.
 
-d)  Při prevalenci 20 %: stav má 200 lidí, pozitivních z nich 160; bez stavu 800, falešně pozitivních 80. Pozitivní prediktivní hodnota je $160/240\approx0{,}667$. Senzitivita a specificita se podle zadání nezměnily. Změnilo se složení skupiny: lidí se stavem přibylo a lidí bez stavu ubylo, takže mezi pozitivními výsledky je více správných a méně falešných.
+d)  Při prevalenci 20 %: stav má 200 lidí, pozitivních z nich 160; bez stavu 800, falešně pozitivních 80. Prediktivní hodnota pozitivního testu je $160/240\approx0{,}667$. Senzitivita a specificita se podle zadání nezměnily. Změnilo se složení skupiny: lidí se stavem přibylo a lidí bez stavu ubylo, takže mezi pozitivními výsledky je více správných a méně falešných.
 
 e)  Apriorní pravděpodobnost stavu je 0,05 (ve druhé skupině 0,20): pravděpodobnost před tím, než známe výsledek dotazníku. Zde ji určuje prevalence ve skupině. Aposteriorní pravděpodobnost po pozitivním výsledku je 0,296 (ve druhé skupině 0,667), po negativním $10/865\approx0{,}012$.
 :::
@@ -1088,7 +1117,7 @@ d)  Proč nelze podobnou tabulku jednotlivých hodnot sestavit pro přesně mě�
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Všechny pravděpodobnosti leží mezi 0 a 1 a jejich součet je $0{,}10+0{,}40+0{,}35+0{,}15=1{,}00$. Hodnoty 0 až 3 jsou všechny možné a vzájemně se vylučují.
 
-b)  $P(X\ge2)=0{,}35+0{,}15=0{,}50$; $P(X\le1)=0{,}10+0{,}40=0{,}50$. Jde o jev a jeho doplněk, proto dávají dohromady 1. Sčítat smíme, protože hodnoty jsou vzájemně výlučné.
+b)  $P(X\ge2)=0{,}35+0{,}15=0{,}50$; $P(X\le1)=0{,}10+0{,}40=0{,}50$. Jde o jev a jeho opačný jev, proto dávají dohromady 1. Sčítat smíme, protože hodnoty jsou vzájemně výlučné.
 
 c)  Relativní četnosti jsou $3/20=0{,}15$; $7/20=0{,}35$; $8/20=0{,}40$ a $2/20=0{,}10$. Od modelu se liší nejvýše o 0,05, tedy o jednoho člověka z dvaceti. Tak malé odchylky jsou v malém výběru běžné i tehdy, když model platí; výběr 20 lidí model nevyvrací ani nepotvrzuje. Data jsou rozdělení četností, model je rozdělení pravděpodobnosti.
 
@@ -1116,7 +1145,7 @@ c)  $P(X=4)=\binom{4}{4}\times0{,}5^4$, tedy $1\times0{,}0625=0{,}0625$. Proto $
 
 d)  $\mathrm{μ}=4\times0{,}5=2$ správné odpovědi; $\mathrm{σ}=\sqrt{4\times0{,}5\times0{,}5}=\sqrt{1}=1$.
 
-e)  Například: student část látky zná, takže pravděpodobnost správné odpovědi není u všech otázek 0,5 (porušena stejná pravděpodobnost úspěchu). Druhá otázka vyžaduje výsledek první, takže chyba v první mění pravděpodobnost správné odpovědi ve druhé (porušena nezávislost). Test se ukončí po první chybě (počet pokusů není předem daný).
+e)  Například: student část látky zná, takže pravděpodobnost správné odpovědi není u všech otázek 0,5 (porušena stejná pravděpodobnost úspěchu). Pozdější otázka staví na výsledku předchozí, takže chyba v předchozí otázce mění pravděpodobnost správné odpovědi v následující (porušena nezávislost). Test se ukončí po první chybě (počet pokusů není předem daný).
 :::
 
 ### 10. Binomické rozdělení v Excelu
@@ -1135,7 +1164,7 @@ a)  $n=15$, $\mathrm{π}=1/5=0{,}2$. Střední hodnota $15\times0{,}2=3$ správn
 
 b)  `=BINOM.DIST(3;15;0,2;NEPRAVDA)` vrátí 0,250. `=BINOM.DIST(3;15;0,2;PRAVDA)` vrátí 0,648.
 
-c)  `=1-BINOM.DIST(6;15;0,2;PRAVDA)` vrátí 0,0181. „Alespoň 7“ znamená 7 až 15; doplňkem je „nejvýše 6“, proto odečítáme kumulativní pravděpodobnost pro 6. Vzorec s číslem 7 by hodnotu 7 vynechal a vrátil pravděpodobnost „alespoň 8“. Stejný výsledek dá `=BINOM.DIST.RANGE(15;0,2;7;15)`.
+c)  `=1-BINOM.DIST(6;15;0,2;PRAVDA)` vrátí 0,0181. „Alespoň 7“ znamená 7 až 15; opačným jevem je „nejvýše 6“, proto odečítáme kumulativní pravděpodobnost pro 6. Vzorec s číslem 7 by hodnotu 7 vynechal a vrátil pravděpodobnost „alespoň 8“. Stejný výsledek dá `=BINOM.DIST.RANGE(15;0,2;7;15)`.
 
 d)  Při pouhém tipování by 7 a více bodů získal přibližně jeden student z 55. Model čistého tipování tedy takový výsledek vysvětluje špatně, což je důvod se domnívat, že student alespoň část látky zná nebo umí některé možnosti vyloučit. Výsledek nedokazuje znalost u tohoto konkrétního studenta a neříká, s jakou pravděpodobností tipoval; k tomu bychom museli obrátit podmínku a znát další údaje.
 :::
@@ -1175,11 +1204,11 @@ e)  Účastník má 30 nezávislých pokusů se stejnou pravděpodobností úsp�
 f)  Ze skupiny 12 lidí losujeme postupně tři do experimentální podmínky a chceme pravděpodobnost, že všichni tři budou ženy, je-li ve skupině 7 žen.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Doplňkový jev: odečteme známou pravděpodobnost od jedné.
+a)  Opačný jev: odečteme známou pravděpodobnost od jedné.
 
 b)  Součtové pravidlo v obecném tvaru: sečteme oba podíly a odečteme podíl těch, kteří splňují obojí, protože jevy nejsou vzájemně výlučné.
 
-c)  Doplněk spojený se součinovým pravidlem pro nezávislé jevy: spočítáme pravděpodobnost, že úlohu nevyřeší nikdo ($0{,}3\times0{,}3\times0{,}3$), a odečteme ji od jedné. Lze použít i binomické rozdělení s $n=3$ a $\mathrm{π}=0{,}7$.
+c)  Opačný jev spojený se součinovým pravidlem pro nezávislé jevy: spočítáme pravděpodobnost, že úlohu nevyřeší nikdo ($0{,}3\times0{,}3\times0{,}3$), a odečteme ji od jedné. Lze použít i binomické rozdělení s $n=3$ a $\mathrm{π}=0{,}7$.
 
 d)  Bayesova věta nebo přirozené četnosti: obracíme podmínku a potřebujeme k tomu senzitivitu, specificitu i prevalenci.
 

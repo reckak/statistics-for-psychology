@@ -8,7 +8,7 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Soubor:** [navarro.pdf](../../sources/u%C4%8Debnice/navarro.pdf).
 
-**Identita:** Danielle Navarro: *Learning Statistics with R*. Titul PDF 1; předmluva PDF 17–18 popisuje přepracování původní verze do Quarta a dodatečné epilogy. Přesný rok a číslo vydání tohoto PDF nejsou doloženy. Nepřiřazovat automaticky rok 2015 starší verze. Obsah PDF 2–16.
+**Identita:** Danielle Navarro: *Learning Statistics with R*. Titul PDF 1; předmluva PDF 17–18 popisuje přepracování původní verze do Quarta a dodatečné epilogy. Přesný rok a číslo vydání tohoto PDF nejsou doloženy. Nepřiřazovat automaticky rok 2015 starší verze. **Doplnění 2026-10-27:** v citacích se uvádí rok 2026 jako výslovná redakční volba autora učebnice pro průběžně aktualizovanou verzi ([R42](../rozhodnuti/spolecne-konvence.md#r42-citace-dokumentace), doplněk z 2026-10-27); nejde o ověřené datum vydání tohoto PDF. Obsah PDF 2–16.
 
 **Doporučené použití:** Srozumitelná diskuse statistického uvažování, pojetí pravděpodobnosti a inferenčních předpokladů; R zůstává u nás interní, studentský výklad na něm nesmí záviset.
 

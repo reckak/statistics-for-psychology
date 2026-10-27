@@ -362,6 +362,10 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E03 — Lakens, Scheel a Isager: test ekvivalence v psychologickém výzkumu](zdroje/E03-lakens-2018.md#e03-lakens-2018)
 
+<a id="e04-gigerenzer-hoffrage"></a>
+
+- [E04 — Gigerenzer a Hoffrage: přirozené četnosti a bayesovský úsudek](zdroje/E04-gigerenzer-hoffrage.md#e04-gigerenzer-hoffrage)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)
