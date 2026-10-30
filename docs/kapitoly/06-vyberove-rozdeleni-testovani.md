@@ -220,3 +220,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D07](../zdroje/D07-utts.md#d07) — statistická gramotnost.
 - [D11](../zdroje/D11-wainer.md#d11) — velikost výběru.
 - [Kontrola při přípravě](../zdroje/HISTORIE.md#kontrola-podkladů-při-přípravě-kapitoly-6--2026-10-12) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-06) — společné záznamy včetně tří externích citovaných zdrojů bez vlastní karty.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

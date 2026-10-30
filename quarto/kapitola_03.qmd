@@ -99,7 +99,7 @@ V horním panelu hledáme pro **modus** nejvyšší místo křivky. V prostředn
 | **Medián** | Vystihuje prostřední polohu a je odolný vůči tomu, jak daleko leží několik krajních hodnot. Pro určení prostřední kategorie stačí pořadí. | Nemusí zaznamenat změny mimo prostředek řady, i když jsou věcně důležité. Ze samotného mediánu nezjistíme součet. U sudého počtu číselných hodnot nemusí být výsledný medián pozorován; průměrování prostředních hodnot vyžaduje smysluplné vzdálenosti. |
 | **Aritmetický průměr** | Zohledňuje velikost každé hodnoty a souvisí přímo se součtem. Umožňuje například spojit průměry skupin, známe-li jejich velikosti. | Reaguje i na jedinou velmi vzdálenou hodnotu. Vyžaduje smysluplné sčítání a rozdíly hodnot; může ležet tam, kde žádné pozorování není. |
 
-: Srovnání tří ukazatelů středu. {#tbl-srovnani-stredu tbl-colwidths="[18,36,46]"}
+: Srovnání tří ukazatelů středu {#tbl-srovnani-stredu tbl-colwidths="[18,36,46]"}
 :::
 
 V našem příkladu je **5 minut** nejčastější dobou i prostřední polohou. Modus však zastupuje jen dva z pěti účastníků, tedy 40,0 %, nikoli většinu. Pokud chceme vyjádřit celkovou časovou zátěž připadající na člověka, použijeme průměr **6 minut**: pět účastníků dohromady potřebovalo 30 minut. Nahrazení času 10 minut časem 30 minut je pro tento účel významná změna, kterou má průměr zachytit. Pro popis prostředního času je naopak užitečné, že medián zůstane 5 minut.
@@ -186,6 +186,9 @@ Nejprve hodnoty seřadíme vzestupně podle velikosti. Zápis $x_{(i)}$ označuj
 | 9 | 15 | 80 % |
 | 10 | 18 | 90 % |
 | 11 | 22 | 100 % |
+
+: Pozice a úrovně kvantilů v seřazené řadě {#tbl-k03-02}
+
 :::
 
 Mezi jedenácti pozicemi je **deset mezer**. Naše interpolační konvence přiřadí první hodnotě úroveň 0 % a poslední 100 %; mezi sousedními pozicemi proto postupujeme vždy o deset procentních bodů. Druhá hodnota je v této konvenci 10% kvantilem čili 10. percentilem, třetí 20% kvantilem čili 20. percentilem a tak dále. Mezi časy samotnými však stejně velké rozdíly být nemusejí: z 5 na 7 minut jsou to dvě minuty, ze 7 na 8 pouze jedna.
@@ -243,6 +246,9 @@ Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu nebo katego
 |             5 |                                   3 |      $3/5=60\,\%$ |
 |             6 |                                   4 |      $4/5=80\,\%$ |
 |            10 |                                   5 |     $5/5=100\,\%$ |
+
+: Kumulativní podíly dob při hledání kvantilu {#tbl-k03-03}
+
 :::
 
 Hledáme-li úroveň **90 %**, u 6 minut máme teprve 80 %, a proto pokračujeme k 10 minutám, kde dosáhneme 100 %. Podle této konvence je 90. percentil **10 minut**, zatímco lineární interpolace dala **8,4 minuty**. Rozdíl odpovídá jinému pravidlu, nikoli početní chybě [@hyndman1996].
@@ -262,6 +268,9 @@ Značka $\approx$ znamená **přibližnou rovnost**: v následující tabulce js
 | Trochu     |       2 |                   3 |      $3/6=50{,}0\,\%$ |
 | Dost       |       2 |                   5 | $5/6\approx83{,}3\,\%$ |
 | Zcela      |       1 |                   6 |     $6/6=100{,}0\,\%$ |
+
+: Kumulativní četnosti a podíly odpočatosti {#tbl-k03-04}
+
 :::
 
 Pro **75. percentil** hledáme první kategorii s kumulativním podílem alespoň 75 %. Kategorie „trochu“ by pro jeho dosažení nestačila (50,0 %), „dost“ již ano (83,3 %). Výsledkem je tedy **kategorie „dost“**: je to nejnižší kategorie, do níž včetně spadá alespoň 75 % odpovědí. Pro 90 % stejným pravidlem vybereme „zcela“ a pro 50 % „trochu“, protože už u této kategorie kumulativní podíl dosahuje 50 %. Při popisu [mediánu](#sec-median) jsme u sudého počtu odpovědí uvedli obě prostřední kategorie, zde „trochu“ a „dost“. Kumulativní pravidlo z nich jako 50. percentil vybírá nižší; je to dohodnutá volba, nikoli zjištění, že „trochu“ vystihuje střed lépe než „dost“.
@@ -298,7 +307,7 @@ V každém případě příslušný počet vydělíme **celkovým počtem pozoro
 | **6 min**, pozice 4 | $\frac{3+1}{5}\times100=80$ | $\frac{3}{5}\times100=60$ | $\frac{3+1/2}{5}\times100=70$ | $p=\frac{4-1}{4}=0{,}75$; tedy $q_{0{,}75}=6$. |
 | **10 min**, pozice 5 | $\frac{4+1}{5}\times100=100$ | $\frac{4}{5}\times100=80$ | $\frac{4+1/2}{5}\times100=90$ | $p=\frac{5-1}{4}=1$; tedy $q_1=10$. |
 
-: Tři konvence percentilového pořadí a odpovídající úrovně interpolovaných kvantilů pro stejných pět časů. {#tbl-percentilove-poradi tbl-colwidths="[13,18,18,21,30]"}
+: Konvence percentilového pořadí a úrovně kvantilů {#tbl-percentilove-poradi tbl-colwidths="[13,18,18,21,30]"}
 :::
 
 **Jak číst řádek pro 5 minut?** Menší je jeden čas (4 minuty) a shodné jsou dva (obě pětky). Inkluzivně proto počítáme tři z pěti, exkluzivně jednoho z pěti a kompromisně jednoho plus polovinu ze dvou shodných, tedy dva z pěti. Dostáváme pořadí **60, 20 a 40**, která vyjadřují 60,0 %, 20,0 % a 40,0 % podle příslušného pravidla. Nejde o tři různé naměřené časy ani o tři různé skupiny účastníků.
@@ -342,6 +351,9 @@ Rozpětí využívá jen dvě hodnoty. Nyní hledáme ukazatel variability, do n
 | 6 | 0 | 0 | 0 |
 | 10 | 4 | 4 | 16 |
 | **Součet** | **0** | **8** | **22** |
+
+: Odchylky dob od průměru a jejich součty {#tbl-k03-06}
+
 :::
 
 Součet odchylek je $-2-1-1+0+4=0$. Kladné a záporné odchylky od průměru se vždy přesně vyruší, pokud používáme nezaokrouhlený průměr. Proto je průměr také **těžištěm** hodnot: jejich celková odchylka na jednu stranu vyvažuje druhou. Nulový součet odchylek ovšem neznamená nulovou variabilitu [@howell, s. 39–41].
@@ -409,6 +421,9 @@ Z této populace náhodně vybíráme **s vracením**: v každém tahu má každ
 | 5 | 6,41 | 8,01 |
 | 20 | 7,62 | 8,02 |
 | 100 | 7,93 | 8,01 |
+
+: Průměrné rozptyly při dvou způsobech dělení {#tbl-k03-07}
+
 :::
 
 Všechny rozptyly jsou v min². Při dělení $n-1$ se průměry od přesné hodnoty 8 liší jen nepatrně, což souvisí s konečným počtem náhodných opakování. Při dělení $n$ vidíme navíc systematické podhodnocení, výraznější u malých výběrů; výsledky odpovídají očekávaným hodnotám $8\times4/5=6{,}4$, $8\times19/20=7{,}6$ a $8\times99/100=7{,}92$. Podhodnocení činí vždy podíl $1/n$ z $\mathrm{σ}^2$, protože $(n-1)/n=1-1/n$. Pro $n=5$ je poměr 0,80 a průměrný výsledek s dělením $n$ postrádá pětinu rozptylu; pro $n=20$ je poměr 0,95 a pro $n=100$ už 0,99. Čím menší výběr, tím víc se od sebe $n$ a $n-1$ poměrně liší, a tím důležitější je oprava. Ve velkých výběrech dávají oba výpočty téměř stejný výsledek. Simulace vztah názorně ilustruje; nenahrazuje obecné matematické zdůvodnění.
@@ -588,6 +603,9 @@ Výběr se řídí analytickou otázkou. Zajímá nás celkový čas v přepočt
 | Kolik času připadá v průměru na člověka? | Průměr, směrodatná odchylka a graf. | I nezvyklé dlouhé, ale platné časy přispívají k celkové době. |
 | Jak vypadá prostřední část silně zešikmených dob? | Medián, 1. a 3. kvartil, případně medián absolutních odchylek. | Ukázat také chvost; robustní statistiky jej mohou opomenout. |
 | Liší se rozdělení mezi dvěma skupinami? | Stejné ukazatele, stejné jednotky a měřítka; krabicové grafy s body. | Velikosti skupin; popis rozdílů sám o sobě nedokládá příčinu ani rozdíl na úrovni populace. |
+
+: Volba popisných statistik podle otázky a dat {#tbl-k03-08}
+
 :::
 
 U známých dat o spánku a paměti můžeme napsat následující **popis souboru**:
@@ -609,6 +627,9 @@ Vedle slovního vysvětlení si ukážeme zápis pro odborný text. APA 7 použ�
 | Směrodatná odchylka | *SD* | $s$ |
 | Celkový počet případů | *N* | $n$ s vysvětlením, se kterým souborem pracujeme |
 | Počet případů v dílčí skupině | *n* | $n$ s uvedením skupiny |
+
+: Značení při reportování podle APA a při výpočtech {#tbl-k03-09}
+
 
 Statistické značky psané latinkou uvádíme kurzivou (zatímco písmena řecké abecedy nikoli) a kolem znaků pro rovnost a nerovnost necháváme mezery. V souvislé větě používáme názvy statistik. Pro doslovnou ukázku anglického formátu APA níže používáme desetinné tečky a procentní znak bez mezery; český výklad zachovává desetinnou čárku a českou typografii [@apaNumbers2024, s. 2]. V české ukázce oddělujeme jednotlivé statistiky **středníkem**, aby se oddělovač nepletl s desetinnými čárkami. Jde o přizpůsobení zápisu češtině; při odevzdávání rukopisu se řídíme také pokyny konkrétního časopisu.
 
@@ -787,6 +808,9 @@ V tabulce je u každého vzorce uvedena cílová buňka listu `Priklad`. Anglick
 | J9 | `=PERCENTIL.INC(A2:A6;0,75)` | 6 minut: 3. kvartil. |
 | J10 | `=J7-J6` | 6 minut: variační rozpětí. |
 | J11 | `=J9-J8` | 1 minuta: mezikvartilové rozpětí. |
+
+: Základní ukazatele a kvantily v Excelu {#tbl-k03-10}
+
 :::
 
 U PERCENTIL.INC je druhým argumentem **podíl**, nikoli celé procento: pro 90. percentil zadáme 0,9 a dostaneme 8,4. Funkce MODE.SNGL pracuje s čísly, nikoli s textovými názvy nominálních kategorií. Pokud se žádné číslo neopakuje, vrací chybu `#N/A`; pokud několik čísel sdílí nejvyšší četnost, vrátí jen jedno. V takové situaci prohlédneme četnostní tabulku a uvedeme všechny mody [@msExcel, [PRŮMĚR (funkce)](https://support.microsoft.com/cs-cz/excel/functions/average-function), [MEDIAN (funkce)](https://support.microsoft.com/cs-cz/excel/functions/median-function), [MODE.SNGL (funkce)](https://support.microsoft.com/cs-cz/excel/functions/mode-sngl-function), [MIN (funkce)](https://support.microsoft.com/cs-cz/excel/functions/min-function), [MAX (funkce)](https://support.microsoft.com/cs-cz/excel/functions/max-function), [PERCENTIL.INC (funkce)](https://support.microsoft.com/cs-cz/excel/functions/percentile-inc-function)].
@@ -824,6 +848,9 @@ Pro tvar průběžného příkladu jsou na listu `Priklad` ve F2:F6 třetí mocn
 | J4 | `=SKEW(Priklad!A2:A6)` | korigovaná šikmost 1,74 |
 | J5 | `=PRŮMĚR(Priklad!G2:G6)/(Priklad!J14^2)-3` | $g_2\approx-0{,}17$ |
 | J6 | `=KURT(Priklad!A2:A6)` | korigovaný exces 3,32 |
+
+: Šikmost a exces v Excelu {#tbl-k03-11}
+
 :::
 
 **SKEW.P (*SKEW.P*)** přijímá oblast číselných dat stejně jako [SKEW a KURT](#sec-excel-tvar). Odpovídá základnímu koeficientu $g_1$, zatímco SKEW a KURT používají výběrové korekce uvedené v rozšíření o momentech. KURT už obsahuje odečtení odpovídající referenční normální hodnotě; další trojku od jeho výsledku neodečítáme. Při nulové variabilitě nejsou tyto koeficienty definovány [@msExcel, [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].

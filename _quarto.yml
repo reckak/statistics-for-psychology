@@ -4,6 +4,8 @@ project:
   execute-dir: project
   pre-render:
     - Rscript --vanilla scripts/render-figures.R
+  post-render:
+    - node scripts/style-html-tables.cjs
   render:
     - index.qmd
     - quarto/*.qmd
@@ -52,6 +54,8 @@ execute:
   echo: false
   warning: false
   message: false
+filters:
+  - filters/table-style.lua
 format:
   html:
     theme: cosmo

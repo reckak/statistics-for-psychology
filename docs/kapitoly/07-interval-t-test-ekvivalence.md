@@ -135,3 +135,10 @@ plánování velikosti výběru, test minimálního účinku, standardizované h
 - [P07](../zdroje/P07-usuzovani-intervaly.md#p07) a [P08](../zdroje/P08-prumery.md#p08) — dosavadní priority autora; nepřebírají se nálezy uvedené v kartách.
 - [C05](../zdroje/C05-ulohy-tyden-4.md#c05) a [C08](../zdroje/C08-ulohy-tyden-9.md#c08) — náměty cvičení (vlivy na šířku, interpretace, kvantily); úlohy nejsou převzaty.
 - [Čtení pro návrh](../zdroje/HISTORIE.md#priprava-07-20261017) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-07).
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

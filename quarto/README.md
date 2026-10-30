@@ -4089,3 +4089,47 @@ kontrola webu: kapitola 5 vykreslena, check-html.cjs prošel bez chyb
 (očekávaný počet obrázků kapitoly zvýšen na 13); obrázek prohlédnut na
 šířce 390 px (vodorovný posun uvnitř obrázku jako u ostatních, stránka
 nepřetéká).
+
+## 2026-10-30 — Jednotná sazba tabulek a česká typografie PDF
+
+Podle [R54](../docs/rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf)
+doplněny popisky všech 86 tabulek kapitol 1–7, včetně čtyř odsazených
+tabulek v řešeních, a číslování tří referenčních přehledů (celkem 89 tabulek).
+Existující ID zachována; vysvětlující části dlouhých popisků přesunuty pod
+tabulky. Nové názvy zkontrolovány podle buněk a okolního textu. Čísla
+a názvy jsou nad tabulkou, vlevo, na samostatných řádcích, tučně a kurzivou.
+Silnější krajní a slabší vnitřní linky nahrazují podbarvení; souhrny mají
+silnější horní linku. Číselné sloupce bez výslovného zarovnání filtr
+rozpoznává konzervativně podle všech nesouhrnných hodnot.
+
+PDF filtr převádí desetinné literály na atomická čísla (i ve zlomcích
+a indexech), zachovává oddělovací čárky a váže jednopísmenná česká slova
+i přes změnu řezu. Tabulky nejsou zarovnány do bloku a nedělí slova.
+Opravena také kolize prázdné kotvy `populacni-parametry` s předcházejícím
+nadpisem v PDF kapitoly 3; obě cílové kotvy zůstávají dostupné. Po citeprocu
+se zvlášť váže slovo před odkazem v bibliografii. PDF export používá
+balíčky a fonty z Quarta i při závěrečném překladu.
+
+**Provedené kontroly:** celá HTML kniha sestavena; konečný
+`quarto/_verification/check-html.cjs` prošel na všech 12 stránkách bez chyb
+(89 tabulek s popisky, 262 hesel slovníčku, odkazy, 83 řešení včetně
+ovládání klávesnicí, přehledy, šířky 1360/1920 a mobil 390 px, bez JS
+a file://). Vizuálně zkontrolovány výsledné webové tabulky a přehledy na
+desktopu i mobilu; popisky vlevo. Porovnání Pandoc AST s výchozím commitem
+potvrdilo stejné buňky a záhlaví všech 86 tabulek, stejná zdrojová zarovnání
+a všechny původní matematické výrazy (přesun vysvětlení změnil pouze pořadí).
+`check-pdf-typography.cjs` prošel; `check-chapter-pdf.cjs` pro 3/4/5
+potvrdil zachování 15/10/12 řešení, matematiky, tabulek, obrázků a citací.
+Kontrola dokumentace: 73 mapových souborů, 54 rozhodnutí, 2 985 místních
+odkazů, bez chyb (po doplnění této historie 2 986); `git diff --check` bez chyb.
+
+**PDF a vizuální rozsah:** aktuální kapitoly 3/4/5 mají 50/37/43 stran.
+Prohlédnuty kontaktní náhledy všech stran s tabulkami a vybrané stránky
+ve větším rozlišení (souhrny, široké tabulky, kvantily, desetinné zápisy
+a závěrečná bibliografie kapitoly 3). Textová kontrola všech stran nenašla
+osamocenou českou jednopísmennou předložku či spojku; zůstal anglický člen
+„A“ v názvu bibliografické položky kapitoly 4, mimo české pravidlo.
+Nešlo o novou odbornou revizi kapitol ani nové spuštění výpočtů v Excelu.
+Typst u kapitoly 5 nadále hlásí upozornění na zastaralý alias `sect`
+generovaný Pandocem; kompilace uspěla a znak průniku se vykresluje.
+PDF se nepublikují s webem; veřejné nasazení této úpravy nebylo ověřováno.
