@@ -219,3 +219,28 @@ změnu hlavního zdroje nebo schválení výuky JASP.
 Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
 studentům se nic nového nepublikuje. Kontrola ostatních 44 souborů byla
 inventární, nikoli novým odborným čtením.
+
+<a id="wilcox-2026-10-30"></a>
+
+## Doplnění Wilcoxe — 2026-10-30
+
+Na žádost autora doplněn nový soubor `sources/učebnice/wilcox.pdf` jako
+[U15](U15-wilcox.md#u15). Aktuální inventář má 46 souborů; cesty a všech
+45 dosavadních prefixů SHA-256 ověřeny proti místním originálům, bez změny.
+Jediný přírůstek je nová učebnice. Starší ID a datované záznamy zachovány.
+
+Karta U15 obsahuje bibliografickou identitu ověřenou na titulní straně,
+tiráži a stránce nakladatele, místní rozsah a otisk, mapu všech 15 kapitol
+a příloh, tematické lokátory ověřené v textu a přesně vymezené čtení.
+Upozornění pro použití (R místo Excelu, Wilcoxovo MAD vs. projektové MedAD
+a MeanAD, meze CLT a t při nenormalitě, vyhraněné stanovisko k robustním
+metodám) jsou pouze [v kartě](U15-wilcox.md#u15-overeni). Tematický
+rozcestník doplněn u popisných statistik, normálního modelu, výběrových
+rozdělení, testování, intervalů, bootstrapu, porovnání průměrů, korelace,
+kategoriálních dat a navazujících metod. Jde o nabídku podkladu, nikoli
+o doklad použití ve studentských kapitolách, změnu hlavního zdroje nebo
+schválení robustních metod jako učiva.
+
+Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
+studentům se nic nového nepublikuje. Kontrola ostatních 45 souborů byla
+inventární, nikoli novým odborným čtením.
