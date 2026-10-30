@@ -188,8 +188,10 @@ je od 2026-10-27 připraven
 pro výkladové snímky 1–35, bez závěrečného procvičování. Identitu podkladů,
 mapu úseků, slovník výslovnosti a omezení ověření uvádí
 [průvodní dokument](../../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md).
-Jde o textový podklad; nahrávka v tomto kroku nevznikla. Obsah kapitoly
-ani její hranice učiva se tím nemění.
+Na následnou výslovnou žádost autora vznikla také místní nahrávka hlasem
+Adam (51:15,63; snímky 1–35), ignorovaná Gitem. Technické ověření
+a jeho omezení popisuje tentýž průvodní dokument. Obsah kapitoly ani její
+hranice učiva se tím nemění.
 
 ### Pracovní PDF
 
