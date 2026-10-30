@@ -48,7 +48,7 @@ kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3, 4 a 5. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3, 4, 5 a 6. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
@@ -56,15 +56,16 @@ příkaz pro požadovanou kapitolu, například:
 ```
 
 Pro kapitolu 5 použijte `-Chapter 5` a kontrolu `--chapter 5`.
+Pro kapitolu 6 použijte `-Chapter 6` a kontrolu `--chapter 6`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04 nebo 05. Skript používá aktuální
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04, 05 nebo 06. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 14 v kapitole 6), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -86,6 +87,16 @@ node scripts/check-chapter-pdf.cjs --chapter 4
 Volba `--chapter 3` kontroluje kapitolu 3; bez této volby je výchozí kapitola 3.
 Další volitelný argument kontroly je cesta ke Quartu. Kontrola transformace
 nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů.
+
+`node scripts/check-table-layout.cjs` prochází všechny tabulky i v otevřených
+řešeních na šířkách 1024/1280/1360/1440/1920 a 390 px. Vyžaduje stejný
+Playwright a prohlížeč jako kontrola HTML. Ověřuje poznámky menší o 1 pt,
+nepřetékání stránky a odstranění drobných desktopových přesahů (2–32 px).
+Podrobný výsledek ukládá do `tmp/verification/table-layout.json`.
+Skutečné PDF po sestavení všech čtyř kapitol prověří
+`python scripts/check-rendered-pdf.py` (veřejný balíček `pypdf`): velikost
+všech poznámek v PDF a přítomnost světle šedých tahů. Tato kontrola
+nenahrazuje vizuální prohlédnutí tabulek a nového kapitolového exportu.
 
 Typografické případy převodu (desetinná čísla včetně indexů a zlomků,
 oddělovací čárky, nezlomitelné vazby přes zvýraznění a odkazy, zachování

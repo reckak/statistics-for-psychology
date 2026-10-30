@@ -362,7 +362,9 @@ Obě čísla jsou podmíněné pravděpodobnosti, jejichž podmínkou je skuteč
 
 : Čtyři možné výsledky screeningu {#tbl-ctyri-vysledky}
 
+::: {.table-note}
 *Poznámka.* Dotazník se může mýlit dvěma různými způsoby: u lidí s poruchou falešně negativním výsledkem, u lidí bez poruchy falešně pozitivním.
+:::
 
 :::
 

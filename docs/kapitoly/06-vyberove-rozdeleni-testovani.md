@@ -2,6 +2,11 @@
 
 # 6. Výběrové rozdělení a testování hypotéz
 
+**Pracovní PDF 2026-10-30:** přidán a ověřen ruční export podle
+[provozního návodu](../PROVOZ.md#ruční-pdf-vybrané-kapitoly), včetně všech
+14 zadání a samostatného oddílu řešení s obousměrnými odkazy. Zkontrolována
+sazba celé kapitoly v PDF; nejde o novou obsahovou revizi této mapy.
+
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 6](../../quarto/kapitola_06.qmd#sec-kapitola-06), karta

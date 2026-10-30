@@ -230,3 +230,43 @@ Opravit mezery za desetinnou čárkou v PDF a sjednotit všechny studentské tab
 - Aktualizovat projektová pravidla, evidenci rozhodnutí, provozní dokumentaci a historii kontrol. Zachovat rozpracované změny; výsledek předat přes PR ve větvi `codex/infrastructure`.
 
 PDF zůstane ručním exportem kapitol 3–5. Hodnoty, výpočty a schválené značení se nemění.
+
+### Doplnění R54 z 2026-10-30 — jemnost linek, poznámky a šířky
+
+**Doklad:** autor po prohlédnutí výstupu požádal o jemnou šedou místo
+černé u vnitřních linek, poznámky o bod menší než standardní text,
+odstranění zbytečného posuvníku například u tabulky úrovní měření
+a PDF kapitoly 6. Následně výslovně schválil níže uvedený plán pokynem
+„PLEASE IMPLEMENT THIS PLAN“. Jde o upřesnění R54; aktuální pravidla
+udržuje [AGENTS.md](../../AGENTS.md#sazba-tabulek). Rozšíření ručního exportu
+realizuje již schválený postup R31 a nezavádí automatickou publikaci PDF.
+
+#### Schválený plán: Jemnější sazba tabulek, přizpůsobení šířce a PDF kapitoly 6
+
+**Společná sazba webu a PDF**
+
+- Vnitřní vodorovné linky změnit na jemnou šedou `#c8c8c8`, při zachování tloušťky 1 px ve webu a 0,3 bodu v PDF.
+- Výraznější linky kolem záhlaví, pod tabulkou a nad souhrnnými řádky ponechat tmavé.
+- Poznámky pod tabulkami označit společnou třídou `table-note` a sázet o jeden typografický bod menším písmem než běžný text kapitoly: v současném PDF 10 místo 11 bodů, na webu odpovídající rozdíl 1 pt. Zachovat obsah i kurzivu označení „Poznámka.“.
+
+**Přizpůsobení webových tabulek**
+
+- U tabulky „Úrovně měření a význam vztahů mezi hodnotami“ snížit minimální šířku ze 760 na 700 px a ponechat automatické rozdělení šířek sloupců.
+- Projít ostatní studentské tabulky a vyhledat případy, kdy celkový přesah nepřesahuje 32 px. Nejprve upravit zbytečně vysoké minimální šířky, potom případně mírně zmenšit vodorovné odsazení buněk.
+- Kvůli odstranění posuvníku nezmenšovat písmo, neskrývat obsah ani nevynucovat nevhodné lámání slov.
+- U skutečně širokých tabulek a na mobilu zachovat místní vodorovné posouvání. Celá stránka nesmí přetékat.
+
+**PDF kapitoly 6**
+
+- Rozšířit ruční export a kontrolní skript o kapitolu 6.
+- Vytvořit `output/pdf/kapitola_06.pdf` s výkladem, obrázky, všemi 14 zadáními, samostatnou částí řešení se vzájemnými odkazy a citovanou literaturou.
+- Zachovat českou typografii a tabulky bez zarovnání do bloku a dělení slov. U dlouhých tabulek opakovat záhlaví.
+
+**Ověření a předání**
+
+- Sestavit celou HTML knihu. Kontrolovat šířky 1024, 1280, 1360, 1440 a 1920 px a mobil 390 px; u uvedené tabulky ověřit odstranění posuvníku při dostatečném prostoru.
+- Ověřit čitelnost, barvy linek, velikost poznámek a funkčnost přehledů.
+- Sestavit PDF kapitol 3–6, zkontrolovat dotčenou sazbu a nové PDF kapitoly 6 vizuálně prohlédnout celé.
+- Spustit kontroly zachování obsahu a odkazů, aktualizovat dokumentaci a předat změny přes větev `codex/infrastructure` a PR.
+
+Obsah a výpočty kapitol zůstávají zachovány. PDF se nadále vytvářejí ručně, odděleně od publikování webu.
