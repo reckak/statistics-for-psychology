@@ -235,6 +235,9 @@ Výpočet je na listu `Interval_t`:
 | B11 | Dolní mez | `=B2-B10` | 41,87 |
 | B12 | Horní mez | `=B2+B10` | 50,13 |
 
+: Interval spolehlivosti průměru v Excelu {#tbl-k07-01}
+
+
 :::
 
 Vzorec v B9 převádí hladinu spolehlivosti na úroveň kvantilu: z 0,95 zbývá 0,05 na oba chvosty, 0,025 na každý, a horní kvantil má tedy úroveň 0,975. Změníte-li B5 na 0,99, dostanete 99% interval. Obdobný list `Interval_z` počítá interval se známou σ; místo T.INV používá NORM.S.INV z [kapitoly 4](kapitola_04.qmd#sec-normalni-kvantil). Funkce T.INV je k dispozici v Excelu 2010 a novějších verzích.
@@ -305,6 +308,9 @@ Výpočet je na listu `T_test`:
 | B12 | P-hodnota pro alternativu „větší“ | `=1-T.DIST(B10;B9;PRAVDA)` | 0,9715 |
 | B13 | P-hodnota oboustranně | `=T.DIST.2T(ABS(B10);B9)` | 0,0569 |
 | B14 | Kritická hodnota $t$ oboustranně | `=T.INV.2T(B6;B9)` | 2,0639 |
+
+: T-test pozornosti po krátkém spánku v Excelu {#tbl-k07-02}
+
 
 :::
 
@@ -465,6 +471,9 @@ Pět smyšlených studií online verze testu pozornosti porovnává průměr stu
 | C | 50,4; 400 | (49,42; 51,38) | nezamítá (0,42) | (49,58; 51,22) | ekvivalence doložena | Rozdíl je menší než hranice ekvivalence. |
 | D | 44; 100 | (42,02; 45,98) | zamítá (< 0,001) | (42,34; 45,66) | ekvivalence nedoložena | Interval leží celý pod dolní hranicí ekvivalence. |
 | E | 47; 100 | (45,02; 48,98) | zamítá (0,003) | (45,34; 48,66) | ekvivalence nedoložena | Interval zahrnuje zanedbatelné i věcně důležité poklesy. |
+
+: Kombinace výsledků testu rozdílu a testu ekvivalence {#tbl-k07-03}
+
 
 :::
 
@@ -715,6 +724,9 @@ Pět studií měřilo průměrnou dobu reakce a porovnává ji s hodnotou 500 ms
 | d | 95% (505; 540) |
 | e | 90% (492; 498) |
 
+: Intervaly reakční doby: zadání úlohy 8 {#tbl-k07-04}
+
+
 a)  U studií a, b a d rozhodněte bez výpočtu, zda oboustranný t-test na hladině 0,05 zamítá nulovou hypotézu $\mathrm{μ}=500$.
 b)  Jakou p-hodnotu má studie c? Jak byste rozhodli a na čem rozhodnutí závisí?
 c)  Ve studii e výzkumníci předem zvolili alternativu $\mathrm{μ}<500$. Zamítá jednostranný test na hladině 0,05? A co lze říct o oboustranném testu?
@@ -782,6 +794,9 @@ Pět studií porovnává průměrnou dobu reakce v nové verzi úlohy s normou 5
 | R | (488,0; 506,0) | (489,4; 504,6) |
 | S | (525,0; 560,0) | (527,8; 557,2) |
 | T | (505,0; 535,0) | (507,4; 532,6) |
+
+: Intervaly reakční doby: zadání úlohy 11 {#tbl-k07-05}
+
 
 a)  U každé studie určete výsledek testu rozdílu od 500 ms (oboustranně, hladina 0,05) a testu ekvivalence.
 b)  Přiřaďte každou studii k jedné ze čtyř kombinací a zformulujte závěr jednou větou.

@@ -35,6 +35,8 @@ try {
     Copy-Item -LiteralPath 'references.bib' -Destination $build -Force
     Copy-Item -LiteralPath 'styles/apa.csl' -Destination "$build/apa.csl" -Force
     Copy-Item -LiteralPath 'scripts/pdf/chapter.lua' -Destination $build -Force
+    Copy-Item -LiteralPath 'scripts/pdf/typography.lua' -Destination $build -Force
+    Copy-Item -LiteralPath 'filters/table-style.lua' -Destination $build -Force
     $config = [IO.File]::ReadAllText((Join-Path $repo 'scripts/pdf/chapter.yml'))
     [IO.File]::WriteAllText("$build/_quarto.yml", $config.Replace('@NN@', $number), $utf8)
     $layout = [IO.File]::ReadAllText((Join-Path $repo 'scripts/pdf/layout.typ'))
@@ -51,6 +53,21 @@ try {
     try {
         & $quarto render --to typst
         if ($LASTEXITCODE -ne 0) { throw 'PDF rendering failed; the previous output was preserved.' }
+        # Citeproc emits bibliography text after Lua. Bind a final Czech single-letter
+        # word to the following hyperlink there as well, without editing URL strings.
+        $typPath = "$build/quarto/kapitola_$number.typ"
+        $typSource = [IO.File]::ReadAllText($typPath)
+        $refsStart = $typSource.IndexOf('<pdf-references>')
+        if ($refsStart -ge 0) {
+            $refsText = $typSource.Substring($refsStart)
+            $boundRefs = [regex]::Replace($refsText, '(?<![\p{L}\p{N}_])([aikousvzAIKOUSVZ]) (?=#link\()', '$1~')
+            if ($boundRefs -cne $refsText) {
+                [IO.File]::WriteAllText($typPath, $typSource.Substring(0, $refsStart) + $boundRefs, $utf8)
+                $quartoShare = (& $quarto --paths)[-1]
+                & $quarto typst compile $typPath --root $build --package-path "$quartoShare/formats/typst/packages" --font-path "$quartoShare/formats/typst/fonts"
+                if ($LASTEXITCODE -ne 0) { throw 'Final PDF typography compilation failed; previous output preserved.' }
+            }
+        }
     } finally { Pop-Location }
     $pdf = "$build/quarto/kapitola_$number.pdf"
     if (-not (Test-Path -LiteralPath $pdf)) { throw "Missing rendered PDF: $pdf" }

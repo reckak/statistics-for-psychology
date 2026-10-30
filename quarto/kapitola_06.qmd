@@ -58,6 +58,9 @@ O skutečných řidičích víme jen to, co výzkumníci naměřili. Abychom moh
 | Výukový model | Populace dob opuštění místa s průměrem 35 s a směrodatnou odchylkou 15 s. Rozdělení je zešikmené doprava. Výběry jsou náhodné a navzájem nezávislé. | Průměr 35 a směrodatnou odchylku 15 zvolil pro svou simulaci Howell [-@howell, s. 87]. Tvar rozdělení jsme zvolili my: doba nemůže být záporná a několik řidičů odjíždí velmi dlouho. |
 | Simulovaná data | 10 000 výběrů, které z výukového modelu vylosoval počítač. | Náš výpočet. Nejde o další pozorování řidičů. |
 
+: Studie, výukový model a simulovaná data {#tbl-k06-01}
+
+
 :::
 
 ::: {.teaching-figure role="region" aria-label="Tři vrstvy průběžného příkladu: skutečná studie, výukový model, simulovaná data" tabindex="0"}
@@ -136,6 +139,9 @@ Z populace vylosujeme dva řidiče. Losujeme nezávisle a s vracením, takže dr
 | 8 | 50 | 35 | 42,5 |
 | 9 | 50 | 50 | 50 |
 
+: Všech devět výběrů a jejich průměry {#tbl-k06-02}
+
+
 :::
 
 Výběry 2 a 4 obsahují tytéž dvě doby v jiném pořadí. Počítáme je zvlášť, protože jde o dva různé výsledky losování, každý s pravděpodobností 1/9; stejně jsme v minulé kapitole rozlišovali [posloupnosti správných a špatných tipů](kapitola_05.qmd#sec-binomicke-odvozeni).
@@ -148,6 +154,9 @@ Teď se zeptáme, jakých hodnot průměr nabývá a jak často. Průměr 35 s d
 |---|---:|---:|---:|---:|---:|
 | Které výběry | 1 | 2, 4 | 3, 5, 7 | 6, 8 | 9 |
 | Pravděpodobnost | 1/9 | 2/9 | 3/9 | 2/9 | 1/9 |
+
+: Rozdělení průměru devíti výběrů {#tbl-k06-03}
+
 
 :::
 
@@ -186,6 +195,9 @@ V příkladu vystupují tři různá rozdělení. Jejich záměna je nejčastěj
 | Rozdělení v populaci | Všechny jednotlivce, o nichž chceme něco říci | Doba jednoho řidiče | Doby 20, 35 a 50 s, každá s pravděpodobností 1/3; průměr 35 s, směrodatná odchylka 12,25 s |
 | Rozdělení hodnot v jednom výběru | Jednotlivce, které jsme skutečně pozorovali | Doba jednoho řidiče z výběru | Například doby 20 a 50 s; průměr tohoto výběru je 35 s |
 | Výběrové rozdělení průměru | Průměry všech možných výběrů téže velikosti | Průměr jednoho celého výběru | Průměry 20 až 50 s s pravděpodobnostmi 1/9 až 3/9; střední hodnota 35 s, směrodatná chyba 8,66 s |
+
+: Populace, jeden výběr a výběrové rozdělení {#tbl-k06-04}
+
 
 :::
 
@@ -248,6 +260,9 @@ Vztah si ověříme na číslech, která už máme:
 | Výukový model, simulace | 15 | 30 | 2,74 | 2,74 |
 | Výukový model, simulace | 15 | 100 | 1,50 | 1,51 |
 
+: Směrodatná chyba průměru v příkladech {#tbl-k06-05}
+
+
 :::
 
 U devíti výběrů souhlasí vzorec přesně, protože jsme vypsali všechny výběry. U simulací souhlasí přibližně; drobné rozdíly jsou důsledkem toho, že 10 000 opakování není nekonečně mnoho.
@@ -303,6 +318,9 @@ Kolem kolísání výsledků jsme nasbírali několik podobně znějících pojm
 | Směrodatná chyba | Jak velké je toto kolísání? | 2,74 s pro průměr 30 řidičů | Ano, s odmocninou z velikosti výběru. |
 | Výběrová chyba | O kolik se náš jeden odhad liší od populační hodnoty? | Výběr s průměrem 36,5 s: 36,5 − 35 = 1,5 s | Obvykle ano, ale u jednoho výběru to nevíme jistě. |
 | Systematické zkreslení | Míří náš postup soustavně vedle? | Stopky spuštěné pozdě zkrátí každou dobu | Ne. |
+
+: Rozlišení pěti pojmů souvisejících s nejistotou {#tbl-k06-06}
+
 
 :::
 
@@ -364,6 +382,9 @@ Zešikmení lze vyjádřit i čísly. V normovaném normálním rozdělení lež
 | 100 | 2,4 % | 2,2 % |
 | Normální model | 2,3 % | 2,3 % |
 
+: Krajní průměry při různých velikostech výběru {#tbl-k06-07}
+
+
 :::
 
 U malých výběrů je velmi vysokých průměrů více a velmi nízkých méně, než by odpovídalo normálnímu modelu. S rostoucím výběrem se oba podíly blíží hodnotě 2,3 %.
@@ -406,6 +427,9 @@ Obě zákonitosti se týkají průměrů velkých výběrů a snadno splynou. Od
 | Odpověď | Blízko populačního průměru; směrodatná chyba klesá k nule. | Po standardizaci se blíží normovanému normálnímu rozdělení. |
 | Na obrázku [-@fig-zvc-clv] | Horní řada: histogramy se zužují. | Dolní řada: histogramy se blíží křivce. |
 | K čemu slouží | Zdůvodňuje, proč větší výběr dává přesnější odhad. | Umožňuje počítat pravděpodobnosti průměrů normálním modelem. |
+
+: Zákon velkých čísel a centrální limitní věta {#tbl-k06-08}
+
 
 :::
 
@@ -465,6 +489,9 @@ Výpočet je na listu `Chyba`. Vstupy jsou ve žlutých buňkách, vzorce v modr
 | B10 | Průměr větší než hranice | `=1-B9` | 0,0228 |
 | B12 | Dolní mez prostředních 95 % průměrů | `=NORM.INV(0,025;B2;B7)` | 32,06 |
 | B13 | Horní mez prostředních 95 % průměrů | `=NORM.INV(0,975;B2;B7)` | 37,94 |
+
+: Pravděpodobnost průměru sta řidičů v Excelu {#tbl-k06-09}
+
 
 :::
 
@@ -604,6 +631,9 @@ Výpočet je na listu `Test_rozdilu`:
 | B10 | Kritická hodnota rozdílu (s) | `=B3+B9*B4` | 4,158 |
 | B11 | Rozhodnutí testu | `=KDYŽ(B8<=B5;"zamítáme nulovou hypotézu";"nulovou hypotézu nezamítáme")` | zamítáme nulovou hypotézu |
 
+: Výpočet p-hodnoty v Excelu {#tbl-k06-10}
+
+
 :::
 
 Funkce [NORM.S.DIST](kapitola_04.qmd#sec-excel-normalni), [NORM.S.INV](kapitola_04.qmd#sec-podil-hodnota), [ABS](kapitola_03.qmd#sec-excel-odchylky-03) a [KDYŽ](kapitola_05.qmd#sec-binom-kumulace) známe. Funkce `ABS` zajistí, že vzorec v B8 dá správný výsledek, i kdyby byl pozorovaný rozdíl záporný. Směrodatnou chybu v B4 zadáváme jako číslo z výukového modelu; z dat studie ji nepočítáme.
@@ -639,6 +669,9 @@ Užitečné je rozlišovat, co se v testu stanovuje předem a co se počítá z 
 | Směr testu: oboustranný | P-hodnota: 0,0012 |
 | Hladina významnosti: 0,05 | |
 | Kritický obor: pod −4,16 s a nad 4,16 s | |
+
+: Rozhodovací pravidlo a výsledek z dat {#tbl-k06-11}
+
 
 :::
 
@@ -686,6 +719,9 @@ Rozhodovací pravidlo pracuje s nejistými daty, a proto se může mýlit. Nulov
 | **Zamítáme nulovou hypotézu** | Chyba I. druhu; pravděpodobnost $\mathrm{α}$ | Správné rozhodnutí; pravděpodobnost $1-\mathrm{β}$, statistická síla |
 | **Nulovou hypotézu nezamítáme** | Správné rozhodnutí; pravděpodobnost $1-\mathrm{α}$ | Chyba II. druhu; pravděpodobnost $\mathrm{β}$ |
 
+: Chyby rozhodnutí o nulové hypotéze {#tbl-k06-12}
+
+
 :::
 
 **Chyba I. druhu (*Type I error*)** nastane, když zamítneme nulovou hypotézu, která platí. Usoudili bychom, že se doby odjezdu liší, ačkoli se v populaci neliší. Pravděpodobnost této chyby je hladina významnosti $\mathrm{α}$; volíme ji sami. Viděli jsme ji v simulaci: 497 zamítnutí z 10 000 při platné nulové hypotéze.
@@ -718,6 +754,9 @@ Na obrázku [-@fig-sila] je jedna hodnota na vodorovné ose opět rozdílem prů
 | 3 s | 0,29 | Statistická síla | 0,71 ($\mathrm{β}$) |
 | 5 s | 0,65 | Statistická síla | 0,35 ($\mathrm{β}$) |
 | 8 s | 0,96 | Statistická síla | 0,04 ($\mathrm{β}$) |
+
+: Statistická síla pro různé skutečné rozdíly {#tbl-k06-13}
+
 
 :::
 
@@ -766,6 +805,9 @@ Na listu `Sila` je tento výpočet připraven pro libovolný skutečný rozdíl 
 | B7 | Plocha pod dolní kritickou hodnotou | `=NORM.DIST(-B4;B2;B3;PRAVDA)` | 0,0000 |
 | B8 | Statistická síla | `=B6+B7` | 0,654 |
 
+: Nezamítnutí nulové hypotézy: výpočet v Excelu {#tbl-k06-14}
+
+
 :::::
 
 V B3 je směrodatná chyba 2,1213 s a v B4 kritická hodnota 4,158 s, kterou list počítá z hladiny významnosti v B5. Po zadání rozdílu 0 do B2 vrátí B8 hodnotu 0,05: „síla“ při platné nulové hypotéze je pravděpodobnost chyby I. druhu.
@@ -808,6 +850,9 @@ Velikost účinku a statistická významnost jsou dvě různé informace. Ukáž
 | P-hodnota, oboustranně | 0,62 | menší než 0,001 |
 | Rozhodnutí na hladině 0,05 | nulovou hypotézu nezamítáme | zamítáme nulovou hypotézu |
 
+: Srovnání studií podle velikosti účinku {#tbl-k06-15}
+
+
 :::
 
 ::: {.teaching-figure role="region" aria-label="Stejný pozorovaný rozdíl jednoho bodu při výběru 25 a 2 500 studentů" tabindex="0"}
@@ -849,6 +894,9 @@ Druhý krok z prvního neplyne automaticky. Statisticky významný výsledek nem
 | Zamítnutí, rozdíl v opačném směru | Na hladině 0,05 zamítáme nulovou hypotézu. Rozdíl má opačný směr, než předpokládala výzkumná hypotéza; výsledek ji nepodporuje. | „Výsledek je statisticky významný, hypotéza se potvrdila.“ |
 | Nezamítnutí | Na hladině 0,05 nulovou hypotézu nezamítáme. Výsledky neposkytly dostatečně přesvědčivou podporu předpokládanému rozdílu; jeho existenci však nevylučují. | „Prokázali jsme, že rozdíl neexistuje.“ „Nulová hypotéza byla potvrzena.“ |
 
+: Formulace závěrů statistického testu {#tbl-k06-16}
+
+
 :::
 
 Zvláštní pozornost patří příčině. Test porovnává čísla a nerozlišuje, jak vznikla. Zda lze statisticky významný rozdíl připsat tomu, čím se skupiny lišily podle výzkumníka, závisí na [uspořádání studie](kapitola_01.qmd#sec-interni-externi-validita): na tom, zda byli lidé k podmínkám náhodně přiřazeni. V pozorování, ze kterého pocházejí naše čísla, přiřazeni nebyli. Podle shrnutí článku provedli autoři také experiment, v němž chování čekajícího auta sami určovali [@ruback1997].
@@ -886,6 +934,9 @@ Kritický obor tvoří nejvyšší počty, jejichž pravděpodobnost dohromady n
 |---|---:|---:|---:|---:|---:|
 | $P(X\ge k)$ při $\mathrm{π}=0{,}25$ | 0,214 | 0,102 | 0,041 | 0,014 | 0,004 |
 
+: Pravděpodobnosti počtu správných odpovědí {#tbl-k06-17}
+
+
 :::
 
 Hranici 0,05 jako první splní hodnota 9. Kritický obor tvoří počty 9 až 20 a kritická hodnota je 9.
@@ -910,6 +961,9 @@ Tomuto postupu se říká **binomický test (*binomial test*)**. Je na listu `Bi
 | B8 | Kritická hodnota | `=BINOM.INV(B2;B3;1-B5)+1` | 9 |
 | B9 | Pravděpodobnost kritického oboru | `=1-BINOM.DIST(B8-1;B2;B3;PRAVDA)` | 0,0409 |
 | B10 | Rozhodnutí testu | `=KDYŽ(B7<=B5;"zamítáme nulovou hypotézu";"nulovou hypotézu nezamítáme")` | zamítáme nulovou hypotézu |
+
+: Binomický test v Excelu {#tbl-k06-18}
+
 
 :::
 
@@ -965,6 +1019,9 @@ Výpočet je na listu `Z_test`:
 | B12 | P-hodnota oboustranně | `=2*(1-NORM.S.DIST(ABS(B9);PRAVDA))` | 0,0455 |
 | B13 | Kritická hodnota průměru pro alternativu „menší“ | `=B2+NORM.S.INV(B6)*B8` | 46,71 |
 
+: Z-test průměru v Excelu {#tbl-k06-19}
+
+
 :::
 
 List ukazuje p-hodnotu pro všechny tři směry; v řádcích 14 až 16 jsou kritické hodnoty průměru pro oboustranný test a pro alternativu „větší“. Použít lze jen ten výsledek, který odpovídá směru zvolenému předem. Při alternativě „větší“ by tentýž průměr dal p-hodnotu 0,977: výsledek leží na opačné straně a proti takové nulové hypotéze nesvědčí vůbec. Oboustranná p-hodnota je dvojnásobkem menší z obou jednostranných, 0,046.
@@ -987,6 +1044,9 @@ Ke z-testu dvě upozornění.
 | Její rozdělení za platnosti $H_0$ | normální model, směrodatná chyba 2,12 s (z výukového modelu) | binomické, $n=20$, $\mathrm{π}=0{,}25$ (přesné) | normální model, směrodatná chyba 2 body |
 | P-hodnota | přibližně 0,001 | 0,014 | 0,023 |
 | Typ rozdělení | spojité | diskrétní; skutečná chybovost 0,041 | spojité |
+
+: Společné kroky tří statistických testů {#tbl-k06-20}
+
 
 :::
 
@@ -1038,6 +1098,9 @@ Statistický test se screeningovému dotazníku podobá ve třech věcech:
 | Falešně pozitivní výsledek: 1 − specificita | Chyba I. druhu: $\mathrm{α}$ |
 | Prevalence | Podíl testovaných hypotéz, u nichž rozdíl skutečně existuje |
 
+: Rozdíl mezi screeningem a statistickým testem {#tbl-k06-21}
+
+
 :::::
 
 Použijeme [přirozené četnosti](kapitola_05.qmd#sec-prirozene-cetnosti). Představme si 1 000 výzkumů, každý s jedním testem na hladině 0,05. U 100 z nich skutečný rozdíl existuje a je tak velký, že statistická síla je 0,80. U zbylých 900 platí nulová hypotéza.
@@ -1049,6 +1112,9 @@ Použijeme [přirozené četnosti](kapitola_05.qmd#sec-prirozene-cetnosti). Pře
 | Rozdíl existuje | 80 | 20 | 100 |
 | Nulová hypotéza platí | 45 | 855 | 900 |
 | Celkem | 125 | 875 | 1 000 |
+
+: Rozhodnutí testu a platnost nulové hypotézy {#tbl-k06-22}
+
 
 :::::
 
@@ -1143,6 +1209,8 @@ b)  Každý výběr má pravděpodobnost $1/3\times1/3=1/9$.
     | 6 | 2 | 4 |
     | 6 | 6 | 6 |
 
+    : Všech devět výběrů: řešení úlohy 1 {#tbl-vybery-reseni-06}
+
     :::::
 
 c)  Sečteme pravděpodobnosti výběrů se stejným průměrem.
@@ -1152,6 +1220,8 @@ c)  Sečteme pravděpodobnosti výběrů se stejným průměrem.
     | Průměr výběru | 1 | 1,5 | 2 | 3,5 | 4 | 6 |
     |---|---:|---:|---:|---:|---:|---:|
     | Pravděpodobnost | 1/9 | 2/9 | 1/9 | 2/9 | 2/9 | 1/9 |
+
+    : Rozdělení průměru: řešení úlohy 1 {#tbl-prumery-reseni-06}
 
     :::::
 
@@ -1358,6 +1428,9 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U10_sila` A2:C3.
 | 25 | 0,17 | 0,71 |
 | 100 | 0,52 | 1,00 |
 
+: Statistická síla: zadání úlohy 10 {#tbl-k06-23}
+
+
 :::
 
 a)  Popište slovy, co by v této situaci znamenala chyba I. druhu a co chyba II. druhu.
@@ -1394,6 +1467,9 @@ Ve všech situacích byla hladina významnosti 0,05 a výzkumná hypotéza zněl
 | 4 | jednostranný, alternativa „trénink více“ | 0,98 | −5 bodů |
 | 5 | oboustranný | 0,049 | +2 body |
 | 6 | oboustranný | 0,051 | +2 body |
+
+: Výsledky studií: zadání úlohy 11 {#tbl-k06-24}
+
 
 :::
 
@@ -1479,6 +1555,8 @@ a)  Skutečný rozdíl existuje u 200 výzkumů, u 800 platí nulová hypotéza.
     | Rozdíl existuje | 120 | 80 | 200 |
     | Nulová hypotéza platí | 40 | 760 | 800 |
     | Celkem | 160 | 840 | 1 000 |
+
+    : Rozhodnutí testu a skutečný stav: řešení úlohy 14 {#tbl-rozhodnuti-reseni-06}
 
     :::::
 

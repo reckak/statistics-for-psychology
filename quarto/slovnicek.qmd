@@ -2,8 +2,11 @@
 
 V prvním sloupci je vždy **termín používaný v této učebnici**. Vyhledávání zahrnuje i anglické názvy, alternativy a vysvětlení.
 
+:::: {#tbl-prehled-glossary}
+
 ::: {.reference-table}
-<table id="glossary-table"><caption>České a anglické statistické pojmy</caption><thead><tr><th scope="col">Používaný termín</th><th scope="col">Anglicky</th><th scope="col">Alternativy a související pojmy</th><th scope="col">Vysvětlení a výklad</th></tr></thead><tbody>
+<!--| quarto-html-table-processing: none -->
+<table id="glossary-table"><thead><tr><th scope="col">Používaný termín</th><th scope="col">Anglicky</th><th scope="col">Alternativy a související pojmy</th><th scope="col">Vysvětlení a výklad</th></tr></thead><tbody>
 <tr id="pojem-statistika"><th scope="row">Statistika</th><td>statistics</td><td>—</td><td>Postupy pro plánování získávání dat, jejich popis a usuzování za nejistoty. <a href="kapitola_01.html#sec-proc-statistika">Výklad</a></td></tr>
 <tr id="pojem-popisna"><th scope="row">Popisná statistika</th><td>descriptive statistics</td><td>deskriptivní statistika</td><td>Uspořádání a shrnutí získaných dat; sama nezdůvodňuje zobecnění. <a href="kapitola_01.html#sec-populace-vyber">Výklad</a></td></tr>
 <tr id="pojem-inferencni"><th scope="row">Inferenční statistika</th><td>inferential statistics</td><td>induktivní statistika; statistické usuzování označuje činnost</td><td>Postupy, jimiž z dat usuzujeme na něco širšího, než co jsme přímo pozorovali, například z výběru na populaci; za určitých předpokladů a s nejistotou. <a href="kapitola_01.html#sec-populace-vyber">Výklad</a></td></tr>
@@ -268,3 +271,7 @@ V prvním sloupci je vždy **termín používaný v této učebnici**. Vyhledáv
 <tr id="pojem-neinferiorita"><th scope="row">Neinferiorita</th><td>non-inferiority</td><td>—</td><td>Nepovinné rozšíření. Jednostranná otázka, zda výsledek není horší o více než předem určenou mez; závisí na tom, který směr škály je horší. <a href="kapitola_07.html#rozsireni-neinferiorita">Nepovinné rozšíření</a></td></tr>
 </tbody></table>
 :::
+
+České a anglické statistické pojmy
+
+::::

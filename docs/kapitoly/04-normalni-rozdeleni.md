@@ -181,3 +181,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [C03](../zdroje/C03-ulohy-tyden-3.md#c03) — X3_01–07 a X3_21–37.
 - [C04](../zdroje/C04-seminar-4.md#c04) — standardní skóry.
 - [D10](../zdroje/D10-excel-normalni-rozdeleni.md#d10) — Excel.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

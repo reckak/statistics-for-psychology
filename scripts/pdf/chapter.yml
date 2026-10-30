@@ -8,6 +8,10 @@ csl: apa.csl
 filters:
   - at: pre-ast
     path: chapter.lua
+  - at: pre-ast
+    path: typography.lua
+  - at: pre-ast
+    path: table-style.lua
 format:
   typst:
     papersize: a4

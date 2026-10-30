@@ -28,6 +28,9 @@ V úvodním příkladu přišel každý účastník jednou. Jeden řádek tedy p
 | P04      |          5 |              6 | trochu     |
 | P05      |  neuvedeno |              7 | dost       |
 | P06      |          7 |              0 | vůbec      |
+
+: Údaje šesti účastníků {#tbl-k02-01}
+
 :::
 
 Odpověď „trochu“ najdeme dvakrát, odpověď „dost“ také dvakrát. **Absolutní četnost (*absolute frequency*)** je počet případů s určitou hodnotou nebo spadající do dané kategorie či intervalu hodnot. Je to nezáporné celé číslo: například dva účastníci, nikoli „dva body odpočatosti“.
@@ -41,6 +44,9 @@ Odpověď „trochu“ najdeme dvakrát, odpověď „dost“ také dvakrát. **
 | Dost       |                 2 |
 | Zcela      |                 1 |
 | **Celkem** |             **6** |
+
+: Absolutní četnosti odpočatosti {#tbl-k02-02}
+
 
 [**Rozdělení (*distribution*)**]{#def-rozdeleni} popisuje, jak jsou hodnoty proměnné zastoupeny: které se vyskytují často, které zřídka a které vůbec. U číselné proměnné nás navíc zajímá, v jaké části stupnice se hodnoty soustřeďují a jak široce jsou rozloženy. Nejde tedy o rozdělování účastníků do výzkumných skupin, ale o popis zastoupení hodnot. V češtině se setkáme také s názvem distribuce.
 
@@ -143,6 +149,9 @@ Tři tečky mezi členy znamenají, že pokračujeme stejným způsobem přes v�
 | Trochu     |     2 | 0,333 |   33,3 % |                    3 |               50,0 % |
 | Dost       |     2 | 0,333 |   33,3 % |                    5 |               83,3 % |
 | Zcela      |     1 | 0,167 |   16,7 % |                    6 |              100,0 % |
+
+: Četnosti a kumulativní četnosti odpočatosti {#tbl-k02-03}
+
 :::
 
 Každý kumulativní sloupec je neklesající: přičítáme četnosti a ty nemohou být záporné. Poslední kumulativní absolutní četnost je $n$, poslední kumulativní relativní četnost 1. **Kumulativní sloupec už nesčítáme**, protože tytéž případy obsahuje opakovaně.
@@ -168,6 +177,9 @@ Nyní použijeme větší soubor **36 účastníků**. Prvních šest záznamů 
 | Trochu     |    10 | 0,278 |   27,8 % |                   14 |                0,389 |
 | Dost       |    14 | 0,389 |   38,9 % |                   28 |                0,778 |
 | Zcela      |     8 | 0,222 |   22,2 % |                   36 |                1,000 |
+
+: Četnosti odpočatosti ve větším souboru {#tbl-k02-04}
+
 :::
 
 Nejčastější odpovědí je „dost“, ale přesto nepředstavuje většinu: 14 z 36 je méně než polovina. Nejvýše „trochu“ odpovědělo také 14 lidí. Stejná četnost zde odpovídá dvěma různým skupinám odpovědí; sama o sobě neznamená, že jde o stejné účastníky.
@@ -178,6 +190,9 @@ Počet slov můžeme zatím shrnout bez seskupování: možné hodnoty jsou cel�
 | Počet slov      |   0 |   1 |   2 |   3 |   4 |   5 |   6 |   7 |   8 |   9 |  10 |  11 |  12 |
 |-----------------|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
 | Počet účastníků |   1 |   0 |   1 |   1 |   2 |   4 |   5 |   6 |   6 |   4 |   3 |   2 |   1 |
+
+: Četnosti počtu vybavených slov {#tbl-k02-05}
+
 :::
 
 Oba sousední výsledky 7 a 8 slov mají po šesti případech. Nulová četnost u jednoho slova zachovává informaci, že jde o možný, ale v tomto souboru nepozorovaný výsledek.
@@ -198,6 +213,9 @@ V našem příkladu zvolíme šířku jedné hodiny. Interval více než 6 hodin
 | Více než 8 až 9 včetně | 8 | 9 | 5 | 0,152 |
 | Více než 9 až 10 včetně | 9 | 10 | 2 | 0,061 |
 | **Celkem** |  |  | **33** | **1,000** |
+
+: Intervalové četnosti délky spánku {#tbl-k02-06}
+
 :::
 
 Nejvíce platných údajů leží v intervalu více než 7 až 8 hodin včetně: 10 z 33, tedy 30,3 %. Tabulka popisuje pouze platné údaje; tři chybějící nejsou bezdůvodně přiřazeny k nejkratšímu spánku ani k jinému intervalu.
@@ -232,7 +250,7 @@ V obrázku [-@fig-meze-intervalu] jsou sousední úsečky pro přehlednost mírn
 | Od 9 včetně do méně než 10 | 3 | Více než 9 až 10 včetně | 2 |
 | **Celkem** | **33** | **Celkem** | **33** |
 
-: Stejné údaje při dvou způsobech zahrnutí mezí intervalů. {#tbl-hranice-intervalu}
+: Četnosti při dvou pravidlech zahrnutí mezí {#tbl-hranice-intervalu}
 :::
 
 Například údaj 7,0 hodiny patří ve variantě A do intervalu od 7 včetně do méně než 8 hodin, ve variantě B do intervalu více než 6 až 7 hodin včetně. Rozdíly mezi četnostmi tedy způsobují hodnoty ležící přesně na mezích. Obě varianty jsou přípustné; pravidlo musíme uvést a důsledně dodržet. V dalších příkladech a v excelovém sešitu této kapitoly používáme **variantu B**, tedy zleva otevřené a zprava uzavřené intervaly. Kumulativní součet až po horní mez intervalu pak zahrnuje hodnoty nejvýše rovné této mezi, stejně jako u tabulky jednotlivých hodnot.
@@ -531,6 +549,9 @@ Máme $n=12$ případů a $k=4$ kategorie. Postupné počítání výskytů dáv
 | Dost    |     4 | 0,333 |   33,3 % |
 | Zcela   |     2 | 0,167 |   16,7 % |
 
+: Četnosti odpovědí: řešení úlohy 1 {#tbl-k02-08}
+
+
 Například $p_2=5/12$, zobrazeno 0,417 a 41,7 %. Součet četností je $1+5+4+2=12$; přesné podíly dávají $12/12=1$. Nejčetnější je „trochu“, ale pět z dvanácti není více než polovina. Nejčetnější kategorie proto nemusí představovat většinu.
 :::
 
@@ -575,6 +596,9 @@ Počty chyb v krátké úloze jsou 0, 1, 1, 2, 2, 2, 3, 4, 4 a 5. Sestavte absol
 | 3          |       1 |                   7 |
 | 4          |       2 |                   9 |
 | 5          |       1 |                  10 |
+
+: Kumulativní četnosti počtu chyb: řešení úlohy 4 {#tbl-k02-09}
+
 
 Méně než tři chyby udělalo šest lidí, nejvýše tři sedm lidí a alespoň tři čtyři lidé. Poslední počet získáme také jako $10-6=4$: odečteme ty s **méně než třemi** chybami. Odečtení sedmi by chybně vyloučilo i člověka se třemi chybami. Kumulativní sloupec už nesčítáme, protože například člověk s nulou je zahrnut v každém jeho řádku.
 :::

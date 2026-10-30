@@ -20,6 +20,9 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: '1.9.38'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
       - run: quarto render
       - run: Rscript --vanilla quarto/_verification/check-chapter-02.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-03.R
@@ -27,9 +30,6 @@ jobs:
       - run: Rscript --vanilla quarto/_verification/check-chapter-05.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-06.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-07.R
-      - uses: actions/setup-node@v7
-        with:
-          node-version: '22'
       - run: npm install --no-save --package-lock=false playwright@1.55.0
       - run: npx playwright install --with-deps chromium
       - run: node quarto/_verification/check-html.cjs

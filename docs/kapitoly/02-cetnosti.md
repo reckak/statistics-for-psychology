@@ -114,3 +114,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [P01](../zdroje/P01-uvod-cetnosti.md#p01) — sn. 39–68.
 - [C01](../zdroje/C01-ulohy-tyden-1.md#c01) — X2.
 - [C02](../zdroje/C02-ulohy-tyden-2.md#c02) — X2_04–10.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

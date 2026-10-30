@@ -13,9 +13,18 @@ main a { overflow-wrap: anywhere; }
 .worked-example > :last-child { margin-bottom: .7rem; }
 .table-scroll, .reference-table { max-width: 100%; overflow-x: auto; margin: 1.3rem 0; }
 table { width: 100%; border-collapse: collapse; font-size: .94rem; }
-th, td { padding: .6rem .7rem; text-align: left; vertical-align: top; border-bottom: 1px solid #d3dfe2; }
-th { background: #edf4f4; }
-caption { caption-side: top; color: var(--ink); text-align: left; font-weight: 600; }
+th, td { padding: .6rem .7rem; text-align: left; vertical-align: top; border: 0; border-bottom: 1px solid #88939a; }
+.quarto-float-tbl table > thead { border-top: 2px solid var(--ink) !important; border-bottom: 2px solid var(--ink) !important; }
+.quarto-float-tbl table > thead > tr:first-child > * { border-top: 2px solid var(--ink); }
+.quarto-float-tbl table > thead > tr:last-child > * { border-bottom: 2px solid var(--ink); }
+table > :not(caption) > * > * { background-color: transparent !important; box-shadow: none !important; }
+tbody > tr:last-child > *, tfoot > tr:last-child > * { border-bottom: 2px solid var(--ink); }
+.reference-table tr.table-page-last > * { border-bottom: 2px solid var(--ink); }
+td.table-summary, th.table-summary { border-top: 2px solid var(--ink); }
+caption, .quarto-float-tbl figcaption { caption-side: top; color: var(--ink); text-align: left; font-weight: normal; font-style: italic; }
+figure.quarto-float-tbl > figcaption.quarto-float-caption { text-align: left !important; }
+.quarto-float-tbl .quarto-float-caption-prefix { display: block; font-weight: bold; font-style: normal; margin-bottom: .25rem; }
+.quarto-float-tbl .quarto-float-caption-prefix + span { font-style: italic; }
 .reference-table table { min-width: 650px; }
 .reference-table tr[hidden] { display: none !important; }
 .reference-table tr:target, .reference-table tr.highlight { background: #fff2bf; }

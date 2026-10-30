@@ -156,6 +156,9 @@ V každém normálním modelu připadá přibližně 68,3 % hodnot do vzdálenos
 | od −2 do 2 | 30 až 70 bodů | 95,4 % | 2,3 % |
 | od −3 do 3 | 20 až 80 bodů | 99,7 % | 0,1 % |
 
+: Podíly v intervalech normálního rozdělení {#tbl-k04-01}
+
+
 :::
 
 Tabulka zobrazuje jednotlivá čísla zaokrouhlená, proto se poslední desetinná místa nemusejí přesně sečíst na 100 %. Pro orientaci se běžně používá název pravidlo 68–95–99,7. Přesnější **prostřední 95% podíl** však vymezují přibližně z-skóry −1,96 a 1,96, nikoli −2 a 2. Výpočet si ukážeme níže. U dat, jejichž rozdělení se od normálního odchyluje, nemůžeme uvedené podíly předpokládat jen na základě znalosti průměru a směrodatné odchylky.
@@ -194,6 +197,9 @@ Na listu `Model` v přiloženém sešitu jsou vstupy a vzorce uspořádány takt
 | B6 | Z-skór hranice | `=(B4-B2)/B3` | 1 |
 | B7 | Podíl nejvýše po hranici | `=NORM.S.DIST(B6;PRAVDA)` | 0,841344746… |
 | B8 | Podíl nad hranicí | `=1-B7` | 0,158655254… |
+
+: Výpočet modelových podílů v Excelu {#tbl-k04-02}
+
 
 :::
 
@@ -270,6 +276,9 @@ V listu `Model` ponecháme B2 = 50 a B3 = 10 a doplníme:
 | B18 | Hranice v bodech | `=B2+B3*B17` | 62,81551566… |
 | B19 | Přímý převod | `=NORM.INV(B16;B2;B3)` | 62,81551566… |
 
+: Výpočet modelového percentilu v Excelu {#tbl-k04-03}
+
+
 :::
 
 **`NORM.INV`**, se stejným anglickým názvem, se od `NORM.S.INV` liší stejně jako `NORM.DIST` od `NORM.S.DIST`: nepracuje jen s normovaným modelem, ale s libovolným normálním modelem. Má argumenty podíl vlevo, průměr a směrodatná odchylka a vrací rovnou hranici v původních jednotkách [@msExcel, [NORM.INV (funkce)](https://support.microsoft.com/cs-cz/excel/functions/norm-inv-function)]. Funkce `NORM.DIST` a `NORM.INV` vyžadují kladnou směrodatnou odchylku. Funkcím `NORM.S.INV` a `NORM.INV` říkáme inverzní, protože provádějí opačný převod než distribuční funkce. Krajní podíly 0 a 1 u nich vedou k chybě, protože normální model nemá konečnou nejmenší a největší hodnotu.
@@ -310,7 +319,9 @@ Některé hodnoty $z$ se v praxi i v dalších kapitolách stále opakují. **Je
 | 3 | $z_{0{,}9987}\approx3$ | 0,13 % | 99,73 % | Tři směrodatné odchylky od průměru |
 | 3,291 | $z_{0{,}9995}$ | 0,05 % | 99,9 % | Meze prostředních 99,9 % |
 
-: Stejné $z$ odpovídá jednostranné i oboustranné otázce; rozhoduje, zda podíl přiřazujeme jednomu chvostu, nebo oběma. Dolní meze jsou díky souměrnosti tytéž hodnoty se záporným znaménkem. {#tbl-hodnoty-zpameti-04 tbl-colwidths="[10,16,18,18,38]"}
+: Vybrané kvantily normovaného normálního rozdělení {#tbl-hodnoty-zpameti-04 tbl-colwidths="[10,16,18,18,38]"}
+
+*Poznámka.* Stejné $z$ odpovídá jednostranné i oboustranné otázce; rozhoduje, zda podíl přiřazujeme jednomu chvostu, nebo oběma. Dolní meze jsou díky souměrnosti tytéž hodnoty se záporným znaménkem.
 
 :::
 
@@ -336,6 +347,9 @@ Násobení přizpůsobí jednotku a přičtení posune střed. Proto se při lin
 | T-skór | 50 | 10 | $T=50+10z$ | 65 |
 | IQ-skór, zde škála 100/15 | 100 | 15 | $100+15z$ | 122,5 |
 | standardní subtestový skór, zde 10/3 | 10 | 3 | $10+3z$ | 14,5 |
+
+: Převody mezi standardními skóry {#tbl-k04-05}
+
 
 :::
 
@@ -383,6 +397,9 @@ Následující tabulky uvádějí, jaké intervaly z-skórů tímto postupem odp
 | 9 | $1{,}5<z\leq2$ | 4,4 % | 97,7 |
 | 10 | $z>2$ | 2,3 % | 100 |
 
+: Steny a jejich modelové podíly {#tbl-k04-06}
+
+
 :::
 
 ::: {.table-scroll role="region" aria-label="Pásma staninů" tabindex="0"}
@@ -398,6 +415,9 @@ Následující tabulky uvádějí, jaké intervaly z-skórů tímto postupem odp
 | 7 | $0{,}75<z\leq1{,}25$ | 12,1 % | 89,4 |
 | 8 | $1{,}25<z\leq1{,}75$ | 6,6 % | 96,0 |
 | 9 | $z>1{,}75$ | 4,0 % | 100 |
+
+: Staniny a jejich modelové podíly {#tbl-k04-07}
+
 
 :::
 
@@ -439,7 +459,9 @@ Princip si ukážeme na patnácti dobách řešení úlohy v sekundách (list `N
 | 39 | 13 | 1 | 90,0 | 1,282 |
 | 52 | 14 | 1 | 96,7 | 1,834 |
 
-: Normalizace závisí jen na pořadí: jedna sekunda mezi 11 a 12 s i třináct sekund mezi 39 a 52 s se promítnou do podobně velkých kroků z-skóru. {#tbl-normalizace-04}
+: Normalizace dob podle percentilového pořadí {#tbl-normalizace-04}
+
+*Poznámka.* Normalizace závisí jen na pořadí: jedna sekunda mezi 11 a 12 s i třináct sekund mezi 39 a 52 s se promítnou do podobně velkých kroků z-skóru.
 
 :::
 
@@ -545,6 +567,9 @@ Na listu `QQ` vytvořte následující rozložení; stejné obsahuje přiložen�
 | D2 | `=NORM.S.INV(C2)` |
 | E2 | `=$H$3+$H$4*D2` |
 
+: Buňky pro sestavení Q–Q grafu v Excelu {#tbl-k04-09}
+
+
 :::
 
 Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy pro každé pořadí obsahuje modelovou srovnávací hodnotu normálního rozdělení s průměrem a směrodatnou odchylkou souboru.
@@ -626,7 +651,9 @@ Tvar týchž šesti souborů můžeme shrnout také [šikmostí a excesem](kapit
 | Lehčí chvosty, platykurtické (@fig-qq-lehke-04) | Oba konce jsou blíže středu: levý nad přímkou, pravý pod ní. | 0,03 | −1,06 |
 | Směs dvou skupin (@fig-qq-smes-04) | Oba konce jsou blíže středu: levý nad přímkou, pravý pod ní; uprostřed strmý přechod mezi shluky. | −0,04 | −1,55 |
 
-: Q–Q graf a koeficienty tvaru vypovídají o stejných rysech: oblouk doprovází vysoká kladná nebo záporná šikmost, oddálené konce kladný exces a přiblížené konce záporný exces. {#tbl-qq-koeficienty-04 tbl-colwidths="[24,46,15,15]"}
+: Souvislost Q–Q grafu s koeficienty tvaru {#tbl-qq-koeficienty-04 tbl-colwidths="[24,46,15,15]"}
+
+*Poznámka.* Q–Q graf a koeficienty tvaru vypovídají o stejných rysech: oblouk doprovází vysoká kladná nebo záporná šikmost, oddálené konce kladný exces a přiblížené konce záporný exces.
 
 :::
 

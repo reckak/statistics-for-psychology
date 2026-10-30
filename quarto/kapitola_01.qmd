@@ -188,7 +188,9 @@ Terminologie není jednotná. Užší pojetí spojuje nezávislou proměnnou s e
 | Epidemiologie a klinický výzkum | Expozice (*exposure*), rizikový faktor (*risk factor*) | Výsledek (*outcome*), cílový ukazatel (*endpoint*) | Expozici výzkumník často neovlivňuje, pouze zaznamenává, zda a jak byli lidé určitému vlivu vystaveni. Rizikový faktor souvisí s vyšším výskytem obtíže; sám o sobě nedokládá, že ji způsobuje. |
 | Strojové učení | Příznak (*feature*), vstup (*input*) | Cílová proměnná (*target*), štítek (*label*), výstup (*output*) | Důraz je na co nejpřesnější předpovědi nových případů, nikoli na vysvětlení vztahu. |
 
-: Různé obory pojmenovávají tytéž dvě role různě. Označení se zčásti překrývají, ale každé zdůrazňuje jinou stránku role a žádné samo nedokládá příčinný vztah. {#tbl-role-promennych}
+: Názvy rolí proměnných v různých oblastech {#tbl-role-promennych}
+
+*Poznámka.* Různé obory pojmenovávají tytéž dvě role různě. Označení se zčásti překrývají, ale každé zdůrazňuje jinou stránku role a žádné samo nedokládá příčinný vztah.
 :::
 
 V této učebnici budeme pro obecné rozlišení rolí používat dvojici **vysvětlující a výsledná proměnná**; při popisu experimentu také tradiční označení **nezávislá a závislá proměnná**. Jde o role vzhledem k určité otázce, nikoli o neměnné vlastnosti proměnných. Délka spánku může být vysvětlující proměnnou při zkoumání paměťového výkonu a výslednou proměnnou při zkoumání souvislosti stresu se spánkem. I když nás zajímá pouze vzájemná souvislost dvou proměnných, vyplatí se o jejich rolích uvažovat, protože jejich rozlišení pomáhá formulovat vysvětlení a rozvíjet psychologickou teorii.
@@ -212,6 +214,9 @@ Tečky ve schématu představují lidi. V prvním kroku se z populace stane výb
 |------------------------|------------------------|------------------------|
 | Pravděpodobnostní výběr | Kdo se dostane z populace do výběru | Usuzování na vymezenou populaci; jedna z opor externí validity |
 | Náhodné přiřazení | Kterou podmínku dostanou již získaní účastníci | Posouzení příčinného účinku; jedna z opor interní validity |
+
+: Náhodný výběr a náhodné přiřazení {#tbl-k01-02}
+
 :::
 
 ::: worked-example
@@ -306,7 +311,9 @@ Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psyc
 | Intervalová | Stejné rozdíly reprezentují stejné změny veličiny | Navíc o kolik se hodnoty liší a zda jsou dva rozdíly stejné | Smysluplnost poměrů hodnot | Teplota ve °C; kalendářní rok narození |
 | Poměrová | Rozdíly i poměry mají význam vzhledem k určenému nulovému bodu | Navíc kolikrát je jedna hodnota větší než druhá | Stejné vlastnosti u jiného konstruktu, který ukazatelem zkoumáme | Doba spánku; počet správně vybavených slov; doba reakce |
 
-: Každá další úroveň měření přidává k předchozím jeden věcně interpretovatelný vztah hodnot. Příklady se týkají zaznamenaných údajů, nikoli konstruktů, které jimi zkoumáme. {#tbl-urovne-shrnuti}
+: Úrovně měření a význam vztahů mezi hodnotami {#tbl-urovne-shrnuti}
+
+*Poznámka.* Každá další úroveň měření přidává k předchozím jeden věcně interpretovatelný vztah hodnot. Příklady se týkají zaznamenaných údajů, nikoli konstruktů, které jimi zkoumáme.
 :::
 
 Skóry psychologických testů a dotazníků, například IQ nebo součet odpovědí na stupnici souhlasu, v tabulce [-@tbl-urovne-shrnuti] záměrně neuvádíme. Zda je lze vykládat intervalově, rozebíráme v [oddílu o psychologických skórech](#sec-kvaziintervalove).
@@ -344,6 +351,9 @@ Věk můžeme zachytit několika způsoby. Při změně otázky se mění inform
 | Do kterého pásma patří váš věk: méně než 20 let; alespoň 20 a méně než 30; 30 a více? | Ordinální: pásma lze seřadit, ale nezjišťujeme přesné věkové rozdíly jednotlivých lidí. |
 | Nacházíte se ve věku od 20 do 30 let včetně? Ano/ne. | Nominální: „ne“ zahrnuje mladší i starší lidi. Odpovědi proto nelze seřadit od nižšího věku k vyššímu. Hranicemi zde rozumíme přesný věk, nikoli počet dokončených let. |
 | Ve kterém kalendářním roce jste se narodili? | Intervalový kalendářní údaj: rozdíly roků mají význam, poměry letopočtů nikoli. Není to přímo věk; k jeho určení potřebujeme také okamžik měření a pro přesný věk celé datum narození. |
+
+: Různé způsoby měření odpočatosti {#tbl-k01-04}
+
 :::
 
 Převodem přesného věku do kategorií část informace ztrácíme. Z odpovědi „ano“ na otázku o pásmu 20–30 let už nezjistíme, zda je člověku 22 nebo 28 let. Nominální kategorizace zde vznikla způsobem dotazování, nikoli tím, že bychom samotnou dobu života považovali za neuspořádanou.
@@ -410,7 +420,7 @@ Následující tabulka propojuje obě hlediska. Označení „spojité“ se v n
 | Intervalová | Kalendářní rok narození zapsaný celým letopočtem: rozdíly mají význam, poměry letopočtů nikoli. | Teplota ve °C: spojitá veličina s interpretovatelnými rovnými rozdíly. |
 | Poměrová | Počet správně vybavených slov: deset slov je dvojnásobný počet oproti pěti. | Doba spánku: osm hodin je dvojnásobná doba oproti čtyřem. |
 
-: Úroveň měření a možné hodnoty: příklady a meze interpretace. {#tbl-urovne-hodnoty}
+: Úroveň měření a možné hodnoty {#tbl-urovne-hodnoty}
 :::
 
 **Možné hodnoty říkají, jakých podob může údaj nabývat. Úroveň měření říká, které vztahy mezi hodnotami můžeme věcně interpretovat. Přesnost záznamu určuje, jak jemné rozdíly zachytíme.** U úsečky je fyzická vzdálenost značky od začátku něco jiného než míra únavy: vlastnosti délky se automaticky nepřenášejí na prožitek. Spojitost polohy značky také sama nedokazuje spojitost únavy. Tabulka proto nerozhoduje o vlastnostech psychologického rysu podle vzhledu odpovědi.
@@ -474,6 +484,9 @@ Vrátíme se ke studii spánku a vybavování slov. Každý student přichází 
 | P04 |        5 |     6 | odpoledne |          2 |
 | P05 |          |     7 | dopoledne |          3 |
 | P06 |        7 |     0 | odpoledne |          1 |
+
+: Datová matice spánku, paměti a odpočatosti {#tbl-k01-06}
+
 :::
 
 U P05 chybí odhad doby spánku. U P06 je naopak znám skutečný výsledek úlohy: účastník ji dokončil, ale nevybavil správně žádné slovo. **Chybějící údaj a nula nejsou zaměnitelné.** Z této malé tabulky nyní nebudeme vyvozovat vztah mezi spánkem a výkonem; slouží k porozumění struktuře záznamů.
@@ -530,6 +543,9 @@ Samotná matice nestačí. **Přehled proměnných a jejich kódování (*codebo
 | slova | Počet různých správně vybavených slov z předloženého seznamu; jedna minuta na čtení, jedna na vybavení | Celá čísla od 0 do 12 | Prázdná buňka |
 | cast_dne | Část dne, kdy začalo měření | dopoledne = před 12:00; odpoledne = od 12:00 | Prázdná buňka |
 | odpocatost | Odpověď před úlohou na otázku „Jak odpočatě se právě cítíte?“ | 1 = vůbec, 2 = trochu, 3 = dost, 4 = zcela | Prázdná buňka |
+
+: Přehled proměnných a pravidel jejich kódování {#tbl-k01-07}
+
 :::
 
 Takto můžeme záznam interpretovat i s odstupem času. Údaj 3 v posledním sloupci znamená odpověď „dost“ na přesně uvedenou otázku, nikoli obecnou míru únavy nebo třetí pořadí účastníka. Přípustný rozsah pomáhá odhalit zjevně neodpovídající hodnoty; hodnota uvnitř rozsahu však ještě není důkazem bezchybnosti. Překlep ze 7 na 8 může zůstat v přípustných mezích.
@@ -750,6 +766,9 @@ Přepsaná tabulka vypadá takto:
 | K01 | 6 hodin | 0     |
 | K01 | −99     | 8     |
 | K03 | 7       | 0     |
+
+: Datová matice určená k opravě {#tbl-k01-08}
+
 :::
 
 a)  Připravte správnou matici pro přímé výpočty v Excelu podle konvence této kapitoly. Zachovejte i známý důvod chybění.
@@ -769,6 +788,9 @@ Podle podkladů opravíme druhý identifikátor na K02. Číselný údaj zapíš
 | K01 |        6 |     0 | žádný údaj nechybí                    |
 | K02 |          |     8 | doba spánku neuvedena                 |
 | K03 |        7 |       | úloha neproběhla pro poruchu počítače |
+
+: Opravená matice se záznamem důvodů chybění {#tbl-k01-09}
+
 :::
 
 Přehled vysvětlí: `id` je stálý jedinečný identifikátor účastníka; `spanek_h` je odhad doby skutečného spánku během předchozí noci v hodinách, s přípustným rozsahem 0 až 24; `slova` je počet různých správně vybavených slov v předepsané úloze, celé číslo od 0 do 12. U obou číselných sloupců znamená prázdná buňka chybějící údaj. `duvod_chybeni` uchovává slovní vysvětlení podle původního záznamu.

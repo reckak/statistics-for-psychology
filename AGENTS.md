@@ -488,6 +488,26 @@ s každou kapitolou, ne až při dokončení knihy.
 
 ## Uspořádání a ověřování Quarto Book
 
+<a id="sazba-tabulek"></a>
+
+- Každá studentská tabulka včetně zadání, řešení a přehledů má stabilní
+  ID, automatické označení „Tabulka X“ tučně a pod ním stručný český název
+  kurzivou. Ve výkladových kapitolách používej číslování podle kapitoly.
+  Vysvětlující poznámky patří pod tabulku. Zachovávej původní ID.
+- Pro čitelnost používáme úpravu APA: bez svislých linek a podbarvení,
+  silnější linky nad a pod záhlavím a pod tabulkou (PDF 0,8 pt; web 2 px),
+  slabší mezi vnitřními řádky (PDF 0,3 pt; web 1 px). Souhrnný řádek
+  odděl také shora silnější linkou; běžný poslední řádek takto nezvýrazňuj.
+- V PDF tabulky nezarovnávej do bloku a neděl slova. Text zarovnej vlevo,
+  čísla zpravidla vpravo, krátké kategorie podle účelu na střed. Dlouhá slova
+  řeš šířkami sloupců nebo rozvržením. Opakuj záhlaví dlouhých tabulek
+  a drž popisek se začátkem tabulky.
+- V českém PDF vázej jednopísmenná slova a, i, k, o, s, u, v, z (také
+  velká) k následujícímu slovu nezlomitelnou mezerou, i přes změnu řezu
+  písma. Matematiku, kód a adresy takto nepřepisuj. Desetinná čísla
+  v matematice sázej bez mezery za čárkou; zachovej oddělovací čárky.
+  Dohodu a výjimku z APA dokládá [R54](docs/rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).
+
 - Kniha používá `index.qmd` pro úvod, `quarto/` pro kapitoly a `_quarto.yml`
   pro společnou konfiguraci a pořadí `book.chapters`. Sdílené styly drž
   samostatně; lokální nastavení přepisuj jen z důvodu.

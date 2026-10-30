@@ -161,3 +161,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [U11](../zdroje/U11-russo.md#u11) — §2.5–2.10.
 - [P02](../zdroje/P02-popisne-statistiky.md#p02) — popisné statistiky.
 - [C02](../zdroje/C02-ulohy-tyden-2.md#c02) — poloha a variabilita.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

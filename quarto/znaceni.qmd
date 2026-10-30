@@ -2,8 +2,11 @@
 
 Přehled používá stejné symboly jako výklad. Alternativy slouží k orientaci v jiné literatuře; ve výpočtech je nestřídáme. Vyhledávat lze i podle slovního významu.
 
+:::: {#tbl-prehled-notation}
+
 ::: {.reference-table}
-<table id="notation-table"><caption>Přehled zavedeného značení a vzorců</caption><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah nebo příklad</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody>
+<!--| quarto-html-table-processing: none -->
+<table id="notation-table"><thead><tr><th scope="col">Značení</th><th scope="col">Význam a prvky zápisu</th><th scope="col">Výpočetní vztah nebo příklad</th><th scope="col">Alternativy</th><th scope="col">Výklad</th></tr></thead><tbody>
 <tr id="znak-pricinna-sipka"><th scope="row">→</th><td>Šipka od předpokládané příčiny k jejímu následku. Vyjadřuje uvažovaný mechanismus, nikoli jeho prokázání.</td><td>Motivace → školní úspěšnost. Šipka může stručně shrnout i působení prostřednictvím studijního chování.</td><td>Opačné uspořádání zápisu může použít ←; rozhoduje směr hrotu. Nejde o znaménko korelace.</td><td><a href="kapitola_01.html#souvislost-pedagogicka">Nepovinné rozšíření</a></td></tr>
 <tr id="znak-n"><th scope="row">$n$</th><td>Velikost výběru: počet případů zahrnutých do konkrétního výpočtu.</td><td>$n=\sum_{j=1}^{k}f_j$</td><td>N v jiné literatuře; zde používáme malé n.</td><td><a href="kapitola_02.html#sec-co-pocitame">Výklad</a></td></tr>
 <tr id="znak-i"><th scope="row">$i$</th><td>Index jednotlivého pozorování; neoznačuje kategorii ani skupinu.</td><td>$i=1,\ldots,n$ pro n zahrnutých pozorování.</td><td>Písmeno indexu závisí na konvenci; zde i pro pozorování.</td><td><a href="kapitola_02.html#sec-relativni-cetnost">Výklad</a></td></tr>
@@ -101,3 +104,7 @@ Přehled používá stejné symboly jako výklad. Alternativy slouží k orienta
 <tr id="znak-delta-ekvivalence"><th scope="row">$\mathrm{Δ}$; $\mathrm{μ}_0\pm\mathrm{Δ}$</th><td>Δ je předem zvolená kladná hranice velikosti rozdílu v bodech škály, není to parametr populace. $\mathrm{μ}_0-\mathrm{Δ}$ a $\mathrm{μ}_0+\mathrm{Δ}$ jsou hranice ekvivalence.</td><td>$50\pm3$: pásmo ekvivalence 47 až 53 bodů. Test ekvivalence: $H_0{:}\ \mathrm{μ}\le\mathrm{μ}_0-\mathrm{Δ}$ nebo $\mathrm{μ}\ge\mathrm{μ}_0+\mathrm{Δ}$; $H_1{:}\ \mathrm{μ}_0-\mathrm{Δ}<\mathrm{μ}<\mathrm{μ}_0+\mathrm{Δ}$.</td><td>$\mathrm{Δ}_L$, $\mathrm{Δ}_U$ pro nesouměrné hranice v jiné literatuře.</td><td><a href="kapitola_07.html#sec-hranice-ekvivalence">Výklad</a></td></tr>
 </tbody></table>
 :::
+
+Přehled zavedeného značení a vzorců
+
+::::

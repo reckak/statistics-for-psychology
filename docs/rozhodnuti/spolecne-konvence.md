@@ -173,3 +173,60 @@ stránky hlídá `quarto/_verification/check-html.cjs`.
 **Doklad:** autor 2026-10-20: „Odkazy na obrázky nejsou skloňovány, např.
 ‚V Obrázek 4.11‘, i když správně česky je ‚Na Obrázku‘ nebo ‚v obrázku‘; lze
 toto napravit a přidat do instrukcí?“ a schválení plánu s tímto pravidlem.
+
+<a id="r54-sazba-tabulek-pdf"></a>
+
+## R54 — Tabulky a česká sazba pracovních PDF
+
+**Stav:** schváleno 2026-10-30. **Rozsah:** všechny studentské tabulky
+ve webu a pracovní PDF podporovaných kapitol 3–5.
+
+**Volba a důvod:** jednotné číslované popisky podle APA a číslování podle
+kapitol; vědomou odchylkou jsou slabší linky mezi vnitřními řádky pro lepší
+čitelnost. Silnější linka nad posledním řádkem patří jen souhrnům. PDF
+tabulky mají vhodné zarovnání bez bloku a dělení slov; česká jednopísmenná
+slova jsou vázána k následujícímu slovu. Desetinná čárka v matematice
+nesmí vytvářet mezeru uvnitř čísla. Úplné pravidlo udržuje
+[AGENTS.md](../../AGENTS.md#sazba-tabulek), technický postup
+[PROVOZ.md](../PROVOZ.md#ruční-pdf-vybrané-kapitoly).
+
+**Podklad:** [APA: Table setup](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/tables)
+a [Typst: dělení slov](https://typst.app/docs/reference/text/text/#parameters-hyphenate).
+
+**Doklad:** autor 2026-10-30 vybral web i PDF a číslování podle kapitol,
+požádal o slabší vnitřní linky, zákaz dělení slov v tabulkách a ochranu
+jednopísmenných předložek a spojek. U posledního řádku vybral „Jen u
+souhrnů“. Následně výslovně zadal „PLEASE IMPLEMENT THIS PLAN“ s úplným
+plánem „Jednotná sazba tabulek a česká typografie PDF“.
+
+### Původní schválený plán: Jednotná sazba tabulek a česká typografie PDF
+
+#### Výsledek
+
+Opravit mezery za desetinnou čárkou v PDF a sjednotit všechny studentské tabulky ve webu i PDF. Použít označení a názvy podle APA, číslování podle kapitol a dohodnutou úpravu vodorovných linek pro lepší čitelnost.
+
+#### Tabulky ve webu i PDF
+
+- Každá tabulka dostane automatické označení **Tabulka 4.1** a na následujícím řádku stručný název kurzivou. Doplnění zahrne sedm kapitol, zadání, řešení a tři závěrečné přehledy.
+- Zachovat existující identifikátory a doplnit chybějící. Delší vysvětlení současných popisků zachovat jako poznámky pod tabulkou nebo součást okolního výkladu.
+- Použít výraznější vodorovnou linku nad záhlavím, pod záhlavím a pod posledním řádkem. Mezi vnitřními řádky zachovat slabší linky. Souhrnný řádek oddělit výraznější linkou také shora; běžný poslední datový řádek takto nezvýrazňovat.
+- Výchozí tloušťky: PDF 0,8 bodu pro výrazné a 0,3 bodu pro slabé linky; web 2 px a 1 px. Nepoužívat svislé linky ani plošné podbarvení záhlaví.
+- Tuto podobu evidovat jako vědomou úpravu APA pro učebnici; APA obecně doporučuje omezit vnitřní linky. ([Pravidla APA](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/tables))
+
+#### Typografie PDF
+
+- V tabulkách vypnout zarovnání do bloku a automatické dělení slov pomocí nastavení Typstu `justify: false` a `hyphenate: false`. ([Dokumentace Typstu](https://typst.app/docs/reference/text/text/#parameters-hyphenate))
+- Textové sloupce zarovnat vlevo, číselné zpravidla vpravo a krátké srovnávané kategorie podle potřeby na střed. Záhlaví sladit s obsahem sloupců. Příliš dlouhá slova řešit šířkou sloupců či rozvržením tabulky, nikoli jejich rozdělením.
+- U vícestránkových tabulek opakovat záhlaví a držet název se začátkem tabulky.
+- Jednopísmenné předložky a spojky **a, i, k, o, s, u, v, z**, včetně velkých písmen, spojovat s následujícím slovem nezlomitelnou mezerou. Pravidlo uplatnit v českém textu včetně nadpisů, popisků a tabulek; vynechat matematické proměnné, kód a adresy. Ošetřit také přechody mezi běžným a zvýrazněným textem.
+- V převodu desetinných čísel do Typstu odstranit nechtěnou mezeru za čárkou. Zachovat oddělovací čárky, matematický význam a současnou opravu webového MathML.
+
+#### Ověření a předání
+
+- Automaticky ověřit úplnost popisků, jedinečnost identifikátorů, číslování a křížové odkazy.
+- Prověřit desetinná čísla v rovnicích, zlomcích, indexech a tabulkách a nezlomitelné vazby jednopísmenných slov.
+- Vykreslit celou HTML knihu a PDF podporovaných kapitol 3–5. Spustit existující kontroly zachování obsahu, řešení a odkazů.
+- Vizuálně ověřit linky, zarovnání, nedělená slova, konce řádků, stránkové zlomy a široké tabulky. Na webu zkontrolovat mobilní zobrazení, sbalená řešení a funkčnost přehledů.
+- Aktualizovat projektová pravidla, evidenci rozhodnutí, provozní dokumentaci a historii kontrol. Zachovat rozpracované změny; výsledek předat přes PR ve větvi `codex/infrastructure`.
+
+PDF zůstane ručním exportem kapitol 3–5. Hodnoty, výpočty a schválené značení se nemění.
