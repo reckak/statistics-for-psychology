@@ -19,7 +19,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 
 Pro sestavení webu potřebujete Quarto; projekt je ověřován s verzí **1.9.38**. V RStudiu otevřete kořenovou složku projektu. R slouží k interním kontrolám výpočtů, jeho kód se studentům nezobrazuje. Render nyní vyžaduje také **R** (ověřeno 4.5.1), dostupné jako `Rscript`. Před sestavením vytváří grafy z pevných dat; nejsou potřeba žádné další balíčky R. Spouštěcí skript zajišťuje načtení českých popisků v UTF-8 i ve Windows. Matematiku Quarto převádí do nativního MathML, takže její zobrazení nevyžaduje přístup k externímu serveru.
 
-Desetinná čísla v matematice zapisujte s čárkou ve složených závorkách, například `$0{,}841$`. Filtr `filters/desetinna-carka.lua` (zapnutý jen pro HTML v `_quarto.yml`) z takového zápisu vytvoří jediný číselný prvek `<mn>0,841</mn>`; bez něj by MathML čárku zobrazil jako oddělovač s mezerou („0, 841“). Obyčejná čárka bez závorek, například v `N(50,10)`, zůstává oddělovačem. Výraz, který už obsahuje desetinnou tečku, filtr ponechá beze změny a vypíše varování. Ruční PDF kapitol filtr nepoužívá. `check-html.cjs` ověřuje, že počet čárek `{,}` v TeXu každého vzorce odpovídá počtu čárek uvnitř `<mn>`.
+Desetinná čísla v matematice zapisujte s čárkou ve složených závorkách, například `$0{,}841$`. Filtr `filters/desetinna-carka.lua` (zapnutý jen pro HTML v `_quarto.yml`) z takového zápisu vytvoří jediný číselný prvek `<mn>0,841</mn>`; bez něj by MathML čárku zobrazil jako oddělovač s mezerou („0, 841“). Obyčejná čárka bez závorek, například v `N(50,10)`, zůstává oddělovačem. Výraz, který už obsahuje desetinnou tečku, filtr ponechá beze změny a vypíše varování. Ruční PDF kapitol tento HTML filtr nepoužívá; samostatný filtr `scripts/pdf/typography.lua` převádí desetinné literály na atomická čísla v Typstu a váže česká jednopísmenná slova nezlomitelnou mezerou. Zdrojový zápis matematiky se nemění. `check-html.cjs` ověřuje, že počet čárek `{,}` v TeXu každého vzorce odpovídá počtu čárek uvnitř `<mn>`.
 
 Z kořene projektu vykreslete celou učebnici:
 
@@ -35,10 +35,20 @@ quarto preview
 
 Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pro přenos nebo publikování zachovejte celou složku `_book/` včetně podpůrných souborů. Generované HTML neupravujte ručně.
 
+Renderování webu vyžaduje také Node.js pro úpravu popisků po sestavení.
+Společný filtr `filters/table-style.lua` označuje souhrnné řádky a zarovnává
+jednoznačně číselné sloupce, pokud autor neurčil zarovnání. Skript
+`scripts/style-html-tables.cjs` po renderování vytvoří z automatických
+popisků Quarta číslo a název na samostatných řádcích; tato sazba funguje
+i bez JavaScriptu. Číslování a odkazy nadále spravuje Quarto. V nečíslovaných
+referenčních kapitolách má každá tabulka místní číslo 1; rozlišují je
+kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
+`scripts/pdf/layout.typ`; úplnou konvenci stanoví [projektová pravidla](../AGENTS.md#sazba-tabulek).
+
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3, 4 a 5. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3, 4, 5 a 6. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
@@ -46,15 +56,16 @@ příkaz pro požadovanou kapitolu, například:
 ```
 
 Pro kapitolu 5 použijte `-Chapter 5` a kontrolu `--chapter 5`.
+Pro kapitolu 6 použijte `-Chapter 6` a kontrolu `--chapter 6`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04 nebo 05. Skript používá aktuální
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04, 05 nebo 06. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 14 v kapitole 6), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -76,6 +87,27 @@ node scripts/check-chapter-pdf.cjs --chapter 4
 Volba `--chapter 3` kontroluje kapitolu 3; bez této volby je výchozí kapitola 3.
 Další volitelný argument kontroly je cesta ke Quartu. Kontrola transformace
 nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů.
+
+`node scripts/check-table-layout.cjs` prochází všechny tabulky i v otevřených
+řešeních na šířkách 1024/1280/1360/1440/1920 a 390 px. Vyžaduje stejný
+Playwright a prohlížeč jako kontrola HTML. Ověřuje poznámky menší o 1 pt,
+nepřetékání stránky a odstranění drobných desktopových přesahů (2–32 px).
+Podrobný výsledek ukládá do `tmp/verification/table-layout.json`.
+Skutečné PDF po sestavení všech čtyř kapitol prověří
+`python scripts/check-rendered-pdf.py` (veřejný balíček `pypdf`): velikost
+všech poznámek v PDF a přítomnost světle šedých tahů. Tato kontrola
+nenahrazuje vizuální prohlédnutí tabulek a nového kapitolového exportu.
+
+Typografické případy převodu (desetinná čísla včetně indexů a zlomků,
+oddělovací čárky, nezlomitelné vazby přes zvýraznění a odkazy, zachování
+matematiky a kódu) ověří `node scripts/check-pdf-typography.cjs`.
+Kontrola HTML nyní vyžaduje číslo a neprázdný název každé studentské tabulky
+a ověřuje sazbu označení i linek záhlaví. Ruční PDF kontrolujte také vizuálně.
+Pokud cílový PDF soubor blokuje prohlížeč, zavřete jej a export zopakujte;
+úspěšně sestavené PDF zůstává také v pomocné složce uvedené výše.
+Po renderování skript navíc váže jednopísmenné slovo před odkazem
+v bibliografii vytvořené citeprocem a podle potřeby opakuje překlad Typstu
+s místními balíčky a fonty dodanými s Quartem. Adresy odkazů se nemění.
 
 ## Kontroly a GitHub
 

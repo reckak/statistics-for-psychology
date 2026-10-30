@@ -57,6 +57,24 @@ const server = http.createServer((req, res) => {
         return { tex, marked, inNumbers };
       }).filter(x => x.marked !== x.inNumbers));
       assert.deepEqual(decimalCommas, [], `Decimal commas split in MathML: ${file}`);
+      // Every student table has a static APA-style label and a nonempty title.
+      const tableIssues = await page.locator('main table').evaluateAll(tables => tables.flatMap(table => {
+        const figure = table.closest('figure.quarto-float-tbl');
+        const caption = figure?.querySelector('figcaption');
+        const label = caption?.querySelector('.quarto-float-caption-prefix');
+        const title = caption?.cloneNode(true);
+        title?.querySelector('.quarto-float-caption-prefix')?.remove();
+        const issues = [];
+        if (!label || !/^Tabulka\s+\d+(?:\.\d+)*$/.test(label.textContent.trim())) issues.push('missing number');
+        if (!title?.textContent.trim()) issues.push('missing title');
+        if (label && (getComputedStyle(label).display !== 'block' || Number(getComputedStyle(label).fontWeight) < 600)) issues.push('label styling');
+        if (caption && getComputedStyle(caption).fontStyle !== 'italic') issues.push('title styling');
+        if (caption && getComputedStyle(caption).textAlign !== 'left') issues.push('caption alignment');
+        const head = table.tHead;
+        if (head && (parseFloat(getComputedStyle(head).borderTopWidth) < 2 || parseFloat(getComputedStyle(head).borderBottomWidth) < 2)) issues.push('header rules');
+        return issues.map(issue => `${table.id || figure?.parentElement.id}: ${issue}`);
+      }));
+      assert.deepEqual(tableIssues, [], `Table captions and styles: ${file}`);
       for (const width of [1360, 1920]) {
         await page.setViewportSize({ width, height: 1000 });
         const layout = await page.locator('main').boundingBox();
@@ -136,7 +154,8 @@ const server = http.createServer((req, res) => {
           assert(await img.evaluate(el => el.complete && el.naturalWidth > 0), 'Figure loaded');
           assert((await img.getAttribute('alt')).length > 30, 'Descriptive figure alternative');
         }
-        for (const fig of await page.locator('main figure').all()) {
+        for (const fig of await page.locator('main figure.quarto-float-fig').all()) {
+          if (!await fig.isVisible()) continue; // Tables in collapsed solutions are checked when opened below.
           const id = await fig.evaluate(el => el.closest('[id]').id);
           await fig.screenshot({ path: `tmp/verification/ch02-${id}.png` });
         }
@@ -201,7 +220,7 @@ const server = http.createServer((req, res) => {
         }
         for(const id of ['sec-uplna-pravdepodobnost','sec-dve-prevalence','sec-normalni-aproximace','sec-konjunkcni-klam']) assert(await page.locator('#'+id).isVisible(),`Core section present: ${id}`);
         assert.equal(await page.locator('#sec-uplna-pravdepodobnost .callout-collapse, #sec-normalni-aproximace .callout-collapse').count(),0,'Total probability and approximation are not optional');
-        for(const fig of await page.locator('main figure').all()) {
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch05-${id}.png`});
         }
@@ -229,7 +248,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await page.locator('#sec-odhad-chyby .callout-collapse, #sec-zakon-velkych-cisel .callout-collapse, #sec-dva-testy .callout-collapse').count(),0,'Estimated standard error, law of large numbers and worked tests are not optional');
         const main6=await page.locator('main').innerText();
         assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main6.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance outside quoted counterexamples');
-        for(const fig of await page.locator('main figure').all()) {
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch06-${id}.png`});
         }
@@ -264,7 +283,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await page.locator('#sec-test-ekvivalence .callout-collapse, #sec-proc-90 .callout-collapse, #sec-interval-a-p .callout-collapse').count(),0,'TOST logic and the interval-test link are not optional');
         const main7=await page.locator('main').innerText();
         assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main7.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance outside quoted counterexamples');
-        for(const fig of await page.locator('main figure').all()) {
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch07-${id}.png`});
         }
@@ -296,7 +315,7 @@ const server = http.createServer((req, res) => {
         assert(greek.every(e=>e.variant==='normal'),'Greek parameters must be upright');
         assert(await page.locator('#sec-primerenost-modelu').isVisible(),'Model assessment is core material');
         assert.equal(await page.locator('#sec-excel-qq .callout-collapse').count(),0,'Q-Q construction is not optional/collapsed');
-        for(const fig of await page.locator('main figure').all()) {
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch04-${id}.png`});
         }
@@ -325,7 +344,7 @@ const server = http.createServer((req, res) => {
           assert(await img.evaluate(el=>el.complete&&el.naturalWidth>0),'Chapter 3 figure loaded');
           assert((await img.getAttribute('alt')).length>30);
         }
-        for(const fig of await page.locator('main figure').all()) {
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
           await fig.screenshot({path:`tmp/verification/ch03-${id}.png`});
         }

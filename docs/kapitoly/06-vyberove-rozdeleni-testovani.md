@@ -2,6 +2,11 @@
 
 # 6. Výběrové rozdělení a testování hypotéz
 
+**Pracovní PDF 2026-10-30:** přidán a ověřen ruční export podle
+[provozního návodu](../PROVOZ.md#ruční-pdf-vybrané-kapitoly), včetně všech
+14 zadání a samostatného oddílu řešení s obousměrnými odkazy. Zkontrolována
+sazba celé kapitoly v PDF; nejde o novou obsahovou revizi této mapy.
+
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 6](../../quarto/kapitola_06.qmd#sec-kapitola-06), karta
@@ -220,3 +225,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D07](../zdroje/D07-utts.md#d07) — statistická gramotnost.
 - [D11](../zdroje/D11-wainer.md#d11) — velikost výběru.
 - [Kontrola při přípravě](../zdroje/HISTORIE.md#kontrola-podkladů-při-přípravě-kapitoly-6--2026-10-12) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-06) — společné záznamy včetně tří externích citovaných zdrojů bez vlastní karty.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

@@ -148,7 +148,7 @@ Psychologické otázky se zřídka týkají jediné vlastnosti. Chceme vědět, 
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 70 | 130 | 200 |
 
-: Soubor 200 studentů podle pohlaví a uváděné úrovně stresu. {#tbl-zavislost}
+: Pohlaví a úroveň stresu v souboru 200 studentů {#tbl-zavislost}
 
 :::
 
@@ -247,6 +247,9 @@ Při čtení tabulky je nejdůležitější otázka: **z koho počítám?** Spol
 | Jaká část žen uvedla zvýšený stres? | $P(\text{zvýšený stres}\mid\text{žena})$ | 40/100 | 0,40 |
 | Jaká část studentů se zvýšeným stresem jsou ženy? | $P(\text{žena}\mid\text{zvýšený stres})$ | 40/70 | 0,57 |
 
+: Výpočet podmíněných pravděpodobností {#tbl-k05-02}
+
+
 :::
 
 Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto dávají rozdílné výsledky: 0,40 a 0,57.
@@ -287,7 +290,7 @@ Při tahu s vracením první tah nezměnil pravděpodobnost ve druhém. To je po
 | **Muž** | 30 | 70 | 100 |
 | **Celkem** | 60 | 140 | 200 |
 
-: Druhý soubor 200 studentů: stejný podíl zvýšeného stresu u žen i mužů. {#tbl-nezavislost}
+: Stejný podíl zvýšeného stresu u žen i mužů {#tbl-nezavislost}
 
 :::
 
@@ -357,7 +360,11 @@ Obě čísla jsou podmíněné pravděpodobnosti, jejichž podmínkou je skuteč
 | **Porucha přítomna** | správně pozitivní | falešně negativní |
 | **Porucha nepřítomna** | falešně pozitivní | správně negativní |
 
-: Dotazník se může mýlit dvěma různými způsoby: u lidí s poruchou falešně negativním výsledkem, u lidí bez poruchy falešně pozitivním. {#tbl-ctyri-vysledky}
+: Čtyři možné výsledky screeningu {#tbl-ctyri-vysledky}
+
+::: {.table-note}
+*Poznámka.* Dotazník se může mýlit dvěma různými způsoby: u lidí s poruchou falešně negativním výsledkem, u lidí bez poruchy falešně pozitivním.
+:::
 
 :::
 
@@ -397,7 +404,7 @@ Stejné počty můžeme uspořádat do kontingenční tabulky:
 | **Porucha nepřítomna** | 90 | 810 | 900 |
 | **Celkem** | 185 | 815 | 1 000 |
 
-: Přirozené četnosti pro 1 000 studentů v poradně. {#tbl-screening}
+: Výsledky screeningu u 1 000 studentů {#tbl-screening}
 
 :::
 
@@ -461,6 +468,9 @@ V sešitu je výpočet na listu `Bayes`. Vstupy jsou ve žlutých buňkách B2:B
 | B17 | Prediktivní hodnota negativního testu | `=B12/B14` | 0,994 |
 | B19 | Úplná pravděpodobnost pozitivního výsledku | `=B3*B4+(1-B3)*(1-B5)` | 0,185 |
 | B20 | Bayesova věta | `=B3*B4/B19` | 0,514 |
+
+: Výpočet pozitivní prediktivní hodnoty v Excelu {#tbl-k05-06}
+
 
 :::
 
@@ -553,7 +563,7 @@ U diskrétní proměnné můžeme rozdělení uvést v tabulce hodnot a jejich p
 |---|---:|---:|---:|---:|---:|---:|
 | $P(X=k)$ | 0,237 | 0,396 | 0,264 | 0,088 | 0,015 | 0,001 |
 
-: Rozdělení pravděpodobnosti počtu správných tipů v testu s pěti otázkami. {#tbl-rozdeleni-pet}
+: Rozdělení počtu správných tipů z pěti otázek {#tbl-rozdeleni-pet}
 
 :::
 
@@ -607,6 +617,9 @@ Pro test s pěti otázkami (pravděpodobnosti na čtyři desetinná místa, výp
 | 4 | 0,0146 | 0,0586 | 7,5625 | 0,1108 |
 | 5 | 0,0010 | 0,0049 | 14,0625 | 0,0137 |
 | **Součet** | 1,0000 | **1,2500** | | **0,9375** |
+
+: Výpočet střední hodnoty a rozptylu počtu správných tipů {#tbl-k05-08}
+
 
 :::::
 
@@ -739,6 +752,9 @@ Celé rozdělení pro $n=5$ a $\mathrm{π}=0{,}25$:
 | 5 | 1 | 0,0010 | 0,0010 |
 | **Součet** | 32 | | **1,0000** |
 
+: Složky binomického rozdělení pro pět otázek {#tbl-k05-09}
+
+
 :::
 
 Součet počtů způsobů, 32, je počet všech možných pětic úspěchů a neúspěchů. Každý z pěti pokusů může dopadnout dvěma způsoby a každý způsob jednoho pokusu lze spojit s každým způsobem ostatních, proto je pětic $2\times2\times2\times2\times2=2^5=32$. Tyto pětice nejsou stejně pravděpodobné, proto nemůžeme pravděpodobnost počítat jako pouhý podíl počtů. Součet pravděpodobností je 1, protože jsme prošli všechny možné hodnoty.
@@ -783,6 +799,9 @@ Na listu `Binom` je počet pokusů v B2 pevně nastaven na $n=5$. Měnit lze pou
 | B18 | Kombinační číslo $\binom{5}{2}$ | `=KOMBINACE(5;2)` | 10 |
 | B19 | Ruční výpočet $P(X=2)$ | `=B18*B3^2*(1-B3)^3` | 0,2637 |
 
+: Binomické pravděpodobnosti v Excelu {#tbl-k05-10}
+
+
 :::
 
 První pravděpodobnost v B6 počítáme přímo: žádný úspěch znamená pět nezávislých neúspěchů, tedy $(1-\mathrm{π})^5$. Tento zápis funguje i při $\mathrm{π}=1$, kdy je pravděpodobnost žádného úspěchu nulová.
@@ -803,6 +822,9 @@ Skutečné testy mají více otázek. Uvažujme test s 20 otázkami, opět se č
 | B8 | Nejvýše 5 správně, $P(X\le5)$ | `=BINOM.DIST(B4;B2;B3;PRAVDA)` | 0,617 |
 | B9 | Alespoň 10 správně, $P(X\ge10)$ | `=1-BINOM.DIST(B5-1;B2;B3;PRAVDA)` | 0,014 |
 | B10 | Totéž jinou funkcí | `=BINOM.DIST.RANGE(B2;B3;B5;B2)` | 0,014 |
+
+: Kumulativní binomické pravděpodobnosti v Excelu {#tbl-k05-11}
+
 
 :::
 
@@ -884,6 +906,9 @@ Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pra
 | B10 | Normální aproximace $P(X\ge135)$ | `=1-NORM.S.DIST(B9;PRAVDA)` | 0,0152 |
 | B11 | Přesná binomická hodnota | `=1-BINOM.DIST(B4-1;B2;B3;PRAVDA)` | 0,0173 |
 | B12 | Aproximace od hranice 134,5 | `=1-NORM.DIST(B4-0,5;B6;B8;PRAVDA)` | 0,0182 |
+
+: Srovnání binomického výpočtu s normální aproximací {#tbl-k05-12}
+
 
 :::
 
@@ -994,6 +1019,9 @@ V souboru 150 studentů jsme zaznamenali, zda pravidelně sportují a zda hodnot
 | **Nesportuje** | 27 | 43 | 70 |
 | **Celkem** | 81 | 69 | 150 |
 
+: Sport a kvalita spánku: zadání úlohy 3 {#tbl-k05-13}
+
+
 :::
 
 Náhodně vybereme jednoho studenta z tohoto souboru.
@@ -1074,6 +1102,8 @@ a)  Stav má $1000\times0{,}05=50$ lidí, nemá jej 950. Z 50 lidí se stavem m�
     | **Stav nepřítomen** | 95 | 855 | 950 |
     | **Celkem** | 135 | 865 | 1 000 |
 
+    : Výsledky screeningu: řešení úlohy 6 {#tbl-screening-reseni-05}
+
     :::::
 
 b)  Prediktivní hodnota pozitivního testu: $40/135\approx0{,}296$. Prediktivní hodnota negativního testu: $855/865\approx0{,}988$. Z lidí s pozitivním výsledkem má stav méně než třetina.
@@ -1120,6 +1150,9 @@ Model předpokládá, že počet správně vybavených slov ze tří obtížnýc
 |---|---:|---:|---:|---:|
 | $P(X=k)$ | 0,10 | 0,40 | 0,35 | 0,15 |
 | Četnost ve výběru 20 lidí | 3 | 7 | 8 | 2 |
+
+: Rozdělení počtu slov: zadání úlohy 8 {#tbl-k05-14}
+
 
 :::
 

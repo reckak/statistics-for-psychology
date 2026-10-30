@@ -134,3 +134,10 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D05](../zdroje/D05-lord.md#d05) — úrovně měření.
 - [D06](../zdroje/D06-zand-scholten-borsboom.md#d06) — reanalýza Lordova argumentu.
 - [Griffith et al. (2020)](../zdroje/externi-griffith-2020.md) — externí doplněk nepovinného rozšíření; v kartě je také historie obrazového podkladu.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

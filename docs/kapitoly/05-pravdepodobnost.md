@@ -198,3 +198,10 @@ hranice učiva se tím nemění.
 Od 2026-10-23 je ověřen [ruční PDF export](../PROVOZ.md#ruční-pdf-vybrané-kapitoly).
 Všech dvanáct zadání předchází samostatné části s úplnými řešeními
 a obousměrnými odkazy; závěrečné přehledové kapitoly se nepřipojují.
+
+**Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
+a řešení mají automatické označení a název. Zachována existující ID,
+vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
+Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
+okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
+určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).

@@ -48,7 +48,7 @@
     wrapper.className = 'table-scroll';
     wrapper.tabIndex = 0;
     wrapper.setAttribute('role', 'region');
-    wrapper.setAttribute('aria-label', table.caption?.textContent || 'Přehledová tabulka');
+    wrapper.setAttribute('aria-label', table.caption?.textContent || region.closest('.quarto-float')?.querySelector('figcaption')?.textContent || 'Přehledová tabulka');
     region.insertBefore(controls, table);
     region.insertBefore(wrapper, table);
     wrapper.append(table);
@@ -65,8 +65,10 @@
       const count = pageSize();
       const pages = Math.max(1, Math.ceil(matches.length / count));
       page = Math.min(Math.max(page, 0), pages - 1);
-      rows.forEach(row => { row.hidden = true; });
-      matches.slice(page * count, (page + 1) * count).forEach(row => { row.hidden = false; });
+      rows.forEach(row => { row.hidden = true; row.classList.remove('table-page-last'); });
+      const visible = matches.slice(page * count, (page + 1) * count);
+      visible.forEach(row => { row.hidden = false; });
+      visible.at(-1)?.classList.add('table-page-last');
       previous.disabled = page === 0;
       next.disabled = page === pages - 1;
       status.textContent = matches.length ? `Zobrazeno ${page * count + 1}–${Math.min((page + 1) * count, matches.length)} z ${matches.length} položek (celkem ${rows.length}). Stránka ${page + 1} z ${pages}.` : (rows.length ? 'Žádná odpovídající položka.' : 'Dosud nejsou zavedeny žádné položky.');

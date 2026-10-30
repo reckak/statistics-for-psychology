@@ -530,3 +530,25 @@ stručný odkaz v AGENTS.md, podrobnosti v docs/TEXT2SPEECH.md a výslovně
 vymezil, že nahrávky vznikají na vyžádání, nikoli automaticky při práci
 na kapitole. Zápis „kvantyly“ byl navržen k ověření; autorův popis chyby
 není dokladem úspěšného poslechu této opravy.
+
+### Upřesnění 2026-10-28 — Závazné přepisy a proveditelná kontrola
+
+Autor upřesnil, že cizí a odborné výrazy s tvrdě vyslovovanými skupinami
+„di“, „ti“ a „ni“ mají být ve scénáři zapisovány jako „dy“, „ty“ a „ny“.
+Přepis se uplatní také v příslušných tvarech slov. Měkce vyslovované
+skupiny se nenahrazují. Výslovně požadovaný zápis „kvantyly“ je závazný,
+nikoli jen kandidát čekající na poslechové potvrzení.
+
+Nedostupná poslechová kontrola přestává být povinným krokem či podmínkou
+použití přepisu a vytvoření nahrávky. Kontroluje se scénář a důslednost
+přepisů, dále technické vlastnosti výsledku. Tyto kontroly nedokládají
+správnou výslovnost zvuku. Aktuální pravidlo udržuje
+[TEXT2SPEECH.md](../TEXT2SPEECH.md#slovník-výslovnosti); nahrazuje předchozí
+podmínění použití přepisů jejich poslechovým ověřením. Původní záznam
+z 2026-10-27 výše zůstává historickým dokladem tehdejšího zápisu.
+
+**Doklad:** autor v návaznosti na nepoužití přepisu ve scénáři kapitoly 5
+uvedl: „instrukce by podle mě měly rovnou uvádět, že cizí slova a odborné
+výrazy, kde se vyskytují dvojice ‚di‘, ‚ti‘ a ‚ni‘, je potřeba zapisovat
+jako ‚dy‘, ‚ty‘ a ‚ny‘, pokud se vyslovují s tvrdě.“ Dále požadoval odstranit
+část o poslechovém ověření, pokud skutečný poslech nahrávky není možný.
