@@ -33,7 +33,7 @@
   let args = it.fields()
   let _ = args.remove("children")
   args.stroke = (x, y) => (
-    top: if y <= 1 or y in summaries { 0.8pt } else { 0.3pt },
+    top: if y <= 1 or y in summaries { 0.8pt } else { (paint: rgb("c8c8c8"), thickness: 0.3pt) },
     bottom: if y == rows - 1 { 0.8pt } else { none },
     left: none, right: none,
   )

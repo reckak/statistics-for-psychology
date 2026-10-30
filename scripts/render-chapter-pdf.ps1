@@ -4,7 +4,7 @@ Render a supported chapter to PDF on explicit request; never called by the HTML 
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet(3, 4, 5)][int]$Chapter = 3,
+    [ValidateSet(3, 4, 5, 6)][int]$Chapter = 3,
     [string]$QuartoPath,
     [string]$RscriptPath
 )

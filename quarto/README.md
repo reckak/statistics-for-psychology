@@ -4133,3 +4133,40 @@ Nešlo o novou odbornou revizi kapitol ani nové spuštění výpočtů v Excelu
 Typst u kapitoly 5 nadále hlásí upozornění na zastaralý alias `sect`
 generovaný Pandocem; kompilace uspěla a znak průniku se vykresluje.
 PDF se nepublikují s webem; veřejné nasazení této úpravy nebylo ověřováno.
+
+## 2026-10-30 — Jemnější linky, menší poznámky a PDF kapitoly 6
+
+Podle doplnění [R54](../docs/rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf)
+mají vnitřní linky společnou šedou `#c8c8c8`, při původní tloušťce.
+Šest poznámek pod tabulkami dostalo třídu `table-note`; jsou o 1 pt menší
+než běžný text (v PDF 10 místo 11 pt). Obsah, matematika a tabulkové buňky
+zůstaly zachované, což potvrdilo nezávislé porovnání AST všech 86 tabulek.
+
+Tabulka úrovní měření má minimum 700 px, které na desktopu může ustoupit
+dostupné šířce (při šířce okna 1280 px má sloupec jen 678 px). U sedmi
+dalších tabulek s malým mobilním přesahem zmenšeno pouze vodorovné odsazení
+buněk, bez zásahu do písma. Výslovně rozbalené řešení kapitoly 6 odhalilo
+také přetékající řádkový výpočet; vodorovné posouvání jeho odstavce nyní
+zachovává stránku v šířce obrazovky, bez přepsání vzorce.
+
+Ruční export a kontrola rozšířeny na kapitolu 6. PDF má 50 stran, zadání
+na stranách 37–42, řešení od strany 43 a literaturu na straně 50.
+Prohlédnuty kontaktní náhledy všech 50 stran i detail široké excelové
+tabulky; PDF kapitol 3–5 také obnovena (50/37/43 stran) a dotčená sazba
+prohlédnuta. Původní varování Pandocu/Typstu na alias `sect` v kapitole 5
+nebrání kompilaci; tato změna je neopravuje.
+
+**Kontroly:** celá kniha vykreslena. `check-table-layout.cjs` provedl
+66 měření na 11 stránkách v šířkách 1024/1280/1360/1440/1920/390 px,
+včetně rozbalených řešení: žádné drobné přesahy 2–32 px ani přetékání
+stránky, správná barva linek a poznámky menší o 1 pt. Vizuálně zkontrolována
+tabulka 1.3 bez posuvníku. Následný `check-html.cjs` prošel na všech
+12 stránkách: odkazy, 262 hesel, 83 řešení, klávesnice, přehledy, mobil,
+varianta bez JavaScriptu a file://. Nová kontrola šířek je také v CI.
+`check-chapter-pdf.cjs` prošel pro 3/4/5/6 (15/10/12/14 řešení),
+`check-pdf-typography.cjs` ověřil také nastavení poznámek.
+`check-rendered-pdf.py` přímo v hotových PDF ověřil velikost všech čtyř
+exportovaných poznámek na 10 pt a šedé tahy ve všech čtyřech PDF.
+Kontrola dokumentace (73 souborů, 54 rozhodnutí, 2 989 odkazů) a
+`git diff --check` prošly. Výpočty, data ani sešity se neměnily;
+nejde o novou odbornou revizi kapitol. Nasazení na veřejný web neověřováno.

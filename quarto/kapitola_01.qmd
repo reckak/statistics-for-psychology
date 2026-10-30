@@ -190,7 +190,9 @@ Terminologie není jednotná. Užší pojetí spojuje nezávislou proměnnou s e
 
 : Názvy rolí proměnných v různých oblastech {#tbl-role-promennych}
 
+::: {.table-note}
 *Poznámka.* Různé obory pojmenovávají tytéž dvě role různě. Označení se zčásti překrývají, ale každé zdůrazňuje jinou stránku role a žádné samo nedokládá příčinný vztah.
+:::
 :::
 
 V této učebnici budeme pro obecné rozlišení rolí používat dvojici **vysvětlující a výsledná proměnná**; při popisu experimentu také tradiční označení **nezávislá a závislá proměnná**. Jde o role vzhledem k určité otázce, nikoli o neměnné vlastnosti proměnných. Délka spánku může být vysvětlující proměnnou při zkoumání paměťového výkonu a výslednou proměnnou při zkoumání souvislosti stresu se spánkem. I když nás zajímá pouze vzájemná souvislost dvou proměnných, vyplatí se o jejich rolích uvažovat, protože jejich rozlišení pomáhá formulovat vysvětlení a rozvíjet psychologickou teorii.
@@ -313,7 +315,9 @@ Stejně potřebujeme rozlišit počet zaznamenaných symptomů od intenzity psyc
 
 : Úrovně měření a význam vztahů mezi hodnotami {#tbl-urovne-shrnuti}
 
+::: {.table-note}
 *Poznámka.* Každá další úroveň měření přidává k předchozím jeden věcně interpretovatelný vztah hodnot. Příklady se týkají zaznamenaných údajů, nikoli konstruktů, které jimi zkoumáme.
+:::
 :::
 
 Skóry psychologických testů a dotazníků, například IQ nebo součet odpovědí na stupnici souhlasu, v tabulce [-@tbl-urovne-shrnuti] záměrně neuvádíme. Zda je lze vykládat intervalově, rozebíráme v [oddílu o psychologických skórech](#sec-kvaziintervalove).

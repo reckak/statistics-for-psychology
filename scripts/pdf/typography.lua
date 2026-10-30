@@ -20,6 +20,13 @@ local function bind(inlines)
 end
 
 return {
+  { Div = function(el)
+      if el.classes:includes('table-note') then
+        el.content:insert(1, pandoc.RawBlock('typst', '#block[\n#set text(size: 1em - 1pt)'))
+        el.content:insert(pandoc.RawBlock('typst', ']'))
+        return el
+      end
+    end },
   { Span = function(el)
       -- Empty source anchors following a heading must not label that heading twice.
       if el.identifier ~= '' and #el.content == 0 then

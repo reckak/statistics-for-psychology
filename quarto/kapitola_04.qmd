@@ -321,7 +321,9 @@ Některé hodnoty $z$ se v praxi i v dalších kapitolách stále opakují. **Je
 
 : Vybrané kvantily normovaného normálního rozdělení {#tbl-hodnoty-zpameti-04 tbl-colwidths="[10,16,18,18,38]"}
 
+::: {.table-note}
 *Poznámka.* Stejné $z$ odpovídá jednostranné i oboustranné otázce; rozhoduje, zda podíl přiřazujeme jednomu chvostu, nebo oběma. Dolní meze jsou díky souměrnosti tytéž hodnoty se záporným znaménkem.
+:::
 
 :::
 
@@ -461,7 +463,9 @@ Princip si ukážeme na patnácti dobách řešení úlohy v sekundách (list `N
 
 : Normalizace dob podle percentilového pořadí {#tbl-normalizace-04}
 
+::: {.table-note}
 *Poznámka.* Normalizace závisí jen na pořadí: jedna sekunda mezi 11 a 12 s i třináct sekund mezi 39 a 52 s se promítnou do podobně velkých kroků z-skóru.
+:::
 
 :::
 
@@ -653,7 +657,9 @@ Tvar týchž šesti souborů můžeme shrnout také [šikmostí a excesem](kapit
 
 : Souvislost Q–Q grafu s koeficienty tvaru {#tbl-qq-koeficienty-04 tbl-colwidths="[24,46,15,15]"}
 
+::: {.table-note}
 *Poznámka.* Q–Q graf a koeficienty tvaru vypovídají o stejných rysech: oblouk doprovází vysoká kladná nebo záporná šikmost, oddálené konce kladný exces a přiblížené konce záporný exces.
+:::
 
 :::
 
