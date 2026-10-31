@@ -1,5 +1,27 @@
 # Autorská dokumentace
 
+## 2026-10-31 — Kvantily v Q–Q grafech kapitoly 4
+
+Na žádost autora v oddílu [Jak číst odchylky od přímky](kapitola_04.qmd#sec-qq-odchylky)
+zvýrazněna v šesti Q–Q grafech (`scripts/kapitola_04.R`, smyčka `diagnostika-*`)
+pozorování u 1. a 99. (fialově), 25. a 75. (zeleně) a 50. percentilu (žlutě).
+Při n = 200 leží každý percentil mezi dvěma sousedními pořadími; tytéž dvojice
+ohraničují i `PERCENTIL.INC`, proto jsou zvýrazněny obě. Ostatní body jsou
+tlumeně modré, legenda je u zešikmení doleva vpravo dole. Text vysvětluje dvojice
+bodů, `fig-alt` popisují polohu barevných bodů. Na konec oddílu přidána
+[tabulka](kapitola_04.qmd#tbl-qq-kvantily-04) empirických a modelových kvantilů
+s řádkem rozdílu data − model; buňky rozdílu jsou podbarveny modře (kladný)
+a červeně (záporný) se sytostí 0,55 · |rozdíl| / 17,78 (styl `.qq-rozdil`
+v `assets/styles.css`), evidováno jako upřesnění
+[R54](../docs/rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).
+
+Ověření: kvantily, rozdíly a sytosti spočítány v R (`quantile(type = 7)`,
+`qnorm`) nezávisle na textu; čísla v odstavcích se shodují. Vizuálně
+prohlédnuto všech šest SVG a tabulka ve webu na šířce 1280 a 375 px (barva
+vyplňuje buňky, stránka nepřetéká, tabulka se posouvá místně). Render kapitoly
+bez varování. Neověřeno: pracovní PDF (barvy rozdílů se v něm zatím
+nepřenášejí) a výpočet v Excelu (vzorce i listy `Sim_*` jsou beze změny).
+
 ## 2026-10-28 — Výslovnostní přepisy bez podmínky nedostupného poslechu
 
 Na autorovo upřesnění upraven [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md):

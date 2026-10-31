@@ -296,13 +296,22 @@ ch4_simulations <- list(normalni=rnorm(200,50,10),sikme=30+rexp(200,rate=1/15),c
   sikme_vlevo=70-rexp(200,rate=1/10),lehke=runif(200,30,70))
 ch4_titles <- c(normalni='Normální model',sikme='Rozdělení zešikmené doprava',chvosty='Těžší chvosty',smes='Směs dvou skupin',
   sikme_vlevo='Rozdělení zešikmené doleva',lehke='Lehčí chvosty')
+# Highlighted percentiles: each lies between two neighbouring ranks, (i - 0.5)/n just below and
+# just above p; the same pair brackets PERCENTIL.INC (type 7). Both observations are coloured.
+ch4_qq_groups <- list(list(p=c(.01,.99),col='#7B3294',lab='1. a 99. percentil'),
+  list(p=c(.25,.75),col='#1B9E77',lab='25. a 75. percentil'),
+  list(p=.5,col='#E6AB02',lab='Medián (50. percentil)'))
+ch4_qq_ranks <- function(p,n) sort(unique(c(floor(n*p+.5),ceiling(n*p+.5))))
 for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
-  v<-ch4_simulations[[nm]]; z<-qnorm((seq_along(v)-.5)/length(v))
+  v<-ch4_simulations[[nm]]; n<-length(v); z<-qnorm((seq_len(n)-.5)/n); vs<-sort(v)
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))
   h<-hist(v,breaks='FD',plot=FALSE);xx<-seq(min(h$breaks),max(h$breaks),length.out=500)
   plot(h,freq=FALSE,col=ch4_fill,border='white',main=ch4_titles[nm],xlab='Simulovaný skór',ylab='Hustota',ylim=c(0,1.12*max(h$density,dnorm(xx,mean(v),sd(v)))));lines(xx,dnorm(xx,mean(v),sd(v)),col=ch4_orange,lwd=2)
-  plot(z,sort(v),pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
+  plot(z,vs,pch=19,cex=.55,col='#8FB3C6',xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
+  for(g in ch4_qq_groups) { r<-unlist(lapply(g$p,ch4_qq_ranks,n=n)); points(z[r],vs[r],pch=21,cex=1.25,bg=g$col,col='#1F2A30',lwd=.9) }
+  legend(if(nm=='sikme_vlevo') 'bottomright' else 'topleft',vapply(ch4_qq_groups,`[[`,'',"lab"),pt.bg=vapply(ch4_qq_groups,`[[`,'',"col"),
+    pch=21,col='#1F2A30',pt.cex=1.15,bty='n',cex=.74,inset=.01)
 },width=9,height=4.4)
 # Optional extension: the same right-skewed simulation as a Q-Q plot and a P-P plot.
 ch4_draw('pp-qq', {
