@@ -235,6 +235,7 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [C05](../zdroje/C05-ulohy-tyden-4.md#c05) — X5 a X6.
 - [D07](../zdroje/D07-utts.md#d07) — statistická gramotnost.
 - [D11](../zdroje/D11-wainer.md#d11) — velikost výběru.
+- [U16](../zdroje/U16-lakens-kniha.md#u16-lokatory) a [D13](../zdroje/D13-kline.md#d13) — tematické odkazy doplněné 2026-10-31 (omyly při interpretaci *p*-hodnoty, nezamítnutí, chyba I. druhu); při tvorbě kapitoly nebyly použity.
 - [Kontrola při přípravě](../zdroje/HISTORIE.md#kontrola-podkladů-při-přípravě-kapitoly-6--2026-10-12) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-06) — společné záznamy včetně tří externích citovaných zdrojů bez vlastní karty.
 
 **Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání

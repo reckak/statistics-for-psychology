@@ -135,6 +135,7 @@ plánování velikosti výběru, test minimálního účinku, standardizované h
 - [U03](../zdroje/U03-cumming.md#u03) — kap. 5 a s. 151–152.
 - [E02](../zdroje/E02-lakens-2017.md#e02-lakens-2017) — TOST, pozn. 2, jednovýběrový test.
 - [E03](../zdroje/E03-lakens-2018.md#e03-lakens-2018) — zdůvodnění hranic, čtyři kombinace, Discussion.
+- [U16](../zdroje/U16-lakens-kniha.md#u16-lokatory) a [D13](../zdroje/D13-kline.md#d13) — tematické odkazy doplněné 2026-10-31 (interpretace jednoho intervalu, omyly o intervalech, kap. 9 o ekvivalenci); při tvorbě kapitoly nebyly použity.
 - [P07](../zdroje/P07-usuzovani-intervaly.md#p07) a [P08](../zdroje/P08-prumery.md#p08) — dosavadní priority autora; nepřebírají se nálezy uvedené v kartách.
 - [C05](../zdroje/C05-ulohy-tyden-4.md#c05) a [C08](../zdroje/C08-ulohy-tyden-9.md#c08) — náměty cvičení (vlivy na šířku, interpretace, kvantily); úlohy nejsou převzaty.
 - [Čtení pro návrh](../zdroje/HISTORIE.md#priprava-07-20261017) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-07).

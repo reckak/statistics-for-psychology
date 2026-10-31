@@ -268,3 +268,37 @@ ani o schválení latentních proměnných, CFA či invariance měření jako u�
 Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
 studentům se nic nového nepublikuje. Kontrola ostatních 46 souborů byla
 inventární, nikoli novým odborným čtením.
+
+<a id="lakens-kline-2026-10-31"></a>
+
+## Doplnění Lakense a Klina — 2026-10-31
+
+Na žádost autora doplněny dva nové soubory: `sources/učebnice/lakens.pdf`
+jako [U16](U16-lakens-kniha.md#u16) (Lakens, *Improving Your Statistical
+Inferences*, verze 1.6.3 z 13. 6. 2026) a `sources/ostatní zdroje/significance_testing.pdf`
+jako [D13](D13-kline.md#d13) (Topic Box 2.1 z 5. vydání Klinovy knihy
+*Principles and Practice of Structural Equation Modeling*, s. 21–23).
+Aktuální inventář má 49 souborů; cesty a všech 47 dosavadních prefixů
+SHA-256 ověřeny proti místním originálům, bez změny. Starší ID a datované
+záznamy zachovány.
+
+Karta U16 obsahuje identitu podle obálky, předmluvy a Change Logu, místní
+rozsah a otisk, mapu všech 17 kapitol a tematické lokátory ověřené v textu
+(převod PDF = s. + 10). Přečteny byly předmluva, Change Log, úvod kap. 1,
+části §1.7 a §7.2–7.3; ostatní kapitoly jsou jen zmapovány. Zjištěno, že
+DOI v autorově doporučené citaci odpovídá podle Zenoda verzi 1.0.0 z roku
+2022, nikoli místní verzi; rok případné citace zůstává otevřený podle R42.
+Karta D13 obsahuje identitu ověřenou v PDF a na stránce nakladatele,
+lokátory celého boxu a nálezy (dva překlepy v originálu, zjednodušené
+shrnutí citovaných průzkumů); všechny tři strany byly prohlédnuty jako obraz.
+Citovaná primární literatura nebyla čtena ani ověřována.
+
+Tematický rozcestník doplněn u testování, intervalů a navazujících metod;
+karty kapitol 6 a 7 získaly tematické odkazy. Jde o nabídku podkladů, nikoli
+o doklad použití ve studentských kapitolách, schválení anglických názvů
+omylů jako termínů ani rozšíření rozsahu o plánování velikosti výběru,
+sekvenční analýzy či p-hacking.
+
+Originály a pomocné textové i obrazové výstupy zůstávají neveřejné;
+studentům se nic nového nepublikuje. Kontrola ostatních 47 souborů byla
+inventární, nikoli novým odborným čtením.
