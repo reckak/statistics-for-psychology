@@ -133,6 +133,7 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [D04](../zdroje/D04-morgan.md#d04) — kontrola dotazníků.
 - [D05](../zdroje/D05-lord.md#d05) — úrovně měření.
 - [D06](../zdroje/D06-zand-scholten-borsboom.md#d06) — reanalýza Lordova argumentu.
+- [D12](../zdroje/D12-billiet.md#d12) — konstrukt, operacionalizace a validita měření; doplněno do mapy 2026-10-31 bez použití v kapitole.
 - [Griffith et al. (2020)](../zdroje/externi-griffith-2020.md) — externí doplněk nepovinného rozšíření; v kartě je také historie obrazového podkladu.
 
 **Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání
