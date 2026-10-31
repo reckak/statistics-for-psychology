@@ -67,6 +67,10 @@ figure.quarto-float-tbl > figcaption.quarto-float-caption { text-align: left !im
 .chapter-04-wide table, .chapter-05-wide table, .chapter-06-wide table, .chapter-07-wide table { min-width: 620px; }
 .chapter-04-figure { max-width: 100%; overflow-x: auto; }
 .chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }
+/* Data minus model differences: the cell is tinted by --qq, set per value in the chapter source. */
+td:has(> .qq-rozdil) { position: relative; isolation: isolate; }
+.qq-rozdil::before { content: ""; position: absolute; inset: 0; z-index: -1; background-color: var(--qq); }
+#tbl-qq-kvantily-04 table { min-width: 620px; }
 
 /* A display equation wider than the column scrolls inside its own line instead of widening the page. */
 /* Native MathML: the equation is a direct child of its paragraph, so the paragraph scrolls. */

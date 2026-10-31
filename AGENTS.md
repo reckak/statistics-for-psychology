@@ -494,7 +494,8 @@ s každou kapitolou, ne až při dokončení knihy.
   ID, automatické označení „Tabulka X“ tučně a pod ním stručný český název
   kurzivou. Ve výkladových kapitolách používej číslování podle kapitoly.
   Vysvětlující poznámky patří pod tabulku. Zachovávej původní ID.
-- Pro čitelnost používáme úpravu APA: bez svislých linek a podbarvení,
+- Pro čitelnost používáme úpravu APA: bez svislých linek a podbarvení
+  (výjimkou je podbarvení vyjadřující hodnotu buňky podle R54),
   silnější linky nad a pod záhlavím a pod tabulkou (PDF 0,8 pt; web 2 px),
   slabší světle šedé `#c8c8c8` mezi vnitřními řádky (PDF 0,3 pt; web 1 px). Souhrnný řádek
   odděl také shora silnější linkou; běžný poslední řádek takto nezvýrazňuj.

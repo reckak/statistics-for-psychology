@@ -590,11 +590,11 @@ Graf, který chceme v Excelu získat, už známe z obrázku [-@fig-qq-priklad-04
 
 Jak vypadá Q–Q graf, když data normálnímu modelu neodpovídají? V následujících obrázcích jsou **simulovaná data**, vždy 200 hodnot. Jen první soubor jsme vygenerovali z normálního modelu, a u něj proto očekáváme, že body budou ležet přibližně na přímce. Ostatní soubory pocházejí z jiných modelů a ukazují typické podoby nesouladu dat s normálním modelem. Každý obrázek porovnává histogram s Q–Q grafem týchž dat; normální křivka i přímka používají průměr a směrodatnou odchylku příslušného souboru. Cílem je naučit se tyto tvary rozpoznat, nikoli najít pravidlo, podle něhož by určitý počet bodů mimo přímku automaticky rozhodl, zda je model přiměřený.
 
-U každého souboru si všimneme také toho, **které kvantily by normální model odhadl špatně**. Výška přímky nad určitým pořadím udává hodnotu, kterou by pro toto pořadí předpověděl normální model; výška bodu je skutečně pozorovaná hodnota. Leží-li bod nad přímkou, model tuto hodnotu podhodnocuje, leží-li pod ní, nadhodnocuje. Pro konkrétní čísla porovnáme [empirické percentily](kapitola_03.qmd#sec-kvantily) souboru, vypočtené funkcí `PERCENTIL.INC`, s modelovými percentily z funkce `NORM.INV` s průměrem a směrodatnou odchylkou téhož souboru.
+U každého souboru si všimneme také toho, **které kvantily by normální model odhadl špatně**. Výška přímky nad určitým pořadím udává hodnotu, kterou by pro toto pořadí předpověděl normální model; výška bodu je skutečně pozorovaná hodnota. Leží-li bod nad přímkou, model tuto hodnotu podhodnocuje, leží-li pod ní, nadhodnocuje. Abychom tato místa snadno našli, jsou v Q–Q grafech barevně zvýrazněna pozorování u 1. a 99. percentilu (fialově), u 25. a 75. percentilu (zeleně) a u mediánu (žlutě). Každý z těchto percentilů leží mezi dvěma sousedními seřazenými hodnotami, a proto jsou u něj zvýrazněny dva body. Ve středu rozdělení téměř splývají, v řídce obsazených chvostech od sebe mohou být i vzdálenější. Pro konkrétní čísla porovnáme [empirické percentily](kapitola_03.qmd#sec-kvantily) souboru, vypočtené funkcí `PERCENTIL.INC`, s modelovými percentily z funkce `NORM.INV` s průměrem a směrodatnou odchylkou téhož souboru.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor z normálního modelu." tabindex="0"}
 
-![Ani soubor z normálního modelu neleží na přímce dokonale.](../assets/chapter-04/plots/diagnostika-normalni.svg){#fig-qq-normalni-04 fig-alt="Histogram dvou set simulovaných hodnot z normálního rozdělení nekopíruje dokonale červenou křivku normálního rozdělení. Q–Q graf přesto sleduje přímku s menšími nepravidelnými odchylkami, zejména na krajích."}
+![Ani soubor z normálního modelu neleží na přímce dokonale.](../assets/chapter-04/plots/diagnostika-normalni.svg){#fig-qq-normalni-04 fig-alt="Histogram dvou set simulovaných hodnot z normálního rozdělení nekopíruje dokonale červenou křivku normálního rozdělení. Q–Q graf přesto sleduje přímku s menšími nepravidelnými odchylkami, zejména na krajích. Barevně zvýrazněné body u 1., 25., 50., 75. a 99. percentilu leží na přímce nebo těsně u ní."}
 
 :::
 
@@ -602,7 +602,7 @@ U každého souboru si všimneme také toho, **které kvantily by normální mod
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s rozdělením zešikmeným doprava." tabindex="0"}
 
-![Zešikmení doprava: body tvoří oblouk a nejvyšší hodnoty leží vysoko nad přímkou.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Hodnoty jsou v histogramu nahromaděny vlevo a vidíme dlouhý pravý chvost. Body Q–Q grafu se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou."}
+![Zešikmení doprava: body tvoří oblouk a nejvyšší hodnoty leží vysoko nad přímkou.](../assets/chapter-04/plots/diagnostika-sikme.svg){#fig-qq-sikme-04 fig-alt="Hodnoty jsou v histogramu nahromaděny vlevo a vidíme dlouhý pravý chvost. Body Q–Q grafu se systematicky zakřivují a nejvyšší pozorované hodnoty leží výrazně nad referenční přímkou. Fialové body u 1. percentilu leží vysoko nad přímkou, žluté body mediánu pod ní a fialové body u 99. percentilu opět vysoko nad ní."}
 
 :::
 
@@ -610,7 +610,7 @@ V obrázku [-@fig-qq-sikme-04] se body systematicky ohýbají do oblouku: vysok�
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor s rozdělením zešikmeným doleva." tabindex="0"}
 
-![Zešikmení doleva: body tvoří opačný oblouk a nejnižší hodnoty leží hluboko pod přímkou.](../assets/chapter-04/plots/diagnostika-sikme_vlevo.svg){#fig-qq-sikme-vlevo-04 fig-alt="Hodnoty jsou v histogramu nahromaděny vpravo těsně pod 70 body a vidíme dlouhý levý chvost. Normální křivka pokračuje i za 70 body. V Q–Q grafu leží nejnižší hodnoty hluboko pod referenční přímkou, střední body nad ní a nejvyšší body se zplošťují pod hodnotou 70, zatímco přímka stoupá dál."}
+![Zešikmení doleva: body tvoří opačný oblouk a nejnižší hodnoty leží hluboko pod přímkou.](../assets/chapter-04/plots/diagnostika-sikme_vlevo.svg){#fig-qq-sikme-vlevo-04 fig-alt="Hodnoty jsou v histogramu nahromaděny vpravo těsně pod 70 body a vidíme dlouhý levý chvost. Normální křivka pokračuje i za 70 body. V Q–Q grafu leží nejnižší hodnoty hluboko pod referenční přímkou, střední body nad ní a nejvyšší body se zplošťují pod hodnotou 70, zatímco přímka stoupá dál. Fialové body u 1. percentilu leží hluboko pod přímkou, zelené body u 25. percentilu a žluté body mediánu nad ní a fialové body u 99. percentilu daleko pod ní."}
 
 :::
 
@@ -618,7 +618,7 @@ V obrázku [-@fig-qq-sikme-04] se body systematicky ohýbají do oblouku: vysok�
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s těžšími chvosty." tabindex="0"}
 
-![Těžší chvosty: levý konec leží pod přímkou, pravý nad ní.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně souměrné, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni."}
+![Těžší chvosty: levý konec leží pod přímkou, pravý nad ní.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně souměrné, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni. Zelené body kvartilů leží blíže středu než přímka, fialové body u 99. percentilu vysoko nad ní."}
 
 :::
 
@@ -626,7 +626,7 @@ V obrázku [-@fig-qq-sikme-04] se body systematicky ohýbají do oblouku: vysok�
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s lehčími chvosty." tabindex="0"}
 
-![Lehčí chvosty: levý konec leží nad přímkou, pravý pod ní.](../assets/chapter-04/plots/diagnostika-lehke.svg){#fig-qq-lehke-04 fig-alt="Histogram hodnot rozložených přibližně rovnoměrně mezi 30 a 70 body; normální křivka přesahuje na obou stranách rozsah dat. V Q–Q grafu se dolní levý konec stáčí nad přímku a horní pravý pod ni, obráceně než u těžších chvostů."}
+![Lehčí chvosty: levý konec leží nad přímkou, pravý pod ní.](../assets/chapter-04/plots/diagnostika-lehke.svg){#fig-qq-lehke-04 fig-alt="Histogram hodnot rozložených přibližně rovnoměrně mezi 30 a 70 body; normální křivka přesahuje na obou stranách rozsah dat. V Q–Q grafu se dolní levý konec stáčí nad přímku a horní pravý pod ni, obráceně než u těžších chvostů. Fialové body u 1. a 99. percentilu leží blíže středu než přímka."}
 
 :::
 
@@ -636,7 +636,7 @@ Názvy leptokurtické a platykurtické pocházejí z řečtiny (*leptos* znamen�
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaná směs dvou skupin s různými průměry." tabindex="0"}
 
-![Směs dvou skupin: dva vrcholy a zlom uprostřed Q–Q grafu.](../assets/chapter-04/plots/diagnostika-smes.svg){#fig-qq-smes-04 fig-alt="Histogram směsi dvou skupin má dva vrcholy. Q–Q graf má soustavně odlišný průběh než přímka, včetně přechodu mezi dvěma shluky hodnot uprostřed."}
+![Směs dvou skupin: dva vrcholy a zlom uprostřed Q–Q grafu.](../assets/chapter-04/plots/diagnostika-smes.svg){#fig-qq-smes-04 fig-alt="Histogram směsi dvou skupin má dva vrcholy. Q–Q graf má soustavně odlišný průběh než přímka, včetně přechodu mezi dvěma shluky hodnot uprostřed. Žluté body mediánu leží v tomto strmém přechodu, zelené body kvartilů dále od středu než přímka a fialové body u 1. a 99. percentilu blíže středu."}
 
 :::
 
@@ -668,6 +668,41 @@ Obě cesty se shodují ve směru. Oblouky zešikmených souborů odpovídají vy
 Ani soubor vygenerovaný z normálního modelu nemá koeficienty nulové: jeho exces −0,41 je běžným výběrovým kolísáním, podobně jako drobné nepravidelnosti bodů kolem přímky. Oba zešikmené soubory mají vedle šikmosti také vysoký exces, protože jejich dlouhý chvost obsahuje velmi vzdálené hodnoty. Exces sám tedy nerozliší, zda vzdálené hodnoty leží na jedné straně, nebo na obou; to ukáže šikmost a především graf.
 
 Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces lehčích chvostů i směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: jiný výběr dvou set hodnot ze stejného modelu by mohl dát exces několikanásobně nižší i vyšší než 5,01. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
+
+Zvýrazněné kvantily všech šesti souborů shrnuje na závěr @tbl-qq-kvantily-04. U každého souboru uvádí empirické percentily vypočtené funkcí `PERCENTIL.INC`, modelové percentily z funkce `NORM.INV` s průměrem a směrodatnou odchylkou téhož souboru a jejich rozdíl. Kladný rozdíl znamená, že model daný kvantil podhodnocuje a bod v Q–Q grafu leží nad přímkou. Záporný rozdíl znamená, že jej nadhodnocuje a bod leží pod přímkou. Čím sytější je barva buňky, tím větší je rozdíl.
+
+::: {.table-scroll role="region" aria-label="Empirické a modelové kvantily šesti simulovaných souborů" tabindex="0"}
+
+| Soubor | Kvantily podle | 1 % | 25 % | 50 % | 75 % | 99 % |
+|:---|:---|---:|---:|---:|---:|---:|
+| Normální model | Data (`PERCENTIL.INC`) | 28,1 | 42,6 | 48,8 | 57,5 | 73,8 |
+|  | Model (*m* = 49,6; *s* = 10,0) | 26,4 | 42,9 | 49,6 | 56,3 | 72,8 |
+|  | Rozdíl data − model | [+1,7]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.05)"} | [−0,3]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.01)"} | [−0,8]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.02)"} | [+1,2]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.04)"} | [+0,9]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.03)"} |
+| Zešikmení doprava | Data (`PERCENTIL.INC`) | 30,3 | 34,7 | 41,0 | 53,2 | 92,5 |
+|  | Model (*m* = 45,5; *s* = 14,2) | 12,5 | 35,9 | 45,5 | 55,1 | 78,5 |
+|  | Rozdíl data − model | [+17,8]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.55)"} | [−1,2]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.04)"} | [−4,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.14)"} | [−1,9]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.06)"} | [+14,0]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.43)"} |
+| Zešikmení doleva | Data (`PERCENTIL.INC`) | 21,8 | 57,6 | 64,0 | 67,2 | 69,9 |
+|  | Model (*m* = 60,3; *s* = 10,5) | 35,9 | 53,2 | 60,3 | 67,4 | 84,7 |
+|  | Rozdíl data − model | [−14,0]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.43)"} | [+4,4]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.14)"} | [+3,7]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.11)"} | [−0,2]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.01)"} | [−14,8]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.46)"} |
+| Těžší chvosty | Data (`PERCENTIL.INC`) | 17,6 | 42,1 | 48,5 | 55,1 | 88,6 |
+|  | Model (*m* = 48,5; *s* = 13,5) | 17,2 | 39,5 | 48,5 | 57,6 | 79,9 |
+|  | Rozdíl data − model | [+0,4]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.01)"} | [+2,6]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.08)"} | [−0,1]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.00)"} | [−2,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.08)"} | [+8,7]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.27)"} |
+| Lehčí chvosty | Data (`PERCENTIL.INC`) | 31,6 | 41,8 | 50,6 | 59,5 | 69,8 |
+|  | Model (*m* = 50,9; *s* = 11,2) | 24,8 | 43,3 | 50,9 | 58,5 | 77,0 |
+|  | Rozdíl data − model | [+6,8]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.21)"} | [−1,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.05)"} | [−0,3]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.01)"} | [+1,0]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.03)"} | [−7,2]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.22)"} |
+| Směs dvou skupin | Data (`PERCENTIL.INC`) | 25,6 | 36,8 | 50,1 | 63,7 | 72,0 |
+|  | Model (*m* = 50,0; *s* = 14,4) | 16,4 | 40,3 | 50,0 | 59,7 | 83,5 |
+|  | Rozdíl data − model | [+9,1]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.28)"} | [−3,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.11)"} | [+0,1]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.00)"} | [+4,0]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.12)"} | [−11,6]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.36)"} |
+
+: Empirické a modelové kvantily šesti simulovaných souborů {#tbl-qq-kvantily-04 tbl-colwidths="[23,27,10,10,10,10,10]"}
+
+::: {.table-note}
+*Poznámka.* Hodnoty jsou v bodech. Empirické kvantily vrací `PERCENTIL.INC` pro data na listech `Sim_*` (A2:A201), modelové `NORM.INV(p; m; s)` s průměrem $m$ a směrodatnou odchylkou $s$ daného souboru. Rozdíl je počítán z nezaokrouhlených hodnot. Modře podbarvené rozdíly jsou kladné (model kvantil podhodnocuje), červeně podbarvené záporné (model jej nadhodnocuje). Sytost barvy roste s velikostí rozdílu; nejsytější odpovídá rozdílu 17,8 bodu.
+:::
+
+:::
+
+V tabulce [-@tbl-qq-kvantily-04] jsou u souboru z normálního modelu všechny rozdíly menší než 2 body. U ostatních souborů se největší rozdíly soustřeďují do 1. a 99. percentilu, tedy do chvostů. U zešikmených souborů je navíc posunutý medián a u směsi kvartily: normální model tu nevystihuje ani střední část rozdělení.
 
 :::: {#rozsireni-pp-graf .callout-note collapse="true" title="Nepovinné rozšíření: P–P graf"}
 Kromě Q–Q grafu se používá **P–P graf (*P–P plot, probability–probability plot*)**. Q–Q graf porovnává hodnoty: seřazený skór s normálním kvantilem. P–P graf naopak porovnává podíly: pro každé pořadí staví vedle sebe empirický podíl $p=(i-0{,}5)/n$ a podíl, který by normální model se stejným průměrem a směrodatnou odchylkou přiřadil pozorované hodnotě. Ten získáme distribuční funkcí. Obě osy proto vedou od 0 do 1 a při dobré shodě leží body blízko úhlopříčky z bodu (0; 0) do bodu (1; 1).

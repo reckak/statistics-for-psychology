@@ -199,6 +199,17 @@ jednopísmenných předložek a spojek. U posledního řádku vybral „Jen u
 souhrnů“. Následně výslovně zadal „PLEASE IMPLEMENT THIS PLAN“ s úplným
 plánem „Jednotná sazba tabulek a česká typografie PDF“.
 
+**Upřesnění 2026-10-31 (podbarvení hodnot):** výjimkou z pravidla „bez
+podbarvení“ smějí být buňky, jejichž barva sama nese informaci o hodnotě.
+Zavedeno v [tabulce kvantilů](../../quarto/kapitola_04.qmd#tbl-qq-kvantily-04)
+kap. 4: rozdíl data − model je kladný modře a záporný červeně, sytost roste
+s absolutní velikostí rozdílu; znaménko a číslo zůstávají, barva není jediným
+nositelem informace. Podbarvení záhlaví ani dekorativní podbarvení řádků
+se tím nepovoluje. Pracovní PDF barvu zatím nepřenáší. Doklad: autor
+2026-10-31 k plánu tabulky kvantilů: „pozadí těchto buněk bych pak vybarvil
+červeně pro záporné rozdíly a modře pro kladné rozdíly a měnil bych výraznost
+(transparentnost) barvy podle velikosti rozdílu“; plán poté schválil.
+
 ### Původní schválený plán: Jednotná sazba tabulek a česká typografie PDF
 
 #### Výsledek
