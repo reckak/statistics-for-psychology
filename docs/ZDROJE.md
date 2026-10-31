@@ -2,7 +2,7 @@
 
 **Uspořádání dokumentace od 2026-10-13:** zde je inventář a tematický rozcestník; každý zdroj má samostatnou kartu ve složce `zdroje/`. Společné nálezy a datované souhrny kontrol jsou v [historii ověřování](zdroje/HISTORIE.md). Karty kapitol a jejich vazby na zdroje najdeš v [osnově](OSNOVA.md). Datum reorganizace není novou inventurou ani odborným ověřením podkladů. Kotvy u odkazů na karty zachovávají původní adresy; nové odkazy veď přímo do cílových souborů.
 
-Stav inventury: **30. října 2026**. Mapa zahrnuje všech **46 souborů** v aktuální složce `sources/` a jejích podsložkách: 15 učebnic a monografií, 13 přednáškových prezentací, 8 souborů úloh, 1 seminární prezentaci a 9 dalších podkladů. Nově zmapován Wilcox jako [U15](zdroje/U15-wilcox.md#u15); cesty a otisky zbývajících 45 souborů souhlasí s předchozím inventářem. Rozsah kontroly uvádí [záznam z 2026-10-30](zdroje/HISTORIE.md#wilcox-2026-10-30); předchozí rozšíření mapy zachycují záznamy z [2026-10-18](zdroje/HISTORIE.md#field-2026-10-18) a [2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17). Odstraněné samostatné výřezy Barona se do inventáře nepočítají; D08 a D09 zůstávají podrobnými kartami kapitol celé knihy U12.
+Stav inventury: **31. října 2026**. Mapa zahrnuje všech **47 souborů** v aktuální složce `sources/` a jejích podsložkách: 15 učebnic a monografií, 13 přednáškových prezentací, 8 souborů úloh, 1 seminární prezentaci a 10 dalších podkladů. Nově zmapována Billietova kapitola o měření jako [D12](zdroje/D12-billiet.md#d12); cesty a otisky zbývajících 46 souborů souhlasí s předchozím inventářem. Rozsah kontroly uvádí [záznam z 2026-10-31](zdroje/HISTORIE.md#billiet-2026-10-31); předchozí rozšíření mapy zachycují záznamy z [2026-10-30](zdroje/HISTORIE.md#wilcox-2026-10-30), [2026-10-18](zdroje/HISTORIE.md#field-2026-10-18) a [2026-10-17](zdroje/HISTORIE.md#inventura-2026-10-17). Odstraněné samostatné výřezy Barona se do inventáře nepočítají; D08 a D09 zůstávají podrobnými kartami kapitol celé knihy U12.
 
 Dokument slouží k výběru podkladů při plánování kapitol. Je autorskou dokumentací, není součástí studentského webu. Dohodnutý obsah a návaznosti určuje [OSNOVA.md](OSNOVA.md), platné konvence [ROZHODNUTI.md](ROZHODNUTI.md). Nabídka témat v této mapě **neznamená schválení jejich zařazení**. Howell zůstává hlavním odborným a didaktickým východiskem.
 
@@ -31,7 +31,7 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 
 | Téma / plánovací otázka | Hlavní opora a srovnání | Starší výuka a úlohy | Využití a podmínky |
 |---|---|---|---|
-| Výzkumná otázka, populace, výběr, experiment, měření | [U01](zdroje/U01-howell.md#u01) kap. 1; [U03](zdroje/U03-cumming.md#u03) kap. 2; [U04](zdroje/U04-openintro.md#u04) kap. 1; [U08](zdroje/U08-navarro.md#u08) kap. 2; [U11](zdroje/U11-russo.md#u11) kap. 1; [U14](zdroje/U14-field.md#u14-lokatory) §1.5–1.6 | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 13–38; [C01](zdroje/C01-ulohy-tyden-1.md#c01) X1 | Navazuje na existující kapitolu 1; metodologii a kauzalitu nelze odvozovat pouze z typu statistiky. |
+| Výzkumná otázka, populace, výběr, experiment, měření | [U01](zdroje/U01-howell.md#u01) kap. 1; [U03](zdroje/U03-cumming.md#u03) kap. 2; [U04](zdroje/U04-openintro.md#u04) kap. 1; [U08](zdroje/U08-navarro.md#u08) kap. 2; [U11](zdroje/U11-russo.md#u11) kap. 1; [U14](zdroje/U14-field.md#u14-lokatory) §1.5–1.6; [D12](zdroje/D12-billiet.md#d12) s. 194–200 (konstrukt, operacionalizace, validita) | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 13–38; [C01](zdroje/C01-ulohy-tyden-1.md#c01) X1 | Navazuje na existující kapitolu 1; metodologii a kauzalitu nelze odvozovat pouze z typu statistiky. |
 | Úrovně měření a oprávněnost interpretace | [U01](zdroje/U01-howell.md#u01) §1.3; dvojice [D05](zdroje/D05-lord.md#d05) + [D06](zdroje/D06-zand-scholten-borsboom.md#d06) | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 27–30; [C01](zdroje/C01-ulohy-tyden-1.md#c01) X1_01–03, X1_06, X1_09 | Spor o měření představit jako argumentaci, nikoli mechanický seznam povolených testů. |
 | Datová matice, kódování, chybějící hodnoty | [D01](zdroje/D01-datova-matice-docx.md#d01)/[D02](zdroje/D02-datova-matice-pdf.md#d02), [D03](zdroje/D03-de-vaus.md#d03), [D04](zdroje/D04-morgan.md#d04) | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 32–38; [C01](zdroje/C01-ulohy-tyden-1.md#c01) X1_05, X1_07–08 | Rozlišovat obecné zásady a pravidla konkrétního programu či projektu. |
 | Četnosti, histogram, hustota, klamavé grafy | [U01](zdroje/U01-howell.md#u01) kap. 2; [U03](zdroje/U03-cumming.md#u03) kap. 3; [U04](zdroje/U04-openintro.md#u04) kap. 2; [U11](zdroje/U11-russo.md#u11) §2.1–2.4; [U14](zdroje/U14-field.md#u14-lokatory) kap. 5 | [P01](zdroje/P01-uvod-cetnosti.md#p01) sn. 39–68; [C01](zdroje/C01-ulohy-tyden-1.md#c01) X2; [C02](zdroje/C02-ulohy-tyden-2.md#c02) X2_04–10 | Návaznost na kapitolu 2; šířka intervalů, plocha sloupců, omezení rekonstrukce dat. |
@@ -106,6 +106,7 @@ Identifikátory karet zůstávají stabilní i při přejmenování souboru. Oti
 | [D07](zdroje/D07-utts.md#d07) | [What educated citizens should know about statistics and probability.pdf](../sources/ostatn%C3%AD%20zdroje/What%20educated%20citizens%20should%20know%20about%20statistics%20and%20probability.pdf) | 6 stran PDF | `4cc78dcce3c286ea` |
 | [D10](zdroje/D10-excel-normalni-rozdeleni.md#d10) | [Normalni_rozdeleni_do_3_aveamian._prednasky.xlsx](../sources/ostatn%C3%AD%20zdroje/Normalni_rozdeleni_do_3_aveamian._prednasky.xlsx) | 4 listy | `0f1a5783380913ed` |
 | [D11](zdroje/D11-wainer.md#d11) | [Most_Dangerous_eqn.pdf](../sources/ostatn%C3%AD%20zdroje/Most_Dangerous_eqn.pdf) | 9 stran PDF | `245684f6fe1c2b63` |
+| [D12](zdroje/D12-billiet.md#d12) | [measurement.pdf](../sources/ostatn%C3%AD%20zdroje/measurement.pdf) | 17 stran PDF | `20be2f6e96a58060` |
 
 **Nahrazené soubory (mimo aktuální inventář):** `Baron_-_kap5_-_probability_rkhanxjn.pdf` (34 stran PDF, otisk `59dda8531fb552d4`) a `Baron_-_kap6_-_probability_desc.pdf` (24 stran PDF, otisk `9fdad8c6f9412d0b`) autor odstranil. Jejich stabilní karty [D08](zdroje/D08-baron-normativni.md#d08) a [D09](zdroje/D09-baron-deskriptivni.md#d09) nyní odkazují do [U12](zdroje/U12-baron.md#u12); historický rozsah čtení zůstává zachován.
 
@@ -350,6 +351,10 @@ Identifikátor úlohy vyhledej v příslušném DOCX. Obvykle se vyskytuje jedno
 
 - [D11 — Wainer: The Most Dangerous Equation](zdroje/D11-wainer.md#d11)
 
+<a id="d12"></a>
+
+- [D12 — Billiet: co znamená měření v dotazníkovém šetření](zdroje/D12-billiet.md#d12)
+
 ## Externí podklady
 
 Do inventáře místních souborů se nezapočítávají. Další tři externí citace kapitoly 6 jsou v [záznamu použití](zdroje/HISTORIE.md#pouziti-kapitola-06).
@@ -403,3 +408,5 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 - [Doplnění Fielda, van Doorna a Wagenmakerse — 2026-10-18](zdroje/HISTORIE.md#field-2026-10-18)
 
 - [Doplnění Wilcoxe — 2026-10-30](zdroje/HISTORIE.md#wilcox-2026-10-30)
+
+- [Doplnění Billieta — 2026-10-31](zdroje/HISTORIE.md#billiet-2026-10-31)

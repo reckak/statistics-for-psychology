@@ -244,3 +244,27 @@ schválení robustních metod jako učiva.
 Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
 studentům se nic nového nepublikuje. Kontrola ostatních 45 souborů byla
 inventární, nikoli novým odborným čtením.
+
+<a id="billiet-2026-10-31"></a>
+
+## Doplnění Billieta — 2026-10-31
+
+Na žádost autora doplněn nový soubor `sources/ostatní zdroje/measurement.pdf`
+jako [D12](D12-billiet.md#d12) (Billiet, 2016, kapitola 14 sborníku
+*The SAGE Handbook of Survey Methodology*). Aktuální inventář má 47 souborů;
+cesty a všech 46 dosavadních prefixů SHA-256 ověřeny proti místním
+originálům, bez změny. Jediný přírůstek je tato kapitola. Starší ID
+a datované záznamy zachovány.
+
+Karta D12 obsahuje identitu ověřenou v PDF a záznamu Crossref (DOI), místní
+rozsah, otisk, převod tištěných stran na stránky PDF, mapu všech oddílů
+a nálezy (rozpor N a roku ESS mezi textem a tab. 14.1 ověřen v obraze strany,
+chybné údaje v literatuře). Celý text přečten z textové vrstvy; citovaná
+primární literatura a data ESS nebyla ověřována. Tematický rozcestník doplněn
+u řádku o výzkumné otázce a měření, karta kapitoly 1 získala tematický
+odkaz. Jde o nabídku podkladu, nikoli o doklad použití ve studentské kapitole
+ani o schválení latentních proměnných, CFA či invariance měření jako učiva.
+
+Originál a pomocné textové i obrazové výstupy zůstávají neveřejné;
+studentům se nic nového nepublikuje. Kontrola ostatních 46 souborů byla
+inventární, nikoli novým odborným čtením.
