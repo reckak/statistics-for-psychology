@@ -102,7 +102,37 @@ rq(c(pw(2,2),pw(5,2),pw(2,1),pw(5,1)),c(.17,.71,.52,1.00),2);rq(1-c(pw(2,2),pw(5
 rq(2*up(.5),.617,3);rq(.95^20,.358,3);rq(1-.95^20,.642,3)
 rq(50-1.645*2,46.71,2);rq(pnorm(46.71,45,2),.804,3);rq(pnorm(46.71,47,2),.442,3);rq(50-1.645*1,48.355,3);rq(pnorm(48.355,47,1),.912,3)
 eq(c(200*.6,200*.4,800*.05,800*.95),c(120,80,40,760));eq(40/160,.25);eq(200*.9,180);rq(40/220,.182,3)
+# Optional box: distribution of p-values. P(p <= c) is written out as the power at level c,
+# independently of ch6_p_le; it must equal c when the null hypothesis holds.
+ple <- function(c,d,se) {cr <- qnorm(1-c/2)*se;pnorm(-cr,d,se)+pnorm(cr,d,se,lower.tail=FALSE)}
+for(c in c(.001,.01,.04,.05,.5)) eq(ple(c,0,ch6_se_diff),c)
+eq(ple(.05,8,ch6_se_diff),ch6_power(8));eq(ch6_p_le(.05,c(0,3,5,8)),ch6_power(c(0,3,5,8)))
+bands <- function(d,se) diff(c(0,vapply(c(.001,.01,.04,.05),ple,numeric(1),d=d,se=se),1))
+eq(ch6_p_bands(8),bands(8,ch6_se_diff));eq(sum(ch6_p_bands(5)),1)
+rq(bands(0,ch6_se_diff),c(.001,.009,.030,.010,.950),3)
+rq(bands(5,ch6_se_diff),c(.175,.238,.206,.035,.346),3)
+rq(bands(8,ch6_se_diff),c(.685,.199,.073,.008,.035),3)
+stopifnot(bands(8,ch6_se_diff)[4]<.01,bands(5,ch6_se_diff)[4]>.01)
+rq(ple(.05,8,ch6_se_diff),.965,3);rq(ple(.04,8,ch6_se_diff),.957,3);rq(ple(.05,8,ch6_se_diff)-ple(.04,8,ch6_se_diff),.008,3)
+rq(ple(.001,8,ch6_se_diff),2/3,1)
+# The reversal happens when power for the alternative exceeds about 0.95.
+cross <- uniroot(function(d) ple(.05,d,ch6_se_diff)-ple(.04,d,ch6_se_diff)-.01,c(5,12))$root
+rq(ple(.05,cross,ch6_se_diff),.95,2)
+# 400 drivers per group: alpha 0.05 versus 0.01.
+rq(c(ple(.05,5,se400),ple(.01,5,se400)),c(.997,.984),3);rq(c(1-ple(.05,5,se400),1-ple(.01,5,se400)),c(.003,.016),3);rq(.05/(1-ple(.05,5,se400)),17,0)
+eq(ple(.05,0,se400)-ple(.01,0,se400),.04);rq(ple(.05,5,se400)-ple(.01,5,se400),.013,3)
+rq((ple(.05,0,se400)-ple(.01,0,se400))/(ple(.05,5,se400)-ple(.01,5,se400)),3,0)
+rq(c(ple(.05,3,se400),ple(.01,3,se400)),c(.81,.60),2)
+# Optional box: misconceptions; replication power for a true difference of 5 s.
+rq(ple(.05,5,ch6_se_diff),.65,2)
+# Exercise 15.
+eq(10/sqrt(64),1.25);eq((52.6-50)/1.25,2.08);rq(2*up(2.08),.0375,4);rq(1-2*up(2.08),.96,2)
+rq(2.6/10,.25,1);rq(50+qnorm(.975)*1.25,52.45,2);rq(ple(.05,2.6,1.25),.548,3);rq(1-pnorm(2.45,2.6,1.25),.548,3)
+# Exercise 16 (school from exercise 10 with 100 pupils, standard error 1 point).
+rq(c(ple(.05,2,1),ple(.04,2,1),ple(.05,2,1)-ple(.04,2,1)),c(.5160,.4786,.0374),4)
+rq(c(ple(.05,5,1),ple(.04,5,1),ple(.05,5,1)-ple(.04,5,1)),c(.9988,.9984,.0004),4)
+stopifnot(.01/(ple(.05,5,1)-ple(.04,5,1))>20);rq(.01/(ple(.05,5,1)-ple(.04,5,1)),23.5,1);rq(c(ple(.01,5,1),ple(.01,2,1)),c(.992,.282),3);rq(ple(.05,5,1),.999,3)
 # All generated figures exist and have nonempty SVG content.
 files <- list.files(ch6_out,pattern='\\.svg$',full.names=TRUE)
-stopifnot(length(files)==16,all(file.info(files)$size>1000))
-cat('Chapter 6: values of the text, optional boxes, fourteen exercises and 16 figures passed.\n')
+stopifnot(length(files)==17,all(file.info(files)$size>1000))
+cat('Chapter 6: values of the text, optional boxes, sixteen exercises and 17 figures passed.\n')

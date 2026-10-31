@@ -47,6 +47,7 @@ formulas = [
     ['=2*(1-NORM.S.DIST(0,5;PRAVDA))', 2 * upper(0.5)],
     ['=NORM.DIST(46,71;45;2;PRAVDA)', lower((46.71 - 45) / 2)], ['=NORM.DIST(46,71;47;2;PRAVDA)', lower((46.71 - 47) / 2)],
     ['=NORM.DIST(48,355;47;1;PRAVDA)', lower(1.355)],
+    ['=2*(1-NORM.S.DIST(2,08;PRAVDA))', 2 * upper(2.08)],
     ['=BINOM.INV(20;0,25;0,95)+1', 9], ['=BINOM.INV(8;0,5;0,95)+1', 7],
     ['=1-BINOM.DIST(6;8;0,5;PRAVDA)', F(9, 256)], ['=1-BINOM.DIST(5;8;0,5;PRAVDA)', F(37, 256)],
     # Counts and summaries of the stored simulated data quoted in the chapter.
@@ -80,6 +81,12 @@ out = {
         {'sheet': 'Sila', 'set': {'B2': 0}, 'expect': {'B8': 0.05}, 'tolerance': QT},
         {'sheet': 'Sila', 'set': {'B2': 3}, 'expect': {'B8': sum(power(3))}, 'tolerance': QT},
         {'sheet': 'Sila', 'set': {'B2': 8}, 'expect': {'B8': sum(power(8))}, 'tolerance': QT},
+        # Optional box on p-value distributions and exercises 15-16: P(p <= c) is the power at level c.
+        {'sheet': 'Sila', 'set': {'B2': 8, 'B5': 0.04}, 'expect': {'B8': sum(power(8, quantile(0.98) * se_diff))}, 'tolerance': QT},
+        {'sheet': 'Sila', 'set': {'B2': 5, 'B3': 1.0607, 'B5': 0.01}, 'expect': {'B8': sum(power(5, quantile(0.995) * 1.0607, 1.0607))}, 'tolerance': QT},
+        {'sheet': 'Sila', 'set': {'B2': 2.6, 'B3': 1.25}, 'expect': {'B8': sum(power(2.6, z975 * 1.25, 1.25))}, 'tolerance': QT},
+        {'sheet': 'Sila', 'set': {'B2': 5, 'B3': 1, 'B5': 0.04}, 'expect': {'B8': sum(power(5, quantile(0.98), 1))}, 'tolerance': QT},
+        {'sheet': 'Sila', 'set': {'B2': 2, 'B3': 1, 'B5': 0.01}, 'expect': {'B8': sum(power(2, quantile(0.995), 1))}, 'tolerance': QT},
     ],
 }
 open(sys.argv[1], 'w', encoding='utf-8', newline='\n').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n')

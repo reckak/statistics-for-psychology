@@ -229,9 +229,15 @@ const server = http.createServer((req, res) => {
         }
       }
       if (file === 'quarto/kapitola_06.html') {
-        assert.equal(await solutions.count(),14,'Chapter 6 has twelve core and two optional exercise solutions');
+        assert.equal(await solutions.count(),16,'Chapter 6 has twelve core and four optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 6 mathematics parses');
-        assert.equal(await page.locator('main img').count(),16);
+        assert.equal(await page.locator('main img').count(),17);
+        assert.equal(await page.locator('#rozsireni-rozdeleni-p #fig-rozdeleni-p').count(),1,'p-value distribution figure is inside its optional extension');
+        const pdist6=page.locator('#fig-rozdeleni-p');
+        assert.equal(await pdist6.isVisible(),false,'Optional p-value figure is hidden initially');
+        assert.equal(await page.locator('#rozsireni-rozdeleni-p [data-bs-toggle="collapse"]').getAttribute('aria-expanded'),'false','Optional extension starts collapsed: rozsireni-rozdeleni-p');
+        const pdistToggle=page.locator('#rozsireni-rozdeleni-p [data-bs-toggle="collapse"]');
+        await pdistToggle.focus();await page.keyboard.press('Enter');await pdist6.waitFor({state:'visible'});
         for(const img of await page.locator('main img').all()) {
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
@@ -241,7 +247,7 @@ const server = http.createServer((req, res) => {
         assert(greek6.filter(e=>e.text.includes('σ')).length>12,'Standard error notation actually rendered with sigma');
         assert(greek6.filter(e=>e.text.includes('α')).length>5,'Significance level rendered as alpha');
         assert(greek6.every(e=>e.variant==='normal'),'Greek symbols of chapter 6 must be upright');
-        for(const id of ['rozsireni-odvozeni-chyby','rozsireni-vypocet-sily','rozsireni-standardizovany-rozdil','rozsireni-test-screening','rozsireni-dve-tradice']) {
+        for(const id of ['rozsireni-odvozeni-chyby','rozsireni-vypocet-sily','rozsireni-standardizovany-rozdil','rozsireni-test-screening','rozsireni-omyly-p','rozsireni-dve-tradice']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         for(const id of ['sec-devet-vyberu','sec-odhad-chyby','sec-zakon-velkych-cisel','sec-clv-zneni','sec-smer-testu','sec-nezamitnuti','sec-zaver-testu','sec-binomicky-test','sec-z-test']) assert(await page.locator('#'+id).isVisible(),`Core section present: ${id}`);
@@ -255,6 +261,8 @@ const server = http.createServer((req, res) => {
         for(const id of ['sec-devet-vyberu','sec-pet-pojmu','sec-hladina-kriticky-obor','sec-statisticka-sila','sec-zaver-testu','sec-kroky-testu']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch06-${id}-desktop.png`});
         }
+        await page.locator('#rozsireni-rozdeleni-p').screenshot({path:'tmp/verification/ch06-rozsireni-rozdeleni-p-desktop.png'});
+        await pdistToggle.click();await pdist6.waitFor({state:'hidden'});
       }
       if (file === 'quarto/kapitola_07.html') {
         assert.equal(await solutions.count(),14,'Chapter 7 has twelve core and two optional exercise solutions');
@@ -499,12 +507,12 @@ const server = http.createServer((req, res) => {
         'quarto/kapitola_03.html': ['fig-vazeny-prumer','fig-percentil-a-poradi','fig-orezani-winsorizace'],
         'quarto/kapitola_04.html': ['fig-z-jako-jednotka','fig-distribucni-04','fig-mezi-04','fig-oblasti-04','fig-normalizace-04','fig-histogram-krivka-04','fig-skaly-04','fig-pasma-skoru','fig-qq-konstrukce'],
         'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace'],
-        'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-stejny-rozdil','fig-dva-testy'],
+        'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-rozdeleni-p','fig-stejny-rozdil','fig-dva-testy'],
         'quarto/kapitola_07.html': ['fig-opakovane-intervaly','fig-sirka-intervalu','fig-t-rozdeleni','fig-p-funkce','fig-pasmo-pouziti','fig-hypotezy-ekvivalence','fig-ctyri-kombinace','fig-qq-uzkost-07']
       };
       for (const id of conceptFigures[file] || []) {
         const fig = page.locator('#'+id);
-        const hiddenSolution=id==='fig-qq-uzkost-07';
+        const hiddenSolution=id==='fig-qq-uzkost-07'||id==='fig-rozdeleni-p';
         const toggle=hiddenSolution ? fig.locator('xpath=ancestor::div[contains(@class,"callout") and contains(@class,"callout-style-default")][1]').locator('[data-bs-toggle="collapse"]') : null;
         if(hiddenSolution){await toggle.click();await fig.waitFor({state:'visible'});}
         const region = fig.locator('xpath=ancestor::div[contains(@class,"teaching-figure") or contains(@class,"chapter-04-figure")][1]');
@@ -727,7 +735,7 @@ const server = http.createServer((req, res) => {
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),12);
     assert(await plain.locator('#rozsireni-sance .callout-collapse').isVisible());
     await plain.goto(base + 'quarto/kapitola_06.html');
-    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),14);
+    assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),16);
     assert(await plain.locator('#rozsireni-test-screening .callout-collapse').isVisible());
     await plain.goto(base + 'quarto/kapitola_07.html');
     assert.equal(await plain.locator('.callout[title="Ukázat řešení"] .callout-collapse:visible').count(),14);
