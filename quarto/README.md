@@ -4272,3 +4272,58 @@ obrázků, oblastí a řešení kapitoly 1 v něm aktualizovány.
 přibližně 10 400 slov. Didaktická revize provedena autorsky, nikoli
 samostatným agentem v roli studenta ani na studentech. Sešit kapitoly
 se nemění (úloha 9 je slovní). Excel ani PDF neověřovány.
+
+<a id="revize-kapitola-06-2026-10-31"></a>
+
+## 2026-10-31 — Kapitola 6: revize podle autorových připomínek
+
+Zachovány a zkontrolovány autorovy stylistické úpravy kapitoly 6; opraveny
+v nich zdvojené slovo, nedokončená věta u obrázku trychtýře, překlepy
+(„pupulační“, „významosti“), pády a shoda („samo o sobě“, „při u“,
+„výzkumném designu“), čárka ve vylučovacím poměru, chybějící zvratné „se“,
+nepravopisné „NEzávisí“ a slovo „důkaz“ (podle autorovy volby). Zpřesněno
+doplněné zdůvodnění odmocniny (klesá poměr 1/√n) a odpověď u rozdílu
+o více než 3 s kterýmkoli směrem. Opraven popisek tabulky výpočtu síly
+(`tbl-k06-14`).
+
+Nově vysvětleno podle připomínek: proč stačí 10 000 opakování simulace,
+platnost hodnocení 15 s / 1,5 s jen pro výukový model, odhad (ne znalost)
+směrodatné chyby, proč má medián větší směrodatnou chybu a proč je
+rozdělení výběrové směrodatné odchylky zešikmené, obě hypotézy jako
+statistické hypotézy, oboustranný test i při směrové hypotéze (intervence,
+která by mohla škodit), důvod slabé výpovědi nezamítnutí při síle 0,29,
+na čem závisejí kritické hodnoty, *p*-hodnota jako nejnižší hladina
+významnosti a Cohenova pásma s jeho výhradou (Howell, s. 214 a 235).
+Zákon velkých čísel v dřívějších kapitolách jménem nezazní; tvrzení textu
+ověřeno vyhledáním ve všech kapitolách.
+
+Podle [R56](../docs/rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen) se
+*p*-hodnota píše s kurzivním *p* v kapitolách 6 a 7, ve slovníčku,
+v přehledu značení a Excelu a v popiscích grafů `p-hodnota`, `stejny-rozdil`,
+`dva-testy` (kap. 6) a `p-funkce` (kap. 7). Převod provedl skript
+s vynecháním kódu, matematiky, identifikátorů a cest; atributy alternativních
+textů jen převedeny na malé p (markdown v nich nefunguje). Stylistické
+náhrady jen v kapitole 6: „Oddíl …“ → „Tento oddíl …“ v deseti úvodech,
+rozptýlenost → variabilita, matematický „vzorec“ → „rovnice“ (excelový
+vzorec ponechán), na šesti místech „kolísat“ → „různit se“; podstatné jméno
+„kolísání“ a časové kolísání *p*-hodnoty ponechány. Ostatní kapitoly
+těmito náhradami neprocházely. Popisek „pozorováno 51“ na obrázku
+`stejny-rozdil` přesunut, aby nepřekrýval křivku ani údaje o *p*-hodnotě.
+
+**Kontroly:** Monte Carlo přesnost při 10 000 opakováních ověřena v R
+(typická odchylka středu i šířky 0,02–0,03 s; v nezávislé simulaci směrodatné chyby mediánu
+3,24 s a směrodatné odchylky 2,38 s, šikmost jejího rozdělení 0,42).
+Celá kniha vykreslena; `check-chapter-06.R`, `check-chapter-07.R`,
+`check-html.cjs` (12 stránek, 264 hesel, 84 řešení, mobil 390 px)
+a `check-doc-maps.cjs --require-sources` prošly. V prohlížeči prohlédnuty
+upravené grafy, nadpis a obsah s kurzivním *p* a rozbalené rozšíření
+s Cohenovými pásmy; ve vykreslených stránkách nezůstalo neformátované
+`*p*` ani „P-hodnota“. Didaktická revize nových pasáží provedena autorsky
+(délka vět, návaznost, žádné nové nevysvětlené pojmy), nikoli samostatným
+agentem v roli studenta ani na studentech.
+
+**Omezení:** popisky buněk v sešitech `kapitola_06.xlsx` a `kapitola_07.xlsx`
+zůstávají prostým textem („P-hodnota …“); kurziva části buňky by vyžadovala
+úpravu generátoru. Excel ani PDF nebyly ověřovány; zadání a řešení cvičení
+se obsahově nezměnila. Cohenovy původní práce nebyly čteny, pásma se opírají
+o Howellův výklad.

@@ -1,19 +1,19 @@
 # Výběrové rozdělení a testování hypotéz {#sec-kapitola-06}
 
-Výzkumníci měřili, jak dlouho řidičům trvá opustit parkovací místo. Ti, na jejichž místo čekalo jiné auto, odjížděli v průměru o necelých sedm sekund déle než ti, na které nikdo nečekal. Kdyby ale pozorovali jiných dvě stě řidičů, vyšla by jiná čísla, a rozdíl by mohl být větší, menší, nebo i opačný. Jak tedy poznat, zda výsledek jednoho výzkumu říká něco o řidičích obecně? V této kapitole se naučíme popsat, jak moc výsledky kolísají od výběru k výběru, a s pomocí tohoto popisu posoudit, zda je pozorovaný výsledek slučitelný s určitým modelem.
+Výzkumníci měřili, jak dlouho řidičům trvá opustit parkovací místo. Ti, na jejichž místo čekalo jiné auto, odjížděli v průměru o necelých sedm sekund déle než ti, na jejichž místo jiné auto nečekalo. Kdyby ale pozorovali jiných dvě stě řidičů, vyšla by jiná čísla, a rozdíl by mohl být větší, menší, nebo i opačný. Jak tedy poznat, zda výsledek jednoho výzkumu říká něco o řidičích obecně? V této kapitole se naučíme popsat, jak moc se výsledky různí mezi výběry, a s pomocí tohoto popisu posoudit, zda je pozorovaný výsledek v souladu s určitým modelem.
 
 Navazujeme na [výběrovou variabilitu](kapitola_01.qmd#sec-nejistota), kterou jsme zatím popsali jen slovy, na [normální model](kapitola_04.qmd#sec-kapitola-04) a na [binomické rozdělení](kapitola_05.qmd#sec-binomicke). Kapitolou prochází jeden příklad ve třech vrstvách: skutečná studie, náš výukový model a simulovaná data. Vždy uvádíme, o kterou vrstvu jde.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_06.xlsx) obsahuje vstupy k příkladům a cvičením i simulovaná data z obrázků. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Hotové výpočty jsou na listech `Chyba`, `Test_rozdilu`, `Binom_test`, `Z_test` a `Sila`.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
-- Vysvětlíte, proč výsledky výběrů kolísají, a rozlišíte populaci, jeden výběr a výběrové rozdělení statistiky.
+- Vysvětlíte, proč se výsledky výběrů navzájem různí, a rozlišíte populaci, jeden výběr a výběrové rozdělení statistiky.
 - Z malého příkladu sestavíte výběrové rozdělení průměru a popíšete výběrové rozdělení podílu a průměru.
 - Vysvětlíte směrodatnou chybu, odlišíte ji od směrodatné odchylky, výběrové chyby a systematického zkreslení a odhadnete ji z dat.
 - Odlišíte zákon velkých čísel od centrální limitní věty a uvedete její podmínky.
 - Spočítáte pravděpodobnost výběrového průměru ve známém modelu.
 - Před výpočtem stanovíte hypotézy a směr testu a určíte, které výsledky jsou extrémnější.
-- Vysvětlíte p-hodnotu a odlišíte ji od hladiny významnosti a kritického oboru.
+- Vysvětlíte *p*-hodnotu a odlišíte ji od hladiny významnosti a kritického oboru.
 - Rozlišíte chybu I. a II. druhu a určíte, na čem závisí statistická síla.
 - Provedete binomický test a z-test.
 - Zformulujete rozhodnutí testu i věcnou interpretaci, vyjádříte velikost účinku v původních jednotkách a odlišíte statistickou, věcnou a praktickou významnost.
@@ -23,28 +23,28 @@ Pět nepovinných rozšíření vysvětluje odvození směrodatné chyby, výpo�
 
 ## Proč jeden výsledek nestačí {#sec-jeden-vysledek}
 
-Proč nestačí pozorovaný rozdíl jen popsat? Oddíl představuje průběžný příklad kapitoly a ukazuje, proč potřebujeme vědět, jak moc by výsledek kolísal mezi výběry.
+Proč nestačí pozorovaný rozdíl jen popsat? Tento oddíl představuje průběžný příklad kapitoly a ukazuje, proč potřebujeme vědět, jak moc by se výsledky různily mezi výběry.
 
 ### Rozdíl necelých sedmi sekund {#sec-parkovaci-studie}
 
-Průběžným příkladem kapitoly je studie Rubacka a Juienga [-@ruback1997]. Autoři podle jejího shrnutí pozorovali 200 aut odjíždějících z parkoviště. Čísla, se kterými pracujeme, přebíráme z Howellovy učebnice: Howell [-@howell, s. 86] uvádí dvě skupiny po 100 řidičích. Řidičům, na jejichž místo nikdo nečekal, trval odjezd v průměru 32,15 s. Řidičům, na jejichž místo čekalo jiné auto, 39,03 s. Směrodatná odchylka dob byla v obou skupinách 14,6 s. Rozdíl průměrů je
+Průběžným příkladem kapitoly je studie Rubacka a Juienga [-@ruback1997]. Její autoři pozorovali 200 aut odjíždějících z parkoviště. Čísla, se kterými pracujeme, přebíráme z Howellovy učebnice: Howell [-@howell, s. 86] uvádí dvě skupiny po 100 řidičích. Řidičům, na jejichž místo nikdo nečekal, trval odjezd v průměru 32,15 s. Řidičům, na jejichž místo čekalo jiné auto, 39,03 s. Směrodatná odchylka dob byla v obou skupinách 14,6 s. Rozdíl průměrů je
 
 $$39{,}03-32{,}15=6{,}88\ \text{s}.$$
 
 Takový rozdíl lze vysvětlit dvěma způsoby [@howell, s. 86]:
 
-- Řidiči s čekajícím autem a bez něj odjíždějí obecně v průměru stejně rychle. Rozdíl vznikl tím, kteří řidiči se právě do pozorování dostali.
-- Řidiči s čekajícím autem odjíždějí obecně v průměru jinak rychle než řidiči bez něj. Rozdíl ve výběrech tento obecný rozdíl odráží.
+- Průměrný čas, který řidiči potřebují k opuštění parkovacího místa, **nezávisí** na tom, zda na jejich místo někdo čeká, nebo nikoli. Rozdíl vznikl tím, kteří řidiči se právě do pozorování dostali.
+- Průměrný čas, který řidiči potřebují k opuštění parkovacího místa, **závisí** na tom, zda na jejich místo někdo čeká, nebo nikoli. Rozdíl ve výběrech tento obecný rozdíl odráží.
 
 Kdyby rozdíl činil tři desetiny sekundy, první vysvětlení by nás nepřekvapilo. Kdyby činil půl minuty, těžko bychom mu věřili. Necelých sedm sekund leží někde mezi a samotný pohled na číslo nestačí. Potřebujeme vědět, **jak velké rozdíly vznikají jen tím, že pozorujeme různé řidiče**.
 
-V [první kapitole](kapitola_01.qmd#sec-nejistota) jsme tento jev pojmenovali výběrová variabilita: číslo vypočtené z výběru se mění podle toho, kdo se do výběru dostal. Tam jsme zůstali u slovního popisu. Nyní výběrovou variabilitu změříme a použijeme. Postupovat budeme ve třech krocích:
+V [první kapitole](kapitola_01.qmd#sec-nejistota) jsme tento jev pojmenovali výběrová variabilita: číslo vypočtené z výběru se mění podle toho, kdo se do výběru dostal. Tam jsme zůstali u slovního popisu. Nyní výběrovou variabilitu vyčíslíme a využijeme. Postupovat budeme ve třech krocích:
 
-1. Zjistíme, jakých hodnot může statistika v různých výběrech nabýt a jak často. Tomu říkáme výběrové rozdělení.
-2. Jedním číslem vyjádříme, jak moc statistika mezi výběry kolísá. Tomu říkáme směrodatná chyba.
+1. Zjistíme, jakých hodnot může statistika v různých výběrech nabývat a jak často. Tomu říkáme výběrové rozdělení.
+2. Jedním číslem vyjádříme, jak moc se hodnoty statistiky mezi výběry různí. Tomu říkáme směrodatná chyba.
 3. Stanovíme pravidlo, podle něhož pozorovaný výsledek porovnáme s tím, co předpovídá určitý model. Tomu říkáme test hypotézy.
 
-První dva kroky jsou náplní první poloviny kapitoly, třetí náplní druhé.
+První polovina kapitoly se zaměřuje na kroky 1. a 2., druhá polovina na krok 3.
 
 ### Studie, výukový model a simulovaná data {#sec-tri-vrstvy}
 
@@ -71,7 +71,7 @@ O skutečných řidičích víme jen to, co výzkumníci naměřili. Abychom moh
 
 Z rozlišení na obrázku [-@fig-tri-vrstvy] plyne zásada, kterou budeme dodržovat v celé kapitole. **Každá pravděpodobnost, kterou spočítáme, je výsledkem výukového modelu.** Neopakujeme analýzu, kterou provedli autoři studie, a naše čísla s jejich výsledky nesrovnáváme. Na jejich číslech si ukazujeme způsob uvažování.
 
-Co lze o výsledku říci už teď, bez dalších nástrojů? Lze jej popsat: v těchto dvou výběrech trval odjezd s čekajícím autem v průměru o 6,88 s déle, tedy přibližně o pětinu. To je [popis](kapitola_01.qmd#sec-populace-vyber) dvou set pozorovaných řidičů. Zda totéž platí pro řidiče obecně, je otázka zobecnění a potřebujeme k ní zbytek kapitoly. Zda čekající auto odjezd prodlužuje, je otázka příčiny. Na tu sama statistika neodpoví; záleží na tom, jak studie vznikla, a vrátíme se k ní v [oddílu o závěrech](#sec-zaver-testu).
+Co lze o výsledku říci už teď, bez dalších nástrojů? Lze jej popsat: v těchto dvou výběrech trval odjezd s čekajícím autem déle v průměru o 6,88 s (tedy přibližně o pětinu). To je [popis](kapitola_01.qmd#sec-populace-vyber) dvou set pozorovaných řidičů. Zda totéž platí pro řidiče obecně, je otázka zobecnění a potřebujeme k ní zbytek kapitoly. Zda čekající auto odjezd prodlužuje, je otázka příčiny. Na tu sama statistika neodpoví; záleží na tom, jak studie vznikla, a vrátíme se k ní v [oddílu o závěrech](#sec-zaver-testu).
 
 ## Rozdělení, které už známe: počet a podíl úspěchů {#sec-rozdeleni-podilu}
 
@@ -81,7 +81,7 @@ Jak vypadá rozdělení čísla, které se mění výběr od výběru? Začneme 
 
 Než se pustíme do průměrů, podíváme se novýma očima na příklad z minulé kapitoly. Student odpovídá na 20 otázek testu, každá má čtyři možnosti a student jen tipuje. Počet správných odpovědí má [binomické rozdělení](kapitola_05.qmd#sec-binom-kumulace) s $n=20$ a $\mathrm{π}=0{,}25$, střední hodnotou 5 a směrodatnou odchylkou 1,94.
 
-Na tentýž příklad se lze dívat jako na výběr. Dvacet odpovědí jednoho studenta je **výběr** dvaceti pokusů. Počet správných odpovědí je číslo vypočtené z tohoto výběru, tedy [statistika](kapitola_03.qmd#sec-poloha-variabilita). Jiný tipující student je jiný výběr a jeho počet správných odpovědí může být jiný. Binomické rozdělení říká, jakých hodnot může tato statistika nabýt a s jakou pravděpodobností.
+Na tentýž příklad se lze dívat jako na výběr. Dvacet odpovědí jednoho studenta je **výběr** dvaceti pokusů. Počet správných odpovědí je číslo vypočtené z tohoto výběru, tedy [statistika](kapitola_03.qmd#sec-poloha-variabilita). Jiný tipující student je jiný výběr a jeho počet správných odpovědí může být jiný. Binomické rozdělení říká, jakých hodnot může tato statistika nabývat a s jakou pravděpodobností.
 
 Rozdělení tohoto druhu má vlastní název. **Výběrové rozdělení statistiky (*sampling distribution*)** je rozdělení pravděpodobnosti hodnot, kterých statistika nabývá v různých možných výběrech téže velikosti z téže populace. Zkráceně mluvíme o výběrovém rozdělení a vždy doplníme, které statistiky se týká: výběrové rozdělení počtu, podílu, průměru.
 
@@ -93,7 +93,7 @@ Výsledek testu se často uvádí jako podíl správných odpovědí, $p=k/n$. S
 
 $$\sqrt{\frac{\mathrm{π}\times(1-\mathrm{π})}{n}}=\sqrt{\frac{0{,}25\times0{,}75}{20}}\approx0{,}097.$$
 
-Směrodatná odchylka výběrového rozdělení je pro nás tak důležitá, že dostala vlastní jméno. **Směrodatná chyba (*standard error*)** je směrodatná odchylka výběrového rozdělení statistiky. V jiných textech se setkáte také s názvy standardní chyba nebo střední chyba. Číslo 0,097 je tedy směrodatná chyba podílu správných odpovědí v testu s dvaceti otázkami.
+Směrodatná odchylka výběrového rozdělení je pro nás tak důležitá, že dostala vlastní název. **Směrodatná chyba (*standard error*)** je směrodatná odchylka výběrového rozdělení určité statistiky. V jiných textech se setkáte také s názvy standardní chyba nebo střední chyba. Číslo 0,097 je tedy směrodatná chyba podílu správných odpovědí v testu s dvaceti otázkami.
 
 K čemu nám to je? Směrodatná chyba říká, jak daleko od hodnoty $\mathrm{π}$ podíly z jednotlivých výběrů obvykle leží. To je přesně údaj, který jsme u parkovací studie postrádali: měřítko toho, jak velké odchylky vznikají jen střídáním výběrů.
 
@@ -103,19 +103,19 @@ K čemu nám to je? Směrodatná chyba říká, jak daleko od hodnoty $\mathrm{�
 
 :::
 
-Při čtení obrázku [-@fig-podil-rozdeleni] si ujasněme, co která část znamená. **Jedna hodnota na vodorovné ose je podíl správných odpovědí v celém jednom testu**, tedy výsledek jednoho výběru. Výška sloupce je pravděpodobnost, že výběr dá právě tento podíl. Sloupec není student a obrázek není rozdělením odpovědí uvnitř jednoho testu. Uvnitř jednoho testu jsou jen dva druhy hodnot, správně a špatně; například 7 správných a 13 špatných odpovědí. Výběrové rozdělení popisuje, co se děje **mezi** výběry, ne uvnitř jednoho z nich.
+Při čtení obrázku [-@fig-podil-rozdeleni] si ujasněme, co která část znamená. **Jedna hodnota na vodorovné ose je podíl správných odpovědí v celém jednom testu**, tedy výsledek jednoho výběru. Výška sloupce je pravděpodobnost, že výběr ukáže právě tento podíl. Sloupec není student a obrázek není rozdělením odpovědí uvnitř jednoho testu. Uvnitř jednoho testu jsou jen dva druhy hodnot, správně a špatně; například 7 správných a 13 špatných odpovědí. Výběrové rozdělení popisuje, co se děje **mezi** výběry, ne uvnitř jednoho z nich.
 
-Z rozdělení lze číst pravděpodobnosti stejně jako v minulé kapitole. Podíl mezi 0,15 a 0,35 znamená 3 až 7 správných odpovědí z dvaceti a nastane s pravděpodobností 0,807. V testu s 80 otázkami je směrodatná chyba poloviční, $\sqrt{0{,}25\times0{,}75/80}\approx0{,}048$, a podíl mezi 0,15 a 0,35 nastane s pravděpodobností 0,973. Čtyřnásobný výběr zmenšil směrodatnou chybu na polovinu. S tímto vztahem se za chvíli setkáme znovu.
+Z rozdělení lze číst pravděpodobnosti stejně jako v minulé kapitole. Podíl mezi 0,15 a 0,35 znamená 3 až 7 správných odpovědí z dvaceti a nastane s pravděpodobností 0,807. V testu s 80 otázkami je směrodatná chyba poloviční, $\sqrt{0{,}25\times0{,}75/80}\approx0{,}048$, a podíl mezi 0,15 a 0,35 nastane s pravděpodobností 0,973. Čtyřnásobně větší velikost výběru snížila směrodatnou chybu na polovinu. S tímto vztahem se za chvíli setkáme znovu.
 
 Výběrové rozdělení podílu známe přesně, protože jsme přijali předpoklady [binomického modelu](kapitola_05.qmd#sec-binomicke-predpoklady): pevný počet nezávislých pokusů se stejnou pravděpodobností úspěchu. Bez nich by sloupce na obrázku vypadaly jinak.
 
 ## Výběrové rozdělení průměru: od devíti výběrů k simulaci {#sec-vyberove-rozdeleni-prumeru}
 
-Jak se mění průměr, když opakovaně vybíráme z téže populace? Oddíl sestaví výběrové rozdělení průměru nejprve ručně a potom simulací.
+Jak se mění průměr, když opakovaně vybíráme z téže populace? Tento oddíl sestaví výběrové rozdělení průměru nejprve ručně a potom simulací.
 
 ### Všech devět výběrů {#sec-devet-vyberu}
 
-U podílu nám výběrové rozdělení dodal hotový vzorec. U průměru si je nejprve sestavíme vlastníma rukama na příkladu tak malém, že lze vypsat úplně všechny výběry.
+U podílu nám výběrové rozdělení dodalo hotovou rovnici. U průměru si je nejprve sestavíme vlastníma rukama na příkladu tak malém, že lze vypsat úplně všechny výběry.
 
 Představme si maličkou modelovou populaci, v níž doba opuštění parkovacího místa nabývá jen tří hodnot: 20, 35 nebo 50 sekund, každé se stejnou pravděpodobností 1/3. Průměr této populace je $\mathrm{μ}=(20+35+50)/3=35$ s. Směrodatnou odchylku spočítáme z odchylek −15, 0 a 15 od průměru:
 
@@ -178,11 +178,11 @@ $$\begin{aligned}&20+27{,}5+35+27{,}5+35\\&\quad+42{,}5+35+42{,}5+50=315,\end{al
 
 tedy přesně průměr populace. Jednotlivé výběry průměr populace nadhodnocují nebo podhodnocují, ale žádným směrem soustavně.
 
-Druhá se týká rozptýlenosti. Odchylky devíti průměrů od hodnoty 35 jsou −15; −7,5; 0; −7,5; 0; 7,5; 0; 7,5 a 15. Součet jejich čtverců je 675, takže směrodatná odchylka výběrového rozdělení, tedy směrodatná chyba průměru, je
+Druhá se týká variability. Odchylky devíti výběrových průměrů od hodnoty populačního průměru 35 jsou: −15; −7,5; 0; −7,5; 0; 7,5; 0; 7,5 a 15. Součet jejich čtverců je 675, takže směrodatná odchylka výběrového rozdělení, tedy směrodatná chyba průměru, je
 
 $$\sqrt{\frac{675}{9}}=\sqrt{75}\approx8{,}66\ \text{s}.$$
 
-To je méně než 12,25 s, směrodatná odchylka jednotlivých dob. **Průměry kolísají méně než jednotlivé hodnoty.** Důvod je vidět v tabulce: krajní průměr 20 s vznikne jen tehdy, když jsou krátké obě vylosované doby, kdežto k prostřednímu průměru 35 s vedou tři různé cesty. Krátká a dlouhá doba se v průměru navzájem vyrovnávají.
+To je méně než 12,25 s, směrodatná odchylka jednotlivých dob. **Průměry se navzájem různí méně než jednotlivé hodnoty.** Důvod je vidět v tabulce: krajní průměr 20 s vznikne jen tehdy, když jsou krátké obě vylosované doby, kdežto k prostřednímu průměru 35 s vedou tři různé cesty. Krátká a dlouhá doba se v průměru navzájem vyrovnávají.
 
 ### Populace, jeden výběr a výběrové rozdělení {#sec-tri-urovne}
 
@@ -192,7 +192,7 @@ V příkladu vystupují tři různá rozdělení. Jejich záměna je nejčastěj
 
 | | Co popisuje | Co je jedna hodnota | V našem příkladu |
 |---|---|---|---|
-| Rozdělení v populaci | Všechny jednotlivce, o nichž chceme něco říci | Doba jednoho řidiče | Doby 20, 35 a 50 s, každá s pravděpodobností 1/3; průměr 35 s, směrodatná odchylka 12,25 s |
+| Rozdělení v populaci | Všechny jednotlivce, o nichž chceme něco říci | Doba jednoho řidiče z populace| Doby 20, 35 a 50 s, každá s pravděpodobností 1/3; průměr 35 s, směrodatná odchylka 12,25 s |
 | Rozdělení hodnot v jednom výběru | Jednotlivce, které jsme skutečně pozorovali | Doba jednoho řidiče z výběru | Například doby 20 a 50 s; průměr tohoto výběru je 35 s |
 | Výběrové rozdělení průměru | Průměry všech možných výběrů téže velikosti | Průměr jednoho celého výběru | Průměry 20 až 50 s s pravděpodobnostmi 1/9 až 3/9; střední hodnota 35 s, směrodatná chyba 8,66 s |
 
@@ -201,7 +201,7 @@ V příkladu vystupují tři různá rozdělení. Jejich záměna je nejčastěj
 
 :::
 
-První dvě rozdělení se týkají lidí. Třetí se týká výběrů: jeho „pozorováním“ není člověk, ale celý výběr shrnutý jedním číslem. Ve skutečném výzkumu máme v ruce jen prostřední řádek, jeden výběr. Populaci neznáme a výběrové rozdělení nikdy nepozorujeme přímo [@diez, s. 171]. Přesto o něm potřebujeme uvažovat, protože právě ono říká, jak daleko od populační hodnoty může náš jediný výsledek ležet.
+První dvě rozdělení se týkají lidí. Třetí se týká výběrů: jeho „pozorováním“ není člověk, ale celý výběr shrnutý jedním číslem. Ve skutečném výzkumu máme k dispozici jen prostřední řádek, jeden výběr. Populaci neznáme a výběrové rozdělení nikdy nepozorujeme přímo [@diez, s. 171]. Přesto o něm potřebujeme uvažovat, protože právě ono říká, jak daleko od populační hodnoty může náš jediný výsledek ležet.
 
 ### Když výběry nelze vypsat: simulace {#sec-simulace-prumeru}
 
@@ -219,11 +219,13 @@ Obrázek [-@fig-tri-urovne] ukazuje tytéž tři úrovně jako tabulka výše, t
 
 - Nahoře je populace. Jedna hodnota na ose je doba jednoho řidiče. Křivka je [hustota](kapitola_04.qmd#sec-hustota): model, ne naměřená data.
 - Uprostřed je jeden výběr. Každý bod je jeden z třiceti vylosovaných řidičů; svislá poloha bodů nic neznamená, jen brání překrývání. Průměr tohoto výběru je 36,5 s.
-- Dole je výběrové rozdělení průměru. Jedna hodnota na ose je průměr jednoho celého výběru třiceti řidičů a histogram shrnuje 10 000 takových průměrů. Trojúhelník z prostředního grafu je jednou z nich.
+- Dole je simulované výběrové rozdělení průměru. Jedna hodnota na ose je průměr jednoho celého výběru třiceti řidičů a histogram shrnuje 10 000 takových průměrů. Trojúhelník z prostředního grafu je jednou z nich.
 
 Dolní histogram je mnohem užší než křivka nahoře. Jednotliví řidiči se od sebe liší o desítky sekund, průměry třicetičlenných výběrů jen o jednotky.
 
-V simulaci vystupují dvě čísla, která se snadno zamění. **Velikost výběru** $n=30$ říká, kolik řidičů je v jednom výběru. **Počet opakování** 10 000 říká, kolik výběrů počítač vylosoval. Velikost výběru je vlastnost studie a mění samotné výběrové rozdělení. Počet opakování je vlastnost našeho výpočtu: při větším počtu opakování bude histogram hladší, ale bude to stále obrázek téhož rozdělení. Ve skutečném výzkumu je počet opakování roven jedné, protože máme jediný výběr.
+V simulaci vystupují dvě čísla, která se snadno zamění. **Velikost výběru** $n=30$ říká, kolik řidičů je v jednom výběru. **Počet opakování** 10 000 říká, kolik výběrů počítač vylosoval. Velikost výběru je vlastnost studie a mění samotné výběrové rozdělení. Počet opakování je vlastnost našeho výpočtu: při větším počtu opakování bude histogram hladší, ale bude to stále obrázek téhož rozdělení. Ve skutečném výzkumu je počet opakování roven jedné, protože máme k dispozici jediný výběr.
+
+Proč právě 10 000 opakování? Simulace je také jen výběr, tentokrát výběr z výběrů, a její přesnost se proto řídí stejným pravidlem jako přesnost průměru: roste s odmocninou z počtu opakování. Při 10 000 opakováních se střed i šířka simulovaného histogramu liší od přesných hodnot výukového modelu typicky jen o dvě až tři setiny sekundy. To pro naše účely stačí. Opakování bychom mohli mít i víc, ale desetkrát přesnější výsledek by vyžadoval stokrát více výpočtů, a to se obvykle nevyplatí. Výjimkou jsou velmi malé pravděpodobnosti, ke kterým přispívá jen několik málo simulovaných výběrů; k nim se vrátíme u [mezí simulace](#sec-simulace-presnost).
 
 Co se stane, když změníme velikost výběru? Simulaci jsme zopakovali pro výběry po 5, 30 a 100 řidičích, pokaždé s 10 000 opakováními.
 
@@ -237,21 +239,21 @@ Na obrázku [-@fig-prumery-simulace] je každá hodnota na ose opět průměrem 
 
 Simulace je náš výpočet a má konečnou přesnost. Kdyby počítač losoval znovu, vyšla by čísla 34,97 nebo 6,77 o něco jinak. Hodnoty, které uvádíme, proto čtěte jako přibližný obraz výběrového rozdělení, ne jako přesné konstanty. Všech 10 000 simulovaných průměrů pro každou velikost výběru najdete v sešitu na listu `Sim_prumery`.
 
-## Směrodatná chyba: jak moc průměry kolísají {#sec-smerodatna-chyba}
+## Směrodatná chyba: jak moc se průměry různí {#sec-smerodatna-chyba}
 
-Jak široké je výběrové rozdělení průměru a na čem jeho šířka závisí? Oddíl zavádí směrodatnou chybu a zákon velkých čísel a odlišuje pojmy, které se snadno pletou.
+Jak široké je výběrové rozdělení průměru a na čem jeho šířka závisí? Tento oddíl zavádí směrodatnou chybu a zákon velkých čísel a odlišuje pojmy, které se snadno pletou.
 
 ### Směrodatná chyba průměru {#sec-chyba-prumeru}
 
-V obou příkladech vyšla rozptýlenost průměrů menší než rozptýlenost jednotlivých dob, a tím menší, čím větší byl výběr. Vztah mezi nimi je překvapivě jednoduchý. Směrodatná chyba průměru se rovná směrodatné odchylce populace dělené odmocninou z velikosti výběru:
+V obou příkladech vyšla variabilita průměrů menší než variabilita jednotlivých dob, a tím menší, čím větší byl výběr. Vztah mezi nimi je překvapivě jednoduchý. Směrodatná chyba průměru se rovná směrodatné odchylce populace dělené odmocninou z velikosti výběru:
 
 $$\mathrm{σ}_m=\frac{\mathrm{σ}}{\sqrt{n}}.$$
 
-Zde $\mathrm{σ}$ je směrodatná odchylka jednotlivých hodnot v populaci, $n$ velikost výběru a $\mathrm{σ}_m$ směrodatná chyba průměru. Index $m$ připomíná, že jde o rozptýlenost průměrů, ne jednotlivých hodnot. Značku píšeme řeckým písmenem, protože popisuje výběrové rozdělení, které je součástí modelu, ne data jednoho výběru.
+Zde $\mathrm{σ}$ je směrodatná odchylka jednotlivých hodnot v populaci, $n$ velikost výběru a $\mathrm{σ}_m$ směrodatná chyba průměru. Index $m$ připomíná, že jde o variabilitu průměrů, ne jednotlivých hodnot. Značku píšeme řeckým písmenem, protože popisuje výběrové rozdělení, které je součástí modelu, ne data jednoho výběru.
 
 Vztah si ověříme na číslech, která už máme:
 
-::: {.table-scroll role="region" aria-label="Směrodatná chyba průměru podle vzorce a v příkladech" tabindex="0"}
+::: {.table-scroll role="region" aria-label="Směrodatná chyba průměru podle rovnice a v příkladech" tabindex="0"}
 
 | Příklad | $\mathrm{σ}$ (s) | $n$ | $\mathrm{σ}/\sqrt{n}$ (s) | Zjištěno v příkladu (s) |
 |---|---:|---:|---:|---:|
@@ -265,11 +267,11 @@ Vztah si ověříme na číslech, která už máme:
 
 :::
 
-U devíti výběrů souhlasí vzorec přesně, protože jsme vypsali všechny výběry. U simulací souhlasí přibližně; drobné rozdíly jsou důsledkem toho, že 10 000 opakování není nekonečně mnoho.
+U devíti výběrů souhlasí rovnice přesně, protože jsme vypsali všechny výběry. U simulací souhlasí přibližně; drobné rozdíly jsou důsledkem toho, že 10 000 opakování není nekonečně mnoho.
 
 Proč se dělí právě odmocninou? V průměru se dlouhé a krátké doby navzájem vyrovnávají, a čím více hodnot průměrujeme, tím úplnější vyrovnání bývá. Každá další hodnota ale přidává méně než ta předchozí. Zdvojnásobením výběru se směrodatná chyba nezmenší na polovinu, nýbrž jen asi na 71 %. Na polovinu ji zmenší až výběr čtyřnásobný: při $\mathrm{σ}=15$ s je směrodatná chyba 3,0 s pro 25 řidičů, 1,5 s pro 100 řidičů a 0,75 s pro 400 řidičů. Totéž jsme viděli u [podílu](#sec-chyba-podilu). Přesnější zdůvodnění je v [nepovinném rozšíření](#rozsireni-odvozeni-chyby).
 
-Vzorec platí pro náhodné a navzájem nezávislé výběry z jedné populace. Nezáleží při něm na tvaru populace: platil pro tři stejně pravděpodobné doby i pro zešikmený výukový model.
+Rovnice platí pro náhodné a navzájem nezávislé výběry z jedné populace. Nezáleží při ní na tvaru populace: platila pro tři stejně pravděpodobné doby i pro zešikmený výukový model.
 
 ::: {.teaching-figure role="region" aria-label="Směrodatná odchylka jednotlivých řidičů a směrodatná chyba průměru" tabindex="0"}
 
@@ -277,29 +279,29 @@ Vzorec platí pro náhodné a navzájem nezávislé výběry z jedné populace. 
 
 :::
 
-Levá část obrázku [-@fig-smerodatna-chyba] staví vedle sebe dvě čísla, která se snadno pletou, protože obě vyjadřují rozptýlenost a obě jsou v sekundách. **Směrodatná odchylka** 15 s říká, jak moc se od sebe liší jednotliví řidiči. **Směrodatná chyba** 1,5 s říká, jak moc se od sebe liší průměry výběrů po sto řidičích. Podle toho se liší i čtení konkrétních hodnot. Řidič, kterému odjezd trval 50 s, není ničím zvláštní: je jednu směrodatnou odchylku nad průměrem. Výběr sta řidičů s průměrem 50 s by byl v tomto modelu zcela mimořádný: leží deset směrodatných chyb nad populačním průměrem.
+Levá část obrázku [-@fig-smerodatna-chyba] staví vedle sebe dvě čísla, která se snadno pletou, protože obě vyjadřují variabilitu a obě jsou v sekundách. **Směrodatná odchylka** 15 s říká, jak moc se od sebe liší jednotliví řidiči. **Směrodatná chyba** 1,5 s říká, jak moc se od sebe liší průměry výběrů po sto řidičích. Podle toho se liší i čtení konkrétních hodnot. Řidič, kterému odjezd trval 50 s, není příliš výjimečný: je jednu směrodatnou odchylku nad průměrem. Výběr sta řidičů s průměrem 50 s by byl v tomto modelu zcela mimořádný: leží deset směrodatných chyb nad populačním průměrem. Obě čísla i obě hodnocení platí pro náš výukový model, tedy pro populaci s průměrem 35 s, směrodatnou odchylkou 15 s a zvoleným tvarem rozdělení. Při jiném předpokládaném rozdělení populace by vyšla jinak.
 
 ### Zákon velkých čísel {#sec-zakon-velkych-cisel}
 
-Ze vzorce plyne, že s rostoucím výběrem se směrodatná chyba blíží nule. Výběrové průměry se tedy stále těsněji shlukují kolem populačního průměru. V simulaci se od hodnoty 35 s nelišilo o více než 3 s jen 34 % průměrů výběrů po 5 řidičích. U výběrů po 30 řidičích to bylo 73 % průměrů a u výběrů po 100 řidičích 95 %. Pro výběry po 400 řidičích, kde je směrodatná chyba 0,75 s, by to podle normálního modelu byly prakticky všechny.
+Z rovnice plyne, že s rostoucím výběrem se směrodatná chyba blíží nule. Výběrové průměry se tedy stále těsněji shlukují kolem populačního průměru. V simulaci se v pásmu 35 ± 3 s nacházelo jen 34 % průměrů výběrů po 5 řidičích. U výběrů po 30 řidičích to bylo 73 % průměrů a u výběrů po 100 řidičích 95 %. Pro výběry po 400 řidičích, kde je směrodatná chyba 0,75 s, by to podle normálního modelu byly téměř všechny.
 
-Této zákonitosti se říká **zákon velkých čísel (*law of large numbers*)**: s rostoucí velikostí výběru se výběrový průměr přibližuje průměru populace, a to v tom smyslu, že velké odchylky jsou stále méně pravděpodobné. Setkali jsme se s ním už v minulé kapitole, jen bez jména. [Relativní četnost správných tipů](kapitola_05.qmd#sec-dlouha-rada) se v dlouhé řadě stahovala k pravděpodobnosti 0,25; relativní četnost je průměr nul a jedniček, takže šlo o tentýž zákon.
+Této zákonitosti se říká **zákon velkých čísel (*law of large numbers*)**: s rostoucí velikostí výběru se výběrový průměr přibližuje průměru populace, a to v tom smyslu, že velké odchylky jsou stále méně pravděpodobné. Setkali jsme se s ním už v minulé kapitole, jen bez jména. [Relativní četnost správných tipů](kapitola_05.qmd#sec-dlouha-rada) s přibývajícími pokusy kolísala stále méně okolo pravděpodobnosti 0,25; relativní četnost je průměr nul a jedniček, takže šlo o tentýž zákon.
 
 ::: {.callout-tip title="Připomenutí: co zákon velkých čísel neslibuje"}
 U dlouhé řady tipů jsme v minulé kapitole uvedli dvě upozornění, která platí i zde. Zákon neslibuje, že každé další pozorování průměr k populační hodnotě přiblíží, a neříká, že se dřívější odchylky „vyrovnají“; pouze ztrácejí váhu. Podrobněji viz [výklad dlouhé řady pokusů](kapitola_05.qmd#sec-dlouha-rada).
 :::
 
-Zákon se navíc týká výběrů, které jsou náhodné: větší výběr pořízený zkresleným způsobem se spolehlivě blíží nesprávné hodnotě.
+Zákon se navíc týká výběrů, které jsou náhodné: větší výběr pořízený nevhodným způsobem se spolehlivě blíží nesprávné hodnotě.
 
 ### Směrodatnou chybu obvykle odhadujeme {#sec-odhad-chyby}
 
-Ve výukovém modelu známe $\mathrm{σ}=15$ s, protože jsme si je zvolili. Ve skutečném výzkumu populační směrodatnou odchylku téměř nikdy neznáme. Máme jediný výběr a jeho [výběrovou směrodatnou odchylku](kapitola_03.qmd#sec-smerodatna-odchylka) $s$. Tu do vzorce dosadíme místo $\mathrm{σ}$ a dostaneme **odhad směrodatné chyby (*estimated standard error*)**:
+Ve výukovém modelu známe $\mathrm{σ}=15$ s, protože jsme si je zvolili. Ve skutečném výzkumu populační směrodatnou odchylku téměř nikdy neznáme. Máme jediný výběr a jeho [výběrovou směrodatnou odchylku](kapitola_03.qmd#sec-smerodatna-odchylka) $s$. Tu do rovnice dosadíme místo $\mathrm{σ}$ a dostaneme **odhad směrodatné chyby (*estimated standard error*)**:
 
 $$s_m=\frac{s}{\sqrt{n}}.$$
 
 Značku píšeme latinkou, protože ji počítáme z dat. Simulovaný výběr 30 řidičů z obrázku [-@fig-tri-urovne] má směrodatnou odchylku 14,9 s, takže $s_m=14{,}9/\sqrt{30}\approx2{,}72$ s. Skutečná směrodatná chyba je v modelu 2,74 s; odhad se tentokrát trefil velmi dobře.
 
-Nemusí tomu tak být vždy. Směrodatná odchylka $s$ je statistika jako každá jiná a mezi výběry kolísá. Osm výběrů, jejichž průměry jsme vypsali výše, mělo směrodatné odchylky od 11,93 do 17,55 s. Odhady směrodatné chyby z nich vycházejí od 2,18 do 3,20 s, ačkoli skutečná hodnota je pro všechny stejná. Větší výběr odhad zpřesní: u výběrů po 100 řidičích leželo 95 % odhadů mezi 1,25 a 1,77 s při skutečné hodnotě 1,5 s.
+Nemusí tomu tak být vždy. Směrodatná odchylka $s$ je statistika jako každá jiná a mezi výběry kolísá. Osm výběrů, jejichž průměry jsme vypsali výše, mělo směrodatné odchylky od 11,93 do 17,55 s. Odhady směrodatné chyby z nich vycházejí od 2,18 do 3,20 s, ačkoli populační směrodatná odchylka zůstává neměnná. Větší výběr odhad zpřesní: u výběrů po 100 řidičích leželo 95 % odhadů mezi 1,25 a 1,77 s při skutečné hodnotě 1,5 s.
 
 Z toho plyne důležité omezení. Kdykoli v této kapitole počítáme pravděpodobnost pomocí normálního modelu, používáme směrodatnou chybu, kterou **známe**: z výukového modelu nebo z norem testu. Dosadíme-li místo ní odhad $s_m$, přibude do výpočtu další zdroj nejistoty a pravděpodobnosti z normálního modelu už nejsou přesné, zvlášť u malých výběrů. Postup, který s touto nejistotou počítá, vykládá [kapitola 7](kapitola_07.qmd#sec-t-rozdeleni).
 
@@ -314,7 +316,7 @@ Kolem kolísání výsledků jsme nasbírali několik podobně znějících pojm
 | Pojem | Na jakou otázku odpovídá | V našem příkladu | Zmenší se větším výběrem? |
 |---|---|---|---|
 | Směrodatná odchylka | Jak moc se liší jednotliví lidé? | Doby řidičů: 15 s v modelu, 14,9 s v jednom výběru | Ne. Větší výběr ji jen přesněji odhadne. |
-| Výběrová variabilita | Mění se výsledek od výběru k výběru? | Osm výběrů dalo průměry od 31,5 do 40,0 s | Ano. |
+| Výběrová variabilita | Mění se výsledek od výběru k výběru? | V osmi výběrech byly zaznamenány průměry od 31,5 do 40,0 s | Ano. |
 | Směrodatná chyba | Jak velké je toto kolísání? | 2,74 s pro průměr 30 řidičů | Ano, s odmocninou z velikosti výběru. |
 | Výběrová chyba | O kolik se náš jeden odhad liší od populační hodnoty? | Výběr s průměrem 36,5 s: 36,5 − 35 = 1,5 s | Obvykle ano, ale u jednoho výběru to nevíme jistě. |
 | Systematické zkreslení | Míří náš postup soustavně vedle? | Stopky spuštěné pozdě zkrátí každou dobu | Ne. |
@@ -324,7 +326,7 @@ Kolem kolísání výsledků jsme nasbírali několik podobně znějících pojm
 
 :::
 
-**Výběrová variabilita** je jev: proměnlivost výsledků mezi výběry. **Směrodatná chyba** je číslo, kterým tento jev měříme: směrodatná odchylka výběrového rozdělení. **Výběrová chyba (*sampling error*)** se týká jednoho konkrétního výběru: je to rozdíl mezi výběrovým odhadem a populačním parametrem. V simulaci ji umíme spočítat, protože populační průměr známe. Ve skutečném výzkumu ji neznáme, protože neznáme populační hodnotu; známe jen směrodatnou chybu, tedy to, jak velké výběrové chyby u daného postupu obvykle bývají.
+**Výběrová variabilita** je jev: proměnlivost výsledků mezi výběry. **Směrodatná chyba** je číslo, kterým tento jev měříme: směrodatná odchylka výběrového rozdělení. **Výběrová chyba (*sampling error*)** se týká jednoho konkrétního výběru: je to rozdíl mezi výběrovým odhadem a populačním parametrem. V simulaci ji umíme spočítat, protože populační průměr známe. Ve skutečném výzkumu ji neznáme, protože neznáme populační hodnotu. Přesně neznáme ani směrodatnou chybu, protože závisí na neznámé populační směrodatné odchylce. Můžeme ji však [odhadnout z dat](#sec-odhad-chyby) a odhad $s_m$ nám řekne, jak velké výběrové chyby u daného postupu přibližně bývají.
 
 V literatuře se termín výběrová chyba používá v různé šíři. Někteří autoři jím označují samo kolísání mezi výběry, tedy to, čemu zde říkáme výběrová variabilita; jiní jím myslí veškerý rozdíl mezi odhadem a skutečností. V cizím textu si proto vždy ověřte, v jakém významu jej autor používá.
 
@@ -332,9 +334,9 @@ V literatuře se termín výběrová chyba používá v různé šíři. Někte�
 
 ### Malé skupiny mívají extrémnější průměry {#sec-male-skupiny}
 
-Vzorec pro směrodatnou chybu má důsledek, který při čtení výsledků snadno unikne. Porovnáváme-li průměry různě velkých skupin, kolísají průměry malých skupin více. Mezi skupinami s nejvyšším i nejnižším průměrem proto bývá nápadně mnoho malých, i kdyby se skupiny ve skutečnosti ničím nelišily.
+Z rovnice pro směrodatnou chybu vyplývá důsledek, který nemusí být na první pohled zřejmý. Porovnáváme-li průměry různě velkých skupin, různí se průměry malých skupin více. Mezi skupinami s nejvyšším i nejnižším průměrem proto bývá nápadně mnoho malých, i kdyby se skupiny ve skutečnosti ničím nelišily.
 
-Ukážeme to na simulaci. Počítač vytvořil 150 skupin o velikosti 10 až 397 lidí. Výsledky všech lidí pocházejí z jediné populace s průměrem 50 bodů a směrodatnou odchylkou 10 bodů, takže mezi skupinami není žádný skutečný rozdíl.
+Ukážeme to na simulaci. Počítač vytvořil 150 skupin o velikosti 10 až 397 lidí. Výsledky všech lidí pocházejí z téže populace s průměrem 50 bodů a směrodatnou odchylkou 10 bodů, takže za veškeré rozdíly mezi skupinami může pouze výběrová variabilita.
 
 ::: {.teaching-figure role="region" aria-label="Průměry 150 simulovaných skupin podle velikosti skupiny" tabindex="0"}
 
@@ -342,15 +344,15 @@ Ukážeme to na simulaci. Počítač vytvořil 150 skupin o velikosti 10 až 397
 
 :::
 
-Na obrázku [-@fig-trychtyr] je každý bod jedna skupina a jeho výška je průměr této skupiny. Body tvoří trychtýř, který přesně kopíruje vzorec $\mathrm{σ}/\sqrt{n}$. Ze dvaceti skupin, jejichž průměr leží od hodnoty 50 nejdále, jich 17 má nejvýše 50 lidí, ačkoli takto malých skupin je mezi všemi jen 56 ze 150, tedy 37 %. Malé skupiny přitom obsadily oba konce: mají průměry nejvyšší i nejnižší.
+Na obrázku [-@fig-trychtyr] představuje každý bod jednu skupinu a jeho svislá poloha průměr této skupiny. Body tvoří trychtýř, který přesně kopíruje průběh směrodatné chyby $\mathrm{σ}/\sqrt{n}$. Ze dvaceti skupin, jejichž průměr leží od hodnoty 50 nejdále, jich 17 má nejvýše 50 lidí, ačkoli takto malých skupin je mezi všemi jen 56 ze 150, tedy 37 %. Malé skupiny přitom obsadily oba konce: mají průměry nejvyšší i nejnižší.
 
-Wainer [-@wainer2007, s. 251–253] popisuje, jak se tento jev promítl do úvah o školách. Mezi 50 školami s nejlepšími výsledky v plošném testu bylo malých škol čtyřikrát více, než by odpovídalo jejich zastoupení, a to se uvádělo jako doklad, že malé školy vzdělávají lépe. Malé školy však byly nadměrně zastoupeny i mezi 50 školami s výsledky nejhoršími. Obojí je právě to, co plyne ze směrodatné chyby.
+Wainer [-@wainer2007, s. 251–253] popisuje, jak se tento jev promítl do úvah o školách. Mezi 50 školami s nejlepšími výsledky v plošném testu bylo malých škol čtyřikrát více, než by odpovídalo jejich zastoupení, a to se uvádělo jako doklad, že malé školy vzdělávají lépe. Malé školy však byly nadměrně zastoupeny i mezi 50 školami s nejhoršími výsledky. Obojí je právě to, co plyne ze směrodatné chyby.
 
-Neznamená to, že velikost skupiny nemůže mít na výsledky vliv. Znamená to, že výskyt malých skupin mezi nejlepšími sám o sobě takový vliv nedokládá. Než budeme hledat příčinu mimořádného průměru některé třídy, poradny nebo skupiny klientů, je na místě zeptat se, z kolika lidí byl spočítán, a podívat se i na opačný konec žebříčku. Data z obrázku jsou v sešitu na listu `Skupiny`.
+Neznamená to, že velikost skupiny nemůže mít na výsledky vliv. Znamená to, že větší výskyt malých skupin mezi nejlepšími sám o sobě takový vliv nedokládá. Než budeme hledat příčinu mimořádného průměru některé třídy, poradny nebo skupiny klientů, je na místě zeptat se, z kolika lidí byl spočítán, a podívat se i na opačný konec žebříčku. Data z obrázku jsou v sešitu na listu `Skupiny`.
 
 ## Tvar výběrového rozdělení: centrální limitní věta {#sec-centralni-limitni-veta}
 
-Po šířce výběrového rozdělení průměru zbývá jeho tvar. Oddíl ukazuje, proč se rozdělení průměrů blíží normálnímu i u nenormální populace a kde má toto pravidlo meze.
+Po šířce výběrového rozdělení průměru zbývá charakterizovat jeho tvar. Tento oddíl ukazuje, proč se rozdělení průměrů blíží normálnímu rozdělení, i když populační rozdělení normálnímu neodpovídá, a kde má toto pravidlo meze.
 
 ### Dvě změny, které probíhají současně {#sec-dve-zmeny}
 
@@ -405,7 +407,7 @@ To, co simulace ukázala na jednom modelu, platí obecně. **Centrální limitn�
 
 Pro dostatečně velký výběr proto můžeme výběrové rozdělení průměru přiblížit normálním modelem se střední hodnotou $\mathrm{μ}$ a směrodatnou odchylkou rovnou směrodatné chybě, v zápisu z [kapitoly o normálním rozdělení](kapitola_04.qmd#sec-parametry-normalniho) $N(\mathrm{μ},\mathrm{σ}_m)$. Pro průměr sta řidičů ve výukovém modelu je to normální model se střední hodnotou 35 s a směrodatnou odchylkou 1,5 s.
 
-Věta vysvětluje, proč má normální model v inferenční statistice tak významné místo. Nejde o to, že by data v psychologii byla normálně rozdělená; často nejsou. Jde o to, že průměry se k normálnímu rozdělení blíží i tehdy, když data normální nejsou.
+Věta vysvětluje, proč má normální model v inferenční statistice tak významné místo. Nejde o to, že by data v psychologii byla normálně rozdělená; často nejsou. Jde o to, že rozdělení výběrových průměrů se blíží normálnímu rozdělení i tehdy, když data normální rozdělení nevykazují.
 
 Věta má podmínky a meze:
 
@@ -413,7 +415,7 @@ Věta má podmínky a meze:
 - **Populace musí mít konečnou variabilitu.** U veličin, se kterými se v psychologii běžně pracuje, je to splněno. Čím těžší chvosty ale populace má, tím pomaleji se průměry k normálnímu rozdělení blíží, protože průměr může ovládnout jediná krajní hodnota.
 - **Neexistuje velikost výběru, od které věta „platí“.** Jak velký výběr stačí, závisí na tvaru populace. Je-li populace sama normální, je rozdělení průměru normální pro jakékoli $n$. Je-li souměrná a nemá těžké chvosty, stačí výběry malé. U zešikmené populace je třeba výběrů větších, a čím výraznější zešikmení, tím větších. Howell [-@howell, s. 179] uvádí, že u výrazně zešikmené populace může být potřeba 30 i více pozorování; i v našem jen mírně zešikmeném modelu je při $n=30$ rozdíl mezi oběma chvosty ještě patrný. Číslo 30 je tedy orientační zkušenost, ne hranice.
 
-S jedním zvláštním případem věty jsme už počítali. Počet úspěchů v binomickém modelu je součet nul a jedniček a podíl úspěchů jejich průměr. [Normální aproximace binomického rozdělení](kapitola_05.qmd#sec-aproximace-postup) je tedy centrální limitní věta pro pozorování se dvěma hodnotami. Tehdejší podmínka alespoň deseti očekávaných úspěchů i neúspěchů plnila stejnou úlohu jako zde „dostatečně velký výběr“.
+S jedním zvláštním případem věty jsme už počítali. Počet úspěchů v binomickém modelu je součet nul a jedniček a podíl úspěchů jejich průměr. [Normální aproximace binomického rozdělení](kapitola_05.qmd#sec-aproximace-postup) je tedy uplatnění centrální limitní věty pro pozorování se dvěma možnými hodnotami. Tehdejší podmínka alespoň deseti očekávaných úspěchů i neúspěchů plnila stejnou úlohu jako zde „dostatečně velký výběr“.
 
 ### Zákon velkých čísel a centrální limitní věta vedle sebe {#sec-zvc-a-clv}
 
@@ -425,7 +427,7 @@ Obě zákonitosti se týkají průměrů velkých výběrů a snadno splynou. Od
 |---|---|---|
 | Otázka | Kde leží průměr velkého výběru? | Jaký tvar má rozdělení průměrů? |
 | Odpověď | Blízko populačního průměru; směrodatná chyba klesá k nule. | Po standardizaci se blíží normovanému normálnímu rozdělení. |
-| Na obrázku [-@fig-zvc-clv] | Horní řada: histogramy se zužují. | Dolní řada: histogramy se blíží křivce. |
+| Na obrázku [-@fig-zvc-clv] | Horní řada: histogramy se zužují. | Dolní řada: tvar histogramů se blíží normální křivce. |
 | K čemu slouží | Zdůvodňuje, proč větší výběr dává přesnější odhad. | Umožňuje počítat pravděpodobnosti průměrů normálním modelem. |
 
 : Zákon velkých čísel a centrální limitní věta {#tbl-k06-08}
@@ -449,11 +451,13 @@ Věta se také netýká každé statistiky. Výběrové rozdělení má i mediá
 
 :::
 
-Na obrázku [-@fig-jine-statistiky] je každá hodnota na ose statistikou jednoho výběru třiceti řidičů. Výběrové mediány se soustřeďují kolem mediánu populace, který je v zešikmeném modelu 32,9 s, ne kolem průměru 35 s. Jejich směrodatná chyba je 3,24 s, tedy větší než 2,74 s u průměru. Výběrové směrodatné odchylky mají směrodatnou chybu 2,37 s a jejich rozdělení je mírně zešikmené doprava. S nesouměrným výběrovým rozdělením jsme se setkali už u [simulace korekce rozptylu](kapitola_03.qmd#sec-korekce-rozptylu). Každá statistika má tedy své výběrové rozdělení a svou směrodatnou chybu; vzorec $\mathrm{σ}/\sqrt{n}$ patří jen průměru.
+Na obrázku [-@fig-jine-statistiky] je každá hodnota na ose statistikou jednoho výběru třiceti řidičů. Výběrové mediány se soustřeďují kolem mediánu populace, který je v zešikmeném modelu 32,9 s, ne kolem průměru 35 s. Jejich směrodatná chyba je 3,24 s, tedy větší než 2,74 s u průměru. Průměr využívá hodnoty všech třiceti řidičů, a krátké a dlouhé doby se v něm proto vyrovnávají. Medián určují jen prostřední hodnoty seřazeného výběru, takže závisí na tom, které doby se do středu výběru právě dostaly, a mezi výběry se různí více. Platí to pro populace bez těžkých chvostů, jako je náš model. Má-li populace těžké chvosty, mohou ojedinělé krajní hodnoty rozkolísat průměr natolik, že je méně stabilní než medián.
+
+Výběrové směrodatné odchylky mají směrodatnou chybu 2,37 s a jejich rozdělení je mírně zešikmené doprava. Směrodatná odchylka nemůže klesnout pod nulu, shora však omezená není. Odchylky od průměru se navíc umocňují na druhou, takže jediná velmi dlouhá doba ve výběru směrodatnou odchylku výrazně zvýší. Výběry s jednou či dvěma takovými dobami tvoří delší pravý chvost. S nesouměrným výběrovým rozdělením jsme se setkali už u [simulace korekce rozptylu](kapitola_03.qmd#sec-korekce-rozptylu). Každá statistika má tedy své výběrové rozdělení a svou směrodatnou chybu; rovnice $\mathrm{σ}_m=\mathrm{σ}/\sqrt{n}$ platí jen pro průměr.
 
 ## Jak pravděpodobný je výběrový průměr: řešený výpočet {#sec-vypocet-prumeru}
 
-Oddíl spojuje směrodatnou chybu s normálním modelem a počítá, jak pravděpodobný je určitý výběrový průměr či rozdíl dvou průměrů, když model populace známe.
+Tento oddíl spojuje směrodatnou chybu s normálním modelem a počítá, jak pravděpodobný je určitý výběrový průměr či rozdíl dvou průměrů, když model populace známe.
 
 ### Průměr sta řidičů {#sec-pravdepodobnost-prumeru}
 
@@ -465,7 +469,7 @@ Směrodatná chyba a centrální limitní věta dohromady umožňují počítat 
 
 1. *Model.* $\mathrm{μ}=35$ s, $\mathrm{σ}=15$ s, výběr $n=100$ nezávislých řidičů.
 2. *Směrodatná chyba.* $\mathrm{σ}_m=15/\sqrt{100}=1{,}5$ s.
-3. *Tvar.* Výběr je velký a populace jen mírně zešikmená, takže podle centrální limitní věty přiblížíme výběrové rozdělení průměru normálním modelem se střední hodnotou 35 s a směrodatnou odchylkou 1,5 s.
+3. *Tvar.* Výběr je velký a populace jen mírně zešikmená, takže podle centrální limitní věty se výběrové rozdělení průměru blíží normálnímu modelu se střední hodnotou 35 s a směrodatnou odchylkou 1,5 s.
 4. *Z-skór průměru.* $z=(38-35)/1{,}5=2$. Průměr 38 s leží dvě směrodatné chyby nad populačním průměrem.
 5. *Plocha.* Pravděpodobnost je plocha pod křivkou napravo od 38 s: $1-0{,}9772=0{,}0228$.
 
@@ -516,7 +520,7 @@ Průměr simulovaných rozdílů je 0,02 s, tedy prakticky nula: žádná ze sku
 
 **Postup.** Výběrové rozdělení rozdílu přiblížíme normálním modelem se střední hodnotou 0 s a směrodatnou odchylkou 2,12 s. Rozdílu 3 s odpovídá $z=3/2{,}1213\approx1{,}41$. Nad touto hodnotou leží 0,0786 plochy a stejně tolik pod hodnotou −1,41. Dohromady $2\times0{,}0786\approx0{,}157$.
 
-**Odpověď.** Rozdíl větší než 3 s vznikne přibližně u 16 % dvojic výběrů, přestože obě skupiny pocházejí z téže populace. V simulaci to bylo 16,0 %. Třísekundový rozdíl mezi průměry dvou stovek řidičů tedy není nic neobvyklého.
+**Odpověď.** Rozdíl mezi průměry dvou nezávislých výběrů o více než 3 s, kterýmkoli směrem, nastává přibližně u 16 % dvojic výběrů, přestože obě skupiny pocházejí z téže populace. V simulaci to bylo 16,0 %. Třísekundový rozdíl mezi průměry dvou stovek řidičů tedy není nic neobvyklého.
 
 ::: {.teaching-figure role="region" aria-label="Pravděpodobnost průměru sta řidičů nad 38 sekund a rozdělení rozdílu dvou průměrů" tabindex="0"}
 
@@ -526,16 +530,16 @@ Průměr simulovaných rozdílů je 0,02 s, tedy prakticky nula: žádná ze sku
 
 Na obrázku [-@fig-plocha-prumeru] je jedna hodnota na vodorovné ose vlevo průměrem jednoho výběru, vpravo rozdílem průměrů jedné dvojice výběrů. Sloupce vpravo jsou simulovaná data, křivka je normální model; obojí se dobře shoduje.
 
-U modelu „žádného rozdílu“ si všimněme, co všechno předpokládá. Tvrzení, které nás u parkovací studie zajímá, se týká jen průměrů: jsou populační průměry obou skupin stejné? Náš model předpokládá víc. Obě populace v něm mají nejen stejný průměr, ale celé stejné rozdělení, tedy i stejný tvar a stejnou směrodatnou odchylku 15 s, a výběry jsou náhodné a nezávislé. **Rovnost průměrů není totéž co shoda rozdělení.** Dvě populace mohou mít stejný průměr a přitom se lišit rozptýleností nebo tvarem, a směrodatná chyba rozdílu by pak byla jiná. Hodnoty 2,12 s a 0,157 platí pro model, který jsme zvolili.
+U modelu „žádného rozdílu“ si všimněme, co všechno předpokládá. Tvrzení, které nás u parkovací studie zajímá, se týká jen průměrů: jsou populační průměry obou skupin stejné? Náš model předpokládá víc. Obě populace v něm mají nejen stejný průměr, ale celé stejné rozdělení, tedy i stejný tvar a stejnou směrodatnou odchylku 15 s, a výběry jsou náhodné a nezávislé. **Rovnost průměrů není totéž co shoda rozdělení.** Dvě populace mohou mít stejný průměr a přitom se lišit variabilitou nebo tvarem, a směrodatná chyba rozdílu by pak byla jiná. Hodnoty 2,12 s a 0,157 platí pro model, který jsme zvolili.
 
 ::: {#rozsireni-odvozeni-chyby .callout-note collapse="true" title="Nepovinné rozšíření: odkud se bere odmocnina"}
-Vzorec pro směrodatnou chybu plyne z jednoho pravidla o součtech. Jsou-li náhodné proměnné **nezávislé**, je rozptyl jejich součtu roven součtu jejich rozptylů. Pro směrodatné odchylky nic tak jednoduchého neplatí; proto se při odvozování pracuje s [rozptylem](kapitola_03.qmd#sec-rozptyl) a odmocňuje se až na konci.
+Rovnice pro směrodatnou chybu plyne z jednoho pravidla o součtech. Jsou-li náhodné proměnné **nezávislé**, je rozptyl jejich součtu roven součtu jejich rozptylů. Pro směrodatné odchylky nic tak jednoduchého neplatí; proto se při odvozování pracuje s [rozptylem](kapitola_03.qmd#sec-rozptyl) a odmocňuje se až na konci.
 
 **Průměr jednoho výběru.** Součet $n$ nezávislých dob z populace s rozptylem $\mathrm{σ}^2$ má rozptyl $n\times\mathrm{σ}^2$, a tedy směrodatnou odchylku $\mathrm{σ}\times\sqrt{n}$. Průměr je součet dělený $n$. Dělení konstantou je [změna jednotky](kapitola_03.qmd#sec-zmena-skaly), při které se směrodatná odchylka dělí stejným číslem:
 
 $$\mathrm{σ}_m=\frac{\mathrm{σ}\times\sqrt{n}}{n}=\frac{\mathrm{σ}}{\sqrt{n}}.$$
 
-Součet tedy kolísá s rostoucím $n$ stále více, ale pomaleji, než roste sám. Průměr proto kolísá stále méně.
+Součet tedy kolísá s rostoucím $n$ stále více, ale pomaleji, než roste sám. Jinými slovy, směrodatná odchylka součtu vzrůstá úměrně s $\sqrt{n}$, ale střední hodnota součtu vzrůstá rychleji, přímo úměrně s počtem hodnot $n$. Průměr proto kolísá stále méně, neboť jeho směrodatná odchylka je úměrná poměru $\sqrt{n}/n=1/\sqrt{n}$, a ten s rostoucím $n$ klesá.
 
 Ověření na příkladu se třemi dobami: součty devíti výběrů jsou 40, 55, 70, 55, 70, 85, 70, 85 a 100 s. Jejich průměr je 70 s a rozptyl 300, tedy $2\times150$. Směrodatná odchylka součtu je $\sqrt{300}\approx17{,}32$ s a po vydělení dvěma dostaneme 8,66 s.
 
@@ -543,14 +547,14 @@ Ověření na příkladu se třemi dobami: součty devíti výběrů jsou 40, 55
 
 $$\begin{aligned}&\text{směrodatná chyba rozdílu}=\sqrt{\frac{\mathrm{σ}_1^2}{n_1}+\frac{\mathrm{σ}_2^2}{n_2}}\\&\quad=\sqrt{\frac{15^2}{100}+\frac{15^2}{100}}=\sqrt{4{,}5}\approx2{,}1213\ \text{s}.\end{aligned}$$
 
-Indexy 1 a 2 označují obě skupiny. Vzorec připouští různé směrodatné odchylky i různé velikosti skupin; v našem modelu jsou stejné.
+Indexy 1 a 2 označují obě skupiny. Rovnice připouští různé směrodatné odchylky i různé velikosti skupin; v našem modelu jsou stejné.
 
 Wainer [-@wainer2007, s. 250] uvádí historický příklad toho, co se stane, když se toto pravidlo nezná. Při kontrole anglických mincí se od středověku vážilo sto mincí najednou a povolená odchylka jejich společné hmotnosti byla stanovena jako stonásobek odchylky povolené pro jednu minci. Kolísání součtu sta mincí je ale jen desetinásobkem kolísání jedné mince, takže kontrola byla mnohem mírnější, než se zamýšlelo.
 :::
 
 ## Od výzkumné otázky k hypotézám a směru testu {#sec-hypotezy}
 
-Jak z výsledku jedné studie usuzovat na populaci? Oddíl ukazuje první krok testování: převést výzkumnou otázku na statistické hypotézy a zvolit směr testu.
+Jak z výsledku jedné studie usuzovat na populaci? Tento oddíl ukazuje první krok testování: převést výzkumnou otázku na statistické hypotézy a zvolit směr testu.
 
 ### Výzkumná a statistická hypotéza {#sec-vyzkumna-statisticka}
 
@@ -563,16 +567,18 @@ Výzkumnou hypotézu nelze s daty porovnat přímo. Nejprve je třeba ji převé
 - **Nulová hypotéza (*null hypothesis*)**, značka $H_0$, je tvrzení, se kterým data porovnáváme. Zde: populační průměry se neliší, $\mathrm{μ}_1-\mathrm{μ}_2=0$.
 - **Alternativní hypotéza (*alternative hypothesis*)**, značka $H_1$, zahrnuje to, co nulová hypotéza vylučuje. Zde: populační průměry se liší, $\mathrm{μ}_1-\mathrm{μ}_2\neq0$.
 
+Nulová i alternativní hypotéza jsou tedy obě statistické hypotézy: obě jsou tvrzení o populačních parametrech. Liší se rolí, kterou v testu hrají.
+
 Proč porovnáváme data s nulovou hypotézou, když nás zajímá ta výzkumná? Protože nulová hypotéza je dost určitá na to, abychom z ní uměli odvodit výběrové rozdělení. Přesně to jsme udělali v [předchozím oddílu](#sec-rozdil-dvou-prumeru): za předpokladu stejných populačních průměrů jsme zjistili, jak se chová rozdíl výběrových průměrů. Alternativní hypotéza říká jen, že nějaký rozdíl existuje, ne jak velký, a žádné jedno výběrové rozdělení z ní neplyne [@howell, s. 91].
 
 Dvě upozornění předem:
 
 - **Hypotézy se týkají populací, ne výběrů.** Že se výběrové průměry liší o 6,88 s, víme; to testovat nepotřebujeme. Neznámé jsou populační průměry $\mathrm{μ}_1$ a $\mathrm{μ}_2$.
-- **Test se týká statistické hypotézy, ne výzkumné.** Zda výsledek testu něco říká o výzkumné hypotéze, závisí na tom, jak dobře měření a uspořádání studie spojují věcné tvrzení s porovnávanými čísly [@navarro, oddíl 11.1]. K tomuto kroku se vrátíme u každého závěru.
+- **Test se týká statistické hypotézy, ne výzkumné.** Zda výsledek testu něco říká o výzkumné hypotéze, závisí na tom, jak dobře měření a uspořádání studie spojují věcné tvrzení s porovnávanými čísly [@navarro, oddíl 11.1]. Jinými slovy, závisí to na dalších předpokladech, mimo jiné na [reliabilním a validním měření](kapitola_01.qmd#sec-reliabilita-validita) zkoumaného jevu a na vhodném uspořádání studie. K tomuto kroku se vrátíme u každého závěru.
 
 ### Směr testu a extrémnější výsledky {#sec-smer-testu}
 
-Než spočítáme jakoukoli pravděpodobnost, musíme rozhodnout, které výsledky budeme považovat za doklad proti nulové hypotéze. Odpověď určuje alternativní hypotéza: proti $H_0$ mluví výsledky, které leží daleko od hodnoty podle nulové hypotézy **ve směru, který uvádí alternativa**. O takových výsledcích říkáme, že jsou extrémnější.
+Než spočítáme jakoukoli pravděpodobnost, musíme rozhodnout, které výsledky budeme považovat za svědčící proti nulové hypotéze. Odpověď určuje alternativní hypotéza: proti $H_0$ mluví výsledky, které leží daleko od hodnoty podle nulové hypotézy **ve směru, který uvádí alternativa**. O takových výsledcích říkáme, že jsou extrémnější.
 
 Podle směru rozlišujeme dva druhy testů:
 
@@ -593,13 +599,15 @@ Obrázek [-@fig-extremnejsi] ukazuje na smyšleném rozdílu 4 s, jak směr měn
 
 Jaký směr zvolit u parkovací studie? Výzkumná hypotéza předpokládá delší odjezd. Smysl by ale dával i opačný výsledek: řidič, který vidí čekající auto, může spěchat, aby nezdržoval. Protože by nás zajímal rozdíl v obou směrech, zvolíme **oboustranný test**. Je to také obvyklá volba tam, kde není předem jasný důvod zabývat se jen jedním směrem [@howell, s. 98–99].
 
-## P-hodnota, hladina významnosti a kritický obor {#sec-p-hodnota}
+Oboustranný test často volíme i tehdy, když je výzkumná hypotéza směrová. Od nové psychologické intervence například čekáme, že lidem pomůže. Kdyby jim ale ve skutečnosti škodila, chceme, aby to test také odhalil. Jednostranný test ve směru „pomáhá“ by takový výsledek nemohl označit za statisticky významný.
 
-Jak posoudit, zda je pozorovaný rozdíl slučitelný s nulovou hypotézou? Oddíl zavádí p-hodnotu a předem stanovené rozhodovací pravidlo.
+## *p*-hodnota, hladina významnosti a kritický obor {#sec-p-hodnota}
+
+Jak posoudit, zda je pozorovaný rozdíl slučitelný s nulovou hypotézou? Tento oddíl zavádí *p*-hodnotu a předem stanovené rozhodovací pravidlo.
 
 ### Jak neobvyklý je náš výsledek {#sec-p-hodnota-vypocet}
 
-Máme hypotézy a směr. Nyní se zeptáme, jak dobře se pozorovaný rozdíl snáší s nulovou hypotézou. Pracujeme ve výukovém modelu: platí-li $H_0$, má rozdíl výběrových průměrů přibližně normální rozdělení se střední hodnotou 0 a směrodatnou chybou 2,12 s.
+Máme hypotézy a směr. Nyní se zeptáme, nakolik je pozorovaný rozdíl v souladu s nulovou hypotézou. Pracujeme ve výukovém modelu: platí-li $H_0$, má rozdíl výběrových průměrů přibližně normální rozdělení se střední hodnotou 0 a směrodatnou chybou 2,12 s.
 
 Číslu, které spočítáme z dat a porovnáme s tímto rozdělením, se říká **testová statistika (*test statistic*)**. Zde je jí rozdíl průměrů, 6,88 s. Stejně dobře jej můžeme vyjádřit jako z-skór, tedy v jednotkách směrodatné chyby:
 
@@ -607,13 +615,13 @@ $$z=\frac{6{,}88-0}{2{,}1213}\approx3{,}24.$$
 
 Pozorovaný rozdíl leží více než tři směrodatné chyby od hodnoty, kterou předpokládá nulová hypotéza.
 
-Jak často by tak velký rozdíl vznikl, kdyby nulová hypotéza platila? **P-hodnota (*p-value*)** je pravděpodobnost, že by za platnosti nulové hypotézy vyšel výsledek stejně extrémní jako pozorovaný nebo ještě extrémnější. U oboustranného testu jsou takovými výsledky rozdíly 6,88 s a větší a také rozdíly −6,88 s a menší. Nad hodnotou $z=3{,}24$ leží 0,0006 plochy normovaného normálního rozdělení a stejně tolik pod hodnotou −3,24:
+Jak často by tak velký rozdíl vznikl, kdyby nulová hypotéza platila? ***p*-hodnota (*p-value*)** je pravděpodobnost, že by za platnosti nulové hypotézy vyšel výsledek stejně extrémní jako pozorovaný nebo ještě extrémnější. U oboustranného testu jsou takovými výsledky rozdíly 6,88 s a větší a také rozdíly −6,88 s a menší. Nad hodnotou $z=3{,}24$ leží 0,0006 plochy normovaného normálního rozdělení a stejně tolik pod hodnotou −3,24:
 
-$$\text{p-hodnota}=2\times0{,}0006=0{,}0012.$$
+$$p\text{-hodnota}=2\times0{,}0006=0{,}0012.$$
 
-Kdyby se populační průměry nelišily a platily ostatní předpoklady modelu, vyšel by rozdíl alespoň takto velký přibližně u jedné dvojice výběrů z osmi set. P-hodnota tedy měří, nakolik jsou data s nulovou hypotézou neslučitelná: čím je menší, tím hůře se pozorovaný výsledek s modelem nulové hypotézy snáší.
+Kdyby se populační průměry nelišily a platily ostatní předpoklady modelu, vyšel by rozdíl alespoň takto velký přibližně u jedné dvojice výběrů z osmi set. *p*-hodnota tedy měří, nakolik jsou data s nulovou hypotézou neslučitelná: čím je menší, tím hůře se pozorovaný výsledek s modelem nulové hypotézy snáší.
 
-V odborných textech se p-hodnota zapisuje kurzivním písmenem *p*. V této učebnici ji vypisujeme slovy, protože písmenem $p$ značíme [podíl](kapitola_02.qmd#sec-relativni-cetnost).
+V odborných textech se *p*-hodnota často zapisuje jen kurzivním písmenem *p*, například *p* = 0,0012. Stejným písmenem ale značíme také [podíl](kapitola_02.qmd#sec-relativni-cetnost). Proto budeme psát celé označení *p*-hodnota všude, kde by se obojí mohlo zaměnit, například u testu o podílu správných odpovědí. Samotné *p* použijeme jen tam, kde je z kontextu zřejmé, že jde o *p*-hodnotu.
 
 Výpočet je na listu `Test_rozdilu`:
 
@@ -626,12 +634,12 @@ Výpočet je na listu `Test_rozdilu`:
 | B4 | Směrodatná chyba rozdílu ve výukovém modelu (s) | `2,1213` | 2,1213 |
 | B5 | Hladina významnosti | `0,05` | 0,05 |
 | B7 | Testová statistika $z$ | `=(B2-B3)/B4` | 3,243 |
-| B8 | P-hodnota, oboustranně | `=2*(1-NORM.S.DIST(ABS(B7);PRAVDA))` | 0,0012 |
+| B8 | *p*-hodnota, oboustranně | `=2*(1-NORM.S.DIST(ABS(B7);PRAVDA))` | 0,0012 |
 | B9 | Kritická hodnota $z$ | `=NORM.S.INV(1-B5/2)` | 1,960 |
 | B10 | Kritická hodnota rozdílu (s) | `=B3+B9*B4` | 4,158 |
 | B11 | Rozhodnutí testu | `=KDYŽ(B8<=B5;"zamítáme nulovou hypotézu";"nulovou hypotézu nezamítáme")` | zamítáme nulovou hypotézu |
 
-: Výpočet p-hodnoty v Excelu {#tbl-k06-10}
+: Výpočet *p*-hodnoty v Excelu {#tbl-k06-10}
 
 
 :::
@@ -640,14 +648,14 @@ Funkce [NORM.S.DIST](kapitola_04.qmd#sec-excel-normalni), [NORM.S.INV](kapitola_
 
 ### Pravidlo stanovené předem: hladina významnosti a kritický obor {#sec-hladina-kriticky-obor}
 
-P-hodnota je výsledek vypočtený z dat. K rozhodnutí potřebujeme ještě pravidlo, a to má být stanoveno dříve, než data uvidíme. **Hladina významnosti (*significance level*)**, značka $\mathrm{α}$, je předem zvolená hranice pro p-hodnotu: vyjde-li p-hodnota nejvýše tak velká, budeme výsledek považovat za příliš neslučitelný s nulovou hypotézou. Nejčastěji se volí $\mathrm{α}=0{,}05$; je to zvyklost, ne zákon.
+*p*-hodnota je výsledek vypočtený z dat. K rozhodnutí potřebujeme ještě pravidlo, a to má být stanoveno dříve, než data uvidíme. **Hladina významnosti (*significance level*)**, značka $\mathrm{α}$, je předem zvolená hranice pro *p*-hodnotu: vyjde-li *p*-hodnota nejvýše tak velká, budeme výsledek považovat za příliš neslučitelný s nulovou hypotézou. Nejčastěji se volí $\mathrm{α}=0{,}05$; je to zvyklost, ne zákon.
 
 Rozhodovací pravidlo má dvě možná vyústění:
 
-- Je-li p-hodnota menší nebo rovna $\mathrm{α}$, **zamítáme nulovou hypotézu**. Výsledek označujeme jako **statisticky významný (*statistically significant*)**.
-- Je-li p-hodnota větší než $\mathrm{α}$, **nulovou hypotézu nezamítáme**.
+- Je-li *p*-hodnota menší nebo rovna $\mathrm{α}$, **zamítáme nulovou hypotézu**. Výsledek označujeme jako **statisticky významný (*statistically significant*)**.
+- Je-li *p*-hodnota větší než $\mathrm{α}$, **nulovou hypotézu nezamítáme**.
 
-Totéž pravidlo lze vyjádřit bez p-hodnoty, přímo v hodnotách testové statistiky. **Kritický obor (*critical region*, *rejection region*)** je množina hodnot testové statistiky, při nichž podle zvoleného pravidla nulovou hypotézu zamítáme. Doslovnější překlad anglického názvu, oblast zamítnutí, je méně zavedený, ale přímo říká, k čemu obor slouží. **Kritická hodnota (*critical value*)** je hranice kritického oboru.
+Totéž pravidlo lze vyjádřit bez *p*-hodnoty, přímo v hodnotách testové statistiky. **Kritický obor (*critical region*, *rejection region*)** je množina hodnot testové statistiky, při nichž podle zvoleného pravidla nulovou hypotézu zamítáme. Doslovnější překlad anglického názvu, oblast zamítnutí, je méně zavedený, ale přímo říká, k čemu obor slouží. **Kritická hodnota (*critical value*)** je hranice kritického oboru.
 
 U oboustranného testu s $\mathrm{α}=0{,}05$ dělíme pět procent mezi oba chvosty, po 2,5 %. V normovaném normálním rozdělení tomu odpovídají hodnoty $z=-1{,}96$ a $z=1{,}96$, které známe z [prostředních 95 %](kapitola_04.qmd#sec-centralni-podil). V sekundách jsou kritické hodnoty $\pm1{,}96\times2{,}1213\approx\pm4{,}16$ s. Kritický obor tvoří rozdíly menší než −4,16 s a větší než 4,16 s.
 
@@ -657,7 +665,9 @@ U oboustranného testu s $\mathrm{α}=0{,}05$ dělíme pět procent mezi oba chv
 
 :::
 
-Obě cesty vedou vždy ke stejnému rozhodnutí. Na obrázku [-@fig-p-hodnota] leží pozorovaný rozdíl 6,88 s v kritickém oboru, protože je větší než 4,16 s; a p-hodnota 0,0012 je menší než 0,05. Kdyby rozdíl ležel přesně na kritické hodnotě, byla by p-hodnota přesně 0,05.
+Obě cesty vedou vždy ke stejnému rozhodnutí. Na obrázku [-@fig-p-hodnota] leží pozorovaný rozdíl 6,88 s v kritickém oboru, protože je větší než 4,16 s; a *p*-hodnota 0,0012 je menší než 0,05. Kdyby rozdíl ležel přesně na kritické hodnotě, byla by *p*-hodnota přesně 0,05.
+
+Z téhož vztahu plyne ještě jeden užitečný pohled. *p*-hodnotu lze číst jako nejnižší hladinu významnosti, při které by výsledek byl ještě statisticky významný; proto se jí někdy říká také dosažená hladina významnosti. Naše *p*-hodnota 0,0012 znamená, že bychom nulovou hypotézu zamítli při hladině 0,05 i při přísnější hladině 0,01, ale nikoli při hladině 0,001. Hladinu významnosti přesto volíme předem; tento pohled jen ukazuje, jak daleko od hranice výsledek leží.
 
 Užitečné je rozlišovat, co se v testu stanovuje předem a co se počítá z dat:
 
@@ -666,7 +676,7 @@ Užitečné je rozlišovat, co se v testu stanovuje předem a co se počítá z 
 | Stanoveno předem: rozhodovací pravidlo | Vypočteno z dat: výsledek |
 |---|---|
 | Nulová a alternativní hypotéza | Testová statistika: 6,88 s, $z=3{,}24$ |
-| Směr testu: oboustranný | P-hodnota: 0,0012 |
+| Směr testu: oboustranný | *p*-hodnota: 0,0012 |
 | Hladina významnosti: 0,05 | |
 | Kritický obor: pod −4,16 s a nad 4,16 s | |
 
@@ -675,15 +685,15 @@ Užitečné je rozlišovat, co se v testu stanovuje předem a co se počítá z 
 
 :::
 
-Hladina významnosti a p-hodnota jsou obě pravděpodobnosti, a proto se pletou. Hladina je vlastnost pravidla a nemění se podle toho, jak data dopadnou. P-hodnota je vlastnost výsledku.
+Hladina významnosti a *p*-hodnota jsou obě pravděpodobnosti, a proto se pletou. Hladina je vlastnost pravidla a nemění se podle toho, jak data dopadnou. *p*-hodnota je vlastnost výsledku.
 
 ### Co ukáže simulace a kde jsou její meze {#sec-simulace-presnost}
 
-Pravidlo si můžeme prohlédnout na 10 000 simulovaných dvojicích výběrů z [předchozího oddílu](#sec-rozdil-dvou-prumeru). Ty vznikly v modelu, kde nulová hypotéza platí. Přesto u 497 z nich, tedy u 5,0 %, padl rozdíl do kritického oboru. Tak hladina významnosti funguje: pravidlo s $\mathrm{α}=0{,}05$ zamítne pravdivou nulovou hypotézu přibližně v pěti případech ze sta.
+Pravidlo si můžeme prohlédnout na 10 000 simulovaných dvojicích výběrů z [předchozího oddílu](#sec-rozdil-dvou-prumeru). Ty vznikly v modelu, kde nulová hypotéza platí. Přesto u 497 z nich, tedy u 5,0 %, padl rozdíl do kritického oboru. Tak hladina významnosti funguje: při hladině $\mathrm{α}=0{,}05$ test zamítne pravdivou nulovou hypotézu přibližně v pěti případech ze sta.
 
-Kolik simulovaných rozdílů bylo alespoň tak extrémních jako 6,88 s? Jedenáct: sedm kladných a čtyři záporné. Podle normálního modelu bychom jich při p-hodnotě 0,0012 čekali asi dvanáct, což dobře souhlasí.
+Kolik simulovaných rozdílů bylo alespoň tak extrémních jako 6,88 s? Jedenáct: sedm kladných a čtyři záporné. Podle normálního modelu bychom jich při *p*-hodnotě 0,0012 čekali asi dvanáct, což dobře souhlasí.
 
-Jedenáct případů je ale velmi málo. Kdyby počítač losoval znovu, mohlo by jich být osm nebo šestnáct, a pravděpodobnost odhadnutá jako 11/10 000 by se změnila o desítky procent. **Simulace ukazuje princip; malou pravděpodobnost z několika málo případů spolehlivě neurčí.** I Howellova pravděpodobnost 0,0006 pro jednostranný test se opírá o šest simulovaných rozdílů z deseti tisíc [@howell, s. 88]. Číselnou hodnotu proto bereme z modelu, ne ze simulace. Ani ji nečteme na čtyři desetinná místa: normální model je přiblížení a nejméně přesný je právě v nejvzdálenějších částech chvostů. Rozumné shrnutí zní, že p-hodnota je přibližně jedna tisícina.
+Jedenáct případů je ale velmi málo. Kdyby počítač losoval znovu, mohlo by jich být osm nebo šestnáct, a pravděpodobnost odhadnutá jako 11/10 000 by se změnila o desítky procent. **Simulace ukazuje princip; malou pravděpodobnost z několika málo případů spolehlivě neurčí.** I Howellova pravděpodobnost 0,0006 pro jednostranný test se opírá o šest simulovaných rozdílů z deseti tisíc [@howell, s. 88]. Číselnou hodnotu proto bereme z modelu, ne ze simulace. Ani ji nečteme na čtyři desetinná místa: normální model je přiblížení a nejméně přesný je právě v nejvzdálenějších částech chvostů. Rozumné shrnutí zní, že *p*-hodnota je přibližně jedna tisícina.
 
 Simulované rozdíly jsou v sešitu na listu `Sim_rozdily` a počty si můžete ověřit funkcí [COUNTIFS](kapitola_02.qmd#sec-excel-pocet-countifs). Vzorec `=COUNTIFS(A2:A10001;">=4,16")` vrátí 261 a vzorec `=COUNTIFS(A2:A10001;"<=-4,16")` vrátí 236, dohromady 497. S hodnotou 6,88 místo 4,16 vrátí tytéž vzorce 7 a 4.
 
@@ -691,7 +701,7 @@ Simulované rozdíly jsou v sešitu na listu `Sim_rozdily` a počty si můžete 
 
 Výsledek testu shrneme ve dvou krocích, které budeme oddělovat v celém zbytku kapitoly.
 
-**Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že se populační průměry doby odjezdu neliší. Rozdíl 6,88 s leží v kritickém oboru a p-hodnota je přibližně 0,001.
+**Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že se populační průměry doby odjezdu neliší. Rozdíl 6,88 s leží v kritickém oboru a *p*-hodnota je přibližně 0,001.
 
 **Věcná interpretace.** Nyní se vrátíme k výzkumné otázce a zvážíme čtyři věci:
 
@@ -702,11 +712,11 @@ Výsledek testu shrneme ve dvou krocích, které budeme oddělovat v celém zbyt
 
 Dohromady: výsledky podporují výzkumnou hypotézu, že řidiči s čekajícím autem odjíždějí v průměru pomaleji. O příčině rozdílu toto srovnání nerozhoduje. A každé číslo platí v rámci výukového modelu, v němž jsme směrodatnou odchylku 15 s považovali za známou.
 
-P-hodnota se často čte jako něco, čím není. Proto ještě jednou, co říká: **je to pravděpodobnost takto extrémních dat za předpokladu, že nulová hypotéza platí.** Není to pravděpodobnost, že nulová hypotéza platí, ani pravděpodobnost, že výsledek vznikl náhodou [@wasserstein2016, zásada 2]. Jde o stejnou záměnu, na jakou jsme narazili u [tipujícího studenta](kapitola_05.qmd#sec-binom-kumulace): $P(\text{výsledek}\mid\text{model})$ je jiné číslo než $P(\text{model}\mid\text{výsledek})$. K obrácení podmínky bychom potřebovali vědět, jak pravděpodobná byla nulová hypotéza předem, a to test neříká.
+*p*-hodnota se často čte jako něco, čím není. Proto ještě jednou, co říká: **je to pravděpodobnost takto extrémních dat za předpokladu, že nulová hypotéza platí.** Není to pravděpodobnost, že nulová hypotéza platí, ani pravděpodobnost, že výsledek vznikl náhodou [@wasserstein2016, zásada 2]. Jde o stejnou záměnu, na jakou jsme narazili u [tipujícího studenta](kapitola_05.qmd#sec-binom-kumulace): $P(\text{výsledek}\mid\text{model})$ je jiné číslo než $P(\text{model}\mid\text{výsledek})$. K obrácení podmínky bychom potřebovali vědět, jak pravděpodobná byla nulová hypotéza předem, a to test neříká.
 
 ## Dvě chyby rozhodnutí a statistická síla {#sec-chyby-sila}
 
-Rozhodnutí testu se může mýlit. Oddíl popisuje dvě možné chyby, ukazuje, na čem závisí šance odhalit skutečný rozdíl, a vysvětluje, jak číst nezamítnutí nulové hypotézy.
+Rozhodnutí testu se může mýlit. Tento oddíl popisuje dvě možné chyby, ukazuje, na čem závisí šance odhalit skutečný rozdíl, a vysvětluje, jak číst nezamítnutí nulové hypotézy.
 
 ### Chyba I. a II. druhu {#sec-dve-chyby}
 
@@ -724,9 +734,9 @@ Rozhodovací pravidlo pracuje s nejistými daty, a proto se může mýlit. Nulov
 
 :::
 
-**Chyba I. druhu (*Type I error*)** nastane, když zamítneme nulovou hypotézu, která platí. Usoudili bychom, že se doby odjezdu liší, ačkoli se v populaci neliší. Pravděpodobnost této chyby je hladina významnosti $\mathrm{α}$; volíme ji sami. Viděli jsme ji v simulaci: 497 zamítnutí z 10 000 při platné nulové hypotéze.
+**Chyba I. druhu (*Type I error*)** nastane, když zamítneme nulovou hypotézu, která platí. Usoudili bychom, že se doby odjezdu liší, ačkoli se v populaci neliší. Pravděpodobnost této chyby je hladina významnosti $\mathrm{α}$; volíme ji sami, nejlépe ještě před sběrem dat. Viděli jsme ji v simulaci: 497 zamítnutí z 10 000 při platné nulové hypotéze.
 
-**Chyba II. druhu (*Type II error*)** nastane, když nezamítneme nulovou hypotézu, která neplatí. Rozdíl v populaci by existoval, ale náš výběr by jej neukázal dost zřetelně. Pravděpodobnost této chyby se značí $\mathrm{β}$.
+**Chyba II. druhu (*Type II error*)** nastane, když nezamítneme nulovou hypotézu, která neplatí. Rozdíl v populaci by existoval, ale náš výběr by jej neprokázal dostatečně přesvědčivě. Pravděpodobnost této chyby se značí $\mathrm{β}$.
 
 Obě chyby mají obdobu v [minulé kapitole](kapitola_05.qmd#sec-screening): chyba I. druhu se podobá falešně pozitivnímu výsledku screeningu, chyba II. druhu falešně negativnímu. Stejně jako tam jsou obě pravděpodobnosti **podmíněné**. Číslo $\mathrm{α}=0{,}05$ říká, jak často pravidlo zamítne nulovou hypotézu v případech, kdy platí. Neříká, že je chybných 5 % všech našich zamítnutí; to by záviselo i na tom, jak často nulové hypotézy, které testujeme, skutečně platí. K tomu se vrací [nepovinné rozšíření](#rozsireni-test-screening) na konci kapitoly.
 
@@ -766,13 +776,13 @@ Sílu ovlivňuje několik okolností:
 
 - **Velikost skutečného rozdílu.** Čím je větší, tím je síla vyšší. Tu výzkumník nevolí, ale může si předem ujasnit, jak malý rozdíl by ještě stálo za to odhalit.
 - **Velikost výběru.** Větší výběr zmenšuje směrodatnou chybu, takže křivka je užší a kritické hodnoty leží blíže nule. Při 400 řidičích v každé skupině by směrodatná chyba rozdílu byla 1,06 s a síla pro skutečný rozdíl 3 s by vzrostla z 0,29 na 0,81.
-- **Rozptýlenost měřené vlastnosti.** Menší směrodatná odchylka, například díky přesnějšímu měření, zmenšuje směrodatnou chybu stejně jako větší výběr.
-- **Hladina významnosti.** Přísnější hladina, například 0,01, posune kritické hodnoty dál od nuly. Sníží pravděpodobnost chyby I. druhu, ale také sílu. Obě chyby nelze při stejném výběru zmenšit současně.
+- **Variabilita měřené vlastnosti.** Menší směrodatná odchylka, například díky přesnějšímu měření, zmenšuje směrodatnou chybu stejně jako větší výběr.
+- **Hladina významnosti.** Přísnější hladina, například 0,01, posune kritické hodnoty dál od nuly. Sníží pravděpodobnost chyby I. druhu, ale také sílu. Obě chyby nelze u stejně velkého výběru zmenšit současně.
 - **Směr testu.** Jednostranný test má v předem zvoleném směru vyšší sílu, protože celých 5 % soustřeďuje do jednoho chvostu; pro skutečný rozdíl 3 s by to bylo 0,41 místo 0,29. Rozdíl v opačném směru ovšem neodhalí vůbec.
 
 ### Když nulovou hypotézu nezamítneme {#sec-nezamitnuti}
 
-Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně přečíst opačný výsledek. Představme si smyšlenou variantu: rozdíl výběrových průměrů by vyšel 2,9 s. Pak $z=2{,}9/2{,}1213\approx1{,}37$ a oboustranná p-hodnota je 0,17.
+Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně přečíst opačný výsledek. Představme si smyšlenou variantu: rozdíl výběrových průměrů by vyšel 2,9 s. Pak $z=2{,}9/2{,}1213\approx1{,}37$ a oboustranná *p*-hodnota je 0,17.
 
 **Rozhodnutí testu.** Na hladině významnosti 0,05 nulovou hypotézu nezamítáme. Rozdíl 2,9 s neleží v kritickém oboru.
 
@@ -782,14 +792,14 @@ Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně p�
 Nezamítnutí nulové hypotézy neříká dvě věci. Neříká, že nulová hypotéza byla potvrzena nebo prokázána: nezamítnout není totéž co prokázat. A neříká, že výzkumná hypotéza byla vyvrácena. Uttsová [-@utts2003, s. 75–76] řadí rozdíl mezi výroky „nenašli jsme statisticky významný rozdíl“ a „žádný rozdíl není“ mezi to, čemu má rozumět každý vzdělaný člověk. Upozorňuje také, že na něm záleží zvlášť u malých výběrů, kde je síla nízká.
 :::
 
-Nezamítnutí přitom není bezcenné. Jeho váha závisí na síle. Kdyby studie měla pro osmisekundový rozdíl sílu 0,96 a nulovou hypotézu nezamítla, byl by to dobrý důvod pochybovat, že skutečný rozdíl je tak velký. O rozdílu tří sekund by tatáž studie neříkala téměř nic.
+Nezamítnutí přitom není bezcenné. Jeho váha závisí na síle. Kdyby studie měla pro osmisekundový rozdíl sílu 0,96 a nulovou hypotézu nezamítla, byl by to dobrý důvod pochybovat, že skutečný rozdíl je tak velký. O rozdílu tří sekund by tatáž studie neříkala téměř nic. Pro takový rozdíl má sílu jen 0,29, takže by jej v 71 % případů neodhalila. Nezamítnutí je tedy obvyklým výsledkem jak při nulovém rozdílu, tak při rozdílu tří sekund, a mezi těmito dvěma možnostmi nerozhodne.
 
 ::: {#rozsireni-vypocet-sily .callout-note collapse="true" title="Nepovinné rozšíření: výpočet statistické síly"}
 Statistická síla je plocha pod křivkou, stejně jako všechny pravděpodobnosti v této kapitole. Liší se jen tím, pod kterou křivkou ji měříme: ne pod křivkou nulové hypotézy, ale pod křivkou uvažované alternativy.
 
 Postup pro skutečný rozdíl 5 s:
 
-1. *Kritické hodnoty* určuje nulová hypotéza: −4,158 s a 4,158 s.
+1. *Kritické hodnoty* zůstávají stejné jako v testu: −4,158 s a 4,158 s. Určuje je výběrové rozdělení za platnosti nulové hypotézy se směrodatnou chybou 2,1213 s, zvolená hladina $\mathrm{α}=0{,}05$ a oboustranný směr testu. Směrodatná chyba přitom závisí na směrodatné odchylce v populaci a na velikosti výběrů.
 2. *Křivka alternativy* má střed 5 s a stejnou směrodatnou chybu 2,1213 s.
 3. *Plocha nad horní kritickou hodnotou:* $z=(4{,}158-5)/2{,}1213\approx-0{,}397$; nad touto hodnotou leží 0,654 plochy.
 4. *Plocha pod dolní kritickou hodnotou:* $z=(-4{,}158-5)/2{,}1213\approx-4{,}32$; pod ní leží méně než 0,0001 plochy.
@@ -805,7 +815,7 @@ Na listu `Sila` je tento výpočet připraven pro libovolný skutečný rozdíl 
 | B7 | Plocha pod dolní kritickou hodnotou | `=NORM.DIST(-B4;B2;B3;PRAVDA)` | 0,0000 |
 | B8 | Statistická síla | `=B6+B7` | 0,654 |
 
-: Nezamítnutí nulové hypotézy: výpočet v Excelu {#tbl-k06-14}
+: Výpočet statistické síly v Excelu {#tbl-k06-14}
 
 
 :::::
@@ -817,7 +827,7 @@ Výpočet síly se používá hlavně při plánování: výzkumník si zvolí n
 
 ## Co výsledek znamená: velikost účinku a závěr {#sec-velikost-ucinku}
 
-Co rozhodnutí testu říká o odpovědi na výzkumnou otázku? Oddíl odlišuje statistickou významnost od velikosti a důležitosti rozdílu a ukazuje, jak formulovat závěr.
+Co rozhodnutí testu říká o odpovědi na výzkumnou otázku? Tento oddíl odlišuje statistickou významnost od velikosti a důležitosti rozdílu a ukazuje, jak formulovat závěr.
 
 ### Tři různé významnosti {#sec-tri-vyznamnosti}
 
@@ -829,7 +839,7 @@ Slovo „významný“ svádí k představě, že statisticky významný výsled
 
 V literatuře se poslední dva termíny někdy zaměňují nebo se používá jen jeden z nich. Míří však na různé věci a výsledek může být významný v jednom smyslu a nevýznamný v jiném.
 
-U parkovací studie je rozdíl statisticky významný. Věcně může být významný i rozdíl několika sekund: pro otázku, zda se lidé na veřejném místě chovají teritoriálně, je podstatné, že řidiči s čekajícím autem neodjíždějí rychleji, jak by odpovídalo ohleduplnosti, ale pomaleji. Prakticky je sedm sekund pro jednoho čekajícího řidiče zanedbatelných; význam by mohly mít nanejvýš pro provoz velmi vytíženého parkoviště. Proto o výsledku testu vždy píšeme „statisticky významný“, nikdy jen „významný“.
+U parkovací studie je rozdíl statisticky významný. Věcně může být významný i rozdíl několika sekund: pro otázku, zda se lidé na veřejném místě chovají teritoriálně, je podstatné, že řidiči s čekajícím autem neodjíždějí rychleji, jak by odpovídalo ohleduplnosti, ale pomaleji. Prakticky je sedm sekund pro jednoho čekajícího řidiče zanedbatelných; význam by mohly mít nanejvýš pro provoz velmi vytíženého parkoviště. Proto o výsledku testu vždy píšeme, zda byl, nebo nebyl „statisticky významný“, nikdy jen „významný“.
 
 ### Velikost účinku v původních jednotkách {#sec-velikost-ucinku-jednotky}
 
@@ -847,7 +857,7 @@ Velikost účinku a statistická významnost jsou dvě různé informace. Ukáž
 | Rozdíl proti nulové hypotéze | 1 bod | 1 bod |
 | Směrodatná chyba průměru | 2 body | 0,2 bodu |
 | Testová statistika $z$ | 0,5 | 5 |
-| P-hodnota, oboustranně | 0,62 | menší než 0,001 |
+| *p*-hodnota, oboustranně | 0,62 | menší než 0,001 |
 | Rozhodnutí na hladině 0,05 | nulovou hypotézu nezamítáme | zamítáme nulovou hypotézu |
 
 : Srovnání studií podle velikosti účinku {#tbl-k06-15}
@@ -866,7 +876,7 @@ Na obrázku [-@fig-stejny-rozdil] je jedna hodnota na vodorovné ose průměrem 
 Platí to i opačně. Velký rozdíl zjištěný na několika lidech nemusí být statisticky významný, a přesto může být věcně zajímavý. Proto má každá zpráva o výsledku testu uvádět také velikost rozdílu.
 
 ::: {#rozsireni-standardizovany-rozdil .callout-note collapse="true" title="Nepovinné rozšíření: standardizovaný rozdíl průměrů"}
-Sekundy jsou srozumitelná jednotka. Body dotazníku nebo testu takové nejsou: zda je rozdíl čtyř bodů velký, závisí na tom, jak moc se lidé v daném testu liší. Tehdy pomáhá vyjádřit rozdíl průměrů v jednotkách směrodatné odchylky. **Standardizovaný rozdíl průměrů (*standardized mean difference*)**, známý také jako Cohenovo *d*, je rozdíl průměrů dělený směrodatnou odchylkou jednotlivých hodnot:
+Sekundy jsou srozumitelná jednotka. Body dotazníku nebo testu takové být nemusejí: zda je rozdíl čtyř bodů velký, nebo naopak malý, závisí na tom, jak moc se lidé v daném testu liší. Tehdy pomáhá vyjádřit rozdíl průměrů v jednotkách směrodatné odchylky. **Standardizovaný rozdíl průměrů (*standardized mean difference*)**, známý také jako Cohenovo *d*, je rozdíl průměrů dělený směrodatnou odchylkou jednotlivých hodnot:
 
 $$d=\frac{m_1-m_2}{s}=\frac{6{,}88}{14{,}6}\approx0{,}47.$$
 
@@ -874,7 +884,7 @@ Průměry obou skupin řidičů se liší o necelou polovinu směrodatné odchyl
 
 Rozhodující je, **kterou směrodatnou odchylkou dělíme**. Ve jmenovateli je směrodatná odchylka dob jednotlivých řidičů uvnitř skupin, zde 14,6 s; v parkovací studii byla podle Howella v obou skupinách stejná, takže není třeba rozhodovat, kterou použít. Není to směrodatná chyba. Kdybychom dělili směrodatnou chybou rozdílu, dostali bychom testovou statistiku $z=3{,}24$, a ta roste s velikostí výběru, i když se rozdíl mezi skupinami nemění. Standardizovaný rozdíl na velikosti výběru nezávisí.
 
-Slovní hodnocení typu „malý“ nebo „velký“ účinek zde záměrně neuvádíme. Zda je rozdíl poloviny směrodatné odchylky velký, závisí na tom, co se měří a k čemu má výsledek sloužit.
+V literatuře se často setkáte se slovním hodnocením podle Cohena: $d$ přibližně 0,2 jako malý účinek, 0,5 jako střední a 0,8 jako velký. Parkovací rozdíl $d\approx0{,}47$ by podle něj byl blízko středního. Sám Cohen ale tato pásma považoval jen za hrubé vodítko a doporučoval je jako nouzové řešení pro případ, kdy nemáme jiný způsob, jak velikost účinku posoudit [@howell, s. 214 a 235]. Zda je rozdíl poloviny směrodatné odchylky velký, závisí na tom, co se měří a k čemu má výsledek sloužit. Proto přednost mají srovnání s jinými výzkumy téhož jevu a úvaha o důsledcích v původních jednotkách.
 :::
 
 ### Od rozhodnutí testu k odpovědi na výzkumnou otázku {#sec-zaver-testu}
@@ -888,7 +898,7 @@ Druhý krok z prvního neplyne automaticky. Statisticky významný výsledek nem
 
 ::: {.table-scroll .chapter-06-wide role="region" aria-label="Přiměřené a nepřiměřené formulace závěrů testu" tabindex="0"}
 
-| Situace | Přiměřená formulace | Čemu se vyhnout |
+| Situace | Přiměřená formulace | Nepřiměřená formulace |
 |---|---|---|
 | Zamítnutí, rozdíl ve směru výzkumné hypotézy | Na hladině 0,05 zamítáme nulovou hypotézu. Řidiči s čekajícím autem odjížděli v průměru o 6,88 s déle; výsledek podporuje výzkumnou hypotézu. | „Dokázali jsme, že čekající auto odjezd zpomaluje.“ „Nulová hypotéza je s pravděpodobností 99,9 % nepravdivá.“ |
 | Zamítnutí, rozdíl v opačném směru | Na hladině 0,05 zamítáme nulovou hypotézu. Rozdíl má opačný směr, než předpokládala výzkumná hypotéza; výsledek ji nepodporuje. | „Výsledek je statisticky významný, hypotéza se potvrdila.“ |
@@ -908,7 +918,7 @@ U parkovací studie jsme směrodatnou chybu rozdílu převzali z modelu a ze sim
 1. výzkumná otázka, nulová a alternativní hypotéza, směr testu;
 2. hladina významnosti;
 3. testová statistika a její rozdělení za platnosti nulové hypotézy;
-4. p-hodnota nebo kritický obor;
+4. *p*-hodnota nebo kritický obor;
 5. rozhodnutí testu;
 6. věcná interpretace.
 
@@ -916,15 +926,15 @@ U parkovací studie jsme směrodatnou chybu rozdílu převzali z modelu a ze sim
 
 V minulé kapitole získal student 10 bodů z 20 v testu, kde má každá otázka čtyři možnosti. Tehdy jsme spočítali pravděpodobnost takového výsledku při tipování a rozhodnutí jsme odložili. Teď je doplníme.
 
-**1. Hypotézy a směr.** Výzkumná otázka zní, zda student odpovídal lépe, než odpovídá pouhému tipování. Označme $\mathrm{π}$ pravděpodobnost, s níž student odpoví na jednu otázku správně. Alternativní hypotéza je jednostranná, $H_1{:}\ \mathrm{π}>0{,}25$; výsledek horší než při tipování nás v této otázce nezajímá. Nulová hypotéza zahrnuje vše ostatní, $H_0{:}\ \mathrm{π}\le0{,}25$, a počítáme s její hraniční hodnotou 0,25.
+**1. Hypotézy a směr.** Výzkumná otázka zní, zda student odpovídal správně častěji, než by odpovídalo pouhému tipování. Označme $\mathrm{π}$ pravděpodobnost, s níž student odpoví na jednu otázku správně. Alternativní hypotéza je jednostranná, $H_1{:}\ \mathrm{π}>0{,}25$; výsledek horší než při tipování nás v této otázce nezajímá. Nulová hypotéza zahrnuje vše ostatní, $H_0{:}\ \mathrm{π}\le0{,}25$, a počítáme s její hraniční hodnotou 0,25.
 
 **2. Hladina významnosti.** $\mathrm{α}=0{,}05$.
 
 **3. Testová statistika.** Počet správných odpovědí. Za platnosti nulové hypotézy na její hranici má binomické rozdělení s $n=20$ a $\mathrm{π}=0{,}25$; to je výběrové rozdělení z [druhého oddílu](#sec-statistika-jako-promenna).
 
-**4. P-hodnota a kritický obor.** Extrémnější jsou vyšší počty. P-hodnota je pravděpodobnost 10 nebo více správných odpovědí:
+**4. *p*-hodnota a kritický obor.** Extrémnější jsou vyšší počty. *p*-hodnota je pravděpodobnost 10 nebo více správných odpovědí:
 
-$$\text{p-hodnota}=P(X\ge10)=0{,}014.$$
+$$p\text{-hodnota}=P(X\ge10)=0{,}014.$$
 
 Kritický obor tvoří nejvyšší počty, jejichž pravděpodobnost dohromady nepřekročí 0,05. Sčítáme od konce:
 
@@ -943,7 +953,7 @@ Hranici 0,05 jako první splní hodnota 9. Kritický obor tvoří počty 9 až 2
 
 Všimněme si pravděpodobnosti kritického oboru: 0,041, ne 0,05. Počet správných odpovědí je [diskrétní](kapitola_05.qmd#sec-rozdeleni-pravdepodobnosti) a pravděpodobnost se mění skokem: s hranicí 9 je to 0,041, s hranicí 8 už 0,102. Přesně 0,05 nastavit nelze. Pravidlo proto zaručuje, že pravděpodobnost chyby I. druhu **nepřekročí** zvolenou hladinu; skutečná chybovost je zde 0,041. U spojité testové statistiky, jakou byl rozdíl průměrů, lze kritickou hodnotu nastavit přesně.
 
-**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že pravděpodobnost správné odpovědi je nejvýše 0,25. Deset bodů leží v kritickém oboru a p-hodnota je 0,014.
+**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že pravděpodobnost správné odpovědi je nejvýše 0,25. Deset bodů leží v kritickém oboru a *p*-hodnota je 0,014.
 
 **6. Věcná interpretace.** Směr odpovídá výzkumné otázce: student získal více bodů, než kolik se při tipování očekává. Velikost: polovina otázek správně proti čtvrtině očekávané při tipování; na zvládnutí látky to ale neukazuje. Nejistota: jde o jeden test s dvaceti otázkami. Předpoklady: model tipování počítá s tím, že student volí u každé otázky zcela náhodně a otázky jsou navzájem nezávislé. Kdyby uměl u každé otázky vyloučit dvě zjevně nesprávné možnosti a mezi zbylými tipoval, byla by pravděpodobnost úspěchu 0,5 a deset bodů by bylo nejčastějším výsledkem. Dohromady: výsledek podporuje závěr, že student neodpovídal čistě náhodně. Neříká, kolik toho umí.
 
@@ -957,7 +967,7 @@ Tomuto postupu se říká **binomický test (*binomial test*)**. Je na listu `Bi
 | B3 | Hraniční hodnota $\mathrm{π}$ podle nulové hypotézy | `0,25` | 0,25 |
 | B4 | Pozorovaný počet úspěchů | `10` | 10 |
 | B5 | Hladina významnosti | `0,05` | 0,05 |
-| B7 | P-hodnota: pozorovaný počet nebo více | `=1-BINOM.DIST(B4-1;B2;B3;PRAVDA)` | 0,0139 |
+| B7 | *p*-hodnota: pozorovaný počet nebo více | `=1-BINOM.DIST(B4-1;B2;B3;PRAVDA)` | 0,0139 |
 | B8 | Kritická hodnota | `=BINOM.INV(B2;B3;1-B5)+1` | 9 |
 | B9 | Pravděpodobnost kritického oboru | `=1-BINOM.DIST(B8-1;B2;B3;PRAVDA)` | 0,0409 |
 | B10 | Rozhodnutí testu | `=KDYŽ(B7<=B5;"zamítáme nulovou hypotézu";"nulovou hypotézu nezamítáme")` | zamítáme nulovou hypotézu |
@@ -983,15 +993,15 @@ $$z=\frac{m-\mathrm{μ}_0}{\mathrm{σ}_m}=\frac{46-50}{2}=-2.$$
 
 Za platnosti nulové hypotézy na její hranici má průměr 25 studentů rozdělení $N(50,2)$ a $z$ normované normální rozdělení. Tento postup se nazývá **z-test (*z-test*)**.
 
-**4. P-hodnota a kritický obor.** Extrémnější jsou nižší průměry. P-hodnota je plocha pod normovanou normální křivkou nalevo od −2:
+**4. *p*-hodnota a kritický obor.** Extrémnější jsou nižší průměry. *p*-hodnota je plocha pod normovanou normální křivkou nalevo od −2:
 
-$$\text{p-hodnota}=0{,}023.$$
+$$p\text{-hodnota}=0{,}023.$$
 
 Kritický obor tvoří dolních 5 % rozdělení: $z\le-1{,}645$, tedy průměry nejvýše $50-1{,}645\times2=46{,}71$ bodu.
 
-**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. Průměr 46 bodů leží v kritickém oboru a p-hodnota je 0,023.
+**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. Průměr 46 bodů leží v kritickém oboru a *p*-hodnota je 0,023.
 
-**6. Věcná interpretace.** Směr odpovídá výzkumné hypotéze. Velikost: čtyři body na škále, kde se lidé od sebe typicky liší o deset bodů. Nejistota: směrodatná chyba je 2 body, takže průměr 46 bodů je od hodnoty 50 vzdálen jen dvě směrodatné chyby; jiný výběr 25 studentů by mohl dát průměr 44 i 48 bodů. Uspořádání: záleží na tom, jak se studenti do výběru dostali. Kdyby je výzkumnice ke krátkému spánku [náhodně přiřadila](kapitola_01.qmd#sec-souvislost-pricina), mluvil by výsledek pro vliv spánku. Pokud jen oslovila ty, kteří spali málo, mohou se od ostatních lišit i jinak, například zkouškovým obdobím nebo nemocí. Dohromady: výsledek podporuje hypotézu o nižší pozornosti po krátkém spánku; rozdíl je mírný a jeho velikost nejistá.
+**6. Věcná interpretace.** Směr odpovídá výzkumné hypotéze. Velikost: čtyři body na škále, kde se lidé od sebe typicky liší o deset bodů. Nejistota: směrodatná chyba je 2 body, takže průměr 46 bodů je od hodnoty 50 vzdálen jen dvě směrodatné chyby; jiný výběr 25 studentů by mohl dát průměr 44 i 48 bodů. Uspořádání: záleží na tom, jak se studenti do výběru dostali. Kdyby je výzkumnice ke krátkému spánku [náhodně přiřadila](kapitola_01.qmd#sec-souvislost-pricina), mluvil by výsledek pro vliv spánku. Pokud jen oslovila ty, kteří spali málo, mohou se od ostatních lišit i jinak, například zkouškovým obdobím nebo nemocí. Dohromady: výsledek podporuje hypotézu o nižší pozornosti po krátkém spánku; rozdíl je ale poměrně malý a jeho přesná velikost nejistá.
 
 ::: {.teaching-figure role="region" aria-label="Binomický test a z-test: rozdělení testové statistiky za platnosti nulové hypotézy" tabindex="0"}
 
@@ -1014,9 +1024,9 @@ Výpočet je na listu `Z_test`:
 | B6 | Hladina významnosti | `0,05` | 0,05 |
 | B8 | Směrodatná chyba průměru | `=B3/ODMOCNINA(B4)` | 2 |
 | B9 | Testová statistika $z$ | `=(B5-B2)/B8` | −2 |
-| B10 | P-hodnota pro alternativu „menší“ | `=NORM.S.DIST(B9;PRAVDA)` | 0,0228 |
-| B11 | P-hodnota pro alternativu „větší“ | `=1-NORM.S.DIST(B9;PRAVDA)` | 0,9772 |
-| B12 | P-hodnota oboustranně | `=2*(1-NORM.S.DIST(ABS(B9);PRAVDA))` | 0,0455 |
+| B10 | *p*-hodnota pro alternativu „menší“ | `=NORM.S.DIST(B9;PRAVDA)` | 0,0228 |
+| B11 | *p*-hodnota pro alternativu „větší“ | `=1-NORM.S.DIST(B9;PRAVDA)` | 0,9772 |
+| B12 | *p*-hodnota oboustranně | `=2*(1-NORM.S.DIST(ABS(B9);PRAVDA))` | 0,0455 |
 | B13 | Kritická hodnota průměru pro alternativu „menší“ | `=B2+NORM.S.INV(B6)*B8` | 46,71 |
 
 : Z-test průměru v Excelu {#tbl-k06-19}
@@ -1024,13 +1034,13 @@ Výpočet je na listu `Z_test`:
 
 :::
 
-List ukazuje p-hodnotu pro všechny tři směry; v řádcích 14 až 16 jsou kritické hodnoty průměru pro oboustranný test a pro alternativu „větší“. Použít lze jen ten výsledek, který odpovídá směru zvolenému předem. Při alternativě „větší“ by tentýž průměr dal p-hodnotu 0,977: výsledek leží na opačné straně a proti takové nulové hypotéze nesvědčí vůbec. Oboustranná p-hodnota je dvojnásobkem menší z obou jednostranných, 0,046.
+List ukazuje *p*-hodnotu pro všechny tři směry; v řádcích 14 až 16 jsou kritické hodnoty průměru pro oboustranný test a pro alternativu „větší“. Použít lze jen ten výsledek, který odpovídá směru zvolenému předem. Při alternativě „větší“ by tentýž průměr dal *p*-hodnotu 0,977: výsledek leží na opačné straně a proti takové nulové hypotéze nesvědčí vůbec. Oboustranná *p*-hodnota je dvojnásobkem menší z obou jednostranných, 0,046.
 
 Ke z-testu dvě upozornění.
 
 **Z-skór ještě není test.** Ve [čtvrté kapitole](kapitola_04.qmd#sec-z-skor) jsme z-skórem popisovali polohu jednoho člověka mezi ostatními. To je popis. Testem se výpočet stává teprve tehdy, když k němu patří hypotézy, výběrové rozdělení statistiky za platnosti nulové hypotézy a předem stanovené pravidlo. Liší se i jmenovatel: ve z-skóru člověka je směrodatná odchylka, ve z-testu směrodatná chyba.
 
-**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a p-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový t-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
+**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a *p*-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový t-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
 
 ### Co mají testy společného a čím se liší {#sec-kroky-testu}
 
@@ -1042,7 +1052,7 @@ Ke z-testu dvě upozornění.
 | Směr | oboustranný | jednostranný, „více“ | jednostranný, „méně“ |
 | Testová statistika | rozdíl průměrů 6,88 s | počet úspěchů 10 | průměr 46 bodů, $z=-2$ |
 | Její rozdělení za platnosti $H_0$ | normální model, směrodatná chyba 2,12 s (z výukového modelu) | binomické, $n=20$, $\mathrm{π}=0{,}25$ (přesné) | normální model, směrodatná chyba 2 body |
-| P-hodnota | přibližně 0,001 | 0,014 | 0,023 |
+| *p*-hodnota | přibližně 0,001 | 0,014 | 0,023 |
 | Typ rozdělení | spojité | diskrétní; skutečná chybovost 0,041 | spojité |
 
 : Společné kroky tří statistických testů {#tbl-k06-20}
@@ -1050,18 +1060,18 @@ Ke z-testu dvě upozornění.
 
 :::
 
-Společná je logika: z nulové hypotézy odvodíme, jak by se statistika chovala, a zeptáme se, jak neobvyklý je v tomto rozdělení náš výsledek. Mění se statistika a její výběrové rozdělení. Každý další test, se kterým se setkáte, se od těchto tří liší právě jen v tom.
+Společná je logika: odvodíme, jaké výběrové rozdělení by měla určitá statistika, kdyby platila nulová hypotéza; poté se zeptáme, jak neobvyklý je v tomto rozdělení náš výsledek. Mění se statistika a její výběrové rozdělení. Každý další test, se kterým se setkáte, se od těchto tří liší právě jen v tom.
 
 ## Meze testování a poctivé zacházení s testy {#sec-meze-testovani}
 
-Na co test hypotéz neodpovídá a čím se jeho výsledky dají znehodnotit? Oddíl shrnuje meze testování a zásady poctivé práce s testy.
+Na co test hypotéz neodpovídá a čím se jeho výsledky dají znehodnotit? Tento oddíl shrnuje meze testování a zásady poctivé práce s testy.
 
 ### Na jakou otázku test odpovídá {#sec-otazka-testu}
 
-Test odpovídá na úzkou, ale užitečnou otázku: jsou data těžko slučitelná s určitým modelem? Chrání tak před tím, abychom vykládali rozdíly, které snadno vzniknou samotným střídáním výběrů. Jeho odpověď má ovšem meze, se kterými je třeba počítat.
+Test odpovídá na úzkou, ale užitečnou otázku: nakolik jsou data v rozporu s určitým modelem? Chrání tak před tím, abychom vykládali rozdíly, které snadno vzniknou samotným střídáním výběrů. Jeho odpověď má ovšem meze, se kterými je třeba počítat.
 
-- **Hladina 0,05 je zvyklost.** Výsledky s p-hodnotou 0,049 a 0,051 svědčí proti nulové hypotéze téměř stejně, ačkoli jeden je „statisticky významný“ a druhý ne. Závěr se nemá opírat jen o to, na které straně hranice výsledek skončil [@wasserstein2016, zásada 3].
-- **P-hodnota platí pro celý model.** Kromě nulové hypotézy do něj patří i ostatní předpoklady: náhodný výběr, nezávislá pozorování, v našich příkladech známá směrodatná odchylka. Malá p-hodnota říká, že data jsou v nesouladu s modelem jako celkem. Příčinou může být nepravdivá nulová hypotéza, ale také kterýkoli jiný nesplněný předpoklad.
+- **Hladina 0,05 je zvyklost.** Výsledky s *p*-hodnotou 0,049 a 0,051 svědčí proti nulové hypotéze téměř stejně, ačkoli jeden je „statisticky významný“ a druhý ne. Závěr se nemá opírat jen o to, na které straně hranice výsledek skončil [@wasserstein2016, zásada 3].
+- ***p*-hodnota platí pro celý model.** Kromě nulové hypotézy do něj patří i ostatní předpoklady: náhodný výběr, nezávislá pozorování, v našich příkladech známá směrodatná odchylka. Malá *p*-hodnota říká, že data jsou v nesouladu s modelem jako celkem. Příčinou může být nepravdivá nulová hypotéza, ale také kterýkoli jiný nesplněný předpoklad.
 - **Přesná nulová hypotéza může platit, ale nemusí.** Tipuje-li student zcela náhodně, je pravděpodobnost úspěchu přesně 0,25. U srovnání dvou přirozeně vzniklých skupin je naproti tomu málo pravděpodobné, že by se jejich populační průměry shodovaly úplně přesně. Čím větší výběr, tím menší odchylku od nulové hypotézy test odhalí, a zamítnutí pak samo říká jen málo. O to důležitější je velikost rozdílu.
 
 ### Více testů najednou {#sec-vice-testu}
@@ -1079,14 +1089,14 @@ Obě podmínky jsou pro výpočet podstatné. Týkají-li se testy týchž lidí
 Stejným způsobem působí volby, které výzkumník udělá až poté, co data viděl. Pravidlo testu má být stanoveno předem; každé rozhodnutí přizpůsobené výsledku zvyšuje pravděpodobnost chyby I. druhu nad uvedenou hladinu [@simmons2011]. Dvě nejčastější podoby:
 
 - **Dodatečný výběr analýzy.** Výzkumník vyzkouší několik způsobů, jak data zpracovat: s odlehlými pozorováními a bez nich, pro všechny účastníky a jen pro některou skupinu, s tím či oním měřítkem výsledku. Uvede pak tu variantu, která vyšla statisticky významně. Jde o skryté mnohonásobné testování.
-- **Zastavování sběru podle průběžného výsledku.** Výzkumník spočítá p-hodnotu po každých několika účastnících a sběr ukončí ve chvíli, kdy poprvé klesne pod 0,05. P-hodnota během sběru kolísá a tímto postupem dostává mnoho příležitostí hranici překročit.
+- **Zastavování sběru podle průběžného výsledku.** Výzkumník spočítá *p*-hodnotu po každých několika účastnících a sběr ukončí ve chvíli, kdy poprvé klesne pod 0,05. *p*-hodnota během sběru kolísá a tímto postupem dostává mnoho příležitostí hranici překročit.
 
 Se směrem testu jsme totéž viděli [dříve](#sec-smer-testu): zvolit jej až podle dat znamená pravidlo dodatečně upravit.
 
-Poctivé zacházení s testy má proto několik zásad. Hypotézy, směr, velikost výběru a způsob analýzy se stanoví před sběrem dat. Zpráva uvádí všechny provedené testy a všechna měřítka, nejen ta, která „vyšla“ [@wasserstein2016, zásada 4]. Vedle rozhodnutí testu se uvádí velikost rozdílu. A jediný výsledek, zvlášť překvapivý, se bere jako podnět k opakování výzkumu, ne jako hotový poznatek.
+Poctivé zacházení se statistickými testy má proto několik zásad. Hypotézy, směr, velikost výběru a způsob analýzy se stanoví před sběrem dat. Zpráva uvádí všechny provedené testy a všechna měřítka, nejen ta, která „vyšla“ podle očekávání [@wasserstein2016, zásada 4]. Vedle rozhodnutí testu se uvádí velikost rozdílu. A jediný statisticky významný výsledek, obzvlášť je-li překvapivý, se bere jako podnět k opakování výzkumu, ne jako hotový poznatek.
 
 ::: {#rozsireni-test-screening .callout-note collapse="true" title="Nepovinné rozšíření: test jako screening"}
-P-hodnota je pravděpodobnost dat za předpokladu nulové hypotézy. Často nás ale zajímá opačná otázka: vyšel-li výsledek statisticky významně, jak pravděpodobné je, že nulová hypotéza přesto platí? To je [obrácení podmínky](kapitola_05.qmd#sec-bayes), a jako u screeningu k němu potřebujeme základní četnost.
+*p*-hodnota je pravděpodobnost dat za předpokladu nulové hypotézy. Často nás ale zajímá opačná otázka: vyšel-li výsledek statisticky významně, jak pravděpodobné je, že nulová hypotéza přesto platí? To je [obrácení podmínky](kapitola_05.qmd#sec-bayes), a jako u screeningu k němu potřebujeme základní četnost.
 
 Statistický test se screeningovému dotazníku podobá ve třech věcech:
 
@@ -1118,37 +1128,37 @@ Použijeme [přirozené četnosti](kapitola_05.qmd#sec-prirozene-cetnosti). Pře
 
 :::::
 
-Statisticky významně vyjde 125 výzkumů. U 45 z nich nulová hypotéza platí: $45/125=0{,}36$. Více než třetina statisticky významných výsledků je v tomto modelu chybou I. druhu, přestože každý jednotlivý test má hladinu 0,05.
+Statisticky významně vyjde 125 výzkumů. U 45 z nich nulová hypotéza platí: $45/125=0{,}36$. Více než třetina statisticky významných výsledků je v tomto modelu chybou I. druhu, přestože každý jednotlivý test pracuje s hladinou $\mathrm{α}=0{,}05$.
 
 Jako u [dvou prevalencí](kapitola_05.qmd#sec-dve-prevalence) výsledek závisí na základní četnosti. Kdyby skutečný rozdíl existoval u 500 výzkumů z 1 000, vyšlo by statisticky významně $400+25=425$ výzkumů a nulová hypotéza by platila jen u 25 z nich, tedy u 6 %. A závisí na síle: při síle 0,30 a stejných 100 skutečných rozdílech by bylo oprávněných zamítnutí 30 proti 45 chybným.
 
-Podíl výzkumů, v nichž rozdíl skutečně existuje, v praxi neznáme. Příklad neříká, kolik publikovaných výsledků je chybných. Ukazuje, proč p-hodnota není pravděpodobností nulové hypotézy a proč překvapivé tvrzení, pro které předem mluvilo málo, potřebuje silnější doklady než tvrzení dobře zdůvodněné.
+Podíl výzkumů, v nichž rozdíl skutečně existuje, v praxi neznáme. Příklad neříká, kolik publikovaných výsledků je chybných. Ukazuje, proč *p*-hodnota není pravděpodobností nulové hypotézy a proč překvapivé tvrzení, pro které předem mluvilo málo, potřebuje silnější doklady než tvrzení dobře zdůvodněné.
 :::
 
 ::: {#rozsireni-dve-tradice .callout-note collapse="true" title="Nepovinné rozšíření: dvě tradice testování"}
 Postup, který se dnes v psychologii běžně používá, spojuje dva přístupy z dvacátých a třicátých let 20. století, jejichž autoři se spolu neshodli [@howell, s. 88 a 91–92].
 
-**Ronald Fisher** kladl důraz na p-hodnotu. Chápal ji jako míru toho, nakolik data svědčí proti nulové hypotéze. Statisticky nevýznamný výsledek pro něj znamenal, že data k závěru nestačí a úsudek je třeba odložit. Protože nulovou hypotézu nikdy nepřijímal, nezabýval se pravděpodobností, že by přijal hypotézu nepravdivou.
+**Ronald Fisher** kladl důraz na *p*-hodnotu. Chápal ji jako míru toho, nakolik data svědčí proti nulové hypotéze. Statisticky nevýznamný výsledek pro něj znamenal, že data k závěru nestačí a úsudek je třeba odložit. Protože nulovou hypotézu nikdy nepřijímal, nezabýval se pravděpodobností, že by přijal hypotézu nepravdivou.
 
 **Jerzy Neyman a Egon Pearson** kladli důraz na rozhodovací pravidlo. Před sběrem dat se podle nich stanoví dvě hypotézy, hladina významnosti a kritický obor a hodnotí se, jak často pravidlo vede k chybě I. a II. druhu. Odtud pocházejí pojmy chyba II. druhu a statistická síla. Výsledkem je rozhodnutí, jak dále jednat, ne míra dokladu.
 
-Z první tradice má dnešní praxe p-hodnotu a opatrné „nezamítáme“, z druhé předem stanovenou hladinu, alternativní hypotézu a sílu. V této kapitole jsme proto důsledně oddělovali výsledek vypočtený z dat od pravidla stanoveného předem.
+Z první tradice má dnešní praxe *p*-hodnotu a opatrné „nezamítáme“, z druhé předem stanovenou hladinu, alternativní hypotézu a sílu. V této kapitole jsme proto důsledně oddělovali výsledek vypočtený z dat od pravidla stanoveného předem.
 
-Existují i další návrhy. Jones a Tukey například navrhli číst oboustranný test jako volbu mezi třemi závěry o směru rozdílu: první průměr je větší, druhý průměr je větší, nebo směr zatím nelze určit. Jejich návrh vychází z předpokladu, že populační průměry nejsou nikdy přesně stejné [@howell, s. 99–101]; kde tento předpoklad neplatí, nelze jej použít.
+Existují i další návrhy. Jones a Tukey například navrhli číst oboustranný test jako volbu mezi třemi závěry o směru rozdílu: první průměr je větší, druhý průměr je větší, nebo směr zatím nelze určit. Jejich návrh vychází z předpokladu, že populační průměry nejsou nikdy přesně stejné, resp. že velikost účinku není nikdy přesně nulová [@howell, s. 99–101]. Kde tento předpoklad neplatí, nelze jej použít.
 :::
 
 ## Shrnutí {#sec-shrnuti-06}
 
 Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
-- Statistika vypočtená z výběru je jedním z mnoha čísel, která mohla vyjít. Abychom jeden výsledek posoudili, potřebujeme vědět, jak moc by kolísal mezi výběry ([Proč jeden výsledek nestačí](#sec-jeden-vysledek)).
+- Statistika vypočtená z výběru je jedním z mnoha čísel, která mohla vyjít. Abychom jeden výsledek posoudili, potřebujeme vědět, jak moc se její hodnoty různí mezi výběry ([Proč jeden výsledek nestačí](#sec-jeden-vysledek)).
 - Výběrové rozdělení popisuje, jakých hodnot statistika v různých výběrech nabývá a jak často. Je třeba je odlišovat od rozdělení v populaci a od rozdělení hodnot v jednom výběru: jeho jednou hodnotou není člověk, ale celý výběr shrnutý jedním číslem ([Počet a podíl úspěchů](#sec-rozdeleni-podilu); [Výběrové rozdělení průměru](#sec-vyberove-rozdeleni-prumeru)).
 - Směrodatná chyba je směrodatná odchylka výběrového rozdělení. Pro průměr se rovná směrodatné odchylce populace dělené odmocninou z velikosti výběru, takže čtyřnásobný výběr ji zmenší na polovinu. Zákon velkých čísel říká, že se průměr velkého výběru blíží průměru populace ([Směrodatná chyba](#sec-smerodatna-chyba)).
-- Centrální limitní věta říká, že rozdělení průměru se pro velké výběry blíží normálnímu, i když populace normální není. Díky tomu lze pravděpodobnosti průměrů počítat normálním modelem, v němž místo směrodatné odchylky vystupuje směrodatná chyba ([Centrální limitní věta](#sec-centralni-limitni-veta); [Řešený výpočet](#sec-vypocet-prumeru)).
+- Centrální limitní věta říká, že rozdělení průměru se pro velké výběry blíží normálnímu, i když populační rozdělení neodpovídá normálnímu. Díky tomu lze pravděpodobnosti průměrů počítat s využitím normálního modelem, v němž místo směrodatné odchylky vystupuje směrodatná chyba ([Centrální limitní věta](#sec-centralni-limitni-veta); [Řešený výpočet](#sec-vypocet-prumeru)).
 - Test hypotézy porovnává pozorovaný výsledek s tím, co předpovídá nulová hypotéza. Hypotézy, směr a hladinu významnosti stanovujeme předem ([Hypotézy a směr testu](#sec-hypotezy)).
-- Z dat počítáme testovou statistiku a p-hodnotu: pravděpodobnost stejně extrémního nebo extrémnějšího výsledku za platnosti nulové hypotézy ([P-hodnota a kritický obor](#sec-p-hodnota); [Dva testy krok za krokem](#sec-dva-testy)).
-- Rozhodovací pravidlo se může mýlit dvojím způsobem; pravděpodobnost chyby I. druhu volíme, pravděpodobnost chyby II. druhu závisí na tom, jak velký skutečný rozdíl je. Nezamítnutí neznamená, že rozdíl neexistuje ([Dvě chyby a statistická síla](#sec-chyby-sila)).
-- Závěr má dva kroky. Rozhodnutí testu zní „zamítáme nulovou hypotézu“ nebo „nulovou hypotézu nezamítáme“; věcná interpretace zvažuje směr rozdílu, jeho velikost v původních jednotkách, nejistotu a uspořádání studie. Statistická významnost neříká, zda je rozdíl velký ani zda na něm záleží ([Velikost účinku a závěr](#sec-velikost-ucinku); [Meze testování](#sec-meze-testovani)).
+- Z dat počítáme testovou statistiku a *p*-hodnotu: pravděpodobnost stejně extrémního nebo extrémnějšího výsledku za platnosti nulové hypotézy ([*p*-hodnota a kritický obor](#sec-p-hodnota); [Dva testy krok za krokem](#sec-dva-testy)).
+- Rozhodovací pravidlo se může mýlit dvojím způsobem; pravděpodobnost chyby I. druhu volíme dopředu sami, pravděpodobnost chyby II. druhu závisí na tom, jak velký skutečný rozdíl je. Nezamítnutí nulové hypotézy neznamená, že rozdíl neexistuje ([Dvě chyby a statistická síla](#sec-chyby-sila)).
+- Závěr má dva kroky. Rozhodnutí testu zní buďto „zamítáme nulovou hypotézu“, nebo „nulovou hypotézu nezamítáme“; věcná interpretace zvažuje směr rozdílu, jeho velikost v původních jednotkách, nejistotu a uspořádání studie. Statistická významnost sama o sobě neříká, zda je rozdíl významný věcně nebo prakticky ([Velikost účinku a závěr](#sec-velikost-ucinku); [Meze testování](#sec-meze-testovani)).
 
 ## Cvičení {#sec-cviceni-06}
 
@@ -1172,7 +1182,7 @@ a)  1.  Rozdělení hodnot v jednom výběru. Jedna hodnota je doba spánku jedn
     2.  Rozdělení v populaci. Jedna hodnota je doba spánku jednoho studenta fakulty; křivka je model, protože všechny studenty jsme nezměřili.
     3.  Výběrové rozdělení průměru. Jedna hodnota je průměrná doba spánku v jednom celém výběru 50 studentů.
 
-b)  1,2 h je výběrová směrodatná odchylka: říká, jak moc se od sebe liší doby spánku jednotlivých studentů ve výběru. 0,17 h je směrodatná chyba průměru zjištěná simulací: říká, jak moc se od sebe liší průměry různých výběrů po 50 studentech. Obě čísla spolu souvisejí vzorcem $\mathrm{σ}/\sqrt{n}$; jako odhad dostaneme $1{,}2/\sqrt{50}\approx0{,}170$ h.
+b)  1,2 h je výběrová směrodatná odchylka: říká, jak moc se od sebe liší doby spánku jednotlivých studentů ve výběru. 0,17 h je směrodatná chyba průměru zjištěná simulací: říká, jak moc se od sebe liší průměry různých výběrů po 50 studentech. Obě čísla spolu souvisejí rovnicí $\mathrm{σ}/\sqrt{n}$; jako odhad dostaneme $1{,}2/\sqrt{50}\approx0{,}170$ h.
 
 c)  Velikost výběru je 50, počet opakování 5 000. Při 50 000 opakováních by byl histogram průměrů hladší a jeho směrodatná odchylka by vyšla o něco přesněji, ale stále kolem 0,17 h: zobrazovali bychom totéž výběrové rozdělení. Při výběrech po 200 studentech by se změnilo samo výběrové rozdělení. Čtyřnásobný výběr zmenší směrodatnou chybu na polovinu, přibližně na 0,085 h, a histogram průměrů by byl poloviční šířky.
 :::
@@ -1187,7 +1197,7 @@ a)  Určete průměr a směrodatnou odchylku populace.
 b)  Vypište všech devět možných výběrů a jejich průměry.
 c)  Sestavte výběrové rozdělení průměru.
 d)  Spočítejte průměr devíti výběrových průměrů a porovnejte jej s průměrem populace.
-e)  Spočítejte směrodatnou chybu průměru přímo z devíti průměrů a ověřte ji vzorcem.
+e)  Spočítejte směrodatnou chybu průměru přímo z devíti průměrů a ověřte ji rovnicí.
 f)  S jakou pravděpodobností bude průměr výběru alespoň 4 body? Je výběrové rozdělení souměrné? Čím to je?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -1227,7 +1237,7 @@ c)  Sečteme pravděpodobnosti výběrů se stejným průměrem.
 
 d)  Součet devíti výběrových průměrů je 27, takže jejich průměr je $27/9=3$ body. Shoduje se s průměrem populace: výběrový průměr populační průměr soustavně nenadhodnocuje ani nepodhodnocuje.
 
-e)  Odchylky devíti průměrů od hodnoty 3 jsou −2; −1,5; 0,5; −1,5; −1; 1; 0,5; 1 a 3. Součet čtverců je $4+2{,}25+0{,}25+2{,}25+1+1+0{,}25+1+9=21$. Směrodatná chyba je $\sqrt{21/9}\approx1{,}528$ bodu. Vzorcem: $2{,}160/\sqrt{2}\approx1{,}528$ bodu. Obě hodnoty se shodují přesně, protože jsme vypsali všechny výběry.
+e)  Odchylky devíti průměrů od hodnoty 3 jsou −2; −1,5; 0,5; −1,5; −1; 1; 0,5; 1 a 3. Součet čtverců je $4+2{,}25+0{,}25+2{,}25+1+1+0{,}25+1+9=21$. Směrodatná chyba je $\sqrt{21/9}\approx1{,}528$ bodu. Podle rovnice: $2{,}160/\sqrt{2}\approx1{,}528$ bodu. Obě hodnoty se shodují přesně, protože jsme vypsali všechny výběry.
 
 f)  Průměr alespoň 4 body mají tři výběry z devíti: $3/9\approx0{,}333$. Rozdělení souměrné není: má delší chvost směrem k vysokým hodnotám, protože populace je zešikmená (hodnota 6 leží daleko od zbylých dvou) a výběr je velmi malý. Podle centrální limitní věty by se při větších výběrech tvar blížil normálnímu.
 :::
@@ -1276,7 +1286,7 @@ a)  Výběr A: součet 288, průměr 32 s. Odchylky od průměru jsou −10, −
 
     Výběr B: součet 324, průměr 36 s. Odchylky jsou −16, −10, −7, −3, −1, 2, 5, 11 a 19; součet čtverců 926. Výběrový rozptyl je $926/8=115{,}75$, $s\approx10{,}76$ s a $s_m=10{,}76/\sqrt{9}\approx3{,}59$ s.
 
-b)  $\mathrm{σ}_m=9/\sqrt{9}=3$ s. Odhady 2,27 s a 3,59 s vycházejí z výběrových směrodatných odchylek, a ty jsou statistikami: mezi výběry kolísají, u devíti pozorování značně. Oba výběry pocházejí z téže populace a skutečná směrodatná chyba je pro oba stejná.
+b)  $\mathrm{σ}_m=9/\sqrt{9}=3$ s. Odhady 2,27 s a 3,59 s vycházejí z výběrových směrodatných odchylek, a ty jsou statistikami: mezi výběry se různí, u devíti pozorování značně. Oba výběry pocházejí z téže populace a skutečná směrodatná chyba je pro oba stejná.
 
 c)  Výběr A: $32-34=-2$ s. Výběr B: $36-34=2$ s. Výběrová chyba je rozdíl mezi výběrovým odhadem a populační hodnotou, a tu ve skutečném výzkumu neznáme; kdybychom ji znali, nepotřebovali bychom ji odhadovat. Známe nanejvýš směrodatnou chybu, tedy to, jak velké výběrové chyby u výběrů této velikosti obvykle bývají.
 
@@ -1367,7 +1377,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U08_pokus` A2:B6.
 Howell [-@howell, s. 129–130] uvádí pokus, v němž účastnice určuje, která ze dvou velmi krátce promítnutých číslic byla na obrazovce. V osmi pokusech odpověděla sedmkrát správně. Výzkumná otázka zní, zda odpovídá lépe, než kdyby tipovala.
 
 a)  Zapište hypotézy, směr testu a hraniční hodnotu. Zvolte hladinu významnosti 0,05.
-b)  Jaké rozdělení má počet správných odpovědí za platnosti nulové hypotézy na její hranici? Spočítejte ručně p-hodnotu.
+b)  Jaké rozdělení má počet správných odpovědí za platnosti nulové hypotézy na její hranici? Spočítejte ručně *p*-hodnotu.
 c)  Určete kritický obor a jeho pravděpodobnost. Jaká je skutečná pravděpodobnost chyby I. druhu?
 d)  Zapište rozhodnutí testu a věcnou interpretaci.
 e)  Jak by se rozhodnutí a interpretace změnily, kdyby účastnice odpověděla správně šestkrát?
@@ -1375,17 +1385,17 @@ e)  Jak by se rozhodnutí a interpretace změnily, kdyby účastnice odpověděl
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  $\mathrm{π}$ je pravděpodobnost správné odpovědi v jednom pokusu. $H_0{:}\ \mathrm{π}\le0{,}5$, $H_1{:}\ \mathrm{π}>0{,}5$. Jednostranný test, hraniční hodnota 0,5, $\mathrm{α}=0{,}05$.
 
-b)  Binomické s $n=8$ a $\mathrm{π}=0{,}5$. Každá posloupnost osmi odpovědí má pravděpodobnost $0{,}5^8=1/256$. Sedm správných odpovědí lze rozmístit $\binom{8}{7}=8$ způsoby, osm jediným. P-hodnota je
+b)  Binomické s $n=8$ a $\mathrm{π}=0{,}5$. Každá posloupnost osmi odpovědí má pravděpodobnost $0{,}5^8=1/256$. Sedm správných odpovědí lze rozmístit $\binom{8}{7}=8$ způsoby, osm jediným. *p*-hodnota je
 
     $$P(X\ge7)=\frac{8+1}{256}=\frac{9}{256}\approx0{,}035.$$
 
 c)  Sčítáme od konce: $P(X\ge8)=1/256\approx0{,}004$; $P(X\ge7)\approx0{,}035$; $P(X\ge6)=(28+8+1)/256=37/256\approx0{,}145$. Hranici 0,05 jako první splní hodnota 7. Kritický obor tvoří počty 7 a 8 a jeho pravděpodobnost je 0,035. To je skutečná pravděpodobnost chyby I. druhu; hladiny 0,05 přesně dosáhnout nelze, protože rozdělení je diskrétní.
 
-d)  **Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že pravděpodobnost správné odpovědi je nejvýše 0,5; p-hodnota je 0,035.
+d)  **Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že pravděpodobnost správné odpovědi je nejvýše 0,5; *p*-hodnota je 0,035.
 
-    **Věcná interpretace.** Směr odpovídá výzkumné otázce: účastnice odpověděla správně častěji, než se očekává při tipování. Velikost: sedm z osmi, tedy 87,5 % proti 50 %. Nejistota je ale velká, protože pokusů bylo jen osm; p-hodnota je pod hladinou jen těsně. Předpoklady: pokusy mají být nezávislé a stejně obtížné. Výsledek podporuje závěr, že účastnice číslice alespoň zčásti rozpoznává; jak dobře, z osmi pokusů spolehlivě říci nelze.
+    **Věcná interpretace.** Směr odpovídá výzkumné otázce: účastnice odpověděla správně častěji, než se očekává při tipování. Velikost: sedm z osmi, tedy 87,5 % proti 50 %. Nejistota je ale velká, protože pokusů bylo jen osm; *p*-hodnota je pod hladinou jen těsně. Předpoklady: pokusy mají být nezávislé a stejně obtížné. Výsledek podporuje závěr, že účastnice číslice alespoň zčásti rozpoznává; jak dobře, z osmi pokusů spolehlivě říci nelze.
 
-e)  P-hodnota by byla 0,145. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** šest správných odpovědí z osmi je více, než se očekává při tipování, ale takový nebo lepší výsledek by při tipování nastal asi v jednom případě ze sedmi. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že účastnice číslice rozpoznává; tuto možnost však nevylučují. Při osmi pokusech má test malou sílu a k přesvědčivější odpovědi by bylo třeba pokusů více.
+e)  *p*-hodnota by byla 0,145. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** šest správných odpovědí z osmi je více, než se očekává při tipování, ale takový nebo lepší výsledek by při tipování nastal asi v jednom případě ze sedmi. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že účastnice číslice rozpoznává; tuto možnost však nevylučují. Při osmi pokusech má test malou sílu a k přesvědčivější odpovědi by bylo třeba pokusů více.
 :::
 
 ### 9. Z-test v Excelu a volba směru
@@ -1395,9 +1405,9 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U09_pamet` A2:B6. K v
 Test pracovní paměti má podle norem průměr 100 bodů a směrodatnou odchylku 15 bodů. Výzkumnice zadala test 36 studentům, kteří absolvovali čtyřtýdenní trénink paměti, a jejich průměr je 104,5 bodu. Před sběrem dat se rozhodla pro oboustranný test na hladině 0,05, protože nevylučovala ani zhoršení únavou.
 
 a)  Zapište hypotézy.
-b)  Určete směrodatnou chybu průměru, testovou statistiku a oboustrannou p-hodnotu.
+b)  Určete směrodatnou chybu průměru, testovou statistiku a oboustrannou *p*-hodnotu.
 c)  Určete kritické hodnoty průměru a zapište rozhodnutí testu.
-d)  Jaká by byla p-hodnota a rozhodnutí, kdyby výzkumnice předem zvolila jednostranný test s alternativou „více než 100“? Smí nyní test změnit?
+d)  Jaká by byla *p*-hodnota a rozhodnutí, kdyby výzkumnice předem zvolila jednostranný test s alternativou „více než 100“? Smí nyní test změnit?
 e)  Zapište věcnou interpretaci výsledku plánovaného testu.
 f)  Na jakém předpokladu stojí použití směrodatné odchylky 15?
 
@@ -1406,9 +1416,9 @@ a)  $\mathrm{μ}$ je populační průměr studentů po tréninku. $H_0{:}\ \math
 
 b)  $\mathrm{σ}_m=15/\sqrt{36}=2{,}5$ bodu. $z=(104{,}5-100)/2{,}5=1{,}8$. `=2*(1-NORM.S.DIST(1,8;PRAVDA))` vrátí 0,072.
 
-c)  $100\pm1{,}96\times2{,}5$, tedy 95,1 a 104,9 bodu. Průměr 104,5 leží mezi nimi, mimo kritický obor. **Rozhodnutí testu:** na hladině významnosti 0,05 nulovou hypotézu nezamítáme; p-hodnota je 0,072.
+c)  $100\pm1{,}96\times2{,}5$, tedy 95,1 a 104,9 bodu. Průměr 104,5 leží mezi nimi, mimo kritický obor. **Rozhodnutí testu:** na hladině významnosti 0,05 nulovou hypotézu nezamítáme; *p*-hodnota je 0,072.
 
-d)  Jednostranná p-hodnota by byla `=1-NORM.S.DIST(1,8;PRAVDA)`, tedy 0,036, a kritická hodnota $100+1{,}645\times2{,}5\approx104{,}1$ bodu. Jednostranný test by nulovou hypotézu zamítl. Změnit test teď ale nelze: směr patří k pravidlu stanovenému před sběrem dat. Kdyby jej výzkumnice změnila podle výsledku, nebyla by pravděpodobnost chyby I. druhu 0,05, ale větší.
+d)  Jednostranná *p*-hodnota by byla `=1-NORM.S.DIST(1,8;PRAVDA)`, tedy 0,036, a kritická hodnota $100+1{,}645\times2{,}5\approx104{,}1$ bodu. Jednostranný test by nulovou hypotézu zamítl. Změnit test teď ale nelze: směr patří k pravidlu stanovenému před sběrem dat. Kdyby jej výzkumnice změnila podle výsledku, nebyla by pravděpodobnost chyby I. druhu 0,05, ale větší.
 
 e)  Průměr studentů po tréninku byl o 4,5 bodu vyšší než norma, tedy ve směru, v němž by trénink měl působit. Rozdíl je od hodnoty 100 vzdálen 1,8 směrodatné chyby a podobný nebo větší by při nulovém rozdílu vznikl asi u 7 % výběrů. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že se studenti po tréninku od normy liší; takový rozdíl však nevylučují. I kdyby rozdíl byl statisticky významný, nešlo by jej připsat tréninku: chybí srovnávací skupina, studenti mohli mít vyšší skóry už před tréninkem a test psali podruhé.
 
@@ -1448,7 +1458,7 @@ c)  Protože síla závisí na skutečné velikosti rozdílu a na uspořádání
 
 d)  Závěr je příliš silný. **Rozhodnutí testu:** nulovou hypotézu nezamítáme. **Věcná interpretace:** kdyby program zlepšoval výsledky o 2 body, test s 25 žáky by to neodhalil v 83 % případů; i pětibodové zlepšení by v 29 % případů uniklo. Nezamítnutí je tedy slučitelné s nulovým účinkem i s účinkem několika bodů. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že program výsledky mění; nevylučují to.
 
-e)  Například: zvětšit výběr, což stojí čas a peníze; ze 25 na 100 žáků stoupne síla pro dvoubodový rozdíl z 0,17 na 0,52. Nebo zmenšit rozptýlenost skórů přesnějším měřením, což vyžaduje delší či kvalitnější test. Síla by vzrostla i při mírnější hladině významnosti, ale za cenu častější chyby I. druhu, a při jednostranném testu, ale jen tehdy, je-li směr zvolen předem a zhoršení školu nezajímá.
+e)  Například: zvětšit výběr, což stojí čas a peníze; ze 25 na 100 žáků stoupne síla pro dvoubodový rozdíl z 0,17 na 0,52. Nebo zmenšit variabilitu skórů přesnějším měřením, což vyžaduje delší či kvalitnější test. Síla by vzrostla i při mírnější hladině významnosti, ale za cenu častější chyby I. druhu, a při jednostranném testu, ale jen tehdy, je-li směr zvolen předem a zhoršení školu nezajímá.
 :::
 
 ### 11. Rozhodnutí testu a věcná interpretace
@@ -1459,7 +1469,7 @@ Ve všech situacích byla hladina významnosti 0,05 a výzkumná hypotéza zněl
 
 ::: {.table-scroll .chapter-06-wide role="region" aria-label="Šest výsledků testů k interpretaci" tabindex="0"}
 
-| Situace | Test | P-hodnota | Pozorovaný rozdíl: trénink minus kontrola |
+| Situace | Test | *p*-hodnota | Pozorovaný rozdíl: trénink minus kontrola |
 |---:|---|---:|---|
 | 1 | oboustranný | 0,003 | +4 body na padesátibodové škále |
 | 2 | oboustranný | 0,21 | +3 body; 12 lidí ve skupině |
@@ -1475,8 +1485,8 @@ Ve všech situacích byla hladina významnosti 0,05 a výzkumná hypotéza zněl
 
 a)  Ke každé situaci napište rozhodnutí testu a věcnou interpretaci.
 b)  Opravte tyto dva výroky.
-    1.  „P-hodnota je 0,03, takže výzkumná hypotéza platí s pravděpodobností 97 %.“
-    2.  „P-hodnota je 0,40. Tím jsme prokázali, že obě metody jsou stejně účinné.“
+    1.  „*p*-hodnota je 0,03, takže výzkumná hypotéza platí s pravděpodobností 97 %.“
+    2.  „*p*-hodnota je 0,40. Tím jsme prokázali, že obě metody jsou stejně účinné.“
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  1.  **Rozhodnutí:** zamítáme nulovou hypotézu. **Interpretace:** rozdíl má předpokládaný směr a činí 4 body z padesáti; výsledek podporuje výzkumnou hypotézu. Zda jej lze připsat tréninku, závisí na tom, zda byli lidé do skupin náhodně přiřazeni.
@@ -1484,9 +1494,9 @@ a)  1.  **Rozhodnutí:** zamítáme nulovou hypotézu. **Interpretace:** rozdíl
     3.  **Rozhodnutí:** zamítáme nulovou hypotézu. **Interpretace:** rozdíl má opačný směr, než předpokládala výzkumná hypotéza. Výsledek ji nepodporuje; svědčí naopak pro to, že skupina s tréninkem dosáhla nižšího průměru. Statistická významnost zde neznamená „hypotéza se potvrdila“.
     4.  **Rozhodnutí:** nulovou hypotézu nezamítáme. **Interpretace:** jednostranný test s alternativou „více“ považuje za extrémní jen vysoké kladné rozdíly; záporný rozdíl proti jeho nulové hypotéze nesvědčí, ať je jakkoli velký. Výzkumnou hypotézu výsledek nepodporuje. Že je skupina s tréninkem horší, tento test neumí doložit; to je cena za jednostranný test. Situace 3 a 4 popisují stejná data.
     5.  **Rozhodnutí:** zamítáme nulovou hypotézu. **Interpretace:** rozdíl má předpokládaný směr a je malý, 2 body.
-    6.  **Rozhodnutí:** nulovou hypotézu nezamítáme. **Interpretace:** rozdíl má předpokládaný směr a je malý, 2 body. Doklad je prakticky stejný jako v situaci 5; rozhodnutí se liší jen proto, že p-hodnoty leží těsně na opačných stranách zvyklostní hranice. Bylo by chybou tvrdit, že jedna studie účinek našla a druhá jej vyvrátila.
+    6.  **Rozhodnutí:** nulovou hypotézu nezamítáme. **Interpretace:** rozdíl má předpokládaný směr a je malý, 2 body. Doklad je prakticky stejný jako v situaci 5; rozhodnutí se liší jen proto, že *p*-hodnoty leží těsně na opačných stranách zvyklostní hranice. Bylo by chybou tvrdit, že jedna studie účinek našla a druhá jej vyvrátila.
 
-b)  1.  P-hodnota je pravděpodobnost takto extrémního výsledku za platnosti nulové hypotézy, ne pravděpodobnost žádné z hypotéz. Správně: „Kdyby nulová hypotéza platila, vznikl by takto extrémní nebo extrémnější výsledek s pravděpodobností 0,03.“
+b)  1.  *p*-hodnota je pravděpodobnost takto extrémního výsledku za platnosti nulové hypotézy, ne pravděpodobnost žádné z hypotéz. Správně: „Kdyby nulová hypotéza platila, vznikl by takto extrémní nebo extrémnější výsledek s pravděpodobností 0,03.“
     2.  Nezamítnutí není důkaz nulové hypotézy. Správně: „Na hladině 0,05 nulovou hypotézu nezamítáme. Výsledky neposkytly dostatečně přesvědčivou podporu rozdílu mezi metodami; jeho existenci však nevylučují.“ Kolik výsledek říká, závisí na síle studie.
 :::
 
@@ -1494,21 +1504,21 @@ b)  1.  P-hodnota je pravděpodobnost takto extrémního výsledku za platnosti 
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U12_studie` A2:B8.
 
-a)  Skór pozornosti má v populaci směrodatnou odchylku 10 bodů. Dvě studie testují oboustranně nulovou hypotézu $\mathrm{μ}=50$ a obě zjistí výběrový průměr 51 bodů; první má 25 účastníků, druhá 2 500. Pro každou určete v Excelu směrodatnou chybu, testovou statistiku, p-hodnotu a rozhodnutí na hladině 0,05.
+a)  Skór pozornosti má v populaci směrodatnou odchylku 10 bodů. Dvě studie testují oboustranně nulovou hypotézu $\mathrm{μ}=50$ a obě zjistí výběrový průměr 51 bodů; první má 25 účastníků, druhá 2 500. Pro každou určete v Excelu směrodatnou chybu, testovou statistiku, *p*-hodnotu a rozhodnutí na hladině 0,05.
 b)  Jak velký je rozdíl v obou studiích? Co lze říci o jeho statistické, věcné a praktické významnosti?
 c)  Výzkumník porovná dvě skupiny ve dvaceti vlastnostech, každou testem na hladině 0,05, a jeden test vyjde statisticky významně. Za jakých předpokladů lze spočítat pravděpodobnost, že alespoň jeden z dvaceti testů vyjde statisticky významně, i když mezi skupinami není žádný rozdíl? Spočítejte ji. Jak má výzkumník výsledek popsat?
-d)  Jiný výzkumník počítá p-hodnotu po každých deseti účastnících a sběr ukončí, jakmile klesne pod 0,05. Proč tento postup nedodržuje hladinu 0,05?
+d)  Jiný výzkumník počítá *p*-hodnotu po každých deseti účastnících a sběr ukončí, jakmile klesne pod 0,05. Proč tento postup nedodržuje hladinu 0,05?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  První studie: $\mathrm{σ}_m=10/\sqrt{25}=2$; $z=(51-50)/2=0{,}5$; `=2*(1-NORM.S.DIST(0,5;PRAVDA))` vrátí 0,617. Nulovou hypotézu nezamítáme.
 
-    Druhá studie: $\mathrm{σ}_m=10/\sqrt{2500}=0{,}2$; $z=1/0{,}2=5$; p-hodnota je menší než 0,001. Zamítáme nulovou hypotézu.
+    Druhá studie: $\mathrm{σ}_m=10/\sqrt{2500}=0{,}2$; $z=1/0{,}2=5$; *p*-hodnota je menší než 0,001. Zamítáme nulovou hypotézu.
 
 b)  V obou studiích je rozdíl stejný: 1 bod, desetina směrodatné odchylky. Statisticky významný je jen ve druhé studii, protože ta jej díky velkému výběru změřila přesně. Věcná významnost závisí na zkoumané otázce: pro teorii může být i malý, ale spolehlivě doložený rozdíl zajímavý. Praktická významnost je sporná: jednobodový posun na škále, kde se lidé běžně liší o deset bodů, se v životě jednotlivce sotva projeví. Ani jedno z toho test neřeší; vyžaduje to znalost oboru.
 
 c)  Je třeba předpokládat, že všech dvacet nulových hypotéz platí a že testy jsou navzájem nezávislé. Pak je pravděpodobnost žádného statisticky významného výsledku $0{,}95^{20}\approx0{,}358$ a alespoň jednoho $1-0{,}358=0{,}642$. Jeden statisticky významný výsledek z dvaceti je tedy přesně to, co lze čekat i bez jakéhokoli rozdílu. Výzkumník má uvést všech dvacet testů, statisticky významný výsledek označit za podnět k ověření v novém výzkumu a nevydávat jej za doklad rozdílu.
 
-d)  Hladina 0,05 platí pro jeden test provedený při předem stanovené velikosti výběru. P-hodnota během sběru kolísá a každé průběžné nahlédnutí je další příležitostí, aby náhodně klesla pod hranici. Kdo skončí při prvním takovém poklesu, zamítá pravdivou nulovou hypotézu častěji než v 5 % případů. Velikost výběru má být určena předem.
+d)  Hladina 0,05 platí pro jeden test provedený při předem stanovené velikosti výběru. *p*-hodnota během sběru kolísá a každé průběžné nahlédnutí je další příležitostí, aby náhodně klesla pod hranici. Kdo skončí při prvním takovém poklesu, zamítá pravdivou nulovou hypotézu častěji než v 5 % případů. Velikost výběru má být určena předem.
 :::
 
 ### 13. Nepovinně: výpočet statistické síly

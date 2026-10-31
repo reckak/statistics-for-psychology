@@ -101,7 +101,7 @@ ch7_draw('t-rozdeleni', {
 ch7_draw('p-funkce', {
   par(mar=c(4.6,4.7,2.7,.8))
   mu <- seq(38,54,by=.02); p <- ch7_p2(46,10,25,mu)
-  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab=expression('Testovaná hodnota '*mu[0]*' (body)'),ylab='Oboustranná p-hodnota',main='P-hodnota t-testu pro různé testované hodnoty',bty='l',yaxs='i')
+  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab=expression('Testovaná hodnota '*mu[0]*' (body)'),ylab=expression('Oboustranná '*italic(p)*'-hodnota'),main=expression(bolditalic(p)*bold('-hodnota t-testu pro různé testované hodnoty')),bty='l',yaxs='i')
   abline(h=.05,lty=2,col=ch7_gray)
   rect(ch7_ci_att_t[1],-.1,ch7_ci_att_t[2],.05,col=adjustcolor(ch7_fill,.8),border=NA)
   lines(mu,p,lwd=2.4,col=ch7_blue)
