@@ -618,11 +618,11 @@ V obrázku [-@fig-qq-sikme-04] se body systematicky ohýbají do oblouku: vysok�
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s těžšími chvosty." tabindex="0"}
 
-![Těžší chvosty: levý konec leží pod přímkou, pravý nad ní.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně souměrné, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni. Zelené body kvartilů leží blíže středu než přímka, fialové body u 99. percentilu vysoko nad ní."}
+![Těžší chvosty: levý konec leží pod přímkou, pravý nad ní.](../assets/chapter-04/plots/diagnostika-chvosty.svg){#fig-qq-chvosty-04 fig-alt="Rozdělení je přibližně souměrné, ale obsahuje více velmi vzdálených hodnot než normální model. V Q–Q grafu se dolní levý konec stáčí pod přímku a horní pravý nad ni. Zelené body kvartilů leží blíže středu než přímka, fialové body u 1. percentilu pod ní a u 99. percentilu nad ní."}
 
 :::
 
-@fig-qq-chvosty-04 připomíná, že **souměrnost nestačí**. Rozdělení je přibližně souměrné, ale velmi vzdálené hodnoty se v něm vyskytují častěji než v normálním modelu se stejnou směrodatnou odchylkou. Rozdělení s takovými **těžšími chvosty** a kladným excesem nazýváme **leptokurtické (*leptokurtic*)**. Při našich osách leží levý konec pod přímkou a pravý nad ní. Normální model by zde podcenil, jak daleko od středu leží nejkrajnější výsledky, v tomto souboru hlavně na horním konci: 99. percentil by odhadl na 79,9 bodu místo 88,6. Kvartily by naopak umístil dále od středu, než leží v datech (39,5 a 57,6 místo 42,1 a 55,1 bodu), protože většina hodnot je soustředěna blíže středu. Čteme celé uspořádání; referenční přímku samotnou totiž může ovlivnit několik velmi vzdálených hodnot.
+@fig-qq-chvosty-04 připomíná, že **souměrnost nestačí**. Rozdělení je přibližně souměrné, ale velmi vzdálené hodnoty se v něm vyskytují častěji než v normálním modelu se stejnou směrodatnou odchylkou. Rozdělení s takovými **těžšími chvosty** a kladným excesem nazýváme **leptokurtické (*leptokurtic*)**. Při našich osách leží levý konec pod přímkou a pravý nad ní. Normální model by zde na obou koncích podcenil, jak daleko od středu leží nejkrajnější výsledky: 1. percentil by odhadl na 22,0 bodu místo 15,1 a 99. percentil na 79,9 bodu místo 87,8. Kvartily by naopak umístil dále od středu, než leží v datech (42,5 a 59,3 místo 45,4 a 56,6 bodu), protože většina hodnot je soustředěna blíže středu. Čteme celé uspořádání; referenční přímku samotnou totiž může ovlivnit několik velmi vzdálených hodnot.
 
 ::: {.chapter-04-figure role="region" aria-label="Simulovaný soubor ze souměrného modelu s lehčími chvosty." tabindex="0"}
 
@@ -651,7 +651,7 @@ Tvar týchž šesti souborů můžeme shrnout také [šikmostí a excesem](kapit
 | Normální model (@fig-qq-normalni-04) | Body kolísají kolem přímky bez systematického tvaru. | 0,16 | −0,41 |
 | Zešikmení doprava (@fig-qq-sikme-04) | Oblouk: dolní část stlačená, horní konec vysoko nad přímkou. | 2,01 | 7,10 |
 | Zešikmení doleva (@fig-qq-sikme-vlevo-04) | Opačný oblouk: dolní konec hluboko pod přímkou, horní část stlačená pod ní. | −2,05 | 4,67 |
-| Těžší chvosty, leptokurtické (@fig-qq-chvosty-04) | Oba konce se vzdalují od středu: levý pod přímkou, pravý nad ní. | 0,20 | 5,01 |
+| Těžší chvosty, leptokurtické (@fig-qq-chvosty-04) | Oba konce se vzdalují od středu: levý pod přímkou, pravý nad ní. | 0,01 | 3,23 |
 | Lehčí chvosty, platykurtické (@fig-qq-lehke-04) | Oba konce jsou blíže středu: levý nad přímkou, pravý pod ní. | 0,03 | −1,06 |
 | Směs dvou skupin (@fig-qq-smes-04) | Oba konce jsou blíže středu: levý nad přímkou, pravý pod ní; uprostřed strmý přechod mezi shluky. | −0,04 | −1,55 |
 
@@ -667,7 +667,7 @@ Obě cesty se shodují ve směru. Oblouky zešikmených souborů odpovídají vy
 
 Ani soubor vygenerovaný z normálního modelu nemá koeficienty nulové: jeho exces −0,41 je běžným výběrovým kolísáním, podobně jako drobné nepravidelnosti bodů kolem přímky. Oba zešikmené soubory mají vedle šikmosti také vysoký exces, protože jejich dlouhý chvost obsahuje velmi vzdálené hodnoty. Exces sám tedy nerozliší, zda vzdálené hodnoty leží na jedné straně, nebo na obou; to ukáže šikmost a především graf.
 
-Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces lehčích chvostů i směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: jiný výběr dvou set hodnot ze stejného modelu by mohl dát exces několikanásobně nižší i vyšší než 5,01. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
+Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces lehčích chvostů i směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: jiný výběr dvou set hodnot ze stejného modelu by mohl dát exces znatelně nižší, ale také několikanásobně vyšší než 3,23. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
 
 Zvýrazněné kvantily všech šesti souborů shrnuje na závěr @tbl-qq-kvantily-04. U každého souboru uvádí empirické percentily vypočtené funkcí `PERCENTIL.INC`, modelové percentily z funkce `NORM.INV` s průměrem a směrodatnou odchylkou téhož souboru a jejich rozdíl. Kladný rozdíl znamená, že model daný kvantil podhodnocuje a bod v Q–Q grafu leží nad přímkou. Záporný rozdíl znamená, že jej nadhodnocuje a bod leží pod přímkou. Čím sytější je barva buňky, tím větší je rozdíl.
 
@@ -684,9 +684,9 @@ Zvýrazněné kvantily všech šesti souborů shrnuje na závěr @tbl-qq-kvantil
 | Zešikmení doleva | Data (`PERCENTIL.INC`) | 21,8 | 57,6 | 64,0 | 67,2 | 69,9 |
 |  | Model (*m* = 60,3; *s* = 10,5) | 35,9 | 53,2 | 60,3 | 67,4 | 84,7 |
 |  | Rozdíl data − model | [−14,0]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.43)"} | [+4,4]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.14)"} | [+3,7]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.11)"} | [−0,2]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.01)"} | [−14,8]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.46)"} |
-| Těžší chvosty | Data (`PERCENTIL.INC`) | 17,6 | 42,1 | 48,5 | 55,1 | 88,6 |
-|  | Model (*m* = 48,5; *s* = 13,5) | 17,2 | 39,5 | 48,5 | 57,6 | 79,9 |
-|  | Rozdíl data − model | [+0,4]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.01)"} | [+2,6]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.08)"} | [−0,1]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.00)"} | [−2,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.08)"} | [+8,7]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.27)"} |
+| Těžší chvosty | Data (`PERCENTIL.INC`) | 15,1 | 45,4 | 50,8 | 56,6 | 87,8 |
+|  | Model (*m* = 50,9; *s* = 12,4) | 22,0 | 42,5 | 50,9 | 59,3 | 79,9 |
+|  | Rozdíl data − model | [−6,9]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.21)"} | [+2,8]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.09)"} | [−0,1]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.00)"} | [−2,7]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.08)"} | [+7,9]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.24)"} |
 | Lehčí chvosty | Data (`PERCENTIL.INC`) | 31,6 | 41,8 | 50,6 | 59,5 | 69,8 |
 |  | Model (*m* = 50,9; *s* = 11,2) | 24,8 | 43,3 | 50,9 | 58,5 | 77,0 |
 |  | Rozdíl data − model | [+6,8]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.21)"} | [−1,5]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.05)"} | [−0,3]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.01)"} | [+1,0]{.qq-rozdil style="--qq: rgba(33, 102, 172, 0.03)"} | [−7,2]{.qq-rozdil style="--qq: rgba(214, 47, 39, 0.22)"} |

@@ -20,7 +20,22 @@ Ověření: kvantily, rozdíly a sytosti spočítány v R (`quantile(type = 7)`,
 prohlédnuto všech šest SVG a tabulka ve webu na šířce 1280 a 375 px (barva
 vyplňuje buňky, stránka nepřetéká, tabulka se posouvá místně). Render kapitoly
 bez varování. Neověřeno: pracovní PDF (barvy rozdílů se v něm zatím
-nepřenášejí) a výpočet v Excelu (vzorce i listy `Sim_*` jsou beze změny).
+nepřenášejí) a výpočet kvantilů v Excelu (vzorce jsou beze změny; změnu listu `Sim_chvosty` popisuje doplněk).
+
+Doplněk téhož dne: soubor s těžšími chvosty ukazoval v tabulce kvantilů
+těžký chvost jen nahoře (rozdíl u 1. percentilu +0,4). Na pokyn autora nahrazen
+jiným výběrem z téhož modelu, 50 + 8·t se 3 stupni volnosti, seed 20263319
+(vybráno prohledáním 3 000 semínek podle souměrnosti a záporného rozdílu u 1.
+a kladného u 99. percentilu). Ostatní simulace se nemění, nový výběr se tvoří
+až po nich. Nové hodnoty: 1. percentil 15,1 vs. model 22,0, 99. percentil 87,8
+vs. 79,9, kvartily 45,4 a 56,6 vs. 42,5 a 59,3; SKEW 0,01, KURT 3,23.
+Upraven odstavec, `fig-alt`, obě tabulky a věta o nestálosti excesu (pro t3
+a n = 200 je 10. percentil excesu ≈ 2,2, 90. percentil ≈ 26,6, proto
+„znatelně nižší, ale také několikanásobně vyšší“). Kontroly
+`check-chapter-04.R` a `check-chapter-04-excel.ps1` aktualizovány a prošly;
+sešit přestavěn `build-workbooks.ps1 -Chapter 4 -Verify`. Neaktualizováno:
+místní prezentace kapitoly 4 a její nahrávka uvádějí stará čísla
+(99. percentil 79,9 vs. 88,6).
 
 ## 2026-10-28 — Výslovnostní přepisy bez podmínky nedostupného poslechu
 
