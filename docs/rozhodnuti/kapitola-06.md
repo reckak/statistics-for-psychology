@@ -116,3 +116,20 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 **Důvod:** zápis odpovídá běžné odborné praxi a APA; záměnu s podílem řeší kontext a delší tvar. Cohenova pásma studenti v literatuře potkají a mají znát jejich omezení.
 
 **Doklad:** autorovy připomínky ke kapitole 6 z 2026-10-31: „p-hodnotu bych psal s malým kurzivním p. Taky bych se nebál použít ji zapsat někdy jenom kurzivním p, i když tak označujeme i podíly; prostě bych uvedl, že kdyby mohlo dojít k záměně, použijeme delší označení ‚p-hodnota‘, nejen ‚p‘.“ a „Já bych Cohenova přibližná pravidla uvedl, ale s upozorněním, že sám Cohen je doporučoval používat spíš v případě nouze, pokud nemáme jiná vodítka.“ Při upřesnění autor zvolil platnost „Celá kniha“ a zápis „Vždy malé *p*“. Záznam „Kapitola 6: revize podle autorových připomínek“ v [historii](../../quarto/README.md#revize-kapitola-06-2026-10-31).
+
+<a id="r57-rozdeleni-p-omyly"></a>
+
+## R57 — Rozdělení *p*-hodnot a mylné představy jako nepovinná rozšíření kapitoly 6
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r57-rozdeleni-p-omyly). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-01. **Rozsah:** kapitola 6, její cvičení, sešit a bibliografie; rozšiřuje nepovinnou část schváleného plánu [R28](#r28-rozsah-kapitoly-6), povinná část se nemění.
+
+- **Nepovinné rozšíření o rozdělení *p*-hodnot:** rovnoměrné rozdělení za platnosti nulové hypotézy, posun k malým hodnotám s rostoucí silou, jev, kdy je *p*-hodnota těsně pod 0,05 při vysoké síle pravděpodobnější za platnosti nulové hypotézy než za uvažované alternativy, a z toho plynoucí úvaha o přísnější hladině (např. 0,01), je-li síla vysoká pro všechny rozdíly, na kterých záleží. Výklad zůstává v jazyce pravděpodobností výsledků za dvou modelů; bayesovské testování a poměr věrohodností zůstávají mimo kapitolu podle R28.
+- **Nepovinné rozšíření o nejčastějších mylných představách o *p*-hodnotě:** omyly se formulují popisně jako mylné výroky se správnou formulací; nové české názvy omylů se nezavádějí. Lindleyho paradox se jednou zmíní jménem s odkazem na Lakense a nezařazuje se do slovníčku.
+- **Nepovinná cvičení 15 a 16** se vstupy v sešitu kapitoly.
+- **Citace Lakensovy knihy:** rok 2026, verze 1.6.3, adresa webové knihy, bez DOI, protože DOI z autorovy doporučené citace identifikuje verzi 1.0.0 ([karta U16](../zdroje/U16-lakens-kniha.md#u16)). Jde o použití [R42](spolecne-konvence.md#r42-citace-dokumentace) na průběžně aktualizovanou online knihu.
+
+**Důvod:** obě témata prohlubují porozumění *p*-hodnotě a síle bez nových povinných pojmů; nově zmapované zdroje [U16](../zdroje/U16-lakens-kniha.md#u16) a [D13](../zdroje/D13-kline.md#d13) je přímo podporují.
+
+**Doklad:** autorův návrh z 2026-11-01: „Myslím, že kapitola 6 by mohla obsahovat nepovinné rozšíření týkající se vysvětlení nejčastějších mylných představ ohledně p-hodnot. A také nepovinné rozšíření ohledně toho, jak vypadá rozdělení p-hodnot samotných za různých podmínek, a že když disponujeme vysokou statistickou silou, jsou některé p-hodnoty pod 0,05 paradoxně pravděpodobnější, když nulová hypotéza platí, než když neplatí. Proto může dávat v takových případech smysl používat konzervativnější hladinu statistické významnosti, např. 0,01.“ Při upřesnění autor zvolil citaci „2026, verze 1.6.3“, „Ano, dvě cvičení“ a pojmenování „Popisně, paradox jménem“ a schválil předložený plán.

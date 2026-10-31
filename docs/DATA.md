@@ -165,7 +165,7 @@ individuální data nesestavují.
 
 ## Kapitola 6
 
-[Sešit](../data/kapitola_06.xlsx). Kontrola proti výkladu a zadáním: 2026-10-12.
+[Sešit](../data/kapitola_06.xlsx). Kontrola proti výkladu a zadáním: 2026-10-12; listy cvičení 15–16 a použití listu `Sila` v nepovinném rozšíření o rozdělení *p*-hodnot doplněny a zkontrolovány 2026-11-01.
 
 Výklad: `Parkovani` (souhrny studie podle Howella a parametry výukového
 modelu), `Tipovani` (test s 20 a 80 otázkami), `Devet_vyberu` (všech devět
@@ -208,6 +208,8 @@ a cvičení 11 hotové p-hodnoty; nejde o jednotlivá pozorování.
 | 12 | `U12_studie` A2:B8 |
 | 13 (nepovinné) | `U13_sila` A2:B7 |
 | 14 (nepovinné) | `U14_screening` A2:B6; smyšlené hodnoty |
+| 15 (nepovinné) | `U15_vyroky` A2:B6; výroky k posouzení jsou jen v zadání; sílu počítá list `Sila` |
+| 16 (nepovinné) | `U16_rozdeleni_p` A2:B9; model školy z cvičení 10; pravděpodobnosti pásem *p*-hodnot počítá list `Sila` změnou B3 a B5 |
 
 ## Kapitola 7
 

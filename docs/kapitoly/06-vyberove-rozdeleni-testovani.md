@@ -9,6 +9,8 @@ sazba celé kapitoly v PDF; nejde o novou obsahovou revizi této mapy.
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Doplnění 2026-11-01 ([R57](../rozhodnuti/kapitola-06.md#r57-rozdeleni-p-omyly)):** dvě nová nepovinná rozšíření (rozdělení *p*-hodnot a volba hladiny; mylné představy o *p*-hodnotě), obrázek, dvě tabulky, nepovinná cvičení 15 a 16 a dva vstupní listy sešitu. Soulad této karty s textem zkontrolován 2026-11-01 pro dotčené oddíly, cvičení, sešit a vazby; ostatní řádky beze změny. Pracovní PDF z 2026-10-30 nové části neobsahuje.
+
 **Podklad a stav:** existující [kapitola 6](../../quarto/kapitola_06.qmd#sec-kapitola-06), karta
 sestavena podle výkladu, zadání a řešení 2026-10-12. Schválený plán z téhož
 dne byl nahrazen touto mapou skutečného textu; dohodu dokládají
@@ -95,6 +97,7 @@ pořadí schválenému v R28; řádky tabulky sledují jejich pododdíly.
 | [Statistická síla pro konkrétní alternativy](../../quarto/kapitola_06.qmd#sec-statisticka-sila) | β závisí na skutečné velikosti rozdílu. Stejné kritické hodnoty ±4,16 s při skutečném rozdílu 0, 3, 5 a 8 s: 0,05; 0,29; 0,65; 0,96. Pět okolností: velikost rozdílu, velikost výběru (400 řidičů: 0,81), variabilita, hladina, směr (jednostranně 0,41). | 10b–c, 10e. |
 | [Když nulovou hypotézu nezamítneme](../../quarto/kapitola_06.qmd#sec-nezamitnuti) | Smyšlená varianta 2,9 s (z = 1,37, p-hodnota 0,17): oba kroky a vzorová formulace. Co závěr neříká (Uttsová, s. 75–76). Váha nezamítnutí závisí na síle; u rozdílu 3 s (síla 0,29) nezamítnutí mezi nulovým a skutečným rozdílem nerozhodne. | 8e, 10d, 11. |
 | [Nepovinné: výpočet statistické síly](../../quarto/kapitola_06.qmd#rozsireni-vypocet-sily) | Síla jako plocha pod křivkou alternativy; 0,654 pro rozdíl 5 s; list `Sila`. Využití při plánování, bez výkladu plánování velikosti výběru. | 13. |
+| [Nepovinné: jak se rozdělují *p*-hodnoty](../../quarto/kapitola_06.qmd#rozsireni-rozdeleni-p) | *p*-hodnota jako statistika; rovnoměrné rozdělení za H0 (odkaz do kap. 2), u binomického testu jen přibližně; P(*p* ≤ *c*) je síla na hladině *c*; obrázek pro 0, 3, 5 a 8 s; tabulka pásem: (0,04; 0,05] má pravděpodobnost 0,010 za H0, 0,035 při 5 s a 0,008 při 8 s (Lindleyho paradox jen jménem podle Lakense); nejde o pravděpodobnost H0, závisí na alternativě; varianta 400 řidičů: α 0,01 sníží sílu pro 5 s z 0,997 na 0,984, pro 3 s z 0,81 na 0,60; hladina předem podle důsledků obou chyb; ověření na listu `Sila` změnou B5. | 16. |
 | [Tři různé významnosti](../../quarto/kapitola_06.qmd#sec-tri-vyznamnosti) | Statistická, věcná a praktická významnost; upozornění na záměnu termínů v literatuře; parkovací příklad ve všech třech smyslech. | 12b. |
 | [Velikost účinku v původních jednotkách](../../quarto/kapitola_06.qmd#sec-velikost-ucinku-jednotky) | 6,88 s, přibližně pětina doby. Slovo „účinek“ neznamená příčinu. Studie A (n = 25, p-hodnota 0,62) a B (n = 2 500, pod 0,001) se stejným rozdílem 1 bodu. Skutečný příklad branců a šesti milimetrů (Uttsová). | 12a–b. |
 | [Nepovinné: standardizovaný rozdíl průměrů](../../quarto/kapitola_06.qmd#rozsireni-standardizovany-rozdil) | d = 6,88/14,6 ≈ 0,47 (Howell, s. 102); která směrodatná odchylka je ve jmenovateli; rozdíl od testové statistiky z. Cohenova pásma 0,2 / 0,5 / 0,8 s jeho výhradou (Howell, s. 214 a 235; [R56](../rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen)). | Bez cvičení. |
@@ -106,6 +109,7 @@ pořadí schválenému v R28; řádky tabulky sledují jejich pododdíly.
 | [Více testů najednou](../../quarto/kapitola_06.qmd#sec-vice-testu) | Dvacet testů při platnosti všech nulových hypotéz a nezávislosti testů: 0,64. Význam obou podmínek; zpráva má uvádět všechny testy. Korekce se nevykládají. | 12c. |
 | [Rozhodnutí učiněná až podle dat](../../quarto/kapitola_06.qmd#sec-volby-po-datech) | Dodatečný výběr analýzy a zastavování sběru podle průběžné p-hodnoty; čtyři zásady poctivého zacházení s testy. | 7c, 9d, 12d. |
 | [Nepovinné: test jako screening](../../quarto/kapitola_06.qmd#rozsireni-test-screening) | Obdoba senzitivita–síla, falešně pozitivní výsledek–α, prevalence–podíl skutečných rozdílů. Tisíc výzkumů: 45 ze 125 zamítnutí při platné nulové hypotéze (0,36); závislost na základní četnosti a síle. | 14. |
+| [Nepovinné: nejčastější mylné představy o *p*-hodnotě](../../quarto/kapitola_06.qmd#rozsireni-omyly-p) | Tabulka sedmi mylných výroků s důvodem a správnou formulací: pravděpodobnost H0, „náhoda“, 1 − *p* jako pravděpodobnost hypotézy, nezamítnutí jako důkaz, významné = důležité, 5 % chyby u jednoho rozhodnutí, 1 − *p* jako pravděpodobnost opakování (síla 0,65 pro 5 s). Odkazy na místa výkladu; zmínka o třídění výsledků na „skutečné“ a „náhodné“; obdoba u intervalů jen odkazem do kap. 7. Podle Lakense (§1.7) a Klina (s. 21–22), vlastní formulace. | 15. |
 | [Nepovinné: dvě tradice testování](../../quarto/kapitola_06.qmd#rozsireni-dve-tradice) | Fisher; Neyman a Pearson; co z které tradice zůstalo v dnešní praxi. Návrh Jonese a Tukeyho jen zmínkou s jeho předpokladem. | Bez cvičení. |
 | [Shrnutí](../../quarto/kapitola_06.qmd#sec-shrnuti-06) | Osm odkazovaných myšlenek: kolísání statistiky, výběrové rozdělení a jeho odlišení, směrodatná chyba a zákon velkých čísel, centrální limitní věta, hypotézy, p-hodnota, dvě chyby a nezamítnutí, dva kroky závěru. | Souhrnně 1–12. |
 
@@ -113,15 +117,15 @@ pořadí schválenému v R28; řádky tabulky sledují jejich pododdíly.
 
 ### Příklady, vizualizace a soubory
 
-[Sešit kapitoly 6](../../data/kapitola_06.xlsx) má 26 listů: `Prehled`, pět
+[Sešit kapitoly 6](../../data/kapitola_06.xlsx) má 28 listů: `Prehled`, pět
 výpočtových listů (`Chyba`, `Test_rozdilu`, `Binom_test`, `Z_test`, `Sila`),
 čtyři vstupní listy výkladu (`Parkovani`, `Tipovani`, `Devet_vyberu`,
 `Pozornost`), čtyři listy simulovaných dat (`Sim_vyber` s 30 dobami
 zobrazeného výběru, `Sim_prumery` s 10 000 průměry pro čtyři velikosti
 výběru, `Sim_rozdily` s 10 000 rozdíly průměrů a `Skupiny` se 150 skupinami)
-a dvanáct vstupních listů cvičení (`U02_body`, `U03_podil`, `U04_vybery`,
+a čtrnáct vstupních listů cvičení (`U02_body`, `U03_podil`, `U04_vybery`,
 `U04_model`, `U05_IQ`, `U08_pokus`, `U09_pamet`, `U10_sila`, `U11_vysledky`,
-`U12_studie`, `U13_sila`, `U14_screening`). Úlohy 1 a 7 jsou slovní; úloha 6
+`U12_studie`, `U13_sila`, `U14_screening`, `U15_vyroky`, `U16_rozdeleni_p`). Úlohy 1 a 7 jsou slovní; úlohy 15 a 16 počítají sílu na listu `Sila`; úloha 6
 používá list `Skupiny`. [Pokrytí cvičení](../DATA.md).
 
 Průběžný příklad má tři vrstvy. Čísla parkovací studie jsou převzata
@@ -150,6 +154,7 @@ a kontroly mincí (Wainer) a příklad branců (Uttsová).
 | [Extrémnější výsledky](../../quarto/kapitola_06.qmd#fig-extremnejsi) | Jak směr alternativy mění počítanou plochu. |
 | [P-hodnota a kritický obor](../../quarto/kapitola_06.qmd#fig-p-hodnota) | Výsledek z dat a pravidlo stanovené předem na jedné křivce. |
 | [Síla při čtyřech skutečných rozdílech](../../quarto/kapitola_06.qmd#fig-sila) | Kritické hodnoty zůstávají, posouvá se křivka. |
+| [Rozdělení *p*-hodnot](../../quarto/kapitola_06.qmd#fig-rozdeleni-p) | Nepovinné: rovnoměrné rozdělení za H0 a hromadění u nuly s rostoucí silou; první sloupec je síla. |
 | [Stejný rozdíl při dvou velikostech výběru](../../quarto/kapitola_06.qmd#fig-stejny-rozdil) | Velikost účinku versus statistická významnost. |
 | [Dva testy](../../quarto/kapitola_06.qmd#fig-dva-testy) | Diskrétní a spojitá testová statistika se stejnou logikou. |
 
@@ -157,12 +162,12 @@ a kontroly mincí (Wainer) a příklad branců (Uttsová).
 
 ### Cvičení a očekávané dovednosti
 
-[Čtrnáct úloh](../../quarto/kapitola_06.qmd#sec-cviceni-06) má úplná sbalená řešení. Nadpisy úloh
+[Šestnáct úloh](../../quarto/kapitola_06.qmd#sec-cviceni-06) má úplná sbalená řešení. Nadpisy úloh
 nemají explicitní ID; lokátorem je oddíl cvičení, číslo a název. Úlohy 1, 2,
 4, 7, 8, 10 a 11 vyžadují kalkulačku, úlohy 3, 5, 6, 9 a 12 Excel;
 pravděpodobnosti na tři desetinná místa, tolerance 0,001. U každého testu
-se zvlášť uvádí rozhodnutí testu a věcná interpretace. Úlohy 13 a 14 jsou
-nepovinné.
+se zvlášť uvádí rozhodnutí testu a věcná interpretace. Úlohy 13–16 jsou
+nepovinné; úloha 16 uvádí pravděpodobnosti pásem na čtyři desetinná místa.
 
 | Úloha | Co student samostatně dělá |
 |---|---|
@@ -180,6 +185,8 @@ nepovinné.
 | 12. Tři významnosti a mnoho testů | Zopakuje příklad stejného rozdílu při n = 25 a 2 500 a posoudí tři významnosti; uvede podmínky výpočtu 0,642 pro dvacet testů; vysvětlí, proč průběžné zastavování nedodržuje hladinu. |
 | 13. Nepovinně: výpočet statistické síly | Pro z-test z výkladu určí kritickou hodnotu a sílu pro populační průměr 45 a 47 bodů (0,804 a 0,442) a pro výběr 100 studentů (0,912). |
 | 14. Nepovinně: test jako screening | Sestaví přirozené četnosti pro 1 000 výzkumů (20 % skutečných rozdílů, síla 0,60), určí podíl chybných zamítnutí (0,25), vliv síly 0,90 a vysvětlí soulad s hladinou 0,05. |
+| 15. Nepovinně: mylné představy o *p*-hodnotě | Z-test 64 absolventů kurzu (m = 52,6, σ = 10): *p* = 0,0375; posoudí a opraví pět vět (náhoda, chyba u jednoho rozhodnutí, 1 − *p* jako opakování; dvě správné); na listu `Sila` určí pravděpodobnost opakování 0,548 při skutečném průměru 52,6. |
+| 16. Nepovinně: rozdělení *p*-hodnot a volba hladiny | Škola z úlohy 10 se 100 žáky: pásma *p*-hodnot za H0 bez výpočtu, pro rozdíl 2 a 5 bodů přes list `Sila` (pásmo (0,04; 0,05]: 0,0374 a 0,0004); posoudí *p* = 0,045 proti oběma alternativám, co plyne a co ne; síla na hladině 0,01 (0,282 a 0,992) a kdy je přísnější hladina rozumná. |
 
 <a id="pojmy-konvence-a-hranice-návaznosti-2"></a>
 
@@ -195,15 +202,17 @@ ODMOCNINA, ABS, KDYŽ, COUNTIFS, NORM.DIST, NORM.INV, NORM.S.DIST,
 NORM.S.INV, BINOM.DIST a BINOM.INV z kapitol 2–5.
 
 **Nepovinné:** odvození směrodatné chyby včetně chyby rozdílu dvou průměrů,
-výpočet statistické síly, standardizovaný rozdíl průměrů, test jako screening
-a dvě tradice testování. Další kapitola je nesmí předpokládat.
+výpočet statistické síly, rozdělení *p*-hodnot a volba hladiny, standardizovaný
+rozdíl průměrů, test jako screening, mylné představy o *p*-hodnotě a dvě
+tradice testování. Další kapitola je nesmí předpokládat.
 
 **Vysvětleno omezeně:** odhad směrodatné chyby bez postupu, který s jeho
 nejistotou počítá; test rozdílu dvou průměrů jen ve výukovém modelu se známou
 směrodatnou odchylkou, ne jako obecný postup pro dva výběry; výběrová
 rozdělení mediánu a směrodatné odchylky jedním příkladem; více testů bez
 korekcí; velikost účinku v původních jednotkách. **Pouze zmíněno:** interval
-spolehlivosti (jen odlišen od rozmezí výběrových průměrů), „jiný test“
+spolehlivosti (jen odlišen od rozmezí výběrových průměrů a odkazem u omylů),
+Lindleyho paradox (jen jménem v nepovinném rozšíření), „jiný test“
 při neznámé směrodatné odchylce, plánování velikosti výběru, opakování
 výzkumu, návrh Jonese a Tukeyho. **Nevyloženo:** intervaly spolehlivosti,
 t-rozdělení a t-testy, bootstrap, znaménkový test, funkce Z.TEST, korekce
@@ -235,7 +244,8 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [C05](../zdroje/C05-ulohy-tyden-4.md#c05) — X5 a X6.
 - [D07](../zdroje/D07-utts.md#d07) — statistická gramotnost.
 - [D11](../zdroje/D11-wainer.md#d11) — velikost výběru.
-- [U16](../zdroje/U16-lakens-kniha.md#u16-lokatory) a [D13](../zdroje/D13-kline.md#d13) — tematické odkazy doplněné 2026-10-31 (omyly při interpretaci *p*-hodnoty, nezamítnutí, chyba I. druhu); při tvorbě kapitoly nebyly použity.
+- [U16](../zdroje/U16-lakens-kniha.md#u16-pouziti-kapitola-06) — §1.4–1.5 a §2.5 (rozdělení *p*-hodnot, Lindleyho paradox, volba hladiny) a §1.7 (omyly) v nepovinných rozšířeních z 2026-11-01.
+- [D13](../zdroje/D13-kline.md#d13-pouziti-kapitola-06) — s. 21–22 (rozšíření omylů, přehled chybných výkladů) v nepovinném rozšíření o mylných představách.
 - [Kontrola při přípravě](../zdroje/HISTORIE.md#kontrola-podkladů-při-přípravě-kapitoly-6--2026-10-12) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-06) — společné záznamy včetně tří externích citovaných zdrojů bez vlastní karty.
 
 **Typografická úprava 2026-10-30:** všechny tabulky kapitoly včetně zadání

@@ -825,6 +825,52 @@ V B3 je směrodatná chyba 2,1213 s a v B4 kritická hodnota 4,158 s, kterou lis
 Výpočet síly se používá hlavně při plánování: výzkumník si zvolí nejmenší rozdíl, který by chtěl spolehlivě odhalit, a hledá velikost výběru, při které je síla dostatečná. Samotným plánováním velikosti výběru se tato kapitola nezabývá.
 :::
 
+::: {#rozsireni-rozdeleni-p .callout-note collapse="true" title="Nepovinné rozšíření: jak se rozdělují *p*-hodnoty"}
+*p*-hodnota se počítá z dat, a je tedy také statistikou: jiná dvojice výběrů by dala jinou *p*-hodnotu. Můžeme se proto ptát stejně jako u průměru, jakých hodnot nabývá v mnoha opakováních téže studie. Jednou hodnotou tohoto rozdělení je *p*-hodnota jedné celé studie se sto řidiči v každé skupině.
+
+**Když nulová hypotéza platí.** Pravidlo s hladinou 0,05 zamítá pravdivou nulovou hypotézu v 5 % opakování; viděli jsme to v [simulaci](#sec-simulace-presnost). *p*-hodnota tedy vyjde nejvýše 0,05 s pravděpodobností 0,05. Stejná úvaha platí pro každou hranici: nejvýše 0,01 vyjde s pravděpodobností 0,01, nejvýše 0,5 s pravděpodobností 0,5. Pravděpodobnost, že *p*-hodnota padne mezi dvě hranice, se proto rovná vzdálenosti těchto hranic. Do pásma od 0,04 do 0,05 padne 1 % *p*-hodnot, stejně jako do pásma od 0,94 do 0,95. Za platnosti nulové hypotézy mají *p*-hodnoty [rovnoměrné rozdělení](kapitola_02.qmd#sec-tvar-rozdeleni): *p*-hodnota 0,08 je stejně obvyklá jako 0,98. Přesně to platí pro spojitou testovou statistiku, jako je rozdíl průměrů v normálním modelu. U [binomického testu](#sec-binomicky-test) nabývá *p*-hodnota jen některých hodnot, a rovnoměrnost proto platí jen přibližně.
+
+**Když skutečný rozdíl existuje.** Pravděpodobnost, že *p*-hodnota vyjde nejvýše 0,05, je pak statistická síla. Totéž platí pro každou jinou hranici: **pravděpodobnost, že *p*-hodnota vyjde nejvýše $c$, je síla testu na hladině $c$.** Test na hladině $c$ totiž zamítá nulovou hypotézu právě tehdy, když *p*-hodnota vyjde nejvýše $c$. Čím vyšší je síla, tím více *p*-hodnot se hromadí u nuly.
+
+::::: {.teaching-figure role="region" aria-label="Rozdělení p-hodnot při skutečném rozdílu 0, 3, 5 a 8 sekund" tabindex="0"}
+
+![Rozdělení *p*-hodnot v opakováních parkovací studie. Za platnosti nulové hypotézy jsou všechny sloupce stejně vysoké; s rostoucím skutečným rozdílem se *p*-hodnoty hromadí u nuly a první sloupec se rovná statistické síle.](../assets/chapter-06/plots/rozdeleni-p.svg){#fig-rozdeleni-p fig-alt="Čtyři sloupcové grafy se stejnými osami: vodorovně p-hodnota jedné studie od 0 do 1 rozdělená do dvaceti sloupců po 0,05, svisle pravděpodobnost od 0 do 1. Přerušovaná vodorovná čára je ve výšce 0,05. Při skutečném rozdílu 0 sekund mají všechny sloupce výšku 0,05 a leží na čáře. Při 3 sekundách má první sloupec, tedy p-hodnoty do 0,05, výšku 0,293 a další sloupce postupně klesají pod čáru. Při 5 sekundách má první sloupec výšku 0,654, při 8 sekundách 0,965 a ostatní sloupce jsou téměř nulové."}
+
+:::::
+
+Na obrázku [-@fig-rozdeleni-p] je jednou hodnotou na vodorovné ose *p*-hodnota jedné studie. První sloupec obsahuje *p*-hodnoty nejvýše 0,05, jeho výška je tedy pravděpodobnost zamítnutí z tabulky [-@tbl-k06-13]. Při platné nulové hypotéze leží všechny sloupce na přerušované čáře. S rostoucím rozdílem první sloupec roste a ostatní se zmenšují; rozdělení je stále výrazněji [zešikmené doprava](kapitola_02.qmd#sec-tvar-rozdeleni).
+
+**Těsně pod hranicí.** Podrobnější pohled na malé *p*-hodnoty dává @tbl-k06-25.
+
+::::: {.table-scroll role="region" aria-label="Pravděpodobnost pásem p-hodnot při skutečném rozdílu 0, 5 a 8 sekund" tabindex="0"}
+
+| *p*-hodnota | Platí nulová hypotéza | Skutečný rozdíl 5 s | Skutečný rozdíl 8 s |
+|---|---:|---:|---:|
+| nejvýše 0,001 | 0,001 | 0,175 | 0,685 |
+| nad 0,001 do 0,01 | 0,009 | 0,238 | 0,199 |
+| nad 0,01 do 0,04 | 0,030 | 0,206 | 0,073 |
+| nad 0,04 do 0,05 | 0,010 | 0,035 | 0,008 |
+| nad 0,05 | 0,950 | 0,346 | 0,035 |
+
+: Pravděpodobnost pásem *p*-hodnot v parkovací studii {#tbl-k06-25}
+
+:::::
+
+::::: {.table-note}
+Sto řidičů v každé skupině, oboustranný test, směrodatná chyba rozdílu 2,12 s. Součet ve sloupci je 1.
+:::::
+
+Za platnosti nulové hypotézy padne do pásma od 0,04 do 0,05 jedna studie ze sta. Při skutečném rozdílu 5 s jsou to asi tři a půl studie ze sta: takový výsledek je při tomto rozdílu častější než při nulovém. Při skutečném rozdílu 8 s je to však méně než jedna studie ze sta. Studie s tak vysokou silou dává při osmisekundovém rozdílu obvykle mnohem menší *p*-hodnotu; ve dvou třetinách opakování menší než 0,001. **Výsledek s *p*-hodnotou jen těsně pod 0,05 je tedy častější, když nulová hypotéza platí, než když se průměry liší o osm sekund.** Statisticky významný výsledek tak může zapadat lépe do modelu nulové hypotézy než do modelu této alternativy. Lakens [-@lakens2026, oddíl [Lindley's paradox](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-lindley)] tento jev uvádí jako Lindleyho paradox (*Lindley's paradox*). V našem modelu nastává zvrat zhruba tehdy, když síla pro uvažovaný rozdíl přesáhne 0,95.
+
+Srovnáváme přitom dvě podmíněné pravděpodobnosti téhož výsledku: jednou za předpokladu, že platí nulová hypotéza, podruhé za předpokladu, že rozdíl činí 8 s. Neříkáme, jak pravděpodobně nulová hypotéza platí; k tomu bychom potřebovali i [základní četnost](#rozsireni-test-screening). Odpověď navíc závisí na tom, se kterou alternativou srovnáváme. Proti rozdílu 5 s svědčí tentýž výsledek naopak spíše pro existenci rozdílu. *p*-hodnotu proto nelze číst jako míru dokladu proti nulové hypotéze bez ohledu na sílu testu.
+
+**Důsledek pro volbu hladiny.** Představme si stejnou studii se 400 řidiči v každé skupině; směrodatná chyba rozdílu by byla 1,06 s. Předpokládejme, že výzkumníky zajímají jen rozdíly alespoň 5 s. Pro rozdíl 5 s má test na hladině 0,05 sílu 0,997. *p*-hodnota mezi 0,01 a 0,05 by vyšla ve 4 % studií, kdyby nulová hypotéza platila, ale jen v 1,3 % studií, kdyby rozdíl činil 5 s. Na hladině 0,05 bychom přesto i tyto výsledky považovali za statisticky významné. Hladina 0,01 je z rozhodnutí vyřadí. Pravděpodobnost chyby I. druhu se sníží z 0,05 na 0,01 a síla klesne jen na 0,984. Obě chyby jsou pak lépe vyvážené: místo $\mathrm{α}=0{,}05$ a $\mathrm{β}=0{,}003$ dostaneme $\mathrm{α}=0{,}01$ a $\mathrm{β}=0{,}016$. Na hladině 0,05 by chyba I. druhu byla zhruba sedmnáctkrát pravděpodobnější než chyba II. druhu; na hladině 0,01 jsou obě pravděpodobnosti podobně malé.
+
+Kdyby však výzkumníkům záleželo i na rozdílu 3 s, klesla by síla pro něj z 0,81 na 0,60. Přísnější hladina by snížila riziko chyby I. druhu za cenu mnohem častějšího přehlédnutí skutečného rozdílu. Přísnější hladina se tedy hodí, **když má studie vysokou sílu pro všechny rozdíly, na kterých záleží**, typicky u velkých výběrů. Lakens [-@lakens2026, oddíl [Justifying Error Rates](https://lakens.github.io/statistical_inferences/02-errorcontrol.html#sec-justifyerrorrate)] proto doporučuje volit hladinu podle velikosti výběru a důsledků obou chyb, ne automaticky 0,05. Při nízké síle a podobně závažných chybách připouští i hladinu mírnější. V každém případě se hladina [volí předem](#sec-hladina-kriticky-obor), ne podle toho, jaká *p*-hodnota vyšla.
+
+Čísla lze ověřit na listu `Sila`. Pravděpodobnost, že *p*-hodnota vyjde nejvýše $c$, je síla na hladině $c$. Zadejte do B2 skutečný rozdíl 8 a do B5 hladinu 0,05: B8 vrátí 0,965. Po změně B5 na 0,04 vrátí 0,957. Rozdíl 0,008 je pravděpodobnost pásma od 0,04 do 0,05. Pro studii se 400 řidiči zadejte do B3 směrodatnou chybu 1,0607.
+:::
+
 ## Co výsledek znamená: velikost účinku a závěr {#sec-velikost-ucinku}
 
 Co rozhodnutí testu říká o odpovědi na výzkumnou otázku? Tento oddíl odlišuje statistickou významnost od velikosti a důležitosti rozdílu a ukazuje, jak formulovat závěr.
@@ -1133,6 +1179,28 @@ Statisticky významně vyjde 125 výzkumů. U 45 z nich nulová hypotéza platí
 Jako u [dvou prevalencí](kapitola_05.qmd#sec-dve-prevalence) výsledek závisí na základní četnosti. Kdyby skutečný rozdíl existoval u 500 výzkumů z 1 000, vyšlo by statisticky významně $400+25=425$ výzkumů a nulová hypotéza by platila jen u 25 z nich, tedy u 6 %. A závisí na síle: při síle 0,30 a stejných 100 skutečných rozdílech by bylo oprávněných zamítnutí 30 proti 45 chybným.
 
 Podíl výzkumů, v nichž rozdíl skutečně existuje, v praxi neznáme. Příklad neříká, kolik publikovaných výsledků je chybných. Ukazuje, proč *p*-hodnota není pravděpodobností nulové hypotézy a proč překvapivé tvrzení, pro které předem mluvilo málo, potřebuje silnější doklady než tvrzení dobře zdůvodněné.
+:::
+
+::: {#rozsireni-omyly-p .callout-note collapse="true" title="Nepovinné rozšíření: nejčastější mylné představy o *p*-hodnotě"}
+Chybné výklady *p*-hodnoty nejsou jen chybou začátečníků; v průzkumech je zastávají i výzkumníci se statistickým vzděláním a vyučující psychologie [@kline2023, s. 21]. Všechny vznikají tím, že *p*-hodnotě přisoudíme odpověď na jinou otázku, než na jakou odpovídá. *p*-hodnota je pravděpodobnost takto extrémních nebo extrémnějších dat **za předpokladu**, že platí nulová hypotéza a ostatní předpoklady modelu. @tbl-k06-26 shrnuje sedm častých omylů. U každého uvádí, proč neplatí a jak lze tutéž myšlenku vyjádřit správně. Výroky se týkají výsledku *p* = 0,03, popřípadě *p* = 0,30.
+
+::::: {.table-scroll .chapter-06-wide role="region" aria-label="Sedm mylných výroků o p-hodnotě, důvod jejich chybnosti a správná formulace" tabindex="0"}
+
+| Mylný výrok | Proč neplatí | Co lze říci správně |
+|---|---|---|
+| „Nulová hypotéza platí s pravděpodobností 3 %.“ | *p*-hodnota se počítá za předpokladu, že nulová hypotéza platí; je to $P(\text{výsledek}\mid H_0)$, ne $P(H_0\mid\text{výsledek})$. K [obrácení podmínky](kapitola_05.qmd#sec-bayes) bychom potřebovali i základní četnost ([test jako screening](#rozsireni-test-screening)). | Kdyby nulová hypotéza platila, vyšel by tak extrémní nebo extrémnější výsledek ve 3 % opakování. |
+| „Výsledek vznikl náhodou s pravděpodobností 3 %.“ | Výpočet předpokládá, že výsledek vznikl jen kolísáním mezi výběry. Nemůže tedy zároveň říkat, jak pravděpodobný je tento předpoklad. | Kdyby za výsledkem stálo jen kolísání mezi výběry, byl by tak extrémní výsledek vzácný. |
+| „Výzkumná hypotéza platí s pravděpodobností 97 %.“ | 1 − *p* je pravděpodobnost méně extrémního výsledku za platnosti nulové hypotézy. O pravděpodobnosti alternativní ani výzkumné hypotézy neříká nic. | Data jsou s nulovou hypotézou těžko slučitelná; zda podporují výzkumnou hypotézu, posoudíme podle směru, velikosti a [uspořádání studie](#sec-zaver-parkovani). |
+| „Při *p* = 0,30 jsme ukázali, že rozdíl není.“ | [Nezamítnutí](#sec-nezamitnuti) je běžné i při skutečném rozdílu, pokud je síla nízká. | Data neposkytla dostatečně přesvědčivou podporu rozdílu; jeho existenci nevylučují. |
+| „Výsledek je statisticky významný, takže je důležitý.“ | Statistická významnost neříká, jak velký rozdíl je; u velkého výběru vyjde i [zanedbatelně malý rozdíl](#sec-velikost-ucinku-jednotky). | Rozdíl je těžko slučitelný s nulovou hypotézou; jeho věcnou a praktickou významnost posoudíme podle velikosti v původních jednotkách. |
+| „Zamítli jsme na hladině 0,05, takže pravděpodobnost, že jsme se právě spletli, je 5 %.“ | Hladina $\mathrm{α}$ je pravděpodobnost zamítnutí za předpokladu, že nulová hypotéza platí; popisuje pravidlo, ne jedno rozhodnutí. Jaký podíl zamítnutí je chybný, závisí na síle a základní četnosti; v [příkladu screeningu](#rozsireni-test-screening) to byla více než třetina. | Kdyby nulová hypotéza platila, zamítl by ji náš postup v 5 % opakování. |
+| „Výsledek se při opakování potvrdí s pravděpodobností 97 %.“ | Zda opakovaná studie vyjde statisticky významně, závisí na skutečném rozdílu a na její síle. Činí-li skutečný rozdíl v parkovací studii 5 s, vyjde nová studie se sto řidiči ve skupině statisticky významně s pravděpodobností 0,65, ať první studie dopadla jakkoli. *p*-hodnoty se mezi opakováními značně liší ([rozdělení *p*-hodnot](#rozsireni-rozdeleni-p)). | Pravděpodobnost, že opakovaná studie vyjde statisticky významně, je její síla pro skutečný rozdíl, který neznáme. |
+
+: Mylné výroky o *p*-hodnotě a jejich oprava {#tbl-k06-26}
+
+:::::
+
+Přehled vychází z Lakense [-@lakens2026, oddíl [Preventing common misconceptions about p-values](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-misconceptions)] a Klina [-@kline2023, s. 21–22]; příklady jsou upravené pro tuto kapitolu. Kline upozorňuje i na související omyl, že *p*-hodnota třídí výsledky na „skutečné“ a „náhodné“. Výsledky s *p*-hodnotou 0,049 a 0,051 se však [téměř neliší](#sec-otazka-testu). Obdobným omylům podléhá i interval spolehlivosti; jeho správné čtení vykládá [kapitola 7](kapitola_07.qmd#sec-co-znamena-95).
 :::
 
 ::: {#rozsireni-dve-tradice .callout-note collapse="true" title="Nepovinné rozšíření: dvě tradice testování"}
@@ -1575,4 +1643,66 @@ b)  $40/160=0{,}25$. Čtvrtina statisticky významných výsledků je v tomto mo
 c)  Oprávněných zamítnutí by bylo $200\times0{,}90=180$, chybných stále 40. Podíl: $40/220\approx0{,}182$. Vyšší síla zvyšuje podíl oprávněných zamítnutí mezi všemi zamítnutími.
 
 d)  Hladina 0,05 je podmíněná pravděpodobnost: z 800 výzkumů, v nichž nulová hypotéza platí, jich statisticky významně vyšlo 40, tedy 5 %. Podíl 0,25 odpovídá na obrácenou otázku: z výzkumů, které vyšly statisticky významně, v kolika nulová hypotéza platí. To je obrácení podmínky a závisí na základní četnosti i na síle, stejně jako prediktivní hodnota screeningu závisí na prevalenci.
+:::
+
+### 15. Nepovinně: mylné představy o *p*-hodnotě
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U15_vyroky` A2:B6.
+
+Psycholožka změřila skór pozornosti u 64 studentů, kteří absolvovali kurz práce s pozorností. Skór má podle norem průměr 50 bodů a směrodatnou odchylku 10 bodů; předpokládá, že tato směrodatná odchylka platí i pro absolventy kurzu. Výběrový průměr vyšel 52,6 bodu. Testovala oboustranně nulovou hypotézu $\mathrm{μ}=50$ na hladině 0,05.
+
+a)  Spočítejte směrodatnou chybu, testovou statistiku a *p*-hodnotu a formulujte rozhodnutí testu.
+b)  Psycholožka napsala do zprávy pět vět. U každé rozhodněte, zda je správná, a chybnou opravte.
+    1.  „Pravděpodobnost, že průměr 52,6 vznikl jen náhodou, je asi 4 %.“
+    2.  „Kdyby populační průměr absolventů byl 50 bodů, vyšel by průměr alespoň takto vzdálený od 50 bodů asi ve 4 % výběrů.“
+    3.  „Protože jsme nulovou hypotézu zamítli na hladině 0,05, je pravděpodobnost, že jsme se tentokrát spletli, 5 %.“
+    4.  „Zopakujeme-li studii se stejným počtem studentů, vyjde statisticky významně s pravděpodobností asi 96 %.“
+    5.  „Rozdíl 2,6 bodu je statisticky významný; zda je i prakticky důležitý, z *p*-hodnoty nepoznáme.“
+c)  Předpokládejme pro účel úvahy, že skutečný průměr absolventů je přesně 52,6 bodu. S jakou pravděpodobností by opakovaná studie s 64 studenty vyšla statisticky významně? Použijte list `Sila`.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $\mathrm{σ}_m=10/\sqrt{64}=1{,}25$ bodu; $z=(52{,}6-50)/1{,}25=2{,}08$. Oboustranná *p*-hodnota: `=2*(1-NORM.S.DIST(2,08;PRAVDA))` vrátí 0,0375. **Rozhodnutí testu:** na hladině 0,05 zamítáme nulovou hypotézu, že populační průměr absolventů je 50 bodů. **Věcná interpretace:** absolventi dosahují v průměru o 2,6 bodu více, než udávají normy, tedy přibližně o čtvrtinu směrodatné odchylky. Studie nemá srovnávací skupinu, takže sama neukazuje, že vyšší průměr způsobil kurz.
+
+b)  Posouzení pěti vět:
+
+    1.  **Chybně.** *p*-hodnota se počítá za předpokladu, že výsledek vznikl jen kolísáním mezi výběry, takže nemůže udávat pravděpodobnost tohoto předpokladu. Správně to říká věta 2.
+    2.  **Správně.** Popisuje *p*-hodnotu jako pravděpodobnost takto extrémního nebo extrémnějšího výsledku za platnosti nulové hypotézy; „alespoň takto vzdálený“ zahrnuje oba směry, protože test je oboustranný.
+    3.  **Chybně.** Toto jedno rozhodnutí je buď správné, nebo chybné. Hladina 0,05 popisuje pravidlo. Jak často je zamítnutí chybné, závisí také na síle a na tom, jak často nulové hypotézy v podobných studiích platí ([test jako screening](#rozsireni-test-screening)). Správně: „Kdyby nulová hypotéza platila, vedl by náš postup k jejímu zamítnutí v 5 % opakování.“
+    4.  **Chybně.** Číslo 96 % je 1 − *p*. Pravděpodobnost, že opakování vyjde statisticky významně, je síla opakované studie pro skutečný rozdíl, který neznáme; viz část c).
+    5.  **Správně.** Statistická významnost neříká, zda je rozdíl 2,6 bodu důležitý; to posoudíme podle jeho velikosti v původních jednotkách a podle účelu.
+
+c)  Na listu `Sila` zadejte B2 = 2,6, B3 = 1,25 a B5 = 0,05. B8 vrátí 0,548. I kdyby skutečný průměr byl přesně 52,6 bodu, vyšla by opakovaná studie statisticky významně jen asi v polovině případů. Opakovaný výběrový průměr kolísá kolem 52,6 a horní kritická hodnota je $50+1{,}96\times1{,}25\approx52{,}45$ bodu; pod ni padne téměř polovina opakování. Pravděpodobnost opakování je tedy mnohem nižší než 96 % z věty 4.
+:::
+
+### 16. Nepovinně: rozdělení *p*-hodnot a volba hladiny
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U16_rozdeleni_p` A2:B9.
+
+Vraťte se ke škole z úlohy 10: oboustranný test průměrného skóru v testu čtení proti 50 bodům, směrodatná odchylka 10 bodů. Škola tentokrát otestuje 100 žáků, takže směrodatná chyba je 1 bod.
+
+a)  Kdyby program na průměr nepůsobil, s jakou pravděpodobností by *p*-hodnota vyšla nejvýše 0,05, nejvýše 0,04 a mezi 0,04 a 0,05? Odpovězte bez výpočtu a zdůvodněte.
+b)  Na listu `Sila` zadejte do B3 směrodatnou chybu 1. Pro skutečný rozdíl 2 body a 5 bodů zjistěte pravděpodobnost, že *p*-hodnota vyjde nejvýše 0,05 a nejvýše 0,04, a dopočítejte pravděpodobnost pásma od 0,04 do 0,05. U buňky B8 zvyšte počet zobrazených desetinných míst na čtyři.
+c)  Škole vyšla *p*-hodnota 0,045. Je takový výsledek častější, když program nepůsobí, nebo když zvyšuje průměr o 5 bodů? A ve srovnání s rozdílem 2 body? Co z toho plyne a co ne?
+d)  Vedení školy uvažuje o hladině 0,01. Spočítejte sílu na hladině 0,01 pro rozdíl 2 body a 5 bodů. Kdy by byla přísnější hladina rozumná a kdy ne?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Za platnosti nulové hypotézy mají *p*-hodnoty spojitého testu rovnoměrné rozdělení: nejvýše 0,05 vyjde s pravděpodobností 0,05, nejvýše 0,04 s pravděpodobností 0,04 a do pásma mezi nimi padne 0,05 − 0,04 = 0,01. Důvod: pravidlo s libovolnou hladinou $c$ zamítá pravdivou nulovou hypotézu s pravděpodobností $c$ ([rozdělení *p*-hodnot](#rozsireni-rozdeleni-p)).
+
+b)  Pravděpodobnost, že *p*-hodnota vyjde nejvýše $c$, je síla na hladině $c$. Do B5 zadáváme postupně 0,05 a 0,04:
+
+    ::::: {.table-scroll role="region" aria-label="Pravděpodobnost p-hodnot nejvýše 0,05 a 0,04 pro tři skutečné rozdíly" tabindex="0"}
+
+    | Skutečný rozdíl | *p*-hodnota nejvýše 0,05 | *p*-hodnota nejvýše 0,04 | Pásmo od 0,04 do 0,05 |
+    |---:|---:|---:|---:|
+    | 0 bodů | 0,0500 | 0,0400 | 0,0100 |
+    | 2 body | 0,5160 | 0,4786 | 0,0374 |
+    | 5 bodů | 0,9988 | 0,9984 | 0,0004 |
+
+    : Pravděpodobnost pásem *p*-hodnot: řešení úlohy 16 {#tbl-k06-27}
+
+    :::::
+
+c)  Při rozdílu 5 bodů padne *p*-hodnota do pásma od 0,04 do 0,05 jen ve 4 studiích z 10 000, za platnosti nulové hypotézy ve 100 z 10 000. Výsledek 0,045 je tedy více než dvacetkrát častější, když program nepůsobí, než když zvyšuje průměr o 5 bodů. Studie má pro pětibodový rozdíl sílu téměř 1 a obvykle by dala mnohem menší *p*-hodnotu. Ve srovnání s rozdílem 2 body je to naopak: při něm padne do pásma 3,7 % studií, takže výsledek je častější při dvoubodovém rozdílu než při nulovém. **Plyne z toho**, že tentýž statisticky významný výsledek může zapadat lépe do modelu nulové hypotézy než do modelu silné alternativy a hůře než do modelu slabší alternativy. **Neplyne z toho**, s jakou pravděpodobností program funguje; k tomu bychom potřebovali i základní četnost.
+
+d)  Na hladině 0,01 je síla pro 5 bodů 0,992 (místo 0,999) a pro 2 body 0,282 (místo 0,516). Zajímá-li školu jen účinek alespoň 5 bodů, zmenší přísnější hladina pravděpodobnost chyby I. druhu z 0,05 na 0,01 a síla se téměř nezmění; je tedy rozumná. Záleží-li i na dvoubodovém zlepšení, klesne síla pro něj zhruba na polovinu a škola by účinný program častěji přehlédla. Hladinu je třeba zvolit předem podle toho, které rozdíly jsou důležité a jak závažné jsou obě chyby, ne až podle *p*-hodnoty, která vyšla.
 :::

@@ -4327,3 +4327,42 @@ zůstávají prostým textem („P-hodnota …“); kurziva části buňky by vy
 úpravu generátoru. Excel ani PDF nebyly ověřovány; zadání a řešení cvičení
 se obsahově nezměnila. Cohenovy původní práce nebyly čteny, pásma se opírají
 o Howellův výklad.
+
+<a id="rozsireni-p-hodnoty-kapitola-06-2026-11-01"></a>
+
+## 2026-11-01 — Kapitola 6: rozdělení *p*-hodnot a mylné představy
+
+Podle [R57](../docs/rozhodnuti/kapitola-06.md#r57-rozdeleni-p-omyly) přidána
+dvě nepovinná rozšíření: `#rozsireni-rozdeleni-p` za výpočtem síly
+(rovnoměrné rozdělení *p*-hodnot za H0, P(*p* ≤ *c*) jako síla na hladině *c*,
+obrázek `rozdeleni-p` pro 0, 3, 5 a 8 s, tabulka pásem `tbl-k06-25`,
+jev těsně významných *p*-hodnot při vysoké síle, varianta se 400 řidiči
+a úvaha o hladině 0,01) a `#rozsireni-omyly-p` v mezích testování (tabulka
+sedmi mylných výroků `tbl-k06-26`). Nová nepovinná cvičení 15 a 16 (tabulka
+řešení `tbl-k06-27`), vstupní listy `U15_vyroky` a `U16_rozdeleni_p`,
+bibliografické položky `lakens2026` (verze 1.6.3, bez DOI) a `kline2023`.
+Oporou jsou [U16](../docs/zdroje/U16-lakens-kniha.md#u16-pouziti-kapitola-06)
+a [D13](../docs/zdroje/D13-kline.md#d13-pouziti-kapitola-06); příklady
+a čísla jsou vlastní na modelech kapitoly. Povinný text, starší cvičení
+a ostatní listy sešitu se nezměnily.
+
+**Kontroly:** všechna nová čísla ověřena v `check-chapter-06.R` nezávislým
+výpočtem (pásma, síla na hladinách 0,04 a 0,01, zvrat kolem síly 0,95,
+řešení cvičení 15 a 16); text cvičení 16 opraven z „asi 25krát“ na „více než
+dvacetkrát“ podle přesného poměru 23,5. Sešit přestavěn
+`build-workbooks.ps1 -Chapter 6 -Verify`: 28 listů; kontrola Excelu porovnala
+47 uložených výsledků, 34 českých vzorců (nově vzorec *p*-hodnoty z cvičení 15)
+a 15 změn vstupů (nově hladina v B5 listu `Sila` a směrodatné chyby 1; 1,0607;
+1,25). Porovnání XML buněk s předchozí verzí sešitu: změněny jen nové listy
+a posunuté řádky listu `Prehled`. Celá kniha vykreslena; `check-html.cjs`
+(upravené počty: 16 řešení a 17 obrázků kapitoly 6, nový obrázek ve sbaleném
+rozšíření rozbalen klávesnicí, mobil 390 px) a `check-doc-maps.cjs
+--require-sources` prošly. Vizuálně prohlédnut nový graf a rozbalené
+rozšíření; kotvy oddílů webové verze Lakense ověřeny. Didaktická revize
+autorsky (délka vět, návaznost, žádné nové povinné pojmy; tři formulace
+zpřesněny), nikoli samostatným agentem v roli studenta ani na studentech.
+
+**Omezení:** nové listy sešitu nebyly prohlédnuty v Excelu vizuálně,
+ověřen jen obsah buněk. Pracovní PDF kapitoly 6 nebylo znovu exportováno.
+Primární literatura citovaná Lakensem a Klinem (Lindley, Haller a Krauss,
+Morey et al.) nebyla čtena.

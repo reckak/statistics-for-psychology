@@ -25,6 +25,10 @@ ch6_se_diff <- sqrt(2)*ch6_se(100)
 ch6_crit <- qnorm(.975)*ch6_se_diff
 # Probability that a two-sided test with fixed bounds rejects when the true difference is d.
 ch6_power <- function(d,crit=ch6_crit,se=ch6_se_diff) pnorm(-crit,d,se)+pnorm(crit,d,se,lower.tail=FALSE)
+# Probability that the two-sided p-value is at most c; it equals the power of the test at level c.
+ch6_p_le <- function(c,d,se=ch6_se_diff) { z <- qnorm(1-c/2); pnorm(-z*se,d,se)+pnorm(z*se,d,se,lower.tail=FALSE) }
+# Probabilities of p-value bands (lower bound excluded, upper included) for a true difference d.
+ch6_p_bands <- function(d,se=ch6_se_diff,cuts=c(0,.001,.01,.04,.05,1)) diff(vapply(cuts,function(c) ch6_p_le(c,d,se),numeric(1)))
 # Exact example: all ordered pairs drawn with replacement from three equally likely times.
 ch6_three <- c(20,35,50)
 ch6_pairs <- expand.grid(druha=ch6_three,prvni=ch6_three)[,c('prvni','druha')]
@@ -252,6 +256,19 @@ ch6_draw('sila', {
     text(14.8,.228,paste0('pravděpodobnost\nzamítnutí ',ch6_num(ch6_power(d),2)),adj=1,cex=.9,col=ch6_orange)
   }
   mtext('Oboustranný test, α = 0,05; kritické hodnoty −4,16 s a 4,16 s (přerušovaně) jsou ve všech panelech stejné',1,line=.4,outer=TRUE,cex=.78)
+},width=10,height=6.9)
+ch6_draw('rozdeleni-p', {
+  par(mfrow=c(2,2),mar=c(4.3,4.5,3,.6),oma=c(1.7,0,0,0),mgp=c(2.6,.6,0),cex=.8)
+  cuts <- seq(0,1,.05)
+  for(d in c(0,3,5,8)) {
+    pr <- diff(vapply(cuts,function(c) ch6_p_le(c,d),numeric(1)))
+    plot(NA,xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i',bty='l',xlab=expression(italic(p)*'-hodnota jedné studie'),ylab='Pravděpodobnost',
+      main=if(d==0) 'Skutečný rozdíl 0 s: platí nulová hypotéza' else paste0('Skutečný rozdíl ',d,' s'),font.main=1,cex.main=1)
+    rect(head(cuts,-1),0,cuts[-1],pr,col=c(ch6_orange,rep(ch6_fill,19)),border=c(ch6_orange,rep(ch6_blue,19)),lwd=.6)
+    abline(h=.05,lty=2,lwd=1.3,col=ch6_ink)
+    text(.07,min(pr[1]+.06,.93),bquote(italic(p)*.(paste0(' ≤ 0,05: ',ch6_num(pr[1],3),if(d==0) ' (α)' else ' (síla)'))),adj=0,cex=.9,col=ch6_orange)
+  }
+  mtext('Sto řidičů v každé skupině, oboustranný test. Sloupce po 0,05; přerušovaná čára 0,05 = rovnoměrné rozdělení za platnosti nulové hypotézy',1,line=.4,outer=TRUE,cex=.78)
 },width=10,height=6.9)
 ch6_draw('stejny-rozdil', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.9,.8))

@@ -177,12 +177,13 @@ přesnou racionální aritmetikou nezávisle na Excelu i R.
 
 Šestou kapitolu ověřuje `check-chapter-06.R`: přesný příklad devíti výběrů,
 hodnoty normálního a binomického modelu, všechny údaje ze tří simulací
-citované ve výkladu, nepovinná rozšíření, řešení čtrnácti cvičení
-a šestnáct obrázků. Skript `check-chapter-06-excel.ps1` otevře sešit pouze
+citované ve výkladu, nepovinná rozšíření včetně rozdělení *p*-hodnot,
+řešení šestnácti cvičení a sedmnáct obrázků. Skript `check-chapter-06-excel.ps1` otevře sešit pouze
 pro čtení v samostatné skryté instanci Excelu a nic neukládá: porovná
-47 uložených výsledků, zadá 33 českých vzorců citovaných v textu a řešeních
+47 uložených výsledků, zadá 34 českých vzorců citovaných v textu a řešeních
 (včetně počtů COUNTIFS nad 10 000 simulovanými rozdíly), ověří chybové
-hodnoty u nepřípustných argumentů, přepočet při deseti změnách žlutých vstupů
+hodnoty u nepřípustných argumentů, přepočet při patnácti změnách žlutých vstupů
+(včetně hladiny v B5 listu `Sila` pro rozdělení *p*-hodnot)
 a zápis osmi vzorců listů v češtině. Očekávané hodnoty jsou
 v `check-chapter-06-excel.json`; vytváří je
 `python quarto/_verification/check-chapter-06-excel-expected.py quarto/_verification/check-chapter-06-excel.json`

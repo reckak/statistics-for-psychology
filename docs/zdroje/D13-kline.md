@@ -24,6 +24,12 @@ Odkazy na originál v `sources/` jsou místní a vyžadují neveřejné podklady
 
 **Neověřeno:** citovaná primární literatura (Nuijten et al., Haller a Krauss, Oakes, Amrhein et al., Morey et al., Hoekstra et al., Simmons et al., John et al.), online doprovodný „Significance Testing Primer“ na webu nakladatele, zbytek knihy a podmínky užití výřezu. Mapa zpřístupňuje lokátory a autorský popis, nikoli kopie textu.
 
+<a id="d13-pouziti-kapitola-06"></a>
+
+## Použití v kapitole 6 (2026-11-01)
+
+Podle [R57](../rozhodnuti/kapitola-06.md#r57-rozdeleni-p-omyly) se [rozšíření o mylných představách](../../quarto/kapitola_06.qmd#rozsireni-omyly-p) opírá o s. 21–22: tvrzení, že chybné výklady zastávají i výzkumníci se statistickým vzděláním a vyučující psychologie (s. 21, bez Klinových čísel z průzkumů), výběr omylů „big five“ a zmínka o *filter myth*. Formulace, příklady a správná znění jsou vlastní; anglické ani nové české názvy omylů se nezavádějí. Pasáže o intervalech spolehlivosti (s. 22–23) a p-hackingu (s. 23) se nepoužívají; obdoba omylů u intervalů je jen odkázána do kapitoly 7. Klíč `kline2023` v `references.bib`.
+
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06) a [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06) (použití výše) a [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.
