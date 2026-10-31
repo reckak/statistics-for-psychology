@@ -138,3 +138,49 @@ oboru“ s upozorněním na částečnou synonymii a významové nuance; volby
 (Doporučeno)“ u strojového učení; „jako primární překlad explanatory
 variable bych zvolil vysvětlující proměnná, a explanační bych uvedl naopak
 jako alternativu“.
+
+<a id="r55-reliabilita-validita"></a>
+
+## R55 — Rozsah konstruktu, reliabilita a validita měření v kapitole 1
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r55-reliabilita-validita). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-31. **Rozsah:** kapitola 1 (oddíly
+o měření a o chybě a nejistotě, cvičení), slovníček, terminologický
+registr a další použití pojmů v učebnici.
+
+- Do oddílu „Co vlastně měříme“ patří vlastní schéma inspirované
+  obrázkem 14.1 Billieta (2016): konstrukt, operacionalizace a zaznamenaná
+  proměnná jako vnořené oblasti; část zaznamenané proměnné leží mimo
+  konstrukt. Billietova dvojice „conceptual/measurement validity“ se jako
+  termín nepřebírá.
+- Reliabilita a validita měření tvoří povinné jádro jako pododdíl oddílu
+  o chybě a nejistotě. Výklad začíná jednoduchými definicemi: validita =
+  zda a nakolik postup měří to, co má; reliabilita = jak přesně to měří.
+  Vztah se vykládá oběma směry: reliabilita je podmínkou validity
+  a validita je podmínkou toho, aby odhad reliability dával smysl.
+- Druhy reliability a typy dokladů validity jsou jen slovně v nepovinném
+  rozšíření, bez výpočtů a koeficientů; jejich názvy jsou zmíněny, nikoli
+  zavedeny jako hesla.
+- Preferované termíny: **reliabilita** (*reliability*; alternativa
+  spolehlivost měření, kvůli záměně s intervalem a hladinou spolehlivosti
+  se ve výkladu nepoužívá) a **validita měření** (*validity*; alternativy
+  platnost, validita testu), odlišená od interní a externí validity.
+- Terč se nepřebírá doslovně: čtyři vlastní terče s osami vysoká/nízká
+  reliabilita × bez posunu/soustavný posun, body jako opakovaná měření
+  jednoho člověka; text upozorní na meze metafory.
+
+**Důvod:** výklad konstruktu a ukazatele dosud neukazoval, co ukazatel
+nezachytí a co zachytí navíc, a pojmy reliability a validity chyběly,
+přestože je kapitola 7 používá. Doslovný popisek terče „valid, not
+reliable“ by odporoval vztahu, že reliabilita je podmínkou validity.
+
+**Doklad:** zadání autora v chatu 2026-10-31 (podrobnější vysvětlení vztahu
+konstruktů, operacionalizace a proměnné s diagramem podle Billieta;
+krátké představení validity a reliability s diagramem podle terče);
+volby „Jádro + nepovinně druhy (Recommended)“, „Reliabilita, validita
+měření (Recommended)“, „Vlastní upravená verze (Recommended)“
+a „Rozdělit do dvou oddílů (Recommended)“; připomínka k plánu: „validita
+je to, zda či nakolik nástroj měří to, co měřit má; a reliabilita je to,
+jak přesně to měří“ a „validita je podmínkou toho, aby odhad reliability
+dával smysl“.

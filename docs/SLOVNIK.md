@@ -3,6 +3,8 @@
 **Poslední kontrola: 2026-10-17.** Registr pokrývá 256 hesel současného
 studentského slovníčku pro kapitoly 1–7 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
+Dne 2026-10-31 přibyla hesla [reliabilita](#pojem-reliabilita)
+a [validita měření](#pojem-validita-mereni) podle [R55](rozhodnuti/kapitola-01.md#r55-reliabilita-validita).
 Patnáct hesel [kapitoly 7](#kapitola-07) má od 2026-10-17 studentská
 hesla i první výklad; heslo [ukazatele tvaru](#pojem-ukazatele-tvaru) přibylo téhož dne podle [R47](rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru).
 
@@ -146,6 +148,8 @@ obsahovat samostatné výslovné schválení každé doprovodné formulace.
 | <a id="pojem-spojita"></a>**Spojitá proměnná** | continuous variable | — | Odlišit spojitost měřené proměnné od přesnosti záznamu. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-spojita); [výklad](../quarto/kapitola_01.qmd#sec-diskretni-spojite) |
 | <a id="pojem-chyba-mereni"></a>**Chyba měření** | measurement error | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-chyba-mereni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-zkresleni"></a>**Systematické zkreslení** | bias | vychýlení podle kontextu | Vychýlení uvádět podle významu v daném zdroji; nezaměňovat s náhodným kolísáním. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-zkresleni); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
+| <a id="pojem-reliabilita"></a>**Reliabilita** | reliability | spolehlivost měření | Jednoduše: jak přesně postup měří; přesnost ve smyslu malých nahodilých nepřesností, nikoli přesnost záznamu. „Spolehlivost“ ve výkladu nepoužívat kvůli záměně s intervalem a hladinou spolehlivosti. Názvy druhů reliability jsou jen zmíněny. | S — [R55](rozhodnuti/kapitola-01.md#r55-reliabilita-validita) | [Heslo](../quarto/slovnicek.qmd#pojem-reliabilita); [výklad](../quarto/kapitola_01.qmd#sec-reliabilita-validita) |
+| <a id="pojem-validita-mereni"></a>**Validita měření** | validity; measurement validity | validita testu; platnost | Jednoduše: zda a nakolik postup měří, co má; posuzuje se pro interpretaci a účel výsledků. Odlišit od interní a externí validity studie. Typy dokladů validity jsou jen zmíněny. | S — [R55](rozhodnuti/kapitola-01.md#r55-reliabilita-validita) | [Heslo](../quarto/slovnicek.qmd#pojem-validita-mereni); [výklad](../quarto/kapitola_01.qmd#sec-reliabilita-validita) |
 | <a id="pojem-chyba-zaznamu"></a>**Chyba záznamu** | data entry error | chyba přepisu | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-chyba-zaznamu); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-nejistota"></a>**Nejistota** | uncertainty | — | Není synonymem chyby. | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-nejistota); [výklad](../quarto/kapitola_01.qmd#sec-nejistota) |
 | <a id="pojem-datova-matice"></a>**Datová matice** | data matrix | — | — | K — [H01](#doklad-h01) | [Heslo](../quarto/slovnicek.qmd#pojem-datova-matice); [výklad](../quarto/kapitola_01.qmd#sec-datova-matice) |

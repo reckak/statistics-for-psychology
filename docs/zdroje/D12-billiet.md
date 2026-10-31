@@ -28,6 +28,10 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Neověřeno:** citovaná primární literatura (Hox, Kerlinger, Saris a Gallhofer, Borsboom et al., Bollen), výsledky tab. 14.1 a modelu se stylovou proměnnou (data ESS nebyla analyzována), místo vydání sborníku a podmínky užití souboru. Mapa zpřístupňuje lokátory a autorský popis, nikoli kopie obrázků nebo textu.
 
 
+<a id="d12-pouziti-kapitola-01"></a>
+
+**Použití v kapitole 1 (2026-10-31, [R55](../rozhodnuti/kapitola-01.md#r55-reliabilita-validita)):** znovu přečteny s. 197, 199–200 (obr. 14.1 prohlédnut na výřezu, který dodal autor) a s. 204–206. Vlastní schéma [rozsahu konstruktu](../../quarto/kapitola_01.qmd#sec-rozsah-ukazatele) je inspirováno obr. 14.1 (s. 200), citace „s. 200, obr. 14.1“; obrázek se nepřebírá. Sklon k souhlasu a doporučení formulovat tvrzení oběma směry cituje s. 204–205; zpětné zpřesnění konstruktu s. 197 a 205–206. Příklad ESS, CFA a tab. 14.1 se nepřebírají; Billietova dvojice „conceptual/measurement validity“ není zavedena jako termín.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01). Konkrétní použití a stav ověření určují záznamy výše.

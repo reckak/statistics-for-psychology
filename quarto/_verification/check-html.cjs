@@ -89,7 +89,7 @@ const server = http.createServer((req, res) => {
         await page.keyboard.press('Enter');
         await pedagogy.locator('.callout-collapse').waitFor({state:'visible'});
         const figures01 = page.locator('main .quarto-figure img');
-        assert.equal(await figures01.count(), 10, 'Chapter 1 has eight diagrams and two simulated scatterplots');
+        assert.equal(await figures01.count(), 12, 'Chapter 1 has ten diagrams and two simulated scatterplots');
         for (const img of await figures01.all()) {
           assert(await img.evaluate(e => e.complete && e.naturalWidth > 0), 'Chapter 1 figure loaded');
           assert((await img.getAttribute('alt')).length > 40, 'Chapter 1 descriptive alt text');
@@ -358,7 +358,7 @@ const server = http.createServer((req, res) => {
         }
         fs.writeFileSync('tmp/verification/ch03-citations.json',JSON.stringify(await page.locator('.citation,#refs .csl-entry').allTextContents(),null,2));
       }
-      if (file === 'quarto/kapitola_01.html') assert.equal(await solutions.count(), 8, 'All eight exercises must have a solution');
+      if (file === 'quarto/kapitola_01.html') assert.equal(await solutions.count(), 9, 'All nine exercises must have a solution');
       for (let i = 0; i < await solutions.count(); i++) {
         const item = solutions.nth(i);
         const toggle = item.locator('[data-bs-toggle="collapse"]');
@@ -401,7 +401,7 @@ const server = http.createServer((req, res) => {
       }
       if (file === 'quarto/kapitola_01.html') {
         const regions01 = page.locator('.teaching-figure');
-        assert.equal(await regions01.count(), 9, 'Seven diagrams and two scatterplots have accessible scroll regions');
+        assert.equal(await regions01.count(), 11, 'Nine diagrams and two scatterplots have accessible scroll regions');
         for (let i=0; i<await regions01.count(); i++) {
           const region=regions01.nth(i);
           assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth), 'Chapter 1 diagram scrolls locally');
