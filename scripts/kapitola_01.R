@@ -217,3 +217,59 @@ diagram('ucastnik-navsteva-radek', 5, {
   }
   label(50,4,'ID člověka se opakuje; konkrétní záznam určuje ID spolu s návštěvou.',cex=.9)
 })
+
+# Ellipse outline in diagram coordinates (0-100 on both axes).
+ellipse_xy <- function(cx, cy, rx, ry, t = seq(-pi, pi, length.out = 241)) {
+  list(x = cx + rx * cos(t), y = cy + ry * sin(t))
+}
+diagram('rozsah-konstruktu', 6.4, {
+  label(50,95,'Co z konstruktu zachytíme a co přibude navíc',TRUE,1.1)
+  outer <- c(40,46,37,40); middle <- c(52,42,24,30); inner <- c(64,32,22,14)
+  e <- ellipse_xy(outer[1],outer[2],outer[3],outer[4])
+  polygon(e$x,e$y,col='#EEF3F4',border=grey,lwd=1.5)
+  e <- ellipse_xy(middle[1],middle[2],middle[3],middle[4])
+  polygon(e$x,e$y,col='#DCE9EB',border=grey,lwd=1.5)
+  e <- ellipse_xy(inner[1],inner[2],inner[3],inner[4])
+  polygon(e$x,e$y,col='#BFD8DC',border=blue,lwd=2)
+  # Part of the recorded variable lying outside the construct.
+  t <- seq(-pi, pi, length.out = 2001)
+  inside_outer <- function(x, y) ((x-outer[1])/outer[3])^2 + ((y-outer[2])/outer[4])^2 <= 1
+  inside_inner <- function(x, y) ((x-inner[1])/inner[3])^2 + ((y-inner[2])/inner[4])^2 <= 1
+  a <- ellipse_xy(inner[1],inner[2],inner[3],inner[4],t)
+  keep <- !inside_outer(a$x,a$y)
+  b <- ellipse_xy(outer[1],outer[2],outer[3],outer[4],rev(t))
+  keepb <- inside_inner(b$x,b$y)
+  polygon(c(a$x[keep],b$x[keepb]),c(a$y[keep],b$y[keepb]),
+    col=adjustcolor(orange,.45),border=orange,lwd=2)
+  label(40,80,'Konstrukt: určitá stránka paměti',TRUE,.95)
+  label(14,47,'Nezachyceno:\nrozpoznávání\nviděného, osobní\nvzpomínky',cex=.8)
+  label(48,62,'Operacionalizace:\nbezprostřední vybavení\nseznamu slov',cex=.85)
+  label(58,32,'Zaznamenaná proměnná:\npočet slov\nz jednoho seznamu',cex=.82)
+  label(91,62,'Vlivy mimo\nkonstrukt:\nznalost češtiny,\núnava, snaha',cex=.8,col=orange)
+  link(89,52,84,38,orange)
+  label(50,3,'Schéma: velikost ploch neodpovídá žádným změřeným podílům.',cex=.85)
+})
+
+diagram('terc-reliabilita-validita', 7.2, {
+  set.seed(20261031)
+  asp <- 8.8 / 7.2  # y units per x unit for round targets
+  r <- 14; xs <- c(32,74); ys <- c(64,24)
+  label(xs[1],94,'Vysoká reliabilita\n(body blízko sebe)',TRUE,.92)
+  label(xs[2],94,'Nízká reliabilita\n(body rozptýlené)',TRUE,.92)
+  text(6,ys[1],'Bez soustavného\nposunu',srt=90,font=2,cex=.9,col=ink)
+  text(6,ys[2],'Soustavný\nposun',srt=90,font=2,cex=.9,col=ink)
+  for (i in 1:2) for (j in 1:2) {
+    cx <- xs[j]; cy <- ys[i]
+    for (k in 3:1) {
+      e <- ellipse_xy(cx,cy,r*k/3,r*k/3*asp)
+      polygon(e$x,e$y,col=if (k == 1) '#F4F8F8' else 'white',border=grey,lwd=1.4)
+    }
+    points(cx,cy,pch=19,col=orange,cex=1.1)
+    sd <- if (j == 1) 1.1 else 4.6
+    shift <- if (i == 1) c(0,0) else c(6.5,4.5)
+    px <- cx + shift[1] + rnorm(12,0,sd)
+    py <- cy + (shift[2] + rnorm(12,0,sd)) * asp
+    points(px,py,pch=21,bg=blue,col='white',cex=1.05)
+  }
+  label(50,3,'Body: opakovaná měření jednoho člověka. Oranžový střed: hodnota, kterou má postup zachytit.',cex=.82)
+})

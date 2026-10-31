@@ -4242,3 +4242,33 @@ exportovaných poznámek na 10 pt a šedé tahy ve všech čtyřech PDF.
 Kontrola dokumentace (73 souborů, 54 rozhodnutí, 2 989 odkazů) a
 `git diff --check` prošly. Výpočty, data ani sešity se neměnily;
 nejde o novou odbornou revizi kapitol. Nasazení na veřejný web neověřováno.
+
+<a id="reliabilita-validita-01"></a>
+
+## 2026-10-31 — Kapitola 1: rozsah konstruktu, reliabilita a validita měření
+
+Podle [R55](../docs/rozhodnuti/kapitola-01.md#r55-reliabilita-validita)
+přibyl v oddílu o měření pododdíl „Co ukazatel zachytí a co ne“ s vlastním
+schématem vnořených oblastí (inspirace Billiet 2016, obr. 14.1) a v oddílu
+o chybě a nejistotě pododdíl „Reliabilita a validita měření“ se čtyřmi
+vlastními terči, častým omylem a nepovinným rozšířením o druzích reliability
+a dokladech validity. Nová úloha 9 s úplným řešením; doplněn cíl kapitoly
+a věta shrnutí. Kapitola 7 (oddíl o mezích ekvivalence) nyní odkazuje na
+výklad reliability. Dvě hesla slovníčku a registru, bibliografie Billiet
+a Field. Odchylka od plánu: pododdíl o reliabilitě je na konci oddílu
+o nejistotě, ne hned za systematickým zkreslením, aby nepohltil navazující
+výklad výběrové variability.
+
+Opory čteny v textové extrakci: Cumming s. 25–26, Field s. 13–15 (nález
+v kartě U14), Navarro §2.3, Billiet s. 197–206, Borsboom a Mellenbergh
+(2002) s. 507–508 v autorském PDF. Obrázek 14.1 viděn jen na výřezu od autora.
+
+**Kontroly:** oba diagramy vygenerovány `scripts/kapitola_01.R` a vizuálně
+prohlédnuty; celá kniha vykreslena; `check-html.cjs` prošel na 12 stránkách
+(264 hesel, 84 řešení, mobil, bez JavaScriptu, file://), očekávané počty
+obrázků, oblastí a řešení kapitoly 1 v něm aktualizovány.
+`check-chapter-01.R` a `check-doc-maps.cjs --require-sources` prošly.
+Žádná věta nových pasáží nepřesahuje 30 slov; povinná část kapitoly má
+přibližně 10 400 slov. Didaktická revize provedena autorsky, nikoli
+samostatným agentem v roli studenta ani na studentech. Sešit kapitoly
+se nemění (úloha 9 je slovní). Excel ani PDF neověřovány.

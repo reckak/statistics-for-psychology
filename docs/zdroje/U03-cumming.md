@@ -64,6 +64,8 @@ a [E03](E03-lakens-2018.md#e03-lakens-2018), protože Cumming jej na této
 straně nevykládá. Strana byla ověřena v textu PDF (pdftotext), nikoli
 v obrazovém exportu.
 
+**Použití v kapitole 1 (2026-10-31):** v textové extrakci přečteny s. 25–26 (PDF 60–61), oddíl o reliabilitě a validitě: reliabilita jako opakovatelnost, test-retest při co nejpodobnějších podmínkách, validita jako míra, v níž měřítko měří, co má; doklady srovnáním se zavedeným měřítkem a předpovědí výsledku („validity of the test for its purpose“). Citováno v [pododdílu o reliabilitě a validitě](../../quarto/kapitola_01.qmd#sec-reliabilita-validita) a jeho nepovinném rozšíření. Vizuální kontrola stran neproběhla.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

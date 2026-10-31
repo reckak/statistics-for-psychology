@@ -11,6 +11,7 @@ V této kapitole projdeme cestu od psychologické otázky k datům připraveným
 - Rozlišíte populaci, výběr, případy, proměnné a konstanty a vysvětlíte jejich závislost na otázce a souboru.
 - Určíte role proměnných ve výzkumné otázce a vysvětlíte, proč jejich označení nedokládá příčinný vztah.
 - Rozlišíte psychologickou vlastnost od jejího ukazatele, zdůvodníte úroveň měření a rozpoznáte základní zdroje nejistoty.
+- Vysvětlíte, co znamená reliabilita a validita měření a proč jedna bez druhé nestačí.
 - Sestavíte jednoduchou datovou matici a přehled proměnných a dokážete v nich odhalit chyby.
 :::
 
@@ -259,6 +260,24 @@ Tím se údaj stává srozumitelnějším. Zůstává však odhadem účastníka
 
 U odpovědních stupnic potřebujeme znát také znění otázky nebo hodnoceného tvrzení a význam jednotlivých možností. Představme si stupnici souhlasu: 1 „zcela nesouhlasím“, 2 „spíše nesouhlasím“, 3 „ani souhlas, ani nesouhlas“, 4 „spíše souhlasím“ a 5 „zcela souhlasím“. Hodnota 4 u tvrzení „Jsem odpočatý“ vyjadřuje spíše souhlas s pocitem odpočatosti, zatímco stejná hodnota u tvrzení „Jsem unavený“ vyjadřuje spíše souhlas s pocitem únavy. Význam zaznamenaného čísla tedy závisí také na znění tvrzení, které účastník hodnotí. Vyšší číselná hodnota nemusí vždy znamenat více stejné psychologické vlastnosti.
 
+### Co ukazatel zachytí a co ne {#sec-rozsah-ukazatele}
+
+Víme už, že konstrukt není totožný se svým ukazatelem. Jak velkou část konstruktu však zaznamenaná proměnná zachytí a co se do ní dostane navíc? @fig-od-konstruktu-k-zaznamu ukazoval postup od obecného cíle ke konkrétnímu číslu; nyní se zaměříme na rozsah toho, co v jednotlivých krocích zachycujeme.
+
+Každý krok operacionalizace rozsah zužuje. Paměť zahrnuje například zapamatování nového učiva, rozpoznávání již viděného nebo vzpomínky na osobní události. Z toho jsme vybrali bezprostřední vybavení krátkého seznamu slov. Počet slov vybavených z jednoho konkrétního seznamu za určitých podmínek pak zachycuje ještě užší výsek.
+
+Zaznamenaný výsledek zároveň obsahuje vlivy, které k zamýšlenému konstruktu nepatří. Počet vybavených českých slov ovlivňuje také znalost češtiny, únava v den měření nebo snaha účastníka. Tyto vlivy se do čísla dostanou spolu s pamětí a z jeho hodnoty je samotné neoddělíme.
+
+@fig-rozsah-konstruktu shrnuje obě stránky. Vnořené oblasti ukazují, jak se rozsah zužuje od konstruktu k zaznamenané proměnné. Část nejmenší oblasti přitom přesahuje mimo konstrukt: zaznamenaná proměnná měří i něco, co měřit nemá. Velikost ploch neodpovídá žádným změřeným podílům; jde o schéma, nikoli o výsledek výzkumu. Schéma je inspirováno obrázkem Billieta [-@billiet2016, s. 200, obr. 14.1].
+
+::: {.teaching-figure role="region" aria-label="Co z konstruktu zachytí operacionalizace a zaznamenaná proměnná" tabindex="0"}
+![Zaznamenaná proměnná zachytí jen část konstruktu a současně obsahuje vlivy mimo něj.](../assets/chapter-01/plots/rozsah-konstruktu.svg){#fig-rozsah-konstruktu fig-alt="Tři vnořené oválné oblasti. Největší je konstrukt paměti, který zahrnuje i rozpoznávání viděného a vzpomínky na osobní události. Uvnitř leží operacionalizace: bezprostřední vybavení seznamu slov. Nejmenší oblast je zaznamenaná proměnná, počet slov z jednoho seznamu. Její část přesahuje mimo konstrukt do pásu označeného vlivy mimo konstrukt: znalost češtiny, únava a snaha účastníka."}
+:::
+
+Podobný problém známe ze stupnic souhlasu z předchozího odstavce. Někteří lidé mají sklon souhlasit s tvrzeními do jisté míry bez ohledu na jejich obsah. Pokud by všechna tvrzení o odpočatosti byla formulována stejným směrem, například „Jsem odpočatý“ a „Mám dost energie“, tento sklon by zvýšil skóre odpočatosti, přestože s odpočatostí nesouvisí. Billiet [-@billiet2016, s. 204–205] popisuje stejnou potíž u dotazníku postojů k sociálnímu státu a doporučuje formulovat tvrzení oběma směry. Zařadíme-li i tvrzení jako „Jsem unavený“ a souhlas s nimi budeme počítat jako nižší odpočatost, obecný sklon k souhlasu se v celkovém skóre zčásti vyrovná. Navíc ho snáze odhalíme: kdo souhlasí s „Jsem odpočatý“ i s „Jsem unavený“, neodpovídá jen podle obsahu.
+
+Rozdíl mezi konstruktem a ukazatelem má tedy dvě stránky: ukazatel část konstruktu nezachytí a zároveň zachytí něco navíc. Obě omezují, co z čísel smíme tvrdit o konstruktu. Zkušenost s měřením nám také může pomoci zpřesnit samotný konstrukt. Zjistíme-li, že výsledky ovlivňuje něco, s čím jsme nepočítali, můžeme upravit měření, nebo vymezení toho, co zkoumáme [@billiet2016, s. 197 a 205–206]. Na obě stránky naváže [výklad reliability a validity měření](#sec-reliabilita-validita).
+
 ## Úrovně měření a význam hodnot {#sec-urovne}
 
 Jaký význam má rozdíl mezi hodnotami 2 a 4? U počtu správných odpovědí to může být rozdíl dvou správných odpovědí. U kódu místnosti nemusí velikost rozdílu znamenat nic. **Úroveň měření (*level of measurement*)**, alternativně *škála měření*, vyjadřuje, které vztahy mezi hodnotami můžeme věcně interpretovat: odlišnost, pořadí, rozdíly a poměry.
@@ -473,6 +492,52 @@ První problém se týká měření, druhý záznamu a třetí získávání ú�
 
 Transparentnost má jednoduchou praktickou podobu: popíšeme pravidla měření, zaznamenáme způsob získání účastníků a uchováme vysvětlení provedených oprav. Další člověk pak může posoudit, jak jsme k výsledku dospěli.
 
+### Reliabilita a validita měření {#sec-reliabilita-validita}
+
+Víme už, že měření může obsahovat nahodilé nepřesnosti i soustavný posun (systematické zkreslení) a že ukazatel nezachytí celý konstrukt. Jak tedy posoudit, zda konkrétní postup měří dobře? K tomu slouží dvě základní hlediska kvality měření [@cumming, s. 25–26; @field, s. 14–15].
+
+**Validita měření (*validity*)** vyjadřuje, zda a nakolik postup měří to, co měřit má. **Reliabilita (*reliability*)** vyjadřuje, jak přesně to měří. U úlohy s dvanácti slovy se validita ptá, zda počet vybavených slov zachycuje zamýšlenou stránku paměti. Reliabilita se ptá, jak podobný výsledek by týž člověk měl, kdybychom měření opakovali s jiným, stejně obtížným seznamem a jeho paměť se mezitím nezměnila.
+
+Obě krátké definice je užitečné zpřesnit. Přesností zde rozumíme malé nahodilé nepřesnosti: opakovaná měření téže nezměněné vlastnosti dávají podobné výsledky [@navarro, oddíl 2.3]. Nejde o [přesnost záznamu](#sec-diskretni-spojite), tedy o to, jak jemně hodnotu zapíšeme. Dobu spánku můžeme zapisovat na minuty, a účastníci ji přesto mohou odhadovat velmi nepřesně.
+
+Validitu měření oslabuje soustavný posun i to, že výsledek zachycuje něco jiného, než má. Neposuzujeme ji „obecně“, ale pro určitou interpretaci výsledků a určitý účel. Počet slov může dobře vypovídat o bezprostředním vybavení krátkého seznamu, ale hůře o paměti potřebné při přípravě na zkoušku. Validitu měření odlišujeme od [interní a externí validity](#sec-interni-externi-validita). Ty se týkají opory závěrů celé studie o příčině a o přenosu na jiné lidi či podmínky; validita měření se týká toho, co znamenají zaznamenané hodnoty.
+
+@fig-terc-reliabilita-validita ukazuje rozdíl mezi oběma hledisky. Každý terč představuje jednoho člověka, kterého bychom hypoteticky změřili mnohokrát, aniž by se měřená vlastnost změnila. Střed terče je hodnota, kterou má postup u tohoto člověka zachytit, a body jsou jednotlivá opakovaná měření. Těsně seskupené body znamenají vysokou reliabilitu. Leží-li skupina bodů kolem středu, výsledky nejsou soustavně posunuté.
+
+::: {.teaching-figure role="region" aria-label="Reliabilita a soustavný posun na čtyřech terčích" tabindex="0"}
+![Stálé výsledky (vlevo) ještě neznamenají správné výsledky; jednotlivý výsledek je důvěryhodný jen v levém horním terči.](../assets/chapter-01/plots/terc-reliabilita-validita.svg){#fig-terc-reliabilita-validita fig-alt="Čtyři terče ve dvou řádcích a dvou sloupcích. Levý sloupec: body těsně u sebe, vysoká reliabilita. Pravý sloupec: body rozptýlené, nízká reliabilita. Horní řádek: body rozložené kolem středu, bez soustavného posunu. Dolní řádek: skupina bodů posunutá mimo střed. Jen v levém horním terči leží všechny body blízko středu."}
+:::
+
+- **Vlevo nahoře:** výsledky jsou stálé a leží blízko středu. Jednotlivý výsledek dobře vypovídá o tom, co má měřit.
+- **Vlevo dole:** výsledky jsou stálé, ale soustavně posunuté. Tak může dopadnout účastník, který se dobře nevyzná v češtině: znalost jazyka mu pokaždé ubere několik slov. Stálost výsledku nedokazuje, že je správný.
+- **Vpravo nahoře:** výsledky nejsou soustavně posunuté, ale silně kolísají. Průměr mnoha opakování by ležel blízko středu. My však obvykle máme jen jeden výsledek, a ten může ležet daleko od středu. Ani zde proto jednotlivé výsledky nejsou validní.
+- **Vpravo dole:** výsledky kolísají i jsou posunuté.
+
+Terč má jedno důležité omezení. Předpokládá, že víme, kde je střed a že na něj míříme. U psychologických konstruktů polohu středu přímo neznáme a můžeme se mýlit i v tom, na co vůbec míříme. Tuto otázku terč neukáže. Odpovídá na ni až schéma rozsahu konstruktu v obrázku [-@fig-rozsah-konstruktu].
+
+Reliabilita a validita spolu souvisejí ve dvou směrech.
+
+**Reliabilita je podmínkou validity** [@field, s. 15]. Pokud výsledky téhož člověka při opakování hodně kolísají, jednotlivý výsledek nemůže spolehlivě vypovídat o měřené vlastnosti, ať míříme kamkoli. Nízká reliabilita proto validitu omezuje. Vysoká reliabilita ji ale nezaručuje: levý dolní terč ukazuje stálý, a přesto posunutý výsledek.
+
+**Validita je podmínkou toho, aby odhad reliability dával smysl.** Reliabilita je přesnost měření *něčeho*. Když zjistíme, jak stálé jsou výsledky postupu, ještě nevíme, čeho stálost to je. Borsboom a Mellenbergh [-@borsboom2002, s. 507–508] to ukazují na záměrně nesmyslném testu: body za nesouvisející otázky sečteme a vynásobíme počtem písmen ve jménu účastníka. Takový výsledek bude při opakování nejspíš velmi stálý, a test tedy může vycházet vysoce reliabilní, přestože neměří žádnou smysluplnou vlastnost. Reliabilita se týká stálosti výsledku postupu, nikoli přímo konstruktu. Teprve když máme oporu, že výsledek zachycuje zamýšlenou vlastnost, můžeme jeho stálost číst jako přesnost měření této vlastnosti. Pokud počet slov silně ovlivňuje znalost češtiny, vysoká stálost výsledků popisuje stálost směsi paměti a jazykové znalosti, ne přesnost měření paměti.
+
+Pořadí otázek je tedy zřejmé: nejdřív se ptáme, co měříme, a teprve potom, jak přesně to měříme.
+
+::: {.callout-warning title="Častý omyl: stálý výsledek je správný výsledek"}
+Pokud postup dává při opakování podobné výsledky, svádí to k závěru, že měří dobře. Stálost však vypovídá jen o reliabilitě. Správná interpretace zní: „Výsledky jsou při opakování stálé, reliabilita je tedy dobrá. Zda zachycují paměť, a ne například znalost češtiny, musíme doložit zvlášť.“
+:::
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: jak se reliabilita a validita posuzují" #rozsireni-druhy-reliability-validity}
+Reliabilitu lze posuzovat podle toho, odkud by mohla nahodilá nepřesnost pocházet [@navarro, oddíl 2.3; @cumming, s. 25–26]:
+
+- **Opakování v čase** (*test-retest reliability*): stejné lidi změříme dvakrát a porovnáme výsledky. Mezi měřeními se nesmí změnit měřená vlastnost a výsledek nesmí ovlivnit samotné zapamatování úlohy; proto by se v naší úloze použil jiný, srovnatelný seznam slov.
+- **Shoda posuzovatelů** (*inter-rater reliability*): pokud výsledek určuje člověk, například posuzuje drobné pravopisné odchylky, porovnáme hodnocení dvou nezávislých posuzovatelů.
+- **Shoda srovnatelných verzí** (*parallel forms reliability*): porovnáme výsledky dvou verzí postupu, které mají měřit totéž, například dvou různých seznamů slov.
+- **Vnitřní konzistence** (*internal consistency*): pokud se výsledek skládá z více položek, které mají měřit totéž, posuzujeme, zda dávají souhlasné výsledky.
+
+Validitu nedokládá jedno číslo, ale souhrn argumentů. Jedním zdrojem je obsah: zda úlohy či položky pokrývají to, co konstrukt zahrnuje (*content validity*). Další oporou je vztah k jinému, již zavedenému měření téhož konstruktu nebo k důležitému výsledku, který má postup předpovídat; zde se mluví o kriteriální validitě (*criterion validity*) [@field, s. 14–15; @cumming, s. 26]. Souhlasné výsledky dvou měření se obvykle vyjadřují korelací, se kterou se seznámíme později.
+:::
+
 ## Od záznamů k datové matici {#sec-datova-matice}
 
 **Datová matice (*data matrix*)** uspořádává údaje do řádků a sloupců. V základní podobě představuje jeden řádek jeden případ, jeden sloupec jednu proměnnou a jedna buňka její hodnotu pro daný případ. Záhlaví obsahuje názvy proměnných; samo není dalším případem [@dostal, oddíl 5.1].
@@ -570,7 +635,7 @@ Před analýzou projdeme identifikátory, jednotky, přípustné hodnoty a chyb�
 
 ## Shrnutí {#sec-shrnuti-01}
 
-Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem. Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
+Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem: ukazatel část konstruktu nezachytí a zároveň zachytí i něco navíc. Kvalitu měření posuzujeme podle validity (zda měříme, co máme) a reliability (jak přesně); stálý výsledek ještě není správný výsledek ([reliabilita a validita](#sec-reliabilita-validita)). Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
 
 Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Pravděpodobnostní výběr a náhodné přiřazení k podmínkám slouží odlišným účelům; žádný z nich neřeší všechna omezení studie. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
 
@@ -803,3 +868,31 @@ Při přípravě pro statistický program můžeme dvě prázdné číselné bu�
 
 Součet prázdných buněk může vrátit nulu jako výsledek pravidla výpočtu, přestože o výkonu nemáme žádný údaj. U K03 úloha neproběhla. Interpretovat výsledek takového výpočtu jako skutečně nulový výkon by zaměnilo chybění za pozorovanou hodnotu.
 ::::
+
+### Úloha 9: Stálý výsledek, ale čeho? {#sec-uloha-01-9}
+
+**Situace A.** Škola používá test paměti: žák si jednu minutu čte seznam patnácti českých slov a poté zapíše ta, která si vybaví. Podle výrobce dosahují děti při opakování po týdnu s jiným, srovnatelným seznamem velmi podobných výsledků. Ve třídě je několik žáků, kteří se česky teprve učí; ti mají při obou měřeních soustavně nižší výsledky než ostatní.
+
+**Situace B.** Dotazník odpočatosti obsahuje pět tvrzení, například „Jsem odpočatý“ a „Mám dost energie“. Všechna jsou formulována stejným směrem: souhlas znamená větší odpočatost. Odpovědi na stupnici od 1 „zcela nesouhlasím“ do 5 „zcela souhlasím“ sečteme.
+
+a)  Učitel říká: „Test dává pořád stejné výsledky, takže měří paměť dobře.“ Posuďte jeho úvahu.
+
+b)  Co vypovídá vysoká stálost výsledků o paměti žáků, kteří se česky teprve učí? Vysvětlete, proč z odhadu reliability samotného nelze usoudit, jak přesně test měří paměť.
+
+c)  Představte si jiný test, jehož výsledky u téhož žáka při opakování silně kolísají, ale v průměru nejsou soustavně posunuté. Proč ani takový test nemůže dobře vypovídat o paměti jednotlivého žáka?
+
+d)  Který vliv mimo měřenou vlastnost může zkreslit skóre v situaci B? Navrhněte jednu úpravu dotazníku a vysvětlete, co má zlepšit.
+
+e)  Uveďte dvě stránky paměti, které test ze situace A pravděpodobně nezachytí, a vysvětlete, proč to omezuje závěry o „paměti“ žáků.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Úvaha zaměňuje reliabilitu za validitu. Stálé výsledky ukazují, že test měří přesně, tedy s malými nahodilými nepřesnostmi. Neukazují, *co* měří. Situace odpovídá levému dolnímu terči v obrázku [-@fig-terc-reliabilita-validita]: výsledky žáků, kteří se česky teprve učí, jsou stálé, ale soustavně posunuté. Správně: „Výsledky jsou při opakování stálé. Zda zachycují paměť, a ne například znalost češtiny, je potřeba doložit zvlášť.“
+
+b)  U těchto žáků zachycuje výsledek směs paměti a znalosti češtiny. Vysoká stálost proto popisuje stálost této směsi: žák má pokaždé nižší výsledek, protože se jeho znalost češtiny za týden nezmění. Odhad reliability vypovídá o stálosti výsledku testu, nikoli o tom, čeho je tento výsledek ukazatelem. Jako přesnost měření paměti jej můžeme číst teprve tehdy, když máme oporu, že test měří právě paměť. Proto je validita podmínkou toho, aby odhad reliability dával smysl.
+
+c)  Průměr mnoha opakování by sice ležel blízko hodnoty, kterou má test zachytit, ale u žáka obvykle máme jen jeden výsledek. Ten může náhodou ležet daleko nad nebo pod touto hodnotou. Odpovídá to pravému hornímu terči. Nízká reliabilita tedy omezuje validitu jednotlivých výsledků: reliabilita je podmínkou validity.
+
+d)  Sklon souhlasit s tvrzeními do jisté míry bez ohledu na jejich obsah. Protože souhlas vždy zvyšuje skóre, člověk s tímto sklonem vychází jako odpočatější, přestože to s odpočatostí nesouvisí. Úprava: část tvrzení formulovat opačně, například „Jsem unavený“, a souhlas s nimi počítat jako nižší odpočatost. Obecný sklon k souhlasu se pak v celkovém skóre zčásti vyrovná a snáze jej odhalíme u lidí, kteří souhlasí s protichůdnými tvrzeními. Úprava tedy zlepšuje validitu skóre. Neznamená však, že tím všechny vlivy mimo odpočatost zmizí.
+
+e)  Například rozpoznávání již viděného, zapamatování delšího souvislého textu, vybavení po delší době nebo paměť na osobní události. Test zachycuje bezprostřední vybavení krátkého seznamu slov. Závěr by proto měl znít jako závěr o výkonu v této úloze; tvrzení o paměti žáků obecně by vyžadovalo další měření nebo zdůvodnění.
+:::

@@ -15,7 +15,9 @@ Ostatní základní příklady vysvětlují pojmy pomocí slovních situací, ni
 Sedm schémat doplněných 2026-10-12 znázorňuje vztahy, převody jednotek
 a schematické případy; nezadává nový datový soubor ani výpočetní úlohu.
 Pevné polohy a počty značek jsou součástí generátoru `scripts/kapitola_01.R`;
-vstupy a pokrytí cvičení se těmito schématy nemění.
+vstupy a pokrytí cvičení se těmito schématy nemění. Schémata rozsahu
+konstruktu a čtyř terčů (2026-10-31) jsou rovněž bez datového souboru;
+body terčů jsou ilustrační náhodné polohy se seedem 20261031.
 
 Nepovinné pedagogické rozšíření přidává `Podpora_ucitele` A2:C301
 (podpora, motivace, úspěšnost; 300 řádků) a `Jednickari` A2:C601
@@ -35,6 +37,7 @@ Nejde o nová zadání početních cvičení. Původní listy a jejich adresy z�
 | 6 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
 | 7 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
 | 8 | `U08_podklady` A2:C4 a `U08_prepis` A2:C4 |
+| 9 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
 
 ## Kapitola 2
 

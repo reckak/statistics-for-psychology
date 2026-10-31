@@ -41,6 +41,8 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 **Doplnění při přípravě kapitoly 6 (2026-10-12):** v textové extrakci přečteny §11.1–11.2 a začátek §11.3 (podle obsahu knihy s. 440–446): výzkumná versus statistická hypotéza na příkladu 62 správných odpovědí ze 100, nulová a alternativní hypotéza, dva druhy chyb, hladina významnosti a síla, testová statistika a její výběrové rozdělení za platnosti nulové hypotézy. Využitelné pro blok B: test se týká statistické hypotézy a její vazbu na výzkumnou hypotézu zajišťuje uspořádání studie (§11.1.1); poznámka o sporném jazyku závěrů (§11.2, pozn. 4). Formulace, že cílem testu je ukázat, že nulová hypotéza je „(probably) false“ (§11.1.2), se nepřebírá: p-hodnota není pravděpodobnost hypotézy. Přesné strany jednotlivých tvrzení nebyly v extrakci ověřeny; vizuální kontrola neproběhla. §11.4–11.9 a kap. 10 zůstávají ve stavu mapy obsahu.
 
 
+**Použití v kapitole 1 (2026-10-31):** v textové extrakci přečten §2.3, s. 45–46 (PDF 45–46): reliabilita jako opakovatelnost či konzistence, odlišení od validity (příklad váhy s pytlem brambor) a čtyři druhy reliability (test-retest, posuzovatelé, srovnatelné verze, vnitřní konzistence). Citováno jako „oddíl 2.3“ v [pododdílu o reliabilitě a validitě](../../quarto/kapitola_01.qmd#sec-reliabilita-validita) a jeho nepovinném rozšíření. Vizuální kontrola neproběhla.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

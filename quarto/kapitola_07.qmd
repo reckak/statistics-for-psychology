@@ -514,7 +514,7 @@ Studie C doložila, že **populační průměr** online verze leží v pásmu 47
 
 - **Nedokládá zaměnitelnost obou verzí testu.** Shoda průměru s normou neznamená, že online verze měří totéž. Mohla by mít jinou rozptýlenost, jiný tvar rozdělení nebo jiný vztah k dalším ukazatelům.
 - **Nedokládá shodu individuálních výsledků.** I při shodném průměru může jednotlivý člověk dosáhnout v online verzi o mnoho bodů víc nebo méně než v papírové. K tomu by bylo potřeba otestovat tytéž lidi oběma verzemi.
-- **Nedokládá stejnou reliabilitu.** Spolehlivost měření je samostatná vlastnost testu a průměr o ní nevypovídá.
+- **Nedokládá stejnou reliabilitu.** [Reliabilita](kapitola_01.qmd#sec-reliabilita-validita), tedy přesnost měření, je samostatná vlastnost výsledků testu a průměr o ní nevypovídá.
 
 Referenční hodnotu 50 jsme navíc brali jako **pevné číslo**. To je rozumné, jen pokud norma vychází z velmi velkého normativního výběru [@howell, s. 195]. Pokud by norma pocházela z menšího výběru a byla sama nepřesným odhadem, nesla by vlastní nejistotu. Pak by se porovnávaly dva odhady a jednovýběrový postup by nejistotu podcenil; postupy pro dva výběry tato kapitola nevykládá.
 
