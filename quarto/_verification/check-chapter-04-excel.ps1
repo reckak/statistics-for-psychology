@@ -35,7 +35,7 @@ try {
   $exercise=@(@('=NORM.S.DIST(-0,5;PRAVDA)',.308537538725987),@('=1-NORM.S.DIST(1,5;PRAVDA)',.0668072012688581),@('=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)',.624655260005155),@('=NORM.INV(0,2;50;10)',41.5837876642709),@('=NORM.INV(0,05;50;10)',33.5514637304853),@('=NORM.INV(0,95;50;10)',66.4485362695147),@('=NORM.S.DIST(0,05;PRAVDA)-NORM.S.DIST(-0,05;PRAVDA)',.0398776116767449))
   foreach($e in $exercise){$m.Range('F28').FormulaLocal=$e[0];$taskExcel.CalculateFullRebuild();Assert-Cell $m 'F28' $e[1]}
   # Czech SKEW/KURT formulas printed beside the six simulated Q-Q diagnostics.
-  foreach($e in @(@('Sim_normalni',0.16,-0.41),@('Sim_sikme',2.01,7.10),@('Sim_sikme_vlevo',-2.05,4.67),@('Sim_chvosty',0.20,5.01),@('Sim_lehke',0.03,-1.06),@('Sim_smes',-0.04,-1.55))){
+  foreach($e in @(@('Sim_normalni',0.16,-0.41),@('Sim_sikme',2.01,7.10),@('Sim_sikme_vlevo',-2.05,4.67),@('Sim_chvosty',0.01,3.23),@('Sim_lehke',0.03,-1.06),@('Sim_smes',-0.04,-1.55))){
     foreach($f in @(@('SKEW',$e[1]),@('KURT',$e[2]))){
       $m.Range('F28').FormulaLocal="=$($f[0])($($e[0])!A2:A201)";$taskExcel.CalculateFullRebuild()
       if([math]::Round([double]$m.Range('F28').Value2,2) -ne $f[1]){throw "Wrong $($f[0]) for $($e[0]): $($m.Range('F28').Value2)"}

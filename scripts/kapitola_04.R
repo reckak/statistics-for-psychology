@@ -294,6 +294,9 @@ set.seed(20261010)
 # New sets are appended so that the earlier draws keep their values.
 ch4_simulations <- list(normalni=rnorm(200,50,10),sikme=30+rexp(200,rate=1/15),chvosty=50+8*rt(200,df=3),smes=c(rnorm(100,36,5),rnorm(100,64,5)),
   sikme_vlevo=70-rexp(200,rate=1/10),lehke=runif(200,30,70))
+# Same heavy-tailed model, another draw (2026-10-31): the first draw showed the heavy tail only at
+# the top. Replaced after the list so that the other simulations keep their values.
+set.seed(20263319); ch4_simulations$chvosty <- 50+8*rt(200,df=3)
 ch4_titles <- c(normalni='Normální model',sikme='Rozdělení zešikmené doprava',chvosty='Těžší chvosty',smes='Směs dvou skupin',
   sikme_vlevo='Rozdělení zešikmené doleva',lehke='Lehčí chvosty')
 # Highlighted percentiles: each lies between two neighbouring ranks, (i - 0.5)/n just below and
