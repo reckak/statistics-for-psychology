@@ -2,7 +2,7 @@
 
 V minulé kapitole jsme pomocí z-testu zjistili, že průměr 25 studentů po krátkém spánku, 46 bodů v testu pozornosti, je nižší, než by odpovídalo normě 50 bodů. Rozhodnutí testu ale neříká, kde populační průměr asi leží: zda je to 45, nebo 49 bodů. Výpočet navíc předpokládal, že známe směrodatnou odchylku populace. V této kapitole se naučíme populační průměr odhadnout i s jeho nejistotou, vypočítat odhad i test bez známé σ a pomocí intervalu posoudit, zda je rozdíl dost malý, aby na něm nezáleželo.
 
-Navazujeme na [z-test](kapitola_06.qmd#sec-z-test), [směrodatnou chybu a její odhad](kapitola_06.qmd#sec-smerodatna-chyba), [p-hodnotu](kapitola_06.qmd#sec-p-hodnota) a [rozlišení statistické, věcné a praktické významnosti](kapitola_06.qmd#sec-tri-vyznamnosti). Kapitolou prochází tentýž test pozornosti; v druhé polovině jej použijeme v nové otázce o online verzi testu.
+Navazujeme na [z-test](kapitola_06.qmd#sec-z-test), [směrodatnou chybu a její odhad](kapitola_06.qmd#sec-smerodatna-chyba), [*p*-hodnotu](kapitola_06.qmd#sec-p-hodnota) a [rozlišení statistické, věcné a praktické významnosti](kapitola_06.qmd#sec-tri-vyznamnosti). Kapitolou prochází tentýž test pozornosti; v druhé polovině jej použijeme v nové otázce o online verzi testu.
 
 **Data k práci:** [excelový sešit ke kapitole](../data/kapitola_07.xlsx) obsahuje vstupy k příkladům a cvičením i simulovaná data z obrázku opakovaných intervalů. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Hotové výpočty jsou na listech `Interval_z`, `Interval_t`, `T_test` a `Ekvivalence`.
 
@@ -15,7 +15,7 @@ Navazujeme na [z-test](kapitola_06.qmd#sec-z-test), [směrodatnou chybu a její 
 - Zdůvodníte hranice ekvivalence zamýšleným použitím, stanovíte je před analýzou a pomocí 90% intervalu rozhodnete o ekvivalenci.
 - Rozlišíte čtyři kombinace výsledků testu rozdílu a testu ekvivalence a pro každou zformulujete přiměřený závěr.
 
-Tři nepovinná rozšíření vysvětlují, proč dosazení výběrové směrodatné odchylky zvětšuje chvosty, jak se počítají obě p-hodnoty dvou jednostranných testů a co je neinferiorita; nejsou součástí povinných dovedností ani základních cvičení.
+Tři nepovinná rozšíření vysvětlují, proč dosazení výběrové směrodatné odchylky zvětšuje chvosty, jak se počítají obě *p*-hodnoty dvou jednostranných testů a co je neinferiorita; nejsou součástí povinných dovedností ani základních cvičení.
 :::
 
 ## Od jednoho čísla k intervalu {#sec-od-cisla-k-intervalu}
@@ -25,7 +25,7 @@ Jak vyjádřit, co nám jeden výběr říká o populačním průměru? Oddíl u
 ### Co víme po z-testu {#sec-co-vime-po-z-testu}
 
 ::: {.callout-tip title="Připomenutí: z-test průměru"}
-V [kapitole 6](kapitola_06.qmd#sec-z-test) výzkumnice otestovala 25 studentů po noci s méně než pěti hodinami spánku. Jejich průměr v testu pozornosti byl $m=46$ bodů. Podle norem má test průměr 50 bodů a směrodatnou odchylku 10 bodů. Směrodatná chyba průměru byla $\mathrm{σ}_m=10/\sqrt{25}=2$ body a testová statistika $z=(46-50)/2=-2$. Jednostranný test na hladině 0,05 vedl k zamítnutí nulové hypotézy $\mathrm{μ}\ge50$ s p-hodnotou 0,023.
+V [kapitole 6](kapitola_06.qmd#sec-z-test) výzkumnice otestovala 25 studentů po noci s méně než pěti hodinami spánku. Jejich průměr v testu pozornosti byl $m=46$ bodů. Podle norem má test průměr 50 bodů a směrodatnou odchylku 10 bodů. Směrodatná chyba průměru byla $\mathrm{σ}_m=10/\sqrt{25}=2$ body a testová statistika $z=(46-50)/2=-2$. Jednostranný test na hladině 0,05 vedl k zamítnutí nulové hypotézy $\mathrm{μ}\ge50$ s *p*-hodnotou 0,023.
 :::
 
 Test odpověděl na otázku „je populační průměr nižší než 50?“. Výzkumnici ale zajímá i jiná otázka: **o kolik** je pozornost po krátkém spánku nižší. Na tu rozhodnutí testu neodpovídá. Odpověď „pravděpodobně méně než 50“ zahrnuje průměr 49 bodů, který by znamenal zanedbatelný pokles, i průměr 40 bodů, který by znamenal velký pokles.
@@ -74,7 +74,7 @@ $$\mathrm{σ}_m=\frac{10}{\sqrt{25}}=2,\qquad 1{,}960\times2=3{,}92,$$
 
 $$46-3{,}92=42{,}08,\qquad 46+3{,}92=49{,}92.$$
 
-**95% interval spolehlivosti** pro populační průměr skóru studentů po krátkém spánku je (42,08; 49,92) bodu. Hodnota 95 % je **hladina spolehlivosti** (*confidence level*). Nezaměňujte ji s hladinou významnosti z kapitoly 6, i když spolu souvisejí: 95% interval odpovídá oboustrannému testu na hladině významnosti $1-0{,}95=0{,}05$, jak ukážeme v [oddílu o p-hodnotě](#sec-interval-a-p).
+**95% interval spolehlivosti** pro populační průměr skóru studentů po krátkém spánku je (42,08; 49,92) bodu. Hodnota 95 % je **hladina spolehlivosti** (*confidence level*). Nezaměňujte ji s hladinou významnosti z kapitoly 6, i když spolu souvisejí: 95% interval odpovídá oboustrannému testu na hladině významnosti $1-0{,}95=0{,}05$, jak ukážeme v [oddílu o *p*-hodnotě](#sec-interval-a-p).
 
 Jak výsledek číst? Na základě tohoto výběru a za předpokladů výpočtu jsou s daty slučitelné populační průměry přibližně od 42 do 50 bodů. Pokles pozornosti oproti normě tak může být jen malý, přibližně 0,1 bodu, ale také téměř osm bodů. Bodový odhad 46 bodů leží uprostřed a interval nám říká, jak moc mu můžeme věřit.
 
@@ -214,7 +214,7 @@ Pro 25 studentů s průměrem 46 bodů a výběrovou směrodatnou odchylkou 10 b
 
 Při stejné číselné hodnotě s a σ je širší interval cena za to, že σ neznáme. Ten rozdíl je správný, ne nedostatek: interval s kvantilem 1,960 by při neznámé σ zachytil populační průměr méně často, než slibuje jeho hladina spolehlivosti.
 
-Věcně: s daty jsou slučitelné populační průměry od 41,87 do 50,13 bodu. Interval tentokrát zahrnuje i normu 50 bodů. Co to znamená pro test, rozebereme v [oddílu o p-hodnotě](#sec-interval-a-p).
+Věcně: s daty jsou slučitelné populační průměry od 41,87 do 50,13 bodu. Interval tentokrát zahrnuje i normu 50 bodů. Co to znamená pro test, rozebereme v [oddílu o *p*-hodnotě](#sec-interval-a-p).
 
 ### Výpočet v Excelu {#sec-interval-t-excel}
 
@@ -278,17 +278,17 @@ $$t=\frac{m-\mathrm{μ}_0}{s_m}=\frac{46-50}{2}=-2,$$
 
 s $25-1=24$ stupni volnosti. Za platnosti nulové hypotézy na její hranici a za předpokladu nezávislého výběru z normální populace má $t$ t-rozdělení s 24 stupni volnosti.
 
-**4. P-hodnota.** Extrémnější jsou nižší průměry, tedy nižší hodnoty $t$. P-hodnota je plocha t-rozdělení nalevo od −2; v Excelu `=T.DIST(-2;24;PRAVDA)`:
+**4. *p*-hodnota.** Extrémnější jsou nižší průměry, tedy nižší hodnoty $t$. *p*-hodnota je plocha t-rozdělení nalevo od −2; v Excelu `=T.DIST(-2;24;PRAVDA)`:
 
-$$\text{p-hodnota}\approx0{,}028.$$
+$$p\text{-hodnota}\approx0{,}028.$$
 
 Funkce **T.DIST** (anglicky také T.DIST) vrací při posledním argumentu PRAVDA podíl t-rozdělení vlevo od zadané hodnoty. Kritická hodnota pro alternativu „menší“ je $t_{0{,}05\,(v=24)}\approx-1{,}711$, tedy průměry nejvýše $50-1{,}711\times2\approx46{,}58$ bodu.
 
-**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. P-hodnota je 0,028.
+**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. *p*-hodnota je 0,028.
 
 **6. Věcná interpretace.** Směr odpovídá výzkumné hypotéze. Velikost: odhadovaný pokles jsou 4 body. Nejistota: odhad směrodatné chyby jsou 2 body a 95% interval spolehlivosti (41,87; 50,13) zahrnuje populační průměry od výrazného poklesu až po hodnoty nepatrně nad normou. Uspořádání: platí totéž co v kapitole 6, příčinný závěr o spánku závisí na tom, jak se studenti do skupiny dostali. Dohromady: data podporují hypotézu o nižší pozornosti, ale velikost poklesu je odhadnuta nepřesně.
 
-Ve srovnání se z-testem vyšla p-hodnota o něco větší (0,028 místo 0,023), i když testová statistika je stejná, −2. Důvod je stejný jako u intervalu: t-rozdělení má těžší chvosty, a hodnota −2 je v něm proto méně neobvyklá. Oboustranná p-hodnota by byla dvojnásobná, 0,057.
+Ve srovnání se z-testem vyšla *p*-hodnota o něco větší (0,028 místo 0,023), i když testová statistika je stejná, −2. Důvod je stejný jako u intervalu: t-rozdělení má těžší chvosty, a hodnota −2 je v něm proto méně neobvyklá. Oboustranná *p*-hodnota by byla dvojnásobná, 0,057.
 
 Výpočet je na listu `T_test`:
 
@@ -304,9 +304,9 @@ Výpočet je na listu `T_test`:
 | B8 | Odhad směrodatné chyby $s_m$ | `=B4/ODMOCNINA(B5)` | 2 |
 | B9 | Stupně volnosti | `=B5-1` | 24 |
 | B10 | Testová statistika $t$ | `=(B3-B2)/B8` | −2 |
-| B11 | P-hodnota pro alternativu „menší“ | `=T.DIST(B10;B9;PRAVDA)` | 0,0285 |
-| B12 | P-hodnota pro alternativu „větší“ | `=1-T.DIST(B10;B9;PRAVDA)` | 0,9715 |
-| B13 | P-hodnota oboustranně | `=T.DIST.2T(ABS(B10);B9)` | 0,0569 |
+| B11 | *p*-hodnota pro alternativu „menší“ | `=T.DIST(B10;B9;PRAVDA)` | 0,0285 |
+| B12 | *p*-hodnota pro alternativu „větší“ | `=1-T.DIST(B10;B9;PRAVDA)` | 0,9715 |
+| B13 | *p*-hodnota oboustranně | `=T.DIST.2T(ABS(B10);B9)` | 0,0569 |
 | B14 | Kritická hodnota $t$ oboustranně | `=T.INV.2T(B6;B9)` | 2,0639 |
 
 : T-test pozornosti po krátkém spánku v Excelu {#tbl-k07-02}
@@ -314,7 +314,7 @@ Výpočet je na listu `T_test`:
 
 :::
 
-Funkce **T.DIST.2T** (anglicky také T.DIST.2T) vrací oboustrannou p-hodnotu; jejím prvním argumentem musí být nezáporné číslo, proto absolutní hodnota. Funkce **T.INV.2T** vrací kladnou kritickou hodnotu oboustranného testu pro zadanou hladinu. Stejně jako u z-testu použijeme jen p-hodnotu pro směr zvolený předem.
+Funkce **T.DIST.2T** (anglicky také T.DIST.2T) vrací oboustrannou *p*-hodnotu; jejím prvním argumentem musí být nezáporné číslo, proto absolutní hodnota. Funkce **T.INV.2T** vrací kladnou kritickou hodnotu oboustranného testu pro zadanou hladinu. Stejně jako u z-testu použijeme jen *p*-hodnotu pro směr zvolený předem.
 
 ### Příklad se skutečnými daty: psychomotorický vývoj {#sec-t-test-pdi}
 
@@ -324,7 +324,7 @@ Howell testuje oboustranně, $H_0{:}\ \mathrm{μ}=100$, $H_1{:}\ \mathrm{μ}\neq
 
 $$s_m=\frac{12{,}584}{\sqrt{56}}\approx1{,}682,\qquad t=\frac{104{,}125-100}{1{,}682}\approx2{,}45,$$
 
-s 55 stupni volnosti. Oboustranná p-hodnota je `=T.DIST.2T(2,453;55)` ≈ 0,017. Kvantil $t_{0{,}975\,(v=55)}\approx2{,}004$ dává 95% interval
+s 55 stupni volnosti. Oboustranná *p*-hodnota je `=T.DIST.2T(2,453;55)` ≈ 0,017. Kvantil $t_{0{,}975\,(v=55)}\approx2{,}004$ dává 95% interval
 
 $$104{,}125\pm2{,}004\times1{,}682=(100{,}75;\ 107{,}50).$$
 
@@ -332,41 +332,41 @@ $$104{,}125\pm2{,}004\times1{,}682=(100{,}75;\ 107{,}50).$$
 
 **Věcná interpretace:** Rozdíl má nečekaný směr: děti v této studii dosahovaly v průměru *vyššího* skóre než normy, přibližně o 4 body. Interval ukazuje, že s daty jsou slučitelné rozdíly od necelého jednoho bodu po 7,5 bodu. Právě zde se vyplatil oboustranný test: jednostranný test s alternativou „nižší“ by takový výsledek nezachytil. Howell doporučuje ověřit, zda nebyly skóry systematicky nadhodnoceny, a dodává, že podobně vysoké průměry PDI uvádějí i jiné studie [@howell, s. 188]. Samotný test o příčině rozdílu nevypovídá. Data navíc nepocházejí z prostého náhodného výběru všech takových dětí, ale ze studie jedné intervence, což omezuje, na jakou populaci lze závěr vztáhnout.
 
-## Jak spolu souvisí interval a p-hodnota {#sec-interval-a-p}
+## Jak spolu souvisí interval a *p*-hodnota {#sec-interval-a-p}
 
 Co nám řekne interval o výsledku testu a co řekne navíc? Oddíl ukazuje, že 95% interval a oboustranný test na hladině 0,05 jsou dvě strany téhož výpočtu.
 
 ### Vnitřek intervalu jako množina nezamítnutých hodnot {#sec-mnozina-nezamitnutych}
 
-Představme si, že bychom t-test na datech pozornosti zopakovali pro mnoho různých testovaných hodnot $\mathrm{μ}_0$, vždy oboustranně: 50, 49, 48, 45 bodů a tak dále. Pro každou dostaneme jinou p-hodnotu. Obrázek [-@fig-p-funkce] je zobrazuje všechny.
+Představme si, že bychom t-test na datech pozornosti zopakovali pro mnoho různých testovaných hodnot $\mathrm{μ}_0$, vždy oboustranně: 50, 49, 48, 45 bodů a tak dále. Pro každou dostaneme jinou *p*-hodnotu. Obrázek [-@fig-p-funkce] je zobrazuje všechny.
 
-::: {.teaching-figure role="region" aria-label="P-hodnota t-testu pro různé testované hodnoty" tabindex="0"}
+::: {.teaching-figure role="region" aria-label="p-hodnota t-testu pro různé testované hodnoty" tabindex="0"}
 
-![Oboustranná p-hodnota t-testu pro průměr 46 bodů, s = 10 a n = 25 jako funkce testované hodnoty. Hodnoty, pro které je p-hodnota větší než 0,05, tvoří vnitřek 95% intervalu spolehlivosti s mezemi přibližně 41,87 a 50,13. Norma 50 leží uvnitř, p-hodnota 0,057.](../assets/chapter-07/plots/p-funkce.svg){#fig-p-funkce fig-alt="Křivka oboustranné p-hodnoty podle testované hodnoty od 38 do 54 bodů. Má vrchol 1 u 46 bodů a na obě strany klesá. Vodorovná přerušovaná čára označuje hladinu 0,05. Oblast, kde je křivka nad touto čarou, je vybarvena a popsána jako vnitřek 95% intervalu, hodnoty, které test nezamítá; sahá od asi 41,9 do 50,1. Vyznačeny jsou body pro testovanou hodnotu 48 s p-hodnotou 0,33 a pro 50 s p-hodnotou 0,057."}
+![Oboustranná *p*-hodnota t-testu pro průměr 46 bodů, s = 10 a n = 25 jako funkce testované hodnoty. Hodnoty, pro které je *p*-hodnota větší než 0,05, tvoří vnitřek 95% intervalu spolehlivosti s mezemi přibližně 41,87 a 50,13. Norma 50 leží uvnitř, *p*-hodnota 0,057.](../assets/chapter-07/plots/p-funkce.svg){#fig-p-funkce fig-alt="Křivka oboustranné p-hodnoty podle testované hodnoty od 38 do 54 bodů. Má vrchol 1 u 46 bodů a na obě strany klesá. Vodorovná přerušovaná čára označuje hladinu 0,05. Oblast, kde je křivka nad touto čarou, je vybarvena a popsána jako vnitřek 95% intervalu, hodnoty, které test nezamítá; sahá od asi 41,9 do 50,1. Vyznačeny jsou body pro testovanou hodnotu 48 s p-hodnotou 0,33 a pro 50 s p-hodnotou 0,057."}
 
 :::
 
-Křivka má vrchol u výběrového průměru 46: testovaná hodnota, která přesně odpovídá datům, dává p-hodnotu 1. Čím dál od 46, tím menší p-hodnota. Hodnoty $\mathrm{μ}_0$, pro které je p-hodnota větší než 0,05, jsou přesně hodnoty přísně uvnitř 95% intervalu spolehlivosti. Platí tedy:
+Křivka má vrchol u výběrového průměru 46: testovaná hodnota, která přesně odpovídá datům, dává *p*-hodnotu 1. Čím dál od 46, tím menší *p*-hodnota. Hodnoty $\mathrm{μ}_0$, pro které je *p*-hodnota větší než 0,05, jsou přesně hodnoty přísně uvnitř 95% intervalu spolehlivosti. Platí tedy:
 
 > **Oboustranný test na hladině 0,05 nezamítá hodnoty přísně uvnitř odpovídajícího 95% intervalu spolehlivosti. Hodnoty mimo interval a podle našeho pravidla také přesně na jeho mezích zamítá.**
 
 Pravidlo platí pro **odpovídající** test a interval: oba musí vycházet ze stejné statistiky, stejného rozdělení a stejných předpokladů. Pro náš t-test a interval s t-kvantilem platí přesně; pro t-test a interval se známou σ by neplatilo. Vnitřek intervalu spolehlivosti je tak možné chápat jako množinu hodnot parametru, které by test na dané hladině nezamítl.
 
-Pravidlo má jednu jemnost na hranici. Přesně na mezi intervalu je p-hodnota přesně 0,05. Podle [pravidla z kapitoly 6](kapitola_06.qmd#sec-hladina-kriticky-obor) zamítáme i při rovnosti p-hodnoty a hladiny významnosti. Horní mez našeho intervalu je přibližně 50,128; toto zaokrouhlené číslo už není přesnou mezí. Rozhodnutí proto neděláme podle zaokrouhlených čísel: mez 50,13 a p-hodnota 0,05 mohou skrývat hodnoty na kterékoli straně hranice. V úloze, která výslovně zadá přesnou mez, však rovnost použít můžeme. V praxi je přesná rovnost vzácná a rozdíl mezi 0,049 a 0,051 [nemá velký věcný význam](kapitola_06.qmd#sec-otazka-testu).
+Pravidlo má jednu jemnost na hranici. Přesně na mezi intervalu je *p*-hodnota přesně 0,05. Podle [pravidla z kapitoly 6](kapitola_06.qmd#sec-hladina-kriticky-obor) zamítáme i při rovnosti *p*-hodnoty a hladiny významnosti. Horní mez našeho intervalu je přibližně 50,128; toto zaokrouhlené číslo už není přesnou mezí. Rozhodnutí proto neděláme podle zaokrouhlených čísel: mez 50,13 a *p*-hodnota 0,05 mohou skrývat hodnoty na kterékoli straně hranice. V úloze, která výslovně zadá přesnou mez, však rovnost použít můžeme. V praxi je přesná rovnost vzácná a rozdíl mezi 0,049 a 0,051 [nemá velký věcný význam](kapitola_06.qmd#sec-otazka-testu).
 
-### Co p-hodnota a interval sdělují {#sec-co-sdeluji}
+### Co *p*-hodnota a interval sdělují {#sec-co-sdeluji}
 
-P-hodnota vyjadřuje, jak neobvyklá je pozorovaná nebo ještě extrémnější testová statistika za nulové hypotézy a předpokladů testu. Týká se jedné testované hodnoty. Interval ukazuje rozsah všech hodnot parametru, které jsou s daty slučitelné, a jeho šířka vyjadřuje přesnost odhadu. Z 95% intervalu proto zjistíme výsledek oboustranného testu na hladině 0,05 pro jakoukoli testovanou hodnotu, ale navíc vidíme:
+*p*-hodnota vyjadřuje, jak neobvyklá je pozorovaná nebo ještě extrémnější testová statistika za nulové hypotézy a předpokladů testu. Týká se jedné testované hodnoty. Interval ukazuje rozsah všech hodnot parametru, které jsou s daty slučitelné, a jeho šířka vyjadřuje přesnost odhadu. Z 95% intervalu proto zjistíme výsledek oboustranného testu na hladině 0,05 pro jakoukoli testovanou hodnotu, ale navíc vidíme:
 
 - **velikost** rozdílu v původních jednotkách: střed intervalu, 46 bodů, je 4 body pod normou;
 - **přesnost**: šířka 8,26 bodu ukazuje, že velikost poklesu známe jen hrubě;
 - **slučitelné hodnoty**: v intervalu jsou populační průměry od výrazného poklesu až po hodnoty nad normou.
 
-Z p-hodnoty 0,057 samotné nic z toho nevyčteme. Proto se ve výzkumných zprávách interval uvádí vedle p-hodnoty, nikoli místo ní.
+Z *p*-hodnoty 0,057 samotné nic z toho nevyčteme. Proto se ve výzkumných zprávách interval uvádí vedle *p*-hodnoty, nikoli místo ní.
 
 ### Jednostranný test a jednostranná mez {#sec-jednostranny-a-interval}
 
-V [řešeném t-testu](#sec-t-test-pozornost) výzkumnice testovala jednostranně a nulovou hypotézu zamítla (p-hodnota 0,028), i když 95% interval (41,87; 50,13) normu 50 obsahuje. Není to rozpor: 95% centrální interval odpovídá oboustrannému testu, ne jednostrannému.
+V [řešeném t-testu](#sec-t-test-pozornost) výzkumnice testovala jednostranně a nulovou hypotézu zamítla (*p*-hodnota 0,028), i když 95% interval (41,87; 50,13) normu 50 obsahuje. Není to rozpor: 95% centrální interval odpovídá oboustrannému testu, ne jednostrannému.
 
 Jednostrannému testu na hladině 0,05 s alternativou „menší“ odpovídá **horní jednostranná mez** se spolehlivostí 95 %:
 
@@ -446,7 +446,7 @@ Výsledek obou jednostranných testů lze přečíst z jediného intervalu. V [o
 - Test vůči dolní hranici zamítá, když **dolní mez** 90% intervalu leží nad 47 nebo přesně na 47.
 - Test vůči horní hranici zamítá, když **horní mez** 90% intervalu leží pod 53 nebo přesně na 53.
 
-Oba testy tedy zamítají právě tehdy, když **celý 90% interval leží mezi hranicemi ekvivalence, případně se některé z nich přesně dotýká**. Dotyk odpovídá p-hodnotě 0,05 v příslušném jednostranném testu; i tehdy podle našeho pravidla zamítáme. Rovnost posuzujeme z nezaokrouhlených hodnot, nikoli z vytištěných mezí. Spolehlivost 90 %, tedy $1-2\times0{,}05$, má interval proto, že se v něm skrývají dva jednostranné testy, každý na hladině 0,05 [@lakens2017, pozn. 2]. Celý test ekvivalence je přitom na hladině 0,05, ne 0,10. Hladina spolehlivosti intervalu a hladina významnosti testu tu nejsou ve vztahu „1 − α“, jako u oboustranného testu, protože interval zde slouží dvěma jednostranným testům.
+Oba testy tedy zamítají právě tehdy, když **celý 90% interval leží mezi hranicemi ekvivalence, případně se některé z nich přesně dotýká**. Dotyk odpovídá *p*-hodnotě 0,05 v příslušném jednostranném testu; i tehdy podle našeho pravidla zamítáme. Rovnost posuzujeme z nezaokrouhlených hodnot, nikoli z vytištěných mezí. Spolehlivost 90 %, tedy $1-2\times0{,}05$, má interval proto, že se v něm skrývají dva jednostranné testy, každý na hladině 0,05 [@lakens2017, pozn. 2]. Celý test ekvivalence je přitom na hladině 0,05, ne 0,10. Hladina spolehlivosti intervalu a hladina významnosti testu tu nejsou ve vztahu „1 − α“, jako u oboustranného testu, protože interval zde slouží dvěma jednostranným testům.
 
 Pro tutéž studii proto kreslíme dva intervaly s odlišnou funkcí. **95% interval** slouží k testu rozdílu od normy: leží-li 50 přísně uvnitř, rozdíl statisticky významný není. **90% interval** slouží k testu ekvivalence: nepřesahuje-li žádnou z hranic 47 a 53, je ekvivalence doložena.
 
@@ -466,7 +466,7 @@ Pět smyšlených studií online verze testu pozornosti porovnává průměr stu
 
 | Studie | $m$; $n$ | 95% interval | Test rozdílu od 50 | 90% interval | Test ekvivalence | Závěr vzhledem k hranicím ±3 body |
 |---|---|---|---|---|---|---|
-| A | 46; 25 | (41,87; 50,13) | nezamítá (p-hodnota 0,057) | (42,58; 49,42) | ekvivalence nedoložena | Nerozhodné: interval zahrnuje nulový rozdíl i věcně důležité poklesy. |
+| A | 46; 25 | (41,87; 50,13) | nezamítá (*p*-hodnota 0,057) | (42,58; 49,42) | ekvivalence nedoložena | Nerozhodné: interval zahrnuje nulový rozdíl i věcně důležité poklesy. |
 | B | 48,5; 400 | (47,52; 49,48) | zamítá (0,003) | (47,68; 49,32) | ekvivalence doložena | Rozdíl je statisticky významný, a přesto menší než hranice ekvivalence. |
 | C | 50,4; 400 | (49,42; 51,38) | nezamítá (0,42) | (49,58; 51,22) | ekvivalence doložena | Rozdíl je menší než hranice ekvivalence. |
 | D | 44; 100 | (42,02; 45,98) | zamítá (< 0,001) | (42,34; 45,66) | ekvivalence nedoložena | Interval leží celý pod dolní hranicí ekvivalence. |
@@ -479,7 +479,7 @@ Pět smyšlených studií online verze testu pozornosti porovnává průměr stu
 
 Projděme čtyři kombinace:
 
-**Rozdíl statisticky významný, ekvivalence doložena (studie B).** Studie se 400 studenty odhadla populační průměr velmi přesně. Průměr online verze je pravděpodobně o něco nižší než 50, a proto test rozdílu zamítá. Celý 90% interval však leží v pásmu 47–53: rozdíl je pro zamýšlené použití zanedbatelný. Právě to je situace, kdy je výsledek **statisticky, ale ne věcně významný**. Bez pásma ekvivalence bychom mohli z p-hodnoty 0,003 mylně vyvodit, že online verze normy narušuje.
+**Rozdíl statisticky významný, ekvivalence doložena (studie B).** Studie se 400 studenty odhadla populační průměr velmi přesně. Průměr online verze je pravděpodobně o něco nižší než 50, a proto test rozdílu zamítá. Celý 90% interval však leží v pásmu 47–53: rozdíl je pro zamýšlené použití zanedbatelný. Právě to je situace, kdy je výsledek **statisticky, ale ne věcně významný**. Bez pásma ekvivalence bychom mohli z *p*-hodnoty 0,003 mylně vyvodit, že online verze normy narušuje.
 
 **Rozdíl statisticky nevýznamný, ekvivalence doložena (studie C).** Test rozdílu nezamítá a 90% interval leží v pásmu. Data podporují závěr, že průměr online verze je blízko normy, a to v pásmu, které vydavatel předem označil za přijatelné. Závěr o zanedbatelnosti rozdílu podporuje úspěšný test ekvivalence ve studiích B i C. Studie C navíc nezamítá nulovou hypotézu o shodě populačního průměru s normou.
 
@@ -488,20 +488,20 @@ Projděme čtyři kombinace:
 **Rozdíl statisticky nevýznamný, ekvivalence nedoložena (studie A).** Malá studie s 25 studenty dala tak široký interval, že je slučitelný s nulovým rozdílem i s poklesem o 7 bodů. Nedokládá rozdíl ani ekvivalenci. Výsledek je **nerozhodný**: studie byla na zodpovězení otázky příliš malá.
 
 ::: {.callout-warning title="Častý omyl: „nezamítli jsme, tedy je to stejné“"}
-Ze studie A nelze vyvodit, že online verze dává stejné výsledky jako papírová, i když test rozdílu nezamítl. Tento chybný závěr je častý právě u malých studií. Správně: „Rozdíl od normy nebyl statisticky významný (p-hodnota 0,057), ekvivalence ale také doložena nebyla: 90% interval (42,58; 49,42) zasahuje pod dolní hranici 47 bodů. Studie nerozhodla, zda se průměr online verze od normy liší věcně důležitě.“
+Ze studie A nelze vyvodit, že online verze dává stejné výsledky jako papírová, i když test rozdílu nezamítl. Tento chybný závěr je častý právě u malých studií. Správně: „Rozdíl od normy nebyl statisticky významný (*p*-hodnota 0,057), ekvivalence ale také doložena nebyla: 90% interval (42,58; 49,42) zasahuje pod dolní hranici 47 bodů. Studie nerozhodla, zda se průměr online verze od normy liší věcně důležitě.“
 :::
 
 Neprokázaná ekvivalence přitom sama neprokazuje důležitý rozdíl. Studie A a E ekvivalenci nedoložily, ale u žádné z nich interval neleží celý mimo pásmo. Jen u studie D lze říct, že data podporují rozdíl větší než hranice ekvivalence.
 
-::: {.callout-note collapse="true" title="Nepovinné rozšíření: obě p-hodnoty dvou jednostranných testů" #rozsireni-tost-vypocet}
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: obě *p*-hodnoty dvou jednostranných testů" #rozsireni-tost-vypocet}
 Místo pohledu na 90% interval lze oba jednostranné testy spočítat. Pro studii B ($m=48{,}5$, $s=10$, $n=400$, $s_m=0{,}5$, 399 stupňů volnosti):
 
-- Test vůči dolní hranici 47: $t=(48{,}5-47)/0{,}5=3$, p-hodnota pro alternativu „větší“ je `=1-T.DIST(3;399;PRAVDA)` ≈ 0,0014.
-- Test vůči horní hranici 53: $t=(48{,}5-53)/0{,}5=-9$, p-hodnota pro alternativu „menší“ je `=T.DIST(-9;399;PRAVDA)`, menší než 0,001.
+- Test vůči dolní hranici 47: $t=(48{,}5-47)/0{,}5=3$, *p*-hodnota pro alternativu „větší“ je `=1-T.DIST(3;399;PRAVDA)` ≈ 0,0014.
+- Test vůči horní hranici 53: $t=(48{,}5-53)/0{,}5=-9$, *p*-hodnota pro alternativu „menší“ je `=T.DIST(-9;399;PRAVDA)`, menší než 0,001.
 
-Obě p-hodnoty jsou menší než 0,05, takže zamítáme obě části nulové hypotézy a ekvivalence je doložena. Protože o ekvivalenci rozhodujeme, jen když zamítnou oba testy, je výslednou p-hodnotou TOST **větší** z obou hodnot, zde 0,0014 [@lakens2017, oddíl Equivalence Tests for Differences Between Two Independent Means]. Ve zprávě se uvádějí obě, nebo se větší jasně označí jako výsledná p-hodnota testu ekvivalence.
+Obě *p*-hodnoty jsou menší než 0,05, takže zamítáme obě části nulové hypotézy a ekvivalence je doložena. Protože o ekvivalenci rozhodujeme, jen když zamítnou oba testy, je výslednou *p*-hodnotou TOST **větší** z obou hodnot, zde 0,0014 [@lakens2017, oddíl Equivalence Tests for Differences Between Two Independent Means]. Ve zprávě se uvádějí obě, nebo se větší jasně označí jako výsledná *p*-hodnota testu ekvivalence.
 
-Výpočet je na listu `Ekvivalence` v buňkách B22 až B26. Pro studii A vyjde test vůči dolní hranici s p-hodnotou 0,69 a test vůči horní hranici pod 0,001; výsledná p-hodnota 0,69 ekvivalenci nedokládá. Obě cesty, interval i p-hodnoty, vedou vždy ke stejnému rozhodnutí.
+Výpočet je na listu `Ekvivalence` v buňkách B22 až B26. Pro studii A vyjde test vůči dolní hranici s *p*-hodnotou 0,69 a test vůči horní hranici pod 0,001; výsledná *p*-hodnota 0,69 ekvivalenci nedokládá. Obě cesty, interval i *p*-hodnoty, vedou vždy ke stejnému rozhodnutí.
 :::
 
 ## Co závěr o ekvivalenci říká a jak výsledky sdělit {#sec-sdeleni-07}
@@ -522,16 +522,16 @@ Závěr o ekvivalenci je také vždy vázán na **zvolené hranice**. Se stejný
 
 ### Ukázka sdělení výsledků {#sec-ukazka-sdeleni}
 
-V odborné zprávě podle APA 7 se používají zkratky *M* a *SD* a interval spolehlivosti se značí CI; jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa), výpočetní značení učebnice se nemění. Ve zprávě se kurzivou píše i *p* pro p-hodnotu. V české ukázce ji píšeme s nulou před desetinnou čárkou, *p* = 0,003, jako ostatní desetinná čísla; anglický text podle APA nulu vynechává (*p* = .003). Pro studii B:
+V odborné zprávě podle APA 7 se používají zkratky *M* a *SD* a interval spolehlivosti se značí CI; jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa), výpočetní značení učebnice se nemění. Ve zprávě se *p*-hodnota zapisuje zkráceně jen jako *p*. V české ukázce ji píšeme s nulou před desetinnou čárkou, *p* = 0,003, jako ostatní desetinná čísla; anglický text podle APA nulu vynechává (*p* = .003). Pro studii B:
 
-> Průměrný skór v online verzi testu pozornosti (*n* = 400; *M* = 48,5; *SD* = 10,0) byl statisticky významně nižší než normová hodnota 50 (*t*(399) = −3,00; *p* = 0,003; 95% CI [47,52; 49,48]). Hranice ekvivalence ±3 body byly stanoveny před analýzou podle vlivu posunu průměru na podíl osob pod hranicí 40 bodů. Test ekvivalence (dva jednostranné testy) doložil, že rozdíl od normy leží uvnitř těchto hranic (90% CI [47,68; 49,32]; *t*(399) = 3,00; *p* = 0,001 pro větší z obou p-hodnot). Rozdíl přibližně 1,5 bodu je pro zamýšlené použití norem zanedbatelný.
+> Průměrný skór v online verzi testu pozornosti (*n* = 400; *M* = 48,5; *SD* = 10,0) byl statisticky významně nižší než normová hodnota 50 (*t*(399) = −3,00; *p* = 0,003; 95% CI [47,52; 49,48]). Hranice ekvivalence ±3 body byly stanoveny před analýzou podle vlivu posunu průměru na podíl osob pod hranicí 40 bodů. Test ekvivalence (dva jednostranné testy) doložil, že rozdíl od normy leží uvnitř těchto hranic (90% CI [47,68; 49,32]; *t*(399) = 3,00; *p* = 0,001 pro větší z obou *p*-hodnot). Rozdíl přibližně 1,5 bodu je pro zamýšlené použití norem zanedbatelný.
 
 Zpráva obsahuje všechny části, které čtenář potřebuje: odhad a jeho přesnost (95% interval), výsledek testu rozdílu, hranice ekvivalence s jejich zdůvodněním, 90% interval a výsledek testu ekvivalence a věcnou interpretaci. V české ukázce používáme desetinnou čárku, a proto statistiky i meze intervalu oddělujeme středníky; jde o [místní přizpůsobení](kapitola_03.qmd#sec-reportovani-apa), nikoli o požadavek APA.
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: neinferiorita" #rozsireni-neinferiorita}
 Někdy nás zajímá jen jeden směr. Vydavateli by nemusel vadit posun průměru online verze nahoru, kdyby u testu pozornosti horší výsledek znamenal nižší skóre a jen ten by vedl k nadbytečným doporučením. Pak se ptá: **není online verze horší o více než předem určenou mez?** Taková otázka se nazývá **neinferiorita** (*non-inferiority*).
 
-Test neinferiority je jen jeden z obou jednostranných testů: $H_0{:}\ \mathrm{μ}\le\mathrm{μ}_0-\mathrm{Δ}$ proti $H_1{:}\ \mathrm{μ}>\mathrm{μ}_0-\mathrm{Δ}$. Na hladině 0,05 neinferioritu doložíme, když dolní jednostranná 95% mez, tedy dolní mez 90% intervalu, leží nad $\mathrm{μ}_0-\mathrm{Δ}$ nebo přesně na této hranici. Přesný dotyk opět odpovídá p-hodnotě 0,05.
+Test neinferiority je jen jeden z obou jednostranných testů: $H_0{:}\ \mathrm{μ}\le\mathrm{μ}_0-\mathrm{Δ}$ proti $H_1{:}\ \mathrm{μ}>\mathrm{μ}_0-\mathrm{Δ}$. Na hladině 0,05 neinferioritu doložíme, když dolní jednostranná 95% mez, tedy dolní mez 90% intervalu, leží nad $\mathrm{μ}_0-\mathrm{Δ}$ nebo přesně na této hranici. Přesný dotyk opět odpovídá *p*-hodnotě 0,05.
 
 Podstatný je **směr škály**. U testu, kde horší výsledek znamená vyšší skóre, například počet chyb nebo skóre úzkosti, by se neinferiorita posuzovala vůči horní hranici $\mathrm{μ}_0+\mathrm{Δ}$ a horní mezi intervalu. Před výpočtem je proto nutné říct, který směr je „horší“.
 :::
@@ -545,13 +545,13 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Šířka intervalu roste s hladinou spolehlivosti a s rozptýleností a s větším výběrem klesá; při známé σ je nepřímo úměrná odmocnině velikosti výběru, u t-intervalu se mění také kvantil; vyjadřuje přesnost odhadu, ne jeho správnost ([Šířka intervalu](#sec-sirka-intervalu)).
 - Když σ neznáme, dosadíme výběrovou s a statistika (m − μ)/(s/√n) má za nezávislého výběru z normální populace t-rozdělení s n − 1 stupni volnosti. Má těžší chvosty než normované normální rozdělení. Při stejné číselné hodnotě s a σ je t-interval širší, protože používá větší kvantil ([t-rozdělení](#sec-t-rozdeleni); [Interval s t-kvantilem](#sec-interval-t)).
 - Jednovýběrový t-test postupuje stejně jako z-test; mění se jen rozdělení testové statistiky. Po rozhodnutí testu následuje věcná interpretace ([Jednovýběrový t-test](#sec-t-test)).
-- Odpovídající oboustranný test na hladině 0,05 nezamítá hodnoty přísně uvnitř 95% intervalu; hodnoty mimo něj a přesně na mezích podle našeho pravidla zamítá. Interval navíc ukazuje velikost rozdílu a přesnost odhadu; jednostrannému testu odpovídá jednostranná mez nebo mez 90% intervalu ve správném směru ([Interval a p-hodnota](#sec-interval-a-p)).
-- Test ekvivalence potřebuje předem stanovené a věcně zdůvodněné hranice. Dva jednostranné testy na hladině 0,05 doloží ekvivalenci právě tehdy, když celý 90% interval nepřesahuje hranice ekvivalence; přesný dotyk hranice odpovídá p-hodnotě 0,05 ([Pásmo ekvivalence](#sec-pasmo-ekvivalence); [Test ekvivalence](#sec-test-ekvivalence)).
+- Odpovídající oboustranný test na hladině 0,05 nezamítá hodnoty přísně uvnitř 95% intervalu; hodnoty mimo něj a přesně na mezích podle našeho pravidla zamítá. Interval navíc ukazuje velikost rozdílu a přesnost odhadu; jednostrannému testu odpovídá jednostranná mez nebo mez 90% intervalu ve správném směru ([Interval a *p*-hodnota](#sec-interval-a-p)).
+- Test ekvivalence potřebuje předem stanovené a věcně zdůvodněné hranice. Dva jednostranné testy na hladině 0,05 doloží ekvivalenci právě tehdy, když celý 90% interval nepřesahuje hranice ekvivalence; přesný dotyk hranice odpovídá *p*-hodnotě 0,05 ([Pásmo ekvivalence](#sec-pasmo-ekvivalence); [Test ekvivalence](#sec-test-ekvivalence)).
 - Test rozdílu a test ekvivalence se kombinují čtyřmi způsoby. Výsledek může být statisticky, ale ne věcně významný; nezamítnutí rozdílu nedokládá ekvivalenci a neprokázaná ekvivalence nedokládá důležitý rozdíl ([Čtyři kombinace](#sec-ctyri-kombinace); [Co závěr říká](#sec-sdeleni-07)).
 
 ## Cvičení {#sec-cviceni-07}
 
-V úlohách 1, 2, 3, 6, 8, 11 a 12 stačí kalkulačka a hodnoty uvedené v zadání; úlohy 4, 5, 7, 9 a 10 vyžadují Excel. Hodnoty $z$, které se učíte zpaměti, jsou uvedeny v [kapitole 4](kapitola_04.qmd#sec-hodnoty-zpameti); kvantily t-rozdělení jsou v zadání, nebo je spočítáte funkcí T.INV. Meze intervalů uvádějte na dvě desetinná místa, p-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,01 u mezí a 0,001 u p-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 13 a 14 jsou nepovinné a navazují na nepovinná rozšíření.
+V úlohách 1, 2, 3, 6, 8, 11 a 12 stačí kalkulačka a hodnoty uvedené v zadání; úlohy 4, 5, 7, 9 a 10 vyžadují Excel. Hodnoty $z$, které se učíte zpaměti, jsou uvedeny v [kapitole 4](kapitola_04.qmd#sec-hodnoty-zpameti); kvantily t-rozdělení jsou v zadání, nebo je spočítáte funkcí T.INV. Meze intervalů uvádějte na dvě desetinná místa, *p*-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,01 u mezí a 0,001 u *p*-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 13 a 14 jsou nepovinné a navazují na nepovinná rozšíření.
 
 ### 1. Interval při známé směrodatné odchylce
 
@@ -561,7 +561,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_07.xlsx): `U01_IQ` B2:B4.
 
 a)  Spočítejte směrodatnou chybu průměru a 95% interval spolehlivosti pro populační průměr žáků školy.
 b)  Spočítejte 99% interval. Proč je širší?
-c)  V kapitole 6 vyšla v [úloze 9](kapitola_06.qmd#sec-cviceni-06) se stejnými čísly oboustranná p-hodnota z-testu 0,072. Je to v souladu s vaším 95% intervalem? Zdůvodněte bez dalšího výpočtu.
+c)  V kapitole 6 vyšla v [úloze 9](kapitola_06.qmd#sec-cviceni-06) se stejnými čísly oboustranná *p*-hodnota z-testu 0,072. Je to v souladu s vaším 95% intervalem? Zdůvodněte bez dalšího výpočtu.
 d)  Na jakém předpokladu výpočet stojí a proč nemusí platit?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -569,7 +569,7 @@ a)  $\mathrm{σ}_m=15/\sqrt{36}=15/6=2{,}5$ bodu. Mezní chyba odhadu je $1{,}96
 
 b)  $z_{0{,}995}\approx2{,}576$, mezní chyba $2{,}576\times2{,}5\approx6{,}44$ bodu, interval $(98{,}06;\ 110{,}94)$. Je širší, protože postup má zachytit populační průměr v 99 % opakování místo 95 %; k tomu je potřeba větší násobek směrodatné chyby.
 
-c)  Ano. Hodnota 100 leží uvnitř 95% intervalu (99,60; 109,40), a odpovídající oboustranný z-test na hladině 0,05 ji proto nezamítá. To souhlasí s p-hodnotou 0,072, která je větší než 0,05. Interval navíc ukazuje, že s daty jsou slučitelné průměry od téměř normového po o 9 bodů vyšší.
+c)  Ano. Hodnota 100 leží uvnitř 95% intervalu (99,60; 109,40), a odpovídající oboustranný z-test na hladině 0,05 ji proto nezamítá. To souhlasí s *p*-hodnotou 0,072, která je větší než 0,05. Interval navíc ukazuje, že s daty jsou slučitelné průměry od téměř normového po o 9 bodů vyšší.
 
 d)  Na předpokladu, že σ v populaci žáků školy je 15 bodů, tedy stejná jako v normách. Žáci jedné školy mohou být podobnější než celá populace, pro kterou normy vznikly (σ by byla menší), nebo rozmanitější. Dále výpočet předpokládá nezávislý náhodný výběr žáků; 36 žáků z jedné třídy by takovým výběrem nebylo.
 :::
@@ -663,7 +663,7 @@ d)  Formálně populaci, ze které je deset dobrovolníků nezávislým náhodn�
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_07.xlsx): `U06_pohoda` B2:B5.
 
-Dotazník pohody má v populaci studentů průměr 30 bodů. Šestnáct studentů, kteří absolvovali kurz zvládání stresu, dosáhlo průměru 32,4 bodu s výběrovou směrodatnou odchylkou 4,8 bodu. Výzkumník neměl předem důvod vylučovat ani pokles, a testuje proto oboustranně na hladině 0,05. Kvantil $t_{0{,}975\,(v=15)}\approx2{,}131$; oboustranná p-hodnota pro $t=2$ a 15 stupňů volnosti je 0,064.
+Dotazník pohody má v populaci studentů průměr 30 bodů. Šestnáct studentů, kteří absolvovali kurz zvládání stresu, dosáhlo průměru 32,4 bodu s výběrovou směrodatnou odchylkou 4,8 bodu. Výzkumník neměl předem důvod vylučovat ani pokles, a testuje proto oboustranně na hladině 0,05. Kvantil $t_{0{,}975\,(v=15)}\approx2{,}131$; oboustranná *p*-hodnota pro $t=2$ a 15 stupňů volnosti je 0,064.
 
 a)  Zapište hypotézy.
 b)  Spočítejte odhad směrodatné chyby, testovou statistiku a stupně volnosti.
@@ -676,11 +676,11 @@ a)  $H_0{:}\ \mathrm{μ}=30$, $H_1{:}\ \mathrm{μ}\neq30$, kde μ je populační
 
 b)  $s_m=4{,}8/\sqrt{16}=1{,}2$ bodu; $t=(32{,}4-30)/1{,}2=2$; $16-1=15$ stupňů volnosti.
 
-c)  P-hodnota 0,064 je větší než 0,05. Na hladině významnosti 0,05 nulovou hypotézu nezamítáme. Totéž ukazuje kritická hodnota: $|t|=2<2{,}131$.
+c)  *p*-hodnota 0,064 je větší než 0,05. Na hladině významnosti 0,05 nulovou hypotézu nezamítáme. Totéž ukazuje kritická hodnota: $|t|=2<2{,}131$.
 
 d)  $32{,}4\pm2{,}131\times1{,}2\approx(29{,}84;\ 34{,}96)$ bodu. Interval obsahuje 30, ve shodě s rozhodnutím testu. Věcně: odhadovaný populační průměr účastníků po kurzu je o 2,4 bodu vyšší než normová hodnota. Interval pro tento rozdíl sahá přibližně od −0,16 do 4,96 bodu. Studie neprokázala rozdíl od normy; její uspořádání navíc neumožňuje určit, zda kurz pohodu změnil, bez ohledu na statistickou významnost výsledku.
 
-e)  Jednostranná p-hodnota by byla 0,032, ale směr testu se musí zvolit před pohledem na data. Přechod na jednostranný test po zjištění výsledku zdvojnásobuje skutečnou pravděpodobnost chyby I. druhu (viz [rozhodnutí podle dat](kapitola_06.qmd#sec-volby-po-datech)). Výsledek oboustranného testu platí.
+e)  Jednostranná *p*-hodnota by byla 0,032, ale směr testu se musí zvolit před pohledem na data. Přechod na jednostranný test po zjištění výsledku zdvojnásobuje skutečnou pravděpodobnost chyby I. druhu (viz [rozhodnutí podle dat](kapitola_06.qmd#sec-volby-po-datech)). Výsledek oboustranného testu platí.
 :::
 
 ### 7. T-test a interval v Excelu s kontrolou předpokladů
@@ -690,7 +690,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_07.xlsx): `U07_uzkost` A2:A21.
 Dotazník zkouškové úzkosti má podle norem pro studenty průměr 20 bodů. Výzkumnice změřila 20 studentů týden před státními zkouškami (list `U07_uzkost`). Ptá se, zda se jejich průměrná úzkost od normy liší, a testuje oboustranně na hladině 0,05.
 
 a)  Spočítejte průměr, výběrovou směrodatnou odchylku, odhad směrodatné chyby a testovou statistiku.
-b)  Pomocí T.DIST.2T spočítejte p-hodnotu a zformulujte rozhodnutí testu.
+b)  Pomocí T.DIST.2T spočítejte *p*-hodnotu a zformulujte rozhodnutí testu.
 c)  Spočítejte 95% interval a zformulujte věcnou interpretaci.
 d)  Sestrojte Q–Q graf podle [kapitoly 4](kapitola_04.qmd#sec-excel-qq) nebo jiný graf rozdělení. Je předpoklad přibližně normální populace pro tento výpočet problémem?
 
@@ -710,7 +710,7 @@ d)  Obrázek [-@fig-qq-uzkost-07] umožňuje porovnat vlastní konstrukci s ře�
 :::
 :::
 
-### 8. Interval a p-hodnota bez výpočtu
+### 8. Interval a *p*-hodnota bez výpočtu
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_07.xlsx): `U08_intervaly` A2:D6.
 
@@ -728,14 +728,14 @@ Pět studií měřilo průměrnou dobu reakce a porovnává ji s hodnotou 500 ms
 
 
 a)  U studií a, b a d rozhodněte bez výpočtu, zda oboustranný t-test na hladině 0,05 zamítá nulovou hypotézu $\mathrm{μ}=500$.
-b)  Jakou p-hodnotu má studie c? Jak byste rozhodli a na čem rozhodnutí závisí?
+b)  Jakou *p*-hodnotu má studie c? Jak byste rozhodli a na čem rozhodnutí závisí?
 c)  Ve studii e výzkumníci předem zvolili alternativu $\mathrm{μ}<500$. Zamítá jednostranný test na hladině 0,05? A co lze říct o oboustranném testu?
 d)  Studie b a d mají stejně široký interval? Co by šlo říct o jejich přesnosti?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  a: 500 leží nad horní mezí, test zamítá. b: 500 leží uvnitř, test nezamítá. d: 500 leží pod dolní mezí, test zamítá.
 
-b)  Zadání výslovně uvádí, že dolní mez je přesně 500 ms. P-hodnota je proto přesně 0,05 a podle pravidla učebnice „zamítáme při p-hodnotě menší nebo rovné hladině významnosti“ nulovou hypotézu zamítáme. Kdyby údaj 500 byl pouze zaokrouhlený, takto rozhodnout by nešlo. Hraniční výsledek sám o sobě neznamená věcně důležitý rozdíl.
+b)  Zadání výslovně uvádí, že dolní mez je přesně 500 ms. *p*-hodnota je proto přesně 0,05 a podle pravidla učebnice „zamítáme při *p*-hodnotě menší nebo rovné hladině významnosti“ nulovou hypotézu zamítáme. Kdyby údaj 500 byl pouze zaokrouhlený, takto rozhodnout by nešlo. Hraniční výsledek sám o sobě neznamená věcně důležitý rozdíl.
 
 c)  Horní mez 90% intervalu, 498, je jednostrannou 95% mezí pro alternativu „menší“. Hodnota 500 leží nad ní, jednostranný test proto zamítá. O oboustranném testu na hladině 0,05 rozhodne 95% interval, který je širší; z 90% intervalu nevíme, zda by 500 obsahoval.
 
@@ -776,9 +776,9 @@ a)  $H_0{:}\ \mathrm{μ}\le23$ nebo $\mathrm{μ}\ge27$; $H_1{:}\ 23<\mathrm{μ}<
 
 b)  $s_m=6/\sqrt{150}\approx0{,}490$; 149 stupňů volnosti; `=T.INV(0,95;149)` ≈ 1,655. 90% interval $25{,}6\pm1{,}655\times0{,}490=(24{,}79;\ 26{,}41)$. Leží celý mezi 23 a 27, oba jednostranné testy na hladině 0,05 zamítají a ekvivalence je doložena.
 
-c)  `=T.INV(0,975;149)` ≈ 1,976; 95% interval $(24{,}63;\ 26{,}57)$ obsahuje 25, test rozdílu nezamítá (p-hodnota 0,22). Rozdíl statisticky nevýznamný, ekvivalence doložena: průměr zkrácené verze je vzhledem k předem zvoleným hranicím blízko normy.
+c)  `=T.INV(0,975;149)` ≈ 1,976; 95% interval $(24{,}63;\ 26{,}57)$ obsahuje 25, test rozdílu nezamítá (*p*-hodnota 0,22). Rozdíl statisticky nevýznamný, ekvivalence doložena: průměr zkrácené verze je vzhledem k předem zvoleným hranicím blízko normy.
 
-d)  $s_m=6/\sqrt{30}\approx1{,}095$; 29 stupňů volnosti; $t_{0{,}95\,(v=29)}\approx1{,}699$. 90% interval $(23{,}74;\ 27{,}46)$ přesahuje horní hranici 27, ekvivalence doložena není. 95% interval $(23{,}36;\ 27{,}84)$ obsahuje 25, test rozdílu nezamítá (p-hodnota 0,59). Výsledek je nerozhodný. Odhad průměru se nezměnil, ale menší výběr dal širší interval, který už není celý v pásmu. Malá studie nedokáže ekvivalenci doložit, ani když je průměr blízko normy.
+d)  $s_m=6/\sqrt{30}\approx1{,}095$; 29 stupňů volnosti; $t_{0{,}95\,(v=29)}\approx1{,}699$. 90% interval $(23{,}74;\ 27{,}46)$ přesahuje horní hranici 27, ekvivalence doložena není. 95% interval $(23{,}36;\ 27{,}84)$ obsahuje 25, test rozdílu nezamítá (*p*-hodnota 0,59). Výsledek je nerozhodný. Odhad průměru se nezměnil, ale menší výběr dal širší interval, který už není celý v pásmu. Malá studie nedokáže ekvivalenci doložit, ani když je průměr blízko normy.
 :::
 
 ### 11. Čtyři kombinace výsledků
@@ -821,7 +821,7 @@ Tato úloha nemá datový list; jde o slovní zadání.
 Posuďte tři situace a navrhněte správný postup nebo formulaci.
 
 a)  Výzkumník srovnává novou verzi testu s normou. Po analýze zjistí, že 90% interval je (46,1; 51,8). Do zprávy napíše: „Hranice ekvivalence jsme stanovili na ±4 body, a verze jsou proto ekvivalentní.“ Z jeho poznámek vyplývá, že hranice zvolil až po pohledu na interval.
-b)  Studie se 40 lidmi porovnávala novou verzi testu s normou a test rozdílu dal p-hodnotu 0,48. Závěr zní: „Nová verze dává stejné výsledky jako původní.“
+b)  Studie se 40 lidmi porovnávala novou verzi testu s normou a test rozdílu dal *p*-hodnotu 0,48. Závěr zní: „Nová verze dává stejné výsledky jako původní.“
 c)  Velká studie doložila ekvivalenci průměru online verze vůči normě. Vydavatel píše: „Online a papírová verze jsou zaměnitelné, výsledek člověka v jedné verzi tedy odpovídá výsledku v druhé.“
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
@@ -832,24 +832,24 @@ b)  Nezamítnutí nulové hypotézy nedokládá shodu. Se 40 lidmi bude interval
 c)  Ekvivalence průměru vůči normě se týká jen populačního průměru a jen této pevné referenční hodnoty. Nedokládá, že obě verze měří totéž, že mají stejnou reliabilitu ani že tentýž člověk dosáhne v obou verzích podobného výsledku. Pro závěr o individuální shodě by bylo potřeba otestovat tytéž lidi oběma verzemi. Správně: „Data podporují ekvivalenci populačního průměru online verze vůči pevné normové hodnotě v předem stanovených hranicích. Samotný výsledek neověřuje použitelnost norem jako celku ani shodu individuálních výsledků obou verzí.“
 :::
 
-### 13. Nepovinně: p-hodnoty dvou jednostranných testů
+### 13. Nepovinně: *p*-hodnoty dvou jednostranných testů
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_07.xlsx): `U10_spokojenost` B2:B6.
 
-Pro studii se 150 studenty z úlohy 10 spočítejte oba jednostranné testy a výslednou p-hodnotu TOST. Potom totéž pro studii se 30 studenty. Ověřte, že rozhodnutí souhlasí s rozhodnutím podle 90% intervalu.
+Pro studii se 150 studenty z úlohy 10 spočítejte oba jednostranné testy a výslednou *p*-hodnotu TOST. Potom totéž pro studii se 30 studenty. Ověřte, že rozhodnutí souhlasí s rozhodnutím podle 90% intervalu.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 **150 studentů,** $s_m\approx0{,}490$, 149 stupňů volnosti.
 
-- Vůči dolní hranici 23: $t=(25{,}6-23)/0{,}490\approx5{,}31$, p-hodnota `=1-T.DIST(5,307;149;PRAVDA)` menší než 0,001.
-- Vůči horní hranici 27: $t=(25{,}6-27)/0{,}490\approx-2{,}86$, p-hodnota `=T.DIST(-2,858;149;PRAVDA)` ≈ 0,002.
-- Výsledná p-hodnota TOST je větší z obou, 0,002. Obě jsou menší než 0,05, ekvivalence doložena, ve shodě s 90% intervalem (24,79; 26,41).
+- Vůči dolní hranici 23: $t=(25{,}6-23)/0{,}490\approx5{,}31$, *p*-hodnota `=1-T.DIST(5,307;149;PRAVDA)` menší než 0,001.
+- Vůči horní hranici 27: $t=(25{,}6-27)/0{,}490\approx-2{,}86$, *p*-hodnota `=T.DIST(-2,858;149;PRAVDA)` ≈ 0,002.
+- Výsledná *p*-hodnota TOST je větší z obou, 0,002. Obě jsou menší než 0,05, ekvivalence doložena, ve shodě s 90% intervalem (24,79; 26,41).
 
 **30 studentů,** $s_m\approx1{,}095$, 29 stupňů volnosti.
 
-- Vůči dolní hranici: $t\approx2{,}37$, p-hodnota ≈ 0,012.
-- Vůči horní hranici: $t\approx-1{,}28$, p-hodnota ≈ 0,106.
-- Výsledná p-hodnota TOST je 0,106, větší než 0,05: ekvivalence nedoložena. Souhlasí to s 90% intervalem (23,74; 27,46), jehož horní mez přesahuje 27. Test vůči horní hranici nezamítá, protože horní hranice leží uvnitř intervalu.
+- Vůči dolní hranici: $t\approx2{,}37$, *p*-hodnota ≈ 0,012.
+- Vůči horní hranici: $t\approx-1{,}28$, *p*-hodnota ≈ 0,106.
+- Výsledná *p*-hodnota TOST je 0,106, větší než 0,05: ekvivalence nedoložena. Souhlasí to s 90% intervalem (23,74; 27,46), jehož horní mez přesahuje 27. Test vůči horní hranici nezamítá, protože horní hranice leží uvnitř intervalu.
 :::
 
 ### 14. Nepovinně: neinferiorita
@@ -865,7 +865,7 @@ c)  Jak by se postup změnil u testu, kde horší výsledek znamená vyšší sk
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  $H_0{:}\ \mathrm{μ}\le47$; $H_1{:}\ \mathrm{μ}>47$.
 
-b)  $s_m=10/\sqrt{200}\approx0{,}707$; 199 stupňů volnosti; `=T.INV(0,95;199)` ≈ 1,653. Dolní mez $48{,}2-1{,}653\times0{,}707\approx47{,}03$. Leží nad 47, a neinferiorita je tedy na hladině 0,05 doložena (p-hodnota jednostranného testu 0,046). Rezerva je však těsná: dolní mez je od hranice vzdálena jen 0,03 bodu.
+b)  $s_m=10/\sqrt{200}\approx0{,}707$; 199 stupňů volnosti; `=T.INV(0,95;199)` ≈ 1,653. Dolní mez $48{,}2-1{,}653\times0{,}707\approx47{,}03$. Leží nad 47, a neinferiorita je tedy na hladině 0,05 doložena (*p*-hodnota jednostranného testu 0,046). Rezerva je však těsná: dolní mez je od hranice vzdálena jen 0,03 bodu.
 
 c)  Horší by byly vyšší hodnoty, takže by se hypotézy obrátily: $H_0{:}\ \mathrm{μ}\ge\mathrm{μ}_0+\mathrm{Δ}$, $H_1{:}\ \mathrm{μ}<\mathrm{μ}_0+\mathrm{Δ}$. O neinferioritě by rozhodovala horní mez 90% intervalu, která by musela ležet pod $\mathrm{μ}_0+\mathrm{Δ}$.
 :::

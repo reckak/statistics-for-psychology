@@ -101,3 +101,18 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 **Nahrazuje:** pracovní označení „standardní chyba“ v osnově a ve výčtu R21; R21 zůstává historickým záznamem. Zpřesňuje pravidlo hesla výběrová variabilita v registru.
 
 **Doklad:** autorova volba „Směrodatná chyba“ a pokyny z 2026-10-12: „Sampling distribution → výběrové rozdělení. Při zavedení používej úplnější označení ‚výběrové rozdělení statistiky‘“; „Rozlišuj výběrovou variabilitu, výběrovou chybu a směrodatnou chybu.“; „Statistical power → statistická síla jako hlavní termín; síla testu jako alternativa.“; „Critical region / rejection region → kritický obor jako hlavní termín. Uveď také oblast zamítnutí“; „Effect size → velikost účinku jako hlavní termín; velikost efektu uveď jako synonymum.“; „Zachovej srozumitelné rozhodovací formulace ‚zamítáme nulovou hypotézu‘ a ‚nulovou hypotézu nezamítáme‘.“; „Substantive significance → věcná významnost a practical significance → praktická významnost v učebnici rozlišuj.“ Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../../quarto/README.md#dohoda-kapitola-06).
+
+<a id="r56-p-hodnota-cohen"></a>
+
+## R56 — Kurzivní *p* pro p-hodnotu a Cohenova pásma
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r56-p-hodnota-cohen). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-10-31. **Rozsah:** celá učebnice (kapitoly 6 a 7, slovníček, přehled značení, přehled Excelu, popisky grafů); Cohenova pásma jen nepovinné rozšíření o standardizovaném rozdílu průměrů v kapitole 6.
+
+- **p-hodnota se píše s kurzivním malým *p*:** „*p*-hodnota“, i na začátku věty a v nadpisu. Samotné *p* je přípustné tam, kde z kontextu nehrozí záměna s podílem nebo relativní četností; kde by záměna hrozila (např. u testu o podílu), píše se celé označení *p*-hodnota. Ve vzorcích $p\text{-hodnota}$. Částečně nahrazuje [R29](#r29-znaceni-kapitoly-6), bod o vypisování p-hodnoty slovy; kurzivní *p* jako podíl ([R02](kapitola-02.md#r02-indexy-a-cetnosti), [R22](kapitola-05.md#r22-znaceni-pravdepodobnosti)) zůstává.
+- **Cohenova orientační pásma** d ≈ 0,2, 0,5 a 0,8 (malý, střední, velký účinek) se uvádějí v nepovinném rozšíření s výhradou, že je sám Cohen považoval za hrubé vodítko pro případ, kdy chybí lepší podklad ([Howell, s. 214 a 235](../zdroje/U01-howell.md)). Přednost má posouzení v kontextu a v původních jednotkách. Částečně nahrazuje [R30](#r30-terminologie-kapitoly-6) v pravidle hesla standardizovaný rozdíl průměrů („obecná pásma nezařazovat“).
+
+**Důvod:** zápis odpovídá běžné odborné praxi a APA; záměnu s podílem řeší kontext a delší tvar. Cohenova pásma studenti v literatuře potkají a mají znát jejich omezení.
+
+**Doklad:** autorovy připomínky ke kapitole 6 z 2026-10-31: „p-hodnotu bych psal s malým kurzivním p. Taky bych se nebál použít ji zapsat někdy jenom kurzivním p, i když tak označujeme i podíly; prostě bych uvedl, že kdyby mohlo dojít k záměně, použijeme delší označení ‚p-hodnota‘, nejen ‚p‘.“ a „Já bych Cohenova přibližná pravidla uvedl, ale s upozorněním, že sám Cohen je doporučoval používat spíš v případě nouze, pokud nemáme jiná vodítka.“ Při upřesnění autor zvolil platnost „Celá kniha“ a zápis „Vždy malé *p*“. Záznam „Kapitola 6: revize podle autorových připomínek“ v [historii](../../quarto/README.md#revize-kapitola-06-2026-10-31).

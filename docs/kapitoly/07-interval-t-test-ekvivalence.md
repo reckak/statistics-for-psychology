@@ -114,8 +114,11 @@ Nově je vysvětleno 15 pojmů [registru](../SLOVNIK.md#kapitola-07). Značení 
 R45: $t_{p\,(v)}$, testová statistika *t*, Δ a μ₀ ± Δ; stupně volnosti ve výkladu
 slovy. Nové funkce Excelu: T.INV, T.DIST, T.DIST.2T, T.INV.2T; dále ODMOCNINA,
 ABS, KDYŽ, A, MAX, NORM.S.INV, NORM.DIST, PRŮMĚR, SMODCH.VÝBĚR.S z dřívějších kapitol.
+Od 2026-10-31 se *p*-hodnota píše s kurzivním *p* podle
+[R56](../rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen) (text, tabulky a graf `p-funkce`);
+jiný obsah kapitoly 7 se tím nezměnil.
 
-**Nepovinné:** proč s zvětšuje chvosty, výpočet p-hodnot TOST, neinferiorita.
+**Nepovinné:** proč s zvětšuje chvosty, výpočet *p*-hodnot TOST, neinferiorita.
 Další kapitola je nesmí předpokládat.
 
 **Vysvětleno omezeně:** odolnost t-postupů vůči nenormalitě (bez simulace pro
