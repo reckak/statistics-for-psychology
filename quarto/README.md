@@ -33,9 +33,18 @@ Upraven odstavec, `fig-alt`, obě tabulky a věta o nestálosti excesu (pro t3
 a n = 200 je 10. percentil excesu ≈ 2,2, 90. percentil ≈ 26,6, proto
 „znatelně nižší, ale také několikanásobně vyšší“). Kontroly
 `check-chapter-04.R` a `check-chapter-04-excel.ps1` aktualizovány a prošly;
-sešit přestavěn `build-workbooks.ps1 -Chapter 4 -Verify`. Neaktualizováno:
-místní prezentace kapitoly 4 a její nahrávka uvádějí stará čísla
-(99. percentil 79,9 vs. 88,6).
+sešit přestavěn `build-workbooks.ps1 -Chapter 4 -Verify`. Prezentace viz další odstavec.
+
+Na pokyn autora následně upravena prezentace kapitoly 4: ve snímku 30 vyměněn
+obrázek (původní styl bez barevných kvantilů jako u ostatních diagnostických
+snímků; převod SVG → PNG týmž postupem: sharp, 220 dpi, pozadí #FAFAF7)
+a v jeho poznámkách exces 3,23 a nové percentily. Ostatní obsah PPTX beze změny.
+DOCX poznámek (dříve uložený ve Wordu) upraven jen v týchž dvou větách,
+nepřegenerován. PDF exportováno PowerPointem (dříve Acrobat PDFMaker):
+41 stran, text shodný až na čitelný text rovnic, vizuálně porovnána stránka
+s rovnicí. Snímky 29–31 vykresleny a prohlédnuty v PowerPointu. Neaktualizováno:
+místní nahrávka `kapitola_04_normalni_rozdeleni_Adam.mp3` stále uvádí původní
+čísla (exces 5,01; 99. percentil 79,9 vs. 88,6); syntéza nebyla spuštěna.
 
 ## 2026-10-28 — Výslovnostní přepisy bez podmínky nedostupného poslechu
 
