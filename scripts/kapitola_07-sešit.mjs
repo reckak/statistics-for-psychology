@@ -64,7 +64,7 @@ const sheets=[
   L('A22','Nepovinně: t vůči dolní hranici'),C('B22','=(B4-B11)/B9','0.000'),
   L('A23','Nepovinně: p-hodnota vůči dolní hranici'),C('B23','=1-T.DIST(B22;B10;PRAVDA)','0.0000'),
   L('A24','Nepovinně: t vůči horní hranici'),C('B24','=(B4-B12)/B9','0.000'),
-  L('A25','Nepovinně: p-hodnota vůči horní hranici'),C('B25','=T.DIST(B24;B10;PRAVDA)','0.0000'),
+  L('A25','Nepovinně: p-hodnota vůči horní hranici'),C('B25','=T.DIST(B24;B10;PRAVDA)','[<0.001]\"< 0.001\";0.0000'),
   L('A26','Nepovinně: výsledná p-hodnota TOST'),C('B26','=MAX(B23;B25)','0.0000'),
   N('D2','Výchozí vstupy jsou studie B z listu Studie_ekv.'),N('D3','Hranice stanovte před analýzou, ne podle výsledku.'),N('D7','Žlutě: vstupy. Modře: výpočty.'),
   N('D14','=(100*(1-B7))&"% interval slouží testu rozdílu od normy."'),N('D18','=(100*(1-2*B7))&"% interval slouží testu ekvivalence:"'),N('D19','dva jednostranné testy, každý na hladině B7.'),

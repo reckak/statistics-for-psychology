@@ -24,6 +24,9 @@ try {
   $taskExcel.CalculateFullRebuild()
   # 1. Every stored result of the calculation sheets, including the test decisions.
   Assert-Stored
+  # Small positive probabilities must remain numeric and display as an inequality.
+  $tiny=$taskBook.Worksheets.Item('Ekvivalence').Range('B25')
+  if($tiny.Value2 -le 0 -or $tiny.Text -ne '< 0,001'){throw 'Tiny p-value must display as < 0,001 without changing its numeric value'}
   # 2. Czech formulas quoted in the chapter and its solutions, entered as a student would type them.
   $scratch=$taskBook.Worksheets.Item('Interval_z').Range('H30')
   foreach($f in $spec.formulas){
