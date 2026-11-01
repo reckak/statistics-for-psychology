@@ -228,6 +228,11 @@ meze i popisky (1 − α a 1 − 2α). Rozhodnutí respektují p ≤ α včetně
 přesného dotyku meze intervalu s hranicí ekvivalence. Na listu `Interval_z`
 se poznámka o pokrytí mění s hladinou v B5; modelový předpoklad v A3 je celý viditelný.
 
+Od kontroly 2026-11-01 se velmi malá kladná p-hodnota v `Ekvivalence!B25`
+zobrazuje jako „< 0,001“. Formát zachovává číselnou hodnotu pro navazující
+MAX; všechny původní hodnoty, vzorce, typy a chybění byly porovnány s
+předchozím sešitem a zůstaly stejné.
+
 Simulovaná data obrázku opakovaných intervalů jsou v sešitu úplná a statická:
 `Sim_intervaly` A2:H101 (100 výběrů po 25 z výukového modelu s průměrem 47
 a σ = 10; pro každý výběr průměr, s, meze intervalu se známou σ a s výběrovou s

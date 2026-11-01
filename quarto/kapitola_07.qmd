@@ -93,7 +93,7 @@ Zvolíme si výukový model: populační průměr skóru studentů po krátkém 
 Levý panel obrázku [-@fig-opakovane-intervaly] ukazuje tři věci, které je třeba si zapamatovat:
 
 1. **Všechny intervaly mají stejnou šířku**, 7,84 bodu. Šířka závisí jen na σ, na velikosti výběru a na hladině spolehlivosti, a ty jsou u všech výběrů stejné. Mění se **poloha** intervalu, protože se mění výběrový průměr.
-2. **Většina intervalů populační průměr zachytila**, ale ne všechny. V tomto běhu simulace jich zachytilo 94 ze 100. Při jiném běhu by to mohlo být 93, 95 nebo 97. Číslo 95 % je **dlouhodobé pokrytí** postupu: podíl zachycených parametrů, ke kterému se blížíme při stále větším počtu opakování.
+2. **Většina intervalů populační průměr zachytila**, ale ne všechny. V tomto běhu simulace jich zachytilo 94 ze 100. Při jiném běhu by to mohlo být 93, 95 nebo 97. Číslo 95 % udává **dlouhodobé pokrytí** postupu. Při stále větším počtu opakování se podíl intervalů, které zachytí populační průměr, blíží 95 %.
 3. **Každý jednotlivý interval μ buď obsahuje, nebo neobsahuje.** Oranžové intervaly ho neobsahují, modré ano. Pro jeden už vypočtený interval tedy nejde o pravděpodobnost 0,95, ale o jednu ze dvou možností, kterou nevidíme.
 
 **Pokrytí** (*coverage*) je tedy vlastnost postupu, nikoli jednoho intervalu. Když o konkrétním intervalu (42,08; 49,92) říkáme, že je „95%“, myslíme tím: vznikl postupem, který při opakování zachytí populační průměr v 95 % případů. Náš interval je jeden z modrých nebo jeden z oranžových, a nevíme který. Spoléháme na to, že takových, které parametr minou, vytváří postup málo.
@@ -282,7 +282,7 @@ s $25-1=24$ stupni volnosti. Za platnosti nulové hypotézy na její hranici a z
 
 $$p\text{-hodnota}\approx0{,}028.$$
 
-Funkce **T.DIST** (anglicky také T.DIST) vrací při posledním argumentu PRAVDA podíl t-rozdělení vlevo od zadané hodnoty. Kritická hodnota pro alternativu „menší“ je $t_{0{,}05\,(v=24)}\approx-1{,}711$, tedy průměry nejvýše $50-1{,}711\times2\approx46{,}58$ bodu.
+Funkce **T.DIST** (anglicky také T.DIST) vrací při posledním argumentu PRAVDA podíl t-rozdělení vlevo od zadané hodnoty. Kritická hodnota pro alternativu „menší“ je $t_{0{,}05\,(v=24)}\approx-1{,}711$. Pro náš odhad směrodatné chyby $s_m=2$ odpovídá této kritické hodnotě mez $50-1{,}711\times2\approx46{,}58$ bodu: zamítáme při průměru nejvýše rovném této mezi. Při jiném výběrovém $s$ by se změnila i tato mez; rozhodujeme proto podle vypočtené statistiky $t$.
 
 **5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. *p*-hodnota je 0,028.
 
@@ -356,7 +356,7 @@ Pravidlo má jednu jemnost na hranici. Přesně na mezi intervalu je *p*-hodnota
 
 ### Co *p*-hodnota a interval sdělují {#sec-co-sdeluji}
 
-*p*-hodnota vyjadřuje, jak neobvyklá je pozorovaná nebo ještě extrémnější testová statistika za nulové hypotézy a předpokladů testu. Týká se jedné testované hodnoty. Interval ukazuje rozsah všech hodnot parametru, které jsou s daty slučitelné, a jeho šířka vyjadřuje přesnost odhadu. Z 95% intervalu proto zjistíme výsledek oboustranného testu na hladině 0,05 pro jakoukoli testovanou hodnotu, ale navíc vidíme:
+*p*-hodnota vyjadřuje, jak neobvyklá je pozorovaná nebo ještě extrémnější testová statistika za nulové hypotézy a předpokladů testu. Týká se jedné testované hodnoty. Interval při zvolené hladině spolehlivosti shrnuje nejistotu odhadu a jeho šířka vyjadřuje přesnost. Hodnoty těsně uvnitř a těsně vně jeho mezí jsou s daty téměř stejně slučitelné, jak ukazuje předchozí křivka *p*-hodnot. Z 95% intervalu proto zjistíme výsledek oboustranného testu na hladině 0,05 pro jakoukoli testovanou hodnotu, ale navíc vidíme:
 
 - **velikost** rozdílu v původních jednotkách: střed intervalu, 46 bodů, je 4 body pod normou;
 - **přesnost**: šířka 8,26 bodu ukazuje, že velikost poklesu známe jen hrubě;
@@ -516,7 +516,7 @@ Studie C doložila, že **populační průměr** online verze leží v pásmu 47
 - **Nedokládá shodu individuálních výsledků.** I při shodném průměru může jednotlivý člověk dosáhnout v online verzi o mnoho bodů víc nebo méně než v papírové. K tomu by bylo potřeba otestovat tytéž lidi oběma verzemi.
 - **Nedokládá stejnou reliabilitu.** [Reliabilita](kapitola_01.qmd#sec-reliabilita-validita), tedy přesnost měření, je samostatná vlastnost výsledků testu a průměr o ní nevypovídá.
 
-Referenční hodnotu 50 jsme navíc brali jako **pevné číslo**. To je rozumné, jen pokud norma vychází z velmi velkého normativního výběru [@howell, s. 195]. Pokud by norma pocházela z menšího výběru a byla sama nepřesným odhadem, nesla by vlastní nejistotu. Pak by se porovnávaly dva odhady a jednovýběrový postup by nejistotu podcenil; postupy pro dva výběry tato kapitola nevykládá.
+Referenční hodnotu 50 jsme navíc brali jako **pevné číslo**. Pokud jí zastupujeme odhad populačního průměru z normativního výběru, nese i tato hodnota vlastní nejistotu. Howell [-@howell, s. 195] zdůvodňuje její zanedbání velkým normativním výběrem. Pro naše porovnání je rozhodující, zda je nejistota normy zanedbatelná ve srovnání s nejistotou našeho odhadu. Pokud není, porovnáváme dva odhady a jednovýběrový postup by nejistotu podcenil; postupy pro [dva nezávislé výběry](kapitola_08.qmd#sec-rozdil-nezavislych) vykládá kapitola 8.
 
 Závěr o ekvivalenci je také vždy vázán na **zvolené hranice**. Se stejnými daty by studie C při hranicích ±1 bod ekvivalenci nedoložila. Tvrzení „verze jsou ekvivalentní“ bez uvedení hranic proto nemá jasný obsah. Hranice zvolené až podle výsledku, tak aby ekvivalence vyšla, zbavují test smyslu: chybovost 0,05 pak neplatí a test potvrdí cokoli [@lakens2018, oddíl Discussion].
 
@@ -590,7 +590,7 @@ f)  Protože je interval úzký, víme, že výzkumník odhadl populační prům
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Nesprávně. Populační průměr je pevné číslo; konkrétní interval jej buď obsahuje, nebo ne. Správně: interval vznikl postupem, který při opakování zachytí populační průměr v 95 % případů.
 
-b)  Nesprávně. Interval spolehlivosti se týká populačního průměru, ne jednotlivých studentů. Doby spánku jednotlivců jsou rozptýlené mnohem víc; rozmezí pro 95 % studentů by bylo mnohem širší.
+b)  Nesprávně. Interval spolehlivosti se týká populačního průměru, ne jednotlivých studentů. Ze samotného intervalu pro průměr nelze určit rozmezí, ve kterém spí 95 % studentů; k tomu bychom potřebovali informace o rozdělení jejich individuálních dob spánku.
 
 c)  Správně. Tak je definováno pokrytí postupu.
 
@@ -867,5 +867,5 @@ a)  $H_0{:}\ \mathrm{μ}\le47$; $H_1{:}\ \mathrm{μ}>47$.
 
 b)  $s_m=10/\sqrt{200}\approx0{,}707$; 199 stupňů volnosti; `=T.INV(0,95;199)` ≈ 1,653. Dolní mez $48{,}2-1{,}653\times0{,}707\approx47{,}03$. Leží nad 47, a neinferiorita je tedy na hladině 0,05 doložena (*p*-hodnota jednostranného testu 0,046). Rezerva je však těsná: dolní mez je od hranice vzdálena jen 0,03 bodu.
 
-c)  Horší by byly vyšší hodnoty, takže by se hypotézy obrátily: $H_0{:}\ \mathrm{μ}\ge\mathrm{μ}_0+\mathrm{Δ}$, $H_1{:}\ \mathrm{μ}<\mathrm{μ}_0+\mathrm{Δ}$. O neinferioritě by rozhodovala horní mez 90% intervalu, která by musela ležet pod $\mathrm{μ}_0+\mathrm{Δ}$.
+c)  Horší by byly vyšší hodnoty, takže by se hypotézy obrátily: $H_0{:}\ \mathrm{μ}\ge\mathrm{μ}_0+\mathrm{Δ}$, $H_1{:}\ \mathrm{μ}<\mathrm{μ}_0+\mathrm{Δ}$. O neinferioritě by rozhodovala horní mez 90% intervalu, která by musela ležet pod $\mathrm{μ}_0+\mathrm{Δ}$ nebo přesně na této hranici.
 :::

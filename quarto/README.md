@@ -1,5 +1,50 @@
 # Autorská dokumentace
 
+<a id="revize-07-20261101"></a>
+
+## 2026-11-01 — Kapitola 7: opravy po komplexní revizi
+
+Po autorově schválení osmi nálezů zpřesněno pokrytí jako podíl intervalů,
+závislost kritického průměru na výběrové s, plynulá slučitelnost hodnot
+u mezí intervalu a podmínka zanedbání nejistoty normy vzhledem k nejistotě
+nového odhadu. Doplněn odkaz na dva nezávislé výběry v kapitole 8.
+Řešení 2b již neodvozuje šířku rozmezí jednotlivců ze samotného intervalu
+průměru; řešení 14c připouští přesný dotyk podle platného p ≤ α.
+Slovníček a přehled značení výslovně podmiňují t-rozdělení hodnotou μ = μ₀
+a nezávislým výběrem z normální populace. Rozsah R44–R46 se nemění.
+
+Generátor sešitu upravuje pouze formát `Ekvivalence!B25`: malá kladná
+p-hodnota se zobrazuje jako „< 0,001“. Číselná hodnota zůstává zachována
+pro MAX. Doplněna skutečná kontrola zobrazení i kladné číselné hodnoty
+v českém Excelu. Po reprodukovatelném sestavení porovnány všechny listy,
+hodnoty, vzorce, datové typy a chybění s předchozím sešitem: shodují se.
+Prošla kontrola R, 53 českých vzorců, přepočet a devět hraničních rozhodnutí
+v Excelu 16.0 i společná kontrola vzorců sešitů 1–8. Nativní náhled
+opraveného listu byl vizuálně zkontrolován.
+
+Při předchozí revizi přečtena celá kapitola včetně všech čtrnácti řešení,
+prohlédnuto osm obrázků, pět tabulek a nativní náhledy devatenácti listů
+(u simulace začátek, všech 800 čísel přitom porovnáno s novým výpočtem).
+Citované pasáže ověřeny v Howellovi a článcích Lakense (2017) a Lakense
+et al. (2018); vybrané pasáže Cumminga a Calin-Jagemana použity ke srovnání
+didaktiky. Přepočet 56 hodnot Howellovy tabulky 7.1 potvrdil výsledek PDI;
+nejde o reprodukci původní studie Nurcomba et al., jejíž úplný článek
+a původní výzkumná dokumentace nebyly ověřeny. Interní didaktická revize
+nenahrazuje ověření porozumění na studentech. Jiné verze Excelu, skutečný
+telefon, veřejné nasazení a pracovní PDF kapitoly nebyly kontrolovány.
+
+Následně prošel úplný render v Quartu 1.9.38 a kontrola HTML všech třinácti
+stránek (odkazy, přehledy, sto řešení v celé knize, klávesnice, skrytí
+a rozbalení, mobilní šířka 390 px). Po závěrečném zpřesnění formulace
+kritické meze znovu vykreslena kapitola 7. Jejích pět tabulek je bez
+přetékání a drobných přesahů při šířkách 390, 1024, 1280, 1360, 1440
+a 1920 px. Vizuálně zkontrolována dotčená část výkladu a opravený list.
+Audit tabulek celé knihy nadále zaznamenává dřívější místní přesahy
+v kapitolách 6 a 8, včetně 19 px u `tbl-k08-07` při 1280 px; nejde o nález
+v kapitole 7. Prošla kontrola odkazů autorské dokumentace včetně místních
+podkladů. Veřejné nasazení ani GitHub CI nejsou těmito lokálními kontrolami
+ověřeny.
+
 ## 2026-10-31 — Kvantily v Q–Q grafech kapitoly 4
 
 Na žádost autora v oddílu [Jak číst odchylky od přímky](kapitola_04.qmd#sec-qq-odchylky)
