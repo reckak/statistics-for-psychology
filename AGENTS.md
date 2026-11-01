@@ -269,7 +269,13 @@ konkrétního místa.
   obsahově, aby z nich bylo poznat, co se student dozví, nikoli jen téma.
 - Každá výkladová kapitola končí před cvičeními oddílem „Shrnutí“
   s 5–8 klíčovými myšlenkami, z nichž každá odkazuje na oddíl s výkladem.
-  Shrnutí nezavádí nové pojmy.
+  Shrnutí nezavádí nové pojmy. Jednotná podoba: nadpis
+  `## Shrnutí {#sec-shrnuti-NN}`, úvodní věta „Hlavní myšlenky kapitoly
+  s odkazy na jejich výklad:“ a seznam s odrážkami (žádné souvislé
+  odstavce). Odrážka nese jednu myšlenku v jedné až třech větách a končí
+  odkazem v závorce na oddíl s výkladem; text odkazu je název oddílu,
+  více odkazů odděl středníkem. Nepřidávej přechod k další kapitole ani
+  myšlenky z nepovinných rozšíření.
 - Odstavec nese jednu hlavní myšlenku, kterou vyjadřuje jeho první věta.
   Věty delší než zhruba 35 slov rozděl, pokud tím neutrpí souvislost.
   Preferuj slovesné vyjádření před řetězci podstatných jmen („porovnáme

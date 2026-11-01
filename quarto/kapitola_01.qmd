@@ -635,11 +635,15 @@ Před analýzou projdeme identifikátory, jednotky, přípustné hodnoty a chyb�
 
 ## Shrnutí {#sec-shrnuti-01}
 
-Statistické uvažování začíná před prvním výpočtem. Potřebujeme znát otázku, vymezení populace, způsob získání účastníků a význam měření. Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem: ukazatel část konstruktu nezachytí a zároveň zachytí i něco navíc. Kvalitu měření posuzujeme podle validity (zda měříme, co máme) a reliability (jak přesně); stálý výsledek ještě není správný výsledek ([reliabilita a validita](#sec-reliabilita-validita)). Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat.
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
-Získaná data můžeme popsat; zobecnění a tvrzení o příčině vyžadují další oporu. Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Pravděpodobnostní výběr a náhodné přiřazení k podmínkám slouží odlišným účelům; žádný z nich neřeší všechna omezení studie. Přehledná matice a dokumentovaná pravidla nám umožňují tyto otázky sledovat i při dalších krocích.
-
-Nyní umíme připravit a číst jednotlivé záznamy. Dalším krokem bude hledat, jak jsou hodnoty v souboru zastoupeny a jak je přehledně zobrazit.
+- Statistické uvažování začíná před prvním výpočtem. Nejprve potřebujeme znát výzkumnou otázku a z ní odvodit, které proměnné budeme zaznamenávat a jaké hodnoty mohou nabývat ([Proč psychologie potřebuje statistiku](#sec-proc-statistika); [Od otázky k proměnným a hodnotám](#sec-promenne)).
+- Populace je soubor případů, k němuž se vztahuje otázka; zkoumáme-li jen výběr, závisí oprávněnost zobecnění na způsobu získání účastníků. Získaná data můžeme popsat, zobecnění na populaci však vyžaduje další oporu ([Co chceme zjistit a o kom chceme něco tvrdit](#sec-populace-vyber)).
+- Souvislost dvou proměnných sama nedokládá příčinu. Náhodné přiřazení k podmínkám podporuje kauzální závěr, pravděpodobnostní výběr zobecnění na populaci; slouží odlišným účelům a žádný z nich neřeší všechna omezení studie ([Souvislost a příčina](#sec-souvislost-pricina); [Interní a externí validita](#sec-interni-externi-validita)).
+- Proměnná není samotné číslo a psychologický konstrukt není totožný se svým ukazatelem: ukazatel část konstruktu nezachytí a zároveň zachytí i něco navíc ([Co vlastně měříme](#sec-mereni); [Co ukazatel zachytí a co ne](#sec-rozsah-ukazatele)).
+- Úroveň měření zdůvodňujeme vztahy, které mají hodnoty reprezentovat. Určuje, které vztahy mezi hodnotami můžeme věcně interpretovat: odlišnost, pořadí, rozdíly a poměry ([Úrovně měření a význam hodnot](#sec-urovne)).
+- Skutečné rozdíly, výběrová variabilita, výběrové zkreslení, chyba měření a chyba záznamu nejsou stejný problém. Kvalitu měření posuzujeme podle validity (zda měříme, co máme) a reliability (jak přesně); stálý výsledek ještě není správný výsledek ([Rozdíly, chyba a nejistota](#sec-nejistota); [Reliabilita a validita měření](#sec-reliabilita-validita)).
+- Datová matice má v základní podobě v řádku jeden případ a ve sloupci jednu proměnnou. Spolu s přehledem proměnných a jejich kódování umožňuje sledovat význam údajů i při dalších krocích analýzy ([Od záznamů k datové matici](#sec-datova-matice); [Přehled proměnných a jejich kódování](#sec-codebook)).
 
 ## Cvičení {#sec-cviceni-01}
 

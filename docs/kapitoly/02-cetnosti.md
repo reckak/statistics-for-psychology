@@ -5,7 +5,7 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 2](../../quarto/kapitola_02.qmd#sec-kapitola-02),
-karta zkontrolována 2026-10-11; dotčený výklad grafu stonek a list a jeho mapování zkontrolovány 2026-10-16. **Vstup:** případ, proměnná, úrovně měření,
+karta zkontrolována 2026-10-11; dotčený výklad grafu stonek a list a jeho mapování zkontrolovány 2026-10-16; Shrnutí převedeno na odrážky s odkazy podle upřesnění [R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu) a zkontrolováno 2026-11-01. **Vstup:** případ, proměnná, úrovně měření,
 matice, chybění a meze zobecnění z kapitoly 1. Konvence určují
 [R02](../rozhodnuti/kapitola-02.md#r02-indexy-a-cetnosti), [R03](../rozhodnuti/kapitola-02.md#r03-hranice-intervalu),
 [R05](../rozhodnuti/spolecne-konvence.md#r05-zaokrouhlovani) a [R13](../rozhodnuti/kapitola-02.md#r13-platny-udaj-velikost-vyberu).
@@ -37,7 +37,7 @@ popsat tvar rozdělení a vytvořit četnosti, sloupcový graf a histogram v Exc
 | [Excel: absolutní četnosti](../../quarto/kapitola_02.qmd#sec-excel-pocet-countifs) | POČET, COUNTIFS a SUMA; oblast, název listu, pevné a posuvné odkazy. Počet čísel nekontroluje jejich přípustnost. | 10. |
 | [Excel: relativní a kumulativní](../../quarto/kapitola_02.qmd#sec-excel-relativni-kumulativni) | Podíl s pevným jmenovatelem, procentní formát bez násobení stem, rozšiřující se oblast kumulativního součtu a kontroly. | 10. |
 | [Excel: intervaly a grafy](../../quarto/kapitola_02.qmd#sec-excel-histogram) | COUNTIFS se dvěma mezemi a spojením podmínky pomocí `&`; tvorba sloupcového grafu a histogramu z stejně širokých intervalů. Nulová mezera, zachované prázdné intervaly, kontrola alternativního automatického histogramu. | 10: předpověď a kontrola změny. |
-| [Shrnutí](../../quarto/kapitola_02.qmd#sec-shrnuti-02) | Spojuje otázku, jmenovatel, pořadí a meze s volbou zobrazení; připomíná rozdíl popisu a vysvětlení. | Souhrnně 1–10. |
+| [Shrnutí](../../quarto/kapitola_02.qmd#sec-shrnuti-02) | Sedm odrážek s odkazy na výklad: četnosti a jmenovatel, sumace, kumulativní četnosti, intervalové třídění, volba zobrazení, tvar rozdělení, zavádějící grafy. | Souhrnně 1–10. |
 
 ### Příklady, vizualizace a soubory
 

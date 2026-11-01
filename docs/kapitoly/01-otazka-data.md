@@ -5,7 +5,7 @@
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
 **Podklad a stav:** existující [kapitola 1](../../quarto/kapitola_01.qmd#sec-kapitola-01),
-obsah karty zkontrolován 2026-10-12; oddíly o měření, chybě a nejistotě, úloha 9 a pojmy s textem zkontrolovány 2026-10-31. Dohodnutý obsah a pozdější rozšíření
+obsah karty zkontrolován 2026-10-12; oddíly o měření, chybě a nejistotě, úloha 9 a pojmy s textem zkontrolovány 2026-10-31; Shrnutí převedeno na odrážky s odkazy podle upřesnění [R38](../rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu) a zkontrolováno 2026-11-01. Dohodnutý obsah a pozdější rozšíření
 rolí proměnných dokládá autorská historie; terminologii výběru, přiřazení
 a rolí shrnuje [R10](../rozhodnuti/kapitola-01.md#r10-terminologie-kapitoly-1).
 **Vstup:** matematika základní školy, bez předchozí statistiky či programování.
@@ -38,7 +38,7 @@ určuje konkrétní **procvičení**. Nepovinná okénka jsou označena samostat
 | [Datová matice](../../quarto/kapitola_01.qmd#sec-datova-matice) a [kódování](../../quarto/kapitola_01.qmd#sec-kodovani) | Řádek/případ, sloupec/proměnná a buňka/hodnota; šest modelových záznamů. ID účastníka versus odpovědi a pořadí, opakované návštěvy, časové značky; pravidla názvů sloupců a dokumentovaných kódů. | 1 a 8; časové značky vysvětleny bez samostatné úlohy. |
 | [Chybění](../../quarto/kapitola_01.qmd#sec-chybejici) | Skutečná nula versus neměřený výkon. Kód −99 mimo přípustný rozsah pro přenos do programu versus prázdná buňka v místním Excelu; nutnost převodu kódu, záznam důvodu chybění a riziko součtu prázdných buněk. | 8. |
 | [Přehled proměnných](../../quarto/kapitola_01.qmd#sec-codebook) a [kontrola v Excelu](../../quarto/kapitola_01.qmd#sec-kontrola-matice) | Konkrétní codebook s jednotkami, rozsahy a chyběním. Přepis do A1:E7, oddělený přehled; jedna hodnota v buňce, kontrola původních formulářů, dohledatelné opravy a zachování originálů. | 8; Excel je možnost, nikoli nutná pomůcka. |
-| [Shrnutí](../../quarto/kapitola_01.qmd#sec-shrnuti-01) | Spojuje význam měření, vznik dat, druhy závěrů a dokumentaci; připravuje otázku zastoupení hodnot pro kapitolu 2. | Souhrnně 1–8. |
+| [Shrnutí](../../quarto/kapitola_01.qmd#sec-shrnuti-01) | Sedm odrážek s odkazy na výklad: otázka a proměnné, populace a výběr, souvislost a příčina, konstrukt a ukazatel, úrovně měření, chyba a nejistota, datová matice. | Souhrnně 1–8. |
 
 ### Příklady, vizualizace a nepovinné části
 

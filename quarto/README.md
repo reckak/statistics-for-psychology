@@ -4593,3 +4593,24 @@ V přehledu značení odstraněno chybné s s indexem průměru jako alternativa
 Celá kniha vykreslena bez varování; `check-html.cjs` prošel na 13 stránkách (100 řešení, z toho 14 v kapitole 8; klávesnice, odkazy, přehledy, mobil, stav bez JavaScriptu). Po závěrečném doladění odsazení znovu vykreslena celá kniha; rozložení tabulek zkontrolováno na šířkách 1024/1280/1360/1440/1920 a 390 px. U kapitoly 8 nejsou malé místní přesahy ani přetékání stránky; ověřeno také otevření tabulky 8.7 přes file:// po načtení písma. Dva dřívější malé místní mobilní přesahy tabulek kapitoly 6 zůstávají mimo rozsah této opravy. Prošly `check-workbooks.py` (včetně shody publikovaných XLSX) a `check-doc-maps.cjs --require-sources`. Nové citace a literatura byly zkontrolovány ve vykresleném HTML, dotčené tabulky a listy i vizuálně. Didaktická kontrola dotčených pasáží a řešení proběhla autorským čtením z hlediska začátečníka.
 
 **Meze:** nejde o test porozumění na studentech ani o reprodukci původních výzkumů. Jiné verze Excelu, veřejné nasazení a pracovní PDF kapitoly 8 nebyly ověřovány; PDF kapitoly nebylo vyžádáno. Původní Hedgesova práce nebyla čtena; rovnice korekce byla ověřena v metodickém článku Lakense (2013), viz zdrojová karta E06.
+
+## 2026-11-01 — Jednotná podoba Shrnutí v kapitolách 1 a 2
+
+Kapitoly 1 a 2 měly shrnutí v souvislých odstavcích bez odkazů (kap. 1
+s jediným odkazem a přechodovou větou ke kap. 2), kapitoly 3–7 úvodní větu
+a odrážky s odkazy. Podle upřesnění
+[R38](../docs/rozhodnuti/postupy-a-dokumentace.md#r38-citelnost-textu)
+převedeny `#sec-shrnuti-01` a `#sec-shrnuti-02` na úvodní větu a sedm
+odrážek s odkazy na oddíly. Obsah převzat ze stávajících shrnutí; doplněny
+jen myšlenky odkazovaných oddílů, které ve starém shrnutí chyběly (u kap. 2
+sumace, intervalové třídění a kontrola grafů), formulované podle výkladu.
+Přechodová věta ke kap. 2 vypuštěna. Forma Shrnutí doplněna do AGENTS.md
+(oddíl Čitelnost); karty kapitol 1 a 2 aktualizovány.
+
+**Kontroly:** každá odrážka porovnána s úvodem odkazovaného oddílu; nejdelší
+věta 24 slov, žádný nový pojem. Celá kniha vykreslena; ve vykreslených
+kapitolách 1 a 2 ověřeno sedm odrážek, úvodní věta, existence všech cílů
+odkazů a MathML znaku sumace. `check-html.cjs` a `check-doc-maps.cjs
+--require-sources` prošly. Didaktická revize autorsky, ne samostatným
+agentem v roli studenta. Vzhled se styly webu prohlédnut nebyl (náhled
+souboru se vykreslil bez CSS); podoba odpovídá kapitolám 3–7.
