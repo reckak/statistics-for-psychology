@@ -4417,3 +4417,30 @@ webu, nadpis kapitoly 3, odkaz z kapitoly 4 a shoda publikovaných SVG.
 **Omezení:** pracovní PDF kapitol nebyla znovu exportována (změna záhlaví
 se projeví při dalším ručním exportu). Grafy ostatních kapitol nebyly
 na obdobný překryv procházeny.
+
+<a id="dohoda-kapitola-08"></a>
+
+## Kapitola 8: dohoda o obsahu (2026-11-01)
+
+Na otázku, jaký má být obsah kapitoly 8, byl navržen výklad porovnání dvou
+průměrů (párová data a dvě nezávislé skupiny) podle Howella, §7.4–7.6.
+První verzi autor vrátil s připomínkami: přínos párování formulovat
+podmíněně (zachované pořadí osob nestačí, kontrastní příklad trojnásobných
+hodnot) a změnit nadpis na „Kdy párování zpřesňuje odhad — a co neřeší“;
+v oddílu o intervalech neuvádět obecný vztah šířek ani tvrzení, že intervaly
+podmínek o párovém rozdílu „nevypovídají vůbec“, a nezařazovat pravidlo
+překryvu; vyložit nejprve klasický test se společným rozptylem a potom
+Welchovu variantu; u anorexie odlišit párovou analýzu sedmnácti dívek od
+kontrolní skupiny zmíněné Howellem (s. 200) a použít kilogramy; omezit plně
+rozpracované příklady (hrozba stereotypu jen do cvičení); přidat řešený
+příklad porovnání změn ve dvou skupinách s přesnější formulací místo hesla
+o rozdílu významností; povinně základní práci s chybějícími párovými údaji;
+Cohenovo d povinně pro nezávislé skupiny, u párových dat jen význam volby
+jmenovatele; ověřit neceločíselné Welchovy stupně volnosti v Excelu
+(T.INV a T.DIST.2T je zkracují, T.TEST typu 3 ne). Druhou verzi doplnil
+poznámkami ke zdrojům (Howell, Cumming, Wilcox, P08 sn. 30, P09 sn. 25,
+C08) a k odlišné standardizaci párového rozdílu ve zdrojích; třetí verzi
+schválil. Dohodu eviduje
+[R59](../docs/rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../docs/rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8);
+čtení zdrojů [záznam z 2026-11-01](../docs/zdroje/HISTORIE.md#priprava-08-20261101).
+Kapitola zatím napsána není.

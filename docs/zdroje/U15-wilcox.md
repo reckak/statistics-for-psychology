@@ -81,3 +81,9 @@ Každá kapitola končí oddílem *Exercises*, např. §2.11 na s. 51 (PDF 76). 
 **Nezávislé ověření:** bibliografické údaje porovnány se stránkou nakladatele, počet stran a otisk zjištěny z místního souboru. Nebyl proveden nezávislý přepočet příkladů, simulací ani statistických tvrzení; čísla z §4.5–4.6 jsou pouze převzatým popisem autorových výsledků.
 
 **Neověřeno:** podrobný výklad ostatních oddílů, všechna cvičení a řešení (příloha A i autorův web), data a funkce R, původní citované studie, aktuálnost odkazu na autorův web, obrázky mimo uvedené strany. Úplná odborná validace knihy není tímto záznamem doložena. Howell zůstává hlavní oporou pořadí témat.
+
+<a id="priprava-08-20261101"></a>
+
+## Návrh kapitoly 8 — 2026-11-01
+
+Autor uvedl §7.1, §7.3 a §8.1 (přečteny s. 251–253, 257–258 a 319–320) jako kontrolní oporu pro podmínky klasického a Welchova testu a omezení párového postupu. Robustní alternativy se do rozsahu kapitoly 8 nepřebírají. Pasáže četl autor; v tomto záznamu nebyly znovu ověřeny. [Společný záznam](../zdroje/HISTORIE.md#priprava-08-20261101).

@@ -302,3 +302,24 @@ sekvenční analýzy či p-hacking.
 Originály a pomocné textové i obrazové výstupy zůstávají neveřejné;
 studentům se nic nového nepublikuje. Kontrola ostatních 47 souborů byla
 inventární, nikoli novým odborným čtením.
+
+<a id="priprava-08-20261101"></a>
+
+## Čtení pro návrh kapitoly 8 — 2026-11-01
+
+Úkol: navrhnout obsah kapitoly 8 (porovnání dvou průměrů). Rozsah schválil autor jako [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8); studentská kapitola zatím nevznikla. Záznam eviduje čtení a ověřování při návrhu, nikoli použití v textu.
+
+**Inventář:** všech 49 souborů v `sources/` porovnáno s inventářem; cesty a všech 49 prefixů SHA-256 souhlasí, žádný nový ani změněný soubor. Dva prefixy odstraněných Baronových výřezů zůstávají jen v poznámce o nahrazených souborech.
+
+**Vlastní čtení (Claude):** [Howell](U01-howell.md#priprava-08-20261101) §7.4–7.6, s. 197–221 (PDF 221–245), v textové extrakci `pdftotext -layout`; obrazy stran nebyly prohlédnuty.
+
+**Čtení doložené autorem** (při připomínkách k návrhu, bez nového ověření v tomto záznamu): Cumming a Calin-Jageman s. 176–178 a 213–215 ([U03](U03-cumming.md#priprava-08-20261101)); Wilcox §7.1, §7.3 a §8.1, přečteny s. 251–253, 257–258 a 319–320 ([U15](U15-wilcox.md#priprava-08-20261101)); nález záměny hodnot před a po ve sn. 30 [P08](P08-prumery.md#priprava-08-20261101); interval sn. 25 [P09](P09-nezavisly-ttest.md#priprava-08-20261101) a náměty [C08](C08-ulohy-tyden-9.md#priprava-08-20261101) X11_18–21.
+
+**Nezávislé výpočty** (R 4.5.1, skript ve scratchpadu, mimo repozitář):
+
+- Parkovací studie ze souhrnů Howella (s. 86) bez známé σ, s₁ = s₂ = 14,6 s, n₁ = n₂ = 100: odhad směrodatné chyby rozdílu 2,06475 s, t = 3,3321, 198 stupňů volnosti, oboustranná *p*-hodnota 0,00103, 95% interval (2,8083; 10,9517) s, d = 0,4712.
+- Anorexie, tab. 7.3 (17 dvojic, přepis z extrakce; znaménka rozdílů v extrakci chybí, rozdíly proto přepočteny z hodnot před a po): m_D = 7,2647 lb, s_D = 7,1574 lb, t = 4,1849, *p* = 0,00070, 95% interval (3,5847; 10,9447) lb; Howellovo (3,57; 10,95) je zaokrouhlením mezivýsledků. V kilogramech (1 lb = 0,45359237 kg, převod nezaokrouhlených hodnot): průměr před 37,7522 kg, po 41,0474 kg, m_D = 3,2952 kg, s_D = 3,2466 kg, interval (1,6260; 4,9644) kg; t a d se směrodatnou odchylkou před terapií (1,4481) se nemění. Průměry 37,75 a 41,05 odpovídají sn. 32 prezentace P08, která tedy pracuje s týmiž daty v kilogramech.
+- Hrozba stereotypu (Howellovy konstruované souhrny, s. 215–216): klasický test t = 2,3667, 21 stupňů volnosti, *p* = 0,0276; Welchův t = 2,3618, 20,617 stupně volnosti, *p* = 0,0281; d = 0,9879.
+- P09 sn. 11–16 (souhrny n = 39 a 42): klasický 95% interval (−1,633; 3,233), shodně s kartou P09 a s autorovým přepočtem.
+
+**Neověřeno:** obrazy tabulek 7.3, 7.6 a 7.7 a s. 200 v originálu (požadováno před psaním); původní studie Everitta, Aronsona et al. a Ruback a Juieng; Gelman a Stern (2006) — dosud nečteno; chování Excelu s neceločíselnými stupni volnosti v tomto záznamu znovu nespuštěno (autor uvádí výsledek dřívější kontroly). Původní soubory se nezměnily.

@@ -33,6 +33,12 @@ Při výběru podkladů kapitoly 7 přečten úvod souboru z OOXML: X11_02–10,
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
 
+<a id="priprava-08-20261101"></a>
+
+## Návrh kapitoly 8 — 2026-11-01
+
+Autor uvedl X11_18–21 jako inspiraci pro volbu jednotky analýzy, interpretaci souhrnů a vztah velikosti výběru k výsledku testu (náměty cvičení kapitoly 8). V tomto záznamu nebyly úlohy znovu čteny ani přepočteny. [Společný záznam](../zdroje/HISTORIE.md#priprava-08-20261101).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

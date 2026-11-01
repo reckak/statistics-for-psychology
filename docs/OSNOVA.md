@@ -4,8 +4,9 @@
 
 **Poslední kontrola mapy: 2026-10-18** (karta kapitoly 7 po cílené revizi; dotčené řádky rozcestníku zkontrolovány, návaznosti zachovány;
 karty 1, 5 a 6 naposledy 2026-10-12 a 2026-10-15, karty 2–4 2026-10-11). Dokument
-popisuje aktuální zdrojové texty sedmi výkladových kapitol. Pro pokračování po
-kapitole 7 není schválen žádný plán.
+popisuje aktuální zdrojové texty sedmi výkladových kapitol. Pro kapitolu 8 je
+od 2026-11-01 schválen rozsah ([plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly)),
+text zatím neexistuje.
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
 kapitolou ani potvrzením dokončení, odborné bezchybnosti nebo nasazení webu.
 
@@ -68,7 +69,7 @@ stabilní identifikátory Quarta.
 | [5. Pravděpodobnost](kapitoly/05-pravdepodobnost.md#mapa-kapitola-05) | Pravidla pro jevy, podmínění a Bayesova věta; rozdělení pravděpodobnosti, binomický model a jeho normální aproximace. | 12 úloh, z toho dvě v Excelu. |
 | [6. Výběrové rozdělení a testování hypotéz](kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06) | Kolísání výsledků mezi výběry, směrodatná chyba, zákon velkých čísel a centrální limitní věta; princip testu, p-hodnota, chyby a síla, velikost účinku, binomický test a z-test. | 12 základních a 4 nepovinné úlohy; pět základních vyžaduje Excel. |
 | [7. Interval spolehlivosti, t-test a test ekvivalence](kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07) | Odhad populačního průměru s nejistotou při známé i neznámé σ, t-rozdělení, jednovýběrový t-test, vztah intervalu a p-hodnoty, test ekvivalence pomocí 90% intervalu a čtyři kombinace výsledků. | 12 základních a 2 nepovinné úlohy; pět základních vyžaduje Excel. |
-| [Plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly) | Po kapitole 7 není schválen směr, rozsah ani pořadí dalších kapitol. | — |
+| [Plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly) | Rozsah kapitoly 8 (porovnání dvou průměrů) schválen podle [R59](rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8), kapitola zatím není napsána; po ní není schválen žádný plán. | — |
 
 <a id="tematicky-rozcestnik"></a>
 
