@@ -1,4 +1,4 @@
-# Základy statistiky pro psychology 1
+# Základy statistiky pro psychology
 
 Česká učebnice pro jednosemestrální kurz statistiky ve druhém ročníku
 bakalářského studia psychologie. Předpokládá matematiku na úrovni základní

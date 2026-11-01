@@ -84,7 +84,7 @@ Název „normální“ se ustálil v 19. století, kdy se tento tvar považoval
 
 ### Dva parametry a zápis rozdělení {#sec-parametry-normalniho}
 
-Celou rodinu normálních rozdělení určují dva parametry. Jejich značky známe z [kapitoly o ukazatelích polohy a variability](kapitola_03.qmd#populacni-parametry). **Populační nebo modelový průměr** $\mathrm{μ}$ („mí“) určuje polohu středu. **Populační nebo modelová směrodatná odchylka** $\mathrm{σ}$ („sigma“) musí být kladná a určuje šířku rozdělení. Na rozdíl od nich $m$ (výběrový průměr) a $s$ (výběrová směrodatná odchylka) označují charakteristiky vypočtené z pozorovaného souboru. Když z dat výběru model odhadujeme, mohou $m$ a $s$ sloužit jako odhady jeho parametrů; nejsou tím známy přesné populační hodnoty.
+Celou rodinu normálních rozdělení určují dva parametry. Jejich značky známe z [kapitoly o ukazatelích polohy, variability a tvaru](kapitola_03.qmd#populacni-parametry). **Populační nebo modelový průměr** $\mathrm{μ}$ („mí“) určuje polohu středu. **Populační nebo modelová směrodatná odchylka** $\mathrm{σ}$ („sigma“) musí být kladná a určuje šířku rozdělení. Na rozdíl od nich $m$ (výběrový průměr) a $s$ (výběrová směrodatná odchylka) označují charakteristiky vypočtené z pozorovaného souboru. Když z dat výběru model odhadujeme, mohou $m$ a $s$ sloužit jako odhady jeho parametrů; nejsou tím známy přesné populační hodnoty.
 
 Používáme stručný zápis
 

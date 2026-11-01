@@ -281,3 +281,23 @@ realizuje již schválený postup R31 a nezavádí automatickou publikaci PDF.
 - Spustit kontroly zachování obsahu a odkazů, aktualizovat dokumentaci a předat změny přes větev `codex/infrastructure` a PR.
 
 Obsah a výpočty kapitol zůstávají zachovány. PDF se nadále vytvářejí ručně, odděleně od publikování webu.
+
+<a id="r58-nazvy-knihy-a-kapitol"></a>
+
+## R58 — Název učebnice a kapitoly 3
+
+**Stav:** schváleno 2026-11-01. **Rozsah:** titul webu (`_quarto.yml`),
+kořenové README, licence textu a doporučená citace, záhlaví pracovních PDF,
+nadpis kapitoly 3, karta kapitoly, mapa obsahu a textové odkazy na kapitolu.
+
+**Volba a důvod:** učebnice se jmenuje „Základy statistiky pro psychology“,
+bez čísla kurzu. Kapitola 3 se jmenuje „Ukazatele polohy, variability
+a tvaru“, protože od [R47](kapitola-03.md#r47-ukazatele-tvaru) obsahuje
+povinný oddíl o ukazatelích tvaru. ID kapitoly `#sec-kapitola-03` ani název
+souboru se nemění. Popis kurzu „Základy statistiky pro psychology 1“
+v AGENTS.md zůstává; historické záznamy a doklady se nepřepisují.
+
+**Doklad:** autor 2026-11-01: „přejmenoval bych učebnici na ‚Základy
+statistiky pro psychology‘ místo ‚Základy statistiky pro psychology 1‘“
+a „Kapitolu 3 bych přejmenoval na ‚Ukazatele polohy, variability a tvaru‘“;
+následně schválil plán úprav.

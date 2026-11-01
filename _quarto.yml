@@ -18,7 +18,7 @@ project:
     - "!quarto/_verification/**"
 
 book:
-  title: "Základy statistiky pro psychology 1"
+  title: "Základy statistiky pro psychology"
   language: cs
   site-url: https://reckak.github.io/statistics-for-psychology/
   repo-url: https://github.com/reckak/statistics-for-psychology

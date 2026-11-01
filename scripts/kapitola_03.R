@@ -337,14 +337,16 @@ ch3_draw('korekce-rozptylu',{
     lty=c(NA,NA,NA,2),lwd=c(NA,NA,2.5,2),bty='n',cex=.85,ncol=2)
 },height=5.2)
 ch3_draw('entropie',{
-  par(mfrow=c(1,3),mar=c(4,3.4,3,.4),cex=.9)
+  par(mfrow=c(1,3),mar=c(4,4.6,3,.4),cex=.9)
   entropies <- list(c(1,0,0,0),c(.5,.25,.25,0),rep(.25,4))
   for(i in seq_along(entropies)) {
     p <- entropies[[i]]
     barplot(p,names.arg=c('A','B','C','D'),ylim=c(0,1),col='#267888',border=NA,
-      yaxt='n',ylab=if(i==1) 'Relativní četnost' else '',xlab='Strategie učení',
+      yaxt='n',ylab='',xlab='Strategie učení',
       main=c('Entropie 0 bitů','Entropie 1,5 bitu','Entropie 2 bity')[i])
     axis(2,at=c(0,.25,.5,.75,1),labels=c('0','0,25','0,50','0,75','1'))
+    # Wide horizontal tick labels need more room than the shared mgp gives.
+    if(i==1) title(ylab='Relativní četnost',line=3.1)
   }
 },width=8,height=3.7)
 ch3_draw('spicatost',{
@@ -400,14 +402,16 @@ ch3_draw('ukazatele-tvaru',{
   }
 },width=9,height=8.6)
 ch3_draw('stejne-dve-statistiky',{
-  par(mfrow=c(3,1),mar=c(3.5,4.5,3,.7),cex=1)
+  par(mfrow=c(3,1),mar=c(3.5,5.2,3,.7),cex=1)
   for(i in 1:3) {
     p<-ch3_shape_prob[[i]]
     ymax<-c(.53,.11,.12)[i]
-    plot(NA,xlim=c(-4,6),ylim=c(0,ymax),xlab='Hodnota proměnné',ylab='Pravděpodobnost v intervalu',yaxt='n',
+    plot(NA,xlim=c(-4,6),ylim=c(0,ymax),xlab='Hodnota proměnné',ylab='',yaxt='n',
       main=c('Dvě stejně pravděpodobné hodnoty','Souměrné zvonovité rozdělení','Rozdělení zešikmené doprava')[i],bty='l')
     ticks<-if(i==1) seq(0,.5,.1) else seq(0,.1,.02)
     axis(2,at=ticks,labels=format(ticks,decimal.mark=','))
+    # Wide horizontal tick labels need more room than the shared mgp gives.
+    title(ylab='Pravděpodobnost v intervalu',line=3.6)
     rect(head(ch3_shape_breaks,-1),0,tail(ch3_shape_breaks,-1),p,col='#70AABB',border='white')
     abline(v=0,lty=2,col='#B16A26')
     text(5.8,ymax*.83,'Průměr = 0\nSměrodatná odchylka = 1',adj=1,cex=.9)
