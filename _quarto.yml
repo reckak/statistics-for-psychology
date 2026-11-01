@@ -69,6 +69,12 @@ format:
     code-copy: true
     include-after-body: assets/after-body.html
     html-math-method: mathml
+    # Clicking a figure opens it enlarged with its caption (GLightbox).
+    lightbox:
+      match: auto
+      effect: zoom
+      desc-position: bottom
+      loop: false
     # Keep Czech decimal numbers written as 0{,}841 in one MathML <mn>.
     filters:
       - filters/desetinna-carka.lua

@@ -330,6 +330,24 @@ const server = http.createServer((req, res) => {
         for(const id of ['sec-parametry-normalniho','sec-excel-normalni','sec-centralni-podil','sec-steny-staniny','sec-excel-qq']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch04-${id}-desktop.png`});
         }
+        // Lightbox: every figure opens enlarged with its caption and closes by Escape.
+        assert.equal(await page.locator('main img:not(a.lightbox img)').count(),0,'Every chapter 4 image opens in the lightbox');
+        const lbFigure=page.locator('#fig-distribucni-04');
+        const lbSrc=await lbFigure.locator('img').getAttribute('src');
+        await lbFigure.locator('a.lightbox').scrollIntoViewIfNeeded();
+        await lbFigure.locator('a.lightbox').click();
+        const lbSlide=page.locator('.glightbox-container .gslide.current');
+        await lbSlide.locator('img').waitFor({state:'visible'});
+        assert((await lbSlide.locator('img').getAttribute('src')).endsWith(lbSrc.replace(/^(\.\.\/)+/,'')),'Lightbox shows the clicked figure');
+        assert((await lbSlide.locator('.gslide-description').textContent()).includes('distribuční funkce'),'Lightbox shows the figure caption');
+        await page.waitForTimeout(600);
+        const lbBox=await lbSlide.locator('img').boundingBox();
+        const inlineWidth=(await lbFigure.locator('img').boundingBox()).width;
+        assert(lbBox.width>inlineWidth && lbBox.height>500,'Lightbox enlarges the figure beyond its page size');
+        assert.equal(await page.locator('.glightbox-container .gnext, .glightbox-container .gprev').filter({visible:true}).count(),0,'No unusable gallery arrows');
+        await page.screenshot({path:'tmp/verification/ch04-lightbox-desktop.png'});
+        await page.keyboard.press('Escape');
+        await page.locator('.glightbox-container').waitFor({state:'detached'});
         fs.writeFileSync('tmp/verification/ch04-citations.json',JSON.stringify(await page.locator('.citation,#refs .csl-entry').allTextContents(),null,2));
       }
       if (file === 'quarto/kapitola_03.html') {
