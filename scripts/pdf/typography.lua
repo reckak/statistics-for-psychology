@@ -35,9 +35,21 @@ return {
     end },
   { Math = function(el)
       -- Text produces an atomic upright number in Typst, including in subscripts.
-      el.text = el.text:gsub('(%d+{,}%d+)', function(number)
-        return '\\text{' .. number:gsub('{,}', ',') .. '}'
+      -- Typst spaces "- upright(..)" as a binary minus, so a unary minus (at the
+      -- start or after a relation, bracket, separator or command) joins the number.
+      local function upright(prefix, number, stop)
+        return '\\text{' .. prefix .. number:gsub('{,}', ',') .. stop .. '}'
+      end
+      local text = el.text
+      text = text:gsub('()%-%s*(%d+{,}%d+)', function(pos, number)
+        local before = text:sub(1, pos - 1):gsub('%s+$', '')
+        if before == '' or before:match('[=<>%(%[{,;:]$') or before:match('\\%a+$') then
+          return upright('\u{2212}', number, '')
+        end
       end)
+      -- A final full stop directly after a number otherwise stands apart from it.
+      text = text:gsub('(%d+{,}%d+)%.%s*$', function(number) return upright('', number, '.') end)
+      el.text = text:gsub('(%d+{,}%d+)', function(number) return upright('', number, '') end)
       return el
     end },
   { Inlines = bind }

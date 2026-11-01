@@ -1,5 +1,34 @@
 # Autorská dokumentace
 
+## 2026-11-01 — PDF kapitoly 7 a oprava matematické sazby v PDF
+
+Ruční export a kontroly rozšířeny na kapitolu 7. PDF má 29 stran: zadání
+na stranách 19–23, řešení od strany 24 a literaturu na straně 29. Všech
+29 stran prohlédnuto. Kontrola transformace nově čeká v kapitole 6 správně
+16 řešení (nepovinná cvičení 15 a 16 podle R57).
+
+Při prohlídce se ukázalo, že Typst zachovává mezeru vedle textových čísel
+`upright(…)`, která Pandoc vkládá. Ve všech PDF se tak sázelo „= − 1,5“,
+„49,92 .“, „(48,5 − 47)/ 0,5“, „*p* -hodnota“ a „| t |“. Opraveno pouze
+v PDF převodu (`scripts/pdf/typography.lua`, `render-chapter-pdf.ps1`):
+unární minus a koncová tečka se spojují s číslem, mezera u lomítka se
+odstraňuje, popisek *p*-hodnota se spojuje a |t| se zapisuje jako absolutní
+hodnota. Binární minus zůstává operátorem. Titulky rozbalovacích bloků se
+v PDF nově čtou jako Markdown (dříve doslovné „\*p\*“). Tabulky 7.2 a 7.3
+mají v PDF šířky sloupců podle obsahu místo stejných; web se nemění.
+
+**Kontroly:** PDF kapitol 3–7 znovu sestavena (50/38/43/57/29 stran).
+`check-chapter-pdf.cjs` prošel pro 3–7 (15/10/12/16/14 řešení),
+`check-pdf-typography.cjs` s novými případy (unární a binární minus,
+koncová tečka). `check-rendered-pdf.py` prošel pro kapitoly 3, 4, 5 a 7;
+u kapitoly 6 selhává, protože poznámka pod tabulkou `tbl-k06-25` nezačíná
+„*Poznámka.*“ jako ostatní poznámky. Text kapitoly 6 zde neměněn.
+Vizuálně prohlédnuta celá kapitola 7 a namátkou dotčené strany kapitol 3
+a 4. Text grafů je v PDF v pořádku: ověřeno vykreslením SVG Typstem, starší
+`pdftoppm` z MiKTeXu jej zobrazuje poškozeně. Text kapitol, výpočty, data
+ani sešity se neměnily; web se nevykresloval, protože se změnily jen
+nástroje PDF.
+
 <a id="revize-07-20261101"></a>
 
 ## 2026-11-01 — Kapitola 7: opravy po komplexní revizi
