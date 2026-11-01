@@ -4548,3 +4548,17 @@ očima začátečníka, ne samostatným agentem ani na studentech; Cumminga
 a Wilcoxe četl autor, při psaní nebyli znovu čteni ani citováni; obrazy
 Howellových tabulek 7.6 a 7.7 nebyly prohlédnuty (čteno v textové extrakci).
 Tab. 7.3 a s. 200 byly ověřeny v obrazu originálu (s. 199–200, PDF 223–224).
+
+<a id="revize-kapitoly-8"></a>
+
+## Kapitola 8: opravy po odborné revizi (2026-11-01)
+
+Na výslovný souhlas autora s implementací nálezů opraveny: otázka a řešení 4c (trojnásobné hodnoty dokládají vztah SD, nikoli nižší přesnost párového odhadu); interpretace chybné nezávislé analýzy; popis náhodného přiřazení ve variantě B; chybění a jeho možné zkreslení; vyvážení pořadí; sčítání rozptylů a definice jejich shody; výběr účastníků a omezení odolnosti testů; kauzální interpretace odhadu i při nevýznamném výsledku; meze závěru ekvivalence; výklad Welchových stupňů volnosti. Zachovány číselné vstupy, schválené značení a hranice povinného/nepovinného učiva. Doplněno vysvětlení A/AND, jazykové opravy a zdroje Wilcox (2017) a Lakens (2013); evidence čtení je ve zdrojových kartách.
+
+V přehledu značení odstraněno chybné s s indexem průměru jako alternativa k SD rozdílů. Popis anorexie v generátoru a sešitu odlišuje párovou analýzu od celé studie s kontrolní skupinou. Malé místní přesahy tabulek 8.7 a mobilních 8.1/8.8 řeší cíleně menší odsazení buněk. Aktualizována karta kapitoly, datová mapa a zdrojové vazby. Nová konvence ani nové ID rozhodnutí nevznikly.
+
+**Ověření po implementaci:** `check-chapter-08.R` prošel v R 4.5.1, včetně doplněného rozlišení SD a SE u trojnásobných hodnot a kontrastu 31,9 proti 40 Welchovým stupňům volnosti. Generátor obnovil všech 20 listů v českém Excelu 16; kapitolová kontrola prošla (82 výsledků, 32 českých vzorců, 3 chybové vstupy, 59 přepočtených výsledků, 12 popisků, 3 rozhodnutí na hranici, 8 místních vzorců). Kontrola chyb vzorců všech osmi sešitů prošla. Porovnání všech buněk s verzí v Gitu potvrdilo zachování pořadí listů, čísel, typů, vzorců i stylů; liší se pouze dva schválené popisy (`Prehled!C11`, `Anorexie!D2`). Vizuálně ověřeny oba celé popisy v náhledu z Excelu; první delší verze byla zkrácena kvůli ořezu v přehledu.
+
+Celá kniha vykreslena bez varování; `check-html.cjs` prošel na 13 stránkách (100 řešení, z toho 14 v kapitole 8; klávesnice, odkazy, přehledy, mobil, stav bez JavaScriptu). Po závěrečném doladění odsazení znovu vykreslena celá kniha; rozložení tabulek zkontrolováno na šířkách 1024/1280/1360/1440/1920 a 390 px. U kapitoly 8 nejsou malé místní přesahy ani přetékání stránky; ověřeno také otevření tabulky 8.7 přes file:// po načtení písma. Dva dřívější malé místní mobilní přesahy tabulek kapitoly 6 zůstávají mimo rozsah této opravy. Prošly `check-workbooks.py` (včetně shody publikovaných XLSX) a `check-doc-maps.cjs --require-sources`. Nové citace a literatura byly zkontrolovány ve vykresleném HTML, dotčené tabulky a listy i vizuálně. Didaktická kontrola dotčených pasáží a řešení proběhla autorským čtením z hlediska začátečníka.
+
+**Meze:** nejde o test porozumění na studentech ani o reprodukci původních výzkumů. Jiné verze Excelu, veřejné nasazení a pracovní PDF kapitoly 8 nebyly ověřovány; PDF kapitoly nebylo vyžádáno. Původní Hedgesova práce nebyla čtena; rovnice korekce byla ověřena v metodickém článku Lakense (2013), viz zdrojová karta E06.

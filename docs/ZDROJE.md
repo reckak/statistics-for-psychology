@@ -390,6 +390,10 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E05 — Gelman a Stern: rozdíl mezi „významným“ a „nevýznamným“](zdroje/E05-gelman-stern.md#e05-gelman-stern)
 
+<a id="e06-lakens-2013"></a>
+
+- [E06 — Lakens: výpočet a reportování velikostí účinku](zdroje/E06-lakens-2013.md#e06-lakens-2013)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)

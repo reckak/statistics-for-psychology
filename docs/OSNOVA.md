@@ -2,7 +2,7 @@
 
 **Uspořádání dokumentace od 2026-10-13:** tento rozcestník obsahuje celkovou strukturu a tematické návaznosti. Podrobné karty osmi kapitol a samostatný plán pokračování otevírej podle tabulky níže; každá karta propojuje obsah s relevantními zdrojovými kartami. Datum reorganizace není novou kontrolou obsahu kapitol.
 
-**Poslední kontrola mapy: 2026-11-01** (nová karta kapitoly 8; dotčené řádky rozcestníku aktualizovány podle jejího textu;
+**Poslední kontrola mapy: 2026-11-01** (karta kapitoly 8 včetně odborné revize; dotčené řádky rozcestníku odpovídají jejímu textu;
 karta 7 naposledy 2026-10-18, karty 1, 5 a 6 2026-10-12 a 2026-10-15, karty 2–4 2026-10-11). Dokument
 popisuje aktuální zdrojové texty osmi výkladových kapitol. Po kapitole 8 není
 schválen žádný plán ([plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly)).
