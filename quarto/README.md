@@ -4444,3 +4444,62 @@ schválil. Dohodu eviduje
 [R59](../docs/rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../docs/rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8);
 čtení zdrojů [záznam z 2026-11-01](../docs/zdroje/HISTORIE.md#priprava-08-20261101).
 Kapitola zatím napsána není.
+
+<a id="vytvoreni-kapitoly-8"></a>
+
+## Kapitola 8: vytvoření výkladu (2026-11-01)
+
+Podle dohody [R59](../docs/rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../docs/rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8)
+vznikla kapitola `quarto/kapitola_08.qmd` s dvanácti hlavními oddíly, sedmi
+obrázky, třemi nepovinnými rozšířeními a čtrnácti cvičeními (dvanáct
+základních, dvě nepovinná), sešit `data/kapitola_08.xlsx` (20 listů,
+generátor `scripts/kapitola_08-sešit.mjs`), skript `scripts/kapitola_08.R`,
+14 hesel slovníčku a registru, sedm řádků přehledu značení (upraveny řádky
+směrodatné chyby rozdílu a *d*) a čtyři funkce Excelu (JE.ČISLO, A, T.TEST,
+BETA.INV; u T.INV a T.DIST.2T doplněna poznámka o zkracování stupňů volnosti).
+Do bibliografie přibyl Gelman a Stern (2006), zdrojová karta E05.
+
+### Odborná a didaktická rozhodnutí při psaní
+
+- **Členění.** Schválený oddíl 11 je rozdělen na ekvivalenci dvou skupin
+  a volbu postupu se sdělením; oddíl o změnách ve dvou skupinách je před
+  ekvivalencí. Odchylka je zapsána v kartě kapitoly.
+- **Data.** Varianta A (13 studentů, student 9 bez druhého měření) je
+  autorsky zvolena tak, aby párová a chybná nezávislá analýza vedly
+  k odlišným závěrům; text to uvádí jako výsledek konkrétního příkladu.
+  Data varianty B byla jednou vylosována (seed 20261189) ze seedů 20261101
+  až 20261200 podle kritéria: klasický test *p* < 0,04, Welchův *p* > 0,06,
+  kulaté souhrny. Výběr podle výsledku je záměrný, data ilustrují rozdíl
+  postupů; uložena jsou jako pevné hodnoty.
+- **Excel a Welch.** V českém Excelu 16 ověřeno, že T.INV.2T(0,05;13,97)
+  i T.DIST.2T(2;13,97) dávají totéž co se 13 stupni volnosti, kdežto
+  vzorec s BETA.INV a T.TEST typu 3 počítají s neceločíselnými stupni
+  volnosti (shoda s R: kvantil 2,145219, *p*-hodnota 0,3160032 na testovacích
+  datech). T.TEST typu 1 vynechává neúplné dvojice sám; text na to
+  upozorňuje, ale výpočet staví na explicitním výběru úplných dvojic
+  (JE.ČISLO, A, KDYŽ). Funkce PRŮMĚRKDYŽ v českém Excelu s tímto názvem
+  nefungovala, proto se nepoužívá.
+- **Intervaly vedle sebe.** Obecný vztah šířek se neuvádí; text ukazuje
+  mezní chyby konkrétního příkladu (4,13 + 4,13 vs. 5,69). Zjištěno při
+  revizi, že tvrzení „mezní chyba rozdílu je vždy menší než součet“ obecně
+  neplatí (u velmi malé skupiny může kvantil rozdílu převážit); ve cvičení 8
+  je proto podmíněno podobnými skupinami.
+- **Hedgesova korekce** je v nepovinném bloku uvedena aproximací
+  $1-3/(4v-1)$ bez citace původní práce.
+
+### Ověření
+
+`check-chapter-08.R` (všechna citovaná čísla, porovnání s `t.test`,
+pravděpodobnosti přes neúplnou funkci beta); `check-chapter-08-excel.ps1`
+v samostatném skrytém Excelu (82 uložených výsledků, 32 vzorců z textu,
+3 chybové vstupy, 59 výsledků po změně vstupů, 12 popisků, přesná hranice
+ekvivalence, prázdné buňky neúplné dvojice); `check-workbooks.py` (vstupy
+a odkazy všech osmi sešitů); render celé knihy bez varování;
+`check-html.cjs` (včetně nové kontroly kapitoly 8, mobilu a stavu bez
+JavaScriptu); `check-doc-maps.cjs`. Vizuálně prohlédnuto všech sedm SVG
+a snímky oddílů s excelovými tabulkami. **Neověřeno:** pracovní PDF
+kapitoly 8 (nebylo vyžádáno); didaktická revize provedena autorsky čtením
+očima začátečníka, ne samostatným agentem ani na studentech; Cumminga
+a Wilcoxe četl autor, při psaní nebyli znovu čteni ani citováni; obrazy
+Howellových tabulek 7.6 a 7.7 nebyly prohlédnuty (čteno v textové extrakci).
+Tab. 7.3 a s. 200 byly ověřeny v obrazu originálu (s. 199–200, PDF 223–224).

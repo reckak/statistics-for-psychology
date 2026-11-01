@@ -323,3 +323,15 @@ inventární, nikoli novým odborným čtením.
 - P09 sn. 11–16 (souhrny n = 39 a 42): klasický 95% interval (−1,633; 3,233), shodně s kartou P09 a s autorovým přepočtem.
 
 **Neověřeno:** obrazy tabulek 7.3, 7.6 a 7.7 a s. 200 v originálu (požadováno před psaním); původní studie Everitta, Aronsona et al. a Ruback a Juieng; Gelman a Stern (2006) — dosud nečteno; chování Excelu s neceločíselnými stupni volnosti v tomto záznamu znovu nespuštěno (autor uvádí výsledek dřívější kontroly). Původní soubory se nezměnily.
+
+<a id="pouziti-kapitola-08"></a>
+
+## Použití podkladů při tvorbě kapitoly 8 — 2026-11-01
+
+Kapitola 8 vznikla podle [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8). Použití podkladů:
+
+- [U01](U01-howell.md#priprava-08-20261101): pořadí párový test → nezávislé výběry → nestejné rozptyly; souhrny parkovací studie (s. 86); anorexie (tab. 7.3, s. 198–201) jen jako souhrny přepočtené na kg, s poučením o kontrolní skupině (s. 200); d u párových dat a varianta s průměrem směrodatných odchylek (s. 203–204); d se společnou směrodatnou odchylkou a volba jedné skupiny při rozdílných rozptylech (s. 213); nejednotné názvy d a g (s. 203, 213); Cohenova pásma (s. 214, jen nepovinně); doporučení oddělených rozptylů, opačná šikmost a rozptyly jako zjištění (s. 219–220); hrozba stereotypu (s. 215–217) jen ve cvičení 5. Howellova bayesovsky znějící formulace intervalu (s. 212) a příklad Adamse et al. převzaty nebyly. Citované strany čteny v textové extrakci.
+- [E05](E05-gelman-stern.md#e05-gelman-stern): příklad 25 ± 10 a 10 ± 10 (s. 328).
+- [U03](U03-cumming.md#priprava-08-20261101) a [U15](U15-wilcox.md#priprava-08-20261101): kontrolní opora podle autorova čtení; v kapitole necitovány.
+- [P08](P08-prumery.md#priprava-08-20261101), [P09](P09-nezavisly-ttest.md#priprava-08-20261101) a [C08](C08-ulohy-tyden-9.md#priprava-08-20261101): pochopení priorit (párový test, změny ve skupinách, interval a velikost účinku, volba jednotky analýzy); žádná úloha ani číselný příklad převzat nebyl.
+- Hedgesova korekce $1-3/(4v-1)$ v nepovinném bloku je uvedena bez citace původní práce; vzorec ověřen jen výpočtem příkladů, ne proti primárnímu zdroji.

@@ -64,7 +64,7 @@ figure.quarto-float-tbl > figcaption.quarto-float-caption { text-align: left !im
 #tbl-percentilove-poradi table { min-width: 1060px; }
 
 /* Chapter 4 calculation tables retain readable columns within a scrollable region. */
-.chapter-04-wide table, .chapter-05-wide table, .chapter-06-wide table, .chapter-07-wide table { min-width: 620px; }
+.chapter-04-wide table, .chapter-05-wide table, .chapter-06-wide table, .chapter-07-wide table, .chapter-08-wide table { min-width: 620px; }
 .chapter-04-figure { max-width: 100%; overflow-x: auto; }
 .chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }
 /* Data minus model differences: the cell is tinted by --qq, set per value in the chapter source. */

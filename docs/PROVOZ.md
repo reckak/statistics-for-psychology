@@ -150,6 +150,7 @@ Rscript --vanilla quarto/_verification/check-chapter-04.R
 Rscript --vanilla quarto/_verification/check-chapter-05.R
 Rscript --vanilla quarto/_verification/check-chapter-06.R
 Rscript --vanilla quarto/_verification/check-chapter-07.R
+Rscript --vanilla quarto/_verification/check-chapter-08.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -201,6 +202,17 @@ Nezávislé reference jsou v `check-chapter-07-excel.json`; obnoví je
 `python quarto/_verification/check-chapter-07-excel-expected.py quarto/_verification/check-chapter-07-excel.json`.
 K obnově sešitu včetně kontrol použijte
 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Chapter 7 -Verify`.
+
+Osmou kapitolu ověřuje `check-chapter-08.R`: párový, klasický a Welchův test
+proti `t.test`, pravděpodobnosti t-rozdělení přes neúplnou funkci beta,
+všechna čísla citovaná v textu a v řešeních. Skript `check-chapter-08-excel.ps1`
+kontroluje v samostatném skrytém Excelu uložené výsledky, prázdné buňky
+neúplné dvojice, české vzorce z textu (včetně T.TEST typů 1–3 a kvantilu
+Welchova testu přes BETA.INV s neceločíselnými stupni volnosti), přepočet při
+změně vstupů a přesný dotyk hranice ekvivalence. Změny neukládá. Nezávislé
+reference jsou v `check-chapter-08-excel.json`; obnoví je
+`python quarto/_verification/check-chapter-08-excel-expected.py quarto/_verification/check-chapter-08-excel.json`.
+Sešit kapitoly 8 nepoužívá simulace z `scripts/sesity-simulace.R`.
 
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 

@@ -1,4 +1,4 @@
-param([ValidateRange(1,7)][int[]]$Chapter=@(1,2,3,4,5,6,7),[switch]$Verify)
+param([ValidateRange(1,8)][int[]]$Chapter=@(1,2,3,4,5,6,7,8),[switch]$Verify)
 # Common entry point. Requires ordinary Node.js, Windows PowerShell and Excel;
 # Rscript (base R only) supplies fixed simulations for chapters 1, 4, 5, 6 and 7.
 $ErrorActionPreference='Stop'

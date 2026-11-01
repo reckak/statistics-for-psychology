@@ -125,7 +125,7 @@ V textové extrakci přečteny §7.4–7.6, s. 197–221 (PDF 221–245): párov
 
 **Pro metodologické poučení:** na s. 200 Howell uvádí, že skupina bez terapie za stejné období nepřibrala; párový test sedmnácti dívek tuto kontrolu sám neobsahuje (viz [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)). Na s. 212 Howell znovu připouští bayesovsky znějící čtení konkrétního intervalu; nepřebírá se, stejně jako v kapitole 7.
 
-**Nálezy a omezení:** extrakce vynechává záporná znaménka rozdílů v tab. 7.3 (např. ID 6 je −2,9, ne „22.9“); rozdíly přepočteny z hodnot před a po. Číselné ověření ve [společném záznamu](../zdroje/HISTORIE.md#priprava-08-20261101). Obrazy stran nebyly prohlédnuty.
+**Nálezy a omezení:** extrakce vynechává záporná znaménka rozdílů v tab. 7.3 (např. ID 6 je −2,9, ne „22.9“); rozdíly přepočteny z hodnot před a po. Při psaní kapitoly 8 byly tab. 7.3 a s. 200 (PDF 223–224) prohlédnuty v obrazu: hodnoty i znaménka souhlasí s přepisem, věta o skupině bez terapie je na s. 200. Text na s. 200 odkazuje na „Table 7.1“, ačkoli rozdíly jsou v tab. 7.3; jde o drobnou chybu odkazu ve zdroji. Číselné ověření ve [společném záznamu](../zdroje/HISTORIE.md#priprava-08-20261101). Ostatní strany §7.4–7.6 nebyly prohlédnuty v obrazu.
 
 ## Související karty kapitol
 

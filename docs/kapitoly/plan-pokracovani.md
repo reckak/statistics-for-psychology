@@ -4,14 +4,13 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
-**Stav k 2026-11-01: rozsah kapitoly 8 je schválen, kapitola zatím není
-napsána.** Kapitola 8 „Porovnání dvou průměrů: párová data a nezávislé
-skupiny“ (pracovní název) se řídí
+**Stav k 2026-11-01: kapitola 8 je schválena a napsána.** Kapitola 8 „Porovnání dvou průměrů: párová data a nezávislé
+skupiny“ se řídí
 [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8) (rozsah, pořadí
 a zásady), [R60](../rozhodnuti/kapitola-08.md#r60-znaceni-kapitoly-8)
 (značení) a [R61](../rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8)
-(terminologie). Schválené členění je v dokladu R59; skutečný obsah bude po
-napsání evidovat karta kapitoly 8, nikoli tento plán.
+(terminologie). Schválené členění je v dokladu R59; skutečný obsah eviduje
+[karta kapitoly 8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08), nikoli tento plán.
 
 Kapitola 8 uzavírá témata, která kapitola 7
 ([R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7)) odložila:

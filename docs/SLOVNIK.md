@@ -5,6 +5,7 @@ studentského slovníčku pro kapitoly 1–7 a výslovně zachycuje i názvy
 kumulativních variant četností, 1./3. kvartilu a dolní/horní meze.
 Dne 2026-10-31 přibyla hesla [reliabilita](#pojem-reliabilita)
 a [validita měření](#pojem-validita-mereni) podle [R55](rozhodnuti/kapitola-01.md#r55-reliabilita-validita).
+Čtrnáct hesel [kapitoly 8](#kapitola-08) má od 2026-11-01 studentská hesla i první výklad.
 Patnáct hesel [kapitoly 7](#kapitola-07) má od 2026-10-17 studentská
 hesla i první výklad; heslo [ukazatele tvaru](#pojem-ukazatele-tvaru) přibylo téhož dne podle [R47](rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru).
 
@@ -431,12 +432,36 @@ a první výklad vznikly s kapitolou 2026-10-17 pod zde uvedenými stabilními I
 | <a id="pojem-nejmensi-dulezity-rozdil"></a>**Nejmenší věcně důležitý rozdíl** | smallest effect size of interest; SESOI | — | Překlad zvolený touto učebnicí. Velikost rozdílu, od které je výsledek pro danou otázku důležitý; odlišit od pozorované velikosti účinku. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-nejmensi-dulezity-rozdil); [výklad](../quarto/kapitola_07.qmd#sec-pasmo-ekvivalence) |
 | <a id="pojem-neinferiorita"></a>**Neinferiorita** | non-inferiority | — | Jen v nepovinném rozšíření: jednostranná otázka, zda výsledek není horší o více než předem určenou mez; závisí na směru škály. | S — [R46](rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) | [Heslo](../quarto/slovnicek.qmd#pojem-neinferiorita); [výklad](../quarto/kapitola_07.qmd#rozsireni-neinferiorita) |
 
+<a id="kapitola-08"></a>
+
+## Porovnání dvou průměrů
+
+Hesla schválená při projednání kapitoly 8 ([R59](rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8)).
+Značení určuje [R60](rozhodnuti/kapitola-08.md#r60-znaceni-kapitoly-8). Studentská hesla
+a první výklad vznikly s kapitolou 2026-11-01 pod zde uvedenými stabilními ID.
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-parova-data"></a>**Párová data; párové uspořádání** | paired data; paired design | závislé výběry | Rozhoduje uspořádání studie. Opakované měření a dvojice různých osob jsou užší případy, ne synonyma. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-parova-data); [výklad](../quarto/kapitola_08.qmd#sec-parova-nezavisla) |
+| <a id="pojem-opakovane-mereni"></a>**Opakované měření** | repeated measures | — | Tíž lidé měření dvakrát či vícekrát; užší případ párových dat. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-opakovane-mereni); [výklad](../quarto/kapitola_08.qmd#sec-parova-nezavisla) |
+| <a id="pojem-nezavisle-skupiny"></a>**Nezávislé skupiny; nezávislé výběry** | independent samples | — | Různí lidé bez spojení mezi hodnotami skupin. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-nezavisle-skupiny); [výklad](../quarto/kapitola_08.qmd#sec-parova-nezavisla) |
+| <a id="pojem-rozdilove-skore"></a>**Rozdílové skóre** | difference score | skóre změny | Skóre změny (gain score) jen u měření před a po. Pro rozdíly značky $m_D$, $s_D$, $\mathrm{μ}_D$ ([R60](rozhodnuti/kapitola-08.md#r60-znaceni-kapitoly-8)); malé *d* nepoužívat kvůli záměně s Cohenovým d. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-rozdilove-skore); [výklad](../quarto/kapitola_08.qmd#sec-parovy-t-test) |
+| <a id="pojem-uplna-dvojice"></a>**Úplná a neúplná dvojice** | complete / incomplete pair | — | Neúplné dvojice vyřazovat celé se zachováním ID; neodstraňovat prázdné buňky ve sloupcích samostatně. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-uplna-dvojice); [výklad](../quarto/kapitola_08.qmd#sec-neuplne-dvojice) |
+| <a id="pojem-parovy-t-test"></a>**Párový t-test** | paired-samples t-test | t-test pro závislé výběry | Jednovýběrový t-test rozdílových skórů s hodnotou nula. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-parovy-t-test); [výklad](../quarto/kapitola_08.qmd#sec-parovy-t-test) |
+| <a id="pojem-efekt-poradi"></a>**Efekt pořadí; vyvážení pořadí** | order effect; counterbalancing | — | Efekt učení je jeho druh. Vyvážení pořadí nelze použít u měření před a po. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-efekt-poradi); [výklad](../quarto/kapitola_08.qmd#sec-co-parovani-neresi) |
+| <a id="pojem-vyberove-rozdeleni-rozdilu"></a>**Výběrové rozdělení rozdílu průměrů** | sampling distribution of the difference between means | — | Kapitola 6 je ukázala simulací; kapitola 8 obecně. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-vyberove-rozdeleni-rozdilu); [výklad](../quarto/kapitola_08.qmd#sec-rozdil-nezavislych) |
+| <a id="pojem-smerodatna-chyba-rozdilu"></a>**Směrodatná chyba rozdílu průměrů** | standard error of the difference between means | — | Vzorec se sčítáním rozptylů platí jen pro nezávislé skupiny; odhad $s_{m_1-m_2}$. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-smerodatna-chyba-rozdilu); [výklad](../quarto/kapitola_08.qmd#sec-rozdil-nezavislych) |
+| <a id="pojem-shoda-rozptylu"></a>**Shoda rozptylů** | homogeneity of variance | homogenita rozptylů | Předpoklad klasického t-testu. Předběžný test shody nepoužívat k volbě testu. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-shoda-rozptylu); [výklad](../quarto/kapitola_08.qmd#sec-spolecny-rozptyl) |
+| <a id="pojem-spolecny-odhad-rozptylu"></a>**Společný odhad rozptylu** | pooled variance estimate | sdružený rozptyl | Vážený průměr rozptylů podle stupňů volnosti; $s_p$ je jeho odmocnina. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-spolecny-odhad-rozptylu); [výklad](../quarto/kapitola_08.qmd#sec-spolecny-rozptyl) |
+| <a id="pojem-t-test-dva-vybery"></a>**t-test pro dva nezávislé výběry** | independent-samples t-test | dvouvýběrový t-test | Obecný název; klasická (Studentova) podoba se společným odhadem rozptylu a Welchova podoba se odlišují výslovně. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-t-test-dva-vybery); [výklad](../quarto/kapitola_08.qmd#sec-klasicky-t-test) |
+| <a id="pojem-welchuv-test"></a>**Welchův t-test** | Welch's t-test | t-test pro nestejné rozptyly | Stupně volnosti neceločíselné, nezaokrouhlovat. V Excelu kvantil přes BETA.INV, *p*-hodnota T.TEST typu 3. | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-welchuv-test); [výklad](../quarto/kapitola_08.qmd#sec-welchuv-test) |
+| <a id="pojem-cohenovo-d"></a>**Cohenovo d** | Cohen's d | Hedgesovo g (korigovaná varianta) | Povinně pro nezávislé skupiny se společnou směrodatnou odchylkou. U párových dat vždy uvést jmenovatel; jediný neupřesněný „párový vzorec“ neuvádět. Cohenova pásma jen nepovinně ([R56](rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen)). | S — [R61](rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8) | [Heslo](../quarto/slovnicek.qmd#pojem-cohenovo-d); [výklad](../quarto/kapitola_08.qmd#sec-d-nezavisle) |
+
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
-Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 7 byla schválena
-2026-10-17 a je v [platné tabulce](#kapitola-07); názvy pro témata ponechaná
-mimo kapitolu 7 (párový t-test, t-test pro dva výběry a další) zůstávají
-k dohodě. Terminologie kapitoly 6 byla schválena
+Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 8 byla schválena
+2026-11-01 a je v [platné tabulce](#kapitola-08). Terminologie kapitoly 7 byla schválena
+2026-10-17 a je v [platné tabulce](#kapitola-07). Terminologie kapitoly 6 byla schválena
 2026-10-12 a je v [platné tabulce](#kapitola-06). Terminologie kapitoly 5 byla schválena
 a je v [platné tabulce](#kapitola-05). Při její přípravě nebyly schváleny
 a ve studentském textu se jako termíny nezavádějí: věrohodnost (*likelihood*),
