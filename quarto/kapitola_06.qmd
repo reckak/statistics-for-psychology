@@ -857,7 +857,7 @@ Na obrázku [-@fig-rozdeleni-p] je jednou hodnotou na vodorovné ose *p*-hodnota
 :::::
 
 ::::: {.table-note}
-Sto řidičů v každé skupině, oboustranný test, směrodatná chyba rozdílu 2,12 s. Součet ve sloupci je 1.
+*Poznámka.* Sto řidičů v každé skupině, oboustranný test, směrodatná chyba rozdílu 2,12 s. Součet ve sloupci je 1.
 :::::
 
 Za platnosti nulové hypotézy padne do pásma od 0,04 do 0,05 jedna studie ze sta. Při skutečném rozdílu 5 s jsou to asi tři a půl studie ze sta: takový výsledek je při tomto rozdílu častější než při nulovém. Při skutečném rozdílu 8 s je to však méně než jedna studie ze sta. Studie s tak vysokou silou dává při osmisekundovém rozdílu obvykle mnohem menší *p*-hodnotu; ve dvou třetinách opakování menší než 0,001. **Výsledek s *p*-hodnotou jen těsně pod 0,05 je tedy častější, když nulová hypotéza platí, než když se průměry liší o osm sekund.** Statisticky významný výsledek tak může zapadat lépe do modelu nulové hypotézy než do modelu této alternativy. Lakens [-@lakens2026, oddíl [Lindley's paradox](https://lakens.github.io/statistical_inferences/01-pvalue.html#sec-lindley)] tento jev uvádí jako Lindleyho paradox (*Lindley's paradox*). V našem modelu nastává zvrat zhruba tehdy, když síla pro uvažovaný rozdíl přesáhne 0,95.

@@ -20,14 +20,16 @@ mají v PDF šířky sloupců podle obsahu místo stejných; web se nemění.
 **Kontroly:** PDF kapitol 3–7 znovu sestavena (50/38/43/57/29 stran).
 `check-chapter-pdf.cjs` prošel pro 3–7 (15/10/12/16/14 řešení),
 `check-pdf-typography.cjs` s novými případy (unární a binární minus,
-koncová tečka). `check-rendered-pdf.py` prošel pro kapitoly 3, 4, 5 a 7;
-u kapitoly 6 selhává, protože poznámka pod tabulkou `tbl-k06-25` nezačíná
-„*Poznámka.*“ jako ostatní poznámky. Text kapitoly 6 zde neměněn.
+koncová tečka). `check-rendered-pdf.py` nejprve selhal u kapitoly 6:
+poznámka pod tabulkou `tbl-k06-25` nezačínala „*Poznámka.*“ jako ostatní
+poznámky. Na pokyn autora úvod doplněn; po novém sestavení PDF a webové
+stránky kapitoly 6 kontrola prošla pro všech pět kapitol a úvod se
+zobrazuje i ve vykresleném HTML.
 Vizuálně prohlédnuta celá kapitola 7 a namátkou dotčené strany kapitol 3
 a 4. Text grafů je v PDF v pořádku: ověřeno vykreslením SVG Typstem, starší
-`pdftoppm` z MiKTeXu jej zobrazuje poškozeně. Text kapitol, výpočty, data
-ani sešity se neměnily; web se nevykresloval, protože se změnily jen
-nástroje PDF.
+`pdftoppm` z MiKTeXu jej zobrazuje poškozeně. Kromě úvodu jedné poznámky
+v kapitole 6 se text kapitol, výpočty, data ani sešity neměnily; vykreslena
+byla jen webová stránka kapitoly 6, ne celá kniha.
 
 <a id="revize-07-20261101"></a>
 
