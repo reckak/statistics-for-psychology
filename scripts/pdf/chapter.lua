@@ -64,7 +64,10 @@ function Pandoc(doc)
       if div.classes:includes('callout-note') then
         local blocks = pandoc.List()
         if div.attributes.title then
-          blocks:insert(pandoc.Para({pandoc.Strong(div.attributes.title)}))
+          -- Titles may contain Markdown such as *p*; parse them as the web does.
+          local parsed = pandoc.read(div.attributes.title, 'markdown').blocks
+          local title = #parsed > 0 and parsed[1].content or {pandoc.Str(div.attributes.title)}
+          blocks:insert(pandoc.Para({pandoc.Strong(title)}))
         end
         blocks:extend(div.content)
         return pandoc.Div(blocks, pandoc.Attr(div.identifier))

@@ -1,0 +1,916 @@
+{
+ "note": "Expected values: regularized incomplete beta (continued fraction) for the t distribution and bisection quantiles in Python (check-chapter-08-excel-expected.py), including non-integer Welch degrees of freedom. Not produced by Excel.",
+ "cells": [
+  {
+   "sheet": "Parovy_test",
+   "cell": "B2",
+   "expected": 12.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B3",
+   "expected": 3.5,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B4",
+   "expected": 2.393172105652397,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B7",
+   "expected": 0.6908492797077574,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B8",
+   "expected": 11.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B9",
+   "expected": 5.066228051190222,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B10",
+   "expected": 0.0003627229394850505,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B11",
+   "expected": 2.200985160091639,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B12",
+   "expected": 1.9794509875032282,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B13",
+   "expected": 5.0205490124967715,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B14",
+   "expected": 0.0003627229394850505,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I2",
+   "expected": 5.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I3",
+   "expected": 2.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I4",
+   "expected": 6.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I5",
+   "expected": 1.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I6",
+   "expected": 7.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I7",
+   "expected": 3.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I8",
+   "expected": 4.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I9",
+   "expected": -1.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I11",
+   "expected": 5.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I12",
+   "expected": 2.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I13",
+   "expected": 6.0
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I14",
+   "expected": 2.0
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B10",
+   "expected": 6.880000000000003,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B11",
+   "expected": 213.16,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B12",
+   "expected": 14.6,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B13",
+   "expected": 2.064751801064719,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B14",
+   "expected": 198.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B15",
+   "expected": 3.3321196264133213,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B16",
+   "expected": 0.001028377958774664,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B17",
+   "expected": 1.972017477836295,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B18",
+   "expected": 2.8082733609064077,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B19",
+   "expected": 10.951726639093597,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B20",
+   "expected": 0.47123287671232894,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B2",
+   "expected": 50.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B3",
+   "expected": 7.969770472184901,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B4",
+   "expected": 30.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B5",
+   "expected": 42.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B6",
+   "expected": 14.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B7",
+   "expected": 12.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B10",
+   "expected": 8.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B11",
+   "expected": 4.295413217915557,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B12",
+   "expected": 13.947731863361227,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B13",
+   "expected": 1.8624517815033812,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B14",
+   "expected": 0.08373723167807168,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B15",
+   "expected": 2.145540976100458,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B16",
+   "expected": -1.215985068321352,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B17",
+   "expected": 17.215985068321352,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B19",
+   "expected": 0.02420374931074117,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B20",
+   "expected": 2.1603686564627935,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B2",
+   "expected": 16.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B3",
+   "expected": 4.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B4",
+   "expected": 6.821534529219458,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B5",
+   "expected": 16.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B6",
+   "expected": 2.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B7",
+   "expected": 5.727128425310541,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B10",
+   "expected": 2.3455133051757446,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B11",
+   "expected": 0.0331661196862266,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B12",
+   "expected": 1.3968605915391565,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B13",
+   "expected": 0.18278030794617783,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B15",
+   "expected": 2.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B16",
+   "expected": 6.298147875897061,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B17",
+   "expected": 2.226731535981231,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B18",
+   "expected": 30.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B19",
+   "expected": 0.8981774262781438,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B20",
+   "expected": 0.37624333003670773,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B21",
+   "expected": -2.5475924835118056,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Zmeny",
+   "cell": "B22",
+   "expected": 6.547592483511806,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B11",
+   "expected": -0.8999999999999986,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B12",
+   "expected": 10.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B13",
+   "expected": 1.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B14",
+   "expected": 398.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B15",
+   "expected": -2.8659423239762662,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B16",
+   "expected": 1.065942323976269,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B17",
+   "expected": 0.3686644727870936,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B19",
+   "expected": -2.5486911739596683,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B20",
+   "expected": 0.7486911739596711,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B23",
+   "expected": 2.1000000000000014,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B24",
+   "expected": 0.018178880196253244,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B25",
+   "expected": -3.8999999999999986,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B26",
+   "expected": 5.644511078609955e-05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B27",
+   "expected": 0.018178880196253244,
+   "tolerance": 1e-07
+  }
+ ],
+ "formulas": [
+  {
+   "formula": "=T.DIST.2T(5,066;11)",
+   "expected": 0.00036285263506576266,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(3,332;198)",
+   "expected": 0.00102879640242589,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(23,6;12)",
+   "expected": 2.00388024067885e-11,
+   "tolerance": 1e-12
+  },
+  {
+   "formula": "=T.INV(0,975;11)",
+   "expected": 2.200985160091639,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;198)",
+   "expected": 1.972017477836295,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;48)",
+   "expected": 2.0106347576242323,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;19)",
+   "expected": 2.093024054408307,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;12)",
+   "expected": 2.1788128296672262,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;21)",
+   "expected": 2.079613844727678,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;38)",
+   "expected": 2.0243941639119702,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;15)",
+   "expected": 2.131449545559774,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;30)",
+   "expected": 2.042272456301233,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;24)",
+   "expected": 2.063898561628025,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,95;398)",
+   "expected": 1.6486911739596697,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV(0,975;398)",
+   "expected": 1.9659423239762677,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=1-T.DIST(2,1;398;PRAVDA)",
+   "expected": 0.018178880196253244,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST(-3,9;398;PRAVDA)",
+   "expected": 5.644511078609955e-05,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=T.INV.2T(0,05;9,6055)",
+   "expected": 2.2621571627982027,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.INV.2T(0,05;13,95)",
+   "expected": 2.1603686564627935,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=ODMOCNINA(9,6055*(1-BETA.INV(0,05;9,6055/2;0,5))/BETA.INV(0,05;9,6055/2;0,5))",
+   "expected": 2.2406054325748075,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(2,795;19)",
+   "expected": 0.011548744936813723,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(2,367;21)",
+   "expected": 0.027617176913916186,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(2,773;19)",
+   "expected": 0.012114824927667937,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(1,032;19)",
+   "expected": 0.3150305042816789,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.DIST.2T(1,178;38)",
+   "expected": 0.24612142073118315,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=T.TEST(U03_stroop!B2:B16;U03_stroop!C2:C16;2;1)",
+   "expected": 1.9996632348825806e-11,
+   "tolerance": 1e-12
+  },
+  {
+   "formula": "=PRŮMĚR(U03_stroop!B2:B16)",
+   "expected": 653.7142857142857,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=PRŮMĚR(U03_stroop!C2:C16)",
+   "expected": 718.7857142857143,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=T.TEST(U06_hudba!A2:A11;U06_hudba!B2:B26;2;3)",
+   "expected": 0.08013832800837889,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=T.TEST(U06_hudba!A2:A11;U06_hudba!B2:B26;2;2)",
+   "expected": 0.006412106412971038,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=SMODCH.VÝBĚR.S(U06_hudba!A2:A11)",
+   "expected": 19.243758006746557,
+   "tolerance": 1e-10
+  },
+  {
+   "formula": "=SMODCH.VÝBĚR.S(U06_hudba!B2:B26)",
+   "expected": 5.552777082985894,
+   "tolerance": 1e-10
+  }
+ ],
+ "errors": [
+  "=T.TEST(U03_stroop!B2:B16;U03_stroop!C2:C15;2;1)",
+  "=BETA.INV(0;5;0,5)",
+  "=T.DIST.2T(-2;24)"
+ ],
+ "texts": [
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B18",
+   "expected": "nulovou hypotézu nezamítáme"
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B21",
+   "expected": "ekvivalence doložena"
+  }
+ ],
+ "blanks": [
+  {
+   "sheet": "Parovy_test",
+   "cell": "G10"
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "H10"
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I10"
+  },
+  {
+   "sheet": "Spanek_par",
+   "cell": "C10"
+  }
+ ],
+ "locals": [
+  {
+   "sheet": "Parovy_test",
+   "cell": "G2",
+   "formula": "=KDYŽ(A(JE.ČISLO(Spanek_par!B2);JE.ČISLO(Spanek_par!C2));Spanek_par!B2;\"\")"
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "I2",
+   "formula": "=KDYŽ(G2=\"\";\"\";G2-H2)"
+  },
+  {
+   "sheet": "Parovy_test",
+   "cell": "B14",
+   "formula": "=T.TEST(G2:G14;H2:H14;2;1)"
+  },
+  {
+   "sheet": "Klasicky_test",
+   "cell": "B11",
+   "formula": "=((B4-1)*B3^2+(B7-1)*B6^2)/(B4+B7-2)"
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B12",
+   "formula": "=(B3^2/B4+B6^2/B7)^2/((B3^2/B4)^2/(B4-1)+(B6^2/B7)^2/(B7-1))"
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B14",
+   "formula": "=T.TEST(Spanek_skupiny!A2:A31;Spanek_skupiny!B2:B13;2;3)"
+  },
+  {
+   "sheet": "Welch",
+   "cell": "B15",
+   "formula": "=ODMOCNINA(B12*(1-BETA.INV(1-B8;B12/2;0,5))/BETA.INV(1-B8;B12/2;0,5))"
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "cell": "B21",
+   "formula": "=KDYŽ(A(B19>=-B2;B20<=B2);\"ekvivalence doložena\";\"ekvivalence nedoložena\")"
+  }
+ ],
+ "changes": [
+  {
+   "sheet": "Klasicky_test",
+   "set": {
+    "B2": 52,
+    "B3": 10,
+    "B4": 25,
+    "B5": 46,
+    "B6": 10,
+    "B7": 25
+   },
+   "expect": {
+    "B10": 6,
+    "B11": 100.0,
+    "B12": 10.0,
+    "B13": 2.8284271247461903,
+    "B14": 48,
+    "B15": 2.1213203435596424,
+    "B16": 0.03908549432905352,
+    "B17": 2.0106347576242323,
+    "B18": 0.31306611357813985,
+    "B19": 11.68693388642186,
+    "B20": 0.6
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "set": {
+    "B2": 9.64,
+    "B3": 3.17,
+    "B4": 11,
+    "B5": 6.58,
+    "B6": 3.03,
+    "B7": 12
+   },
+   "expect": {
+    "B10": 3.0600000000000005,
+    "B11": 9.594233333333333,
+    "B12": 3.097455945341811,
+    "B13": 1.292951072062464,
+    "B14": 21,
+    "B15": 2.366678883771534,
+    "B16": 0.02763596151257162,
+    "B17": 2.079613844727678,
+    "B18": 0.3711610499834066,
+    "B19": 5.748838950016594,
+    "B20": 0.9879075131324662
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Klasicky_test",
+   "set": {
+    "B2": 3.1,
+    "B3": 5,
+    "B4": 20,
+    "B5": 1.2,
+    "B6": 5.2,
+    "B7": 20
+   },
+   "expect": {
+    "B10": 1.9000000000000001,
+    "B11": 26.020000000000003,
+    "B12": 5.10098029794274,
+    "B13": 1.613071604114337,
+    "B14": 38,
+    "B15": 1.1778770360558186,
+    "B16": 0.24616985397712954,
+    "B17": 2.0243941639119702,
+    "B18": -1.3654927413411835,
+    "B19": 5.1654927413411835,
+    "B20": 0.372477423754466
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Parovy_test",
+   "set": {
+    "B5": 0.9
+   },
+   "expect": {
+    "B12": 2.2593142665602146,
+    "B13": 4.740685733439785
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "set": {
+    "B5": 30,
+    "B8": 30
+   },
+   "expect": {
+    "B15": -6.068412319937799,
+    "B16": 4.268412319937802,
+    "B17": 0.7286754137017288,
+    "B19": -5.21593067419646,
+    "B20": 3.4159306741964626,
+    "B27": 0.20967860690015272
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B18": "nulovou hypotézu nezamítáme",
+    "B21": "ekvivalence nedoložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "set": {
+    "B2": 2,
+    "B3": 30.6,
+    "B4": 8,
+    "B5": 250,
+    "B6": 30,
+    "B7": 8,
+    "B8": 250
+   },
+   "expect": {
+    "B15": -0.8058527756667639,
+    "B16": 2.005852775666767,
+    "B19": -0.579154949088954,
+    "B20": 1.7791549490889569,
+    "B27": 0.025478864141790115
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B18": "nulovou hypotézu nezamítáme",
+    "B21": "ekvivalence doložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "set": {
+    "B2": 2,
+    "B3": 30.6,
+    "B4": 8,
+    "B5": 40,
+    "B6": 30,
+    "B7": 8,
+    "B8": 40
+   },
+   "expect": {
+    "B15": -2.9613355029353063,
+    "B16": 4.161335502935309,
+    "B19": -2.3777710897105946,
+    "B20": 3.5777710897105974,
+    "B27": 0.21810883889952953
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B18": "nulovou hypotézu nezamítáme",
+    "B21": "ekvivalence nedoložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "set": {
+    "B9": 0.01
+   },
+   "expect": {
+    "B15": -3.4882384049343838,
+    "B16": 1.6882384049343866,
+    "B19": -3.2357536227066026,
+    "B20": 1.4357536227066054
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "A15": "Test rozdílu: dolní mez 99% intervalu",
+    "A19": "Test ekvivalence: dolní mez 98% intervalu",
+    "D19": "98% interval slouží testu ekvivalence:"
+   }
+  },
+  {
+   "sheet": "Ekvivalence_skupin",
+   "set": {
+    "B9": 0.1
+   },
+   "expect": {
+    "B15": -2.5486911739596683,
+    "B16": 0.7486911739596711,
+    "B19": -2.183682271068566,
+    "B20": 0.3836822710685688
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "A15": "Test rozdílu: dolní mez 90% intervalu",
+    "A19": "Test ekvivalence: dolní mez 80% intervalu",
+    "D19": "80% interval slouží testu ekvivalence:"
+   }
+  }
+ ]
+}

@@ -4,6 +4,11 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Pracovní PDF 2026-11-01:** přidán a ověřen ruční export podle
+[provozního návodu](../PROVOZ.md#ruční-pdf-vybrané-kapitoly), včetně všech
+14 zadání a samostatného oddílu řešení s obousměrnými odkazy. Zkontrolována
+sazba celé kapitoly v PDF; nejde o novou obsahovou revizi této mapy.
+
 **Podklad a stav:** existující [kapitola 7](../../quarto/kapitola_07.qmd#sec-kapitola-07), karta
 sestavena podle výkladu, zadání a řešení 2026-10-17. Dohodu dokládají
 [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7),
@@ -12,6 +17,14 @@ sestavena podle výkladu, zadání a řešení 2026-10-17. Dohodu dokládají
 [historií dohody](../../quarto/README.md#dohoda-kapitola-07). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-7).
 Soulad karty s textem zkontrolován 2026-10-18 po [cílené revizi](../../quarto/README.md#revize-kapitoly-7-20261018); schválený rozsah R44–R46 se nemění.
+
+**Kontrola 2026-11-01:** po odborné a technické revizi zpřesněna závislost
+kritického průměru na výběrové s, plynulost slučitelnosti u mezí intervalu,
+relativní nejistota normy s odkazem na kapitolu 8, řešení 2b a hraniční
+pravidlo 14c. Přehledy zachovávají podmínku μ = μ₀ pro t-rozdělení.
+Sešit zobrazuje velmi malou kladnou p-hodnotu v `Ekvivalence!B25` jako
+„< 0,001“; hodnoty a vzorce se nemění. Cíle, procvičení a povinný rozsah
+zůstávají zachovány. [Záznam revize](../../quarto/README.md#revize-07-20261101).
 
 **Vstup:** výběrová variabilita a zkreslení (kap. 1); stupně volnosti a dělení
 n − 1, krabicový graf (kap. 3); normovaný kvantil $z_p$, hodnoty zpaměti,

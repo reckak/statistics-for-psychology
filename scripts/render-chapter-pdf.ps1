@@ -4,7 +4,7 @@ Render a supported chapter to PDF on explicit request; never called by the HTML 
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet(3, 4, 5, 6)][int]$Chapter = 3,
+    [ValidateSet(3, 4, 5, 6, 7)][int]$Chapter = 3,
     [string]$QuartoPath,
     [string]$RscriptPath
 )
@@ -48,6 +48,14 @@ try {
     $source = [IO.File]::ReadAllText((Join-Path $repo "quarto/kapitola_$number.qmd"))
     # Adapt the one instruction that otherwise refers to the web's disclosure control.
     $source = $source.Replace('Řešení otevírejte až po vlastním pokusu.', 'Řešení v závěrečné části čtěte až po vlastním pokusu.')
+    # Pipe tables with long cells get equal PDF columns; give wide ones text-led widths.
+    $pdfColumnWidths = @{
+        'tbl-k07-02' = '[9,37,40,14]'
+        'tbl-k07-03' = '[7,10,15,14,15,13,26]'
+    }
+    foreach ($table in $pdfColumnWidths.Keys) {
+        $source = $source.Replace("{#$table}", "{#$table tbl-colwidths=`"$($pdfColumnWidths[$table])`"}")
+    }
     [IO.File]::WriteAllText("$build/quarto/kapitola_$number.qmd", $source, $utf8)
     Push-Location $build
     try {
@@ -57,16 +65,25 @@ try {
         # word to the following hyperlink there as well, without editing URL strings.
         $typPath = "$build/quarto/kapitola_$number.typ"
         $typSource = [IO.File]::ReadAllText($typPath)
-        $refsStart = $typSource.IndexOf('<pdf-references>')
+        # Typst spaces upright() text away from a preceding variable ("p -hodnota");
+        # a plain math string keeps a hyphenated label such as p-hodnota joined.
+        $finalSource = [regex]::Replace($typSource, ' upright\("(-\p{L}+)"\)', '"$1"')
+        # Spaces beside upright() text are kept in Typst math: join it to a slash.
+        $finalSource = [regex]::Replace($finalSource, '\\/ (?=upright\(")', '\/')
+        $finalSource = [regex]::Replace($finalSource, '(?<=upright\("[^"]*"\)) (?=\\/)', '')
+        # Escaped bars around one symbol are an absolute value, e.g. |t|.
+        $finalSource = [regex]::Replace($finalSource, '\\\| (\w+) \\\|', 'abs($1)')
+        $refsStart = $finalSource.IndexOf('<pdf-references>')
         if ($refsStart -ge 0) {
-            $refsText = $typSource.Substring($refsStart)
+            $refsText = $finalSource.Substring($refsStart)
             $boundRefs = [regex]::Replace($refsText, '(?<![\p{L}\p{N}_])([aikousvzAIKOUSVZ]) (?=#link\()', '$1~')
-            if ($boundRefs -cne $refsText) {
-                [IO.File]::WriteAllText($typPath, $typSource.Substring(0, $refsStart) + $boundRefs, $utf8)
-                $quartoShare = (& $quarto --paths)[-1]
-                & $quarto typst compile $typPath --root $build --package-path "$quartoShare/formats/typst/packages" --font-path "$quartoShare/formats/typst/fonts"
-                if ($LASTEXITCODE -ne 0) { throw 'Final PDF typography compilation failed; previous output preserved.' }
-            }
+            $finalSource = $finalSource.Substring(0, $refsStart) + $boundRefs
+        }
+        if ($finalSource -cne $typSource) {
+            [IO.File]::WriteAllText($typPath, $finalSource, $utf8)
+            $quartoShare = (& $quarto --paths)[-1]
+            & $quarto typst compile $typPath --root $build --package-path "$quartoShare/formats/typst/packages" --font-path "$quartoShare/formats/typst/fonts"
+            if ($LASTEXITCODE -ne 0) { throw 'Final PDF typography compilation failed; previous output preserved.' }
         }
     } finally { Pop-Location }
     $pdf = "$build/quarto/kapitola_$number.pdf"

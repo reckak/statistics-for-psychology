@@ -47,7 +47,7 @@ Odkazy do `sources/` fungují pouze v místní pracovní kopii s těmito podklad
 | Interval spolehlivosti, t-test a test ekvivalence | [U01](zdroje/U01-howell.md#u01) kap. 7 (s. 181–196); [U03](zdroje/U03-cumming.md#u03) kap. 5 a s. 151–152; [E02](zdroje/E02-lakens-2017.md#e02-lakens-2017); [E03](zdroje/E03-lakens-2018.md#e03-lakens-2018); [U15](zdroje/U15-wilcox.md#u15-lokatory) §4.3 a §4.6 (t při nenormalitě); [U16](zdroje/U16-lakens-kniha.md#u16-lokatory) kap. 7 a 9 (interpretace intervalu, SESOI); [D13](zdroje/D13-kline.md#d13) s. 22–23 (omyly o intervalu) | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 23–50; [P08](zdroje/P08-prumery.md#p08) sn. 11–28; [C05](zdroje/C05-ulohy-tyden-4.md#c05); [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Kapitola 7 podle [R44](rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7). Interval jako vlastnost postupu; t-rozdělení má statistika, ne průměr; hranice ekvivalence předem a v původních jednotkách; párový a dvouvýběrový t-test mimo kapitolu. |
 | Bootstrap a odhad nejistoty různých statistik | [U01](zdroje/U01-howell.md#u01) kap. 18; [U03](zdroje/U03-cumming.md#u03); [U08](zdroje/U08-navarro.md#u08); [U15](zdroje/U15-wilcox.md#u15-lokatory) §5.9–5.14 | [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 32–37, 53 a 57–60; [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_04, X5_07–08, X6_14–15 a X6_21 | Rozlišit skutečné výběrové rozdělení a jeho bootstrapový odhad; ověřit předpoklady a vlastnosti zvoleného intervalu. Nejde o schválené rozšíření. |
 | Velikost skupiny, extrémní výsledky a úsudky o příčinách | [D11](zdroje/D11-wainer.md#d11) s. 250–253; [U12](zdroje/U12-baron.md#u12) kap. 8 | [C05](zdroje/C05-ulohy-tyden-4.md#c05) X5_09 (mince); [P07](zdroje/P07-usuzovani-intervaly.md#p07) sn. 18–24 | Motivace odmocninového vztahu; větší kolísání malých skupin samo neprokazuje příčinu empirických rozdílů. |
-| Porovnávání průměrů a velikost rozdílu | [U01](zdroje/U01-howell.md#u01) kap. 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10; [U14](zdroje/U14-field.md#u14-lokatory) kap. 9; [U15](zdroje/U15-wilcox.md#u15-lokatory) kap. 7–8 (Welch, robustní alternativy, velikost účinku) | [P08](zdroje/P08-prumery.md#p08) sn. 11–46; [P09](zdroje/P09-nezavisly-ttest.md#p09); [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_20–21; [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Rozlišit jeden výběr, párová a nezávislá data. Opravit konkrétní rozpory v mezikrocích a intervalu P08/P09; rozsah budoucí kapitoly není schválen samotnou mapou. |
+| Porovnávání průměrů a velikost rozdílu | [U01](zdroje/U01-howell.md#u01) kap. 7–8; [U03](zdroje/U03-cumming.md#u03) kap. 5–10; [U14](zdroje/U14-field.md#u14-lokatory) kap. 9; [U15](zdroje/U15-wilcox.md#u15-lokatory) kap. 7–8 (Welch, robustní alternativy, velikost účinku) | [P08](zdroje/P08-prumery.md#p08) sn. 11–46; [P09](zdroje/P09-nezavisly-ttest.md#p09); [C07](zdroje/C07-ulohy-tyden-8.md#c07) X10_20–21; [C08](zdroje/C08-ulohy-tyden-9.md#c08) | Rozlišit jeden výběr, párová a nezávislá data. Opravit konkrétní rozpory v mezikrocích a intervalu P08/P09 (nově také záměna před/po v P08 sn. 30). Kapitola 8 podle [R59](rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8) ([karta](kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08)); [čtení pro návrh](zdroje/HISTORIE.md#priprava-08-20261101), [použití](zdroje/HISTORIE.md#pouziti-kapitola-08); [E05](zdroje/E05-gelman-stern.md#e05-gelman-stern) k porovnání výsledků dvou testů. |
 | Korelace, kovariance a interpretace vztahu | [U01](zdroje/U01-howell.md#u01) kap. 9; [U04](zdroje/U04-openintro.md#u04) kap. 8; [U07](zdroje/U07-judd.md#u07); [U11](zdroje/U11-russo.md#u11) kap. 10; [U14](zdroje/U14-field.md#u14-lokatory) kap. 7; [U15](zdroje/U15-wilcox.md#u15-lokatory) §6.4–6.6 | [P10](zdroje/P10-korelace-stps.md#p10); [P11](zdroje/P11-korelace-psyb1170.md#p11); [C06](zdroje/C06-ulohy-tyden-5.md#c06) C7 a X7 | Graf, koeficient a omezení závěrů. Převod d na r v P10 není správný; grafické úlohy C06 nebyly úplně vizuálně ověřeny. |
 | Kategoriální data, dobrá shoda a nezávislost | [U01](zdroje/U01-howell.md#u01) kap. 6; [U04](zdroje/U04-openintro.md#u04) kap. 6; [U11](zdroje/U11-russo.md#u11) kap. 12; [U14](zdroje/U14-field.md#u14-lokatory) kap. 16; [U15](zdroje/U15-wilcox.md#u15-lokatory) §15.1–15.4 | [P12](zdroje/P12-kategorialni-data.md#p12); [P13](zdroje/P13-chikvadrat-neparametricke.md#p13); [C09](zdroje/C09-ulohy-tyden-12.md#c09) X12 | Rozlišit nezávislá a párová data, test a velikost účinku; původní vzorce a klíče nelze převzít bez kontroly uvedené v kartách. |
 | Regrese, kontrola proměnných, predikce a kauzalita | [U01](zdroje/U01-howell.md#u01) kap. 10; [U04](zdroje/U04-openintro.md#u04) kap. 8–9; [U07](zdroje/U07-judd.md#u07); [U11](zdroje/U11-russo.md#u11) kap. 11; [U13](zdroje/U13-mcelreath.md#u13) kap. 4–8; [U14](zdroje/U14-field.md#u14-lokatory) kap. 8 a 10 | [P11](zdroje/P11-korelace-psyb1170.md#p11) sn. 1–14 jako úvod k souvislostem | U13 nabízí autorskou inspiraci, zmapované kapitoly nebyly podrobně prostudovány. Rozsah a pořadí kurzu určuje samostatná dohoda. |
@@ -386,6 +386,14 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E04 — Gigerenzer a Hoffrage: přirozené četnosti a bayesovský úsudek](zdroje/E04-gigerenzer-hoffrage.md#e04-gigerenzer-hoffrage)
 
+<a id="e05-gelman-stern"></a>
+
+- [E05 — Gelman a Stern: rozdíl mezi „významným“ a „nevýznamným“](zdroje/E05-gelman-stern.md#e05-gelman-stern)
+
+<a id="e06-lakens-2013"></a>
+
+- [E06 — Lakens: výpočet a reportování velikostí účinku](zdroje/E06-lakens-2013.md#e06-lakens-2013)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)
@@ -422,3 +430,7 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 - [Doplnění Billieta — 2026-10-31](zdroje/HISTORIE.md#billiet-2026-10-31)
 
 - [Doplnění Lakense a Klina — 2026-10-31](zdroje/HISTORIE.md#lakens-kline-2026-10-31)
+
+- [Čtení pro návrh kapitoly 8 — 2026-11-01](zdroje/HISTORIE.md#priprava-08-20261101)
+
+- [Použití podkladů při tvorbě kapitoly 8 — 2026-11-01](zdroje/HISTORIE.md#pouziti-kapitola-08)

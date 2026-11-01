@@ -228,6 +228,11 @@ meze i popisky (1 − α a 1 − 2α). Rozhodnutí respektují p ≤ α včetně
 přesného dotyku meze intervalu s hranicí ekvivalence. Na listu `Interval_z`
 se poznámka o pokrytí mění s hladinou v B5; modelový předpoklad v A3 je celý viditelný.
 
+Od kontroly 2026-11-01 se velmi malá kladná p-hodnota v `Ekvivalence!B25`
+zobrazuje jako „< 0,001“. Formát zachovává číselnou hodnotu pro navazující
+MAX; všechny původní hodnoty, vzorce, typy a chybění byly porovnány s
+předchozím sešitem a zůstaly stejné.
+
 Simulovaná data obrázku opakovaných intervalů jsou v sešitu úplná a statická:
 `Sim_intervaly` A2:H101 (100 výběrů po 25 z výukového modelu s průměrem 47
 a σ = 10; pro každý výběr průměr, s, meze intervalu se známou σ a s výběrovou s
@@ -259,3 +264,45 @@ normálního modelu; nejde o jednotlivá pozorování.
 | 12 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
 | 13 (nepovinné) | `U10_spokojenost` A2:B6; list `Ekvivalence` B22:B26 |
 | 14 (nepovinné) | `U14_neinferiorita` A2:B6 |
+
+<a id="kapitola-8"></a>
+
+## Kapitola 8
+
+[Sešit](../data/kapitola_08.xlsx). Kontrola proti výkladu a zadáním: 2026-11-01.
+
+Výklad: `Spanek_par` A2:C14 (varianta A, 13 studentů po běžném a po krátkém
+spánku; studentu 9 chybí druhé měření, buňka C10 je prázdná), `Spanek_skupiny`
+A2:A31 a B2:B13 (varianta B, 30 a 12 studentů; hodnoty v jednom řádku k sobě
+nepatří), `Parkovani` (souhrny podle Howella, s. 86), `Anorexie` (souhrny
+spočítané z Howellovy tab. 7.3 převedené na kg a zaokrouhlené na tři desetinná
+místa; jednotlivé hodnoty se nesestavují), `Vedle_sebe` (dvě skupiny po 25),
+`Trenink` A2:D33 (2 × 16 studentů, skór před a po) a `Ekv_studie` (dvě smyšlené
+studie online a papírové verze, hranice ±3). Popis listu `Anorexie` i jeho řádek v přehledu po revizi správně odlišují samotnou párovou analýzu od celého výzkumu s kontrolní skupinou; číselné vstupy se nezměnily. Hotové výpočty jsou odděleně na
+listech `Parovy_test` (úplné dvojice v F2:I14 vzorci s JE.ČISLO, výsledky
+B2:B14), `Klasicky_test` (ze souhrnů, výchozí parkování), `Welch` (z dat
+`Spanek_skupiny`; kvantil přes BETA.INV, protože T.INV a T.INV.2T zkracují
+neceločíselné stupně volnosti; B19:B20 jen pro srovnání), `Zmeny` (změny
+v F2:F33, testy B2:B22) a `Ekvivalence_skupin` (test rozdílu, test ekvivalence,
+nepovinně p-hodnoty TOST B23:B27). Žluté buňky jsou vstupy, modré vzorce.
+
+Data varianty B byla jednou vylosována (seed 20261189, zaokrouhlení na celé
+body) a v `scripts/kapitola_08.R` i v sešitu jsou uložena jako pevné hodnoty;
+ostatní data jsou autorsky zvolená. Cvičení 2, 5, 7, 9 a 10 zadávají souhrny,
+cvičení 1, 4, 8, 11 a 12 jsou slovní; jde o souhrny, nikoli o jednotlivá pozorování.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
+| 2 | `U02_relaxace` A2:B4 |
+| 3 | `U03_stroop` A2:C16; dvě neúplné dvojice (C8 a B10 prázdné) |
+| 4 | Slovní zadání; tři hodnoty kontrastního příkladu jsou přímo v textu. |
+| 5 | `U05_hrozba` A2:C4; Howellova konstruovaná data, jen souhrny |
+| 6 | `U06_hudba` A2:A11 a B2:B26 |
+| 7 | `U07_standardizace` A2:B6 |
+| 8 | Slovní zadání; meze intervalů jsou v textu. |
+| 9 | `U09_zmeny` A2:C4 |
+| 10 | `U10_verze` A2:B8; pořadí odpovídá B2:B8 listu `Ekvivalence_skupin` |
+| 11, 12 | Slovní zadání. |
+| 13 | `U05_hrozba` A2:C4 (nepovinně) |
+| 14 | `U05_hrozba` a `U07_standardizace` (nepovinně) |

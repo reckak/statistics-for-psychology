@@ -1,5 +1,79 @@
 # Autorská dokumentace
 
+## 2026-11-01 — PDF kapitoly 7 a oprava matematické sazby v PDF
+
+Ruční export a kontroly rozšířeny na kapitolu 7. PDF má 29 stran: zadání
+na stranách 19–23, řešení od strany 24 a literaturu na straně 29. Všech
+29 stran prohlédnuto. Kontrola transformace nově čeká v kapitole 6 správně
+16 řešení (nepovinná cvičení 15 a 16 podle R57).
+
+Při prohlídce se ukázalo, že Typst zachovává mezeru vedle textových čísel
+`upright(…)`, která Pandoc vkládá. Ve všech PDF se tak sázelo „= − 1,5“,
+„49,92 .“, „(48,5 − 47)/ 0,5“, „*p* -hodnota“ a „| t |“. Opraveno pouze
+v PDF převodu (`scripts/pdf/typography.lua`, `render-chapter-pdf.ps1`):
+unární minus a koncová tečka se spojují s číslem, mezera u lomítka se
+odstraňuje, popisek *p*-hodnota se spojuje a |t| se zapisuje jako absolutní
+hodnota. Binární minus zůstává operátorem. Titulky rozbalovacích bloků se
+v PDF nově čtou jako Markdown (dříve doslovné „\*p\*“). Tabulky 7.2 a 7.3
+mají v PDF šířky sloupců podle obsahu místo stejných; web se nemění.
+
+**Kontroly:** PDF kapitol 3–7 znovu sestavena (50/38/43/57/29 stran).
+`check-chapter-pdf.cjs` prošel pro 3–7 (15/10/12/16/14 řešení),
+`check-pdf-typography.cjs` s novými případy (unární a binární minus,
+koncová tečka). `check-rendered-pdf.py` prošel pro kapitoly 3, 4, 5 a 7;
+u kapitoly 6 selhává, protože poznámka pod tabulkou `tbl-k06-25` nezačíná
+„*Poznámka.*“ jako ostatní poznámky. Text kapitoly 6 zde neměněn.
+Vizuálně prohlédnuta celá kapitola 7 a namátkou dotčené strany kapitol 3
+a 4. Text grafů je v PDF v pořádku: ověřeno vykreslením SVG Typstem, starší
+`pdftoppm` z MiKTeXu jej zobrazuje poškozeně. Text kapitol, výpočty, data
+ani sešity se neměnily; web se nevykresloval, protože se změnily jen
+nástroje PDF.
+
+<a id="revize-07-20261101"></a>
+
+## 2026-11-01 — Kapitola 7: opravy po komplexní revizi
+
+Po autorově schválení osmi nálezů zpřesněno pokrytí jako podíl intervalů,
+závislost kritického průměru na výběrové s, plynulá slučitelnost hodnot
+u mezí intervalu a podmínka zanedbání nejistoty normy vzhledem k nejistotě
+nového odhadu. Doplněn odkaz na dva nezávislé výběry v kapitole 8.
+Řešení 2b již neodvozuje šířku rozmezí jednotlivců ze samotného intervalu
+průměru; řešení 14c připouští přesný dotyk podle platného p ≤ α.
+Slovníček a přehled značení výslovně podmiňují t-rozdělení hodnotou μ = μ₀
+a nezávislým výběrem z normální populace. Rozsah R44–R46 se nemění.
+
+Generátor sešitu upravuje pouze formát `Ekvivalence!B25`: malá kladná
+p-hodnota se zobrazuje jako „< 0,001“. Číselná hodnota zůstává zachována
+pro MAX. Doplněna skutečná kontrola zobrazení i kladné číselné hodnoty
+v českém Excelu. Po reprodukovatelném sestavení porovnány všechny listy,
+hodnoty, vzorce, datové typy a chybění s předchozím sešitem: shodují se.
+Prošla kontrola R, 53 českých vzorců, přepočet a devět hraničních rozhodnutí
+v Excelu 16.0 i společná kontrola vzorců sešitů 1–8. Nativní náhled
+opraveného listu byl vizuálně zkontrolován.
+
+Při předchozí revizi přečtena celá kapitola včetně všech čtrnácti řešení,
+prohlédnuto osm obrázků, pět tabulek a nativní náhledy devatenácti listů
+(u simulace začátek, všech 800 čísel přitom porovnáno s novým výpočtem).
+Citované pasáže ověřeny v Howellovi a článcích Lakense (2017) a Lakense
+et al. (2018); vybrané pasáže Cumminga a Calin-Jagemana použity ke srovnání
+didaktiky. Přepočet 56 hodnot Howellovy tabulky 7.1 potvrdil výsledek PDI;
+nejde o reprodukci původní studie Nurcomba et al., jejíž úplný článek
+a původní výzkumná dokumentace nebyly ověřeny. Interní didaktická revize
+nenahrazuje ověření porozumění na studentech. Jiné verze Excelu, skutečný
+telefon, veřejné nasazení a pracovní PDF kapitoly nebyly kontrolovány.
+
+Následně prošel úplný render v Quartu 1.9.38 a kontrola HTML všech třinácti
+stránek (odkazy, přehledy, sto řešení v celé knize, klávesnice, skrytí
+a rozbalení, mobilní šířka 390 px). Po závěrečném zpřesnění formulace
+kritické meze znovu vykreslena kapitola 7. Jejích pět tabulek je bez
+přetékání a drobných přesahů při šířkách 390, 1024, 1280, 1360, 1440
+a 1920 px. Vizuálně zkontrolována dotčená část výkladu a opravený list.
+Audit tabulek celé knihy nadále zaznamenává dřívější místní přesahy
+v kapitolách 6 a 8, včetně 19 px u `tbl-k08-07` při 1280 px; nejde o nález
+v kapitole 7. Prošla kontrola odkazů autorské dokumentace včetně místních
+podkladů. Veřejné nasazení ani GitHub CI nejsou těmito lokálními kontrolami
+ověřeny.
+
 ## 2026-10-31 — Kvantily v Q–Q grafech kapitoly 4
 
 Na žádost autora v oddílu [Jak číst odchylky od přímky](kapitola_04.qmd#sec-qq-odchylky)
@@ -4417,6 +4491,106 @@ webu, nadpis kapitoly 3, odkaz z kapitoly 4 a shoda publikovaných SVG.
 **Omezení:** pracovní PDF kapitol nebyla znovu exportována (změna záhlaví
 se projeví při dalším ručním exportu). Grafy ostatních kapitol nebyly
 na obdobný překryv procházeny.
+
+<a id="dohoda-kapitola-08"></a>
+
+## Kapitola 8: dohoda o obsahu (2026-11-01)
+
+Na otázku, jaký má být obsah kapitoly 8, byl navržen výklad porovnání dvou
+průměrů (párová data a dvě nezávislé skupiny) podle Howella, §7.4–7.6.
+První verzi autor vrátil s připomínkami: přínos párování formulovat
+podmíněně (zachované pořadí osob nestačí, kontrastní příklad trojnásobných
+hodnot) a změnit nadpis na „Kdy párování zpřesňuje odhad — a co neřeší“;
+v oddílu o intervalech neuvádět obecný vztah šířek ani tvrzení, že intervaly
+podmínek o párovém rozdílu „nevypovídají vůbec“, a nezařazovat pravidlo
+překryvu; vyložit nejprve klasický test se společným rozptylem a potom
+Welchovu variantu; u anorexie odlišit párovou analýzu sedmnácti dívek od
+kontrolní skupiny zmíněné Howellem (s. 200) a použít kilogramy; omezit plně
+rozpracované příklady (hrozba stereotypu jen do cvičení); přidat řešený
+příklad porovnání změn ve dvou skupinách s přesnější formulací místo hesla
+o rozdílu významností; povinně základní práci s chybějícími párovými údaji;
+Cohenovo d povinně pro nezávislé skupiny, u párových dat jen význam volby
+jmenovatele; ověřit neceločíselné Welchovy stupně volnosti v Excelu
+(T.INV a T.DIST.2T je zkracují, T.TEST typu 3 ne). Druhou verzi doplnil
+poznámkami ke zdrojům (Howell, Cumming, Wilcox, P08 sn. 30, P09 sn. 25,
+C08) a k odlišné standardizaci párového rozdílu ve zdrojích; třetí verzi
+schválil. Dohodu eviduje
+[R59](../docs/rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../docs/rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8);
+čtení zdrojů [záznam z 2026-11-01](../docs/zdroje/HISTORIE.md#priprava-08-20261101).
+Kapitola zatím napsána není.
+
+<a id="vytvoreni-kapitoly-8"></a>
+
+## Kapitola 8: vytvoření výkladu (2026-11-01)
+
+Podle dohody [R59](../docs/rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)–[R61](../docs/rozhodnuti/kapitola-08.md#r61-terminologie-kapitoly-8)
+vznikla kapitola `quarto/kapitola_08.qmd` s dvanácti hlavními oddíly, sedmi
+obrázky, třemi nepovinnými rozšířeními a čtrnácti cvičeními (dvanáct
+základních, dvě nepovinná), sešit `data/kapitola_08.xlsx` (20 listů,
+generátor `scripts/kapitola_08-sešit.mjs`), skript `scripts/kapitola_08.R`,
+14 hesel slovníčku a registru, sedm řádků přehledu značení (upraveny řádky
+směrodatné chyby rozdílu a *d*) a čtyři funkce Excelu (JE.ČISLO, A, T.TEST,
+BETA.INV; u T.INV a T.DIST.2T doplněna poznámka o zkracování stupňů volnosti).
+Do bibliografie přibyl Gelman a Stern (2006), zdrojová karta E05.
+
+### Odborná a didaktická rozhodnutí při psaní
+
+- **Členění.** Schválený oddíl 11 je rozdělen na ekvivalenci dvou skupin
+  a volbu postupu se sdělením; oddíl o změnách ve dvou skupinách je před
+  ekvivalencí. Odchylka je zapsána v kartě kapitoly.
+- **Data.** Varianta A (13 studentů, student 9 bez druhého měření) je
+  autorsky zvolena tak, aby párová a chybná nezávislá analýza vedly
+  k odlišným závěrům; text to uvádí jako výsledek konkrétního příkladu.
+  Data varianty B byla jednou vylosována (seed 20261189) ze seedů 20261101
+  až 20261200 podle kritéria: klasický test *p* < 0,04, Welchův *p* > 0,06,
+  kulaté souhrny. Výběr podle výsledku je záměrný, data ilustrují rozdíl
+  postupů; uložena jsou jako pevné hodnoty.
+- **Excel a Welch.** V českém Excelu 16 ověřeno, že T.INV.2T(0,05;13,97)
+  i T.DIST.2T(2;13,97) dávají totéž co se 13 stupni volnosti, kdežto
+  vzorec s BETA.INV a T.TEST typu 3 počítají s neceločíselnými stupni
+  volnosti (shoda s R: kvantil 2,145219, *p*-hodnota 0,3160032 na testovacích
+  datech). T.TEST typu 1 vynechává neúplné dvojice sám; text na to
+  upozorňuje, ale výpočet staví na explicitním výběru úplných dvojic
+  (JE.ČISLO, A, KDYŽ). Funkce PRŮMĚRKDYŽ v českém Excelu s tímto názvem
+  nefungovala, proto se nepoužívá.
+- **Intervaly vedle sebe.** Obecný vztah šířek se neuvádí; text ukazuje
+  mezní chyby konkrétního příkladu (4,13 + 4,13 vs. 5,69). Zjištěno při
+  revizi, že tvrzení „mezní chyba rozdílu je vždy menší než součet“ obecně
+  neplatí (u velmi malé skupiny může kvantil rozdílu převážit); ve cvičení 8
+  je proto podmíněno podobnými skupinami.
+- **Hedgesova korekce** je v nepovinném bloku uvedena aproximací
+  $1-3/(4v-1)$ bez citace původní práce.
+
+### Ověření
+
+`check-chapter-08.R` (všechna citovaná čísla, porovnání s `t.test`,
+pravděpodobnosti přes neúplnou funkci beta); `check-chapter-08-excel.ps1`
+v samostatném skrytém Excelu (82 uložených výsledků, 32 vzorců z textu,
+3 chybové vstupy, 59 výsledků po změně vstupů, 12 popisků, přesná hranice
+ekvivalence, prázdné buňky neúplné dvojice); `check-workbooks.py` (vstupy
+a odkazy všech osmi sešitů); render celé knihy bez varování;
+`check-html.cjs` (včetně nové kontroly kapitoly 8, mobilu a stavu bez
+JavaScriptu); `check-doc-maps.cjs`. Vizuálně prohlédnuto všech sedm SVG
+a snímky oddílů s excelovými tabulkami. **Neověřeno:** pracovní PDF
+kapitoly 8 (nebylo vyžádáno); didaktická revize provedena autorsky čtením
+očima začátečníka, ne samostatným agentem ani na studentech; Cumminga
+a Wilcoxe četl autor, při psaní nebyli znovu čteni ani citováni; obrazy
+Howellových tabulek 7.6 a 7.7 nebyly prohlédnuty (čteno v textové extrakci).
+Tab. 7.3 a s. 200 byly ověřeny v obrazu originálu (s. 199–200, PDF 223–224).
+
+<a id="revize-kapitoly-8"></a>
+
+## Kapitola 8: opravy po odborné revizi (2026-11-01)
+
+Na výslovný souhlas autora s implementací nálezů opraveny: otázka a řešení 4c (trojnásobné hodnoty dokládají vztah SD, nikoli nižší přesnost párového odhadu); interpretace chybné nezávislé analýzy; popis náhodného přiřazení ve variantě B; chybění a jeho možné zkreslení; vyvážení pořadí; sčítání rozptylů a definice jejich shody; výběr účastníků a omezení odolnosti testů; kauzální interpretace odhadu i při nevýznamném výsledku; meze závěru ekvivalence; výklad Welchových stupňů volnosti. Zachovány číselné vstupy, schválené značení a hranice povinného/nepovinného učiva. Doplněno vysvětlení A/AND, jazykové opravy a zdroje Wilcox (2017) a Lakens (2013); evidence čtení je ve zdrojových kartách.
+
+V přehledu značení odstraněno chybné s s indexem průměru jako alternativa k SD rozdílů. Popis anorexie v generátoru a sešitu odlišuje párovou analýzu od celé studie s kontrolní skupinou. Malé místní přesahy tabulek 8.7 a mobilních 8.1/8.8 řeší cíleně menší odsazení buněk. Aktualizována karta kapitoly, datová mapa a zdrojové vazby. Nová konvence ani nové ID rozhodnutí nevznikly.
+
+**Ověření po implementaci:** `check-chapter-08.R` prošel v R 4.5.1, včetně doplněného rozlišení SD a SE u trojnásobných hodnot a kontrastu 31,9 proti 40 Welchovým stupňům volnosti. Generátor obnovil všech 20 listů v českém Excelu 16; kapitolová kontrola prošla (82 výsledků, 32 českých vzorců, 3 chybové vstupy, 59 přepočtených výsledků, 12 popisků, 3 rozhodnutí na hranici, 8 místních vzorců). Kontrola chyb vzorců všech osmi sešitů prošla. Porovnání všech buněk s verzí v Gitu potvrdilo zachování pořadí listů, čísel, typů, vzorců i stylů; liší se pouze dva schválené popisy (`Prehled!C11`, `Anorexie!D2`). Vizuálně ověřeny oba celé popisy v náhledu z Excelu; první delší verze byla zkrácena kvůli ořezu v přehledu.
+
+Celá kniha vykreslena bez varování; `check-html.cjs` prošel na 13 stránkách (100 řešení, z toho 14 v kapitole 8; klávesnice, odkazy, přehledy, mobil, stav bez JavaScriptu). Po závěrečném doladění odsazení znovu vykreslena celá kniha; rozložení tabulek zkontrolováno na šířkách 1024/1280/1360/1440/1920 a 390 px. U kapitoly 8 nejsou malé místní přesahy ani přetékání stránky; ověřeno také otevření tabulky 8.7 přes file:// po načtení písma. Dva dřívější malé místní mobilní přesahy tabulek kapitoly 6 zůstávají mimo rozsah této opravy. Prošly `check-workbooks.py` (včetně shody publikovaných XLSX) a `check-doc-maps.cjs --require-sources`. Nové citace a literatura byly zkontrolovány ve vykresleném HTML, dotčené tabulky a listy i vizuálně. Didaktická kontrola dotčených pasáží a řešení proběhla autorským čtením z hlediska začátečníka.
+
+**Meze:** nejde o test porozumění na studentech ani o reprodukci původních výzkumů. Jiné verze Excelu, veřejné nasazení a pracovní PDF kapitoly 8 nebyly ověřovány; PDF kapitoly nebylo vyžádáno. Původní Hedgesova práce nebyla čtena; rovnice korekce byla ověřena v metodickém článku Lakense (2013), viz zdrojová karta E06.
 
 ## 2026-11-01 — Jednotná podoba Shrnutí v kapitolách 1 a 2
 

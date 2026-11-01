@@ -117,6 +117,16 @@ Howellův výklad, všechny obrázky uvedených stran ani zbývající kapitola.
 Odchylka od Howellovy formulace interpretace intervalu na s. 194 nadále
 platí podle výše uvedeného záznamu. [Provedené změny a kontroly](../../quarto/README.md#revize-kapitoly-7-20261018).
 
+<a id="priprava-08-20261101"></a>
+
+## Čtení pro návrh kapitoly 8 — 2026-11-01
+
+V textové extrakci přečteny §7.4–7.6, s. 197–221 (PDF 221–245): párový test a anorexie (tab. 7.3, s. 198–201), měsíční iluze s párovými daty (s. 201–203), d u párových dat s výchozí směrodatnou odchylkou a alternativami (s. 203–204), chybějící párová data a Bhojův postup (s. 205–206), zpráva o výsledku (s. 206), výběrové rozdělení rozdílu průměrů a zákon součtu rozptylů (s. 207–208), společný odhad rozptylu a stupně volnosti (s. 209–210), Adams et al. (s. 210–215, do kapitoly se nepřebírá), interval rozdílu (s. 212), d se společnou směrodatnou odchylkou a interval pro d (s. 213), nadhodnocení účinků v publikované literatuře a Cohenova pásma (s. 214), hrozba stereotypu (konstruovaná data, s. 215–217), Welchova–Satterthwaiteova aproximace, Levenův test, odolnost a doporučení oddělených rozptylů podle Hayese a Caie (s. 217–219), Venablesova výhrada (s. 219–220), Jones a Tukey (s. 220–221).
+
+**Pro metodologické poučení:** na s. 200 Howell uvádí, že skupina bez terapie za stejné období nepřibrala; párový test sedmnácti dívek tuto kontrolu sám neobsahuje (viz [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)). Na s. 212 Howell znovu připouští bayesovsky znějící čtení konkrétního intervalu; nepřebírá se, stejně jako v kapitole 7.
+
+**Nálezy a omezení:** extrakce vynechává záporná znaménka rozdílů v tab. 7.3 (např. ID 6 je −2,9, ne „22.9“); rozdíly přepočteny z hodnot před a po. Při psaní kapitoly 8 byly tab. 7.3 a s. 200 (PDF 223–224) prohlédnuty v obrazu: hodnoty i znaménka souhlasí s přepisem, věta o skupině bez terapie je na s. 200. Text na s. 200 odkazuje na „Table 7.1“, ačkoli rozdíly jsou v tab. 7.3; jde o drobnou chybu odkazu ve zdroji. Číselné ověření ve [společném záznamu](../zdroje/HISTORIE.md#priprava-08-20261101). Ostatní strany §7.4–7.6 nebyly prohlédnuty v obrazu.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

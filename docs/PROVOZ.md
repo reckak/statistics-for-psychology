@@ -48,24 +48,27 @@ kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3, 4, 5 a 6. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3, 4, 5, 6 a 7. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
 ./scripts/render-chapter-pdf.ps1 -Chapter 4
 ```
 
-Pro kapitolu 5 použijte `-Chapter 5` a kontrolu `--chapter 5`.
-Pro kapitolu 6 použijte `-Chapter 6` a kontrolu `--chapter 6`.
+Pro kapitoly 5, 6 a 7 použijte `-Chapter 5`, `-Chapter 6` či `-Chapter 7`
+a stejné číslo v kontrole `--chapter`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04, 05 nebo 06. Skript používá aktuální
+Výstup skriptu nepřesměrovávejte pomocí `2>&1` ani `2>$null`: Windows
+PowerShell 5.1 pak běžná hlášení Quarta na chybovém výstupu považuje za chybu
+a export přeruší.
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 07. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 14 v kapitole 6), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -93,14 +96,23 @@ nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů
 Playwright a prohlížeč jako kontrola HTML. Ověřuje poznámky menší o 1 pt,
 nepřetékání stránky a odstranění drobných desktopových přesahů (2–32 px).
 Podrobný výsledek ukládá do `tmp/verification/table-layout.json`.
-Skutečné PDF po sestavení všech čtyř kapitol prověří
+Skutečné PDF po sestavení všech podporovaných kapitol prověří
 `python scripts/check-rendered-pdf.py` (veřejný balíček `pypdf`): velikost
-všech poznámek v PDF a přítomnost světle šedých tahů. Tato kontrola
+všech poznámek v PDF a přítomnost světle šedých tahů. Poznámky hledá podle
+úvodního „*Poznámka.*“; poznámka bez něj kontrolu neprojde. Tato kontrola
 nenahrazuje vizuální prohlédnutí tabulek a nového kapitolového exportu.
 
 Typografické případy převodu (desetinná čísla včetně indexů a zlomků,
-oddělovací čárky, nezlomitelné vazby přes zvýraznění a odkazy, zachování
+unární minus a koncová tečka u desetinného čísla, oddělovací čárky,
+nezlomitelné vazby přes zvýraznění a odkazy, zachování
 matematiky a kódu) ověří `node scripts/check-pdf-typography.cjs`.
+Typst v matematice zachovává mezeru vedle textového čísla `upright(…)`.
+Filtr proto spojuje unární minus i koncovou tečku s číslem a skript po převodu
+odstraňuje mezeru u lomítka, spojuje popisek typu *p*-hodnota a zapisuje
+|t| jako absolutní hodnotu. Šířky sloupců širokých tabulek jen pro PDF
+nastavuje tabulka `$pdfColumnWidths` v `render-chapter-pdf.ps1`.
+Při vizuální kontrole nespoléhejte na starší `pdftoppm` z MiKTeXu: poškozuje
+text vektorových grafů, který je v PDF v pořádku.
 Kontrola HTML nyní vyžaduje číslo a neprázdný název každé studentské tabulky
 a ověřuje sazbu označení i linek záhlaví. Ruční PDF kontrolujte také vizuálně.
 Pokud cílový PDF soubor blokuje prohlížeč, zavřete jej a export zopakujte;
@@ -150,6 +162,7 @@ Rscript --vanilla quarto/_verification/check-chapter-04.R
 Rscript --vanilla quarto/_verification/check-chapter-05.R
 Rscript --vanilla quarto/_verification/check-chapter-06.R
 Rscript --vanilla quarto/_verification/check-chapter-07.R
+Rscript --vanilla quarto/_verification/check-chapter-08.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -201,6 +214,17 @@ Nezávislé reference jsou v `check-chapter-07-excel.json`; obnoví je
 `python quarto/_verification/check-chapter-07-excel-expected.py quarto/_verification/check-chapter-07-excel.json`.
 K obnově sešitu včetně kontrol použijte
 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-workbooks.ps1 -Chapter 7 -Verify`.
+
+Osmou kapitolu ověřuje `check-chapter-08.R`: párový, klasický a Welchův test
+proti `t.test`, pravděpodobnosti t-rozdělení přes neúplnou funkci beta,
+všechna čísla citovaná v textu a v řešeních. Skript `check-chapter-08-excel.ps1`
+kontroluje v samostatném skrytém Excelu uložené výsledky, prázdné buňky
+neúplné dvojice, české vzorce z textu (včetně T.TEST typů 1–3 a kvantilu
+Welchova testu přes BETA.INV s neceločíselnými stupni volnosti), přepočet při
+změně vstupů a přesný dotyk hranice ekvivalence. Změny neukládá. Nezávislé
+reference jsou v `check-chapter-08-excel.json`; obnoví je
+`python quarto/_verification/check-chapter-08-excel-expected.py quarto/_verification/check-chapter-08-excel.json`.
+Sešit kapitoly 8 nepoužívá simulace z `scripts/sesity-simulace.R`.
 
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 

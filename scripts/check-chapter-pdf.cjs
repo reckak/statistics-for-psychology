@@ -1,5 +1,5 @@
 // Verify the PDF-only rearrangement without changing or rendering the HTML book.
-// Usage: node scripts/check-chapter-pdf.cjs [path/to/quarto.exe] [--chapter 3|4|5|6]
+// Usage: node scripts/check-chapter-pdf.cjs [path/to/quarto.exe] [--chapter 3|4|5|6|7]
 const assert = require('node:assert/strict');
 const {spawnSync} = require('node:child_process');
 const path = require('node:path');
@@ -9,8 +9,8 @@ const bundled = 'C:/Program Files/RStudio/resources/app/bin/quarto/bin/quarto.ex
 const args = process.argv.slice(2);
 const chapterOption = args.indexOf('--chapter');
 const chapter = chapterOption < 0 ? 3 : Number(args.splice(chapterOption, 2)[1]);
-assert([3, 4, 5, 6].includes(chapter), 'Supported chapters: 3, 4, 5, 6');
-assert(args.length <= 1, 'Expected an optional Quarto path and --chapter 3|4|5|6');
+assert([3, 4, 5, 6, 7].includes(chapter), 'Supported chapters: 3, 4, 5, 6, 7');
+assert(args.length <= 1, 'Expected an optional Quarto path and --chapter 3|4|5|6|7');
 const quarto = args[0] || (fs.existsSync(bundled) ? bundled : 'quarto');
 const number = String(chapter).padStart(2, '0');
 function parse(filtered) {
@@ -39,7 +39,7 @@ for (const type of ['Math', 'Code', 'Image', 'Table', 'Cite']) {
 }
 const solutions = before.blocks.filter(b => b.t === 'Div' &&
   b.c[0][2].some(([k,v]) => k === 'title' && v === 'Ukázat řešení'));
-assert.equal(solutions.length, {3: 15, 4: 10, 5: 12, 6: 14}[chapter]);
+assert.equal(solutions.length, {3: 15, 4: 10, 5: 12, 6: 16, 7: 14}[chapter]);
 const start = after.blocks.findIndex(b => b.t === 'Header' && b.c[1][0] === 'pdf-solutions');
 assert(start > 0);
 for (let i = 1; i <= solutions.length; i++) {
