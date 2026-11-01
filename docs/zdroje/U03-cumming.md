@@ -75,3 +75,7 @@ Autor při připomínkách k návrhu uvedl jako oporu zejména s. 176–178 a 21
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.
+
+## Revize kapitoly 8 — 2026-11-01
+
+Při revizi byly čteny pasáže na s. 176–178 (PDF 211–213) a 213–215 (PDF 248–250) v textové extrakci. Pro [výklad párování](../../quarto/kapitola_08.qmd#sec-proc-rozdily) využito rozlišení mezi SD rozdílů a přesností průměrného rozdílu (s. 214–215). Vzorce s korelačním koeficientem ani orientační pravidla šířek intervalů se do kapitoly nepřebírají. Vlastní příklady a program esci nebyly reprodukovány, obrazy těchto stran nově neověřovány.

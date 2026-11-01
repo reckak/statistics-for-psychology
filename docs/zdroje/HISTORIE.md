@@ -335,3 +335,7 @@ Kapitola 8 vznikla podle [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-
 - [U03](U03-cumming.md#priprava-08-20261101) a [U15](U15-wilcox.md#priprava-08-20261101): kontrolní opora podle autorova čtení; v kapitole necitovány.
 - [P08](P08-prumery.md#priprava-08-20261101), [P09](P09-nezavisly-ttest.md#priprava-08-20261101) a [C08](C08-ulohy-tyden-9.md#priprava-08-20261101): pochopení priorit (párový test, změny ve skupinách, interval a velikost účinku, volba jednotky analýzy); žádná úloha ani číselný příklad převzat nebyl.
 - Hedgesova korekce $1-3/(4v-1)$ v nepovinném bloku je uvedena bez citace původní práce; vzorec ověřen jen výpočtem příkladů, ne proti primárnímu zdroji.
+
+## Odborná revize kapitoly 8 — 2026-11-01
+
+Kontrola Howella: s. 86, 198–201, 203–205 a 213–220, tabulky 7.3 a 7.7 také v obrazu; přepočet 17 dvojic hmotností souhlasí s kapitolou. Dále kontrolní pasáže Cumminga a Calin-Jagemana s. 176–178 a 213–215 (textová extrakce), [Wilcox](U15-wilcox.md#revize-08-20261101) a nově [Lakens (2013)](E06-lakens-2013.md#e06-lakens-2013). Příklad Gelmana a Sterna na s. 328 a dokumentace Microsoftu byly porovnány s výkladem a skutečným během Excelu. Výklad byl upřesněn v mezích R59; původní studie, doplňkové sešity zdrojů a jejich celé výklady nebyly reprodukovány. Výsledky technických kontrol a implementace patří do [historie práce](../../quarto/README.md#revize-kapitoly-8).

@@ -87,3 +87,9 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .glightbox-container .gslide-image img[src$=".svg"] { width: min(94vw, 1100px); object-fit: contain; }
 /* Every figure is its own gallery, so the previous/next arrows are never usable. */
 .glightbox-container .gprev.disabled, .glightbox-container .gnext.disabled { display: none; }
+
+/* Small local overflows: retain type size and fit the comparison columns. */
+#tbl-k08-07 :is(th, td) { padding-inline: .25rem; }
+@media (max-width: 600px) {
+  #tbl-k08-01 :is(th, td), #tbl-k08-08 :is(th, td) { padding-inline: .35rem; }
+}

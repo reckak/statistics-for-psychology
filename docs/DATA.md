@@ -278,7 +278,7 @@ nepatří), `Parkovani` (souhrny podle Howella, s. 86), `Anorexie` (souhrny
 spočítané z Howellovy tab. 7.3 převedené na kg a zaokrouhlené na tři desetinná
 místa; jednotlivé hodnoty se nesestavují), `Vedle_sebe` (dvě skupiny po 25),
 `Trenink` A2:D33 (2 × 16 studentů, skór před a po) a `Ekv_studie` (dvě smyšlené
-studie online a papírové verze, hranice ±3). Hotové výpočty jsou odděleně na
+studie online a papírové verze, hranice ±3). Popis listu `Anorexie` i jeho řádek v přehledu po revizi správně odlišují samotnou párovou analýzu od celého výzkumu s kontrolní skupinou; číselné vstupy se nezměnily. Hotové výpočty jsou odděleně na
 listech `Parovy_test` (úplné dvojice v F2:I14 vzorci s JE.ČISLO, výsledky
 B2:B14), `Klasicky_test` (ze souhrnů, výchozí parkování), `Welch` (z dat
 `Spanek_skupiny`; kvantil přes BETA.INV, protože T.INV a T.INV.2T zkracují

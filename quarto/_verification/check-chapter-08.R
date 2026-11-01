@@ -27,6 +27,11 @@ w <- ch8_par_wrong;rq(w['se'],2.82,2);rq(w['t'],1.24,2);eq(w['df'],22);rq(w['p']
 rq((w['horni']-w['dolni'])/(ch8_par_res['horni']-ch8_par_res['dolni']),3.8,1)
 # Tripled values: order preserved, SD of differences doubles.
 eq(c(sd(ch8_troj_x),sd(ch8_troj_y),sd(ch8_troj_y-ch8_troj_x)),c(2,6,4))
+# SD of differences and precision of the mean difference are distinct comparisons.
+troj_paired_se <- sd(ch8_troj_y-ch8_troj_x)/sqrt(3)
+troj_independent_se <- sqrt((var(ch8_troj_x)+var(ch8_troj_y))/3)
+stopifnot(troj_paired_se<troj_independent_se)
+eq(4/(1/29+1/11),31.9) # Equal variance contributions alone do not give 40 Welch df.
 # Anorexia in kilograms: conversion keeps t; summaries quoted in the text and workbook.
 a <- ch8_anor;rq(a[c('m_pred','m_po')],c(37.75,41.05),2);rq(a[c('m_d','s_d')],c(3.30,3.25),2);rq(a[c('m_d','s_d','s_pred')],c(3.295,3.247,2.276),3)
 r <- ch8_anor_res;rq(r['se'],.787,3);rq(r['t'],4.18,2);rq(r['p'],.0007,4);rq(c(r['dolni'],r['horni']),c(1.63,4.96),2)
