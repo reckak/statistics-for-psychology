@@ -63,7 +63,7 @@ stabilní identifikátory Quarta.
 |---|---|---|
 | [1. Od psychologické otázky k datům](kapitoly/01-otazka-data.md#mapa-kapitola-01) | Význam údajů, výzkumné závěry, měření a příprava matice. | 8 konceptuálních a praktických úloh. |
 | [2. Četnosti, rozdělení dat a jejich zobrazení](kapitoly/02-cetnosti.md#mapa-kapitola-02) | Od jednotlivých záznamů k zastoupení hodnot a grafům. | 10 úloh, z toho závěrečná změna vstupů v Excelu. |
-| [3. Ukazatele polohy a variability](kapitoly/03-poloha-variabilita.md#mapa-kapitola-03) | Číselná shrnutí polohy, variability a tvaru, jejich volba, výpočet, omezení a reportování. | 13 základních a 2 nepovinné úlohy. |
+| [3. Ukazatele polohy, variability a tvaru](kapitoly/03-poloha-variabilita.md#mapa-kapitola-03) | Číselná shrnutí polohy, variability a tvaru, jejich volba, výpočet, omezení a reportování. | 13 základních a 2 nepovinné úlohy. |
 | [4. Normální rozdělení a standardní skóry](kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04) | Relativní poloha, modelové podíly a kvantily, standardní škály a posouzení modelu. | 10 úloh včetně tvorby Q–Q grafu. |
 | [5. Pravděpodobnost](kapitoly/05-pravdepodobnost.md#mapa-kapitola-05) | Pravidla pro jevy, podmínění a Bayesova věta; rozdělení pravděpodobnosti, binomický model a jeho normální aproximace. | 12 úloh, z toho dvě v Excelu. |
 | [6. Výběrové rozdělení a testování hypotéz](kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06) | Kolísání výsledků mezi výběry, směrodatná chyba, zákon velkých čísel a centrální limitní věta; princip testu, p-hodnota, chyby a síla, velikost účinku, binomický test a z-test. | 12 základních a 4 nepovinné úlohy; pět základních vyžaduje Excel. |

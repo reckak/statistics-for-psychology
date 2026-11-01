@@ -4391,3 +4391,29 @@ proti počtu obrázků na každé stránce.
 **Omezení:** přiblížení prsty a zavření klepnutím mimo obrázek na skutečném
 telefonu ani čtečkou obrazovky nebyly vyzkoušeny; ovládací prvky GLightboxu
 mají anglické popisky pro čtečky.
+
+## 2026-11-01 — Název učebnice a kapitoly 3, odstup popisků os v grafech kapitoly 3
+
+Podle [R58](../docs/rozhodnuti/spolecne-konvence.md#r58-nazvy-knihy-a-kapitol)
+nese učebnice název „Základy statistiky pro psychology“ (`_quarto.yml`,
+kořenové README, LICENSE-TEXT včetně doporučené citace, záhlaví pracovních
+PDF v `scripts/pdf/layout.typ`, nadpis AGENTS.md). Popis kurzu „… 1“ zůstal.
+Kapitola 3 se jmenuje „Ukazatele polohy, variability a tvaru“ (nadpis,
+textový odkaz z kapitoly 4, mapa obsahu a karta kapitoly); ID
+`#sec-kapitola-03` beze změny.
+
+V grafech `entropie` a `stejne-dve-statistiky` se svislý popisek osy y
+překrýval s vodorovnými hodnotami („0,10“, „0,25“): společné `mgp` 2,1 řádku
+nestačilo. Popisek osy y se nyní kreslí samostatně (`title(..., line=)`)
+a levý okraj je širší; osa x a ostatní grafy beze změny.
+
+**Kontroly:** `check-chapter-03.R` prošel (výpočty beze změny). Všech
+16 vlastních SVG kapitoly 3 převedeno do PNG a vizuálně prohlédnuto; překryv
+odstraněn, jinde žádný nenalezen. Celá kniha vykreslena; ověřen titul
+webu, nadpis kapitoly 3, odkaz z kapitoly 4 a shoda publikovaných SVG.
+`check-html.cjs` (včetně mobilu 390 px) a `check-doc-maps.cjs
+--require-sources` prošly.
+
+**Omezení:** pracovní PDF kapitol nebyla znovu exportována (změna záhlaví
+se projeví při dalším ručním exportu). Grafy ostatních kapitol nebyly
+na obdobný překryv procházeny.

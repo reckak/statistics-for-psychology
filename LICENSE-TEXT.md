@@ -2,7 +2,7 @@
 
 Copyright (c) 2026 Karel Rečka
 
-Text učebnice Základy statistiky pro psychology 1, včetně vlastních obrázků
+Text učebnice Základy statistiky pro psychology, včetně vlastních obrázků
 a grafů, cvičení, datových sešitů ve složce `data/`, prezentací a poznámek
 ve složce `presentations/`, bibliografických údajů a autorské dokumentace,
 je k dispozici pod licencí
@@ -11,7 +11,7 @@ je k dispozici pod licencí
 Materiál smíte sdílet a upravovat k jakémukoli účelu, i komerčnímu, pokud uvedete
 autora, odkaz na licenci a informaci, zda jste materiál změnili. Například:
 
-> Karel Rečka: *Základy statistiky pro psychology 1*,
+> Karel Rečka: *Základy statistiky pro psychology*,
 > <https://reckak.github.io/statistics-for-psychology/>, licence CC BY 4.0.
 
 Závazné je plné znění licence:

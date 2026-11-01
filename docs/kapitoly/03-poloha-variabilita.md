@@ -1,8 +1,10 @@
 <a id="mapa-kapitola-03"></a>
 
-# 3. Ukazatele polohy a variability
+# 3. Ukazatele polohy, variability a tvaru
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
+
+**Kontrola souladu s textem 2026-11-01 (název a obrázky):** podle [R58](../rozhodnuti/spolecne-konvence.md#r58-nazvy-knihy-a-kapitol) nový název kapitoly „Ukazatele polohy, variability a tvaru“ (ID kapitoly beze změny); u grafů kapitoly zvětšen odstup popisku osy od hodnot, obsah grafů ani výklad se nemění.
 
 **Kontrola souladu s textem 2026-10-17 (ukazatele tvaru):** podle [R47](../rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru) nový povinný oddíl [Ukazatele tvaru](../../quarto/kapitola_03.qmd#sec-ukazatele-tvaru), obrázek modelů tří úrovní šikmosti a excesu, přesun protipříkladu stejného vrcholu do povinné části, SKEW/KURT v Excelu, nové cvičení 13 a přečíslování nepovinných 14–15; ověřeny dotčené oddíly, shrnutí, cvičení a sešit.
 

@@ -1,4 +1,4 @@
-# Projektové instrukce: Základy statistiky pro psychology 1
+# Projektové instrukce: Základy statistiky pro psychology
 
 ## Použití projektové dokumentace
 
@@ -96,8 +96,10 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 
 Vytvářej a udržuj odborně správná, samostatně srozumitelná česká skripta
 pro jednosemestrální kurz Základy statistiky pro psychology 1, určený
-studentům druhého ročníku bakalářského studia psychologie. Výstupem je
-Quarto Book průběžně publikovaný na GitHubu jako web.
+studentům druhého ročníku bakalářského studia psychologie. Učebnice nese
+název „Základy statistiky pro psychology“ (bez čísla kurzu, viz
+[R58](docs/rozhodnuti/spolecne-konvence.md#r58-nazvy-knihy-a-kapitol)).
+Výstupem je Quarto Book průběžně publikovaný na GitHubu jako web.
 
 - Předpokládej pouze matematiku dokončené základní školy, žádnou
   předchozí znalost statistiky, R ani programování.

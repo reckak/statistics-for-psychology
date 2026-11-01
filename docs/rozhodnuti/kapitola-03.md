@@ -131,6 +131,8 @@ a [přehled značení](../../quarto/znaceni.qmd).
 
 *Číslo přiděleno při slučování s `main` 2026-10-17: návrh v PR #102 používal R44, které mezitím získal rozsah kapitoly 7 ([R44](kapitola-07.md#r44-rozsah-kapitoly-7)). Obsah ani doklad dohody se nezměnil.*
 
+*Doplněk 2026-11-01: na ukazatele tvaru navazuje název kapitoly „Ukazatele polohy, variability a tvaru“ podle [R58](spolecne-konvence.md#r58-nazvy-knihy-a-kapitol).*
+
 *[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r47-ukazatele-tvaru). Původní záznam dohody:*
 
 **Stav:** schváleno 2026-10-17. **Rozsah:** kapitola 3 (povinný oddíl,

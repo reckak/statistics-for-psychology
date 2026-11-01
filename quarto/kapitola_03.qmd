@@ -1,4 +1,4 @@
-# Ukazatele polohy a variability {#sec-kapitola-03}
+# Ukazatele polohy, variability a tvaru {#sec-kapitola-03}
 
 Dvě skupiny mohou dosáhnout stejného průměrného výsledku, a přesto se v jedné lidé navzájem téměř neliší, zatímco ve druhé se objevují velmi nízké i velmi vysoké výsledky. Jedno číslo proto není náhradou za celé rozdělení. Souhrnné ukazatele jsou užitečné právě tehdy, když rozumíme tomu, kterou vlastnost dat vystihují a kterou ponechávají stranou.
 
