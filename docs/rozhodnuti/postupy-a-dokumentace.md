@@ -443,6 +443,16 @@ předložena čtyři skupiny pravidel; autor 2026-10-15 vybral všechny
 očima studenta“), zvolil rozsah „Jen instrukce“ a schválil plán
 s konkrétními třídami bloků a orientačními prahy.
 
+**Upřesnění 2026-11-01 (podoba Shrnutí):** kapitoly 1 a 2 si ponechaly
+starší shrnutí v souvislých odstavcích bez odkazů, zatímco kapitoly 3–7
+používají úvodní větu „Hlavní myšlenky kapitoly s odkazy na jejich výklad:“
+a odrážky zakončené odkazem na oddíl. Tato podoba se stává závaznou pro
+všechny výkladové kapitoly; kapitoly 1 a 2 jsou upraveny. Aktuální znění
+je v [AGENTS.md](../../AGENTS.md#čitelnost-a-struktura-textu). Doklad:
+autor 2026-11-01: „všiml jsem si, že Shrnutí na konci kapitoly je
+v kapitolách 1 a 2 jiné než ve zbývajících, má jinou strukturu. Je možné
+to sladit a nastavit pro konzistenci správné instrukce?“ a schválení plánu.
+
 <a id="r50-struktura-prezentaci"></a>
 
 ## R50 — Přehled obsahu, oddělovací slidy a nadpisy v poznámkách

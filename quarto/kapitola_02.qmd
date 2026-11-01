@@ -519,9 +519,15 @@ Excel obsahuje také samostatný typ grafu **Histogram**, který se vytváří z
 
 ## Shrnutí {#sec-shrnuti-02}
 
-Absolutní četnost odpovídá na otázku „kolik?“, relativní četnost na otázku „jakou část určeného celku“. Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou mez včetně. Správný jmenovatel, smysluplné pořadí a jednoznačné meze jsou součástí výkladu výsledku, nikoli jen technickým detailem výpočtu.
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
-Tabulka prezentuje snadno dohledatelná čísla, graf usnadňuje vnímání rozdělení. Vždy ale některé informace zdůrazňuje a jiné upozaďuje. Volbu zobrazení proto zdůvodníme otázkou a povahou údajů. Tvar rozdělení v malém souboru, vysoký sloupec nebo odlehlé pozorování nepředstavují samy o sobě důkaz o populačním rozdělení či příčině.
+- Absolutní četnost odpovídá na otázku „kolik?“, relativní četnost na otázku „jakou část určeného celku“. Správný jmenovatel je součástí výkladu výsledku, nikoli jen technickým detailem výpočtu ([Od jednotlivých záznamů k četnostem](#sec-od-zaznamu-k-cetnostem); [Podíly, procenta a jejich základ](#sec-relativni-cetnost)).
+- Znak sumace $\sum$ je pokyn sečíst uvedené členy; sám žádnou veličinu neoznačuje. Součet absolutních četností nám umožňuje zkontrolovat, že jsme každý případ započítali právě jednou ([Součty četností a znak sumace](#sec-sumace)).
+- Kumulativní četnost odpovídá na otázku o všech případech až po zvolenou mez včetně. Věcný význam má jen u hodnot s přirozeným pořadím; u nominálních kategorií by výsledek závisel na zvoleném pořadí ([Kumulativní četnosti: kolik případů je až po danou hodnotu](#sec-kumulativni-cetnosti)).
+- Intervalové třídění spojuje sousední číselné hodnoty do skupin s jednoznačnými mezemi. Šířka i poloha intervalů mění obraz dat, proto neexistuje jediná vždy správná volba ([Intervalové třídění číselných údajů](#sec-tridni-intervaly); [Jak intervaly mění obraz dat](#sec-volba-intervalu)).
+- Tabulka prezentuje snadno dohledatelná čísla, graf usnadňuje vnímání rozdělení. Volbu zobrazení zdůvodníme otázkou a povahou údajů ([Grafy četností](#sec-grafy-cetnosti)).
+- Rozdělení číselných dat popisujeme podle toho, kde se hodnoty soustřeďují, jak široce jsou rozloženy a jaký mají tvar. Tvar rozdělení v malém souboru, vysoký sloupec nebo odlehlé pozorování nepředstavují samy o sobě důkaz o populačním rozdělení či příčině ([Co nám říká tvar rozdělení](#sec-tvar-rozdeleni)).
+- Každé zobrazení některé informace zdůrazňuje a jiné upozaďuje. Před interpretací proto kontrolujeme popisky a měřítka os, velikost výběru a seskupení; uříznutá osa četností může malý rozdíl opticky zvětšit ([Čtení grafů a zavádějící zobrazení](#sec-zavadejici-grafy)).
 
 ## Cvičení {#sec-cviceni-02}
 
