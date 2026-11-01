@@ -66,6 +66,12 @@ v obrazovém exportu.
 
 **Použití v kapitole 1 (2026-10-31):** v textové extrakci přečteny s. 25–26 (PDF 60–61), oddíl o reliabilitě a validitě: reliabilita jako opakovatelnost, test-retest při co nejpodobnějších podmínkách, validita jako míra, v níž měřítko měří, co má; doklady srovnáním se zavedeným měřítkem a předpovědí výsledku („validity of the test for its purpose“). Citováno v [pododdílu o reliabilitě a validitě](../../quarto/kapitola_01.qmd#sec-reliabilita-validita) a jeho nepovinném rozšíření. Vizuální kontrola stran neproběhla.
 
+<a id="priprava-08-20261101"></a>
+
+## Návrh kapitoly 8 — 2026-11-01
+
+Autor při připomínkách k návrhu uvedl jako oporu zejména s. 176–178 a 213–215 (PDF 211–213 a 248–250): důraz na odhad rozdílu, zobrazení jednotlivých párů a význam variability rozdílů. U standardizace párového rozdílu Cumming kombinuje variabilitu obou měření, Howell pracuje také s výchozí směrodatnou odchylkou; kapitola proto neuvede jediný neupřesněný vzorec ([R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8)). Pasáže četl autor; v tomto záznamu nebyly znovu ověřeny. [Společný záznam](../zdroje/HISTORIE.md#priprava-08-20261101).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

@@ -36,6 +36,12 @@ Výpočet PDI ze souhrnů znovu ověřen v R, viz [U01](U01-howell.md#priprava-0
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
 
+<a id="priprava-08-20261101"></a>
+
+## Návrh kapitoly 8 — 2026-11-01
+
+Autor při připomínkách k návrhu uvedl sn. 29–36 jako oporu návaznosti párového testu a porovnání změn mezi skupinami a zjistil, že **ve sn. 30 jsou zaměněny hodnoty před a po**; před případným použitím opravit. Nález nebyl v tomto záznamu znovu ověřen v originálu. Nezávislým přepočtem bylo zjištěno, že průměry 37,75 a 41,05 kg ze sn. 32 odpovídají Howellovým datům o anorexii (tab. 7.3) převedeným na kilogramy ([výpočet](../zdroje/HISTORIE.md#priprava-08-20261101)); rozpor dosazení ve sn. 32 tím není vysvětlen.
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

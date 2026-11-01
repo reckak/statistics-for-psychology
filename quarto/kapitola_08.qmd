@@ -1,0 +1,958 @@
+# Porovnání dvou průměrů: párová data a nezávislé skupiny {#sec-kapitola-08}
+
+V kapitole 7 jsme porovnávali průměr jedné skupiny s pevnou hodnotou: skór studentů po krátkém spánku s normou 50 bodů. Mnoho psychologických otázek ale žádnou pevnou hodnotu nemá. Zajímá nás, zda se liší dvě podmínky nebo dvě skupiny: pozornost po krátkém a po běžném spánku, výsledky skupiny s tréninkem a bez něj, dvě verze téhož testu. V této kapitole se naučíme takové rozdíly odhadnout s jejich nejistotou a otestovat. Uvidíme, že výpočet závisí na tom, jak studie vznikla: zda jsme tytéž lidi měřili dvakrát, nebo porovnáváme dvě různé skupiny.
+
+Navazujeme na [jednovýběrový t-test](kapitola_07.qmd#sec-t-test), [interval spolehlivosti s t-kvantilem](kapitola_07.qmd#sec-interval-t), [test ekvivalence](kapitola_07.qmd#sec-test-ekvivalence) a na [rozdíl dvou průměrů v parkovací studii](kapitola_06.qmd#sec-rozdil-dvou-prumeru) z kapitoly 6. Kapitolou opět prochází test pozornosti, tentokrát ve čtyřech podobách studie.
+
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_08.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Hotové výpočty jsou na listech `Parovy_test`, `Klasicky_test`, `Welch`, `Zmeny` a `Ekvivalence_skupin`.
+
+::: {.callout-note title="Co budete po prostudování umět"}
+- Podle uspořádání studie rozpoznáte, zda jde o párová data, nebo o dvě nezávislé skupiny, a zdůvodníte, proč na tom závisí výpočet.
+- Připravíte párová data včetně neúplných dvojic, převedete je na rozdíly a provedete párový t-test a interval pro průměrný rozdíl, ručně i v Excelu.
+- Vysvětlíte, za jakých okolností párování zpřesňuje odhad: jestliže se stabilní rozdíly mezi lidmi při odečtení měření z velké části odstraní, mohou individuální rozdíly kolísat podstatně méně než samotné hodnoty.
+- Vysvětlíte směrodatnou chybu rozdílu dvou průměrů a provedete t-test pro dva nezávislé výběry se společným odhadem rozptylu i ve Welchově variantě, včetně intervalu pro rozdíl.
+- Vyjádříte velikost rozdílu v původních jednotkách i Cohenovým d a u párových dat uvedete, kterou směrodatnou odchylku jste použili.
+- Správně přečtete dva intervaly skupin zobrazené vedle sebe a zdůvodníte, proč rozdíl posuzujeme intervalem rozdílu.
+- Porovnáte změny v intervenční a kontrolní skupině a rozpoznáte chybný závěr ze dvou samostatných testů změny.
+- Pomocí 90% intervalu rozdílu rozhodnete o ekvivalenci dvou podmínek.
+- Vyberete postup podle otázky a uspořádání studie a výsledek sdělíte ve dvou krocích: rozhodnutí testu a věcná interpretace.
+
+Nepovinná rozšíření ukazují vzorec Welchových stupňů volnosti, různé standardizace párového rozdílu s Hedgesovou korekcí a Cohenovými orientačními pásmy a výpočet *p*-hodnot dvou jednostranných testů pro dvě skupiny; nejsou součástí povinných dovedností ani základních cvičení.
+:::
+
+## Od jedné skupiny ke dvěma: co vlastně porovnáváme? {#sec-od-jedne-ke-dvema}
+
+Jak zjistit, zda se dvě podmínky liší, když nemáme pevnou normu? Oddíl ukazuje, že tutéž otázku lze zkoumat dvěma různými uspořádáními studie a že na uspořádání závisí, jak budeme počítat.
+
+### Dvě podoby téže otázky {#sec-dve-podoby}
+
+Výzkumnice z kapitoly 7 zjistila, že studenti po krátkém spánku mají v testu pozornosti v průměru nižší skór, než udává norma. Norma ale vznikla na jiných lidech a v jiné době. Přesvědčivější srovnání nabízí kontrolní podmínka: studenti po běžném spánku, testovaní stejným postupem a ve stejném období. Výzkumnice zvažuje dvě podoby studie:
+
+- **Varianta A.** Tytéž studenty otestuje dvakrát: jednou po noci s běžným spánkem a jednou po noci s méně než pěti hodinami spánku. Polovina studentů začne krátkým spánkem, druhá běžným.
+- **Varianta B.** Studenty náhodně rozdělí do dvou skupin. Jedna skupina přijde na test po běžném spánku, druhá po krátkém. Každý student je testován jen jednou.
+
+Obě varianty se ptají na totéž: liší se populační průměr skóru po krátkém a po běžném spánku? Data z nich ale vypadají jinak a jinak se z nich počítá nejistota.
+
+### Párová data a nezávislé skupiny {#sec-parova-nezavisla}
+
+Ve variantě A patří každé dvě hodnoty k sobě: oba skóry pocházejí od téhož studenta. Takovým datům říkáme **párová data** (*paired data*); o uspořádání studie mluvíme jako o **párovém uspořádání** (*paired design*). V literatuře se pro ně používá také název **závislé výběry**: hodnota z jedné podmínky nám něco říká o hodnotě z druhé podmínky u téže dvojice.
+
+Párová data vznikají dvěma způsoby, které je dobré rozlišovat:
+
+- **Opakované měření** (*repeated measures*): tytéž lidi měříme dvakrát, například ve dvou podmínkách nebo před zásahem a po něm. To je naše varianta A.
+- **Dvojice různých osob**: každá hodnota pochází od jiného člověka, ale lidé jsou spojeni do dvojic. Mohou to být partneři v páru, sourozenci, nebo lidé záměrně spárovaní podle věku a výchozího výkonu.
+
+Opakované měření i dvojice různých osob jsou užšími případy párových dat, nikoli jejich synonymy. Společné mají to, že jednotkou analýzy je **dvojice**, ne jednotlivá hodnota.
+
+Ve variantě B je každý student jen v jedné skupině a mezi hodnotami obou skupin žádné spojení není. Mluvíme o **nezávislých skupinách** nebo **nezávislých výběrech** (*independent samples*). Skupiny mohou mít různou velikost; v párových datech je počet hodnot v obou podmínkách nutně stejný, protože jde o dvojice.
+
+::: {.teaching-figure role="region" aria-label="Schéma párových dat a nezávislých skupin" tabindex="0"}
+
+![Vlevo párová data: každý student přispívá dvěma hodnotami, které spolu tvoří dvojici, a analýza pracuje s rozdílem v každé dvojici. Vpravo nezávislé skupiny: každý student je jen v jedné skupině, skupiny mohou mít různou velikost a porovnáváme jejich průměry.](../assets/chapter-08/plots/dve-usporadani.svg){#fig-dve-usporadani fig-alt="Dvě schémata vedle sebe. Vlevo šest dvojic koleček označených S1 až S6; každé kolečko vlevo, po běžném spánku, je čarou spojeno s kolečkem téhož studenta vpravo, po krátkém spánku. Pod schématem je napsáno: jedna dvojice hodnot je jeden člověk, počítáme rozdíl v každé dvojici. Vpravo šest koleček S1 až S6 ve skupině po běžném spánku a sedm jiných koleček S7 až S13 ve skupině po krátkém spánku, bez spojnic. Pod schématem: skupiny mohou mít různou velikost, porovnáváme průměry skupin."}
+
+:::
+
+Obrázek [-@fig-dve-usporadani] oba typy staví vedle sebe. Zda jde o párová data, poznáme z toho, **jak studie vznikla**, ne z čísel samotných. Dva sloupce čísel stejné délky mohou být párová data i dvě náhodou stejně velké nezávislé skupiny. Rozhoduje otázka: patří hodnota v prvním sloupci k určité hodnotě ve druhém sloupci, protože pochází od téhož člověka nebo od téže dvojice?
+
+### Jak vypadají v datové matici {#sec-matice-08}
+
+Rozdíl je vidět i v [datové matici](kapitola_01.qmd#sec-datova-matice). U párových dat je řádkem jeden student a obě měření jsou ve dvou sloupcích téhož řádku. U nezávislých skupin je řádkem také jeden student, ale ten má jen jedno měření; do které skupiny patří, říká další proměnná:
+
+::: {.table-scroll role="region" aria-label="Párová data a nezávislé skupiny v datové matici" tabindex="0"}
+
+| Uspořádání | Řádek matice | Sloupce | Počet hodnot v podmínkách |
+|---|---|---|---|
+| Párová data (varianta A) | jeden student (jedna dvojice) | ID, skór po běžném spánku, skór po krátkém spánku | vždy stejný |
+| Nezávislé skupiny (varianta B) | jeden student | ID, skupina, skór | může se lišit |
+
+: Uspořádání dat podle typu studie {#tbl-k08-01}
+
+:::
+
+Z toho plyne i praktické pravidlo pro dvojice: hodnoty jednoho studenta musí zůstat ve stejném řádku. Proč na tom tolik záleží, ukáže příští oddíl.
+
+## Párová data: rozdíl u každého člověka {#sec-parova-data}
+
+Jak z párových dat zjistit, zda se podmínky liší? Oddíl ukazuje, že dvojici hodnot nahradíme jedním rozdílem a dál postupujeme jako v kapitole 7; nejdřív ale musíme správně zacházet s neúplnými dvojicemi.
+
+### Úplné a neúplné dvojice {#sec-neuplne-dvojice}
+
+Výzkumnice provedla variantu A s třinácti studenty. Jejich skóry jsou v tabulce [-@tbl-k08-02] a v sešitu na listu `Spanek_par` (A2:C14). Student 9 přišel na první měření po běžném spánku, ale na druhé měření se nedostavil.
+
+::: {.table-scroll role="region" aria-label="Skóry třinácti studentů po běžném a po krátkém spánku" tabindex="0"}
+
+| Student | Po běžném spánku | Po krátkém spánku | Rozdíl: běžný − krátký |
+|---:|---:|---:|---:|
+| 1 | 58 | 53 | 5 |
+| 2 | 44 | 42 | 2 |
+| 3 | 51 | 45 | 6 |
+| 4 | 39 | 38 | 1 |
+| 5 | 62 | 55 | 7 |
+| 6 | 47 | 44 | 3 |
+| 7 | 55 | 51 | 4 |
+| 8 | 42 | 43 | −1 |
+| 9 | 53 | chybí | — |
+| 10 | 49 | 44 | 5 |
+| 11 | 60 | 58 | 2 |
+| 12 | 45 | 39 | 6 |
+| 13 | 52 | 50 | 2 |
+
+: Skóry pozornosti studentů ve variantě A {#tbl-k08-02}
+
+:::
+
+::: {.table-note}
+Kladný rozdíl znamená, že student měl po krátkém spánku nižší skór než po běžném. Student 9 nemá úplnou dvojici, proto nemá ani rozdíl.
+:::
+
+S chybějícím údajem v párových datech zacházíme podle tří zásad:
+
+- **Zachováme ID a řádky.** Hodnoty jednoho studenta zůstávají v jednom řádku. Prázdnou buňku v jednom sloupci nesmíme odstranit samostatně a zbytek sloupce posunout nahoru. Pak by se hodnota studenta 10 po krátkém spánku ocitla vedle hodnoty studenta 9 po běžném spánku a všechny další dvojice by byly špatně.
+- **Vybíráme úplné dvojice společně.** Do analýzy vstoupí jen studenti, kteří mají obě hodnoty. Ze třinácti studentů je to dvanáct.
+- **Správně určíme počet.** Velikost výběru $n$ je počet úplných dvojic, tedy 12, ne 13 ani 25.
+
+Proč nestačí spočítat průměr každého sloupce zvlášť? Průměr sloupce „po běžném spánku“ by zahrnul třináct studentů (50,54 bodu), průměr sloupce „po krátkém spánku“ jen dvanáct (46,83 bodu). Jejich rozdíl 3,71 bodu by porovnával dvě různé skupiny lidí. Průměrný rozdíl dvanácti úplných dvojic je 3,50 bodu.
+
+Vyřazení neúplné dvojice má ještě jeden důsledek: může změnit složení souboru, na kterém analýza stojí. Pokud student 9 vynechal druhé měření proto, že se po krátkém spánku cítil velmi špatně, vypadl z dat právě člověk, u něhož mohl být pokles největší. S jedním chybějícím studentem z třinácti to výsledek příliš neovlivní, ale u většího podílu chybějících dvojic je třeba se ptát, proč chybějí a komu se výsledek týká.
+
+### Rozdílové skóre a párový t-test {#sec-parovy-t-test}
+
+U každé úplné dvojice spočítáme rozdíl obou hodnot. Takovému rozdílu jednoho člověka říkáme **rozdílové skóre** (*difference score*); u měření před zásahem a po něm se mu říká také skóre změny. Ve variantě A počítáme rozdíl „po běžném spánku minus po krátkém spánku“, takže kladné číslo znamená nižší pozornost po krátkém spánku. Směr odečítání je volba; musíme ji jen uvést a dodržet.
+
+Tím se dvě řady hodnot změnily v jednu řadu dvanácti rozdílů. Otázku „liší se populační průměry obou podmínek?“ teď můžeme položit takto: je populační průměr rozdílů nulový? Populační průměr rozdílů značíme $\mathrm{μ}_D$, výběrový průměr rozdílů $m_D$ a jejich výběrovou směrodatnou odchylku $s_D$; index D připomíná rozdíl (*difference*). Malé *d* pro rozdíly nepoužíváme, abychom je nezaměnili s Cohenovým d z [oddílu o velikosti rozdílu](#sec-cohenovo-d).
+
+Na jednu řadu rozdílů použijeme [jednovýběrový t-test](kapitola_07.qmd#sec-t-test) s testovanou hodnotou nula. Tomuto postupu se říká **párový t-test** (*paired-samples t-test*), také t-test pro závislé výběry:
+
+$$t=\frac{m_D-0}{s_D/\sqrt{n}},$$
+
+kde $n$ je počet úplných dvojic a statistika má za platnosti nulové hypotézy $n-1$ stupňů volnosti.
+
+**1. Hypotézy a směr.** Výzkumnice předpokládá nižší pozornost po krátkém spánku, ale před sběrem dat zvolila oboustranný test, aby zachytila i nečekaný opačný výsledek: $H_0{:}\ \mathrm{μ}_D=0$, $H_1{:}\ \mathrm{μ}_D\neq0$.
+
+**2. Hladina významnosti.** $\mathrm{α}=0{,}05$.
+
+**3. Testová statistika.** Z dvanácti rozdílů vychází $m_D=3{,}50$ bodu a $s_D\approx2{,}393$ bodu. Odhad směrodatné chyby průměrného rozdílu a testová statistika:
+
+$$s_{m}=\frac{2{,}393}{\sqrt{12}}\approx0{,}691,\qquad t=\frac{3{,}50}{0{,}691}\approx5{,}07,$$
+
+s $12-1=11$ stupni volnosti.
+
+**4. *p*-hodnota.** Oboustranná *p*-hodnota je `=T.DIST.2T(5,066;11)` ≈ 0,0004.
+
+**5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr rozdílů skóru po běžném a po krátkém spánku je nulový.
+
+**6. Věcná interpretace.** K tomu potřebujeme interval spolehlivosti pro $\mathrm{μ}_D$. S kvantilem $t_{0{,}975\,(v=11)}\approx2{,}201$:
+
+$$3{,}50\pm2{,}201\times0{,}691=3{,}50\pm1{,}52=(1{,}98;\ 5{,}02).$$
+
+Po krátkém spánku měli studenti v průměru o 3,5 bodu nižší pozornost než po běžném spánku. S daty jsou slučitelné průměrné poklesy přibližně od 2 do 5 bodů. Směr odpovídá očekávání. Pokles je ve srovnání s rozdíly mezi studenty malý: skóry se mezi lidmi liší zhruba o 7 bodů (směrodatná odchylka). Výsledek platí pro studenty, kteří přišli na obě měření, a za předpokladů testu, ke kterým se vrátíme v [oddílu o předpokladech](#sec-predpoklady-08).
+
+### Výpočet v Excelu {#sec-parovy-excel}
+
+List `Parovy_test` nejdřív v oblasti F2:I14 převezme data a ponechá jen úplné dvojice. Funkce **JE.ČISLO** (anglicky ISNUMBER) vrací PRAVDA, když buňka obsahuje číslo; s funkcemi [KDYŽ](kapitola_05.qmd#sec-binom-kumulace) a A tak vznikne vzorec, který hodnotu převezme jen tehdy, když jsou obě hodnoty dvojice vyplněné. Jinak vrátí prázdný text, který funkce PRŮMĚR, POČET a SMODCH.VÝBĚR.S přeskočí.
+
+::: {.table-scroll .chapter-08-wide role="region" aria-label="Excel: párový t-test na listu Parovy_test" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| G2 | Skór po běžném spánku, jen v úplné dvojici | `=KDYŽ(A(JE.ČISLO(Spanek_par!B2);JE.ČISLO(Spanek_par!C2));Spanek_par!B2;"")` | 58 |
+| I2 | Rozdíl v úplné dvojici | `=KDYŽ(G2="";"";G2-H2)` | 5 |
+| B2 | Počet úplných dvojic $n$ | `=POČET(I2:I14)` | 12 |
+| B3 | Průměrný rozdíl $m_D$ | `=PRŮMĚR(I2:I14)` | 3,5 |
+| B4 | Směrodatná odchylka rozdílů $s_D$ | `=SMODCH.VÝBĚR.S(I2:I14)` | 2,3932 |
+| B5 | Hladina spolehlivosti | `0,95` | 0,95 |
+| B7 | Odhad směrodatné chyby | `=B4/ODMOCNINA(B2)` | 0,6908 |
+| B8 | Stupně volnosti | `=B2-1` | 11 |
+| B9 | Testová statistika $t$ | `=B3/B7` | 5,0662 |
+| B10 | *p*-hodnota oboustranně | `=T.DIST.2T(ABS(B9);B8)` | 0,0004 |
+| B11 | Kvantil t-rozdělení | `=T.INV(1-(1-B5)/2;B8)` | 2,2010 |
+| B12 | Dolní mez | `=B3-B11*B7` | 1,98 |
+| B13 | Horní mez | `=B3+B11*B7` | 5,02 |
+| B14 | Kontrola: párový T.TEST | `=T.TEST(G2:G14;H2:H14;2;1)` | 0,0004 |
+
+: Párový t-test v Excelu {#tbl-k08-03}
+
+:::
+
+::: {.table-note}
+Vzorce v G2 a I2 se kopírují do řádků 3–14; obdobný vzorec v H2 převezme skór po krátkém spánku. V řádku studenta 9 zůstanou buňky G, H a I prázdné.
+:::
+
+Funkce **T.TEST** (anglicky také T.TEST) vrací *p*-hodnotu přímo z dvou oblastí dat. Jejími argumenty jsou obě oblasti, počet chvostů (2 pro oboustranný test) a typ testu: 1 pro párová data, 2 pro dvě nezávislé skupiny se společným odhadem rozptylu, 3 pro Welchův test, se kterým se seznámíme později. Neuvádí testovou statistiku ani interval, proto ji používáme spíš ke kontrole. U typu 1 Excel sám vynechá dvojice, kde jedna hodnota chybí. Na tuto vlastnost se ale nespoléhejte místo vlastní kontroly: počet úplných dvojic a jejich složení musíte znát kvůli stupňům volnosti, intervalu i interpretaci.
+
+## Kdy párování zpřesňuje odhad — a co neřeší {#sec-kdy-parovani}
+
+Proč nestačí porovnat průměry obou sloupců obvyklým způsobem? Oddíl na téže dvanáctce studentů ukazuje, co analýza rozdílů získává, za jakých okolností a co ani párové uspořádání nevyřeší.
+
+### Stejná data, chybná analýza {#sec-chybna-analyza}
+
+Představme si, že by někdo dvanáct úplných dvojic analyzoval jako dvě nezávislé skupiny po dvanácti studentech, postupem, který vyložíme v [oddílu o klasickém t-testu](#sec-klasicky-t-test). Průměrný rozdíl by vyšel stejně, 3,5 bodu, protože rozdíl průměrů je roven průměru rozdílů. Nejistota by ale vyšla úplně jinak:
+
+::: {.table-scroll role="region" aria-label="Párová a chybná nezávislá analýza týchž dat" tabindex="0"}
+
+| Analýza | Odhad směrodatné chyby | $t$ | Stupně volnosti | *p*-hodnota | 95% interval (body) |
+|---|---:|---:|---:|---:|---|
+| Párová (správně) | 0,69 | 5,07 | 11 | 0,0004 | (1,98; 5,02) |
+| Jako dvě nezávislé skupiny (chybně) | 2,82 | 1,24 | 22 | 0,227 | (−2,34; 9,34) |
+
+: Tatáž data analyzovaná dvěma způsoby {#tbl-k08-04}
+
+:::
+
+V tomto příkladu vede chybná analýza k intervalu přibližně čtyřikrát širšímu a test nulovou hypotézu nezamítne. Nejde o dvě rovnocenné možnosti výpočtu: nezávislá analýza předpokládá, že hodnoty v obou sloupcích spolu nesouvisejí, a tento předpoklad je u párových dat porušen. Výsledek se pak týká jiné otázky, než jakou jsme studií položili, a jeho nejistota není správně spočítána.
+
+::: {.teaching-figure role="region" aria-label="Skóry dvanácti studentů a jejich rozdíly" tabindex="0"}
+
+![Vlevo spojnice skórů téhož studenta po běžném a po krátkém spánku. Studenti se mezi sebou liší o desítky bodů, ale téměř všechny spojnice mírně klesají. Vpravo rozdíly jednotlivých studentů: leží těsně u sebe, a 95% interval pro průměrný rozdíl je proto úzký.](../assets/chapter-08/plots/parova-data.svg){#fig-parova-data fig-alt="Dva grafy. Vlevo dvě svislé řady bodů nad popisky po běžném spánku a po krátkém spánku, skóry od 38 do 62 bodů. Body téhož studenta spojuje čára; jedenáct z dvanácti čar mírně klesá, jedna mírně stoupá. U běžného spánku je křížkem vyznačen student 9; poznámka v levém horním rohu uvádí, že jeho druhé měření chybí. Vpravo vodorovná osa rozdílu běžný minus krátký spánek od minus 4 do 9 bodů; dvanáct bodů leží mezi minus 1 a 7. Pod nimi je úsečka 95% intervalu od 1,98 do 5,02 s průměrem 3,5 a popisek. Svislá přerušovaná čára u nuly."}
+
+:::
+
+### Proč rozdíly kolísají méně {#sec-proc-rozdily}
+
+Levá část obrázku [-@fig-parova-data] ukazuje, odkud rozdíl pochází. Studenti se mezi sebou liší hodně: směrodatná odchylka skóru je po běžném spánku 7,34 bodu a po krátkém 6,42 bodu. Kdo měl vysoký skór po běžném spánku, měl vysoký skór i po krátkém spánku. Tyto **stabilní rozdíly mezi lidmi**, třeba v obecné schopnosti soustředit se nebo ve zkušenosti s podobnými testy, jsou v obou měřeních téměř stejné.
+
+Když u každého studenta odečteme jeho dvě hodnoty, stabilní část se odečte také. V rozdílu zůstane hlavně to, co se mezi oběma měřeními změnilo: vliv spánku a náhodné kolísání výkonu téhož člověka. Proto mají rozdíly směrodatnou odchylku jen 2,39 bodu. Párový test s ní počítá a nejistotu odhadu tím nepřeceňuje. Analýza jako nezávislých skupin naopak počítá s celou rozptýleností mezi lidmi, ačkoli ta k nejistotě průměrného rozdílu v párovém uspořádání nepřispívá.
+
+Přínos párování ale není automatický. Závisí na tom, **jak spolu obě měření souvisejí**. Nestačí ani, aby si lidé zachovali pořadí. Představme si tři lidi s hodnotami 2, 4 a 6 v prvním měření a s přesně trojnásobnými hodnotami 6, 12 a 18 ve druhém. Pořadí je dokonale zachováno. Rozdíly jsou ale 4, 8 a 12: jejich směrodatná odchylka je 4, tedy dvojnásobek směrodatné odchylky prvního měření (2). Odečtení tu stabilní rozdíly mezi lidmi neodstranilo, protože druhé měření není „první měření plus přibližně stejný posun“, ale jeho násobek.
+
+Párování proto zpřesňuje odhad tehdy, když se lidé mezi oběma měřeními liší hlavně přibližně stejným posunem a jejich stabilní rozdíly se při odečtení z velké části odstraní. To je u opakovaného měření téhož testu běžné, ale je dobré to ověřit pohledem na data, jako na obrázku [-@fig-parova-data]. Přesný vztah lze vyjádřit pomocí míry souvislosti obou měření; tu tato kapitola nezavádí.
+
+### Co párování neřeší {#sec-co-parovani-neresi}
+
+Opakované měření týchž lidí přináší vlastní rizika. Druhé měření se může lišit jen proto, že je druhé: student si test pamatuje (**efekt učení**), je unavený nebo už ho test nebaví. Obecně mluvíme o **efektu pořadí** (*order effect*). Proto výzkumnice ve variantě A nechala polovinu studentů začít krátkým spánkem a druhou polovinu běžným. Takové **vyvážení pořadí** (*counterbalancing*) zajistí, že se efekt pořadí v obou podmínkách projeví stejně často a průměrný rozdíl soustavně nezkreslí.
+
+Vyvážit pořadí nejde u měření **před zásahem a po něm**. Tam je pořadí dané a rozdíl může vzniknout i z jiných důvodů než ze zásahu. Ukazuje to příklad se skutečnými daty, který uvádí Howell [-@howell, s. 198–201]. Everitt sledoval dívky s mentální anorexií léčené rodinnou terapií a zvážil je před terapií a po ní. Howell údaje uvádí v librách; převedli jsme je na kilogramy (1 lb = 0,453 592 37 kg) a souhrny spočítali z nezaokrouhlených převedených hodnot.
+
+U 17 dívek byl průměr před terapií 37,75 kg a po ní 41,05 kg. Průměrná změna je $m_D=3{,}30$ kg se směrodatnou odchylkou změn $s_D=3{,}25$ kg. Párový t-test dává
+
+$$t=\frac{3{,}295}{3{,}247/\sqrt{17}}\approx\frac{3{,}295}{0{,}787}\approx4{,}18,$$
+
+s 16 stupni volnosti, oboustranná *p*-hodnota přibližně 0,0007 a 95% interval pro průměrnou změnu (1,63; 4,96) kg. Převod na kilogramy změní průměr i směrodatnou odchylku stejným násobkem, a testová statistika i *p*-hodnota proto vyjdou stejně jako v librách.
+
+**Rozhodnutí testu:** zamítáme nulovou hypotézu, že populační průměrná změna hmotnosti je nulová. **Věcná interpretace:** dívky během terapie v průměru přibraly přibližně o 3,3 kg, s daty jsou slučitelné průměrné přírůstky od 1,6 do 5 kg. Párový test těchto sedmnácti dívek ale posuzuje jen průměrnou změnu. Sám neporovnává změnu se změnou v kontrolní skupině, a sám proto nestačí k připsání změny terapii. Hmotnost se mohla změnit i s plynutím času nebo s jinou péčí. Howell [-@howell, s. 200] doplňuje, že ve stejném výzkumu skupina dívek bez rodinné terapie za stejné období nepřibrala. To je další informace o uspořádání výzkumu, kterou samotná párová analýza neobsahuje. Jak takovou kontrolní skupinu do analýzy zahrnout, ukážeme v [oddílu o změnách ve dvou skupinách](#sec-zmena-dvou-skupin).
+
+## Dvě nezávislé skupiny: jak kolísá rozdíl dvou průměrů {#sec-rozdil-nezavislych}
+
+Jak velkou nejistotu má rozdíl průměrů dvou různých skupin? Oddíl připomíná výsledek z kapitoly 6 a rozšiřuje ho na skupiny s různou velikostí a rozptýleností.
+
+::: {.callout-tip title="Připomenutí: rozdíl dvou průměrů v parkovací studii"}
+V [kapitole 6](kapitola_06.qmd#sec-rozdil-dvou-prumeru) jsme porovnávali dobu odjezdu dvou skupin po 100 řidičích. Ve výukovém modelu měly obě skupiny populační směrodatnou odchylku 15 s. Simulace 10 000 dvojic výběrů ukázala, že rozdíl průměrů kolísá se směrodatnou odchylkou 2,12 s, tedy víc než jeden průměr (1,5 s): kolísají oba průměry a jejich kolísání se v rozdílu sčítá.
+:::
+
+Tutéž úvahu nyní zapíšeme obecně. Máme-li dva nezávislé výběry o velikostech $n_1$ a $n_2$ z populací se směrodatnými odchylkami $\mathrm{σ}_1$ a $\mathrm{σ}_2$, je **směrodatná chyba rozdílu průměrů** (*standard error of the difference between means*)
+
+$$\mathrm{σ}_{m_1-m_2}=\sqrt{\frac{\mathrm{σ}_1^2}{n_1}+\frac{\mathrm{σ}_2^2}{n_2}}.$$
+
+- $\mathrm{σ}_1^2/n_1$ je rozptyl výběrového průměru první skupiny, tedy druhá mocnina jeho [směrodatné chyby](kapitola_06.qmd#sec-chyba-prumeru); obdobně $\mathrm{σ}_2^2/n_2$ pro druhou skupinu.
+- Když jsou výběry nezávislé, **sčítají se rozptyly** obou odhadů, i když průměry odečítáme. Kolísá-li jeden průměr nahoru a druhý dolů, rozdíl se zvětší; kolísají-li oba stejným směrem, zmenší se. Na znaménku tedy nezáleží, nejistota roste v obou případech.
+- Odmocnina vrací výsledek do původních jednotek. Směrodatné chyby samotné se nesčítají: pro parkovací studii $\sqrt{1{,}5^2+1{,}5^2}\approx2{,}12$ s, ne $1{,}5+1{,}5=3$ s. Odvození ukazovalo [nepovinné rozšíření kapitoly 6](kapitola_06.qmd#rozsireni-odvozeni-chyby).
+
+Rozdělení, které rozdíl průměrů při opakování studie má, je **výběrové rozdělení rozdílu průměrů** (*sampling distribution of the difference between means*). Jeho střed je skutečný rozdíl populačních průměrů $\mathrm{μ}_1-\mathrm{μ}_2$ a jeho směrodatná odchylka je právě $\mathrm{σ}_{m_1-m_2}$.
+
+Ze vzorce je vidět, že obě skupiny přispívají k nejistotě rozdílu podle své rozptýlenosti i velikosti. Malá a rozptýlená skupina přispívá hodně, velká a málo rozptýlená málo. Zvětšit jen jednu skupinu proto pomáhá omezeně: směrodatná chyba rozdílu nikdy neklesne pod směrodatnou chybu průměru druhé skupiny.
+
+Populační směrodatné odchylky zpravidla neznáme. Stejně jako v [kapitole 7](kapitola_07.qmd#sec-t-rozdeleni) je nahradíme výběrovými $s_1$ a $s_2$ a dostaneme **odhad směrodatné chyby rozdílu**
+
+$$s_{m_1-m_2}=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}.$$
+
+Tento vzorec platí jen pro **nezávislé** skupiny. U párových dat jsou oba průměry spočítány z týchž lidí a kolísají spolu; jejich rozptyly se proto prostě nesčítají. Párová data jsme z tohoto důvodu převedli na jednu řadu rozdílů a nejistotu počítali z jejich směrodatné odchylky.
+
+Jak se z odhadu směrodatné chyby stane test a interval, závisí na tom, zda předpokládáme shodné rozptyly obou populací. Dva hlavní postupy ukazují příští dva oddíly.
+
+## Klasický t-test se společným odhadem rozptylu {#sec-klasicky-t-test}
+
+Jak otestovat rozdíl dvou nezávislých průměrů, když populační směrodatné odchylky neznáme? Oddíl provede úplný klasický postup, který předpokládá shodné rozptyly obou populací.
+
+### Společný odhad rozptylu {#sec-spolecny-rozptyl}
+
+Klasický t-test vychází z předpokladu **shody rozptylů** (*homogeneity of variance*), také homogenity rozptylů: obě populace mají stejnou směrodatnou odchylku σ a liší se nanejvýš průměrem. Tak tomu může být například tehdy, když zásah všem lidem posune skór zhruba o stejný kus. Přičtení stejného čísla ke všem hodnotám rozptýlenost nemění, jak víme z [kapitoly 3](kapitola_03.qmd#sec-zmena-skaly).
+
+Platí-li předpoklad, odhadují $s_1$ i $s_2$ totéž číslo σ. Rozumné je spojit je do jednoho přesnějšího odhadu. Výběrové rozptyly průměrujeme s vahami podle jejich [stupňů volnosti](kapitola_07.qmd#sec-studentovo-t), aby větší skupina, která rozptyl odhaduje přesněji, měla větší vliv. Vznikne **společný odhad rozptylu** (*pooled variance estimate*):
+
+$$s_p^2=\frac{(n_1-1)\,s_1^2+(n_2-1)\,s_2^2}{n_1+n_2-2}.$$
+
+- V čitateli je každý výběrový rozptyl vynásoben počtem svých stupňů volnosti, $n_1-1$ a $n_2-1$.
+- Ve jmenovateli je součet vah, $n_1+n_2-2$. To je také počet stupňů volnosti celého odhadu: z každé skupiny jsme jeden ztratili odhadem jejího průměru.
+- Odmocnina $s_p$ je **společná směrodatná odchylka**, index *p* pochází z anglického *pooled*.
+
+Jsou-li skupiny stejně velké, je $s_p^2$ prostým průměrem obou rozptylů. Odhad směrodatné chyby rozdílu pak spočítáme dosazením $s_p^2$ za oba rozptyly:
+
+$$s_{m_1-m_2}=\sqrt{\frac{s_p^2}{n_1}+\frac{s_p^2}{n_2}}=s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}},$$
+
+a testová statistika
+
+$$t=\frac{(m_1-m_2)-0}{s_{m_1-m_2}}$$
+
+má za platnosti nulové hypotézy $\mathrm{μ}_1=\mathrm{μ}_2$, za předpokladu nezávislých výběrů z normálních populací se shodnými rozptyly, t-rozdělení s $n_1+n_2-2$ stupni volnosti. Celému postupu říkáme **t-test pro dva nezávislé výběry** (*independent-samples t-test*), v této podobě **klasický** neboli **Studentův t-test se společným odhadem rozptylu**. Interval spolehlivosti pro rozdíl populačních průměrů je
+
+$$(m_1-m_2)\pm t_{0{,}975\,(v=n_1+n_2-2)}\times s_{m_1-m_2}.$$
+
+### Řešený příklad: parkovací studie bez známé σ {#sec-parkovani-t}
+
+V kapitole 6 jsme parkovací studii testovali ve výukovém modelu, kde byla populační směrodatná odchylka známa, 15 s. Nyní ji odhadneme z dat. Howell [-@howell, s. 86] uvádí pro skupinu, na kterou čekalo jiné auto ($n_1=100$), průměr $m_1=39{,}03$ s a pro skupinu bez čekajícího auta ($n_2=100$) průměr $m_2=32{,}15$ s, s výběrovou směrodatnou odchylkou 14,6 s v obou skupinách.
+
+**1. Hypotézy.** Oboustranně, jako v kapitole 6: $H_0{:}\ \mathrm{μ}_1=\mathrm{μ}_2$, $H_1{:}\ \mathrm{μ}_1\neq\mathrm{μ}_2$.
+
+**2. Hladina významnosti.** $\mathrm{α}=0{,}05$.
+
+**3. Testová statistika.** Skupiny jsou stejně velké a mají stejnou výběrovou směrodatnou odchylku, takže $s_p=14{,}6$ s. Dále
+
+$$s_{m_1-m_2}=14{,}6\times\sqrt{\frac{1}{100}+\frac{1}{100}}\approx2{,}065\ \text{s},\qquad t=\frac{6{,}88}{2{,}065}\approx3{,}33,$$
+
+s $100+100-2=198$ stupni volnosti.
+
+**4. *p*-hodnota.** `=T.DIST.2T(3,332;198)` ≈ 0,001.
+
+**5. Rozhodnutí testu.** Na hladině 0,05 zamítáme nulovou hypotézu, že se populační průměry doby odjezdu obou skupin řidičů neliší.
+
+**6. Věcná interpretace.** S $t_{0{,}975\,(v=198)}\approx1{,}972$ je 95% interval pro rozdíl $6{,}88\pm1{,}972\times2{,}065=(2{,}81;\ 10{,}95)$ s. Řidiči, na které někdo čekal, odjížděli v průměru déle, přibližně o 7 s; s daty jsou slučitelné rozdíly od necelých 3 do 11 s. Rozdíl má směr, který výzkumníci předpokládali. Uspořádání studie se nezměnilo: řidiči nebyli k podmínkám [náhodně přiřazeni](kapitola_01.qmd#sec-souvislost-pricina), a test proto nerozhoduje o příčině rozdílu.
+
+Ve srovnání s kapitolou 6 vyšla testová statistika o něco větší (3,33 místo 3,24), protože výběrová směrodatná odchylka 14,6 s je o něco menší než modelových 15 s. *p*-hodnota se téměř nezměnila: při 198 stupních volnosti je t-rozdělení normálnímu velmi blízko.
+
+### Výpočet v Excelu {#sec-klasicky-excel}
+
+List `Klasicky_test` počítá test ze souhrnů. Výchozí vstupy jsou souhrny parkovací studie; po jejich změně jej můžete použít pro jiné dvě skupiny.
+
+::: {.table-scroll .chapter-08-wide role="region" aria-label="Excel: klasický t-test na listu Klasicky_test" tabindex="0"}
+
+| Buňka | Význam | Hodnota nebo český vzorec | Výsledek |
+|---|---|---|---:|
+| B2:B4 | $m_1$, $s_1$, $n_1$ | `39,03`, `14,6`, `100` | — |
+| B5:B7 | $m_2$, $s_2$, $n_2$ | `32,15`, `14,6`, `100` | — |
+| B8 | Hladina spolehlivosti | `0,95` | 0,95 |
+| B10 | Rozdíl průměrů | `=B2-B5` | 6,88 |
+| B11 | Společný odhad rozptylu $s_p^2$ | `=((B4-1)*B3^2+(B7-1)*B6^2)/(B4+B7-2)` | 213,16 |
+| B12 | Společná směrodatná odchylka $s_p$ | `=ODMOCNINA(B11)` | 14,6 |
+| B13 | Odhad směrodatné chyby rozdílu | `=B12*ODMOCNINA(1/B4+1/B7)` | 2,0648 |
+| B14 | Stupně volnosti | `=B4+B7-2` | 198 |
+| B15 | Testová statistika $t$ | `=B10/B13` | 3,3321 |
+| B16 | *p*-hodnota oboustranně | `=T.DIST.2T(ABS(B15);B14)` | 0,0010 |
+| B17 | Kvantil t-rozdělení | `=T.INV(1-(1-B8)/2;B14)` | 1,9720 |
+| B18 | Dolní mez | `=B10-B17*B13` | 2,81 |
+| B19 | Horní mez | `=B10+B17*B13` | 10,95 |
+| B20 | Cohenovo d | `=B10/B12` | 0,4712 |
+
+: Klasický t-test pro dva nezávislé výběry v Excelu {#tbl-k08-05}
+
+:::
+
+Buňce B20 se budeme věnovat v [oddílu o velikosti rozdílu](#sec-cohenovo-d). Máte-li jednotlivé hodnoty, vrátí *p*-hodnotu klasického testu také `=T.TEST(oblast1;oblast2;2;2)`.
+
+## Welchova varianta a srovnání obou postupů {#sec-welch}
+
+Co když se rozptyly obou populací liší? Oddíl ukazuje variantu testu, která shodu rozptylů nepředpokládá, a srovnává ji s klasickým postupem.
+
+### Když se rozptyly skupin liší {#sec-ruzne-rozptyly}
+
+Výzkumnice provedla také variantu B. Skupina po běžném spánku měla 30 studentů, skupina po krátkém spánku jen 12, protože se do ní přihlásilo méně lidí, než plánovala. Data jsou na listu `Spanek_skupiny` (A2:A31 a B2:B13).
+
+::: {.table-scroll role="region" aria-label="Souhrny dvou skupin ve variantě B" tabindex="0"}
+
+| Skupina | $n$ | Průměr (body) | Směrodatná odchylka (body) |
+|---|---:|---:|---:|
+| Po běžném spánku | 30 | 50,00 | 7,97 |
+| Po krátkém spánku | 12 | 42,00 | 14,00 |
+
+: Souhrny skupin ve variantě B {#tbl-k08-06}
+
+:::
+
+Skupina po krátkém spánku je nejen menší, ale také téměř dvakrát rozptýlenější. To může mít věcný důvod: krátký spánek nemusí všechny studenty postihnout stejně. Někdo ho snese bez potíží, jiný se nesoustředí vůbec. Levá část obrázku [-@fig-dve-skupiny] ukazuje, že hodnoty krátce spících studentů sahají od 23 do 59 bodů.
+
+::: {.teaching-figure role="region" aria-label="Dvě skupiny variant B a intervaly pro rozdíl dvěma postupy" tabindex="0"}
+
+![Vlevo hodnoty obou skupin: skupina po krátkém spánku je menší a mnohem rozptýlenější. Vpravo 95% intervaly pro rozdíl průměrů. Klasický test s jedním společným rozptylem dává užší interval, který nulu nezahrnuje; Welchův test, který rozptyly odhaduje zvlášť, dává interval širší a nulu zahrnuje.](../assets/chapter-08/plots/dve-skupiny.svg){#fig-dve-skupiny fig-alt="Dva grafy. Vlevo krabicové grafy s jednotlivými body pro skupinu po běžném spánku, 30 studentů se skóry asi od 36 do 69 bodů soustředěnými kolem 50, a pro skupinu po krátkém spánku, 12 studentů se skóry od 23 do 59 bodů. Vpravo dvě vodorovné úsečky 95% intervalu pro rozdíl průměrů běžný minus krátký spánek se středem 8 bodů: klasický test od 1,10 do 14,90, Welchův test od minus 1,22 do 17,22. Svislá přerušovaná čára u nuly."}
+
+:::
+
+Klasický test by z těchto dat dal $s_p\approx10{,}00$ bodu, odhad směrodatné chyby rozdílu 3,415 bodu, $t\approx2{,}34$ se 40 stupni volnosti, *p*-hodnotu 0,024 a 95% interval (1,10; 14,90) bodu. Rozdíl by vyšel statisticky významný. Jeho předpoklad shody rozptylů tu ale zjevně neplatí, a společný odhad rozptylu proto nemá jasný význam: průměruje dvě různá čísla. Protože má větší váhu velká a málo rozptýlená skupina, vyjde $s_p$ malá. Tím podcení nejistotu průměru malé a rozptýlené skupiny, která k nejistotě rozdílu přispívá nejvíc.
+
+### Welchův t-test {#sec-welchuv-test}
+
+**Welchův t-test** (*Welch's t-test*), někdy také t-test pro nestejné rozptyly, rozptyly nespojuje. Odhad směrodatné chyby rozdílu počítá přímo z obou výběrových rozptylů, vzorcem z [oddílu o rozdílu průměrů](#sec-rozdil-nezavislych):
+
+$$s_{m_1-m_2}=\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}=\sqrt{\frac{7{,}97^2}{30}+\frac{14{,}00^2}{12}}\approx\sqrt{2{,}117+16{,}333}\approx4{,}295\ \text{bodu}.$$
+
+Z obou sčítanců je vidět, kdo nejistotu určuje: průměr malé rozptýlené skupiny přispívá rozptylem 16,3, průměr velké skupiny jen 2,1. Testová statistika je
+
+$$t=\frac{50{,}00-42{,}00}{4{,}295}\approx1{,}86.$$
+
+Statistika už nemá přesně t-rozdělení s $n_1+n_2-2$ stupni volnosti. Dobře ji ale přibližuje t-rozdělení s upraveným počtem stupňů volnosti, který spočítáme z obou výběrových rozptylů a velikostí skupin; vzorec ukazuje [nepovinné rozšíření](#rozsireni-welch-stupne). Takový počet stupňů volnosti zpravidla není celé číslo. Leží vždy mezi počtem stupňů volnosti menší skupiny ($12-1=11$) a $n_1+n_2-2=40$; čím víc nejistotu určuje jediná skupina, tím blíž je k její hodnotě. V našem příkladu je přibližně 13,95.
+
+S 13,95 stupni volnosti je oboustranná *p*-hodnota přibližně 0,084 a kvantil $t_{0{,}975\,(v=13{,}95)}\approx2{,}146$. 95% interval pro rozdíl je
+
+$$8{,}00\pm2{,}146\times4{,}295=8{,}00\pm9{,}22=(-1{,}22;\ 17{,}22)\ \text{bodu}.$$
+
+**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu shodných populačních průměrů nezamítáme. **Věcná interpretace:** skupina po krátkém spánku měla v průměru o 8 bodů nižší skór. Odhad je ale velmi nepřesný: s daty jsou slučitelné rozdíly od mírně opačného směru až po pokles o 17 bodů. Hlavní příčinou je malá a rozptýlená skupina po krátkém spánku. Nezamítnutí [neznamená](kapitola_06.qmd#sec-nezamitnuti), že se skupiny neliší; studie jen rozdíl nedokázala odhadnout dost přesně.
+
+Pravá část obrázku [-@fig-dve-skupiny] staví oba intervaly vedle sebe. Na středu se postupy shodují, liší se šířkou. Klasický interval je užší, protože vychází z podceněné nejistoty.
+
+### Výpočet v Excelu {#sec-welch-excel}
+
+Výpočet je na listu `Welch`; souhrny skupin počítá z dat na listu `Spanek_skupiny`.
+
+::: {.table-scroll .chapter-08-wide role="region" aria-label="Excel: Welchův t-test na listu Welch" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| B2 | $m_1$, běžný spánek | `=PRŮMĚR(Spanek_skupiny!A2:A31)` | 50 |
+| B3 | $s_1$ | `=SMODCH.VÝBĚR.S(Spanek_skupiny!A2:A31)` | 7,9698 |
+| B4 | $n_1$ | `=POČET(Spanek_skupiny!A2:A31)` | 30 |
+| B5:B7 | $m_2$, $s_2$, $n_2$, krátký spánek | obdobně pro `Spanek_skupiny!B2:B13` | 42; 14; 12 |
+| B8 | Hladina spolehlivosti | `0,95` | 0,95 |
+| B10 | Rozdíl průměrů | `=B2-B5` | 8 |
+| B11 | Odhad směrodatné chyby rozdílu | `=ODMOCNINA(B3^2/B4+B6^2/B7)` | 4,2954 |
+| B12 | Welchovy stupně volnosti | `=(B3^2/B4+B6^2/B7)^2/((B3^2/B4)^2/(B4-1)+(B6^2/B7)^2/(B7-1))` | 13,948 |
+| B13 | Testová statistika $t$ | `=B10/B11` | 1,8625 |
+| B14 | *p*-hodnota oboustranně | `=T.TEST(Spanek_skupiny!A2:A31;Spanek_skupiny!B2:B13;2;3)` | 0,0837 |
+| B15 | Kvantil t-rozdělení | `=ODMOCNINA(B12*(1-BETA.INV(1-B8;B12/2;0,5))/BETA.INV(1-B8;B12/2;0,5))` | 2,1455 |
+| B16 | Dolní mez | `=B10-B15*B11` | −1,22 |
+| B17 | Horní mez | `=B10+B15*B11` | 17,22 |
+| B19 | Pro srovnání: *p*-hodnota klasického testu | `=T.TEST(Spanek_skupiny!A2:A31;Spanek_skupiny!B2:B13;2;2)` | 0,0242 |
+| B20 | Pro srovnání: T.INV.2T se zkrácenými stupni volnosti | `=T.INV.2T(1-B8;B12)` | 2,1604 |
+
+: Welchův t-test v Excelu {#tbl-k08-07}
+
+:::
+
+Na Welchův test pozor v Excelu. Funkce T.INV, T.INV.2T i T.DIST.2T počet stupňů volnosti před výpočtem zkrátí na celé číslo: místo 13,95 počítají s 13. Buňka B20 ukazuje, že by pak kvantil vyšel 2,160 místo 2,146 a interval by nepatřil k témuž testu, jehož *p*-hodnotu vrací T.TEST typu 3. Ta s neceločíselnými stupni volnosti počítá správně. Kvantil proto list počítá v B15 pomocným vzorcem s funkcí **BETA.INV** (anglicky také BETA.INV). Funkce patří k jinému rozdělení, rozdělení beta, s neceločíselnými stupni volnosti však počítá přesně, a vzorec v B15 tak vrací tentýž kvantil t-rozdělení, jaký by vrátila funkce T.INV.2T bez zkrácení. Vzorec nemusíte odvozovat ani si ho pamatovat; stačí vědět, k čemu slouží. U klasického testu tento problém nevzniká, protože $n_1+n_2-2$ je vždy celé číslo.
+
+### Kterou variantu zvolit {#sec-volba-varianty}
+
+Klasický test jsme vyložili jako první, protože z něj přirozeně vyplývá společná směrodatná odchylka, kterou potřebujeme pro [Cohenovo d](#sec-cohenovo-d). Pořadí výkladu ale automaticky neurčuje, který postup je v praxi lepší. Shrňme, čím se liší:
+
+- **Stejně velké skupiny.** Odhad směrodatné chyby rozdílu i testová statistika *t* vyjdou oběma postupy stejně. Při rozdílných rozptylech se ale mohou lišit stupně volnosti, a tím i *p*-hodnota a interval. Při podobných rozptylech jsou rozdíly zanedbatelné; parkovací studie dává oběma postupy stejný výsledek.
+- **Rozdílně velké skupiny a rozdílné rozptyly.** Postupy se mohou lišit výrazně, jak ukázala varianta B. Má-li menší skupina větší rozptyl, klasický test nejistotu podceňuje a nulovou hypotézu zamítá častěji, než odpovídá zvolené hladině. Má-li menší skupina rozptyl menší, je klasický test naopak zbytečně opatrný.
+- **Shodné rozptyly.** Platí-li předpoklad klasického testu, ztrácí Welchův test jen málo.
+
+Howell [-@howell, s. 219] proto po přehledu simulačních studií doporučuje pracovat s odděleně odhadnutými rozptyly, tedy s Welchovým testem, i v situacích, kde se dříve klasický test považoval za vhodný. Rozhodnutí podle předběžného testu shody rozptylů, kdy se nejdřív testuje shoda a podle jeho výsledku se zvolí klasický, nebo Welchův test, se nedoporučuje. Takový test na začátku nefunguje jako spolehlivý „vrátný“: u malých skupin rozdíl rozptylů často neodhalí a u velkých odhalí i nevýznamný rozdíl. Postup proto zvolíme předem a zdůvodníme ho.
+
+Rozdílné rozptyly navíc nejsou jen technická překážka. Mohou být samy důležitým zjištěním [@howell, s. 219–220]. Ve variantě B naznačují, že krátký spánek postihuje studenty velmi různě. Taková informace může být pro praxi zajímavější než samotný rozdíl průměrů.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: Welchovy stupně volnosti" #rozsireni-welch-stupne}
+Počet stupňů volnosti Welchova testu se počítá Welchovou–Satterthwaiteovou aproximací:
+
+$$v=\frac{\left(\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1}+\dfrac{(s_2^2/n_2)^2}{n_2-1}}.$$
+
+V čitateli je druhá mocnina odhadu rozptylu rozdílu, ve jmenovateli součet druhých mocnin obou sčítanců, každý vydělený počtem stupňů volnosti své skupiny. Pro variantu B: $a=7{,}97^2/30\approx2{,}117$ a $b=14{,}00^2/12\approx16{,}333$, takže
+
+$$v=\frac{(2{,}117+16{,}333)^2}{2{,}117^2/29+16{,}333^2/11}\approx\frac{340{,}4}{0{,}155+24{,}25}\approx13{,}95.$$
+
+Jmenovatel téměř celý tvoří příspěvek malé skupiny; proto je výsledek blízko jejím 11 stupňům volnosti. Kdyby obě skupiny přispívaly stejně, blížil by se výsledek $n_1+n_2-2$. Výsledek se nezaokrouhluje.
+:::
+
+## Předpoklady a odolnost porovnání průměrů {#sec-predpoklady-08}
+
+Za jakých podmínek platí *p*-hodnoty a intervaly z této kapitoly? Oddíl shrnuje předpoklady obou postupů a ukazuje, co z nich je pro výsledek nejdůležitější.
+
+Všechny postupy kapitoly vycházejí z t-rozdělení a jejich předpoklady jsou obdobou předpokladů [jednovýběrového t-testu](kapitola_07.qmd#sec-t-predpoklady):
+
+::: {.table-scroll role="region" aria-label="Předpoklady párového a nezávislých t-testů" tabindex="0"}
+
+| Předpoklad | Párový t-test | Klasický t-test | Welchův t-test |
+|---|---|---|---|
+| Nezávislost | Dvojice jsou navzájem nezávislé | Hodnoty jsou nezávislé uvnitř skupin i mezi nimi | Totéž jako klasický |
+| Tvar rozdělení | Rozdíly přibližně normální | Obě populace přibližně normální | Obě populace přibližně normální |
+| Rozptyly | — | Shodné v obou populacích | Mohou se lišit |
+
+: Předpoklady postupů porovnání dvou průměrů {#tbl-k08-08}
+
+:::
+
+**Nezávislost** je nejdůležitější a statistickým výpočtem se neopraví. U párového testu znamená, že dvojice spolu nesouvisejí: například že studenti nevyplňovali test ve skupinkách, kde se navzájem ovlivňovali. U nezávislých skupin znamená navíc, že žádný člověk není v obou skupinách a že mezi skupinami nevznikly dvojice. Právě tento předpoklad porušuje analýza párových dat jako nezávislých.
+
+**Normalita** se u párového testu týká **rozdílů**, nikoli obou měření zvlášť. Rozdíly mohou mít přibližně normální rozdělení, i když skóry samotné normální nejsou, a naopak. U nezávislých skupin se týká obou populací. Postupy jsou vůči odchylkám od normality poměrně odolné, zvlášť u větších skupin a souměrných rozdělení. Potíže mohou nastat u malých skupin s výrazně zešikmeným rozdělením, zvlášť když jsou obě skupiny zešikmené opačným směrem; tehdy je bezpečné, jen pokud jsou si rozptyly a velikosti skupin podobné [@howell, s. 219]. Data proto před výpočtem prohlédneme: u párových dat [krabicový graf](kapitola_03.qmd#sec-boxplot) nebo [Q–Q graf](kapitola_04.qmd#sec-qq-graf) rozdílů, u nezávislých skupin graf obou skupin vedle sebe jako na obrázku [-@fig-dve-skupiny].
+
+**Shoda rozptylů** je předpokladem jen klasického testu; co dělat, když neplatí, rozebral předchozí oddíl.
+
+Žádný z předpokladů se netýká toho, **jak se lidé do studie dostali**. Výpočet nezachytí [zkreslení výběru](kapitola_07.qmd#sec-interval-predpoklady) ani systematickou chybu měření. A o příčině rozdílu mezi nezávislými skupinami rozhoduje to, zda byli lidé do skupin náhodně přiřazeni, nikoli volba testu. Ve variantě B výzkumnice studenty do skupin náhodně rozdělila; v parkovací studii skupiny vznikly pozorováním.
+
+## Jak velký je rozdíl: původní jednotky a Cohenovo d {#sec-cohenovo-d}
+
+Jak sdělit, zda je rozdíl velký? Oddíl ukazuje vyjádření v původních jednotkách a standardizovaný rozdíl, Cohenovo d, a u párových dat vysvětluje, proč musíme uvést, kterou směrodatnou odchylku jsme použili.
+
+### Rozdíl v původních jednotkách {#sec-rozdil-jednotky}
+
+Nejpřímější vyjádření velikosti rozdílu je samotný rozdíl průměrů v jednotkách měření, s intervalem spolehlivosti. Jak jsme viděli v [kapitole 6](kapitola_06.qmd#sec-velikost-ucinku-jednotky), dává smysl tam, kde jednotky něco znamenají. Přírůstek 3,3 kg u dívek s anorexií si dokážeme představit a můžeme ho porovnat s jejich výchozí hmotností kolem 38 kg [@howell, s. 203]. Zpoždění odjezdu o 7 s také.
+
+U psychologických škál je to obtížnější. Co znamená pokles skóru pozornosti o 3,5 bodu? Bez znalosti škály to nevíme. Pomůže informace, jak se lidé na škále obvykle liší, tedy standardizace.
+
+### Cohenovo d pro nezávislé skupiny {#sec-d-nezavisle}
+
+**Cohenovo d** (*Cohen's d*) je [standardizovaný rozdíl průměrů](kapitola_06.qmd#rozsireni-standardizovany-rozdil): rozdíl průměrů vydělený směrodatnou odchylkou jednotlivých hodnot. Pro dvě nezávislé skupiny používáme společnou směrodatnou odchylku z [klasického postupu](#sec-spolecny-rozptyl):
+
+$$d=\frac{m_1-m_2}{s_p}.$$
+
+Pro parkovací studii $d=6{,}88/14{,}6\approx0{,}47$: řidiči s čekajícím autem odjížděli v průměru o necelou polovinu směrodatné odchylky doby odjezdu déle. Na listu `Klasicky_test` je d v buňce B20.
+
+Ve jmenovateli je **směrodatná odchylka jednotlivých hodnot**, ne směrodatná chyba. Proto d nezávisí na velikosti výběru tak jako testová statistika $t$: dvojnásobný výběr by $t$ zvětšil zhruba $\sqrt2$krát, d by zůstalo přibližně stejné. d popisuje velikost rozdílu vzhledem k tomu, jak se liší jednotliví lidé; o tom, jak přesně jsme rozdíl odhadli, neříká nic. I d je odhad, který mezi výběry kolísá; výpočet jeho intervalu spolehlivosti je složitější a v této kapitole jej neprovádíme.
+
+Smysl společné směrodatné odchylky stojí na předpokladu shodných rozptylů. Liší-li se rozptyly skupin výrazně, jako ve variantě B, je $s_p$ průměrem dvou různých čísel. Pak je lepší d vztáhnout k jedné zvolené skupině, nejčastěji kontrolní, a ve zprávě to výslovně uvést [@howell, s. 213].
+
+### Párová data: kterou směrodatnou odchylku? {#sec-d-parova}
+
+U párových dat se nabízejí dvě směrodatné odchylky a každá vede k d s jiným významem. Ukažme to na dívkách s anorexií:
+
+- Vydělíme-li průměrnou změnu 3,30 kg **směrodatnou odchylkou hmotnosti před terapií** (2,28 kg), dostaneme $d\approx1{,}45$. To říká: průměrná změna odpovídá téměř jednomu a půl násobku toho, jak se dívky lišily hmotností na začátku. Takto standardizovaný rozdíl můžeme porovnat se studií, která měřila tutéž veličinu u dvou nezávislých skupin. Tuto volbu používá Howell [-@howell, s. 203–204].
+- Vydělíme-li průměrnou změnu **směrodatnou odchylkou změn** (3,25 kg), dostaneme 1,01. To říká, jak velká je průměrná změna vzhledem k tomu, jak se liší změny jednotlivých dívek. Číslo závisí na tom, jak spolu obě měření souvisejí, a při silné souvislosti může být mnohem větší než první varianta.
+
+Obě čísla jsou spočítána správně, ale odpovídají na jiné otázky. Literatura navíc používá i další varianty, například průměr směrodatných odchylek obou měření [@howell, s. 204], a ne vždy je jasně pojmenovává. Proto u párových dat **vždy uvádíme, kterou směrodatnou odchylku jsme ve jmenovateli použili**, a d z různých studií porovnáváme jen tehdy, když bylo spočítáno stejně.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: varianty standardizace, Hedgesova korekce a Cohenova pásma" #rozsireni-standardizace-08}
+**Varianty u párových dat.** Pro průměrnou změnu $m_D$ se používají nejméně tři jmenovatele:
+
+- směrodatná odchylka výchozího měření (před zásahem), jak ji použil Howell: vhodná, když chceme změnu vyjádřit v jednotkách výchozího rozdílu mezi lidmi;
+- průměr směrodatných odchylek obou měření: obdoba společné směrodatné odchylky nezávislých skupin;
+- směrodatná odchylka rozdílů $s_D$: vyjadřuje velikost změny vůči rozdílům ve změnách. V literatuře se pro ni používá označení $d_z$.
+
+Pro dívky s anorexií dávají první a třetí varianta 1,45 a 1,01. Druhá potřebuje i směrodatnou odchylku hmotnosti po terapii a vyšla by jinak než obě předchozí.
+
+**Hedgesova korekce.** Výběrové d u malých výběrů v průměru mírně přeceňuje populační hodnotu. Korekce, kterou navrhl Hedges, ho zmenšuje násobením přibližně $1-3/(4v-1)$, kde $v$ je počet stupňů volnosti použité směrodatné odchylky (u nezávislých skupin $n_1+n_2-2$). Pro parkovací studii se 198 stupni volnosti je korekce zanedbatelná, $0{,}47\times0{,}996$. Pro dvě skupiny po deseti lidech (18 stupňů volnosti) by d zmenšila asi o 4 %. Korigovaná hodnota se často označuje *g*. Názvy *d* a *g* se ale v literatuře používají nejednotně [@howell, s. 203 a 213], a je proto třeba uvést, co přesně bylo spočítáno.
+
+**Cohenova pásma.** Jak víme z [kapitoly 6](kapitola_06.qmd#rozsireni-standardizovany-rozdil), Cohen navrhl hodnoty d přibližně 0,2, 0,5 a 0,8 jako orientační hranice malého, středního a velkého účinku a sám je považoval jen za hrubé vodítko pro případy, kdy chybí lepší podklad [@howell, s. 214]. U párových dat platí pásma nanejvýš pro d spočítané se směrodatnou odchylkou jednotlivých hodnot; $d_z$ je na jiné škále a s pásmy se srovnávat nedá.
+:::
+
+## Dva intervaly vedle sebe nejsou interval rozdílu {#sec-dva-intervaly}
+
+Co se dozvíme z grafu, který ukazuje průměry dvou skupin s jejich intervaly spolehlivosti? Oddíl ukazuje, proč se z překrývání intervalů nedá spolehlivě usuzovat na rozdíl a proč rozdíl posuzujeme jeho vlastním intervalem.
+
+Ve výzkumných zprávách se často objevují grafy jako levá část obrázku [-@fig-intervaly-vedle-sebe]: dva průměry, každý se svým 95% intervalem. Jde o dvě skupiny po 25 studentech po krátkém a po běžném spánku, s průměry 46 a 52 body a výběrovou směrodatnou odchylkou 10 bodů v obou skupinách. Intervaly obou průměrů jsou (41,87; 50,13) a (47,87; 56,13) bodu. Překrývají se: rozmezí 47,87 až 50,13 bodu leží v obou.
+
+::: {.teaching-figure role="region" aria-label="Intervaly dvou podmínek a interval rozdílu" tabindex="0"}
+
+![Vlevo dvě nezávislé skupiny po 25 studentech: 95% intervaly průměrů se překrývají (šedé pásmo), a přesto 95% interval rozdílu nulu nezahrnuje. Vpravo párová data z varianty A: intervaly obou podmínek se překrývají ještě víc, ale interval průměrného párového rozdílu leží daleko od nuly.](../assets/chapter-08/plots/intervaly-vedle-sebe.svg){#fig-intervaly-vedle-sebe fig-alt="Čtyři úzké panely vedle sebe. První: dvě svislé úsečky 95% intervalů průměru skóru pro krátký spánek, od 41,9 do 50,1 s průměrem 46, a pro běžný spánek, od 47,9 do 56,1 s průměrem 52; šedé vodorovné pásmo vyznačuje jejich překryv mezi 47,9 a 50,1. Druhý: interval rozdílu průměrů od 0,3 do 11,7 se středem 6 a přerušovaná čára u nuly, kterou interval nezahrnuje. Třetí: intervaly tíž studentů po krátkém spánku, od 42,8 do 50,9, a po běžném, od 45,7 do 55,0, se širokým překryvem. Čtvrtý: interval párového rozdílu od 1,98 do 5,02 nad nulou."}
+
+:::
+
+Kdo by usuzoval podle překryvu, mohl by soudit, že se průměry statisticky významně neliší. Klasický t-test ale dává $t\approx2{,}12$ se 48 stupni volnosti, *p*-hodnotu 0,039 a 95% interval pro rozdíl (0,31; 11,69) bodu, který nulu nezahrnuje. Proč? U nezávislých skupin se sčítají rozptyly obou odhadů, ne jejich mezní chyby. V našem příkladu je mezní chyba každého z obou intervalů 4,13 bodu, jejich součet 8,26 bodu, ale mezní chyba intervalu pro rozdíl jen $2{,}011\times2{,}828\approx5{,}69$ bodu. Intervaly se tak mohou o kus překrývat, i když se průměry statisticky významně liší. Jak velký překryv je s průkazným rozdílem slučitelný, závisí navíc na velikostech skupin, jejich rozptylech a použitých kvantilech a stupních volnosti; jednoduché obecné pravidlo pro šířky intervalů proto neuvádíme.
+
+U párových dat je situace ještě jednoznačnější. Pravá část obrázku [-@fig-intervaly-vedle-sebe] ukazuje intervaly tíž dvanácti studentů po krátkém a po běžném spánku z varianty A. Překrývají se téměř celé, a přesto interval průměrného párového rozdílu, (1,98; 5,02) bodu, leží daleko od nuly. Samostatné intervaly obou podmínek nestačí k určení intervalu párového rozdílu: chybí v nich informace o tom, jak spolu hodnoty uvnitř dvojic souvisejí. Z grafu dvou intervalů ji nevyčteme.
+
+::: {.callout-warning title="Častý omyl: „intervaly se překrývají, tedy se průměry neliší“"}
+Překryv 95% intervalů dvou nezávislých skupin neznamená, že rozdíl není statisticky významný; u párových dat z intervalů obou podmínek interval rozdílu určit nelze. Správně: o rozdílu rozhodujeme podle **intervalu pro rozdíl** (nebo podle odpovídajícího testu). Pro skupiny po 25 studentech: „Průměrný skór byl po krátkém spánku o 6 bodů nižší, 95% interval pro rozdíl (0,31; 11,69) bodu.“
+:::
+
+Grafy průměrů s intervaly jsou užitečné: ukazují, kde průměry leží a jak přesně jsou odhadnuté. Na otázku po rozdílu ale odpovídá jen interval rozdílu. Pokud je rozdíl hlavním výsledkem, zobrazíme ho přímo.
+
+## Změna ve dvou skupinách: intervence a kontrola {#sec-zmena-dvou-skupin}
+
+Jak zjistit, zda zásah přinesl víc než samotné plynutí času? Oddíl spojuje oba typy uspořádání: změnu počítáme u každého člověka a změny pak porovnáme mezi skupinami.
+
+### Řešený příklad: trénink pozornosti {#sec-trenink}
+
+U příkladu anorexie jsme viděli, že párový test měření před a po sám neodliší účinek zásahu od jiných vlivů. Výzkumnice proto naplánovala studii s kontrolní skupinou. 32 studentů náhodně rozdělila na dvě skupiny po 16. Všichni napsali test pozornosti, jedna skupina pak čtyři týdny trénovala soustředění a druhá žila jako obvykle. Po čtyřech týdnech všichni napsali test znovu. Data jsou na listu `Trenink` (A2:D33).
+
+Postup má dva kroky:
+
+1. **Párový krok uvnitř skupin.** U každého studenta spočítáme změnu „po minus před“. Každý student má teď jediné číslo.
+2. **Nezávislý krok mezi skupinami.** Změny trénované a kontrolní skupiny porovnáme t-testem pro dva nezávislé výběry.
+
+Kontrolní skupina zachytí všechno, co se za čtyři týdny mohlo stát i bez tréninku: efekt učení z prvního testu, únavu na konci semestru, změnu ročního období. Účinek tréninku odhadujeme rozdílem průměrných změn.
+
+::: {.table-scroll role="region" aria-label="Změna pozornosti ve dvou skupinách" tabindex="0"}
+
+| Skupina | $n$ | Průměrná změna (body) | Směrodatná odchylka změn | $t$ | *p*-hodnota | 95% interval změny |
+|---|---:|---:|---:|---:|---:|---|
+| Trénink | 16 | 4,00 | 6,82 | 2,35 | 0,033 | (0,37; 7,63) |
+| Kontrola | 16 | 2,00 | 5,73 | 1,40 | 0,183 | (−1,05; 5,05) |
+| Rozdíl změn | — | 2,00 | — | 0,90 | 0,376 | (−2,55; 6,55) |
+
+: Změny ve skupinách a jejich rozdíl {#tbl-k08-09}
+
+:::
+
+::: {.table-note}
+Řádky skupin jsou párové t-testy změny uvnitř skupiny (15 stupňů volnosti). Řádek rozdílu změn je klasický t-test pro dva nezávislé výběry změn s $s_p\approx6{,}30$ bodu a 30 stupni volnosti; Welchův test dává při stejně velkých skupinách téměř stejný výsledek.
+:::
+
+V trénované skupině se pozornost v průměru zlepšila o 4 body a párový test tuto změnu označuje za statisticky významnou. V kontrolní skupině se zlepšila o 2 body a test ji za statisticky významnou neoznačuje. Láká závěr: „Trénink funguje, protože jen v trénované skupině došlo k významnému zlepšení.“ Takový závěr ale není oprávněný.
+
+### Rozdíl změn posoudíme přímo {#sec-rozdil-zmen}
+
+Otázka, zda trénink pomohl, se týká **rozdílu změn** mezi skupinami. Ten je 2 body, s odhadem směrodatné chyby 2,23 bodu, $t\approx0{,}90$ a *p*-hodnotou 0,376. 95% interval (−2,55; 6,55) bodu zahrnuje nulu i rozdíly v řádu několika bodů oběma směry. Data neposkytují dostatečný doklad, že se trénovaná skupina zlepšila víc než kontrolní.
+
+Statisticky významná změna v jedné skupině a nevýznamná změna ve druhé samy nedokládají, že se změny mezi skupinami liší. Rozdíl změn musíme posoudit přímo. Hranice 0,05 mezi „významným“ a „nevýznamným“ výsledkem může oddělit dvě změny, které se samy liší jen málo. Gelman a Stern [-@gelman2006, s. 328] to ukazují na dvou odhadech 25 a 10 se směrodatnou chybou 10: první je statisticky významný, druhý ne, ale jejich rozdíl 15 má směrodatnou chybu přibližně 14 a statisticky významný není.
+
+::: {.teaching-figure role="region" aria-label="Intervaly změny ve dvou skupinách a jejich rozdílu" tabindex="0"}
+
+![Interval změny v trénované skupině nezahrnuje nulu, interval změny v kontrolní skupině ano. Interval rozdílu změn, na kterém závisí závěr o tréninku, je široký a nulu zahrnuje.](../assets/chapter-08/plots/zmeny-skupin.svg){#fig-zmeny-skupin fig-alt="Tři vodorovné úsečky 95% intervalů na ose v bodech od minus 4 do 10 se svislou přerušovanou čarou u nuly. Nahoře změna v trénované skupině od 0,37 do 7,63 s průměrem 4, p rovno 0,033. Uprostřed změna v kontrolní skupině od minus 1,05 do 5,05 s průměrem 2, p rovno 0,183. Dole rozdíl změn od minus 2,55 do 6,55 s průměrem 2, p rovno 0,376."}
+
+:::
+
+Obrázek [-@fig-zmeny-skupin] ukazuje, proč mohou dva samostatné testy klamat. Interval změny trénované skupiny leží těsně nad nulou, interval kontrolní skupiny těsně ji zahrnuje. Oba intervaly se přitom z velké části překrývají a rozdíl jejich středů, 2 body, je malý vůči nejistotě obou odhadů.
+
+**Rozhodnutí testu:** na hladině 0,05 nezamítáme nulovou hypotézu, že se populační průměrné změny obou skupin neliší. **Věcná interpretace:** trénovaná skupina se zlepšila v průměru o 2 body víc než kontrolní, ale odhad je velmi nepřesný; s daty jsou slučitelné jak zanedbatelné či mírně opačné účinky, tak zlepšení o víc než 6 bodů. Studie s 16 studenty v každé skupině účinek tréninku nedokázala odhadnout dost přesně. Protože byli studenti do skupin náhodně přiřazeni, by se případný průkazný rozdíl změn dal připsat tréninku; to je výhoda tohoto uspořádání oproti samotnému měření před a po.
+
+V sešitu je výpočet na listu `Zmeny`. Změny jednotlivých studentů jsou v oblasti F2:F33; buňky B2:B22 obsahují souhrny a párové testy obou skupin a test rozdílu změn.
+
+## Jsou dvě podmínky prakticky rovnocenné? Ekvivalence dvou skupin {#sec-ekvivalence-skupin}
+
+Jak doložit, že se dvě podmínky liší jen zanedbatelně? Oddíl přenáší test ekvivalence z kapitoly 7 z porovnání s pevnou normou na porovnání dvou skupin.
+
+V [kapitole 7](kapitola_07.qmd#sec-pasmo-ekvivalence) vydavatel porovnával online verzi testu s pevnou normou 50 bodů. Norma ale vznikla na papírové verzi, v jiné době a na jiných lidech. Přímější je porovnat obě verze ve stejné studii. Vydavatel proto náhodně rozdělil 400 studentů na dvě skupiny po 200: jedna psala online verzi, druhá papírovou.
+
+Otázka teď zní: **leží rozdíl populačních průměrů obou verzí v pásmu ekvivalence?** Hranice zdůvodnil stejně jako v kapitole 7: posun průměru o víc než 3 body by podle předem provedené úvahy příliš změnil podíl lidí, kterým se doporučuje další diagnostika. Před analýzou proto stanovil hranice ekvivalence pro rozdíl $\mathrm{μ}_{\text{online}}-\mathrm{μ}_{\text{papír}}$ na $-3$ a $+3$ body. Hypotézy mají stejnou stavbu jako v [kapitole 7](kapitola_07.qmd#sec-test-ekvivalence), jen místo $\mathrm{μ}-\mathrm{μ}_0$ vystupuje rozdíl dvou populačních průměrů:
+
+$$H_0{:}\ \mathrm{μ}_{\text{online}}-\mathrm{μ}_{\text{papír}}\le-3\ \ \text{nebo}\ \ \mathrm{μ}_{\text{online}}-\mathrm{μ}_{\text{papír}}\ge3,\qquad H_1{:}\ -3<\mathrm{μ}_{\text{online}}-\mathrm{μ}_{\text{papír}}<3.$$
+
+Žádnou novou teorii nepotřebujeme. Dva jednostranné testy na hladině 0,05 doloží ekvivalenci právě tehdy, když **90% interval pro rozdíl** leží celý mezi hranicemi, případně se některé z nich přesně dotýká. Test rozdílu na hladině 0,05 posuzujeme 95% intervalem pro rozdíl.
+
+Online verze dala průměr 49,2 bodu, papírová 50,1 bodu, výběrová směrodatná odchylka byla v obou skupinách 10 bodů. Rozdíl je $-0{,}9$ bodu, odhad směrodatné chyby rozdílu $10\times\sqrt{1/200+1/200}=1{,}0$ bodu a stupňů volnosti 398. Odtud:
+
+- 95% interval pro rozdíl: $-0{,}9\pm1{,}966\times1{,}0=(-2{,}87;\ 1{,}07)$ bodu. Zahrnuje nulu, *p*-hodnota testu rozdílu je 0,369. Rozdíl není statisticky významný.
+- 90% interval pro rozdíl: $-0{,}9\pm1{,}649\times1{,}0=(-2{,}55;\ 0{,}75)$ bodu. Leží celý mezi −3 a 3. **Ekvivalence je doložena.**
+
+Obrázek [-@fig-ekvivalence-skupin] ukazuje oba intervaly vůči pásmu ekvivalence. Kdyby měla studie jen 30 studentů v každé skupině se stejnými průměry a směrodatnými odchylkami, byl by odhad směrodatné chyby 2,58 bodu. 95% interval (−6,07; 4,27) by opět zahrnoval nulu, ale 90% interval (−5,22; 3,42) by přesahoval obě hranice. Ekvivalence by doložena nebyla a výsledek by byl nerozhodný: data by byla slučitelná s nulovým rozdílem i s rozdíly za hranicemi.
+
+::: {.teaching-figure role="region" aria-label="Intervaly rozdílu dvou studií vůči pásmu ekvivalence" tabindex="0"}
+
+![Velká studie: 90% interval rozdílu leží uvnitř pásma ±3 body, ekvivalence je doložena; 95% interval zahrnuje nulu. Malá studie se stejnými průměry: oba intervaly zahrnují nulu a 90% interval přesahuje obě hranice, výsledek je nerozhodný.](../assets/chapter-08/plots/ekvivalence-skupin.svg){#fig-ekvivalence-skupin fig-alt="Osa rozdílu průměrů online minus papír od minus 7 do 6 bodů. Světle modré pásmo mezi svislými přerušovanými čarami u minus 3 a 3 bodů, tečkovaná čára u nuly. Pro studii s 200 a 200 studenty silná modrá úsečka 90% intervalu od minus 2,55 do 0,75 uvnitř pásma a tenká úsečka 95% intervalu od minus 2,87 do 1,07. Pro studii s 30 a 30 studenty silná úsečka 90% intervalu od minus 5,22 do 3,42 přesahuje obě hranice a tenká úsečka 95% intervalu sahá od minus 6,07 do 4,27. Obě mají střed v minus 0,9."}
+
+:::
+
+Oproti kapitole 7 se změnila jedna podstatná věc: obě strany srovnání jsou nyní **odhadnuté** z dat. Do nejistoty rozdílu proto přispívají obě skupiny. Při stejné velikosti a rozptýlenosti skupiny je směrodatná chyba rozdílu dvou průměrů $\sqrt2$krát větší než směrodatná chyba jednoho průměru vůči pevné normě. Za to dostáváme srovnání v téže studii, se stejnými podmínkami testování a bez spoléhání na starou normu.
+
+Závěr o ekvivalenci se i tady týká **průměrů** obou verzí. Nedokládá, že by verze dávaly stejné výsledky jednotlivým lidem; to by vyžadovalo, aby tíž lidé psali obě verze. A stejně jako v kapitole 7 je vázán na předem zvolené hranice. Výpočet je na listu `Ekvivalence_skupin`.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: p-hodnoty dvou jednostranných testů pro dvě skupiny" #rozsireni-tost-skupiny}
+Oba jednostranné testy mají tvar t-testu pro dva nezávislé výběry, jen místo nuly odečítáme hranici. Pro velkou studii:
+
+- Test vůči dolní hranici: $t=\dfrac{-0{,}9-(-3)}{1{,}0}=2{,}1$, *p*-hodnota `=1-T.DIST(2,1;398;PRAVDA)` ≈ 0,018.
+- Test vůči horní hranici: $t=\dfrac{-0{,}9-3}{1{,}0}=-3{,}9$, *p*-hodnota `=T.DIST(-3,9;398;PRAVDA)` ≈ 0,0001.
+
+Oba testy zamítají; výsledná *p*-hodnota testu ekvivalence je větší z nich, 0,018. Na listu `Ekvivalence_skupin` jsou tyto výpočty v buňkách B23:B27.
+:::
+
+## Volba postupu a sdělení výsledků {#sec-volba-postupu}
+
+Jak z otázky a uspořádání studie poznat, který postup použít, a jak výsledek sdělit? Oddíl shrnuje postupy kapitol 7 a 8 a ukazuje, jak o porovnání dvou průměrů napsat zprávu.
+
+### Který postup? {#sec-ktery-postup}
+
+Postup volíme podle toho, **s čím porovnáváme** a **jak data vznikla**, ne podle toho, který dá „lepší“ *p*-hodnotu:
+
+::: {.table-scroll .chapter-08-wide role="region" aria-label="Volba postupu porovnání průměrů" tabindex="0"}
+
+| Situace | Co porovnáváme | Postup | Odkaz |
+|---|---|---|---|
+| Jedna skupina a pevná hodnota | Průměr s normou | Jednovýběrový t-test, interval pro μ | [Kapitola 7](kapitola_07.qmd#sec-t-test) |
+| Tíž lidé ve dvou podmínkách nebo dvojice osob | Průměr rozdílů s nulou | Párový t-test, interval pro $\mathrm{μ}_D$ | [Párová data](#sec-parovy-t-test) |
+| Dvě různé skupiny | Dva průměry | Klasický nebo Welchův t-test, interval pro $\mathrm{μ}_1-\mathrm{μ}_2$ | [Klasický](#sec-klasicky-t-test), [Welchův](#sec-welch) |
+| Změna před a po ve dvou skupinách | Průměrné změny skupin | Změny jednotlivců, pak test pro dvě nezávislé skupiny změn | [Změny](#sec-zmena-dvou-skupin) |
+| Je rozdíl zanedbatelný? | Rozdíl a předem zvolené hranice | Test ekvivalence pomocí 90% intervalu | [Kapitola 7](kapitola_07.qmd#sec-test-ekvivalence), [dvě skupiny](#sec-ekvivalence-skupin) |
+
+: Volba postupu podle otázky a uspořádání studie {#tbl-k08-10}
+
+:::
+
+Z tabulky plynou tři chybné postupy, se kterými jsme se v kapitole setkali:
+
+- analyzovat párová data jako dvě nezávislé skupiny ([chybná analýza](#sec-chybna-analyza));
+- usuzovat na rozdíl ze dvou samostatných testů nebo z překryvu dvou intervalů ([dva intervaly](#sec-dva-intervaly), [rozdíl změn](#sec-rozdil-zmen));
+- usuzovat na příčinu rozdílu mezi skupinami, které nevznikly náhodným přiřazením, nebo ze změny bez kontrolní skupiny ([co párování neřeší](#sec-co-parovani-neresi)).
+
+### Ukázka sdělení výsledků {#sec-ukazka-sdeleni-08}
+
+Ve zprávě podle APA 7 používáme stejné zkratky jako v [kapitole 7](kapitola_07.qmd#sec-ukazka-sdeleni) (*M*, *SD*, *n*, CI, *t*, *p*); jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa), výpočetní značení učebnice se nemění. Ve zprávě vždy uvedeme, o jaký test jde, a u Welchova testu stupně volnosti na dvě desetinná místa. Pro variantu A:
+
+> Dvanáct studentů absolvovalo test pozornosti po noci s běžným spánkem a po noci s méně než pěti hodinami spánku, ve vyváženém pořadí; jeden student se druhého měření nezúčastnil a nebyl zahrnut do analýzy. Po krátkém spánku byl skór nižší (*M* = 46,83; *SD* = 6,42) než po běžném spánku (*M* = 50,33; *SD* = 7,34). Průměrný pokles 3,50 bodu (*SD* rozdílů = 2,39) byl statisticky významný (párový t-test, *t*(11) = 5,07; *p* < 0,001; 95% CI [1,98; 5,02]).
+
+Pro variantu B:
+
+> Studenti byli náhodně rozděleni do skupiny po běžném spánku (*n* = 30; *M* = 50,00; *SD* = 7,97) a po krátkém spánku (*n* = 12; *M* = 42,00; *SD* = 14,00). Rozdíl průměrů 8,00 bodu nebyl podle Welchova t-testu statisticky významný (*t*(13,95) = 1,86; *p* = 0,084; 95% CI [−1,22; 17,22]). Odhad rozdílu je velmi nepřesný; výrazně větší rozptýlenost ve skupině po krátkém spánku naznačuje, že krátký spánek ovlivňuje studenty různě.
+
+Zpráva obsahuje velikost rozdílu a jeho nejistotu, výsledek testu i informaci o uspořádání. Cohenovo d připojíme tam, kde pomůže čtenáři posoudit velikost rozdílu; u párových dat přitom uvedeme, kterou směrodatnou odchylku jsme použili.
+
+## Shrnutí {#sec-shrnuti-08}
+
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
+
+- Zda jde o párová data, nebo o nezávislé skupiny, určuje uspořádání studie, ne čísla. U párových dat je jednotkou analýzy dvojice: opakované měření týchž lidí nebo dvojice různých osob ([Od jedné skupiny ke dvěma](#sec-od-jedne-ke-dvema)).
+- Párová data převedeme na rozdíly a použijeme na ně jednovýběrový t-test s testovanou hodnotou nula. Neúplné dvojice vyřadíme společně a se zachováním ID; počet stupňů volnosti je počet úplných dvojic minus jedna ([Párová data](#sec-parova-data)).
+- Párování zpřesňuje odhad, když se stabilní rozdíly mezi lidmi při odečtení z velké části odstraní; samo zachování pořadí to nezaručuje. Změnu před a po samotnou nelze bez kontrolní skupiny připsat zásahu ([Kdy párování zpřesňuje odhad](#sec-kdy-parovani)).
+- U nezávislých skupin se rozptyly obou průměrů sčítají; klasický t-test spojuje výběrové rozptyly do společného odhadu a předpokládá jejich shodu, Welchův test je odhaduje zvlášť a používá neceločíselné stupně volnosti. Při rozdílných velikostech i rozptylech skupin mohou vést k různým závěrům; postup volíme předem ([Rozdíl dvou průměrů](#sec-rozdil-nezavislych); [Klasický t-test](#sec-klasicky-t-test); [Welchova varianta](#sec-welch)).
+- Nejdůležitějším předpokladem je nezávislost; normalita se u párového testu týká rozdílů. Volba testu nerozhoduje o příčině rozdílu, o té rozhoduje uspořádání studie ([Předpoklady](#sec-predpoklady-08)).
+- Cohenovo d vyjadřuje rozdíl průměrů v jednotkách směrodatné odchylky jednotlivých hodnot; u nezávislých skupin se společnou směrodatnou odchylkou, u párových dat vždy s uvedením, kterou směrodatnou odchylku jsme použili ([Cohenovo d](#sec-cohenovo-d)).
+- Překryv intervalů dvou skupin neříká spolehlivě, zda se průměry liší, a samostatný významný a nevýznamný výsledek nedokládají rozdíl mezi nimi. Rozdíl posuzujeme jeho vlastním intervalem a testem ([Dva intervaly](#sec-dva-intervaly); [Změna ve dvou skupinách](#sec-zmena-dvou-skupin)).
+- Test ekvivalence dvou skupin používá tutéž logiku jako v kapitole 7: 90% interval pro rozdíl musí ležet uvnitř předem stanovených hranic ([Ekvivalence dvou skupin](#sec-ekvivalence-skupin)).
+
+## Cvičení {#sec-cviceni-08}
+
+V úlohách 1, 2, 4, 5, 7, 8, 9, 11 a 12 stačí kalkulačka a hodnoty uvedené v zadání; úlohy 3, 6 a 10 vyžadují Excel. Kvantily t-rozdělení jsou v zadání, nebo je spočítáte funkcí T.INV. Meze intervalů uvádějte na dvě desetinná místa, *p*-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,01 u mezí a 0,001 u *p*-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 13 a 14 jsou nepovinné a navazují na nepovinná rozšíření.
+
+### 1. Párová data, nebo nezávislé skupiny?
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+U každé studie určete, zda jde o párová data (a v tom případě o opakované měření, nebo dvojice různých osob), nebo o nezávislé skupiny. Zdůvodněte.
+
+a)  Třicet studentů posoudí dvě verze reklamy na skále přitažlivosti; každý vidí obě v náhodném pořadí.
+b)  Čtyřicet manželských párů vyplní dotazník spokojenosti ve vztahu; porovnává se průměr mužů a žen.
+c)  Padesát lidí s úzkostnou poruchou je náhodně přiřazeno ke dvěma terapiím; po skončení se porovná skór úzkosti.
+d)  Výzkumník porovná průměrný prospěch studentů prvního a druhého ročníku téže fakulty v daném semestru.
+e)  Dvacet dětí s dyslexií a dvacet dětí bez ní je spárováno podle věku a pohlaví; porovnává se rychlost čtení.
+f)  Čtyřicet studentů napíše test před kurzem a po něm, ale identifikátory se nezaznamenaly, takže nelze zjistit, které dva výsledky patří témuž studentovi.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Párová data, opakované měření: každý student přispívá dvěma hodnotami, k sobě patří dvě hodnocení téhož člověka.
+
+b)  Párová data, dvojice různých osob: muž a žena z téhož páru tvoří dvojici a jejich spokojenost spolu pravděpodobně souvisí. Jednotkou analýzy je pár.
+
+c)  Nezávislé skupiny: každý člověk je v jedné skupině a mezi hodnotami skupin žádné spojení není.
+
+d)  Nezávislé skupiny: jde o různé studenty. Navíc nejde o náhodné přiřazení, takže případný rozdíl nelze připsat ročníku samotnému.
+
+e)  Párová data, dvojice různých osob: děti jsou záměrně spárovány podle věku a pohlaví a rozdíl se počítá uvnitř dvojice.
+
+f)  Studie byla navržena jako opakované měření, ale bez ID nelze dvojice obnovit. Párovou analýzu nelze provést; analýza jako dvou nezávislých skupin by porušovala předpoklad nezávislosti a nesprávně by určila nejistotu. Úloha ukazuje, proč je třeba ID zachovat už při sběru dat.
+:::
+
+### 2. Párový test ze souhrnů
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U02_relaxace` B2:B4.
+
+Dvacet studentů vyplnilo dotazník úzkosti před pětiminutovým relaxačním cvičením a po něm. Průměrný pokles skóru (před minus po) byl 2,5 bodu se směrodatnou odchylkou poklesů 4 body. Výzkumník testuje oboustranně na hladině 0,05. Kvantil $t_{0{,}975\,(v=19)}\approx2{,}093$; oboustranná *p*-hodnota pro $t=2{,}795$ a 19 stupňů volnosti je 0,012.
+
+a)  Zapište hypotézy.
+b)  Spočítejte odhad směrodatné chyby, testovou statistiku a stupně volnosti.
+c)  Zformulujte rozhodnutí testu a spočítejte 95% interval pro průměrný pokles.
+d)  Výzkumník napíše: „Relaxační cvičení snižuje úzkost.“ Co jeho studie dokládá a co ne?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $H_0{:}\ \mathrm{μ}_D=0$, $H_1{:}\ \mathrm{μ}_D\neq0$, kde $\mathrm{μ}_D$ je populační průměr poklesu skóru úzkosti (před minus po).
+
+b)  $s_m=4/\sqrt{20}\approx0{,}894$ bodu; $t=2{,}5/0{,}894\approx2{,}80$; $20-1=19$ stupňů volnosti.
+
+c)  *p*-hodnota 0,012 je menší než 0,05: na hladině 0,05 zamítáme nulovou hypotézu, že populační průměrný pokles je nulový. Interval: $2{,}5\pm2{,}093\times0{,}894=2{,}5\pm1{,}87=(0{,}63;\ 4{,}37)$ bodu.
+
+d)  Studie dokládá, že se skór úzkosti mezi oběma měřeními v průměru snížil, přibližně o 2,5 bodu, s daty jsou slučitelné poklesy od 0,6 do 4,4 bodu. Nedokládá, že pokles způsobilo právě relaxační cvičení: chybí kontrolní skupina. Úzkost mohla klesnout i proto, že si studenti na situaci zvykli, že pět minut uběhlo, nebo že druhé vyplnění dotazníku je méně napínavé. K připsání účinku cvičení by byla potřeba skupina, která by stejnou dobu strávila jinak, a porovnání změn obou skupin.
+:::
+
+### 3. Párová data v Excelu s neúplnými dvojicemi
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U03_stroop` A2:C16.
+
+Patnáct studentů řešilo dvě verze Stroopova úkolu v náhodném pořadí: kongruentní (barva slova odpovídá jeho významu) a nekongruentní. List `U03_stroop` obsahuje průměrnou reakční dobu každého studenta v milisekundách. Dvěma studentům chybí jedna hodnota.
+
+a)  Které dvojice jsou neúplné? Kolik úplných dvojic zbývá?
+b)  V Excelu spočítejte rozdíl „nekongruentní minus kongruentní“ pro úplné dvojice, jeho průměr, směrodatnou odchylku, odhad směrodatné chyby, testovou statistiku a oboustrannou *p*-hodnotu.
+c)  Spočítejte 95% interval a zformulujte rozhodnutí testu i věcnou interpretaci.
+d)  Spolužák spočítal rozdíl průměrů obou sloupců bez vyřazení neúplných dvojic. Kolik mu vyšlo a proč to není správný odhad?
+e)  Sestrojte Q–Q graf rozdílů podle [kapitoly 4](kapitola_04.qmd#sec-excel-qq). Je předpoklad testu splněn přiměřeně?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Studentovi 7 chybí nekongruentní hodnota, studentovi 9 kongruentní. Úplných dvojic je 13.
+
+b)  Rozdíly úplných dvojic jsou 77, 57, 81, 59, 54, 83, 72, 77, 78, 67, 67, 58 a 85 ms. $m_D\approx70{,}38$ ms, $s_D\approx10{,}75$ ms, $s_m=10{,}75/\sqrt{13}\approx2{,}98$ ms, $t=70{,}38/2{,}98\approx23{,}6$ s 12 stupni volnosti. `=T.DIST.2T(23,6;12)` vrátí *p*-hodnotu menší než 0,001. Kontrolně `=T.TEST(U03_stroop!B2:B16;U03_stroop!C2:C16;2;1)` dává tutéž *p*-hodnotu, protože neúplné dvojice vynechá.
+
+c)  $t_{0{,}975\,(v=12)}\approx2{,}179$, interval $70{,}38\pm2{,}179\times2{,}98=(63{,}89;\ 76{,}88)$ ms. Zamítáme nulovou hypotézu, že populační průměr rozdílu reakčních dob je nulový. Věcně: v nekongruentní verzi reagovali studenti v průměru asi o 70 ms pomaleji, s daty jsou slučitelné rozdíly přibližně od 64 do 77 ms. Výsledek odpovídá známému Stroopovu efektu. Studenti, kteří nemají obě hodnoty, v analýze nejsou; u dvou ze 15 to výsledek pravděpodobně příliš neovlivní, ale je dobré zjistit, proč hodnoty chybí.
+
+d)  Průměr kongruentních hodnot ze 14 studentů je přibližně 653,7 ms, průměr nekongruentních ze 14 studentů přibližně 718,8 ms; rozdíl asi 65,1 ms. Oba průměry ale zahrnují jiné studenty (v jednom je student 7, ve druhém student 9), takže rozdíl neporovnává tytéž lidi a mísí rozdíl mezi podmínkami s rozdílem mezi studenty. Správný odhad je průměr rozdílů úplných dvojic, 70,38 ms.
+
+e)  Obrázek [-@fig-qq-rozdily-08] umožňuje porovnat vlastní graf s řešením. Body leží přibližně podél přímky, bez výrazné šikmosti a bez odlehlé hodnoty. Třináct hodnot poskytuje jen omezenou informaci o tvaru rozdělení; graf ale nevykazuje problém, který by použití t-testu zpochybňoval. Testovaná statistika je navíc tak daleko od nuly, že mírná odchylka od normality závěr nezmění.
+
+::: {.teaching-figure role="region" aria-label="Q–Q graf rozdílů reakčních dob v řešení úlohy 3" tabindex="0"}
+
+![Rozdíly reakčních dob přibližně sledují referenční přímku; není patrná výrazná šikmost ani odlehlá hodnota.](../assets/chapter-08/plots/qq-rozdily.svg){#fig-qq-rozdily-08 fig-alt="Normální Q–Q graf třinácti rozdílů reakčních dob. Vodorovně teoretické kvantily, svisle seřazené rozdíly od 54 do 85 ms. Body přibližně sledují přímku m plus s krát z se středem asi 70,4 ms a směrnicí asi 10,75; krajní body od ní výrazně nevybočují."}
+
+:::
+:::
+
+### 4. Co ztratí analýza jako dvou nezávislých skupin
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+a)  Výzkumnice z varianty A by dvanáct úplných dvojic analyzovala klasickým t-testem jako dvě nezávislé skupiny. Bez výpočtu vysvětlete, který předpoklad tím poruší a proč vyjde interval širší.
+b)  Tři lidé mají v prvním měření hodnoty 2, 4 a 6 a ve druhém 6, 12 a 18. Spočítejte směrodatnou odchylku prvního měření, druhého měření a rozdílů „druhé minus první“.
+c)  Kolega tvrdí: „Když si lidé v obou měřeních zachovají pořadí, párová analýza je vždy přesnější než nezávislá.“ Posuďte tvrzení pomocí výsledku části b.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Poruší předpoklad nezávislosti: hodnoty v obou sloupcích pocházejí od týchž studentů a souvisejí spolu. Klasický test počítá nejistotu rozdílu průměrů z rozptýlenosti skóru mezi studenty (asi 7 bodů). Ta ale k nejistotě průměrného rozdílu v párovém uspořádání téměř nepřispívá, protože se stabilní rozdíly mezi studenty v rozdílech odečtou; rozdíly kolísají jen asi o 2,4 bodu. Nezávislá analýza proto nejistotu přecení a interval vyjde širší.
+
+b)  První měření: $s=2$. Druhé měření: $s=6$ (trojnásobek). Rozdíly 4, 8 a 12: $s=4$.
+
+c)  Tvrzení neplatí obecně. V části b je pořadí dokonale zachováno, ale směrodatná odchylka rozdílů (4) je větší než směrodatná odchylka prvního měření (2). Druhé měření není „první plus přibližně stejný posun“, ale jeho násobek, takže se stabilní rozdíly mezi lidmi při odečtení neodstranily. Párování zpřesňuje odhad tehdy, když se lidé mezi měřeními liší hlavně přibližně stejným posunem; to je třeba posoudit podle dat a podle toho, jak měření vzniklo.
+:::
+
+### 5. Klasický t-test ze souhrnů: hrozba stereotypu
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U05_hrozba` B2:C4.
+
+Howell [-@howell, s. 215–217] uvádí data zkonstruovaná podle studie Aronsona a spolupracovníků o hrozbě stereotypu. Matematicky zdatní studenti řešili obtížný test. Kontrolní skupina ($n_1=11$) dostala běžné pokyny; druhá skupina ($n_2=12$) se dozvěděla, že studenti jiné skupiny obvykle v testu dopadají lépe. Kontrolní skupina vyřešila v průměru 9,64 úlohy ($s_1=3{,}17$), druhá skupina 6,58 úlohy ($s_2=3{,}03$). Test je oboustranný na hladině 0,05; $t_{0{,}975\,(v=21)}\approx2{,}080$, oboustranná *p*-hodnota pro $t=2{,}367$ a 21 stupňů volnosti je 0,028.
+
+a)  Spočítejte společný odhad rozptylu, společnou směrodatnou odchylku a odhad směrodatné chyby rozdílu.
+b)  Spočítejte testovou statistiku, stupně volnosti a 95% interval pro rozdíl. Zformulujte rozhodnutí testu.
+c)  Spočítejte Cohenovo d a zformulujte věcnou interpretaci.
+d)  Welchův test dává $t\approx2{,}36$ s 20,62 stupně volnosti a *p*-hodnotou 0,028. Proč se tu oba postupy téměř neliší?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $s_p^2=\dfrac{10\times3{,}17^2+11\times3{,}03^2}{21}=\dfrac{100{,}49+100{,}99}{21}\approx9{,}594$; $s_p\approx3{,}097$ úlohy; $s_{m_1-m_2}=3{,}097\times\sqrt{1/11+1/12}\approx1{,}293$ úlohy.
+
+b)  $t=(9{,}64-6{,}58)/1{,}293\approx2{,}37$ s 21 stupni volnosti. Interval $3{,}06\pm2{,}080\times1{,}293=3{,}06\pm2{,}69=(0{,}37;\ 5{,}75)$ úlohy. *p*-hodnota 0,028 je menší než 0,05: zamítáme nulovou hypotézu shodných populačních průměrů.
+
+c)  $d=3{,}06/3{,}097\approx0{,}99$. Věcně: skupina vystavená hrozbě stereotypu vyřešila v průměru asi o 3 úlohy méně, což odpovídá téměř jedné směrodatné odchylce počtu vyřešených úloh. Interval je ale široký: s daty jsou slučitelné rozdíly od necelé půl úlohy po téměř šest úloh. Skupiny jsou malé. Protože byli studenti do skupin náhodně přiřazeni, lze rozdíl připsat pokynům; data jsou však zkonstruovaná Howellem podle souhrnů původní studie, nejde o její skutečná data.
+
+d)  Skupiny jsou téměř stejně velké a jejich výběrové směrodatné odchylky téměř stejné. Odhady směrodatné chyby rozdílu se proto téměř neliší a Welchovy stupně volnosti (20,62) jsou blízko 21.
+:::
+
+### 6. Klasický, nebo Welchův test? Výpočet v Excelu
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U06_hudba` A2:A11 a B2:B26.
+
+Studenti byli náhodně rozděleni do dvou skupin a řešili tutéž logickou úlohu; měřila se doba řešení v sekundách. Skupina s hlasitou hudbou v pozadí měla jen 10 studentů, protože se hudba po deseti sezeních porouchala, skupina v tichu 25 studentů. Výzkumník před analýzou zvolil oboustranný Welchův test na hladině 0,05.
+
+a)  V Excelu spočítejte průměr, výběrovou směrodatnou odchylku a velikost obou skupin. Čím se skupiny liší kromě průměru?
+b)  Spočítejte Welchův test: odhad směrodatné chyby rozdílu, stupně volnosti, testovou statistiku a *p*-hodnotu (T.TEST typu 3). Zformulujte rozhodnutí.
+c)  Spočítejte 95% interval pro rozdíl. Kvantil spočítejte vzorcem z listu `Welch`; srovnejte jej s výsledkem `=T.INV.2T(0,05;…)`.
+d)  Spočítejte také klasický test. Proč dává jiné rozhodnutí a proč by bylo chybou vybrat ho až teď?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Hudba: $m_1=64{,}1$ s, $s_1\approx19{,}24$ s, $n_1=10$. Ticho: $m_2=52{,}0$ s, $s_2\approx5{,}55$ s, $n_2=25$. Malá skupina s hudbou je téměř čtyřikrát rozptýlenější: někteří studenti se hudbou nechali rušit hodně, jiní málo.
+
+b)  $s_{m_1-m_2}=\sqrt{19{,}24^2/10+5{,}55^2/25}\approx6{,}19$ s; Welchovy stupně volnosti přibližně 9,61; $t=12{,}1/6{,}19\approx1{,}96$; `=T.TEST(U06_hudba!A2:A11;U06_hudba!B2:B26;2;3)` ≈ 0,080. Na hladině 0,05 nulovou hypotézu shodných populačních průměrů nezamítáme.
+
+c)  Kvantil `=ODMOCNINA(9,6055*(1-BETA.INV(0,05;9,6055/2;0,5))/BETA.INV(0,05;9,6055/2;0,5))` ≈ 2,241, interval $12{,}1\pm2{,}241\times6{,}19=(-1{,}76;\ 25{,}96)$ s. Funkce T.INV.2T zkrátí stupně volnosti na 9 a vrátí 2,262; interval by pak nepatřil k témuž testu jako *p*-hodnota z T.TEST. Věcně: skupina s hudbou řešila úlohu v průměru asi o 12 s déle, ale odhad je velmi nepřesný, od mírně kratší doby po o 26 s delší.
+
+d)  Klasický test: $s_p\approx11{,}11$ s, $s_{m_1-m_2}\approx4{,}16$ s, $t\approx2{,}91$ s 33 stupni volnosti, *p*-hodnota 0,006, interval (3,64; 20,56) s. Rozptyly se výrazně liší a menší skupina má ten větší; společný odhad je proto tažen dolů velkou a málo rozptýlenou skupinou a nejistotu rozdílu podceňuje. Výzkumník zvolil Welchův test předem s ohledem na možné rozdílné rozptyly. Vybrat po pohledu na výsledky test, který „vyšel“, by byla stejná chyba jako [změna směru testu podle dat](kapitola_06.qmd#sec-volby-po-datech): skutečná pravděpodobnost chyby I. druhu by byla vyšší než zvolená hladina.
+:::
+
+### 7. Cohenovo d a volba jmenovatele
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U07_standardizace` B2:B6.
+
+Studie měřila sebedůvěru 25 lidí před kurzem veřejného vystupování a po něm. Směrodatná odchylka skóru byla před kurzem i po něm 6 bodů, průměrná změna 3 body a směrodatná odchylka změn 3 body.
+
+a)  Spočítejte d se směrodatnou odchylkou před kurzem a d se směrodatnou odchylkou změn.
+b)  Vysvětlete, co každé z čísel vyjadřuje a proč se liší.
+c)  Jiná studie porovnávala dvě nezávislé skupiny a uvádí d = 0,5. Které z vašich dvou čísel je s ní srovnatelnější a proč?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Se směrodatnou odchylkou před kurzem: $3/6=0{,}5$. Se směrodatnou odchylkou změn: $3/3=1{,}0$.
+
+b)  První číslo říká, že průměrná změna odpovídá polovině toho, jak se lidé ve sebedůvěře lišili před kurzem. Druhé říká, že průměrná změna je stejně velká jako typický rozdíl mezi změnami jednotlivých lidí. Liší se, protože změny kolísají méně než samotné skóry: lidé si z velké části zachovali svou výchozí úroveň, a odečtením se stabilní rozdíly mezi nimi odstranily. Žádné z čísel není „správnější“, odpovídají na jiné otázky; ve zprávě je nutné uvést, které bylo spočítáno.
+
+c)  Srovnatelnější je d = 0,5 se směrodatnou odchylkou skóru před kurzem: obě studie pak vztahují rozdíl k rozptýlenosti jednotlivých lidí na téže škále. d se směrodatnou odchylkou změn závisí na souvislosti obou měření a se standardizovaným rozdílem dvou nezávislých skupin přímo srovnatelné není. I tak jde jen o orientační srovnání, protože se studie liší uspořádáním.
+:::
+
+### 8. Intervaly vedle sebe
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+Článek ukazuje graf průměrů dvou nezávislých skupin s 95% intervaly: (12,1; 15,9) a (15,2; 19,0). Autoři píší: „Protože se intervaly překrývají, skupiny se neliší.“ Rozhodněte u každého výroku, zda je správný, a nesprávné opravte.
+
+a)  Z překryvu intervalů plyne, že oboustranný test rozdílu na hladině 0,05 nulovou hypotézu nezamítne.
+b)  K rozhodnutí potřebujeme interval pro rozdíl průměrů nebo odpovídající test.
+c)  Kdyby šlo o tytéž lidi ve dvou podmínkách, mohli bychom z grafu bez dalších údajů určit interval pro průměrný párový rozdíl.
+d)  I kdyby se rozdíl ukázal statisticky významný, graf průměrů s intervaly je užitečný.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Nesprávně. U nezávislých skupin se sčítají rozptyly odhadů, ne mezní chyby; u podobně velkých skupin s podobnými rozptyly je proto mezní chyba rozdílu menší než součet mezních chyb obou intervalů. Intervaly se mohou mírně překrývat a rozdíl přesto může být statisticky významný. Zde je střed rozdílu $17{,}1-14{,}0=3{,}1$ a mezní chyby skupin 1,9. Při podobných skupinách by mezní chyba rozdílu byla přibližně $\sqrt{1{,}9^2+1{,}9^2}\approx2{,}7$, takže interval rozdílu by nulu nejspíš nezahrnoval. Přesné rozhodnutí vyžaduje výpočet.
+
+b)  Správně.
+
+c)  Nesprávně. Samostatné intervaly obou podmínek neobsahují informaci o tom, jak spolu hodnoty uvnitř dvojic souvisejí; ta určuje směrodatnou odchylku rozdílů. Interval párového rozdílu z grafu dvou intervalů určit nelze.
+
+d)  Správně. Graf ukazuje polohu obou průměrů a přesnost jejich odhadu. Na otázku po rozdílu ale odpovídá interval rozdílu, a ten je dobré zobrazit také.
+:::
+
+### 9. Změna ve dvou skupinách
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U09_zmeny` B2:C4.
+
+Čtyřicet seniorů bylo náhodně rozděleno do dvou skupin po 20. Jedna skupina šest týdnů luštila paměťové úlohy, druhá ne. U každého se měřila změna skóru paměťového testu (po minus před). Paměťová skupina: průměrná změna 3,1 bodu, směrodatná odchylka změn 5,0 bodu. Kontrolní skupina: 1,2 bodu, směrodatná odchylka 5,2 bodu. Kvantily: $t_{0{,}975\,(v=19)}\approx2{,}093$, $t_{0{,}975\,(v=38)}\approx2{,}024$.
+
+a)  Spočítejte párový t-test změny v každé skupině zvlášť. Výsledky: oboustranné *p*-hodnoty pro $t=2{,}773$ a $t=1{,}032$ s 19 stupni volnosti jsou 0,012 a 0,315.
+b)  Spočítejte klasický t-test rozdílu změn mezi skupinami a 95% interval. Oboustranná *p*-hodnota pro $t=1{,}178$ a 38 stupňů volnosti je 0,246.
+c)  Autoři píší: „Paměťový trénink je účinný: zlepšení bylo významné jen v trénované skupině.“ Posuďte.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Paměťová skupina: $s_m=5{,}0/\sqrt{20}\approx1{,}118$, $t\approx2{,}77$, *p*-hodnota 0,012, zamítáme nulovou průměrnou změnu. Kontrolní skupina: $s_m=5{,}2/\sqrt{20}\approx1{,}163$, $t\approx1{,}03$, *p*-hodnota 0,315, nulovou průměrnou změnu nezamítáme.
+
+b)  $s_p^2=(19\times25+19\times27{,}04)/38=26{,}02$, $s_p\approx5{,}101$; $s_{m_1-m_2}=5{,}101\times\sqrt{1/20+1/20}\approx1{,}613$; $t=(3{,}1-1{,}2)/1{,}613\approx1{,}18$ s 38 stupni volnosti, *p*-hodnota 0,246. Interval $1{,}9\pm2{,}024\times1{,}613=(-1{,}37;\ 5{,}17)$ bodu. Nulovou hypotézu shodných populačních průměrných změn nezamítáme.
+
+c)  Závěr není oprávněný. Statisticky významná změna v jedné skupině a nevýznamná ve druhé samy nedokládají, že se změny liší. Přímé porovnání změn dává rozdíl 1,9 bodu s intervalem od −1,37 do 5,17 bodu: data jsou slučitelná s nulovým i se zřetelným účinkem tréninku. Studie účinek neprokázala ani nevyloučila. Náhodné přiřazení by umožnilo připsat případný průkazný rozdíl tréninku, ale tady průkazný není.
+:::
+
+### 10. Ekvivalence dvou verzí dotazníku
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U10_verze` B2:B8.
+
+Dotazník pohody existuje v papírové a tabletové verzi. Autoři předem stanovili, že rozdíl průměrů menší než 2 body je pro použití dotazníku zanedbatelný. Ve studii bylo 250 lidí náhodně přiřazeno k tabletové a 250 k papírové verzi. Průměr tabletové verze byl 30,6 bodu, papírové 30,0 bodu, tedy rozdíl 0,6 bodu ve prospěch tabletové verze; výběrová směrodatná odchylka byla v obou skupinách 8 bodů. Použijte list `Ekvivalence_skupin`.
+
+a)  Zapište hypotézy testu ekvivalence.
+b)  Spočítejte 95% a 90% interval pro rozdíl a rozhodněte o testu rozdílu i o ekvivalenci.
+c)  Zopakujte výpočet pro studii se 40 lidmi v každé skupině a se stejnými průměry a směrodatnými odchylkami. Jaký je závěr?
+d)  Co závěr velké studie neříká?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $H_0{:}\ \mathrm{μ}_{\text{tablet}}-\mathrm{μ}_{\text{papír}}\le-2$ nebo $\ge2$; $H_1{:}\ -2<\mathrm{μ}_{\text{tablet}}-\mathrm{μ}_{\text{papír}}<2$.
+
+b)  $s_{m_1-m_2}=8\times\sqrt{2/250}\approx0{,}716$ bodu, 498 stupňů volnosti. 95% interval (−0,81; 2,01) zahrnuje nulu: rozdíl není statisticky významný. 90% interval (−0,58; 1,78) leží celý mezi −2 a 2: ekvivalence je doložena.
+
+c)  $s_{m_1-m_2}=8\times\sqrt{2/40}\approx1{,}789$ bodu, 78 stupňů volnosti. 95% interval (−2,96; 4,16) zahrnuje nulu, 90% interval (−2,38; 3,58) přesahuje obě hranice. Rozdíl ani ekvivalence nejsou doloženy; výsledek je nerozhodný, studie je na tuto otázku příliš malá.
+
+d)  Neříká, že by obě verze dávaly stejné výsledky jednotlivým lidem: každý vyplnil jen jednu verzi, a závěr se tedy týká průměrů skupin. Neříká ani nic o rozdílech větších než 2 body bez uvedení hranice: se stejnými daty by při hranicích ±1,5 bodu ekvivalence doložena nebyla. A neříká, že by verze měly stejnou reliabilitu.
+:::
+
+### 11. Chybné argumenty
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+U každého výroku najděte chybu a napište správnou formulaci.
+
+a)  „Porovnali jsme pozornost třiceti studentů ráno a večer t-testem pro dvě nezávislé skupiny.“
+b)  „Rodiče dětí, které chodí na hudební kroužek, uvádějí méně problémů s chováním (t-test, *p* = 0,01). Hudební kroužek tedy snižuje problémy s chováním.“
+c)  „Klasický test vyšel nevýznamně, Welchův významně, proto uvádíme Welchův.“
+d)  „U kontrolní skupiny se skór nezměnil (*p* = 0,40), u intervenční ano (*p* = 0,02), intervence tedy funguje.“
+e)  „Párový t-test dal *d* = 1,2, což je velký účinek.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Měření ráno a večer u týchž studentů jsou párová data. Správně: „Rozdíly ráno minus večer jsme analyzovali párovým t-testem.“
+
+b)  Skupiny nevznikly náhodným přiřazením; do kroužku chodí děti, které se mohou lišit i jinak (rodinné prostředí, zájmy). Správně: „Děti z hudebního kroužku mají podle rodičů v průměru méně problémů s chováním; srovnání neumožňuje určit, zda je příčinou kroužek.“
+
+c)  Volba testu podle výsledku zvyšuje pravděpodobnost chyby I. druhu. Správně: test zvolit předem a zdůvodnit, například Welchův kvůli možným rozdílným rozptylům, a uvést jeho výsledek bez ohledu na to, jak dopadl.
+
+d)  Dva samostatné testy nedokládají rozdíl mezi skupinami. Správně: „Rozdíl průměrných změn obou skupin byl X bodů (95% interval…), test rozdílu změn…“, tedy posoudit rozdíl změn přímo.
+
+e)  U párových dat není jasné, kterou směrodatnou odchylkou bylo d spočítáno; se směrodatnou odchylkou rozdílů může vyjít mnohem větší než se směrodatnou odchylkou skórů, a Cohenova orientační pásma se na ni nevztahují. Správně: uvést, kterou směrodatnou odchylku jsme použili, a velikost posoudit v kontextu a v původních jednotkách.
+:::
+
+### 12. Volba postupu a zpráva
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+a)  Výzkumnice chce vědět, zda se doba usnutí liší po večeru s mobilem a po večeru s knihou. Navrhněte uspořádání studie, které umožní přesný odhad rozdílu, a uveďte postup analýzy. Na co musí dát pozor?
+b)  Napište krátkou zprávu podle APA 7 pro parkovací studii analyzovanou v této kapitole klasickým t-testem (*n* = 100 v každé skupině; *M* = 39,03 a 32,15 s; *SD* = 14,6 s v obou skupinách; *t*(198) = 3,33; *p* = 0,001; 95% CI [2,81; 10,95]; *d* = 0,47).
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Vhodné je opakované měření: tíž lidé zaznamenají dobu usnutí po večeru s mobilem i po večeru s knihou. Stabilní rozdíly mezi lidmi (někdo usíná snadno, jiný těžko) se tak při odečtení z velké části odstraní. Analýza: párový t-test rozdílů a interval pro průměrný rozdíl. Pozor na efekt pořadí: polovina lidí by měla začít mobilem a polovina knihou, nejlépe v náhodném pořadí, a mezi oběma večery by měl být podobný den. Dále zachovat ID, vyřazovat neúplné dvojice společně a prohlédnout rozdělení rozdílů (doby usnutí bývají zešikmené).
+
+b)  Příklad zprávy: „Doba odjezdu z parkovacího místa byla delší u řidičů, na které čekalo jiné auto (*n* = 100; *M* = 39,03 s; *SD* = 14,6), než u řidičů bez čekajícího auta (*n* = 100; *M* = 32,15 s; *SD* = 14,6). Rozdíl 6,88 s byl statisticky významný (t-test pro dva nezávislé výběry se společným odhadem rozptylu, *t*(198) = 3,33; *p* = 0,001; 95% CI [2,81; 10,95]; *d* = 0,47). Řidiči nebyli k podmínkám náhodně přiřazeni, výsledek proto nedokládá, že delší odjezd způsobuje čekající auto.“
+:::
+
+### 13. Nepovinně: Welchovy stupně volnosti ručně
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U05_hrozba` B2:C4.
+
+a)  Pro data hrozby stereotypu z úlohy 5 spočítejte podle [nepovinného rozšíření](#rozsireni-welch-stupne) Welchovy stupně volnosti.
+b)  Ověřte, že výsledek leží mezi počtem stupňů volnosti menší skupiny a $n_1+n_2-2$.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $a=3{,}17^2/11\approx0{,}9135$, $b=3{,}03^2/12\approx0{,}7651$. $v=\dfrac{(0{,}9135+0{,}7651)^2}{0{,}9135^2/10+0{,}7651^2/11}\approx\dfrac{2{,}818}{0{,}0835+0{,}0532}\approx20{,}62$.
+
+b)  Menší skupina má $11-1=10$ stupňů volnosti, $n_1+n_2-2=21$. Výsledek 20,62 leží mezi nimi, blízko 21, protože obě skupiny přispívají k nejistotě rozdílu podobně.
+:::
+
+### 14. Nepovinně: Hedgesova korekce a varianty standardizace
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_08.xlsx): `U05_hrozba` B2:C4 a `U07_standardizace` B2:B6.
+
+a)  Pro data úlohy 5 spočítejte Hedgesovu korekci podle [nepovinného rozšíření](#rozsireni-standardizace-08). O kolik procent zmenší d?
+b)  Pro data úlohy 7 spočítejte standardizovanou změnu s průměrem směrodatných odchylek obou měření. Se kterou z variant úlohy 7 se shoduje a proč?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $v=21$, korekce $1-3/(4\times21-1)=1-3/83\approx0{,}964$. Korigovaná hodnota $0{,}988\times0{,}964\approx0{,}95$, tedy asi o 3,6 % menší. U skupin s 11 a 12 lidmi je korekce znatelná, ale na věcné interpretaci nic nemění.
+
+b)  Průměr směrodatných odchylek je $(6+6)/2=6$, standardizovaná změna $3/6=0{,}5$. Shoduje se s variantou se směrodatnou odchylkou před kurzem, protože směrodatná odchylka po kurzu je stejná. Kdyby se rozptýlenost po kurzu změnila, varianty by se rozešly.
+:::

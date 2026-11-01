@@ -3,7 +3,7 @@ param([Parameter(Mandatory=$true)][string]$Manifest)
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $spec=Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
-if($spec.chapter -notin 1,2,3,4,5,6,7){throw 'Unsupported chapter'}
+if($spec.chapter -notin 1,2,3,4,5,6,7,8){throw 'Unsupported chapter'}
 $target=Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $spec.chapter)
 $staged=Join-Path (Split-Path -Parent $Manifest) 'workbook.xlsx'
 $taskExcel=$null;$taskBook=$null

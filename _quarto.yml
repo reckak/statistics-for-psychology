@@ -38,6 +38,7 @@ book:
         - quarto/kapitola_05.qmd
         - quarto/kapitola_06.qmd
         - quarto/kapitola_07.qmd
+        - quarto/kapitola_08.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

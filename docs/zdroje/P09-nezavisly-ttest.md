@@ -22,3 +22,9 @@
 **Ověřené nálezy:** sn. 25 používá v intervalu 0,8 ± 0,65 × 1,99 hodnotu testové statistiky místo směrodatné chyby. Z uvedených souhrnů vychází Welchova SE = 1,22734, df = 76,4313 a 95% interval přibližně **(−1,644; 3,244)**; při společném odhadu rozptylu SE = 1,22235, df = 79 a interval **(−1,633; 3,233)**. Zobrazené meze (−0,50; 2,10) neodpovídají ani jedné variantě. Sn. 16 kombinuje SE bez společného odhadu rozptylu s df = n₁ + n₂ − 2; varianty testu je třeba držet pohromadě. Nejde jen o zaokrouhlení.
 
 **Použití a neověřeno:** vhodné pro rozhodování podle designu, interpretaci rozdílu a velikosti účinku; souvisejí [P08](P08-prumery.md#p08) a [C08](C08-ulohy-tyden-9.md#c08). Ostatní početní příklady a všechny převody velikostí účinku nebyly kompletně přepočteny. U Fisherových testů sn. 49–50 je nutné před použitím ověřit směr testu, absolutní hodnotu u oboustranné p-hodnoty a předpoklady aproximace. Animace, živé odkazy a chování Excelu nebyly testovány.
+
+<a id="priprava-08-20261101"></a>
+
+## Návrh kapitoly 8 — 2026-11-01
+
+Autor uvedl sn. 11–26 a 41–48 jako doklad dosavadního důrazu na interval, velikost účinku a zprávu o výsledku. Chybný interval ve sn. 25 potvrzen znovu: klasický 95% interval ze souhrnů je (−1,633; 3,233) ([výpočet](../zdroje/HISTORIE.md#priprava-08-20261101)), shodně s nálezem výše.
