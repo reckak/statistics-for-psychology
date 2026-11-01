@@ -4366,3 +4366,28 @@ zpřesněny), nikoli samostatným agentem v roli studenta ani na studentech.
 ověřen jen obsah buněk. Pracovní PDF kapitoly 6 nebylo znovu exportováno.
 Primární literatura citovaná Lakensem a Klinem (Lindley, Haller a Krauss,
 Morey et al.) nebyla čtena.
+
+## 2026-11-01 — Zvětšení obrázků kliknutím (lightbox) na webu
+
+Na autorův dotaz zapnut vestavěný lightbox Quarta (GLightbox) v `_quarto.yml`
+pro HTML: `match: auto` (všechny obrázky bez úprav kapitol), efekt `zoom`,
+titulek obrázku pod zvětšeninou, bez procházení dalších obrázků. Všech
+105 obrázků kapitol 1–7 je SVG s vlastní šířkou jen 396–756 px, takže je
+lightbox zobrazoval menší než na stránce; `assets/styles.css` proto SVG
+v lightboxu roztáhne na šířku okna (nejvýše 1100 px, výšku dál omezuje
+GLightbox, proporce drží `viewBox`) a skryje neaktivní šipky galerie
+(každý obrázek je samostatná galerie). PDF se nemění; výjimku lze vytvořit
+třídou `.nolightbox`. Nové rozhodnutí v registru nezaloženo (technické
+nastavení webu bez dopadu na obsah či značení).
+
+**Kontroly:** celá kniha vykreslena; `check-html.cjs` s novým testem
+v kapitole 4 (každý obrázek má odkaz lightboxu, kliknutí otevře týž soubor
+s titulkem, zvětšenina je větší než obrázek na stránce, žádné viditelné
+šipky, Escape lightbox zavře) prošel celý. Vizuálně prohlédnut obrázek 4.5
+v lightboxu na desktopu (1360 px) a mobilu (375 px): celý graf čitelně
+na šířku obrazovky, titulek pod ním. Počet odkazů lightboxu ověřen
+proti počtu obrázků na každé stránce.
+
+**Omezení:** přiblížení prsty a zavření klepnutím mimo obrázek na skutečném
+telefonu ani čtečkou obrazovky nebyly vyzkoušeny; ovládací prvky GLightboxu
+mají anglické popisky pro čtečky.

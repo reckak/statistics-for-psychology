@@ -81,3 +81,9 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 /* Explanatory diagrams retain legible labels and scroll locally on phones. */
 .teaching-figure { max-width: 100%; overflow-x: auto; }
 .teaching-figure img { width: 100%; min-width: 650px; max-width: none; }
+
+/* Lightbox: SVG figures have a small intrinsic width, so enlarge them to the window;
+   the height limit set by GLightbox still applies and the SVG keeps its proportions. */
+.glightbox-container .gslide-image img[src$=".svg"] { width: min(94vw, 1100px); object-fit: contain; }
+/* Every figure is its own gallery, so the previous/next arrows are never usable. */
+.glightbox-container .gprev.disabled, .glightbox-container .gnext.disabled { display: none; }
