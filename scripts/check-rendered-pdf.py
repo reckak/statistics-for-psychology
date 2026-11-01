@@ -5,7 +5,7 @@ from pypdf import PdfReader
 from pypdf.generic import ContentStream
 
 report = []
-for chapter in (3, 4, 5, 6):
+for chapter in (3, 4, 5, 6, 7):
     source = Path(f'quarto/kapitola_{chapter:02}.qmd').read_text(encoding='utf8')
     reader = PdfReader(f'output/pdf/kapitola_{chapter:02}.pdf')
     notes = []

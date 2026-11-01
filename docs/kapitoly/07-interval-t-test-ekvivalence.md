@@ -4,6 +4,11 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Pracovní PDF 2026-11-01:** přidán a ověřen ruční export podle
+[provozního návodu](../PROVOZ.md#ruční-pdf-vybrané-kapitoly), včetně všech
+14 zadání a samostatného oddílu řešení s obousměrnými odkazy. Zkontrolována
+sazba celé kapitoly v PDF; nejde o novou obsahovou revizi této mapy.
+
 **Podklad a stav:** existující [kapitola 7](../../quarto/kapitola_07.qmd#sec-kapitola-07), karta
 sestavena podle výkladu, zadání a řešení 2026-10-17. Dohodu dokládají
 [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7),

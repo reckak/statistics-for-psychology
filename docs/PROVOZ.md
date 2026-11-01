@@ -48,24 +48,27 @@ kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3, 4, 5 a 6. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3, 4, 5, 6 a 7. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
 ./scripts/render-chapter-pdf.ps1 -Chapter 4
 ```
 
-Pro kapitolu 5 použijte `-Chapter 5` a kontrolu `--chapter 5`.
-Pro kapitolu 6 použijte `-Chapter 6` a kontrolu `--chapter 6`.
+Pro kapitoly 5, 6 a 7 použijte `-Chapter 5`, `-Chapter 6` či `-Chapter 7`
+a stejné číslo v kontrole `--chapter`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03, 04, 05 nebo 06. Skript používá aktuální
+Výstup skriptu nepřesměrovávejte pomocí `2>&1` ani `2>$null`: Windows
+PowerShell 5.1 pak běžná hlášení Quarta na chybovém výstupu považuje za chybu
+a export přeruší.
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 07. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 14 v kapitole 6), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -93,14 +96,23 @@ nenahrazuje prohlédnutí výsledného PDF, zejména po změně textu či grafů
 Playwright a prohlížeč jako kontrola HTML. Ověřuje poznámky menší o 1 pt,
 nepřetékání stránky a odstranění drobných desktopových přesahů (2–32 px).
 Podrobný výsledek ukládá do `tmp/verification/table-layout.json`.
-Skutečné PDF po sestavení všech čtyř kapitol prověří
+Skutečné PDF po sestavení všech podporovaných kapitol prověří
 `python scripts/check-rendered-pdf.py` (veřejný balíček `pypdf`): velikost
-všech poznámek v PDF a přítomnost světle šedých tahů. Tato kontrola
+všech poznámek v PDF a přítomnost světle šedých tahů. Poznámky hledá podle
+úvodního „*Poznámka.*“; poznámka bez něj kontrolu neprojde. Tato kontrola
 nenahrazuje vizuální prohlédnutí tabulek a nového kapitolového exportu.
 
 Typografické případy převodu (desetinná čísla včetně indexů a zlomků,
-oddělovací čárky, nezlomitelné vazby přes zvýraznění a odkazy, zachování
+unární minus a koncová tečka u desetinného čísla, oddělovací čárky,
+nezlomitelné vazby přes zvýraznění a odkazy, zachování
 matematiky a kódu) ověří `node scripts/check-pdf-typography.cjs`.
+Typst v matematice zachovává mezeru vedle textového čísla `upright(…)`.
+Filtr proto spojuje unární minus i koncovou tečku s číslem a skript po převodu
+odstraňuje mezeru u lomítka, spojuje popisek typu *p*-hodnota a zapisuje
+|t| jako absolutní hodnotu. Šířky sloupců širokých tabulek jen pro PDF
+nastavuje tabulka `$pdfColumnWidths` v `render-chapter-pdf.ps1`.
+Při vizuální kontrole nespoléhejte na starší `pdftoppm` z MiKTeXu: poškozuje
+text vektorových grafů, který je v PDF v pořádku.
 Kontrola HTML nyní vyžaduje číslo a neprázdný název každé studentské tabulky
 a ověřuje sazbu označení i linek záhlaví. Ruční PDF kontrolujte také vizuálně.
 Pokud cílový PDF soubor blokuje prohlížeč, zavřete jej a export zopakujte;
