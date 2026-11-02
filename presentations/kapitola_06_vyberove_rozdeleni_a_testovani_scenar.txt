@@ -1,0 +1,345 @@
+Snímek jedna.
+
+Tato nahrávka doprovází výkladovou část prezentace k šesté kapitole. Při poslechu sledujte odpovídající snímek. Na začátku každého úseku uslyšíte jeho číslo. Přehrávání si můžete kdykoli pozastavit, zejména u obrázků a výpočtů. Výklad končí před závěrečným procvičováním.
+
+Výzkumníci pozorovali řidiče, kteří odjížděli z parkoviště. Ti, na jejichž místo čekalo jiné auto, odjížděli v průměru o necelých sedm sekund déle. Kdybychom ale pozorovali jiných dvě stě řidičů, vyšla by jiná čísla. Jak poznat, zda výsledek jednoho výzkumu říká něco také o řidičích obecně?
+
+Nejprve popíšeme, jak se výsledky mění mezi výběry. Potom tento popis použijeme k testování hypotéz. Navazujeme na výběrovou variabilitu, normální model a binomické rozdělení z předchozích kapitol. Údaje skutečné parkovací studyje přebíráme z Hauelovy učebnice. Vedle nich budeme pracovat s výukovým modelem a počítačovou simulací. Tyto zdroje čísel potřebujeme důsledně rozlišovat.
+
+Snímek dva.
+
+Obsah přednášky ukazuje celou cestu od kolísání výběrů k interpretaci testu. První část zavede výběrové rozdělení. Druhá popíše jeho šířku pomocí směrodatné chyby a vysvětlí zákon velkých čísel. Třetí přidá centrální limitní větu, která nám pomůže popsat tvar rozdělení průměrů a počítat jejich pravděpodobnosti.
+
+Čtvrtá část se věnuje hypotézám, pé-hodnotě a pravidlu pro rozhodnutí testu. Pátá vysvětlí chyby rozhodnutí a statystyckou sílu. Šestá propojí rozhodnutí s velikostí a důležitostí výsledku a ukáže meze testování. Samostatné procvičování v sedmé části prezentace už tato nahrávka nezahrnuje.
+
+Snímek tři.
+
+Začneme výběrovým rozdělením. Zajímá nás, jakých hodnot může nabývat číslo vypočtené z výběru, jestliže výběr pořídíme znovu. Nejprve si ukážeme, proč takový popis potřebujeme.
+
+Snímek čtyři.
+
+Parkovací studyje porovnávala dvě skupiny po stu řidičích. Pokud na místo nikdo nečekal, trval odjezd v průměru třicet dva celých patnáct setin sekundy. Pokud čekalo jiné auto, průměr činil třicet devět celých tři setiny sekundy. Směrodatná odchylka dob byla v obou skupinách čtrnáct celých šest desetin sekundy. Rozdíl průměrů je šest celých osmdesát osm setin sekundy.
+
+Pozorovaný rozdíl může odrážet obecný rozdíl mezi příslušnými skupinami řidičů. Může ale vzniknout i tím, kteří lidé se právě do pozorování dostali. Abychom obě vysvětlení posoudili, potřebujeme vědět, jak velké rozdíly vytváří samotné střídání výběrů.
+
+Postup na snímku má tři kroky. Výběrové rozdělení popíše možné hodnoty výsledku a jejich pravděpodobnosti. Směrodatná chyba vyčíslí jejich kolísání. Test hypotézy potom porovná pozorovaný výsledek s modelem podle předem stanoveného pravidla.
+
+Pro další výpočty si zvolíme výukový model populace dob odjezdu: průměr třicet pět sekund, směrodatnou odchylku patnáct sekund a rozdělení zešikmené doprava. Z tohoto modelu bude počítač losovat simulované výběry. Každá pravděpodobnost, kterou pro parkovací příklad vypočteme, bude výsledkem tohoto modelu. Neopakujeme původní analýzu skutečné studyje.
+
+Už samotná data dovolují popsat rozdíl v pozorovaných skupinách. Zobecnění na další řidiče vyžaduje úvahu o výběru a jeho nejistotě. Otázka příčiny navíc závisí na uspořádání studyje.
+
+Snímek pět.
+
+V minulé kapitole student náhodně typoval odpovědi na dvacet otázek se čtyřmi možnostmi. Počet správných odpovědí měl binomické rozdělení s pravděpodobností úspěchu jedné čtvrtiny. Nyní tento příklad přečteme jako výběrový problém.
+
+Dvacet odpovědí tvoří výběr dvaceti pokusů. Počet správných odpovědí je statystyka, tedy číslo vypočtené z výběru. Dokud odpovědi nemáme, je tento počet náhodnou proměnnou. Při jiném provedení testu může vyjít jinak.
+
+Výběrové rozdělení statystyky popisuje pravděpodobnosti hodnot, kterých statystyka nabývá v možných výběrech téže velikosti z téže populace. Vždy potřebujeme vědět, o kterou statystyku jde: například o počet, podíl nebo průměr.
+
+Oba grafy zobrazují výběrové rozdělení podílu správných odpovědí. Na vodorovné ose je podíl v celém jednom testu. Na svislé ose je pravděpodobnost, že právě takový podíl vyjde. Jednotlivý sloupec tedy neznamená jednoho studenta. Shrnuje pravděpodobnost určitého výsledku celého výběru.
+
+Směrodatná odchylka tohoto rozdělení má vlastní název: směrodatná chyba. Pro podíl ji vypočteme jako odmocninu z celého podílu, v jehož čitateli je pí krát závorka jedna minus pí a ve jmenovateli počet pokusů en. Řecké pí označuje modelovou pravděpodobnost úspěchu.
+
+Při dvaceti otázkách dostáváme přibližně nula celých devadesát sedm tisícin. Při osmdesáti otázkách přibližně nula celých čtyřicet osm tisícin. Pravý graf je proto užší. Čtyřnásobný počet otázek zmenšil kolísání podílů na polovinu. Popisujeme rozdíly mezi výsledky různých výběrů, nikoli rozdíly odpovědí uvnitř jednoho testu.
+
+Snímek šest.
+
+U průměru sestavíme výběrové rozdělení zcela přesně. Maličká modelová populace obsahuje tři doby: dvacet, třicet pět a padesát sekund. Každá má pravděpodobnost jedné třetiny. Populační průměr je třicet pět sekund a směrodatná odchylka přibližně dvanáct celých dvacet pět setin sekundy.
+
+Losujeme dva řidiče nezávisle a s vracením. Pro první losování máme tři možnosti a pro druhé znovu tři. Existuje tedy devět stejně pravděpodobných uspořádaných dvojic. Dvacet a třicet pět je jiný výsledek losování než třicet pět a dvacet, přestože obě dvojice dávají stejný průměr.
+
+V mřížce vlevo určují řádky první vylosovanou dobu a sloupce druhou. V každém poli je uveden průměr dvojice. Tři zvýrazněná pole vedou k průměru třicet pět: dvacet a padesát, třicet pět a třicet pět, padesát a dvacet.
+
+Vpravo už na vodorovné ose nejsou jednotlivé doby řidičů, ale možné průměry dvojic: dvacet, dvacet sedm a půl, třicet pět, čtyřicet dva a půl a padesát sekund. Pravděpodobnosti sloupců jsou postupně jedna devítina, dvě devítiny, tři devítiny, dvě devítiny a jedna devítina. Dostali jsme je sečtením pravděpodobností dvojic, které vedou ke stejnému průměru.
+
+Střed tohoto rozdělení zůstává na třiceti pěti sekundách. Součet všech devíti průměrů je tři sta patnáct a dělením devíti dostáváme třicet pět. Směrodatná odchylka průměrů, tedy jejich směrodatná chyba, je odmocnina ze sedmdesáti pěti, přibližně osm celých šedesát šest setin sekundy. Je menší než směrodatná odchylka jednotlivých dob.
+
+Krajní průměr totiž dostaneme jen tehdy, když jsou krajní obě vylosované hodnoty. Krátká a dlouhá doba mohou v průměru vytvořit prostřední hodnotu. Celý postup je: z populace vznikne výběr, z výběru vypočteme statystyku a z jejích možných hodnot sestavíme výběrové rozdělení.
+
+Snímek sedm.
+
+Ve výzkumu potřebujeme rozlišovat tři různá rozdělení. Obrázek je staví pod sebe na společné vodorovné ose v sekundách. Používáme už výukový model s průměrem třicet pět sekund, směrodatnou odchylkou patnáct sekund a pravým zešikmením.
+
+Nahoře je rozdělení v populaci. Jedna hodnota na ose znamená dobu jednoho řidiče. Křivka je modelová hustota, nikoli souhrn naměřených dat.
+
+Uprostřed je jeden výběr třiceti řidičů. Každý bod představuje jednoho z nich. Jejich průměr je třicet šest celých pět desetin sekundy, vyznačený trojúhelníkem. Jednotlivé doby se od sebe výrazně liší.
+
+Dole je histogram deseti tisíc výběrových průměrů. Každý z těchto průměrů pochází z jednoho celého výběru třiceti řidičů. Průměr ze střední řady je pouze jedním z nich. Histogram je mnohem užší než rozdělení jednotlivých dob nahoře.
+
+První dvě rozdělení se týkají hodnot jednotlivých lidí. Třetí se týká výsledků celých výběrů shrnutých jedním číslem. V běžné studyji přitom máme jen prostřední řádek, jeden skutečný výběr. O jeho výběrovém rozdělení usuzujeme pomocí modelu. Právě ono nám pomáhá posoudit, jak moc by se výsledek měnil při jiném výběru.
+
+Snímek osm.
+
+U velké populace už všechny výběry vypsat nedokážeme. Počítač ale může opakovat stejný postup: vylosovat výběr, spočítat jeho průměr a zaznamenat jej. Tak vzniká simulace výběrového rozdělení.
+
+Obrázek ukazuje deset tisíc opakování pro každou ze tří velikostí výběru: pět, třicet a sto řidičů. Na vodorovné ose je vždy průměr jednoho výběru v sekundách a na svislé hustota. Středy všech tří histogramů zůstávají blízko třiceti pěti sekundám. Směrodatné odchylky simulovaných průměrů postupně klesají: šest celých sedmdesát sedm setin, dvě celé sedmdesát čtyři setin a jedna celá padesát jedna setin sekundy.
+
+Zároveň se mění tvar. U výběrů po pěti řidičích je rozdělení stále znatelně zešikmené doprava. U výběrů po stu je mnohem souměrnější. K šířce i tvaru se vrátíme zvlášť.
+
+Velikost výběru a počet opakování odpovídají na různé otázky. Velikost výběru říká, kolik řidičů obsahuje jeden výběr. Její změnou měníme samotné výběrové rozdělení průměru. Počet opakování říká, kolik takových výběrů počítač vylosoval. Více opakování zpřesní obraz téhož rozdělení, ale jeho skutečnou šířku nezmenší.
+
+Simulované hodnoty jsou přibližné. Při novém losování by se poněkud změnily. Deset tisíc opakování je zde dost pro názorné zachycení středu, šířky a tvaru; nejde o počet výběrů, které bychom museli skutečně získat ve výzkumu.
+
+Snímek devět.
+
+Nyní vyjádříme šířku výběrového rozdělení průměru jedním číslem. Ukážeme si, proč větší výběr dává přesnější odhad, a rozlišíme několik pojmů, které se kolem této nejistoty snadno zaměňují.
+
+Snímek deset.
+
+Směrodatná chyba průměru se rovná směrodatné odchylce populace dělené odmocninou z velikosti výběru. Ve vzorci označuje sigma směrodatnou odchylku jednotlivých hodnot v populaci. Malé en je počet nezávislých pozorování v jednom výběru. Sigma s indexem em je směrodatná chyba průměru. Index připomíná, že nyní popisujeme kolísání průměrů.
+
+Ve výukovém modelu je populační směrodatná odchylka patnáct sekund. Pro výběr dvaceti pěti řidičů dělíme patnáct odmocninou z dvaceti pěti, tedy pěti. Směrodatná chyba je tři sekundy. Pro sto řidičů dělíme deseti a dostáváme jednu a půl sekundy. Pro čtyři sta řidičů dělíme dvaceti a dostáváme tři čtvrtiny sekundy.
+
+Pravý graf má na vodorovné ose velikost výběru a na svislé směrodatnou chybu. Křivka klesá, ale stále pomaleji. Ke zmenšení chyby na polovinu potřebujeme čtyřnásobně velký výběr. Ve jmenovateli je totiž odmocnina z počtu, nikoli samotný počet.
+
+Levý graf porovnává jednotlivé řidiče s průměry sta řidičů. Obě rozdělení mají střed třicet pět sekund. Široká křivka popisuje jednotlivé doby se směrodatnou odchylkou patnáct sekund. Úzká křivka popisuje průměry se směrodatnou chybou jedné a půl sekundy. Doba jednoho řidiče padesát sekund leží jednu směrodatnou odchylku nad středem. Průměr sta řidičů padesát sekund by ležel deset směrodatných chyb nad středem a byl by v tomto modelu mimořádný.
+
+Ve skutečném výzkumu populační sigmu obvykle neznáme. Nahrazujeme ji výběrovou směrodatnou odchylkou es. Vznikne odhad směrodatné chyby, es s indexem em, rovný es děleno odmocninou z en. Z údajů parkovací studyje by vyšlo čtrnáct celých šest desetin děleno deseti, tedy jedna celá čtyřicet šest setin sekundy. Odhad ale sám kolísá mezi výběry. Pro následující modelové výpočty pracujeme se známou směrodatnou chybou; odhad a jeho další nejistotu řeší kapitola sedm.
+
+Snímek jedenáct.
+
+S rostoucí velikostí výběru se průměry stále těsněji soustřeďují kolem populačního průměru. Zákon velkých čísel říká, že odchylka výběrového průměru od populační hodnoty větší než zvolená kladná mez je při rostoucím výběru stále méně pravděpodobná.
+
+Tabulka sleduje pásmo tři sekundy pod a nad třiceti pěti sekundami, tedy od třiceti dvou do třiceti osmi. V simulaci v něm leželo třicet čtyři procent průměrů pětičlenných výběrů. U třicetičlenných to bylo sedmdesát tři procent a u stočlenných devadesát pět procent. To jsou výsledky konkrétní simulace, nikoli obecné podíly pro každou populaci.
+
+Stejnou zákonitost jsme už viděli u relatyvní četnosti správných typů. Když správnou odpověď zapíšeme jako jedničku a nesprávnou jako nulu, relatyvní četnost správných je průměrem těchto nul a jedniček.
+
+Zákon neslibuje, že se každým dalším pozorováním přiblížíme ke správné hodnotě. Ani nevyžaduje, aby po podprůměrných výsledcích přicházely nadprůměrné. Dřívější odchylka pouze ztrácí váhu v delší řadě pozorování.
+
+Podstatný je také způsob výběru. Velký výběr pořízený systematycky nevhodně může velmi přesně popisovat jinou skupinu, než nás zajímá. Více odpovědí od stejného nevhodně vymezeného okruhu lidí takové zkreslení samo neodstraní.
+
+Snímek dvanáct.
+
+Tabulka porovnává pět souvisejících pojmů. U každého sledujme otázku, na kterou odpovídá, a vliv většího výběru.
+
+Směrodatná odchylka popisuje, jak moc se liší jednotliví lidé. V modelu dob odjezdu je patnáct sekund. Větší výběr tuto populační variabilitu nezmenší. Pomůže nám ji přesněji odhadnout.
+
+Výběrová variabilita označuje samotný jev: výsledky se mezi výběry mění. Směrodatná chyba toto kolísání vyčísluje. Pro průměry třiceti řidičů v našem modelu je přibližně dvě celé sedmdesát čtyři setin sekundy. Při větším počtu nezávislých pozorování se zmenšuje.
+
+Výběrová chyba je rozdíl mezi jedním konkrétním odhadem a skutečným populačním parametrem. Pokud výběr ukáže průměr třicet šest a půl sekundy při populačním průměru třicet pět, chyba je plus jedna a půl sekundy. V simulaci ji známe, protože známe i populaci. Ve skutečné studyji ji obvykle spočítat nedokážeme. Směrodatná chyba nám poskytuje měřítko obvyklého kolísání, nikoli přesnou chybu našeho jediného výsledku.
+
+Systematycké zkreslení posouvá výsledky určitým směrem. Pokud například stopky pokaždé spustíme pozdě, naměřené doby soustavně zkrátíme. Více pozorování takovou chybu měření neodstraní. Směrodatná chyba může být malá, a přesto můžeme být kvůli zkreslení soustavně vedle.
+
+Snímek třináct.
+
+Po šířce výběrového rozdělení prozkoumáme jeho tvar. K výpočtu pravděpodobnosti určitého průměru potřebujeme obojí. Centrální limitní věta vysvětlí, proč k tomu často můžeme použít známý normální model.
+
+Snímek čtrnáct.
+
+S rostoucím výběrem jsme pozorovali dvě změny současně. Rozdělení průměrů se zužovalo a zároveň se stávalo souměrnějším. Obrázek tyto změny odděluje.
+
+Horní řada ukazuje průměry v sekundách pro výběry po dvou, pěti, třiceti a stu řidičích. Vodorovné osy mají stejné měřítko a histogramy se stále více soustřeďují kolem třiceti pěti sekund. To souvisí se zákonem velkých čísel.
+
+V dolní řadě jsou tytéž průměry standardyzované. Od výběrového průměru em odečteme populační průměr mí a celý rozdíl vydělíme směrodatnou chybou průměru, sigmou s indexem em. Výsledkem je zed-skór průměru. Pro každou velikost výběru má toto standardyzované rozdělení střed nula a směrodatnou odchylku jedna. Odstranili jsme rozdíl v poloze a šířce a můžeme porovnávat samotný tvar.
+
+Přerušovaná křivka v dolních grafech je normovaná normální hustota. U dvojic řidičů se histogram od ní výrazně liší a má delší pravý chvost. U výběrů po stu ji vystihuje mnohem lépe.
+
+V normálním modelu leží nad zed-skórem dvě přibližně dvě celé tři desetiny procenta plochy a stejně tolik pod minus dvěma. V simulaci dvojic to bylo tři celé šest desetin procenta vpravo a pět desetin procenta vlevo. U stočlenných výběrů dvě celé čtyři desetiny procenta vpravo a dvě celé dvě desetiny vlevo. Tato změna tvaru souvisí s centrální limitní větou.
+
+Zákon velkých čísel tak pomáhá odpovědět, jak blízko populační hodnotě průměr leží. Centrální limitní věta popisuje tvar jeho standardyzovaného výběrového rozdělení.
+
+Snímek patnáct.
+
+Centrální limitní věta říká, že při rostoucí velikosti výběru se standardyzované rozdělení průměru nezávislých pozorování z téže populace blíží normovanému normálnímu rozdělení. Populace přitom sama normální být nemusí.
+
+Pro dostatečně velký výběr proto můžeme výběrové rozdělení průměru přiblížit normálním modelem. Jeho střední hodnota odpovídá populačnímu průměru a jeho směrodatná odchylka je směrodatná chyba průměru. U sta řidičů v našem výukovém modelu tedy použijeme střed třicet pět sekund a směrodatnou odchylku jedna a půl sekundy.
+
+Potřebujeme nezávislá pozorování z téže populace a konečnou variabilitu. Sto opakovaných měření jednoho člověka nemůžeme automatycky zaměnit za sto nezávisle vybraných lidí. Potřebná velikost výběru také závisí na tvaru populace, zejména na zešikmení a chvostech.
+
+Číslo třicet není univerzální hranice. U normální populace je průměr normálně rozdělen už při malém počtu nezávislých pozorování. U silně zešikmené populace může i třicet pozorování poskytovat nedostatečné přiblížení.
+
+Větší výběr přitom nemění původní hodnoty na normálně rozdělené. Histogram jednotlivých dob odjezdu bude s více řidiči přesněji ukazovat původní zešikmení. Normálnímu tvaru se přibližuje rozdělení průměrů. Věta také nedává stejný výsledek automatycky pro medyán či směrodatnou odchylku, které mají vlastní výběrová rozdělení.
+
+Známým zvláštním případem je normální aproximace binomického rozdělení. Podíl úspěchů je průměrem nul a jedniček. Proto jsme i u něj potřebovali dostatečný počet očekávaných úspěchů a neúspěchů.
+
+Snímek šestnáct.
+
+Spojíme směrodatnou chybu a přibližný normální tvar v konkrétním výpočtu. S jakou pravděpodobností bude průměr sta nezávisle vybraných řidičů větší než třicet osm sekund?
+
+První krok vymezuje model: populační průměr třicet pět sekund, směrodatná odchylka patnáct sekund a velikost výběru sto. Ve druhém kroku vypočteme směrodatnou chybu. Patnáct dělíme odmocninou ze sta, tedy deseti. Dostáváme jednu a půl sekundy.
+
+Ve třetím kroku použijeme pro průměr přibližný normální model se středem třicet pět a směrodatnou odchylkou jedna a půl. Ve čtvrtém převedeme hranici třicet osm na zed-skór. Od třiceti osmi odečteme třicet pět a celý rozdíl vydělíme jednou a půl. Výsledek je dvě.
+
+V pátém kroku určíme plochu napravo od této hranice. Plocha nalevo je přibližně nula celých devět tisíc sedm set sedmdesát dva desetitisícin. Odečtením od jedné získáme nula celých dvě stě dvacet osm desetitisícin. Průměr nad třiceti osmi sekundami tedy vyjde přibližně u dvou celých tří desetin procenta výběrů, asi u jednoho ze čtyřiceti čtyř.
+
+V grafu je na vodorovné ose průměr výběru v sekundách, na svislé hustota. Vybarvená plocha v pravém chvostu představuje právě hledanou pravděpodobnost. U jednotlivého řidiče je doba nad třiceti osmi sekundami v našem zešikmeném modelu mnohem běžnější: má ji přibližně třicet sedm procent řidičů. Srovnáváme různé otázky, a proto potřebujeme různá rozdělení.
+
+Excelový výpočet používá funkci norm-tečka-dyst s hranicí třicet osm, středem třicet pět, směrodatnou odchylkou jedna a půl a hodnotou pravda. Funkce vrátí plochu nalevo, proto její výsledek odečteme od jedné. Do třetího argumentu patří směrodatná chyba průměru, nikoli patnáct sekund pro jednotlivce.
+
+Stejný model umí určit prostředních devadesát pět procent výběrových průměrů. Ke třiceti pěti přičteme a odečteme součin jedné celé devadesáti šesti setin a jedné a půl. Hranice jsou třicet dva celých šest setin a třicet sedm celých devadesát čtyři setin sekundy. Jde o kvantyly rozdělení výběrových průměrů kolem známého populačního průměru. Interval spolehlivosti řeší opačnou otázku: z jednoho výběru usuzujeme na neznámý parametr. Tomu se věnuje kapitola sedm.
+
+Snímek sedmnáct.
+
+Parkovací příklad porovnává dva výběrové průměry. Statystykou je nyní jejich rozdíl. I rozdíl má své výběrové rozdělení, protože při novém výběru by se změnily oba průměry.
+
+Ve výukovém modelu předpokládejme, že obě skupiny pocházejí z téže populace s průměrem třicet pět a směrodatnou odchylkou patnáct sekund. Počítač losoval dvojice nezávislých výběrů, vždy po stu řidičích v každé skupině. Z každé dvojice zaznamenal rozdíl průměrů. Po deseti tisících opakováních vznikl histogram na snímku.
+
+Vodorovná osa ukazuje rozdíly v sekundách, svislá hustotu. Průměr simulovaných rozdílů je dvě setiny sekundy, blízko modelové nule. Směrodatná chyba rozdílu je přibližně dvě celé dvanáct setin sekundy. Je větší než chyba jednoho průměru, protože kolísají oba. Při nezávislosti se sčítají jejich rozptyly; směrodatné chyby samotné prostě nesčítáme.
+
+Ptáme-li se na rozdíl větší než tři sekundy kterýmkoli směrem, potřebujeme oba chvosty. Tři sekundy odpovídají zed-skóru přibližně jedna celá čtyřicet jedna setin. Při výpočtu s nezaokrouhlenou hranicí připadá na jeden chvost přibližně nula celých sedm set osmdesát šest desetitisícin. Dvojnásobek je přibližně sto padesát sedm tisícin, tedy téměř šestnáct procent.
+
+Třísekundový rozdíl tedy může běžně vzniknout samotným střídáním výběrů. Tato čísla platí pro zvolený model. Ten zahrnuje nejen rovnost průměrů, ale stejné rozdělení obou populací a nezávislé náhodné výběry.
+
+Snímek osmnáct.
+
+Dosud jsme model znali a ptali se, jaké výsledky by dával. Ve výzkumu máme jeden výsledek a model potřebujeme posoudit. Následující část zavede hypotézy, pé-hodnotu a předem stanovené pravidlo pro rozhodnutí.
+
+Snímek devatenáct.
+
+Testování hypotéz porovnává pozorovaný výsledek s určitým modelem. Výzkumná hypotéza je věcné tvrzení, například že řidiči odjíždějí jinak rychle, pokud na jejich místo čeká jiné auto. Pro výpočet je převedeme na statystyckou hypotézu, tedy tvrzení o populačních parametrech.
+
+Označme mí s indexem jedna populační průměr doby odjezdu při čekajícím autě. Mí s indexem dvě je populační průměr bez čekajícího auta. Nulová hypotéza, označená há s indexem nula, tvrdí, že rozdíl těchto průměrů je nulový. Alternatyvní hypotéza, há s indexem jedna, tvrdí, že se rozdíl nule nerovná.
+
+Obě jsou statystycké hypotézy. Nulová poskytuje referenci, se kterou data porovnáváme. Alternatyvní určuje, jaké odchylky od této reference nás zajímají. Zde připouští rozdíl v kterémkoli směru.
+
+K odvození konkrétního výběrového rozdělení připojujeme další předpoklady modelu: velikosti výběrů, variabilitu a nezávislost. Samotné tvrzení o rovnosti průměrů by k určení celé křivky nestačilo. V našem zvoleném modelu má rozdíl střed nula a směrodatnou chybu přibližně dvě celé dvanáct setin sekundy.
+
+Hypotézy se týkají populací. Rozdíl pozorovaných výběrových průměrů šest celých osmdesát osm setin sekundy už známe. Testovat nepotřebujeme jeho existenci v datech, ale porovnat jej s tím, co bychom očekávali při určité populační hypotéze. Význam závěru pro výzkumnou otázku pak závisí i na kvalitě měření a uspořádání studyje.
+
+Snímek dvacet.
+
+Které výsledky považujeme za extrémnější, určuje alternatyvní hypotéza. Oboustranný test se zajímá o rozdíly v kterémkoli směru. Jednostranný test sleduje předem určený směr, například delší odjezd při čekajícím autě.
+
+Tři grafy porovnávají tentýž smyšlený pozorovaný rozdíl čtyř sekund se stejným nulovým modelem. Vodorovná osa zobrazuje rozdíl průměrů v sekundách. Křivky jsou stejné, mění se vybarvené oblasti.
+
+Vlevo je alternatyva, že se průměry liší. Za stejně extrémní považujeme plus čtyři i minus čtyři sekundy a za extrémnější všechny hodnoty ještě dál od nuly. Počítáme oba chvosty, dohromady přibližně padesát devět tisícin.
+
+Uprostřed alternatyva předpokládá delší odjezd s čekajícím autem. Počítáme pravý chvost od čtyř sekund výše, přibližně třicet tisícin. Vpravo alternatyva předpokládá kratší odjezd. Extrémnější v tomto směru jsou menší hodnoty než pozorované čtyři sekundy. Plocha vlevo od čtyř je přibližně devět set sedmdesát tisícin. Pozorování leží vůči této alternatyvě na opačné straně.
+
+U jednostranného testu zahrnuje nulová hypotéza také rozdíly v opačném směru. Pro pravostrannou alternatyvu tedy rozdíl nejvýše nula. Počítáme na hraniční hodnotě nula, při které je v této nulové hypotéze pravděpodobnost velkých kladných rozdílů nejvyšší.
+
+Směr testu volíme před sběrem dat. Kdybychom si vždy vybrali výhodnější směr podle pozorovaného znaménka, zvýšili bychom riziko chybného zamítnutí. U parkovacího příkladu volíme oboustranný test, protože by nás zajímal i opačný výsledek. Oboustranný test lze zvolit také při směrové výzkumné hypotéze, pokud potřebujeme zachytit důležitý rozdíl v obou směrech.
+
+Snímek dvacet jedna.
+
+Nyní porovnáme pozorovaný rozdíl šest celých osmdesát osm setin sekundy s rozdělením podle nulové hypotézy. Rozdíl je testová statystyka: číslo vypočtené z dat, jehož chování známe za předpokladů modelu. Můžeme jej vyjádřit také jako zed-skór. Rozdíl od nuly vydělíme směrodatnou chybou přibližně dvě celé dvanáct setin sekundy. Vyjde přibližně tři celé dvacet čtyři setin.
+
+Pé-hodnota je pravděpodobnost výsledku stejně extrémního jako pozorovaný nebo ještě extrémnějšího, kdyby platila nulová hypotéza a ostatní předpoklady modelu. U našeho oboustranného testu zahrnuje rozdíly alespoň plus šest celých osmdesát osm setin a nejvýše minus šest celých osmdesát osm setin sekundy.
+
+V grafu je na vodorovné ose rozdíl průměrů, na svislé hustota. Dvě šipky označují pozorovaný rozdíl a stejně velký rozdíl opačným směrem. Pé-hodnotě odpovídá součet ploch v obou chvostech za těmito šipkami, nikoli celá světle vybarvená oblast.
+
+Na jeden chvost připadá přibližně šest desetitisícin. Dva chvosty dávají přibližně dvanáct desetitisícin, tedy nula celých dvanáct desetitisícin. Kdyby platil nulový model, vyšel by alespoň takto velký rozdíl přibližně u jedné dvojice výběrů z osmi set. Při výpočtu s různě zaokrouhlenými mezivýsledky se poslední číslice mění. Význam výsledku vystihuje přibližná jedna tisícina.
+
+V Excelu lze použít funkci norm-tečka-es-tečka-dyst pro zed-skór tři celé dvacet čtyři setin a hodnotu pravda. Její výsledek odečteme od jedné a získaný pravý chvost vynásobíme dvěma. V odborném zápisu se pé-hodnota označuje i samotným kurzivním malým pé. Kde by hrozila záměna s podílem, používáme celé označení pé-hodnota.
+
+Čím menší pé-hodnota, tím méně obvyklá jsou takto extrémní data za nulového modelu. Pro rozhodnutí ale potřebujeme ještě pravidlo stanovené předem.
+
+Snímek dvacet dva.
+
+Hladina významnosti je předem zvolená hranice pro pé-hodnotu. Označujeme ji řeckým alfa. Často se volí pět setin, tedy pět procent. Je to zvyklost, nikoli přírodní hranice mezi pravdou a nepravdou.
+
+Jestliže je pé-hodnota menší nebo rovna zvolené hladině, zamítáme nulovou hypotézu a výsledek označujeme jako statystycky významný. Je-li větší, nulovou hypotézu nezamítáme.
+
+Stejné pravidlo lze vyjádřit krityckým oborem, tedy oblastí hodnot testové statystyky, při nichž zamítáme. U oboustranného testu na pětiprocentní hladině rozdělíme pět procent mezi oba chvosty po dvou a půl procentech. Odpovídající kritycké zed-skóry jsou přibližně minus jedna celá devadesát šest setin a plus jedna celá devadesát šest setin.
+
+Převedením do sekund dostaneme hranice přibližně minus čtyři celé šestnáct setin a plus čtyři celé šestnáct setin sekundy. Pozorovaný rozdíl šest celých osmdesát osm setin leží za kladnou hranicí. Nulovou hypotézu proto zamítáme. Ke stejnému rozhodnutí vede porovnání pé-hodnoty přibližně dvanáct desetitisícin s hladinou pěti setin.
+
+Tabulka odděluje pravidlo od výsledku. Předem určujeme hypotézy, směr, hladinu a odpovídající kritycký obor. Z dat počítáme pozorovaný rozdíl, zed-skór a pé-hodnotu. Hladinu neposouváme dodatečně podle toho, co vyšlo.
+
+Pé-hodnotu můžeme také číst jako nejnižší hladinu, při které by výsledek byl ještě statystycky významný. To vysvětluje vztah obou čísel, nenahrazuje však předchozí volbu hladiny. V simulaci deseti tisíc dvojic výběrů při platném nulovém modelu vedlo pětiprocentní pravidlo ke čtyřem stům devadesáti sedmi zamítnutím. Jejich podíl je přibližně pět procent.
+
+Snímek dvacet tři.
+
+Výsledek nyní shrneme ve dvou krocích. Rozhodnutí testu zní: na hladině pěti setin zamítáme nulovou hypotézu, že se populační průměry doby odjezdu neliší. Pé-hodnota je přibližně jedna tisícina. To je formální závěr v rámci zvoleného modelu.
+
+Věcná interpretace se vrací k otázce o řidičích. Sledujeme směr rozdílu: při čekajícím autě byl odjezd pomalejší. Velikost je šest celých osmdesát osm setin sekundy, přibližně pětina průměrné doby bez čekajícího auta. Nejistotu vyjadřuje modelová směrodatná chyba rozdílu, přibližně dvě celé dvanáct setin sekundy. Jiná dvojice výběrů by mohla dát větší nebo menší rozdíl.
+
+Uspořádání studyje ovšem omezuje závěr o příčině. Řidiči nebyli k podmínkám náhodně přiřazeni a skupiny se mohly lišit i jinak. Výsledek podporuje existenci rozdílu za předpokladů modelu. Samotné srovnání nedokazuje, že jej způsobilo čekající auto.
+
+Zápis dole na snímku připomíná podmíněnou pravděpodobnost. Pé-hodnota počítá pravděpodobnost příslušně extrémních výsledků za předpokladu nulové hypotézy. Nevyjadřuje pravděpodobnost nulové hypotézy při známých datech ani pravděpodobnost, že výsledek vznikl náhodou. Obrácení podmínky je stejný problém, který jsme řešili u skrínyngu v minulé kapitole. Tímto výpočtem jsme pravděpodobnost hypotézy neurčili.
+
+Snímek dvacet čtyři.
+
+Rozhodujeme se na základě nejistých dat a pravidlo se může mýlit. Rozlišíme dvě chyby a ukážeme si, na čem závisí pravděpodobnost odhalení skutečného rozdílu. Potom se vrátíme k významu nezamítnutí nulové hypotézy.
+
+Snímek dvacet pět.
+
+Tabulka kombinuje skutečný stav ve sloupcích a naše rozhodnutí v řádcích. Nulová hypotéza buď platí, nebo neplatí. My ji buď zamítneme, nebo nezamítneme. Vznikají dvě správná rozhodnutí a dvě možné chyby.
+
+Chyba prvního druhu znamená zamítnutí pravdivé nulové hypotézy. U parkovacího modelu bychom oznámili rozdíl, přestože se populační průměry neliší. Pravděpodobnost této chyby kontrolujeme volbou hladiny alfa. U probíraného spojitého modelu ji nastavujeme na pět procent; obecně nemá zvolenou hladinu překročit.
+
+Chyba druhého druhu znamená nezamítnutí nepravdivé nulové hypotézy. Rozdíl v populaci existuje, ale daná data nevedla k jeho odhalení. Pravděpodobnost této chyby značíme řeckým beta. Závisí i na konkrétní skutečné velikosti rozdílu. Doplněk jedna minus beta je pravděpodobnost správného zamítnutí, tedy statystycká síla.
+
+Obdobu známe ze skrínyngu. Chyba prvního druhu odpovídá falešně pozityvnímu a chyba druhého druhu falešně negatyvnímu výsledku. Znovu musíme hlídat podmínku.
+
+Pětiprocentní hladina se vztahuje k případům, kdy nulová hypotéza platí. Neříká, že je chybných pět procent všech našich zamítnutí. Takový podíl by závisel také na tom, jak často testované nulové hypotézy skutečně platí. Dvě procenta s různými celky nemůžeme zaměňovat.
+
+Snímek dvacet šest.
+
+Statystycká síla je pravděpodobnost zamítnutí nulové hypotézy při konkrétní uvažované alternatyvě a daném uspořádání studyje. Pro nulový rozdíl a pro rozdíl osmi sekund tedy sledujeme jiné situace. Výrok, že nulová hypotéza neplatí, sám ještě velikost rozdílu neurčuje.
+
+Ve čtyřech grafech jsou na vodorovné ose rozdíly výběrových průměrů v sekundách a na svislé hustota. Přerušované svislé čáry vymezují stále stejný kritycký obor za hranicemi přibližně minus čtyři celé šestnáct setin a plus čtyři celé šestnáct setin sekundy. Posouvá se křivka podle skutečného populačního rozdílu. Vybarvené plochy označují pravděpodobnost zamítnutí.
+
+Při skutečném rozdílu nula je to pět setin, tedy chyba prvního druhu. Při rozdílu tři sekundy je pravděpodobnost zamítnutí přibližně dvacet devět setin. Takový rozdíl by studyje odhalila jen asi ve dvaceti devíti procentech případů a v přibližně sedmdesáti jednom procentu by jej přehlédla. Při pěti sekundách je síla přibližně šedesát pět setin a při osmi sekundách devadesát šest setin.
+
+Větší výběr zmenší směrodatnou chybu a zvýší sílu pro stejný rozdíl. Kdybychom místo sta měli čtyři sta řidičů v každé skupině, síla pro třísekundový rozdíl by vzrostla přibližně z dvaceti devíti na osmdesát jedna procent. Menší variabilita hodnot má za jinak stejných podmínek podobný přínos. Přesnější měření může pomoci, pokud skutečně zmenší příslušné kolísání.
+
+Mírnější hladina zvyšuje sílu, ale zároveň dovoluje více chyb prvního druhu. Přísnější hladina působí opačně. Jednostranný test může mít vyšší sílu v předem určeném směru, ale nesleduje odchylku v opačném směru stejným způsobem.
+
+Síla tedy není jediné pevné číslo přiřazené názvu testu. Vztahuje se ke konkrétnímu rozdílu, velikosti výběru, variabilitě a rozhodovacímu pravidlu.
+
+Snímek dvacet sedm.
+
+Představme si smyšlenou variantu studyje, ve které vyšel rozdíl jen dvě celé devět desetin sekundy. Při stejné modelové směrodatné chybě dostaneme zed-skór přibližně jedna celá třicet sedm setin a oboustrannou pé-hodnotu sedmnáct setin.
+
+Na hladině pěti setin nulovou hypotézu nezamítáme. Pozorovaný rozdíl neleží v krityckém oboru. To je rozhodnutí testu. Věcně můžeme říci, že výsledky neposkytly dostatečně přesvědčivou podporu předpokládanému rozdílu, ale jeho existenci nevylučují.
+
+Už totiž víme, že při skutečném rozdílu tří sekund by tato studyje rozdíl asi v sedmdesáti jednom procentu případů neodhalila. Nezamítnutí proto může nastat při nulovém i nenulovém rozdílu. Nemůžeme je automatycky převést na tvrzení, že rozdíl není nebo že jsou obě skupiny stejné.
+
+Informační hodnota nezamítnutí závisí na tom, jak velký rozdíl by studyje dokázala zachytit. Pro osm sekund měla sílu přibližně devadesát šest procent, takže nezamítnutí by bylo důvodem pochybovat o tak velkém rozdílu. Pro tři sekundy měla sílu nízkou, a její nezamítnutí nám proto o takovém rozdílu řekne podstatně méně.
+
+Snímek dvacet osm.
+
+V poslední výkladové části se vrátíme k významu výsledku pro výzkumnou otázku. Odlišíme statystyckou významnost od velikosti účinku, porovnáme společné kroky dvou testů a upozorníme na postupy, které znehodnocují jejich interpretaci.
+
+Snímek dvacet devět.
+
+Statystycká významnost vyjadřuje výsledek rozhodovacího pravidla. Věcná významnost se týká důležitosti zjištění pro otázku a teorii. Praktycká významnost jeho důsledků pro praxi. Tyto tři významy se mohou rozcházet.
+
+U parkování může být rozdíl zajímavý pro otázku mezilidského chování, zatímco přibližně sedm sekund nemusí mít pro čekajícího řidiče velký praktycký dopad. Záleží na kontextu. Samotné zamítnutí nulové hypotézy tuto důležitost neurčuje.
+
+Velikost účinku odpovídá na otázku, jak velký rozdíl pozorujeme. Začněme původními jednotkami: zde šest celých osmdesát osm setin sekundy, přibližně pětina výchozí doby. Slovo účinek je ustálený název ukazatele a samo o sobě nezaručuje příčinný výklad.
+
+Grafy ukazují stejný rozdíl jednoho bodu při různých velikostech výběru. Populační směrodatnou odchylku ilustračního skóru pozornosti považujeme za známou a rovnou deseti bodům. Nulová hypotéza předpokládá průměr padesát. V obou studyjích pozorujeme průměr padesát jedna bodů.
+
+V levém grafu je výběr dvaceti pěti studentů. Směrodatná chyba je dva body a rozdíl jednoho bodu představuje jen polovinu směrodatné chyby. Oboustranná pé-hodnota je přibližně šedesát dva setin. V pravém grafu je výběr dvou tisíc pěti set studentů. Směrodatná chyba je dvě desetiny bodu, takže stejný rozdíl leží pět směrodatných chyb nad nulovou hodnotou. Pé-hodnota je menší než jedna tisícina.
+
+Na vodorovných osách jsou průměry v bodech, na svislých hustota. Pravá křivka je mnohem užší a vybarvené chvosty za stejně vzdálenými hranicemi jsou nepatrné. Rozdíl samotný přesto zůstává jeden bod. Větší výběr umožnil přesnější odlišení od nuly, nevytvořil větší účinek. Proto vedle rozhodnutí testu vždy potřebujeme velikost rozdílu a jeho věcnou interpretaci.
+
+Snímek třicet.
+
+Tabulka porovnává binomický test a zed-test průměru. V obou případech postupujeme stejnou cestou: stanovíme hypotézy a směr, zvolíme hladinu, určíme statystyku a její výběrové rozdělení, vypočteme pé-hodnotu a rozhodneme. Nakonec se vrátíme k věcnému významu výsledku. V obou příkladech používáme hladinu pěti setin.
+
+Levý sloupec se týká studenta, který správně zodpověděl deset z dvaceti otázek se čtyřmi možnostmi. Alternatyvní hypotéza tvrdí, že pravděpodobnost správné odpovědi pí je větší než jedna čtvrtina. Nulová zahrnuje pravděpodobnosti nejvýše jedna čtvrtina. Pro výpočet použijeme hraniční hodnotu jedné čtvrtiny a předpokládáme nezávislé pokusy se stejnou pravděpodobností úspěchu.
+
+Testovou statystykou je počet správných odpovědí. Na hranici nulové hypotézy má binomické rozdělení s dvaceti pokusy a pravděpodobností jedné čtvrtiny. Pé-hodnota je pravděpodobnost deseti nebo více správných odpovědí, přibližně čtrnáct tisícin. Je menší než pět setin, proto nulovou hypotézu zamítáme.
+
+Kritycký obor zahrnuje devět až dvacet správných odpovědí. Jeho pravděpodobnost při typování je přibližně čtyřicet jedna tisícin. Přesných pěti setin tu nedosáhneme, protože jednotlivé počty mají vlastní pravděpodobnosti a jejich součet se mění skokem. S hranicí osmi správných by pravděpodobnost vzrostla přibližně na sto dva tisícin a zvolenou hladinu by překročila.
+
+Výsledek podporuje závěr, že odpovídání neodpovídá čistému náhodnému typování ze čtyř možností. Neříká, kolik látky student umí, ani nevylučuje jiné porušení modelu. Pokud by u každé otázky dokázal vyloučit dvě možnosti a pak typoval ze zbývajících dvou, deset správných by bylo zcela obvyklých.
+
+Pravý sloupec porovnává průměr s pevnou normou. U ilustračního skóru pozornosti předpokládáme normální model s průměrem padesát a známou směrodatnou odchylkou deset bodů. Dvacet pět studentů po noci s méně než pěti hodinami spánku má průměr čtyřicet šest bodů. Předem zvolená jednostranná alternatyva tvrdí, že populační průměr této skupiny je nižší než padesát. Nulová hypotéza zahrnuje hodnoty alespoň padesát. Opět počítáme na její hranici.
+
+Směrodatná chyba je deset děleno odmocninou z dvaceti pěti, tedy dva body. Zed-skór průměru je rozdíl čtyřicet šest minus padesát, celý dělený dvěma, tedy minus dvě. Levý chvost normovaného normálního rozdělení dává pé-hodnotu přibližně dvacet tři tisícin. Nulovou hypotézu na pětiprocentní hladině zamítáme.
+
+Kritycká hodnota průměru je padesát minus jedna celá šest set čtyřicet pět tisícin krát dva, přibližně čtyřicet šest celých sedmdesát jedna setin bodu. Do krityckého oboru patří tato hodnota a nižší průměry. Pozorovaných čtyřicet šest bodů v něm leží.
+
+Věcný rozdíl je pokles o čtyři body. Závěr o tom, zda jej způsobil krátký spánek, závisí na uspořádání studyje. Samotný výběr lidí, kteří málo spali, nevylučuje jiné rozdíly mezi nimi a referenční populací. Náhodné přiřazení k podmínkám by poskytovalo jinou oporu pro příčinný závěr.
+
+Samotný zed-skór ještě není test. Test vzniká až spojením hypotéz, výběrového rozdělení a rozhodovacího pravidla. A známá populační směrodatná odchylka je zde důležitý předpoklad. Kdybychom ji nahradili odhadem z téhož výběru, potřebovali bychom jiný postup, jednovýběrový té-test z kapitoly sedm.
+
+Snímek třicet jedna.
+
+Test pomáhá posoudit, jak neobvyklá jsou data v určitém modelu. Chrání před přehnaným výkladem rozdílů, které mohou běžně vzniknout střídáním výběrů. Jeho výsledek ale vždy potřebuje kontext.
+
+Pé-hodnoty čtyřicet devět tisícin a padesát jedna tisícin leží těsně na opačných stranách obvyklé hranice pěti setin. Vypovídají přitom o podobné míře nesouladu s nulovým modelem. Formální rozhodnutí se liší, ale věcný závěr nemá vytvářet dojem propastného rozdílu mezi výsledky.
+
+Pé-hodnota se vztahuje k celému modelu, včetně předpokladů výběru, nezávislosti a zde i známé populační směrodatné odchylky. Malá hodnota může upozornit na nesoulad s tímto celkem. Sama neurčuje, který jeho předpoklad neplatí.
+
+Více testů znamená více příležitostí k chybnému zamítnutí. Představme si dvacet nezávislých testů na pětiprocentní hladině a předpokládejme, že všechny nulové hypotézy platí. Pravděpodobnost nezamítnutí v jednom testu je devadesát pět setin. Pravděpodobnost nezamítnutí ve všech dvaceti je tato hodnota na dvacátou. Od jedné ji odečteme a získáme pravděpodobnost alespoň jednoho chybného zamítnutí, přibližně šedesát čtyři setin.
+
+Výběr jen úspěšně vycházející analýzy tuto souvislost skrývá. Podobně problematycké je opakovaně přepočítávat běžný test během sběru dat a skončit při prvním poklesu pé-hodnoty pod zvolenou hranici. Takový postup poskytuje více příležitostí k zamítnutí, než předpokládá původní pravidlo.
+
+Proto určujeme hypotézy, směr, plánovanou velikost výběru a postup analýzy předem. Uvádíme všechny provedené testy a vedle rozhodnutí také velikost rozdílu. Překvapivý jednotlivý výsledek je podnětem k dalšímu ověřování výzkumem.
+
+Tím výklad končí. Výběrové rozdělení popisuje, jak se statystyka mění mezi výběry. Směrodatná chyba vyčísluje toto kolísání. Test porovnává pozorovaný výsledek s určitým modelem podle předem zvoleného pravidla. Věcná interpretace potom připojuje směr a velikost rozdílu, nejistotu i uspořádání studyje. Na další snímky s procvičováním můžete navázat samostatně.

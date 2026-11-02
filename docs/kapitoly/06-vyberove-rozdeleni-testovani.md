@@ -255,6 +255,16 @@ Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
 okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
 určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).
 
+### Doprovodný scénář k prezentaci
+
+Od 2026-11-02 je připraven
+[scénář pro syntézu řeči](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
+k aktuální [prezentaci](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani.pptx),
+pro výkladové snímky 1–31 bez závěrečného procvičování.
+[Průvodní dokument](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+odkazuje na identitu podkladů, mapu úseků, slovník výslovnosti a výsledky
+kontrol. Nahrávka v tomto kroku nevznikla; rozsah učiva kapitoly se nemění.
+
 ### Doprovodný formát pro AI tutora
 
 Od 2026-11-02 je tato kapitola zahrnuta do [exportu podkladů AI tutora](../PROVOZ.md#export-ai-tutora).
