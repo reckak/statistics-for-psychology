@@ -11,6 +11,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 
 - [Sestavení a náhled webu](#práce-s-projektem)
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
+- [Pracovní PDF kapitol 1–6](#ruční-pdf-kapitol-16)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
 - [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-17)
 - [Publikování na GitHub Pages](#publikování-na-github-pages)
@@ -120,6 +121,49 @@ Pokud cílový PDF soubor blokuje prohlížeč, zavřete jej a export zopakujte;
 Po renderování skript navíc váže jednopísmenné slovo před odkazem
 v bibliografii vytvořené citeprocem a podle potřeby opakuje překlad Typstu
 s místními balíčky a fonty dodanými s Quartem. Adresy odkazů se nemění.
+
+## Ruční PDF kapitol 1–6
+
+Souhrnné pracovní PDF kapitol 1–6 se také sestavuje pouze na výslovné
+vyžádání. Z kořene projektu v PowerShellu spusťte:
+
+```powershell
+./scripts/render-book-pdf.ps1
+```
+
+Platí stejné závislosti, parametry `-QuartoPath` a `-RscriptPath` a zákaz
+přesměrování výstupu jako u PDF jednotlivé kapitoly. Výsledek je
+`output/pdf/ucebnice_01-06.pdf` (při ověření 277 stran). Obsahuje úvod,
+obsah, kapitoly 1–6, literaturu citovanou v těchto kapitolách, slovníček,
+přehled značení a přehled funkcí Excelu. Řešení cvičení jsou vždy v oddílu
+„Řešení cvičení“ na konci své kapitoly, s obousměrnými odkazy. Obrázky
+a tabulky se číslují podle kapitol, odkazy mezi kapitolami vedou uvnitř PDF.
+
+Přehledy obsahují jen řádky, jejichž odkazy na výklad vedou do kapitol 1–6;
+řádky vysvětlené pouze v kapitolách 7–8 a úvodní odstavce přehledu Excelu
+o těchto kapitolách se vynechají. Odkazy na kapitoly 7–8, na vynechané řádky
+a na sešity XLSX vedou na veřejný web. Několik vět popisujících ovládání webu
+(rozbalení řešení, vyhledávání v přehledech) skript pro PDF přeformuluje;
+nenalezení očekávané věty export zastaví.
+
+Nastavení je v `scripts/pdf/book.yml`, `book.lua` (rozdělení na kapitoly,
+přesun řešení, převod HTML přehledů na tabulky, odkazy) a `book-page.typ`
+(zalomení a záhlaví stran). Společné jsou `layout.typ`, `typography.lua`
+a `common.ps1`; PDF jednotlivé kapitoly navíc používá `chapter.lua`
+a `chapter-page.typ`. Pomocné sestavení vzniká v `tmp/pdf-book/`, jehož
+obsah se při každém spuštění nahradí; cílové PDF se nahradí až po úspěchu.
+
+Po sestavení zkontrolujte převod:
+
+```powershell
+node scripts/check-book-pdf.cjs
+```
+
+Kontrola ověří počet a umístění řešení v každé kapitole (9/10/15/10/12/16),
+zpětné odkazy, zachování rovnic, kódu, obrázků a citací, existenci cílů
+vnitřních odkazů a omezení přehledů na kapitoly 1–6. Skutečné PDF prověří
+také `python scripts/check-rendered-pdf.py`, pokud soubor existuje.
+Prohlédnutí výsledného PDF nenahrazuje.
 
 ## Kontroly a GitHub
 
