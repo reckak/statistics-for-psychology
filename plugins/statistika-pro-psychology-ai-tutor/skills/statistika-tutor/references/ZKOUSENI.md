@@ -26,4 +26,3 @@ Na konci zobraz pro každou otázku body, důvod a vzorovou odpověď;
 součet s maximem, konkrétní silné a slabé stránky a další studijní krok.
 Nepřeváděj skóre automaticky na univerzitní známku ani na předpověď úspěchu
 u skutečné zkoušky.
-
