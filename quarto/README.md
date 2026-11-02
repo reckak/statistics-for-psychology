@@ -1,5 +1,27 @@
 # Autorská dokumentace
 
+## 2026-11-02 — Nahrávka k prezentaci kapitoly 6 hlasem Adam
+
+Na následnou výslovnou žádost autora převeden hotový scénář snímků 1–31
+pomocí Creative Claw, modelu `speech/heygen-voice-1`, veřejného českého
+hlasu Adam, jazyka cs a rychlosti 1. Před převodem ověřeny aktuální
+parametry služby. Limit 5 000 znaků vyžadoval deset částí; jejich text
+je shodný se scénářem včetně výslovnostních přepisů. Části spojeny
+bez prolínání přes mezivýstupy WAV, finální MP3 má 46:07 a 31 značek
+kapitol podle skutečných časů. Soubor
+`presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3`
+zůstává místní a ignorovaný Gitem.
+
+[Průvodní dokument](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+a [manifest](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
+zachycují parametry, identitu výstupu, časové značky a ověření.
+Všechny části i celý MP3 se úspěšně dekódují, délka odpovídá součtu
+částí, pořadí ověřeno také porovnáním průběhu zvuku z každé části
+s příslušným místem celku. Hlasitost částí je vyrovnaná, detektor
+nenašel ticho delší než dvě sekundy při prahu −50 dB. Skutečný poslech
+nebyl proveden; technické kontroly nepotvrzují výslovnost. Scénář,
+prezentace, kapitola ani sešity se při převodu neměnily.
+
 ## 2026-11-02 — Scénář k prezentaci kapitoly 6
 
 Připraven [souvislý scénář pro syntézu řeči](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
