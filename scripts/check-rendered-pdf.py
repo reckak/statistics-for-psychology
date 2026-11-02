@@ -5,9 +5,14 @@ from pypdf import PdfReader
 from pypdf.generic import ContentStream
 
 report = []
-for chapter in (3, 4, 5, 6, 7):
-    source = Path(f'quarto/kapitola_{chapter:02}.qmd').read_text(encoding='utf8')
-    reader = PdfReader(f'output/pdf/kapitola_{chapter:02}.pdf')
+# Chapter PDFs and, when it has been built, the book PDF of chapters 1-6.
+targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7)]
+if Path('output/pdf/ucebnice_01-06.pdf').exists():
+    targets.append(('ucebnice_01-06', [1, 2, 3, 4, 5, 6]))
+for name, chapters in targets:
+    chapter = name
+    source = ''.join(Path(f'quarto/kapitola_{c:02}.qmd').read_text(encoding='utf8') for c in chapters)
+    reader = PdfReader(f'output/pdf/{name}.pdf')
     notes = []
     gray_strokes = 0
     for page in reader.pages:

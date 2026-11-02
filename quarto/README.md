@@ -1,5 +1,39 @@
 # Autorská dokumentace
 
+## 2026-11-02 — Souhrnné pracovní PDF kapitol 1–6
+
+Na žádost autora přibyl ruční export jednoho PDF: úvod, kapitoly 1–6,
+literatura a tři přehledy. Podle autorovy volby přehledy obsahují jen řádky
+vysvětlené v kapitolách 1–6 (vynecháno 29 řádků slovníčku, 12 značení
+a 8 funkcí Excelu) a literatura jen zdroje citované v těchto kapitolách.
+Nový skript `scripts/render-book-pdf.ps1` s filtrem `scripts/pdf/book.lua`
+(postup v [PROVOZ.md](../docs/PROVOZ.md#ruční-pdf-kapitol-16)). Filtr nově
+rozpoznává i cvičení ve tvaru „Úloha N:“ (kapitoly 1–2) a převádí HTML
+tabulky přehledů na tabulky Typstu. Hledání programů a dodatečné
+typografické úpravy Typstu jsou nově ve sdíleném `scripts/pdf/common.ps1`;
+z `layout.typ` se oddělila kapitolová část `chapter-page.typ`. Studentský
+text, web, data ani sešity se neměnily; PDF přeformuluje jen několik vět
+o ovládání webu.
+
+**Kontroly:** PDF sestaveno (277 stran). `check-book-pdf.cjs` prošel
+(72 řešení na správných místech, 428 cílů odkazů, přehledy jen pro kapitoly
+1–6). Kontrola při vývoji odhalila, že filtr vypouštěl i dva odstavce
+kapitoly 6 odkazující na kapitolu 7; opraveno a kontrola to nyní hlídá.
+V PDF je 1 243 vnitřních odkazů a žádný nefunkční; webové odkazy vedou jen
+na kapitoly 7–8, vynechané řádky, sešity a vnější zdroje. Obrázky
+i tabulky jsou číslované souvisle po kapitolách a jejich počty odpovídají
+zdrojům. `check-rendered-pdf.py` (nově i pro souhrnné PDF: 8 poznámek
+10 pt, šedé linky) a `check-pdf-typography.cjs` prošly. Regrese: PDF
+kapitoly 4 po refaktoringu znovu sestaveno, `check-chapter-pdf.cjs --chapter 4`
+prošel a text všech 38 stran je shodný s předchozím exportem.
+**Omezení:** vizuálně prohlédnuto jen 14 vybraných stran (titul a obsah,
+úvod, začátky kapitol 1, 4 a 6, grafy, tabulky, řešení kapitol 1 a 6,
+literatura a po jedné straně tří přehledů); ostatní strany pouze kontrolou textu
+a odkazů. PDF ostatních kapitol nebylo znovu exportováno. V řešeních
+kapitoly 6 se vnořené seznamy sázejí jako „a) a)“ stejně jako v PDF
+samotné kapitoly; nebylo řešeno. Typst hlásí 57 varování o zastaralém
+symbolu `sect` (stejně jako v dosavadních PDF).
+
 ## 2026-11-01 — PDF kapitoly 7 a oprava matematické sazby v PDF
 
 Ruční export a kontroly rozšířeny na kapitolu 7. PDF má 29 stran: zadání
