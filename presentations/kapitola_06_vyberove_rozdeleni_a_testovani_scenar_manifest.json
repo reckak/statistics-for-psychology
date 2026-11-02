@@ -416,7 +416,7 @@
     },
     "visual_source_review": "12 embedded figures inspected; slide texts, tables and notes read",
     "didactic_review": "reviewed model versus study, sampling distributions, hypotheses, denominators, formula scope, approximations and interpretations",
-    "audio_generated": false,
+    "audio_generated": true,
     "pronunciation_listening_verified": false,
     "remaining_di_ti_ni_review": {
       "status": "reviewed in context; remaining groups are soft Czech pronunciations and inflectional/derivational endings",
@@ -677,6 +677,218 @@
     "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
     "language": "cs",
     "speed": 1,
-    "status": "project preference only; no synthesis requested and service parameters not checked"
+    "status": "parameters verified and full synthesis completed 2026-11-02"
+  },
+  "audio": {
+    "date": "2026-11-02",
+    "file": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3",
+    "sha256": "73f8884ac38e5321abe5f95dc05f39881aacbc1862b6189a90428123b4da1333",
+    "bytes": 66412721,
+    "duration_seconds": 2767.0214739229027,
+    "slides": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
+    "language": "cs",
+    "speed": 1,
+    "parts": 10,
+    "chapters": [
+      {
+        "slide": 1,
+        "start_seconds": 0.256
+      },
+      {
+        "slide": 2,
+        "start_seconds": 65.951
+      },
+      {
+        "slide": 3,
+        "start_seconds": 109.106
+      },
+      {
+        "slide": 4,
+        "start_seconds": 122.541
+      },
+      {
+        "slide": 5,
+        "start_seconds": 217.342
+      },
+      {
+        "slide": 6,
+        "start_seconds": 326.6037551020408
+      },
+      {
+        "slide": 7,
+        "start_seconds": 449.1927551020408
+      },
+      {
+        "slide": 8,
+        "start_seconds": 525.6747551020408
+      },
+      {
+        "slide": 9,
+        "start_seconds": 620.1157551020408
+      },
+      {
+        "slide": 10,
+        "start_seconds": 635.3879795918367
+      },
+      {
+        "slide": 11,
+        "start_seconds": 765.4739795918367
+      },
+      {
+        "slide": 12,
+        "start_seconds": 852.0889795918367
+      },
+      {
+        "slide": 13,
+        "start_seconds": 941.1089795918367
+      },
+      {
+        "slide": 14,
+        "start_seconds": 955.8935510204082
+      },
+      {
+        "slide": 15,
+        "start_seconds": 1057.8255510204083
+      },
+      {
+        "slide": 16,
+        "start_seconds": 1163.4364081632655
+      },
+      {
+        "slide": 17,
+        "start_seconds": 1315.1524081632654
+      },
+      {
+        "slide": 18,
+        "start_seconds": 1413.3024081632655
+      },
+      {
+        "slide": 19,
+        "start_seconds": 1429.5104285714287
+      },
+      {
+        "slide": 20,
+        "start_seconds": 1526.8944285714288
+      },
+      {
+        "slide": 21,
+        "start_seconds": 1637.2574285714288
+      },
+      {
+        "slide": 22,
+        "start_seconds": 1761.3700204081633
+      },
+      {
+        "slide": 23,
+        "start_seconds": 1875.6940204081634
+      },
+      {
+        "slide": 24,
+        "start_seconds": 1960.7020204081634
+      },
+      {
+        "slide": 25,
+        "start_seconds": 1976.8380204081634
+      },
+      {
+        "slide": 26,
+        "start_seconds": 2062.901448979592
+      },
+      {
+        "slide": 27,
+        "start_seconds": 2186.016448979592
+      },
+      {
+        "slide": 28,
+        "start_seconds": 2260.921448979592
+      },
+      {
+        "slide": 29,
+        "start_seconds": 2278.3474489795917
+      },
+      {
+        "slide": 30,
+        "start_seconds": 2399.8810408163263
+      },
+      {
+        "slide": 31,
+        "start_seconds": 2627.547428571428
+      }
+    ],
+    "checks": {
+      "all_parts_decoded": true,
+      "all_input_texts_match": true,
+      "ordered_coverage": true,
+      "full_mp3_decoded": true,
+      "duration_matches_parts": true,
+      "embedded_chapters": 31,
+      "mean_db": -22.9,
+      "peak_db": -3.2,
+      "silences_over_2s": [],
+      "listening_performed": false,
+      "part_waveform_correlations": [
+        0.9993138605565604,
+        0.9952674081596192,
+        0.9997673520162909,
+        0.9971303794396336,
+        0.9993877275609719,
+        0.9962772136131772,
+        0.998978976099126,
+        0.9965097313327338,
+        0.9979037202863756,
+        0.9999073921733316
+      ],
+      "part_alignment_lags_seconds": [
+        0.0,
+        2.2675736961451248e-05,
+        2.2675736961451248e-05,
+        2.2675736961451248e-05,
+        4.5351473922902495e-05,
+        4.5351473922902495e-05,
+        6.802721088435374e-05,
+        6.802721088435374e-05,
+        9.070294784580499e-05,
+        9.070294784580499e-05
+      ]
+    },
+    "credits": {
+      "speech": 811,
+      "merging": 6
+    }
   }
 }

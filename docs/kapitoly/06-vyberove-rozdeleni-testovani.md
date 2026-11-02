@@ -263,7 +263,10 @@ k aktuální [prezentaci](../../presentations/kapitola_06_vyberove_rozdeleni_a_t
 pro výkladové snímky 1–31 bez závěrečného procvičování.
 [Průvodní dokument](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
 odkazuje na identitu podkladů, mapu úseků, slovník výslovnosti a výsledky
-kontrol. Nahrávka v tomto kroku nevznikla; rozsah učiva kapitoly se nemění.
+kontrol. Na následnou žádost autora téhož dne vznikla místní nahrávka
+hlasem Adam ke snímkům 1–31, se 31 značkami kapitol; její identitu
+a technické kontroly eviduje manifest a průvodní dokument. MP3 se
+necommituje. Rozsah učiva kapitoly se nemění.
 
 ### Doprovodný formát pro AI tutora
 

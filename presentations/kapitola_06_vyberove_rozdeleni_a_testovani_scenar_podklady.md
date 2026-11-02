@@ -13,7 +13,8 @@ diskusní otázky a organizační pokyny v poznámkách jsou vynechány.
 Text má **5 714 slov**. Orientační délka při tempu 105–125 slov za minutu
 je přibližně 46–55 minut bez dalších pauz. Je to odhad z počtu slov;
 skutečná délka vznikne až převodem. Dlouhé číselné zápisy mohou tempo
-ovlivnit. Nahrávka ani placená ukázka v tomto úkolu nevznikla.
+ovlivnit. Při přípravě scénáře nahrávka nevznikla. Úplný převod na následnou
+výslovnou žádost autora je zaznamenán níže; placená ukázka se nevytvářela.
 
 ## Podklady a obsahové ověření
 
@@ -68,7 +69,7 @@ Přepisy jsou závazně použity v samotném textu podle
 [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md#slovník-výslovnosti)
 a upřesnění R53. Výchozí konfigurace případného převodu je Creative Claw,
 model `speech/heygen-voice-1`, český hlas Adam, rychlost 1. Její aktuální
-dostupnost a parametry služby se při přípravě samotného scénáře neověřovaly.
+dostupnost a podporované parametry byly ověřeny před následným převodem.
 
 Slovník zachycuje účelový zápis pro syntézu. Nejde o nový odborný pravopis
 učebnice ani o poslechem ověřený výkon konkrétního hlasu. Přepisy tvrdých
@@ -117,5 +118,40 @@ posouzení, nikoli jako jednotlivě slovníkově ověřené transkripce.
 Ověřeno je pořadí a úplnost všech úseků, slovní přepis čísel a značek,
 shoda s podklady a použití výslovnostních náhrad. Kontrola nenašla
 číslice, nezpracované matematické značky, markdown, URL ani původní
-rizikové slovní základy. Syntéza se nespouštěla; výslovnost výsledného
-zvuku se tímto textovým ověřením nedokládá.
+rizikové slovní základy. Toto textové ověření samo nedokládá výslovnost výsledného zvuku.
+
+
+## Úplná nahrávka — 2026-11-02
+
+Na výslovnou následnou žádost autora vytvořeno audio ke snímkům 1–31
+přes Creative Claw: `speech/heygen-voice-1`, veřejný český hlas Adam
+(`32bb79c6f93241b7b956c219aa9bcf75`), jazyk `cs`, rychlost 1.
+Před převodem načten aktuální `get_model_params`. Kvůli limitu 5 000
+znaků rozdělen nezměněný scénář na deset částí na hranicích snímků;
+uložené náhrady služby vypnuty, protože požadované přepisy již obsahuje
+samotný scénář. Ověřena shoda všech odeslaných textů s tímto scénářem.
+
+Části spojeny ve správném pořadí bez prolínání a bez normalizace,
+s mezivýstupy WAV. Z úplného WAV jednou vytvořen finální MP3 (192 kb/s,
+44,1 kHz, mono) se 31 značkami kapitol. Délka je **46:07**.
+Značky vycházejí z časů slov vrácených poskytovatelem a skutečných délek
+dekódovaných částí, nikoli z počtu slov.
+
+Místní výstup: `presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3`.
+MP3 se podle pravidel projektu necommituje ani automaticky nepublikuje.
+Manifest obsahuje SHA-256, délku, nastavení, časy všech 31 snímků
+a technické kontroly; přesné úlohy, výstupní URL a pracovní úseky
+zůstávají v místní složce `tmp/ch06-audio/`.
+
+Všechny části i celý MP3 byly úspěšně dekódovány. Délka celku odpovídá
+součtu částí, vložených kapitol je 31 a pořadí bylo dále ověřeno
+porovnáním zvukových úseků každé části s příslušným místem celku.
+Průměrná úroveň jednotlivých částí je −19,7 až −19,5 dB; detektor
+nenašel pauzy delší než dvě sekundy při prahu −50 dB. Finální MP3 má
+průměrnou úroveň −22,9 dB a maximum −3,2 dB; služba při spojování
+převedla zdroje na stereofonní WAV 48 kHz, výsledný MP3 je opět mono
+44,1 kHz. Korelace odpovídajících pětisekundových úseků všech deseti
+částí s celkem je nejméně 0,995 po vyrovnání posunu menšího než
+0,1 milisekundy vzniklého převzorkováním. Jde o technické
+kontroly a časové zarovnání poskytovatele, nikoli o poslechové potvrzení
+výslovnosti. Skutečný poslech nebyl proveden.
