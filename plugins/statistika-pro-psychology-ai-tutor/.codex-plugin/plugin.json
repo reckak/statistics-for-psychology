@@ -2,20 +2,20 @@
   "interface": {
     "displayName": "Statistika pro psychology – AI tutor",
     "shortDescription": "Český adaptivní tutor",
-    "longDescription": "Český adaptivní tutor s režimy vysvětlování, sokratovského vedení, procvičování a formativního zkoušení. Přibaluje úplné kapitoly 1–6 učebnice Základy statistiky pro psychology, úvod, literaturu a celé aktuální přehledy: slovníček, značení a vzorce, funkce Excelu. Přehledy obsahují i hesla z kapitol 7–8; úplný výklad těchto kapitol přibalený není. Materiály načítá podle potřeby, studenti je nemusí nahrávat. Nevyžaduje externí server.",
+    "longDescription": "Začněte kapitolou, způsobem studia a rozsahem, například „Kapitola 6, procvičování, směrodatná chyba“. Tutor vás může výběrem provést; konkrétní otázku můžete položit rovnou. Český adaptivní tutor s režimy vysvětlování, sokratovského vedení, procvičování a formativního zkoušení. Přibaluje úplné kapitoly 1–6 učebnice Základy statistiky pro psychology, úvod, literaturu a celé aktuální přehledy: slovníček, značení a vzorce, funkce Excelu. Přehledy obsahují i hesla z kapitol 7–8; úplný výklad těchto kapitol přibalený není. Materiály načítá podle potřeby, studenti je nemusí nahrávat. Nevyžaduje externí server.",
     "developerName": "Karel Rečka",
     "category": "Education & Research",
     "capabilities": [],
     "logo": "./assets/logo.png",
     "composerIcon": "./assets/logo.png",
     "defaultPrompt": [
-      "Vysvětli mi rozdíl mezi směrodatnou odchylkou a směrodatnou chybou na příkladu z psychologie.",
+      "Chci začít studovat. Pomoz mi vybrat kapitolu, způsob práce a rozsah.",
       "Veď mě sokratovsky při řešení statistické úlohy, vždy jednou otázkou.",
       "Vyzkoušej mě z tématu, které si zvolím. Nejprve zjisti, jaké podklady máme k dispozici."
     ]
   },
   "name": "statistika-pro-psychology-ai-tutor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Český adaptivní tutor základů statistiky pro psychology. Vysvětlování, sokratovské vedení, procvičování a formativní zkoušení se zdroji a přiznanými mezerami.",
   "author": {
     "name": "Karel Rečka"

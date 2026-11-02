@@ -2,7 +2,7 @@
 
 Tento návod je určen autorovi. Aktuální kapitoly a tři přehledy se exportují
 z hlavních zdrojů učebnice, nikoli ručním přepisováním souborů v instalaci.
-Verze 0.2.0 přibaluje kapitoly 1–6 a celé aktuální přehledy včetně hesel
+Plugin přibaluje kapitoly 1–6 a celé aktuální přehledy včetně hesel
 z kapitol 7–8. Úplné kapitoly 7–8 v této verzi nejsou.
 
 ## Aktualizace

@@ -170,6 +170,12 @@ Prohlédnutí výsledného PDF nenahrazuje.
 
 ## Export kapitol a přehledů pro AI tutora
 
+Hlavní vstupní nabídka vede k volbě kapitoly, režimu a rozsahu; přímý dotaz
+průvodce obchází. Metodika interaktivních vizualizací a podrobné bodování
+jsou reference načítané podle potřeby. Interaktivita závisí na klientu,
+nikoli na samotném balíčku instrukcí. Při vydání ji skutečně vyzkoušejte
+v cílovém prostředí, včetně náhrady bez podpory interaktivity.
+
 Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
 obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
 Úplný instalační balíček sestavíte z kořene projektu:
@@ -178,7 +184,7 @@ obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
 node scripts/export-tutor.cjs
 ```
 
-Export verze 0.2.0 obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
+Export obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
 zadání a řešení, celé aktuální přehledy (slovníček, značení a vzorce, Excel),
 literaturu citovanou v těchto materiálech a obrázky s textovými popisy.
 Přehledy se na rozdíl od souhrnného PDF **neomezují na kapitoly 1–6**;
@@ -205,7 +211,7 @@ Sestavení vzniká v nové pomocné složce pod `tmp/`. Před nahrazením cílov
 archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
 ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
 
-- `output/tutor/statistika-pro-psychology-ai-tutor-0.2.0.zip` — instalační archiv;
+- `output/tutor/statistika-pro-psychology-ai-tutor-<verze>.zip` — instalační archiv;
 - `output/tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů archivu,
   počty obsahu a cesta k ověřené rozbalené podobě.
 

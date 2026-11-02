@@ -25,7 +25,18 @@ const skill = read(path.join(packageRoot, 'skills/statistika-tutor/SKILL.md'));
 const frontmatter = JSON.parse(skill.match(/^---\n([\s\S]*?)\n---\n/)[1]);
 assert.equal(frontmatter.name, 'statistika-tutor');
 assert(frontmatter.description);
-assert(Buffer.byteLength(skill) < 1024 * 1024);
+assert(Buffer.byteLength(skill) <= 12268, 'Main instructions must not exceed the original release');
+assert(!/\b\d+\.\d+\.\d+\b/.test(skill), 'Read release version from metadata');
+assert(skill.includes('## Cvičení z učebnice'));
+const prompts = manifest.extensions['com.openai'].interface.defaultPrompt;
+assert(Array.isArray(prompts) && prompts.length === 3);
+assert.equal(prompts[0], 'Chci začít studovat. Pomoz mi vybrat kapitolu, způsob práce a rozsah.');
+assert.equal(prompts[1], 'Veď mě sokratovsky při řešení statistické úlohy, vždy jednou otázkou.');
+assert.equal(prompts[2], 'Vyzkoušej mě z tématu, které si zvolím. Nejprve zjisti, jaké podklady máme k dispozici.');
+for (const ref of ['VIZUALIZACE.md', 'ZKOUSENI.md']) {
+  assert(skill.includes(`references/${ref}`));
+  assert(fs.statSync(path.join(refs, ref)).size > 0);
+}
 assert(!/Registr verze 0\.1\.0|seznam kapitol je prázdný/.test(skill));
 const registry = JSON.parse(read(path.join(refs, 'KAPITOLY.json')));
 assert.equal(registry.status, 'chapters_available');

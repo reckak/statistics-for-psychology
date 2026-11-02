@@ -1,5 +1,18 @@
 # Autorská dokumentace
 
+## 2026-11-02 — AI tutor 0.2.1: zahájení a aktivní učení
+
+Realizace schváleného [R62](../docs/rozhodnuti/ai-tutor.md#r62-ai-tutor):
+průvodce kapitolou, režimem a rozsahem, cílená pomoc se cvičením, řešení
+na žádost a proaktivní interaktivní vizualizace. První výchozí prompt změněn,
+další dva, identita, logo a přístup zachovány. Podrobnosti zkoušení a
+vizualizací přesunuty do referencí; hlavní instrukce nepřesahují původní
+rozsah. Zdrojový text knihy a rozsah přibalených kapitol se nemění.
+
+Ověření a cloudové vydání: probíhá. Výsledky budou doplněny podle skutečných
+kontrol; cílové scénáře jsou v scripts/tutor/smoke-prompts.md.
+
+
 ## 2026-11-02 — Nahrávka k prezentaci kapitoly 6 hlasem Adam
 
 Na následnou výslovnou žádost autora převeden hotový scénář snímků 1–31
