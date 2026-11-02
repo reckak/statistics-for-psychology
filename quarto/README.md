@@ -1,5 +1,67 @@
 # Autorská dokumentace
 
+## 2026-11-02 — Podklady kapitol 1–6 v AI tutorovi
+
+Na výslovně schválený plán navazuje zdroj soukromého pluginu ve verzi 0.2.0
+v plugins/statistika-pro-psychology-ai-tutor/ a samostatný opakovatelný export.
+[Příkazy a postup](../docs/PROVOZ.md#export-ai-tutora) jsou v provozní dokumentaci.
+Balíček přebírá úvod, úplné kapitoly 1–6 se zadáními, řešeními i nepovinnými
+rozšířeními, celé aktuální přehledy (včetně hesel kapitol 7–8), citovanou
+literaturu, obrázky a jejich textové popisy. Úplný výklad kapitol 7–8 nepřibaluje;
+sešity a odkazy na tyto kapitoly vedou na web. Zdrojové kapitoly se nemění.
+Instrukce, metadata a logo mají hlavní zdroj v repozitáři; generované kopie
+textů, registr, index a ZIP zůstávají v ignorovaném výstupu.
+
+**Kontroly převodu:** všech 417 hesel (278 slovníčku, 102 značení, 37 Excelu),
+1 426 původních matematických výrazů v kapitolách, 97 obrázků s viditelným
+textovým popisem a zachovanými soubory, všech 72 řešení a 53 citovaných
+bibliografických položek. Ověřeno 1 218 místních odkazů; obsah všech 119
+souborů archivu byl nezávisle přečten přes .NET a porovnán otisky s ověřeným
+sestavením. Zachovány odstavce a buňky tabulek, inline kód včetně dolarových
+znaků Excelu, ID a původ obrázku Cmglee. Kontrola při vývoji zachytila
+opakovaná ID mezi různými stránkami, změny českých uvozovek v Markdown writeru,
+potlačenou bibliografii a obrázky převáděné na raw HTML; převod je nyní řeší.
+Obrázky 1–6 byly znovu vytvořeny jejich existujícími generátory; textové
+popisy a popisky byly přečteny z hlediska zachování informace při exportu.
+Nejde o novou odbornou nebo číselnou revizi knihy, spuštění Excelu ani
+ověření porozumění na studentech.
+
+**Cloud a cílový klient:** do stejného soukromého cloudového pluginu
+`Plugin_f0a6ddcaadfc8191a5009ff162276308` byla nahrána a v seznamu i nastavení
+ověřena verze 0.2.0. Archiv je snímkem revize
+`a0eb8540a38f4ad1ca30054bfc5757b49869374d` s čistými vstupy; SHA-256 ZIPu
+je `379a35c6e1f544855012e38f24df2fd081ad2c1ba70a73049a952d19de128ef2`.
+Přístup, identita a výchozí prompty se neměnily.
+
+V novém chatu ChatGPT na webu v Brave, v režimu Work s GPT-6.1 Sol
+(střední uvažování), bez příloh a bez webového vyhledávání, tutor načetl
+index i registr a správně uvedl revizi. Prošlo všech 18 obsahových kontrol
+ze začátku, středu a konce kapitol podle
+[scénářů](../scripts/tutor/smoke-prompts.md), včetně konkrétních hodnot,
+zadání, řešení a existujících ID oddílů. Prošly také tři přehledy:
+`pojem-smerodatna-chyba`, `znak-t-kvantil` a přesný příklad `excel-countifs`
+včetně absolutních odkazů a výsledku. Na požadavek přesného zadání úlohy 5
+z kapitoly 8 tutor přiznal chybějící úplnou kapitolu a obsah nevymyslel.
+Prošly všechny čtyři pedagogické režimy. Vysvětlování rozdílu SD a SE
+zachovalo podmínky vztahu i odkaz na oddíl. Sokratovské vedení položilo
+jedinou otázku a při chybném dělení čtyřmi navedlo na počet pěti hodnot,
+aniž předem sdělilo průměr. Procvičování označilo vlastní úlohu, počkalo
+na pokus a poté oddělilo správný postup od chyby `30/5 = 5`; oprava
+byla 6 slov, medián zůstal 6. Zkoušení předem vymezilo dvě otázky
+a kritéria 0–2, po první odpovědi ještě nehodnotilo, teprve po druhé
+přidělilo 2 a 1 bod, správně celkem 3/4. Zachytilo chybný pokles SE
+na 0,25 a opravilo jej na 0,5 při čtyřnásobném výběru. Záznam tohoto
+interního testu je místně v ignorovaném `output/tutor/chatgpt-overeni.txt`.
+
+**Pozorovaná omezení klienta:** nahrání přes rozšíření Brave vyžadovalo
+uživatelovo povolení přístupu k místním souborům. Webový seznam zobrazuje
+obecnou ikonu pluginu, přestože vlastní PNG a oba odkazy na něj zůstaly
+v balíčku beze změny. Stažení uloženého ZIPu přes ovládání prohlížeče
+nevrátilo soubor; uložení a čtení se proto dokládá potvrzením nahrání,
+verzí 0.2.0 v rozhraní a skutečným načtením konkrétních podkladů v chatu.
+Jde o interní zkoušku jednoho klienta a účtu, nikoli studentský pilot nebo
+ověření dostupnosti na jiných tarifech.
+
 ## 2026-11-02 — Souhrnné pracovní PDF kapitol 1–6
 
 Na žádost autora přibyl ruční export jednoho PDF: úvod, kapitoly 1–6,
