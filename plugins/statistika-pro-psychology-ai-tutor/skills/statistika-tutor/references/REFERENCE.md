@@ -1,6 +1,6 @@
 # Stručný referenční balíček
 
-Verze 0.2.0, připraveno 2. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
+Připraveno 2. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
 nikoli o kapitoly nebo úplný slovníček. Přibalené kapitoly 1–6 a celé aktuální přehledy jsou uvedeny v INDEX.md.
 Při použití v chatu uváděj tento soubor jako zdroj; necituj nepřiložené kapitoly
 jako přečtené. Konkrétní výklad a potřebné předpoklady doplňuje dostupná kapitola.

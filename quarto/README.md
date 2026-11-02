@@ -1,5 +1,94 @@
 # Autorská dokumentace
 
+## 2026-11-02 — AI tutor 0.2.1: zahájení a aktivní učení
+
+Realizace schváleného [R62](../docs/rozhodnuti/ai-tutor.md#r62-ai-tutor):
+průvodce kapitolou, režimem a rozsahem, cílená pomoc se cvičením, řešení
+na žádost a proaktivní interaktivní vizualizace. První výchozí prompt změněn,
+další dva, identita, logo a přístup zachovány. Podrobnosti zkoušení a
+vizualizací přesunuty do referencí; hlavní instrukce nepřesahují původní
+rozsah. Zdrojový text knihy a rozsah přibalených kapitol se nemění.
+
+Export zdrojové revize `27fd890672e792b7e5aa3bde76d665d571aa7c8c`
+prošel kontrolou šesti kapitol, 417 přehledových položek, 1 426 matematických
+zápisů, 97 obrázků, 72 řešení, 1 220 místních odkazů a 53 citací. Archiv
+`output/tutor/statistika-pro-psychology-ai-tutor-0.2.1.zip` obsahuje 121 souborů;
+SHA-256 je `bb8092feff7400e1d0e6bde0e2f3b36742b9649d100aec938c558fc14e3bcd71`.
+Export použil nezměněné již vytvořené obrázky (`--skip-figures`), kontroloval
+jejich skutečné soubory i návaznost na zdroje. Hlavní instrukce mají 12 256
+bajtů normalizovaného UTF-8 proti původním 12 268. Kontrola autorských map
+prošla bez chyby; GitHub CI revize `27fd890` rovněž uspěla.
+
+Plugin Creator uložil verzi 0.2.1 do stejného soukromého osobního pluginu
+`Plugin_f0a6ddcaadfc8191a5009ff162276308`, vydání
+`pluginrel_6ae8edaa399c81919057a23708d5685b`. Následný inventář vrátil
+121 souborů a zpětné čtení manifestu, hlavních instrukcí a čtyř změněných
+referencí potvrdilo shodu s balíčkem. Logo a soukromý přístup se neměnily.
+
+V nových chatech bez příloh a webu (ChatGPT Work v Brave, GPT-6.1 Sol,
+střední uvažování) prošel postupný výběr kapitoly, všech čtyř režimů
+a rozsahu, volba kapitoly podle tématu, režim „vyber za mě“, rozdělení celé
+kapitoly na úseky, změna nastavení během chatu i přímý dotaz bez průvodce.
+Zkoušení dodrželo dvě otázky a odložené hodnocení 3/4; sokratovská pomoc
+rozpoznala chybný jmenovatel bez předčasného zveřejnění výsledku. Tutor
+uzavřel téma shrnutím a po rozloučení pokračování nevynucoval.
+
+Pomoc bez předchozího pokusu, vysvětlení zadání a úplné řešení na výslovnou
+žádost ověřeny ve dvou nezávislých chatech na úloze 1 kapitoly 3. Správně
+přijal alternativní výpočet a odlišil správnou aritmetiku od neodůvodněného
+vyřazení hodnoty. Nejednoznačnou úlohu 4.3 upřesnil, neexistující úlohu 999
+nevymyslel. U chybějících individuálních dat správně uvedl `Data!B2:B37`,
+33 platných a tři chybějící údaje, vyžádal sešit nebo skutečný výpis
+a nabídl doložený odkaz. Regresní sada 18 otázek ze začátku, středu a konce
+šesti kapitol, všech tří přehledů a nepřibalené kapitoly 8 prošla proti
+zdrojům. Statická náhrada byla výslovně označena a správně vysvětlila
+odmocninový vztah SE.
+
+Skutečné ovladače výběrového rozdělení v ChatGPT zobrazily pro n = 25,
+100 a 400 hodnoty SE = 3; 1,5; 0,75 s; reset vrátil n = 100. Nezměnila
+se populace ani osy. U síly oboustranného z-testu (σ = 15, n = 100,
+α = 0,05) byly přes skutečný posuvník ověřeny Δ = 0 a ±6 a reset na 3.
+Nezávislý R přepočet dává pravděpodobnost zamítnutí 0,05 při nule,
+0,516005273976 při |Δ| = 3 a 0,979326631903 při |Δ| = 6. Zobrazené
+hodnoty odpovídaly zaokrouhlení; kritické meze zůstaly 32,060 a 37,940 s.
+Při nulovém účinku výstup správně použil α, nikoli chybu druhého druhu.
+
+Korelační model fungoval v náhledu souboru vytvořeného tutorem přímo
+v ChatGPT. Nezávislý Pearsonův výpočet ze souřadnic všech 100 vykreslených
+SVG bodů (korelace je při těchto kladných lineárních změnách měřítek
+nezměněna; směr svislé obrazovkové osy byl obrácen) potvrdil zobrazené r:
+pro ρ = −0,8 vyšlo −0,8705265433, pro 0 vyšlo −0,1059123698 a pro 0,8
+vyšlo 0,8412334476. Souřadnice X se při změně ρ zachovaly, samostatné
+losování je změnilo a reset obnovil přesně původní body i ρ = 0,5.
+Klávesnice ovládala posuvník, nové losování a reset. Výběrové rozdělení
+šlo ovládat také přechodem Tab a potvrzením Enter. U obou náhledů byla
+vizuálně i měřením šířek ověřena čitelnost panelu přibližně 320 px
+bez vodorovného přetečení. Schopnost nastavit viewport v tomto spojení
+Brave skutečnou šířku nezměnila; test se proto provedl klávesnicovým
+zmenšením panelu přes dostupný oddělovač, nikoli domnělou emulací telefonu.
+
+Omezení klienta: vložené vizualizace opakovaně selhávaly při inicializaci
+sandboxu. První funkční výstupy výběrového rozdělení a síly měly slabý
+kontrast v tmavém motivu. Tutor na žádost vytvořil samostatné HTML soubory
+s výslovným bílým pozadím a tmavým textem; náhledy výběrového rozdělení
+a korelace byly potom funkční a čitelné. První soubor síly zůstal při
+načítání prázdný; nově vytvořený `sila-kontrola.html` se v náhledu ChatGPT
+načetl a prošel všemi výše uvedenými numerickými stavy, resetem, ovládáním
+klávesami Home/End a čitelností při šířce přibližně 320 px bez vodorovného
+přetečení. Všechny tři scénáře tedy byly skutečně ovládány v cílovém klientu,
+jejich první vygenerování však nebylo spolehlivé. Funkční náhled souboru
+je ověřenou alternativou k problematickému vložení přímo mezi zprávy;
+statická náhrada zůstává nutná v klientu bez vykonávání interaktivního obsahu.
+Otevření staženého HTML přes místní URL odmítla bezpečnostní politika
+prohlížečového nástroje; žádné obcházení tohoto omezení nebylo použito.
+Nelze přisuzovat podporu interaktivity všem klientům či studentským účtům.
+
+Cílové scénáře jsou v [testovací sadě](../scripts/tutor/smoke-prompts.md).
+Místní přepisy testovacích chatů a výpočetní doklad korelace jsou
+v ignorované složce `output/tutor/`. Jde o interní kontrolu chování,
+nikoli pilot výukového přínosu na studentech.
+
+
 ## 2026-11-02 — Nahrávka k prezentaci kapitoly 6 hlasem Adam
 
 Na následnou výslovnou žádost autora převeden hotový scénář snímků 1–31

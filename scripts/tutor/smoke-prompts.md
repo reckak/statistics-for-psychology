@@ -1,7 +1,7 @@
 # Ověření AI tutora v cílovém klientu
 
 Použij nový chat s vybraným pluginem, bez příloh a bez webového vyhledávání.
-Předpokladem je skutečně uložená verze 0.2.0. Při kontrole nejprve ověř,
+Předpokladem je skutečně uložená verze podle manifestu. Při kontrole nejprve ověř,
 že tutor čte přibalený soubor; správná obecná odpověď sama načtení nedokládá.
 Požaduj název oddílu a jeho existující ID. Uveď, které úlohy a klient byly
 skutečně vyzkoušeny; nevydávej tento interní test za ověření na studentech.
@@ -56,3 +56,47 @@ vodítkem, nikoli náhradou kontroly celého smyslu odpovědi.
 4. Zkoušení: vyžádej dvě otázky, bodování 0–2 a vyhodnocení až nakonec.
    Odpověz postupně a ověř, že tutor nezveřejní řešení předem, dodrží počet
    otázek a na konci správně sečte body. Nápovědu musí odlišit od samostatného výkonu.
+
+## Zahájení studia a práce s cvičením
+
+V samostatných nových chatech ověř následující vstupy. Známé údaje tutor
+nesmí zjišťovat znovu; při konkrétním dotazu má začít přímo.
+
+| Vstup nebo návaznost | Očekávání |
+|---|---|
+| Chci studovat. | Seznam skutečně dostupných kapitol, první otázka jen na kapitolu. |
+| Kapitola 6. | Nabídne čtyři režimy s významem, kapitolu již nezjišťuje. |
+| Nevím číslo, chci pochopit pravděpodobnost. | Dohledá kapitolu 5, nabídne další potřebnou volbu. |
+| Kapitola 6, režim vyber za mě, celou kapitolu. | Vysvětlování, krátké potvrzení, navazující úseky podle cílů. |
+| Kapitola 6, procvičování, směrodatná chyba. | Potvrdí nastavení, začne vlastní úlohou bez řešení. |
+| Teď kapitola 3, sokratovsky, průměr. | Změní nastavení a postup, bez opakovaného dotazníku. |
+| Proč při čtyřnásobném n klesne SE na polovinu? | Přímé vysvětlení bez průvodce. |
+| Pomoz mi s úlohou 1 kapitoly 3, zatím bez řešení. | Přečte zadání i vzor, navede nejmenším krokem. |
+| Nerozumím ani tomu, co se v zadání chce. | Vysvětlí zadání, nevyžaduje předchozí výpočet. |
+| Ukaž celé řešení úlohy 1 kapitoly 3. | Komentované řešení s existujícím ID bez vynuceného pokusu. |
+| Pomoz mi s úlohou 4.3. | Bez kontextu upřesní kapitolu a číslo. |
+| Ukaž úlohu 999 kapitoly 3. | Nenalezené zadání přizná, nevymyslí náhradu. |
+| Nemám hodnoty ze sešitu, v zadání nejsou. | Doložený list/buňky nebo vyžádání vstupů, žádná smyšlená data. |
+| Shrňme téma. / Pro dnešek končím, děkuji. | Shrnutí a další krok podle kontextu, žádné vynucené pokračování. |
+
+Kontrolu správného alternativního postupu a chybného zdůvodnění proveď
+na stejné skutečně přečtené úloze: hodnotit matematiku, nikoli shodu slov se vzorem.
+Pomoc bez pokusu a výslovné řešení zopakuj ve dvou nezávislých chatech.
+
+## Skutečné interaktivní vizualizace
+
+V novém chatu bez příloh požaduj vytvoření, nikoli návrh nebo blok kódu.
+Přes skutečné ovladače ověř graf, hodnoty, reset a klávesnici. V úzkém
+zobrazení nesmějí překrývat popisky ani mizet body. Zaznamenej klienta,
+model a skutečnou podporu; nepřisuzuj schopnost všem studentským účtům.
+
+- Výběrové rozdělení: n = 25, 100, 400, σ = 15; SE = 3, 1,5, 0,75.
+  Počet opakování a populační rozdělení se změnou n nesmějí změnit.
+- Síla: oboustranný jednovýběrový z-test se známou σ = 15, n = 100,
+  α = 0,05. Ověř pravděpodobnost zamítnutí při Δ = 0 i nenulových
+  kladných/záporných účincích nezávisle v R, včetně pevné kritické oblasti.
+- Korelace: ρ = −0,8; 0; 0,8; zachovat základní realizaci a osy.
+  Porovnej zobrazené r se skutečným výpočtem z vykreslených dat,
+  ne pouze s nastaveným ρ. Zvlášť ověř nové losování a reset.
+- Bez podpory interaktivity: výslovně žádej statickou náhradu s vypočtenými
+  srovnáními. Tutor ji nesmí nazvat interaktivním výstupem.
