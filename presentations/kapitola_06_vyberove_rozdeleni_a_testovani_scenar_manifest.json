@@ -1,0 +1,682 @@
+{
+  "date": "2026-11-02",
+  "script": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt",
+  "script_sha256": "c24a05283850e368cbdb4b1ab3e373fbceae57f8c5bc299d2a36b93c1f2ea45c",
+  "word_count": 5714,
+  "character_count": 40334,
+  "sources": [
+    {
+      "path": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani.pptx",
+      "sha256": "664b7d7026dde1ec1653d9c41c4aaace38a43d4666510b6e2286750f011d4003"
+    },
+    {
+      "path": "quarto/kapitola_06.qmd",
+      "sha256": "05d88cbb99af447e48f0c48c55ba3c04a90891c7a241da05a67664b3c6180a09"
+    },
+    {
+      "path": "docs/TEXT2SPEECH.md",
+      "sha256": "5f13df1defb56b4433c7266df1ac92aca05c085e320275f4338f1d9a9cbd6eaf"
+    },
+    {
+      "path": "docs/SLOVNIK.md",
+      "sha256": "2c10b7f6c3e0d2e4d1e45a3999b9e55dd7efa5139f91873cfeefad0fd5cf36b0"
+    }
+  ],
+  "slides": [
+    {
+      "number": 1,
+      "title": "Výběrové rozdělení a testování hypotéz",
+      "announcement": "Snímek jedna.",
+      "word_count": 132
+    },
+    {
+      "number": 2,
+      "title": "Obsah přednášky",
+      "announcement": "Snímek dva.",
+      "word_count": 84
+    },
+    {
+      "number": 3,
+      "title": "Výběrové rozdělení: jak kolísají výsledky výběrů",
+      "announcement": "Snímek tři.",
+      "word_count": 24
+    },
+    {
+      "number": 4,
+      "title": "Rozdíl necelých sedmi sekund",
+      "announcement": "Snímek čtyři.",
+      "word_count": 196
+    },
+    {
+      "number": 5,
+      "title": "Počet správných tipů jako statistika",
+      "announcement": "Snímek pět.",
+      "word_count": 215
+    },
+    {
+      "number": 6,
+      "title": "Všech devět výběrů",
+      "announcement": "Snímek šest.",
+      "word_count": 263
+    },
+    {
+      "number": 7,
+      "title": "Tři rozdělení, tři významy jedné hodnoty",
+      "announcement": "Snímek sedm.",
+      "word_count": 170
+    },
+    {
+      "number": 8,
+      "title": "Velikost výběru a počet opakování",
+      "announcement": "Snímek osm.",
+      "word_count": 196
+    },
+    {
+      "number": 9,
+      "title": "Směrodatná chyba a zákon velkých čísel",
+      "announcement": "Snímek devět.",
+      "word_count": 27
+    },
+    {
+      "number": 10,
+      "title": "Směrodatná chyba průměru",
+      "announcement": "Snímek deset.",
+      "word_count": 269
+    },
+    {
+      "number": 11,
+      "title": "Zákon velkých čísel",
+      "announcement": "Snímek jedenáct.",
+      "word_count": 176
+    },
+    {
+      "number": 12,
+      "title": "Pět pojmů, které se pletou",
+      "announcement": "Snímek dvanáct.",
+      "word_count": 176
+    },
+    {
+      "number": 13,
+      "title": "Centrální limitní věta a pravděpodobnost průměru",
+      "announcement": "Snímek třináct.",
+      "word_count": 27
+    },
+    {
+      "number": 14,
+      "title": "Šířka a tvar se mění současně",
+      "announcement": "Snímek čtrnáct.",
+      "word_count": 224
+    },
+    {
+      "number": 15,
+      "title": "Co centrální limitní věta říká",
+      "announcement": "Snímek patnáct.",
+      "word_count": 208
+    },
+    {
+      "number": 16,
+      "title": "Průměr sta řidičů: řešený výpočet",
+      "announcement": "Snímek šestnáct.",
+      "word_count": 318
+    },
+    {
+      "number": 17,
+      "title": "Rozdíl dvou průměrů jako statistika",
+      "announcement": "Snímek sedmnáct.",
+      "word_count": 200
+    },
+    {
+      "number": 18,
+      "title": "Princip testu: hypotézy, p-hodnota a rozhodnutí",
+      "announcement": "Snímek osmnáct.",
+      "word_count": 31
+    },
+    {
+      "number": 19,
+      "title": "Výzkumná a statistická hypotéza",
+      "announcement": "Snímek devatenáct.",
+      "word_count": 202
+    },
+    {
+      "number": 20,
+      "title": "Směr testu a extrémnější výsledky",
+      "announcement": "Snímek dvacet.",
+      "word_count": 227
+    },
+    {
+      "number": 21,
+      "title": "Jak neobvyklý je náš výsledek: p-hodnota",
+      "announcement": "Snímek dvacet jedna.",
+      "word_count": 253
+    },
+    {
+      "number": 22,
+      "title": "Hladina významnosti a kritický obor",
+      "announcement": "Snímek dvacet dva.",
+      "word_count": 226
+    },
+    {
+      "number": 23,
+      "title": "Rozhodnutí testu a věcná interpretace",
+      "announcement": "Snímek dvacet tři.",
+      "word_count": 174
+    },
+    {
+      "number": 24,
+      "title": "Chyby rozhodnutí a statistická síla",
+      "announcement": "Snímek dvacet čtyři.",
+      "word_count": 32
+    },
+    {
+      "number": 25,
+      "title": "Chyba I. a II. druhu",
+      "announcement": "Snímek dvacet pět.",
+      "word_count": 175
+    },
+    {
+      "number": 26,
+      "title": "Statistická síla pro konkrétní alternativy",
+      "announcement": "Snímek dvacet šest.",
+      "word_count": 255
+    },
+    {
+      "number": 27,
+      "title": "Když nulovou hypotézu nezamítneme",
+      "announcement": "Snímek dvacet sedm.",
+      "word_count": 158
+    },
+    {
+      "number": 28,
+      "title": "Co výsledek znamená a meze testování",
+      "announcement": "Snímek dvacet osm.",
+      "word_count": 31
+    },
+    {
+      "number": 29,
+      "title": "Statistická významnost není velikost účinku",
+      "announcement": "Snímek dvacet devět.",
+      "word_count": 245
+    },
+    {
+      "number": 30,
+      "title": "Stejné kroky, jiná statistika",
+      "announcement": "Snímek třicet.",
+      "word_count": 456
+    },
+    {
+      "number": 31,
+      "title": "Meze testování a poctivé zacházení s testy",
+      "announcement": "Snímek třicet jedna.",
+      "word_count": 272
+    }
+  ],
+  "excluded_slides": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "pronunciation_stems": {
+    "statisti": "statysty",
+    "alternati": "alternaty",
+    "standardi": "standardy",
+    "systemati": "systematy",
+    "automati": "automaty",
+    "prakti": "prakty",
+    "kriti": "krity",
+    "diskré": "dyskré",
+    "poziti": "pozity",
+    "negati": "negaty",
+    "medián": "medyán",
+    "kvantil": "kvantyl",
+    "relati": "relaty",
+    "problemati": "problematy",
+    "tip": "typ",
+    "studiích": "studyjích",
+    "studii": "studyji",
+    "studie": "studyje",
+    "screening": "skrínyng",
+    "howell": "hauel",
+    "studi": "studyj (forms recorded separately)"
+  },
+  "pronunciation_replacements_applied": {
+    "statisti": {
+      "replacement_stem": "statysty",
+      "original_forms": {
+        "statistickou": 3,
+        "statistika": 4,
+        "statistiky": 2,
+        "statistiku": 3,
+        "Statistikou": 1,
+        "statistické": 1,
+        "statisticky": 2,
+        "statistická": 1,
+        "Statistická": 2,
+        "statistikou": 1
+      }
+    },
+    "alternati": {
+      "replacement_stem": "alternaty",
+      "original_forms": {
+        "Alternativní": 3,
+        "alternativní": 1,
+        "alternativa": 4,
+        "alternativě": 2,
+        "alternativu": 1
+      }
+    },
+    "standardi": {
+      "replacement_stem": "standardy",
+      "original_forms": {
+        "standardizované": 3,
+        "standardizovaného": 1
+      }
+    },
+    "systemati": {
+      "replacement_stem": "systematy",
+      "original_forms": {
+        "systematicky": 1,
+        "Systematické": 1
+      }
+    },
+    "automati": {
+      "replacement_stem": "automaty",
+      "original_forms": {
+        "automaticky": 3
+      }
+    },
+    "prakti": {
+      "replacement_stem": "prakty",
+      "original_forms": {
+        "Praktická": 1,
+        "praktický": 1
+      }
+    },
+    "kriti": {
+      "replacement_stem": "krity",
+      "original_forms": {
+        "kritickým": 1,
+        "kritické": 1,
+        "kritický": 2,
+        "kritickém": 1,
+        "Kritický": 1,
+        "Kritická": 1,
+        "kritického": 1
+      }
+    },
+    "poziti": {
+      "replacement_stem": "pozity",
+      "original_forms": {
+        "pozitivnímu": 1
+      }
+    },
+    "negati": {
+      "replacement_stem": "negaty",
+      "original_forms": {
+        "negativnímu": 1
+      }
+    },
+    "medián": {
+      "replacement_stem": "medyán",
+      "original_forms": {
+        "medián": 1
+      }
+    },
+    "relati": {
+      "replacement_stem": "relaty",
+      "original_forms": {
+        "relativní": 2
+      }
+    },
+    "problemati": {
+      "replacement_stem": "problematy",
+      "original_forms": {
+        "problematické": 1
+      }
+    },
+    "tip": {
+      "replacement_stem": "typ",
+      "original_forms": {
+        "tipoval": 2,
+        "tipů": 1,
+        "tipování": 2
+      }
+    },
+    "studiích": {
+      "replacement_stem": "studyjích",
+      "original_forms": {
+        "studiích": 1
+      }
+    },
+    "studii": {
+      "replacement_stem": "studyji",
+      "original_forms": {
+        "studii": 2
+      }
+    },
+    "studie": {
+      "replacement_stem": "studyje",
+      "original_forms": {
+        "studie": 14
+      }
+    },
+    "screening": {
+      "replacement_stem": "skrínyng",
+      "original_forms": {
+        "screeningu": 2
+      }
+    },
+    "howell": {
+      "replacement_stem": "hauel",
+      "original_forms": {
+        "Howellovy": 1
+      }
+    }
+  },
+  "checks": {
+    "ordered_slide_coverage": true,
+    "spoken_text_scan": true,
+    "original_risky_stems_absent": true,
+    "numeric_checks": {
+      "difference_study": 6.880000000000003,
+      "sd_population_three": 12.24744871391589,
+      "se_nine_means": 8.660254037844387,
+      "se_proportion_20": 0.09682458365518543,
+      "se_proportion_80": 0.04841229182759271,
+      "se_25": 3.0,
+      "se_100": 1.5,
+      "se_400": 0.75,
+      "sample_mean_tail": 0.022750131948179216,
+      "central_95_low": 32.06,
+      "central_95_high": 37.94,
+      "se_difference": 2.1213203435596424,
+      "difference_tail_3": 0.1572992070502851,
+      "direction_two_tails_4": 0.05934643879191985,
+      "direction_right_4": 0.029673219395959925,
+      "direction_left_4": 0.9703267806040401,
+      "park_z": 3.243263103042298,
+      "park_p": 0.0011816903385332652,
+      "critical_difference": 4.157787873376899,
+      "power_3": 0.29298893644798746,
+      "power_5": 0.654345791737225,
+      "power_8": 0.9649506401874381,
+      "power_3_n400": 0.8074304194325572,
+      "p_difference_2_9": 0.1716023907017857,
+      "p_small_study": 0.6170750774519739,
+      "p_large_study": 5.733031437583891e-07,
+      "binom_10": 0.01386441694376117,
+      "binom_9": 0.04092516770651855,
+      "binom_8": 0.10181185692272265,
+      "z_test_p": 0.022750131948179216,
+      "z_test_critical": 46.71,
+      "family_error_20": 0.6415140775914581
+    },
+    "visual_source_review": "12 embedded figures inspected; slide texts, tables and notes read",
+    "didactic_review": "reviewed model versus study, sampling distributions, hypotheses, denominators, formula scope, approximations and interpretations",
+    "audio_generated": false,
+    "pronunciation_listening_verified": false,
+    "remaining_di_ti_ni_review": {
+      "status": "reviewed in context; remaining groups are soft Czech pronunciations and inflectional/derivational endings",
+      "words": [
+        "alternatyvní",
+        "ani",
+        "centrální",
+        "chování",
+        "chrání",
+        "deseti",
+        "desetin",
+        "desetiny",
+        "desetitisícin",
+        "devadesáti",
+        "devíti",
+        "devítina",
+        "devítiny",
+        "dolní",
+        "dolních",
+        "dvaceti",
+        "dělením",
+        "důležitosti",
+        "důležitostí",
+        "extrémní",
+        "extrémních",
+        "extrémního",
+        "formální",
+        "hladina",
+        "hladinou",
+        "hladinu",
+        "hladiny",
+        "hladině",
+        "hodinami",
+        "horní",
+        "hranice",
+        "hranicemi",
+        "hranici",
+        "hranicí",
+        "hraniční",
+        "ilustračního",
+        "informační",
+        "jediné",
+        "jediného",
+        "jedniček",
+        "jedničku",
+        "jedním",
+        "kolísání",
+        "konkrétní",
+        "konkrétního",
+        "konkrétním",
+        "konkrétnímu",
+        "krajní",
+        "kurzivním",
+        "lidí",
+        "limitní",
+        "losování",
+        "možnosti",
+        "možností",
+        "měnil",
+        "mění",
+        "měníme",
+        "měření",
+        "nahradili",
+        "negatyvnímu",
+        "nejnižší",
+        "nemění",
+        "není",
+        "neodstraní",
+        "neplatí",
+        "nepravdivé",
+        "nezamítnutí",
+        "nezávislosti",
+        "nich",
+        "nichž",
+        "nikdo",
+        "nikoli",
+        "nimi",
+        "nižší",
+        "normální",
+        "normálního",
+        "normálním",
+        "normálnímu",
+        "nyní",
+        "ní",
+        "nízkou",
+        "oblasti",
+        "oblastí",
+        "obrácení",
+        "odečtením",
+        "odhalení",
+        "odlišení",
+        "odmocnina",
+        "odmocninou",
+        "odmocninu",
+        "odpovídání",
+        "odpovědi",
+        "odpovědí",
+        "odstranili",
+        "odvození",
+        "opakování",
+        "opakováních",
+        "osmdesáti",
+        "ostatní",
+        "ověřování",
+        "označení",
+        "parkování",
+        "platil",
+        "platila",
+        "platí",
+        "podíl",
+        "podílem",
+        "podílu",
+        "podíly",
+        "podílů",
+        "populační",
+        "populačních",
+        "populačního",
+        "populačním",
+        "populačnímu",
+        "porovnání",
+        "porušení",
+        "poslední",
+        "posoudili",
+        "posoudit",
+        "pozityvnímu",
+        "pozornosti",
+        "pozorování",
+        "pozorováním",
+        "pořídíme",
+        "pravdivé",
+        "pravděpodobnosti",
+        "pravděpodobností",
+        "procvičování",
+        "procvičováním",
+        "prostřední",
+        "prostředních",
+        "provedení",
+        "první",
+        "prvního",
+        "prvním",
+        "pěti",
+        "pětina",
+        "pětiprocentní",
+        "pětičlenných",
+        "přehrávání",
+        "převedením",
+        "přiblížení",
+        "připouští",
+        "přiřazeni",
+        "přiřazení",
+        "příležitostí",
+        "přírodní",
+        "původní",
+        "původními",
+        "referenční",
+        "relatyvní",
+        "rovnosti",
+        "rozdíl",
+        "rozdílu",
+        "rozdíly",
+        "rozdílů",
+        "rozdělení",
+        "rozdělením",
+        "rozhodnutí",
+        "sedmdesáti",
+        "setin",
+        "setiny",
+        "sečtením",
+        "snímek",
+        "snímku",
+        "snímky",
+        "spojením",
+        "spolehlivosti",
+        "spustíme",
+        "srovnání",
+        "střední",
+        "střídání",
+        "střídáním",
+        "testování",
+        "ti",
+        "tisíc",
+        "tisícin",
+        "tisícina",
+        "tisících",
+        "totiž",
+        "trojúhelníkem",
+        "tvrdí",
+        "tvrzení",
+        "typování",
+        "tím",
+        "tímto",
+        "třetiny",
+        "třetí",
+        "třetího",
+        "třetím",
+        "třiceti",
+        "třicetičlenných",
+        "umožnil",
+        "univerzální",
+        "upozornit",
+        "upozorníme",
+        "určení",
+        "uspořádání",
+        "uvnitř",
+        "uvádíme",
+        "učebnice",
+        "velikosti",
+        "velikostí",
+        "vlastní",
+        "vracením",
+        "vrátí",
+        "vrátíme",
+        "vystihuje",
+        "vysvětlení",
+        "vznikají",
+        "vznikl",
+        "vznikne",
+        "vzniknout",
+        "vzniká",
+        "výzkumníci",
+        "významnosti",
+        "zachycení",
+        "zachytit",
+        "zamítnutí",
+        "zamítnutím",
+        "zaměnit",
+        "zatímco",
+        "zešikmení",
+        "zešikmením",
+        "zjištění",
+        "zkreslení",
+        "zkrátíme",
+        "zmenšení",
+        "změnily",
+        "zní",
+        "zobecnění",
+        "zpřesní",
+        "zvláštním",
+        "zákonitost",
+        "četnosti",
+        "činil",
+        "čtvrtina",
+        "čtvrtiny",
+        "čtyřiceti",
+        "části",
+        "řidiče",
+        "řidiči",
+        "řidičích",
+        "řidičů",
+        "šesti"
+      ]
+    }
+  },
+  "future_synthesis_defaults": {
+    "provider": "Creative Claw",
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
+    "language": "cs",
+    "speed": 1,
+    "status": "project preference only; no synthesis requested and service parameters not checked"
+  }
+}

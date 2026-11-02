@@ -1,5 +1,30 @@
 # Autorská dokumentace
 
+## 2026-11-02 — Scénář k prezentaci kapitoly 6
+
+Připraven [souvislý scénář pro syntézu řeči](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
+pro výkladové snímky 1–31 aktuální prezentace. Má 5 714 slov; samostatné
+procvičování na snímcích 32–38, diskusní otázky a organizační pokyny
+neobsahuje. Vychází z aktuálního místního PPTX včetně autorových úprav,
+které autor výslovně povolil zahrnout do společného commitu; PPTX nebylo
+při tvorbě scénáře přepisováno. Výslovnostní přepisy podle R53 jsou přímo
+v textu, například „statystycký“, „alternatyvní“, „medyán“ a „kvantyly“.
+Kanonický odborný zápis kapitoly ani terminologický registr se nemění.
+
+[Průvodní dokument](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+obsahuje slovník výslovnosti, podklady a omezení kontrol;
+[manifest](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
+eviduje SHA-256, přiřazení úseků ke snímkům a číselné kontroly.
+Ověřeno pořadí a pokrytí 31 snímků, slovní zápis čísel a značek,
+nepřítomnost původních rizikových základů a zbývající měkké skupiny
+di/ti/ni v kontextu. Nezávisle přepočteny směrodatné chyby, normální
+a binomické pravděpodobnosti, kritické hodnoty, statistická síla
+a souběh dvaceti nezávislých testů. Prohlédnuto všech 12 vložených grafů
+a diagramů; simulace nebyly znovu spuštěny. Interní didaktická revize
+se soustředila na rozlišení studie, modelu a simulace a na interpretaci
+testu. Celá sazba v PowerPointu, desktopový Excel ani porozumění
+na studentech se znovu neověřovaly. Nahrávka se nevytvářela.
+
 <a id="prezentace-kapitoly-6-20261102"></a>
 
 ## 2026-11-02 — Prezentace ke kapitole 6
