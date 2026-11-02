@@ -48,6 +48,12 @@ platné konvence, důvody a doklady dohod,
 [ZDROJE.md](ZDROJE.md) podklady a rozsah jejich prostudování,
 [quarto/README.md](../quarto/README.md) historii tvorby a ověřování.
 
+**Doprovodný formát od 2026-11-02:** [export pro AI tutora](PROVOZ.md#export-ai-tutora)
+přebírá úplné kapitoly 1–6 a celé aktuální přehledy, včetně hesel z kapitol
+7–8. Úplný výklad kapitol 7–8 v balíčku není. Jde o převod aktuálních zdrojů,
+nikoli změnu rozsahu knihy nebo nové odborné ověření. Stav uložení pluginu
+a konkrétních kontrol zachycuje autorská historie.
+
 <a id="usporadani"></a>
 
 ## Současné uspořádání

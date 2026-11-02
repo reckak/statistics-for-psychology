@@ -146,3 +146,10 @@ vysvětlující části dlouhých popisků jsou v poznámkách pod tabulkami.
 Kontrola souladu se zde popsaným obsahem byla omezena na tabulky a jejich
 okolí; cíle, návaznosti, hodnoty, zadání a řešení se nemění. Společnou sazbu
 určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).
+
+### Doprovodný formát pro AI tutora
+
+Od 2026-11-02 je tato kapitola zahrnuta do [exportu podkladů AI tutora](../PROVOZ.md#export-ai-tutora).
+Postup a rozsah balíčku určuje provozní návod, výsledky a omezení kontrol
+zachycuje autorská historie. Převod nemění rozsah učiva ani datum poslední
+obsahové kontroly této karty.

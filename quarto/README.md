@@ -1,5 +1,37 @@
 # Autorská dokumentace
 
+## 2026-11-02 — Podklady kapitol 1–6 v AI tutorovi
+
+Na výslovně schválený plán navazuje zdroj soukromého pluginu ve verzi 0.2.0
+v plugins/statistika-pro-psychology-ai-tutor/ a samostatný opakovatelný export.
+[Příkazy a postup](../docs/PROVOZ.md#export-ai-tutora) jsou v provozní dokumentaci.
+Balíček přebírá úvod, úplné kapitoly 1–6 se zadáními, řešeními i nepovinnými
+rozšířeními, celé aktuální přehledy (včetně hesel kapitol 7–8), citovanou
+literaturu, obrázky a jejich textové popisy. Úplný výklad kapitol 7–8 nepřibaluje;
+sešity a odkazy na tyto kapitoly vedou na web. Zdrojové kapitoly se nemění.
+Instrukce, metadata a logo mají hlavní zdroj v repozitáři; generované kopie
+textů, registr, index a ZIP zůstávají v ignorovaném výstupu.
+
+**Kontroly převodu:** všech 417 hesel (278 slovníčku, 102 značení, 37 Excelu),
+1 426 původních matematických výrazů v kapitolách, 97 obrázků s viditelným
+textovým popisem a zachovanými soubory, všech 72 řešení a 53 citovaných
+bibliografických položek. Ověřeno 1 218 místních odkazů; obsah všech 119
+souborů archivu byl nezávisle přečten přes .NET a porovnán otisky s ověřeným
+sestavením. Zachovány odstavce a buňky tabulek, inline kód včetně dolarových
+znaků Excelu, ID a původ obrázku Cmglee. Kontrola při vývoji zachytila
+opakovaná ID mezi různými stránkami, změny českých uvozovek v Markdown writeru,
+potlačenou bibliografii a obrázky převáděné na raw HTML; převod je nyní řeší.
+Obrázky 1–6 byly znovu vytvořeny jejich existujícími generátory; textové
+popisy a popisky byly přečteny z hlediska zachování informace při exportu.
+Nejde o novou odbornou nebo číselnou revizi knihy, spuštění Excelu ani
+ověření porozumění na studentech.
+
+**Cloud a cílový klient:** v této fázi je ověřen místní archiv; nahrání
+nové verze stejného pluginu a zkoušky čtení v ChatGPT se ještě provádějí.
+Konkrétní scénáře načítání ze začátku, středu a konce kapitol a pedagogických
+režimů jsou v scripts/tutor/smoke-prompts.md. Místní kontrola balíčku sama
+nedokládá načtení jeho příloh v konkrétním klientu.
+
 ## 2026-11-02 — Souhrnné pracovní PDF kapitol 1–6
 
 Na žádost autora přibyl ruční export jednoho PDF: úvod, kapitoly 1–6,

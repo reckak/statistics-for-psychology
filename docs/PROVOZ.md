@@ -12,6 +12,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 - [Sestavení a náhled webu](#práce-s-projektem)
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
 - [Pracovní PDF kapitol 1–6](#ruční-pdf-kapitol-16)
+- [Export podkladů AI tutora](#export-ai-tutora)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
 - [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-17)
 - [Publikování na GitHub Pages](#publikování-na-github-pages)
@@ -164,6 +165,67 @@ zpětné odkazy, zachování rovnic, kódu, obrázků a citací, existenci cíl�
 vnitřních odkazů a omezení přehledů na kapitoly 1–6. Skutečné PDF prověří
 také `python scripts/check-rendered-pdf.py`, pokud soubor existuje.
 Prohlédnutí výsledného PDF nenahrazuje.
+
+<a id="export-ai-tutora"></a>
+
+## Export kapitol a přehledů pro AI tutora
+
+Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
+obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
+Úplný instalační balíček sestavíte z kořene projektu:
+
+```powershell
+node scripts/export-tutor.cjs
+```
+
+Export verze 0.2.0 obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
+zadání a řešení, celé aktuální přehledy (slovníček, značení a vzorce, Excel),
+literaturu citovanou v těchto materiálech a obrázky s textovými popisy.
+Přehledy se na rozdíl od souhrnného PDF **neomezují na kapitoly 1–6**;
+obsahují i hesla z kapitol 7–8, jejichž úplný výklad v pluginu není.
+Odkazy na přibalené materiály jsou místní, na kapitoly 7–8 a sešity vedou
+na web knihy. Původ a licence zůstávají přibalené.
+
+Potřebujete Node.js 18 nebo novější, Quarto s Pandocem 3.x, R se závislostmi
+generátorů obrázků a Windows PowerShell s .NET kompresí. Ověřené místní verze:
+Node.js 24.21.0, Quarto 1.9.38 / Pandoc 3.8.3 a R 4.5.1. Skript má výchozí
+cesty k programům používaným také při exportu PDF; jiné cesty lze předat
+parametry `--quarto` a `--rscript`. Žádné balíčky se během exportu neinstalují.
+Znovu se vytvoří obrázky kapitol 1–6; přepínač `--skip-figures` použijte jen
+při opakovaném sestavení se stejnými, již vytvořenými obrázky.
+
+Převod pracuje s dokumentovou strukturou Pandocu, zachovává vzorce v LaTeXu,
+ID oddílů a údaje tabulek. HTML řádky přehledů převádí na samostatná hesla
+s pojmenovanými poli. Křížové odkazy se vyhodnocují s ohledem na zdrojovou
+kapitolu. Citace vznikají jedním společným průchodem citeproc s APA stylem
+a celou bibliografií kvůli shodě rozlišujících přípon roků; přibalený seznam
+literatury pak ponechá pouze skutečně citované položky.
+
+Sestavení vzniká v nové pomocné složce pod `tmp/`. Před nahrazením cílového
+archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
+ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
+
+- `output/tutor/statistika-pro-psychology-ai-tutor-0.2.0.zip` — instalační archiv;
+- `output/tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů archivu,
+  počty obsahu a cesta k ověřené rozbalené podobě.
+
+Samostatné opakování kontroly posledního exportu:
+
+```powershell
+node scripts/check-tutor.cjs
+```
+
+Generované kapitoly a archivy se necommitují. Při změně zdrojů proveďte nový
+export; uložený cloudový plugin je verzovaný snímek a s webem se nesynchronizuje
+automaticky. Běžné sestavení webu export pluginu ani jeho nahrání nespouští.
+
+Při vydání zvyšte verzi v obou manifestech zdroje pluginu. U existujícího
+vlastního cloudového pluginu použijte **Další akce → Nahrát novou verzi**,
+nikoli přidání dalšího pluginu. Zachovejte jeho identitu, vazby a přístup.
+Je-li dostupný nástroj Plugin Creatoru `update_plugin`, nejprve načtěte
+aktuální zdroje a použijte ověřené ID i `expected_release_id`.
+Po uložení ověřte verzi a čtení materiálů v novém chatu bez příloh.
+Kontrola archivu sama nepotvrzuje, že konkrétní klient ChatGPT soubory načte.
 
 ## Kontroly a GitHub
 
