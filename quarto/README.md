@@ -1,5 +1,58 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-6-20261102"></a>
+
+## 2026-11-02 — Prezentace ke kapitole 6
+
+Vytvořeny soubory v `presentations/`: `kapitola_06_vyberove_rozdeleni_a_testovani.pptx`
+(38 slidů), `kapitola_06_poznamky.docx` a
+`kapitola_06_vyberove_rozdeleni_a_testovani_cviceni.xlsx`. Rozsah dohodnut s autorem
+2026-11-02: jedna výuka za celou kapitolu (45 minut výkladu, 45 minut procvičování),
+výběr toho podstatného pro porozumění výběrovému rozdělení a principu testování
+hypotéz, všechna nepovinná rozšíření vynechána; výstupy PPTX, DOCX a sešit, bez PDF.
+Výklad má 23 obsahových slidů v šesti oddílech podle
+[R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci).
+Vynechány byly také oddíly o malých skupinách (trychtýř), o výběrových rozděleních
+mediánu a směrodatné odchylky a o mezích simulace; binomický test a z-test jsou
+shrnuty na jednom srovnávacím slidu. Pět úloh bez Excelu (řešení jen v poznámkách):
+adaptace Howella (4.2–4.6; 4.10–4.11, 4.15 a 7.4–7.5; 4.17 a 4.23; 4.16 s doplněním)
+a vlastní úloha na chybné výroky. Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+má čtyři listy (U1_cislice: úlohy 7.1–7.3 s grafem rozdělení průměrů; U2_prumer:
+4.7–4.9 s doplněným průměrem skupiny; U3_binom_test: 4.27 přesným binomickým
+výpočtem; U4_z_test: vlastní modelový z-test pro dvě velikosti výběru), řešení po
+krocích, 11 kontrol funkcemi a 14 nativních rovnic. Rozsah čtení Howella eviduje
+[karta U01](../docs/zdroje/U01-howell.md#u01). Kapitola 6, slovník, osnova ani
+`data/kapitola_06.xlsx` se neměnily; věcný rozpor mezi kapitolou a prezentací nebyl
+zjištěn. Všech 12 obrázků jsou obrázky kapitoly 6 z `assets/chapter-06/plots/`
+(vlastní tvorba), jeden rozdělený na dva slidy.
+
+Při přípravě zjištěny dvě drobnosti v kapitole 6 (neopraveno, mimo rozsah úkolu):
+úvodní blok uvádí „Pět nepovinných rozšíření“, kapitola jich má sedm; ve čtvrté
+odrážce Shrnutí stojí „s využitím normálního modelem“.
+
+Postup: generátor v `tmp/chapter06-presentation/` navazuje na generátor kapitoly 5
+(stejná předloha a vzhled; nové vzorce σ_m a standardizace průměru, ořez jednoho
+dvoudílného obrázku). Sdílené skripty v `scripts/` se neměnily.
+
+**Ověření:** všech 38 slidů vykresleno v PowerPointu a prohlédnuto (po opravě
+dolního indexu uvnitř tučného textu, zalomení tabulky a sjednocení kurzivy *n*,
+*m*, *s*, *z*, *X*); každý slide má poznámky, u výkladových slidů s otázkou
+k zamyšlení, a jazyk textů i poznámek je čeština (objektový model PowerPointu).
+83 čísel ze slidů, poznámek a sešitu přepočítáno nezávisle v R (`check.R` v tmp).
+Sešit přepočítán v českém Excelu 16: 0 chybových buněk, všech 11 kontrol „Shoda
+s kroky“ = ano, 14 rovnic, jeden graf, prázdné pracovní buňky; listy prohlédnuty
+z exportu do PDF. DOCX otevřen ve Wordu: 38 nadpisů „Slide N: titulek“, 20 stran.
+Data úloh 7.1–7.2 a zadání 4.27 ověřena v obraze stran 221–222 a 106.
+
+**Omezení:** výklad trvá podle součtu časů 45 minut, skutečná délka nebyla
+vyzkoušena; látka je rozsáhlá, a proto je řada slidů počítána na 1–2 minuty.
+Popisky uvnitř převzatých grafů (zejména síla a standardizované průměry) jsou při
+projekci drobné; hlavní hodnoty opakuje text slidu. Starší verze Excelu
+a PowerPointu, Excel pro Mac ani webový Excel nebyly zkoušeny. Didaktická revize
+byla interní, bez ověření na studentech. Studentský web se nemění, render knihy
+nebyl potřeba.
+
 ## 2026-11-02 — Podklady kapitol 1–6 v AI tutorovi
 
 Na výslovně schválený plán navazuje zdroj soukromého pluginu ve verzi 0.2.0
