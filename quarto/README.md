@@ -1,5 +1,22 @@
 # Autorská dokumentace
 
+## 2026-11-03 — Nahrání AI tutora 0.3.0 do existujícího pluginu
+
+Po autorově upozornění, že aplikace i web stále ukazují 0.2.1, napraveno
+předchozí příliš úzké provedení pokynu k nahrání (pouze přílohy testovacích
+chatů). Ověřený archiv 0.3.0 z revize `4e1a9211`, s otiskem uvedeným
+v následujícím záznamu, nahrán přes Plugin Creator do původního soukromého
+osobního pluginu `Plugin_f0a6ddcaadfc8191a5009ff162276308`. Před aktualizací
+načten inventář i oba manifesty a instrukce; kořenová metadata se kromě
+verze shodovala s kandidátem. Identita a přístup zůstaly zachovány.
+
+Předchozí vydání `pluginrel_6ae8edaa399c81919057a23708d5685b` nahrazeno
+vydáním `pluginrel_6aea058888508191b5f56798b02ccbae`. Zpětné načtení
+potvrdilo aktuální verzi 0.3.0 a nové instrukce, index a registr. Po obnovení
+existující stránky pluginu také webové rozhraní zobrazilo verzi 0.3.0.
+Otevřené nedostatky z testování tím nejsou prohlášeny za odstraněné;
+testování příloh níže se nezaměňuje za úplný test instalovaného vydání.
+
 ## 2026-11-03 — Ověření kandidáta tutora v režimu Chat
 
 Po výslovném souhlasu autora byl kandidátní ZIP nahrán jako příloha
