@@ -1,6 +1,6 @@
 # Stručný referenční balíček
 
-Původní výběr připraven 2. 11. 2026; instrukční formulace zpřesněny 3. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
+Původní výběr připraven 2. 11. 2026; vybrané konvence a instrukční formulace zpřesněny 3. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
 nikoli o kapitoly nebo úplný slovníček. Přibalené kapitoly 1–6 a celé aktuální přehledy jsou uvedeny v INDEX.md.
 Při použití v chatu uváděj tento soubor jako zdroj. Citaci kapitoly opírej o její skutečně přečtený obsah. Konkrétní výklad a potřebné předpoklady doplňuje dostupná kapitola.
 
@@ -38,6 +38,9 @@ Značky platí také pro grafy, legendy a ovladače. Alternativní SE vysvětluj
 | $x_i$ | Hodnota i-tého pozorování. |
 | $n$ | Počet platných pozorování zahrnutých v konkrétním výpočtu. |
 | $m$ | Výběrový aritmetický průměr, nikoli automaticky M nebo x s pruhem. |
+| $\tilde{x}$ | Medián. |
+| $q_p$ | Kvantil na úrovni p; kvartily $q_{0{,}25}$ a $q_{0{,}75}$. Q₁ a Q₃ jsou alternativy jiné literatury. |
+| $q_{0{,}75}-q_{0{,}25}$ | Mezikvartilové rozpětí: ve výkladu slovně nebo tímto rozdílem. IQR je orientační alternativa, nikoli hlavní značka učebnice. |
 | $s^2$, $s$ | Výběrový rozptyl s dělením n − 1 a jeho odmocnina. |
 | $\mathrm{μ}$, $\mathrm{σ}^2$, $\mathrm{σ}$ | Populační průměr, rozptyl a směrodatná odchylka. |
 | $\mathrm{σ}_m$ | Směrodatná chyba průměru v modelu. |
@@ -93,3 +96,8 @@ Text je zkrácený a upravený; nejde o tvrzení, že byl prověřen celý obsah
 uvedených kapitol nebo každá jejich analýza. Katalog funkcí Excelu a úplný aktuální přehled značení jsou v přibalených přehledech; načítej potřebné heslo podle INDEX.md. Rozsah studia určuje výukový plán zvolené kapitoly a volba nepovinných částí, nikoli samotná přítomnost hesla v přehledu.
 Licence převzatého a upraveného textu:
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.cs).
+
+Doplnění 3. 11. 2026: medián, kvantily a slovní zápis mezikvartilového
+rozpětí ověřeny v aktuálním quarto/znaceni.qmd, hesla znak-median, znak-qp
+a znak-iqr. Jde o doplnění krátkého výběru již platných konvencí,
+nikoli novou volbu značení. Úplný přehled nadále určuje podoby i výjimky.
