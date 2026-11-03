@@ -174,7 +174,8 @@ Hlavní vstupní nabídka vede k volbě kapitoly, režimu a rozsahu; přímý do
 průvodce obchází. Metodika interaktivních vizualizací a podrobné bodování
 jsou reference načítané podle potřeby. Interaktivita závisí na klientu,
 nikoli na samotném balíčku instrukcí. Při vydání ji skutečně vyzkoušejte
-v cílovém prostředí, včetně náhrady bez podpory interaktivity.
+v cílovém prostředí, včetně náhrady bez podpory interaktivity. Volbu režimu
+Chat a evidenci prostředí určuje [pravidlo ověřování tutora](../AGENTS.md#overovani-ai-tutora).
 
 Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
 obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.

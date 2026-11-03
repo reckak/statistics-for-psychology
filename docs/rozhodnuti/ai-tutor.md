@@ -96,3 +96,13 @@ Rozšířit kontroly exportu i scénáře v cílovém klientu:
 - Načítání skutečných souborů v novém chatu a správný náhradní postup při nedostupnosti.
 
 Aktualizovat dokumentaci a historii kontrol; návrhy odlišit od schválených voleb. Zachovat identitu a přístup pluginu. Nejprve sestavit a ověřit kandidátní balíček; publikování bude samostatným autorizovaným krokem. Výsledky kontroly archivu a ověření chování v ChatGPT uvádět odděleně.
+
+### Doplnění R63 — Prostředí testů, 2026-11-03
+
+Autor výslovně povolil nahrát kandidátní ZIP do testovacího chatu a určil:
+„pro ověření chování tutora pak používej režim chat, nikoli work“.
+Důvodem je dostupnost pro studenty a šetření limitů Work. Zároveň požádal
+o zápis tohoto pravidla do AGENTS.md. Hlavním místem je
+[Ověřování AI tutora](../../AGENTS.md#overovani-ai-tutora); testy a provozní
+návod na něj odkazují. Souhlas s testovací přílohou není publikováním
+nového vydání pluginu. Původní schválený plán výše zůstává zachován.

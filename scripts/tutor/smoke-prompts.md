@@ -1,6 +1,10 @@
 # Ověření AI tutora v cílovém klientu
 
-Použij nový chat s vybraným pluginem, bez příloh a bez webového vyhledávání.
+Prostředí testu určuje [AGENTS.md](../../AGENTS.md#overovani-ai-tutora):
+ověř přepnutí do režimu **Chat** a zaznamenej klienta i model.
+Instalované vydání zkoušej v novém chatu s vybraným pluginem, bez příloh
+a bez webového vyhledávání. U kandidáta přilož schválený balíček a výslovně
+odliš tento test od instalace.
 Předpokladem je skutečně uložená verze podle manifestu. Při kontrole nejprve ověř,
 že tutor čte přibalený soubor; správná obecná odpověď sama načtení nedokládá.
 Požaduj název oddílu a jeho existující ID. Uveď, které úlohy a klient byly
@@ -150,3 +154,10 @@ Zopakuj s volbou „s nepovinnými rozšířeními“: tutor zahrne doložené n
 6. Pro povolený rozsah n a σ otestuj nejužší i nejširší rozdělení, posuny středů a kombinace krajů. Vrchol skutečné hustoty je celý v grafu s rezervou; výška panelu neroste. Společná měřítka a označené přiblížení zachovávají interpretaci.
 7. Ověř skutečně úzký panel kolem 320 px i dostupnou výšku kolem 480 px, zvětšený text, oba motivy a klávesnici. Případné svislé posouvání ovladačů je přípustné; ořez křivky, nečitelná osa či nedostupný vstup nejsou.
 8. Při nedostupné interaktivitě tutor poskytne označené statické srovnání. Při nedostupném indexu si seznam kapitol nevymyslí a vymezí ověřený dostupný obsah.
+
+### Regrese z testování v režimu Chat
+
+- V odpovědi na boxplot používej hlavní značení kvartilů z přehledu, tedy q s příslušnou úrovní; Q₁/Q₃ případně vysvětli jako alternativy. Totéž kontroluj v tabulkových přehledech více témat, nejen u samostatného výpočtu.
+- U věty „Co udělá změna posledního času z 10 na 30 s průměrem a mediánem?“ čti „s“ jako předložku v kontextu české věty. Upozornění na nesoulad jednotek musí mít skutečnou oporu v zadání a zdroji.
+- Zmínku o t-rozdělení při odlišení známé a odhadované směrodatné chyby spoj s hranicí kapitoly 6 a odkazem na pozdější výklad; samostatná znalost t-rozdělení se zde nevyžaduje.
+- Pokud klient hlásí „Tuto odpověď se nepodařilo načíst“, zopakuj odpověď běžným textem bez složitých komponent. Ověř zobrazení, nikoli jen existenci uložené odpovědi v historii.
