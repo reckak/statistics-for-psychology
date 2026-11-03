@@ -1,5 +1,25 @@
 # Autorská dokumentace
 
+## 2026-11-03 — Nahrání AI tutora 0.3.1 do existujícího pluginu
+
+Na výslovný pokyn autora aktualizován původní soukromý osobní plugin
+`Plugin_f0a6ddcaadfc8191a5009ff162276308` pomocí Plugin Creatoru.
+Použit ověřený archiv `output/tutor/statistika-pro-psychology-ai-tutor-0.3.1.zip`
+s SHA-256 `626cdcaf7b3d3059b5160620a852ace8b0b614405fb192b2cf09833789f99c94`.
+Před aktualizací načten inventář, oba manifesty a hlavní skill vydání
+0.3.0; kořenová metadata kandidáta se kromě verze shodovala s cloudem.
+
+Aktualizace byla chráněna očekávaným vydáním
+`pluginrel_6aea058888508191b5f56798b02ccbae`; nové vydání je
+`pluginrel_6aea16af96fc81918f8ac71b742140da`. Zpětné načtení potvrdilo
+verzi 0.3.1 v metadatech i obou manifestech, odkaz z hlavního skillu
+na `OTAZKY.md` a přítomnost nové metodiky bez předvýběru odpovědi.
+Identita, osobní rozsah a soukromá dostupnost zůstaly zachovány.
+
+Jde o ověření uloženého vydání. Chování nových otázek v režimu Chat
+zatím nebylo vyzkoušeno; místní kontrola balíčku ani zpětné načtení
+souborů tento test nenahrazují. Historický stav kandidáta níže zachován.
+
 ## 2026-11-03 — Kandidát AI tutora 0.3.1: samostatné odpovědi na otázky
 
 Autor nahlásil, že průběžné ověřovací otázky ve vysvětlování mají vždy
