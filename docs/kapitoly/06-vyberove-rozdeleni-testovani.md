@@ -194,7 +194,8 @@ nepovinné; úloha 16 uvádí pravděpodobnosti pásem na čtyři desetinná mí
 
 Nově je vysvětleno 29 pojmů [registru](../SLOVNIK.md#kapitola-06). Značení
 podle R29: σ s indexem m a s s indexem m, μ₁, μ₂, m₁, m₂, H₀, H₁, μ₀,
-testová statistika z, stojaté α a β; p-hodnota se vypisuje slovy; d jen
+testová statistika z, stojaté α a β; aktuální zápis *p*-hodnoty podle R56
+(samotné *p* jen bez rizika záměny s podílem); d jen
 v nepovinné části. Zápis N(μ, σ) podle R15 se používá jen s celočíselnými
 parametry; modely s desetinnou směrodatnou chybou jsou popsány slovy, aby
 nevznikl nový oddělovač. Nové funkce Excelu kapitola nezavádí: používá
@@ -274,3 +275,15 @@ Od 2026-11-02 je tato kapitola zahrnuta do [exportu podkladů AI tutora](../PROV
 Postup a rozsah balíčku určuje provozní návod, výsledky a omezení kontrol
 zachycuje autorská historie. Převod nemění rozsah učiva ani datum poslední
 obsahové kontroly této karty.
+
+**Doplnění 2026-11-03:** tato karta je také hlavním autorským podkladem
+pro odvozený výukový plán v balíčku tutora. Cíle, přesné lokátory
+a nepovinné bloky se přebírají z textu kapitoly; pojmy a značky z přehledů.
+[Postup a ověření](../PROVOZ.md#export-ai-tutora). Doplnění nemění učivo
+ani datum původní obsahové kontroly karty.
+
+**Kontrola pro plán tutora 2026-11-03:** hranice učiva a rozlišení
+povinných/nepovinných částí porovnány s výkladem, zadáními a řešeními;
+opraveno starší tvrzení o vypisování p-hodnoty v přehledu značení karty
+podle platného [R56](../rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen).
+Nejde o novou numerickou revizi ani změnu studentského textu.

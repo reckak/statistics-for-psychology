@@ -5,12 +5,16 @@ const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
   parseSource, nodes, attr, text, str, para, link, documents} = c;
+const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
 for (const arg of args.filter(x => x.startsWith('--'))) {
   assert(['--quarto', '--rscript', '--skip-figures'].includes(arg), `Unknown option: ${arg}`);
 }
 const q = quarto(option('--quarto'));
+const book = bookChapters(q);
+const bundled = book.filter(d => documents.some(x => x.kind === 'chapter' && x.id === d.id));
+assert.deepEqual(bundled.map(d => d.id), documents.filter(d => d.kind === 'chapter').map(d => d.id), 'Export order must follow the book');
 const manifest = JSON.parse(read(path.join(source, 'plugin.json')));
 const version = manifest.version;
 assert.equal(manifest.name, name);
@@ -39,11 +43,12 @@ if (!args.includes('--skip-figures')) {
 }
 
 const sourceRevision = run('git', ['rev-parse', 'HEAD']).trim();
-const inputPaths = [...documents.map(d => d.source), 'quarto/kapitola_07.qmd', 'quarto/kapitola_08.qmd',
+const inputPaths = [...new Set([...documents.map(d => d.source), ...book.map(d => d.source),
+  '_quarto.yml', ...bundled.map(d => cardFor(d.number)),
   ...Array.from({length: 6}, (_, i) => `scripts/kapitola_0${i + 1}.R`),
   'references.bib', 'styles/apa.csl', 'LICENSE-TEXT.md',
-  'LICENSE', 'scripts/export-tutor.cjs', 'scripts/check-tutor.cjs', 'scripts/tutor/common.cjs', 'scripts/tutor/prepare.lua',
-  ...files(source).map(f => posix(path.relative(root, f)))];
+  'LICENSE', 'scripts/export-tutor.cjs', 'scripts/check-tutor.cjs', 'scripts/tutor/common.cjs', 'scripts/tutor/prepare.lua', 'scripts/tutor/plans.cjs',
+  ...files(source).map(f => posix(path.relative(root, f)))])];
 const inputs = Object.fromEntries(inputPaths.map(f => [f, hash(path.join(root, f))]));
 const sourceDirty = run('git', ['status', '--porcelain', '--', ...inputPaths]).trim() !== '';
 const stamp = new Intl.DateTimeFormat('sv-SE', {timeZone: 'Europe/Prague', dateStyle: 'short'}).format(new Date());
@@ -52,10 +57,8 @@ const idMap = new Map();
 const pages = new Map(docs.map(d => [d.id, d]));
 
 // A missing chapter may still be an authored cross-reference target, never bundled content.
-for (const n of [7, 8]) {
-  const id = `kapitola_0${n}`;
-  pages.set(id, {id, source: `quarto/${id}.qmd`, external: true, number: n,
-    ast: parseSource(q, `quarto/${id}.qmd`)});
+for (const d of book.filter(d => !pages.has(d.id))) {
+  pages.set(d.id, {...d, external: true, ast: parseSource(q, d.source)});
 }
 for (const d of pages.values()) {
   let figure = 0, table = 0;
@@ -226,11 +229,34 @@ fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology –
 const entry = d => ({id: d.id, title: d.title, path: d.output, source: d.source,
   sha256: hash(path.join(refs, d.output)), bytes: Buffer.byteLength(d.markdown),
   headings: nodes(d.out.blocks, 'Header').map(h => ({id: h.c[1][0], title: text(h.c[2]), level: h.c[0]}))});
+const plans = [];
+for (const d of exported.filter(d => d.kind === 'chapter')) {
+  const plan = createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision});
+  const output = `plany/${d.id}.md`;
+  write(output, plan.markdown);
+  plans.push({chapter: d.id, path: output, card: plan.card, sha256: hash(path.join(refs, output)),
+    concepts: plan.concepts,
+    optional_blocks: plan.scope.optionalBlocks.map(x => x.id),
+    headings: plan.scope.headings});
+}
+const chapterEntries = book.map(b => {
+  const d = exported.find(d => d.id === b.id);
+  const page = pages.get(b.id);
+  return {...(d ? entry(d) : {id: b.id, title: page.title, source: b.source, path: null}),
+    number: b.number, availability: d ? 'bundled' : 'web_only',
+    web_url: `${web}quarto/${b.id}.html`, plan: plans.find(p => p.chapter === b.id)?.path || null};
+});
+const chapterMenu = chapterEntries.filter(d => d.availability === 'bundled')
+  .map(d => `${d.number}. **${d.title}** — [výukový plán](references/${d.plan})`).join('\n');
+const skillPath = path.join(stage, 'skills/statistika-tutor/SKILL.md');
+const template = read(skillPath);
+assert.equal(template.split('<!-- tutor:chapter-menu -->').length, 2, 'One generated chapter-menu slot required');
+fs.writeFileSync(skillPath, template.replace('<!-- tutor:chapter-menu -->', chapterMenu), 'utf8');
 const catalog = {
-  schema_version: 1, package_version: version, updated: stamp, status: 'chapters_available',
+  schema_version: 2, package_version: version, updated: stamp, status: 'chapters_available',
   source_revision: sourceRevision, source_dirty: sourceDirty, reference_package: 'REFERENCE.md', index: 'INDEX.md',
   notice: 'Úplný výklad kapitol 1–6; celé aktuální přehledy obsahují i hesla kapitol 7–8. Úplné kapitoly 7–8 nejsou přibalené.',
-  chapters: exported.filter(d => d.kind === 'chapter').map(entry),
+  chapters: chapterEntries, plans,
   overviews: exported.filter(d => d.kind === 'overview').map(entry),
   introduction: entry(exported.find(d => d.kind === 'introduction')),
   bibliography: {path: literature.output, citation_keys: citedKeys, sha256: hash(path.join(refs, literature.output))},
@@ -242,8 +268,11 @@ const index = [`# Obsah podkladů AI tutora`, '', `Verze ${version}; snímek uč
   'Úplné kapitoly 7–8 nejsou přibalené. Hesla z těchto kapitol jsou dostupná ve třech přehledech; jejich odkazy na výklad vedou na web.', '',
   '[O učebnici a původu dat](uvod.md) · [Krátká reference](REFERENCE.md) · [Literatura](literatura.md) · [Licence](LICENCE.md)', '',
   '## Výkladové kapitoly', ''];
+index.push('### Katalog celé učebnice', '', '| Kapitola | Dostupnost |', '|---|---|');
+for (const d of chapterEntries) index.push(`| ${d.number}. ${d.title} | ${d.availability === 'bundled' ? `[Úplný text](${d.path}) · [výukový plán](${d.plan})` : `[Webový výklad](${d.web_url}); v balíčku pouze hesla přehledů`} |`);
+index.push('', '### Oddíly přibalených kapitol', '');
 for (const d of exported.filter(d => d.kind === 'chapter')) {
-  index.push(`### ${d.number}. ${d.title}`, '', `[Celá kapitola](${d.output})`, '');
+  index.push(`### ${d.number}. ${d.title}`, '', `[Celá kapitola](${d.output}) · [Výukový plán](plany/${d.id}.md)`, '');
   for (const h of nodes(d.out.blocks, 'Header').filter(h => h.c[0] === 2)) {
     index.push(`- [${text(h.c[2])}](${d.output}#${h.c[1][0]})`);
   }
@@ -254,7 +283,7 @@ for (const d of exported.filter(d => d.kind === 'overview')) {
   const count = nodes(d.out.blocks, 'Header').filter(h => h.c[0] === 2).length;
   index.push(`- [${d.title}](${d.output}) — ${count} hesel; vyhledej název, značku nebo funkci a načti konkrétní heslo.`);
 }
-index.push('', 'Registr KAPITOLY.json obsahuje přesná ID oddílů, zdrojovou verzi a otisky souborů; není nutné jej číst celý při běžném studiu.', '');
+index.push('', 'Registr KAPITOLY.json rozlišuje katalog celé knihy, přibalené kapitoly a šest výukových plánů. Obsahuje přesná ID, zdrojovou verzi a otisky souborů; načítej potřebný záznam.', '');
 write('INDEX.md', index.join('\n'));
 
 // Validate the complete staged package before replacing a previous release artifact.
@@ -270,7 +299,7 @@ const psQuote = s => `'${s.replace(/'/g, "''")}'`;
 const createZip = `$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression; Add-Type -AssemblyName System.IO.Compression.FileSystem; $base=${psQuote(stage)}; $zip=[IO.Compression.ZipFile]::Open(${psQuote(stageArchive)}, [IO.Compression.ZipArchiveMode]::Create); try { foreach($file in Get-ChildItem -LiteralPath $base -File -Recurse -Force) { $relative=$file.FullName.Substring($base.Length+1).Replace([char]92,[char]47); [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $file.FullName, $relative, [IO.Compression.CompressionLevel]::Optimal) | Out-Null } } finally { $zip.Dispose() }`;
 run('powershell.exe', ['-NoProfile', '-Command', createZip]);
 const report = {version, source_revision: sourceRevision, source_dirty: sourceDirty, date: stamp, package_directory: stage,
-  files: inventory, chapters: catalog.chapters.length, overviews: catalog.overviews.length,
+  files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
   overview_entries: catalog.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
   images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive)};
 fs.writeFileSync(path.join(work, 'inventory.json'), JSON.stringify(report, null, 2) + '\n');

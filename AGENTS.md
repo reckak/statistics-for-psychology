@@ -554,6 +554,23 @@ s každou kapitolou, ne až při dokončení knihy.
   neověřené) v autorské dokumentaci i ve zprávě uživateli; nedeklaruj
   úplné ověření.
 
+<a id="overovani-ai-tutora"></a>
+
+## Ověřování AI tutora
+
+- Chování pluginu ověřuj v režimu **Chat**, který odpovídá prostředí
+  dostupnému studentům a šetří limity režimu Work. Před odesláním prvního
+  testovacího dotazu ověř skutečně zvolený režim; zaznamenej také klienta,
+  model a způsob zpřístupnění podkladů.
+- Běžné studium, čtení podkladů, procvičování, zkoušení a dostupné
+  vizualizace mají obstát v režimu Chat. Režim Work použij pro testování
+  jen na výslovný pokyn autora; jeho výsledek eviduj samostatně jako
+  doplňkový test konkrétní schopnosti, nikoli jako doklad dostupnosti
+  pro studenty v režimu Chat.
+- Rozlišuj test kandidátních souborů přiložených k chatu a test skutečně
+  instalovaného vydání pluginu. Výsledky i omezení zapisuj do autorské
+  historie; testovací scénáře udržuj v `scripts/tutor/smoke-prompts.md`.
+
 ## Prezentace a poznámky pro vyučujícího
 
 Před tvorbou nebo úpravou prezentace, poznámek či jejich exportu načti

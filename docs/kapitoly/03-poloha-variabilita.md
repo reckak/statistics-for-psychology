@@ -177,3 +177,9 @@ Od 2026-11-02 je tato kapitola zahrnuta do [exportu podkladů AI tutora](../PROV
 Postup a rozsah balíčku určuje provozní návod, výsledky a omezení kontrol
 zachycuje autorská historie. Převod nemění rozsah učiva ani datum poslední
 obsahové kontroly této karty.
+
+**Doplnění 2026-11-03:** tato karta je také hlavním autorským podkladem
+pro odvozený výukový plán v balíčku tutora. Cíle, přesné lokátory
+a nepovinné bloky se přebírají z textu kapitoly; pojmy a značky z přehledů.
+[Postup a ověření](../PROVOZ.md#export-ai-tutora). Doplnění nemění učivo
+ani datum původní obsahové kontroly karty.

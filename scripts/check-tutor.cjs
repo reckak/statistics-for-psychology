@@ -4,6 +4,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
   nodes, attr, text, documents} = require('./tutor/common.cjs');
+const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
 const packageRoot = option('--package') || JSON.parse(read(path.join(root, 'output/tutor/overeni.json'))).package_directory;
@@ -25,7 +26,9 @@ const skill = read(path.join(packageRoot, 'skills/statistika-tutor/SKILL.md'));
 const frontmatter = JSON.parse(skill.match(/^---\n([\s\S]*?)\n---\n/)[1]);
 assert.equal(frontmatter.name, 'statistika-tutor');
 assert(frontmatter.description);
-assert(Buffer.byteLength(skill) <= 12268, 'Main instructions must not exceed the original release');
+assert(Buffer.byteLength(skill) <= 14000, 'Keep the main skill compact, including the generated menu');
+assert(!skill.includes('<!-- tutor:chapter-menu -->'), 'Chapter menu was not generated');
+assert(!skill.includes('„4.3“'), 'Concrete ambiguity belongs in regression prompts');
 assert(!/\b\d+\.\d+\.\d+\b/.test(skill), 'Read release version from metadata');
 assert(skill.includes('## Cvičení z učebnice'));
 const prompts = manifest.extensions['com.openai'].interface.defaultPrompt;
@@ -40,11 +43,37 @@ for (const ref of ['VIZUALIZACE.md', 'ZKOUSENI.md']) {
 assert(!/Registr verze 0\.1\.0|seznam kapitol je prázdný/.test(skill));
 const registry = JSON.parse(read(path.join(refs, 'KAPITOLY.json')));
 assert.equal(registry.status, 'chapters_available');
+assert.equal(registry.schema_version, 2);
 assert.equal(registry.package_version, manifest.version);
-assert.equal(registry.chapters.length, 6);
+assert.equal(registry.chapters.length, 8);
+assert.equal(registry.plans.length, 6);
 assert.equal(registry.overviews.length, 3);
-assert(!registry.chapters.some(d => /kapitola_0[78]/.test(d.id)));
-for (const entry of [...registry.chapters, ...registry.overviews, registry.introduction, registry.bibliography]) {
+const bundled = registry.chapters.filter(d => d.availability === 'bundled');
+assert.equal(bundled.length, 6);
+const book = bookChapters(q);
+assert.deepEqual(registry.chapters.map(d => d.source), book.map(d => d.source));
+const index = read(path.join(refs, 'INDEX.md'));
+let menuPosition = -1;
+for (const [i, entry] of registry.chapters.entries()) {
+  const before = parseSource(q, entry.source);
+  const title = text(nodes(before.blocks, 'Header')[0].c[2]);
+  assert.equal(entry.title, title, `Exact chapter title: ${entry.id}`);
+  assert.equal(entry.number, i + 1);
+  assert.equal(entry.web_url, `${web}quarto/${entry.id}.html`);
+  assert(index.includes(`| ${entry.number}. ${title} |`), 'Complete catalog in index');
+  if (entry.availability === 'bundled') {
+    const position = skill.indexOf(`${entry.number}. **${title}**`);
+    assert(position > menuPosition, `Missing/out-of-order chapter menu: ${entry.id}`);
+    menuPosition = position;
+    assert.equal(entry.plan, `plany/${entry.id}.md`);
+  } else {
+    assert.equal(entry.availability, 'web_only');
+    assert.equal(entry.path, null);
+    assert.equal(entry.plan, null);
+    assert(!fs.existsSync(path.join(refs, `kapitoly/${entry.id}.md`)));
+  }
+}
+for (const entry of [...bundled, ...registry.plans, ...registry.overviews, registry.introduction, registry.bibliography]) {
   assert.equal(hash(path.join(refs, entry.path)), entry.sha256, `Registry checksum: ${entry.path}`);
 }
 const parse = p => JSON.parse(pandoc(q, [p, '--from=markdown-smart', '--to=json']));
@@ -163,9 +192,61 @@ for (const d of documents.filter(d => d.kind === 'overview')) {
   }
   rows += expected.length;
 }
+// Check plans against source goals, all section scopes, every overview row
+// referring to this chapter, and the original chapter-card skill table.
+for (const entry of registry.plans) {
+  const chapter = bundled.find(x => x.id === entry.chapter);
+  const before = parseSource(q, chapter.source);
+  const plan = parsed.get(path.resolve(refs, entry.path));
+  const planText = read(path.join(refs, entry.path));
+  assert(planText.startsWith(`# ${chapter.number}. ${chapter.title}\n`));
+  assert.equal(registry.source_hashes[entry.card], hash(path.join(root, entry.card)));
+  const goals = nodes(before.blocks, 'Div').find(x => text(x.c[1][0]) === 'Co budete po prostudování umět');
+  const goalBullets = nodes(goals, 'BulletList')[0];
+  const planBullets = nodes(plan, 'BulletList').flatMap(x => x.c.map(item => text(item)));
+  for (const item of goalBullets.c) assert(planBullets.includes(text(item)), `Plan lost a learning goal: ${entry.chapter}`);
+  const originalScope = scopes(before);
+  assert.deepEqual(entry.headings, originalScope.headings, 'Source-to-plan optional/exercise scope');
+  const optional = nodes(before, 'Div').filter(x => x.c[0][2].some(([key, title]) => key === 'title' && /^Nepovinné rozšíření/.test(title))).map(x => x.c[0][0]);
+  // parseSource's conversion puts title text into the first paragraph.
+  if (!optional.length) optional.push(...nodes(before, 'Div').filter(x => /^Nepovinné rozšíření/.test(text(x.c[1][0]))).map(x => x.c[0][0]));
+  assert.deepEqual(entry.optional_blocks, optional);
+  const links = nodes(plan, 'Link').map(x => x.c[2][0]);
+  for (const h of entry.headings.filter(h => h.level > 1)) {
+    const target = `../${chapter.path}#${h.id}`;
+    assert(links.includes(target), `Plan lost heading: ${h.id}`);
+    if (!/^sec-shrnuti|^sec-cviceni/.test(h.id)) {
+      const item = planText.split('\n').find(line => /^\s*- \[/.test(line) && line.includes(`](${target})`));
+      assert(item, `Plan lost study step: ${h.id}`);
+      assert.equal(item.includes('— nepovinné'), h.optional, `Visible optional label: ${h.id}`);
+    }
+  }
+  for (const id of optional) assert(links.includes(`../${chapter.path}#${id}`));
+  for (const overview of registry.overviews) {
+    const original = read(path.join(root, overview.source));
+    const expected = [...original.matchAll(/<tr id="([^"]+)">([\s\S]*?)<\/tr>/g)]
+      .filter(m => m[2].includes(`${entry.chapter}.html`)).map(m => m[1]);
+    const actual = entry.concepts.filter(x => x.overview === overview.id).map(x => x.id);
+    assert.deepEqual(actual, expected, `Plan concept inventory: ${entry.chapter}/${overview.id}`);
+    for (const id of expected) assert(links.includes(`../${overview.path}#${id}`));
+  }
+  const card = read(path.join(root, entry.card));
+  const section = card.split(/### Cvičení a očekávané[^\n]*\n/)[1].split(/^### |^## /m)[0];
+  const cardAst = JSON.parse(pandoc(q, ['--from=markdown-smart', '--to=json'], section));
+  const cardTables = nodes(cardAst, 'Table');
+  const planTables = nodes(plan, 'Table');
+  for (const t of cardTables) {
+    assert(planTables.some(p => subsequence(words(t), words(p))), `Plan lost exercise skills: ${entry.chapter}`);
+  }
+}
+const scope3 = registry.plans.find(p => p.chapter === 'kapitola_03').headings;
+assert(scope3.find(x => x.id === 'sec-momenty').optional, 'Nested optional heading');
+assert(!scope3.find(x => x.id === 'sec-excel-poloha').optional, 'Optional scope must end');
+assert(scope3.find(x => x.title.startsWith('14.')).optional, 'Optional exercise');
+assert(!scope3.find(x => x.title.startsWith('13.')).optional, 'Required exercise');
 const bibliography = parsed.get(path.resolve(refs, 'literatura.md'));
 for (const key of registry.bibliography.citation_keys) assert(ids(bibliography).has(`ref-${key}`));
 for (const f of files(packageRoot)) assert(!/(?:^|[\\/])(?:sources|node_modules|\.git)(?:[\\/]|$)/.test(f), `Unexpected package file ${f}`);
 assert(!files(refs).some(f => /kapitola_0[78]\.md$|\.xlsx$/.test(f)));
-console.log(JSON.stringify({checks: 'passed', chapters: 6, overviewEntries: rows,
+console.log(JSON.stringify({checks: 'passed', chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
   math, images, solutions, checkedLinks, citations: registry.bibliography.citation_keys.length}));

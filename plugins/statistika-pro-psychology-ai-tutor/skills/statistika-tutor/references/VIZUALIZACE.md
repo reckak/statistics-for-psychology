@@ -1,73 +1,49 @@
-# Metodika interaktivních vizualizací
+# Metodika výukových vizualizací
 
-Jde o autorské vodítko k vlastnímu výukovému doplňku, nikoli další kapitolu.
-Nejprve přečti relevantní výklad. Pro výběrové rozdělení použij kapitolu 6,
-oddíly sec-chyba-prumeru a sec-chyby-sila; z-test je zjednodušený modelový
-doplněk. Korelace je obecné rozšíření mimo úplné přibalené kapitoly.
+## Účel a opětovné použití
 
-## Společný postup
+Vycházej z právě probírané otázky, výukového plánu a přečteného výkladu či zadání. Vizualizace mohou pomoci u libovolného tématu v rozsahu studia: měření, četností, polohy, variability, transformací, pravděpodobnosti i inference. Typ grafu vybírej podle vztahu, který má student pochopit.
 
-Použij skutečně dostupné interaktivní zobrazení klienta, jeho dokumentaci
-a příslušný postup tvorby, pokud jej nabízí. Vytvoř fungující výstup;
-neskonči příslibem ani samotným kódem. Nevyžaduj další plugin nebo server.
-Bez podpory nabídni vypočtené statické srovnání a jasně je tak označ.
+Nejprve zvaž existující obrázek učebnice nebo zobrazení již vytvořené v rozhovoru. U navazujících obdobných úloh zpravidla využij stejnou vizualizaci a její ovladače; samotná změna číselného zadání není důvodem k novému panelu. Nový výstup vytvoř pro jiný potřebný pohled, konkrétní neporozumění nebo na žádost studenta.
 
-Podle režimu: předpověď → manipulace → pozorování → vysvětlení. U přímého
-výkladu nečekej povinně na předpověď. Jedna hlavní otázka a jeden hlavní
-ovladač; další ovladače přidávej jen pro konkrétní učební cíl. Neprozrazuj
-odpovědi zkoušky předem. Výklad a otázky patří do rozhovoru kolem grafu.
+Interaktivitu zvol, když manipulace s daty či parametry pomůže odpovědět na studovanou otázku nebo ji student výslovně chce. Pro krátkou otázku může stačit výpočet, tabulka či slovní vysvětlení. Požadavek „bez grafu“ respektuj. Podle režimu propojuj předpověď → změnu → pozorování → vysvětlení; v přímém výkladu je předpověď dobrovolná. Ve zkoušení zachovej možnost samostatné odpovědi.
 
-České popisky, jednotky, legenda, rozlišení modelu a dat, ovládání klávesnicí,
-čitelný úzký displej a tlačítko návratu k výchozím hodnotám. Graf nesmí
-využívat pouze barvu k rozlišení významu. Ověř, že ovladač skutečně mění graf
-i správně vypočtené hodnoty. Náhodné realizace reprodukuj pevným seedem;
-nové losování odděl od změny hlavního parametru. Zachovej porovnatelné osy,
-nebo změnu měřítka výslovně označ. Nevydávej simulaci za pozorovanou studii.
+[Konkrétní demonstrace](PRIKLADY-VIZUALIZACI.md) jsou příklady a podklady pro ověření, nikoli seznam povolených grafů. Modely a hodnoty z nich používej, pokud odpovídají aktuální otázce. Téma mimo učebnici vysvětluj na výslovný dotaz a označ jako doplněk.
 
-## Velikost výběru a výběrové rozdělení
+## Zadání, parametry a data
 
-Výchozí model: nezávislé výběry ze stejné populace s průměrem 35 s a
-směrodatnou odchylkou 15 s. První demonstrace může použít normální populaci;
-uveď, že normalita průměru je pak přesná pro každé n, nikoli důkaz CLV.
-Při vysvětlování CLV použij samostatně výslovně popsanou nenormální populaci.
+Výchozí hodnoty, data, jednotky a předpoklady přebírej z právě probírané úlohy. Pokud je neurčuje, zvol jednoduché smysluplné nastavení a popiš je jako vlastní model. Změnu vstupu označ jako variantu původního zadání; nabídni tlačítko **Obnovit zadání**, u vlastního modelu **Výchozí nastavení**. Výsledek varianty vztahuj k právě zobrazeným hodnotám.
 
-Hlavním ovladačem je počet osob n, například 25, 100 a 400. Odděleně ukaž
-rozdělení jednotlivých hodnot a rozdělení průměrů, obě osy v sekundách.
-Směrodatná chyba je σ/√n: 3; 1,5; 0,75 s. Střed populace i její variabilita
-zůstávají stejné. Velikost výběru nezaměňuj za počet opakování simulace M;
-ten drž pevný a uveď jej. Empirický rozptyl simulovaných průměrů se může
-od teoretického vztahu mírně lišit. Větší n nenormalizuje jednotlivé hodnoty.
+Zpřístupni parametry potřebné pro učební otázku; méně podstatné možnosti odkrývej postupně. Jasně ukaž, co se mění a co zůstává pevné. Rozsahy a kroky nastav podle významu veličiny, jednotek a numerické stability. Při neplatné kombinaci ukaž české vysvětlení a možnost opravy; místo neexistujícího výsledku zobraz „nedefinováno“ s důvodem.
 
-## Skutečný účinek a statistická síla
+Rozlišuj pozorovaná data, teoretický model a simulaci. Při změně parametru zachovej základní náhodnou realizaci, pokud její změna není výslovnou součástí demonstrace. Použij pevný seed a samostatné tlačítko **Nové losování**. Počet opakování simulace odliš od velikosti výběru. Souhrnné vstupy zachovej jako souhrny; individuální data z nich nevymýšlej.
 
-Použij oboustranný jednovýběrový z-test, známé σ = 15 s, n = 100,
-α = 0,05 a nulový průměr μ₀ = 35 s; SE = 1,5 s. Hlavním ovladačem je
-skutečný rozdíl Δ = μ − μ₀ v sekundách, výchozí Δ = 3 s.
-Ukaž rozdělení průměru za H₀ a za zvolenou alternativou. Kritické hranice
-μ₀ ± z₀,₉₇₅ SE zůstávají při změně Δ stejné. Vyznač obě kritické oblasti,
-plochu zamítnutí pod alternativou a zbývající plochu β.
+## Ovladače a jejich názvy
 
-Pro a = Δ/SE a c = z₀,₉₇₅ je pravděpodobnost zamítnutí
-Φ(−c−a) + 1−Φ(c−a). V nulovém bodě je rovna α; tam jde o chybu I. druhu,
-nikoli pravděpodobnost odhalení existujícího účinku. U nenulové alternativy
-jde o sílu, β je její doplněk. Při těchto pevných podmínkách roste s |Δ|.
-Nejde o pravděpodobnost pravdivosti hypotézy ani o sílu vypočtenou
-dosazením pozorovaného účinku jako důkazu kvality hotové studie.
-Numerický výpočet ověř nezávislým nástrojem; aproximaci Φ neprezentuj
-s větší přesností, než jakou skutečně poskytuje.
+| Vstup | Vhodné ovládání |
+|---|---|
+| Číselný parametr | Zpravidla posuvník a synchronizované číselné pole s přesným zadáním a šipkami. |
+| Počet osob či pokusů | Celočíselný krok a věcně přípustná dolní mez. |
+| Spojitý parametr | Desetinný krok podle jednotek; u velmi širokého rozsahu označená nelineární stupnice. |
+| Typ rozdělení, kategorie či směr testu | Nabídka, přepínače nebo tlačítka. |
+| Jednotlivá data | Upravitelná tabulka či body s číselnou a klávesnicovou alternativou. |
 
-## Populační korelace a bodový graf
+Pevné číselné předvolby používej pro cílené srovnání, zpravidla jako doplněk průběžného ovládání. Počet ovladačů řiď otázkou a přehledností, nikoli univerzálním limitem jednoho parametru.
 
-Modeluj dvojice X = U a Y = ρU + √(1−ρ²)V, kde U a V jsou nezávislé
-standardní normální proměnné. Je to model standardizovaných skórů bez
-jednotek, nikoli data konkrétní studie. Výchozí n = 100, ρ = 0,5.
-Pro změny ρ ponech tytéž základní dvojice U,V; nové losování nabídni
-samostatným tlačítkem. Osy drž stejné a dostatečné pro celý rozsah ρ,
-včetně −1 a 1; neodřezávej krajní body.
+Všechny ovladače, nabídky, nápovědy, legendy, hodnoty i chybová hlášení piš česky se značením učebnice. Název spoj se značkou a jednotkou, například **Velikost výběru n**, **Populační směrodatná odchylka σ (s)**, **Hladina významnosti α**. Symboly musí mít vysvětlený význam. Pro směrodatnou chybu průměru používej σₘ, pro její odhad sₘ; alternativní označení řeší přehled značení.
 
-Z dat skutečně spočítej Pearsonovo výběrové r pomocí centrovaných součtů.
-Neopisuj do něj nastavené ρ: konečný výběr se zpravidla liší a při ρ = 0
-nemusí mít přesně r = 0. Pokud je rozptyl některé proměnné nulový,
-r je nedefinované, nikoli nula. Znaménko určuje směr, absolutní velikost
-sílu lineárního vztahu. Nulové r nevylučuje nelineární závislost;
-korelace sama neprokazuje kauzalitu. Připomeň omezení zvoleného modelu.
+## Měřítka a rozměry
+
+Rozměry panelu odděl od hodnot grafu. Výchozí výška samotného grafu může být přibližně 280 px; přizpůsob ji dostupnému prostoru včetně os, legend a ovladačů. S rostoucí hustotou zachovej rozměry panelu a uprav převod datových souřadnic. V úzkém či nízkém panelu zjednoduš rozložení; delší ovládání může mít svislý posun, obsah grafu musí zůstat celý čitelný.
+
+Při porovnávání rozdělení používej společná měřítka pro všechny křivky a srovnávané stavy. Pro normální hustotu má vrchol hodnotu 1/(σ√(2π)); u výběrového průměru dosaď σₘ. Rozsah y stanov podle nejvyššího vrcholu v celém povoleném rozsahu parametrů, například s rezervou 15 %. U jiných grafů zkontroluj odpovídající extrémy a rozsah x včetně posunů křivek. Automatické přiblížení použij jako výslovně označený režim se zobrazenými osami.
+
+Hustoty zobrazuj ve skutečných hodnotách s celkovou plochou jedna. Normalizaci každé křivky na stejný vrchol použij pouze pro výslovně označené srovnání tvarů, nikoli jako zobrazení skutečné hustoty. U histogramu označ, zda ukazuje četnost, relativní četnost nebo hustotu. Na svislé ose hustoty uváděj příslušnou převrácenou jednotku; vodorovná osa nese jednotku proměnné.
+
+## Funkčnost a ověření
+
+Použij skutečně dostupné zobrazení klienta a jeho dokumentovaný postup. Poskytni funkční výstup; samotný kód nebo příslib označ jako návrh, nikoli hotovou vizualizaci. Při chybě jednou zkus jednoduchou opravu nebo podporovaný náhled souboru. Při dalším selhání poskytni označenou statickou náhradu s vypočtenými srovnáními.
+
+Ověř výchozí hodnoty, krajní hodnoty a smysluplné kombinace vstupů, přesné číselné zadání, synchronizaci ovladačů, obnovu zadání a nové losování. Zkontroluj výpočty nezávisle na grafu a skutečnou reakci ovladačů. Značky a jednotky porovnej s textem a přehledy.
+
+Prohlédni úzký panel přibližně 320 px a nízký panel přibližně 480 px, zvětšený text, světlý i tmavý vzhled a ovládání klávesnicí. Význam rozlišuj také jinak než barvou. Zaznamenej, co bylo skutečně zobrazeno a ovládáno v klientu; místní výpočet sám funkčnost v ChatGPT nepotvrzuje.

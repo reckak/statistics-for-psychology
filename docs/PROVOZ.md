@@ -174,7 +174,8 @@ Hlavní vstupní nabídka vede k volbě kapitoly, režimu a rozsahu; přímý do
 průvodce obchází. Metodika interaktivních vizualizací a podrobné bodování
 jsou reference načítané podle potřeby. Interaktivita závisí na klientu,
 nikoli na samotném balíčku instrukcí. Při vydání ji skutečně vyzkoušejte
-v cílovém prostředí, včetně náhrady bez podpory interaktivity.
+v cílovém prostředí, včetně náhrady bez podpory interaktivity. Volbu režimu
+Chat a evidenci prostředí určuje [pravidlo ověřování tutora](../AGENTS.md#overovani-ai-tutora).
 
 Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
 obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
@@ -187,6 +188,19 @@ node scripts/export-tutor.cjs
 Export obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
 zadání a řešení, celé aktuální přehledy (slovníček, značení a vzorce, Excel),
 literaturu citovanou v těchto materiálech a obrázky s textovými popisy.
+Od revize 0.3.0 přidává šest výukových plánů a katalog všech osmi kapitol
+s výslovnou dostupností. Přesné názvy v nabídce hlavního skillu, indexu
+a registru vznikají ze stejného katalogu podle `_quarto.yml` a nadpisů kapitol.
+Zdrojový skill obsahuje značku `tutor:chapter-menu`, kterou export nahradí;
+instalujte hotový archiv, nikoli samotnou zdrojovou složku.
+
+Plány vznikají pomocí `scripts/tutor/plans.cjs`: hloubku výkladu, návaznosti
+a procvičení přebírají z existujících kapitolových karet, cíle a strukturu
+z kapitol a rejstřík pojmů, značek i funkcí z přehledů. Zachovávají rozdíl
+mezi povinným učivem, nepovinnými částmi a pouhými zmínkami. Při obsahové
+změně aktualizujte hlavní kapitolovou kartu a text a proveďte nový export;
+generované plány se ručně nesynchronizují. Export kontroluje existenci
+a návaznost odkazů, redakční kontrola posuzuje skutečnou hloubku učiva.
 Přehledy se na rozdíl od souhrnného PDF **neomezují na kapitoly 1–6**;
 obsahují i hesla z kapitol 7–8, jejichž úplný výklad v pluginu není.
 Odkazy na přibalené materiály jsou místní, na kapitoly 7–8 a sešity vedou
@@ -232,6 +246,16 @@ Je-li dostupný nástroj Plugin Creatoru `update_plugin`, nejprve načtěte
 aktuální zdroje a použijte ověřené ID i `expected_release_id`.
 Po uložení ověřte verzi a čtení materiálů v novém chatu bez příloh.
 Kontrola archivu sama nepotvrzuje, že konkrétní klient ChatGPT soubory načte.
+[Testovací sada](../scripts/tutor/smoke-prompts.md) odděluje načítání podkladů,
+chování tutora a skutečné ovládání vizualizací. Test kandidátního archivu
+jako přílohy nezaměňujte za test instalovaného vydání; do autorizovaného
+publikování může cloudový plugin dál obsahovat předchozí verzi.
+
+Registr `KAPITOLY.json` má od 0.3.0 `schema_version: 2`: `chapters` obsahuje
+všech osm kapitol (`number`, `availability`, `web_url`, `plan`), přibalené
+záznamy mají místní `path` a otisk, nepřibalené mají `path` a `plan` rovné
+`null`. Pole `plans` obsahuje šest plánů s otisky a vazbou na zdrojové karty.
+Skript čtoucí plné texty musí filtrovat `availability: bundled`.
 
 ## Kontroly a GitHub
 
