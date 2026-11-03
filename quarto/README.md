@@ -1,5 +1,50 @@
 # Autorská dokumentace
 
+## 2026-11-03 — Kandidát AI tutora 0.3.1: samostatné odpovědi na otázky
+
+Autor nahlásil, že průběžné ověřovací otázky ve vysvětlování mají vždy
+správnou možnost B a tato možnost je předvybraná. Dosavadní instrukce
+neurčovaly pořadí možností ani výchozí stav odpovědi; konkrétní mechanismus
+předvýběru v hlášeném klientu nebyl nezávisle reprodukován.
+
+Do [hlavního skillu](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md)
+doplněn odkaz na společnou metodiku
+[otázek](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/references/OTAZKY.md).
+Platí také pro procvičování a zkoušení: otevřené ověření porozumění,
+proměnlivé pořadí možností bez pevného cyklu, kontrola klíče po promíchání,
+stejná prezentace odpovědí a zpětná vazba podle režimu. Při automatickém
+předvýběru klienta se použije běžný text nebo otevřená otázka. Výchozí
+volba ani pouhé pokračování nejsou samostatným výkonem studenta.
+
+Oba manifesty zvýšeny na 0.3.1; kontrola exportu vyžaduje přibalení nové
+reference. [Testovací sada](../scripts/tutor/smoke-prompts.md#ověřovací-otázky-bez-nápovědy-rozhraním)
+přidává kontrolu šesti postupných výběrových otázek, jejich klíčů,
+skutečného výchozího stavu rozhraní a náhrady bez předvýběru.
+
+Místní kontrola: export se zachovanými obrázky (`--skip-figures`), kontrola
+struktury a odkazů balíčku i nezávislé načtení archivu. Tato kontrola
+neprokazuje chování modelu ani rozhraní. Nový kandidát zatím nebyl
+vyzkoušen v režimu Chat ani nahrán do cloudového pluginu; instalovaná
+verze 0.3.0 zůstává posledním doloženým vydáním. Studentský výklad
+a data učebnice se nemění.
+
+## 2026-11-03 — Nahrání AI tutora 0.3.0 do existujícího pluginu
+
+Po autorově upozornění, že aplikace i web stále ukazují 0.2.1, napraveno
+předchozí příliš úzké provedení pokynu k nahrání (pouze přílohy testovacích
+chatů). Ověřený archiv 0.3.0 z revize `4e1a9211`, s otiskem uvedeným
+v následujícím záznamu, nahrán přes Plugin Creator do původního soukromého
+osobního pluginu `Plugin_f0a6ddcaadfc8191a5009ff162276308`. Před aktualizací
+načten inventář i oba manifesty a instrukce; kořenová metadata se kromě
+verze shodovala s kandidátem. Identita a přístup zůstaly zachovány.
+
+Předchozí vydání `pluginrel_6ae8edaa399c81919057a23708d5685b` nahrazeno
+vydáním `pluginrel_6aea058888508191b5f56798b02ccbae`. Zpětné načtení
+potvrdilo aktuální verzi 0.3.0 a nové instrukce, index a registr. Po obnovení
+existující stránky pluginu také webové rozhraní zobrazilo verzi 0.3.0.
+Otevřené nedostatky z testování tím nejsou prohlášeny za odstraněné;
+testování příloh níže se nezaměňuje za úplný test instalovaného vydání.
+
 ## 2026-11-03 — Ověření kandidáta tutora v režimu Chat
 
 Po výslovném souhlasu autora byl kandidátní ZIP nahrán jako příloha
