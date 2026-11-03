@@ -8,17 +8,17 @@ z kapitol 7–8. Úplné kapitoly 7–8 v této verzi nejsou.
 ## Aktualizace
 
 1. Aktualizuj hlavní zdroj učebnice a jeho kontroly. Při změně rozsahu uprav
-   také export a instrukce tutora; nepovažuj existenci hesla za dostupnou kapitolu.
+   také kapitolovou kartu, export a instrukce tutora. Dostupnost plného textu ověřuj samostatně od existence hesla.
 2. Zvyš verzi v obou manifestech zdroje pluginu. Zachovej název, logo,
    výchozí prompty, vazby a aktuální oprávnění.
 3. Sestav a ověř instalační archiv podle
    [provozního návodu](https://github.com/reckak/statistics-for-psychology/blob/main/docs/PROVOZ.md#export-ai-tutora).
-   Registr, index, otisky, literatura a kopie obrázků vznikají automaticky.
+   Registr osmi kapitol, index, šest výukových plánů, nabídka v hlavním skillu, otisky, literatura a kopie obrázků vznikají automaticky. Plány čerpají hloubku učiva a dovednosti z kapitolových karet a cíle, lokátory i nepovinné části z textu. Přehledy dodávají úplný rejstřík navázaných pojmů, značení a funkcí.
 4. Ověř aktuální verzi a identitu existujícího cloudového pluginu, pak
    použij „Nahrát novou verzi“. Pokud je dostupný Plugin Creator update_plugin,
    načti aktuální zdroje a použij ověřené ID i expected_release_id.
 5. Ověř uloženou verzi a skutečné čtení souborů v novém chatu bez příloh.
-   Zkontroluj i příklady, matematiku, odkazy a hranici přehled/výklad 7–8.
+   Zkontroluj i příklady, matematiku, odkazy, dlouhý rozhovor podle plánu, volbu rozšíření, opětovné využití grafu, krajní parametry a výšku panelu. Odliš test kandidátní přílohy od skutečné instalace.
 
 Přibalené soubory jsou verzovaný snímek. Změna webu se do již uloženého
 pluginu nepropíše sama; vyžaduje nový export a aktualizaci.

@@ -54,6 +54,12 @@ přebírá úplné kapitoly 1–6 a celé aktuální přehledy, včetně hesel z
 nikoli změnu rozsahu knihy nebo nové odborné ověření. Stav uložení pluginu
 a konkrétních kontrol zachycuje autorská historie.
 
+**Revize tutora schválená 2026-11-03:** export doplňuje plány kapitol 1–6
+odvozené z těchto karet a textu a úplný katalog osmi kapitol s dostupností.
+Rozsah výkladu knihy se nemění. Hlavní místa obsahu zůstávají v kapitolách
+a kartách; [pravidla tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md)
+a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora) určují použití plánů.
+
 <a id="usporadani"></a>
 
 ## Současné uspořádání

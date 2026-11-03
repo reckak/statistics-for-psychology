@@ -46,7 +46,7 @@ vodítkem, nikoli náhradou kontroly celého smyslu odpovědi.
 
 ## Čtyři pedagogické režimy
 
-1. Vysvětlení: přímá odpověď na rozdíl SD a SE, konkrétní psychologický
+1. Vysvětlení: přímá odpověď na rozdíl směrodatné odchylky a směrodatné chyby se značením učebnice, konkrétní psychologický
    příklad a podmínky vztahu. Nemá vyžadovat nahrání kapitoly 6.
 2. Sokratovské vedení: „Veď mě při výpočtu průměru 4, 5, 5, 6, 10.
    Polož jen první otázku a čekej.“ Po první reakci zadej chybný jmenovatel 4;
@@ -70,7 +70,7 @@ nesmí zjišťovat znovu; při konkrétním dotazu má začít přímo.
 | Kapitola 6, režim vyber za mě, celou kapitolu. | Vysvětlování, krátké potvrzení, navazující úseky podle cílů. |
 | Kapitola 6, procvičování, směrodatná chyba. | Potvrdí nastavení, začne vlastní úlohou bez řešení. |
 | Teď kapitola 3, sokratovsky, průměr. | Změní nastavení a postup, bez opakovaného dotazníku. |
-| Proč při čtyřnásobném n klesne SE na polovinu? | Přímé vysvětlení bez průvodce. |
+| Proč při čtyřnásobném n klesne SE na polovinu? | Přímé vysvětlení bez průvodce; značení σₘ místo převzetí SE z dotazu. |
 | Pomoz mi s úlohou 1 kapitoly 3, zatím bez řešení. | Přečte zadání i vzor, navede nejmenším krokem. |
 | Nerozumím ani tomu, co se v zadání chce. | Vysvětlí zadání, nevyžaduje předchozí výpočet. |
 | Ukaž celé řešení úlohy 1 kapitoly 3. | Komentované řešení s existujícím ID bez vynuceného pokusu. |
@@ -90,7 +90,7 @@ Přes skutečné ovladače ověř graf, hodnoty, reset a klávesnici. V úzkém
 zobrazení nesmějí překrývat popisky ani mizet body. Zaznamenej klienta,
 model a skutečnou podporu; nepřisuzuj schopnost všem studentským účtům.
 
-- Výběrové rozdělení: n = 25, 100, 400, σ = 15; SE = 3, 1,5, 0,75.
+- Výběrové rozdělení: n = 25, 100, 400, σ = 15; σₘ = 3, 1,5, 0,75.
   Počet opakování a populační rozdělení se změnou n nesmějí změnit.
 - Síla: oboustranný jednovýběrový z-test se známou σ = 15, n = 100,
   α = 0,05. Ověř pravděpodobnost zamítnutí při Δ = 0 i nenulových
@@ -100,3 +100,53 @@ model a skutečnou podporu; nepřisuzuj schopnost všem studentským účtům.
   ne pouze s nastaveným ρ. Zvlášť ověř nové losování a reset.
 - Bez podpory interaktivity: výslovně žádej statickou náhradu s vypočtenými
   srovnáními. Tutor ji nesmí nazvat interaktivním výstupem.
+
+## Přejímací scénáře revize 0.3.0
+
+Před vydáním spusť celý export a kontroly archivu. Potom ověř kandidáta v cílovém klientu. Pokud test používá přiložený kandidátní balíček místo instalovaného pluginu, zaznamenej tuto odlišnost; neoznačuj jej za ověření instalace. U každého scénáře eviduj verzi, model, klienta, skutečné načtené soubory, výsledek a omezení. Historické úspěšné běhy starší verze nejsou výsledky této revize.
+
+### Katalog a zahájení
+
+| Dotaz / postup | Přijetí |
+|---|---|
+| Chci začít studovat. | Přesné názvy kapitol 1–6 v pořadí, stručně hranice balíčku. Další volby postupně. |
+| Vypiš všechny kapitoly učebnice a dostupnost. | Všech osm skutečných názvů; 7–8 web/přehledy, nikoli přibalený úplný text. |
+| Chci studovat popisné statistiky. | Přiřazení zejména ke 2 a 3 pod jejich skutečnými názvy. |
+| Začněme kapitolou 2 – Popisné statistiky. | Oprava názvu, převzetí záměru, žádná vymyšlená kapitola. |
+| Kapitola 3, vysvětlování, celá kapitola, bez rozšíření. | Krátký plán a první úsek, bez opakovaného průvodce a bez výkladu celé kapitoly naráz. |
+| Pomoz mi se 4.3. | Cílené upřesnění, pokud význam z kontextu není jasný. V rozhovoru o třetím cvičení kapitoly 4 znovu neupřesňuje. |
+
+### Plány a dlouhý rozhovor
+
+Pro každou kapitolu ověř načtení plánu, jednu povinnou dovednost, její vstupní znalost a hranici rozsahu. Požaduj přesný odkaz; porovnej se skutečným výkladem, ne jen s názvem hesla.
+
+| Kapitola | Hranice k ověření |
+|---|---|
+| 1 | Reliabilita a validita pojmově; výpočet koeficientů není požadovanou dovedností. |
+| 2 | Nestejné šířky histogramu pouze při volbě rozšíření; číselné ukazatele patří do 3. |
+| 3 | Šikmost a exces v Excelu povinně; vzorce z momentů, logaritmus a výpočet entropie nepovinně. |
+| 4 | Q–Q graf povinně, P–P nepovinně; formální test normality není předpoklad. |
+| 5 | Binomický model a aproximace povinně; variace a obecný výpočet střední hodnoty nepovinně. |
+| 6 | Důsledky více testů povinně; Bonferroniho korekce mimo výklad. Výpočet síly a rozdělení p-hodnot nepovinně. |
+
+V kapitole 6 pokračuj nejméně deset obsahových tahů: výběrové rozdělení → směrodatná chyba → hypotézy → p-hodnota → rozhodnutí → síla → více testů. Střídej správné odpovědi, chybu a žádost „pokračuj“. Ověř zachování rozsahu, značení a přiměřeného dalšího kroku. Tutor sám nezařadí Bonferroniho korekci ani ji nevyžaduje ve zkoušení. Potom se na ni výslovně zeptej: odpoví jako na doplněk a při návratu pokračuje v původním plánu.
+
+Zopakuj s volbou „s nepovinnými rozšířeními“: tutor zahrne doložené nepovinné části učebnice, nikoli automaticky externí metody. Změň volbu během studia. Ve zkoušení ověř, že otázky odpovídají aktuální volbě a již vysvětleným předpokladům; při vlastním chybném zadání tutor napraví otázku i hodnocení.
+
+### Značení
+
+- „σ = 15 s, n = 100: spočítej směrodatnou chybu.“ Očekává se σₘ = 1,5 s, modelová hodnota.
+- „s = 14,9 s, n = 30: spočítej směrodatnou chybu.“ Očekává se sₘ ≈ 2,72 s, odhad z dat.
+- „Proč čtyřnásobné n půlí SE?“ Tutor rozumí alternativě, výklad vede se σₘ či sₘ podle kontextu.
+- Totéž ověř po více navazujících otázkách a ve vytvořeném grafu, jeho legendě a ovladačích. U označené ukázky reportování připusť doložené výjimky přehledu.
+
+### Účelnost, ovladače a rozměry grafů
+
+1. Požádej o stručné vysvětlení bez grafu. Potom o jednu interaktivní demonstraci. U dalších tří podobných úloh tutor využije stejnou demonstraci nebo slovní odkaz, nikoli další nabídky panelů.
+2. Použij jiné zadání než demonstrační příklad: μ = 50 bodů, σ = 12 bodů, n = 36. Očekává se σₘ = 2 body a výchozí hodnoty zadání, nikoli parkovací model.
+3. Vyžádej průběžně měnitelné n a σ: slider i číselné pole se synchronizují, n má celočíselný krok. Přesně zadej n = 81; při σ = 12 je σₘ = 4/3 bodu. Číselné předvolby samotné nestačí.
+4. Vyzkoušej také jiný vhodný námět z učiva, například vliv vzdáleného pozorování na průměr a medián nebo změnu prevalence při screeningu. Hodnoty a předpoklady odpovídají otázce; typ rozdělení či jinou kategorii ovládá odpovídající nabídka.
+5. Ověř české názvy, značky a jednotky ve všech ovladačích a hlášeních. Neplatný vstup dostane srozumitelné vysvětlení. Obnovit zadání vrátí původní hodnoty a data; nové losování je oddělené.
+6. Pro povolený rozsah n a σ otestuj nejužší i nejširší rozdělení, posuny středů a kombinace krajů. Vrchol skutečné hustoty je celý v grafu s rezervou; výška panelu neroste. Společná měřítka a označené přiblížení zachovávají interpretaci.
+7. Ověř skutečně úzký panel kolem 320 px i dostupnou výšku kolem 480 px, zvětšený text, oba motivy a klávesnici. Případné svislé posouvání ovladačů je přípustné; ořez křivky, nečitelná osa či nedostupný vstup nejsou.
+8. Při nedostupné interaktivitě tutor poskytne označené statické srovnání. Při nedostupném indexu si seznam kapitol nevymyslí a vymezí ověřený dostupný obsah.

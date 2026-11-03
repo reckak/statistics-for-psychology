@@ -1,19 +1,21 @@
 # Statistika pro psychology – AI tutor
 
-Zdroj instrukcí a metadat pluginu, verze 0.2.0. Autor: Karel Rečka.
+Zdroj instrukcí a metadat pluginu, verze 0.3.0. Autor: Karel Rečka.
 
 Tato složka je **vstup exportu**, nikoli hotový instalační balíček.
-Kapitoly, přehledy, obrázky, index, registr a literatura se sestavují z hlavních
+Kapitoly, výukové plány, nabídka kapitol, přehledy, obrázky, index, registr a literatura se sestavují z hlavních
 zdrojů učebnice. Nevytvářej zde druhou ručně udržovanou kopii výkladu.
 
 Instalační archiv vytváří node scripts/export-tutor.cjs spuštěný z repozitáře.
-Výsledkem je output/tutor/statistika-pro-psychology-ai-tutor-0.2.0.zip.
+Výsledkem je output/tutor/statistika-pro-psychology-ai-tutor-0.3.0.zip.
 Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jsou
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
 Hotový plugin obsahuje úplné kapitoly 1–6, úvod, literaturu a celé aktuální
 přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–8 mají
 k dispozici přehledový výklad; jejich celé kapitoly přibalené nejsou.
+Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech osm kapitol s dostupností; texty a plány přibaluje pro 1–6.
+
 Student používá nainstalovaný plugin ve vlastním chatu bez nahrávání kapitol.
 
 Čtyři režimy: vysvětlování, sokratovské vedení, procvičování a formativní

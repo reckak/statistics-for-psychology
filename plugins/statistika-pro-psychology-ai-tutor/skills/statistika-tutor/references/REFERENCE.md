@@ -1,9 +1,8 @@
 # Stručný referenční balíček
 
-Připraveno 2. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
+Původní výběr připraven 2. 11. 2026; instrukční formulace zpřesněny 3. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
 nikoli o kapitoly nebo úplný slovníček. Přibalené kapitoly 1–6 a celé aktuální přehledy jsou uvedeny v INDEX.md.
-Při použití v chatu uváděj tento soubor jako zdroj; necituj nepřiložené kapitoly
-jako přečtené. Konkrétní výklad a potřebné předpoklady doplňuje dostupná kapitola.
+Při použití v chatu uváděj tento soubor jako zdroj. Citaci kapitoly opírej o její skutečně přečtený obsah. Konkrétní výklad a potřebné předpoklady doplňuje dostupná kapitola.
 
 ## Terminologie
 
@@ -32,6 +31,7 @@ Pozorovaná souvislost sama neurčuje kauzální mechanismus.
 Výpočetní výběrové charakteristiky piš malou kurzivní latinkou; populační
 parametry řeckými písmeny ve stojatém řezu, například $\mathrm{μ}$ a $\mathrm{σ}$.
 V LaTeXu používej zápis podporovaný hostitelem a zkontroluj jeho čitelnost.
+Značky platí také pro grafy, legendy a ovladače. Alternativní SE vysvětluj jako alternativu; ve výkladu používej σₘ nebo sₘ podle toho, zda jde o modelovou hodnotu nebo odhad.
 
 | Symbol | Význam |
 |---|---|
@@ -59,7 +59,7 @@ $$\mathrm{σ}_m=\frac{\mathrm{σ}}{\sqrt n},\qquad s_m=\frac{s}{\sqrt n}.$$
 První vztah popisuje modelovou variabilitu průměrů, druhý ji odhaduje z dat.
 U závislých dat nebo výběru bez vracení z malé konečné populace je nutné
 přihlédnout k uspořádání výběru; neuplatňuj vztah automaticky.
-Normální rozdělení jednotlivých hodnot není nutné pro tento vztah rozptylů.
+Vztah rozptylů platí také pro nenormální rozdělení při uvedených předpokladech.
 
 Při označené ukázce reportování podle APA lze použít *M*, *Mdn*, *SD*, *N*
 a *n*. Tato výjimka nemění výpočetní značení m a s ve výkladu.
@@ -90,6 +90,6 @@ a #sec-p-hodnota-vypocet. Rozlišení značení APA: R01; přibližná rovnost: 
 směrodatná chyba: R30; zápis p-hodnoty: R56.
 
 Text je zkrácený a upravený; nejde o tvrzení, že byl prověřen celý obsah
-uvedených kapitol nebo každá jejich analýza. Katalog funkcí Excelu a úplný aktuální přehled značení jsou v přibalených přehledech; načítej potřebné heslo podle INDEX.md.
+uvedených kapitol nebo každá jejich analýza. Katalog funkcí Excelu a úplný aktuální přehled značení jsou v přibalených přehledech; načítej potřebné heslo podle INDEX.md. Rozsah studia určuje výukový plán zvolené kapitoly a volba nepovinných částí, nikoli samotná přítomnost hesla v přehledu.
 Licence převzatého a upraveného textu:
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.cs).
