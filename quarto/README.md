@@ -5119,3 +5119,31 @@ odkazů a MathML znaku sumace. `check-html.cjs` a `check-doc-maps.cjs
 --require-sources` prošly. Didaktická revize autorsky, ne samostatným
 agentem v roli studenta. Vzhled se styly webu prohlédnut nebyl (náhled
 souboru se vykreslil bez CSS); podoba odpovídá kapitolám 3–7.
+
+## 2026-11-04 — Pomocné grafy statistické síly k úloze 4 prezentace kapitoly 6
+
+K úloze 4 na slidu 36 prezentace kapitoly 6 („Co se stane se silou?“)
+vytvořen samostatný soubor `presentations/kapitola_06_uloha_4_sila_grafy.pdf`
+(formát 16 : 9, jedna strana = jeden graf). Prezentace ani poznámky
+upravovány nebyly. Generátor `scripts/kapitola_06-prezentace-sila.R` (základní
+R, bez balíčků) používá normální model kapitoly: σ = 15 s, 100 řidičů ve
+skupině, směrodatná chyba rozdílu 2,12 s, skutečný rozdíl 5 s.
+
+Strany: výchozí stav a varianty a)–e) (e) zvlášť pro směr „déle“ a „kratší“)
+s výběrovým rozdělením rozdílu průměrů pod H₀ a pod konkrétní alternativou
+H₁. Pod H₁ je síla vybarvena oranžově a β světle modře, α pod H₀ šrafováním
+(aby nezakrývalo sílu). Kritické hodnoty jsou vyznačeny přerušovanou čarou;
+pravý panel uvádí α, β, sílu a změnu oproti výchozímu stavu. Poslední strana
+srovnává sílu a β ve všech situacích. Značení H₀/H₁ a kurzivní *m* podle
+učebnice; barvy podle grafů kapitoly 6.
+
+V poznámkách ke slidu chybí číselná hodnota pro variantu c); graf proto
+používá ilustrativní σ = 12 s a na straně to výslovně uvádí.
+
+**Kontroly:** síla 0,654 / 0,413 / 0,915 / 0,838 / 0,293 / 0,762 / < 0,001
+souhlasí s hodnotami v poznámkách ke slidu (0,65; 0,41; 0,92; 0,29; 0,76;
+téměř 0) i v kapitole. Všech osm stran vizuálně prohlédnuto (pdftoppm
+a PDF prohlížeč Chromia): bez překryvů popisků navzájem i s křivkami
+a čarami, diakritika a dolní indexy v pořádku. Starý `pdftoppm` vykresluje
+čárkované čáry jako duté obrysy, v Chromiu jsou plné. Vložení grafů do PPTX
+nebylo součástí úkolu a nebylo ověřeno v PowerPointu.
