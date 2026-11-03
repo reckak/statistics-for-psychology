@@ -155,9 +155,14 @@ Zopakuj s volbou „s nepovinnými rozšířeními“: tutor zahrne doložené n
 7. Ověř skutečně úzký panel kolem 320 px i dostupnou výšku kolem 480 px, zvětšený text, oba motivy a klávesnici. Případné svislé posouvání ovladačů je přípustné; ořez křivky, nečitelná osa či nedostupný vstup nejsou.
 8. Při nedostupné interaktivitě tutor poskytne označené statické srovnání. Při nedostupném indexu si seznam kapitol nevymyslí a vymezí ověřený dostupný obsah.
 
+<a id="regrese-z-testovani-v-rezimu-chat"></a>
+
 ### Regrese z testování v režimu Chat
 
 - V odpovědi na boxplot používej hlavní značení kvartilů z přehledu, tedy q s příslušnou úrovní; Q₁/Q₃ případně vysvětli jako alternativy. Totéž kontroluj v tabulkových přehledech více témat, nejen u samostatného výpočtu.
 - U věty „Co udělá změna posledního času z 10 na 30 s průměrem a mediánem?“ čti „s“ jako předložku v kontextu české věty. Upozornění na nesoulad jednotek musí mít skutečnou oporu v zadání a zdroji.
 - Zmínku o t-rozdělení při odlišení známé a odhadované směrodatné chyby spoj s hranicí kapitoly 6 a odkazem na pozdější výklad; samostatná znalost t-rozdělení se zde nevyžaduje.
 - Pokud klient hlásí „Tuto odpověď se nepodařilo načíst“, zopakuj odpověď běžným textem bez složitých komponent. Ověř zobrazení, nikoli jen existenci uložené odpovědi v historii.
+- U vlastního příkladu i souhrnné tabulky zkontroluj všechna citovaná ID proti načteným nadpisům. Například v kapitole 3 existuje `sec-volba-stredu`, nikoli `sec-odolnost-stredu`.
+- Po změně varianty zadání ověř, co skutečně vrací **Obnovit zadání**. Původní 36 / 12 se při variantě 81 / 12 uchová jako původní zadání. Zkontroluj také skutečné české názvy tlačítek a přístupné názvy posuvníků.
+- Zadej n = 0 do číselného vstupu: model zůstane věcně definovaný a student dostane konkrétní české vysvětlení opravy vstupu. Obecný popis povoleného rozsahu nenahrazuje reakci na chybu.

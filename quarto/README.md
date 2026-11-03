@@ -1,5 +1,95 @@
 # Autorská dokumentace
 
+## 2026-11-03 — Ověření kandidáta tutora v režimu Chat
+
+Po výslovném souhlasu autora byl kandidátní ZIP nahrán jako příloha
+testovacích chatů. Toto ověření navazuje na níže zachovaný záznam
+odmítnutého prvního pokusu. Všechny nové rozhovory proběhly v **režimu
+Chat**, před prvním dotazem ověřeném v přepínači (Chat zvolen, Work
+nezvolen). Prostředí: web ChatGPT v Brave, účet Plus, intenzita Střední /
+Medium; konkrétní označení modelu rozhraní neukázalo, proto není doplněno
+odhadem. Kandidát byl zpřístupněn přílohou a výslovnou žádostí řídit se
+jeho SKILL.md, nikoli aktualizací instalovaného cloudového pluginu.
+Hlavní pravidlo prostředí je nově v
+[AGENTS.md](../AGENTS.md#overovani-ai-tutora), provozní návod a testy na něj
+odkazují. Souhlas a jeho rozsah dokládá doplněk
+[R63](../docs/rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora).
+
+Ověření rozlišuje tři sestavení stejného kandidátního čísla 0.3.0:
+
+| Zdrojová revize | Rozhovor | Skutečně prověřené chování |
+|---|---|---|
+| `620fe8b2` | [Výběr kapitoly studia](https://chatgpt.com/c/6ae9faa1-ecc8-83ed-8b0a-c7baa2591ff2) | Přesná nabídka 1–6 a dostupnost 7–8; oprava názvu „Kapitola 2 – Popisné statistiky“; nejméně deset obsahových tahů kapitoly 6; směrodatná chyba, hypotézy, p-hodnota, síla a více testů; přechod k sedmi nepovinným částem učebnice. |
+| `620fe8b2` | [Ověření statistického tutora](https://chatgpt.com/c/6ae9fc2f-1278-83eb-8db0-fbc03d4d5d1e) | Osmnáct otázek na začátek, prostředek a konec šesti kapitol, t-kvantil, český COUNTIFS a nedostupné cvičení 8; sokratovská pomoc s konkrétním cvičením 3, řešení na výslovnou žádost, vlastní úloha a zkoušení. |
+| `32dccb7` | [Výpočet statistických ukazatelů](https://chatgpt.com/c/6ae9feb2-5388-83ed-9894-4e5add9a5c70) | Regrese značení a hranice kapitoly 6; skutečně ovládaný interaktivní graf, číselné vstupy po vyžádané úpravě, krajní hodnoty, obnova, úzké zobrazení prvního grafu a statická náhrada. |
+| `4e1a9211` | [Závěrečné ověření](https://chatgpt.com/c/6aea0243-16e8-83eb-a0a6-73bb48abbd4e) | Správné m, medián a q s úrovní, mezikvartilové rozpětí jako rozdíl; označená vlastní modelová úloha bez prozrazení řešení; více testů a další krok v základním plánu kapitoly 6. |
+
+Číselné a obsahové odpovědi na osmnáct zdrojových otázek odpovídaly
+přibaleným textům. COUNTIFS zachoval české oddělovače a podmínky; t-kvantil
+pro 24 stupňů volnosti a úroveň 0,975 byl přibližně 2,064. Tutor přiznal,
+že konkrétní cvičení kapitoly 8 nemá přibalené. Ve zkoušení dodržel odklad
+zpětné vazby a uzavřel dvě otázky výsledkem 4/4 s odůvodněním a výslovným
+omezením hodnocení na tyto otázky. Nejde o měření porozumění na studentech.
+
+Dlouhý rozhovor zachoval σₘ pro známou modelovou chybu a sₘ pro její
+odhad i při studentově označení SE. Bez vyžádání grafy opakovaně
+nenabízel. U více testů správně vypočetl očekávaný počet 1 a pravděpodobnost
+alespoň jednoho falešného zamítnutí přibližně 0,642. Původní sestavení
+spontánně zmínilo obecně korekce, aniž je označilo za přesah; Bonferroniho
+korekci pojmenovalo až na výslovný dotaz a označilo jako doplněk mimo
+kapitolu. Po návratu pokračovalo v původním učivu. Ve finální cílené
+regresi zvolilo jako další krok doložené rozhodování až podle dat.
+Tato krátká regrese nenahrazuje nový dlouhý běh finálního sestavení.
+
+Na základě nálezů byly zpřesněny pokyny k přebírání hlavního pole Značení
+místo alternativ, q a vyjádření mezikvartilového rozpětí, označování
+vlastních modelových úloh, doložení tvrzené chyby studenta a výběru dalších
+kroků z plánu. Finální cílená kontrola potvrdila hlavní značení a označení
+úlohy. Nadbytečné upozornění na sekundy však přetrvalo i ve větě s českou
+předložkou „s“; tutor rovněž jednou citoval neexistující kotvu
+`sec-odolnost-stredu`. Výpočty byly správné, úplné dodržení citačních a
+jazykových instrukcí proto doloženo není. Regrese zůstávají v
+[testovací sadě](../scripts/tutor/smoke-prompts.md#regrese-z-testovani-v-rezimu-chat).
+
+Interaktivní graf v Chatu převzal aktuální zadání μ = 50 bodů, σ = 12 bodů,
+n = 36 a správně zobrazil σₘ = 2 body. Klávesnicí ověřeno n = 81 se
+σₘ ≈ 1,33, kombinace n = 100 / σ = 8 se σₘ = 0,80 a n = 9 / σ = 24 se
+σₘ = 8; první tlačítko Obnovit zadání vrátilo 36 / 12. Křivka měnila tvar
+a její panel při zúžení nerostl. Po žádosti o opravu přidal tutor dva
+číselné vstupy; zadání 100 / 8 synchronizovalo posuvníky i výpočet.
+Další dvě obdobné otázky využily slovní odkaz na existující graf.
+Vyžádaná **statická náhrada** byla řádně označená tabulka pro n = 25,
+36, 81, 100 s chybami 2,40; 2,00; 1,33; 1,20 bodu.
+
+**Otevřené nedostatky grafu:** první verze měla pouze posuvníky bez
+číselných polí. Její svislá mez 0,5 téměř splývala s nejvyšším povoleným
+vrcholem 0,4987, tedy bez požadované rezervy. V reálně změřeném úzkém
+panelu 291 × 436 px (nastavení 320 × 480) stránka vodorovně nepřetékala,
+ale osy se zmenšily k nečitelnosti. Druhá verze se na této šířce spolehlivě
+znovu ověřit nepodařila; širší snímek není mobilním testem. Ve druhé verzi
+zůstalo anglické tlačítko Reset a obecný přístupný název Slider; neplatné
+n = 0 ponechalo předchozí model bez konkrétního chybového vysvětlení.
+Reset vrátil nový výchozí stav 81 / 12, nikoli původní zadání 36 / 12.
+Doklad zobrazení a místní exporty rozhovorů jsou v `output/tutor/`;
+exporty historie jsou omezeným výřezem, nikoli úplným záznamem ovládání.
+
+Ve dvou rozhovorech klient nejprve hlásil „Tuto odpověď se nepodařilo
+načíst“. Vyžádané zopakování prostým textem bylo zobrazeno; existence
+odpovědi v uložené historii se nepovažovala za úspěšné zobrazení.
+Světlý motiv, zvětšený text, všechny hranice plánů v samostatných
+rozhovorech, další témata grafů a studentské účty zůstávají neověřené.
+Vygenerované vizualizace tímto během nesplnily všechna přejímací kritéria.
+
+Finální archiv z `4e1a9211da3f4f7d2bcfc281094a76d396614ed3` byl sestaven
+s `source_dirty: false`. SHA-256
+`39099f1f5006bc721e3a5f79f6cc3764df7bf737920c03b65f934058aeb2c2ca`
+se shoduje s přílohou závěrečného chatu. Prostřední sestavení mělo SHA-256
+`9429ceba62e1f847e735b051c3da57a8be043abecc2166a8ab63313bd8e064b7`.
+Kontroly finálního archivu prošly se stejnými počty jako v předchozím
+záznamu (128 souborů, šest plánů, osm kapitol katalogu, 2 188 odkazů).
+Cloudové vydání zůstává nezměněné; jeho instalace ani distribuce studentům
+nebyly tímto testem ověřeny.
+
 ## 2026-11-03 — Kandidát AI tutora 0.3.0: plány, konvence a vizualizace
 
 Realizace schváleného [R63](../docs/rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora).
