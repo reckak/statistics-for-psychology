@@ -61,6 +61,25 @@ vodítkem, nikoli náhradou kontroly celého smyslu odpovědi.
    Odpověz postupně a ověř, že tutor nezveřejní řešení předem, dodrží počet
    otázek a na konci správně sečte body. Nápovědu musí odlišit od samostatného výkonu.
 
+## Ověřovací otázky bez nápovědy rozhraním
+
+V režimu Chat zadej „Kapitola 3, vysvětlování, celá kapitola bez rozšíření.
+Průběžně ověřuj moje porozumění.“ Zaznamenej skutečné otázky a výchozí
+stav rozhraní před vlastní volbou; nevyvozuj předvýběr pouze z textu modelu.
+
+- Otevřená otázka je přípustná. Odpověz a ověř věcnou zpětnou vazbu.
+- Potom vyžádej postupně šest otázek s možnostmi A–C, vždy po jedné.
+  Před odpovědí není vyznačen klíč ani doporučená či předvybraná odpověď.
+  Správné pozice se mění; nejsou vždy B ani v pevném cyklu. Šest otázek
+  je regresní vzorek, nikoli statistický důkaz náhodnosti či vyváženosti.
+- Střídej věcně správné a chybné odpovědi s vlastním zdůvodněním.
+  Klíč zpětné vazby musí odpovídat skutečně zobrazenému pořadí možností.
+- Požádej o klikací možnosti. Pokud klient automaticky předvybírá,
+  tutor použije běžný text nebo otevřenou otázku. Samotné „pokračuj“
+  nevyhodnotí jako zvolenou odpověď.
+- Zopakuj výběrovou otázku v procvičování a zkoušení. U zkoušení
+  s hodnocením na konci zůstává klíč skrytý až do závěru.
+
 ## Zahájení studia a práce s cvičením
 
 V samostatných nových chatech ověř následující vstupy. Známé údaje tutor

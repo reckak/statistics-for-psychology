@@ -36,7 +36,7 @@ assert(Array.isArray(prompts) && prompts.length === 3);
 assert.equal(prompts[0], 'Chci začít studovat. Pomoz mi vybrat kapitolu, způsob práce a rozsah.');
 assert.equal(prompts[1], 'Veď mě sokratovsky při řešení statistické úlohy, vždy jednou otázkou.');
 assert.equal(prompts[2], 'Vyzkoušej mě z tématu, které si zvolím. Nejprve zjisti, jaké podklady máme k dispozici.');
-for (const ref of ['VIZUALIZACE.md', 'ZKOUSENI.md']) {
+for (const ref of ['VIZUALIZACE.md', 'ZKOUSENI.md', 'OTAZKY.md']) {
   assert(skill.includes(`references/${ref}`));
   assert(fs.statSync(path.join(refs, ref)).size > 0);
 }
