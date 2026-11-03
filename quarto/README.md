@@ -5147,3 +5147,43 @@ a PDF prohlížeč Chromia): bez překryvů popisků navzájem i s křivkami
 a čarami, diakritika a dolní indexy v pořádku. Starý `pdftoppm` vykresluje
 čárkované čáry jako duté obrysy, v Chromiu jsou plné. Vložení grafů do PPTX
 nebylo součástí úkolu a nebylo ověřeno v PowerPointu.
+
+## 2026-11-04 — Pomocné grafy k excelovým cvičením prezentace kapitoly 6
+
+K sešitu `presentations/kapitola_06_vyberove_rozdeleni_a_testovani_cviceni.xlsx`
+vytvořen soubor `presentations/kapitola_06_vyberove_rozdeleni_a_testovani_cviceni_grafy.pdf`
+(16 : 9, jedna strana = jeden graf, 13 stran). Sešit ani prezentace upravovány
+nebyly. Generátor `scripts/kapitola_06-prezentace-cviceni-grafy.R` čte vstupy
+přímo ze sešitu (balíček readxl), takže grafy sledují jeho data; vzhled
+navazuje na grafy statistické síly k úloze 4 na slidu 36.
+
+Grafy jsou jen u částí, kde ukazují, na co se úloha ptá:
+
+- U1 c): četnosti 100 číslic proti očekávaným 10; histogram 50 průměrů
+  (intervaly jako v M57:N63) s normální křivkou podle centrální limitní věty.
+  U1 d): normální modely průměrů po 5 a po 15 číslicích nad populací číslic.
+- U2 a): plocha pod normální křivkou do 490 bodů s osou z-skórů. U2 b):
+  useknuté rozdělení přijatých v **ilustrativním modelu uchazečů** (průměr 590,
+  SD 80, přijetí od 580; dává přijaté s průměrem ≈ 648 a SD ≈ 50). Model
+  není v zadání a graf to výslovně uvádí. U2 c): plocha do průměru 630 pod
+  výběrovým rozdělením průměru proti rozdělení jednotlivců. U2 d): prostředních
+  95 % jednotlivců a průměrů.
+- U3 b), c): binomické rozdělení při π = 0,5 s kritickým oborem 0–39 a 61–100
+  a p-hodnotou. U3 e): menší chvost při π = 0,75 a srovnání rozdělení pro
+  π = 0,5; 2/3; 0,75 s pozorovanými 61 ženami.
+- U4 b), c) a e): výběrové rozdělení průměru pod H₀ pro n = 48 a n = 12
+  se stejnou osou; α šrafovaně, p-hodnota oranžově, kritické hodnoty
+  přerušovaně. U4 f): proč volba směru až podle výsledku dává α = 0,10.
+
+Bez grafu zůstaly výpočetní části (U1 a), U3 a), d), f), U4 a), d)), kde by
+graf otázce nepomohl.
+
+**Kontroly:** hodnoty v grafech souhlasí s řešením v sešitu (četnosti průměrů
+1, 1, 8, 14, 18, 6, 2; P = 0,0007 a 0,023; meze 552,0–748,0 a 630,4–669,6;
+p = 0,0352, skutečná α 0,0352, p = 0,0028; U4 p = 0,038 a 0,299, kritické
+hodnoty 28,30/31,70 a 26,61/33,39). Oboustranná p-hodnota pro π = 2/3 (0,27)
+odpovídá řešení U3 e). Všech 13 stran vizuálně prohlédnuto v pdftoppm a v PDF
+prohlížeči Chromia; překryvy popisků s křivkami, čarami a osou z-skórů opraveny
+a znovu zkontrolovány. Čárkované čáry a okraje ploch vykresluje starý pdftoppm
+jako duté obrysy, v Chromiu jsou v pořádku. Necommitovaná změna sešitu
+(stejný obsah buněk, jiná metadata) zůstala mimo tento commit.
