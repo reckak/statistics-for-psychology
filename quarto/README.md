@@ -1,5 +1,70 @@
 # Autorská dokumentace
 
+## 2026-11-03 — Kandidát AI tutora 0.3.0: plány, konvence a vizualizace
+
+Realizace schváleného [R63](../docs/rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora).
+Hlavní instrukce a reference přednostně popisují požadované kroky,
+zachovávají podstatné hranice a postup při chybějících podkladech.
+Výběr studia rozlišuje kapitolu, čtyři způsoby práce, rozsah a nepovinné
+části učebnice; výchozí je povinné učivo. Externí témata jsou doplňkem
+na výslovný dotaz. Konkrétní nejednoznačné označení úlohy je v testech,
+ve skillu zůstává obecné pravidlo cíleného upřesnění.
+
+Export vytváří šest samostatných výukových plánů z kapitolových karet,
+cílů a struktury kapitol a vazeb přehledů. Plány mají předpoklady,
+posloupnost, hloubku výkladu a procvičení, rejstřík pojmů, značek a funkcí,
+nepovinné bloky i hranice. Kontrola rozlišuje nepovinný blok, vnořené
+nadpisy a nepovinné úlohy. Rejstřík sám neurčuje povinné nové pojmy.
+Přesné názvy v nabídce skillu, indexu a registru vznikají ze stejného
+katalogu osmi kapitol; úplné texty a plány zůstávají pro 1–6. Schéma
+registru je 2; dostupnost a kompatibilitu popisuje [provozní návod](../docs/PROVOZ.md#export-ai-tutora).
+
+Značení σₘ/sₘ sjednoceno v instrukcích, metodice, demonstračních příkladech
+a očekávání testů. Metodika vychází z aktuální úlohy a připouští další
+vhodná témata a ovladače; modelové demonstrace jsou samostatnou referencí,
+korelace výslovně doplňkem mimo přibalené učivo. Pravidla pokrývají české
+ovládání, přesný vstup, opětovné použití grafu, obnovu zadání, oddělení
+losování, společná měřítka, skutečnou hustotu a rozměry panelu.
+
+Obsahová a didaktická kontrola se soustředila na návaznost cílů a úloh,
+rozlišení povinného výkladu a rozšíření, předpoklady začátečníka a hranice
+plánů. V kartě 6 byla opravena starší formulace o vypisování p-hodnoty
+podle R56. Datum celé původní revize karet se neposouvalo. Studentské QMD,
+data, výpočty a obrázky se v tomto úkolu neměnily; nejde o nové nezávislé
+odborné či numerické ověření celé učebnice ani o ověření na studentech.
+
+Kandidát sestaven z commitu `620fe8b2c62dac047665ef929aa70cd52ca5317f`
+s `source_dirty: false` pomocí `node scripts/export-tutor.cjs --skip-figures`.
+Použity nezměněné existující obrázky; porovnání SHA-256 proti archivu 0.2.1
+potvrdilo shodu všech **111 původních materiálů** (šest kapitol, tři přehledy,
+97 obrázků, úvod, literatura, dvě licence a logo). Zachována identita,
+výchozí prompty a metadata pluginu kromě verze.
+
+Kontroly archivu: **128 souborů**, šest plánů, osm katalogových kapitol,
+417 přehledových hesel, 1 426 matematických zápisů, 97 obrázků,
+72 řešení, **2 188 místních odkazů**, 53 bibliografických položek.
+Ověřeny názvy a pořadí proti knize, cíle, úplnost rejstříku a tabulek
+dovedností, označení nepovinných úseků v samotných plánech a otisky všech
+členů ZIPu nezávislým čtením .NET. Kontrola autorských map prošla:
+82 souborů, 63 rozhodnutí, 3 522 místních a 327 příchozích odkazů,
+bez chyby. Dvě negativní zkoušky správně odmítly název „Popisné statistiky“
+u kapitoly 2 a ztracené označení vnořeného nepovinného oddílu kapitoly 3.
+
+Archiv: `output/tutor/statistika-pro-psychology-ai-tutor-0.3.0.zip`.
+SHA-256: `30a66ed96771f732f15df74f6a54c28214d8c3c2246398718e15342095788834`.
+Podrobný inventář, porovnání a negativní kontroly jsou místně
+v ignorované složce `output/tutor/`.
+
+**Stav vydání a omezení:** kandidát není publikován do cloudového pluginu.
+Pokus nahrát kandidátní ZIP jako přílohu nového testovacího chatu
+(ChatGPT Work v Brave) odmítla automatická kontrola oprávnění: schválený
+plán nepovažovala za výslovné oprávnění odeslat tento balíček do ChatGPT.
+Test chování kandidáta proto neproběhl. Dlouhý rozhovor, skutečné ovládání
+grafů a čtení instalované 0.3.0 zůstávají k ověření podle
+[rozšířené sady](../scripts/tutor/smoke-prompts.md). Místní kontroly
+archivu nepotvrzují chování modelu ani podporu vizualizací v klientu;
+výsledky staršího vydání se na kandidáta nepřenášejí.
+
 ## 2026-11-02 — AI tutor 0.2.1: zahájení a aktivní učení
 
 Realizace schváleného [R62](../docs/rozhodnuti/ai-tutor.md#r62-ai-tutor):
