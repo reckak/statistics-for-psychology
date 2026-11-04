@@ -82,6 +82,35 @@ stav rozhraní před vlastní volbou; nevyvozuj předvýběr pouze z textu model
 
 ## Zahájení studia a práce s cvičením
 
+### Regrese aktivace nainstalované dovednosti
+
+V novém chatu bez příloh vyber nainstalovaný plugin a samostatně spusť
+každý ze tří aktuálních úvodních promptů z manifestu. Zaznamenej přesné
+znění, verzi, klienta, model a pozorované čtení souborů. Správný název
+kapitoly ani tvrzení modelu „načetl jsem“ samo aktivaci nedokládá.
+
+- Zahájení studia: nejprve SKILL.md, REFERENCE.md a INDEX.md; nabídka
+  zachová úplné názvy kapitol 4 a 6 a hranici přibalených kapitol 1–6.
+- Sokratovské vedení: stejné úvodní načtení, potom jen otázka na chybějící
+  zadání; po zadání konkrétního cvičení načte plán, výklad a kontrolní
+  řešení, studentovi položí jednu otázku bez zveřejnění řešení.
+- Zkoušení: stejné úvodní načtení; po výběru tématu plán, výklad,
+  OTAZKY.md a ZKOUSENI.md, dohoda o podmínkách a skrytý klíč.
+- Doplňkový běžný vstup „Chci začít studovat. Pomoz mi vybrat kapitolu,
+  způsob práce a rozsah.“ prověří výběr dovednosti bez posíleného promptu.
+- Následně zadej chybný název „6 – Statistická inference“: tutor jej
+  opraví podle katalogu, nepřevezme ho z kontextu.
+- Pokud katalog skutečně nelze číst, tutor omezení přizná a nevymýšlí
+  nabídku. Tuto větev označ za neotestovanou, nebyla-li chyba čtení
+  skutečně navozena; žádost uživatele „předstírej výpadek“ ji nedokládá.
+
+Čtení přes správu pluginů nebo starší chat nenahrazuje načtení instalované
+dovednosti. Test s přiloženým ZIPem ověřuje kandidátní instrukce, nikoli
+aktivaci instalace. Několik úspěšných pokusů nedokládá spolehlivost ve všech
+klientech ani statisticky vyčíslené zlepšení proti předchozímu vydání.
+
+### Další zahajovací scénáře
+
 V samostatných nových chatech ověř následující vstupy. Známé údaje tutor
 nesmí zjišťovat znovu; při konkrétním dotazu má začít přímo.
 
