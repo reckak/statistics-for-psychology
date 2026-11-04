@@ -1,5 +1,33 @@
 # Autorská dokumentace
 
+## 2026-11-04 — Studentský návod k instalaci AI tutora
+
+Na žádost autora vznikl `ai-tutor/navod.docx` (4 strany A4, mimo Git):
+návod pro studenty, kteří si z MS Teams stáhli archiv tutora 0.3.4. Pokrývá
+volbu platformy a souboru, nahrání a spuštění v ChatGPT, Claude a Gemini,
+první rozhovor, přechod na novou verzi, řešení potíží a soukromí. Odkaz ke
+stažení záměrně neobsahuje (rozesílá autor). Odkaz na návod doplněn do
+[AITUTORS.md](../docs/AITUTORS.md#hlavní-místa-informací).
+
+Zdroje postupů: Claude podle nápovědy Anthropic „Using skills in Claude“
+(Settings → Capabilities, Customize → Skills → + → Create skill → Upload
+a skill) a autorova testu níže; ChatGPT (Pluginy → Přidat → Nahrát archiv
+pluginu) a Gemini (Přizpůsobit nebo Nastavení → Dovednosti → Vytvořit →
+Nahrát) podle sdělení autora v tomto úkolu, spuštění přes @ v ChatGPT
+a lomítkem v Gemini podle nápovědy OpenAI a Google. Generátor (docx v Node.js)
+zůstal mimo repozitář. Dokument převeden přes Word do PDF a všechny
+strany prohlédnuty; názvy archivů ověřeny proti `ai-tutor/*/`.
+
+Neověřeno: celý studentský postup na studentském či bezplatném účtu kterékoli
+platformy, české popisky menu Claude a nahrání do Gemini (viz níže).
+
+Úprava podle autora: archiv pro ChatGPT se pro studenty jmenuje
+`statistika-tutor-chatGPT-0.3.4.zip` (autor jej přejmenoval kvůli jednotným
+názvům; export nadále vytváří `statistika-pro-psychology-ai-tutor-<verze>.zip`).
+Návod už nedoporučuje jedinou platformu: povzbuzuje k vyzkoušení více
+platforem kvůli spolehlivosti, limitům a stylu a k pokračování na jiné
+platformě po vyčerpání limitu.
+
 ## 2026-11-04 — Samostatná pravidla AI tutorů (R64)
 
 Na pokyn autora vznikl [docs/AITUTORS.md](../docs/AITUTORS.md) jako hlavní
