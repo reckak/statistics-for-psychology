@@ -55,7 +55,7 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 
 | Typ informace | Hlavní místo údržby |
 |---|---|
-| Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md), scénářů a audia v [TEXT2SPEECH.md](docs/TEXT2SPEECH.md). |
+| Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md), scénářů a audia v [TEXT2SPEECH.md](docs/TEXT2SPEECH.md), AI tutorů v [AITUTORS.md](docs/AITUTORS.md). |
 | Příkazy, závislosti a provozní návody | [PROVOZ.md](docs/PROVOZ.md); kořenové README obsahuje jen rychlé spuštění a rozcestník. |
 | Preferovaný termín, alternativy, významové hranice a výjimky | [SLOVNIK.md](docs/SLOVNIK.md); jeho doklad odkazuje na rozhodnutí. |
 | Studentský výklad, definice, značky a vzorce | Příslušná kapitola a její studentské referenční přehledy; autorská evidence je plně nekopíruje. |
@@ -556,20 +556,14 @@ s každou kapitolou, ne až při dokončení knihy.
 
 <a id="overovani-ai-tutora"></a>
 
-## Ověřování AI tutora
+## AI tutor
 
-- Chování pluginu ověřuj v režimu **Chat**, který odpovídá prostředí
-  dostupnému studentům a šetří limity režimu Work. Před odesláním prvního
-  testovacího dotazu ověř skutečně zvolený režim; zaznamenej také klienta,
-  model a způsob zpřístupnění podkladů.
-- Běžné studium, čtení podkladů, procvičování, zkoušení a dostupné
-  vizualizace mají obstát v režimu Chat. Režim Work použij pro testování
-  jen na výslovný pokyn autora; jeho výsledek eviduj samostatně jako
-  doplňkový test konkrétní schopnosti, nikoli jako doklad dostupnosti
-  pro studenty v režimu Chat.
-- Rozlišuj test kandidátních souborů přiložených k chatu a test skutečně
-  instalovaného vydání pluginu. Výsledky i omezení zapisuj do autorské
-  historie; testovací scénáře udržuj v `scripts/tutor/smoke-prompts.md`.
+Před prací na instrukcích, exportu, vydání nebo testování AI tutora pro
+kteroukoli platformu (ChatGPT, Claude, Gemini) načti a dodržuj
+[docs/AITUTORS.md](docs/AITUTORS.md). Obsahuje společná pravidla jednoho
+zdroje, verzí, vydání a [ověřování chování](docs/AITUTORS.md#overovani)
+i zvláštní pravidla jednotlivých platforem. Společná odborná, didaktická
+a terminologická pravidla tohoto souboru platí i pro tutora.
 
 ## Prezentace a poznámky pro vyučujícího
 

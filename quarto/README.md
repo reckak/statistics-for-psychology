@@ -1,5 +1,21 @@
 # Autorská dokumentace
 
+## 2026-11-04 — Samostatná pravidla AI tutorů (R64)
+
+Na pokyn autora vznikl [docs/AITUTORS.md](../docs/AITUTORS.md) jako hlavní
+místo pravidel tvorby, vydání a ověřování AI tutorů: hlavní místa informací,
+společná pravidla (jeden zdroj, verze a vydání, ověřování chování) a oddíly
+ChatGPT, Claude a Gemini. Oddíl AGENTS.md „Ověřování AI tutora“ nahrazen
+krátkým obecným oddílem „AI tutor“ s odkazem; kotva `overovani-ai-tutora`
+zůstala, takže historické odkazy fungují. Pravidlo testů v režimu Chat
+převzato a zobecněno na běžný konverzační režim každé platformy.
+Aktuální odkazy v PROVOZ.md a smoke-prompts.md vedou na AITUTORS.md;
+úvod testovací sady zkrácen, aby pravidla nebyla na dvou místech.
+Doplněn rozcestník v README.md, tabulka hlavních míst v AGENTS.md,
+doklad [R64](../docs/rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru)
+a řádek registru. Oddíly o složce `ai-tutor/` a variantě Gemini popisují
+stav po sloučení PR #159; postup nahrání do Gemini zatím ověřen není.
+
 ## 2026-11-04 — AI tutor 0.3.4: skill pro Gemini a složka ai-tutor/
 
 Autor hlásil, že Gemini odmítá skill: „Složka dovednosti obsahuje příliš

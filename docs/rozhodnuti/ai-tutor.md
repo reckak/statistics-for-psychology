@@ -106,3 +106,27 @@ o zápis tohoto pravidla do AGENTS.md. Hlavním místem je
 [Ověřování AI tutora](../../AGENTS.md#overovani-ai-tutora); testy a provozní
 návod na něj odkazují. Souhlas s testovací přílohou není publikováním
 nového vydání pluginu. Původní schválený plán výše zůstává zachován.
+
+<a id="r64-pravidla-ai-tutoru"></a>
+
+## R64 — Samostatná pravidla AI tutorů, výstupy a verze
+
+**Schváleno 2026-11-04:** autor v chatu o verzi tutora pro Claude a Gemini
+napsal: „asi bych v AGENTS.md uvedl jen obecné instrukce pro práci na
+AI tutorovi s odkazem na podrobnější pravidla v samostatném
+docs/AITUTORS.md, kde by byla pravidla pro všechny tutory (která platí
+pro všechny + konkrétní spefifická pro chatGPT, CLaude a Gemini)“.
+Ve stejném rozhovoru určil, že hotové balíčky mají být v hlavní složce
+rozdělené podle platformy (zvolil `ai-tutor/` s `chatgpt/`, `claude/`,
+`gemini/`), a o verzi: „nemá smysl zvyšovat verzi na 0.3.5 ale zatím
+ponechat všude 0.3.4, protože se myslím v tutorech pro ChatGPT ani CLaude
+nic nemění“. Plán s těmito body výslovně schválil.
+
+Rozsah: pravidla tvorby, vydání a ověřování AI tutorů na všech platformách;
+pedagogické chování tutora zůstává podle R62 a R63 v jeho instrukcích.
+Hlavním místem je [AITUTORS.md](../AITUTORS.md); AGENTS.md obsahuje jen
+obecný oddíl s odkazem a příkazy zůstávají v [provozním návodu](../PROVOZ.md#export-ai-tutora).
+Pravidlo testování v režimu Chat z doplnění R63 bylo převzato
+a zobecněno na běžný konverzační režim každé platformy; jeho tehdejší
+znění výše zůstává dokladem. Verze zůstává společná pro všechny platformy
+a nemění se, když se obsah balíčků pro studenty nemění.

@@ -66,6 +66,7 @@ výstupy a dočasné soubory se do Gitu neukládají.
 | [ROZHODNUTI.md](docs/ROZHODNUTI.md) | Schválené volby, platnost a odkazy na doklady. |
 | [PREZENTACE.md](docs/PREZENTACE.md) | Pravidla prezentací, poznámek a doprovodných cvičení. |
 | [TEXT2SPEECH.md](docs/TEXT2SPEECH.md) | Scénáře a doprovodné audio k prezentacím, pouze na výslovné vyžádání. |
+| [AITUTORS.md](docs/AITUTORS.md) | Pravidla tvorby, vydání a ověřování AI tutorů pro ChatGPT, Claude a Gemini. |
 | [Autorská historie](quarto/README.md) | Provedené změny, výsledky kontrol a jejich omezení. |
 
 ## Provozní návody

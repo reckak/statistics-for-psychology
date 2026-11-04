@@ -175,7 +175,7 @@ průvodce obchází. Metodika interaktivních vizualizací a podrobné bodován�
 jsou reference načítané podle potřeby. Interaktivita závisí na klientu,
 nikoli na samotném balíčku instrukcí. Při vydání ji skutečně vyzkoušejte
 v cílovém prostředí, včetně náhrady bez podpory interaktivity. Volbu režimu
-Chat a evidenci prostředí určuje [pravidlo ověřování tutora](../AGENTS.md#overovani-ai-tutora).
+Chat a evidenci prostředí určuje [pravidlo ověřování tutora](AITUTORS.md#overovani).
 
 Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
 obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
