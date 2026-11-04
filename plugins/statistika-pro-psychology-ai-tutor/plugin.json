@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "statistika-pro-psychology-ai-tutor",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Český adaptivní tutor základů statistiky pro psychology. Vysvětlování, sokratovské vedení, procvičování a formativní zkoušení se zdroji a přiznanými mezerami.",
   "author": {
     "name": "Karel Rečka"

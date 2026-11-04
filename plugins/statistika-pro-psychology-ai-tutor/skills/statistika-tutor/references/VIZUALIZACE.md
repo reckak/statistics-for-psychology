@@ -46,4 +46,4 @@ Použij skutečně dostupné zobrazení klienta a jeho dokumentovaný postup. Po
 
 Ověř výchozí hodnoty, krajní hodnoty a smysluplné kombinace vstupů, přesné číselné zadání, synchronizaci ovladačů, obnovu zadání a nové losování. Zkontroluj výpočty nezávisle na grafu a skutečnou reakci ovladačů. Značky a jednotky porovnej s textem a přehledy.
 
-Prohlédni úzký panel přibližně 320 px a nízký panel přibližně 480 px, zvětšený text, světlý i tmavý vzhled a ovládání klávesnicí. Význam rozlišuj také jinak než barvou. Zaznamenej, co bylo skutečně zobrazeno a ovládáno v klientu; místní výpočet sám funkčnost v ChatGPT nepotvrzuje.
+Prohlédni úzký panel přibližně 320 px a nízký panel přibližně 480 px, zvětšený text, světlý i tmavý vzhled a ovládání klávesnicí. Význam rozlišuj také jinak než barvou. Zaznamenej, co bylo skutečně zobrazeno a ovládáno v klientu; místní výpočet sám funkčnost v konkrétním klientu nepotvrzuje.

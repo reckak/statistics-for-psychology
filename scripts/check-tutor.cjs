@@ -3,13 +3,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents} = require('./tutor/common.cjs');
+  nodes, attr, text, documents, skillName, splitSkill} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
-const packageRoot = option('--package') || JSON.parse(read(path.join(root, 'output/tutor/overeni.json'))).package_directory;
+const lastExport = option('--package') ? null : JSON.parse(read(path.join(root, 'output/tutor/overeni.json')));
+const packageRoot = option('--package') || lastExport.package_directory;
+const claudeRoot = option('--claude') || lastExport?.claude?.skill_directory;
 const q = quarto(option('--quarto'));
-const refs = path.join(packageRoot, 'skills/statistika-tutor/references');
+const skillDir = path.join(packageRoot, 'skills', skillName);
+const refs = path.join(skillDir, 'references');
 const manifest = JSON.parse(read(path.join(packageRoot, 'plugin.json')));
 const overlay = JSON.parse(read(path.join(packageRoot, '.codex-plugin/plugin.json')));
 const sourceManifest = JSON.parse(read(path.join(source, 'plugin.json')));
@@ -98,6 +101,10 @@ for (const [file, ast] of parsed) {
     const [part, fragment] = target.split('#');
     const destination = path.resolve(path.dirname(file), decodeURIComponent(part || path.basename(file)));
     assert(!path.relative(packageRoot, destination).startsWith('..'), `Link leaves plugin: ${target}`);
+    // The Claude upload contains only the skill folder.
+    if (!path.relative(skillDir, file).startsWith('..')) {
+      assert(!path.relative(skillDir, destination).startsWith('..'), `${file}: link leaves skill folder: ${target}`);
+    }
     assert(fs.existsSync(destination), `${file}: missing file ${target}`);
     if (fragment) assert(ids(parsed.get(destination)).has(decodeURIComponent(fragment)), `${file}: missing anchor ${target}`);
     checkedLinks++;
@@ -255,5 +262,30 @@ const bibliography = parsed.get(path.resolve(refs, 'literatura.md'));
 for (const key of registry.bibliography.citation_keys) assert(ids(bibliography).has(`ref-${key}`));
 for (const f of files(packageRoot)) assert(!/(?:^|[\\/])(?:sources|node_modules|\.git)(?:[\\/]|$)/.test(f), `Unexpected package file ${f}`);
 assert(!files(refs).some(f => /kapitola_0[78]\.md$|\.xlsx$/.test(f)));
-console.log(JSON.stringify({checks: 'passed', chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
+
+// Claude skill: same files as the plugin skill, only the frontmatter differs.
+let claude = 'not checked (no Claude skill directory given)';
+if (claudeRoot) {
+  assert.equal(path.basename(claudeRoot), skillName, 'Claude skill folder must match the skill name');
+  const claudeText = read(path.join(claudeRoot, 'SKILL.md'));
+  const {frontmatter: yaml, body} = splitSkill(claudeText);
+  assert.equal(body, splitSkill(skill).body, 'Claude SKILL.md body must match the plugin skill');
+  const lines = yaml.split('\n');
+  assert.equal(lines.length, 2, 'Claude frontmatter has exactly name and description');
+  const yamlName = lines[0].match(/^name: ([a-z0-9-]+)$/)?.[1];
+  const yamlDescription = JSON.parse(lines[1].match(/^description: (".*")$/)[1]);
+  assert.equal(yamlName, frontmatter.name);
+  assert(yamlName.length <= 64 && !/anthropic|claude/.test(yamlName), 'Claude skill name rules');
+  assert.equal(yamlDescription, frontmatter.description);
+  assert(yamlDescription.length <= 1024 && !/[<>]/.test(yamlDescription), 'Claude skill description rules');
+  const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
+  const expected = files(skillDir).map(f => rel(skillDir, f)).sort();
+  const actual = files(claudeRoot).map(f => rel(claudeRoot, f)).sort();
+  assert.deepEqual(actual, expected, 'Claude skill file list');
+  for (const f of expected.filter(f => f !== 'SKILL.md')) {
+    assert.equal(hash(path.join(claudeRoot, f)), hash(path.join(skillDir, f)), `Claude skill file differs: ${f}`);
+  }
+  claude = {skill: yamlName, files: actual.length, descriptionChars: yamlDescription.length};
+}
+console.log(JSON.stringify({checks: 'passed', claude, chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
   math, images, solutions, checkedLinks, citations: registry.bibliography.citation_keys.length}));

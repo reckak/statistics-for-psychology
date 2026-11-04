@@ -226,8 +226,20 @@ archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech soubo
 ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
 
 - `output/tutor/statistika-pro-psychology-ai-tutor-<verze>.zip` — instalační archiv;
-- `output/tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů archivu,
-  počty obsahu a cesta k ověřené rozbalené podobě.
+- `output/tutor/statistika-tutor-claude-<verze>.zip` — týž skill pro Claude;
+- `output/tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů obou
+  archivů, počty obsahu a cesty k ověřeným rozbaleným podobám.
+
+Archiv pro Claude má v kořeni jedinou složku `statistika-tutor/` (název musí
+odpovídat poli `name`) se stejnými soubory jako skill pluginu. Liší se jen
+hlavička SKILL.md, převedená z JSON na prosté YAML (`name`, `description`);
+manifesty, logo a zahajovací prompty pluginu vynechává. Kontrola ověřuje
+název složky, pravidla pro `name` a `description`, shodu těla SKILL.md
+a otisků všech referencí s pluginem a to, že žádný odkaz ze skillu nevede
+mimo jeho složku. Nahrání: claude.ai → Customize → Skills → + → Upload a skill;
+vyžaduje zapnuté spouštění kódu. Novou verzi skillu je třeba nahrát znovu;
+mimo plány Team a Enterprise nahrává archiv každý student sám. Číselný limit
+velikosti nápověda Claude neuvádí, ověřte jej skutečným nahráním.
 
 Samostatné opakování kontroly posledního exportu:
 
