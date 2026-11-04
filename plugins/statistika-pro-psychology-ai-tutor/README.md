@@ -1,13 +1,14 @@
 # Statistika pro psychology – AI tutor
 
-Zdroj instrukcí a metadat pluginu, verze 0.3.3. Autor: Karel Rečka.
+Zdroj instrukcí a metadat pluginu, verze 0.3.4. Autor: Karel Rečka.
 
 Tato složka je **vstup exportu**, nikoli hotový instalační balíček.
 Kapitoly, výukové plány, nabídka kapitol, přehledy, obrázky, index, registr a literatura se sestavují z hlavních
 zdrojů učebnice. Nevytvářej zde druhou ručně udržovanou kopii výkladu.
 
 Instalační archiv vytváří node scripts/export-tutor.cjs spuštěný z repozitáře.
-Výsledkem je output/tutor/statistika-pro-psychology-ai-tutor-0.3.3.zip.
+Výsledkem je output/tutor/statistika-pro-psychology-ai-tutor-0.3.4.zip a skill pro Claude
+output/tutor/statistika-tutor-claude-0.3.4.zip.
 Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jsou
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 

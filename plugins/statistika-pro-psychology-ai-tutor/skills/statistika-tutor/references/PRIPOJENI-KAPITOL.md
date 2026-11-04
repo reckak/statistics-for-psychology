@@ -34,5 +34,15 @@ oddělené kroky. Dostupnost mezi osobními účty a limity bezplatných účtů
 v aktuálním prostředí; neslibuj je podle samotného odkazu nebo tarifu.
 
 Tento plugin nemá vlastní databázi ani společný záznam výkonu studentů;
-soukromí chatu se řídí prostředím ChatGPT a nastavením organizace.
-Oficiální postup: [Build plugins](https://learn.chatgpt.com/docs/build-plugins).
+soukromí chatu se řídí prostředím klienta a nastavením organizace.
+Oficiální postup pro ChatGPT: [Build plugins](https://learn.chatgpt.com/docs/build-plugins).
+
+## Verze pro Claude
+
+Tentýž export vytváří také samostatný ZIP skillu pro Claude se stejným
+SKILL.md a stejnými podklady, bez manifestů pluginu a loga. Student jej
+nahraje v claude.ai přes Customize → Skills → + → Upload a skill; musí mít
+zapnuté spouštění kódu. Mimo plány Team a Enterprise nahrává každý student
+ZIP sám a novou verzi musí nahrát znovu. Dostupnost v tarifech a limity
+nahrávání ověř v aktuálním prostředí. Oficiální postup:
+[Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude).

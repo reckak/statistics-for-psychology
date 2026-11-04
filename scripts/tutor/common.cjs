@@ -67,6 +67,19 @@ function text(value) {
   if (value.t === 'Cite') return text(value.c[1]);
   return text(value.c);
 }
+// The plugin skill keeps JSON-style frontmatter; Claude uploads get plain YAML keys.
+const skillName = 'statistika-tutor';
+const splitSkill = skill => {
+  const m = skill.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!m) throw new Error('SKILL.md has no frontmatter');
+  return {frontmatter: m[1], body: skill.slice(m[0].length)};
+};
+function claudeSkill(skill) {
+  const {frontmatter, body} = splitSkill(skill);
+  const meta = JSON.parse(frontmatter);
+  // A JSON string is a valid YAML double-quoted scalar.
+  return `---\nname: ${meta.name}\ndescription: ${JSON.stringify(meta.description)}\n---\n${body}`;
+}
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
 const link = (label, target) => ({t: 'Link', c: [['', [], []], [str(label)], [target, '']]});
@@ -79,4 +92,5 @@ const documents = [
   ...['slovnicek', 'znaceni', 'excel'].map(id => ({id, source: `quarto/${id}.qmd`, output: `prehledy/${id}.md`, kind: 'overview'}))
 ];
 
-module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents};
+module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
+  skillName, splitSkill, claudeSkill};

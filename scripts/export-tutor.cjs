@@ -4,7 +4,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
-  parseSource, nodes, attr, text, str, para, link, documents} = c;
+  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -286,34 +286,55 @@ for (const d of exported.filter(d => d.kind === 'overview')) {
 index.push('', 'Registr KAPITOLY.json rozlišuje katalog celé knihy, přibalené kapitoly a šest výukových plánů. Obsahuje přesná ID, zdrojovou verzi a otisky souborů; načítej potřebný záznam.', '');
 write('INDEX.md', index.join('\n'));
 
-// Validate the complete staged package before replacing a previous release artifact.
-const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--quarto', q]));
+// Claude skill upload: one folder named after the skill, the same references,
+// YAML frontmatter and no plugin manifests or logo.
+const claudeStage = path.join(work, 'claude');
+const claudeDir = path.join(claudeStage, skillName);
+fs.cpSync(path.join(stage, 'skills', skillName), claudeDir, {recursive: true});
+fs.writeFileSync(path.join(claudeDir, 'SKILL.md'), claudeSkill(read(path.join(claudeDir, 'SKILL.md'))), 'utf8');
+
+// Validate the complete staged packages before replacing a previous release artifact.
+const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--quarto', q]));
 console.log(JSON.stringify(validation));
 for (const [file, digest] of Object.entries(inputs)) assert.equal(hash(path.join(root, file)), digest, `Input changed during export: ${file}`);
 for (const [output, input] of assetFiles) assert.equal(hash(path.join(refs, output)), hash(input));
-const inventory = files(stage).map(f => ({path: posix(path.relative(stage, f)), bytes: fs.statSync(f).size, sha256: hash(f)}));
-const stageArchive = path.join(work, `${name}-${version}.zip`);
+
 const psQuote = s => `'${s.replace(/'/g, "''")}'`;
-// Windows PowerShell's older .NET writes backslashes with CreateFromDirectory.
-// Explicit POSIX entry names make the same archive portable to cloud clients.
-const createZip = `$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression; Add-Type -AssemblyName System.IO.Compression.FileSystem; $base=${psQuote(stage)}; $zip=[IO.Compression.ZipFile]::Open(${psQuote(stageArchive)}, [IO.Compression.ZipArchiveMode]::Create); try { foreach($file in Get-ChildItem -LiteralPath $base -File -Recurse -Force) { $relative=$file.FullName.Substring($base.Length+1).Replace([char]92,[char]47); [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $file.FullName, $relative, [IO.Compression.CompressionLevel]::Optimal) | Out-Null } } finally { $zip.Dispose() }`;
-run('powershell.exe', ['-NoProfile', '-Command', createZip]);
+const inventoryOf = base => files(base).map(f => ({path: posix(path.relative(base, f)), bytes: fs.statSync(f).size, sha256: hash(f)}));
+function zipDirectory(base, zipPath) {
+  const inventory = inventoryOf(base);
+  // Windows PowerShell's older .NET writes backslashes with CreateFromDirectory.
+  // Explicit POSIX entry names make the same archive portable to cloud clients.
+  const createZip = `$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression; Add-Type -AssemblyName System.IO.Compression.FileSystem; $base=${psQuote(base)}; $zip=[IO.Compression.ZipFile]::Open(${psQuote(zipPath)}, [IO.Compression.ZipArchiveMode]::Create); try { foreach($file in Get-ChildItem -LiteralPath $base -File -Recurse -Force) { $relative=$file.FullName.Substring($base.Length+1).Replace([char]92,[char]47); [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($zip, $file.FullName, $relative, [IO.Compression.CompressionLevel]::Optimal) | Out-Null } } finally { $zip.Dispose() }`;
+  run('powershell.exe', ['-NoProfile', '-Command', createZip]);
+  // Read every archive member independently with .NET, including hidden compatibility files.
+  const checkZip = `$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip=[IO.Compression.ZipFile]::OpenRead(${psQuote(zipPath)}); try { $rows=@(foreach($entry in $zip.Entries) { $stream=$entry.Open(); try { $sha=[Security.Cryptography.SHA256]::Create(); $digest=([BitConverter]::ToString($sha.ComputeHash($stream))).Replace('-','').ToLowerInvariant(); [pscustomobject]@{path=$entry.FullName; bytes=$entry.Length; sha256=$digest} } finally { $stream.Dispose() } }); ConvertTo-Json -InputObject $rows -Compress } finally { $zip.Dispose() }`;
+  const archiveMembers = JSON.parse(run('powershell.exe', ['-NoProfile', '-Command', checkZip]));
+  archiveMembers.sort((a, b) => a.path.localeCompare(b.path));
+  inventory.sort((a, b) => a.path.localeCompare(b.path));
+  assert.equal(archiveMembers.length, inventory.length, `Archive member count: ${zipPath}`);
+  for (let i = 0; i < inventory.length; i++) assert.deepEqual(archiveMembers[i], inventory[i], `Archive member ${inventory[i].path}`);
+  return inventory;
+}
+const stageArchive = path.join(work, `${name}-${version}.zip`);
+const inventory = zipDirectory(stage, stageArchive);
+const claudeArchiveName = `${skillName}-claude-${version}.zip`;
+const claudeStageArchive = path.join(work, claudeArchiveName);
+const claudeInventory = zipDirectory(claudeStage, claudeStageArchive);
+assert(claudeInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Claude archive must have one skill folder at its root');
 const report = {version, source_revision: sourceRevision, source_dirty: sourceDirty, date: stamp, package_directory: stage,
   files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
   overview_entries: catalog.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
-  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive)};
+  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive),
+  claude: {skill_directory: claudeDir, files: claudeInventory, archive_sha256: hash(claudeStageArchive)}};
 fs.writeFileSync(path.join(work, 'inventory.json'), JSON.stringify(report, null, 2) + '\n');
-// Read every archive member independently with .NET, including hidden compatibility files.
-const checkZip = `$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; $zip=[IO.Compression.ZipFile]::OpenRead(${psQuote(stageArchive)}); try { $rows=@(foreach($entry in $zip.Entries) { $stream=$entry.Open(); try { $sha=[Security.Cryptography.SHA256]::Create(); $digest=([BitConverter]::ToString($sha.ComputeHash($stream))).Replace('-','').ToLowerInvariant(); [pscustomobject]@{path=$entry.FullName; bytes=$entry.Length; sha256=$digest} } finally { $stream.Dispose() } }); ConvertTo-Json -InputObject $rows -Compress } finally { $zip.Dispose() }`;
-const archiveMembers = JSON.parse(run('powershell.exe', ['-NoProfile', '-Command', checkZip]));
-archiveMembers.sort((a, b) => a.path.localeCompare(b.path));
-inventory.sort((a, b) => a.path.localeCompare(b.path));
-assert.equal(archiveMembers.length, inventory.length, 'Archive member count');
-for (let i = 0; i < inventory.length; i++) assert.deepEqual(archiveMembers[i], inventory[i], `Archive member ${inventory[i].path}`);
 const output = path.join(root, 'output/tutor');
 fs.mkdirSync(output, {recursive: true});
 const archive = path.join(output, `${name}-${version}.zip`);
+const claudeArchive = path.join(output, claudeArchiveName);
 fs.copyFileSync(stageArchive, archive);
+fs.copyFileSync(claudeStageArchive, claudeArchive);
+report.claude.archive = claudeArchive;
 fs.writeFileSync(path.join(output, 'overeni.json'), JSON.stringify({...report, archive}, null, 2) + '\n');
-console.log(JSON.stringify({archive, package: stage, version, chapters: report.chapters,
+console.log(JSON.stringify({archive, claudeArchive, package: stage, version, chapters: report.chapters,
   overviews: report.overview_entries, images: report.images, citations: report.citations}, null, 2));

@@ -10,6 +10,11 @@ Předpokladem je skutečně uložená verze podle manifestu. Při kontrole nejpr
 Požaduj název oddílu a jeho existující ID. Uveď, které úlohy a klient byly
 skutečně vyzkoušeny; nevydávej tento interní test za ověření na studentech.
 
+Scénáře platí i pro skill v claude.ai (archiv `statistika-tutor-claude-<verze>.zip`).
+Tam místo vybraného pluginu ověř, že je skill zapnutý v Customize → Skills,
+a test zaznamenej odděleně od ChatGPT. Zahajovací volby z manifestu Claude
+nezobrazuje; aktivaci zkoušej běžným dotazem, např. „Chci studovat statistiku“.
+
 ## Začátek, střed a konec každé kapitoly
 
 Každou trojici lze zadat jako jeden přehledně označený test načítání zdrojů.

@@ -1,5 +1,29 @@
 # Autorská dokumentace
 
+## 2026-11-04 — AI tutor 0.3.4: skill pro Claude
+
+Na žádost autora a podle schváleného plánu přidán do exportu druhý archiv
+`output/tutor/statistika-tutor-claude-0.3.4.zip` pro nahrání do claude.ai.
+Vzniká z téže sestavené složky skillu jako plugin pro ChatGPT; jedinou
+odchylkou je hlavička SKILL.md převedená z JSON na YAML. Ve dvou referencích
+nahrazena zmínka o ChatGPT obecným „klientem“ (`VIZUALIZACE.md`)
+a do `PRIPOJENI-KAPITOL.md` doplněn oddíl o verzi pro Claude. Kvůli této
+změně obsahu zvýšena verze obou manifestů na 0.3.4; místní archiv 0.3.3
+byl při prvním zkušebním běhu přepsán obsahem s těmito dvěma změnami,
+nahrané cloudové vydání 0.3.3 se nemění.
+
+Plný export (s obrázky) a následný export 0.3.4 `--skip-figures` prošly:
+šest kapitol, šest plánů, osm položek katalogu, 417 hesel, 1 426 matematických
+zápisů, 97 obrázků, 72 řešení, 53 bibliografických položek a 2 189 odkazů.
+Nová kontrola Claude skillu prošla (125 souborů, popis 363 znaků); negativní
+kontroly zachytily chybný název složky i změněnou referenci. Archiv Claude
+má 3,0 MB, plugin 3,8 MB.
+
+Neověřeno: nahrání do claude.ai, aktivace skillu, čtení referencí
+a vizualizace v Claude. Test v režimu Chat podle
+[testovací sady](../scripts/tutor/smoke-prompts.md) zbývá provést.
+Nové vydání ChatGPT pluginu 0.3.4 nebylo nahráno.
+
 ## 2026-11-04 — AI tutor 0.3.3: krátké zahajovací prompty pro Desktop
 
 Po autorově hlášení, že Desktop u verze 0.3.2 nezobrazuje zahajovací
