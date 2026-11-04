@@ -225,7 +225,7 @@ Sestavení vzniká v nové pomocné složce pod `tmp/`. Před nahrazením cílov
 archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
 ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
 
-- `ai-tutor/chatgpt/statistika-pro-psychology-ai-tutor-<verze>.zip` — plugin pro ChatGPT;
+- `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip` — plugin pro ChatGPT;
 - `ai-tutor/claude/statistika-tutor-claude-<verze>.zip` — týž skill pro Claude;
 - `ai-tutor/gemini/statistika-tutor-gemini-<verze>.zip` — skill pro Gemini bez souborů obrázků;
 - `ai-tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů tří
