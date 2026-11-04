@@ -21,6 +21,13 @@ strany prohlédnuty; názvy archivů ověřeny proti `ai-tutor/*/`.
 Neověřeno: celý studentský postup na studentském či bezplatném účtu kterékoli
 platformy, české popisky menu Claude a nahrání do Gemini (viz níže).
 
+Úprava podle autora: archiv pro ChatGPT se pro studenty jmenuje
+`statistika-tutor-chatGPT-0.3.4.zip` (autor jej přejmenoval kvůli jednotným
+názvům; export nadále vytváří `statistika-pro-psychology-ai-tutor-<verze>.zip`).
+Návod už nedoporučuje jedinou platformu: povzbuzuje k vyzkoušení více
+platforem kvůli spolehlivosti, limitům a stylu a k pokračování na jiné
+platformě po vyčerpání limitu.
+
 ## 2026-11-04 — Samostatná pravidla AI tutorů (R64)
 
 Na pokyn autora vznikl [docs/AITUTORS.md](../docs/AITUTORS.md) jako hlavní
