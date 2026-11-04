@@ -3,7 +3,7 @@
 ## 2026-11-04 — AI tutor 0.3.2: aktivace a zahajovací prompty
 
 Na výslovnou žádost autora upraven existující plugin, v návaznosti na
-[konverzaci o selhání aktivace](https://chatgpt.com/c/6aeb306e-2124-83ed-bba4-401c8ae44abc).
+hlášené selhání aktivace při prvním spuštění.
 Popis dovednosti nyní začíná situacemi použití: zahájení studia, výběr
 kapitoly, režimu a rozsahu i výslovné oslovení tutora. Všechny tři úvodní
 prompty žádají načtení nainstalovaného SKILL.md, katalogu a referencí;
@@ -44,21 +44,21 @@ nebyl odhadován. Kliknutí na úvodní prompt nejprve otevřelo Work;
 před testováním použito přepnutí do Chat. Pro tento klientský výchozí režim
 balíček nezavádí novou konfiguraci.
 
-- [Zahájení studia](https://chatgpt.com/c/6aeb3370-da44-83ed-ae0e-929e889ce7ee):
+- Zahájení studia:
   správné úplné názvy kapitol 4 a 6, verze 0.3.2 a dostupnost kapitol 1–6
   oproti 7–8. Panel Zdroje → Skilly ukázal použitý `statistika-tutor`
   s novým popisem a instrukcemi, což dokládá aktivaci nezávisle na tvrzení
   v odpovědi. Samotné operace čtení jednotlivých referencí rozhraní neukázalo.
   Tutor nabídl více voleb současně; dodržení postupného průvodce tedy není
   tímto pokusem prokázáno.
-- [Sokratovské vedení](https://chatgpt.com/c/6aeb33dc-44dc-83eb-b7ff-966680acc093):
+- Sokratovské vedení:
   uložená první odpověď uvádí aktuální verzi a žádá jen téma či zadání.
   Po volbě cvičení 3.1 následovala jediná otázka na modus, bez řešení,
   s přesnými daty 3, 4, 4, 5, 6, 20 minut; nezávisle porovnáno s QMD.
   Webový klient však zobrazil „Tuto odpověď se nepodařilo načíst“, také
   po obnovení stránky. Obsah ověřen čtením uloženého chatu, nikoli vydáván
   za bezchybné vykreslení. Přímé čtení jednotlivých referencí nepozorováno.
-- [Zkoušení](https://chatgpt.com/c/6aeb343a-0c9c-83eb-809d-a702c2ce1fcb):
+- Zkoušení:
   uložená první odpověď zachovala zvolený režim, aktuální verzi, hranici
   přibalených kapitol, výběr rozsahu a dohodu o počtu otázek a zpětné vazbě.
   Také zde nastala chyba zobrazení; kontrola uloženého textu není kontrolou
