@@ -7,7 +7,7 @@ Kapitoly, výukové plány, nabídka kapitol, přehledy, obrázky, index, regist
 zdrojů učebnice. Nevytvářej zde druhou ručně udržovanou kopii výkladu.
 
 Instalační archiv vytváří node scripts/export-tutor.cjs spuštěný z repozitáře.
-Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-pro-psychology-ai-tutor-0.3.4.zip,
+Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-tutor-chatGPT-0.3.4.zip,
 claude/statistika-tutor-claude-0.3.4.zip a gemini/statistika-tutor-gemini-0.3.4.zip.
 Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jsou
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).

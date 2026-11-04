@@ -23,7 +23,14 @@ platformy, české popisky menu Claude a nahrání do Gemini (viz níže).
 
 Úprava podle autora: archiv pro ChatGPT se pro studenty jmenuje
 `statistika-tutor-chatGPT-0.3.4.zip` (autor jej přejmenoval kvůli jednotným
-názvům; export nadále vytváří `statistika-pro-psychology-ai-tutor-<verze>.zip`).
+názvům). Na pokyn autora jej tak nově pojmenovává i export
+(`scripts/export-tutor.cjs`, vzor `statistika-tutor-<platforma>-<verze>.zip`);
+identita a název pluginu v manifestech se nemění. Aktuální cesty upraveny
+v AITUTORS.md, PROVOZ.md a README pluginu; starší záznamy historie uvádějí
+původní název. Export `--skip-figures` a `check-tutor.cjs` prošly se stejnými
+počty jako 2026-11-04; nový archiv ChatGPT (129 členů) se od ručně
+přejmenovaného liší jen v registru a šesti plánech, kde je uvedena revize
+zdroje (porovnány otisky všech členů). Verze zůstává 0.3.4.
 Návod už nedoporučuje jedinou platformu: povzbuzuje k vyzkoušení více
 platforem kvůli spolehlivosti, limitům a stylu a k pokračování na jiné
 platformě po vyčerpání limitu.

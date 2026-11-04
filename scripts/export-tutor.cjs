@@ -364,7 +364,10 @@ function zipDirectory(base, zipPath) {
   for (let i = 0; i < inventory.length; i++) assert.deepEqual(archiveMembers[i], inventory[i], `Archive member ${inventory[i].path}`);
   return inventory;
 }
-const stageArchive = path.join(work, `${name}-${version}.zip`);
+// Student-facing names follow the pattern statistika-tutor-<platform>-<version>.zip;
+// the plugin name inside the manifests stays unchanged.
+const chatgptArchiveName = `${skillName}-chatGPT-${version}.zip`;
+const stageArchive = path.join(work, chatgptArchiveName);
 const inventory = zipDirectory(stage, stageArchive);
 const claudeArchiveName = `${skillName}-claude-${version}.zip`;
 const claudeStageArchive = path.join(work, claudeArchiveName);
@@ -388,7 +391,7 @@ const target = platform => {
   fs.mkdirSync(dir, {recursive: true});
   return dir;
 };
-const archive = path.join(target('chatgpt'), `${name}-${version}.zip`);
+const archive = path.join(target('chatgpt'), chatgptArchiveName);
 const claudeArchive = path.join(target('claude'), claudeArchiveName);
 const geminiArchive = path.join(target('gemini'), geminiArchiveName);
 fs.copyFileSync(stageArchive, archive);

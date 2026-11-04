@@ -75,7 +75,7 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 
 ## ChatGPT
 
-- Balíček je plugin `ai-tutor/chatgpt/statistika-pro-psychology-ai-tutor-<verze>.zip`
+- Balíček je plugin `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip`
   s manifesty `plugin.json` a `.codex-plugin/plugin.json`, logem a SKILL.md
   s hlavičkou zapsanou v JSON. Oba manifesty udržuj shodné.
 - Zahajovací prompty: tři, každý nejvýše 100 znaků a začínající pokynem
