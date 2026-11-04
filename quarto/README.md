@@ -19,9 +19,38 @@ Nová kontrola Claude skillu prošla (125 souborů, popis 363 znaků); negativn�
 kontroly zachytily chybný název složky i změněnou referenci. Archiv Claude
 má 3,0 MB, plugin 3,8 MB.
 
-Neověřeno: nahrání do claude.ai, aktivace skillu, čtení referencí
-a vizualizace v Claude. Test v režimu Chat podle
-[testovací sady](../scripts/tutor/smoke-prompts.md) zbývá provést.
+Test v claude.ai (týž den, na žádost autora): archiv nahrán agentem přes
+Customize → Skills → Upload a skill v prohlížeči Brave s rozšířením
+Claude in Chrome do autorova osobního účtu (plán Max). Náhled správně
+přečetl `name` i `description` z YAML, bezpečnostní kontrola nahrání
+prošla, skill má 125 souborů a je zapnutý. Testy proběhly v režimu Chat
+(nikoli Code), model Sonnet 5.5 s intenzitou Medium, bez projektu
+a bez příloh, každý scénář v novém chatu:
+
+- „Chci studovat statistiku pro psychology.“ — skill se aktivoval sám
+  (rozhraní ukazuje „Skills: statistika-tutor“), přečetl předepsané
+  `REFERENCE.md` a `INDEX.md`, nabídl přesné názvy kapitol 1–6, hranici
+  kapitol 7–8, způsoby studia a rozsah.
+- Navazující dotaz na směrodatné chyby pro 25, 100 a 400 řidičů
+  (smoke 6 B) — správně 3,0; 1,5; 0,75 s s dosazením; citoval
+  `references/kapitoly/kapitola_06.md` a ID `sec-chyba-prumeru`,
+  `sec-tri-vrstvy`, `sec-odhad-chyby`, `sec-pravdepodobnost-prumeru`.
+  ID i hodnoty 1,51 a 1,46 s ověřeny proti `quarto/kapitola_06.qmd`.
+- Úloha 16 a) kapitoly 6 sokratovsky (smoke 6 C) — zadání odpovídá
+  zdroji včetně označení nepovinnosti, tutor položil jednu otázku,
+  řešení neprozradil; na částečně chybnou odpověď potvrdil správnou
+  část, pojmenoval chybu a dal další vodítko.
+- Interaktivní vizualizace výběrového rozdělení (n = 25, 100, 400,
+  σ = 15 s) — vznikl funkční artifact se značením σₘ, zešikmenou
+  populací podle kapitoly a simulací 10 000 výběrů; agent ručně přepnul
+  n = 400 a ověřil nadpis σₘ = 0,75 s a pásmo 34,25–35,75 s. Tvorba
+  trvala přibližně 8 minut. Klávesnici, úzké zobrazení, reset a další
+  ovladače agent sám nezkoušel.
+
+Omezení: jeden účet s plánem Max, jeden model a po jednom pokusu na
+scénář; nejde o test bezplatného účtu ani studentů. Režim zkoušení,
+procvičování a dlouhý rozhovor podle plánu nebyly zkoušeny. Číselný
+limit velikosti uploadu zůstává neznámý (archiv 3,0 MB prošel).
 Nové vydání ChatGPT pluginu 0.3.4 nebylo nahráno.
 
 ## 2026-11-04 — AI tutor 0.3.3: krátké zahajovací prompty pro Desktop
