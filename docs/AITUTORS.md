@@ -13,6 +13,7 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 | Pedagogické chování tutora: zahájení, režimy, cvičení, vizualizace, značení | [Instrukce tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md) a jejich reference; dohody [R62](rozhodnuti/ai-tutor.md#r62-ai-tutor) a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora). |
 | Pravidla tvorby, vydání a ověřování pro všechny platformy | Tento dokument. |
 | Příkazy exportu, kontroly, cesty výstupů a postupy nahrání | [Provozní návod](PROVOZ.md#export-ai-tutora). |
+| Studentský návod k instalaci na všech třech platformách | `ai-tutor/navod.docx` (mimo Git, rozesílá autor); aktualizuj jej při změně verze, názvů archivů nebo postupu nahrání. |
 | Testovací scénáře | [smoke-prompts.md](../scripts/tutor/smoke-prompts.md). |
 | Provedené exporty, nahrání a výsledky testů | [Autorská historie](../quarto/README.md). |
 | Učivo kapitol a jeho hloubka | Kapitoly a [kapitolové karty](OSNOVA.md); výukové plány tutora z nich generuje export. |
