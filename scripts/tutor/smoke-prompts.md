@@ -84,6 +84,13 @@ stav rozhraní před vlastní volbou; nevyvozuj předvýběr pouze z textu model
 
 ### Regrese aktivace nainstalované dovednosti
 
+Před konverzačním testem na Desktopu i webu otevři detail instalovaného
+pluginu, ověř číslo vydání a přítomnost všech tří úvodních voleb. Na každou
+klikni a porovnej vložený text s manifestem. Ověření na webu nenahrazuje
+Desktop. Preventivní autorský limit 100 znaků není doloženým limitem
+platformy. Pokud volby chybějí i po zkrácení, prověř načtené vydání a
+obnovení detailu; další zkracování bez nového důkazu neprováděj.
+
 V novém chatu bez příloh vyber nainstalovaný plugin a samostatně spusť
 každý ze tří aktuálních úvodních promptů z manifestu. Zaznamenej přesné
 znění, verzi, klienta, model a pozorované čtení souborů. Správný název
