@@ -1,14 +1,9 @@
 # Ověření AI tutora v cílovém klientu
 
-Prostředí testu určuje [AGENTS.md](../../AGENTS.md#overovani-ai-tutora):
-ověř přepnutí do režimu **Chat** a zaznamenej klienta i model.
-Instalované vydání zkoušej v novém chatu s vybraným pluginem, bez příloh
-a bez webového vyhledávání. U kandidáta přilož schválený balíček a výslovně
-odliš tento test od instalace.
-Předpokladem je skutečně uložená verze podle manifestu. Při kontrole nejprve ověř,
-že tutor čte přibalený soubor; správná obecná odpověď sama načtení nedokládá.
-Požaduj název oddílu a jeho existující ID. Uveď, které úlohy a klient byly
-skutečně vyzkoušeny; nevydávej tento interní test za ověření na studentech.
+Prostředí testu, evidenci a doložení čtení podkladů určuje
+[ověřování chování v AITUTORS.md](../../docs/AITUTORS.md#overovani).
+Zde jsou jen scénáře. Instalované vydání zkoušej s vybraným pluginem
+či zapnutým skillem; předpokladem je skutečně uložená verze podle manifestu.
 
 Scénáře platí i pro skill v claude.ai (archiv `statistika-tutor-claude-<verze>.zip`).
 Tam místo vybraného pluginu ověř, že je skill zapnutý v Customize → Skills,
