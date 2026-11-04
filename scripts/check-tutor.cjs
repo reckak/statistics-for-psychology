@@ -3,13 +3,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents, skillName, splitSkill} = require('./tutor/common.cjs');
+  nodes, attr, text, documents, skillName, splitSkill, imageLine, geminiSkill, geminiNote} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
-const lastExport = option('--package') ? null : JSON.parse(read(path.join(root, 'output/tutor/overeni.json')));
+const lastExport = option('--package') ? null : JSON.parse(read(path.join(root, 'ai-tutor/overeni.json')));
 const packageRoot = option('--package') || lastExport.package_directory;
 const claudeRoot = option('--claude') || lastExport?.claude?.skill_directory;
+const geminiRoot = option('--gemini') || lastExport?.gemini?.skill_directory;
 const q = quarto(option('--quarto'));
 const skillDir = path.join(packageRoot, 'skills', skillName);
 const refs = path.join(skillDir, 'references');
@@ -287,5 +288,81 @@ if (claudeRoot) {
   }
   claude = {skill: yamlName, files: actual.length, descriptionChars: yamlDescription.length};
 }
-console.log(JSON.stringify({checks: 'passed', claude, chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
+
+// Gemini skill: the Claude skill without SVG files. Chapters swap image lines
+// for web links; a generated register keeps every caption and description.
+let gemini = 'not checked (no Gemini skill directory given)';
+if (geminiRoot) {
+  assert(claudeRoot, 'The Gemini check compares against the Claude skill');
+  assert.equal(path.basename(geminiRoot), skillName, 'Gemini skill folder must match the skill name');
+  const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
+  const geminiFiles = files(geminiRoot).map(f => rel(geminiRoot, f)).sort();
+  // Authoring guard from the observed upload error; Google documents no exact limit.
+  assert(geminiFiles.length <= 100, `Gemini skill has ${geminiFiles.length} files (limit 100)`);
+  assert(Math.max(...geminiFiles.map(f => f.split('/').length)) <= 10, 'Gemini skill nesting depth');
+  assert(!geminiFiles.some(f => /\.svg$/i.test(f) || f.includes('/assets/')), 'Gemini skill must not contain image files');
+  assert.equal(read(path.join(geminiRoot, 'SKILL.md')), geminiSkill(read(path.join(claudeRoot, 'SKILL.md'))), 'Gemini SKILL.md');
+  assert(read(path.join(geminiRoot, 'SKILL.md')).includes(geminiNote));
+  const changed = new Set(['SKILL.md', 'references/KAPITOLY.json', 'references/INDEX.md', 'references/obrazky.md',
+    ...bundled.map(d => `references/${d.path}`)]);
+  const claudeFiles = files(claudeRoot).map(f => rel(claudeRoot, f)).filter(f => !f.startsWith('references/assets/')).sort();
+  assert.deepEqual(geminiFiles.filter(f => f !== 'references/obrazky.md'), claudeFiles, 'Gemini file list');
+  for (const f of claudeFiles.filter(f => !changed.has(f))) {
+    assert.equal(hash(path.join(geminiRoot, f)), hash(path.join(claudeRoot, f)), `Gemini skill file differs: ${f}`);
+  }
+  const geminiRefs = path.join(geminiRoot, 'references');
+  const register = read(path.join(geminiRefs, 'obrazky.md'));
+  let figureCount = 0;
+  for (const entry of bundled) {
+    const webPage = `${web}quarto/${entry.id}.html`;
+    const source = parseSource(q, entry.source, false);
+    const figs = nodes(source, 'Figure').filter(f => nodes(f, 'Image').length);
+    assert.equal(figs.length, nodes(source, 'Image').length, `${entry.id}: every image is a figure`);
+    const original = read(path.join(claudeRoot, 'references', entry.path)).split('\n');
+    const rewritten = read(path.join(geminiRefs, entry.path)).split('\n');
+    assert.equal(rewritten.length, original.length, `${entry.id}: line count`);
+    let replaced = 0;
+    for (let i = 0; i < original.length; i++) {
+      if (original[i] === rewritten[i]) continue;
+      assert(imageLine.test(original[i]), `${entry.id}: unexpected change on line ${i + 1}`);
+      assert.match(rewritten[i], new RegExp(`^\\[Obrázek ve webové učebnici\\]\\(${webPage.replace(/[.]/g, '\\.')}#fig-[^)]+\\)$`));
+      replaced++;
+    }
+    assert.equal(replaced, figs.length, `${entry.id}: replaced images`);
+    assert(!rewritten.some(line => line.includes('../assets/')), `${entry.id}: leftover image link`);
+    for (const fig of figs) {
+      const id = fig.c[0][0];
+      const alt = nodes(fig, 'Image')[0].c[0][2].find(([k]) => k === 'fig-alt')?.[1];
+      assert(alt, `${entry.id}/${id}: text description`);
+      assert(rewritten.includes(`[Obrázek ve webové učebnici](${webPage}#${id})`), `${entry.id}/${id}: web link`);
+      assert(rewritten.includes(`Textový popis obrázku: ${alt}`), `${entry.id}/${id}: description in chapter`);
+      assert(register.includes(`{#${id}}`) && register.includes(`Textový popis: ${alt}`), `${entry.id}/${id}: register entry`);
+      assert(register.includes(`[V kapitole](${entry.path}#${id})`) && register.includes(`(${webPage}#${id})`), `${entry.id}/${id}: register links`);
+      figureCount++;
+    }
+  }
+  assert.equal((register.match(/^### Obrázek \d+\.\d+: /gm) || []).length, figureCount, 'Register entry count');
+  const geminiRegistry = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
+  assert.equal(geminiRegistry.images, 'web_only');
+  assert.equal(geminiRegistry.figures.count, figureCount);
+  assert.equal(geminiRegistry.figures.sha256, hash(path.join(geminiRefs, 'obrazky.md')));
+  for (const entry of geminiRegistry.chapters.filter(c => c.availability === 'bundled')) {
+    assert.equal(geminiRegistry.chapters.length, registry.chapters.length);
+    assert.equal(entry.sha256, hash(path.join(geminiRefs, entry.path)), `Gemini registry checksum: ${entry.path}`);
+  }
+  // Every local Markdown link stays inside the skill and reaches an existing file.
+  let geminiLinks = 0;
+  for (const f of geminiFiles.filter(f => f.endsWith('.md'))) {
+    const file = path.join(geminiRoot, f);
+    for (const m of read(file).matchAll(/\]\(([^)\s]+)\)/g)) {
+      if (/^[a-z][a-z0-9+.-]*:|^\/\/|^#/i.test(m[1])) continue;
+      const destination = path.resolve(path.dirname(file), decodeURIComponent(m[1].split('#')[0]));
+      assert(!path.relative(geminiRoot, destination).startsWith('..'), `${f}: link leaves skill folder: ${m[1]}`);
+      assert(fs.existsSync(destination), `${f}: missing file ${m[1]}`);
+      geminiLinks++;
+    }
+  }
+  gemini = {files: geminiFiles.length, figures: figureCount, localLinks: geminiLinks};
+}
+console.log(JSON.stringify({checks: 'passed', claude, gemini, chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
   math, images, solutions, checkedLinks, citations: registry.bibliography.citation_keys.length}));

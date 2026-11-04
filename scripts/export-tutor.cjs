@@ -4,7 +4,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
-  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill} = c;
+  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -293,8 +293,56 @@ const claudeDir = path.join(claudeStage, skillName);
 fs.cpSync(path.join(stage, 'skills', skillName), claudeDir, {recursive: true});
 fs.writeFileSync(path.join(claudeDir, 'SKILL.md'), claudeSkill(read(path.join(claudeDir, 'SKILL.md'))), 'utf8');
 
+// Gemini skill upload: the Claude folder without SVG files (Gemini limits the
+// file count), web links instead of images and a generated figure register.
+const geminiStage = path.join(work, 'gemini');
+const geminiDir = path.join(geminiStage, skillName);
+const geminiRefs = path.join(geminiDir, 'references');
+fs.cpSync(claudeDir, geminiDir, {recursive: true});
+fs.rmSync(path.join(geminiRefs, 'assets'), {recursive: true});
+fs.writeFileSync(path.join(geminiDir, 'SKILL.md'), geminiSkill(read(path.join(geminiDir, 'SKILL.md'))), 'utf8');
+const figures = [];
+for (const d of exported.filter(d => d.kind === 'chapter')) {
+  const webPage = `${web}quarto/${d.id}.html`;
+  const file = path.join(geminiRefs, d.output);
+  const {markdown, ids} = withoutImages(read(file), webPage);
+  fs.writeFileSync(file, markdown, 'utf8');
+  const blocks = nodes(d.out.blocks, 'Div').filter(div => div.c[0][0].startsWith('fig-') && nodes(div.c[1], 'Image').length);
+  assert.deepEqual(ids, blocks.map(div => div.c[0][0]), `${d.id}: figure blocks and replaced images`);
+  for (const div of blocks) {
+    const images = nodes(div.c[1], 'Image');
+    assert.equal(images.length, 1, `${d.id}/${div.c[0][0]}: one image per figure`);
+    const record = idMap.get(div.c[0][0]).find(r => r.doc.id === d.id);
+    const alt = images[0].c[0][2].find(([key]) => key === 'fig-alt')?.[1];
+    assert(record?.number && alt, `${d.id}/${div.c[0][0]}: number and text description`);
+    figures.push({chapter: d, id: div.c[0][0], number: record.number, caption: text(images[0].c[1]), alt, web: `${webPage}#${div.c[0][0]}`});
+  }
+}
+assert.equal(figures.length, nodes(exported.filter(d => d.kind === 'chapter').map(d => d.out.blocks), 'Image').length,
+  'Every chapter image has a register entry');
+const register = ['# Rejstřík obrázků učebnice', '',
+  'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a odkaz na obrázek ve webové učebnici.', ''];
+for (const d of exported.filter(d => d.kind === 'chapter')) {
+  register.push(`## ${d.number}. ${d.title} {#obrazky-${d.id}}`, '');
+  for (const f of figures.filter(f => f.chapter === d)) {
+    register.push(`### Obrázek ${f.number}: ${f.caption} {#${f.id}}`, '',
+      `Textový popis: ${f.alt}`, '',
+      `[V kapitole](${d.output}#${f.id}) · [Ve webové učebnici](${f.web})`, '');
+  }
+}
+fs.writeFileSync(path.join(geminiRefs, 'obrazky.md'), register.join('\n'), 'utf8');
+fs.appendFileSync(path.join(geminiRefs, 'INDEX.md'),
+  '\n## Obrázky\n\n[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis a webový odkaz ke každému obrázku; soubory obrázků nejsou přibalené.\n', 'utf8');
+const geminiCatalog = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
+geminiCatalog.images = 'web_only';
+for (const chapter of geminiCatalog.chapters.filter(c => c.availability === 'bundled')) {
+  chapter.sha256 = hash(path.join(geminiRefs, chapter.path));
+}
+geminiCatalog.figures = {path: 'obrazky.md', count: figures.length, sha256: hash(path.join(geminiRefs, 'obrazky.md'))};
+fs.writeFileSync(path.join(geminiRefs, 'KAPITOLY.json'), JSON.stringify(geminiCatalog, null, 2) + '\n', 'utf8');
+
 // Validate the complete staged packages before replacing a previous release artifact.
-const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--quarto', q]));
+const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--quarto', q]));
 console.log(JSON.stringify(validation));
 for (const [file, digest] of Object.entries(inputs)) assert.equal(hash(path.join(root, file)), digest, `Input changed during export: ${file}`);
 for (const [output, input] of assetFiles) assert.equal(hash(path.join(refs, output)), hash(input));
@@ -322,19 +370,33 @@ const claudeArchiveName = `${skillName}-claude-${version}.zip`;
 const claudeStageArchive = path.join(work, claudeArchiveName);
 const claudeInventory = zipDirectory(claudeStage, claudeStageArchive);
 assert(claudeInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Claude archive must have one skill folder at its root');
+const geminiArchiveName = `${skillName}-gemini-${version}.zip`;
+const geminiStageArchive = path.join(work, geminiArchiveName);
+const geminiInventory = zipDirectory(geminiStage, geminiStageArchive);
+assert(geminiInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Gemini archive must have one skill folder at its root');
 const report = {version, source_revision: sourceRevision, source_dirty: sourceDirty, date: stamp, package_directory: stage,
   files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
   overview_entries: catalog.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
   images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive),
-  claude: {skill_directory: claudeDir, files: claudeInventory, archive_sha256: hash(claudeStageArchive)}};
+  claude: {skill_directory: claudeDir, files: claudeInventory, archive_sha256: hash(claudeStageArchive)},
+  gemini: {skill_directory: geminiDir, files: geminiInventory, figures: figures.length, archive_sha256: hash(geminiStageArchive)}};
 fs.writeFileSync(path.join(work, 'inventory.json'), JSON.stringify(report, null, 2) + '\n');
-const output = path.join(root, 'output/tutor');
-fs.mkdirSync(output, {recursive: true});
-const archive = path.join(output, `${name}-${version}.zip`);
-const claudeArchive = path.join(output, claudeArchiveName);
+// Finished packages live in ai-tutor/<platform>/; the shared report sits in ai-tutor/.
+const output = path.join(root, 'ai-tutor');
+const target = platform => {
+  const dir = path.join(output, platform);
+  fs.mkdirSync(dir, {recursive: true});
+  return dir;
+};
+const archive = path.join(target('chatgpt'), `${name}-${version}.zip`);
+const claudeArchive = path.join(target('claude'), claudeArchiveName);
+const geminiArchive = path.join(target('gemini'), geminiArchiveName);
 fs.copyFileSync(stageArchive, archive);
 fs.copyFileSync(claudeStageArchive, claudeArchive);
+fs.copyFileSync(geminiStageArchive, geminiArchive);
 report.claude.archive = claudeArchive;
+report.gemini.archive = geminiArchive;
 fs.writeFileSync(path.join(output, 'overeni.json'), JSON.stringify({...report, archive}, null, 2) + '\n');
-console.log(JSON.stringify({archive, claudeArchive, package: stage, version, chapters: report.chapters,
+console.log(JSON.stringify({archive, claudeArchive, geminiArchive, geminiFiles: geminiInventory.length, figures: figures.length,
+  package: stage, version, chapters: report.chapters,
   overviews: report.overview_entries, images: report.images, citations: report.citations}, null, 2));
