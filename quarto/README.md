@@ -1,5 +1,75 @@
 # Autorská dokumentace
 
+## 2026-11-04 — AI tutor 0.3.2: aktivace a zahajovací prompty
+
+Na výslovnou žádost autora upraven existující plugin, v návaznosti na
+hlášené selhání aktivace při prvním spuštění.
+Popis dovednosti nyní začíná situacemi použití: zahájení studia, výběr
+kapitoly, režimu a rozsahu i výslovné oslovení tutora. Všechny tři úvodní
+prompty žádají načtení nainstalovaného SKILL.md, katalogu a referencí;
+zachovávají původní účel studia, sokratovského vedení a zkoušení.
+V hlavním skillu zpřesněno čtení instalovaných souborů a postup při výpadku:
+správa pluginů ani starší chat nenahrazují čtení dovednosti, bez katalogu
+se nabídka kapitol neodhaduje. Způsob výuky, cvičení, zkoušení, značení
+a vizualizace od oddílu „Způsoby studia“ dále obsahově nezměněny.
+
+Postup vychází také z [oficiálního popisu aktivace dovedností](https://learn.chatgpt.com/docs/build-skills#how-chatgpt-and-codex-use-skills):
+stručná metadata slouží k výběru, úplné instrukce se čtou následně.
+Jde o opatření pro spolehlivější výběr, nikoli záruku aktivace.
+[Regresní sada](../scripts/tutor/smoke-prompts.md#regrese-aktivace-nainstalované-dovednosti)
+rozlišuje důkaz použití dovednosti, věcnou shodu odpovědi a chyby klienta.
+
+Export `node scripts/export-tutor.cjs --skip-figures` úspěšný: šest kapitol,
+šest plánů, osm položek katalogu, 417 hesel přehledů, 1 426 matematických
+zápisů, 97 obrázků, 72 řešení, 53 bibliografických položek a 2 189 odkazů.
+Kontrola dokumentačních map prošla. Limit velikosti hlavního skillu
+v kontrole zvýšen ze 14 na 16 kB pro cílené doplnění načítání.
+Porovnání archivů potvrdilo zachování textů kapitol a obrázků; změny plánů
+a indexu jsou omezené na verzi, datum a revizi zdroje. Další reference se
+liší pouze konci řádků. Registry zachovávají obsahové otisky podkladů.
+
+Archiv `output/tutor/statistika-pro-psychology-ai-tutor-0.3.2.zip` nahrán
+do původního osobního soukromého pluginu
+`Plugin_f0a6ddcaadfc8191a5009ff162276308` s kontrolou předchozího vydání
+`pluginrel_6aea16af96fc81918f8ac71b742140da`. Nové vydání:
+`pluginrel_6aeb3322790881919270be138090136a`. Zpětně načtené oba manifesty
+a SKILL.md odpovídají kandidátovi. Identita, přístup, ostatní metadata
+i tři účely promptů zachovány; nové prompty a verze ověřeny také v UI
+po obnovení stránky. Zdroj při exportu obsahoval necommitované úpravy;
+otisky zachycuje místní `output/tutor/overeni.json`.
+
+Testováno v ChatGPT na webu v Brave, režim Chat, bez příloh. Rozhraní
+ukazovalo intenzitu přemýšlení „Střední“, přesný název modelu nezobrazilo;
+nebyl odhadován. Kliknutí na úvodní prompt nejprve otevřelo Work;
+před testováním použito přepnutí do Chat. Pro tento klientský výchozí režim
+balíček nezavádí novou konfiguraci.
+
+- Zahájení studia:
+  správné úplné názvy kapitol 4 a 6, verze 0.3.2 a dostupnost kapitol 1–6
+  oproti 7–8. Panel Zdroje → Skilly ukázal použitý `statistika-tutor`
+  s novým popisem a instrukcemi, což dokládá aktivaci nezávisle na tvrzení
+  v odpovědi. Samotné operace čtení jednotlivých referencí rozhraní neukázalo.
+  Tutor nabídl více voleb současně; dodržení postupného průvodce tedy není
+  tímto pokusem prokázáno.
+- Sokratovské vedení:
+  uložená první odpověď uvádí aktuální verzi a žádá jen téma či zadání.
+  Po volbě cvičení 3.1 následovala jediná otázka na modus, bez řešení,
+  s přesnými daty 3, 4, 4, 5, 6, 20 minut; nezávisle porovnáno s QMD.
+  Webový klient však zobrazil „Tuto odpověď se nepodařilo načíst“, také
+  po obnovení stránky. Obsah ověřen čtením uloženého chatu, nikoli vydáván
+  za bezchybné vykreslení. Přímé čtení jednotlivých referencí nepozorováno.
+- Zkoušení:
+  uložená první odpověď zachovala zvolený režim, aktuální verzi, hranici
+  přibalených kapitol, výběr rozsahu a dohodu o počtu otázek a zpětné vazbě.
+  Také zde nastala chyba zobrazení; kontrola uloženého textu není kontrolou
+  fungování všech ovladačů. Opakované načtení odpovědi testováno samostatně.
+
+Neproveden experiment s opakovanými nezávislými pokusy ani srovnání
+úspěšnosti proti 0.3.1. Neotestována skutečně nedostupná reference,
+automatický výběr bez označení pluginu ani ostatní klienti či studentské účty.
+Chyba vykreslení není důkazem selhání aktivace ani důkazem chyby balíčku;
+její příčina zůstává neověřená. Interní test není ověřením na studentech.
+
 ## 2026-11-03 — Nahrání AI tutora 0.3.1 do existujícího pluginu
 
 Na výslovný pokyn autora aktualizován původní soukromý osobní plugin
