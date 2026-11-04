@@ -1,5 +1,50 @@
 # Autorská dokumentace
 
+## 2026-11-04 — AI tutor 0.3.3: krátké zahajovací prompty pro Desktop
+
+Po autorově hlášení, že Desktop u verze 0.3.2 nezobrazuje zahajovací
+volby, realizován schválený plán jejich zkrácení. Oba manifesty obsahují
+ve stejném pořadí tři nové prompty o 82, 85 a 88 znacích. Každý zachovává
+pokyn načíst SKILL.md tutora a katalog; podrobnosti načítání zůstávají
+v nezměněném skillu. Aktivační popis, identita a ostatní funkce zachovány.
+Kontrola nově vyžaduje nejvýše 100 znaků na prompt; jde o preventivní
+autorské pravidlo, nikoli doložený limit Desktopu. Rozšířena
+[testovací sada](../scripts/tutor/smoke-prompts.md#regrese-aktivace-nainstalované-dovednosti)
+o zobrazení voleb a kontrolu vloženého textu zvlášť na Desktopu a webu.
+
+Export `node scripts/export-tutor.cjs --skip-figures` prošel: šest kapitol,
+šest plánů, osm položek katalogu, 417 hesel, 1 426 matematických zápisů,
+97 obrázků, 72 řešení, 53 bibliografických položek a 2 189 odkazů.
+Porovnání s archivem 0.3.2 potvrdilo zachování SKILL.md, ostatních
+referencí, výkladu a obrázků po bajtech mimo generovaný index, registr
+a plány s metadaty vydání. Zdroj při exportu obsahoval necommitované
+úpravy; revizi a otisky zachycuje místní `output/tutor/overeni.json`.
+
+Archiv `output/tutor/statistika-pro-psychology-ai-tutor-0.3.3.zip` nahrán
+do původního osobního soukromého pluginu
+`Plugin_f0a6ddcaadfc8191a5009ff162276308` s kontrolou předchozího vydání.
+Nové vydání: `pluginrel_6aeb37efc56c8191ae69087ee1b3e675`.
+Zpětně načtené oba manifesty a nezměněný skill odpovídají kandidátovi.
+
+Agent na Windows Desktopu ověřil detail verze 0.3.3 se všemi třemi
+viditelnými volbami. První volba vložila přesný text s označeným pluginem
+a zahájila nový chat; odpověď uvedla aktuální verzi a správné úplné názvy
+kapitol 4 a 6 i hranici přibalených kapitol 1–6. Rozhraní ukazovalo
+„Zeptat se ChatGPT“ a intenzitu „Střední“; přesný model nebyl zjištěn.
+Jednotlivé operace čtení referencí ani panel dokazující aktivaci dovednosti
+v tomto pokusu nezávisle ověřeny nebyly. Další ovládání autor zastavil.
+Následně výslovně sdělil: „Druhou i třetí volbu jsem už ověřil sám.“
+Toto je autorem provedené ověření, nikoli dokončený agentní test těchto
+dvou scénářů; konkrétní odpovědi a načtení podkladů agent nepozoroval.
+
+Na webu v Brave agent po obnovení detailu ověřil všechny tři krátké
+volby, verzi 0.3.3 a správný text vložený první volbou. Webový průvodce
+otevřel Work; prompt nebyl odeslán a nejde o konverzační test Work.
+Desktopové zobrazení po zkrácení podporuje hypotézu o vlivu délky,
+neurčuje však přesný limit ani nevylučuje další vliv obnovení klienta.
+Nejde o test všech klientů, studentských účtů ani statistický důkaz
+spolehlivosti aktivace. Navazuje na již sloučený PR #155.
+
 ## 2026-11-04 — AI tutor 0.3.2: aktivace a zahajovací prompty
 
 Na výslovnou žádost autora upraven existující plugin, v návaznosti na

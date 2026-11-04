@@ -9,13 +9,13 @@
     "logo": "./assets/logo.png",
     "composerIcon": "./assets/logo.png",
     "defaultPrompt": [
-      "Chci začít studovat statistiku pro psychology. Použij nainstalovanou dovednost Statistika pro psychology – AI tutor: nejprve načti její SKILL.md, katalog a předepsané reference učebnice. Potom mi pomoz vybrat kapitolu, způsob práce a rozsah. Názvy a dostupnost kapitol ověř v katalogu; pokud jej nelze přečíst, nabídku neodhaduj.",
-      "Veď mě sokratovsky při řešení statistické úlohy, vždy jednou otázkou. Použij nainstalovanou dovednost Statistika pro psychology – AI tutor: nejprve načti její SKILL.md, katalog a předepsané reference učebnice. Zjisti jen chybějící téma nebo zadání; před vedením načti příslušný výukový plán a výklad, u cvičení i řešení jako skrytý kontrolní klíč. Řešení mi předem neprozrazuj.",
-      "Vyzkoušej mě z tématu, které si zvolím. Použij nainstalovanou dovednost Statistika pro psychology – AI tutor: nejprve načti její SKILL.md, katalog a předepsané reference učebnice. Pomoz mi vybrat téma a rozsah podle dostupných podkladů. Před zkoušením načti příslušný výukový plán, výklad a pravidla otázek a zkoušení; dohodni se mnou podmínky a řešení předem neprozrazuj."
+      "Načti SKILL.md tutora a katalog. Pomoz mi vybrat kapitolu, způsob a rozsah studia.",
+      "Načti SKILL.md tutora a katalog. Veď mě při řešení úlohy sokratovsky, jednou otázkou.",
+      "Načti SKILL.md tutora a katalog. Vyzkoušej mě ze zvoleného tématu podle pravidel tutora."
     ]
   },
   "name": "statistika-pro-psychology-ai-tutor",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Český adaptivní tutor základů statistiky pro psychology. Vysvětlování, sokratovské vedení, procvičování a formativní zkoušení se zdroji a přiznanými mezerami.",
   "author": {
     "name": "Karel Rečka"
