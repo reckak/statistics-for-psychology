@@ -16,6 +16,36 @@ doklad [R64](../docs/rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru)
 a řádek registru. Oddíly o složce `ai-tutor/` a variantě Gemini popisují
 stav po sloučení PR #159; postup nahrání do Gemini zatím ověřen není.
 
+## 2026-11-04 — AI tutor 0.3.4: skill pro Gemini a složka ai-tutor/
+
+Autor hlásil, že Gemini odmítá skill: „Složka dovednosti obsahuje příliš
+mnoho souborů.“ Skill měl 125 souborů, z toho 97 SVG. Podle schváleného
+plánu export nově vytváří třetí archiv
+`ai-tutor/gemini/statistika-tutor-gemini-0.3.4.zip` (29 souborů, 448 kB):
+Claude složka bez SVG, v kapitolách odkaz na obrázek ve webové učebnici
+místo řádku obrázku, generovaný rejstřík `references/obrazky.md`
+(97 obrázků s číslem, popiskem, textovým popisem a odkazy) a jedna věta
+v SKILL.md jen této varianty. Verze zůstává 0.3.4: archivy pro ChatGPT
+a Claude se od předchozího exportu 0.3.4 liší pouze revizí zdroje
+v plánech a registru (porovnány otisky všech členů).
+
+Hotové balíčky jsou nově v hlavní ignorované složce `ai-tutor/`
+s podsložkami `chatgpt/`, `claude/`, `gemini/` a společným `overeni.json`.
+Celý dosavadní obsah `output/tutor/` (32 souborů včetně archivů 0.2.0–0.3.4,
+záznamů rozhovorů a snímků) přesunut beze změny: ChatGPT do `chatgpt/`,
+Claude archivy do `claude/`, `overeni.json` do kořene; počet souborů
+i bajtů ověřen, prázdná `output/tutor/` odstraněna. Starší záznamy této
+historie uvádějí původní cesty `output/tutor/`. Nový export přepsal
+přesunuté archivy 0.3.4 a `overeni.json` týmž obsahem s novou revizí.
+
+Export `--skip-figures` a kontrola prošly pro všechny tři varianty;
+Gemini kontrola: 29 souborů, 97 obrázků, 1 904 místních odkazů.
+Negativní kontroly odmítly kopii s ponechaným SVG, se 101 soubory
+a s odstraněným textovým popisem. Všech 97 webových kotev `fig-…`
+existuje ve vykresleném `_book/` (render z 2026-11-01).
+
+Neověřeno: nahrání do Gemini a chování tutora tam; skutečný limit Gemini.
+
 ## 2026-11-04 — AI tutor 0.3.4: skill pro Claude
 
 Na žádost autora a podle schváleného plánu přidán do exportu druhý archiv

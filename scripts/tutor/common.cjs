@@ -80,6 +80,32 @@ function claudeSkill(skill) {
   // A JSON string is a valid YAML double-quoted scalar.
   return `---\nname: ${meta.name}\ndescription: ${JSON.stringify(meta.description)}\n---\n${body}`;
 }
+// Gemini rejects skill folders with too many files, so its variant ships no SVG.
+// Each figure keeps its numbered caption and text description; the image line
+// becomes a link to the same figure in the web book.
+const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.svg\)(\{.*\})?$/;
+const figureOpen = /^:{3,} \{#(fig-[^\s}]+)/;
+function withoutImages(markdown, webPage) {
+  const ids = [];
+  let current = null;
+  const lines = markdown.split('\n').map(line => {
+    const open = line.match(figureOpen);
+    if (open) current = open[1];
+    if (!imageLine.test(line)) return line;
+    if (!current) throw new Error(`Image outside a figure block: ${line.slice(0, 120)}`);
+    ids.push(current);
+    const replaced = `[Obrázek ve webové učebnici](${webPage}#${current})`;
+    current = null;
+    return replaced;
+  });
+  return {markdown: lines.join('\n'), ids};
+}
+const geminiNote = 'Soubory obrázků učebnice v této verzi přibalené nejsou: obrázek dohledej v [rejstříku obrázků](references/obrazky.md), vycházej z jeho textového popisu a studentovi nabídni odkaz na obrázek ve webové učebnici.';
+const geminiAnchor = 'Stručná odpověď může zůstat slovní, případně využít obrázek učebnice.';
+function geminiSkill(claudeText) {
+  if (claudeText.split(geminiAnchor).length !== 2) throw new Error('Gemini note anchor not found exactly once in SKILL.md');
+  return claudeText.replace(geminiAnchor, `${geminiAnchor} ${geminiNote}`);
+}
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
 const link = (label, target) => ({t: 'Link', c: [['', [], []], [str(label)], [target, '']]});
@@ -93,4 +119,4 @@ const documents = [
 ];
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
-  skillName, splitSkill, claudeSkill};
+  skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote};

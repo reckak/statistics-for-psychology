@@ -10,6 +10,11 @@ Tam místo vybraného pluginu ověř, že je skill zapnutý v Customize → Skil
 a test zaznamenej odděleně od ChatGPT. Zahajovací volby z manifestu Claude
 nezobrazuje; aktivaci zkoušej běžným dotazem, např. „Chci studovat statistiku“.
 
+V Gemini (archiv `statistika-tutor-gemini-<verze>.zip`) nejsou soubory obrázků.
+Navíc ověř dotaz na konkrétní obrázek, např. „Co ukazuje obrázek 6.1?“:
+tutor má vyjít z rejstříku `obrazky.md` a textového popisu, nevymýšlet
+podrobnosti nad popis a nabídnout odkaz na obrázek ve webové učebnici.
+
 ## Začátek, střed a konec každé kapitoly
 
 Každou trojici lze zadat jako jeden přehledně označený test načítání zdrojů.
