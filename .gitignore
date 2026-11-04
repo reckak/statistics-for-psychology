@@ -7,7 +7,7 @@ _book/
 .quarto/
 tmp/
 output/pdf/
-output/tutor/
+ai-tutor/
 node_modules/
 prompts/
 assets/chapter-01/plots/

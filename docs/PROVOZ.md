@@ -225,10 +225,15 @@ Sestavení vzniká v nové pomocné složce pod `tmp/`. Před nahrazením cílov
 archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
 ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
 
-- `output/tutor/statistika-pro-psychology-ai-tutor-<verze>.zip` — instalační archiv;
-- `output/tutor/statistika-tutor-claude-<verze>.zip` — týž skill pro Claude;
-- `output/tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů obou
+- `ai-tutor/chatgpt/statistika-pro-psychology-ai-tutor-<verze>.zip` — plugin pro ChatGPT;
+- `ai-tutor/claude/statistika-tutor-claude-<verze>.zip` — týž skill pro Claude;
+- `ai-tutor/gemini/statistika-tutor-gemini-<verze>.zip` — skill pro Gemini bez souborů obrázků;
+- `ai-tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů tří
   archivů, počty obsahu a cesty k ověřeným rozbaleným podobám.
+
+Složka `ai-tutor/` je ignorovaná Gitem; podsložky platforem uchovávají také
+starší archivy a místní záznamy testů. Do 2026-11-04 byly tyto výstupy
+v `output/tutor/`; starší záznamy historie uvádějí původní cesty.
 
 Archiv pro Claude má v kořeni jedinou složku `statistika-tutor/` (název musí
 odpovídat poli `name`) se stejnými soubory jako skill pluginu. Liší se jen
@@ -240,6 +245,21 @@ mimo jeho složku. Nahrání: claude.ai → Customize → Skills → + → Uploa
 vyžaduje zapnuté spouštění kódu. Novou verzi skillu je třeba nahrát znovu;
 mimo plány Team a Enterprise nahrává archiv každý student sám. Číselný limit
 velikosti nápověda Claude neuvádí, ověřte jej skutečným nahráním.
+
+Gemini odmítl skill se 125 soubory („Složka dovednosti obsahuje příliš mnoho
+souborů“); přesný limit Google nezveřejňuje, komunitní zdroj uvádí 100.
+Archiv pro Gemini proto vzniká z Claude složky bez `references/assets/`
+(97 SVG, z nichž model nevyčte ani popisky, protože písmena jsou křivky).
+V kapitolách nahradí řádek obrázku odkazem na tentýž obrázek ve webové
+učebnici; číslovaný popisek a „Textový popis obrázku“ zůstávají. Navíc
+obsahuje generovaný `references/obrazky.md` s číslem, popiskem, textovým
+popisem a odkazy ke každému obrázku, odkaz z `INDEX.md`, upravené otisky
+v `KAPITOLY.json` (`images: "web_only"`) a jednu větu v SKILL.md o práci
+bez přibalených obrázků. Podrobnější popis obrázku patří do `fig-alt`
+ve zdrojové kapitole, nikoli do ručně psaného souboru. Kontrola hlídá
+nejvýše 100 souborů, žádné SVG, změny kapitol jen na řádcích obrázků,
+zachování všech textových popisů, úplnost rejstříku a místní odkazy.
+Nahrání do Gemini a jeho omezení zatím nejsou ověřeny.
 
 Samostatné opakování kontroly posledního exportu:
 
