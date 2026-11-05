@@ -613,3 +613,18 @@ stanovit pomocí input boxu s celým číslem od 1 do 100 a případně šipkami
 Upravený plán (umístění, členění, blok „Vyzkoušejte si“, technika, pravidla
 a pilot) téhož dne schválil. Pilot je realizací tohoto rozhodnutí; jeho
 ověření eviduje [autorská historie](../../quarto/README.md).
+
+### Upřesnění 2026-11-05 — Podoba pilotní vizualizace
+
+Po sloučení pilotu autor požadoval: odstranit tlačítko „Zkopírovat do
+schránky“, zvětšit panely, otočit popisek osy y svisle na střed, zadávat
+počet nových losů číslem 1–1000 jako velikost výběru, omezit celkový počet
+opakování na 100 000 se zprávou po dosažení stropu, vyznačit u populace i σ,
+doplnit nad body posledního výběru empirický odhad hustoty, nabídnout více
+populací se stejnými μ a σ a různým zešikmením („od mírného (to už tam je),
+po střední, až po extrémní“) a přidat poslední řádek se dvěma normálními
+Q–Q grafy, pro poslední výběr a pro dosavadní průměry. Na doplňující otázky
+zvolil popisné pojmenování odhadu hustoty bez nového termínu („Odhad hustoty
+z výběru“, žádné heslo ve slovníčku) a čtyři populace včetně souměrné.
+Upravený plán téhož dne schválil. Odhad hustoty tím není zaveden jako pojem
+učebnice; jeho případné zavedení by vyžadovalo samostatnou dohodu.
