@@ -151,6 +151,8 @@ function rewriteTarget(target, d) {
   }
   const page = path.basename(part).replace(/\.(qmd|html)$/, '');
   if (pages.has(page)) return targetFor(d, pages.get(page), fragment);
+  // Interactive visualizations are not bundled; they work only on the web.
+  if (/^viz_[a-z0-9_]+$/.test(page) && fs.existsSync(path.join(root, 'quarto', `${page}.qmd`))) return `${web}quarto/${page}.html${fragment ? '#' + fragment : ''}`;
   if (/\.xlsx$/i.test(part) && /(?:^|\/)data\//.test(part)) return `${web}data/${path.basename(part)}`;
   if (/\.md$/.test(part)) return target; // Already rewritten cross-reference.
   throw new Error(`${d.source || d.id}: unhandled relative link ${target}`);

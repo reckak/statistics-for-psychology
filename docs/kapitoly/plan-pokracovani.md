@@ -30,6 +30,19 @@ korelace, bayesovské testování, plánování velikosti výběru, interval pro
 Cohenovo d a test minimálního účinku. Podklady k nim eviduje
 [mapa zdrojů](../ZDROJE.md); jejich zmínka zde není schválením tématu ani pořadí.
 
+<a id="plan-vizualizace"></a>
+
+**Interaktivní vizualizace — otevřený návrh, neschváleno.** Část a pilot
+zavádí [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace);
+každou další vizualizaci je třeba schválit zvlášť, až po vyhodnocení pilotu.
+Náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
+hodnoty na průměr, medián a směrodatnou odchylku; kap. 4 z-skór a plocha
+pod normální křivkou oběma směry; kap. 5 binomické rozdělení a jeho normální
+aproximace, Bayesova věta na mřížce; kap. 6 centrální limitní věta zvlášť
+a chyby rozhodnutí se silou testu; kap. 7 pokrytí intervalů spolehlivosti,
+t a normální rozdělení podle stupňů volnosti, pásmo ekvivalence; kap. 8
+přínos párování a interval rozdílu vedle dvou intervalů.
+
 **Historický stav k 2026-10-17** (původní znění je v Gitu): po kapitole 7
 nebyl schválen žádný plán; párový t-test a t-test pro dva nezávislé výběry
 byly uvedeny mezi tématy bez schváleného umístění.

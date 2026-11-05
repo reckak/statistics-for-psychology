@@ -158,6 +158,21 @@ a kontroly mincí (Wainer) a příklad branců (Uttsová).
 | [Stejný rozdíl při dvou velikostech výběru](../../quarto/kapitola_06.qmd#fig-stejny-rozdil) | Velikost účinku versus statistická významnost. |
 | [Dva testy](../../quarto/kapitola_06.qmd#fig-dva-testy) | Diskrétní a spojitá testová statistika se stejnou logikou. |
 
+<a id="interaktivni-vizualizace-06"></a>
+
+**Interaktivní vizualizace (2026-11-05, [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):**
+na konci oddílu [simulace průměrů](../../quarto/kapitola_06.qmd#sec-simulace-prumeru)
+odkazuje blok „Vyzkoušejte si: výběrové rozdělení průměru“ na stránku
+[Výběrové rozdělení průměru](../../quarto/viz_vyberove_rozdeleni_prumeru.qmd).
+Používá týž výukový model (gama, μ = 35 s, σ = 15 s) a nechá studenta
+losovat výběry s *n* 1–100, sledovat střed, šířku (simulovaná SD průměrů
+vedle σ/√*n*) a tvar s volitelným normálním modelem; čtyři úkoly
+„Vyzkoušejte si“ míří na šířku, čtyřnásobný výběr, rozdíl velikosti výběru
+a počtu opakování a centrální limitní větu. Vizualizace jen opakuje
+učivo oddílů 6.3–6.5 (simulace, směrodatná chyba, centrální limitní věta),
+nezavádí pojmy a není samostatným cvičením. Kontrola souladu s textem
+oddílů 6.3–6.5: 2026-11-05; ostatní části karty se nemění.
+
 <a id="cvičení-a-očekávané-dovednosti-5"></a>
 
 ### Cvičení a očekávané dovednosti

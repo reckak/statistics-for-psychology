@@ -239,6 +239,10 @@ Na obrázku [-@fig-prumery-simulace] je každá hodnota na ose opět průměrem 
 
 Simulace je náš výpočet a má konečnou přesnost. Kdyby počítač losoval znovu, vyšla by čísla 34,97 nebo 6,77 o něco jinak. Hodnoty, které uvádíme, proto čtěte jako přibližný obraz výběrového rozdělení, ne jako přesné konstanty. Všech 10 000 simulovaných průměrů pro každou velikost výběru najdete v sešitu na listu `Sim_prumery`.
 
+::: {.callout-tip title="Vyzkoušejte si: výběrové rozdělení průměru"}
+V [interaktivní vizualizaci](viz_vyberove_rozdeleni_prumeru.qmd) můžete sami losovat výběry z téhož výukového modelu, měnit velikost výběru a počet opakování a sledovat, jak se mění šířka i tvar rozdělení průměrů.
+:::
+
 ## Směrodatná chyba: jak moc se průměry různí {#sec-smerodatna-chyba}
 
 Jak široké je výběrové rozdělení průměru a na čem jeho šířka závisí? Tento oddíl zavádí směrodatnou chybu a zákon velkých čísel a odlišuje pojmy, které se snadno pletou.
