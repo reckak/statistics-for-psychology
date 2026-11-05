@@ -78,6 +78,8 @@ try {
         # Raw HTML reference tables reach the filter as one block.
         $source = $source.Replace("<!--| quarto-html-table-processing: none -->`n", '')
         $source = [regex]::Replace($source, '(?s)(<table .*?</table>)', "``````{=html}`n`$1`n``````")
+        # Interactive visualizations exist only on the web, so the PDF links there.
+        $source = [regex]::Replace($source, '\]\((viz_[a-z0-9_]+)\.qmd(#[^)\s]*)?\)', '](https://reckak.github.io/statistics-for-psychology/quarto/$1.html$2)')
         $source.TrimEnd() + "`n"
     }
     [IO.File]::WriteAllText("$build/quarto/kniha.qmd", ($parts -join "`n"), $utf8)

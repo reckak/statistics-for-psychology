@@ -600,13 +600,15 @@ const server = http.createServer((req, res) => {
     await page.goto(base+'quarto/kapitola_02.html',{waitUntil:'networkidle'});
     const sidebar=page.locator('#quarto-sidebar');
     const groups=sidebar.locator('.sidebar-item-section');
-    assert.equal(await groups.count(),2,'Two sidebar groups');
+    assert.equal(await groups.count(),3,'Three sidebar groups');
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
-    assert.match(await groups.nth(1).innerText(),/Literatura a přehledy/);
+    assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
+    assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.equal(await groups.nth(1).locator('a.sidebar-item-text[href]').count(),4);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Výběrové rozdělení průměru']);
+    assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
+    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
     for (const group of await groups.all()) {
       const toggle=group.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
       const body=group.locator('ul.sidebar-section');
@@ -622,7 +624,7 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:390,height:844});
     await page.locator('header .quarto-btn-toggle').click();
     await sidebar.waitFor({state:'visible'});
-    const mobileGroup=groups.nth(1);
+    const mobileGroup=groups.nth(2);
     const mobileToggle=mobileGroup.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
     await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'hidden'});
     await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'visible'});
@@ -633,6 +635,53 @@ const server = http.createServer((req, res) => {
     assert(await page.locator('#refs').isVisible());
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await page.setViewportSize({width:1360,height:1000});
+
+    // Interactive visualization: renders without code, draws, validates n and fits a phone screen.
+    await page.goto(base + 'quarto/viz_vyberove_rozdeleni_prumeru.html', { waitUntil: 'networkidle' });
+    const viz = page.locator('#viz-vyberove-rozdeleni-prumeru');
+    await viz.locator('svg').nth(2).waitFor();
+    assert.equal(await viz.locator('.viz-plots svg').count(), 3, 'Three visualization panels');
+    // Quarto keeps the OJS source in a hidden .cell-code block; it must never become visible.
+    assert.equal(await page.locator('pre.sourceCode:visible, .observablehq--error').count(), 0, 'Visualization code or OJS error visible');
+    const vizState = () => viz.evaluate(el => el.vizCheck.state());
+    // Population density against R: dgamma(c(29, 60), shape = (35/15)^2, scale = 15^2/35).
+    const density = await viz.evaluate(el => [29, 60].map(el.vizCheck.gammaPdf));
+    assert(Math.abs(density[0] - 0.0288763555) < 1e-9 && Math.abs(density[1] - 0.0058833633) < 1e-9, 'Gamma density');
+    const nInput = viz.locator('#viz-vrp-n');
+    assert.equal((await vizState()).means.length, 1);
+    await viz.getByRole('button', { name: 'Vylosovat 1 000 výběrů' }).click();
+    assert.equal((await vizState()).means.length, 1001);
+    for (const bad of ['0', '101', '2.5']) {
+      await nInput.fill(bad); await nInput.dispatchEvent('change');
+      assert.equal(await nInput.getAttribute('aria-invalid'), 'true', `Rejected n = ${bad}`);
+      assert(await viz.locator('#viz-vrp-n-error').isVisible());
+      assert.equal((await vizState()).n, 30);
+    }
+    await nInput.fill('100'); await nInput.dispatchEvent('change');
+    let vs = await vizState();
+    assert.equal(vs.n, 100); assert.equal(vs.means.length, 1); assert.equal(vs.sample.length, 100);
+    assert.equal(await nInput.getAttribute('aria-invalid'), 'false');
+    await nInput.focus(); await page.keyboard.press('ArrowUp');
+    assert.equal((await vizState()).n, 100, 'Arrow cannot exceed 100');
+    await page.keyboard.press('ArrowDown');
+    assert.equal((await vizState()).n, 99, 'Arrow decreases n');
+    await nInput.fill('1'); await nInput.dispatchEvent('change');
+    vs = await vizState(); assert.equal(vs.n, 1); assert.equal(vs.sample.length, 1); assert.equal(vs.means[0], vs.sample[0]);
+    await viz.getByRole('button', { name: 'Vylosovat 1 výběr' }).focus(); await page.keyboard.press('Enter');
+    assert.equal((await vizState()).means.length, 2, 'Keyboard draw');
+    await viz.locator('#viz-vrp-normal').check();
+    assert.equal(await viz.locator('.viz-plots svg').nth(2).locator('[stroke-dasharray]').count() > 0, true, 'Normal model curve');
+    await viz.getByRole('button', { name: 'Začít znovu' }).click();
+    assert.equal((await vizState()).means.length, 1);
+    assert.match(await page.locator('main').innerText(), /Poslední výběr: 1 řidič(?!\p{L})/u);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await viz.locator('svg').nth(2).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Visualization fits a phone');
+    await viz.screenshot({path:'tmp/verification/viz-vyberove-rozdeleni-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_06.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_vyberove_rozdeleni_prumeru.html"]').count(), 1, 'Chapter 6 links to the visualization');
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

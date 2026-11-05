@@ -93,3 +93,27 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 @media (max-width: 600px) {
   #tbl-k08-01 :is(th, td), #tbl-k08-08 :is(th, td) { padding-inline: .35rem; }
 }
+
+/* Interactive visualizations (part "Interaktivní vizualizace"). */
+.viz { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: .9rem 0 .6rem; margin: 1.5rem 0; }
+.viz-controls { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: flex-start; }
+.viz-field { display: flex; flex-direction: column; gap: .2rem; }
+.viz-field input { width: 6.5rem; font: inherit; padding: .3rem .5rem; border: 1px solid #80969e; border-radius: .25rem; color: var(--ink); background: white; }
+.viz-field input[aria-invalid="true"] { border-color: #B54E24; box-shadow: 0 0 0 1px #B54E24; }
+.viz-hint { font-size: .85em; color: #4D5A63; }
+.viz-error { font-size: .85em; color: #9a3a14; max-width: 16rem; }
+.viz-buttons { display: flex; flex-wrap: wrap; gap: .5rem; padding-top: 1.45rem; }
+.viz button { font: inherit; padding: .35rem .75rem; border: 1px solid var(--accent); border-radius: .25rem; background: white; color: var(--accent); }
+.viz button:hover:not(:disabled) { background: #e6f1f2; }
+.viz button:disabled { opacity: .5; cursor: not-allowed; }
+.viz :is(button, input):focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.viz-check { display: flex; gap: .45rem; align-items: center; padding-top: 1.55rem; }
+.viz-check input { width: 1.1rem; height: 1.1rem; }
+.viz-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .35rem 1.25rem; margin: 1rem 0 .25rem; }
+.viz-stats dt { font-weight: normal; font-size: .85em; color: #4D5A63; }
+.viz-stats dd { margin: 0; font-variant-numeric: tabular-nums; }
+.viz-panel-title { font-weight: 600; margin: .9rem 0 0; }
+.viz-plots svg { display: block; max-width: 100%; height: auto; }
+@media (max-width: 600px) {
+  .viz-buttons, .viz-check { padding-top: 0; }
+}

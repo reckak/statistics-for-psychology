@@ -1,5 +1,38 @@
 # Autorská dokumentace
 
+## 2026-11-05 — Část „Interaktivní vizualizace“ a pilot (R65)
+
+Podle schváleného plánu ([R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace))
+přibyla mezi výkladové kapitoly a přehledy část „Interaktivní vizualizace“
+s první stránkou [Výběrové rozdělení průměru](viz_vyberove_rozdeleni_prumeru.qmd)
+(Quarto OJS, Observable Plot, d3). Výukový model a barvy odpovídají
+`scripts/kapitola_06.R`. Kapitola 6 na ni odkazuje blokem „Vyzkoušejte si“
+na konci oddílu o simulaci; jiný text kapitoly se nemění. Rozšířeny
+`check-html.cjs` (tři části menu, kontrola vizualizace), styly `.viz`
+v `assets/styles.css`, převod odkazů `viz_….qmd` na web v
+`scripts/render-book-pdf.ps1` a `scripts/export-tutor.cjs`. Aktualizovány
+AGENTS.md, PROVOZ.md, OSNOVA.md, karta kapitoly 6 a plán pokračování.
+
+Ověřeno: `quarto render` celé knihy; `check-html.cjs` bez chyb (včetně nové
+kontroly vizualizace); `check-chapter-06.R` prošel; `check-doc-maps.cjs`
+bez chyb. Nezávislá kontrola v prohlížeči: hustota modelu se v bodech 5, 10,
+29, 35, 60 a 90 s shoduje s `dgamma` v R na deset desetinných míst, numerický
+integrál na intervalu 0–100 s je 0,99901 jako v R. 10 000 simulovaných průměrů
+dalo pro *n* = 1, 5, 25, 30 a 100 směrodatné odchylky 14,845; 6,746; 3,015;
+2,713 a 1,495 s proti σ/√*n* 15; 6,71; 3; 2,74 a 1,5 s a průměry 34,78–35,04 s;
+podíly standardizovaných průměrů nad 2 a pod −2 odpovídají tabulce
+`tbl-k06-07` v mezích simulace. Snímky desktopu a šířky 375 px prohlédnuty
+(po opravě překryvu popisků os, indexu σ_m a skloňování „1 řidič“); stránka
+nepřetéká. Export tutora (`--skip-figures`) proběhl a v kapitole 6 převedl
+odkaz na webovou adresu; poté byla obnovena předchozí složka `ai-tutor/`,
+takže vydané archivy 0.3.4 se nezměnily.
+
+Neověřeno: ruční PDF nebylo spuštěno (přepis odkazu v `render-book-pdf.ps1`
+ověřen jen na textu kapitoly 6 a syntaxí skriptu); čtečka obrazovky
+nevyzkoušena (ověřeny jen nativní prvky, popisky a `aria-live`); web na
+GitHub Pages a chování bez připojení k CDN nezkoušeny; porozumění studentů
+neověřeno (jen interní didaktická revize).
+
 ## 2026-11-04 — Studentský návod k instalaci AI tutora
 
 Na žádost autora vznikl `ai-tutor/navod.docx` (4 strany A4, mimo Git):

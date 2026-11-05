@@ -65,9 +65,18 @@ a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora) určují použití p
 ## Současné uspořádání
 
 Pořadí určuje [_quarto.yml](../_quarto.yml). [Úvod](../index.qmd) předchází
-osmi výkladovým kapitolám; za nimi je [literatura](../quarto/literatura.qmd)
-a tři výše uvedené přehledy v pořadí slovníček → značení a vzorce → Excel.
-Nové výkladové kapitoly patří před literaturu a přehledy. Čísla v této mapě
+osmi výkladovým kapitolám; za nimi je část „Interaktivní vizualizace“,
+potom [literatura](../quarto/literatura.qmd) a tři výše uvedené přehledy
+v pořadí slovníček → značení a vzorce → Excel. Nové výkladové kapitoly
+patří před vizualizace, literaturu a přehledy.
+
+**Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
+jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
+výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
+této mapy. Zatím existuje jediná:
+[výběrové rozdělení průměru](../quarto/viz_vyberove_rozdeleni_prumeru.qmd)
+ke kapitole 6 ([karta](kapitoly/06-vyberove-rozdeleni-testovani.md#interaktivni-vizualizace-06)).
+Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
 stabilní identifikátory Quarta.
 

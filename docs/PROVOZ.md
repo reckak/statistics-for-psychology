@@ -13,6 +13,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
 - [Pracovní PDF kapitol 1–6](#ruční-pdf-kapitol-16)
 - [Export podkladů AI tutora](#export-ai-tutora)
+- [Interaktivní vizualizace](#interaktivni-vizualizace)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
 - [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-17)
 - [Publikování na GitHub Pages](#publikování-na-github-pages)
@@ -288,6 +289,31 @@ všech osm kapitol (`number`, `availability`, `web_url`, `plan`), přibalené
 záznamy mají místní `path` a otisk, nepřibalené mají `path` a `plan` rovné
 `null`. Pole `plans` obsahuje šest plánů s otisky a vazbou na zdrojové karty.
 Skript čtoucí plné texty musí filtrovat `availability: bundled`.
+
+<a id="interaktivni-vizualizace"></a>
+
+## Interaktivní vizualizace
+
+Stránky `quarto/viz_<tema>.qmd` používají buňky Quarto OJS (`{ojs}` s `//| echo: false`).
+Observable Plot a d3 jsou součástí standardní knihovny OJS; při zobrazení
+stránky je prohlížeč načítá z CDN jsdelivr, takže vizualizace bez připojení
+k internetu nefungují. Nic se neinstaluje a web nepotřebuje server.
+Zdrojový kód buňky ponechává Quarto ve skrytém bloku `.cell-code`;
+kontrola webu hlídá, aby se nikdy nezobrazil. Sdílené styly mají
+předponu `.viz` v `assets/styles.css`.
+
+Stránka se vykreslí s celou knihou (`quarto render`) i samostatně
+(`quarto render quarto/viz_<tema>.qmd`). Pro náhled ji otevřete přes
+místní server, ne jako `file://`. Ruční PDF ani export tutora vizualizace
+nepřebírají: `scripts/render-book-pdf.ps1` přepíše odkazy `viz_….qmd`
+na webovou adresu a `scripts/export-tutor.cjs` dělá totéž v balíčku.
+
+Každá vizualizace vystavuje na kořenovém prvku objekt `vizCheck`, který
+používá `check-html.cjs`. Pilot výběrového rozdělení průměru kontroluje:
+tři vykreslené grafy, hustotu modelu proti hodnotám `dgamma` z R, losování,
+odmítnutí *n* = 0, 101 a 2,5, meze a šipky číselného pole, ovládání
+klávesnicí, normální křivku, šířku 375 px bez přetékání a odkaz z kapitoly 6.
+Snímek mobilního zobrazení se ukládá do `tmp/verification/`.
 
 ## Kontroly a GitHub
 

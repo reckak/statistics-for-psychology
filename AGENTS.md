@@ -293,6 +293,9 @@ konkrétního místa.
     a ukázkou správné interpretace;
   - připomenutí dřívějšího učiva: krátký `.callout-tip` s titulkem
     „Připomenutí: …“ a odkazem na původní výklad;
+  - odkaz na interaktivní vizualizaci: krátký `.callout-tip` s titulkem
+    „Vyzkoušejte si: …“ a odkazem na její stránku (viz
+    [Interaktivní vizualizace](#interaktivni-vizualizace));
   - řešení cvičení podle oddílu „Cvičení a řešení“.
 - Popisek obrázku či tabulky sdělí hlavní zjištění nebo to, čeho si má
   student všimnout, nejen co je zobrazeno.
@@ -459,8 +462,9 @@ konkrétního místa.
 
 ## Tři závěrečné přehledové kapitoly
 
-Za všemi výkladovými kapitolami udržuj vždy tyto tři kapitoly v uvedeném
-pořadí; nové výkladové kapitoly zařazuj před ně. Přehledy doplňuj současně
+Za všemi výkladovými kapitolami a částí s interaktivními vizualizacemi udržuj
+vždy tyto tři kapitoly v uvedeném pořadí; nové výkladové kapitoly zařazuj
+před obě. Přehledy doplňuj současně
 s každou kapitolou, ne až při dokončení knihy.
 
 1. **Slovníček pojmů:** preferovaný český termín, anglický ekvivalent,
@@ -484,6 +488,29 @@ s každou kapitolou, ne až při dokončení knihy.
 - Při zavádění tabulek ověř filtrování, stránkování, odkazy, čitelnost
   matematiky, ovládání klávesnicí a zobrazení na mobilu. Knihovnu zvol
   podle těchto požadavků; její připojení není ověřením funkčnosti.
+
+<a id="interaktivni-vizualizace"></a>
+
+## Interaktivní vizualizace
+
+Část „Interaktivní vizualizace“ stojí mezi výkladovými kapitolami
+a přehledy; uspořádání, důvod a doklad eviduje
+[R65](docs/rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace).
+Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
+
+- Člení se podle vizualizací, ne podle kapitol: jedna nečíslovaná stránka
+  `quarto/viz_<tema>.qmd` s obsahovým nadpisem a stabilním ID `#sec-viz-<tema>`.
+- Stránka uvádí otázku a navazující oddíly, model a ovládání s textovým
+  popisem grafu, vizualizaci, 2–4 úkoly „Vyzkoušejte si“, oddíl „Čeho si
+  všimnout“ a odkazy zpět na výklad. Nové pojmy nezavádí.
+- Výklad kapitoly obstojí bez vizualizace; odkazuje na ni jen blokem
+  „Vyzkoušejte si: …“. Vizualizace nejsou součástí PDF ani balíčku tutora;
+  odkazy na ně tam vedou na web.
+- Používej Quarto OJS bez zobrazeného kódu, modely a hodnoty shodné
+  s výkladem, platnou terminologii a značení, srozumitelné české ovládání
+  s ověřením vstupů, ovládání klávesnicí a zobrazení na mobilu bez přetékání.
+- Simulace a výpočty ověř nezávislým výpočtem a vizualizaci zahrň do
+  kontroly webu podle [provozního návodu](docs/PROVOZ.md#interaktivni-vizualizace).
 
 ## Studentský text a autorská dokumentace
 

@@ -562,3 +562,54 @@ uvedl: „instrukce by podle mě měly rovnou uvádět, že cizí slova a odborn
 výrazy, kde se vyskytují dvojice ‚di‘, ‚ti‘ a ‚ni‘, je potřeba zapisovat
 jako ‚dy‘, ‚ty‘ a ‚ny‘, pokud se vyslovují s tvrdě.“ Dále požadoval odstranit
 část o poslechovém ověření, pokud skutečný poslech nahrávky není možný.
+
+<a id="r65-interaktivni-vizualizace"></a>
+
+## R65 — Část „Interaktivní vizualizace“
+
+**Stav:** schváleno 2026-11-05. **Rozsah:** webová učebnice; nová část knihy
+a odkazy na ni z výkladových kapitol. Netýká se ruční PDF ani balíčku AI tutora,
+kam se vizualizace nepřebírají.
+
+**Volba:**
+
+- Kniha má třetí část „Interaktivní vizualizace“, zařazenou v `_quarto.yml`
+  mezi výkladové kapitoly a „Literaturu a přehledy“; tři přehledy zůstávají
+  na konci.
+- Část se člení **podle jednotlivých vizualizací, nikoli podle kapitol**
+  (ke kapitole jich může být více). Každá vizualizace je samostatná
+  nečíslovaná stránka `quarto/viz_<tema>.qmd` s obsahovým nadpisem
+  a stabilním ID `#sec-viz-<tema>`; v menu má jednu položku, pořadí určuje
+  první navazující kapitola.
+- Stránka postupně uvádí, na jakou otázku odpovídá a ke kterým oddílům se váže,
+  model a ovládání s textovým popisem grafu, samotnou vizualizaci, 2–4 úkoly
+  „Vyzkoušejte si“, oddíl „Čeho si všimnout“ a odkazy zpět na výklad.
+- Výklad kapitoly musí obstát bez vizualizace. Z kapitoly na ni vede krátký
+  blok `.callout-tip` s titulkem „Vyzkoušejte si: …“; vizualizace se do kapitol
+  nevkládají.
+- Technika: Quarto OJS s Observable Plot a d3 ze standardní knihovny,
+  bez serveru, bez zobrazeného kódu a bez Shinylive/webR. Terminologie
+  a značení podle registru a přehledu značení; ovládání klávesnicí, mobil
+  bez přetékání stránky, simulace ověřené nezávislým výpočtem.
+- Pilotní vizualizace: výběrové rozdělení průměru ke kapitole 6 ve výukovém
+  modelu kapitoly, s velikostí výběru zadávanou jako celé číslo 1–100
+  v číselném poli se šipkami. Další vizualizace se schvalují samostatně;
+  seznam námětů v [plánu pokračování](../kapitoly/plan-pokracovani.md#plan-vizualizace)
+  není schválením.
+
+**Důvod:** pojmy kapitol 6–8 se vykládají přes opakované výběry a změnu
+parametrů; statický obrázek ukáže jen jeden výsledek, kdežto interaktivní
+stránka nechá studenta pokus opakovat. Samostatná část zachovává samostatnou
+srozumitelnost výkladu i PDF.
+
+**Doklad:** autor 2026-11-05 navrhl: „Myslím, že učebnici by mohlo vylepšit,
+kdyby kromě obsahovala kromě dvou hlavních částí (Výkladové a Literatura
+a Přehledy) také sekci s interaktivními vizualizacemi pro názorné pochopení
+a ilustraci vybraných statistických konceptů“. Na doporučení začít pilotem
+odpověděl „Ano, připrav návrh“. K návrhu doplnil: „Nečlenil bych to na
+kapitoly, protože k jedné kapitole může být více vizualizací; takže bych to
+prostě členil podle jednotlivých vizualizací.“ a „Velikost výběru bych nechal
+stanovit pomocí input boxu s celým číslem od 1 do 100 a případně šipkami.“
+Upravený plán (umístění, členění, blok „Vyzkoušejte si“, technika, pravidla
+a pilot) téhož dne schválil. Pilot je realizací tohoto rozhodnutí; jeho
+ověření eviduje [autorská historie](../../quarto/README.md).
