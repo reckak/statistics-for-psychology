@@ -1,5 +1,23 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Rozvržení panelů vizualizace výběrového rozdělení průměru
+
+Podle připomínek autora k PR #164 upraveno jen rozvržení
+[vizualizace](viz_vyberove_rozdeleni_prumeru.qmd); text a výpočty se nemění:
+
+- panel posledního výběru je vyšší (270 px, na mobilu 250 px) a má větší
+  pásmo pod nulou; body leží těsně pod nulovou čárou a trojúhelník průměru
+  s popiskem je níž, s volným místem k bodům i ke značkám osy x;
+- šipka σ je nad vrcholem křivky populace a popisek „σ = 15 s“ je na úrovni
+  popisku μ;
+- pro *n* = 1 je poznámka o odhadu hustoty nad vrcholem čárkované hustoty
+  populace.
+
+Ověřeno: `quarto render` celé knihy a `check-html.cjs` bez chyb. Prohlédnuty
+snímky všech čtyř populací při *n* = 1, 2 a 30 na desktopu a výrazně
+zešikmené populace při *n* = 1 a 30 na šířce 375 px: popisky ani trojúhelník
+se nepřekrývají s křivkami, body ani osou a stránka nepřetéká.
+
 ## 2026-11-05 — Úpravy pilotní vizualizace podle autora (upřesnění R65)
 
 Po sloučení pilotu (PR #163) upravena [stránka vizualizace](viz_vyberove_rozdeleni_prumeru.qmd)
