@@ -636,47 +636,81 @@ const server = http.createServer((req, res) => {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     await page.setViewportSize({width:1360,height:1000});
 
-    // Interactive visualization: renders without code, draws, validates n and fits a phone screen.
+    // Interactive visualization: renders without code, matches R, validates inputs, caps draws and fits a phone screen.
     await page.goto(base + 'quarto/viz_vyberove_rozdeleni_prumeru.html', { waitUntil: 'networkidle' });
     const viz = page.locator('#viz-vyberove-rozdeleni-prumeru');
-    await viz.locator('svg').nth(2).waitFor();
-    assert.equal(await viz.locator('.viz-plots svg').count(), 3, 'Three visualization panels');
-    // Quarto keeps the OJS source in a hidden .cell-code block; it must never become visible.
-    assert.equal(await page.locator('pre.sourceCode:visible, .observablehq--error').count(), 0, 'Visualization code or OJS error visible');
+    const vizPlots = viz.locator('.viz-plots svg');
+    // After loading there is one mean, so the right Q–Q plot is replaced by a note.
+    await vizPlots.nth(3).waitFor();
+    assert.equal(await vizPlots.count(), 4, 'Three panels and the Q–Q plot of the sample');
+    assert.match(await viz.innerText(), /Q–Q graf potřebuje alespoň dva průměry/);
+    // Quarto keeps the OJS source in a hidden .cell-code block; neither it nor its copy button may become visible.
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
     const vizState = () => viz.evaluate(el => el.vizCheck.state());
-    // Population density against R: dgamma(c(29, 60), shape = (35/15)^2, scale = 15^2/35).
-    const density = await viz.evaluate(el => [29, 60].map(el.vizCheck.gammaPdf));
-    assert(Math.abs(density[0] - 0.0288763555) < 1e-9 && Math.abs(density[1] - 0.0058833633) < 1e-9, 'Gamma density');
-    const nInput = viz.locator('#viz-vrp-n');
-    assert.equal((await vizState()).means.length, 1);
-    await viz.getByRole('button', { name: 'Vylosovat 1 000 výběrů' }).click();
-    assert.equal((await vizState()).means.length, 1001);
-    for (const bad of ['0', '101', '2.5']) {
-      await nInput.fill(bad); await nInput.dispatchEvent('change');
-      assert.equal(await nInput.getAttribute('aria-invalid'), 'true', `Rejected n = ${bad}`);
-      assert(await viz.locator('#viz-vrp-n-error').isVisible());
-      assert.equal((await vizState()).n, 30);
-    }
-    await nInput.fill('100'); await nInput.dispatchEvent('change');
+    // Population densities against R at 25 and 40 s: dnorm(x, 35, 15); dgamma(x, (35/15)^2, scale = 15^2/35);
+    // dlnorm(x - shift, meanlog, sdlog) for skewness 2 and 4 (parameters solved in R with uniroot).
+    const expectedDensity = {'souměrná': [0.0212965337, 0.0251588818], 'mírně': [0.0278157071, 0.0217839302], 'středně': [0.0388045397, 0.0199820265], 'výrazně': [0.0637308279, 0.0179242954]};
+    const densities = await viz.evaluate(el => Object.fromEntries(el.vizCheck.populations.map(p => [p.id, [25, 40].map(p.pdf)])));
+    for (const [id, values] of Object.entries(expectedDensity)) values.forEach((v, i) => assert(Math.abs(densities[id][i] - v) < 1e-9, `Population density ${id}`));
+    // Smoothed sample density against R: bw.nrd0(s) and mean(dnorm(30, s, bw)); qnorm(0.75).
+    const smooth = await viz.evaluate(el => { const s = [21.3, 25.0, 27.8, 30.1, 33.6, 41.2, 52.9, 60.4], c = el.vizCheck, bw = c.bandwidth(s); return [bw, c.smoothDensity(s, bw)(30), c.qnorm(0.75)]; });
+    assert(Math.abs(smooth[0] - 7.5440895384) < 1e-9 && Math.abs(smooth[1] - 0.0298135737) < 1e-9 && Math.abs(smooth[2] - 0.6744897502) < 1e-8, 'Smoothed density and normal quantile');
+    const thin = await viz.evaluate(el => el.vizCheck.qqPoints(Array.from({length: 2000}, (_, i) => i + 1), 500));
+    assert(thin.length === 500 && thin[0].y === 1 && thin[499].y === 2000, 'Thinned Q–Q plot keeps both extremes');
+    const nInput = viz.locator('#viz-vrp-n'), drawsInput = viz.locator('#viz-vrp-draws'), drawButton = viz.getByRole('button', { name: 'Vylosovat', exact: true });
     let vs = await vizState();
+    assert.equal(vs.pop, 'mírně'); assert.equal(vs.means.length, 1); assert.equal(vs.draws, 100);
+    await drawButton.click();
+    assert.equal((await vizState()).means.length, 101);
+    assert.equal(await vizPlots.count(), 5, 'Three panels and two Q–Q plots');
+    for (const [input, bad, key, kept] of [[nInput, '0', 'n', 30], [nInput, '101', 'n', 30], [nInput, '2.5', 'n', 30], [drawsInput, '0', 'draws', 100], [drawsInput, '1001', 'draws', 100], [drawsInput, '2.5', 'draws', 100]]) {
+      await input.fill(bad); await input.dispatchEvent('change');
+      assert.equal(await input.getAttribute('aria-invalid'), 'true', `Rejected ${key} = ${bad}`);
+      assert.equal((await vizState())[key], kept);
+    }
+    assert(await viz.locator('#viz-vrp-n-error').isVisible() && await viz.locator('#viz-vrp-draws-error').isVisible());
+    await drawsInput.fill('1000'); await drawsInput.dispatchEvent('change');
+    await drawsInput.focus(); await page.keyboard.press('ArrowUp');
+    assert.equal((await vizState()).draws, 1000, 'Arrow cannot exceed 1000');
+    await drawsInput.fill('1'); await drawsInput.dispatchEvent('change');
+    assert.equal((await vizState()).draws, 1);
+    await nInput.fill('100'); await nInput.dispatchEvent('change');
+    vs = await vizState();
     assert.equal(vs.n, 100); assert.equal(vs.means.length, 1); assert.equal(vs.sample.length, 100);
-    assert.equal(await nInput.getAttribute('aria-invalid'), 'false');
     await nInput.focus(); await page.keyboard.press('ArrowUp');
     assert.equal((await vizState()).n, 100, 'Arrow cannot exceed 100');
     await page.keyboard.press('ArrowDown');
     assert.equal((await vizState()).n, 99, 'Arrow decreases n');
     await nInput.fill('1'); await nInput.dispatchEvent('change');
     vs = await vizState(); assert.equal(vs.n, 1); assert.equal(vs.sample.length, 1); assert.equal(vs.means[0], vs.sample[0]);
-    await viz.getByRole('button', { name: 'Vylosovat 1 výběr' }).focus(); await page.keyboard.press('Enter');
+    assert.match(await viz.innerText(), /Poslední výběr: 1 řidič(?!\p{L})/u);
+    assert.match(await viz.innerText(), /Z jediné hodnoty hustotu neodhadujeme/);
+    await drawButton.focus(); await page.keyboard.press('Enter');
     assert.equal((await vizState()).means.length, 2, 'Keyboard draw');
+    assert.equal(await vizPlots.nth(2).locator('[stroke-dasharray]').count(), 0);
     await viz.locator('#viz-vrp-normal').check();
-    assert.equal(await viz.locator('.viz-plots svg').nth(2).locator('[stroke-dasharray]').count() > 0, true, 'Normal model curve');
+    assert(await vizPlots.nth(2).locator('[stroke-dasharray]').count() > 0, 'Normal model curve');
+    for (const id of ['souměrná', 'středně', 'výrazně']) {
+      await viz.locator(`input[name="viz-vrp-pop"][value="${id}"]`).check();
+      vs = await vizState(); assert.equal(vs.pop, id); assert.equal(vs.means.length, 1, `Population ${id} restarts`);
+      assert.match(await viz.locator('.viz-panel-title').first().innerText(), new RegExp(id));
+    }
+    // The cap of 100 000 repetitions: the last request is cut, the button is disabled and a message appears.
+    await drawsInput.fill('1000'); await drawsInput.dispatchEvent('change');
+    await viz.evaluate(el => { const b = el.querySelector('[data-draw]'); for (let i = 0; i < 101; i++) b.click(); });
+    assert.equal((await vizState()).means.length, 100000, 'Cap of 100 000 repetitions');
+    assert(await drawButton.isDisabled() && await viz.locator('.viz-limit').isVisible(), 'Cap message');
     await viz.getByRole('button', { name: 'Začít znovu' }).click();
     assert.equal((await vizState()).means.length, 1);
-    assert.match(await page.locator('main').innerText(), /Poslední výběr: 1 řidič(?!\p{L})/u);
+    assert(!(await drawButton.isDisabled()) && !(await viz.locator('.viz-limit').isVisible()), 'Restart lifts the cap');
+    await nInput.fill('30'); await nInput.dispatchEvent('change');
+    await drawButton.click();
+    assert.equal(await vizPlots.count(), 5, 'Smoothed density and both Q–Q plots for n ≥ 2');
     await page.setViewportSize({width:375,height:812});
     await page.reload({ waitUntil: 'networkidle' });
-    await viz.locator('svg').nth(2).waitFor();
+    await vizPlots.nth(3).waitFor();
+    await drawButton.click();
+    await vizPlots.nth(4).waitFor();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Visualization fits a phone');
     await viz.screenshot({path:'tmp/verification/viz-vyberove-rozdeleni-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});

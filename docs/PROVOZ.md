@@ -308,12 +308,28 @@ místní server, ne jako `file://`. Ruční PDF ani export tutora vizualizace
 nepřebírají: `scripts/render-book-pdf.ps1` přepíše odkazy `viz_….qmd`
 na webovou adresu a `scripts/export-tutor.cjs` dělá totéž v balíčku.
 
+Kvůli skrytému bloku s kódem mají stránky vizualizací v hlavičce
+`code-copy: false`; jinak by Quarto nad grafem zobrazilo tlačítko
+„Zkopírovat do schránky“.
+
 Každá vizualizace vystavuje na kořenovém prvku objekt `vizCheck`, který
-používá `check-html.cjs`. Pilot výběrového rozdělení průměru kontroluje:
-tři vykreslené grafy, hustotu modelu proti hodnotám `dgamma` z R, losování,
-odmítnutí *n* = 0, 101 a 2,5, meze a šipky číselného pole, ovládání
-klávesnicí, normální křivku, šířku 375 px bez přetékání a odkaz z kapitoly 6.
-Snímek mobilního zobrazení se ukládá do `tmp/verification/`.
+používá `check-html.cjs`. U pilotu výběrového rozdělení průměru kontrola
+ověřuje:
+
+- pět grafů a žádný viditelný kód ani tlačítko schránky;
+- hustoty čtyř populací proti `dnorm`, `dgamma` a posunutému `dlnorm` z R;
+- šířku a hodnotu odhadu hustoty proti `bw.nrd0` a ručnímu součtu
+  `dnorm` v R a normální kvantil proti `qnorm`;
+- ztenčení Q–Q grafu se zachováním krajních bodů;
+- odmítnutí neplatných hodnot obou číselných polí (0, 101 nebo 1001, 2,5),
+  jejich meze a šipky;
+- přepínání populací, strop 100 000 opakování se zprávou a jeho zrušení
+  tlačítkem „Začít znovu“;
+- ovládání klávesnicí, normální křivku, šířku 375 px bez přetékání
+  a odkaz z kapitoly 6.
+
+Referenční hodnoty z R jsou zapsané přímo v testu. Snímek mobilního
+zobrazení se ukládá do `tmp/verification/`.
 
 ## Kontroly a GitHub
 

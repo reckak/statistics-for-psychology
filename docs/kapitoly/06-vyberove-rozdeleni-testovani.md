@@ -164,14 +164,20 @@ a kontroly mincí (Wainer) a příklad branců (Uttsová).
 na konci oddílu [simulace průměrů](../../quarto/kapitola_06.qmd#sec-simulace-prumeru)
 odkazuje blok „Vyzkoušejte si: výběrové rozdělení průměru“ na stránku
 [Výběrové rozdělení průměru](../../quarto/viz_vyberove_rozdeleni_prumeru.qmd).
-Používá týž výukový model (gama, μ = 35 s, σ = 15 s) a nechá studenta
-losovat výběry s *n* 1–100, sledovat střed, šířku (simulovaná SD průměrů
-vedle σ/√*n*) a tvar s volitelným normálním modelem; čtyři úkoly
-„Vyzkoušejte si“ míří na šířku, čtyřnásobný výběr, rozdíl velikosti výběru
-a počtu opakování a centrální limitní větu. Vizualizace jen opakuje
-učivo oddílů 6.3–6.5 (simulace, směrodatná chyba, centrální limitní věta),
-nezavádí pojmy a není samostatným cvičením. Kontrola souladu s textem
-oddílů 6.3–6.5: 2026-11-05; ostatní části karty se nemění.
+Výchozí populací je týž výukový model (gama, μ = 35 s, σ = 15 s, šikmost 0,86);
+dále lze zvolit souměrnou, středně (šikmost 2) a výrazně (šikmost 4)
+zešikmenou populaci se stejnými μ a σ. Student losuje výběry s *n* 1–100
+po 1–1000 výběrech najednou (nejvýše 100 000 opakování) a sleduje střed,
+šířku (simulovaná SD průměrů vedle σ/√*n*) a tvar s volitelným normálním
+modelem. Pomáhají mu odhad hustoty z posledního výběru (popisně jako
+vyhlazený histogram, bez zavedení pojmu) a normální Q–Q grafy posledního
+výběru a průměrů v konvenci kapitoly 4. Pět úkolů „Vyzkoušejte si“ míří
+na šířku, čtyřnásobný výběr, rozdíl velikosti výběru a počtu opakování,
+centrální limitní větu a závislost potřebného *n* na tvaru populace.
+Vizualizace jen opakuje učivo oddílů 6.3–6.5 (simulace, směrodatná chyba,
+centrální limitní věta) a Q–Q grafů z kapitoly 4, nezavádí pojmy a není
+samostatným cvičením. Kontrola souladu s textem oddílů 6.3–6.5: 2026-11-05;
+ostatní části karty se nemění.
 
 <a id="cvičení-a-očekávané-dovednosti-5"></a>
 

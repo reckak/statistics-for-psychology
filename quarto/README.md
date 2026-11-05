@@ -1,5 +1,54 @@
 # Autorská dokumentace
 
+## 2026-11-05 — Úpravy pilotní vizualizace podle autora (upřesnění R65)
+
+Po sloučení pilotu (PR #163) upravena [stránka vizualizace](viz_vyberove_rozdeleni_prumeru.qmd)
+podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace):
+
+- odstraněno tlačítko schránky (`code-copy: false` v hlavičce stránky);
+- panely jsou vyšší a popisky os y svislé a vycentrované;
+- počet nových výběrů se zadává v poli 1–1000 s jedním tlačítkem
+  „Vylosovat“, celkový počet opakování má strop 100 000 se zprávou;
+- u populace je šipka σ;
+- nad body posledního výběru je odhad hustoty z výběru (gaussovské vyhlazení,
+  šířka podle `bw.nrd0`) s čárkovanou hustotou populace;
+- lze volit čtyři populace se stejnými μ = 35 s a σ = 15 s: souměrnou
+  (normální), mírně (gama z kapitoly 6), středně a výrazně zešikmenou
+  (posunuté lognormální, šikmost 2 a 4, nejmenší doby 9,84 a 20 s);
+- přibyl řádek se dvěma normálními Q–Q grafy (poslední výběr a průměry,
+  nad 500 průměrů ztenčeno se zachováním krajních bodů).
+
+Text stránky popisuje nové prvky a přidává pátý úkol
+k závislosti potřebného *n* na tvaru populace. Nové pojmy nezavádí.
+Upraveny styly `.viz`, `check-html.cjs`, PROVOZ.md, karta kapitoly 6
+a registr.
+
+Ověřeno: `quarto render` celé knihy; `check-html.cjs` (rozšířená kontrola
+podle PROVOZ.md), `check-chapter-06.R` a `check-doc-maps.cjs` bez chyb.
+
+Nezávislé srovnání s R (`scratchpad`, mimo repozitář):
+
+- parametry lognormálních populací vyřešené v R pomocí `uniroot` se shodují
+  na 12 platných míst;
+- hustoty všech populací v bodech 12, 25, 40 a 70 s a odhad hustoty
+  (šířka 7,5440895384, hodnoty ve čtyřech bodech) se shodují na 10 desetinných
+  míst; numerické integrály hustot jsou 1,000000 (výrazně zešikmená populace
+  0,999991 kvůli kroku integrace u ostrého náběhu);
+- normální kvantil se od `qnorm` liší nejvýše o 2·10⁻⁹.
+
+Simulace z 200 000 hodnot na populaci:
+
+- průměry 34,97–35,09 s, směrodatné odchylky 14,97–15,30 s;
+- šikmosti −0,006; 0,858; 1,985 a 4,292 proti 0; 0,857; 2 a 4. Odhad šikmosti
+  u výrazně zešikmené populace je kvůli těžkému chvostu nepřesný;
+- směrodatné odchylky 10 000 průměrů výběrů po 30 jsou 2,71–2,76 s proti 2,74 s.
+
+Prohlédnuty snímky všech čtyř populací při *n* = 2 a 30 na desktopu
+a výrazně zešikmené populace na šířce 375 px; stránka nepřetéká.
+
+Neověřeno: čtečka obrazovky, provoz na GitHub Pages a bez CDN, porozumění
+studentů. Ruční PDF se netýká (stránka v něm není).
+
 ## 2026-11-05 — Část „Interaktivní vizualizace“ a pilot (R65)
 
 Podle schváleného plánu ([R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace))
