@@ -605,7 +605,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -816,6 +816,115 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_04.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_normalni_rozdeleni.html"]').count(), 1, 'Chapter 4 links to the visualization');
+
+    // Binomial distribution: probabilities against R, all check-box combinations, range, both approximations, Excel formulas, input checks and a phone screen.
+    await page.goto(base + 'quarto/viz_binomicke_rozdeleni.html', { waitUntil: 'networkidle' });
+    const bi = page.locator('#viz-binomicke-rozdeleni');
+    const biCharts = bi.locator('.viz-plots svg[aria-label]');
+    await biCharts.nth(1).waitFor();
+    assert.equal(await biCharts.count(), 2, 'Probabilities and cumulative probability');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const biState = () => bi.evaluate(el => el.vizCheck.state());
+    const biInput = id => bi.locator(`#viz-bin-${id}`);
+    const biStats = () => bi.locator('[data-stats="q"]').innerText();
+    const biBoxes = async (lt, eq, gt) => { for (const [id, v] of [['lt', lt], ['eq', eq], ['gt', gt]]) await biInput(id).setChecked(v); return biState(); };
+    const biDashed = () => biCharts.nth(0).locator('[stroke-dasharray="5,4"]').count();
+    // R: dbinom(c(2, 5, 10, 120, 0, 500, 30, 1000), c(5, 20, 20, 200, 1000, 1000, 1000, 1000), c(.25, .25, .25, .6, .01, .5, .01, .999)) and pbinom likewise.
+    const [biD, biP] = await bi.evaluate(el => [[[2, 5, .25], [5, 20, .25], [10, 20, .25], [120, 200, .6], [0, 1000, .01], [500, 1000, .5], [30, 1000, .01], [1000, 1000, .999]].map(c => el.vizCheck.dbinom(...c)),
+      [[5, 20, .25], [9, 20, .25], [10, 20, .25], [134, 200, .6], [7, 20, .5], [12, 20, .5], [20, 1000, .01]].map(c => el.vizCheck.pbinom(...c))]);
+    [0.263671875, 0.202331151856924, 0.00992227527967771, 0.0575064320084839, 4.31712474106582e-05, 0.0252250181783608, 1.41799599065819e-07, 0.367695424770967].forEach((v, i) => near(biD[i], v, 1e-10 * v, `dbinom ${i}`));
+    [0.617172654387105, 0.986135583056239, 0.996057858335917, 0.982692658948652, 0.131587982177734, 0.868412017822266, 0.998503518452291].forEach((v, i) => near(biP[i], v, 1e-11, `pbinom ${i}`));
+    let bs = await biState();
+    assert.deepEqual([bs.n, bs.pi, bs.mode, bs.k, bs.key], [20, 0.25, 'single', 5, '=']);
+    near(bs.value, 0.202331151856924, 1e-12, 'Default P(X = 5)'); assert.equal(bs.formula, '=BINOM.DIST(5;20;0,25;NEPRAVDA)');
+    assert.match(await biStats(), /P\(X = 5\) = 0,202 \(20,2\s%\)/);
+    assert.match(await bi.locator('[data-stats="model"]').innerText(), /= √\(20 · 0,25 · 0,75\) = 1,936[\s\S]*= 0,0968[\s\S]*není splněna/);
+    // All eight combinations of the check boxes for k = 5; R: pbinom(5 or 4, 20, .25), 1 - dbinom(5, 20, .25).
+    for (const [boxes, key, value, formula] of [
+      [[false, true, false], '=', 0.202331151856924, '=BINOM.DIST(5;20;0,25;NEPRAVDA)'],
+      [[true, true, false], '<=', 0.617172654387105, '=BINOM.DIST(5;20;0,25;PRAVDA)'],
+      [[true, false, false], '<', 0.41484150253018, '=BINOM.DIST(5-1;20;0,25;PRAVDA)'],
+      [[false, true, true], '=>', 0.58515849746982, '=1-BINOM.DIST(5-1;20;0,25;PRAVDA)'],
+      [[false, false, true], '>', 0.382827345612895, '=1-BINOM.DIST(5;20;0,25;PRAVDA)'],
+      [[true, false, true], '<>', 0.797668848143076, '=1-BINOM.DIST(5;20;0,25;NEPRAVDA)'],
+      [[true, true, true], '<=>', 1, null],
+      [[false, false, false], '', 0, null]]) {
+      bs = await biBoxes(...boxes);
+      assert.equal(bs.key, key, `Combination ${boxes}`); near(bs.value, value, 1e-12, `Probability ${key}`); near(bs.value + bs.rest, 1, 1e-12, `Complement ${key}`);
+      assert.equal(bs.formula, formula, `Excel formula ${key}`);
+    }
+    assert.match(await biStats(), /Není zaškrtnuta žádná možnost/);
+    // R: 1 - pbinom(9, 20, .25), 1 - pbinom(10, 20, .25).
+    await biInput('k').fill('10');
+    bs = await biBoxes(false, true, true); near(bs.value, 0.0138644169437612, 1e-12, 'At least 10'); assert.equal(bs.formula, '=1-BINOM.DIST(10-1;20;0,25;PRAVDA)');
+    bs = await biBoxes(false, false, true); near(bs.value, 0.00394214166408347, 1e-12, 'More than 10'); assert.equal(bs.formula, '=1-BINOM.DIST(10;20;0,25;PRAVDA)');
+    await biInput('k').fill('20'); assert.equal((await biState()).value, 0); assert.match(await biStats(), /větší než 20/);
+    await biInput('k').fill('0'); bs = await biBoxes(true, false, false); assert.equal(bs.value, 0); assert.match(await biStats(), /menší než 0/);
+    // Normal approximation of the chapter 5 example; R: 1 - pnorm(c(135, 134.5), 120, sqrt(48)), 1 - pbinom(134, 200, .6).
+    assert.equal(await biDashed(), 0, 'No approximation before the switch');
+    await biInput('n').fill('200'); await biInput('pi').fill('0.6'); await biInput('k').fill('135');
+    await biBoxes(false, true, true); await biInput('approx').check();
+    bs = await biState();
+    near(bs.value, 0.0173073410513478, 1e-12, 'At least 135'); near(bs.approx.mid, 0.0151914109882888, 1e-12, 'Boundary 135'); near(bs.approx.edge, 0.0181792765863954, 1e-12, 'Boundary 134,5');
+    assert.equal(bs.approx.midFormula, '=1-NORM.DIST(135;200*0,6;ODMOCNINA(200*0,6*(1-0,6));PRAVDA)');
+    assert.equal(bs.approx.edgeFormula, '=1-NORM.DIST(134,5;200*0,6;ODMOCNINA(200*0,6*(1-0,6));PRAVDA)');
+    assert.match(await biStats(), /0,0152 \(přesně 0,0173; rozdíl −0,0021\)[\s\S]*0,0182 \(přesně 0,0173; rozdíl \+0,0009\)/);
+    assert.match(await bi.locator('[data-stats="model"]').innerText(), /obě hodnoty jsou alespoň 10, podmínka je splněna/);
+    assert(await biDashed() > 0, 'Boundaries at the bar edges drawn');
+    assert.deepEqual(bs.window, [85, 155]); assert.match(await bi.locator('[data-plots]').innerText(), /Graf ukazuje počty od 85 do 155/);
+    // A lower n lowers the bound; R: pnorm(5.5, 5, sqrt(3.75)) - pnorm(4.5, 5, sqrt(3.75)), pnorm(c(5, 4.5), 5, sqrt(3.75)).
+    await biInput('n').fill('20');
+    assert.equal((await biState()).k, 20, 'k lowered to n'); assert.match(await bi.locator('[data-clamp]').innerText(), /snížena na n = 20/);
+    await biInput('pi').fill('0,25'); await biInput('k').fill('5');
+    bs = await biBoxes(false, true, false);
+    assert.equal(bs.approx.mid, 0, 'A single point has no area'); near(bs.approx.edge, 0.203746585262361, 1e-12, 'Bar from 4,5 to 5,5');
+    assert.match(await biStats(), /Jediný bod nemá v normálním modelu žádnou plochu/);
+    bs = await biBoxes(true, false, false); near(bs.approx.mid, 0.5, 1e-12, 'Less than 5 at 5'); near(bs.approx.edge, 0.39812670736882, 1e-12, 'Less than 5 at 4,5');
+    bs = await biBoxes(true, false, true);
+    assert.equal(bs.approx.edgeFormula, '=NORM.DIST(4,5;20*0,25;ODMOCNINA(20*0,25*(1-0,25));PRAVDA)+1-NORM.DIST(5,5;20*0,25;ODMOCNINA(20*0,25*(1-0,25));PRAVDA)');
+    await biInput('approx').uncheck();
+    assert.equal((await biState()).approx, null); assert.equal(await biDashed(), 0, 'Approximation removed');
+    // Range from 8 to 12 including both bounds; R: pbinom(12, 20, .5) - pbinom(7, 20, .5) and the normal areas from 8 to 12 and from 7,5 to 12,5.
+    await bi.locator('input[name="viz-bin-mode"][value="range"]').check();
+    assert(await biInput('k1').isVisible() && !(await biInput('k').isVisible()) && !(await biInput('lt').isVisible()), 'Range fields replace the single bound');
+    await biInput('pi').fill('0,5'); await biInput('k1').fill('8'); await biInput('k2').fill('12'); await biInput('approx').check();
+    bs = await biState();
+    assert.equal(bs.key, 'range'); near(bs.value, 0.736824035644531, 1e-12, 'Range 8 to 12'); near(bs.rest, 0.263175964355469, 1e-12, 'Outside 8 to 12');
+    assert.equal(bs.formula, '=BINOM.DIST.RANGE(20;0,5;8;12)'); assert.equal(bs.restFormula, '=1-BINOM.DIST.RANGE(20;0,5;8;12)');
+    near(bs.approx.mid, 0.628906630477303, 1e-12, 'Range at whole numbers'); near(bs.approx.edge, 0.736447522717027, 1e-12, 'Range at bar edges');
+    assert.match(await biStats(), /P\(8 ≤ X ≤ 12\) = 0,737 \(73,7\s%\)[\s\S]*0,263 \(26,3\s%\)/);
+    await biInput('k1').fill('13');
+    assert(await bi.locator('#viz-bin-order-error').isVisible(), 'Lower bound above upper bound'); assert.equal((await biState()).k1, 8);
+    await biInput('k1').fill('8'); assert(!(await bi.locator('#viz-bin-order-error').isVisible()));
+    await biInput('pi').fill('0');
+    bs = await biState(); assert.equal(bs.approx, null); assert.equal(bs.value, 0); assert.match(await biStats(), /směrodatná odchylka je 0/);
+    await biInput('pi').fill('0,5'); await biInput('n').fill('10');
+    assert.equal((await biState()).k2, 10, 'Upper bound lowered to n'); assert.match(await bi.locator('[data-clamp]').innerText(), /byla snížena na n = 10/);
+    // Invalid input is rejected with a visible message and the last valid value stays in use.
+    for (const [id, bad, check] of [['n', '0', st => st.n === 10], ['n', '1001', st => st.n === 10], ['n', '2.5', st => st.n === 10], ['pi', '1,2', st => st.pi === 0.5], ['pi', '-0,1', st => st.pi === 0.5], ['pi', 'abc', st => st.pi === 0.5], ['k2', '11', st => st.k2 === 10]]) {
+      await biInput(id).fill(bad);
+      assert.equal(await biInput(id).getAttribute('aria-invalid'), 'true', `Rejected ${id} = ${bad}`);
+      assert(await bi.locator(`#viz-bin-${id}-error`).isVisible(), `Message for ${id} = ${bad}`);
+      assert(check(await biState()), `Kept ${id} after ${bad}`);
+    }
+    await biInput('pi').fill('0,01'); await biInput('k2').fill('10');
+    await biInput('n').fill('1000'); await biInput('n').focus(); await page.keyboard.press('ArrowUp');
+    assert.equal((await biState()).n, 1000, 'Arrow cannot exceed 1000');
+    await page.keyboard.press('ArrowDown'); assert.equal((await biState()).n, 999, 'Arrow decreases n');
+    await biInput('n').fill('1000');
+    bs = await biState(); assert.deepEqual(bs.window, [0, 26], 'Window around the mean for n = 1000');
+    assert.match(await bi.locator('[data-plots]').innerText(), /Graf ukazuje počty od 0 do 26\. Všechny ostatní počty od 0 do 1\s000 mají dohromady pravděpodobnost < 0,001/);
+    await bi.locator('input[name="viz-bin-mode"][value="range"]').focus(); await page.keyboard.press('ArrowLeft');
+    assert.equal((await biState()).mode, 'single', 'Keyboard choice of the question');
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await biCharts.nth(1).waitFor();
+    await biInput('approx').check();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Binomial visualization fits a phone');
+    await bi.screenshot({path:'tmp/verification/viz-binomicke-rozdeleni-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_05.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_binomicke_rozdeleni.html"]').count(), 1, 'Chapter 5 links to the binomial visualization');
 
     // Statistical power: two situations against R, Excel formulas, shared σ, input checks, keyboard and a phone screen.
     await page.goto(base + 'quarto/viz_statisticka_sila.html', { waitUntil: 'networkidle' });

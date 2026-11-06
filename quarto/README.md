@@ -1,5 +1,52 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Vizualizace binomického rozdělení (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom)
+přibyla čtvrtá stránka části „Interaktivní vizualizace“,
+[Pravděpodobnost počtu úspěchů](viz_binomicke_rozdeleni.qmd), v menu za
+plochami pod normální křivkou. Vstupy *n* (1–1000) a π (0–1), výchozí
+*n* = 20 a π = 0,25. Otázka s jednou hranicí *k* a třemi nezávislými
+zaškrtávacími poli (méně než, právě, více než *k*) nebo rozpětí od *k*₁
+do *k*₂ včetně mezí. Sloupcový graf s úsečkou μ ± σ a dvěma řadami popisků
+osy (*k* a *p* = *k*/*n*), od *n* > 60 výřez kolem μ s pravděpodobností
+zbytku; pod ním schodovitá kumulativní pravděpodobnost se sloupcem
+rozděleným na části méně než/právě/více než *k*. Výsledky: μ a σ počtu
+i podílu, podmínka aproximace, rozepsaný součet, opačný jev, vzorec
+`BINOM.DIST`/`BINOM.DIST.RANGE`. Přepínač normální aproximace přidá křivku,
+plochu a výpočty s hranicí uprostřed sloupce a na okraji sloupců (± 0,5)
+s rozdílem od přesné hodnoty a vzorci `NORM.DIST`. Kapitola 5 odkazuje
+blokem „Vyzkoušejte si“ na konci oddílu Právě, nejvýše, alespoň; jiný text
+kapitoly se nemění. Upraveny `_quarto.yml`, styly `.viz` (skrytá skupina
+voleb, sdílená legenda `.viz-legend`), `check-html.cjs` (pořadí v menu
+a nová kontrola podle PROVOZ.md), karta kapitoly 5, OSNOVA.md, plán
+pokračování, registr, doklad R65 a PROVOZ.md. Nové pojmy, značení ani
+funkce Excelu nepřibyly; slovníček a přehledy beze změny.
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- `dbinom`/`pbinom` stránky (logaritmy faktoriálů s kompenzovaným součtem)
+  pro 15 případů s *n* 5–1000 se shodují s R relativně do 10⁻¹⁰;
+- všech osm kombinací zaškrtávacích polí, „alespoň“ a „více než 10“,
+  rozpětí 8–12 a obě aproximace (příklad s 200 pokusy 0,0152 a 0,0182 proti
+  přesné 0,0173; „právě 5“ 0,2037; rozpětí 0,6289 a 0,7364 proti 0,7368)
+  odpovídají `dbinom`, `pbinom` a `pnorm` z R;
+- 14 vzorců ve tvaru, který stránka nabízí (`BINOM.DIST` včetně argumentu
+  `k-1`, `BINOM.DIST.RANGE`, `NORM.DIST` s `ODMOCNINA`), bylo zadáno přes
+  `FormulaLocal` do skryté samostatné instance českého Excelu bez uložení;
+  výsledky se shodují s R na 13 a více platných míst.
+
+Celá kniha vykreslena bez varování; `check-html.cjs` a `check-doc-maps.cjs`
+prošly. Prohlédnuty snímky desktopu (výchozí stav, 200 pokusů s aproximací,
+rozpětí 8–12 s aproximací) a šířky 375 px; podle nich opraveny barvy sloupců
+(zastíněné barevné konstanty) a u „právě *k*“ místo vzorce `=0` věta, že
+vzorec není potřeba. Didaktická revize stránky proběhla jen čtením při tvorbě
+(bez samostatného agenta v roli studenta).
+
+Neověřeno: čtečka obrazovky (ověřeny jen nativní prvky, popisky a `aria-live`),
+provoz na GitHub Pages a bez CDN, porozumění studentů. Ruční PDF ani export
+tutora nebyly spuštěny; oba přepisují odkazy `viz_….qmd` obecným pravidlem.
+
 ## 2026-11-06 — Drobné úpravy tří vizualizací podle autora
 
 Podle připomínek autora upraveno rozvržení a popisky; výpočty, modely

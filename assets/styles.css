@@ -127,7 +127,7 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 @media (max-width: 600px) {
   .viz-qq-row { grid-template-columns: 1fr; }
 }
-.viz .viz-field[hidden] { display: none; }
+.viz :is(.viz-field, .viz-choice)[hidden] { display: none; }
 .viz-model { border: 0; padding: 0; margin: 0; }
 .viz-model legend { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; float: none; width: auto; }
 .viz-model-note { margin: .6rem 0 0; }
@@ -144,9 +144,9 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-ss-sides { flex-direction: column; margin-bottom: .5rem; }
 .viz-ss-sides legend { font-size: .95rem; }
 .viz-ss-summary { margin: .8rem 0 0; font-weight: 600; }
-.viz-ss-legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .9em; margin-bottom: .2rem; }
-.viz-ss-legend > span { display: inline-flex; align-items: center; gap: .35rem; }
-.viz-ss-legend svg { flex: none; }
+.viz-ss-legend, .viz-legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .9em; margin-bottom: .2rem; }
+.viz-ss-legend > span, .viz-legend > span { display: inline-flex; align-items: center; gap: .35rem; }
+.viz-ss-legend svg, .viz-legend svg { flex: none; }
 .viz-ss-axis { text-align: center; font-size: .9em; color: #223744; margin: .1rem 0 0; }
 .viz-ss-values { margin: .2rem 0 .6rem; font-variant-numeric: tabular-nums; }
 .viz-ss-head, .viz-ss-row { display: grid; grid-template-columns: 30% 1fr 1fr; gap: 0 .9rem; }

@@ -104,6 +104,34 @@ ve cvičení 7 (Howell, s. 122–123).
 | [Deset kombinací](../../quarto/kapitola_05.qmd#fig-kombinace) | Kombinační číslo jako vypsatelný počet; způsoby 1–5 a 6–10 ve dvou sloupcích. |
 | [Tvar](../../quarto/kapitola_05.qmd#fig-binomicke-tvar), [právě/nejvýše/alespoň](../../quarto/kapitola_05.qmd#fig-binom-oblasti), [aproximace](../../quarto/kapitola_05.qmd#fig-aproximace) | Vliv n a π; které sloupce se sčítají; kdy normální křivka sedí a kdy ne. |
 
+<a id="interaktivni-vizualizace-05"></a>
+
+**Interaktivní vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom)):**
+na konci oddílu [Právě, nejvýše, alespoň](../../quarto/kapitola_05.qmd#sec-binom-kumulace),
+před oddílem o normální aproximaci, odkazuje blok „Vyzkoušejte si: binomické
+rozdělení“ na stránku [Pravděpodobnost počtu úspěchů](../../quarto/viz_binomicke_rozdeleni.qmd);
+jiný text kapitoly se nemění. Student zadá n (celé číslo 1–1000) a π (0–1
+včetně), výchozí test s 20 otázkami a π = 0,25. Pod vstupy jsou μ a σ počtu
+i podílu úspěchů a výsledek orientační podmínky nπ, n(1 − π) ≥ 10. Otázka
+má dva typy: jedna hranice k se třemi nezávislými zaškrtávacími poli (méně
+než, právě, více než k; kombinace dávají nejvýše, alespoň, jiný počet než k,
+jistý i nemožný jev a nezaškrtnuté tvoří opačný jev), nebo rozpětí od k₁
+do k₂ včetně obou mezí s pravděpodobností v rozpětí i mimo ně. Horní graf
+ukazuje sloupce P(X = k) s oranžovým hledaným jevem, úsečku μ ± σ a dvě řady
+popisků osy (*k* a *p* = k/n); od n > 60 jen výřez kolem μ s uvedenou
+pravděpodobností zbytku. Dolní graf ukazuje schodovitou kumulativní
+pravděpodobnost P(X ≤ k) jako obdobu distribuční funkce kapitoly 4 se
+sloupcem rozděleným na části méně než/právě/více než k. Výsledky rozepisují
+sčítané pravděpodobnosti, opačný jev a vzorec `BINOM.DIST`/`BINOM.DIST.RANGE`
+s dosazenými hodnotami. Přepínač normální aproximace přidá křivku, plochu
+a dva výpočty: hranici uprostřed sloupce (jako hranice 135 v kapitole)
+a na okraji sloupců o 0,5 posunutou (jako 134,5), s rozdílem od přesné
+hodnoty a vzorci `NORM.DIST`; termín „korekce na spojitost“ se nezavádí.
+Čtyři úkoly „Vyzkoušejte si“ míří na tabulku pro n = 5, rozdíl „alespoň 10“
+a „více než 10“, obě aproximace příkladu s 200 pokusy proti nesplněné
+podmínce pro n = 20 a π = 0,05 a zužování rozdělení podílu s rostoucím n.
+Soulad karty s textem zkontrolován 2026-11-06.
+
 <a id="cvičení-a-očekávané-dovednosti-4"></a>
 
 ### Cvičení a očekávané dovednosti

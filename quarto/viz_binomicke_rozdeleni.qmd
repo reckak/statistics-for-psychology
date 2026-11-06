@@ -1,0 +1,561 @@
+---
+code-copy: false
+---
+
+# Pravděpodobnost počtu úspěchů {#sec-viz-binomicke-rozdeleni .unnumbered}
+
+Jaká je pravděpodobnost, že v $n$ nezávislých pokusech nastane právě $k$ úspěchů, méně nebo více než $k$, nebo počet úspěchů z určitého rozpětí? Vizualizace odpoví pro libovolný [binomický model](kapitola_05.qmd#sec-binomicke-predpoklady) s nejvýše 1 000 pokusy a ukáže výsledek jako součet sloupců i jako výšky kumulativní pravděpodobnosti. Na přání přidá normální aproximaci a porovná ji s přesným výsledkem. Navazuje na kapitolu 5: na [vzorec binomického rozdělení](kapitola_05.qmd#sec-binomicky-vzorec), [tvar, střední hodnotu a směrodatnou odchylku](kapitola_05.qmd#sec-binomicke-tvar), [otázky typu právě, nejvýše a alespoň](kapitola_05.qmd#sec-binom-kumulace), [normální aproximaci](kapitola_05.qmd#sec-aproximace-postup) a [její přesnost](kapitola_05.qmd#sec-aproximace-presnost) a na [převod počtu úspěchů na podíl](kapitola_05.qmd#sec-od-poctu-k-podilu).
+
+## Model a ovládání {#sec-viz-bin-ovladani .unnumbered}
+
+Nahoře zadejte počet pokusů $n$ (celé číslo od 1 do 1 000, lze použít i šipky) a pravděpodobnost úspěchu $\mathrm{π}$ v jednom pokusu (číslo od 0 do 1 včetně krajních hodnot). Po načtení stránky je nastaven test s 20 otázkami, v němž student jen tipuje: $n=20$ a $\mathrm{π}=0{,}25$. Desetinná čísla můžete psát s čárkou i s tečkou. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu. Pod vstupy je střední hodnota a směrodatná odchylka počtu úspěchů i podílu úspěchů a výsledek orientační podmínky pro normální aproximaci.
+
+V části **Hledaná pravděpodobnost** zvolíte typ otázky:
+
+- **Jedna hranice $k$.** Zadáte počet úspěchů $k$ a zaškrtnete, které počty chcete zahrnout: méně než $k$, právě $k$, více než $k$. Možnosti lze kombinovat. Právě $k$ spolu s méně než $k$ dává nejvýše $k$, právě $k$ spolu s více než $k$ dává alespoň $k$, méně než $k$ spolu s více než $k$ dává jiný počet než $k$. Nezaškrtnuté možnosti tvoří [opačný jev](kapitola_05.qmd#sec-doplnkovy-jev).
+- **Rozpětí od $k_1$ do $k_2$.** Zadáte dolní a horní mez; obě meze patří do rozpětí. Vizualizace spočítá pravděpodobnost počtu úspěchů v rozpětí i mimo ně. Dolní mez nesmí být větší než horní.
+
+Počet úspěchů nemůže převýšit počet pokusů. Když $n$ snížíte pod některou hranici, hranice se sníží na $n$.
+
+Grafy mají stejnou vodorovnou osu:
+
+- Horní graf ukazuje pravděpodobnosti $P(X=k)$ jako sloupce. Sloupce hledaného jevu, u rozpětí počty v rozpětí, jsou oranžové, ostatní modré. Nad sloupci je vyznačena střední hodnota $\mathrm{μ}$ a úsečka od $\mathrm{μ}-\mathrm{σ}$ do $\mathrm{μ}+\mathrm{σ}$. Pod osou jsou dvě řady popisků: řada $k$ v počtech úspěchů a řada $p$ v podílech úspěchů $p=k/n$. Při větším počtu pokusů graf ukazuje jen výřez kolem střední hodnoty; pravděpodobnost počtů mimo výřez je uvedena pod grafem.
+- Dolní graf ukazuje kumulativní pravděpodobnost $P(X\le k)$ pro každý počet. Odpovídá [distribuční funkci](kapitola_04.qmd#sec-distribucni-funkce) z kapitoly 4, jen roste po schodech: pravděpodobnost přibývá jen v celých číslech a výška schodu v $k$ je $P(X=k)$. U hranice $k$ stojí sloupec od 0 do 1 rozdělený na tři části: méně než $k$, právě $k$ a více než $k$. Zahrnuté části jsou oranžové. U rozpětí sloupec u horní meze ukazuje pravděpodobnost v rozpětí oranžově a nad horní mezí modře; modrá část sloupce u dolní meze je pravděpodobnost pod dolní mezí. Tečkované čáry vedou výšky k ose.
+
+Přepínač **Ukázat normální aproximaci** přidá do horního grafu normální křivku se stejnou střední hodnotou a směrodatnou odchylkou, do dolního grafu její distribuční funkci a do výsledků dva přibližné výpočty. První bere hranici tak, jak ji zadáváme, tedy uprostřed sloupce $k$ (v grafu tečkovaná čára), jako výpočet s hranicí 135 v kapitole 5. Druhý posouvá hranice na okraje sloupců, o 0,5 dolů nebo nahoru (čárkované čáry), jako výpočet s hranicí 134,5. Plocha pod křivkou pro druhý výpočet je vybarvena. Úsek, který začíná u 0 nebo končí u $n$, prodlužujeme v normálním modelu až do nekonečna, protože jiné počty nastat nemohou. Při $\mathrm{π}=0$ nebo $\mathrm{π}=1$ je směrodatná odchylka nulová a aproximace není k dispozici.
+
+Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u srovnání aproximace s přesnou hodnotou na čtyři. Mezivýpočty probíhají s plnou přesností. Pod výsledky je odpovídající vzorec českého Excelu s dosazenými hodnotami.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the figures of chapters 4 and 5.
+  const blue = "#245D78", hi = "#F0B08C", hiText = "#9A3F17", lo = "#B8DDE8", ink = "#223744", pale = "#E1E8EB", gray = "#4D5A63", orange = "#B54E24";
+  const N_MAX = 1000, SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+  const dnorm = z => Math.exp(-0.5 * z * z) / SQRT2PI;
+
+  // log(k!) for k = 0, …, 1000, summed with Kahan compensation.
+  const logFact = new Float64Array(N_MAX + 1);
+  { let sum = 0, comp = 0; for (let i = 1; i <= N_MAX; i++) { const y = Math.log(i) - comp, t = sum + y; comp = (t - sum) - y; sum = t; logFact[i] = sum; } }
+  // All binomial probabilities P(X = k), k = 0, …, n, from the formula with the binomial coefficient.
+  function pmfAll(n, pi) {
+    const out = new Float64Array(n + 1);
+    if (pi === 0) { out[0] = 1; return out; }
+    if (pi === 1) { out[n] = 1; return out; }
+    const lp = Math.log(pi), lq = Math.log1p(-pi);
+    for (let k = 0; k <= n; k++) out[k] = Math.exp(logFact[n] - logFact[k] - logFact[n - k] + k * lp + (n - k) * lq);
+    return out;
+  }
+  const dbinom = (k, n, pi) => Number.isInteger(k) && k >= 0 && k <= n ? pmfAll(n, pi)[k] : 0;
+  const pbinom = (k, n, pi) => { const p = pmfAll(n, pi); let sum = 0; for (let j = 0; j <= Math.min(k, n); j++) sum += p[j]; return Math.min(1, sum); };
+
+  // Czech number formatting with a true minus sign.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const int = v => v.toLocaleString("cs-CZ");
+  const share = v => { const r = Number(v.toFixed(3)); return r === 0 && v > 0 ? "< 0,001" : r === 1 && v < 1 ? "> 0,999" : fixed(v, 3); };
+  const prob4 = v => { const r = Number(v.toFixed(4)); return r === 0 && v > 0 ? "< 0,0001" : r === 1 && v < 1 ? "> 0,9999" : fixed(v, 4); };
+  const percent = v => { const q = 100 * v, r = Number(q.toFixed(1)); return (r === 0 && q > 0 ? "< 0,1" : r === 100 && q < 100 ? "> 99,9" : fixed(q, 1)) + " %"; };
+  const signed = v => { const t = fixed(v, 4); return t.startsWith("−") || Number(v.toFixed(4)) === 0 ? t : "+" + t; };
+  const successes = k => `${int(k)} ${k === 1 ? "úspěch" : k >= 2 && k <= 4 ? "úspěchy" : "úspěchů"}`;
+
+  // Parsing of decimal input; returns null for anything but a plain number.
+  function parseDecimal(raw) {
+    const t = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(t)) return null;
+    const v = Number(t);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const s = {n: 20, pi: 0.25, mode: "single", k: 5, lt: false, eq: true, gt: false, k1: 10, k2: 20};
+
+  const textField = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-bin-${id}">${label}</label>
+    <input id="viz-bin-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-bin-${id}-hint viz-bin-${id}-error">
+    <span id="viz-bin-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-bin-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const wholeField = (id, label, value, min, max) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-bin-${id}">${label}</label>
+    <input id="viz-bin-${id}" type="number" min="${min}" max="${max}" step="1" inputmode="numeric" value="${value}" aria-describedby="viz-bin-${id}-hint viz-bin-${id}-error">
+    <span id="viz-bin-${id}-hint" class="viz-hint">celé číslo od ${min} do ${int(max)}</span>
+    <span id="viz-bin-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+
+  const root = html`<div class="viz" id="viz-binomicke-rozdeleni">
+    <fieldset class="viz-model">
+      <legend>Binomický model</legend>
+      <div class="viz-controls">
+        ${wholeField("n", html`Počet pokusů <i>n</i>`, s.n, 1, N_MAX)}
+        ${textField("pi", html`Pravděpodobnost úspěchu π`, "0,25", "číslo od 0 do 1")}
+        <label class="viz-check"><input type="checkbox" id="viz-bin-approx"><span>Ukázat normální aproximaci</span></label>
+      </div>
+      <dl class="viz-stats" data-stats="model" aria-live="polite"></dl>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-bin-q-title">
+      <h3 id="viz-bin-q-title" class="viz-part-title">Hledaná pravděpodobnost</h3>
+      <fieldset class="viz-choice">
+        <legend>Typ otázky</legend>
+        <label><input type="radio" name="viz-bin-mode" value="single"><span>jedna hranice <i>k</i></span></label>
+        <label><input type="radio" name="viz-bin-mode" value="range"><span>rozpětí od <i>k</i><sub>1</sub> do <i>k</i><sub>2</sub></span></label>
+      </fieldset>
+      <div class="viz-controls">
+        ${wholeField("k", html`Počet úspěchů <i>k</i>`, s.k, 0, s.n)}
+        <fieldset class="viz-choice viz-bin-which" data-field="which">
+          <legend>Které počty zahrnout</legend>
+          <label><input type="checkbox" id="viz-bin-lt"><span>méně než <i>k</i></span></label>
+          <label><input type="checkbox" id="viz-bin-eq"><span>právě <i>k</i></span></label>
+          <label><input type="checkbox" id="viz-bin-gt"><span>více než <i>k</i></span></label>
+        </fieldset>
+        ${wholeField("k1", html`Dolní mez <i>k</i><sub>1</sub>`, s.k1, 0, s.n)}
+        ${wholeField("k2", html`Horní mez <i>k</i><sub>2</sub>`, s.k2, 0, s.n)}
+      </div>
+      <p id="viz-bin-order-error" class="viz-error viz-nr-order" role="alert" hidden></p>
+      <p class="viz-note" data-clamp role="status" hidden></p>
+      <dl class="viz-stats" data-stats="q" aria-live="polite"></dl>
+      <div class="viz-plots" data-plots></div>
+    </section>
+  </div>`;
+
+  const $ = q => root.querySelector(q);
+  $(`input[name="viz-bin-mode"][value="${s.mode}"]`).checked = true;
+  for (const id of ["lt", "eq", "gt"]) $(`#viz-bin-${id}`).checked = s[id];
+  const approxBox = $("#viz-bin-approx");
+
+  // Decimal field: checks the value on every keystroke, keeps the last valid value and shows why input was rejected.
+  function decimalField(id, check, apply) {
+    const input = $(`#viz-bin-${id}`), error = $(`#viz-bin-${id}-error`);
+    input.addEventListener("input", () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? "Zadejte číslo, například 0,25." : check(v);
+      error.hidden = !message;
+      error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      if (!message) apply(v);
+    });
+  }
+  decimalField("pi", v => v < 0 || v > 1 ? "Pravděpodobnost musí ležet mezi 0 a 1." : null, v => { s.pi = v; render(); });
+
+  // Whole-number field with arrows; the upper limit of k depends on n. The value applies as soon as it is valid.
+  const whole = {};
+  function wholeNumberField(id, min, maxOf, apply) {
+    const input = $(`#viz-bin-${id}`), error = $(`#viz-bin-${id}-error`);
+    const check = () => {
+      const raw = input.value.trim(), max = maxOf();
+      const v = !input.validity.badInput && /^\d+$/.test(raw) ? Number(raw) : null;
+      const ok = v !== null && v >= min && v <= max;
+      error.hidden = ok;
+      error.textContent = ok ? "" : `Zadejte celé číslo od ${min} do ${int(max)}. Používá se dál poslední platná hodnota.`;
+      input.setAttribute("aria-invalid", ok ? "false" : "true");
+      return ok ? v : null;
+    };
+    const update = () => { const v = check(); if (v !== null) apply(v); };
+    input.addEventListener("input", update);
+    input.addEventListener("change", update);
+    whole[id] = {input, check, hint: $(`#viz-bin-${id}-hint`)};
+  }
+  const clampNote = $("[data-clamp]");
+  wholeNumberField("n", 1, () => N_MAX, v => { if (v !== s.n) { s.n = v; adjustToN(); } render(); });
+  wholeNumberField("k", 0, () => s.n, v => { s.k = v; render(); });
+
+  // The two bounds of the range are checked together: the lower one must not exceed the upper one.
+  const orderError = $("#viz-bin-order-error");
+  const pending = {k1: s.k1, k2: s.k2};
+  function applyBounds() {
+    const ok = pending.k1 <= pending.k2;
+    orderError.hidden = ok || s.mode !== "range";
+    orderError.textContent = ok ? "" : "Dolní mez nesmí být větší než horní mez. Používají se dál poslední platné meze.";
+    if (ok) { s.k1 = pending.k1; s.k2 = pending.k2; }
+  }
+  wholeNumberField("k1", 0, () => s.n, v => { pending.k1 = v; applyBounds(); render(); });
+  wholeNumberField("k2", 0, () => s.n, v => { pending.k2 = v; applyBounds(); render(); });
+
+  // A new n changes the allowed range of the counts; counts above n are lowered to n.
+  function adjustToN() {
+    const lowered = [];
+    for (const id of ["k", "k1", "k2"]) {
+      const f = whole[id];
+      f.input.max = String(s.n);
+      f.hint.textContent = `celé číslo od 0 do ${int(s.n)}`;
+      const value = id === "k" ? s.k : pending[id];
+      if (value > s.n) {
+        if (id === "k") s.k = s.n; else pending[id] = s.n;
+        f.input.value = String(s.n);
+        lowered.push(id);
+      }
+      const v = f.check();
+      if (v !== null) { if (id === "k") s.k = v; else pending[id] = v; }
+    }
+    applyBounds();
+    const names = {k: "<i>k</i>", k1: "<i>k</i><sub>1</sub>", k2: "<i>k</i><sub>2</sub>"};
+    const shown = lowered.filter(id => s.mode === "single" ? id === "k" : id !== "k");
+    clampNote.hidden = !shown.length;
+    clampNote.innerHTML = shown.length ? `${shown.length === 1 ? "Hranice" : "Meze"} ${shown.map(id => names[id]).join(" a ")} ${shown.length === 1 ? "byla snížena" : "byly sníženy"} na <i>n</i> = ${int(s.n)}, protože počet úspěchů nemůže převýšit počet pokusů.` : "";
+  }
+
+  for (const id of ["lt", "eq", "gt"]) $(`#viz-bin-${id}`).addEventListener("change", e => { s[id] = e.target.checked; render(); });
+  function showFields() {
+    const single = s.mode === "single";
+    $('[data-field="k"]').hidden = !single;
+    $('[data-field="which"]').hidden = !single;
+    $('[data-field="k1"]').hidden = single;
+    $('[data-field="k2"]').hidden = single;
+    orderError.hidden = single || pending.k1 <= pending.k2;
+    clampNote.hidden = true;
+  }
+  root.querySelectorAll('input[name="viz-bin-mode"]').forEach(r => r.addEventListener("change", () => { s.mode = r.value; showFields(); render(); }));
+  approxBox.addEventListener("change", () => render());
+  showFields();
+
+  // Integer runs [a, b]: merging of adjacent runs and the complement within 0, …, n.
+  function merge(runs) {
+    const out = [];
+    for (const [a, b] of runs.filter(([a, b]) => a <= b).sort((x, y) => x[0] - y[0])) {
+      if (out.length && a <= out[out.length - 1][1] + 1) out[out.length - 1][1] = Math.max(out[out.length - 1][1], b);
+      else out.push([a, b]);
+    }
+    return out;
+  }
+  function complement(runs, n) {
+    const out = []; let next = 0;
+    for (const [a, b] of runs) { if (a > next) out.push([next, a - 1]); next = b + 1; }
+    if (next <= n) out.push([next, n]);
+    return out;
+  }
+  const sumRuns = (pmf, runs) => { let sum = 0; for (const [a, b] of runs) for (let j = a; j <= b; j++) sum += pmf[j]; return sum; };
+  const countRuns = runs => runs.reduce((c, [a, b]) => c + b - a + 1, 0);
+  const runText = ([a, b]) => a === b ? `<i>P</i>(<i>X</i> = ${int(a)})` : b === a + 1 ? `<i>P</i>(<i>X</i> = ${int(a)}) + <i>P</i>(<i>X</i> = ${int(b)})` : `<i>P</i>(<i>X</i> = ${int(a)}) + … + <i>P</i>(<i>X</i> = ${int(b)})`;
+  // The sum written out: individual terms with values when there are at most six of them.
+  function sumText(pmf, runs, total) {
+    if (!runs.length) return "žádný počet úspěchů, součet 0";
+    const symbolic = runs.map(runText).join(" + ");
+    if (countRuns(runs) === 1) return `${symbolic} = ${prob4(total)}`;
+    if (countRuns(runs) > 6) return `${symbolic} (${int(countRuns(runs))} hodnot) = ${prob4(total)}`;
+    const values = runs.flatMap(([a, b]) => d3.range(a, b + 1).map(j => prob4(pmf[j])));
+    return `${symbolic}<br>= ${values.join(" + ")} = ${prob4(total)}`;
+  }
+
+  // Names and symbols of the eight possible combinations of the three check boxes.
+  function singleName(key, k) {
+    const ks = int(k);
+    return {
+      "=": [`právě ${successes(k)}`, `<i>P</i>(<i>X</i> = ${ks})`],
+      "<=": [`nejvýše ${successes(k)}`, `<i>P</i>(<i>X</i> ≤ ${ks})`],
+      "=>": [`alespoň ${successes(k)}`, `<i>P</i>(<i>X</i> ≥ ${ks})`],
+      "<": [`méně než ${successes(k)}`, `<i>P</i>(<i>X</i> &lt; ${ks})`],
+      ">": [`více než ${successes(k)}`, `<i>P</i>(<i>X</i> &gt; ${ks})`],
+      "<>": [`jiný počet úspěchů než ${ks}`, `<i>P</i>(<i>X</i> ≠ ${ks})`],
+      "<=>": ["libovolný počet úspěchů (jistý jev)", "<i>P</i>"],
+      "": ["žádný počet úspěchů (nemožný jev)", "<i>P</i>"]
+    }[key];
+  }
+
+  // The question in the current mode: integer runs of the event, its complement, names and Excel formulas.
+  function question(n, pi, pmf) {
+    const piE = excel(pi);
+    const B = (x, cum) => `BINOM.DIST(${x};${n};${piE};${cum ? "PRAVDA" : "NEPRAVDA"})`;
+    if (s.mode === "single") {
+      const {k} = s, key = (s.lt ? "<" : "") + (s.eq ? "=" : "") + (s.gt ? ">" : "");
+      const runs = merge([...(s.lt ? [[0, k - 1]] : []), ...(s.eq ? [[k, k]] : []), ...(s.gt ? [[k + 1, n]] : [])]);
+      const rest = complement(runs, n);
+      const ckey = (s.lt ? "" : "<") + (s.eq ? "" : "=") + (s.gt ? "" : ">");
+      const [name, symbol] = singleName(key, k), [cname, csymbol] = singleName(ckey, k);
+      let formula, formulaNote = "";
+      if (!runs.length) { formula = null; formulaNote = key === "" ? "Není zaškrtnuta žádná možnost: jev je nemožný a jeho pravděpodobnost je 0. Vzorec není potřeba." : `Žádný počet úspěchů není ${key === "<" ? "menší než 0" : `větší než ${int(n)}`}: jev je nemožný a jeho pravděpodobnost je 0. Vzorec není potřeba.`; }
+      else if (!rest.length) { formula = null; formulaNote = key === "<=>" ? "Jsou zaškrtnuty všechny možnosti: jev nastane vždy a jeho pravděpodobnost je 1. Vzorec není potřeba." : `Jev zahrnuje všechny počty od 0 do ${int(n)}: nastane vždy a jeho pravděpodobnost je 1. Vzorec není potřeba.`; }
+      else formula = {"=": `=${B(k, false)}`, "<=": `=${B(k, true)}`, "<": `=${B(`${k}-1`, true)}`, "=>": `=1-${B(`${k}-1`, true)}`, ">": `=1-${B(k, true)}`, "<>": `=1-${B(k, false)}`}[key];
+      return {key, runs, rest, name, symbol, cname, csymbol, trivialRest: ckey === "" || ckey === "<=>", formula, formulaNote, value: sumRuns(pmf, runs), rest_value: sumRuns(pmf, rest), cuts: [k]};
+    }
+    const {k1, k2} = s;
+    const runs = [[k1, k2]], rest = complement(runs, n);
+    const R = `BINOM.DIST.RANGE(${n};${piE};${k1};${k2})`;
+    const restName = !rest.length ? "žádný počet úspěchů (nemožný jev)" : k1 === 0 ? `více než ${successes(k2)}` : k2 === n ? `méně než ${successes(k1)}` : `méně než ${int(k1)} nebo více než ${successes(k2)}`;
+    return {key: "range", runs, rest, name: `od ${int(k1)} do ${successes(k2)} (včetně obou mezí)`, symbol: `<i>P</i>(${int(k1)} ≤ <i>X</i> ≤ ${int(k2)})`,
+      cname: restName, csymbol: `1 − <i>P</i>(${int(k1)} ≤ <i>X</i> ≤ ${int(k2)})`, formula: `=${R}`, restFormula: `=1-${R}`, formulaNote: "",
+      value: sumRuns(pmf, runs), rest_value: sumRuns(pmf, rest), cuts: [k1, k2]};
+  }
+
+  // Normal approximation: real intervals for the boundary in the middle of the bar (a) and at the edges of the bars (b).
+  function approximation(q, n, pi) {
+    const mu = n * pi, sd = Math.sqrt(n * pi * (1 - pi));
+    if (!(sd > 0)) return null;
+    const cdf = x => x === -Infinity ? 0 : x === Infinity ? 1 : pnorm((x - mu) / sd);
+    const area = ivs => ivs.reduce((t, [a, b]) => t + Math.max(0, cdf(b) - cdf(a)), 0);
+    const M = `${n}*${excel(pi)}`, S = `ODMOCNINA(${n}*${excel(pi)}*(1-${excel(pi)}))`;
+    const N = x => `NORM.DIST(${excel(x)};${M};${S};PRAVDA)`;
+    const term = ([a, b]) => a === -Infinity && b === Infinity ? "1" : a === -Infinity ? N(b) : b === Infinity ? `1-${N(a)}` : `${N(b)}-${N(a)}`;
+    const expr = ivs => ivs.length ? ivs.map(term).join("+") : "0";
+    // (b): every run of whole counts covers its bars from a − 0,5 to b + 0,5; runs at 0 or n extend to infinity.
+    const edge = runs => runs.map(([a, b]) => [a === 0 ? -Infinity : a - 0.5, b === n ? Infinity : b + 0.5]);
+    let midIvs, edgeIvs;
+    if (q.key === "range") {
+      const [k1, k2] = q.cuts;
+      midIvs = [[k1 === 0 ? -Infinity : k1, k2 === n ? Infinity : k2]];
+      edgeIvs = edge(q.runs);
+    } else {
+      const k = q.cuts[0];
+      midIvs = [...(s.lt ? [[-Infinity, k]] : []), ...(s.eq ? [[k, k]] : []), ...(s.gt ? [[k, Infinity]] : [])];
+      edgeIvs = edge(q.runs);
+    }
+    const midArea = area(midIvs), edgeArea = area(edgeIvs);
+    const midReal = midIvs.filter(([a, b]) => b > a), point = midIvs.length > 0 && !midReal.length;
+    const finite = ivs => [...new Set(ivs.flat().filter(Number.isFinite))].sort((a, b) => a - b);
+    const formula = ivs => `=${expr(ivs)}`;
+    const rest = e => e === "1" ? "=0" : e === "0" ? "=1" : `=1-(${e})`;
+    return {mu, sd, midIvs, edgeIvs, midArea, edgeArea, point, midCuts: finite(midIvs), edgeCuts: finite(edgeIvs),
+      midFormula: formula(midReal), edgeFormula: formula(edgeIvs), midRest: rest(expr(midReal)), edgeRest: rest(expr(edgeIvs))};
+  }
+
+  // Visible counts: all of them up to n = 60, otherwise mean ± 5 standard deviations widened to show the bounds.
+  function windowFor(n, mu, sd, cuts) {
+    if (n <= 60) return {lo: 0, hi: n, far: []};
+    let lo = Math.max(0, Math.floor(mu - 5 * sd)), hi = Math.min(n, Math.ceil(mu + 5 * sd));
+    const reach = Math.max(10 * sd, 15);
+    const near = cuts.filter(c => Math.abs(c - mu) <= reach + 2), far = cuts.filter(c => !near.includes(c));
+    for (const c of near) { lo = Math.min(lo, Math.max(0, c - 2)); hi = Math.max(hi, Math.min(n, c + 2)); }
+    while (hi - lo < 20) { if (lo > 0) lo--; if (hi < n) hi++; }
+    return {lo, hi, far};
+  }
+  const niceStep = (span, maxTicks) => [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500].find(st => span / st <= maxTicks) ?? 500;
+
+  const legend = items => html`<div class="viz-legend">${items.map(([svg, label]) => { const span = html`<span></span>`; span.innerHTML = `${svg}<span>${label}</span>`; return span; })}</div>`;
+  const swatchBox = (fill, opacity = 1) => `<svg width="20" height="14" aria-hidden="true"><rect x="1" y="1" width="18" height="12" fill="${fill}" fill-opacity="${opacity}"/></svg>`;
+  const swatchLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swatchSpread = `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${ink}" stroke-width="2"/><circle cx="14" cy="6" r="3.5" fill="${ink}"/></svg>`;
+
+  function charts(container, n, pi, pmf, F, q, ap) {
+    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const small = width < 520;
+    const mu = n * pi, sd = Math.sqrt(n * pi * (1 - pi));
+    const {lo: kLo, hi: kHi, far} = windowFor(n, mu, sd, q.cuts);
+    const domain = [kLo - 0.6, kHi + 0.6];
+    const member = new Uint8Array(n + 1);
+    for (const [a, b] of q.runs) for (let j = a; j <= b; j++) member[j] = 1;
+    const ks = d3.range(kLo, kHi + 1);
+    const step = niceStep(kHi - kLo, small ? 7 : 12);
+    const kTicks = ks.filter(k => k % step === 0);
+    const pTicks = d3.ticks(kLo / n, kHi / n, small ? 4 : 8).filter(p => p * n >= kLo - 0.5 && p * n <= kHi + 0.5);
+    const maxP = d3.max(ks, k => pmf[k]);
+    const peak = ap ? Math.max(maxP, dnorm(0) / ap.sd) : maxP;
+    const top = 1.32 * peak, spreadY = 1.14 * peak;
+    const base = {
+      width, marginLeft: small ? 58 : 68, marginRight: 16, marginTop: 14,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}
+    };
+    const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 46 : 54});
+    const rowLabel = (text, dy) => Plot.text([text], {frameAnchor: "bottom-left", dx: -24, dy, lineAnchor: "top", textAnchor: "end", fontStyle: "italic", fill: gray, text: d => d});
+    const kAxis = [Plot.axisX(kTicks, {tickFormat: v => int(v), label: null}), rowLabel("k", 9)];
+    const w = ks.length > 120 ? 1 : 0.8;
+    const bars = ks.map(k => ({k, p: pmf[k], fill: member[k] ? hi : lo}));
+    const grid = ap ? d3.range(0, 601).map(i => domain[0] + (domain[1] - domain[0]) * i / 600) : [];
+    const curveY = x => dnorm((x - ap.mu) / ap.sd) / ap.sd;
+    const clip = ([a, b]) => [Math.max(domain[0], a), Math.min(domain[1], b)];
+    const approxMarks = ap ? [
+      ...ap.edgeIvs.map(clip).filter(([a, b]) => b > a).map(([a, b]) => Plot.areaY([a, ...grid.filter(x => x > a && x < b), b], {x: d => d, y: curveY, fill: orange, fillOpacity: 0.22})),
+      Plot.lineY(grid, {x: d => d, y: curveY, stroke: blue, strokeWidth: 2}),
+      Plot.ruleX(ap.midCuts.filter(x => x >= domain[0] && x <= domain[1]), {stroke: gray, strokeWidth: 1.6, strokeDasharray: "1.5,3"}),
+      Plot.ruleX(ap.edgeCuts.filter(x => x >= domain[0] && x <= domain[1]), {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"})
+    ] : [];
+    const spread = [{x1: Math.max(domain[0], mu - sd), x2: Math.min(domain[1], mu + sd), y: spreadY}];
+    const probChart = Plot.plot({
+      ...base, height: small ? 280 : 320, marginBottom: 60,
+      x: {domain, axis: null}, color: {type: "identity"},
+      y: {...yLabel("P(X = k)"), domain: [0, top], ticks: 4, tickFormat: v => trim(v, 4)},
+      ariaLabel: `Pravděpodobnosti počtu úspěchů pro n = ${n} a π = ${typed(pi)}`,
+      ariaDescription: `${q.key === "range" ? "Počty v rozpětí" : "Sloupce hledaného jevu"} jsou oranžové, ostatní modré. ${q.name.replace(/<[^>]+>/g, "")}: pravděpodobnost ${share(q.value)}. Střední hodnota ${trim(mu, 3)}, směrodatná odchylka ${fixed(sd, 3)}.${ap ? ` Normální křivka se stejnou střední hodnotou a směrodatnou odchylkou; plocha s hranicemi na okraji sloupců ${prob4(ap.edgeArea)}.` : ""}`,
+      marks: [
+        Plot.rect(bars, {x1: d => d.k - w / 2, x2: d => d.k + w / 2, y1: 0, y2: "p", fill: "fill", title: d => `P(X = ${int(d.k)}) = ${prob4(d.p)}`}),
+        ...approxMarks,
+        Plot.link(spread, {x1: "x1", x2: "x2", y1: "y", y2: "y", stroke: ink, strokeWidth: 2}),
+        Plot.dot([mu], {x: d => d, y: spreadY, r: 3.5, fill: ink}),
+        Plot.text([mu], {x: d => d, y: spreadY, dy: -9, lineAnchor: "bottom", fill: ink, text: () => "μ ± σ"}),
+        Plot.ruleY([0], {stroke: ink}),
+        ...kAxis,
+        Plot.text(pTicks, {x: p => p * n, frameAnchor: "bottom", dy: 36, lineAnchor: "top", fill: gray, text: p => trim(p, 4)}),
+        rowLabel("p", 36)
+      ]
+    });
+    // Tick marks of the second row (proportions) are added below the frame.
+    const xs = probChart.scale("x"), y0 = probChart.getAttribute("height") - 60 + 30;
+    const g = d3.select(probChart).append("g").attr("aria-hidden", "true").attr("stroke", gray);
+    for (const p of pTicks) g.append("line").attr("x1", xs.apply(p * n)).attr("x2", xs.apply(p * n)).attr("y1", y0).attr("y2", y0 + 5);
+
+    // Cumulative probability: a step function with a column at each bound split into the parts of the question.
+    const Fat = k => k < 0 ? 0 : k >= n ? 1 : F[k];
+    const steps = [{x: domain[0], y: Fat(kLo - 1)}, ...ks.map(k => ({x: k, y: F[k]})), {x: domain[1], y: Fat(kHi)}];
+    const pxUnit = (domain[1] - domain[0]) / Math.max(100, width - base.marginLeft - base.marginRight);
+    const cw = Math.min(0.9, Math.max(0.5, 10 * pxUnit));
+    let columns, heights;
+    if (q.key === "range") {
+      const [k1, k2] = q.cuts, a = Fat(k1 - 1), b = Fat(k2);
+      columns = [...(k1 !== k2 ? [[k1, [[0, a, lo]]]] : []), [k2, [[0, a, k1 === k2 ? lo : pale], [a, b, hi], [b, 1, lo]]]];
+      heights = [...(k1 > 0 ? [[k1, a, k1 - 1]] : []), ...(k2 < n ? [[k2, b, k2]] : [])];
+    } else {
+      const k = q.cuts[0], a = Fat(k - 1), b = Fat(k);
+      columns = [[k, [[0, a, s.lt ? hi : lo], [a, b, s.eq ? hi : lo], [b, 1, s.gt ? hi : lo]]]];
+      heights = [...(k > 0 ? [[k, a, k - 1]] : []), ...(k < n ? [[k, b, k]] : [])];
+    }
+    const inView = x => x >= kLo && x <= kHi;
+    const rects = columns.filter(([x]) => inView(x)).flatMap(([x, parts]) => parts.filter(([y1, y2]) => y2 > y1).map(([y1, y2, fill]) => ({x1: x - cw / 2, x2: x + cw / 2, y1, y2, fill})));
+    const shown = heights.filter(([x]) => inView(x));
+    const close = shown.length === 2 && Math.abs(shown[1][1] - shown[0][1]) < 0.09;
+    const heightMarks = shown.map(([, h, at], i) => {
+      const below = close && i === 0;
+      return Plot.text([h], {x: () => domain[0], y: d => d, dx: 4, dy: below ? 4 : -4, lineAnchor: below ? "top" : "bottom", textAnchor: "start", fill: hiText, fontWeight: 600, text: d => `P(X ≤ ${int(at)}) = ${share(d)}`});
+    });
+    const cdfChart = Plot.plot({
+      ...base, height: small ? 250 : 280, marginBottom: 40,
+      x: {domain, axis: null}, color: {type: "identity"},
+      y: {...yLabel("P(X ≤ k)"), domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2)},
+      ariaLabel: `Kumulativní pravděpodobnost pro n = ${n} a π = ${typed(pi)}`,
+      ariaDescription: `Kumulativní pravděpodobnost roste po schodech od 0 do 1. ${shown.map(([, h, at]) => `P(X ≤ ${int(at)}) = ${share(h)}`).join(", ")}.${ap ? " Čárkovaně distribuční funkce normálního modelu." : ""}`,
+      marks: [
+        Plot.ruleY([1], {stroke: pale}),
+        Plot.rect(rects, {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "fill", stroke: "white", strokeWidth: 0.6}),
+        Plot.line(steps, {x: "x", y: "y", curve: "step-after", stroke: blue, strokeWidth: 2}),
+        ...(ap ? [Plot.lineY(grid, {x: d => d, y: x => pnorm((x - ap.mu) / ap.sd), stroke: orange, strokeWidth: 1.6, strokeDasharray: "6,4"})] : []),
+        Plot.link(shown, {x1: () => domain[0], y1: d => d[1], x2: d => d[0], y2: d => d[1], stroke: gray, strokeWidth: 1.2, strokeDasharray: "2,3"}),
+        ...heightMarks,
+        Plot.ruleY([0], {stroke: ink}),
+        ...kAxis
+      ]
+    });
+
+    const panel = (title, chart, legendNode) => { const d = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; if (legendNode) d.append(legendNode); d.append(chart); return d; };
+    const probLegend = legend([
+      [swatchBox(hi), q.key === "range" ? "v rozpětí" : "hledaný jev"],
+      [swatchBox(lo), q.key === "range" ? "mimo rozpětí" : "opačný jev"],
+      [swatchSpread, "střední hodnota μ a úsečka μ ± σ"],
+      ...(ap ? [[swatchLine(blue, 2.4), "normální model"], [swatchLine(gray, 1.6, "1.5,3"), "hranice uprostřed sloupce"], [swatchLine(ink, 1.4, "5,4"), "hranice na okraji sloupců"], [swatchBox(orange, 0.22), "plocha s hranicemi na okraji sloupců"]] : [])
+    ]);
+    const cdfLegend = ap ? legend([[swatchLine(blue, 2.4), "binomický model"], [swatchLine(orange, 1.6, "6,4"), "normální model"]]) : null;
+    const nodes = [panel("Pravděpodobnost jednotlivých počtů úspěchů", probChart, probLegend)];
+    if (kLo > 0 || kHi < n) {
+      const hiddenProb = sumRuns(pmf, [...(kLo > 0 ? [[0, kLo - 1]] : []), ...(kHi < n ? [[kHi + 1, n]] : [])]);
+      nodes.push(html`<p class="viz-note">Graf ukazuje počty od ${int(kLo)} do ${int(kHi)}. Všechny ostatní počty od 0 do ${int(n)} mají dohromady pravděpodobnost ${hiddenProb === 0 ? "0" : share(hiddenProb)}.</p>`);
+    }
+    if (far.length) nodes.push(html`<p class="viz-note">${far.length === 1 ? "Hranice" : "Meze"} ${far.map(int).join(" a ")} leží daleko od střední hodnoty, a proto ${far.length === 1 ? "není zakreslena" : "nejsou zakresleny"}. Pravděpodobnost počtů za ${far.length === 1 ? "ní" : "nimi"} je prakticky nulová.</p>`);
+    nodes.push(panel("Kumulativní pravděpodobnost: součet sloupců až po k", cdfChart, cdfLegend));
+    container.replaceChildren(...nodes);
+    return {lo: kLo, hi: kHi};
+  }
+
+  const statsModel = $('[data-stats="model"]'), statsQ = $('[data-stats="q"]'), plots = $("[data-plots]");
+  const dl = (el, rows) => { el.innerHTML = rows.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join(""); };
+  let last = {};
+
+  function render() {
+    const {n, pi} = s, pmf = pmfAll(n, pi);
+    const F = new Float64Array(n + 1); { let sum = 0; for (let k = 0; k <= n; k++) { sum += pmf[k]; F[k] = Math.min(1, sum); } }
+    const mu = n * pi, q1 = 1 - pi, sd = Math.sqrt(n * pi * q1), sdp = Math.sqrt(pi * q1 / n);
+    const okApprox = n * pi >= 10 && n * q1 >= 10;
+    dl(statsModel, [
+      ["Počet úspěchů: střední hodnota a směrodatná odchylka", `μ = <i>n</i>π = ${int(n)} · ${typed(pi)} = ${typed(mu)}<br>σ = √(<i>n</i>π(1 − π)) = √(${int(n)} · ${typed(pi)} · ${typed(q1)}) = ${fixed(sd, 3)}`],
+      [`Podíl úspěchů <i>p</i> = <i>k</i>/<i>n</i>: střední hodnota a směrodatná odchylka`, `střední hodnota π = ${typed(pi)}<br>směrodatná odchylka √(π(1 − π)/<i>n</i>) = √(${typed(pi)} · ${typed(q1)} / ${int(n)}) = ${fixed(sdp, 4)}`],
+      ["Podmínka normální aproximace", `<i>n</i>π = ${typed(mu)} a <i>n</i>(1 − π) = ${typed(n * q1)}: ${okApprox ? "obě hodnoty jsou alespoň 10, podmínka je splněna" : "podmínka, že obě hodnoty jsou alespoň 10, není splněna"}`]
+    ]);
+
+    const q = question(n, pi, pmf);
+    const rows = [];
+    if (q.key === "range") {
+      rows.push(["Sčítané pravděpodobnosti v rozpětí", sumText(pmf, q.runs, q.value)]);
+      rows.push([`V rozpětí: ${q.name}`, `${q.symbol} = <strong>${share(q.value)}</strong> (${percent(q.value)})`, true]);
+      rows.push([`Mimo rozpětí: ${q.cname}`, `${q.csymbol} = <strong>${share(q.rest_value)}</strong> (${percent(q.rest_value)})`, true]);
+      rows.push(["Vzorce v Excelu", `v rozpětí <code>${q.formula}</code><br>mimo rozpětí <code>${q.restFormula}</code>`, true]);
+    } else {
+      rows.push(["Sčítané pravděpodobnosti", sumText(pmf, q.runs, q.value)]);
+      rows.push(["Opačný jev (nezaškrtnuté možnosti)", `${q.cname}: ${q.trivialRest ? "" : `${q.csymbol} = `}${share(q.rest_value)}; součet obou pravděpodobností je 1`]);
+      rows.push([`Hledaný jev: ${q.name}`, `${q.symbol} = <strong>${share(q.value)}</strong> (${percent(q.value)})`, true]);
+      rows.push(["Vzorec v Excelu", q.formula ? `<code>${q.formula}</code>` : q.formulaNote, true]);
+    }
+    if ((pi === 0 || pi === 1) && (q.formula || q.key === "range")) rows[rows.length - 1][1] += `<br><span class="viz-hint">Při π = 0 nebo π = 1 vracejí některé verze Excelu pro krajní počty chybu místo pravděpodobnosti 0; ošetření ukazuje <a href="kapitola_05.html#sec-binom-kumulace">list Binom_20</a>.</span>`;
+
+    const ap = approxBox.checked ? approximation(q, n, pi) : null;
+    if (approxBox.checked && !ap) rows.push(["Normální aproximace", "Při π = 0 nebo π = 1 dopadnou všechny pokusy stejně a směrodatná odchylka je 0. Normální model nelze sestavit.", true]);
+    if (ap) {
+      const zLine = x => `<i>z</i> = (${typed(x)} − ${typed(ap.mu)}) / ${fixed(ap.sd, 3)} = ${fixed((x - ap.mu) / ap.sd, 3)}`;
+      const exact = q.value, range = q.key === "range";
+      const compare = (v, restV) => range ? `v rozpětí ≈ <strong>${prob4(v)}</strong> (přesně ${prob4(exact)}; rozdíl ${signed(v - exact)})<br>mimo rozpětí ≈ ${prob4(restV)} (přesně ${prob4(q.rest_value)}; rozdíl ${signed(restV - q.rest_value)})` : `≈ <strong>${prob4(v)}</strong> (přesně ${prob4(exact)}; rozdíl ${signed(v - exact)})`;
+      const midText = ap.point ? "Jediný bod nemá v normálním modelu žádnou plochu, aproximace dává 0." : "";
+      rows.push(["Hranice uprostřed sloupce (bez posunu)", `${ap.midCuts.map(x => `hranice ${typed(x)}: ${zLine(x)}`).join("<br>")}${ap.midCuts.length ? "<br>" : ""}${midText ? midText + "<br>" : ""}${compare(ap.midArea, 1 - ap.midArea)}`]);
+      rows.push(["Hranice na okraji sloupců (posun o 0,5)", `${ap.edgeCuts.map(x => `hranice ${typed(x)}: ${zLine(x)}`).join("<br>")}${ap.edgeCuts.length ? "<br>" : ""}${compare(ap.edgeArea, 1 - ap.edgeArea)}`]);
+      const fm = (label, f) => `${label} <code>${f}</code>`;
+      rows.push(["Vzorce v Excelu (aproximace)", range
+        ? [fm("uprostřed, v rozpětí", ap.midFormula), fm("uprostřed, mimo", ap.midRest), fm("na okraji, v rozpětí", ap.edgeFormula), fm("na okraji, mimo", ap.edgeRest)].join("<br>")
+        : [ap.point ? "uprostřed sloupce: výsledek 0, vzorec není potřeba" : fm("uprostřed sloupce", ap.midFormula), fm("na okraji sloupců", ap.edgeFormula)].join("<br>"), true]);
+    }
+    dl(statsQ, rows);
+    const view = charts(plots, n, pi, pmf, F, q, ap);
+
+    last = {n, pi, mode: s.mode, k: s.k, checks: [s.lt, s.eq, s.gt], k1: s.k1, k2: s.k2, key: q.key, value: q.value, rest: q.rest_value,
+      formula: q.formula, restFormula: q.restFormula ?? null, mu, sd, okApprox, window: [view.lo, view.hi],
+      approx: ap ? {mid: ap.midArea, edge: ap.edgeArea, midFormula: ap.midFormula, edgeFormula: ap.edgeFormula, midRest: ap.midRest, edgeRest: ap.edgeRest} : null};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {dbinom, pbinom, pnorm, parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Tytéž jevy ukazují statické obrázky v kapitole 5: <a href="kapitola_05.html#fig-binomicke-tvar">tvar binomického rozdělení</a>, <a href="kapitola_05.html#fig-binom-oblasti">právě, nejvýše a alespoň</a> a <a href="kapitola_05.html#fig-aproximace">normální křivka přes binomické rozdělení</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-bin-vyzkousejte .unnumbered}
+
+1. Nastavte $n=5$ a $\mathrm{π}=0{,}25$ a zjistěte pravděpodobnost právě dvou úspěchů. Porovnejte ji s [tabulkou složek binomického rozdělení](kapitola_05.qmd#tbl-k05-09). Potom zaškrtněte také „méně než $k$“. Které sloupce se přidaly, jak se jev nyní jmenuje a kde v dolním grafu vidíte jeho pravděpodobnost?
+2. Vraťte se k výchozímu testu, $n=20$ a $\mathrm{π}=0{,}25$, a nastavte $k=10$. Porovnejte pravděpodobnost „alespoň 10“ (právě a více než) s pravděpodobností „více než 10“. O jaký sloupec se liší? Proč v [normálním modelu](kapitola_04.qmd#sec-bod-a-interval) takový rozdíl nevznikal?
+3. Nastavte $n=200$, $\mathrm{π}=0{,}6$ a $k=135$, zaškrtněte právě a více než $k$ a zapněte normální aproximaci. Porovnejte oba přibližné výsledky s přesným. Potom nastavte $n=20$ a $\mathrm{π}=0{,}05$ a sledujte, co se stane s křivkou, s podmínkou aproximace a s rozdíly od přesných hodnot.
+4. Nastavte $\mathrm{π}=0{,}6$ a postupně $n=50$, 200 a 800. Jak se mění šířka úsečky $\mathrm{μ}\pm\mathrm{σ}$ v řadě $k$ a jak v řadě $p$? Porovnejte změnu se směrodatnou odchylkou podílu pod vstupy.
+
+## Čeho si všimnout {#sec-viz-bin-vsimnete .unnumbered}
+
+Každá otázka na počet úspěchů se dá rozložit na sloupce, které sčítáme. U diskrétního rozdělení má každý možný počet kladnou pravděpodobnost, a proto záleží na tom, zda hranici zahrnujeme. „Alespoň 10“ a „více než 10“ se liší přesně o sloupec $P(X=10)$. Nezaškrtnuté možnosti tvoří opačný jev a obě pravděpodobnosti dávají dohromady 1. Odtud plyne vztah z oddílu [Právě, nejvýše, alespoň](kapitola_05.qmd#sec-binom-kumulace): opačným jevem k „alespoň $k$“ je „méně než $k$“, tedy „nejvýše $k-1$“. V dolním grafu tento vztah vidíte jako rozdělení sloupce od 0 do 1 na tři části. Výška schodu v $k$ je právě $P(X=k)$.
+
+Tvar rozdělení určují oba parametry, jak ukazuje oddíl [Tvar, střední hodnota a směrodatná odchylka](kapitola_05.qmd#sec-binomicke-tvar). Při $\mathrm{π}=0{,}5$ je rozdělení souměrné, při nízké pravděpodobnosti úspěchu zešikmené doprava a při vysoké doleva. S rostoucím počtem pokusů se rozdělení v počtech rozšiřuje, jednotlivé sloupce jsou nižší a tvar se blíží souměrnému zvonu.
+
+Normální křivka sedí na vrcholy sloupců, když očekáváme dost úspěchů i neúspěchů. Hranice uprostřed sloupce však polovinu krajního sloupce vynechá nebo přidá. Pro „právě $k$“ dává dokonce nulu, protože jediný bod nemá pod spojitou křivkou žádnou plochu. Hranice na okrajích sloupců pokrývají stejný úsek osy jako sečtené sloupce, a výsledek je proto zpravidla bližší přesné hodnotě. Navíc nezávisí na tom, jak otázku zapíšeme: „méně než $k$“ i „nejvýše $k-1$“ vedou ke stejné hranici $k-0{,}5$. Hranice uprostřed sloupce by v obou zápisech ležela jinde, jednou v $k$ a jednou v $k-1$. Když podmínka aproximace splněna není, křivka zasahuje do záporných počtů nebo nad $n$ a nepomůže ani posun hranic. Excel dnes vrátí přesnou hodnotu okamžitě; aproximace je důležitá hlavně proto, že ukazuje přibližně normální tvar počtu úspěchů v mnoha pokusech ([Jak přesná aproximace je](kapitola_05.qmd#sec-aproximace-presnost)).
+
+Řada $p$ pod osou převádí počty na podíly úspěchů. Při čtyřnásobném počtu pokusů se úsečka $\mathrm{μ}\pm\mathrm{σ}$ v počtech prodlouží na dvojnásobek, ale v podílech se zkrátí na polovinu. Proto podíl úspěchů s rostoucím počtem pokusů kolísá kolem $\mathrm{π}$ stále méně, jak vysvětluje oddíl [Od počtu k podílu](kapitola_05.qmd#sec-od-poctu-k-podilu).
+
+Všechny výsledky jsou pravděpodobnosti za předpokladů binomického modelu: pevný počet nezávislých pokusů se stejnou pravděpodobností úspěchu ([Kdy binomický model použít](kapitola_05.qmd#sec-binomicke-predpoklady)). Říkají, jak pravděpodobný je výsledek, pokud model platí, nikoli jak pravděpodobné je, že model platí.

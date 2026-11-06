@@ -345,6 +345,26 @@ U vizualizace ploch pod normální křivkou kontrola ověřuje:
   poznámku u hranice mimo zobrazený rozsah, šířku 375 px bez přetékání
   a odkaz z kapitoly 4.
 
+U vizualizace binomického rozdělení (pravděpodobnost počtu úspěchů)
+kontrola ověřuje:
+
+- dva grafy (pravděpodobnosti a kumulativní pravděpodobnost) a žádný
+  viditelný kód ani tlačítko schránky;
+- `dbinom` a `pbinom` stránky proti hodnotám z R pro *n* od 5 do 1000
+  včetně π blízké 1 a velmi malých pravděpodobností;
+- všech osm kombinací zaškrtávacích polí pro *k* = 5 (pravděpodobnost,
+  doplněk do 1 a přesné znění vzorce `BINOM.DIST`), „alespoň“ a „více než“
+  pro *k* = 10 a nemožné jevy „méně než 0“ a „více než *n*“;
+- obě normální aproximace (hranice uprostřed a na okraji sloupců) proti
+  `pnorm` z R pro příklad s 200 pokusy, pro „právě 5“, „méně než 5“
+  a rozpětí 8 až 12 včetně znění vzorců `NORM.DIST` a `BINOM.DIST.RANGE`;
+- zapnutí a vypnutí aproximace v grafu, nedostupnost při π = 0, snížení
+  hranic při menším *n* se zprávou a chybu pořadí mezí rozpětí;
+- odmítnutí neplatných vstupů (*n* 0, 1001, 2,5; π 1,2, −0,1 a text;
+  mez nad *n*) se zprávou a ponecháním poslední platné hodnoty, šipky
+  pole *n*, výřez osy pro *n* = 1000 a π = 0,01 s poznámkou, volbu typu
+  otázky šipkami, šířku 375 px bez přetékání a odkaz z kapitoly 5.
+
 U vizualizace statistické síly kontrola ověřuje:
 
 - tři grafy (situace A, situace B, křivka síly), vzor šrafování α v obou

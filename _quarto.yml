@@ -42,6 +42,7 @@ book:
     - part: "Interaktivní vizualizace"
       chapters:
         - quarto/viz_normalni_rozdeleni.qmd
+        - quarto/viz_binomicke_rozdeleni.qmd
         - quarto/viz_vyberove_rozdeleni_prumeru.qmd
         - quarto/viz_statisticka_sila.qmd
     - part: "Literatura a přehledy"

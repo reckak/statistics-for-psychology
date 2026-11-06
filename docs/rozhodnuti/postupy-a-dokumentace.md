@@ -713,3 +713,40 @@ přepínačem normálního modelu a s podíly nad 2 a pod −2. Pátá populace
 je extrémně zešikmená se šikmostí 8 a se stejnými μ a σ.
 Standardizace průměru je vyložena v kapitole 6, nový pojem se nezavádí.
 Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).
+
+<a id="r65-upresneni-2026-11-06-binom"></a>
+
+### Upřesnění 2026-11-06 — Vizualizace binomického rozdělení
+
+Čtvrtá vizualizace podle R65, ke kapitole 5: stránka
+`quarto/viz_binomicke_rozdeleni.qmd` („Pravděpodobnost počtu úspěchů“,
+`#sec-viz-binomicke-rozdeleni`), v menu za vizualizací ploch pod normální
+křivkou.
+
+- Vstupy *n* (celé číslo 1–1000 se šipkami) a π (0–1 včetně), výchozí
+  test s 20 otázkami a π = 0,25.
+- Jedna hranice *k* se třemi **nezávislými** zaškrtávacími poli „méně než“,
+  „právě“, „více než“ (kombinace dávají nejvýše, alespoň, jiný počet než *k*),
+  nebo rozpětí od *k*₁ do *k*₂ včetně obou mezí s pravděpodobností v rozpětí
+  i mimo ně.
+- Dvojí osa x: řada *k* v počtech a řada *p* = *k*/*n* v podílech.
+- Přepínač normální aproximace: křivka a dva přibližné výpočty, s hranicí
+  uprostřed sloupce a s hranicí posunutou o 0,5 na okraj sloupců, oba
+  s rozdílem od přesné hodnoty. Postup s posunem odpovídá výpočtu „od 134,5“
+  v kapitole 5; termín „korekce na spojitost“ se nezavádí.
+- Doplňky: vzorce českého Excelu s dosazenými hodnotami, výsledek podmínky
+  aproximace, μ a σ počtu i podílu (v grafu úsečka μ ± σ) a pod sloupci
+  schodovitý graf kumulativní pravděpodobnosti jako obdoba distribuční funkce.
+
+**Doklad:** autor 2026-11-06 zadal: „Jako další vizualizaci bych chtěl
+zakomponovat binomické rozdělení. Uživatel by mohl zvolit pravděpodobnost
+úspěchu a počet pokusů a pak si nechat vypočíst pravděpodobnost pro určitý
+počet úspěchů; umožnil bych zakliknout, jestli chce x přesně k zahrnout,
+jestli chce zahrnout x menší než k a x větší než k (ale ať to nejsou vzájemně
+výlučné volby); případně pro počet úspěchů pro rozpětí k s tím, že by se
+vypočtla pravděpodobnost i v tomto rozpětí i mimo něj. Taky by tam měl být
+přepínač pro vykreslení normální aproximace a osa X dvojitá jak pro počty,
+tak pro podíly.“ Na doplňující otázky zvolil „Křivka + obě aproximace“,
+rozsah *n* „1–1000“ a všechny čtyři doplňky („Vzorec v Excelu“, „Podmínka
+aproximace“, „Střední hodnota a σ“, „Distribuční funkce“); plán téhož dne
+schválil. Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).

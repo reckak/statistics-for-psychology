@@ -45,9 +45,13 @@ schválil v upravené podobě a je realizován jako stránka
 [Na čem závisí statistická síla](../../quarto/viz_statisticka_sila.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila),
 [karta kapitoly 6](06-vyberove-rozdeleni-testovani.md#interaktivni-vizualizace-06)).
+Námět ke kapitole 5 „binomické rozdělení a jeho normální aproximace“ autor
+téhož dne schválil v upravené podobě a je realizován jako stránka
+[Pravděpodobnost počtu úspěchů](../../quarto/viz_binomicke_rozdeleni.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom),
+[karta kapitoly 5](05-pravdepodobnost.md#interaktivni-vizualizace-05)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
-hodnoty na průměr, medián a směrodatnou odchylku; kap. 5 binomické rozdělení a jeho normální
-aproximace, Bayesova věta na mřížce; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
+hodnoty na průměr, medián a směrodatnou odchylku; kap. 5 Bayesova věta na mřížce; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
 t a normální rozdělení podle stupňů volnosti, pásmo ekvivalence; kap. 8
 přínos párování a interval rozdílu vedle dvou intervalů.
 
