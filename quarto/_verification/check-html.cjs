@@ -605,7 +605,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Výběrové rozdělení průměru']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Výběrové rozdělení průměru']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -716,6 +716,89 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_06.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_vyberove_rozdeleni_prumeru.html"]').count(), 1, 'Chapter 6 links to the visualization');
+
+    // Areas under the normal curve: functions against R, all eight tasks with Excel formulas, input checks and a phone screen.
+    await page.goto(base + 'quarto/viz_normalni_rozdeleni.html', { waitUntil: 'networkidle' });
+    const nr = page.locator('#viz-normalni-rozdeleni');
+    const nrPlots = nr.locator('.viz-plots svg');
+    await nrPlots.nth(3).waitFor();
+    assert.equal(await nrPlots.count(), 4, 'Density and distribution function in both parts');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const nrState = () => nr.evaluate(el => el.vizCheck.state());
+    const near = (a, b, tol, msg) => assert(Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    // R: pnorm(c(-6, -1.96, 0, 1, 2.5, 7.5)); qnorm(c(1e-10, 0.001, 0.025, 0.5, 0.9, 0.995)).
+    const [nrP, nrQ] = await nr.evaluate(el => [[-6, -1.96, 0, 1, 2.5, 7.5].map(el.vizCheck.pnorm), [1e-10, 0.001, 0.025, 0.5, 0.9, 0.995].map(el.vizCheck.qnorm)]);
+    [9.86587645038e-10, 0.0249978951482, 0.5, 0.841344746069, 0.993790334674, 0.999999999999968].forEach((v, i) => near(nrP[i], v, Math.max(1e-12, 1e-9 * v), 'pnorm'));
+    [-6.3613409024, -3.09023230617, -1.95996398454, 0, 1.28155156554, 2.57582930355].forEach((v, i) => near(nrQ[i], v, 1e-9, 'qnorm'));
+    let ns = await nrState();
+    assert.equal(ns.mu, 0); assert.equal(ns.sigma, 1);
+    near(ns.forward.value, 0.841344746069, 1e-11, 'Default share to the left of 1');
+    near(ns.inverse.bounds[1], 1.95996398454, 1e-9, 'Default middle 95 %');
+    const nrInput = id => nr.locator(`#viz-nr-${id}`);
+    const nrMode = async (part, value) => { await nr.locator(`input[name="viz-nr-${part}-mode"][value="${value}"]`).check(); return nrState(); };
+    await nrInput('mu').fill('50'); await nrInput('sigma').fill('10'); await nrInput('x').fill('60');
+    // R: pnorm(60, 50, 10), 1 - pnorm(60, 50, 10), pnorm(70, 50, 10) - pnorm(60, 50, 10), 1 - (pnorm(60, 50, 10) - pnorm(40, 50, 10)).
+    ns = await nrMode('a', 'left');
+    near(ns.forward.value, 0.841344746069, 1e-11, 'Left of 60'); assert.equal(ns.forward.formula, '=NORM.DIST(60;50;10;PRAVDA)');
+    ns = await nrMode('a', 'right');
+    near(ns.forward.value, 0.158655253931, 1e-11, 'Right of 60'); assert.equal(ns.forward.formula, '=1-NORM.DIST(60;50;10;PRAVDA)');
+    assert.match(await nr.locator('[data-stats="a"]').innerText(), /0,159 \(15,9\s%\)/);
+    ns = await nrMode('a', 'between');
+    assert(await nrInput('lower').isVisible() && !(await nrInput('x').isVisible()), 'Two bounds replace one');
+    await nrInput('lower').fill('60'); await nrInput('upper').fill('70');
+    ns = await nrState();
+    near(ns.forward.value, 0.135905121983, 1e-11, 'Between 60 and 70'); assert.equal(ns.forward.formula, '=NORM.DIST(70;50;10;PRAVDA)-NORM.DIST(60;50;10;PRAVDA)');
+    ns = await nrMode('a', 'outside');
+    await nrInput('upper').fill('60'); await nrInput('lower').fill('40');
+    ns = await nrState();
+    near(ns.forward.value, 0.317310507863, 1e-11, 'Outside 40 to 60'); assert.equal(ns.forward.formula, '=1-(NORM.DIST(60;50;10;PRAVDA)-NORM.DIST(40;50;10;PRAVDA))');
+    assert.match(await nr.locator('[data-stats="a"]').innerText(), /0,317 \(31,7\s%\)/);
+    // R: qnorm(0.9, 50, 10), qnorm(0.95, 50, 10), qnorm(c(0.025, 0.975), 50, 10).
+    ns = await nrMode('b', 'lower');
+    near(ns.inverse.bounds[0], 62.8155156554, 1e-8, 'Lower 90 %'); assert.deepEqual(ns.inverse.formulas, ['=NORM.INV(0,9;50;10)']);
+    ns = await nrMode('b', 'upper');
+    near(ns.inverse.bounds[0], 66.4485362695, 1e-8, 'Upper 5 %'); assert.deepEqual(ns.inverse.formulas, ['=NORM.INV(1-0,05;50;10)']);
+    ns = await nrMode('b', 'middle');
+    near(ns.inverse.bounds[0], 30.4003601546, 1e-8, 'Middle 95 %, lower'); near(ns.inverse.bounds[1], 69.5996398454, 1e-8, 'Middle 95 %, upper');
+    assert.deepEqual(ns.inverse.formulas, ['=NORM.INV((1-0,95)/2;50;10)', '=NORM.INV(1-(1-0,95)/2;50;10)']);
+    ns = await nrMode('b', 'tails');
+    near(ns.inverse.bounds[0], 30.4003601546, 1e-8, 'Both tails 5 %, lower'); near(ns.inverse.bounds[1], 69.5996398454, 1e-8, 'Both tails 5 %, upper');
+    assert.deepEqual(ns.inverse.formulas, ['=NORM.INV(0,05/2;50;10)', '=NORM.INV(1-0,05/2;50;10)']);
+    assert.match(await nr.locator('[data-stats="b"]').innerText(), /69,60/);
+    // Invalid input is rejected with a visible message and the last valid value stays in use.
+    for (const [id, bad, check] of [['sigma', '0', s => s.sigma === 10], ['sigma', '-1', s => s.sigma === 10], ['sigma', 'abc', s => s.sigma === 10], ['share', '0', s => s.inverse.share === 0.05], ['share', '1', s => s.inverse.share === 0.05], ['share', '1,5', s => s.inverse.share === 0.05]]) {
+      await nrInput(id).fill(bad);
+      assert.equal(await nrInput(id).getAttribute('aria-invalid'), 'true', `Rejected ${id} = ${bad}`);
+      assert(await nr.locator(`#viz-nr-${id}-error`).isVisible(), `Message for ${id} = ${bad}`);
+      assert(check(await nrState()), `Kept ${id} after ${bad}`);
+    }
+    await nrInput('sigma').fill('10'); await nrInput('share').fill('0,05');
+    await nrInput('lower').fill('80');
+    assert(await nr.locator('#viz-nr-order-error').isVisible(), 'Lower bound above upper bound');
+    assert.deepEqual((await nrState()).forward.bounds, [40, 60]);
+    await nrInput('lower').fill('40');
+    assert(!(await nr.locator('#viz-nr-order-error').isVisible()));
+    // Decimal comma, typographic minus and keyboard choice of the task; R: pnorm(-1.5, 0.5, 2.5).
+    await nrInput('mu').fill('0,5'); await nrInput('sigma').fill('2.5');
+    await nr.locator('input[name="viz-nr-a-mode"][value="left"]').focus(); await page.keyboard.press('ArrowRight');
+    assert.equal((await nrState()).forward.mode, 'right', 'Keyboard choice of the task');
+    await page.keyboard.press('ArrowLeft');
+    await nrInput('x').fill('−1,5');
+    ns = await nrState();
+    assert.equal(ns.forward.mode, 'left'); near(ns.forward.value, 0.211855398583, 1e-11, 'Decimal model');
+    assert.equal(ns.forward.formula, '=NORM.DIST(-1,5;0,5;2,5;PRAVDA)');
+    assert.match(await nr.locator('[data-model]').innerText(), /N\(0,5; 2,5\)/);
+    await nrInput('x').fill('1000');
+    assert.match(await nr.locator('[data-plots="a"]').innerText(), /dále než 8 směrodatných odchylek/);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await nrPlots.nth(3).waitFor();
+    await nr.locator('input[name="viz-nr-a-mode"][value="outside"]').check();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Normal-curve visualization fits a phone');
+    await nr.screenshot({path:'tmp/verification/viz-normalni-rozdeleni-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_04.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_normalni_rozdeleni.html"]').count(), 1, 'Chapter 4 links to the visualization');
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

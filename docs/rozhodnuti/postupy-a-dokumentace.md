@@ -628,3 +628,32 @@ zvolil popisné pojmenování odhadu hustoty bez nového termínu („Odhad hust
 z výběru“, žádné heslo ve slovníčku) a čtyři populace včetně souměrné.
 Upravený plán téhož dne schválil. Odhad hustoty tím není zaveden jako pojem
 učebnice; jeho případné zavedení by vyžadovalo samostatnou dohodu.
+
+<a id="r65-upresneni-2026-11-06"></a>
+
+### Upřesnění 2026-11-06 — Vizualizace ploch pod normální křivkou
+
+Druhá vizualizace podle R65, ke kapitole 4: stránka
+`quarto/viz_normalni_rozdeleni.qmd` („Plochy pod normální křivkou“,
+`#sec-viz-normalni-rozdeleni`), v menu před pilotem.
+
+- Společné zadání μ a σ pro obě části, výchozí N(0, 1).
+- Část „Od hranice k podílu“: podíl vlevo od hranice, vpravo od ní, mezi
+  dvěma mezemi a mimo interval. Část „Od podílu k hranici“: dolní a horní
+  část rozdělení a souměrně prostřední část a oba chvosty dohromady.
+- Ve výsledcích a ovládání se plocha nazývá **podíl** jako v kapitole 4;
+  jedna věta na stránce ji propojuje s pravděpodobností (kapitola 5).
+  Podíl se zadává desetinným číslem mezi 0 a 1 bez krajních hodnot.
+- Doplňky: druhá řada popisků osy v z-skórech s převodem hranic, vzorec
+  českého Excelu s dosazenými hodnotami a pod hustotou graf distribuční funkce.
+
+**Doklad:** autor 2026-11-06 zadal: „Jako další vizualizaci bych vytvořil
+vizualizaci normálního rozdělení. Nechal bych uživatele vždy zadat mí a sigmu
+(s defaultním 0 a 1). Pak mohl zadat, zda chci zjistit pravděpodobnost hodnot
+nalevo/napravo/mezi/vně určitého skóru nebo skórů (v případě mezi a vně).
+Inverzně by mohl v druhém grafu zadat pravděpodobnost hodnot nalevo nebo
+napravo a souměrně mezi a vně, a ukázalo by mu to příslušné skóry.“
+Na doplňující otázky zvolil termín „Podíl“, všechny tři doplňky („Osa
+z-skórů a převod“, „Vzorec v Excelu“, „Distribuční funkce“), „Společné μ a σ“
+a zadání podílu „Desetinné číslo 0–1“; plán téhož dne schválil. Realizaci
+a ověření eviduje [autorská historie](../../quarto/README.md).

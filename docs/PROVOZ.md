@@ -328,8 +328,23 @@ ověřuje:
 - ovládání klávesnicí, normální křivku, šířku 375 px bez přetékání
   a odkaz z kapitoly 6.
 
-Referenční hodnoty z R jsou zapsané přímo v testu. Snímek mobilního
-zobrazení se ukládá do `tmp/verification/`.
+U vizualizace ploch pod normální křivkou kontrola ověřuje:
+
+- čtyři grafy (hustota a distribuční funkce v obou částech) a žádný
+  viditelný kód ani tlačítko schránky;
+- `pnorm` a `qnorm` stránky proti hodnotám z R včetně vzdálených chvostů;
+- všech osm úloh v modelu N(50, 10) proti `pnorm`/`qnorm` z R a přesné
+  znění vzorců `NORM.DIST`/`NORM.INV`, které stránka nabízí;
+- odmítnutí neplatných vstupů (σ = 0, −1, text; podíl 0, 1 a 1,5; dolní
+  mez nad horní) se zprávou a ponecháním poslední platné hodnoty;
+- desetinnou čárku i tečku, typografické minus, volbu úlohy šipkami,
+  poznámku u hranice mimo zobrazený rozsah, šířku 375 px bez přetékání
+  a odkaz z kapitoly 4.
+
+Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
+zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
+stránkou kontrola porovnává jen jako text; jejich výsledky byly při
+zavedení ověřeny v českém Excelu (viz [autorská historie](../quarto/README.md)).
 
 ## Kontroly a GitHub
 

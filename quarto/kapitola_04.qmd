@@ -329,6 +329,10 @@ Některé hodnoty $z$ se v praxi i v dalších kapitolách stále opakují. **Je
 
 Například $z_{0{,}995}\approx2{,}576$: vlevo leží 99,5 %, vpravo 0,5 %. Mimo prostřední interval od $-2{,}576$ do $2{,}576$ tak zbývá 0,5 % v každém chvostu, celkem 1 %, a uvnitř leží 99 %. Prostředních 99 % modelu $N(50,10)$ proto leží přibližně mezi $50-25{,}76=24{,}24$ a $50+25{,}76=75{,}76$ bodu.
 
+::: {.callout-tip title="Vyzkoušejte si: plochy pod normální křivkou"}
+V [interaktivní vizualizaci](viz_normalni_rozdeleni.qmd) si zvolíte průměr a směrodatnou odchylku normálního modelu a uvidíte podíl vlevo od hranice, vpravo od ní, mezi dvěma mezemi i mimo ně jako plochu pod hustotou i jako výšku distribuční funkce. Ve druhé části zadáte podíl a vizualizace najde odpovídající hranice.
+:::
+
 ## Standardní skóry v psychologii {#sec-standardni-skory}
 
 Psychologické testy neuvádějí výsledky jen jako z-skóry. Tento oddíl ukazuje, jak tutéž relativní polohu vyjadřují běžné standardní škály a pásma stenů a staninů.

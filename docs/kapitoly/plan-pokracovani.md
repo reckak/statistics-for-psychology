@@ -35,9 +35,13 @@ Cohenovo d a test minimálního účinku. Podklady k nim eviduje
 **Interaktivní vizualizace — otevřený návrh, neschváleno.** Část a pilot
 zavádí [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace);
 každou další vizualizaci je třeba schválit zvlášť, až po vyhodnocení pilotu.
-Náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
-hodnoty na průměr, medián a směrodatnou odchylku; kap. 4 z-skór a plocha
-pod normální křivkou oběma směry; kap. 5 binomické rozdělení a jeho normální
+Námět ke kapitole 4 (z-skór a plocha pod normální křivkou oběma směry) autor
+2026-11-06 schválil a je realizován jako stránka
+[Plochy pod normální křivkou](../../quarto/viz_normalni_rozdeleni.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06),
+[karta kapitoly 4](04-normalni-rozdeleni.md#interaktivni-vizualizace-04)).
+Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
+hodnoty na průměr, medián a směrodatnou odchylku; kap. 5 binomické rozdělení a jeho normální
 aproximace, Bayesova věta na mřížce; kap. 6 centrální limitní věta zvlášť
 a chyby rozhodnutí se silou testu; kap. 7 pokrytí intervalů spolehlivosti,
 t a normální rozdělení podle stupňů volnosti, pásmo ekvivalence; kap. 8
