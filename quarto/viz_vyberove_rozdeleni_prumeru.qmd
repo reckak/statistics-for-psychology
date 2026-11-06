@@ -228,11 +228,11 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     const xs = d3.range(0, X_MAX + 0.001, 0.25);
     const popPeak = d3.max(xs, pop.pdf);
 
-    // 1. Population with μ and an arrow of one σ.
-    const arrowY = 0.62 * popPeak;
+    // 1. Population with μ and an arrow of one σ; the arrow and both labels sit above the curve.
+    const arrowY = 1.06 * popPeak;
     const population = Plot.plot({
       ...base, height: small ? 200 : 220, x: xAxis("Doba jednoho řidiče (s)"),
-      y: {...yLabel("Hustota"), ticks: 3, tickFormat: tick, domain: [0, 1.12 * popPeak]},
+      y: {...yLabel("Hustota"), ticks: 3, tickFormat: tick, domain: [0, 1.28 * popPeak]},
       ariaLabel: `Populace: ${pop.label}, hustota doby opuštění parkovacího místa`,
       ariaDescription: `Křivka hustoty se svislou čárou u průměru 35 sekund a šipkou o délce jedné směrodatné odchylky 15 sekund.`,
       marks: [
@@ -241,7 +241,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
         Plot.ruleX([MU], {stroke: orange, strokeWidth: 1.6, strokeDasharray: "5,4"}),
         Plot.text([MU], {x: d => d, frameAnchor: "top", dx: -6, dy: 2, textAnchor: "end", fill: orange, text: () => "μ = 35 s"}),
         Plot.arrow([MU + SIGMA / 2, MU + SIGMA / 2], {x1: d => d, x2: (d, i) => i ? MU + SIGMA : MU, y1: arrowY, y2: arrowY, stroke: orange, strokeWidth: 1.6, headLength: 7, inset: 0}),
-        Plot.text([MU], {x: d => d, y: arrowY, dx: 5, dy: -9, textAnchor: "start", fill: orange, text: () => "σ = 15 s"}),
+        Plot.text([MU], {x: d => d, frameAnchor: "top", dx: 6, dy: 2, textAnchor: "start", fill: orange, text: () => "σ = 15 s"}),
         Plot.ruleY([0], {stroke: ink})
       ]
     });
@@ -251,23 +251,25 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     const bw = showSmooth ? bandwidth(sample) : NaN;
     const smooth = showSmooth ? smoothDensity(sample, bw) : null;
     const smoothPeak = showSmooth ? d3.max(xs, smooth) : 0;
-    const top = 1.12 * Math.max(popPeak, Math.min(smoothPeak, 4 * popPeak));
-    const band = 0.55 * top;
-    const points = sample.map((x, i) => ({x, y: -band * (0.1 + 0.62 * sampleY[i])}));
+    // Without a smoothed curve the note needs room above the dashed population density.
+    const top = showSmooth ? 1.12 * Math.max(popPeak, Math.min(smoothPeak, 4 * popPeak)) : 1.4 * popPeak;
+    // Below zero: points just under the baseline, then the mean triangle with free space above and below.
+    const band = 0.8 * top;
+    const points = sample.map((x, i) => ({x, y: -band * (0.06 + 0.46 * sampleY[i])}));
     const labelRight = m > 70;
     const oneSample = Plot.plot({
-      ...base, height: small ? 200 : 210, x: xAxis("Doba jednoho řidiče ve výběru (s)"),
+      ...base, height: small ? 250 : 270, x: xAxis("Doba jednoho řidiče ve výběru (s)"),
       y: {...yLabel("Hustota"), domain: [-band, top], ticks: d3.ticks(0, top, 3), tickFormat: tick},
       ariaLabel: `Poslední výběr, velikost výběru ${n}, průměr ${num(m)} sekund`,
       ariaDescription: showSmooth ? "Nad body je odhad hustoty z výběru a čárkovaně hustota populace." : "Výběr má jedinou hodnotu, odhad hustoty se nekreslí.",
       marks: [
         Plot.lineY(xs, {x: d => d, y: pop.pdf, stroke: gray, strokeWidth: 1.2, strokeDasharray: "4,4", clip: true}),
         showSmooth ? Plot.lineY(xs, {x: d => d, y: smooth, stroke: blue, strokeWidth: 2.2, clip: true}) : null,
-        showSmooth ? null : Plot.text(["Z jediné hodnoty hustotu neodhadujeme."], {text: d => d, frameAnchor: "top", dy: 8, fill: gray}),
+        showSmooth ? null : Plot.text(["Z jediné hodnoty hustotu neodhadujeme."], {text: d => d, y: () => 1.25 * popPeak, fill: gray}),
         Plot.ruleY([0], {stroke: ink}),
         Plot.dot(points, {x: "x", y: "y", r: n > 50 ? 2.6 : 3.6, fill: blue, fillOpacity: 0.75, clip: true}),
-        Plot.dot([m], {x: d => d, y: () => -0.9 * band, symbol: "triangle", r: 6.5, fill: orange}),
-        Plot.text([m], {x: d => d, y: () => -0.9 * band, dx: labelRight ? -11 : 11, textAnchor: labelRight ? "end" : "start", fill: orange, text: d => `m = ${num(d, 1)} s`})
+        Plot.dot([m], {x: d => d, y: () => -0.78 * band, symbol: "triangle", r: 6.5, fill: orange}),
+        Plot.text([m], {x: d => d, y: () => -0.78 * band, dx: labelRight ? -11 : 11, textAnchor: labelRight ? "end" : "start", fill: orange, text: d => `m = ${num(d, 1)} s`})
       ]
     });
 
