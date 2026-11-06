@@ -641,17 +641,22 @@ const server = http.createServer((req, res) => {
     const viz = page.locator('#viz-vyberove-rozdeleni-prumeru');
     const vizPlots = viz.locator('.viz-plots svg');
     // After loading there is one mean, so the right Q–Q plot is replaced by a note.
-    await vizPlots.nth(3).waitFor();
-    assert.equal(await vizPlots.count(), 4, 'Three panels and the Q–Q plot of the sample');
+    await vizPlots.nth(4).waitFor();
+    assert.equal(await vizPlots.count(), 5, 'Four panels and the Q–Q plot of the sample');
     assert.match(await viz.innerText(), /Q–Q graf potřebuje alespoň dva průměry/);
     // Quarto keeps the OJS source in a hidden .cell-code block; neither it nor its copy button may become visible.
     assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
     const vizState = () => viz.evaluate(el => el.vizCheck.state());
-    // Population densities against R at 25 and 40 s: dnorm(x, 35, 15); dgamma(x, (35/15)^2, scale = 15^2/35);
-    // dlnorm(x - shift, meanlog, sdlog) for skewness 2 and 4 (parameters solved in R with uniroot).
-    const expectedDensity = {'souměrná': [0.0212965337, 0.0251588818], 'mírně': [0.0278157071, 0.0217839302], 'středně': [0.0388045397, 0.0199820265], 'výrazně': [0.0637308279, 0.0179242954]};
-    const densities = await viz.evaluate(el => Object.fromEntries(el.vizCheck.populations.map(p => [p.id, [25, 40].map(p.pdf)])));
-    for (const [id, values] of Object.entries(expectedDensity)) values.forEach((v, i) => assert(Math.abs(densities[id][i] - v) < 1e-9, `Population density ${id}`));
+    const notBusy = () => page.waitForFunction(() => !document.querySelector('#viz-vyberove-rozdeleni-prumeru').vizCheck.state().busy, null, { timeout: 120000 });
+    // Population densities against R: dnorm(x, 35, 15); dgamma(x, (35/15)^2, scale = 15^2/35);
+    // dlnorm(x - shift, meanlog, sdlog) for skewness 2, 4 and 8 (parameters solved in R with uniroot).
+    const expectedDensity = {'souměrná': [25, 0.0212965337, 40, 0.0251588818], 'mírně': [25, 0.0278157071, 40, 0.0217839302], 'středně': [25, 0.0388045397, 40, 0.0199820265], 'výrazně': [25, 0.0637308279, 40, 0.0179242954], 'extrémně': [30, 0.0740296572, 40, 0.0160592914]};
+    const densities = await viz.evaluate(el => Object.fromEntries(el.vizCheck.populations.map(p => [p.id, [25, 30, 40].map(x => [x, p.pdf(x)])])));
+    assert.deepEqual(Object.keys(densities), Object.keys(expectedDensity), 'Five populations');
+    for (const [id, [x1, v1, x2, v2]] of Object.entries(expectedDensity)) {
+      const got = Object.fromEntries(densities[id]);
+      assert(Math.abs(got[x1] - v1) < 1e-9 && Math.abs(got[x2] - v2) < 1e-9, `Population density ${id}`);
+    }
     // Smoothed sample density against R: bw.nrd0(s) and mean(dnorm(30, s, bw)); qnorm(0.75).
     const smooth = await viz.evaluate(el => { const s = [21.3, 25.0, 27.8, 30.1, 33.6, 41.2, 52.9, 60.4], c = el.vizCheck, bw = c.bandwidth(s); return [bw, c.smoothDensity(s, bw)(30), c.qnorm(0.75)]; });
     assert(Math.abs(smooth[0] - 7.5440895384) < 1e-9 && Math.abs(smooth[1] - 0.0298135737) < 1e-9 && Math.abs(smooth[2] - 0.6744897502) < 1e-8, 'Smoothed density and normal quantile');
@@ -659,58 +664,70 @@ const server = http.createServer((req, res) => {
     assert(thin.length === 500 && thin[0].y === 1 && thin[499].y === 2000, 'Thinned Q–Q plot keeps both extremes');
     const nInput = viz.locator('#viz-vrp-n'), drawsInput = viz.locator('#viz-vrp-draws'), drawButton = viz.getByRole('button', { name: 'Vylosovat', exact: true });
     let vs = await vizState();
-    assert.equal(vs.pop, 'mírně'); assert.equal(vs.means.length, 1); assert.equal(vs.draws, 100);
+    assert.equal(vs.pop, 'mírně'); assert.equal(vs.count, 1); assert.equal(vs.draws, 100);
     await drawButton.click();
-    assert.equal((await vizState()).means.length, 101);
-    assert.equal(await vizPlots.count(), 5, 'Three panels and two Q–Q plots');
-    for (const [input, bad, key, kept] of [[nInput, '0', 'n', 30], [nInput, '101', 'n', 30], [nInput, '2.5', 'n', 30], [drawsInput, '0', 'draws', 100], [drawsInput, '1001', 'draws', 100], [drawsInput, '2.5', 'draws', 100]]) {
+    assert.equal((await vizState()).count, 101);
+    assert.equal(await vizPlots.count(), 6, 'Four panels and two Q–Q plots');
+    assert.match(await viz.locator('.viz-stats').innerText(), /Standardizované průměry nad 2 a pod −2\s+\d+,\d % a \d+,\d % \(normální model: 2,3 % a 2,3 %\)/);
+    for (const [input, bad, key, kept] of [[nInput, '0', 'n', 30], [nInput, '1001', 'n', 30], [nInput, '2.5', 'n', 30], [drawsInput, '0', 'draws', 100], [drawsInput, '10001', 'draws', 100], [drawsInput, '2.5', 'draws', 100]]) {
       await input.fill(bad); await input.dispatchEvent('change');
       assert.equal(await input.getAttribute('aria-invalid'), 'true', `Rejected ${key} = ${bad}`);
       assert.equal((await vizState())[key], kept);
     }
     assert(await viz.locator('#viz-vrp-n-error').isVisible() && await viz.locator('#viz-vrp-draws-error').isVisible());
-    await drawsInput.fill('1000'); await drawsInput.dispatchEvent('change');
+    await drawsInput.fill('10000'); await drawsInput.dispatchEvent('change');
     await drawsInput.focus(); await page.keyboard.press('ArrowUp');
-    assert.equal((await vizState()).draws, 1000, 'Arrow cannot exceed 1000');
+    assert.equal((await vizState()).draws, 10000, 'Arrow cannot exceed 10 000');
     await drawsInput.fill('1'); await drawsInput.dispatchEvent('change');
     assert.equal((await vizState()).draws, 1);
-    await nInput.fill('100'); await nInput.dispatchEvent('change');
+    await nInput.fill('1000'); await nInput.dispatchEvent('change');
     vs = await vizState();
-    assert.equal(vs.n, 100); assert.equal(vs.means.length, 1); assert.equal(vs.sample.length, 100);
+    assert.equal(vs.n, 1000); assert.equal(vs.count, 1); assert.equal(vs.sample.length, 1000);
     await nInput.focus(); await page.keyboard.press('ArrowUp');
-    assert.equal((await vizState()).n, 100, 'Arrow cannot exceed 100');
+    assert.equal((await vizState()).n, 1000, 'Arrow cannot exceed 1000');
     await page.keyboard.press('ArrowDown');
-    assert.equal((await vizState()).n, 99, 'Arrow decreases n');
+    assert.equal((await vizState()).n, 999, 'Arrow decreases n');
+    // A large request is drawn in batches: controls are locked and progress is shown until it ends.
+    await nInput.fill('1000'); await nInput.dispatchEvent('change');
+    await drawsInput.fill('10000'); await drawsInput.dispatchEvent('change');
+    await drawButton.click();
+    assert((await vizState()).busy && await viz.locator('.viz-progress').isVisible() && await nInput.isDisabled(), 'Batched drawing locks the controls');
+    await notBusy();
+    assert.equal((await vizState()).count, 10001, 'Batched drawing completes');
+    assert(!(await nInput.isDisabled()) && !(await viz.locator('.viz-progress').isVisible()), 'Controls unlocked after drawing');
     await nInput.fill('1'); await nInput.dispatchEvent('change');
+    await drawsInput.fill('1'); await drawsInput.dispatchEvent('change');
     vs = await vizState(); assert.equal(vs.n, 1); assert.equal(vs.sample.length, 1); assert.equal(vs.means[0], vs.sample[0]);
     assert.match(await viz.innerText(), /Poslední výběr: 1 řidič(?!\p{L})/u);
     assert.match(await viz.innerText(), /Z jediné hodnoty hustotu neodhadujeme/);
     await drawButton.focus(); await page.keyboard.press('Enter');
-    assert.equal((await vizState()).means.length, 2, 'Keyboard draw');
-    assert.equal(await vizPlots.nth(2).locator('[stroke-dasharray]').count(), 0);
+    assert.equal((await vizState()).count, 2, 'Keyboard draw');
+    // One checkbox adds the normal model to both histograms of means.
+    for (const i of [2, 3]) assert.equal(await vizPlots.nth(i).locator('[stroke-dasharray]').count(), 0);
     await viz.locator('#viz-vrp-normal').check();
-    assert(await vizPlots.nth(2).locator('[stroke-dasharray]').count() > 0, 'Normal model curve');
-    for (const id of ['souměrná', 'středně', 'výrazně']) {
+    for (const i of [2, 3]) assert(await vizPlots.nth(i).locator('[stroke-dasharray]').count() > 0, `Normal model curve in histogram ${i}`);
+    assert.match(await viz.locator('.viz-panel-title').nth(3).innerText(), /po standardizaci/);
+    for (const id of ['souměrná', 'středně', 'výrazně', 'extrémně']) {
       await viz.locator(`input[name="viz-vrp-pop"][value="${id}"]`).check();
-      vs = await vizState(); assert.equal(vs.pop, id); assert.equal(vs.means.length, 1, `Population ${id} restarts`);
+      vs = await vizState(); assert.equal(vs.pop, id); assert.equal(vs.count, 1, `Population ${id} restarts`);
       assert.match(await viz.locator('.viz-panel-title').first().innerText(), new RegExp(id));
     }
     // The cap of 100 000 repetitions: the last request is cut, the button is disabled and a message appears.
-    await drawsInput.fill('1000'); await drawsInput.dispatchEvent('change');
-    await viz.evaluate(el => { const b = el.querySelector('[data-draw]'); for (let i = 0; i < 101; i++) b.click(); });
-    assert.equal((await vizState()).means.length, 100000, 'Cap of 100 000 repetitions');
+    await drawsInput.fill('10000'); await drawsInput.dispatchEvent('change');
+    for (let i = 0; i < 11; i++) { await viz.evaluate(el => el.querySelector('[data-draw]').click()); await notBusy(); }
+    assert.equal((await vizState()).count, 100000, 'Cap of 100 000 repetitions');
     assert(await drawButton.isDisabled() && await viz.locator('.viz-limit').isVisible(), 'Cap message');
     await viz.getByRole('button', { name: 'Začít znovu' }).click();
-    assert.equal((await vizState()).means.length, 1);
+    assert.equal((await vizState()).count, 1);
     assert(!(await drawButton.isDisabled()) && !(await viz.locator('.viz-limit').isVisible()), 'Restart lifts the cap');
     await nInput.fill('30'); await nInput.dispatchEvent('change');
-    await drawButton.click();
-    assert.equal(await vizPlots.count(), 5, 'Smoothed density and both Q–Q plots for n ≥ 2');
+    await drawButton.click(); await notBusy();
+    assert.equal(await vizPlots.count(), 6, 'Smoothed density, both histograms and both Q–Q plots for n ≥ 2');
     await page.setViewportSize({width:375,height:812});
     await page.reload({ waitUntil: 'networkidle' });
-    await vizPlots.nth(3).waitFor();
-    await drawButton.click();
     await vizPlots.nth(4).waitFor();
+    await drawButton.click();
+    await vizPlots.nth(5).waitFor();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Visualization fits a phone');
     await viz.screenshot({path:'tmp/verification/viz-vyberove-rozdeleni-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});

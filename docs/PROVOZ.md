@@ -316,17 +316,21 @@ Každá vizualizace vystavuje na kořenovém prvku objekt `vizCheck`, který
 používá `check-html.cjs`. U pilotu výběrového rozdělení průměru kontrola
 ověřuje:
 
-- pět grafů a žádný viditelný kód ani tlačítko schránky;
-- hustoty čtyř populací proti `dnorm`, `dgamma` a posunutému `dlnorm` z R;
+- šest grafů (čtyři panely a dva Q–Q grafy) a žádný viditelný kód
+  ani tlačítko schránky;
+- hustoty pěti populací proti `dnorm`, `dgamma` a posunutému `dlnorm` z R;
 - šířku a hodnotu odhadu hustoty proti `bw.nrd0` a ručnímu součtu
   `dnorm` v R a normální kvantil proti `qnorm`;
 - ztenčení Q–Q grafu se zachováním krajních bodů;
-- odmítnutí neplatných hodnot obou číselných polí (0, 101 nebo 1001, 2,5),
+- odmítnutí neplatných hodnot obou číselných polí (0, 1001 nebo 10 001, 2,5),
   jejich meze a šipky;
+- losování 10 000 výběrů po 1000 po dávkách se zablokovaným ovládáním
+  a průběhem (stav `busy` v `vizCheck`);
 - přepínání populací, strop 100 000 opakování se zprávou a jeho zrušení
   tlačítkem „Začít znovu“;
-- ovládání klávesnicí, normální křivku, šířku 375 px bez přetékání
-  a odkaz z kapitoly 6.
+- normální křivku v obou histogramech průměrů po jednom zaškrtnutí,
+  řádek s podíly standardizovaných průměrů za ±2, ovládání klávesnicí,
+  šířku 375 px bez přetékání a odkaz z kapitoly 6.
 
 U vizualizace ploch pod normální křivkou kontrola ověřuje:
 

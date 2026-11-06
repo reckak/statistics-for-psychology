@@ -692,3 +692,24 @@ požadoval „možnost nastavit vstupní parametry dvou ‚duplicitních‘
 vizualizací“. K prvnímu návrhu plánu doplnil: „Populační σ bych asi
 nechal nastavovat společně pro oba grafy.“ Upravený plán téhož dne schválil.
 Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).
+
+<a id="r65-upresneni-2026-11-06-vrp"></a>
+
+### Upřesnění 2026-11-06 — Rozšíření vizualizace výběrového rozdělení průměru
+
+Autor požadoval: „Maximum velikosti výběru bych zvýšil ze 100 na 1000“,
+„Maximum počtu nových výběrů bych zvýšil z 1000 na 10000“, aby bylo snadnější
+posoudit tvar, ukázat pod výběrovým rozdělením průměrů na původní škále
+„i jejich rozdělení po standardizaci směrodatnou chybou a populačním průměrem
+na z-skór“ a nabídnout „i extrémně zešikmené rozdělení“. K návrhu plánu
+doplnil, že i ve standardizovaném histogramu má jít normální model zapnout
+a vypnout, „ale stačí společné tlačítko s grafem pro nestandardizované
+průměry“. Upravený plán téhož dne schválil.
+
+Volba: *n* 1–1000, počet nových výběrů 1–10 000 se stropem 100 000
+opakování a s losováním velkých požadavků po dávkách. Přibyl histogram
+standardizovaných průměrů $z=(m-\mathrm{μ})/\mathrm{σ}_m$ se společným
+přepínačem normálního modelu a s podíly nad 2 a pod −2. Pátá populace
+je extrémně zešikmená se šikmostí 8 a se stejnými μ a σ.
+Standardizace průměru je vyložena v kapitole 6, nový pojem se nezavádí.
+Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).

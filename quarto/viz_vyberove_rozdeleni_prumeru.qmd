@@ -13,18 +13,20 @@ Populaci tvoří doby, za které řidiči opustí parkovací místo. Ve všech n
 - **souměrná** populace má tvar normálního rozdělení $N(35, 15)$ a šikmost 0. Tento model připouští i záporné doby, jejichž podíl je asi 1 %; u výukového modelu to zanedbáváme;
 - **mírně zešikmená** populace (šikmost 0,86) je výukový model z kapitoly 6 a je nastavena po načtení stránky;
 - **středně zešikmená** populace (šikmost 2) nemá doby kratší než asi 9,8 s a má delší pravý chvost;
-- **výrazně zešikmená** populace (šikmost 4) nemá doby kratší než 20 s; většina řidičů odjede rychle, několik jich ale potřebuje velmi dlouho.
+- **výrazně zešikmená** populace (šikmost 4) nemá doby kratší než 20 s; většina řidičů odjede rychle, několik jich ale potřebuje velmi dlouho;
+- **extrémně zešikmená** populace (šikmost 8) nemá doby kratší než asi 25 s; téměř všichni řidiči odjedou během několika sekund nad touto hranicí a vzácně se objeví doba mnohonásobně delší.
 
-Po načtení stránky je vylosován jeden výběr 30 řidičů. Do pole zadejte **velikost výběru** $n$, tedy kolik řidičů je v jednom výběru (celé číslo od 1 do 100), a **počet nových výběrů**, které se mají vylosovat najednou (celé číslo od 1 do 1 000). Obě hodnoty lze měnit také šipkami. Tlačítko „Vylosovat“ vylosuje zadaný počet výběrů, u každého spočítá průměr a přidá jej k dosavadním průměrům. Celkový počet opakování je omezen na 100 000; po jeho dosažení se losování zastaví. Po změně populace nebo velikosti výběru a po stisknutí „Začít znovu“ se dosavadní průměry smažou a losování začne od jednoho výběru, protože jde o jiné výběrové rozdělení.
+Po načtení stránky je vylosován jeden výběr 30 řidičů. Do pole zadejte **velikost výběru** $n$, tedy kolik řidičů je v jednom výběru (celé číslo od 1 do 1 000), a **počet nových výběrů**, které se mají vylosovat najednou (celé číslo od 1 do 10 000). Obě hodnoty lze měnit také šipkami. Tlačítko „Vylosovat“ vylosuje zadaný počet výběrů, u každého spočítá průměr a přidá jej k dosavadním průměrům. Velké požadavky se losují postupně; během losování se zobrazuje průběh a ovládání je dočasně zablokované. Celkový počet opakování je omezen na 100 000; po jeho dosažení se losování zastaví. Po změně populace nebo velikosti výběru a po stisknutí „Začít znovu“ se dosavadní průměry smažou a losování začne od jednoho výběru, protože jde o jiné výběrové rozdělení.
 
-Graf má pět částí. Horní tři mají stejnou vodorovnou osu v sekundách, podobně jako obrázek [-@fig-tri-urovne] v kapitole 6:
+Graf má šest částí. Horní tři mají stejnou vodorovnou osu v sekundách, podobně jako obrázek [-@fig-tri-urovne] v kapitole 6:
 
 - Nahoře je populace. Křivka je [hustota](kapitola_04.qmd#sec-hustota) modelu, jedna hodnota na ose je doba jednoho řidiče. Svislá čára označuje průměr $\mathrm{μ}$, vodorovná šipka sahá od průměru o jednu směrodatnou odchylku $\mathrm{σ}$ doprava.
 - Uprostřed je poslední vylosovaný výběr. Každý bod pod vodorovnou čárou je jeden řidič; svislá poloha bodů nic neznamená, jen brání překrývání. Trojúhelník označuje průměr tohoto výběru $m$. Plná křivka nad body je odhad hustoty z výběru: vyhlazený histogram bodů, který ukazuje, kde jsou body nahuštěné. Čárkovaná křivka je pro srovnání hustota populace.
 - Třetí část je histogram průměrů všech dosud vylosovaných výběrů. Jedna hodnota na ose je průměr jednoho celého výběru. Trojúhelník označuje průměr posledního výběru, tedy tentýž, který vidíte uprostřed. Svislá osa ukazuje hustotu jako u křivky nahoře: podíl výběrů v jednom sloupci dostanete jako výšku sloupce krát jeho šířku. Díky tomu lze histogram porovnat s křivkou normálního modelu i při různé šířce sloupců.
-- V posledním řádku jsou dva [normální Q–Q grafy](kapitola_04.qmd#sec-qq-graf). Levý ukazuje doby v posledním výběru, pravý dosavadní průměry. Vodorovně je teoretický kvantil normovaného normálního rozdělení, svisle seřazené hodnoty v sekundách a přímka $m+sz$ je spočítaná z průměru a směrodatné odchylky zobrazených hodnot, stejně jako v kapitole 4. Je-li průměrů více než 500, pravý graf ukazuje 500 rovnoměrně rozložených bodů z nich.
+- Čtvrtá část ukazuje tytéž průměry po [standardizaci](kapitola_06.qmd#sec-dve-zmeny): od každého průměru odečteme populační průměr a rozdíl vydělíme směrodatnou chybou, $z=(m-\mathrm{μ})/\mathrm{σ}_m$. Standardizované průměry mají při každé velikosti výběru střed 0 a směrodatnou odchylku 1, takže rozdíl v šířce zmizí a zůstane jen tvar. Svislé čáry označují hodnoty −2 a 2; vodorovná osa sahá od −4 do 5 a vzácné hodnoty mimo ni graf nezobrazí, ve výpočtech ale zůstávají.
+- V posledním řádku jsou dva [normální Q–Q grafy](kapitola_04.qmd#sec-qq-graf). Levý ukazuje doby v posledním výběru, pravý dosavadní průměry. Vodorovně je teoretický kvantil normovaného normálního rozdělení, svisle seřazené hodnoty v sekundách a přímka $m+sz$ je spočítaná z průměru a směrodatné odchylky zobrazených hodnot, stejně jako v kapitole 4. Je-li hodnot více než 500, graf ukazuje 500 rovnoměrně rozložených bodů z nich.
 
-Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů), průměr a směrodatná odchylka všech dosavadních průměrů a pro srovnání směrodatná chyba podle vzorce $\mathrm{σ}/\sqrt{n}$. Zaškrtnutím políčka dokreslíte do histogramu průměrů normální model $N(\mathrm{μ},\mathrm{σ}_m)$, kterým výběrové rozdělení průměru přibližuje centrální limitní věta.
+Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů), průměr a směrodatná odchylka všech dosavadních průměrů, pro srovnání směrodatná chyba podle vzorce $\mathrm{σ}/\sqrt{n}$ a podíl standardizovaných průměrů nad 2 a pod −2. Podle normálního modelu by to bylo v obou případech asi 2,3 %, stejně jako v [tabulce krajních průměrů](kapitola_06.qmd#tbl-k06-07) v kapitole 6. Zaškrtnutím políčka dokreslíte do obou histogramů průměrů normální model, kterým výběrové rozdělení průměru přibližuje centrální limitní věta: v sekundách $N(\mathrm{μ},\mathrm{σ}_m)$, po standardizaci normované normální rozdělení $N(0, 1)$.
 
 ```{ojs}
 //| echo: false
@@ -36,6 +38,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
   const num = (x, d = 2) => x.toLocaleString("cs-CZ", {minimumFractionDigits: d, maximumFractionDigits: d});
   const int = x => x.toLocaleString("cs-CZ");
   const tick = x => x.toLocaleString("cs-CZ");
+  const pct = x => `${(100 * x).toLocaleString("cs-CZ", {minimumFractionDigits: 1, maximumFractionDigits: 1})} %`;
   const skewText = x => x.toLocaleString("cs-CZ", {maximumFractionDigits: 2});
   const plural = (k, one, few, many) => k === 1 ? one : k >= 2 && k <= 4 ? few : many;
 
@@ -88,13 +91,14 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       draw: () => shift + Math.exp(meanlog + sdlog * standardNormal())
     };
   }
-  const medium = shiftedLognormal(2), strong = shiftedLognormal(4);
+  const medium = shiftedLognormal(2), strong = shiftedLognormal(4), extreme = shiftedLognormal(8);
 
   const populations = [
     {id: "souměrná", label: "souměrná", skew: 0, pdf: x => normalPdf(x, MU, SIGMA), draw: () => MU + SIGMA * standardNormal()},
     {id: "mírně", label: "mírně zešikmená", skew: 2 / Math.sqrt(SHAPE), pdf: x => x <= 0 ? 0 : Math.exp((SHAPE - 1) * Math.log(x) - x / SCALE - gammaLogNorm), draw: gammaDraw},
     {id: "středně", label: "středně zešikmená", skew: 2, pdf: medium.pdf, draw: medium.draw, shift: medium.shift},
-    {id: "výrazně", label: "výrazně zešikmená", skew: 4, pdf: strong.pdf, draw: strong.draw, shift: strong.shift}
+    {id: "výrazně", label: "výrazně zešikmená", skew: 4, pdf: strong.pdf, draw: strong.draw, shift: strong.shift},
+    {id: "extrémně", label: "extrémně zešikmená", skew: 8, pdf: extreme.pdf, draw: extreme.draw, shift: extreme.shift}
   ];
 
   // Gaussian smoothing of one sample; bandwidth by Silverman's rule as R bw.nrd0.
@@ -115,17 +119,36 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     return ranks.map(i => ({z: qnorm((i - 0.5) / K), y: sorted[i - 1]}));
   }
 
-  let pop = populations[1], n = 30, draws = 100, means = [], sample = [], sampleY = [];
+  const N_MAX = 1000, DRAWS_MAX = 10000, VALUES_PER_BATCH = 400000;
+  let pop = populations[1], n = 30, draws = 100, means = [], sample = [], sampleY = [], busy = false;
 
-  function drawSamples(k) {
-    k = Math.min(k, MAX_REPS - means.length);
+  // Draws k samples; only the last one is kept in full, the others contribute their mean.
+  function drawCore(k) {
     for (let j = 0; j < k; j++) {
-      sample = Array.from({length: n}, pop.draw);
-      means.push(d3.mean(sample));
+      if (j === k - 1) { sample = Array.from({length: n}, pop.draw); means.push(d3.mean(sample)); }
+      else { let sum = 0; for (let i = 0; i < n; i++) sum += pop.draw(); means.push(sum / n); }
     }
     sampleY = sample.map(() => jitter());
   }
-  function restart() { means = []; drawSamples(1); }
+  function restart() { means = []; drawCore(1); }
+
+  // Large requests run in batches so that the page stays responsive and shows progress.
+  async function drawSamples(k) {
+    k = Math.min(k, MAX_REPS - means.length);
+    if (k <= 0) return;
+    const perBatch = Math.max(1, Math.floor(VALUES_PER_BATCH / n));
+    if (k <= perBatch) { drawCore(k); render(); return; }
+    setBusy(true);
+    for (let done = 0; done < k;) {
+      const step = Math.min(perBatch, k - done);
+      drawCore(step);
+      done += step;
+      progress.textContent = `Losuji… ${Math.floor(100 * done / k)} %`;
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+    setBusy(false);
+    render();
+  }
 
   const root = html`<div class="viz" id="viz-vyberove-rozdeleni-prumeru">
     <fieldset class="viz-choice">
@@ -135,22 +158,23 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     <div class="viz-controls">
       <div class="viz-field" data-field="n">
         <label for="viz-vrp-n">Velikost výběru <i>n</i></label>
-        <input id="viz-vrp-n" type="number" min="1" max="100" step="1" value="30" inputmode="numeric" aria-describedby="viz-vrp-n-hint viz-vrp-n-error">
-        <span id="viz-vrp-n-hint" class="viz-hint">celé číslo od 1 do 100</span>
+        <input id="viz-vrp-n" type="number" min="1" max="${N_MAX}" step="1" value="30" inputmode="numeric" aria-describedby="viz-vrp-n-hint viz-vrp-n-error">
+        <span id="viz-vrp-n-hint" class="viz-hint">celé číslo od 1 do 1&nbsp;000</span>
         <span id="viz-vrp-n-error" class="viz-error" hidden></span>
       </div>
       <div class="viz-field" data-field="draws">
         <label for="viz-vrp-draws">Počet nových výběrů</label>
-        <input id="viz-vrp-draws" type="number" min="1" max="1000" step="1" value="100" inputmode="numeric" aria-describedby="viz-vrp-draws-hint viz-vrp-draws-error">
-        <span id="viz-vrp-draws-hint" class="viz-hint">celé číslo od 1 do 1&nbsp;000</span>
+        <input id="viz-vrp-draws" type="number" min="1" max="${DRAWS_MAX}" step="1" value="100" inputmode="numeric" aria-describedby="viz-vrp-draws-hint viz-vrp-draws-error">
+        <span id="viz-vrp-draws-hint" class="viz-hint">celé číslo od 1 do 10&nbsp;000</span>
         <span id="viz-vrp-draws-error" class="viz-error" hidden></span>
       </div>
       <div class="viz-buttons">
         <button type="button" data-draw>Vylosovat</button>
         <button type="button" data-restart>Začít znovu</button>
       </div>
-      <label class="viz-check"><input type="checkbox" id="viz-vrp-normal"><span>Ukázat normální model N(μ, σ<sub><i>m</i></sub>)</span></label>
+      <label class="viz-check"><input type="checkbox" id="viz-vrp-normal"><span>Ukázat normální model (N(μ, σ<sub><i>m</i></sub>) v sekundách, N(0, 1) po standardizaci)</span></label>
     </div>
+    <p class="viz-progress" role="status" hidden></p>
     <p class="viz-limit" role="status" hidden>Bylo dosaženo maximálního počtu 100&nbsp;000 opakování. Pro nové losování stiskněte „Začít znovu“, nebo změňte velikost výběru či populaci.</p>
     <dl class="viz-stats" aria-live="polite"></dl>
     <div class="viz-plots"></div>
@@ -162,6 +186,14 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
   const limitNote = root.querySelector(".viz-limit");
   const stats = root.querySelector(".viz-stats");
   const plots = root.querySelector(".viz-plots");
+  const progress = root.querySelector(".viz-progress");
+
+  // While a large request is being drawn, all controls are locked.
+  function setBusy(value) {
+    busy = value;
+    progress.hidden = !value;
+    root.querySelectorAll(".viz-choice input, .viz-controls input, .viz-controls button").forEach(el => { el.disabled = value; });
+  }
 
   // Whole-number field: shows an error for invalid input and keeps the last valid value.
   function wholeNumberField(id, min, max, current, describe, apply) {
@@ -182,19 +214,19 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     input.addEventListener("change", () => { const value = read(); show(); if (value !== null) apply(value); });
     show();
   }
-  wholeNumberField("viz-vrp-n", 1, 100, () => n, v => `Losuje se dál s <i>n</i> = ${int(v)}.`,
+  wholeNumberField("viz-vrp-n", 1, N_MAX, () => n, v => `Losuje se dál s <i>n</i> = ${int(v)}.`,
     v => { if (v !== n) { n = v; restart(); render(); } });
-  wholeNumberField("viz-vrp-draws", 1, 1000, () => draws, v => `Vylosuje se dál ${int(v)} ${plural(v, "výběr", "výběry", "výběrů")}.`,
+  wholeNumberField("viz-vrp-draws", 1, DRAWS_MAX, () => draws, v => `Vylosuje se dál ${int(v)} ${plural(v, "výběr", "výběry", "výběrů")}.`,
     v => { draws = v; });
   root.querySelectorAll('input[name="viz-vrp-pop"]').forEach(r => r.addEventListener("change", () => {
     pop = populations.find(p => p.id === r.value); restart(); render();
   }));
-  drawButton.addEventListener("click", () => { drawSamples(draws); render(); });
+  drawButton.addEventListener("click", () => { if (!busy) drawSamples(draws); });
   root.querySelector("[data-restart]").addEventListener("click", () => { restart(); render(); });
   normalBox.addEventListener("change", () => render());
 
   function binWidth(se) {
-    const steps = [0.25, 0.5, 1, 2, 2.5, 5];
+    const steps = [0.05, 0.1, 0.25, 0.5, 1, 2, 2.5, 5];
     return steps.filter(s => s <= se / 4).pop() ?? steps[0];
   }
   const note = text => html`<p class="viz-note">${text}</p>`;
@@ -202,6 +234,9 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
   function render() {
     const K = means.length, se = SIGMA / Math.sqrt(n), m = d3.mean(sample);
     const sdMeans = K > 1 ? d3.deviation(means) : NaN;
+    // Standardized means z = (m − μ)/σ_m, as in chapter 6.
+    const zs = means.map(v => (v - MU) / se);
+    const zAbove = d3.sum(zs, z => z > 2) / K, zBelow = d3.sum(zs, z => z < -2) / K;
     const full = K >= MAX_REPS;
     drawButton.disabled = full;
     limitNote.hidden = !full;
@@ -213,7 +248,8 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       ["Průměr posledního výběru", `<i>m</i> = ${num(m)} s`],
       ["Průměr všech průměrů", `${num(d3.mean(means))} s`],
       ["Směrodatná odchylka průměrů (simulace)", K > 1 ? `${num(sdMeans)} s` : "zatím jen jeden průměr"],
-      ["Směrodatná chyba podle vzorce", `σ/√<i>n</i> = 15/√${int(n)} = ${num(se)} s`]
+      ["Směrodatná chyba podle vzorce", `σ/√<i>n</i> = 15/√${int(n)} = ${num(se)} s`],
+      ["Standardizované průměry nad 2 a pod −2", K > 1 ? `${pct(zAbove)} a ${pct(zBelow)} (normální model: 2,3 % a 2,3 %)` : "zatím jen jeden průměr"]
     ];
     stats.innerHTML = rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("");
 
@@ -267,7 +303,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
         showSmooth ? Plot.lineY(xs, {x: d => d, y: smooth, stroke: blue, strokeWidth: 2.2, clip: true}) : null,
         showSmooth ? null : Plot.text(["Z jediné hodnoty hustotu neodhadujeme."], {text: d => d, y: () => 1.25 * popPeak, fill: gray}),
         Plot.ruleY([0], {stroke: ink}),
-        Plot.dot(points, {x: "x", y: "y", r: n > 50 ? 2.6 : 3.6, fill: blue, fillOpacity: 0.75, clip: true}),
+        Plot.dot(points, {x: "x", y: "y", r: n > 200 ? 1.8 : n > 50 ? 2.6 : 3.6, fill: blue, fillOpacity: n > 200 ? 0.55 : 0.75, clip: true}),
         Plot.dot([m], {x: d => d, y: () => -0.78 * band, symbol: "triangle", r: 6.5, fill: orange}),
         Plot.text([m], {x: d => d, y: () => -0.78 * band, dx: labelRight ? -11 : 11, textAnchor: labelRight ? "end" : "start", fill: orange, text: d => `m = ${num(d, 1)} s`})
       ]
@@ -294,7 +330,30 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       ]
     });
 
-    // 4. Normal Q–Q plots of the last sample and of the means (convention of chapter 4: line m + s·z).
+    // 4. The same means standardized to z; only the shape remains, compared with N(0, 1).
+    const Z_MIN = -4, Z_MAX = 5, Z_BIN = 0.25;
+    const zCounts = new Map();
+    for (const z of zs) { const k = Math.floor(z / Z_BIN); zCounts.set(k, (zCounts.get(k) ?? 0) + 1); }
+    const zBins = [...zCounts].map(([k, c]) => ({x1: k * Z_BIN, x2: (k + 1) * Z_BIN, d: c / (K * Z_BIN)})).filter(b => b.x2 > Z_MIN && b.x1 < Z_MAX);
+    const zGrid = d3.range(Z_MIN, Z_MAX + 0.001, 0.02);
+    const zTop = 1.08 * Math.max(d3.max(zBins, b => b.d) ?? 0, showNormal ? normalPdf(0, 0, 1) : 0);
+    const zLast = (m - MU) / se;
+    const standardized = Plot.plot({
+      ...base, height: small ? 230 : 250,
+      x: {domain: [Z_MIN, Z_MAX], ticks: d3.range(Z_MIN, Z_MAX + 1), tickFormat: tick, label: "Standardizovaný průměr (z)", labelAnchor: "center", labelArrow: "none", labelOffset: 40},
+      y: {...yLabel("Hustota"), ticks: 4, tickFormat: tick, domain: [0, zTop]},
+      ariaLabel: `Histogram standardizovaných průměrů, počet opakování ${K}`,
+      ariaDescription: K > 1 ? `Nad 2 leží ${pct(zAbove)} a pod −2 ${pct(zBelow)} standardizovaných průměrů; normální model dává v obou případech 2,3 %.` : "Zatím jen jeden průměr.",
+      marks: [
+        Plot.rectY(zBins, {x1: "x1", x2: "x2", y: "d", fill, stroke: blue, strokeWidth: 0.6, clip: true}),
+        showNormal ? Plot.lineY(zGrid, {x: d => d, y: d => normalPdf(d, 0, 1), stroke: orange, strokeWidth: 2.2, strokeDasharray: "6,4"}) : null,
+        Plot.ruleX([-2, 2], {stroke: gray, strokeWidth: 1, strokeOpacity: 0.6}),
+        Plot.dot([zLast], {x: d => d, y: () => 0, dy: -6, symbol: "triangle", r: 6, fill: orange, stroke: "white", strokeWidth: 1, clip: true}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    // 5. Normal Q–Q plots of the last sample and of the means (convention of chapter 4: line m + s·z).
     const qqWidth = small ? width : Math.floor((width - 24) / 2);
     function qqPlot(values, limit, yName, aria) {
       const pts = qqPoints(values, limit);
@@ -311,7 +370,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
         ]
       });
     }
-    const qqSample = n >= 2 ? qqPlot(sample, Infinity, "Doba ve výběru (s)", `Normální Q–Q graf posledního výběru, ${n} hodnot`) : note("Q–Q graf potřebuje alespoň dvě hodnoty.");
+    const qqSample = n >= 2 ? qqPlot(sample, 500, "Doba ve výběru (s)", `Normální Q–Q graf posledního výběru, ${n} hodnot`) : note("Q–Q graf potřebuje alespoň dvě hodnoty.");
     const qqMeans = K >= 2 ? qqPlot(means, 500, "Průměr výběru (s)", `Normální Q–Q graf ${K} průměrů`) : note("Q–Q graf potřebuje alespoň dva průměry.");
 
     // Czech plural forms: 1 řidič, 2–4 řidiči, 5 a více řidičů.
@@ -325,6 +384,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       panel(`Populace: ${pop.label}`, population),
       panel(`Poslední výběr: ${drivers}`, oneSample),
       panel(`${meansOf} ${perSample}`, distribution),
+      panel("Tytéž průměry po standardizaci", standardized),
       qqRow
     );
   }
@@ -344,9 +404,9 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
   // Hooks for the automated page check (quarto/_verification/check-html.cjs).
   root.vizCheck = {
     populations: populations.map(p => ({id: p.id, skew: p.skew, shift: p.shift, pdf: p.pdf, draw: p.draw})),
-    lognormal: {medium: {shift: medium.shift, meanlog: medium.meanlog, sdlog: medium.sdlog}, strong: {shift: strong.shift, meanlog: strong.meanlog, sdlog: strong.sdlog}},
-    bandwidth, smoothDensity, qnorm, qqPoints, maxReps: MAX_REPS,
-    state: () => ({pop: pop.id, n, draws, means: means.slice(), sample: sample.slice()})
+    lognormal: Object.fromEntries(Object.entries({medium, strong, extreme}).map(([k, d]) => [k, {shift: d.shift, meanlog: d.meanlog, sdlog: d.sdlog}])),
+    bandwidth, smoothDensity, qnorm, qqPoints, maxReps: MAX_REPS, nMax: N_MAX, drawsMax: DRAWS_MAX,
+    state: () => ({pop: pop.id, n, draws, busy, count: means.length, means: means.length <= 20000 ? means.slice() : null, sample: sample.slice()})
   };
 
   restart();
@@ -362,8 +422,8 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
 1. U mírně zešikmené populace nastavte $n=5$ a vylosujte 1 000 výběrů. Potom nastavte $n=100$ a vylosujte opět 1 000 výběrů. Jak se změnila šířka histogramu průměrů? Porovnejte směrodatnou odchylku průměrů se směrodatnou chybou podle vzorce.
 2. Porovnejte výběry po 25 a po 100 řidičích. Kolikrát se zmenšila směrodatná chyba, když jste velikost výběru zčtyřnásobili? Změní se směrodatná chyba, když přepnete na jinou populaci?
 3. Při $n=30$ vylosujte 1 000 výběrů a potom ještě několikrát dalších 1 000. Co se s přibývajícími výběry mění a co zůstává stejné?
-4. Zapněte normální model a porovnejte tvar histogramu pro $n=1$, $n=2$ a $n=30$. Kdy histogram s normální křivkou téměř splývá? Jak se zešikmení projevuje v pravém Q–Q grafu?
-5. Přepněte na souměrnou populaci a potom na výrazně zešikmenou. Pro každou najděte nejmenší $n$, při kterém body v pravém Q–Q grafu leží přibližně na přímce.
+4. Zapněte normální model a porovnejte standardizovaný histogram pro $n=1$, $n=2$ a $n=30$. Kdy histogram s normální křivkou téměř splývá? Jak se zešikmení projevuje v podílech nad 2 a pod −2 a v pravém Q–Q grafu?
+5. Přepněte na souměrnou populaci a potom na výrazně a extrémně zešikmenou. Pro každou najděte přibližně nejmenší $n$, při kterém body v pravém Q–Q grafu leží na přímce a podíly nad 2 a pod −2 se blíží 2,3 %.
 
 ## Čeho si všimnout {#sec-viz-vrp-vsimnete .unnumbered}
 
@@ -373,9 +433,9 @@ Histogram průměrů má střed u populačního průměru 35 s při každé veli
 
 Počet opakování, tedy kolik výběrů jste vylosovali, a velikost výběru hrají odlišnou roli. S přibývajícími výběry se histogram vyhlazuje a čísla v přehledu se přestávají měnit, ale histogram zůstává stejně široký: ukazuje stále totéž výběrové rozdělení, jen přesněji. Šířku mění pouze velikost výběru. Ve skutečném výzkumu máme jediný výběr a výběrové rozdělení nepozorujeme; vizualizace ukazuje, co by se stalo, kdybychom mohli výběr opakovat.
 
-Mění se i tvar. Při $n=1$ je průměr výběru jedinou dobou, takže histogram průměrů kopíruje populaci. S rostoucím výběrem se histogram stává souměrnějším a blíží se normálnímu modelu $N(\mathrm{μ},\mathrm{σ}_m)$, jak říká [centrální limitní věta](kapitola_06.qmd#sec-clv-zneni). Zešikmení doprava se v Q–Q grafu projeví obloukem: body na obou koncích leží nad přímkou, jak ukazuje [výklad odchylek od přímky](kapitola_04.qmd#sec-qq-odchylky).
+Mění se i tvar. Při $n=1$ je průměr výběru jedinou dobou, takže histogram průměrů kopíruje populaci. S rostoucím výběrem se histogram stává souměrnějším a blíží se normálnímu modelu $N(\mathrm{μ},\mathrm{σ}_m)$, jak říká [centrální limitní věta](kapitola_06.qmd#sec-clv-zneni). V histogramu v sekundách se přitom tvar těžko posuzuje, protože se histogram s rostoucím $n$ současně zužuje. Standardizovaný histogram má vždy stejnou šířku, a proto v něm vidíte jen změnu tvaru: zešikmení doprava se projeví vrcholem vlevo od nuly a delším pravým chvostem, takže nad 2 leží více než 2,3 % průměrů a pod −2 méně. V Q–Q grafu se totéž projeví obloukem: body na obou koncích leží nad přímkou, jak ukazuje [výklad odchylek od přímky](kapitola_04.qmd#sec-qq-odchylky).
 
-Jak velký výběr stačí, závisí na tvaru populace. U souměrné populace je rozdělení průměru normální pro jakékoli $n$, i pro $n=1$. U mírně zešikmené populace bývá při $n=30$ pravý chvost jen nepatrně delší než levý. U výrazně zešikmené populace je oblouk v Q–Q grafu průměrů zřetelný ještě při $n=30$ a patrný i při $n=100$. To odpovídá podmínce centrální limitní věty, že čím výraznější zešikmení, tím větší výběr je potřeba.
+Jak velký výběr stačí, závisí na tvaru populace. U souměrné populace je rozdělení průměru normální pro jakékoli $n$, i pro $n=1$. U mírně zešikmené populace bývá při $n=30$ pravý chvost jen nepatrně delší než levý. U výrazně zešikmené populace je oblouk v Q–Q grafu průměrů zřetelný ještě při $n=30$ a patrný i při $n=100$. U extrémně zešikmené populace se nerovnováha obou chvostů zmenšuje jen pomalu a v podílech nad 2 a pod −2 ji poznáte ještě při $n=1000$. To odpovídá podmínce centrální limitní věty, že čím výraznější zešikmení, tím větší výběr je potřeba.
 
 Odhad hustoty z výběru kolísá od výběru k výběru a u malých výběrů se od hustoty populace může výrazně lišit. Jediný výběr tedy o tvaru populace prozrazuje jen málo. Rozdělení průměrů se naproti tomu při velkých výběrech blíží normálnímu modelu bez ohledu na tvar populace.
 
