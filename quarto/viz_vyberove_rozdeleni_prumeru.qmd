@@ -267,7 +267,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     // 1. Population with μ and an arrow of one σ; the arrow and both labels sit above the curve.
     const arrowY = 1.06 * popPeak;
     const population = Plot.plot({
-      ...base, height: small ? 200 : 220, x: xAxis("Doba jednoho řidiče (s)"),
+      ...base, height: small ? 200 : 220, x: xAxis("Doby řidičů v populaci (s)"),
       y: {...yLabel("Hustota"), ticks: 3, tickFormat: tick, domain: [0, 1.28 * popPeak]},
       ariaLabel: `Populace: ${pop.label}, hustota doby opuštění parkovacího místa`,
       ariaDescription: `Křivka hustoty se svislou čárou u průměru 35 sekund a šipkou o délce jedné směrodatné odchylky 15 sekund.`,
@@ -294,7 +294,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     const points = sample.map((x, i) => ({x, y: -band * (0.06 + 0.46 * sampleY[i])}));
     const labelRight = m > 70;
     const oneSample = Plot.plot({
-      ...base, height: small ? 250 : 270, x: xAxis("Doba jednoho řidiče ve výběru (s)"),
+      ...base, height: small ? 250 : 270, x: xAxis("Doby řidičů v posledním výběru (s)"),
       y: {...yLabel("Hustota"), domain: [-band, top], ticks: d3.ticks(0, top, 3), tickFormat: tick},
       ariaLabel: `Poslední výběr, velikost výběru ${n}, průměr ${num(m)} sekund`,
       ariaDescription: showSmooth ? "Nad body je odhad hustoty z výběru a čárkovaně hustota populace." : "Výběr má jedinou hodnotu, odhad hustoty se nekreslí.",
@@ -318,7 +318,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     const xsNormal = d3.range(Math.max(0, MU - 5 * se), Math.min(X_MAX, MU + 5 * se), se / 25);
     const yMax = 1.08 * Math.max(d3.max(bins, b => b.d) ?? 0, showNormal ? normalPdf(MU, MU, se) : 0);
     const distribution = Plot.plot({
-      ...base, height: small ? 250 : 280, x: xAxis("Průměr jednoho výběru (s)"),
+      ...base, height: small ? 250 : 280, x: xAxis("Průměry výběrů (s)"),
       y: {...yLabel("Hustota"), ticks: 4, tickFormat: tick, domain: [0, yMax]},
       ariaLabel: `Histogram průměrů, počet opakování ${K}, velikost výběru ${n}`,
       ariaDescription: `Průměr průměrů ${num(d3.mean(means))} s, směrodatná odchylka průměrů ${K > 1 ? num(sdMeans) : "neurčena"} s, směrodatná chyba podle vzorce ${num(se)} s.`,
@@ -370,8 +370,8 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
         ]
       });
     }
-    const qqSample = n >= 2 ? qqPlot(sample, 500, "Doba ve výběru (s)", `Normální Q–Q graf posledního výběru, ${n} hodnot`) : note("Q–Q graf potřebuje alespoň dvě hodnoty.");
-    const qqMeans = K >= 2 ? qqPlot(means, 500, "Průměr výběru (s)", `Normální Q–Q graf ${K} průměrů`) : note("Q–Q graf potřebuje alespoň dva průměry.");
+    const qqSample = n >= 2 ? qqPlot(sample, 500, "Doby řidičů v posledním výběru (s)", `Normální Q–Q graf posledního výběru, ${n} hodnot`) : note("Q–Q graf potřebuje alespoň dvě hodnoty.");
+    const qqMeans = K >= 2 ? qqPlot(means, 500, "Průměry výběrů (s)", `Normální Q–Q graf ${K} průměrů`) : note("Q–Q graf potřebuje alespoň dva průměry.");
 
     // Czech plural forms: 1 řidič, 2–4 řidiči, 5 a více řidičů.
     const drivers = `${int(n)} ${plural(n, "řidič", "řidiči", "řidičů")}`;

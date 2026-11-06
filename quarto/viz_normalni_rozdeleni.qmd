@@ -307,7 +307,7 @@ Pod volbami se zobrazuje převod hranic na z-skóry, výpočet podílu z ploch v
     if (labels.length === 2 && (labels[0].anchor === "start" || labels[1].anchor === "end")) labels[1].dy = 34;
     const labelMarks = labels.map(l => Plot.text([l], {x: "x", frameAnchor: "top", dy: l.dy, dx: l.anchor === "start" ? 6 : -6, textAnchor: l.anchor, lineAnchor: "top", fill: hiText, fontWeight: 600, text: "text"}));
     const density = Plot.plot({
-      ...base, height: small ? 230 : 250, marginBottom: 54,
+      ...base, height: small ? 280 : 320, marginBottom: 54,
       x: {domain, axis: null},
       y: {...yLabel("Hustota"), domain: [0, 1.32 * peak], ticks: 3, tickFormat: v => trim(v, 6)},
       ariaLabel: `Hustota modelu ${describe.model}`,
@@ -341,7 +341,7 @@ Pod volbami se zobrazuje převod hranic na z-skóry, výpočet podílu z ploch v
       Plot.arrow(shown, {x1: d => d[0], y1: d => d[1], x2: d => d[0], y2: () => 0, stroke: orange, strokeWidth: 1.6, headLength: 7})
     ] : [Plot.link(shown, {x1: () => domain[0], y1: d => d[1], x2: d => d[0], y2: d => d[1], stroke: gray, strokeWidth: 1.2, strokeDasharray: "2,3"})];
     const cdf = Plot.plot({
-      ...base, height: small ? 210 : 230, marginBottom: 42,
+      ...base, height: small ? 260 : 290, marginBottom: 42,
       x: {domain, axis: null},
       y: {...yLabel("Podíl vlevo"), domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2), grid: false},
       ariaLabel: `Distribuční funkce modelu ${describe.model}`,

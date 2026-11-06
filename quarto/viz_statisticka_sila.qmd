@@ -22,8 +22,8 @@ Po načtení stránky odpovídá situace A výpočtu v kapitole 6: skutečný ro
 Vizualizace má tři části:
 
 - **Dva hlavní grafy**, jeden pro každou situaci, mají společné osy, takže lze přímo porovnat šířku křivek i polohu kritických hodnot. Šedá křivka je výběrové rozdělení rozdílu průměrů za platnosti nulové hypotézy ($H_0$), modrá křivka při zadaném skutečném rozdílu ($H_1$). Svislé čárkované čáry jsou kritické hodnoty a za nimi leží kritický obor. Šrafovaná plocha pod šedou křivkou v kritickém oboru je $\mathrm{α}$, pravděpodobnost chyby I. druhu. Pod modrou křivkou je oranžová plocha v kritickém oboru statistická síla $1-\mathrm{β}$ a světle modrá plocha mimo něj pravděpodobnost chyby II. druhu $\mathrm{β}$.
-- **Výpočet v obou situacích** ukazuje krok za krokem a pro obě situace vedle sebe směrodatnou chybu rozdílu, kvantil normovaného normálního rozdělení, kritické hodnoty, plochy pod modrou křivkou v kritickém oboru, sílu a $\mathrm{β}$. Pod tabulkou jsou vzorce českého Excelu s dosazenými hodnotami, které vedou ke stejnému výsledku jako list `Sila` v sešitu kapitoly 6.
 - **Křivka síly** ukazuje sílu pro všechny skutečné rozdíly při ostatních nastaveních obou situací. Plná čára patří situaci A, čárkovaná situaci B. Body označují zadané skutečné rozdíly; jejich výška je síla z výpočtu.
+- **Výpočet v obou situacích** ukazuje krok za krokem a pro obě situace vedle sebe směrodatnou chybu rozdílu, kvantil normovaného normálního rozdělení, kritické hodnoty, plochy pod modrou křivkou v kritickém oboru, sílu a $\mathrm{β}$. Pod tabulkou jsou vzorce českého Excelu s dosazenými hodnotami, které vedou ke stejnému výsledku jako list `Sila` v sešitu kapitoly 6.
 
 Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrodatnou chybu na čtyři a kritické hodnoty na tři. Mezivýpočty probíhají s plnou přesností.
 
@@ -183,11 +183,6 @@ Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrod
       </div>
       <div class="viz-plots" data-plots="main"></div>
     </section>
-    <section class="viz-part" aria-labelledby="viz-ss-table-title">
-      <h3 id="viz-ss-table-title" class="viz-part-title">Výpočet v obou situacích</h3>
-      <div class="viz-ss-table-wrap" data-table></div>
-      <div class="viz-ss-formulas" data-formulas></div>
-    </section>
     <section class="viz-part" aria-labelledby="viz-ss-curve-title">
       <h3 id="viz-ss-curve-title" class="viz-part-title">Křivka síly</h3>
       <div class="viz-ss-legend">
@@ -195,6 +190,11 @@ Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrod
         <span>${frag(swatchLine(darkOrange, 2.4, "7,4"))}situace B</span>
       </div>
       <div class="viz-plots" data-plots="curve"></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ss-table-title">
+      <h3 id="viz-ss-table-title" class="viz-part-title">Výpočet v obou situacích</h3>
+      <div class="viz-ss-table-wrap" data-table></div>
+      <div class="viz-ss-formulas" data-formulas></div>
     </section>
   </div>`;
 

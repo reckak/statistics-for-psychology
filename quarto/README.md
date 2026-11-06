@@ -1,5 +1,27 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Drobné úpravy tří vizualizací podle autora
+
+Podle připomínek autora upraveno rozvržení a popisky; výpočty, modely
+a text výkladu se nemění:
+
+- [plochy pod normální křivkou](viz_normalni_rozdeleni.qmd): panel hustoty
+  je vyšší (320 px, na mobilu 280 px), panel distribuční funkce také
+  (290 px, na mobilu 260 px);
+- [statistická síla](viz_statisticka_sila.qmd): část „Křivka síly“ stojí
+  před částí „Výpočet v obou situacích“, popis částí v oddílu „Model
+  a ovládání“ má stejné pořadí;
+- [výběrové rozdělení průměru](viz_vyberove_rozdeleni_prumeru.qmd): osy x
+  mají popisky „Doby řidičů v populaci (s)“, „Doby řidičů v posledním
+  výběru (s)“ a „Průměry výběrů (s)“, protože každý graf zobrazuje více
+  hodnot; stejné popisky dostaly pro jednotnost i osy Q–Q grafů.
+
+Ověřeno: `quarto render` tří dotčených stránek a `check-html.cjs` bez chyb
+(včetně mobilní šířky 390 px bez přetékání). V prohlížeči prohlédnuty
+výšky panelů a popisky u normální křivky, pořadí částí u síly a nové
+popisky os výběrového rozdělení průměru na desktopu. Celá kniha znovu
+vykreslena nebyla, protože se nemění společná konfigurace ani navigace.
+
 ## 2026-11-06 — Rozšíření vizualizace výběrového rozdělení průměru (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-vrp)
