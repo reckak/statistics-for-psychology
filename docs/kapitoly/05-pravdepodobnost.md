@@ -132,6 +132,33 @@ a „více než 10“, obě aproximace příkladu s 200 pokusy proti nesplněné
 podmínce pro n = 20 a π = 0,05 a zužování rozdělení podílu s rostoucím n.
 Soulad karty s textem zkontrolován 2026-11-06.
 
+**Vizualizace Bayesovy věty (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes)):**
+na konci oddílu [Obrácení podmínky a Bayesova věta](../../quarto/kapitola_05.qmd#sec-bayes),
+za nepovinným rozšířením o šancích a před oddílem o náhodné proměnné,
+odkazuje blok „Vyzkoušejte si: Bayesova věta“ na stránku
+[Co znamená pozitivní výsledek testu](../../quarto/viz_bayesova_veta.qmd);
+jiný text kapitoly se nemění. Student zadá prevalenci, senzitivitu
+a specificitu (0–1 včetně; výchozí poradna 0,10, 0,95, 0,90) a 1 000 nebo
+10 000 osob; tlačítka nastaví oba příklady kapitoly. Výsledky: úplná
+pravděpodobnost pozitivního výsledku, prediktivní hodnota pozitivního
+a negativního testu, apriorní a aposteriorní pravděpodobnost po pozitivním
+i negativním výsledku. Mřížka osob ve čtyřech barvách (správně/falešně
+pozitivní a negativní) se uspořádá podle stavu, podle výsledku nebo ukáže
+jen pozitivní či jen negativní výsledky; necelé počty se zaokrouhlují
+s upozorněním. Strom a kontingenční tabulka se živými čísly zvýrazňují
+počty zvoleného uspořádání a rozepisují čtení po řádcích a po sloupcích.
+Bayesova věta je dosazena s barevně odlišenou cestou přes poruchu, doplněna
+prediktivní hodnotou negativního testu a vzorci českého Excelu s odkazem
+na buňky B17, B19 a B20 listu `Bayes`. Graf prediktivní hodnoty podle
+prevalence (0–1 nebo výřez 0–0,2) vyznačuje prevalence 0,01 a 0,10. Část
+o druhém vyšetření s volbou obou výsledků a vlastní senzitivitou
+a specificitou druhého testu ukazuje řetěz apriorní → po 1. testu → po
+2. testu, mřížku osob s daným prvním výsledkem a vzorec Excelu; předpoklad
+nové informace je vysvětlen bez nového termínu. Čtyři úkoly „Vyzkoušejte si“
+míří na čtení po řádcích a sloupcích, vliv specificity při nízké
+prevalenci, prevalenci s prediktivní hodnotou 0,5 a druhé vyšetření
+s jeho předpokladem. Soulad karty s textem zkontrolován 2026-11-06.
+
 <a id="cvičení-a-očekávané-dovednosti-4"></a>
 
 ### Cvičení a očekávané dovednosti
