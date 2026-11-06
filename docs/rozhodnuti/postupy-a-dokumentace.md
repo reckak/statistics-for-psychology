@@ -750,3 +750,40 @@ tak pro podíly.“ Na doplňující otázky zvolil „Křivka + obě aproximace
 rozsah *n* „1–1000“ a všechny čtyři doplňky („Vzorec v Excelu“, „Podmínka
 aproximace“, „Střední hodnota a σ“, „Distribuční funkce“); plán téhož dne
 schválil. Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).
+
+<a id="r65-upresneni-2026-11-06-bayes"></a>
+
+### Upřesnění 2026-11-06 — Vizualizace Bayesovy věty
+
+Pátá vizualizace podle R65, ke kapitole 5: stránka
+`quarto/viz_bayesova_veta.qmd` („Co znamená pozitivní výsledek testu“,
+`#sec-viz-bayesova-veta`), v menu mezi plochami pod normální křivkou
+a binomickým rozdělením, protože oddíl o Bayesově větě předchází v kapitole 5
+binomickému rozdělení.
+
+- Vstupy prevalence, senzitivita a specificita (desetinná čísla 0–1 včetně),
+  výchozí příklad poradny z kapitoly 5 (0,10; 0,95; 0,90); volba 1 000 nebo
+  10 000 osob a tlačítka obou příkladů kapitoly (poradna, plošné šetření
+  s prevalencí 0,01).
+- Hlavní obraz **mřížka osob**: jeden čtvereček na osobu ve čtyřech barvách
+  podle kombinace stavu a výsledku, uspořádání podle skutečného stavu, podle
+  výsledku dotazníku, jen pozitivní a jen negativní výsledky při stejné
+  velikosti čtverečků. Necelé přirozené četnosti se zaokrouhlují na celé
+  osoby s upozorněním „přibližně“; pravděpodobnosti se počítají přesně.
+- Doplňky: strom a kontingenční tabulka se živými čísly a čtením po řádcích
+  (senzitivita, specificita) a po sloupcích (prediktivní hodnoty); Bayesova
+  věta s dosazenými hodnotami a vzorce českého Excelu podle listu `Bayes`;
+  křivka prediktivní hodnoty pozitivního a negativního testu podle prevalence;
+  druhé vyšetření, v němž se aposteriorní pravděpodobnost po prvním testu
+  stává apriorní pro druhý, s výslovným předpokladem, že druhé vyšetření
+  přináší novou informaci (bez termínu „podmíněná nezávislost“).
+- Nové pojmy se nezavádějí (ani věrohodnost, poměr věrohodností či šance
+  mimo nepovinné rozšíření kapitoly).
+
+**Doklad:** autor 2026-11-06 se zeptal: „Jaká by byla nejvhodnější
+interaktivní vizualizace pro Bayesovu větu?“ Na doplňující otázky zvolil
+hlavní obraz „Mřížka osob“ (doporučená možnost, proti plošnému diagramu
+a samotnému stromu s tabulkou) a všechny čtyři doplňky („Strom a tabulka
+2×2“, „Křivka podle prevalence“, „Vzorec a Excel“, „Druhé vyšetření“);
+plán téhož dne schválil. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md).

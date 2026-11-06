@@ -527,6 +527,10 @@ Pravděpodobnost a šance nejsou totéž číslo a nelze je zaměňovat. Pravdě
 V příkladu se screeningem jsou šance poruchy před testem $0{,}10/0{,}90$, tedy jedna ku devíti, a po pozitivním výsledku $95/90\approx1{,}06$, tedy přibližně jedna ku jedné. Šance se uplatní v pokročilejších metodách, například při porovnávání skupin podle výskytu určitého jevu.
 :::
 
+::: {.callout-tip title="Vyzkoušejte si: Bayesova věta"}
+V [interaktivní vizualizaci](viz_bayesova_veta.qmd) zadáte prevalenci, senzitivitu a specificitu a uvidíte přirozené četnosti v mřížce osob, ve stromu a v tabulce. Přeskládáním mřížky podle výsledku dotazníku zjistíte prediktivní hodnotu pozitivního testu, pak ji ověříte Bayesovou větou a v grafu sledujete, jak závisí na prevalenci. V poslední části se aposteriorní pravděpodobnost po prvním testu stává apriorní pro druhé vyšetření.
+:::
+
 ## Náhodná proměnná a rozdělení pravděpodobnosti {#sec-nahodna-promenna}
 
 Jak popsat všechny možné číselné výsledky, například počty správných odpovědí, spolu s jejich pravděpodobnostmi? Odpověď nabízí náhodná proměnná a její rozdělení pravděpodobnosti.

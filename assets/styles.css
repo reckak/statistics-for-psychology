@@ -170,3 +170,29 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
   .viz-ss-tag { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; color: #4D5A63; }
 }
 .viz-progress { margin: .9rem 0 0; color: #4D5A63; font-style: italic; }
+/* Bayes' theorem: presets, grid caption, contingency table and fractions. */
+.viz-bay-row { margin-top: .6rem; }
+.viz-bay-presets { display: flex; flex-wrap: wrap; gap: .5rem; padding-top: 1.7rem; }
+.viz-field input:disabled { background: #EEF2F3; color: #4D5A63; }
+.viz-bay-same { max-width: 17rem; }
+.viz-bay-caption { margin: .5rem 0 .3rem; }
+.viz-bay-assume { margin: 0 0 .9rem; }
+.viz-bay-table-wrap { overflow-x: auto; margin: .3rem 0 .4rem; }
+.viz-bay-table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.viz-bay-table th, .viz-bay-table td { padding: .3rem .8rem; border-bottom: 1px solid #c8c8c8; }
+.viz-bay-table thead { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.viz-bay-table thead th { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); font-weight: 600; text-align: right; }
+.viz-bay-table tbody th { text-align: left; font-weight: 600; }
+.viz-bay-table td { text-align: right; }
+.viz-bay-table .viz-bay-total > * { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.viz-bay-hi { font-weight: 700; color: #9A3F17; }
+.viz-bay-eq { margin: .45rem 0; line-height: 1.6; }
+.viz-bay-frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; max-width: 100%; }
+.viz-bay-frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .25rem .1rem; }
+.viz-bay-frac > span:last-child { padding: .1rem .25rem 0; }
+.viz-bay-tp { color: #245D78; font-weight: 600; }
+.viz-bay-fp { color: #9A3F17; font-weight: 600; }
+@media (max-width: 575px) {
+  .viz-bay-presets { padding-top: 0; }
+  .viz-bay-table th, .viz-bay-table td { padding: .3rem .35rem; }
+}

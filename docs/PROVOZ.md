@@ -365,6 +365,31 @@ kontrola ověřuje:
   pole *n*, výřez osy pro *n* = 1000 a π = 0,01 s poznámkou, volbu typu
   otázky šipkami, šířku 375 px bez přetékání a odkaz z kapitoly 5.
 
+U vizualizace Bayesovy věty (co znamená pozitivní výsledek testu) kontrola
+ověřuje:
+
+- pět grafů (mřížka osob, strom, křivka podle prevalence, řetěz
+  pravděpodobností a mřížka druhého vyšetření) a žádný viditelný kód,
+  tlačítko schránky ani chybu OJS;
+- úplnou pravděpodobnost pozitivního výsledku, obě prediktivní hodnoty
+  a pravděpodobnost poruchy po negativním výsledku pro sedm nastavení
+  (oba příklady kapitoly 5, vliv specificity a senzitivity, necelé počty,
+  výsledek, který nenastane) a šest dvoukrokových aktualizací proti R;
+- přirozené četnosti se zaokrouhlením na celé osoby, výchozí výsledky,
+  popis mřížky a dosazení do Bayesovy věty, přesné znění tří vzorců Excelu
+  a dvou vzorců druhého vyšetření s odkazy na list `Bayes`;
+- uspořádání mřížky včetně volby šipkami, menší mřížku jen pozitivních
+  výsledků, zvýraznění počtů v tabulce, tlačítka obou příkladů, výřez grafu
+  a poznámku u prevalence mimo něj, přepínač stejných vlastností druhého
+  testu, upozornění „přibližně“ a text „nelze určit“;
+- odmítnutí neplatných vstupů (1,2; −0,1; text; 2; prázdné pole) se zprávou
+  a ponecháním poslední platné hodnoty, desetinnou čárku i tečku, šířku
+  375 px bez přetékání stránky i tabulky a odkaz z kapitoly 5.
+
+Živá kontingenční tabulka uvnitř vizualizace (prvek `.viz` s `aria-label`)
+se mění se vstupy, a proto nemá číslo „Tabulka X“ ani titulek Quarta;
+obecná kontrola tabulek u ní ověřuje jen linky záhlaví.
+
 U vizualizace statistické síly kontrola ověřuje:
 
 - tři grafy (situace A, situace B, křivka síly), vzor šrafování α v obou

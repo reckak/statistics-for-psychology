@@ -65,8 +65,10 @@ const server = http.createServer((req, res) => {
         const title = caption?.cloneNode(true);
         title?.querySelector('.quarto-float-caption-prefix')?.remove();
         const issues = [];
-        if (!label || !/^Tabulka\s+\d+(?:\.\d+)*$/.test(label.textContent.trim())) issues.push('missing number');
-        if (!title?.textContent.trim()) issues.push('missing title');
+        // A live table inside an interactive visualization changes with the inputs and has a panel title instead of a number.
+        const live = table.closest('.viz') && table.getAttribute('aria-label');
+        if (!live && (!label || !/^Tabulka\s+\d+(?:\.\d+)*$/.test(label.textContent.trim()))) issues.push('missing number');
+        if (!live && !title?.textContent.trim()) issues.push('missing title');
         if (label && (getComputedStyle(label).display !== 'block' || Number(getComputedStyle(label).fontWeight) < 600)) issues.push('label styling');
         if (caption && getComputedStyle(caption).fontStyle !== 'italic') issues.push('title styling');
         if (caption && getComputedStyle(caption).textAlign !== 'left') issues.push('caption alignment');
@@ -605,7 +607,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -925,6 +927,96 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_05.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_binomicke_rozdeleni.html"]').count(), 1, 'Chapter 5 links to the binomial visualization');
+
+    // Bayes' theorem: probabilities against R, natural frequencies, grid layouts, Excel formulas, second test, input checks and a phone screen.
+    await page.goto(base + 'quarto/viz_bayesova_veta.html', { waitUntil: 'networkidle' });
+    const by = page.locator('#viz-bayesova-veta');
+    await by.locator('[data-grid] svg').waitFor();
+    assert.equal(await by.locator('.viz-plots svg[role="img"], .viz-plots svg[aria-label]').count(), 5, 'Grid, tree, curve, chain and second grid');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error, .quarto-ojs-syntax-error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const byState = () => by.evaluate(el => el.vizCheck.state());
+    const byInput = id => by.locator(`#viz-bay-${id}`);
+    const byText = key => by.locator(`[data-stats="${key}"]`).innerText();
+    const byLayout = async v => { await by.locator(`input[name="viz-bay-layout"][value="${v}"]`).check(); return byState(); };
+    // R: pos = p*se + (1-p)*(1-sp); ppv = p*se/pos; npv = (1-p)*sp/neg; postNeg = p*(1-se)/neg (NA when the result cannot occur).
+    const byCases = [[.1, .95, .9], [.01, .95, .9], [.01, .95, .99], [.01, .99, .9], [.123, .876, .789], [0, .95, 1], [1, 1, .9]];
+    const byRef = [[0.185, 0.513513513513513, 0.993865030674847, 0.00613496932515338], [0.1085, 0.087557603686636, 0.999439147504206, 0.000560852495793607],
+      [0.0194, 0.489690721649484, 0.999490108097083, 0.000509891902916582], [0.1089, 0.0909090909090909, 0.999887779149366, 0.000112220850634048],
+      [0.292795, 0.367998087399034, 0.978433410397268, 0.0215665896027319], [0, null, 1, 0], [1, 1, null, null]];
+    const byGot = await by.evaluate((el, cases) => cases.map(x => el.vizCheck.bayes(...x)), byCases);
+    byRef.forEach(([pos, ppv, npv, postNeg], i) => {
+      near(byGot[i].pos, pos, 1e-12, `P(positive) ${i}`);
+      for (const [key, v] of [['ppv', ppv], ['npv', npv], ['postNeg', postNeg]]) v === null ? assert.equal(byGot[i][key], null, `${key} ${i} undefined`) : near(byGot[i][key], v, 1e-12, `${key} ${i}`);
+    });
+    // R: two successive updates with the posterior of the first test as the prior of the second.
+    const byTwo = await by.evaluate(el => [[.1, .95, .9, true, .95, .9, true], [.01, .95, .9, true, .95, .9, true], [.01, .95, .9, true, .95, .9, false], [.1, .95, .9, false, .95, .9, false], [.1, .95, .9, true, .8, .97, true], [.1, .95, .9, false, .8, .97, true]]
+      .map(([p, se, sp, r1, se2, sp2, r2]) => el.vizCheck.update(el.vizCheck.update(p, se, sp, r1), se2, sp2, r2)));
+    [0.909319899244332, 0.476882430647292, 0.00530281886687134, 0.000342817963661296, 0.96569250317662, 0.141342756183746].forEach((v, i) => near(byTwo[i], v, 1e-12, `Second test ${i}`));
+    const byCounts = await by.evaluate(el => [el.vizCheck.counts(1000, .1, .95, .9), el.vizCheck.counts(10000, .01, .95, .9), el.vizCheck.counts(1000, .123, .876, .789)]);
+    assert.deepEqual(byCounts.map(c => [c.present, c.absent, c.tp, c.fn, c.fp, c.tn, c.exact]), [[100, 900, 95, 5, 90, 810, true], [100, 9900, 95, 5, 990, 8910, true], [123, 877, 108, 15, 185, 692, false]]);
+    let ys = await byState();
+    assert.deepEqual([ys.p, ys.se, ys.sp, ys.N, ys.layout], [0.1, 0.95, 0.9, 1000, 'state']);
+    assert.deepEqual(ys.formulas, {pos: '=0,1*0,95+(1-0,1)*(1-0,9)', ppv: '=0,1*0,95/(0,1*0,95+(1-0,1)*(1-0,9))', npv: '=(1-0,1)*0,9/((1-0,1)*0,9+0,1*(1-0,95))'});
+    assert.match(await byText('main'), /P\(porucha \| pozitivní\) = 0,514 \(51,4\s%\)[\s\S]*P\(bez poruchy \| negativní\) = 0,994[\s\S]*apriorní 0,100 → aposteriorní po pozitivním výsledku 0,514, po negativním výsledku 0,006/);
+    assert.match(ys.caption, /senzitivita, 95\/100 = 0,950[\s\S]*specificita, 810\/900 = 0,900/);
+    assert.match(await by.locator('[data-formula]').innerText(), /0,095\s*0,185\s*≈ 0,514/);
+    // Grid layouts: the cell size stays, the table emphasises the counts of the layout.
+    const gridWidth = () => by.locator('[data-grid] svg').evaluate(el => el.getBoundingClientRect().width);
+    const fullWidth = await gridWidth();
+    ys = await byLayout('result');
+    assert.match(ys.caption, /prediktivní hodnota pozitivního testu, 95\/185 ≈ 0,514[\s\S]*810\/815 ≈ 0,994/);
+    assert.deepEqual(await by.locator('.viz-bay-hi').allTextContents(), ['95', '810', '185', '815']);
+    ys = await byLayout('pos');
+    assert(await gridWidth() < fullWidth / 3, 'Only positive results: a smaller grid with the same cells');
+    assert.deepEqual(await by.locator('.viz-bay-hi').allTextContents(), ['95', '90', '185']);
+    await by.locator('input[name="viz-bay-layout"][value="pos"]').focus(); await page.keyboard.press('ArrowRight');
+    assert.equal((await byState()).layout, 'neg', 'Keyboard choice of the layout');
+    // The second example of chapter 5: prevalence 0,01 among 10 000 students; R: 95/1085.
+    await by.getByRole('button', { name: /Plošné šetření/ }).click();
+    ys = await byState();
+    assert.deepEqual([ys.N, ys.p, ys.counts.fp, ys.counts.pos], [10000, 0.01, 990, 1085]); near(ys.ppv, 0.087557603686636, 1e-12, 'Population screening');
+    await by.locator('input[name="viz-bay-range"][value="zoom"]').check();
+    assert(!(await by.locator('[data-curve-note]').isVisible()), 'Prevalence 0,01 lies in the zoomed range');
+    // Second test: the posterior after the first test is the prior for the second; R values above.
+    near(ys.p2, 0.476882430647292, 1e-12, 'Two positive results in population screening');
+    assert.deepEqual([ys.counts2.tp, ys.counts2.fn, ys.counts2.fp, ys.counts2.tn], [90, 5, 99, 891]);
+    await by.getByRole('button', { name: /Poradna/ }).click();
+    assert(await byInput('se2').isDisabled(), 'Second test follows the first by default');
+    await byInput('same').uncheck(); await byInput('se2').fill('0,8'); await byInput('sp2').fill('0,97');
+    near((await byState()).p2, 0.96569250317662, 1e-12, 'Different second test');
+    await by.locator('input[name="viz-bay-r1"][value="neg"]').check();
+    near((await byState()).p2, 0.141342756183746, 1e-12, 'Negative first, positive second');
+    assert((await byText('second')).includes('=(1-B17)*0,8/((1-B17)*0,8+B17*(1-0,97))'), 'Excel formula of the second test');
+    await by.locator('input[name="viz-bay-r1"][value="pos"]').check(); await by.locator('input[name="viz-bay-r2"][value="neg"]').check();
+    assert((await byText('second')).includes('=B20*(1-0,8)/(B20*(1-0,8)+(1-B20)*0,97)'));
+    await byInput('same').check();
+    ys = await byState(); assert.deepEqual([ys.se2, ys.sp2], [0.95, 0.9]);
+    // Rounding to whole persons and results that cannot occur.
+    await byInput('prev').fill('0.123'); await byInput('se').fill('0,876'); await byInput('sp').fill('0,789');
+    ys = await byState(); assert.equal(ys.p, 0.123, 'Decimal point accepted'); assert.equal(ys.counts.exact, false);
+    assert.match(await by.locator('[data-grid-caption]').innerText(), /přibližně[\s\S]*zaokrouhleny na celé osoby/);
+    await byInput('prev').fill('0'); await byInput('sp').fill('1');
+    assert.equal((await byState()).ppv, null); assert.match(await byText('main'), /nelze určit: pozitivní výsledek při těchto vstupech nenastane/);
+    assert.match(await by.locator('[data-formula]').innerText(), /protože bychom dělili nulou/);
+    await byInput('prev').fill('0,3');
+    assert(await by.locator('[data-curve-note]').isVisible(), 'Prevalence outside the zoomed range');
+    // Invalid input is rejected with a visible message and the last valid value stays in use.
+    for (const [id, bad, key, kept] of [['prev', '1,2', 'p', 0.3], ['prev', '-0,1', 'p', 0.3], ['prev', 'abc', 'p', 0.3], ['se', '2', 'se', 0.876], ['sp', '', 'sp', 1]]) {
+      await byInput(id).fill(bad);
+      assert.equal(await byInput(id).getAttribute('aria-invalid'), 'true', `Rejected ${id} = ${bad}`);
+      assert(await by.locator(`#viz-bay-${id}-error`).isVisible(), `Message for ${id} = ${bad}`);
+      assert.equal((await byState())[key], kept, `Kept ${id} after ${bad}`);
+    }
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await by.locator('[data-grid2] svg').waitFor();
+    assert.equal((await byState()).rows, 32, 'Taller grid on a phone');
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Bayes visualization fits a phone');
+    assert(await by.locator('.viz-bay-table-wrap').evaluate(el => el.scrollWidth <= el.clientWidth + 1), 'Contingency table fits a phone');
+    await by.screenshot({path:'tmp/verification/viz-bayesova-veta-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_05.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_bayesova_veta.html"]').count(), 1, 'Chapter 5 links to the Bayes visualization');
 
     // Statistical power: two situations against R, Excel formulas, shared σ, input checks, keyboard and a phone screen.
     await page.goto(base + 'quarto/viz_statisticka_sila.html', { waitUntil: 'networkidle' });

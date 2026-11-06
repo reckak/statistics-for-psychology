@@ -73,10 +73,11 @@ patří před vizualizace, literaturu a přehledy.
 **Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
 výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
-této mapy. Existují čtyři, v pořadí podle první navazující kapitoly a oddílu:
+této mapy. Existuje jich pět, v pořadí podle první navazující kapitoly a oddílu:
 [plochy pod normální křivkou](../quarto/viz_normalni_rozdeleni.qmd)
 ke kapitole 4 ([karta](kapitoly/04-normalni-rozdeleni.md#interaktivni-vizualizace-04)),
-[pravděpodobnost počtu úspěchů](../quarto/viz_binomicke_rozdeleni.qmd)
+[co znamená pozitivní výsledek testu](../quarto/viz_bayesova_veta.qmd)
+(Bayesova věta) a [pravděpodobnost počtu úspěchů](../quarto/viz_binomicke_rozdeleni.qmd)
 ke kapitole 5 ([karta](kapitoly/05-pravdepodobnost.md#interaktivni-vizualizace-05)),
 [výběrové rozdělení průměru](../quarto/viz_vyberove_rozdeleni_prumeru.qmd)
 a [statistická síla](../quarto/viz_statisticka_sila.qmd)

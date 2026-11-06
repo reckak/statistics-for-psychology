@@ -1,5 +1,59 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Vizualizace Bayesovy věty (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes)
+přibyla pátá stránka části „Interaktivní vizualizace“,
+[Co znamená pozitivní výsledek testu](viz_bayesova_veta.qmd), v menu mezi
+plochami pod normální křivkou a binomickým rozdělením. Vstupy prevalence,
+senzitivita a specificita (0–1), výchozí příklad poradny, volba 1 000 nebo
+10 000 osob a tlačítka obou příkladů kapitoly 5. Části: mřížka osob ve
+čtyřech uspořádáních, strom a kontingenční tabulka se čtením po řádcích
+a sloupcích, Bayesova věta s dosazením a vzorci Excelu, křivka prediktivní
+hodnoty podle prevalence a druhé vyšetření. Kapitola 5 odkazuje blokem
+„Vyzkoušejte si: Bayesova věta“ na konci oddílu Obrácení podmínky a Bayesova
+věta (za rozšířením o šancích); plán uváděl místo za oddílem o dvou
+prevalencích, ale stránka pokrývá i apriorní a aposteriorní pravděpodobnost
+a druhé vyšetření. Jiný text kapitoly se nemění. Upraveny `_quarto.yml`,
+styly (`.viz-bay-…`, vzhled vypnutého pole), `check-html.cjs` (pořadí v menu,
+nová kontrola, výjimka živé tabulky z číslování), karta kapitoly 5, OSNOVA.md,
+plán pokračování, registr, doklad R65 a PROVOZ.md. Nové pojmy, značení
+ani funkce Excelu nepřibyly; slovníček a přehledy beze změny.
+
+Živá kontingenční tabulka ve vizualizaci nemá číslo „Tabulka X“: mění se
+se vstupy a Quarto ji nemůže číslovat. Má panelový titulek, `aria-label`
+a linky podle APA. Jde o redakční řešení při realizaci schváleného doplňku
+„Strom a tabulka 2×2“, nikoli o samostatnou dohodu o výjimce z pravidla
+[sazby tabulek](../AGENTS.md#sazba-tabulek).
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- úplná pravděpodobnost, obě prediktivní hodnoty a pravděpodobnost po
+  negativním výsledku pro sedm nastavení a šest dvoukrokových aktualizací
+  odpovídají výpočtu v R na 10⁻¹²; přirozené četnosti se zaokrouhlením
+  na celé osoby odpovídají R s pravidlem zaokrouhlení JavaScriptu
+  (`floor(x + 0,5)`), například 123/877, 108, 185 pro prevalenci 0,123;
+- sedm vzorců ve tvaru, který stránka nabízí (tři pro poradnu, plošné
+  šetření, tři pro druhé vyšetření s odkazy na B17 a B20), bylo zadáno přes
+  `FormulaLocal` do skryté samostatné instance českého Excelu bez uložení;
+  výsledky se shodují s R na 10⁻¹².
+
+Celá kniha vykreslena; `check-html.cjs` (18 stránek, nová kontrola podle
+PROVOZ.md) a `check-doc-maps.cjs` prošly. Prohlédnuty snímky desktopu
+(výchozí stav, uspořádání podle výsledku a jen pozitivní, plošné šetření
+s výřezem grafu) a šířky 375 px; podle nich opraveny popisky větví stromu
+(překrývaly čáry), popisky bodů v grafu (posun nelze v Plotu určit funkcí)
+a odsazení tabulky na mobilu. Dlouhé věty textu stránky zkontrolovány
+výpočtem (žádná nad 35 slov). Didaktická revize stránky proběhla jen čtením
+při tvorbě (bez samostatného agenta v roli studenta).
+
+Neověřeno: čtečka obrazovky (ověřeny jen nativní prvky, popisky a
+`aria-live`), provoz na GitHub Pages a bez CDN, porozumění studentů.
+Ruční PDF ani export tutora nebyly spuštěny; oba přepisují odkazy
+`viz_….qmd` obecným pravidlem. Lokální kontrola běžela s nainstalovaným
+Chromem (`CHROME_PATH`), protože stažený Chromium Playwrightu Windows
+nespustil.
+
 ## 2026-11-06 — Vizualizace binomického rozdělení (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom)

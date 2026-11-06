@@ -1,0 +1,462 @@
+---
+code-copy: false
+---
+
+# Co znamená pozitivní výsledek testu {#sec-viz-bayesova-veta .unnumbered}
+
+Jak pravděpodobné je, že člověk s pozitivním výsledkem screeningového dotazníku poruchu skutečně má? Vizualizace odpoví pro libovolnou prevalenci, senzitivitu a specificitu. Odpověď ukáže jako přirozené četnosti v mřížce osob, ve stromu a v tabulce i jako výpočet podle Bayesovy věty. Dále ukáže, jak prediktivní hodnota závisí na prevalenci a jak se pravděpodobnost poruchy změní po druhém vyšetření. Navazuje na kapitolu 5: na [screening a vlastnosti dotazníku](kapitola_05.qmd#sec-screening), [přirozené četnosti a strom](kapitola_05.qmd#sec-prirozene-cetnosti), [úplnou pravděpodobnost](kapitola_05.qmd#sec-uplna-pravdepodobnost), [Bayesovu větu](kapitola_05.qmd#sec-bayesova-veta), [srovnání dvou prevalencí](kapitola_05.qmd#sec-dve-prevalence) a na [apriorní a aposteriorní pravděpodobnost](kapitola_05.qmd#sec-zakladni-cetnost).
+
+## Model a ovládání {#sec-viz-bay-ovladani .unnumbered}
+
+Nahoře zadejte prevalenci poruchy ve skupině, kde dotazník používáme, a senzitivitu a specificitu dotazníku. Všechny tři údaje jsou pravděpodobnosti, tedy čísla od 0 do 1 včetně krajních hodnot. Desetinná čísla můžete psát s čárkou i s tečkou. Po načtení stránky je nastaven příklad z kapitoly 5: poradna s prevalencí 0,10, senzitivita 0,95 a specificita 0,90. Dvě tlačítka nastaví oba příklady z kapitoly: poradnu s 1 000 studenty a plošné šetření s prevalencí 0,01 a 10 000 studenty. Zvolit lze také, z kolika osob přirozené četnosti počítáme. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+Pod vstupy jsou výsledky: úplná pravděpodobnost pozitivního výsledku, prediktivní hodnota pozitivního a negativního testu a pravděpodobnost poruchy před výsledkem testu a po něm. Pravděpodobnosti zaokrouhlujeme na tři desetinná místa a procenta na jedno; mezivýpočty probíhají s plnou přesností. Vizualizace má pět částí:
+
+- **Mřížka osob.** Každý čtvereček je jedna osoba. Barva udává kombinaci skutečného stavu a výsledku dotazníku: tmavě modrá správně pozitivní, světle modrá falešně negativní, oranžová falešně pozitivní a šedá správně negativní výsledek. Modré odstíny tedy patří lidem s poruchou a sytější barvy pozitivním výsledkům. Osoby lze uspořádat podle skutečného stavu (vlevo s poruchou, vpravo bez ní), podle výsledku dotazníku (vlevo pozitivní, vpravo negativní) nebo ukázat jen osoby s pozitivním, případně jen s negativním výsledkem. Čtverečky mají ve všech uspořádáních stejnou velikost, takže je vidět, jak velkou část všech osob vybraná skupina tvoří. Pod mřížkou je její popis slovy.
+- **Strom a tabulka.** Strom dělí osoby nejprve podle stavu a potom podle výsledku dotazníku, jako [strom přirozených četností](kapitola_05.qmd#fig-strom) v kapitole 5. U větví jsou pravděpodobnosti, podle nichž se skupina dělí. Kontingenční tabulka uspořádá tytéž počty do řádků podle stavu a do sloupců podle výsledku. Zvýrazněné jsou počty, které odpovídají zvolenému uspořádání mřížky. Pod tabulkou je čtení po řádcích (senzitivita a specificita) a po sloupcích (prediktivní hodnoty).
+- **Bayesova věta krok za krokem.** Do vzorce jsou dosazeny zadané hodnoty. Čitatel je modře, protože odpovídá jedné cestě stromem: přes poruchu k pozitivnímu výsledku. Jmenovatel sčítá obě cesty k pozitivnímu výsledku, druhá cesta bez poruchy je oranžově. Pod výpočtem jsou vzorce českého Excelu s dosazenými hodnotami.
+- **Prediktivní hodnota podle prevalence.** Graf ukazuje, jak se při zadané senzitivitě a specificitě mění prediktivní hodnota pozitivního testu (plná modrá čára) a negativního testu (čárkovaná oranžová čára), když prevalence roste od 0 do 1. Body vyznačují aktuální prevalenci, svislé tečkované čáry prevalence 0,01 a 0,10 z kapitoly. Zvolit lze celý rozsah, nebo výřez prevalence od 0 do 0,2.
+- **Druhé vyšetření.** Zvolíte výsledek prvního a druhého testu; druhý test může mít jinou senzitivitu a specificitu než první. Sloupce ukazují pravděpodobnost poruchy před testy, po prvním a po druhém testu. Mřížka ukazuje osoby s daným výsledkem prvního testu rozdělené podle výsledku druhého. Předpoklad, za kterého výpočet platí, je vysvětlen přímo u této části.
+
+Přirozené četnosti jsou počty osob, a proto celá čísla. Když součin, například počet osob krát prevalence, celé číslo nedává, zaokrouhlíme jej na celé osoby a vizualizace u počtů uvede slovo „přibližně“. Pravděpodobnosti ve výsledcích se tím nemění, protože je počítáme přímo ze zadaných pravděpodobností.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the figures of chapter 5: blue shades for people with the disorder, saturated colours for positive results.
+  const ink = "#223744", gray = "#4D5A63", blue = "#245D78", orange = "#B54E24";
+  const COLOR = {tp: "#245D78", fn: "#A9D3E3", fp: "#D97A45", tn: "#D5DDE1"};
+  const LABEL = {tp: "správně pozitivní", fn: "falešně negativní", fp: "falešně pozitivní", tn: "správně negativní"};
+
+  // Czech number formatting with a true minus sign.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const int = v => v.toLocaleString("cs-CZ");
+  const share = v => { if (v === null) return "nelze určit"; const r = Number(v.toFixed(3)); return r === 0 && v > 0 ? "< 0,001" : r === 1 && v < 1 ? "> 0,999" : fixed(v, 3); };
+  const percent = v => { const q = 100 * v, r = Number(q.toFixed(1)); return (r === 0 && q > 0 ? "< 0,1" : r === 100 && q < 100 ? "> 99,9" : fixed(q, 1)) + " %"; };
+  // Probabilities at branches and in substitutions: at least two decimals, at most six.
+  const prob = v => { const t = fixed(v, 6); const [a, b] = t.split(","); return `${a},${b.replace(/0+$/, "").padEnd(2, "0")}`; };
+  // Intermediate products: four decimals, smaller values with three significant digits.
+  const small = v => v === 0 ? "0" : Math.abs(v) >= 0.001 ? trim(v, 4) : minus(Number(v.toPrecision(3)).toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const persons = n => `${int(n)} ${n === 1 ? "osoba" : n >= 2 && n <= 4 ? "osoby" : "osob"}`;
+  const ratio = (a, b) => { if (!b) return `${int(a)}/0, nelze určit`; const v = a / b; return `${int(a)}/${int(b)} ${Math.abs(v - Number(v.toFixed(3))) < 1e-12 ? "=" : "≈"} ${share(v)}`; };
+
+  // Parsing of decimal input; returns null for anything but a plain number.
+  function parseDecimal(raw) {
+    const t = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(t)) return null;
+    const v = Number(t);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  // Bayes' theorem for one result: probability of the disorder after a positive or negative result; null when the result cannot occur.
+  function update(prior, se, sp, positive) {
+    const a = prior * (positive ? se : 1 - se), b = (1 - prior) * (positive ? 1 - sp : sp);
+    return a + b > 0 ? a / (a + b) : null;
+  }
+  function bayes(p, se, sp) {
+    const pos = p * se + (1 - p) * (1 - sp), neg = p * (1 - se) + (1 - p) * sp;
+    return {pos, neg, ppv: pos > 0 ? p * se / pos : null, npv: neg > 0 ? (1 - p) * sp / neg : null, postNeg: neg > 0 ? p * (1 - se) / neg : null};
+  }
+  // Natural frequencies rounded to whole persons; "exact" tells whether no rounding was needed.
+  const whole = x => Math.abs(x - Math.round(x)) < 1e-9;
+  function counts(N, p, se, sp) {
+    const present = Math.round(N * p), absent = N - present;
+    const tp = Math.round(present * se), fp = Math.round(absent * (1 - sp));
+    return {N, present, absent, tp, fn: present - tp, fp, tn: absent - fp, pos: tp + fp, neg: N - tp - fp,
+      exact: whole(N * p) && whole(present * se) && whole(absent * (1 - sp))};
+  }
+  // People with the given first result divided by the second result.
+  function counts2(c, firstPositive, se2, sp2) {
+    const d = firstPositive ? c.tp : c.fn, w = firstPositive ? c.fp : c.tn;
+    const tp = Math.round(d * se2), fp = Math.round(w * (1 - sp2));
+    return {N: d + w, present: d, absent: w, tp, fn: d - tp, fp, tn: w - fp, pos: tp + fp, neg: d + w - tp - fp, exact: whole(d * se2) && whole(w * (1 - sp2))};
+  }
+
+  const s = {p: 0.1, se: 0.95, sp: 0.9, N: 1000, layout: "state", range: "full", r1: "pos", r2: "pos", same: true, se2: 0.95, sp2: 0.9};
+
+  const field = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-bay-${id}">${label}</label>
+    <input id="viz-bay-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-bay-${id}-hint viz-bay-${id}-error">
+    <span id="viz-bay-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-bay-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const radios = (name, legend, options) => html`<fieldset class="viz-choice" data-choice="${name}"><legend>${legend}</legend>${options.map(([v, label]) => html`<label><input type="radio" name="viz-bay-${name}" value="${v}"><span>${label}</span></label>`)}</fieldset>`;
+  const part = (id, title, ...children) => { const sec = html`<section class="viz-part" aria-labelledby="viz-bay-${id}-title"><h3 id="viz-bay-${id}-title" class="viz-part-title">${title}</h3></section>`; sec.append(...children); return sec; };
+
+  const root = html`<div class="viz" id="viz-bayesova-veta">
+    <fieldset class="viz-model">
+      <legend>Dotazník a skupina, ve které jej používáme</legend>
+      <div class="viz-controls">
+        ${field("prev", "Prevalence poruchy", "0,10", "číslo od 0 do 1")}
+        ${field("se", "Senzitivita", "0,95", "číslo od 0 do 1")}
+        ${field("sp", "Specificita", "0,90", "číslo od 0 do 1")}
+      </div>
+      <div class="viz-controls viz-bay-row">
+        ${radios("n", "Přirozené četnosti pro", [["1000", "1 000 osob"], ["10000", "10 000 osob"]])}
+        <div class="viz-bay-presets" role="group" aria-label="Příklady z kapitoly 5">
+          <button type="button" data-preset="poradna">Poradna: prevalence 0,10</button>
+          <button type="button" data-preset="plosne">Plošné šetření: prevalence 0,01</button>
+        </div>
+      </div>
+      <dl class="viz-stats" data-stats="main" aria-live="polite"></dl>
+    </fieldset>
+  </div>`;
+
+  root.append(
+    part("grid", "Mřížka osob",
+      radios("layout", "Uspořádání", [["state", "podle skutečného stavu"], ["result", "podle výsledku dotazníku"], ["pos", "jen pozitivní výsledky"], ["neg", "jen negativní výsledky"]]),
+      html`<div data-legend></div>`, html`<div class="viz-plots" data-grid></div>`,
+      html`<p class="viz-bay-caption" data-grid-caption aria-live="polite"></p>`),
+    part("tree", "Strom a tabulka",
+      html`<p class="viz-panel-title">Strom přirozených četností</p>`, html`<div class="viz-plots" data-tree></div>`,
+      html`<p class="viz-note">U větví jsou pravděpodobnosti, podle nichž se skupina dělí: prevalence a 1 − prevalence, senzitivita a 1 − senzitivita, 1 − specificita a specificita. Zvýrazněné jsou obě skupiny s pozitivním výsledkem.</p>`,
+      html`<p class="viz-panel-title">Tytéž počty v kontingenční tabulce</p>`, html`<div class="viz-bay-table-wrap" data-table></div>`,
+      html`<dl class="viz-stats" data-stats="read"></dl>`),
+    part("formula", "Bayesova věta krok za krokem", html`<div data-formula aria-live="polite"></div>`, html`<dl class="viz-stats" data-stats="excel"></dl>`),
+    part("curve", "Prediktivní hodnota podle prevalence",
+      radios("range", "Rozsah prevalence v grafu", [["full", "od 0 do 1"], ["zoom", "od 0 do 0,2"]]),
+      html`<div data-curve-legend></div>`, html`<div class="viz-plots" data-curve></div>`, html`<p class="viz-note" data-curve-note hidden></p>`),
+    part("second", "Druhé vyšetření",
+      html`<p class="viz-bay-assume">Aposteriorní pravděpodobnost po prvním testu se stává apriorní pravděpodobností pro druhý test. Výpočet platí jen tehdy, když druhé vyšetření přináší novou informaci: senzitivita a specificita druhého testu musejí platit i pro lidi s daným výsledkem prvního testu. Mezi lidmi s poruchou tedy výsledek druhého testu nesmí záviset na výsledku prvního a totéž platí mezi lidmi bez poruchy. Vyplní-li člověk tentýž dotazník znovu, tato podmínka splněna není: odpoví podobně jako poprvé a výpočet by tutéž informaci započítal dvakrát.</p>`,
+      html`<div class="viz-controls">${radios("r1", "Výsledek prvního testu", [["pos", "pozitivní"], ["neg", "negativní"]])}${radios("r2", "Výsledek druhého testu", [["pos", "pozitivní"], ["neg", "negativní"]])}</div>`,
+      html`<div class="viz-controls">
+        <label class="viz-check viz-bay-same"><input type="checkbox" id="viz-bay-same"><span>Druhý test má stejnou senzitivitu a specificitu jako první</span></label>
+        ${field("se2", "Senzitivita druhého testu", "0,95", "číslo od 0 do 1")}
+        ${field("sp2", "Specificita druhého testu", "0,90", "číslo od 0 do 1")}
+      </div>`,
+      html`<dl class="viz-stats" data-stats="second" aria-live="polite"></dl>`,
+      html`<p class="viz-panel-title">Pravděpodobnost poruchy před testy a po nich</p>`, html`<div class="viz-plots" data-chain></div>`,
+      html`<p class="viz-panel-title" data-grid2-title></p>`, html`<div data-legend2></div>`, html`<div class="viz-plots" data-grid2></div>`,
+      html`<p class="viz-bay-caption" data-grid2-caption></p>`)
+  );
+
+  const $ = q => root.querySelector(q);
+  for (const [name, value] of [["n", String(s.N)], ["layout", s.layout], ["range", s.range], ["r1", s.r1], ["r2", s.r2]]) $(`input[name="viz-bay-${name}"][value="${value}"]`).checked = true;
+  $("#viz-bay-same").checked = s.same;
+
+  // Decimal field: checks the value on every keystroke, keeps the last valid value and shows why input was rejected.
+  const check01 = v => v < 0 || v > 1 ? "Pravděpodobnost musí ležet mezi 0 a 1." : null;
+  function decimalField(id, key) {
+    const input = $(`#viz-bay-${id}`), error = $(`#viz-bay-${id}-error`);
+    input.addEventListener("input", () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? "Zadejte číslo, například 0,25." : check01(v);
+      error.hidden = !message;
+      error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      if (!message) { s[key] = v; render(); }
+    });
+  }
+  decimalField("prev", "p"); decimalField("se", "se"); decimalField("sp", "sp"); decimalField("se2", "se2"); decimalField("sp2", "sp2");
+
+  for (const name of ["n", "layout", "range", "r1", "r2"]) root.querySelectorAll(`input[name="viz-bay-${name}"]`).forEach(r => r.addEventListener("change", () => {
+    if (name === "n") s.N = Number(r.value); else s[name] = r.value;
+    render();
+  }));
+  $("#viz-bay-same").addEventListener("change", e => { s.same = e.target.checked; render(); });
+
+  // The two examples of chapter 5 set all inputs at once.
+  const presets = {poradna: {prev: "0,10", se: "0,95", sp: "0,90", N: 1000}, plosne: {prev: "0,01", se: "0,95", sp: "0,90", N: 10000}};
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const pr = presets[b.dataset.preset];
+    for (const id of ["prev", "se", "sp"]) { const input = $(`#viz-bay-${id}`); input.value = pr[id]; input.dispatchEvent(new Event("input")); }
+    s.N = pr.N; $(`input[name="viz-bay-n"][value="${pr.N}"]`).checked = true;
+    render();
+  }));
+
+  const legend = (items, extra) => { const d = html`<div class="viz-legend"></div>`; d.innerHTML = items.map(([fill, label]) => `<span><svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}"/></svg><span>${label}</span></span>`).join("") + (extra ?? ""); return d; };
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  $("[data-legend]").append(legend(["tp", "fn", "fp", "tn"].map(k => [COLOR[k], LABEL[k]])));
+  $("[data-legend2]").append(legend([[COLOR.tp, "porucha, 2. test pozitivní"], [COLOR.fn, "porucha, 2. test negativní"], [COLOR.fp, "bez poruchy, 2. test pozitivní"], [COLOR.tn, "bez poruchy, 2. test negativní"]]));
+  $("[data-curve-legend]").innerHTML = `<div class="viz-legend"><span>${lineSwatch(blue)}<span>prediktivní hodnota pozitivního testu</span></span><span>${lineSwatch(orange, "6,4")}<span>prediktivní hodnota negativního testu</span></span><span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="${ink}"/></svg><span>aktuální prevalence</span></span></div>`;
+
+  // Rows of the grid: wide grids on large screens, taller ones on phones.
+  const rowsFor = (N, narrow) => N === 1000 ? (narrow ? 32 : 20) : (narrow ? 100 : 50);
+
+  // Grid of persons: groups side by side with one empty column between them; each group fills its columns from the top.
+  function gridSvg(groups, rows, cell, label) {
+    const gap = cell * 0.14, inner = cell - gap, top = 9;
+    const paths = {tp: [], fn: [], fp: [], tn: []}, spans = [];
+    let col = 0, used = 0;
+    for (const g of groups) {
+      const total = d3.sum(g.parts, d => d.n);
+      if (!total) continue;
+      if (spans.length) col += 1;
+      const start = col; let i = 0;
+      for (const {key, n} of g.parts) for (let j = 0; j < n; j++, i++) {
+        const x = (start + Math.floor(i / rows)) * cell, y = top + (i % rows) * cell;
+        paths[key].push(`M${x.toFixed(2)} ${y.toFixed(2)}h${inner.toFixed(2)}v${inner.toFixed(2)}h${(-inner).toFixed(2)}z`);
+      }
+      col = start + Math.ceil(total / rows);
+      used = Math.max(used, Math.min(rows, total));
+      spans.push([start, col]);
+    }
+    if (!spans.length) return null;
+    const width = col * cell - gap, height = top + used * cell - gap;
+    const svg = d3.create("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`).attr("role", "img").attr("aria-label", label);
+    for (const key of ["tp", "fn", "fp", "tn"]) if (paths[key].length) svg.append("path").attr("d", paths[key].join("")).attr("fill", COLOR[key]).attr("data-key", key);
+    // A bracket above each group.
+    const g = svg.append("g").attr("stroke", gray).attr("stroke-width", 1.2).attr("fill", "none").attr("aria-hidden", "true");
+    for (const [a, b] of spans) g.append("path").attr("d", `M${a * cell} 7V2H${b * cell - gap}V7`);
+    return svg.node();
+  }
+
+  function groupsFor(layout, c) {
+    const st = [{parts: [{key: "tp", n: c.tp}, {key: "fn", n: c.fn}]}, {parts: [{key: "fp", n: c.fp}, {key: "tn", n: c.tn}]}];
+    const pos = {parts: [{key: "tp", n: c.tp}, {key: "fp", n: c.fp}]}, neg = {parts: [{key: "fn", n: c.fn}, {key: "tn", n: c.tn}]};
+    return {state: st, result: [pos, neg], pos: [pos], neg: [neg]}[layout];
+  }
+
+  // Description of the grid in words; the same text serves as its accessible name.
+  function gridCaption(layout, c) {
+    const about = c.exact ? "" : "přibližně ";
+    const posPart = c.pos ? `${about}${persons(c.pos)} s pozitivním výsledkem: ${int(c.tp)} s poruchou (správně pozitivní) a ${int(c.fp)} bez poruchy (falešně pozitivní). Podíl lidí s poruchou mezi nimi je prediktivní hodnota pozitivního testu, ${ratio(c.tp, c.pos)}.` : "Pozitivní výsledek nemá nikdo.";
+    const negPart = c.neg ? `${about}${persons(c.neg)} s negativním výsledkem: ${int(c.tn)} bez poruchy (správně negativní) a ${int(c.fn)} s poruchou (falešně negativní). Podíl lidí bez poruchy mezi nimi je prediktivní hodnota negativního testu, ${ratio(c.tn, c.neg)}.` : "Negativní výsledek nemá nikdo.";
+    const total = `Ze všech ${persons(c.N)}`;
+    if (layout === "state") {
+      const left = c.present ? `${about}${persons(c.present)} s poruchou: ${int(c.tp)} s pozitivním a ${int(c.fn)} s negativním výsledkem. Podíl pozitivních mezi nimi je senzitivita, ${ratio(c.tp, c.present)}.` : "Poruchu nemá nikdo.";
+      const right = c.absent ? `${about}${persons(c.absent)} bez poruchy: ${int(c.fp)} s pozitivním a ${int(c.tn)} s negativním výsledkem. Podíl negativních mezi nimi je specificita, ${ratio(c.tn, c.absent)}.` : "Bez poruchy není nikdo.";
+      return c.present && c.absent ? `Vlevo ${left} Vpravo ${right}` : `${total}: ${c.present ? left : right}`;
+    }
+    if (layout === "result") return c.pos && c.neg ? `Vlevo ${posPart} Vpravo ${negPart}` : `${total}: ${c.pos ? posPart : negPart}`;
+    return `${total} jen ${layout === "pos" ? (c.pos ? posPart : "pozitivní výsledek nemá nikdo.") : (c.neg ? negPart : "negativní výsledek nemá nikdo.")}`;
+  }
+
+  // Tree of natural frequencies as in the figure of chapter 5.
+  function treeSvg(W, c, p, se, sp) {
+    const narrow = W < 520, H = 262, bh = 40;
+    const svg = d3.create("svg").attr("width", W).attr("height", H).attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
+      .attr("font-size", narrow ? 12 : 13).attr("fill", ink)
+      .attr("aria-label", `Strom přirozených četností. ${persons(c.N)} se dělí podle stavu: ${int(c.present)} s poruchou (větev ${prob(p)}, prevalence) a ${int(c.absent)} bez poruchy (${prob(1 - p)}). Z lidí s poruchou má ${int(c.tp)} pozitivní výsledek (${prob(se)}, senzitivita) a ${int(c.fn)} negativní (${prob(1 - se)}). Z lidí bez poruchy má ${int(c.fp)} pozitivní výsledek (${prob(1 - sp)}, 1 − specificita) a ${int(c.tn)} negativní (${prob(sp)}, specificita).`);
+    const w0 = Math.min(150, W * 0.4), w1 = Math.min(170, W * 0.44), w2 = Math.min(140, W * 0.235);
+    const y0 = 22, y1 = 124, y2 = H - 24;
+    const top = {x: W / 2, y: y0, w: w0, lines: [persons(c.N)]};
+    const mid = [{x: W * 0.27, y: y1, w: w1, lines: [int(c.present), "porucha přítomna"]}, {x: W * 0.73, y: y1, w: w1, lines: [int(c.absent), "porucha nepřítomna"]}];
+    const leaves = [["tp", 0.12, c.tp, "pozitivní"], ["fn", 0.38, c.fn, "negativní"], ["fp", 0.62, c.fp, "pozitivní"], ["tn", 0.88, c.tn, "negativní"]]
+      .map(([key, f, n, word]) => ({key, x: W * f, y: y2, w: w2, lines: [int(n), word]}));
+    const edges = [[top, mid[0], p, "prevalence", "end"], [top, mid[1], 1 - p, "1 − prevalence", "start"],
+      [mid[0], leaves[0], se, "senzitivita", "end"], [mid[0], leaves[1], 1 - se, "1 − senzitivita", "start"],
+      [mid[1], leaves[2], 1 - sp, "1 − specificita", "end"], [mid[1], leaves[3], sp, "specificita", "start"]];
+    for (const [a, b, v, name, anchor] of edges) {
+      svg.append("line").attr("x1", a.x).attr("y1", a.y + bh / 2).attr("x2", b.x).attr("y2", b.y - bh / 2).attr("stroke", ink).attr("stroke-width", 1.2);
+      // The label sits above the middle of the branch, where the line is closer to the parent node.
+      const mx = (a.x + b.x) / 2 + (anchor === "end" ? -8 : 8), my = (a.y + bh / 2 + b.y - bh / 2) / 2;
+      const t = svg.append("text").attr("x", mx).attr("y", narrow ? my - 2 : my - 16).attr("text-anchor", anchor);
+      t.append("tspan").attr("font-weight", 600).text(prob(v));
+      if (!narrow) t.append("tspan").attr("x", mx).attr("dy", "1.15em").attr("fill", gray).attr("font-size", 12).text(name);
+    }
+    for (const node of [top, ...mid, ...leaves]) {
+      const fill = node.key ? COLOR[node.key] : "white", positive = node.key === "tp" || node.key === "fp";
+      svg.append("rect").attr("x", node.x - node.w / 2).attr("y", node.y - bh / 2).attr("width", node.w).attr("height", bh).attr("rx", 3)
+        .attr("fill", fill).attr("stroke", ink).attr("stroke-width", positive ? 2.4 : 1);
+      const t = svg.append("text").attr("x", node.x).attr("y", node.y - (node.lines.length > 1 ? 3 : -4)).attr("text-anchor", "middle").attr("fill", node.key === "tp" ? "white" : ink);
+      node.lines.forEach((line, i) => t.append("tspan").attr("x", node.x).attr("dy", i ? "1.15em" : 0).attr("font-weight", i ? 400 : 700).text(line));
+    }
+    return svg.node();
+  }
+
+  // Contingency table; the counts that belong to the chosen grid layout are emphasised.
+  function tableHtml(c, layout) {
+    const hi = {state: ["tp", "tn", "present", "absent"], result: ["tp", "tn", "pos", "neg"], pos: ["tp", "fp", "pos"], neg: ["fn", "tn", "neg"]}[layout];
+    const td = key => `<td${hi.includes(key) ? ' class="viz-bay-hi"' : ""}>${int(c[key])}</td>`;
+    return `<table class="viz-bay-table" aria-label="Kontingenční tabulka: skutečný stav a výsledek dotazníku">
+      <thead><tr><th scope="col"></th><th scope="col">Pozitivní výsledek</th><th scope="col">Negativní výsledek</th><th scope="col">Celkem</th></tr></thead>
+      <tbody><tr><th scope="row">Porucha přítomna</th>${td("tp")}${td("fn")}${td("present")}</tr>
+      <tr><th scope="row">Porucha nepřítomna</th>${td("fp")}${td("tn")}${td("absent")}</tr>
+      <tr class="viz-bay-total"><th scope="row">Celkem</th>${td("pos")}${td("neg")}<td>${int(c.N)}</td></tr></tbody></table>`;
+  }
+
+  const frac = (top, bottom) => `<span class="viz-bay-frac"><span>${top}</span><span>${bottom}</span></span>`;
+  const tp = t => `<span class="viz-bay-tp">${t}</span>`, fp = t => `<span class="viz-bay-fp">${t}</span>`;
+  const P = t => `<i>P</i>(${t})`;
+
+  // Predictive value against prevalence for the given sensitivity and specificity.
+  function curveChart(W, p, se, sp, range) {
+    const narrow = W < 520, max = range === "zoom" ? 0.2 : 1;
+    const pts = d3.range(0, 401).map(i => { const x = max * i / 400, b = bayes(x, se, sp); return {x, ppv: b.ppv ?? NaN, npv: b.npv ?? NaN}; });
+    const b = bayes(p, se, sp), inView = p <= max;
+    const marks = [0.01, 0.1].filter(x => x <= max);
+    const dots = inView ? [{y: b.ppv, c: blue}, {y: b.npv, c: orange}].filter(d => d.y !== null) : [];
+    return Plot.plot({
+      width: W, height: narrow ? 270 : 310, marginLeft: narrow ? 52 : 60, marginRight: 18, marginTop: 22, marginBottom: 44,
+      style: {fontSize: narrow ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain: [0, max], label: "Prevalence", labelAnchor: "center", labelArrow: "none", ticks: narrow ? 5 : 10, tickFormat: v => trim(v, 2)},
+      y: {domain: [0, 1], label: "Prediktivní hodnota", labelAnchor: "center", labelArrow: "none", labelOffset: narrow ? 42 : 48, ticks: 5, tickFormat: v => trim(v, 1)},
+      ariaLabel: `Prediktivní hodnota pozitivního a negativního testu v závislosti na prevalenci při senzitivitě ${prob(se)} a specificitě ${prob(sp)}`,
+      ariaDescription: `Při aktuální prevalenci ${prob(p)} je prediktivní hodnota pozitivního testu ${share(b.ppv)} a negativního testu ${share(b.npv)}.`,
+      marks: [
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.ruleX(marks, {stroke: gray, strokeWidth: 1.4, strokeDasharray: "1.5,3"}),
+        Plot.text(marks, {x: d => d, frameAnchor: "top", dy: -14, textAnchor: "middle", fill: gray, text: d => prob(d)}),
+        Plot.line(pts, {x: "x", y: "ppv", stroke: blue, strokeWidth: 2.4}),
+        Plot.line(pts, {x: "x", y: "npv", stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
+        Plot.dot(dots, {x: () => p, y: "y", r: 4.5, fill: ink}),
+        ...[[blue, -12], [orange, 16]].map(([c, dy]) => Plot.text(dots.filter(d => d.c === c), {x: () => p, y: "y", dx: 8, dy, textAnchor: "start", fill: ink, fontWeight: 600, text: d => share(d.y)}))
+      ]
+    });
+  }
+
+  // Probability of the disorder before the tests and after each of them.
+  function chainChart(W, steps) {
+    const narrow = W < 520;
+    const data = steps.map((d, i) => ({...d, i}));
+    return Plot.plot({
+      width: W, height: 150, marginLeft: narrow ? 92 : 110, marginRight: 54, marginTop: 6, marginBottom: 36,
+      style: {fontSize: narrow ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain: [0, 1], label: "Pravděpodobnost poruchy", labelAnchor: "center", labelArrow: "none", ticks: 5, tickFormat: v => trim(v, 1)},
+      y: {domain: data.map(d => d.label), label: null, padding: 0.3},
+      ariaLabel: "Pravděpodobnost poruchy před testy a po nich",
+      ariaDescription: data.map(d => `${d.label}: ${share(d.v)}`).join("; "),
+      marks: [
+        Plot.barX(data.filter(d => d.v !== null), {x: "v", y: "label", fill: d => d.i ? blue : COLOR.fn}),
+        Plot.text(data, {x: d => d.v ?? 0, y: "label", dx: 6, textAnchor: "start", fill: ink, fontWeight: 600, text: d => share(d.v)}),
+        Plot.ruleX([0], {stroke: ink})
+      ]
+    });
+  }
+
+  const dl = (el, rows) => { el.innerHTML = rows.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join(""); };
+  const resultWord = r => r === "pos" ? "pozitivní" : "negativní";
+  let last = {};
+
+  function render() {
+    const {p, se, sp, N, layout, range} = s;
+    const W = Math.max(260, Math.min($("[data-grid]").clientWidth || 640, 780)), narrow = W < 520;
+    const b = bayes(p, se, sp), c = counts(N, p, se, sp);
+
+    // Results.
+    dl($('[data-stats="main"]'), [
+      ["Úplná pravděpodobnost pozitivního výsledku", `${P("pozitivní")} = <strong>${share(b.pos)}</strong> (${percent(b.pos)})`],
+      ["Prediktivní hodnota pozitivního testu", b.ppv === null ? "nelze určit: pozitivní výsledek při těchto vstupech nenastane" : `${P("porucha | pozitivní")} = <strong>${share(b.ppv)}</strong> (${percent(b.ppv)})`],
+      ["Prediktivní hodnota negativního testu", b.npv === null ? "nelze určit: negativní výsledek při těchto vstupech nenastane" : `${P("bez poruchy | negativní")} = <strong>${share(b.npv)}</strong> (${percent(b.npv)})`],
+      ["Pravděpodobnost poruchy před výsledkem a po něm", `apriorní ${share(p)} → aposteriorní po pozitivním výsledku ${share(b.ppv)}, po negativním výsledku ${share(b.postNeg)}`, true]
+    ]);
+
+    // Grid of persons: the cell size follows the grid of all persons, so that subsets keep their size.
+    const rows = rowsFor(N, narrow), cell = Math.min(16, W / (Math.ceil(N / rows) + 2));
+    const caption = gridCaption(layout, c);
+    const grid = gridSvg(groupsFor(layout, c), rows, cell, caption);
+    $("[data-grid]").replaceChildren(...(grid ? [grid] : []));
+    $("[data-grid-caption]").textContent = caption + (c.exact ? "" : " Počty jsou zaokrouhleny na celé osoby; přesné pravděpodobnosti jsou ve výsledcích nahoře.");
+
+    // Tree, table and the two ways of reading it.
+    $("[data-tree]").replaceChildren(treeSvg(W, c, p, se, sp));
+    $("[data-table]").innerHTML = tableHtml(c, layout);
+    const about = c.exact ? "" : " (z počtů zaokrouhlených na celé osoby)";
+    dl($('[data-stats="read"]'), [
+      [`Po řádcích: podmínkou je skutečný stav${about}`, `senzitivita ${P("pozitivní | porucha")} = ${ratio(c.tp, c.present)}<br>specificita ${P("negativní | bez poruchy")} = ${ratio(c.tn, c.absent)}`],
+      [`Po sloupcích: podmínkou je výsledek dotazníku${about}`, `prediktivní hodnota pozitivního testu ${P("porucha | pozitivní")} = ${ratio(c.tp, c.pos)}<br>prediktivní hodnota negativního testu ${P("bez poruchy | negativní")} = ${ratio(c.tn, c.neg)}`]
+    ]);
+
+    // Bayes' theorem with the values substituted.
+    const a1 = p * se, a2 = (1 - p) * (1 - sp), n1 = (1 - p) * sp, n2 = p * (1 - se);
+    const ppvText = b.ppv === null
+      ? `<p class="viz-bay-eq">Úplná pravděpodobnost pozitivního výsledku je 0: pozitivní výsledek nenastane a ${P("porucha | pozitivní")} nelze určit, protože bychom dělili nulou.</p>`
+      : `<p class="viz-bay-eq">${P("porucha | pozitivní")} = ${frac(tp(`${P("porucha")} · ${P("pozitivní | porucha")}`), `${tp(`${P("porucha")} · ${P("pozitivní | porucha")}`)} + ${fp(`${P("bez poruchy")} · ${P("pozitivní | bez poruchy")}`)}`)}</p>
+        <p class="viz-bay-eq">= ${frac(tp(`${prob(p)} · ${prob(se)}`), `${tp(`${prob(p)} · ${prob(se)}`)} + ${fp(`${prob(1 - p)} · ${prob(1 - sp)}`)}`)} = ${frac(tp(small(a1)), `${tp(small(a1))} + ${fp(small(a2))}`)} = ${frac(tp(small(a1)), small(b.pos))} ≈ <strong>${share(b.ppv)}</strong></p>`;
+    const npvText = b.npv === null
+      ? `<p class="viz-bay-eq">Negativní výsledek nenastane a ${P("bez poruchy | negativní")} nelze určit.</p>`
+      : `<p class="viz-bay-eq">${P("bez poruchy | negativní")} = ${frac(`${prob(1 - p)} · ${prob(sp)}`, `${prob(1 - p)} · ${prob(sp)} + ${prob(p)} · ${prob(1 - se)}`)} = ${frac(small(n1), `${small(n1)} + ${small(n2)}`)} ≈ <strong>${share(b.npv)}</strong></p>`;
+    $("[data-formula]").innerHTML = `<p class="viz-panel-title">Prediktivní hodnota pozitivního testu</p>${ppvText}
+      <p class="viz-hint">Čitatel (${tp("modře")}) je cesta stromem přes poruchu k pozitivnímu výsledku. Jmenovatel je úplná pravděpodobnost pozitivního výsledku: k cestě přes poruchu přičítá cestu bez poruchy (${fp("oranžově")}).</p>
+      <p class="viz-panel-title">Prediktivní hodnota negativního testu</p>${npvText}`;
+    const pE = excel(p), seE = excel(se), spE = excel(sp);
+    const fPos = `=${pE}*${seE}+(1-${pE})*(1-${spE})`, fPpv = `=${pE}*${seE}/(${pE}*${seE}+(1-${pE})*(1-${spE}))`, fNpv = `=(1-${pE})*${spE}/((1-${pE})*${spE}+${pE}*(1-${seE}))`;
+    dl($('[data-stats="excel"]'), [
+      ["Vzorce v Excelu s dosazenými hodnotami", `úplná pravděpodobnost pozitivního výsledku <code>${fPos}</code><br>prediktivní hodnota pozitivního testu <code>${fPpv}</code><br>prediktivní hodnota negativního testu <code>${fNpv}</code>`, true],
+      ["Na listu Bayes", "Zadáte-li prevalenci, senzitivitu a specificitu do buněk B3:B5, spočítá buňka B19 úplnou pravděpodobnost pozitivního výsledku, B20 prediktivní hodnotu pozitivního testu podle Bayesovy věty a B17 prediktivní hodnotu negativního testu z přirozených četností.", true]
+    ]);
+
+    // Predictive value against prevalence.
+    $("[data-curve]").replaceChildren(curveChart(W, p, se, sp, range));
+    const curveNote = $("[data-curve-note]");
+    curveNote.hidden = !(range === "zoom" && p > 0.2);
+    curveNote.textContent = curveNote.hidden ? "" : `Aktuální prevalence ${prob(p)} leží mimo výřez; ukáže ji celý rozsah od 0 do 1.`;
+
+    // Second test.
+    const se2 = s.same ? se : s.se2, sp2 = s.same ? sp : s.sp2;
+    for (const [id, v] of [["se2", se], ["sp2", sp]]) {
+      const input = $(`#viz-bay-${id}`);
+      input.disabled = s.same;
+      if (s.same) { input.value = prob(v); input.setAttribute("aria-invalid", "false"); $(`#viz-bay-${id}-error`).hidden = true; }
+    }
+    if (s.same) { s.se2 = se; s.sp2 = sp; }
+    const first = s.r1 === "pos", second = s.r2 === "pos";
+    const p1 = update(p, se, sp, first), p2 = p1 === null ? null : update(p1, se2, sp2, second);
+    const cond1 = `1. ${resultWord(s.r1)}`, cond2 = `${cond1}, 2. ${resultWord(s.r2)}`;
+    let secondRows;
+    if (p1 === null) secondRows = [["Výsledek prvního testu", `${resultWord(s.r1)} výsledek při těchto vstupech nenastane, a pravděpodobnost poruchy po něm proto nelze určit.`, true]];
+    else {
+      const t1 = p1 * (second ? se2 : 1 - se2), t2 = (1 - p1) * (second ? 1 - sp2 : sp2);
+      const w1 = second ? `${prob(se2)}` : `${prob(1 - se2)}`, w2 = second ? `${prob(1 - sp2)}` : `${prob(sp2)}`;
+      const ref = first ? ["B20", "(1-B20)"] : ["(1-B17)", "B17"];
+      const fSecond = second ? `=${ref[0]}*${excel(se2)}/(${ref[0]}*${excel(se2)}+${ref[1]}*(1-${excel(sp2)}))` : `=${ref[0]}*(1-${excel(se2)})/(${ref[0]}*(1-${excel(se2)})+${ref[1]}*${excel(sp2)})`;
+      secondRows = [
+        ["Apriorní pravděpodobnost pro druhý test", `aposteriorní po prvním testu ${P(`porucha | ${cond1}`)} = <strong>${share(p1)}</strong>`],
+        ["Aposteriorní pravděpodobnost po druhém testu", p2 === null ? `${resultWord(s.r2)} výsledek druhého testu při těchto vstupech nenastane, a pravděpodobnost poruchy po něm proto nelze určit.` : `${P(`porucha | ${cond2}`)} = <strong>${share(p2)}</strong> (${percent(p2)})`],
+        ["Výpočet podle Bayesovy věty", p2 === null ? "Jmenovatel je 0, výpočet nelze provést." : `${frac(tp(`${share(p1)} · ${w1}`), `${tp(`${share(p1)} · ${w1}`)} + ${fp(`${share(1 - p1)} · ${w2}`)}`)} = ${frac(tp(small(t1)), `${tp(small(t1))} + ${fp(small(t2))}`)} ≈ <strong>${share(p2)}</strong><br><span class="viz-hint">Dosazená apriorní pravděpodobnost je zaokrouhlená, výpočet používá plnou přesnost.</span>`, true],
+        ["Vzorec v Excelu", `<code>${fSecond}</code><br><span class="viz-hint">${first ? "B20 obsahuje prediktivní hodnotu pozitivního testu" : "1 − B17 je pravděpodobnost poruchy po negativním výsledku; B17 obsahuje prediktivní hodnotu negativního testu"} na listu Bayes se stejnými vstupy prvního testu.</span>`, true]
+      ];
+    }
+    dl($('[data-stats="second"]'), secondRows);
+    $("[data-chain]").replaceChildren(chainChart(W, [{label: "před testy", v: p}, {label: "po 1. testu", v: p1}, {label: "po 2. testu", v: p2}]));
+    const c2 = counts2(c, first, se2, sp2);
+    const adj1 = first ? "pozitivním" : "negativním";
+    $("[data-grid2-title]").textContent = `Osoby s ${adj1} výsledkem prvního testu podle výsledku druhého`;
+    const hit = second ? c2.tp : c2.fn, group = second ? c2.pos : c2.neg;
+    const caption2 = !c2.N ? `${first ? "Pozitivní" : "Negativní"} výsledek prvního testu nemá nikdo.`
+      : `Z ${c.exact ? "" : "přibližně "}${persons(c2.N)} s ${adj1} výsledkem prvního testu (${int(c2.present)} s poruchou, ${int(c2.absent)} bez ní) má ve druhém testu ${second ? "pozitivní" : "negativní"} výsledek ${c2.exact ? "" : "přibližně "}${persons(group)}: ${int(hit)} s poruchou a ${int(group - hit)} bez poruchy.`
+        + (group ? ` Podíl lidí s poruchou mezi nimi je ${ratio(hit, group)}.` : "")
+        + (c.exact && c2.exact ? "" : " Počty jsou zaokrouhleny na celé osoby; přesná pravděpodobnost je ve výsledcích nahoře.");
+    const grid2 = gridSvg(groupsFor("result", c2), rows, cell, caption2);
+    $("[data-grid2]").replaceChildren(...(grid2 ? [grid2] : []));
+    $("[data-grid2-caption]").textContent = caption2;
+
+    last = {p, se, sp, N, layout, range, r1: s.r1, r2: s.r2, same: s.same, se2, sp2, rows, cell,
+      pos: b.pos, ppv: b.ppv, npv: b.npv, postNeg: b.postNeg, counts: c, p1, p2, counts2: c2,
+      formulas: {pos: fPos, ppv: fPpv, npv: fNpv}, caption, caption2, cells: grid ? grid.querySelectorAll("path[data-key]").length : 0};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = $("[data-grid]").clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe($("[data-grid]"));
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {bayes, update, counts, counts2, parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Tentýž příklad ukazují statické obrázky v kapitole 5: <a href="kapitola_05.html#fig-strom">strom přirozených četností</a> a <a href="kapitola_05.html#fig-dve-prevalence">pozitivní výsledky při dvou prevalencích</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-bay-vyzkousejte .unnumbered}
+
+1. Ve výchozím nastavení přepněte mřížku z uspořádání podle skutečného stavu na uspořádání podle výsledku dotazníku. Které podíly z tabulky čtete v prvním uspořádání a které ve druhém? Proč je senzitivita 0,95, ale prediktivní hodnota pozitivního testu jen 0,514?
+2. Stiskněte tlačítko plošného šetření a zvolte uspořádání „jen pozitivní výsledky“. Jak se změnila skupina s pozitivním výsledkem a prediktivní hodnota pozitivního testu? Potom zvyšte specificitu na 0,99 a nakonec ji vraťte na 0,90 a zvyšte senzitivitu na 0,99. Která z obou vlastností dotazníku má při nízké prevalenci na prediktivní hodnotu pozitivního testu větší vliv?
+3. V grafu podle prevalence najděte při senzitivitě 0,95 a specificitě 0,90 prevalenci, při níž je prediktivní hodnota pozitivního testu přibližně 0,5. Co taková hodnota znamená pro člověka s pozitivním výsledkem? Proč prediktivní hodnota negativního testu při rostoucí prevalenci klesá?
+4. V části o druhém vyšetření nastavte plošné šetření a dva pozitivní výsledky. Jaká je pravděpodobnost poruchy před testy, po prvním a po druhém testu? Potom zvolte negativní výsledek druhého testu. Za jakých okolností by takový výpočet nebyl oprávněný?
+
+## Čeho si všimnout {#sec-viz-bay-vsimnete .unnumbered}
+
+Senzitivita a prediktivní hodnota pozitivního testu se počítají ze stejných osob, ale vztahují se k jiným celkům. Senzitivita je podíl tmavě modrých čtverečků mezi všemi modrými, tedy mezi lidmi s poruchou. Prediktivní hodnota pozitivního testu je podíl tmavě modrých mezi všemi sytými, tedy mezi lidmi s pozitivním výsledkem. Přepnutím uspořádání mřížky měníme podmínku, nikoli osoby. Proto se $P(\text{pozitivní}\mid\text{porucha})$ a $P(\text{porucha}\mid\text{pozitivní})$ obecně liší, jak vysvětluje oddíl [Přirozené četnosti a strom](kapitola_05.qmd#sec-prirozene-cetnosti). V tabulce odpovídá první podíl čtení po řádcích a druhý čtení po sloupcích.
+
+Při nízké prevalenci je lidí bez poruchy mnohem více než lidí s poruchou. I malá část z nich, která má falešně pozitivní výsledek, proto může počtem převýšit všechny správně zachycené. Specificita určuje, jak velká tato oranžová skupina bude, a při nízké prevalenci má proto na prediktivní hodnotu pozitivního testu velký vliv. Senzitivita může počet správně pozitivních výsledků zvýšit nejvýše na počet lidí s poruchou, kterých je málo. Kdo tuto úvahu vynechá a řídí se jen senzitivitou, dopouští se [zanedbání základních četností](kapitola_05.qmd#sec-dve-prevalence).
+
+Bayesova věta počítá totéž co přirozené četnosti. Čitatel odpovídá jedné cestě stromem a jmenovatel, [úplná pravděpodobnost](kapitola_05.qmd#sec-uplna-pravdepodobnost) pozitivního výsledku, všem cestám k pozitivnímu výsledku. Při 1 000 i 10 000 osobách vychází stejný podíl; volba počtu osob jen určuje, zda vyjdou celé počty.
+
+Křivka ukazuje, že dotazník nemá jednu prediktivní hodnotu. Se stejnou senzitivitou a specificitou roste prediktivní hodnota pozitivního testu s prevalencí, zatímco prediktivní hodnota negativního testu klesá. Prediktivní hodnota proto není vlastností samotného testu, ale testu ve skupině, kde jej používáme. Předpoklad, že se senzitivita a specificita mezi skupinami nemění, je přitom třeba ověřit ([Stejný dotazník, jiná prevalence](kapitola_05.qmd#sec-dve-prevalence)).
+
+Po pozitivním výsledku se pravděpodobnost poruchy zvýší a po negativním sníží. Aposteriorní pravděpodobnost po prvním testu se stává apriorní pravděpodobností pro druhý, jak popisuje oddíl [Základní četnost, prevalence a apriorní pravděpodobnost](kapitola_05.qmd#sec-zakladni-cetnost). Dva pozitivní výsledky vedou k vysoké pravděpodobnosti poruchy jen tehdy, když druhé vyšetření přináší novou informaci. Opakované vyplnění téhož dotazníku tuto podmínku nesplňuje.
