@@ -99,6 +99,26 @@ je od 2026-10-20 ukázán už v oddílu o principu, před
 Šest simulovaných diagnostických dvojic v oddílu o odchylkách má každá
 200 hodnot a ukazují různé možnosti shody či nesouladu se stejným typem modelu.
 
+<a id="interaktivni-vizualizace-04"></a>
+
+**Interaktivní vizualizace (2026-11-06, [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):**
+na konci oddílu [hodnot k zapamatování](../../quarto/kapitola_04.qmd#sec-hodnoty-zpameti)
+odkazuje blok „Vyzkoušejte si: plochy pod normální křivkou“ na stránku
+[Plochy pod normální křivkou](../../quarto/viz_normalni_rozdeleni.qmd); jiný
+text kapitoly se nemění. Student zadá společný model N(μ, σ), výchozí N(0, 1).
+První část převádí hranici na podíl vlevo, vpravo, mezi dvěma mezemi a mimo
+interval, druhá podíl (desetinné číslo mezi 0 a 1) na hranici dolní či horní
+části a souměrné meze prostřední části či obou chvostů. Oba grafy ukazují
+hustotu s oranžovou hledanou plochou, druhou řadu popisků osy v z-skórech
+a distribuční funkci se sloupci výšek, ve druhé části se šipkami opačného
+čtení. Výsledky uvádějí převod na z, výpočet z ploch vlevo, podíl i procento
+a vzorec `NORM.DIST`/`NORM.INV` s dosazenými hodnotami. Používá jen pojmy
+kapitoly („podíl“, jednou propojený s pravděpodobností kapitoly 5) a index
+$z_p$ jako podíl vlevo. Čtyři úkoly „Vyzkoušejte si“ míří na doplněk do 1,
+rozdíl výšek a mimo interval v modelu N(50, 10), stejný z-skór v různých
+modelech a rozdíl prostředních 95 % a horních 5 %. Soulad karty s textem
+zkontrolován 2026-11-06.
+
 <a id="cvičení-a-očekávané-dovednosti-3"></a>
 
 ### Cvičení a očekávané dovednosti

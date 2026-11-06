@@ -127,3 +127,12 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 @media (max-width: 600px) {
   .viz-qq-row { grid-template-columns: 1fr; }
 }
+.viz .viz-field[hidden] { display: none; }
+.viz-model { border: 0; padding: 0; margin: 0; }
+.viz-model legend { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; float: none; width: auto; }
+.viz-model-note { margin: .6rem 0 0; }
+.viz-part { margin-top: 1.4rem; padding-top: .9rem; border-top: 1px solid #c8c8c8; }
+.viz .viz-part-title { font-size: 1.15rem; font-weight: 600; margin: 0 0 .7rem; }
+.viz-nr-order { margin: .5rem 0 0; max-width: none; }
+.viz-stats .viz-wide { grid-column: 1 / -1; }
+.viz-stats code { overflow-wrap: anywhere; white-space: normal; }

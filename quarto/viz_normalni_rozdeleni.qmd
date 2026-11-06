@@ -1,0 +1,447 @@
+---
+code-copy: false
+---
+
+# Plochy pod normální křivkou {#sec-viz-normalni-rozdeleni .unnumbered}
+
+Jaký podíl hodnot normálního modelu leží pod zvolenou hranicí, nad ní, mezi dvěma mezemi nebo mimo ně? A naopak: kde leží hranice, pod níž nebo nad níž leží zvolený podíl? Vizualizace obě otázky zodpoví pro libovolný normální model a ukáže výsledek jako plochu pod hustotou i jako výšku distribuční funkce. Navazuje na kapitolu 4: na [podíly jako plochy pod křivkou](kapitola_04.qmd#sec-hustota), [distribuční funkci](kapitola_04.qmd#sec-distribucni-funkce), [podíl mezi dvěma mezemi](kapitola_04.qmd#mezi-dvěma-hranicemi), [modelový percentil](kapitola_04.qmd#sec-normalni-kvantil) a [rozdíl mezi prostředními 95 % a horními 5 %](kapitola_04.qmd#sec-centralni-podil).
+
+Podíl je vždy plocha pod křivkou hustoty, celá plocha je 1. Při náhodném výběru jednoho člověka z modelované populace jej lze chápat také jako [pravděpodobnost](kapitola_05.qmd#sec-podil-pravdepodobnost), že jeho hodnota padne do vyznačené oblasti.
+
+## Model a ovládání {#sec-viz-nr-ovladani .unnumbered}
+
+Nahoře zadejte parametry normálního modelu $N(\mathrm{μ},\mathrm{σ})$: průměr $\mathrm{μ}$ (libovolné číslo) a směrodatnou odchylku $\mathrm{σ}$ (kladné číslo). Po načtení stránky je nastaveno normované normální rozdělení $N(0,1)$. Model platí pro obě části vizualizace. Desetinná čísla můžete psát s čárkou i s tečkou; výsledky se přepočítají hned po zadání platné hodnoty. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+V první části, **Od hranice k podílu**, zvolíte, který podíl hledáte: vlevo od hranice (hodnoty nejvýše rovné hranici), vpravo od ní, mezi dvěma mezemi, nebo mimo interval vymezený dvěma mezemi, tedy v obou chvostech dohromady. Hranice i meze zadáváte v původních jednotkách modelu; dolní mez musí být menší než horní.
+
+Ve druhé části, **Od podílu k hranici**, postupujete opačně. Zvolíte, kde má podíl ležet: v dolní části rozdělení (vlevo), v horní části (vpravo), v prostřední části souměrně kolem průměru, nebo v obou chvostech dohromady, kde se podíl rozdělí na dvě stejné poloviny. Podíl zadáváte desetinným číslem mezi 0 a 1 bez obou krajních hodnot, například 0,95 pro 95 %. Pro každou volbu je předvyplněn jeden příklad z kapitoly 4.
+
+Každá část má dva grafy se stejnou vodorovnou osou:
+
+- Horní graf ukazuje [hustotu](kapitola_04.qmd#sec-hustota) modelu. Hledaný podíl je vybarven oranžově, plocha, kterou při výpočtu odečítáme, modře. Svislé čárkované čáry označují hranice a jejich popisky uvádějí hodnotu $x$ i odpovídající z-skór. Pod osou jsou dvě řady popisků: řada $x$ v původních jednotkách a řada $z$ v jednotkách směrodatné odchylky. Dílky leží v celých násobcích směrodatné odchylky od průměru, takže v řadě $z$ jsou celá čísla.
+- Dolní graf ukazuje [distribuční funkci](kapitola_04.qmd#sec-distribucni-funkce), tedy podíl vlevo od každé hodnoty. U hranic stojí sloupce, jejichž výška je plocha vlevo od hranice. Oranžová část sloupce je hledaný podíl a modrá část odečítaná plocha. U podílu mimo interval je dolní část sloupce u horní meze šedá: tuto plochu už ukazuje sloupec u dolní meze. Tečkované vodorovné čáry vedou výšku sloupce k ose podílu. Ve druhé části je místo nich vidět opačný postup: oranžové šipky vedou od podílu vlevo na svislé ose ke křivce a odtud dolů k hledané hranici.
+
+Pod volbami se zobrazuje převod hranic na z-skóry, výpočet podílu z ploch vlevo, výsledek jako podíl i v procentech a odpovídající vzorec českého Excelu s dosazenými hodnotami. Podíl zaokrouhlujeme na tři desetinná místa a procento na jedno; mezivýpočty probíhají s plnou přesností, proto se zaokrouhlená čísla nemusejí přesně sečíst.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the figures of chapter 4 (scripts/kapitola_04.R).
+  const blue = "#245D78", hi = "#F0B08C", hiText = "#9A3F17", lo = "#B8DDE8", ink = "#223744", pale = "#E1E8EB", gray = "#4D5A63", orange = "#B54E24";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+  const dnorm = z => Math.exp(-0.5 * z * z) / SQRT2PI;
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, d) => { let s = v.toFixed(d); if (Number(s) === 0) s = Math.abs(0).toFixed(d); return minus(s.replace(".", ",")); };
+  const trim = (v, d) => { const s = fixed(v, d); return s.includes(",") ? s.replace(/0+$/, "").replace(/,$/, "") : s; };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const share = v => { const r = Number(v.toFixed(3)); return r === 0 && v > 0 ? "< 0,001" : r === 1 && v < 1 ? "> 0,999" : fixed(v, 3); };
+  const percent = v => { const q = 100 * v, r = Number(q.toFixed(1)); return (r === 0 && q > 0 ? "< 0,1" : r === 100 && q < 100 ? "> 99,9" : fixed(q, 1)) + " %"; };
+  const paren = s => s.startsWith("−") ? `(${s})` : s;
+  // Decimals for the worked computation: four, or more when a value lies within 0,0005 of 0 or 1.
+  const stepDigits = (...vs) => Math.max(4, ...vs.map(v => { const t = Math.min(v, 1 - v); return t > 0 && t < 0.0005 ? Math.min(10, Math.ceil(-Math.log10(t)) + 1) : 4; }));
+  const zText = z => fixed(z, 3);
+
+  let mu = 0, sigma = 1;
+  const digits = () => Math.min(6, 2 + Math.max(0, -Math.floor(Math.log10(sigma))));
+  const xText = x => fixed(x, digits());
+  const toZ = x => (x - mu) / sigma;
+  const area = x => pnorm(toZ(x));
+  const modelText = () => { const m = typed(mu), s = typed(sigma); return `<i>N</i>(${m}${m.includes(",") || s.includes(",") ? ";" : ","} ${s})`; };
+  const zLine = x => `<i>z</i> = (${typed(x)} − ${paren(typed(mu))}) / ${typed(sigma)} = ${zText(toZ(x))}`;
+
+  // Parsing of decimal input; returns null for anything but a plain number.
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const field = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-nr-${id}">${label}</label>
+    <input id="viz-nr-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-nr-${id}-hint viz-nr-${id}-error">
+    <span id="viz-nr-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-nr-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const choice = (name, legend, options) => html`<fieldset class="viz-choice">
+    <legend>${legend}</legend>
+    ${options.map(([value, label]) => html`<label><input type="radio" name="${name}" value="${value}"><span>${label}</span></label>`)}
+  </fieldset>`;
+
+  const forwardModes = [["left", html`vlevo od hranice (nejvýše <i>x</i>)`], ["right", html`vpravo od hranice (nad <i>x</i>)`], ["between", "mezi dvěma mezemi"], ["outside", "mimo interval (v obou chvostech)"]];
+  const inverseModes = [["lower", "dolní část (vlevo)"], ["upper", "horní část (vpravo)"], ["middle", "prostřední část (souměrně kolem průměru)"], ["tails", "oba chvosty dohromady (souměrně)"]];
+  const inverseHints = {lower: "podíl vlevo od hranice", upper: "podíl vpravo od hranice", middle: "podíl mezi oběma mezemi", tails: "podíl v obou chvostech dohromady"};
+
+  const root = html`<div class="viz" id="viz-normalni-rozdeleni">
+    <fieldset class="viz-model">
+      <legend>Normální model</legend>
+      <div class="viz-controls">
+        ${field("mu", html`Průměr μ`, "0", "libovolné číslo")}
+        ${field("sigma", html`Směrodatná odchylka σ`, "1", "kladné číslo")}
+      </div>
+      <p class="viz-model-note">Zápis modelu: <span data-model></span></p>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-nr-a-title">
+      <h3 id="viz-nr-a-title" class="viz-part-title">Od hranice k podílu</h3>
+      ${choice("viz-nr-a-mode", "Hledaný podíl", forwardModes)}
+      <div class="viz-controls">
+        ${field("x", "Hranice", "1", "číslo v jednotkách modelu")}
+        ${field("lower", "Dolní mez", "−1", "menší než horní mez")}
+        ${field("upper", "Horní mez", "1", "větší než dolní mez")}
+      </div>
+      <p id="viz-nr-order-error" class="viz-error viz-nr-order" role="alert" hidden></p>
+      <dl class="viz-stats" data-stats="a" aria-live="polite"></dl>
+      <div class="viz-plots" data-plots="a"></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-nr-b-title">
+      <h3 id="viz-nr-b-title" class="viz-part-title">Od podílu k hranici</h3>
+      ${choice("viz-nr-b-mode", "Kde leží zadaný podíl", inverseModes)}
+      <div class="viz-controls">
+        ${field("share", "Podíl", "0,95", inverseHints.middle)}
+      </div>
+      <dl class="viz-stats" data-stats="b" aria-live="polite"></dl>
+      <div class="viz-plots" data-plots="b"></div>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const forward = {mode: "left", x: 1, lower: -1, upper: 1};
+  const inverse = {mode: "middle", shares: {lower: 0.9, upper: 0.05, middle: 0.95, tails: 0.05}};
+  $(`input[name="viz-nr-a-mode"][value="${forward.mode}"]`).checked = true;
+  $(`input[name="viz-nr-b-mode"][value="${inverse.mode}"]`).checked = true;
+
+  // Decimal field: checks the value on every keystroke, keeps the last valid value and shows why input was rejected.
+  function decimalField(id, check, apply) {
+    const input = $(`#viz-nr-${id}`), error = $(`#viz-nr-${id}-error`);
+    const update = () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? "Zadejte číslo, například 1,5." : check(v);
+      error.hidden = !message;
+      error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      if (!message) apply(v);
+    };
+    input.addEventListener("input", update);
+    return {input, error, update};
+  }
+  const LIMIT = 1e9;
+  const finite = v => Math.abs(v) > LIMIT ? "Zadejte číslo v rozsahu od −1 000 000 000 do 1 000 000 000." : null;
+  decimalField("mu", finite, v => { mu = v; render(); });
+  decimalField("sigma", v => v <= 0 ? "Směrodatná odchylka musí být kladná." : finite(v), v => { sigma = v; render(); });
+  decimalField("x", finite, v => { forward.x = v; render(); });
+
+  // The two bounds are checked together: each must be a number and the lower one must be smaller.
+  const orderError = $("#viz-nr-order-error");
+  const pending = {lower: forward.lower, upper: forward.upper};
+  function applyBounds() {
+    const ok = pending.lower < pending.upper;
+    orderError.hidden = ok;
+    orderError.textContent = ok ? "" : "Dolní mez musí být menší než horní mez. Používají se dál poslední platné meze.";
+    if (ok) { forward.lower = pending.lower; forward.upper = pending.upper; }
+    render();
+  }
+  decimalField("lower", finite, v => { pending.lower = v; applyBounds(); });
+  decimalField("upper", finite, v => { pending.upper = v; applyBounds(); });
+
+  const shareField = decimalField("share", v => v <= 0 || v >= 1 ? "Zadejte podíl jako desetinné číslo mezi 0 a 1 (bez 0 a 1), například 0,95 pro 95 %." : null,
+    v => { inverse.shares[inverse.mode] = v; render(); });
+
+  function showFields() {
+    const single = forward.mode === "left" || forward.mode === "right";
+    $('[data-field="x"]').hidden = !single;
+    $('[data-field="lower"]').hidden = single;
+    $('[data-field="upper"]').hidden = single;
+    orderError.hidden = single || pending.lower < pending.upper;
+  }
+  root.querySelectorAll('input[name="viz-nr-a-mode"]').forEach(r => r.addEventListener("change", () => { forward.mode = r.value; showFields(); render(); }));
+  root.querySelectorAll('input[name="viz-nr-b-mode"]').forEach(r => r.addEventListener("change", () => {
+    inverse.mode = r.value;
+    shareField.input.value = typed(inverse.shares[r.value]);
+    $("#viz-nr-share-hint").textContent = inverseHints[r.value];
+    shareField.update();
+  }));
+  showFields();
+
+  // Forward task: bounds in original units, shaded segments of the density and columns of the distribution function.
+  function forwardTask() {
+    const {mode, x, lower, upper} = forward;
+    if (mode === "left") {
+      const L = area(x), d = stepDigits(L);
+      return {mode, bounds: [x], value: L, label: `Podíl vlevo od hranice (nejvýše ${typed(x)})`,
+        steps: `plocha vlevo od ${typed(x)} je ${fixed(L, d)}`,
+        formula: `=NORM.DIST(${excel(x)};${excel(mu)};${excel(sigma)};PRAVDA)`};
+    }
+    if (mode === "right") {
+      const L = area(x), d = stepDigits(L);
+      return {mode, bounds: [x], value: 1 - L, label: `Podíl vpravo od hranice (nad ${typed(x)})`,
+        steps: `1 − ${fixed(L, d)} = ${fixed(1 - L, d)}`,
+        formula: `=1-NORM.DIST(${excel(x)};${excel(mu)};${excel(sigma)};PRAVDA)`};
+    }
+    const La = area(lower), Lb = area(upper), d = stepDigits(La, Lb, Lb - La);
+    const dist = v => `NORM.DIST(${excel(v)};${excel(mu)};${excel(sigma)};PRAVDA)`;
+    if (mode === "between") {
+      return {mode, bounds: [lower, upper], value: Lb - La, label: `Podíl mezi ${typed(lower)} a ${typed(upper)}`,
+        steps: `${fixed(Lb, d)} − ${fixed(La, d)} = ${fixed(Lb - La, d)}`,
+        formula: `=${dist(upper)}-${dist(lower)}`};
+    }
+    return {mode, bounds: [lower, upper], value: La + (1 - Lb), label: `Podíl mimo interval od ${typed(lower)} do ${typed(upper)}`,
+      steps: `1 − (${fixed(Lb, d)} − ${fixed(La, d)}) = ${fixed(La + (1 - Lb), d)}`,
+      formula: `=1-(${dist(upper)}-${dist(lower)})`};
+  }
+
+  // Inverse task: the share is turned into areas to the left of each bound, then into z and x.
+  function inverseTask() {
+    const mode = inverse.mode, s = inverse.shares[mode], st = typed(s);
+    const inv = arg => `NORM.INV(${arg};${excel(mu)};${excel(sigma)})`;
+    const lefts = {
+      lower: [{p: s, how: `${st}`, arg: excel(s)}],
+      upper: [{p: 1 - s, how: `1 − ${st} = ${trim(1 - s, 10)}`, arg: `1-${excel(s)}`}],
+      middle: [{p: (1 - s) / 2, how: `(1 − ${st}) / 2 = ${trim((1 - s) / 2, 10)}`, arg: `(1-${excel(s)})/2`},
+               {p: (1 + s) / 2, how: `1 − (1 − ${st}) / 2 = ${trim((1 + s) / 2, 10)}`, arg: `1-(1-${excel(s)})/2`}],
+      tails: [{p: s / 2, how: `${st} / 2 = ${trim(s / 2, 10)}`, arg: `${excel(s)}/2`},
+              {p: 1 - s / 2, how: `1 − ${st} / 2 = ${trim(1 - s / 2, 10)}`, arg: `1-${excel(s)}/2`}]
+    }[mode];
+    for (const b of lefts) { b.z = qnorm(b.p); b.x = mu + sigma * b.z; b.formula = `=${inv(b.arg)}`; }
+    const shading = {lower: "left", upper: "right", middle: "between", tails: "outside"}[mode];
+    const what = {lower: "dolní část", upper: "horní část", middle: "prostřední část", tails: "oba chvosty dohromady"}[mode];
+    return {mode, shading, share: s, lefts, bounds: lefts.map(b => b.x), what};
+  }
+
+  // Shaded density segments and distribution-function columns for one of the four shapes of the question.
+  function layout(shading, bounds) {
+    const [a, b] = bounds, La = area(a), Lb = b === undefined ? NaN : area(b);
+    switch (shading) {
+      case "left": return {segments: [[-Infinity, a, hi]], columns: [[a, [[0, La, hi]]]], heights: [[a, La]]};
+      case "right": return {segments: [[-Infinity, a, lo], [a, Infinity, hi]], columns: [[a, [[0, La, lo], [La, 1, hi]]]], heights: [[a, La]]};
+      case "between": return {segments: [[-Infinity, a, lo], [a, b, hi]], columns: [[a, [[0, La, lo]]], [b, [[0, La, lo], [La, Lb, hi]]]], heights: [[a, La], [b, Lb]]};
+      default: return {segments: [[-Infinity, a, hi], [a, b, lo], [b, Infinity, hi]], columns: [[a, [[0, La, hi]]], [b, [[0, La, pale], [La, Lb, lo], [Lb, 1, hi]]]], heights: [[a, La], [b, Lb]]};
+    }
+  }
+
+  // Visible range: μ ± 4σ, widened to show the bounds, but never beyond μ ± 8σ.
+  function domainFor(bounds) {
+    const zs = bounds.map(toZ);
+    const zlo = Math.max(-8, Math.min(-4, ...zs.map(z => z - 0.5)));
+    const zhi = Math.min(8, Math.max(4, ...zs.map(z => z + 0.5)));
+    return [zlo, zhi];
+  }
+
+  function charts(container, shading, bounds, arrows, fmtX, describe) {
+    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const small = width < 520;
+    const [zlo, zhi] = domainFor(bounds);
+    const X = z => mu + sigma * z;
+    const domain = [X(zlo), X(zhi)];
+    const visible = bounds.filter(x => toZ(x) >= zlo && toZ(x) <= zhi);
+    const outside = bounds.filter(x => !visible.includes(x));
+    const {segments, columns, heights} = layout(shading, bounds);
+    const step = (zhi - zlo) > (small ? 9 : 13) ? 2 : 1;
+    const ks = d3.range(Math.ceil(zlo), Math.floor(zhi) + 1).filter(k => k % step === 0);
+    const tickX = ks.map(X);
+    const grid = d3.range(0, 401).map(i => zlo + (zhi - zlo) * i / 400);
+    const peak = dnorm(0) / sigma;
+    const base = {
+      width, marginLeft: small ? 52 : 62, marginRight: 16, marginTop: 14,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}
+    };
+    const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48});
+    const rowLabel = (text, dy) => Plot.text([text], {frameAnchor: "bottom-left", dx: -20, dy, lineAnchor: "top", textAnchor: "end", fontStyle: "italic", fill: gray, text: d => d});
+
+    // Density with shaded areas; zs inside each segment are clipped to the visible range.
+    const segmentMarks = segments.map(([from, to, fill]) => {
+      const z1 = Math.max(zlo, from === -Infinity ? zlo : toZ(from)), z2 = Math.min(zhi, to === Infinity ? zhi : toZ(to));
+      if (!(z2 > z1)) return null;
+      const pts = [z1, ...grid.filter(z => z > z1 && z < z2), z2];
+      return Plot.areaY(pts, {x: X, y: z => dnorm(z) / sigma, fill});
+    });
+    const frac = x => (toZ(x) - zlo) / (zhi - zlo);
+    const labels = visible.map((x, i) => {
+      const lower = visible.length === 2 && i === 0, upper = visible.length === 2 && i === 1;
+      let anchor = lower ? (frac(x) < 0.2 ? "start" : "end") : upper ? (frac(x) > 0.8 ? "end" : "start") : (frac(x) > 0.6 ? "end" : "start");
+      return {x, anchor, dy: 0, text: `x = ${fmtX(x)}\nz = ${zText(toZ(x))}`};
+    });
+    // Two labels on the same side of their lines would overlap: the second one moves down.
+    if (labels.length === 2 && (labels[0].anchor === "start" || labels[1].anchor === "end")) labels[1].dy = 34;
+    const labelMarks = labels.map(l => Plot.text([l], {x: "x", frameAnchor: "top", dy: l.dy, dx: l.anchor === "start" ? 6 : -6, textAnchor: l.anchor, lineAnchor: "top", fill: hiText, fontWeight: 600, text: "text"}));
+    const density = Plot.plot({
+      ...base, height: small ? 230 : 250, marginBottom: 54,
+      x: {domain, axis: null},
+      y: {...yLabel("Hustota"), domain: [0, 1.32 * peak], ticks: 3, tickFormat: v => trim(v, 6)},
+      ariaLabel: `Hustota modelu ${describe.model}`,
+      ariaDescription: describe.density,
+      marks: [
+        ...segmentMarks,
+        Plot.lineY(grid, {x: X, y: z => dnorm(z) / sigma, stroke: blue, strokeWidth: 2}),
+        Plot.ruleX(visible, {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
+        ...labelMarks,
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.axisX(tickX, {tickFormat: v => trim(v, 3), label: null}),
+        Plot.text(tickX, {x: d => d, frameAnchor: "bottom", dy: 28, lineAnchor: "top", fill: gray, text: (d, i) => minus(String(ks[i]))}),
+        rowLabel("x", 9), rowLabel("z", 28)
+      ]
+    });
+
+    // Distribution function: columns at the bounds, dotted guides to the vertical axis, arrows for the inverse reading.
+    // Column width; two close bounds get narrower columns so that they do not overlap.
+    const gap = visible.length === 2 ? visible[1] - visible[0] : Infinity;
+    const w = Math.min((domain[1] - domain[0]) / (small ? 36 : 48), 0.8 * gap);
+    const rects = columns.filter(([x]) => visible.includes(x)).flatMap(([x, parts]) => parts.map(([y1, y2, fill]) => ({x1: x - w / 2, x2: x + w / 2, y1, y2, fill})));
+    const shown = heights.filter(([x]) => visible.includes(x));
+    const close = shown.length === 2 && Math.abs(shown[1][1] - shown[0][1]) < 0.09;
+    // Height labels sit above their guide; when two heights are close, the lower label goes below its guide.
+    const heightMarks = shown.map(([, h], i) => {
+      const below = close && i === 0;
+      return Plot.text([h], {x: () => domain[0], y: d => d, dx: 4, dy: below ? 4 : -4, lineAnchor: below ? "top" : "bottom", textAnchor: "start", fill: hiText, fontWeight: 600, text: share});
+    });
+    const arrowMarks = arrows ? [
+      Plot.arrow(shown, {x1: () => domain[0], y1: d => d[1], x2: d => d[0], y2: d => d[1], stroke: orange, strokeWidth: 1.6, headLength: 7}),
+      Plot.arrow(shown, {x1: d => d[0], y1: d => d[1], x2: d => d[0], y2: () => 0, stroke: orange, strokeWidth: 1.6, headLength: 7})
+    ] : [Plot.link(shown, {x1: () => domain[0], y1: d => d[1], x2: d => d[0], y2: d => d[1], stroke: gray, strokeWidth: 1.2, strokeDasharray: "2,3"})];
+    const cdf = Plot.plot({
+      ...base, height: small ? 210 : 230, marginBottom: 42,
+      x: {domain, axis: null},
+      y: {...yLabel("Podíl vlevo"), domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2), grid: false},
+      ariaLabel: `Distribuční funkce modelu ${describe.model}`,
+      ariaDescription: describe.cdf,
+      color: {type: "identity"},
+      marks: [
+        Plot.ruleY([1], {stroke: pale}),
+        Plot.rect(rects, {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "fill", stroke: "white", strokeWidth: 0.6}),
+        Plot.lineY(grid, {x: X, y: pnorm, stroke: blue, strokeWidth: 2}),
+        ...arrowMarks,
+        ...heightMarks,
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.axisX(tickX, {tickFormat: v => trim(v, 3), label: null}),
+        rowLabel("x", 9)
+      ]
+    });
+
+    const panel = (title, chart) => { const d = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; d.append(chart); return d; };
+    const nodes = [panel("Hustota: hledaná plocha", density), panel("Distribuční funkce: plocha vlevo jako výška", cdf)];
+    if (outside.length) nodes.unshift(html`<p class="viz-note">${outside.length === 1 ? "Hranice" : "Některá z hranic"} leží dále než 8 směrodatných odchylek od průměru, a proto není v grafu zakreslena. Podíl za ní je prakticky nulový.</p>`);
+    container.replaceChildren(...nodes);
+  }
+
+  const statsA = $('[data-stats="a"]'), statsB = $('[data-stats="b"]');
+  const plotsA = $('[data-plots="a"]'), plotsB = $('[data-plots="b"]');
+  const dl = (el, rows) => { el.innerHTML = rows.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join(""); };
+  let last = {};
+
+  function render() {
+    const model = modelText(), modelPlain = model.replace(/<[^>]+>/g, "");
+    $("[data-model]").innerHTML = model;
+    const f = forwardTask();
+    dl(statsA, [
+      [f.bounds.length === 1 ? "Z-skór hranice" : "Z-skóry mezí",
+        f.bounds.length === 1 ? zLine(f.bounds[0]) : `dolní: ${zLine(f.bounds[0])}<br>horní: ${zLine(f.bounds[1])}`],
+      ["Výpočet z ploch vlevo (zaokrouhlené mezivýsledky)", f.steps],
+      [f.label, `<strong>${share(f.value)}</strong> (${percent(f.value)})`, true],
+      ["Vzorec v Excelu", `<code>${f.formula}</code>`, true]
+    ]);
+    charts(plotsA, f.mode, f.bounds, false, typed, {
+      model: modelPlain,
+      density: `${f.label}: ${share(f.value)}. Hledaná plocha je vybarvena oranžově.`,
+      cdf: `Výšky distribuční funkce v hranicích: ${f.bounds.map(x => `${typed(x)}: ${fixed(area(x), 3)}`).join(", ")}.`
+    });
+
+    const v = inverseTask();
+    const two = v.lefts.length === 2;
+    const names = two ? ["dolní mez", "horní mez"] : ["hranice"];
+    // One item per bound: share to the left, its z-score and the bound in original units.
+    const rowsB = v.lefts.map((b, i) => [two ? (i ? "Horní mez" : "Dolní mez") : "Hranice",
+      `podíl vlevo: ${b.how}<br><i>z</i><sub>${trim(b.p, 10)}</sub> = ${zText(b.z)}<br><i>x</i> = ${typed(mu)} + ${typed(sigma)} · ${paren(zText(b.z))} = <strong>${xText(b.x)}</strong>`]);
+    rowsB.push([two ? "Vzorce v Excelu" : "Vzorec v Excelu", v.lefts.map(b => `<code>${b.formula}</code>`).join(" a "), true]);
+    dl(statsB, rowsB);
+    charts(plotsB, v.shading, v.bounds, true, xText, {
+      model: modelPlain,
+      density: `${v.what}, podíl ${share(v.share)}: ${names.map((n, i) => `${n} ${xText(v.bounds[i])}`).join(", ")}. Zadaný podíl je vybarven oranžově.`,
+      cdf: `Šipky vedou od podílu vlevo ${v.lefts.map(b => trim(b.p, 6)).join(" a ")} ke křivce a dolů k hranici.`
+    });
+
+    last = {mu, sigma, forward: {mode: f.mode, bounds: f.bounds.slice(), value: f.value, formula: f.formula},
+      inverse: {mode: v.mode, share: v.share, lefts: v.lefts.map(b => b.p), z: v.lefts.map(b => b.z), bounds: v.bounds.slice(), formulas: v.lefts.map(b => b.formula)}};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plotsA.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plotsA);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pnorm, qnorm, parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Tytéž jevy ukazují statické obrázky v kapitole 4: <a href="kapitola_04.html#fig-hustota-04">plocha pod křivkou</a>, <a href="kapitola_04.html#fig-distribucni-04">plocha vlevo a distribuční funkce</a>, <a href="kapitola_04.html#fig-mezi-04">podíl mezi dvěma mezemi</a>, <a href="kapitola_04.html#fig-oblasti-04">podíl pod hranicí, nad ní a v intervalu</a> a <a href="kapitola_04.html#fig-kvantily-04">jednostranná hranice a prostřední interval</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-nr-vyzkousejte .unnumbered}
+
+1. Nastavte model kapitoly 4, $\mathrm{μ}=50$ a $\mathrm{σ}=10$. V první části zjistěte podíl vlevo a potom vpravo od hranice 60. Proč je součet obou podílů 1? Kde v dolním grafu vidíte oba podíly najednou?
+2. Ve stejném modelu zjistěte podíl mezi 60 a 70 a podíl mimo interval od 40 do 60. Ověřte v dolním grafu, že první podíl je rozdílem dvou výšek, a vysvětlete, proč druhý podíl dostanete odečtením podílu mezi 40 a 60 od 1.
+3. Vraťte se k modelu $N(0,1)$ a zjistěte podíl vlevo od hranice 1. Potom nastavte $\mathrm{μ}=100$ a $\mathrm{σ}=15$ a zjistěte podíl vlevo od 115. Co mají obě situace společné? Porovnejte řadu $z$ pod osou.
+4. Ve druhé části porovnejte prostřední část s podílem 0,95 a horní část s podílem 0,05. Proč meze prostředních 95 % leží dál od průměru než hranice horních 5 %? Potom zvolte oba chvosty dohromady s podílem 0,05 a porovnejte meze s prostřední částí 0,95.
+
+## Čeho si všimnout {#sec-viz-nr-vsimnete .unnumbered}
+
+Každá otázka první části se dá převést na plochy vlevo od hranic. Podíl vlevo od hranice je přímo výška distribuční funkce v této hranici. Podíl vpravo je zbytek do 1, protože obě plochy dohromady tvoří celou plochu pod křivkou. Podíl mezi dvěma mezemi je rozdíl dvou výšek a podíl mimo interval je to, co po odečtení tohoto rozdílu od 1 zbude, tedy součet obou chvostů. Proto stačí jediný typ výpočtu, plocha vlevo, jak ukazuje oddíl [o výpočtu v Excelu](kapitola_04.qmd#sec-excel-normalni).
+
+Při změně průměru a směrodatné odchylky se mění popisky řady $x$, ale tvar grafů, řada $z$ i vybarvená plocha zůstávají stejné, pokud se nezmění z-skór hranice. Model $N(100,15)$ má vlevo od 115 stejný podíl 0,841 jako model $N(0,1)$ vlevo od 1, protože obě hranice leží jednu směrodatnou odchylku nad průměrem. Proto lze každý normální model převést na [normované normální rozdělení](kapitola_04.qmd#sec-normovane-normalni).
+
+Druhá část dělá opačný převod: z podílu vlevo najde z-skór a z něj hranici podle vztahu $x=\mathrm{μ}+\mathrm{σ}z$. Kdo zadá podíl v horní části nebo v obou chvostech, musí jej nejprve převést na podíl vlevo. U prostředních 95 % zbývá 5 % rozdělených na dva chvosty po 2,5 %, a horní mez proto odpovídá podílu vlevo 0,975 a $z\approx1{,}960$. Horních 5 % leží celé v jednom chvostu, takže hranice odpovídá podílu vlevo 0,95 a $z\approx1{,}645$. Prostředních 95 % a oba chvosty s podílem 0,05 vedou ke stejným mezím, jde o tutéž úlohu popsanou z opačné strany. Hodnoty, které se takto opakují, shrnuje tabulka [hodnot k zapamatování](kapitola_04.qmd#sec-hodnoty-zpameti).
+
+Podíly blízké 0 nebo 1 posouvají hranici daleko od průměru, ale podíl 0 ani 1 zadat nelze. Normální model nemá konečnou nejmenší ani největší hodnotu, takže žádná hranice nemá pod sebou úplně nulovou plochu.
+
+Všechny výsledky jsou modelové podíly. Popisují rozložení hodnot v populaci, pokud ji zvolený normální model přiměřeně vystihuje; o tom, jak tento předpoklad posoudit, pojednává oddíl [Je normální model přiměřený?](kapitola_04.qmd#sec-primerenost-modelu).

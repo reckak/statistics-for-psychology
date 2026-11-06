@@ -1,5 +1,46 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Vizualizace ploch pod normální křivkou (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06)
+přibyla druhá stránka části „Interaktivní vizualizace“,
+[Plochy pod normální křivkou](viz_normalni_rozdeleni.qmd), v menu před
+pilotem. Společný model N(μ, σ) (výchozí N(0, 1)); část „Od hranice
+k podílu“ (vlevo, vpravo, mezi, mimo interval) a část „Od podílu k hranici“
+(dolní, horní, prostřední část, oba chvosty). Každá část má hustotu
+s vybarvenou plochou a řadou z-skórů pod osou a distribuční funkci se sloupci
+výšek, ve druhé části se šipkami opačného čtení. Výsledky uvádějí převod
+na z, výpočet z ploch vlevo, podíl na 3 desetinná místa, procento na 1
+a vzorec `NORM.DIST`/`NORM.INV` s dosazenými hodnotami. Barvy odpovídají
+`scripts/kapitola_04.R`. Kapitola 4 na stránku odkazuje blokem „Vyzkoušejte
+si“ na konci oddílu hodnot k zapamatování; jiný text kapitoly se nemění.
+Upraveny `_quarto.yml`, styly `.viz` (skrytá pole, části, model, široké
+položky výsledků), `check-html.cjs` (pořadí v menu a nová kontrola podle
+PROVOZ.md), karta kapitoly 4, OSNOVA.md, plán pokračování, registr a PROVOZ.md.
+Nové pojmy, značení ani funkce Excelu nepřibyly; slovníček a přehledy beze změny.
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- `pnorm` stránky (Hartův algoritmus 5666 podle Westa) se na mřížce
+  z = −12 až 12 po 0,01 liší od `pnorm` v R nejvýše o 7·10⁻¹⁶ (relativně
+  nejvýše 9·10⁻⁹ v chvostu); `qnorm` (Acklam s jedním Halleyho krokem)
+  se pro 34 podílů od 10⁻¹⁵ do 1 − 10⁻¹⁰ liší nejvýše o 1,1·10⁻⁹;
+- všech osm úloh v modelu N(50, 10) dává 0,841 / 0,159 / 0,136 / 0,317
+  a meze 62,82; 66,45; 30,40–69,60 shodně s R;
+- jedenáct vzorců ve tvaru, který stránka nabízí (`NORM.DIST`, `NORM.INV`,
+  doplňky, rozdíly, desetinné parametry), bylo zadáno přes `FormulaLocal`
+  do skryté samostatné instance českého Excelu bez uložení; výsledky
+  se shodují s R na 15 platných míst.
+
+Prohlédnuty snímky desktopu (mezi, mimo s velmi blízkými mezemi, horní část,
+oba chvosty, hranice 4σ od průměru, chybová hláška) a šířky 375 px. Podle nich
+opraveny popisek řady *x*, seskupení výsledků podle mezí, šířka sloupců
+u blízkých mezí a zobrazení podílů blízkých 0 a 1 ve výpočtu a popiscích.
+
+Neověřeno: čtečka obrazovky (ověřeny jen nativní prvky, popisky a `aria-live`),
+provoz na GitHub Pages a bez CDN, porozumění studentů. Ruční PDF ani export
+tutora nebyly spuštěny; oba přepisují odkazy `viz_….qmd` obecným pravidlem.
+
 ## 2026-11-06 — Rozvržení panelů vizualizace výběrového rozdělení průměru
 
 Podle připomínek autora k PR #164 upraveno jen rozvržení
