@@ -862,6 +862,10 @@ $$\begin{aligned}P(X=9)&=\binom{10}{9}\times0{,}5^9\times0{,}5^1\\&=10\times0{,}
 
 Ptáme-li se, jak pravděpodobný je při tipování **alespoň tak dobrý** výkon, přičteme i deset správných odpovědí: $0{,}0098+0{,}0010\approx0{,}0107$. Oba výpočty jsou správné; odpovídají na různé otázky. Pro posouzení, zda je výkon při tipování neobvyklý, se hodí druhá. Pravděpodobnost jedné přesné hodnoty totiž s rostoucím počtem pokusů klesá u všech hodnot, i u těch nejobvyklejších: při 200 pokusech a $\mathrm{π}=0{,}6$ má nejpravděpodobnější počet úspěchů, 120, pravděpodobnost jen 0,058. Ani jedno z čísel samo neprokazuje, že účastník podněty vnímal; říká jen, že model tipování takový výsledek vysvětluje špatně.
 
+::: {.callout-tip title="Vyzkoušejte si: binomické rozdělení"}
+V [interaktivní vizualizaci](viz_binomicke_rozdeleni.qmd) si zvolíte počet pokusů a pravděpodobnost úspěchu a zjistíte pravděpodobnost právě $k$, méně nebo více než $k$ úspěchů i počtu v zadaném rozpětí. Uvidíte ji jako součet sloupců i jako výšku kumulativní pravděpodobnosti, s osou v počtech i v podílech úspěchů. Zapnout lze také normální aproximaci, kterou vykládá [následující oddíl](#sec-normalni-aproximace).
+:::
+
 ## Normální aproximace binomického rozdělení {#sec-normalni-aproximace}
 
 Při velkém počtu pokusů je sčítání binomických pravděpodobností pracné. Tento oddíl ukazuje, kdy lze binomické rozdělení přiblížit normálním modelem a co z toho plyne pro podíly úspěchů.
