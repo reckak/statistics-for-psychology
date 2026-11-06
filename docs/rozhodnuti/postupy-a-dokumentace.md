@@ -657,3 +657,38 @@ Na doplňující otázky zvolil termín „Podíl“, všechny tři doplňky (�
 z-skórů a převod“, „Vzorec v Excelu“, „Distribuční funkce“), „Společné μ a σ“
 a zadání podílu „Desetinné číslo 0–1“; plán téhož dne schválil. Realizaci
 a ověření eviduje [autorská historie](../../quarto/README.md).
+
+<a id="r65-upresneni-2026-11-06-sila"></a>
+
+### Upřesnění 2026-11-06 — Vizualizace statistické síly
+
+Třetí vizualizace podle R65, ke kapitole 6: stránka
+`quarto/viz_statisticka_sila.qmd` („Na čem závisí statistická síla“,
+`#sec-viz-statisticka-sila`), v menu za vizualizací výběrového rozdělení
+průměru.
+
+- Model testu rozdílu dvou průměrů z kapitoly 6: stejně velké nezávislé
+  skupiny, známá σ, směrodatná chyba rozdílu σ√(2/n). Grafy podle
+  předlohy `presentations/kapitola_06_uloha_4_sila_grafy.pdf`: křivky H₀
+  a H₁, kritické hodnoty, α šrafováním, β a síla barevně.
+- Vstupy: skutečný rozdíl μ₁ − μ₂, *n* v každé skupině (celé číslo),
+  hladina α jako desetinné číslo (0 < α ≤ 0,5) a směr testu. σ je jeden
+  vstup společný pro obě situace, výchozí 15 s.
+- Dvě souběžně nastavitelné situace A a B se společnými osami místo
+  srovnání s pevným výchozím stavem nebo ukládání nastavení; navíc křivka
+  síly a vzorce českého Excelu s dosazenými hodnotami.
+- Směr testu bez nových termínů: „oboustranný“ a „jednostranný“ se zápisem
+  alternativy; „levostranný/pravostranný test“ se nezavádí.
+
+**Doklad:** autor 2026-11-06 zadal: „Jako další vizualizaci bych vytvořil
+vizualizaci statistické síly. Nechal bych uživatele vždy zadat rozdíl mezi
+populačními průměry, velikost výběrů (pro zjednodušení bych předpokládal
+stejně velké skupiny), hladinu alfa a typ testu (oboustranný, levostranný,
+pravostranný).“ a odkázal na uvedenou předlohu. Na doplňující otázky zvolil
+σ jako vstup s výchozí hodnotou 15 s, pojmenování „Jednostranný + zápis H₁“
+a zadání α „Desetinné číslo“; z doplňků vybral „Křivka síly“ a „Vzorec
+v Excelu“ a místo srovnání s výchozím stavem či uložených nastavení
+požadoval „možnost nastavit vstupní parametry dvou ‚duplicitních‘
+vizualizací“. K prvnímu návrhu plánu doplnil: „Populační σ bych asi
+nechal nastavovat společně pro oba grafy.“ Upravený plán téhož dne schválil.
+Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).

@@ -605,7 +605,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Výběrové rozdělení průměru']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -799,6 +799,78 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_04.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_normalni_rozdeleni.html"]').count(), 1, 'Chapter 4 links to the visualization');
+
+    // Statistical power: two situations against R, Excel formulas, shared σ, input checks, keyboard and a phone screen.
+    await page.goto(base + 'quarto/viz_statisticka_sila.html', { waitUntil: 'networkidle' });
+    const ss = page.locator('#viz-statisticka-sila');
+    const ssPlots = ss.locator('.viz-plots svg');
+    await ssPlots.nth(2).waitFor();
+    assert.equal(await ssPlots.count(), 3, 'Two main charts and the power curve');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    assert(await ss.locator('pattern#viz-ss-hatch-A').count() === 1 && await ss.locator('pattern#viz-ss-hatch-B').count() === 1, 'Hatching for α in both charts');
+    const ssState = () => ss.evaluate(el => el.vizCheck.state());
+    // R: se <- sigma*sqrt(2/n); k <- qnorm(1 - alpha/2 or 1 - alpha)*se; power from pnorm (scenarios of the chapter 6 power slides, chapter 6 text and edge cases).
+    const powerCases = [[5,100,15,.05,'two',0.654345791737], [5,100,15,.01,'two',0.413400719093], [5,200,15,.05,'two',0.915181283302], [5,100,12,.05,'two',0.8380110046],
+      [3,100,15,.05,'two',0.292988936448], [5,100,15,.05,'greater',0.76181992745], [5,100,15,.05,'less',3.14210854508e-05], [8,100,15,.05,'two',0.964950640187],
+      [3,400,15,.05,'two',0.807430419433], [3,100,15,.05,'greater',0.408797219794], [3,100,7.5,.05,'two',0.807430419433], [0,100,15,.05,'two',0.05], [0,100,15,.05,'greater',0.05],
+      [5,1,15,.5,'two',0.511768391359], [-5,50,10,.1,'less',0.88847319552], [-2,50,10,.1,'greater',0.0112579145126], [40,1000,15,.001,'two',1]];
+    const ssPowers = await ss.evaluate((el, cases) => cases.map(c => el.vizCheck.power(...c.slice(0, 5))), powerCases);
+    powerCases.forEach((c, i) => near(ssPowers[i], c[5], Math.max(1e-11, 1e-9 * c[5]), `Power ${c.slice(0, 5).join(' ')}`));
+    let st = await ssState();
+    assert.equal(st.sigma, 15); assert.equal(st.A.n, 100); assert.equal(st.B.n, 200);
+    near(st.A.power, 0.654345791737, 1e-11, 'Default situation A'); near(st.B.power, 0.915181283302, 1e-11, 'Default situation B');
+    near(st.A.crit[1], 4.157711473, 1e-9, 'Critical value'); near(st.A.se, 2.1213203436, 1e-10, 'Standard error of the difference');
+    assert.deepEqual([st.A.formulas.se, st.A.formulas.crit, st.A.formulas.power], ['=15*ODMOCNINA(2/100)', '=NORM.S.INV(1-0,05/2)*15*ODMOCNINA(2/100)', '=1-NORM.DIST(4,15771;5;2,12132;PRAVDA)+NORM.DIST(-4,15771;5;2,12132;PRAVDA)']);
+    for (const id of ['A', 'B']) near(st[id].formulas.powerValue, st[id].power, 5e-5, `Rounded Excel formula ${id}`);
+    assert.match(await ss.locator('#viz-ss-steps').innerText(), /0,6543 \+ < 0,0001 = 0,654/);
+    const ssInput = id => ss.locator(`#viz-ss-${id}`);
+    // The common σ changes both situations; R: power for σ = 12 s and n = 100 or 200.
+    await ssInput('sigma').fill('12');
+    st = await ssState();
+    near(st.A.power, 0.8380110046, 1e-9, 'σ = 12 in A'); assert.equal(st.B.sigma, 12, 'σ is shared');
+    await ssInput('sigma').fill('15');
+    await ssInput('B-n').fill('100'); await ssInput('B-alpha').fill('0,01');
+    st = await ssState();
+    near(st.B.power, 0.413400719093, 1e-11, 'α = 0,01'); near(st.B.crit[1], 5.4641591032, 1e-9, 'Critical value for α = 0,01');
+    await ssInput('B-alpha').fill('0.05');
+    // Keyboard choice of the direction; one-sided formulas.
+    await ss.locator('input[name="viz-ss-B-side"][value="two"]').focus(); await page.keyboard.press('ArrowRight');
+    st = await ssState();
+    assert.equal(st.B.side, 'less', 'Keyboard choice of the direction');
+    near(st.B.power, 3.14210854508e-05, 1e-12, 'Opposite direction'); assert.equal(st.B.formulas.power, '=NORM.DIST(-3,48926;5;2,12132;PRAVDA)');
+    assert.equal(st.B.formulas.crit, '=-NORM.S.INV(1-0,05)*15*ODMOCNINA(2/100)');
+    assert.match(await ss.locator('[data-panel="B"]').innerText(), /síla 1 − β < 0,001/);
+    await page.keyboard.press('ArrowRight');
+    st = await ssState();
+    assert.equal(st.B.side, 'greater'); near(st.B.power, 0.76181992745, 1e-11, 'One-sided in the chosen direction');
+    assert.equal(st.B.formulas.power, '=1-NORM.DIST(3,48926;5;2,12132;PRAVDA)');
+    // Zero difference: the shaded area is α, not power.
+    await ssInput('A-diff').fill('0');
+    st = await ssState();
+    near(st.A.power, 0.05, 1e-12, 'Zero difference gives α');
+    assert.match(await ss.locator('[data-panel="A"]').innerText(), /nulová hypotéza tedy platí/);
+    await ssInput('A-diff').fill('−5'); await ss.locator('input[name="viz-ss-A-side"][value="less"]').check();
+    await ssInput('sigma').fill('10'); await ssInput('A-n').fill('50'); await ssInput('A-alpha').fill('0,1');
+    near((await ssState()).A.power, 0.88847319552, 1e-10, 'Negative difference, decimal comma and typographic minus');
+    // Invalid input is rejected with a visible message and the last valid value stays in use.
+    for (const [id, bad, check] of [['A-n', '0', s => s.A.n === 50], ['A-n', '1001', s => s.A.n === 50], ['A-n', '2.5', s => s.A.n === 50], ['sigma', '0', s => s.sigma === 10], ['sigma', 'abc', s => s.sigma === 10], ['A-alpha', '0', s => s.A.alpha === 0.1], ['A-alpha', '0,6', s => s.A.alpha === 0.1], ['A-diff', '1001', s => s.A.d === -5]]) {
+      await ssInput(id).fill(bad);
+      assert.equal(await ssInput(id).getAttribute('aria-invalid'), 'true', `Rejected ${id} = ${bad}`);
+      assert(await ss.locator(`#viz-ss-${id}-error`).isVisible(), `Message for ${id} = ${bad}`);
+      assert(check(await ssState()), `Kept ${id} after ${bad}`);
+    }
+    await ssInput('A-n').fill('1000'); await ssInput('A-n').focus(); await page.keyboard.press('ArrowUp');
+    assert.equal((await ssState()).A.n, 1000, 'Arrow cannot exceed 1000');
+    await page.keyboard.press('ArrowDown');
+    assert.equal((await ssState()).A.n, 999, 'Arrow decreases n');
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await ssPlots.nth(2).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Power visualization fits a phone');
+    await ss.screenshot({path:'tmp/verification/viz-statisticka-sila-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_06.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_statisticka_sila.html"]').count(), 1, 'Chapter 6 links to the power visualization');
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

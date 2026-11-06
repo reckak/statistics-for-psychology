@@ -1,0 +1,449 @@
+---
+code-copy: false
+---
+
+# Na čem závisí statistická síla {#sec-viz-statisticka-sila .unnumbered}
+
+Jak pravděpodobně test odhalí rozdíl, který v populaci skutečně existuje, a co tuto pravděpodobnost zvyšuje nebo snižuje? Vizualizace ukazuje statistickou sílu testu rozdílu dvou průměrů jako plochu pod křivkou a dovoluje porovnat dvě nastavení vedle sebe. Navazuje na kapitolu 6: na [rozdíl dvou průměrů](kapitola_06.qmd#sec-rozdil-dvou-prumeru), [směr testu](kapitola_06.qmd#sec-smer-testu), [hladinu významnosti a kritický obor](kapitola_06.qmd#sec-hladina-kriticky-obor), [chybu I. a II. druhu](kapitola_06.qmd#sec-dve-chyby), [statistickou sílu pro konkrétní alternativy](kapitola_06.qmd#sec-statisticka-sila) a nepovinné rozšíření o [výpočtu statistické síly](kapitola_06.qmd#rozsireni-vypocet-sily).
+
+## Model a ovládání {#sec-viz-ss-ovladani .unnumbered}
+
+Používáme výukový model parkovací studie z kapitoly 6. Dvě nezávislé skupiny mají stejný počet řidičů $n$, doba odjezdu má v obou populacích stejnou směrodatnou odchylku $\mathrm{σ}$ a testovou statistikou je rozdíl výběrových průměrů $m_1-m_2$ v sekundách. Stejně jako v kapitole 6 považujeme $\mathrm{σ}$ za známou; je to předpoklad modelu. Pokud platí nulová hypotéza, že se populační průměry neliší, má rozdíl výběrových průměrů normální výběrové rozdělení se středem 0. Pokud se populační průměry liší, leží střed ve skutečném rozdílu $\mathrm{μ}_1-\mathrm{μ}_2$. Obě rozdělení mají stejnou směrodatnou chybu rozdílu $\mathrm{σ}\sqrt{2/n}$. Je to vztah $\sqrt{\mathrm{σ}^2/n+\mathrm{σ}^2/n}$ pro dvě stejně velké skupiny se stejnou směrodatnou odchylkou ([odvození](kapitola_06.qmd#rozsireni-odvozeni-chyby), [obecný vztah v kapitole 8](kapitola_08.qmd#sec-rozdil-nezavislych)); pro $\mathrm{σ}=15$ s a dvě skupiny po 100 řidičích vychází 2,1213 s.
+
+Nahoře zadejte směrodatnou odchylku $\mathrm{σ}$, která platí pro obě situace; výchozí hodnota 15 s je hodnota z kapitoly 6. Pod ní nastavíte dvě situace, A a B, každou zvlášť:
+
+- **skutečný rozdíl populačních průměrů** $\mathrm{μ}_1-\mathrm{μ}_2$ v sekundách, kladný, záporný i nulový;
+- **velikost výběru** $n$ v každé ze dvou skupin, celé číslo od 1 do 1 000; měnit ji lze i šipkami v poli nebo klávesami nahoru a dolů;
+- **hladinu významnosti** $\mathrm{α}$, číslo větší než 0 a nejvýše 0,5;
+- **směr testu**: oboustranný test, nebo jednostranný test s alternativou $\mathrm{μ}_1-\mathrm{μ}_2<0$ či $\mathrm{μ}_1-\mathrm{μ}_2>0$.
+
+Po načtení stránky odpovídá situace A výpočtu v kapitole 6: skutečný rozdíl 5 s, 100 řidičů v každé skupině, $\mathrm{α}=0{,}05$ a oboustranný test. Situace B se od ní liší jen dvojnásobnou velikostí výběru. Desetinná čísla můžete psát s čárkou i s tečkou a výsledky se přepočítají hned po zadání platné hodnoty. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+Vizualizace má tři části:
+
+- **Dva hlavní grafy**, jeden pro každou situaci, mají společné osy, takže lze přímo porovnat šířku křivek i polohu kritických hodnot. Šedá křivka je výběrové rozdělení rozdílu průměrů za platnosti nulové hypotézy ($H_0$), modrá křivka při zadaném skutečném rozdílu ($H_1$). Svislé čárkované čáry jsou kritické hodnoty a za nimi leží kritický obor. Šrafovaná plocha pod šedou křivkou v kritickém oboru je $\mathrm{α}$, pravděpodobnost chyby I. druhu. Pod modrou křivkou je oranžová plocha v kritickém oboru statistická síla $1-\mathrm{β}$ a světle modrá plocha mimo něj pravděpodobnost chyby II. druhu $\mathrm{β}$.
+- **Výpočet v obou situacích** ukazuje krok za krokem a pro obě situace vedle sebe směrodatnou chybu rozdílu, kvantil normovaného normálního rozdělení, kritické hodnoty, plochy pod modrou křivkou v kritickém oboru, sílu a $\mathrm{β}$. Pod tabulkou jsou vzorce českého Excelu s dosazenými hodnotami, které vedou ke stejnému výsledku jako list `Sila` v sešitu kapitoly 6.
+- **Křivka síly** ukazuje sílu pro všechny skutečné rozdíly při ostatních nastaveních obou situací. Plná čára patří situaci A, čárkovaná situaci B. Body označují zadané skutečné rozdíly; jejich výška je síla z výpočtu.
+
+Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrodatnou chybu na čtyři a kritické hodnoty na tři. Mezivýpočty probíhají s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the power graphs of chapter 6 (scripts/kapitola_06-prezentace-sila.R).
+  const blue = "#245D78", h0c = "#7B868E", orange = "#B54E24", fillB = "#B8DDE8", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", darkOrange = "#9A3F17";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+  const dnorm = z => Math.exp(-0.5 * z * z) / SQRT2PI;
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, d) => { let s = v.toFixed(d); if (Number(s) === 0) s = Math.abs(0).toFixed(d); return minus(s.replace(".", ",")); };
+  const trim = (v, d) => { const s = fixed(v, d); return s.includes(",") ? s.replace(/0+$/, "").replace(/,$/, "") : s; };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const sig6 = v => excel(Number(v.toPrecision(6)));
+  // Probabilities: three decimals for power and β, four for areas; extreme values as inequalities.
+  const prob = (v, d) => { const r = Number(v.toFixed(d)), e = (10 ** -d).toFixed(d).replace(".", ","), f = (1 - 10 ** -d).toFixed(d).replace(".", ","); return r === 0 && v > 0 ? `< ${e}` : r === 1 && v < 1 ? `> ${f}` : fixed(v, d); };
+  // " = 0,346", or " < 0,001" / " > 0,999" for extreme probabilities.
+  const eq = (v, d) => { const p = prob(v, d); return /^[<>]/.test(p) ? ` ${p}` : ` = ${p}`; };
+  const paren = s => s.startsWith("−") ? `(${s})` : s;
+  const sec = s => `${s} s`;
+  // Markup written as a string (subscripts, inline SVG) turned into DOM nodes.
+  const frag = s => { const t = document.createElement("template"); t.innerHTML = s; return t.content; };
+
+  // Parsing of decimal input; returns null for anything but a plain number.
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  // Power of the z-test of the difference of two means with known σ and n drivers in each group.
+  // side: "two" (H1: μ1 − μ2 ≠ 0), "less" (H1: μ1 − μ2 < 0) or "greater" (H1: μ1 − μ2 > 0).
+  function compute(d, n, sigma, alpha, side) {
+    const se = sigma * Math.sqrt(2 / n);
+    const tail = side === "two" ? alpha / 2 : alpha;
+    const z = -qnorm(tail);
+    const k = z * se;
+    const upper = side === "less" ? 0 : pnorm((d - k) / se);
+    const lower = side === "greater" ? 0 : pnorm((-k - d) / se);
+    const crit = side === "two" ? [-k, k] : side === "greater" ? [k] : [-k];
+    return {d, n, sigma, alpha, side, se, tail, z, k, crit, upper, lower, power: upper + lower, beta: 1 - upper - lower};
+  }
+
+  // Excel formulas with the inputs substituted; the power formula uses the critical value and the standard error to six significant digits.
+  function formulas(s) {
+    const root2 = `${excel(s.sigma)}*ODMOCNINA(2/${s.n})`;
+    const zArg = s.side === "two" ? `1-${excel(s.alpha)}/2` : `1-${excel(s.alpha)}`;
+    const K = sig6(s.k), S = sig6(s.se), D = excel(s.d);
+    const up = `1-NORM.DIST(${K};${D};${S};PRAVDA)`, low = `NORM.DIST(-${K};${D};${S};PRAVDA)`;
+    const f = {se: `=${root2}`, crit: `=${s.side === "less" ? "-" : ""}NORM.S.INV(${zArg})*${root2}`,
+      power: s.side === "two" ? `=${up}+${low}` : s.side === "greater" ? `=${up}` : `=${low}`};
+    // The value Excel returns for the power formula, computed here to confirm that rounding does not change the result.
+    const Kn = Number(s.k.toPrecision(6)), Sn = Number(s.se.toPrecision(6));
+    const upN = s.side === "less" ? 0 : 1 - pnorm((Kn - s.d) / Sn), lowN = s.side === "greater" ? 0 : pnorm((-Kn - s.d) / Sn);
+    f.powerValue = upN + lowN;
+    return f;
+  }
+
+  const field = (id, label, value, hint, attrs = "") => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-ss-${id}">${label}</label>
+    <input id="viz-ss-${id}" type="${attrs === "number" ? "number" : "text"}" inputmode="${attrs === "number" ? "numeric" : "decimal"}" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-ss-${id}-hint viz-ss-${id}-error">
+    <span id="viz-ss-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-ss-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const H1 = op => html`<i>H</i><sub>1</sub>: μ<sub>1</sub> − μ<sub>2</sub> ${op} 0`;
+  // A function, because each situation needs its own copies of the label nodes.
+  const sides = () => [["two", html`oboustranný (${H1("≠")})`], ["less", html`jednostranný, ${H1("<")}`], ["greater", html`jednostranný, ${H1(">")}`]];
+  const sideText = {two: "oboustranný test", less: "jednostranný test, <i>H</i><sub>1</sub>: μ<sub>1</sub> − μ<sub>2</sub> &lt; 0", greater: "jednostranný test, <i>H</i><sub>1</sub>: μ<sub>1</sub> − μ<sub>2</sub> &gt; 0"};
+  const sidePlain = {two: "oboustranný test", less: "jednostranný test, H1: μ1 − μ2 < 0", greater: "jednostranný test, H1: μ1 − μ2 > 0"};
+
+  const situation = (id, inputs) => html`<fieldset class="viz-ss-situation" data-situation="${id}">
+    <legend>Situace ${id}</legend>
+    <div class="viz-ss-fields">
+      ${field(`${id}-diff`, html`Skutečný rozdíl μ<sub>1</sub> − μ<sub>2</sub> (s)`, typed(inputs.d), "kladné či záporné číslo nebo 0")}
+      ${field(`${id}-n`, html`Velikost výběru <i>n</i> v každé skupině`, String(inputs.n), "celé číslo od 1 do 1 000", "number")}
+      ${field(`${id}-alpha`, html`Hladina významnosti α`, typed(inputs.alpha), "větší než 0, nejvýše 0,5")}
+    </div>
+    <fieldset class="viz-choice viz-ss-sides">
+      <legend>Směr testu</legend>
+      ${sides().map(([value, label]) => html`<label><input type="radio" name="viz-ss-${id}-side" value="${value}"><span>${label}</span></label>`)}
+    </fieldset>
+  </fieldset>`;
+
+  // Legend swatches; the hatching pattern is defined once in the legend and again inside each chart.
+  const hatchDefs = id => `<pattern id="${id}" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="${ink}" stroke-width="1"/></pattern>`;
+  const swatchLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swatchBox = fill => `<svg width="20" height="14" aria-hidden="true">${fill.startsWith("url") ? `<defs>${hatchDefs("viz-ss-hatch-legend")}</defs>` : ""}<rect x="1" y="1" width="18" height="12" fill="${fill}" stroke="${fill.startsWith("url") ? ink : "none"}" stroke-width="0.8"/></svg>`;
+
+  const inputs = {sigma: 15, A: {d: 5, n: 100, alpha: 0.05, side: "two"}, B: {d: 5, n: 200, alpha: 0.05, side: "two"}};
+
+  const root = html`<div class="viz" id="viz-statisticka-sila">
+    <fieldset class="viz-model">
+      <legend>Společný model</legend>
+      <div class="viz-controls">
+        ${field("sigma", html`Směrodatná odchylka σ (s)`, "15", "kladné číslo; platí pro obě situace")}
+      </div>
+    </fieldset>
+    <div class="viz-ss-situations">
+      ${situation("A", inputs.A)}
+      ${situation("B", inputs.B)}
+    </div>
+    <p class="viz-ss-summary" aria-live="polite" data-summary></p>
+    <section class="viz-part" aria-labelledby="viz-ss-plots-title">
+      <h3 id="viz-ss-plots-title" class="viz-part-title">Výběrová rozdělení a plochy</h3>
+      <div class="viz-ss-legend">
+        <span>${frag(swatchLine(h0c, 2.4))}<span><i>H</i><sub>0</sub>: skutečný rozdíl 0</span></span>
+        <span>${frag(swatchLine(blue, 2.6))}<span><i>H</i><sub>1</sub>: zadaný skutečný rozdíl</span></span>
+        <span>${frag(swatchLine(ink, 1.6, "5,4"))}<span>kritická hodnota</span></span>
+        <span>${frag(swatchBox("url(#viz-ss-hatch-legend)"))}<span>α: chyba I. druhu (pod <i>H</i><sub>0</sub>)</span></span>
+        <span>${frag(swatchBox(fillB))}<span>β: chyba II. druhu (pod <i>H</i><sub>1</sub>)</span></span>
+        <span>${frag(swatchBox(orange))}<span>síla 1 − β: zamítnutí <i>H</i><sub>0</sub>, když platí <i>H</i><sub>1</sub></span></span>
+      </div>
+      <div class="viz-plots" data-plots="main"></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ss-table-title">
+      <h3 id="viz-ss-table-title" class="viz-part-title">Výpočet v obou situacích</h3>
+      <div class="viz-ss-table-wrap" data-table></div>
+      <div class="viz-ss-formulas" data-formulas></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ss-curve-title">
+      <h3 id="viz-ss-curve-title" class="viz-part-title">Křivka síly</h3>
+      <div class="viz-ss-legend">
+        <span>${frag(swatchLine(blue, 2.4))}situace A</span>
+        <span>${frag(swatchLine(darkOrange, 2.4, "7,4"))}situace B</span>
+      </div>
+      <div class="viz-plots" data-plots="curve"></div>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  for (const id of ["A", "B"]) $(`input[name="viz-ss-${id}-side"][value="${inputs[id].side}"]`).checked = true;
+
+  // Decimal field: checks the value on every keystroke, keeps the last valid value and shows why input was rejected.
+  function decimalField(id, check, apply) {
+    const input = $(`#viz-ss-${id}`), error = $(`#viz-ss-${id}-error`);
+    input.addEventListener("input", () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? "Zadejte číslo, například 1,5." : check(v);
+      error.hidden = !message;
+      error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      if (!message) { apply(v); render(); }
+    });
+  }
+  // Whole-number field with arrows; the value applies as soon as it is valid.
+  function wholeNumberField(id, min, max, apply) {
+    const input = $(`#viz-ss-${id}`), error = $(`#viz-ss-${id}-error`);
+    input.min = String(min); input.max = String(max); input.step = "1";
+    const update = () => {
+      const raw = input.value.trim();
+      const v = !input.validity.badInput && /^\d+$/.test(raw) ? Number(raw) : null;
+      const ok = v !== null && v >= min && v <= max;
+      error.hidden = ok;
+      error.textContent = ok ? "" : "Zadejte celé číslo od 1 do 1 000. Používá se dál poslední platná hodnota.";
+      input.setAttribute("aria-invalid", ok ? "false" : "true");
+      if (ok) { apply(v); render(); }
+    };
+    input.addEventListener("input", update);
+    input.addEventListener("change", update);
+  }
+  decimalField("sigma", v => v <= 0 ? "Směrodatná odchylka musí být kladná." : v > 1000 ? "Zadejte nejvýše 1 000 s." : null, v => { inputs.sigma = v; });
+  for (const id of ["A", "B"]) {
+    decimalField(`${id}-diff`, v => Math.abs(v) > 1000 ? "Zadejte číslo od −1 000 do 1 000." : null, v => { inputs[id].d = v; });
+    decimalField(`${id}-alpha`, v => v <= 0 || v > 0.5 ? "Hladina významnosti musí být větší než 0 a nejvýše 0,5." : null, v => { inputs[id].alpha = v; });
+    wholeNumberField(`${id}-n`, 1, 1000, v => { inputs[id].n = v; });
+    root.querySelectorAll(`input[name="viz-ss-${id}-side"]`).forEach(r => r.addEventListener("change", () => { inputs[id].side = r.value; render(); }));
+  }
+
+  const situations = () => ({A: compute(inputs.A.d, inputs.A.n, inputs.sigma, inputs.A.alpha, inputs.A.side),
+                            B: compute(inputs.B.d, inputs.B.n, inputs.sigma, inputs.B.alpha, inputs.B.side)});
+
+  // Shared view of the two main charts: both curves ±4 standard errors and the critical values with room for their labels.
+  function sharedView(list) {
+    let lo = Infinity, hi = -Infinity, peak = 0;
+    for (const s of list) {
+      lo = Math.min(lo, Math.min(0, s.d) - 4 * s.se, ...s.crit.map(c => c - 2.5 * s.se));
+      hi = Math.max(hi, Math.max(0, s.d) + 4 * s.se, ...s.crit.map(c => c + 2.5 * s.se));
+      peak = Math.max(peak, dnorm(0) / s.se);
+    }
+    // Headroom above the peaks keeps the labels of the critical values clear of the curve labels.
+    return {domain: [lo, hi], ymax: 1.55 * peak};
+  }
+
+  // Grid for drawing: uniform over the view, denser around each curve so that narrow curves keep their shape.
+  function gridFor(domain, centres, se) {
+    const [lo, hi] = domain, pts = d3.range(0, 601).map(i => lo + (hi - lo) * i / 600);
+    for (const c of centres) for (let i = 0; i <= 240; i++) { const x = c - 6 * se + 12 * se * i / 240; if (x > lo && x < hi) pts.push(x); }
+    return [...new Set(pts)].sort((a, b) => a - b);
+  }
+
+  function mainChart(id, s, view, width) {
+    const small = width < 520;
+    const {domain, ymax} = view;
+    const grid = gridFor(domain, [0, s.d], s.se);
+    const f0 = x => dnorm(x / s.se) / s.se, f1 = x => dnorm((x - s.d) / s.se) / s.se;
+    const piece = (a, b, f) => {
+      a = Math.max(a, domain[0]); b = Math.min(b, domain[1]);
+      if (!(b > a)) return [];
+      return [a, ...grid.filter(x => x > a && x < b), b].map(x => ({x, y: f(x)}));
+    };
+    const k = s.k, I = Infinity;
+    const underH1 = {two: [[-I, -k, orange], [-k, k, fillB], [k, I, orange]], greater: [[-I, k, fillB], [k, I, orange]], less: [[-I, -k, orange], [-k, I, fillB]]}[s.side];
+    const alphaParts = {two: [[-I, -k], [k, I]], greater: [[k, I]], less: [[-I, -k]]}[s.side];
+    const hatch = `viz-ss-hatch-${id}`;
+    const peakY = dnorm(0) / s.se;
+    // Curve labels: above the peaks, pushed apart when the peaks are close.
+    const w = domain[1] - domain[0], close = Math.abs(s.d) < 0.12 * w;
+    const h0Anchor = close ? (s.d >= 0 ? "end" : "start") : "middle", h1Anchor = close ? (s.d >= 0 ? "start" : "end") : "middle";
+    const curveLabels = [
+      {x: 0, text: "H₀", fill: h0c, anchor: h0Anchor, dx: close ? (s.d >= 0 ? -4 : 4) : 0},
+      {x: s.d, text: "H₁", fill: blue, anchor: h1Anchor, dx: close ? (s.d >= 0 ? 4 : -4) : 0}
+    ];
+    // Critical values: value and direction of the critical region next to the top of each dashed line.
+    const critLabels = s.crit.map(c => {
+      const right = s.side === "two" ? c > 0 : s.side === "greater";
+      return {x: c, anchor: right ? "start" : "end", dx: right ? 5 : -5, value: sec(fixed(c, 3)), region: right ? "kritický obor →" : "← kritický obor"};
+    });
+    const chart = Plot.plot({
+      width, height: small ? 250 : 280, marginLeft: small ? 52 : 62, marginRight: 14, marginTop: 10, marginBottom: 30,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain, label: null},
+      y: {domain: [0, ymax], label: "Hustota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, ticks: 3, tickFormat: v => trim(v, 6)},
+      ariaLabel: `Situace ${id}: výběrová rozdělení rozdílu průměrů při nulové hypotéze a při skutečném rozdílu ${typed(s.d)} s`,
+      ariaDescription: `${sidePlain[s.side]}, α ${typed(s.alpha)}, n ${s.n} v každé skupině, směrodatná chyba rozdílu ${fixed(s.se, 4)} s. Kritické hodnoty: ${s.crit.map(c => fixed(c, 3)).join(" a ")} s. Statistická síla ${prob(s.power, 3)}, β ${prob(s.beta, 3)}.`,
+      marks: [
+        // y1 and y2 instead of y: areaY would otherwise stack points that share an x value.
+        ...underH1.map(([a, b, fill]) => Plot.areaY(piece(a, b, f1), {x: "x", y1: 0, y2: "y", fill})),
+        ...alphaParts.map(([a, b]) => Plot.areaY(piece(a, b, f0), {x: "x", y1: 0, y2: "y", fill: `url(#${hatch})`})),
+        Plot.lineY(grid, {x: x => x, y: f0, stroke: h0c, strokeWidth: 2.2}),
+        Plot.lineY(grid, {x: x => x, y: f1, stroke: blue, strokeWidth: 2.4}),
+        Plot.ruleX(s.crit, {y1: 0, y2: 0.86 * ymax, stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
+        ...critLabels.flatMap(l => [
+          Plot.text([l], {x: "x", y: () => 0.86 * ymax, dx: l.dx, textAnchor: l.anchor, lineAnchor: "bottom", dy: -16, fontWeight: 700, fill: ink, text: "value"}),
+          Plot.text([l], {x: "x", y: () => 0.86 * ymax, dx: l.dx, textAnchor: l.anchor, lineAnchor: "bottom", dy: -1, fill: ink, text: "region"})
+        ]),
+        ...curveLabels.map(l => Plot.text([l], {x: "x", y: () => peakY, dy: -8, dx: l.dx, lineAnchor: "bottom", textAnchor: l.anchor, fill: l.fill, fontStyle: "italic", fontSize: small ? 14 : 15, text: "text"})),
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.axisX({tickFormat: v => minus(trim(v, 3)), ticks: small ? 6 : 10, label: null})
+      ]
+    });
+    // Hatching pattern for α inside this chart.
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    defs.innerHTML = hatchDefs(hatch);
+    chart.prepend(defs);
+    return chart;
+  }
+
+  function curveChart(list, width) {
+    const small = width < 520;
+    const R = Math.max(...list.flatMap(s => [1.15 * Math.abs(s.d), s.k + 3.5 * s.se]));
+    const xs = d3.range(0, 501).map(i => -R + 2 * R * i / 500).concat(list.map(s => s.d)).sort((a, b) => a - b);
+    const line = (s, name) => xs.map(x => ({x, y: compute(x, s.n, s.sigma, s.alpha, s.side).power, name}));
+    const [A, B] = list;
+    const same = Math.abs(A.d - B.d) < 0.03 * R && Math.abs(A.power - B.power) < 0.06;
+    const dots = [{x: A.d, y: A.power, name: "A", fill: blue, dx: same ? -9 : 0}, {x: B.d, y: B.power, name: "B", fill: darkOrange, dx: same ? 9 : 0}];
+    return Plot.plot({
+      width, height: small ? 230 : 260, marginLeft: small ? 52 : 62, marginRight: 14, marginTop: 16, marginBottom: 30,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain: [-R, R], label: null},
+      y: {domain: [0, 1], label: "Síla", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2)},
+      ariaLabel: "Křivka síly obou situací v závislosti na skutečném rozdílu",
+      ariaDescription: `Situace A: síla ${prob(A.power, 3)} při skutečném rozdílu ${typed(A.d)} s, v nule ${typed(A.alpha)}. Situace B: síla ${prob(B.power, 3)} při skutečném rozdílu ${typed(B.d)} s, v nule ${typed(B.alpha)}.`,
+      marks: [
+        Plot.ruleY([1], {stroke: pale}),
+        Plot.ruleX([0], {stroke: pale, strokeWidth: 1.2}),
+        Plot.lineY(line(A, "A"), {x: "x", y: "y", stroke: blue, strokeWidth: 2.4}),
+        Plot.lineY(line(B, "B"), {x: "x", y: "y", stroke: darkOrange, strokeWidth: 2.4, strokeDasharray: "7,4"}),
+        Plot.dot(dots, {x: "x", y: "y", r: 5, fill: "fill", stroke: "white", strokeWidth: 1.5}),
+        ...dots.map(d => Plot.text([d], {x: "x", y: "y", dx: d.dx, dy: -12, lineAnchor: "bottom", fill: d.fill, fontWeight: 700, text: "name"})),
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.axisX({tickFormat: v => minus(trim(v, 3)), ticks: small ? 6 : 10, label: null})
+      ]
+    });
+  }
+
+  const caption = text => html`<p class="viz-ss-axis">${frag(text)}</p>`;
+  const panelHead = (id, s) => html`<p class="viz-panel-title">Situace ${id}: ${frag(sideText[s.side])}, α = ${typed(s.alpha)}, <i>n</i> = ${s.n} v každé skupině</p>`;
+  const panelValues = s => s.d === 0
+    ? html`<p class="viz-ss-values">Skutečný rozdíl je 0, nulová hypotéza tedy platí: oranžová plocha je pravděpodobnost chyby I. druhu α${eq(s.power, 3)}.</p>`
+    : html`<p class="viz-ss-values">α = ${typed(s.alpha)} · β${eq(s.beta, 3)} · <strong>síla 1 − β${eq(s.power, 3)}</strong></p>`;
+
+  function table(S) {
+    const cell = (s, f) => f(s);
+    const zLine = (s, c) => `<i>z</i> = (${fixed(c, 3)} − ${paren(typed(s.d))}) / ${fixed(s.se, 4)} = ${fixed((c - s.d) / s.se, 3)}`;
+    const rows = [
+      ["Skutečný rozdíl μ<sub>1</sub> − μ<sub>2</sub>", s => sec(typed(s.d))],
+      ["Velikost výběru <i>n</i> v každé skupině", s => String(s.n)],
+      ["Směr testu", s => sideText[s.side]],
+      ["Hladina významnosti α", s => typed(s.alpha)],
+      ["Směrodatná chyba rozdílu", s => `${typed(s.sigma)} · √(2/${s.n}) = ${sec(fixed(s.se, 4))}`],
+      ["Kvantil normovaného normálního rozdělení", s => `<i>z</i><sub>${trim(1 - s.tail, 10)}</sub> = ${fixed(s.z, 3)}`],
+      ["Kritické hodnoty", s => s.side === "two" ? `±${fixed(s.z, 3)} · ${fixed(s.se, 4)} = ±${sec(fixed(s.k, 3))}` : `${s.side === "less" ? "−" : ""}${fixed(s.z, 3)} · ${fixed(s.se, 4)} = ${sec(fixed(s.crit[0], 3))}`],
+      ["Plocha pod <i>H</i><sub>1</sub> v kritickém oboru vpravo", s => s.side === "less" ? "— (kritický obor jen vlevo)" : `${zLine(s, s.k)}; plocha nad: ${prob(s.upper, 4)}`],
+      ["Plocha pod <i>H</i><sub>1</sub> v kritickém oboru vlevo", s => s.side === "greater" ? "— (kritický obor jen vpravo)" : `${zLine(s, -s.k)}; plocha pod: ${prob(s.lower, 4)}`],
+      ["Statistická síla 1 − β", s => s.d === 0 ? `${prob(s.power, 3)} (= α, nulová hypotéza platí)` : s.side === "two" ? `${prob(s.upper, 4)} + ${prob(s.lower, 4)} = <strong>${prob(s.power, 3)}</strong>` : `<strong>${prob(s.power, 3)}</strong>`],
+      ["Pravděpodobnost chyby II. druhu β", s => s.d === 0 ? "— (nulová hypotéza platí)" : /^[<>]/.test(prob(s.power, 3)) ? `1 − síla: ${prob(s.beta, 3)}` : `1 − ${prob(s.power, 3)} = ${prob(s.beta, 3)}`]
+    ];
+    // A list of steps in three columns (step | A | B), like the results of the other visualizations; the situation tag is read aloud and shown on narrow screens.
+    const tag = id => `<span class="viz-ss-tag">Situace ${id}: </span>`;
+    return `<div class="viz-ss-head" aria-hidden="true"><span>Krok</span><span>Situace A</span><span>Situace B</span></div>
+      <dl class="viz-ss-steps" id="viz-ss-steps">${rows.map(([label, f]) => `<div class="viz-ss-row"><dt>${label}</dt><dd>${tag("A")}${cell(S.A, f)}</dd><dd>${tag("B")}${cell(S.B, f)}</dd></div>`).join("")}</dl>`;
+  }
+
+  function formulaBlock(id, s, f) {
+    const critName = s.side === "two" ? "Horní kritická hodnota" : "Kritická hodnota";
+    return `<div class="viz-ss-formula" data-formula="${id}"><p class="viz-ss-formula-title">Situace ${id}</p><dl>
+      <div><dt>Směrodatná chyba rozdílu</dt><dd><code>${f.se}</code></dd></div>
+      <div><dt>${critName}</dt><dd><code>${f.crit}</code></dd></div>
+      <div><dt>Statistická síla</dt><dd><code>${f.power.replace(/</g, "&lt;")}</code></dd></div>
+    </dl></div>`;
+  }
+
+  const mainPlots = $('[data-plots="main"]'), curvePlots = $('[data-plots="curve"]');
+  let last = {};
+
+  function render() {
+    const S = situations();
+    const width = Math.max(260, Math.min(mainPlots.clientWidth || 640, 780));
+    const view = sharedView([S.A, S.B]);
+    const nodes = [];
+    for (const id of ["A", "B"]) {
+      const panel = html`<div class="viz-panel" data-panel="${id}"></div>`;
+      panel.append(panelHead(id, S[id]), mainChart(id, S[id], view, width), caption("Rozdíl výběrových průměrů <i>m</i><sub>1</sub> − <i>m</i><sub>2</sub> (s)"), panelValues(S[id]));
+      nodes.push(panel);
+    }
+    mainPlots.replaceChildren(...nodes);
+    curvePlots.replaceChildren(curveChart([S.A, S.B], width), caption("Skutečný rozdíl populačních průměrů μ<sub>1</sub> − μ<sub>2</sub> (s)"));
+    $("[data-table]").innerHTML = table(S);
+    const F = {A: formulas(S.A), B: formulas(S.B)};
+    $("[data-formulas]").innerHTML = `<p class="viz-ss-formula-note">Vzorce českého Excelu s dosazenými hodnotami. Ve vzorci síly jsou kritická hodnota a směrodatná chyba zapsány na šest platných číslic.</p>${formulaBlock("A", S.A, F.A)}${formulaBlock("B", S.B, F.B)}`;
+    const summary = (id, s) => s.d === 0 ? `situace ${id}: skutečný rozdíl 0, pravděpodobnost zamítnutí${eq(s.power, 3)} (α)` : `situace ${id}: síla${eq(s.power, 3)}`;
+    $("[data-summary]").textContent = `Statistická síla — ${summary("A", S.A)}; ${summary("B", S.B)}.`;
+    const keep = s => ({d: s.d, n: s.n, sigma: s.sigma, alpha: s.alpha, side: s.side, se: s.se, z: s.z, crit: s.crit.slice(), upper: s.upper, lower: s.lower, power: s.power, beta: s.beta});
+    last = {sigma: inputs.sigma, A: {...keep(S.A), formulas: F.A}, B: {...keep(S.B), formulas: F.B}};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = mainPlots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(mainPlots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pnorm, qnorm, parseDecimal, compute, power: (d, n, sigma, alpha, side) => compute(d, n, sigma, alpha, side).power, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Tentýž jev ukazuje statický obrázek v kapitole 6: <a href="kapitola_06.html#fig-sila">pravděpodobnost zamítnutí nulové hypotézy při čtyřech skutečných rozdílech</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-ss-vyzkousejte .unnumbered}
+
+1. V situaci B nastavte velikost výběru 100 a hladinu významnosti 0,01. Jak se oproti situaci A posunuly kritické hodnoty a jak se změnily šrafovaná plocha, $\mathrm{β}$ a síla? Proč při stejné velikosti výběru nelze zmenšit obě chyby současně?
+2. V obou situacích nastavte skutečný rozdíl 3 s, $\mathrm{α}=0{,}05$, oboustranný test a v situaci B velikost výběru 400. Porovnejte sílu s hodnotami 0,29 a 0,81 v [kapitole 6](kapitola_06.qmd#sec-statisticka-sila). Potom nastavte $\mathrm{σ}=7{,}5$ s a v situaci B vraťte velikost výběru 100. Proč má situace B stejnou sílu jako před chvílí se 400 řidiči ve skupině?
+3. Vraťte $\mathrm{σ}=15$ s a v obou situacích skutečný rozdíl 5 s, 100 řidičů ve skupině a $\mathrm{α}=0{,}05$. V situaci A zvolte jednostranný test s alternativou $\mathrm{μ}_1-\mathrm{μ}_2>0$, v situaci B jednostranný test s alternativou $\mathrm{μ}_1-\mathrm{μ}_2<0$. Proč je síla v situaci A vyšší než u oboustranného testu a v situaci B téměř nulová? Jak vypadají obě křivky síly pro záporné skutečné rozdíly?
+4. V situaci A nastavte skutečný rozdíl 0. Co nyní vyjadřuje oranžová plocha a proč se rovná $\mathrm{α}$? V jaké výšce prochází křivka síly svislou čarou v nule?
+
+## Čeho si všimnout {#sec-viz-ss-vsimnete .unnumbered}
+
+Obě křivky pracují se stejnými kritickými hodnotami, ale odpovídají na dvě různé otázky. Kritické hodnoty určuje výběrové rozdělení za platnosti nulové hypotézy, hladina významnosti a směr testu; šrafovaná plocha pod šedou křivkou je proto vždy $\mathrm{α}$. Statistickou sílu měříme pod modrou křivkou: je to pravděpodobnost, že rozdíl výběrových průměrů padne do kritického oboru, pokud je skutečný rozdíl takový, jaký jsme zadali. Změna skutečného rozdílu proto posouvá jen modrou křivku a kritické hodnoty zůstávají na místě, stejně jako na [obrázku v kapitole 6](kapitola_06.qmd#fig-sila).
+
+Velikost výběru a směrodatná odchylka působí jen přes směrodatnou chybu rozdílu $\mathrm{σ}\sqrt{2/n}$. Menší směrodatná chyba zúží obě křivky a přiblíží kritické hodnoty k nule, takže oranžová plocha roste, zatímco $\mathrm{α}$ zůstává stejná. Čtyřnásobný výběr i poloviční směrodatná odchylka zmenší směrodatnou chybu na polovinu, a proto vedou ke stejné síle. Větší výběr tedy pomáhá stejně jako přesnější měření.
+
+Přísnější hladina významnosti posune kritické hodnoty dál od nuly. Šrafovaná plocha se zmenší, ale světle modrá plocha $\mathrm{β}$ se zvětší. Při stejné velikosti výběru a stejné variabilitě tedy menší pravděpodobnost chyby I. druhu znamená větší pravděpodobnost chyby II. druhu; obě chyby současně zmenší jen menší směrodatná chyba.
+
+Jednostranný test soustředí celou hladinu významnosti do jednoho chvostu. Kritická hodnota proto leží blíže k nule a v předem zvoleném směru má test vyšší sílu. Rozdíl v opačném směru ale téměř nikdy neodhalí: jeho křivka síly na druhé straně od nuly klesá pod $\mathrm{α}$ až k nule, zatímco křivka oboustranného testu je souměrná. Proto se [směr volí před sběrem dat](kapitola_06.qmd#sec-smer-testu).
+
+Při skutečném rozdílu 0 splývá modrá křivka se šedou a oranžová plocha se rovná $\mathrm{α}$. Pravděpodobnost zamítnutí je v tom případě pravděpodobností chyby I. druhu, ne silou. Všechny křivky síly proto procházejí v nule hladinou významnosti své situace a se vzdáleností od nuly rostou k 1.
+
+Statistická síla je vlastností konkrétního testu v konkrétní studii vzhledem ke konkrétní velikosti rozdílu. Nízká síla znamená, že ani skutečný rozdíl by studie často neodhalila; [nezamítnutí nulové hypotézy](kapitola_06.qmd#sec-nezamitnuti) je pak málo informativní. Všechna čísla platí ve výukovém modelu se známou $\mathrm{σ}$. Kdyby se směrodatná odchylka odhadovala z dat, použili bychom t-test z [kapitoly 8](kapitola_08.qmd#sec-rozdil-nezavislych) a síla by vyšla zvláště u malých výběrů o něco jinak.

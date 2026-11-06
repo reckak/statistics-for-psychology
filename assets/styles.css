@@ -136,3 +136,36 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-nr-order { margin: .5rem 0 0; max-width: none; }
 .viz-stats .viz-wide { grid-column: 1 / -1; }
 .viz-stats code { overflow-wrap: anywhere; white-space: normal; }
+/* Statistical power: two situations side by side, shared legend, comparison table and Excel formulas. */
+.viz-ss-situations { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; margin-top: 1rem; }
+.viz-ss-situation { border: 1px solid #c8c8c8; border-radius: .25rem; padding: .5rem .8rem .2rem; margin: 0; min-width: 0; }
+.viz-ss-situation > legend { font-size: 1.05rem; font-weight: 600; float: none; width: auto; padding: 0 .3rem; margin: 0; }
+.viz-ss-fields { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin-bottom: .8rem; }
+.viz-ss-sides { flex-direction: column; margin-bottom: .5rem; }
+.viz-ss-sides legend { font-size: .95rem; }
+.viz-ss-summary { margin: .8rem 0 0; font-weight: 600; }
+.viz-ss-legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .9em; margin-bottom: .2rem; }
+.viz-ss-legend > span { display: inline-flex; align-items: center; gap: .35rem; }
+.viz-ss-legend svg { flex: none; }
+.viz-ss-axis { text-align: center; font-size: .9em; color: #223744; margin: .1rem 0 0; }
+.viz-ss-values { margin: .2rem 0 .6rem; font-variant-numeric: tabular-nums; }
+.viz-ss-head, .viz-ss-row { display: grid; grid-template-columns: 30% 1fr 1fr; gap: 0 .9rem; }
+.viz-ss-head { font-weight: 600; font-size: .92em; padding: .3rem 0; border-bottom: 1px solid var(--ink); }
+.viz-ss-steps { margin: 0; font-size: .92em; font-variant-numeric: tabular-nums; }
+.viz-ss-row { padding: .3rem 0; border-bottom: 1px solid #c8c8c8; }
+.viz-ss-row dt { font-weight: normal; color: #4D5A63; }
+.viz-ss-row dd { margin: 0; overflow-wrap: anywhere; }
+.viz-ss-tag { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.viz-ss-formula-note { margin: .9rem 0 .3rem; }
+.viz-ss-formula-title { font-weight: 600; margin: .6rem 0 .2rem; }
+.viz-ss-formula dl { margin: 0; display: grid; gap: .25rem; }
+.viz-ss-formula dt { font-weight: normal; font-size: .85em; color: #4D5A63; }
+.viz-ss-formula dd { margin: 0; }
+.viz-ss-formula code { overflow-wrap: anywhere; white-space: normal; }
+@media (max-width: 700px) {
+  .viz-ss-situations { grid-template-columns: 1fr; }
+  .viz-ss-head { display: none; }
+  .viz-ss-row { grid-template-columns: 1fr; }
+  .viz-ss-row dt { font-weight: 600; color: var(--ink); }
+  .viz-ss-tag { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; color: #4D5A63; }
+}

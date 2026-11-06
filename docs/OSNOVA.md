@@ -73,10 +73,11 @@ patří před vizualizace, literaturu a přehledy.
 **Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
 výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
-této mapy. Existují dvě, v pořadí podle první navazující kapitoly:
+této mapy. Existují tři, v pořadí podle první navazující kapitoly a oddílu:
 [plochy pod normální křivkou](../quarto/viz_normalni_rozdeleni.qmd)
-ke kapitole 4 ([karta](kapitoly/04-normalni-rozdeleni.md#interaktivni-vizualizace-04))
-a [výběrové rozdělení průměru](../quarto/viz_vyberove_rozdeleni_prumeru.qmd)
+ke kapitole 4 ([karta](kapitoly/04-normalni-rozdeleni.md#interaktivni-vizualizace-04)),
+[výběrové rozdělení průměru](../quarto/viz_vyberove_rozdeleni_prumeru.qmd)
+a [statistická síla](../quarto/viz_statisticka_sila.qmd)
 ke kapitole 6 ([karta](kapitoly/06-vyberove-rozdeleni-testovani.md#interaktivni-vizualizace-06)).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
