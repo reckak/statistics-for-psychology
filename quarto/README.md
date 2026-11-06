@@ -47,6 +47,13 @@ a odsazení tabulky na mobilu. Dlouhé věty textu stránky zkontrolovány
 výpočtem (žádná nad 35 slov). Didaktická revize stránky proběhla jen čtením
 při tvorbě (bez samostatného agenta v roli studenta).
 
+Dodatek téhož dne podle autora: správně negativní výsledky mají místo šedé
+světle oranžovou barvu (`#F2C9AB`), takže odstín důsledně kóduje stav
+(modrá porucha, oranžová bez poruchy) a sytost výsledek (sytá pozitivní,
+světlá negativní); popis barev v oddílu „Model a ovládání“ a „Čeho si
+všimnout“ upraven. Stránka znovu vykreslena, `check-html.cjs` prošel,
+mřížka při 1 000 i 10 000 osobách a strom prohlédnuty.
+
 Neověřeno: čtečka obrazovky (ověřeny jen nativní prvky, popisky a
 `aria-live`), provoz na GitHub Pages a bez CDN, porozumění studentů.
 Ruční PDF ani export tutora nebyly spuštěny; oba přepisují odkazy
