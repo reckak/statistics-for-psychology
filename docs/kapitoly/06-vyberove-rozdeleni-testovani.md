@@ -179,6 +179,28 @@ centrální limitní věta) a Q–Q grafů z kapitoly 4, nezavádí pojmy a nen�
 samostatným cvičením. Kontrola souladu s textem oddílů 6.3–6.5: 2026-11-05;
 ostatní části karty se nemění.
 
+**Druhá vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila)):**
+na konci oddílu [Statistická síla pro konkrétní alternativy](../../quarto/kapitola_06.qmd#sec-statisticka-sila)
+(za výčtem pěti okolností) odkazuje blok „Vyzkoušejte si: statistická síla“
+na stránku [Na čem závisí statistická síla](../../quarto/viz_statisticka_sila.qmd).
+Model je test rozdílu dvou průměrů z výkladu se známou σ (výchozí 15 s,
+společná pro obě situace) a směrodatnou chybou rozdílu σ√(2/*n*). Student
+nastaví dvě situace A a B (skutečný rozdíl, *n* 1–1000 v každé skupině,
+α 0–0,5, oboustranný nebo jednostranný test se zápisem alternativy;
+výchozí A = výpočet oddílu, B = *n* 200) a porovná výběrová rozdělení
+za H₀ a H₁ se šrafovanou α, β a silou na společných osách, výpočet krok
+za krokem (směrodatná chyba, kvantil, kritické hodnoty, plochy, síla, β),
+vzorce českého Excelu odpovídající listu `Sila` a křivku síly obou situací.
+Čtyři úkoly „Vyzkoušejte si“ míří na kompromis α–β, rovnocennost
+čtyřnásobného *n* a poloviční σ (hodnoty 0,29 a 0,81 z textu), sílu
+jednostranného testu v obou směrech a rozdíl 0, kdy je zamítnutí
+pravděpodobností chyby I. druhu. Stránka opakuje učivo oddílů o testování
+hypotéz a o dvou chybách rozhodnutí a nepovinných rozšíření o směrodatné chybě rozdílu a výpočtu síly;
+nezavádí pojmy, „levostranný/pravostranný test“ nepoužívá a není
+samostatným cvičením. Kontrola souladu s textem oddílů o směru testu,
+kritickém oboru, dvou chybách, síle a nezamítnutí: 2026-11-06; ostatní
+části karty se nemění.
+
 <a id="cvičení-a-očekávané-dovednosti-5"></a>
 
 ### Cvičení a očekávané dovednosti

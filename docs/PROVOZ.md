@@ -341,6 +341,22 @@ U vizualizace ploch pod normální křivkou kontrola ověřuje:
   poznámku u hranice mimo zobrazený rozsah, šířku 375 px bez přetékání
   a odkaz z kapitoly 4.
 
+U vizualizace statistické síly kontrola ověřuje:
+
+- tři grafy (situace A, situace B, křivka síly), vzor šrafování α v obou
+  hlavních grafech a žádný viditelný kód ani tlačítko schránky;
+- sílu pro 17 nastavení (scénáře předlohy ke kapitole 6, hodnoty z textu
+  kapitoly 6 a okrajové případy: *n* = 1, α = 0,5, záporný rozdíl, opačný
+  směr jednostranného testu, rozdíl 0) proti `pnorm`/`qnorm` z R;
+- výchozí stav obou situací, kritickou hodnotu a směrodatnou chybu, přesné
+  znění vzorců Excelu pro tři směry a shodu výsledku vzorce se zaokrouhlenými
+  mezivýsledky s přesnou silou;
+- společnou σ pro obě situace, volbu směru šipkami, text pro rozdíl 0
+  a zápis „< 0,001“;
+- odmítnutí neplatných vstupů (*n* 0, 1001, 2,5; σ 0 a text; α 0 a 0,6;
+  rozdíl 1001) se zprávou a ponecháním poslední platné hodnoty, mez
+  a šipky pole *n*, šířku 375 px bez přetékání a odkaz z kapitoly 6.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při

@@ -1,5 +1,54 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Vizualizace statistické síly (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila)
+přibyla třetí stránka části „Interaktivní vizualizace“,
+[Na čem závisí statistická síla](viz_statisticka_sila.qmd), v menu za
+vizualizací výběrového rozdělení průměru. Společná σ (výchozí 15 s) a dvě
+situace A a B (skutečný rozdíl, *n*, α, směr testu); dva hlavní grafy se
+společnými osami podle předlohy `presentations/kapitola_06_uloha_4_sila_grafy.pdf`
+(H₀ šedě, H₁ modře, α šrafováním vzorem SVG, β světle modře, síla oranžově,
+barvy ze `scripts/kapitola_06-prezentace-sila.R`), výpočet krok za krokem
+pro obě situace, vzorce `ODMOCNINA`/`NORM.S.INV`/`NORM.DIST` s dosazenými
+hodnotami a křivka síly. Výpočet je zobrazen jako seznam kroků (`dl`)
+ve třech sloupcích, ne jako tabulka: dynamický výstup nelze číslovat
+„Tabulka X“, jak vyžaduje kontrola tabulek. Kapitola 6 odkazuje na stránku
+blokem „Vyzkoušejte si“ na konci oddílu o statistické síle; jiný text
+kapitoly se nemění. Upraveny `_quarto.yml`, styly `.viz-ss-…`,
+`check-html.cjs` (pořadí v menu a nová kontrola podle PROVOZ.md), karta
+kapitoly 6, OSNOVA.md, plán pokračování, registr a PROVOZ.md. Nové pojmy,
+značení ani funkce Excelu nepřibyly; slovníček a přehledy beze změny.
+
+Před prací byla opravena místní větev `codex/cross-chapter`: její ref
+a reflog byly přepsány nulovými bajty (HEAD nešla načíst). Podle reflogu
+HEAD a `packed-refs` ukazovala na `dbb13e3`, který je sloučen v PR #166;
+větev proto začala znovu z `origin/main` (`git fsck` bez chyb).
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- síla, kritické hodnoty a směrodatná chyba pro 18 nastavení v R
+  (`pnorm`/`qnorm`): scénáře předlohy 0,654 / 0,413 / 0,915 / 0,838 / 0,293 /
+  0,762 / < 0,001, hodnoty textu kapitoly 6 (3 s: 0,293; 8 s: 0,965;
+  400 řidičů: 0,807; jednostranně 3 s: 0,409) a okrajové případy; stránka
+  se shoduje s relativní přesností 10⁻⁹;
+- osm vzorců ve tvaru, který stránka nabízí (směrodatná chyba, kritické
+  hodnoty pro tři směry a α 0,01, síla pro tři směry), bylo zadáno přes
+  `FormulaLocal` do skryté samostatné instance českého Excelu bez uložení;
+  výsledky se od přesné síly liší nejvýše o 4·10⁻⁷ (mezivýsledky na šest
+  platných číslic).
+
+Ověřeno: `quarto render` celé knihy a `check-html.cjs` bez chyb. Prohlédnuty
+snímky desktopu (výchozí stav; rozdíl 0 v A a opačný jednostranný test v B)
+a šířky 375 px. Podle nich opraveny chybějící popisky směru v situaci A,
+mezery v legendě, překryv popisků kritických hodnot s popiskem H₁, svislé
+pruhy z výchozího stohování ploch v Observable Plot a zápis krajních
+pravděpodobností („β > 0,999“ místo „β = > 0,999“).
+
+Neověřeno: čtečka obrazovky (ověřeny jen nativní prvky, popisky a `aria-live`),
+provoz na GitHub Pages a bez CDN, porozumění studentů. Ruční PDF ani export
+tutora nebyly spuštěny; oba přepisují odkazy `viz_….qmd` obecným pravidlem.
+
 ## 2026-11-06 — Vizualizace ploch pod normální křivkou (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06)

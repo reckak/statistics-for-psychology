@@ -784,6 +784,10 @@ Sílu ovlivňuje několik okolností:
 - **Hladina významnosti.** Přísnější hladina, například 0,01, posune kritické hodnoty dál od nuly. Sníží pravděpodobnost chyby I. druhu, ale také sílu. Obě chyby nelze u stejně velkého výběru zmenšit současně.
 - **Směr testu.** Jednostranný test má v předem zvoleném směru vyšší sílu, protože celých 5 % soustřeďuje do jednoho chvostu; pro skutečný rozdíl 3 s by to bylo 0,41 místo 0,29. Rozdíl v opačném směru ovšem neodhalí vůbec.
 
+::: {.callout-tip title="Vyzkoušejte si: statistická síla"}
+V [interaktivní vizualizaci](viz_statisticka_sila.qmd) můžete nastavit dvě situace vedle sebe, měnit skutečný rozdíl, velikost výběru, směrodatnou odchylku, hladinu významnosti i směr testu a sledovat, jak se mění kritické hodnoty, pravděpodobnost chyby II. druhu a statistická síla.
+:::
+
 ### Když nulovou hypotézu nezamítneme {#sec-nezamitnuti}
 
 Parkovací studie vedla k zamítnutí. Stejně důležité je umět správně přečíst opačný výsledek. Představme si smyšlenou variantu: rozdíl výběrových průměrů by vyšel 2,9 s. Pak $z=2{,}9/2{,}1213\approx1{,}37$ a oboustranná *p*-hodnota je 0,17.
