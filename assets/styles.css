@@ -169,3 +169,4 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
   .viz-ss-row dt { font-weight: 600; color: var(--ink); }
   .viz-ss-tag { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; color: #4D5A63; }
 }
+.viz-progress { margin: .9rem 0 0; color: #4D5A63; font-style: italic; }

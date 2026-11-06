@@ -1,5 +1,46 @@
 # Autorská dokumentace
 
+## 2026-11-06 — Rozšíření vizualizace výběrového rozdělení průměru (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-vrp)
+upravena [vizualizace výběrového rozdělení průměru](viz_vyberove_rozdeleni_prumeru.qmd):
+
+- *n* je 1–1000 a počet nových výběrů 1–10 000; velké požadavky se losují
+  po dávkách (400 000 hodnot) s průběhem a zablokovaným ovládáním;
+- ukládá se jen poslední výběr, z ostatních se počítá rovnou průměr;
+- strop 100 000 opakování zůstává;
+- přibyl histogram standardizovaných průměrů (osa −4 až 5, svislé čáry u ±2)
+  s normovaným normálním rozdělením a podíly nad 2 a pod −2 v přehledu;
+  normální model v obou histogramech ovládá jedno zaškrtávací políčko;
+- přibyla extrémně zešikmená populace (posunuté lognormální, šikmost 8,
+  nejkratší doba 25,08 s);
+- při velkém *n* jsou body menší, Q–Q graf výběru je ztenčen na 500 bodů
+  a histogram v sekundách má jemnější sloupce (od 0,05 s);
+- text stránky popisuje pátou populaci, nové meze, standardizovaný histogram,
+  upravené úkoly 4 a 5 a čtení tvaru po standardizaci.
+
+Ověřeno:
+
+- `quarto render` celé knihy a `check-html.cjs` bez chyb (rozšířený test
+  podle PROVOZ.md).
+- Proti R (`uniroot`, `dlnorm`, `plnorm`, mimo repozitář):
+  - parametry extrémní populace se shodují na 12 platných míst a hustota
+    v bodech 30, 40 a 70 s na 10 desetinných míst;
+  - podíly 400 000 simulovaných hodnot pod 27, 30, 35, 50 a 100 s se od
+    `plnorm` liší nejvýše o 0,001;
+  - průměr simulace je 35,00 s a směrodatná odchylka 14,81 s (těžký chvost).
+- Podíly standardizovaných průměrů nad 2 a pod −2 při *n* = 1000
+  u extrémní populace: na stránce 2,8 % a 1,6 %, v nezávislé simulaci R
+  2,8 % a 1,8 % (10 000 výběrů). To podporuje větu, že nerovnováhu
+  chvostů lze poznat ještě při *n* = 1000. Při *n* = 30 a 100 u výrazně
+  zešikmené populace dala simulace R 3,9/0,5 % a 3,2/1,2 %.
+- Losování 10 000 výběrů po 1000 trvalo v bezhlavém Chromiu 0,7 s.
+- Prohlédnuty snímky všech pěti populací při *n* = 30, extrémní při
+  *n* = 1000 a mobil 375 px; stránka nepřetéká.
+
+Neověřeno: rychlost na pomalých zařízeních a mobilech, čtečka obrazovky,
+provoz na GitHub Pages a porozumění studentů.
+
 ## 2026-11-06 — Vizualizace statistické síly (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila)

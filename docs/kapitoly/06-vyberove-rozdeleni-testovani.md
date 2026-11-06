@@ -165,19 +165,22 @@ na konci oddílu [simulace průměrů](../../quarto/kapitola_06.qmd#sec-simulace
 odkazuje blok „Vyzkoušejte si: výběrové rozdělení průměru“ na stránku
 [Výběrové rozdělení průměru](../../quarto/viz_vyberove_rozdeleni_prumeru.qmd).
 Výchozí populací je týž výukový model (gama, μ = 35 s, σ = 15 s, šikmost 0,86);
-dále lze zvolit souměrnou, středně (šikmost 2) a výrazně (šikmost 4)
-zešikmenou populaci se stejnými μ a σ. Student losuje výběry s *n* 1–100
-po 1–1000 výběrech najednou (nejvýše 100 000 opakování) a sleduje střed,
-šířku (simulovaná SD průměrů vedle σ/√*n*) a tvar s volitelným normálním
-modelem. Pomáhají mu odhad hustoty z posledního výběru (popisně jako
+dále lze zvolit souměrnou, středně (šikmost 2), výrazně (šikmost 4)
+a extrémně (šikmost 8) zešikmenou populaci se stejnými μ a σ. Student
+losuje výběry s *n* 1–1000 po 1–10 000 výběrech najednou (nejvýše 100 000
+opakování). Sleduje střed, šířku (simulovaná SD průměrů vedle σ/√*n*)
+a tvar s volitelným normálním modelem, také v histogramu standardizovaných
+průměrů *z* = (*m* − μ)/σ_m s podíly nad 2 a pod −2 jako v tabulce
+krajních průměrů (rozšíření [2026-11-06](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-vrp)).
+Pomáhají mu odhad hustoty z posledního výběru (popisně jako
 vyhlazený histogram, bez zavedení pojmu) a normální Q–Q grafy posledního
 výběru a průměrů v konvenci kapitoly 4. Pět úkolů „Vyzkoušejte si“ míří
 na šířku, čtyřnásobný výběr, rozdíl velikosti výběru a počtu opakování,
 centrální limitní větu a závislost potřebného *n* na tvaru populace.
 Vizualizace jen opakuje učivo oddílů 6.3–6.5 (simulace, směrodatná chyba,
-centrální limitní věta) a Q–Q grafů z kapitoly 4, nezavádí pojmy a není
-samostatným cvičením. Kontrola souladu s textem oddílů 6.3–6.5: 2026-11-05;
-ostatní části karty se nemění.
+standardizace průměrů, centrální limitní věta) a Q–Q grafů z kapitoly 4,
+nezavádí pojmy a není samostatným cvičením. Kontrola souladu s textem
+oddílů 6.3–6.5: 2026-11-06; ostatní části karty se nemění.
 
 **Druhá vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila)):**
 na konci oddílu [Statistická síla pro konkrétní alternativy](../../quarto/kapitola_06.qmd#sec-statisticka-sila)
