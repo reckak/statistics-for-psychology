@@ -41,6 +41,7 @@ book:
         - quarto/kapitola_08.qmd
     - part: "Interaktivní vizualizace"
       chapters:
+        - quarto/viz_posun_a_jednotky.qmd
         - quarto/viz_normalni_rozdeleni.qmd
         - quarto/viz_bayesova_veta.qmd
         - quarto/viz_binomicke_rozdeleni.qmd

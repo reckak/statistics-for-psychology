@@ -579,6 +579,10 @@ Ukazatel polohy vystihuje umístění hodnot na číselné ose. U zde probíran�
 
 Ukazatel variability popisuje vzájemné rozdíly hodnot, a proto jej společné přičtení konstanty nemění. Obecně při převodu $y_i=a+b x_i$ platí pro ukazatele v původních jednotkách, například pro směrodatnou odchylku, rozpětí a IQR, násobení číslem $|b|$: nová směrodatná odchylka je $|b|s$. Rozptyl ve čtverečních jednotkách se násobí $b^2$, takže nový rozptyl je $b^2s^2$.
 
+::: {.callout-tip title="Vyzkoušejte si: posun a změna jednotek"}
+V [interaktivní vizualizaci](viz_posun_a_jednotky.qmd) zvolíte posun $a$ a násobitel $b$ a uvidíte původní a převedené hodnoty ve dvou tečkových grafech spojených čarami. Tabulka porovná ukazatele polohy, variability a tvaru spočtené z převedených hodnot s předpovědí podle pravidel tohoto oddílu. Pro srovnání lze zvolit i nelineární převod.
+:::
+
 ### Nelineární transformace {#sec-nelinearni-transformace}
 
 **Nelineární transformace (*nonlinear transformation*)** používá jiné pravidlo než společný posun a násobení, takže pro její znázornění nelze použít přímku. Příkladem je $y_i=x_i^2$. U nezáporných testových skórů zachová pořadí, ale větší hodnoty od sebe vzdálí více: 2 a 3 se změní na 4 a 9 (rozdíl 5), zatímco 8 a 9 na 64 a 81 (rozdíl 17). Takový převod může změnit tvar rozdělení i věcnou interpretaci skóru. Pokud jsou původní hodnoty kladné i záporné, pak už druhá mocnina nezachovává ani pořadí.

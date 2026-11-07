@@ -406,6 +406,25 @@ U vizualizace statistické síly kontrola ověřuje:
   rozdíl 1001) se zprávou a ponecháním poslední platné hodnoty, mez
   a šipky pole *n*, šířku 375 px bez přetékání a odkaz z kapitoly 6.
 
+U vizualizace posunu a změny jednotek kontrola ověřuje:
+
+- jeden graf se dvěma tečkovými grafy a žádný viditelný kód, tlačítko
+  schránky ani chybu OJS;
+- shodu dob spánku a vybavených slov na stránce se sdílenými daty
+  `data/kapitola_02.csv` (bez tří chybějících dob spánku) a pět časů;
+- průměr, medián, kvartily, rozpětí, *s*, *s*², šikmost a exces všech tří
+  souborů proti `mean`, `median`, `quantile(type = 7)`, `sd`, `var`
+  a vzorcům SKEW/KURT v R;
+- výchozí převod na sekundy, všech šest předvoleb a zadání *a* = 3,
+  *b* = −2,5 (desetinná čárka, typografické minus): ukazatele převedených
+  dat proti R, shodu předpovědi pravidlem s nimi, výměnu kvartilů při
+  záporném *b*, „nelze určit“ při *b* = 0 a přesné znění vzorců Excelu;
+- druhou mocninu pěti časů a odmocninu spánku proti R, převod původního
+  průměru (36 proti 40,4) se slovy „liší se“ a „shoduje se“;
+- odmítnutí neplatných vstupů (text, 2 000 000, „1,2,3“) se zprávou
+  a ponecháním poslední platné hodnoty, volbu osy šipkami, šířku 375 px
+  bez přetékání stránky a odkaz z kapitoly 3.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při

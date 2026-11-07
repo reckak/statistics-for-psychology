@@ -1,5 +1,61 @@
 # Autorská dokumentace
 
+## 2026-11-07 — Vizualizace posunu a změny jednotek (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun)
+přibyla šestá stránka části „Interaktivní vizualizace“,
+[Co s rozdělením udělá posun a změna jednotek](viz_posun_a_jednotky.qmd),
+v menu na prvním místě (navazuje na kapitolu 3). Tři soubory kapitoly 3
+(pět časů, 33 dob spánku, 36 počtů vybavených slov), lineární transformace
+s posunem *a* a násobitelem *b*, druhá mocnina a druhá odmocnina, šest
+předvoleb kapitoly (výchozí převod pěti časů na sekundy). Části: dva tečkové
+grafy se spojnicemi, barvou podle původní hodnoty, průměrem, mediánem,
+úsečkami *m* ± *s* a kvartilů a přepínačem společné a vlastní osy; živý
+slovní popis; tabulka ukazatelů (původní, převedená data, předpověď pravidlem
+nebo převod původního ukazatele); vzorce českého Excelu pro pomocný sloupec
+na listu `Zaklad_data` (B2:B6) nebo `Data` (F2:F37) a pro deset ukazatelů.
+Kapitola 3 odkazuje blokem „Vyzkoušejte si: posun a změna jednotek“ na konci
+oddílu Co od ukazatelů polohy a variability očekáváme; jiný text kapitoly se
+nemění. Upraveny `_quarto.yml`, styly (`.viz-pj-…`), `check-html.cjs`
+(pořadí v menu, nová kontrola), karta kapitoly 3, OSNOVA.md, plán
+pokračování, registr, doklad R65 a PROVOZ.md. Nové pojmy, značení ani funkce
+Excelu nepřibyly (KDYŽ, ODMOCNINA, SKEW a KURT jsou v přehledu Excelu);
+slovníček a přehledy beze změny.
+
+Redakční volby při realizaci: ukazatele zaokrouhlené na dvě desetinná místa,
+čísla menší než 1 na tři platné číslice; v dosazení do pravidla původní
+ukazatele o dvě místa přesněji, aby např. 60 · 2,3452 ≈ 140,71 odpovídalo
+přesnému výsledku. Živá tabulka nemá číslo „Tabulka X“ ze stejného důvodu
+jako u vizualizace Bayesovy věty; na úzkém displeji se posouvá jen uvnitř
+svého rámečku. Vlastní osa dolního grafu je u lineárního převodu s *b* ≠ 0
+obrazem horní osy, aby oba grafy vypadaly stejně (při *b* < 0 zrcadlově);
+u nelineárního převodu a při *b* = 0 má dolní graf vlastní zaokrouhlený
+rozsah. U spánku pomocný sloupec používá
+`KDYŽ(B2="";"";…)`, aby chybějící údaje nepřešly v hodnotu.
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- R (`mean`, `median`, `quantile(type = 7)`, `sd`, `var`, SKEW/KURT podle
+  vzorců Excelu): ukazatele tří souborů a převodů (*b* = 60, *a* = 120
+  s *b* = 60, *a* = 12 s *b* = −1, *a* = 3 s *b* = −2,5, druhá mocnina časů
+  a odmocnina spánku) se shodují se stránkou na 10⁻⁹; hodnoty jsou zapsány
+  v kontrole webu;
+- 90 vzorců z devíti nastavení stránky (převody, předvolby, *b* = 0,
+  odmocnina spánku, druhá mocnina časů) bylo zadáno přes `FormulaLocal`
+  do skryté samostatné instance českého Excelu na kopii sešitu kapitoly 3
+  v `tmp/` bez uložení; výsledky se shodují se stránkou na 10⁻⁹, při *b* = 0
+  vracejí SKEW a KURT chybu #DIV/0!, jak stránka uvádí; statistické funkce
+  přeskočily prázdný text z KDYŽ. Data listu `Data` tím odpovídají stránce.
+
+Celá kniha vykreslena; `check-html.cjs` (19 stránek, nová kontrola podle
+PROVOZ.md) a `check-doc-maps.cjs` prošly. Prohlédnuty snímky: výchozí stav
+na společné ose, obrácení skórování slov na vlastní ose, odmocnina slov
+a šířka 375 px; podle nich upraveno skloňování jednotky v popisu („do 12 slov“)
+a zarovnání záhlaví tabulky. Didaktická revize stránky proběhla interně
+čtením očima studenta po kapitole 3 (bez nových pojmů, odkazy na výklad,
+úkoly pokrývají posun, změnu jednotek, obrácení a nelineární převod);
+není ověřením na studentech. Neověřeno: ovládání čtečkou obrazovky.
+
 ## 2026-11-06 — Vizualizace Bayesovy věty (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes)

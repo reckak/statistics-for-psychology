@@ -787,3 +787,40 @@ a samotnému stromu s tabulkou) a všechny čtyři doplňky („Strom a tabulka
 2×2“, „Křivka podle prevalence“, „Vzorec a Excel“, „Druhé vyšetření“);
 plán téhož dne schválil. Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md).
+
+<a id="r65-upresneni-2026-11-07-posun"></a>
+
+### Upřesnění 2026-11-07 — Vizualizace posunu a změny jednotek
+
+Šestá vizualizace podle R65, ke kapitole 3: stránka
+`quarto/viz_posun_a_jednotky.qmd` („Co s rozdělením udělá posun a změna
+jednotek“, `#sec-viz-posun-a-jednotky`), v menu na prvním místě, protože
+navazuje na kapitolu 3.
+
+- Lineární transformace $y_i=a+b x_i$ se zadávaným posunem *a* a násobitelem
+  *b* (libovolná čísla včetně záporných a nuly) na třech souborech kapitoly 3:
+  pět časů 4, 5, 5, 6, 10 min, doby spánku (33 platných hodnot) a vybavená
+  slova (36 hodnot). Předvolby z kapitoly: +2 minuty, minuty na sekundy,
+  obojí ($a=120$, $b=60$), hodiny spánku na minuty, obrácení skórování
+  slov $12-x$ a krajní případ $b=0$.
+- Hlavní obraz **dvě osy se spojnicemi**: tečkový graf původních hodnot
+  nad tečkovým grafem převedených, spojnice od každé různé původní hodnoty
+  k nové, barva teček podle původní hodnoty, průměr, medián, úsečky
+  $m\pm s$ a od 1. do 3. kvartilu; přepínač společné a vlastní osy.
+- Tabulka ukazatelů polohy, variability a tvaru: hodnota z původních dat,
+  hodnota spočtená znovu z převedených dat a předpověď pravidlem
+  s dosazením (výměna kvartilů a změna znaménka šikmosti při $b<0$).
+- Kontrast s nelineárním převodem $x^2$ a $\sqrt{x}$: místo pravidla převod
+  původního ukazatele polohy se zjištěním, zda se shoduje.
+- Vzorce českého Excelu pro pomocný sloupec (u spánku s KDYŽ kvůli chybějícím
+  údajům) a pro ukazatele převedených hodnot. Nové pojmy se nezavádějí.
+
+**Doklad:** autor 2026-11-07 se zeptal: „Jaká by byla nejvhodnější
+vizualizace toho, co s ukazateli polohy, variability a tvaru a s grafem
+rozdělením udělá posun a změna jednotek?“ Na doplňující otázky zvolil
+hlavní obraz „Dvě osy se spojnicemi“ (doporučená možnost, proti grafům
+před a po bez spojnic a jedinému grafu se dvěma řadami popisků), všechny
+čtyři doplňky („Tabulka před/po/pravidlo“, „Přepínač osy: společná/vlastní“,
+„Kontrast s nelineárním převodem“, „Vzorce českého Excelu“) a data „Data
+z kapitoly + předvolby“; plán téhož dne schválil. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md).

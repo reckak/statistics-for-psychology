@@ -92,6 +92,24 @@ Data o spánku a paměti pokračují z kapitoly 2; ostatní pevné příklady js
 sestavené pro výuku. Simulace je odlišena od pevných dat a obrázky populačních
 modelů od náhodných výběrů. Tuto odlišnost je nutné zachovat i v pokračování.
 
+<a id="interaktivni-vizualizace-03"></a>
+
+**Interaktivní vizualizace (2026-11-07, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun)):**
+na konci oddílu [Co od ukazatelů polohy a variability očekáváme](../../quarto/kapitola_03.qmd#sec-vlastnosti-ukazatelu)
+odkazuje blok „Vyzkoušejte si: posun a změna jednotek“ na stránku
+[Co s rozdělením udělá posun a změna jednotek](../../quarto/viz_posun_a_jednotky.qmd);
+jiný text kapitoly se nemění. Student zvolí soubor kapitoly (pět časů,
+spánek, vybavená slova) a lineární transformaci y = a + b·x, případně
+x² či √x, nebo jednu z předvoleb kapitoly (+2 min, minuty na sekundy, obojí,
+hodiny na minuty, obrácení skórování 12 − x, b = 0). Dva tečkové grafy se
+spojnicemi a přepínačem společné a vlastní osy ukazují posun, roztažení,
+obrácení pořadí a u nelineárního převodu změnu tvaru; tabulka porovnává
+ukazatele polohy, variability a tvaru převedených dat s předpovědí pravidlem
+a Excel ukazuje pomocný sloupec a funkce kapitoly. Stránka jen opakuje učivo
+oddílů o posunu a změně jednotek, nelineární transformaci a ukazatelích tvaru;
+nové pojmy ani samostatné procvičení nepřidává. Soulad karty s textem
+zkontrolován 2026-11-07 pro dotčený oddíl a odkaz.
+
 <a id="cvičení-a-očekávané-dovednosti-2"></a>
 
 ### Cvičení a očekávané dovednosti

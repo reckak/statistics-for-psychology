@@ -196,3 +196,13 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
   .viz-bay-presets { padding-top: 0; }
   .viz-bay-table th, .viz-bay-table td { padding: .3rem .35rem; }
 }
+/* Shift and change of units (viz_posun_a_jednotky.qmd). */
+.viz-pj-presets { display: flex; flex-wrap: wrap; gap: .5rem; margin: .9rem 0 0; }
+.viz-pj-desc { margin: .3rem 0 0; }
+.viz-pj-table { width: 100%; }
+.viz-pj-table thead th:is(:first-child, :last-child) { text-align: left; }
+.viz .viz-pj-table td.viz-pj-rule { text-align: left; min-width: 14rem; }
+.viz-pj-table .viz-pj-group th { font-weight: 600; font-style: italic; color: #4D5A63; padding-top: .6rem; }
+@media (max-width: 575px) {
+  .viz .viz-pj-table td.viz-pj-rule { min-width: 11rem; }
+}
