@@ -1,0 +1,417 @@
+---
+code-copy: false
+---
+
+# Co s rozdělením udělá posun a změna jednotek {#sec-viz-posun-a-jednotky .unnumbered}
+
+Co se stane s průměrem, mediánem, kvartily, směrodatnou odchylkou, rozptylem, šikmostí a excesem a s grafem rozdělení, když ke všem hodnotám něco přičteme nebo je převedeme do jiných jednotek? Vizualizace ukáže původní a převedené hodnoty pod sebou a spojí každou hodnotu s její novou hodnotou. Tabulka porovná ukazatele spočtené z převedených hodnot s předpovědí podle pravidel z kapitoly 3. Pro srovnání nabízí také dva nelineární převody, pro které taková pravidla neplatí. Navazuje na kapitolu 3: na oddíly [Co mění posun a změna jednotek](kapitola_03.qmd#sec-zmena-skaly), [Co od ukazatelů polohy a variability očekáváme](kapitola_03.qmd#sec-vlastnosti-ukazatelu), [Nelineární transformace](kapitola_03.qmd#sec-nelinearni-transformace) a [Ukazatele tvaru](kapitola_03.qmd#sec-ukazatele-tvaru).
+
+## Model a ovládání {#sec-viz-pj-ovladani .unnumbered}
+
+Nahoře zvolte jeden ze tří souborů z kapitoly 3: pět časů řešení úlohy 4, 5, 5, 6 a 10 minut, doby spánku 33 účastníků v hodinách, nebo počty vybavených slov z dvanácti u 36 účastníků. Potom zvolte převod. **Lineární transformace** převede každou původní hodnotu $x_i$ na novou hodnotu $y_i=a+b x_i$; zadáváte posun $a$ a násobitel $b$, obojí libovolné číslo včetně záporného a nuly. Desetinná čísla můžete psát s čárkou i s tečkou. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu. Pro srovnání lze zvolit dva nelineární převody: druhou mocninu $y_i=x_i^2$ a druhou odmocninu $y_i=\sqrt{x_i}$. Všechny tři soubory obsahují jen nezáporné hodnoty, takže oba převody zachovávají pořadí.
+
+Tlačítka nastaví převody z kapitoly 3: přičtení dvou minut přípravy, převod minut na sekundy, obojí najednou, převod hodin spánku na minuty a obrácení skórování slov. Přičteme-li nejprve 2 minuty a výsledek převedeme na sekundy, dostaneme $y_i=(x_i+2)\times60=120+60x_i$, tedy $a=120$ a $b=60$. Obrácení skórování $y_i=12-x_i$ s $a=12$ a $b=-1$ převede počet vybavených slov na počet nevybavených. Poslední tlačítko nastaví krajní případ $b=0$, při němž všichni dostanou stejnou hodnotu $a$. Po načtení stránky je nastaven převod pěti časů z minut na sekundy.
+
+Vizualizace má tři části:
+
+- **Graf se dvěma osami.** Nahoře je [tečkový graf](kapitola_02.qmd#sec-teckovy-graf) původních hodnot, dole převedených; každá tečka je jeden údaj a shodné hodnoty stojí nad sebou. Barva tečky se řídí původní hodnotou: nejmenší původní hodnota je nejsvětlejší, největší nejtmavší, a tečka si barvu ponese i do dolního grafu. Šedé spojnice vedou od každé různé původní hodnoty k její nové hodnotě. Oranžová plná svislá čára označuje průměr a modrá přerušovaná medián. Oranžová úsečka s tečkou vede od $m-s$ do $m+s$, modrá úsečka od 1. do 3. kvartilu, se zvýrazněným mediánem. Na **společné ose** mají oba grafy stejnou stupnici, takže je vidět, jak se hodnoty posunuly a roztáhly. Na **vlastní ose** má každý graf stupnici přizpůsobenou svým hodnotám, takže lze porovnat tvar obou rozdělení. Pod grafem je jeho popis slovy.
+- **Tabulka ukazatelů.** Pro každý ukazatel polohy, variability a tvaru uvádí hodnotu z původních dat, hodnotu spočtenou znovu z převedených dat a u lineární transformace předpověď podle pravidla s dosazenými čísly. U nelineárního převodu je místo pravidla převedený původní ukazatel, například druhá mocnina původního průměru, a poznámka, zda se shoduje s ukazatelem převedených dat.
+- **Výpočet v Excelu.** Vzorce českého Excelu pro pomocný sloupec s převedenými hodnotami v [sešitu ke kapitole 3](../data/kapitola_03.xlsx) a pro ukazatele převedených hodnot.
+
+Kvartily počítáme lineární interpolací jako funkce PERCENTIL.INC, směrodatnou odchylku a rozptyl s dělením $n-1$ a šikmost a exces jako funkce SKEW a KURT. Výsledky zaokrouhlujeme na dvě desetinná místa, čísla menší než 1 na tři platné číslice. V dosazení do pravidla uvádíme původní ukazatele o dvě místa přesněji, aby výsledek odpovídal výpočtu s plnou přesností; zaokrouhlený výsledek označuje znak ≈.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the figures of chapter 3: orange for the mean, blue for the median.
+  const ink = "#223744", gray = "#4D5A63", blue = "#245D78", orange = "#B54E24", link = "#80969E";
+  const shade = d3.interpolateRgb("#A9D3E3", "#16384A");
+
+  // Czech number formatting with a true minus sign; at least two decimals, three significant digits below 1.
+  const minus = t => t.replace(/^-/, "−");
+  const digitsFor = v => { const a = Math.abs(v); return a === 0 || a >= 1 ? 2 : Math.min(10, 2 - Math.floor(Math.log10(a))); };
+  const round = (v, d) => { const r = Number(v.toFixed(d)); return r === 0 ? 0 : r; };
+  const cz = (v, d) => minus(round(v, d).toLocaleString("cs-CZ", {maximumFractionDigits: d}));
+  const num = (v, extra = 0) => v === null || !Number.isFinite(v) ? "nelze určit" : cz(v, digitsFor(v) + extra);
+  const rounded = (v, d) => Math.abs(v - round(v, d)) > 1e-9 * Math.max(1, Math.abs(v));
+  const typed = v => minus(v.toLocaleString("cs-CZ", {maximumFractionDigits: 12}));
+  const paren = t => t.startsWith("−") ? `(${t})` : t;
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const tick = v => minus(v.toLocaleString("cs-CZ", {maximumFractionDigits: 8}));
+
+  // Parsing of decimal input; returns null for anything but a plain number.
+  function parseDecimal(raw) {
+    const t = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(t)) return null;
+    const v = Number(t);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  // Data of chapter 3; sleep and words come from the sheet Data (B2:B37 and C2:C37), the three missing sleep values are left out.
+  const DATA = {
+    times: {label: "pět časů řešení úlohy", unit: {head: "min", after: "min"}, axis: "min", values: [4, 5, 5, 6, 10],
+      sheet: "Zaklad_data", col: "A", out: "B", first: 2, last: 6, blanks: false},
+    sleep: {label: "doby spánku (33 účastníků)", unit: {head: "h", after: "h"}, axis: "h", values: [6, 8, 7, 5, 7, 4.5, 6.3, 7.3, 8.1, 6, 7.1, 7.9, 9.2, 5.5, 6.8, 7.5, 8.8, 4.8, 6.5, 7.4, 8.3, 6.2, 7.2, 8, 9.5, 5.8, 7, 7.7, 9, 5.2, 6.5, 7.5, 8.5],
+      sheet: "Data", col: "B", out: "F", first: 2, last: 37, blanks: true},
+    words: {label: "vybavená slova (36 účastníků)", unit: {head: "počet slov", after: "slov"}, axis: "počet vybavených slov", values: [5, 9, 8, 6, 7, 0, 2, 7, 9, 4, 7, 10, 5, 8, 11, 6, 8, 3, 7, 9, 5, 7, 10, 6, 8, 12, 6, 9, 4, 7, 10, 5, 8, 11, 6, 8],
+      sheet: "Data", col: "C", out: "F", first: 2, last: 37, blanks: false}
+  };
+  const PRESETS = [
+    {id: "plus2", label: "Přičíst 2 minuty", data: "times", a: 2, b: 1, unit: {head: "min", after: "min"}},
+    {id: "sec", label: "Minuty na sekundy", data: "times", a: 0, b: 60, unit: {head: "s", after: "s"}},
+    {id: "plus2sec", label: "Přičíst 2 minuty a převést na sekundy", data: "times", a: 120, b: 60, unit: {head: "s", after: "s"}},
+    {id: "hmin", label: "Hodiny spánku na minuty", data: "sleep", a: 0, b: 60, unit: {head: "min", after: "min"}},
+    {id: "reverse", label: "Nevybavená slova: 12 − x", data: "words", a: 12, b: -1, unit: {head: "počet nevybavených slov", after: "nevybavených slov"}},
+    {id: "zero", label: "Násobit nulou (b = 0)", data: null, a: null, b: 0, unit: null}
+  ];
+
+  // Descriptive statistics as in chapter 3: interpolated quantiles (PERCENTIL.INC), n − 1, SKEW and KURT.
+  function quantile(sorted, p) { const h = (sorted.length - 1) * p, lo = Math.floor(h), hi = Math.ceil(h); return sorted[lo] + (h - lo) * (sorted[hi] - sorted[lo]); }
+  function stats(xs) {
+    const n = xs.length, sorted = xs.slice().sort((u, v) => u - v);
+    const m = xs.reduce((t, x) => t + x, 0) / n;
+    const same = sorted[0] === sorted[n - 1];
+    const s2 = same ? 0 : xs.reduce((t, x) => t + (x - m) ** 2, 0) / (n - 1), s = Math.sqrt(s2);
+    const q1 = quantile(sorted, 0.25), q3 = quantile(sorted, 0.75);
+    const pow = k => xs.reduce((t, x) => t + ((x - m) / s) ** k, 0);
+    const skew = same || n < 3 ? null : n / ((n - 1) * (n - 2)) * pow(3);
+    const kurt = same || n < 4 ? null : n * (n + 1) / ((n - 1) * (n - 2) * (n - 3)) * pow(4) - 3 * (n - 1) ** 2 / ((n - 2) * (n - 3));
+    return {n, m, med: quantile(sorted, 0.5), q1, q3, iqr: q3 - q1, range: sorted[n - 1] - sorted[0], min: sorted[0], max: sorted[n - 1], s, s2, skew, kurt};
+  }
+
+  const s = {data: "times", mode: "linear", a: 0, b: 60, unit: {head: "s", after: "s"}, axis: "common"};
+  const transform = x => s.mode === "square" ? x * x : s.mode === "sqrt" ? Math.sqrt(x) : s.a + s.b * x;
+
+  const field = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-pj-${id}">${label}</label>
+    <input id="viz-pj-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-pj-${id}-hint viz-pj-${id}-error">
+    <span id="viz-pj-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-pj-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const choice = (name, legend, options) => html`<fieldset class="viz-choice">
+    <legend>${legend}</legend>
+    ${options.map(([value, label]) => html`<label><input type="radio" name="${name}" value="${value}"><span>${label}</span></label>`)}
+  </fieldset>`;
+
+  const root = html`<div class="viz" id="viz-posun-a-jednotky">
+    ${choice("viz-pj-data", "Soubor dat", Object.entries(DATA).map(([k, d]) => [k, d.label]))}
+    ${choice("viz-pj-mode", "Převod", [["linear", html`lineární: <i>y</i> = <i>a</i> + <i>b</i> · <i>x</i>`], ["square", html`druhá mocnina: <i>y</i> = <i>x</i>²`], ["sqrt", html`druhá odmocnina: <i>y</i> = √<i>x</i>`]])}
+    <div class="viz-controls">
+      ${field("a", html`Posun <i>a</i>`, "0", "libovolné číslo")}
+      ${field("b", html`Násobitel <i>b</i>`, "60", "libovolné číslo")}
+    </div>
+    <div class="viz-pj-presets" role="group" aria-label="Převody z kapitoly 3">
+      ${PRESETS.map(p => html`<button type="button" data-preset="${p.id}">${p.label}</button>`)}
+    </div>
+    <p class="viz-model-note">Převod: <span data-rule></span></p>
+    ${choice("viz-pj-axis", "Vodorovná osa", [["common", "společná pro oba grafy"], ["own", "vlastní pro každý graf"]])}
+    <div class="viz-legend" aria-hidden="true">
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="4.5" fill="${shade(0.5)}" stroke="${ink}" stroke-width="0.6"/></svg>jeden údaj</span>
+      <span><svg width="22" height="14"><line x1="11" y1="0" x2="11" y2="14" stroke="${orange}" stroke-width="2"/></svg>průměr</span>
+      <span><svg width="22" height="14"><line x1="11" y1="0" x2="11" y2="14" stroke="${blue}" stroke-width="2" stroke-dasharray="4,3"/></svg>medián</span>
+      <span><svg width="30" height="14"><line x1="2" y1="7" x2="28" y2="7" stroke="${orange}" stroke-width="2.5"/><circle cx="15" cy="7" r="3.5" fill="${orange}"/></svg><i>m</i> − <i>s</i> až <i>m</i> + <i>s</i></span>
+      <span><svg width="30" height="14"><line x1="2" y1="7" x2="28" y2="7" stroke="${blue}" stroke-width="2.5"/><line x1="15" y1="1" x2="15" y2="13" stroke="${blue}" stroke-width="2"/></svg>od 1. do 3. kvartilu</span>
+    </div>
+    <div class="viz-plots" data-plot></div>
+    <p class="viz-pj-desc" id="viz-pj-desc" data-desc aria-live="polite"></p>
+    <section class="viz-part" aria-labelledby="viz-pj-table-title">
+      <h3 id="viz-pj-table-title" class="viz-part-title">Ukazatele před převodem a po něm</h3>
+      <div class="viz-bay-table-wrap" data-table></div>
+      <p class="viz-note" data-table-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-pj-excel-title">
+      <h3 id="viz-pj-excel-title" class="viz-part-title">Výpočet v Excelu</h3>
+      <dl class="viz-stats" data-excel></dl>
+    </section>
+  </div>`;
+
+  const $ = q => root.querySelector(q);
+  const setRadio = (name, value) => { root.querySelector(`input[name="${name}"][value="${value}"]`).checked = true; };
+  setRadio("viz-pj-data", s.data); setRadio("viz-pj-mode", s.mode); setRadio("viz-pj-axis", s.axis);
+
+  // Decimal field: checks the value on every keystroke, keeps the last valid value and shows why input was rejected.
+  const LIMIT = 1e6;
+  function decimalField(id, apply) {
+    const input = $(`#viz-pj-${id}`), error = $(`#viz-pj-${id}-error`);
+    const update = () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? "Zadejte číslo, například 1,5." : Math.abs(v) > LIMIT ? "Zadejte číslo v rozsahu od −1 000 000 do 1 000 000." : null;
+      error.hidden = !message;
+      error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+      input.setAttribute("aria-invalid", message ? "true" : "false");
+      if (!message) apply(v);
+    };
+    input.addEventListener("input", update);
+    return {input, error};
+  }
+  // A typed value replaces the unit of a preset: only a pure shift keeps the original unit.
+  const manualUnit = () => s.b === 1 ? DATA[s.data].unit : null;
+  const fa = decimalField("a", v => { s.a = v; s.unit = manualUnit(); render(); });
+  const fb = decimalField("b", v => { s.b = v; s.unit = manualUnit(); render(); });
+  const resetField = (f, v) => { f.input.value = typed(v); f.input.setAttribute("aria-invalid", "false"); f.error.hidden = true; };
+
+  root.querySelectorAll('input[name="viz-pj-data"]').forEach(r => r.addEventListener("change", () => { s.data = r.value; s.unit = s.mode === "linear" ? manualUnit() : null; render(); }));
+  root.querySelectorAll('input[name="viz-pj-mode"]').forEach(r => r.addEventListener("change", () => { s.mode = r.value; s.unit = s.mode === "linear" ? manualUnit() : null; render(); }));
+  root.querySelectorAll('input[name="viz-pj-axis"]').forEach(r => r.addEventListener("change", () => { s.axis = r.value; render(); }));
+  root.querySelectorAll("[data-preset]").forEach(btn => btn.addEventListener("click", () => {
+    const p = PRESETS.find(q => q.id === btn.dataset.preset);
+    if (p.data) { s.data = p.data; setRadio("viz-pj-data", p.data); }
+    if (p.a !== null) s.a = p.a;
+    s.b = p.b; s.mode = "linear"; setRadio("viz-pj-mode", "linear");
+    s.unit = p.unit;
+    resetField(fa, s.a); resetField(fb, s.b);
+    render();
+  }));
+
+  // Text of the rule with the typed numbers.
+  function ruleText() {
+    if (s.mode === "square") return html`<i>y<sub>i</sub></i> = <i>x<sub>i</sub></i>²`;
+    if (s.mode === "sqrt") return html`<i>y<sub>i</sub></i> = √<i>x<sub>i</sub></i>`;
+    const t = html`<i>y<sub>i</sub></i> = ${typed(s.a)} + ${paren(typed(s.b))} · <i>x<sub>i</sub></i>`;
+    if (s.b === 0) t.append(" (všichni dostanou hodnotu ", typed(s.a), ")");
+    return t;
+  }
+
+  // Table rows: label, key, kind (location, spread, shape).
+  const ROWS = [
+    ["Poloha", [["Průměr <i>m</i>", "m"], ["Medián", "med"], ["1. kvartil <i>q</i><sub>0,25</sub>", "q1"], ["3. kvartil <i>q</i><sub>0,75</sub>", "q3"]]],
+    ["Variabilita", [["Mezikvartilové rozpětí", "iqr"], ["Variační rozpětí", "range"], ["Směrodatná odchylka <i>s</i>", "s"], ["Rozptyl <i>s</i>²", "s2"]]],
+    ["Tvar", [["Šikmost", "skew"], ["Exces", "kurt"]]]
+  ];
+  const SYMBOL = {m: "<i>m</i>", med: "medián", q1: "<i>q</i><sub>0,25</sub>", q3: "<i>q</i><sub>0,75</sub>", iqr: "IQR", range: "rozpětí", s: "<i>s</i>", s2: "<i>s</i>²"};
+
+  // Prediction by the rules of chapter 3 for y = a + b·x, with the substituted numbers.
+  function predict(S) {
+    const {a, b} = s, ab = Math.abs(b), ta = typed(a), tb = paren(typed(b)), tab = typed(ab);
+    const out = {}, text = {};
+    const eq = (subst, value) => rounded(subst, digitsFor(subst) + 2) || rounded(value, digitsFor(value)) ? "≈" : "=";
+    const shift = (key, from, note) => {
+      const v = a + b * S[from];
+      out[key] = v;
+      text[key] = `<i>a</i> + <i>b</i> · ${SYMBOL[from]} = ${ta} + ${tb} · ${paren(num(S[from], 2))} ${eq(S[from], v)} ${num(v)}${note ? `<br><span class="viz-hint">${note}</span>` : ""}`;
+    };
+    shift("m", "m"); shift("med", "med");
+    if (b < 0) {
+      shift("q1", "q3", "pořadí se obrátilo, nový 1. kvartil vzniká z původního 3.");
+      shift("q3", "q1", "nový 3. kvartil vzniká z původního 1.");
+    } else { shift("q1", "q1"); shift("q3", "q3"); }
+    for (const key of ["iqr", "range", "s"]) {
+      out[key] = ab * S[key];
+      text[key] = `|<i>b</i>| · ${SYMBOL[key]} = ${tab} · ${num(S[key], 2)} ${eq(S[key], out[key])} ${num(out[key])}`;
+    }
+    out.s2 = b * b * S.s2;
+    text.s2 = `<i>b</i>² · <i>s</i>² = ${tb}² · ${num(S.s2, 2)} ${eq(S.s2, out.s2)} ${num(out.s2)}`;
+    if (b === 0) {
+      out.skew = out.kurt = null;
+      text.skew = text.kurt = "nelze určit: všechny hodnoty jsou stejné, <i>s</i> = 0";
+    } else {
+      out.skew = b > 0 ? S.skew : -S.skew; out.kurt = S.kurt;
+      text.skew = S.skew === null ? "nelze určit" : b > 0 ? `beze změny: ${num(S.skew)}` : `opačné znaménko: ${num(out.skew)}`;
+      text.kurt = S.kurt === null ? "nelze určit" : `beze změny: ${num(S.kurt)}`;
+    }
+    return {out, text};
+  }
+
+  // For a nonlinear rule only location measures can be transformed; the comparison shows whether this gives the right answer.
+  function nonlinear(S, T) {
+    const f = transform, out = {}, text = {};
+    const show = v => s.mode === "square" ? `${paren(num(v, 2))}²` : `√${num(v, 2)}`;
+    for (const key of ["m", "med", "q1", "q3"]) {
+      const v = f(S[key]), same = Math.abs(v - T[key]) <= 1e-9 * Math.max(1, Math.abs(v));
+      out[key] = v;
+      text[key] = `${show(S[key])} ${rounded(v, digitsFor(v)) ? "≈" : "="} ${num(v)} – ${same ? "shoduje se" : "<strong>liší se</strong>"}`;
+    }
+    for (const key of ["iqr", "range", "s", "s2", "skew", "kurt"]) { out[key] = null; text[key] = '<span class="viz-hint">nelze odvodit z původního ukazatele</span>'; }
+    return {out, text};
+  }
+
+  function tableHtml(S, T, P, d) {
+    const head = s.mode === "linear" ? "Předpověď pravidlem" : "Převod původního ukazatele";
+    const unitX = d.unit.head, unitY = s.unit && s.unit.head;
+    return `<table class="viz-bay-table viz-pj-table" aria-label="Ukazatele původních a převedených hodnot">
+      <thead><tr><th scope="col">Ukazatel</th><th scope="col">Původní data${unitX ? ` (${unitX})` : ""}</th><th scope="col">Převedená data${unitY ? ` (${unitY})` : ""}</th><th scope="col">${head}</th></tr></thead>
+      ${ROWS.map(([group, rows]) => `<tbody><tr class="viz-pj-group"><th scope="rowgroup" colspan="4">${group}</th></tr>
+        ${rows.map(([label, key]) => `<tr data-row="${key}"><th scope="row">${label}</th><td>${num(S[key])}</td><td>${num(T[key])}</td><td class="viz-pj-rule">${P.text[key]}</td></tr>`).join("")}</tbody>`).join("")}
+    </table>`;
+  }
+
+  // Excel: a helper column with the transformed values and the functions of chapter 3 applied to it.
+  function excelRows(d) {
+    const cell = `${d.col}${d.first}`;
+    let expr;
+    if (s.mode === "square") expr = `${cell}^2`;
+    else if (s.mode === "sqrt") expr = `ODMOCNINA(${cell})`;
+    else {
+      const bx = s.b === 1 ? cell : s.b === -1 ? `-${cell}` : `${excel(s.b)}*${cell}`;
+      expr = s.b === 0 ? excel(s.a) : s.a === 0 ? bx : bx.startsWith("-") ? `${excel(s.a)}${bx}` : `${excel(s.a)}+${bx}`;
+    }
+    const formula = d.blanks ? `=KDYŽ(${cell}="";"";${expr})` : `=${expr}`;
+    const out = `${d.out}${d.first}`, last = `${d.out}${d.last}`, range = `${out}:${last}`;
+    const fns = [
+      ["průměr", `=PRŮMĚR(${range})`], ["medián", `=MEDIAN(${range})`],
+      ["1. kvartil", `=PERCENTIL.INC(${range};0,25)`], ["3. kvartil", `=PERCENTIL.INC(${range};0,75)`],
+      ["mezikvartilové rozpětí", `=PERCENTIL.INC(${range};0,75)-PERCENTIL.INC(${range};0,25)`],
+      ["variační rozpětí", `=MAX(${range})-MIN(${range})`],
+      ["směrodatná odchylka", `=SMODCH.VÝBĚR.S(${range})`], ["rozptyl", `=VAR.S(${range})`],
+      ["šikmost", `=SKEW(${range})`], ["exces", `=KURT(${range})`]
+    ];
+    const where = `Na listu <code>${d.sheet}</code> jsou původní hodnoty v ${d.col}${d.first}:${d.col}${d.last}. Do buňky ${out} zapište <code>${formula}</code> a zkopírujte jej až do ${last}.`;
+    const blanks = d.blanks ? " Funkce KDYŽ vrátí u tří chybějících dob spánku prázdný text, který statistické funkce přeskočí; bez ní by se z prázdné buňky stala hodnota." : "";
+    const zero = s.mode === "linear" && s.b === 0 ? " Při <i>b</i> = 0 vrátí SKEW a KURT chybu #DIV/0!, protože směrodatná odchylka je nulová." : "";
+    return {formula, fns, html: [
+      ["Pomocný sloupec s převedenými hodnotami", where + blanks, true],
+      ["Ukazatele převedených hodnot", fns.map(([n, f]) => `${n}: <code>${f}</code>`).join("<br>") + zero, true]
+    ]};
+  }
+
+  // Slovní popis grafu.
+  function describe(d, X, Y, S, T) {
+    const uX = d.unit.after, uY = s.unit ? ` ${s.unit.after}` : "";
+    const parts = [`Nahoře je ${X.length} původních hodnot od ${num(S.min)} do ${num(S.max)} ${uX}, dole převedené hodnoty od ${num(T.min)} do ${num(T.max)}${uY}.`];
+    const distinct = [...new Set(X)].sort((u, v) => u - v);
+    if (s.mode === "linear") {
+      const {a, b} = s, ab = Math.abs(b);
+      if (b === 0) parts.push(`Všechny spojnice se sbíhají do jediného bodu ${typed(a)}: rozdíly mezi údaji zanikly a variabilita je nulová. Z převedených hodnot už nelze zjistit původní.`);
+      else {
+        if (ab === 1) parts.push(a === 0 && b === 1 ? "Převod hodnoty nemění." : `Vzdálenosti mezi hodnotami zůstaly stejné${b === 1 ? `, celé rozdělení se posunulo o ${typed(a)}` : ""}.`);
+        else parts.push(`Každá vzdálenost mezi hodnotami se vynásobila číslem ${typed(ab)}${ab > 1 ? ", rozdělení se roztáhlo" : ", rozdělení se smrštilo"}.`);
+        parts.push(b > 0 ? "Pořadí hodnot zůstalo stejné." : "Pořadí se obrátilo: spojnice se kříží a nejmenší původní hodnota je teď největší.");
+        parts.push(s.axis === "own" ? `Na vlastní ose vypadá převedené rozdělení stejně jako původní${b < 0 ? ", jen zrcadlově obrácené" : ""}; liší se jen popisky osy.` : "Na společné ose je vidět posun a změna šíře rozdělení.");
+      }
+    } else if (distinct.length >= 3) {
+      const [u1, u2] = distinct, [w1, w2] = distinct.slice(-2), f = transform;
+      parts.push(`${s.mode === "square" ? "Druhá mocnina" : "Druhá odmocnina"} zachovává pořadí, ale mění vzdálenosti nestejně: vzdálenost mezi ${num(u1)} a ${num(u2)} se změnila z ${num(u2 - u1)} na ${num(f(u2) - f(u1))}, mezi ${num(w1)} a ${num(w2)} z ${num(w2 - w1)} na ${num(f(w2) - f(w1))}.`);
+      parts.push(s.mode === "square" ? "Velké hodnoty se od sebe vzdálily více než malé." : "Velké hodnoty se k sobě přiblížily více než malé.");
+      if (s.axis === "own") parts.push("Ani na vlastní ose nevypadá převedené rozdělení stejně jako původní: změnil se jeho tvar.");
+    }
+    return parts.join(" ");
+  }
+
+  // Two dot plots joined by links from each distinct original value to its new value.
+  function draw(container, X, Y, S, T, d) {
+    const width = Math.max(280, Math.min(container.clientWidth || 640, 780)), small = width < 520;
+    const r = small ? 3.2 : 4.2, step = 2 * r + 1, mL = 14, mR = 14;
+    const key = v => Math.round(v * 1e9) / 1e9;
+    const people = X.map((x, i) => ({x, y: Y[i]})).sort((p, q) => p.x - q.x);
+    const stack = (field) => { const seen = new Map(); return people.map(p => { const k = key(p[field]), j = seen.get(k) || 0; seen.set(k, j + 1); return j; }); };
+    const jTop = stack("x"), jBot = stack("y");
+    const hd = Math.max(28, (Math.max(...jTop, ...jBot) + 1) * step + 8);
+    const span = (lo, hi) => lo === hi ? [lo - 1, hi + 1] : [lo, hi];
+    const ends = St => [St.min, St.max, St.m - St.s, St.m + St.s];
+    const both = d3.extent([...ends(S), ...ends(T)]);
+    const scale = ext => d3.scaleLinear().domain(span(...ext)).nice(small ? 5 : 8).range([mL + 8, width - mR - 8]);
+    const xo = scale(s.axis === "common" ? both : d3.extent(ends(S)));
+    // On its own axis a linear rule with b ≠ 0 gets the image of the upper axis, so that both plots look the same.
+    const xn = s.axis === "common" ? scale(both) : s.mode === "linear" && s.b !== 0
+      ? d3.scaleLinear().domain(d3.extent(xo.domain().map(transform))).range(xo.range()) : scale(d3.extent(ends(T)));
+    const L1 = 58 + hd, band = small ? 70 : 90, B0 = L1 + 26 + band, L2 = B0 + hd, H = L2 + 76;
+    const color = d3.scaleLinear().domain(S.min === S.max ? [S.min - 1, S.max + 1] : [S.min, S.max]).range([0, 1]);
+    const svg = d3.create("svg").attr("viewBox", `0 0 ${width} ${H}`).attr("width", width).attr("height", H)
+      .attr("role", "img").attr("aria-describedby", "viz-pj-desc")
+      .attr("aria-label", `Tečkové grafy původních a převedených hodnot (${d.label}) se spojnicemi`)
+      .style("font-size", small ? "12px" : "13px").style("color", ink);
+    const axis = (x, y) => {
+      const g = svg.append("g");
+      g.append("line").attr("x1", mL).attr("x2", width - mR).attr("y1", y).attr("y2", y).attr("stroke", ink);
+      const ticks = x.ticks(small ? 5 : 8);
+      ticks.forEach(t => {
+        const px = x(t);
+        g.append("line").attr("x1", px).attr("x2", px).attr("y1", y).attr("y2", y + 4).attr("stroke", ink);
+        g.append("text").attr("x", px).attr("y", y + 17).attr("text-anchor", px < 30 ? "start" : px > width - 30 ? "end" : "middle").attr("fill", gray).text(tick(t));
+      });
+    };
+    const title = (text, y) => svg.append("text").attr("x", mL).attr("y", y).attr("fill", ink).attr("font-weight", 600).text(text);
+    const strip = (x, St, y, kind) => {
+      const g = svg.append("g");
+      if (kind === "sd") {
+        g.append("line").attr("x1", x(St.m - St.s)).attr("x2", x(St.m + St.s)).attr("y1", y).attr("y2", y).attr("stroke", orange).attr("stroke-width", 2.5);
+        for (const v of [St.m - St.s, St.m + St.s]) g.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", y - 4).attr("y2", y + 4).attr("stroke", orange).attr("stroke-width", 2);
+        g.append("circle").attr("cx", x(St.m)).attr("cy", y).attr("r", 3.5).attr("fill", orange);
+      } else {
+        g.append("line").attr("x1", x(St.q1)).attr("x2", x(St.q3)).attr("y1", y).attr("y2", y).attr("stroke", blue).attr("stroke-width", 2.5);
+        for (const v of [St.q1, St.q3]) g.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", y - 4).attr("y2", y + 4).attr("stroke", blue).attr("stroke-width", 2);
+        g.append("line").attr("x1", x(St.med)).attr("x2", x(St.med)).attr("y1", y - 6).attr("y2", y + 6).attr("stroke", blue).attr("stroke-width", 2.5);
+      }
+    };
+    const centres = (x, St, y1, y2) => {
+      svg.append("line").attr("x1", x(St.m)).attr("x2", x(St.m)).attr("y1", y1).attr("y2", y2).attr("stroke", orange).attr("stroke-width", 1.8);
+      svg.append("line").attr("x1", x(St.med)).attr("x2", x(St.med)).attr("y1", y1).attr("y2", y2).attr("stroke", blue).attr("stroke-width", 1.8).attr("stroke-dasharray", "5,4");
+    };
+    const dots = (x, field, js, base) => svg.append("g").selectAll("circle").data(people).join("circle")
+      .attr("cx", p => x(p[field])).attr("cy", (p, i) => base - r - 2 - js[i] * step).attr("r", r)
+      .attr("fill", p => shade(color(p.x))).attr("stroke", ink).attr("stroke-width", 0.6);
+
+    title(`Původní hodnoty x (${d.axis})`, 14);
+    strip(xo, S, 32, "sd"); strip(xo, S, 46, "q");
+    // Links first, so that dots and lines of the centres stay on top.
+    const distinct = [...new Map(people.map(p => [key(p.x), p])).values()];
+    svg.append("g").selectAll("line").data(distinct).join("line")
+      .attr("x1", p => xo(p.x)).attr("y1", L1 + 26).attr("x2", p => xn(p.y)).attr("y2", B0 - 2)
+      .attr("stroke", link).attr("stroke-width", 1).attr("stroke-opacity", 0.75);
+    dots(xo, "x", jTop, L1); centres(xo, S, 56, L1); axis(xo, L1);
+    dots(xn, "y", jBot, L2); centres(xn, T, B0, L2); axis(xn, L2);
+    title(`Převedené hodnoty y${s.unit ? ` (${s.unit.head})` : ""}`, L2 + 37);
+    strip(xn, T, L2 + 52, "q"); strip(xn, T, L2 + 66, "sd");
+    container.replaceChildren(svg.node());
+  }
+
+  const plot = $("[data-plot]"), desc = $("[data-desc]"), table = $("[data-table]"), note = $("[data-table-note]"), excelBox = $("[data-excel]");
+  let last = {};
+
+  function render() {
+    const d = DATA[s.data], X = d.values, Y = X.map(transform);
+    const S = stats(X), T = stats(Y);
+    const P = s.mode === "linear" ? predict(S) : nonlinear(S, T);
+    $('[data-field="a"]').hidden = $('[data-field="b"]').hidden = s.mode !== "linear";
+    $("[data-rule]").replaceChildren(ruleText());
+    draw(plot, X, Y, S, T, d);
+    const text = describe(d, X, Y, S, T);
+    desc.textContent = text;
+    table.innerHTML = tableHtml(S, T, P, d);
+    note.textContent = s.mode === "linear"
+      ? "Sloupec převedených dat je spočten znovu z převedených hodnot, předpověď jen z původních ukazatelů. Obě cesty vedou ke stejnému výsledku."
+      : "Po nelineárním převodu je nutné ukazatele spočítat znovu z převedených hodnot. Převod původního ukazatele dá správný výsledek jen u ukazatelů, které jsou přímo některou pozorovanou hodnotou, například u mediánu lichého počtu hodnot; průměr ani ukazatele variability a tvaru takto získat nelze.";
+    const ex = excelRows(d);
+    excelBox.innerHTML = ex.html.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join("");
+    last = {data: s.data, mode: s.mode, a: s.a, b: s.b, unit: s.unit, axis: s.axis, values: X.slice(), transformed: Y,
+      original: S, converted: T, rule: P.out, transformFormula: ex.formula, formulas: ex.fns.map(f => f[1]), description: text};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plot.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plot);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {stats, parseDecimal, data: Object.fromEntries(Object.entries(DATA).map(([k, v]) => [k, v.values.slice()])), state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Pravidla pro lineární a nelineární převod vysvětluje kapitola 3 v oddílu <a href="kapitola_03.html#sec-zmena-skaly">Co mění posun a změna jednotek</a>, včetně <a href="kapitola_03.html#fig-transformace">obrázku lineárního a nelineárního převodu</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-pj-vyzkousejte .unnumbered}
+
+1. Než stisknete tlačítko „Minuty na sekundy“, předpovězte průměr, směrodatnou odchylku a rozptyl pěti časů v sekundách. Původní hodnoty jsou $m=6$ minut, $s\approx2{,}35$ minuty a $s^2=5{,}5$ min². Ověřte předpověď v tabulce. Proč se rozptyl nezvětšil šedesátkrát?
+2. Stiskněte „Přičíst 2 minuty“ a porovnejte oba grafy na společné ose. Které ukazatele se změnily a které ne? Jak to souvisí s tím, že jsou spojnice rovnoběžné?
+3. Stiskněte „Nevybavená slova: 12 − x“. Proč se spojnice kříží? Porovnejte v tabulce kvartily a šikmost původních a převedených hodnot a vysvětlete, proč se směrodatná odchylka nezměnila.
+4. Zvolte doby spánku a přepněte osu na vlastní. Nastavte libovolný posun a kladný násobitel a sledujte, zda se mění tvar dolního grafu. Potom zvolte druhou mocninu a druhou odmocninu slov. Co se změnilo teď a co ukazuje tabulka u šikmosti?
+
+## Čeho si všimnout {#sec-viz-pj-vsimnete .unnumbered}
+
+Lineární transformace převádí všechny hodnoty stejným pravidlem, a proto se každá vzdálenost mezi dvěma hodnotami změní stejně: vynásobí se absolutní hodnotou násobitele $|b|$. Posun $a$ vzdálenosti nemění vůbec. Na společné ose to ukazují spojnice: při samotném posunu jsou rovnoběžné, při $|b|>1$ se rozbíhají a při $|b|<1$ sbíhají. Ukazatele polohy se proto mění stejně jako jednotlivé hodnoty, například nový průměr je $a+b m$. Ukazatele variability v původních jednotkách se násobí číslem $|b|$ a rozptyl, který pracuje se čtverci odchylek, číslem $b^2$. Pravidla vysvětluje oddíl [Co od ukazatelů polohy a variability očekáváme](kapitola_03.qmd#sec-vlastnosti-ukazatelu).
+
+Na vlastní ose vypadá rozdělení po lineární transformaci s kladným násobitelem stejně jako původní; změní se jen čísla pod osou. Převod jednotek tedy nemění tvar rozdělení, a proto nemění ani šikmost a exces, které vzdálenosti od průměru posuzují v násobcích směrodatné odchylky. Vyšší číselná směrodatná odchylka v sekundách neznamená, že se lidé začali více lišit; odráží pouze menší jednotku.
+
+Záporný násobitel obrací pořadí: spojnice se kříží a rozdělení se zrcadlově převrátí. Nový 1. kvartil proto vzniká z původního 3. kvartilu a šikmost změní znaménko, protože delší chvost přejde na druhou stranu. Exces a směrodatná odchylka se nezmění. Při $b=0$ dostanou všichni stejnou hodnotu a původní rozdíly zaniknou; šikmost ani exces pak nelze určit, protože směrodatná odchylka je nulová.
+
+Nelineární převod, například druhá mocnina, mění vzdálenosti různě podle toho, kde na ose leží. Spojnice se rozbíhají nestejnoměrně a na vlastní ose je vidět, že se změnil tvar rozdělení. Pravidla pro posun a násobení tu neplatí: průměr druhých mocnin pěti časů je 40,4, nikoli $6^2=36$. Ukazatele proto [musíme spočítat znovu z převedených hodnot](kapitola_03.qmd#sec-nelinearni-transformace). Převod původního ukazatele dá správný výsledek jen tehdy, když je ukazatel přímo některou pozorovanou hodnotou, jako medián lichého počtu hodnot.

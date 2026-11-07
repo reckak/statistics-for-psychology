@@ -55,6 +55,11 @@ s doplňky a je realizován jako stránka
 [Co znamená pozitivní výsledek testu](../../quarto/viz_bayesova_veta.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes),
 [karta kapitoly 5](05-pravdepodobnost.md#interaktivni-vizualizace-05)).
+Vizualizaci posunu a změny jednotek ke kapitole 3, která v návrhu z 2026-11-05
+nebyla, autor schválil 2026-11-07 jako stránku
+[Co s rozdělením udělá posun a změna jednotek](../../quarto/viz_posun_a_jednotky.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun),
+[karta kapitoly 3](03-poloha-variabilita.md#interaktivni-vizualizace-03)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
 t a normální rozdělení podle stupňů volnosti, pásmo ekvivalence; kap. 8

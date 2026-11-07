@@ -607,7 +607,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1089,6 +1089,100 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_06.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_statisticka_sila.html"]').count(), 1, 'Chapter 6 links to the power visualization');
+
+    // Shift and change of units: data against the shared data file, statistics against R, presets, Excel formulas, input checks and a phone screen.
+    await page.goto(base + 'quarto/viz_posun_a_jednotky.html', { waitUntil: 'networkidle' });
+    const pj = page.locator('#viz-posun-a-jednotky');
+    await pj.locator('.viz-plots svg').waitFor();
+    assert.equal(await pj.locator('.viz-plots svg').count(), 1, 'One chart with both dot plots');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const pjState = () => pj.evaluate(el => el.vizCheck.state());
+    const pjNear = (a, b, msg) => assert(Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    const pjStats = (got, want, msg) => Object.entries(want).forEach(([k, v]) => v === null ? assert.equal(got[k], null, `${msg} ${k}`) : pjNear(got[k], v, `${msg} ${k}`));
+    const pjRule = (st, msg) => ['m', 'med', 'q1', 'q3', 'iqr', 'range', 's', 's2', 'skew', 'kurt'].forEach(k => pjNear(st.rule[k], st.converted[k], `${msg} ${k}`));
+    // The values on the page are the sleep and word data of chapters 2 and 3 (the three missing sleep values left out).
+    const pjCsv = fs.readFileSync('data/kapitola_02.csv', 'utf8').trim().split(/\r?\n/).slice(1).map(l => l.split(','));
+    const pjData = await pj.evaluate(el => el.vizCheck.data);
+    assert.deepEqual(pjData.sleep, pjCsv.map(r => r[1]).filter(v => v !== '').map(Number), 'Sleep data');
+    assert.deepEqual(pjData.words, pjCsv.map(r => Number(r[2])), 'Word data');
+    assert.deepEqual(pjData.times, [4, 5, 5, 6, 10], 'Five times');
+    // R: mean, median, quantile(type = 7), sd, var and the SKEW/KURT formulas.
+    const pjR = {
+      times: {m: 6, med: 5, q1: 5, q3: 6, iqr: 1, range: 6, s: 2.34520787991171, s2: 5.5, skew: 1.74436949745499, kurt: 3.32231404958677},
+      sleep: {m: 7.063636363636363, med: 7.1, q1: 6.2, q3: 8, iqr: 1.8, range: 5, s: 1.288608304969498, s2: 1.660511363636364, skew: -0.125053652429647, kurt: -0.55379448461621},
+      words: {m: 7.027777777777778, med: 7, q1: 5.75, q3: 9, iqr: 3.25, range: 12, s: 2.591040729801843, s2: 6.713492063492064, skew: -0.47057774610161, kurt: 0.481406247639946}
+    };
+    for (const [k, want] of Object.entries(pjR)) pjStats(await pj.evaluate((el, xs) => el.vizCheck.stats(xs), pjData[k]), want, k);
+    // Default: five times from minutes to seconds.
+    let pjs = await pjState();
+    assert.equal(pjs.data, 'times'); assert.equal(pjs.a, 0); assert.equal(pjs.b, 60); assert.equal(pjs.axis, 'common');
+    pjStats(pjs.converted, {m: 360, med: 300, q1: 300, q3: 360, iqr: 60, range: 360, s: 140.71247279470288, s2: 19800, skew: 1.74436949745499, kurt: 3.32231404958678}, 'Seconds');
+    pjRule(pjs, 'Seconds by rule');
+    assert.equal(pjs.transformFormula, '=60*A2'); assert.equal(pjs.formulas[0], '=PRŮMĚR(B2:B6)');
+    assert.match(await pj.locator('[data-table]').innerText(), /19\s800/);
+    const pjPreset = async id => { await pj.locator(`[data-preset="${id}"]`).click(); return pjState(); };
+    pjs = await pjPreset('plus2');
+    pjStats(pjs.converted, {m: 8, med: 7, q1: 7, q3: 8, s: 2.34520787991171, s2: 5.5}, 'Plus 2 minutes');
+    assert.equal(pjs.transformFormula, '=2+A2'); assert.match(pjs.description, /posunulo o 2/);
+    pjs = await pjPreset('plus2sec');
+    pjStats(pjs.converted, {m: 480, med: 420, q1: 420, q3: 480, s: 140.71247279470288, s2: 19800}, 'Plus 2 minutes in seconds');
+    assert.equal(pjs.transformFormula, '=120+60*A2');
+    pjs = await pjPreset('hmin');
+    assert.equal(pjs.data, 'sleep');
+    pjStats(pjs.converted, {m: 423.818181818181813, med: 426, q1: 372, q3: 480, iqr: 108, range: 300, s: 77.316498298169904, s2: 5977.840909090909, skew: -0.125053652429647, kurt: -0.55379448461621}, 'Sleep in minutes');
+    pjRule(pjs, 'Sleep by rule');
+    assert.equal(pjs.transformFormula, '=KDYŽ(B2="";"";60*B2)'); assert.equal(pjs.formulas[2], '=PERCENTIL.INC(F2:F37;0,25)');
+    pjs = await pjPreset('reverse');
+    assert.equal(pjs.data, 'words');
+    pjStats(pjs.converted, {m: 4.972222222222222, med: 5, q1: 3, q3: 6.25, iqr: 3.25, range: 12, s: 2.591040729801843, s2: 6.713492063492064, skew: 0.47057774610161, kurt: 0.481406247639946}, 'Reverse scoring');
+    pjRule(pjs, 'Reverse scoring by rule');
+    assert.equal(pjs.transformFormula, '=12-C2'); assert.match(pjs.description, /kříží/);
+    assert.match(await pj.locator('[data-row="q1"]').innerText(), /pořadí se obrátilo/);
+    // Typed values with a decimal comma and a typographic minus; R: 3 - 2.5 * words.
+    await pj.locator('#viz-pj-a').fill('3'); await pj.locator('#viz-pj-b').fill('−2,5');
+    pjs = await pjState();
+    pjStats(pjs.converted, {m: -14.569444444444445, med: -14.5, q1: -19.5, q3: -11.375, iqr: 8.125, range: 30, s: 6.477601824504606, s2: 41.9593253968254, skew: 0.47057774610161, kurt: 0.481406247639947}, 'a = 3, b = -2.5');
+    pjRule(pjs, 'a = 3, b = -2.5 by rule');
+    assert.equal(pjs.transformFormula, '=3-2,5*C2'); assert.equal(pjs.unit, null);
+    // Invalid input is rejected with a visible message and the last valid value stays in use.
+    for (const [id, bad] of [['b', 'abc'], ['a', '2000000'], ['b', '1,2,3']]) {
+      await pj.locator(`#viz-pj-${id}`).fill(bad);
+      assert.equal(await pj.locator(`#viz-pj-${id}`).getAttribute('aria-invalid'), 'true', `Rejected ${id} = ${bad}`);
+      assert(await pj.locator(`#viz-pj-${id}-error`).isVisible(), `Message for ${id} = ${bad}`);
+      pjs = await pjState(); assert(pjs.a === 3 && pjs.b === -2.5, `Kept a and b after ${bad}`);
+    }
+    await pj.locator('#viz-pj-a').fill('3'); await pj.locator('#viz-pj-b').fill('-2.5');
+    pjs = await pjPreset('zero');
+    assert.equal(pjs.b, 0); assert.equal(pjs.converted.s, 0); assert.equal(pjs.converted.skew, null); assert.equal(pjs.rule.kurt, null);
+    assert.equal(pjs.transformFormula, '=3'); assert.match(pjs.description, /sbíhají/);
+    assert.match(await pj.locator('[data-excel]').innerText(), /#DIV\/0!/);
+    // Nonlinear rules: R: mean(c(4, 5, 5, 6, 10)^2) and sqrt of the sleep data.
+    await pj.locator('input[name="viz-pj-data"][value="times"]').check();
+    await pj.locator('input[name="viz-pj-mode"][value="square"]').check();
+    pjs = await pjState();
+    assert(!(await pj.locator('#viz-pj-a').isVisible()), 'No a and b for a nonlinear rule');
+    pjStats(pjs.converted, {m: 40.4, med: 25, q1: 25, q3: 36, s: 34.06317659878479, s2: 1160.3, skew: 2.00083728368368, kurt: 4.14922077059587}, 'Squares');
+    pjNear(pjs.rule.m, 36, 'Square of the mean'); assert.equal(pjs.rule.s, null);
+    assert.match(await pj.locator('[data-row="m"]').innerText(), /liší se/); assert.match(await pj.locator('[data-row="med"]').innerText(), /shoduje se/);
+    assert.equal(pjs.transformFormula, '=A2^2');
+    await pj.locator('input[name="viz-pj-data"][value="sleep"]').check();
+    await pj.locator('input[name="viz-pj-mode"][value="sqrt"]').check();
+    pjs = await pjState();
+    pjStats(pjs.converted, {m: 2.6466380317969085, med: 2.6645825188948455, q1: 2.4899799195977463, q3: 2.8284271247461903, s: 0.2465471079051194, skew: -0.3204218982225787, kurt: -0.4574412001796135}, 'Square roots of sleep');
+    assert.equal(pjs.transformFormula, '=KDYŽ(B2="";"";ODMOCNINA(B2))');
+    // Keyboard choice of the axis and a phone screen.
+    await pj.locator('input[name="viz-pj-axis"][value="common"]').focus(); await page.keyboard.press('ArrowRight');
+    assert.equal((await pjState()).axis, 'own', 'Keyboard choice of the axis');
+    assert.match((await pjState()).description, /změnil se jeho tvar/);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await pj.locator('.viz-plots svg').waitFor();
+    await pj.locator('[data-preset="reverse"]').click();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Shift-and-units visualization fits a phone');
+    await pj.screenshot({path:'tmp/verification/viz-posun-a-jednotky-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_03.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_posun_a_jednotky.html"]').count(), 1, 'Chapter 3 links to the shift-and-units visualization');
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();
