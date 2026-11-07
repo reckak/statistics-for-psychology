@@ -56,6 +56,18 @@ a zarovnání záhlaví tabulky. Didaktická revize stránky proběhla interně
 úkoly pokrývají posun, změnu jednotek, obrácení a nelineární převod);
 není ověřením na studentech. Neověřeno: ovládání čtečkou obrazovky.
 
+Oprava po neúspěšném CI (PR #174): před odesláním nebyla lokálně spuštěna
+`scripts/check-table-layout.cjs`. Ta v CI zjistila, že tabulka ukazatelů
+přetéká při šířce okna 1024 px o 15 px (lokálně o 6 px, při obrácení
+skórování slov o 32 px). Příčinou byla minimální šířka sloupce pravidla
+14rem. Snížena na 11rem, kterou stránka dosud používala jen na mobilu, a
+zvláštní pravidlo pro úzké displeje odstraněno. Lokálně ověřeno sedm
+nastavení (výchozí, předvolby, *b* = 0, záporné a dlouhé desetinné *a*, *b*,
+nelineární převody) při 1024, 1100 a 1280 px bez přetečení. Nejmenší šířka
+tabulky je 496 px, při obrácení skórování 522 px, k dispozici je 541 px.
+Pravidla se v úzkém sloupci zalamují do dvou řádků; snímky prohlédnuty.
+`check-table-layout.cjs` (přísný režim) i `check-html.cjs` znovu prošly.
+
 ## 2026-11-06 — Vizualizace Bayesovy věty (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes)
