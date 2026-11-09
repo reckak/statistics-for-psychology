@@ -43,6 +43,12 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Použití v kapitole 1 (2026-10-31):** v textové extrakci přečten §2.3, s. 45–46 (PDF 45–46): reliabilita jako opakovatelnost či konzistence, odlišení od validity (příklad váhy s pytlem brambor) a čtyři druhy reliability (test-retest, posuzovatelé, srovnatelné verze, vnitřní konzistence). Citováno jako „oddíl 2.3“ v [pododdílu o reliabilitě a validitě](../../quarto/kapitola_01.qmd#sec-reliabilita-validita) a jeho nepovinném rozšíření. Vizuální kontrola neproběhla.
 
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V textové extrakci přečteny §12.1.3–12.1.5, s. 476–478: intuitivní sestavení statistiky dobré shody, zdůvodnění rozdělení χ² přes binomický model a normální aproximaci a vysvětlení stupňů volnosti. Autorka sama v poznámce upozorňuje, že jde o zjednodušení (podíl (O − E)/√E nemá přesně jednotkový rozptyl). Zbytek kap. 12 (Cramérovo V, Yates, Fisher, McNemar) jen prohledán podle hesel. [Společný záznam](HISTORIE.md#priprava-09-20261109).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

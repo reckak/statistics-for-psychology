@@ -346,3 +346,35 @@ Kontrola Howella: s. 86, 198–201, 203–205 a 213–220, tabulky 7.3 a 7.7 tak
 
 Přečteny v textové extrakci: Wilcox ([U15](U15-wilcox.md#u15-overeni)) §4.6 a §5.5, s. 111–118 a 162–166; Howell ([U01](U01-howell.md#u01)) s. 186–188 znovu kvůli zdůvodnění oboustranného testu u PDI (intervence u matek poloviny dětí, s. 186; název Bayley Scales of Infant Development); Lakens, *Improving Your Statistical Inferences* ([U16](U16-lakens-kniha.md#u16)), kap. 9, s. 244–245 (test noninferiority) a s. 254 (Minimum Effect Tests), v místním PDF a kotvy kapitoly na webu knihy (přístup 2026-11-09). Ze souboru `prezentace_průměry.pptx` ([P08](P08-prumery.md#p08)) přečten text snímku 20 z XML originálu. Čísla rozšíření o odolnosti jsou z vlastní simulace; přehled shody s Wilcoxem je v kartě U15. Autorovo tvrzení o „více motorických podnětech“ u předčasně narozených dětí nebylo doloženo a do textu se nepřevzalo; zdůvodnění se opírá jen o Howella.
 
+
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+Úkol: navrhnout obsah kapitoly 9 (podíly a kategoriální data). Rozsah schválil autor jako [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9)–[R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9); studentská kapitola zatím nevznikla. Záznam eviduje čtení a ověřování při návrhu, nikoli použití v textu. Autor výslovně požádal, aby se návrh neopíral jen o Howella.
+
+**Inventář:** všech 49 souborů v `sources/` porovnáno s inventářem; všech 49 prefixů SHA-256 souhlasí, žádný nový ani změněný soubor. Dva prefixy odstraněných Baronových výřezů zůstávají jen v poznámce o nahrazených souborech.
+
+**Vlastní čtení (Claude):**
+
+- [Howell](U01-howell.md#priprava-09-20261109) kap. 6, s. 137–171 (PDF 161–195), v obrazech stran včetně tabulek 6.1–6.13 a cvičení 6.1–6.19.
+- [Cumming a Calin-Jageman](U03-cumming.md#priprava-09-20261109) kap. 13, s. 387–409 (PDF 422–444), v textové extrakci `pdftotext -layout`; obrázky nebyly prohlédnuty.
+- [OpenIntro](U04-openintro.md#priprava-09-20261109) §6.1.1–6.1.5, s. 208–212 (PDF 208–212), v textové extrakci; zbytek kap. 6 (s. 206–252) jen prohledán podle hesel (společný podíl, podmínky testu χ²).
+- [Field, van Doorn a Wagenmakers](U14-field.md#priprava-09-20261109) §16.2–16.5 a §16.7.1–16.7.4, s. 621–625, 630–631 a 636–640 (PDF 654–658, 663–664 a 669–673), v textové extrakci.
+- [Wilcox](U15-wilcox.md#priprava-09-20261109) §15.1–15.4, s. 610–622 (PDF 635–647), v textové extrakci.
+- [Navarro](U08-navarro.md#priprava-09-20261109) §12.1.3–12.1.5, s. 476–478, v textové extrakci; zbytek kap. 12 jen prohledán podle hesel.
+- [P12](P12-kategorialni-data.md#priprava-09-20261109): text všech 53 snímků z XML prezentace; poznámky ani obrazy snímků nebyly znovu prohlédnuty.
+- [P13](P13-chikvadrat-neparametricke.md#priprava-09-20261109) a [C09](C09-ulohy-tyden-12.md#priprava-09-20261109) znovu nečteny; využity podle stávajících karet. Russo kap. 12 byla extrahována, ale nečtena.
+
+**Nezávislé výpočty** (R 4.5.1, skripty ve scratchpadu, mimo repozitář):
+
+- Tabulka 200 studentů z kapitoly 5 (40/100 a 30/100): nekorigované χ² = 2,1978 = z², *p* = 0,1382; výchozí `chisq.test` s Yatesovou korekcí 1,7802; Newcombův 95% interval rozdílu (−0,0319; 0,2272); Fisherův test *p* = 0,182; poměr rizik 1,333, poměr šancí 1,556, φ = 0,105. Dvojnásobný výběr: *p* = 0,0360, Newcombův interval (0,0065; 0,1911).
+- Wilsonův interval vlastním vzorcem shodný s `prop.test(..., correct = FALSE)`: 10 z 20 (0,2993; 0,7007), 0 z 15 (0; 0,2039); Waldův interval 10 z 20 (0,2809; 0,7191), Clopperův–Pearsonův (0,2720; 0,7280).
+- Věk × strategie zvládání stresu (P12 sn. 21–28): χ² = 11,775, 4 stupně volnosti, *p* = 0,0191, Cramérovo V = 0,176; Pearsonova a upravená rezidua; Holmova korekce devíti oboustranných *p*-hodnot upravených reziduí ponechává pod 0,05 jen buňku senioři × řešení problému (0,0266).
+- Daniels (2012) podle Fielda (56/140 a 20/117): χ² = 16,057, *p* = 6,1·10⁻⁵, rozdíl 0,2291, Newcombův interval (0,1189; 0,3298), poměr rizik 2,34, poměr šancí 3,233, φ = ±0,250 podle orientace kódování (Pearsonova korelace binárních kódů), Fisherův test *p* = 6,3·10⁻⁵.
+- Vyhledávání pomoci (Howell, s. 155): přesný binomický test 12 z 16 *p* = 0,0768, nekorigovaný McNemarův test *p* = 0,0455; podíly 0,583 a 0,694, rozdíl 0,111. Tabulka bez neshodných dvojic: `mcnemar.test` vrací NaN.
+- Prozac (Howell, s. 146–147): χ² = 0,3146, *p* = 0,575, Newcombův interval (−0,2328; 0,1283), Fisherův test *p* = 0,650. Ganzfeld (Cumming, tab. 13.1): 106 z 329, Wilsonův interval (0,274; 0,374), jednostranný binomický test proti 0,25 *p* = 0,0019.
+
+**Nálezy** (jejich stav je uveden v příslušných kartách): Howell s. 145 tiskové chyby v mezikrocích (aritmeticky ověřeno), P12 sn. 27 a 40 chybné hodnoty (přepočteno), Field §16.7.1 označuje Pearsonova rezidua za z-skóry (přepočtem vyvráceno), rozpory Fielda s Howellem a Wilcoxem v otázce předpokladů a věrohodnostního poměru (jen přečteno), Wilcoxova poznámka k `chisq.test` (potvrzena: výchozí Yatesova korekce). Odlišné doporučené intervaly pro podíl: OpenIntro Waldův s podmínkou alespoň 10 úspěchů a neúspěchů, Cumming přesnější postup bez vzorce, P12 Agrestiho–Coullův.
+
+**Neověřeno:** dokumentace R (`prop.test`, `binom.test`, `chisq.test`, `fisher.test`) nebyla v tomto záznamu čtena, použito jen chování funkcí; původní studie (Walsh a kol., 2006; Daniels, 2012; Rosa a kol., 1998; aspirinová studie; Bem a Honorton, 1994; Unah a Boger, 2001) a jejich bibliografické údaje; české názvy a chování funkcí CHISQ.TEST, CHISQ.DIST.RT, CHISQ.INV.RT a HYPGEOM.DIST v Excelu. Dílčí přepočet nepotvrzuje ostatní výpočty a tvrzení zdrojů. Původní soubory se nezměnily.

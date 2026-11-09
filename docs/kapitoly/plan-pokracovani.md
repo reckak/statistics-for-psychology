@@ -19,16 +19,32 @@ skupin. Navazuje na [kartu kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-ka
 (interval s t-kvantilem, jednovýběrový t-test, test ekvivalence) a na
 parkovací studii kapitoly 6.
 
-**Po kapitole 8 není schválen žádný plán.** Směr, rozsah ani pořadí dalších
-kapitol nebyly projednány; platí postup přípravy kapitoly podle
-[projektových instrukcí](../../AGENTS.md).
+**Stav k 2026-11-09: plán kapitoly 9 je schválen, kapitola dosud není napsána.**
+Kapitola 9 „Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost
+souvislosti“ (pracovní název) se řídí
+[R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9) (rozsah, pořadí,
+příklady a zásady), [R69](../rozhodnuti/kapitola-09.md#r69-znaceni-kapitoly-9)
+(značení; indexy buněk tabulky zůstávají otevřené) a
+[R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) (terminologie).
+Schválené členění je v dokladu R68. Navazuje na tabulku stresu a nezávislost
+jevů z [kapitoly 5](05-pravdepodobnost.md#mapa-kapitola-05), binomický test
+a směrodatnou chybu podílu z [kapitoly 6](06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06)
+a na interval, párové a nezávislé uspořádání a velikost účinku z kapitol
+[7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07) a
+[8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08). Kartu kapitoly 9 založí
+až skutečný text; tento odstavec nepopisuje hotový obsah.
 
-**Mimo kapitoly 6–8 a bez schváleného umístění:** interval pro podíl,
-bootstrap, znaménkový a pořadové testy, robustní alternativy porovnání
-průměrů, funkce Z.TEST, korekce pro více testů, ANOVA, chí-kvadrát,
-korelace, bayesovské testování, plánování velikosti výběru, interval pro
-Cohenovo d a test minimálního účinku. Podklady k nim eviduje
-[mapa zdrojů](../ZDROJE.md); jejich zmínka zde není schválením tématu ani pořadí.
+**Mimo kapitoly 6–9 a bez schváleného umístění:** bootstrap, znaménkový
+a pořadové testy, robustní alternativy porovnání průměrů, funkce Z.TEST,
+korekce pro více testů (mimo nepovinnou Holmovu korekci reziduí v kapitole 9),
+ANOVA, korelace, logistická regrese a loglineární modely, bayesovské
+testování, plánování velikosti výběru, interval pro Cohenovo d a test
+minimálního účinku. Podklady k nim eviduje [mapa zdrojů](../ZDROJE.md);
+jejich zmínka zde není schválením tématu ani pořadí.
+
+**Historický stav k 2026-11-01** (původní znění je v Gitu): po kapitole 8
+nebyl schválen žádný plán; interval pro podíl a chí-kvadrát byly uvedeny
+mezi tématy bez schváleného umístění.
 
 <a id="plan-vizualizace"></a>
 

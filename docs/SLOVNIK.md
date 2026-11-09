@@ -462,7 +462,15 @@ a první výklad vznikly s kapitolou 2026-11-01 pod zde uvedenými stabilními I
 
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
-Oddíl je nyní bez otevřených návrhů. Terminologie kapitoly 8 byla schválena
+Oddíl je nyní bez otevřených terminologických návrhů. Terminologie kapitoly 9
+byla schválena 2026-11-09 jako seznam plánu
+([R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9)); hesla se do
+platné tabulky zapíší při psaní kapitoly, po kontrole proti dříve schváleným
+heslům. Do té doby R70 není náhradou hesel s pravidly použití. Pro kapitolu 9
+se ustaluje jediná varianta „kategoriální“ a nově se schvaluje poměr šancí,
+který kapitola 5 nezavedla. Otevřené jsou jen indexy buněk tabulky, tedy
+značení ([R69](rozhodnuti/kapitola-09.md#r69-znaceni-kapitoly-9)).
+Terminologie kapitoly 8 byla schválena
 2026-11-01 a je v [platné tabulce](#kapitola-08). Terminologie kapitoly 7 byla schválena
 2026-10-17 a je v [platné tabulce](#kapitola-07). Terminologie kapitoly 6 byla schválena
 2026-10-12 a je v [platné tabulce](#kapitola-06). Terminologie kapitoly 5 byla schválena
