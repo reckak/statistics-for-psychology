@@ -1,5 +1,15 @@
 # Autorská dokumentace
 
+## 2026-11-09 — Oprava CI: runner ubuntu-24.04 kvůli Playwrightu
+
+Běhy workflow „Ověřit a publikovat učebnici“ pro PR #175 a #176 i po jejich
+sloučení selhaly v kroku `npx playwright install --with-deps chromium`:
+`ubuntu-latest` je nově Ubuntu 26.04 a Playwright 1.55 jej nepodporuje.
+Render knihy a číselné kontroly kapitol před tímto krokem prošly. Job
+`build` je proto připnut na `ubuntu-24.04`; job `deploy` Playwright
+nepotřebuje a zůstává na `ubuntu-latest`. Web se od sloučení PR #174
+nepublikoval; publikuje se znovu po sloučení této opravy.
+
 ## 2026-11-09 — Kurzivní t/z v prezentacích kapitol 4–6 (R66)
 
 Podle [R66](../docs/rozhodnuti/spolecne-konvence.md#r66-kurziva-a-et-al) je
