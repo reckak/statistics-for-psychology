@@ -1,5 +1,36 @@
 # Autorská dokumentace
 
+<a id="dohoda-kapitola-09"></a>
+
+## Kapitola 9: dohoda o obsahu (2026-11-09)
+
+Autor navrhl, aby kapitola 9 vykládala testy pro kategoriální data, a požádal,
+aby se návrh neopíral jen o Howella. Podkladem byly Howell kap. 6, Cumming
+kap. 13, OpenIntro kap. 6, Field kap. 16, Wilcox §15.1–15.4, Navarro kap. 12,
+přednášky P12 a P13 a úlohy C09. Ve výběru voleb autor zvolil odhad i testy,
+Wilsonův interval s Waldovým jako mezikrokem a povinné míry rozdíl podílů,
+poměr rizik, poměr šancí, φ a Cramérovo V. První plán vrátil s dvanácti
+písemnými připomínkami: zachovat pořadí jeden podíl → dva podíly → dobrá
+shoda → tabulky; Wald jen krátce a bez dojmu rovnocenných metod; Newcombův
+interval pro rozdíl podílů; zpřesnit vztah intervalu a testu (Wilson jako
+obrácený skórový test, ne binomický test); Fisherův test povinně v oddílu
+o předpokladech; hierarchicky uspořádat pravidla očekávaných četností;
+u reziduí při označování významných buněk řešit vícenásobné testování
+(nepovinně Holm); míry účinku ve třech pododdílech na jednom příkladu;
+ošetřit znaménko φ; přesnější zdůvodnění McNemarova testu a jmenovatel
+rozdílu podílů; upozornění k průměru kódů a k očekávanému profilu z jiného
+výběru; méně hlavních příkladů. K ověřování požadoval kontrolu proti
+`prop.test` a `chisq.test` s `correct = FALSE`, přesný McNemarův postup
+binomickým testem a okrajové případy; ke značení nepoužít index *i* pro
+buňky, rozvinout f a doplnit e a ustálit „kategoriální“. Druhou verzi
+schválil. Dohodu eviduje
+[R68](../docs/rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9)–[R70](../docs/rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9);
+čtení zdrojů a přepočty [záznam z 2026-11-09](../docs/zdroje/HISTORIE.md#priprava-09-20261109).
+Při zápisu se upřesnil jeden nález z plánu: Wilcoxova poznámka k `chisq.test`
+(s. 614) je pro výchozí nastavení oprávněná (Yatesova korekce), nejde o chybu.
+Otevřené zůstávají indexy buněk tabulky a konkrétní příklad dobré shody.
+Kapitola zatím napsána není; změněna jen autorská dokumentace, web se nevykresloval.
+
 <a id="audio-kapitoly-7-20261109"></a>
 
 ## 2026-11-09 — Nahrávka k prezentaci kapitoly 7 hlasem Adam

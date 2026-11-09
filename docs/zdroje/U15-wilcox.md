@@ -95,3 +95,11 @@ Autor uvedl §7.1, §7.3 a §8.1 (přečteny s. 251–253, 257–258 a 319–320
 ## Revize kapitoly 8 — 2026-11-01
 
 Při odborné revizi čteny §7.1 (s. 251), §7.3 (s. 257–262) a §8.1 (s. 319–321) v textové extrakci místního PDF. Oddíly 7.3.3–7.3.4 na s. 261–262 (PDF 286–287) nyní citovány u [předpokladů kapitoly 8](../../quarto/kapitola_08.qmd#sec-predpoklady-08): Welch řeší nestejné rozptyly, ale výrazná nenormalita může poškodit pokrytí i test. Nepřebírají se robustní alternativy ani pevné hranice n. §8.1 na s. 320 odlišuje variabilitu rozdílů a přesnost odhadu; číselné výsledky jeho simulací nebyly reprodukovány. Obrazy těchto stran nebyly nově kontrolovány.
+
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V textové extrakci přečteny §15.1–15.4, s. 610–622: dobrá shoda a intervaly jednotlivých podílů po celkovém testu (s. 612), test nezávislosti a Cohenovo w (s. 612–615), rozdíl marginálních podílů párových dat s intervalem a McNemarův test (s. 615–618), kritika φ a dalších funkcí χ² a poměru šancí (Berksonův příklad) a kappa (s. 618–622). Upozornění, že aproximace χ² se opírá o rozšíření centrální limitní věty (s. 610, 614), slouží jako protiváha tvrzení Fielda §16.4.
+
+**Nálezy:** s. 614 — poznámka, že `chisq.test(x)` neprovádí popsaný test nezávislosti, je pro výchozí nastavení oprávněná: u tabulky 15.1 dává výchozí `chisq.test` s Yatesovou korekcí χ² = 0,737 (*p* = 0,391), nekorigovaný test 1,444 (*p* = 0,229, shodně s Wilcoxovou funkcí); přepočteno v R. S. 619 vykládá poměr šancí 0,478 jako „riziko asi poloviční“ — pojmová záměna šancí a rizika; číselně je poměr rizik 0,533 náhodou blízký (přepočteno). [Společný záznam](HISTORIE.md#priprava-09-20261109).

@@ -81,3 +81,11 @@ Závěrečné úlohy *Smart Alex’s Tasks* začínají v kapitolách 1–9 na s
 **Nezávislé ověření:** bibliografické údaje porovnány s oficiálními stránkami Sage, počet stran a otisk zjištěny z místního souboru. Nebyl proveden nezávislý přepočet příkladů, statistických tvrzení ani simulací; graf opakovaných intervalů byl pouze vizuálně prohlédnut.
 
 **Neověřeno:** podrobný výklad zbývajících oddílů, všechny úlohy a jejich řešení, původní empirické studie a data, obsah a licence stažitelných doprovodných souborů, praktické postupy v JASP a jejich převod do Excelu. Doprovodné materiály nebyly staženy ani spuštěny; web Sage byl použit jen pro identifikaci vydání. Úplná odborná validace knihy není tímto záznamem doložena. Howell zůstává hlavní oporou pořadí témat.
+
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V textové extrakci přečteny §16.2–16.5 a §16.7.1–16.7.4 (s. 621–625, 630–631 a 636–640): Pearsonův χ², Fisherův test, věrohodnostní poměr, Yatesova korekce, φ, kontingenční koeficient a V, předpoklady, rezidua, poměr šancí a zpráva; příklad Daniels (2012, tab. 16.3) přepočten.
+
+**Nálezy:** §16.7.1 označuje Pearsonova rezidua (O − E)/√E za z-skóry — přepočtem v tabulce věk × zvládání vyvráceno (1,43 proti upravenému reziduu 2,09; shodně s nálezem P13 sn. 36). Jen přečteno: §16.3.3 popisuje Fisherův test jako „ne test jako takový“, ale přesný výpočet p-hodnoty χ² (nepřesné); §16.3.4 doporučuje věrohodnostní poměr u malých výběrů (v rozporu s Howellem, s. 157); §16.4 uvádí, že test χ² nespoléhá na předpoklady o normalitě (v rozporu s Wilcoxem §15.1). Původní studie Danielsové nečtena. [Společný záznam](HISTORIE.md#priprava-09-20261109).

@@ -79,3 +79,9 @@ Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.
 ## Revize kapitoly 8 — 2026-11-01
 
 Při revizi byly čteny pasáže na s. 176–178 (PDF 211–213) a 213–215 (PDF 248–250) v textové extrakci. Pro [výklad párování](../../quarto/kapitola_08.qmd#sec-proc-rozdily) využito rozlišení mezi SD rozdílů a přesností průměrného rozdílu (s. 214–215). Vzorce s korelačním koeficientem ani orientační pravidla šířek intervalů se do kapitoly nepřebírají. Vlastní příklady a program esci nebyly reprodukovány, obrazy těchto stran nově neověřovány.
+
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V textové extrakci přečtena kap. 13, s. 387–409 (PDF 422–444): podíl a podmínky jeho intervalu (nezávislé události se stejnou pravděpodobností, s. 391–396), interval bez vzorce s varováním před normální aproximací u malých četností (s. 391–392), procenta a procentní body (s. 395–396), rozdíl nezávislých podílů a jeho interval (s. 396–399), párové podíly (s. 400–401), χ² jako nepovinný doplněk se stejnou nulovou hypotézou, podmínky (očekávané četnosti alespoň 5, celkem alespoň 40) a φ bez znaménka (s. 401–404), rizika a přirozené četnosti (s. 404–406), reportování (s. 407–408). Ganzfeldské studie (tab. 13.1, Bem a Honorton, 1994) přepočteny pro souhrn 106 z 329. Obrázky nebyly prohlédnuty. [Společný záznam](HISTORIE.md#priprava-09-20261109).

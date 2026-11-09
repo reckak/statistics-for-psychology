@@ -131,6 +131,14 @@ V textové extrakci přečteny §7.4–7.6, s. 197–221 (PDF 221–245): párov
 
 **Nálezy a omezení:** extrakce vynechává záporná znaménka rozdílů v tab. 7.3 (např. ID 6 je −2,9, ne „22.9“); rozdíly přepočteny z hodnot před a po. Při psaní kapitoly 8 byly tab. 7.3 a s. 200 (PDF 223–224) prohlédnuty v obrazu: hodnoty i znaménka souhlasí s přepisem, věta o skupině bez terapie je na s. 200. Text na s. 200 odkazuje na „Table 7.1“, ačkoli rozdíly jsou v tab. 7.3; jde o drobnou chybu odkazu ve zdroji. Číselné ověření ve [společném záznamu](../zdroje/HISTORIE.md#priprava-08-20261101). Ostatní strany §7.4–7.6 nebyly prohlédnuty v obrazu.
 
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V obrazech stran přečtena kap. 6, s. 137–171 (PDF 161–195): χ² rozdělení (s. 138–139), dobrá shoda s terapeutickým dotekem a kámen–nůžky–papír (s. 139–143), kontingenční tabulky, očekávané četnosti a stupně volnosti (s. 144–147), Prozac a anorexie (tab. 6.5, s. 146–147), Yatesova korekce a Fisherův test (s. 147–148), malé očekávané četnosti (s. 151–152), χ² a pořadí kategorií (s. 152, 156), nezávislost pozorování a nevýskyty (s. 153–154), McNemarův test (s. 154–156), věrohodnostní poměr (s. 157–158), Mantelův–Haenszelův test a Simpsonův paradox (s. 158–160), rizika, šance, φ a V (s. 160–166), kappa (s. 166–167), zpráva o výsledku (s. 167–168) a cvičení 6.1–6.19.
+
+**Nálezy:** s. 145 tiskové chyby v mezikrocích — u $E_{21}$ dělitel 285 místo 825 a ve výpočtu χ² hodnota 497,82 místo 497,72; aritmeticky ověřeno (43,28 a 497,72), výsledek χ² = 7,71 přepočten v R (7,7099). S. 165 odkazuje na data aspirinu jako „Table 6.7“, správně tab. 6.11 (jen přečteno). Poměr rizik je na s. 161 1,819 a na s. 166 „1,82“ (zaokrouhlení). Howell (s. 157, podle Agrestiho) uvádí, že u malých výběrů je Pearsonova statistika aproximována lépe než věrohodnostní poměr; Field (§16.3.4) tvrdí opak — rozpor jen zaznamenán, G² je mimo kapitolu 9. Data vyhledávání pomoci (s. 154–155) jsou podle Howella smyšlená; terapeutický dotek a Prozac jsou skutečné studie citované Howellem, původní články nečteny. [Společný záznam](HISTORIE.md#priprava-09-20261109).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07). Konkrétní použití a stav ověření určují záznamy výše.

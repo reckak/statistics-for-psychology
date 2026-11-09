@@ -21,3 +21,9 @@
 **Dílčí nezávislá kontrola, vizuální potvrzení tabulky zbývá:** u řešení X12_06 uvádí poslední buňka očekávanou četnost 30. Pro textově extrahovanou tabulku (10, 20, 30) a (20, 30, 10) jsou očekávané četnosti v obou řádcích **15, 25, 20**. Přepočet v R dává χ² = **15,3333**, df = 2, p = **0,0004682** a Cramerovo V = **0,357460**. Konečné χ² a V v klíči tedy souhlasí; problém je v jedné uvedené očekávané četnosti a zápis p = 0,000 by se při převzetí nahradil např. p < 0,001. Opravu originálu uzavřít až po kontrole jeho vykreslení.
 
 **Použití a neověřeno:** návaznost na [P12](P12-kategorialni-data.md#p12) a [P13](P13-chikvadrat-neparametricke.md#p13), zejména rozlišení dobré shody a nezávislosti, formulace hypotéz a interpretace tabulky. Celý klíč nebyl přepočten; podmínky testů, grafická zadání a empirický původ příkladů nebyly úplně ověřeny. X12_09 vyžaduje před převzetím kontrolu volby chvostu a excelové funkce pro p-hodnotu; uvedený vzorec nebyl spuštěn v českém Excelu. Klinické příklady slouží jako podklad k metodické otázce, nikoli jako ověřené medicínské závěry.
+
+<a id="priprava-09-20261109"></a>
+
+## Návrh kapitoly 9 — 2026-11-09
+
+Při návrhu znovu nečteny; úlohy X12_02–05 (formulace nulových hypotéz u dobré shody a nezávislosti) jsou podle této karty námětem pro cvičení kapitoly 9. Před převzetím platí omezení uvedená výše. [Společný záznam](HISTORIE.md#priprava-09-20261109).

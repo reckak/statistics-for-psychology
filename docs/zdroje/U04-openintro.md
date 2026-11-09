@@ -47,6 +47,12 @@ Pro návrh kapitoly 7 přečten §7.1, s./PDF 251–258 a vybraná zadání s. 2
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).
 
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+V textové extrakci přečteny §6.1.1–6.1.5, s. 208–212: podmínka alespoň 10 úspěchů a neúspěchů, Waldův interval, test jednoho podílu se směrodatnou chybou z nulové hodnoty, Clopperův–Pearsonův interval a simulace jen odkazem při nesplnění podmínky. Zbytek kap. 6 (s. 206–252) jen prohledán podle hesel: společný podíl u testu dvou podílů a podmínka očekávaných četností alespoň 5 u testu χ². OpenIntro tak doporučuje jiný typ intervalu než Cumming a autorova přednáška P12; kapitola 9 počítá Wilsonovým intervalem podle [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9). [Společný záznam](HISTORIE.md#priprava-09-20261109).
+
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06). Konkrétní použití a stav ověření určují záznamy výše.

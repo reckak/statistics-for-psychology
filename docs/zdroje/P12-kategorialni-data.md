@@ -25,3 +25,11 @@
 **Ověřené nálezy:** příklad McNemarova testu na sn. 31–36 uvádí 70 osob, ale čtyři četnosti 38, 4, 12 a 18 dávají **72**; počet nesouhlasných párů 16 se touto opravou nemění. Ve výpočtu kappa na sn. 48–49 je chybný mezikrok s počtem shod 26: diagonála tabulky je 15 + 3 + 3 = **21** z 30, očekávaný počet shod 12,9333. Kappa vychází **0,472656**, takže konečné zaokrouhlení 0,47 souhlasí; opravu potřebuje mezivýpočet a jeho zápis.
 
 **Použití a neověřeno:** široký přehled pro výběr metod podle designu; porovnat [P13](P13-chikvadrat-neparametricke.md#p13) a [C09](C09-ulohy-tyden-12.md#c09). Neproběhl úplný přepočet testů a intervalů, kontrola aproximací při malých četnostech ani nezávislé ověření všech vzorců velikostí účinku. Fisherův test a Monte Carlo nebyly reprodukovány podle prezentace. Animace, externí demonstrace a excelové vzorce nebyly testovány; klinické či empirické kontexty nejsou ověřenými doporučeními.
+
+<a id="priprava-09-20261109"></a>
+
+## Čtení pro návrh kapitoly 9 — 2026-11-09
+
+Přečten text všech 53 snímků z XML prezentace (bez poznámek a obrazů). Autorovy priority: interval pro podíl (Wald, Wilson, Agresti–Coull), test dvou podílů a interval rozdílu, dobrá shoda, tabulka 3 × 3 s upravenými rezidui, Fisherův test a Monte Carlo, McNemarův test, rizika a šance s intervaly, φ, V a kappa, předpoklady a přehled testů. Příklad věk × strategie zvládání (sn. 21–28) přepočten: χ² = 11,78, *p* = 0,019, tabulka upravených reziduí na sn. 27 souhlasí.
+
+**Nové nálezy (přepočteno v R):** sn. 27 text „Dospělí × Vyhýbání ≈ 0,90“, správně −1,03 (tabulka na témže snímku je správně; 0,91 patří buňce senioři × vyhýbání); sn. 40 čitatel šance placeba 186 místo 189 a poměr šancí OR₂₁ ≈ 1,93 místo **1,83**; sn. 14 přičítá „2 a 2“ u 90% Agrestiho–Coullova intervalu, ačkoli tato úprava odpovídá 95 % — rozdíl mezí je zanedbatelný (0,3917 proti 0,3913). **Jen přečteno:** slovní pásma pro φ a V (sn. 45–46) — nepřebírat povinně (R56 analogicky). [Společný záznam](HISTORIE.md#priprava-09-20261109).

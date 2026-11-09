@@ -21,3 +21,9 @@
 **Nálezy:** sn. 15 používá N = 77, přestože četnosti 2, 33 a 44 dávají **79**; další výpočet na sn. 20 již používá 79. Sn. 25 uvádí 63 % u skupiny s četností 44 z 79, tedy přibližně **55,7 %**; sn. 27 již pracuje s 56 %. Tyto vnitřní rozpory byly ověřeny aritmeticky a v obrazu. U sn. 36 je před použitím potřeba rozlišit Pearsonova rezidua od reziduí dělených odhadem jejich vlastní směrodatné odchylky; oba typy odlišuje [R, `chisq.test`, Value](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html) (R-devel, přístup 2026-10-17). Samotné dělení odmocninou očekávané četnosti není obecně standardizací na jednotkový rozptyl v tabulce nezávislosti.
 
 **Použití a neověřeno:** názorné návaznosti očekávaných četností a volby testu; doplněk [P12](P12-kategorialni-data.md#p12) a [C09](C09-ulohy-tyden-12.md#c09). Historické tvrzení o Arbuthnotovi a originální článek nebyly nezávisle prověřeny. Výpočty všech testů, podmínky párových testů a úplné předpoklady uvedených neparametrických metod nebyly ověřeny. Animace a odkazy nebyly spuštěny, vzorce v Excelu nebyly testovány. Rozsah posledního bloku nepředstavuje úplný výklad neparametrické statistiky.
+
+<a id="priprava-09-20261109"></a>
+
+## Návrh kapitoly 9 — 2026-11-09
+
+Při návrhu znovu nečtena; využita podle této karty jako doplněk P12 (očekávané četnosti, volba testu). Nález ke sn. 36 (rozlišení Pearsonových a upravených reziduí) potvrdil přepočet tabulky věk × zvládání z P12 a převzalo jej [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9). [Společný záznam](HISTORIE.md#priprava-09-20261109).
