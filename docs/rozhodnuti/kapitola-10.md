@@ -50,6 +50,10 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Doklad:** autor se zeptal, zda se má kapitola 10 věnovat Pearsonovu *r*, alternativním koeficientům, jednoduché regresi nebo jejich kombinaci, a ve výběru voleb zvolil „Jen korelace“. K prvnímu plánu doplnil: „I Kendallovo tau bych zařadil povinně“. Poté předložil vlastní plán (permutační test a percentilový bootstrapový interval pro pořadové koeficienty povinně, τ<sub>b</sub> jako hlavní varianta, 16 + 2 cvičení) a požádal o porovnání. Na srovnání odpověděl „Ano, sepiš ho“ a sloučený návrh schválil volbou „Schvaluji s doporučeními“, tedy včetně doporučení ke čtyřem otevřeným volbám: korelace jako koeficient reliability a validity krátce povinně, populační Kendallův koeficient slovy, prototyp sešitu před psaním a termín „dvourozměrné normální rozdělení“.
 
+<a id="r71-upresneni-2026-11-09"></a>
+
+**Upřesnění 2026-11-09 (počet opakování v sešitu):** po [prototypu převzorkování](../../quarto/README.md#prototyp-prevzorkovani-10) autor rozhodl, že studentský sešit `data/kapitola_10.xlsx` počítá bootstrap i permutace vzorci pro **1 999 opakování**. Vedle nich uvede pevné výsledky téhož postupu pro **9 999 opakování** (meze intervalů a *p*-hodnoty), zřetelně označené jako hotové hodnoty a ověřené proti R. Výchozí cíl 9 999 opakování ve vzorcích sešitu se tím nahrazuje. Důvodem je velikost souboru: prototyp s 9 999 opakováními měl asi 22 MB a otevíral se asi 21 s, s 1 999 opakováními 4,4 MB a asi 4 s; výpočet byl v obou případech rychlý. Rozdíl výsledků obou počtů opakování může výklad využít k ukázce simulačního kolísání. **Doklad:** na otázku „Kolik opakování má mít studentský sešit?“ autor odpověděl „1 999 + výsledky 9 999“.
+
 <a id="r72-znaceni-kapitoly-10"></a>
 
 ## R72 — Značení kapitoly 10
