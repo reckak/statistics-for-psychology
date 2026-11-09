@@ -77,10 +77,13 @@ z975 = z_quant(0.975)
 for a, v, t in [('B7', 2, None), ('B8', z975, QT), ('B9', 2 * z975, QT), ('B10', 46 - 2 * z975, QT), ('B11', 46 + 2 * z975, QT)]:
     add('Interval_z', a, v, t)
 q24 = t_quant(0.975, 24)
-for a, v, t in [('B7', 2, None), ('B8', 24, None), ('B9', q24, QT), ('B10', 2 * q24, QT), ('B11', 46 - 2 * q24, QT), ('B12', 46 + 2 * q24, QT)]:
+# Running example: s = 11, so the estimated standard error is 2.2.
+se_att = 11 / 5
+t_att = (46 - 50) / se_att
+for a, v, t in [('B7', se_att, QT), ('B8', 24, None), ('B9', q24, QT), ('B10', se_att * q24, QT), ('B11', 46 - se_att * q24, QT), ('B12', 46 + se_att * q24, QT)]:
     add('Interval_t', a, v, t)
-for a, v, t in [('B8', 2, None), ('B9', 24, None), ('B10', -2, None), ('B11', t_lower(-2, 24), QT), ('B12', 1 - t_lower(-2, 24), QT),
-                ('B13', 2 * t_lower(-2, 24), QT), ('B14', q24, QT)]:
+for a, v, t in [('B8', se_att, QT), ('B9', 24, None), ('B10', t_att, QT), ('B11', t_lower(t_att, 24), QT), ('B12', 1 - t_lower(t_att, 24), QT),
+                ('B13', 2 * t_lower(t_att, 24), QT), ('B14', q24, QT)]:
     add('T_test', a, v, t)
 
 
@@ -105,12 +108,14 @@ for v in (24, 29, 149, 199, 399):
     F(f'=T.INV(0,95;{v})', t_quant(0.95, v))
 F('=T.INV(0,05;24)', t_quant(0.05, 24)); F('=T.INV(0,025;10)', t_quant(0.025, 10)); F('=T.INV(0,975;10)', t_quant(0.975, 10))
 F('=T.DIST(-2;24;PRAVDA)', t_lower(-2, 24)); F('=T.DIST.2T(2;24)', 2 * t_lower(-2, 24))
+F('=T.DIST(-1,818;24;PRAVDA)', t_lower(-1.818, 24))
 F('=T.DIST.2T(2;15)', 2 * t_lower(-2, 15)); F('=1-T.DIST(2;15;PRAVDA)', t_lower(-2, 15))
 F('=T.DIST.2T(2,453;55)', 2 * t_lower(-2.453, 55))
 F('=1-T.DIST(3;399;PRAVDA)', 1 - t_lower(3, 399)); F('=T.DIST(-9;399;PRAVDA)', t_lower(-9, 399), 1e-12)
 F('=1-T.DIST(5,307;149;PRAVDA)', 1 - t_lower(5.307, 149), 1e-9); F('=T.DIST(-2,858;149;PRAVDA)', t_lower(-2.858, 149))
 F('=1-T.DIST(2,373;29;PRAVDA)', 1 - t_lower(2.373, 29)); F('=T.DIST(-1,278;29;PRAVDA)', t_lower(-1.278, 29))
 F('=1-T.DIST(1,697;199;PRAVDA)', 1 - t_lower(1.697, 199))
+F('=1-T.DIST(1,6971;199;PRAVDA)', 1 - t_lower((53.2 - 52) / (10 / math.sqrt(200)), 199), 1e-4)
 F('=T.DIST.2T(3,151;19)', 2 * t_lower(-3.151, 19))
 F('=NORM.S.INV(0,995)', z_quant(0.995)); F('=NORM.S.INV(0,95)', z_quant(0.95))
 for mean in (15, 16, 17, 14, 13, 18):
@@ -136,14 +141,18 @@ F('=POČET(Sim_intervaly!A2:H101)', 800, 0)
 changes = [
     {'sheet': 'Interval_z', 'set': {'B4': 100}, 'expect': {'B7': 1, 'B10': 46 - z975, 'B11': 46 + z975}, 'tolerance': QT},
     {'sheet': 'Interval_z', 'set': {'B2': 104.5, 'B3': 15, 'B4': 36, 'B5': 0.99}, 'expect': {'B7': 2.5, 'B10': 104.5 - 2.5 * z_quant(0.995), 'B11': 104.5 + 2.5 * z_quant(0.995)}, 'tolerance': QT},
-    {'sheet': 'Interval_t', 'set': {'B5': 0.9}, 'expect': {'B11': 46 - 2 * t_quant(0.95, 24), 'B12': 46 + 2 * t_quant(0.95, 24)}, 'tolerance': QT},
+    {'sheet': 'Interval_t', 'set': {'B5': 0.9}, 'expect': {'B11': 46 - se_att * t_quant(0.95, 24), 'B12': 46 + se_att * t_quant(0.95, 24)}, 'tolerance': QT},
     {'sheet': 'Interval_t', 'set': {'B2': 104.125, 'B3': 12.584, 'B4': 56}, 'expect': {'B8': 55, 'B11': 104.125 - t_quant(0.975, 55) * 12.584 / math.sqrt(56), 'B12': 104.125 + t_quant(0.975, 55) * 12.584 / math.sqrt(56)}, 'tolerance': QT},
     {'sheet': 'T_test', 'set': {'B2': 100, 'B3': 104.125, 'B4': 12.584, 'B5': 56}, 'expect': {'B9': 55, 'B10': 4.125 / (12.584 / math.sqrt(56)), 'B13': 2 * t_lower(-4.125 / (12.584 / math.sqrt(56)), 55)}, 'tolerance': QT},
     {'sheet': 'T_test', 'set': {'B2': 30, 'B3': 32.4, 'B4': 4.8, 'B5': 16}, 'expect': {'B8': 1.2, 'B10': 2, 'B13': 2 * t_lower(-2, 15), 'B14': t_quant(0.975, 15)}, 'tolerance': QT},
 ]
-labels = {'A': ('nulovou hypotézu nezamítáme', 'ekvivalence nedoložena'), 'C': ('nulovou hypotézu nezamítáme', 'ekvivalence doložena'),
-          'D': ('zamítáme nulovou hypotézu', 'ekvivalence nedoložena'), 'E': ('zamítáme nulovou hypotézu', 'ekvivalence nedoložena')}
-for name, (m, n) in {'A': (46, 25), 'C': (50.4, 400), 'D': (44, 100), 'E': (47, 100)}.items():
+R_, N_ = 'zamítáme nulovou hypotézu', 'nulovou hypotézu nezamítáme'
+labels = {'A': (N_, 'ekvivalence nedoložena'), 'C': (N_, 'ekvivalence doložena'),
+          'D': (R_, 'ekvivalence nedoložena'), 'E': (R_, 'ekvivalence nedoložena'),
+          'F': (N_, 'ekvivalence nedoložena'), 'G': (R_, 'ekvivalence doložena'),
+          'H': (R_, 'ekvivalence nedoložena'), 'I': (R_, 'ekvivalence nedoložena')}
+for name, (m, n) in {'A': (46, 25), 'C': (50.4, 400), 'D': (44, 100), 'E': (47, 100),
+                     'F': (50, 16), 'G': (51.5, 400), 'H': (56, 100), 'I': (53, 100)}.items():
     e = eq_expect(m, 10, n)
     changes.append({'sheet': 'Ekvivalence', 'set': {'B4': m, 'B6': n}, 'expect': {k: e[k] for k in ('B14', 'B15', 'B16', 'B18', 'B19', 'B26')},
                     'tolerance': QT, 'labels': {'B17': labels[name][0], 'B20': labels[name][1]}})

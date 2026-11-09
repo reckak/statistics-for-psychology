@@ -32,6 +32,8 @@ Z originálu přečten text a poznámky relevantního bloku sn. 11–28, zejmén
 
 **Zpřesnění sn. 20:** vztah jednostranného testu na hladině α k příslušné mezi centrálního intervalu se spolehlivostí 1 − 2α vyžaduje kontrolu správného směru. Nejde o obecný požadavek reportovat pouze takový interval; alternativou je odpovídající jednostranná mez se spolehlivostí 1 − α. Rovnost p-hodnoty a α znamená, že testovaná hodnota leží přesně na mezi, nikoli vně uzavřeného intervalu. Obojí je důležité při formulaci obecného pravidla.
 
+**Použití sn. 20 v kapitole 7 (2026-11-09):** text snímku znovu přečten z originálního souboru (tabulka typ testu × výsledek s kritickou hodnotou, p-hodnotou a intervalem a poznámka o 1 − α a 1 − 2α). Podle něj vznikla [tabulka tří cest k rozhodnutí](../../quarto/kapitola_07.qmd#sec-tri-cesty) na *t*-testu průběžného příkladu; převzato uspořádání, nikoli znění. Zpřesnění výše (rovnost na mezi, směr, jednostranná mez jako alternativa) je v tabulce i výkladu zohledněno; zápis „μ₀ ≤ 50“ pro nulovou hypotézu a příklad 90% CI [45; 47] se nepřebírají.
+
 Výpočet PDI ze souhrnů znovu ověřen v R, viz [U01](U01-howell.md#priprava-07-20261017); jiné části prezentace nebyly v tomto průchodu kompletně přepočteny. Odborný závěr o rychlosti vývoje nebo původní empirická studie nebyly nezávisle ověřeny.
 
 [Společný rozsah kontroly](HISTORIE.md#priprava-07-20261017).

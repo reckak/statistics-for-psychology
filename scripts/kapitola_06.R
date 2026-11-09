@@ -287,7 +287,7 @@ ch6_draw('dva-testy', {
   k <- 0:20; p <- dbinom(k,20,.25)
   plot(k,p,type='h',lwd=8,lend=1,col=ifelse(k>=10,ch6_orange,ifelse(k==9,'#E3A77E',ch6_mute)),xlim=c(0,20),ylim=c(0,.23),xlab='Počet správných odpovědí z 20',ylab='Pravděpodobnost při tipování',main='Binomický test',bty='l',yaxs='i')
   legend('topright',c(expression('10 a více: '*italic(p)*'-hodnota 0,014'),'9: patří do kritického oboru','8 a méně'),fill=c(ch6_orange,'#E3A77E',ch6_mute),bty='n',cex=.82)
-  cv <- ch6_curve(50,2,c(42,58),'z-test průměru','Průměr 25 studentů (body)',ylim=c(0,.24))
+  cv <- ch6_curve(50,2,c(42,58),expression(bolditalic(z)*bold('-test průměru')),'Průměr 25 studentů (body)',ylim=c(0,.24))
   ch6_area(42,46,50,2,ch6_orange); lines(cv$x,cv$y,lwd=2.2,col=ch6_blue)
   abline(v=qnorm(.05,50,2),lty=2,lwd=1.5,col=ch6_ink)
   text(42.2,.091,'46 a méně:',adj=0,cex=.82,col=ch6_orange)

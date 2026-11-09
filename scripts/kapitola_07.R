@@ -22,15 +22,19 @@ ch7_tost <- function(m,s,n,mu0,delta) {
   c(t_dolni=tl,p_dolni=pt(tl,n-1,lower.tail=FALSE),t_horni=tu,p_horni=pt(tu,n-1))
 }
 # Running example: attention score of 25 students after short sleep; reference value of the norm 50.
-# sigma = 10 is a model assumption carried over from chapter 6; s = 10 is the new sample input.
-ch7_att <- c(mu0=50,sigma=10,s=10,n=25,m=46)
+# sigma = 10 is a model assumption carried over from chapter 6; s = 11 is the new sample input.
+ch7_att <- c(mu0=50,sigma=10,s=11,n=25,m=46)
 ch7_ci_att_z <- ch7_ci_z(46,10,25)
-ch7_ci_att_t <- ch7_ci_t(46,10,25)
+ch7_ci_att_t <- ch7_ci_t(46,11,25)
+ch7_ci_att_t90 <- ch7_ci_t(46,11,25,.90)
 ch7_q24 <- qt(.975,24)
+# Two-sided acceptance region for the sample mean around mu0 = 50 with the same estimated standard error.
+ch7_accept <- 50+c(-1,1)*ch7_q24*11/5
 # Howell's PDI example: low-birthweight infants against the norm 100.
 ch7_pdi <- c(mu0=100,m=104.125,s=12.584,n=56)
 # Equivalence: online version of the attention test against the fixed norm 50, bounds 47 and 53.
-ch7_eq <- data.frame(studie=LETTERS[1:5],m=c(46,48.5,50.4,44,47),s=10,n=c(25,400,400,100,100))
+# F spans all three regions; G, H and I mirror B, D and E above the norm.
+ch7_eq <- data.frame(studie=LETTERS[1:9],m=c(46,48.5,50.4,44,47,50,51.5,56,53),s=10,n=c(25,400,400,100,100,16,400,100,100))
 ch7_mu0 <- 50; ch7_delta <- 3
 ch7_eq$ci95_d <- with(ch7_eq,m-qt(.975,n-1)*s/sqrt(n)); ch7_eq$ci95_h <- with(ch7_eq,m+qt(.975,n-1)*s/sqrt(n))
 ch7_eq$ci90_d <- with(ch7_eq,m-qt(.95,n-1)*s/sqrt(n)); ch7_eq$ci90_h <- with(ch7_eq,m+qt(.95,n-1)*s/sqrt(n))
@@ -65,7 +69,7 @@ ch7_draw('opakovane-intervaly', {
   par(mfrow=c(1,2),mar=c(4.5,3.2,3.4,.6))
   for(k in 1:2) {
     ci <- if(k==1) ch7_sim_z else ch7_sim_t; hit <- if(k==1) ch7_hit_z else ch7_hit_t
-    plot(NA,xlim=c(36,58),ylim=c(.5,ch7_reps+.5),yaxt='n',xlab='Populační průměr skóru (body)',ylab='',bty='l',
+    plot(NA,xlim=c(36,58),ylim=c(.5,ch7_reps+.5),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',bty='l',
       main=if(k==1) 'Známá σ = 10: stejná šířka' else 'Výběrová s: šířka kolísá')
     abline(v=ch7_mu_sim,lty=2,lwd=1.6,col=ch7_ink)
     segments(ci[,1],1:ch7_reps,ci[,2],1:ch7_reps,col=ifelse(hit,ch7_blue,ch7_orange),lwd=ifelse(hit,1.5,2.6))
@@ -91,7 +95,7 @@ ch7_draw('t-rozdeleni', {
   rect(br[-length(br)],0,br[-1],h$density,col=ch7_fill,border='white',lwd=.4)
   curve(dnorm(x),-5,5,add=TRUE,lwd=2,lty=2,col=ch7_orange,n=400)
   curve(dt(x,4),-5,5,add=TRUE,lwd=2,col=ch7_blue,n=400)
-  legend('topleft',c('10 000 hodnot (m − μ)/(s/√5)','normované normální','t-rozdělení, 4 stupně volnosti'),fill=c(ch7_fill,NA,NA),border=c('white',NA,NA),lty=c(NA,2,1),lwd=c(NA,2,2),col=c(NA,ch7_orange,ch7_blue),bty='n',cex=.74,ncol=1)
+  legend('topleft',c(expression('10 000 hodnot '*(italic(m)-mu)/(italic(s)/sqrt(5))),expression('normované normální'),expression(italic(t)*'-rozdělení, 4 stupně volnosti')),fill=c(ch7_fill,NA,NA),border=c('white',NA,NA),lty=c(NA,2,1),lwd=c(NA,2,2),col=c(NA,ch7_orange,ch7_blue),bty='n',cex=.74,ncol=1)
   plot(NA,xlim=c(-4,4),ylim=c(0,.56),xlab='Hodnota statistiky',ylab='Hustota',main='Více stupňů volnosti: blíže normálnímu',bty='l',yaxs='i')
   df <- c(2,5,24); cols <- c(ch7_orange,ch7_mute,ch7_blue)
   for(j in 1:3) curve(dt(x,df[j]),-4,4,add=TRUE,lwd=2,col=cols[j],n=400)
@@ -100,16 +104,16 @@ ch7_draw('t-rozdeleni', {
 },width=10,height=4.4)
 ch7_draw('p-funkce', {
   par(mar=c(4.6,4.7,2.7,.8))
-  mu <- seq(38,54,by=.02); p <- ch7_p2(46,10,25,mu)
-  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab=expression('Testovaná hodnota '*mu[0]*' (body)'),ylab=expression('Oboustranná '*italic(p)*'-hodnota'),main=expression(bolditalic(p)*bold('-hodnota t-testu pro různé testované hodnoty')),bty='l',yaxs='i')
+  mu <- seq(38,54,by=.02); p <- ch7_p2(46,11,25,mu)
+  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab=expression('Testovaná hodnota '*mu[0]*' (body)'),ylab=expression('Oboustranná '*italic(p)*'-hodnota'),main=expression(bolditalic(p)*bold('-hodnota ')*bolditalic(t)*bold('-testu pro různé testované hodnoty')),bty='l',yaxs='i')
   abline(h=.05,lty=2,col=ch7_gray)
   rect(ch7_ci_att_t[1],-.1,ch7_ci_att_t[2],.05,col=adjustcolor(ch7_fill,.8),border=NA)
   lines(mu,p,lwd=2.4,col=ch7_blue)
   segments(ch7_ci_att_t,0,ch7_ci_att_t,.05,lwd=1.6,col=ch7_ink)
   text(46,.025,'Vnitřek 95% intervalu: nezamítnuté hodnoty',cex=.8,col=ch7_ink)
-  points(c(50,48),ch7_p2(46,10,25,c(50,48)),pch=21,bg=ch7_orange,col=ch7_ink,cex=1.3)
-  text(50.3,ch7_p2(46,10,25,50)+.06,bquote(mu[0]*' = 50: '*.(ch7_num(ch7_p2(46,10,25,50),3))),adj=0,cex=.82)
-  text(48.3,ch7_p2(46,10,25,48)+.05,bquote(mu[0]*' = 48: '*.(ch7_num(ch7_p2(46,10,25,48),2))),adj=0,cex=.82)
+  points(c(50,48),ch7_p2(46,11,25,c(50,48)),pch=21,bg=ch7_orange,col=ch7_ink,cex=1.3)
+  text(50.8,ch7_p2(46,11,25,50)+.06,bquote(mu[0]*' = 50: '*.(ch7_num(ch7_p2(46,11,25,50),3))),adj=0,cex=.82)
+  text(48.3,ch7_p2(46,11,25,48)+.05,bquote(mu[0]*' = 48: '*.(ch7_num(ch7_p2(46,11,25,48),2))),adj=0,cex=.82)
   text(53.8,.08,'hladina 0,05',adj=1,cex=.8,col=ch7_gray)
 },width=8.6,height=4.6)
 ch7_draw('pasmo-pouziti', {
@@ -135,18 +139,52 @@ ch7_draw('hypotezy-ekvivalence', {
 },width=8.6,height=3.4)
 ch7_draw('ctyri-kombinace', {
   par(mar=c(4.6,10.5,2.7,.8))
-  e <- ch7_eq; y <- 5:1
+  e <- ch7_eq; k <- nrow(e); y <- k:1
   lab <- paste0('Studie ',e$studie,' (n = ',e$n,')')
-  plot(NA,xlim=c(40,60),ylim=c(.4,5.6),yaxt='n',xlab='Populační průměr skóru online verze (body)',ylab='',main='Intervaly pěti studií vůči pásmu ekvivalence 47–53',bty='l')
-  rect(47,0,53,6,col=adjustcolor(ch7_fill,.55),border=NA)
-  abline(v=c(47,53),lty=2,lwd=1.5,col=ch7_ink); abline(v=50,lty=3,lwd=1.5,col=ch7_gray)
+  plot(NA,xlim=c(40,60),ylim=c(.4,k+1.7),yaxt='n',xlab='Skór v testu pozornosti, online verze (body)',ylab='',main='Intervaly devíti studií vůči pásmu ekvivalence 47–53',bty='l')
+  rect(47,0,53,k+.6,col=adjustcolor(ch7_fill,.55),border=NA)
+  segments(c(47,53),0,c(47,53),k+.6,lty=2,lwd=1.5,col=ch7_ink); segments(50,0,50,k+.6,lty=3,lwd=1.5,col=ch7_gray)
   axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
   segments(e$ci95_d,y,e$ci95_h,y,lwd=1.4,col=ch7_ink)
-  segments(e$ci95_d,y-.08,e$ci95_d,y+.08,lwd=1.4,col=ch7_ink); segments(e$ci95_h,y-.08,e$ci95_h,y+.08,lwd=1.4,col=ch7_ink)
+  segments(e$ci95_d,y-.1,e$ci95_d,y+.1,lwd=1.4,col=ch7_ink); segments(e$ci95_h,y-.1,e$ci95_h,y+.1,lwd=1.4,col=ch7_ink)
   segments(e$ci90_d,y,e$ci90_h,y,lwd=6,col=ch7_blue,lend=1)
   points(e$m,y,pch=21,bg='white',col=ch7_ink,cex=1.2)
-  legend(53.4,5.6,c('95% interval: test rozdílu od 50','90% interval: test ekvivalence','pásmo ekvivalence','norma 50'),lwd=c(1.4,6,NA,1.5),lty=c(1,1,NA,3),col=c(ch7_ink,ch7_blue,NA,ch7_gray),fill=c(NA,NA,adjustcolor(ch7_fill,.55),NA),border=NA,bty='n',cex=.78)
-},width=9.4,height=4.8)
+  legend('top',c('95% interval: test rozdílu od 50','90% interval: test ekvivalence','pásmo ekvivalence','norma 50'),lwd=c(1.4,6,NA,1.5),lty=c(1,1,NA,3),col=c(ch7_ink,ch7_blue,NA,ch7_gray),fill=c(NA,NA,adjustcolor(ch7_fill,.55),NA),border=NA,bty='n',cex=.78,ncol=2)
+},width=9.4,height=6.4)
+# One-sided bound versus central intervals for the one-sided test of the running example.
+ch7_draw('jednostranne-intervaly', {
+  par(mar=c(4.6,13.5,2.7,.8))
+  up1 <- ch7_ci_att_t90[2]; y <- 3:1
+  lab <- c('95% centrální interval','90% centrální interval','Horní jednostranná 95% mez')
+  plot(NA,xlim=c(36,56),ylim=c(.4,3.8),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',main='Jednostranný test „menší“ a odpovídající intervaly',bty='l')
+  axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
+  abline(v=50,lty=3,lwd=1.6,col=ch7_gray); text(50.2,3.65,'norma 50',adj=0,cex=.82,col=ch7_gray)
+  segments(ch7_ci_att_t[1],3,ch7_ci_att_t[2],3,lwd=3,col=ch7_ink)
+  segments(ch7_ci_att_t90[1],2,ch7_ci_att_t90[2],2,lwd=6,col=ch7_blue,lend=1)
+  arrows(up1,1,36.2,1,lwd=3,col=ch7_orange,length=.12)
+  segments(up1,.85,up1,1.15,lwd=3,col=ch7_orange)
+  points(c(46,46),c(3,2),pch=21,bg='white',col=ch7_ink,cex=1.2)
+  text(ch7_ci_att_t[1],3.18,ch7_num(ch7_ci_att_t[1]),adj=c(.5,0),cex=.8,col=ch7_ink)
+  text(ch7_ci_att_t[2]+.2,3.18,ch7_num(ch7_ci_att_t[2]),adj=c(0,0),cex=.8,col=ch7_ink)
+  text(ch7_ci_att_t90[1],2.22,ch7_num(ch7_ci_att_t90[1]),adj=c(.5,0),cex=.8,col=ch7_blue)
+  text(ch7_ci_att_t90[2]-.15,2.22,ch7_num(ch7_ci_att_t90[2]),adj=c(1,0),cex=.8,col=ch7_blue)
+  text(up1-.15,1.27,ch7_num(up1),adj=c(1,0),cex=.8,col=ch7_orange); text(37,1.27,'bez dolní meze',adj=c(0,0),cex=.8,col=ch7_orange)
+},width=9,height=3.6)
+# Mirror: the sample mean lies in the acceptance region around mu0 exactly when mu0 lies in the interval around m.
+ch7_draw('zrcadlo-intervalu', {
+  par(mar=c(4.6,15,2.7,.8))
+  me <- ch7_q24*11/5
+  plot(NA,xlim=c(38,60),ylim=c(.4,2.9),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',main='Stejná vzdálenost, dva pohledy',bty='l')
+  axis(2,at=2,labels=expression('Oblast nezamítnutí kolem '*mu[0]*' = 50'),tick=FALSE,cex.axis=.9)
+  axis(2,at=1,labels=expression('95% interval kolem '*italic(m)*' = 46'),tick=FALSE,cex.axis=.9)
+  rect(ch7_accept[1],1.85,ch7_accept[2],2.15,col=ch7_sand,border=ch7_orange,lwd=1.4)
+  segments(ch7_ci_att_t[1],1,ch7_ci_att_t[2],1,lwd=6,col=ch7_blue,lend=1)
+  points(c(50,50),c(2,1),pch=23,bg=ch7_orange,col=ch7_ink,cex=1.25); points(c(46,46),c(2,1),pch=21,bg='white',col=ch7_ink,cex=1.25)
+  text(ch7_accept,2.3,ch7_num(ch7_accept),cex=.8,col=ch7_orange); text(ch7_ci_att_t,1.22,ch7_num(ch7_ci_att_t),cex=.8,col=ch7_blue)
+  arrows(46,1.55,50,1.55,code=3,length=.07,col=ch7_ink); text(48,1.7,expression('|'*italic(m)-mu[0]*'| = 4'),cex=.82)
+  text(55.6,1.5,paste0('mezní chyba ',ch7_num(me),'\nna každou stranu'),adj=0,cex=.78,col=ch7_gray)
+  legend('topleft',legend=c(expression('výběrový průměr '*italic(m)),expression('testovaná hodnota '*mu[0])),pch=c(21,23),pt.bg=c('white',ch7_orange),col=ch7_ink,bty='n',cex=.8,horiz=TRUE)
+},width=9,height=3.4)
 # Exercise 7: the same plotting positions and reference line as chapter 4.
 ch7_qq_y <- sort(ch7_u07)
 ch7_qq_p <- (seq_along(ch7_qq_y)-.5)/length(ch7_qq_y)

@@ -301,3 +301,16 @@ v AGENTS.md zůstává; historické záznamy a doklady se nepřepisují.
 statistiky pro psychology‘ místo ‚Základy statistiky pro psychology 1‘“
 a „Kapitolu 3 bych přejmenoval na ‚Ukazatele polohy, variability a tvaru‘“;
 následně schválil plán úprav.
+
+<a id="r66-kurziva-a-et-al"></a>
+
+## R66 — Kurzivní *t* a *z* ve složeninách a „et al.“ v citacích
+
+**Stav:** schváleno 2026-11-09. **Rozsah:** studentský text všech kapitol, přehledy (slovníček, značení, Excel), interaktivní vizualizace, popisky grafů a autorský slovník. Prezentace a balíčky AI tutora se sjednotí při své příští úpravě.
+
+**Volba a důvod:**
+
+- Písmeno statistiky ve složeninách se sází kurzivou stejně jako samostatná značka: *t*-rozdělení, *t*-test, *t*-kvantil, *t*-interval, *z*-test, *z*-skór. Na začátku věty zůstává malé písmeno, obdobně jako u *p*-hodnoty ([R56](kapitola-06.md#r56-p-hodnota-cohen)). T-skór je název škály, a proto zůstává stojatý. V markdownu `*t*-test`, v tabulkách psaných HTML `<em>t</em>-test`, v grafech R `italic(t)`. Kotvy, ID, názvy souborů a funkcí Excelu, kód a alternativní texty obrázků se nemění.
+- U citace tří a více autorů uvedené jako součást věty se píše „Autor et al. [-@klic]“, nikoli „Autor a spolupracovníci“ či „a kolegové“; odpovídá to zkratce, kterou vytváří citační styl APA 7 v závorkových citacích.
+
+**Doklad:** autor 2026-11-09: „t-rozdělení, t-tes, z-test apod. bych také psal vždy s kurzivním t či z“ a „Při citacích více autorů bych používal např. Lakens et al., nikoli ‚a spolupracovníci‘ nebo ‚a kolegové‘“. V následné otázce zvolil rozsah „Celá kniha i z-skór“ a schválil plán úprav.

@@ -301,7 +301,7 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_07.html') {
         assert.equal(await solutions.count(),14,'Chapter 7 has twelve core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 7 mathematics parses');
-        assert.equal(await page.locator('main img').count(),8);
+        assert.equal(await page.locator('main img').count(),10,'Chapter 7 has ten figures including the mirror and one-sided interval figures');
         assert.equal(await page.locator('.callout-body-container #fig-qq-uzkost-07').count(),1,'Exercise 7 Q-Q plot is inside the solution');
         const qq7=page.locator('#fig-qq-uzkost-07');
         assert.equal(await qq7.isVisible(),false,'Exercise Q-Q plot is hidden initially');
@@ -318,7 +318,7 @@ const server = http.createServer((req, res) => {
         assert(greek7.every(e=>e.variant==='normal'),'Greek symbols of chapter 7 must be upright');
         const quantiles=await page.locator('main math msub').evaluateAll(items=>items.filter(e=>e.firstElementChild&&e.firstElementChild.textContent==='t'&&/v/.test(e.lastElementChild.textContent)).length);
         assert(quantiles>5,'t quantiles carry the level and degrees of freedom in the subscript');
-        for(const id of ['rozsireni-tezsi-chvosty','rozsireni-tost-vypocet','rozsireni-neinferiorita']) {
+        for(const id of ['rozsireni-tezsi-chvosty','rozsireni-odolnost-t','rozsireni-tost-vypocet','rozsireni-noninferiorita']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         for(const id of ['sec-co-znamena-95','sec-interval-predpoklady','sec-t-rozdeleni','sec-interval-t','sec-t-test','sec-interval-a-p','sec-pasmo-ekvivalence','sec-test-ekvivalence','sec-ctyri-kombinace','sec-meze-ekvivalence']) assert(await page.locator('#'+id).isVisible(),`Core section present: ${id}`);
