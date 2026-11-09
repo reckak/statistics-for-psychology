@@ -1,0 +1,297 @@
+Snímek jedna.
+
+Tato nahrávka doprovází výkladovou část prezentace k sedmé kapitole. Při poslechu sledujte odpovídající snímek. Každý úsek začíná jeho číslem. Přehrávání si můžete kdykoli pozastavit, zejména u grafů a výpočtů. Výklad končí před samostatným procvičováním.
+
+V předchozí kapitole jsme testovali, zda mají studenti po krátkém spánku nižší průměrnou pozornost než normová populace. Test pomohl rozhodnout o hypotéze. Výzkumnici ale zajímá také velikost rozdílu a nejistota odhadu. Pokles o půl bodu a pokles o osm bodů mohou mít pro použití testu velmi odlišný význam.
+
+Dnes proto k testování připojíme odhad populačního průměru pomocí intervalu spolehlivosti. Potom opustíme předpoklad známé populační směrodatné odchylky a zavedeme jednovýběrový té-test. Nakonec ukážeme, jak doložit, že rozdíl je dost malý vzhledem k předem zdůvodněným hranicím.
+
+Navazujeme na směrodatnou chybu, výběrové rozdělení průměru, kvantyly normálního rozdělení a pé-hodnotu. U příkladu psychomotorického vývoje dětí použijeme skutečná data přebíraná z Hauelovy učebnice. Simulace budeme odlišovat od výsledků konkrétního výzkumu.
+
+Snímek dva.
+
+Prezentace postupuje od odhadu k testování a potom k věcné interpretaci. Nejprve si vysvětlíme, jak vzniká interval spolehlivosti a co znamená jeho hladina spolehlivosti. Poté prozkoumáme šířku intervalu a důsledky toho, že populační směrodatnou odchylku odhadujeme z dat.
+
+Třetí část představí jednovýběrový té-test. Čtvrtá ukáže, proč interval a odpovídající test dávají stejné rozhodnutí a který interval potřebujeme pro jednostrannou otázku.
+
+V páté části zavedeme test ekvivalence. V šesté propojíme jeho výsledek s testem rozdílu a ukážeme, jak závěry sdělit. Závěrečné procvičování, které je také uvedeno v obsahu prezentace, už součástí tohoto komentáře není.
+
+Snímek tři.
+
+Začneme přechodem od rozhodnutí testu k odhadu. Z jednoho výběru chceme získat rozmezí, které vyjádří nejistotu našeho odhadu populačního průměru.
+
+Snímek čtyři.
+
+Výzkumnice otestovala dvacet pět studentů po noci s méně než pěti hodinami spánku. Výběrový průměr, označený písmenem em, byl čtyřicet šest bodů. Norma má průměr padesát bodů a směrodatnou odchylku deset bodů.
+
+Pro původní zed-test jsme předpokládali, že i v populaci studentů po krátkém spánku je směrodatná odchylka deset bodů. Směrodatná chyba průměru pak byla deset děleno odmocninou z dvaceti pěti, tedy dva body. Rozdíl čtyřicet šest minus padesát jsme vydělili dvěma a získali testovou statystyku minus dva. Jednostranná pé-hodnota byla přibližně nula celých dvacet tři tisícin. Na hladině pěti setin jsme nulovou hypotézu zamítli.
+
+Rozhodnutí podporuje závěr o nižším populačním průměru, ale jeho velikost teprve potřebujeme odhadnout.
+
+Na snímku rozlišujte řecké sigma a písmeno es. Sigma deset je modelový předpoklad o populaci. Výběrová směrodatná odchylka es jedenáct je údaj vypočtený z těchto studentů. Krátký spánek by mohl ovlivnit také rozdíly mezi lidmi, takže populační odchylku deset nelze automatycky převzít z norem. Pro vysvětlení principu s ní nejprve pracujeme; později ji nahradíme odhadem z dat.
+
+Snímek pět.
+
+Výběrový průměr čtyřicet šest bodů je bodový odhad populačního průměru, označeného řeckým písmenem mí. Bodový odhad poskytuje jediné číslo. Při jiném výběru studentů by však průměr vyšel jinak. K odhadu proto potřebujeme připojit informaci o výběrové nejistotě.
+
+Intervalový odhad je rozmezí vypočtené z výběru. Jeho konstrukce vychází z toho, jak se výsledky mění mezi výběry za stanovených předpokladů.
+
+Připomeňme si předchozí úvahu. Kdybychom znali populační průměr a směrodatná chyba byla dva body, prostředních devadesát pět procent výběrových průměrů by leželo nejvýše tři celé devadesát dvě setiny bodu od něj. Tuto vzdálenost dostaneme jako jedna celá devadesát šest setin krát dva.
+
+Teď úvahu obrátíme. Je-li výběrový průměr nejvýše o tuto vzdálenost od populačního, je také populační průměr nejvýše o tutéž vzdálenost od výběrového. Kolem každého výběrového průměru proto vytvoříme rozmezí se stejným dosahem na obě strany. Při opakování zachytí populační průměr v devadesáti pěti procentech případů. Tak vzniká interval spolehlivosti. Zatím předpokládáme nezávislý náhodný výběr z normální populace se známou směrodatnou odchylkou deset bodů.
+
+Snímek šest.
+
+Vzorec čtěme podle významu. Středem intervalu je výběrový průměr em. Na každou stranu od něj přidáme součin kvantylu a směrodatné chyby. Směrodatnou chybu získáme vydělením populační směrodatné odchylky odmocninou z velikosti výběru.
+
+Pro devadesátipětiprocentní interval potřebujeme kvantyl normovaného normálního rozdělení s úrovní nula celých devět set sedmdesát pět tisícin. Pod tímto kvantylem leží devadesát sedm a půl procenta plochy. Mezi jeho zápornou a kladnou hodnotou pak leží prostředních devadesát pět procent.
+
+Směrodatná chyba je dva body. Násobíme ji přibližně jednou celou devadesáti šesti setinami a dostáváme tři celé devadesát dvě setiny bodu. Tento součin se nazývá mezní chyba odhadu. Je to polovina šířky souměrného intervalu.
+
+Od čtyřiceti šesti odečteme tři celé devadesát dvě setiny a dostaneme dolní mez čtyřicet dva celých osm setin. Přičtením téže mezní chyby získáme horní mez čtyřicet devět celých devadesát dvě setiny bodu.
+
+Devadesát pět procent je hladina spolehlivosti. Obecně se zapisuje jedna minus alfa. Zbývající část alfa se u tohoto intervalu rozdělí napůl do obou chvostů, proto má horní kvantyl úroveň jedna minus alfa děleno dvěma. Dvěma dělíme pouze alfu.
+
+Věcně jsou s daty za předpokladů výpočtu slučitelné průměry přibližně od čtyřiceti dvou do padesáti bodů. Nejistota připouští téměř osmibodový pokles i pokles velmi malý.
+
+Snímek sedm.
+
+Graf pomáhá pochopit, čeho se týká údaj devadesát pět procent. Pro tuto simulaci známe populační průměr čtyřicet sedm bodů a směrodatnou odchylku deset. Počítač vylosoval sto výběrů po dvaceti pěti studentech a pro každý vypočetl interval.
+
+Vodorovná osa udává skór v bodech, jednotlivé řádky představují různé výběry. Svislá přerušovaná čára označuje stále stejný populační průměr čtyřicet sedm. Většina vodorovných úseček ji protíná. Oranžové úsečky ji míjejí.
+
+Všechny intervaly mají stejnou šířku sedm celých osmdesát čtyři setiny bodu. Mění se jejich poloha, protože každý výběr má jiný průměr. V tomto běhu zachytilo parametr devadesát čtyři intervalů ze sta. Jiný běh může dát jiný počet. Devadesát pět procent je dlouhodobé pokrytí postupu, ne povinný počet úspěchů v každé stovce opakování.
+
+Jeden už vypočtený interval pevný populační průměr buď obsahuje, nebo neobsahuje. My obvykle nevíme, která možnost nastala. V tomto pojetí proto neříkáme, že populační průměr leží v konkrétním intervalu s pravděpodobností devadesát pět procent. Pravděpodobnostní záruka se vztahuje k postupu při opakovaném výběru. Interval také neudává rozmezí, v němž leží devadesát pět procent jednotlivých studentů.
+
+Snímek osm.
+
+Nyní se zaměříme na šířku intervalu. Pak se podíváme, co se změní, když populační směrodatnou odchylku neznáme a odhadujeme ji z výběru.
+
+Snímek devět.
+
+Šířku intervalu určují hladina spolehlivosti, variabilita v populaci a velikost výběru. Při vyšší hladině spolehlivosti potřebujeme širší interval, aby postup zachytil populační průměr častěji. V našem příkladu má devadesátiprocentní interval šířku šest celých padesát osm setin bodu. Devadesátipětiprocentní má šířku sedm celých osmdesát čtyři setiny a devadesátidevítiprocentní deset celých třicet setin bodu.
+
+Dvojnásobná populační směrodatná odchylka znamená při jinak stejných podmínkách dvojnásobnou šířku. Větší rozdíly mezi lidmi tedy znesnadňují přesný odhad průměru.
+
+V grafu je na vodorovné ose velikost výběru a na svislé šířka intervalu v bodech. Křivky s rostoucím výběrem klesají, postupně však pomaleji. Pro zúžení intervalu na polovinu potřebujeme při známé sigma čtyřnásobný výběr. Přechod z dvaceti pěti na sto studentů sníží šířku devadesátipětiprocentního intervalu na tři celé devadesát dvě setiny bodu. Další zúžení na polovinu by vyžadovalo čtyři sta studentů.
+
+Šířka vyjadřuje přesnost odhadu vzhledem k výběrové variabilitě. Úzký interval však nezaručuje správné zobecnění. Velký výběr dobrovolníků může poskytovat přesný odhad pro skupinu, která se systematycky liší od cílové populace. Interval nezachytí ani systematyckou chybu měření. Jeho pokrytí závisí na přiměřenosti modelu a způsobu výběru.
+
+Snímek deset.
+
+Ve většině výzkumů populační směrodatnou odchylku sigma neznáme. Použijeme výběrovou odchylku es. V našem příkladu je jedenáct bodů, takže odhad směrodatné chyby je jedenáct děleno odmocninou z dvaceti pěti, tedy dvě celé dvě desetiny bodu.
+
+Dosazení odhadu přináší další nejistotu. Mezi výběry kolísá průměr v čitateli i odchylka ve jmenovateli. Když výběrová odchylka vyjde malá, vydělíme rozdíl menším číslem a statystyka může být daleko od nuly.
+
+V levém grafu je histogram deseti tisíc simulovaných statystyk z výběrů po pěti lidech. Vodorovná osa udává hodnotu standardyzované statystyky, svislá hustotu. Histogram lépe sleduje křivku té-rozdělení než normovanou normální křivku. Při dělení známou sigma leželo mimo meze minus a plus jedna celá devadesát šest setin čtyři celé osm desetin procenta výsledků. Při dělení výběrovou es to bylo dvanáct celých čtyři desetiny procenta.
+
+Té-rozdělení popisuje právě statystyku, v níž celý rozdíl výběrového a populačního průměru dělíme odhadem směrodatné chyby. Přesně platí pro nezávislý výběr z normální populace. Samotný výběrový průměr má při normální populaci nadále normální rozdělení.
+
+Počet stupňů volnosti je velikost výběru minus jedna, u našich studentů dvacet čtyři. Pravý graf ukazuje těžší chvosty při malém počtu stupňů volnosti a postupné přibližování normální křivce. Žádná ostrá hranice velikosti výběru, od které rozdíl zmizí, neexistuje.
+
+Snímek jedenáct.
+
+Pro konstrukci intervalu potřebujeme kvantyl té-rozdělení. Jeho zápis na snímku obsahuje úroveň kvantylu a počet stupňů volnosti. Úroveň nula celých devět set sedmdesát pět tisícin znamená, že pod hledanou hodnotou leží devadesát sedm a půl procenta rozdělení.
+
+Pro dvacet čtyři stupňů volnosti je tento kvantyl přibližně dvě celé šedesát čtyři tisícin. V Excelu jej získáme funkcí té-tečka-inv. První argument je podíl vlevo, tedy nula celých devět set sedmdesát pět tisícin. Druhý argument je dvacet čtyři, počet stupňů volnosti.
+
+V tabulce postupujte po řádku s kvantyly. Při čtyřech stupních volnosti potřebujeme násobek dvě celé sedm set sedmdesát šest tisícin. Při devadesáti devíti stupních už jen jedna celá devět set osmdesát čtyři tisícin. Odpovídající normovaný kvantyl je přibližně jedna celá devět set šedesát tisícin. Ve všech sloupcích je stejný podíl vlevo, ale potřebná vzdálenost od nuly se liší.
+
+Té-rozdělení je souměrné. Dolní kvantyl s podílem nula celých dvacet pět tisícin je proto opačné číslo. Pro dvacet čtyři stupňů volnosti je přibližně minus dvě celé šedesát čtyři tisícin.
+
+Snímek dvanáct.
+
+Interval při neznámé sigma sestavíme stejnou logikou jako předtím. Ke středu připojíme mezní chybu na obě strany. Tentokrát však násobíme odhad směrodatné chyby kvantylem té-rozdělení.
+
+Projděme pět kroků na snímku. Nejprve vydělíme jedenáct odmocninou z dvaceti pěti a získáme dvě celé dvě desetiny bodu. Potom určíme dvacet čtyři stupňů volnosti. Třetí krok poskytne kvantyl přibližně dvě celé šedesát čtyři tisícin. Jeho násobením dvěma celými dvěma desetinami získáme mezní chybu přibližně čtyři celé padesát čtyři setiny bodu. Nakonec ji odečteme od čtyřiceti šesti a přičteme k nim.
+
+Devadesátipětiprocentní interval sahá od čtyřiceti jedné celé čtyřiceti šesti setin do padesáti celých padesáti čtyř setin bodu. Tentokrát zahrnuje i normu padesát.
+
+Je asi o jednu celou dvacet čtyři setiny bodu širší než původní interval. Má to dva důvody. Kvantyl té-rozdělení je vzdálenější od nuly a výběrová odchylka jedenáct je vyšší než původně předpokládaných deset. Druhý rozdíl závisí na konkrétním výběru. V jiném výběru může es vyjít i menší. Při stejné číselné hodnotě odchylek však větší kvantyl té-interval vždy rozšíří.
+
+Výpočet v sešitu kapitoly najdete na listu označeném na snímku. Vzorec nejprve převede hladinu spolehlivosti na podíl vlevo a teprve pak vyhledá kvantyl.
+
+Snímek třináct.
+
+Vracíme se ke stejným sto simulovaným výběrům. Tentokrát má každý interval šířku určenou také výběrovou směrodatnou odchylkou. Vodorovná osa opět udává skór v bodech a každý řádek jeden výběr. Svislá čára označuje populační průměr čtyřicet sedm.
+
+Oproti předchozímu grafu se mění poloha i délka úseček. Šířky se v tomto běhu pohybují přibližně od pěti celých šesti desetin do dvanácti celých nula desetin bodu. Populační průměr zachytilo devadesát šest intervalů ze sta. Dlouhodobé pokrytí správného postupu je za normálního modelu opět devadesát pět procent.
+
+Širší interval zde vzniká z výběru s větší výběrovou odchylkou. Úzký interval naopak může parametr minout právě proto, že výběrová odchylka náhodou podhodnotila variabilitu.
+
+Kdybychom ponechali normovaný násobek jedna celá devadesát šest setin a pouze dosadili es, pokrytí by neodpovídalo slibovaným devadesáti pěti procentům. Pro výběry po dvaceti pěti lidech by bylo asi devadesát tři celých osm desetin procenta. Pro deset lidí devadesát jedna celých osm desetin a pro pět lidí osmdesát sedm celých osm desetin procenta. Tyto hodnoty jsou teoretycké dlouhodobé výsledky za normálního modelu. Nejde o další počty ze zobrazené stovky výběrů.
+
+Snímek čtrnáct.
+
+Přesné té-rozdělení a přesné pokrytí vyžadují nezávislý náhodný výběr z normální populace. V praxi je proto třeba posoudit, nakolik výzkumná situace těmto předpokladům odpovídá.
+
+Vůči odchylkám od normality jsou té-postupy poměrně odolné, zejména u větších výběrů a souměrných populací. Druh odchylky je však podstatný. Při výrazné šikmosti může pokrytí klesnout a jednostranný test může v jednom směru zamítat pravdivou nulovou hypotézu příliš často. U některých souměrných populací s těžkými chvosty naopak bývá pokrytí vyšší, intervaly širší a síla testu menší. Z toho nelze odvodit jednu univerzální bezpečnou velikost výběru.
+
+Před výpočtem proto prohlédneme histogram, krabicový graf nebo kvé-kvé-graf. Sledujeme především výraznou šikmost, odlehlé hodnoty a další rysy důležité pro použitý model. V příkladu psychomotorického vývoje Hauel takto posuzoval padesát šest hodnot a považoval postup za přiměřený. Samotný pohled na graf ovšem nezaručuje splnění všech předpokladů.
+
+Nezávislost vychází hlavně z uspořádání výzkumu. Pokud se studenti ve skupinkách navzájem ovlivňovali, jejich skóry mohou být závislé. Při kladné souvislosti výsledků uvnitř skupinek pak běžný výpočet zpravidla podhodnotí nejistotu. Větší počet vzájemně závislých pozorování tuto potíž sám neodstraní.
+
+Snímek patnáct.
+
+Máme připraveno vše pro jednovýběrový té-test. Budeme porovnávat průměr s danou referenční hodnotou při neznámé populační směrodatné odchylce. Logika testování zůstává stejná jako u zed-testu.
+
+Snímek šestnáct.
+
+Vracíme se ke studentům po krátkém spánku. Výzkumná hypotéza byla směrová už před sběrem dat: populační průměr je menší než padesát. Alternatyvní hypotéza, há s indexem jedna, tedy tvrdí mí menší než padesát. Nulová hypotéza, há s indexem nula, zahrnuje průměr padesát a vyšší. Zvolíme hladinu významnosti nula celých pět setin.
+
+Od výběrového průměru čtyřicet šest odečteme hraniční referenční hodnotu padesát. Celý rozdíl vydělíme odhadem směrodatné chyby dvě celé dvě desetiny. Testová statystyka té je přibližně minus jedna celá osm set osmnáct tisícin. Stupňů volnosti je dvacet čtyři.
+
+Nulová hypotéza zahrnuje více populačních průměrů. Pro výpočet používáme její hranici padesát, nejbližší alternatyvě. Při této hraniční hodnotě má statystyka za předpokladů modelu příslušné té-rozdělení.
+
+Pro otázku menší jsou extrémnější hodnoty vlevo. Pé-hodnota je proto plocha nalevo od vypočtené statystyky. Funkce té-tečka-dyst s argumentem pravda vrací přibližně nula celých čtyřicet jedna tisícin. To je méně než pět setin, takže nulovou hypotézu zamítáme.
+
+Stejné rozhodnutí dává porovnání s krityckou hodnotou přibližně minus jedna celá sedm set jedenáct tisícin. Naše statystyka leží ještě více vlevo. Závěr testu tak podporuje nižší populační průměr, za předpokladů použitého postupu.
+
+Snímek sedmnáct.
+
+Po rozhodnutí následuje věcná interpretace. Odhad rozdílu od normy jsou minus čtyři body. Devadesátiprocentní interval pro populační průměr sahá přibližně od čtyřiceti dvou celých dvaceti čtyř setin do čtyřiceti devíti celých sedmdesáti šesti setin bodu. Připouští tedy pokles o téměř osm bodů i pokles zhruba o čtvrt bodu. Velikost rozdílu známe poměrně nepřesně.
+
+Zda rozdíl způsobil krátký spánek, závisí na uspořádání výzkumu. Bez odpovídající kontroly a náhodného přiřazení mohou studenti s krátkým spánkem vykazovat také jiné podstatné odlišnosti. Výsledek testu tyto možnosti sám nerozliší.
+
+Sledujte také srovnání pé-hodnot na snímku. Zed-test dal přibližně nula celých dvacet tři tisícin. Kdybychom použili té-rozdělení a výběrovou odchylku deset, statystyka by zůstala minus dva, ale pé-hodnota by vzrostla přibližně na dvacet osm tisícin. Důvodem jsou těžší chvosty. Skutečná výběrová odchylka jedenáct navíc zmenšila absolutní hodnotu statystyky a pé-hodnota vzrostla na čtyřicet jedna tisícin.
+
+Oboustranná pé-hodnota by byla dvojnásobná, přibližně nula celých osmdesát dvě tisíciny. Použijeme směr stanovený předem. Volba jednostranného testu až podle příznivějšího výsledku by změnila chybovost postupu.
+
+Snímek osmnáct.
+
+Nyní příklad se skutečnými daty, který přebíráme z Hauelovy učebnice. Jde o padesát šest dětí s nízkou porodní hmotností. Ve věku šesti měsíců jim byl změřen index psychomotorického vývoje, na snímku označený pé-dé-í. Referenční průměr je sto.
+
+Test je oboustranný. Přestože bychom mohli očekávat nižší skór, opačný směr nelze předem pominout. Matky poloviny dětí se účastnily podpůrného programu a normy pocházely z jiné skupiny dětí. Nulová hypotéza tvrdí průměr sto, alternatyvní připouští odchylku v kterémkoli směru.
+
+Výběrový průměr je sto čtyři celých sto dvacet pět tisícin, výběrová směrodatná odchylka dvanáct celých pět set osmdesát čtyři tisícin. Po vydělení odmocninou z padesáti šesti získáme odhad směrodatné chyby asi jedna celá šest set osmdesát dvě tisíciny. Rozdíl průměru od stovky dělený touto chybou dává statystyku přibližně dvě celé čtyřicet pět setin s padesáti pěti stupni volnosti.
+
+Oboustranná pé-hodnota je asi nula celých sedmnáct tisícin. Na hladině pěti setin zamítáme rovnost s normou. Devadesátipětiprocentní interval sahá přibližně od sta celých sedmdesáti pěti setin do sta sedmi celých padesáti setin bodu.
+
+Výsledek má nečekaný směr: průměr je asi o čtyři body nad normou. Samotné srovnání však neurčuje příčinu a nezaručuje zobecnitelnost na všechny děti s nízkou porodní hmotností. Jde o konkrétní soubor z konkrétní studyje.
+
+Snímek devatenáct.
+
+Tabulka shrnuje funkce Excelu. Nemusíme si pamatovat řetězec znaků zpaměti. Potřebujeme rozumět, jakou veličinu funkce vrací a jak souvisí s otázkou.
+
+Funkce té-tečka-inv vrací kvantyl. Zadáváme podíl rozdělení vlevo a počet stupňů volnosti. Pro úroveň nula celých devět set sedmdesát pět tisícin a dvacet čtyři stupňů volnosti vychází přibližně dvě celé šedesát čtyři tisícin.
+
+Funkce té-tečka-dyst s posledním argumentem pravda vrací plochu vlevo od zadané statystyky. Pro alternatyvu menší je to přímo pé-hodnota. Pro alternatyvu větší tuto plochu odečteme od jedné. Na datech pozornosti jde přibližně o nula celých čtyřicet jedna tisícin vlevo a nula celých devět set padesát devět tisícin vpravo.
+
+Funkce té-tečka-dyst-tečka-dva-té vrací oboustrannou pé-hodnotu. Vyžaduje nezápornou vstupní statystyku, proto případně použijeme její absolutní hodnotu. Pro pozornost vychází přibližně osmdesát dvě tisíciny.
+
+Funkce té-tečka-inv-tečka-dva-té vrací kladnou krityckou hodnotu pro oboustranný test. První argument zde udává celkovou hladinu v obou chvostech. Proto hladina pět setin vede ke stejnému výsledku jako podíl vlevo devět set sedmdesát pět tisícin u běžné inverzní funkce. Výpočet nikdy nenahrazuje volbu směru a věcnou interpretaci.
+
+Snímek dvacet.
+
+Propojíme nyní interval s pé-hodnotou a rozhodnutím testu. Nejdřív oboustranně, potom ukážeme odpovídající mez pro jednostrannou otázku.
+
+Snímek dvacet jedna.
+
+Graf zobrazuje oboustranné pé-hodnoty pro různé testované populační průměry při stále stejných datech. Vodorovná osa udává testovanou hodnotu, svislá pé-hodnotu. Vrchol je u čtyřiceti šesti bodů, tedy u našeho výběrového průměru. Když se testovaná hodnota rovná výběrovému průměru, statystyka je nulová a pé-hodnota jedna. Směrem od středu pé-hodnota klesá.
+
+Vodorovná přerušovaná čára vyznačuje hladinu pět setin. Hodnoty, pro které křivka leží nad ní, jsou přesně striktně uvnitř odpovídajícího devadesátipětiprocentního intervalu. Tyto hodnoty oboustranný test nezamítá. Norma padesát leží uvnitř a její pé-hodnota je přibližně osmdesát dvě tisíciny.
+
+Přesně na mezích je pé-hodnota pět setin. Podle používaného pravidla zamítáme při pé-hodnotě menší nebo rovné hladině, tedy i při přesné rovnosti. Rozhodujeme z nezaokrouhlených hodnot. Vytištěná mez padesát celých padesát čtyři setiny není totéž co přesná vypočtená mez.
+
+Interval navíc ukazuje velikost a přesnost odhadu. Jeho střed je čtyři body pod normou a šířka přibližně devět celých osm setin bodu připomíná značnou nejistotu. Hodnoty těsně uvnitř a těsně vně mezí jsou s daty téměř stejně slučitelné. Hranice rozhodnutí nevytváří skok v tom, co jsme se o velikosti rozdílu dozvěděli.
+
+Snímek dvacet dva.
+
+Obrázek ukazuje stejnou vzdálenost ze dvou pohledů. Na vodorovné ose je skór v bodech. Horní oblast je soustředěna kolem testované hodnoty padesát a dolní interval kolem výběrového průměru čtyřicet šest.
+
+Při pozorovaném odhadu směrodatné chyby dvě celé dvě desetiny je mezní chyba asi čtyři celé padesát čtyři setiny bodu. Kolem normy padesát tak vymezíme oblast nezamítnutí přibližně od čtyřiceti pěti celých čtyřiceti šesti setin do padesáti čtyř celých padesáti čtyř setin. Náš výběrový průměr čtyřicet šest leží uvnitř.
+
+Kolem průměru čtyřicet šest sestrojíme stejně široký interval od čtyřiceti jedné celé čtyřiceti šesti setin do padesáti celých padesáti čtyř setin. Norma padesát leží také uvnitř. V obou případech porovnáváme vzdálenost čtyři body s mezní chybou přibližně čtyři a půl bodu.
+
+Třetím vyjádřením je pé-hodnota větší než pět setin. Testová statystyka, pé-hodnota i interval proto dávají stejné rozhodnutí. Musí však jít o odpovídající výpočty se stejnými předpoklady a rozdělením. Oblast kolem normy navíc závisí na pozorované výběrové odchylce. U té-testu nejde o jednu pevnou hranici výběrového průměru použitelnou pro všechny budoucí výběry.
+
+Snímek dvacet tři.
+
+Jednostranný té-test pozornosti zamítl nulovou hypotézu, přestože devadesátipětiprocentní interval obsahuje padesát. Tyto dva výsledky odpovídají odlišným otázkám. Centrální devadesátipětiprocentní interval souvisí s oboustranným testem. Ten rozděluje celkových pět procent do dvou chvostů. Jednostranný test používá všech pět procent v jednom směru.
+
+Pro alternatyvu menší potřebujeme horní jednostrannou mez se spolehlivostí devadesát pět procent. K průměru čtyřicet šest přičteme kvantyl s úrovní devadesát pět setin krát odhad směrodatné chyby. Vychází přibližně čtyřicet devět celých sedmdesát šest setin bodu. Norma padesát je nad touto mezí, takže test zamítá.
+
+V grafu porovnejte prostřední a dolní řádek. Horní mez centrálního devadesátiprocentního intervalu je přesně stejná jako jednostranná devadesátipětiprocentní mez. Centrální interval totiž nechává pět procent v každém chvostu. Jednostranný interval dole sahá doleva bez omezení; centrální interval má navíc dolní mez čtyřicet dva celých dvacet čtyři setiny bodu.
+
+Obecně k jednostrannému testu na hladině alfa patří odpovídající mez centrálního intervalu se spolehlivostí jedna minus dvakrát alfa. Pro alternatyvu menší sledujeme horní mez, pro alternatyvu větší dolní. Centrální interval navíc ukazuje nejistotu na obě strany. Tento vztah využijeme při testování ekvivalence.
+
+Snímek dvacet čtyři.
+
+Přecházíme k otázce, zda je rozdíl dost malý pro určité použití. Nejdříve vymezíme přijatelné rozdíly. Potom sestrojíme test, který může podpořit závěr o ekvivalenci.
+
+Snímek dvacet pět.
+
+Vydavatel testu pozornosti připravuje online verzi a chce používat původní normy s průměrem padesát bodů. Potřebuje posoudit, zda posun průměru zůstává přijatelně malý. Obvyklý test rovnosti to sám nevyřeší. Nezamítnutí může být důsledkem malé studyje a zamítnutí ve velké studyji může odpovídat nepatrnému rozdílu.
+
+Nejmenší věcně důležitý rozdíl označíme delta. V tomto příkladu je to kladná hranice v bodech škály. Kolem normy vymezíme dolní a horní hranici ekvivalence odečtením a přičtením delty. Mezi nimi leží pásmo ekvivalence.
+
+Jak deltu zdůvodnit? Graf ukazuje důsledky pro doporučení dalšího vyšetření. Vodorovná osa udává skór, svislá hustotu. Svislá čára u čtyřiceti bodů je rozhodovací hranice. Plocha vlevo od ní představuje podíl osob pod hranicí.
+
+Při normálním modelu s průměrem padesát a odchylkou deset je tento podíl přibližně patnáct celých devět desetin procenta. Posun průměru o tři body dolů jej zvýší na dvacet čtyři celých dvě desetiny procenta. Posun nahoru jej sníží na devět celých sedm desetin procenta. I malý posun průměru tedy může ovlivnit doporučení pro mnoho lidí.
+
+Vydavatel v příkladu předem stanovil hranici tři body, tedy pásmo od čtyřiceti sedmi do padesáti tří. Jde o zdůvodněnou volbu pro konkrétní účel. Nevzniká automatycky z obecné konvence o malém účinku a nesmí se přizpůsobit výsledku právě analyzovaných dat.
+
+Snímek dvacet šest.
+
+Test ekvivalence přiděluje hypotézám jiné role než obvyklý test nulového rozdílu. Nulová hypotéza tvrdí, že rozdíl dosahuje hranice nebo ji překračuje. Alternatyvní hypotéza tvrdí, že populační průměr leží uvnitř pásma.
+
+Na obrázku je vodorovná osa populačního průměru. Modrá prostřední oblast představuje alternatyvu: průměr větší než čtyřicet sedm a současně menší než padesát tři. Oranžové oblasti patří nulové hypotéze: průměr nejvýše čtyřicet sedm nebo alespoň padesát tři.
+
+Abychom doložili ekvivalenci, musíme zamítnout obě části nulové hypotézy. Pak data podporují závěr, že rozdíl od normy je menší než předem zvolená hranice. Při nezamítnutí zůstává ekvivalence nedoložena. Samotný tento výsledek ještě neříká, že rozdíl je věcně důležitý. Data mohou být příliš nepřesná, aby mezi oběma možnostmi rozhodla.
+
+Snímek dvacet sedm.
+
+Postup tvoří dva jednostranné testy, označené zkratkou tost. První test porovnává průměr s dolní hranicí čtyřicet sedm a zjišťuje, zda je větší. Druhý porovnává průměr s horní hranicí padesát tři a zjišťuje, zda je menší. Každý provedeme na hladině pěti setin. Ekvivalenci doložíme pouze tehdy, když zamítnou oba.
+
+Proč tím celková hladina nevzroste na deset setin? Při platnosti nulové hypotézy leží populační průměr na jedné z vnějších stran pásma nebo na její hranici. Abychom chybně doložili ekvivalenci, musíme zamítnout také tu dílčí nulovou hypotézu, která je pravdivá. Pravděpodobnost zamítnutí obou proto nemůže být větší než pravděpodobnost chybného zamítnutí této pravdivé části. Ta je za předpokladů modelu nejvýše pět setin. Nejde o situaci, kdy k celkovému úspěchu stačí zamítnout libovolný z testů.
+
+Rozhodnutí přečteme z devadesátiprocentního intervalu. Jeho dolní mez musí být alespoň čtyřicet sedm a horní nejvýše padesát tři. Celý interval tedy nesmí přesahovat pásmo. Přesný dotyk hranice podle našeho pravidla také stačí, protože odpovídá pé-hodnotě pět setin. Rozhodujeme z nezaokrouhlených mezí.
+
+Pro jednu studyji tak používáme dva intervaly k různým účelům. Devadesátipětiprocentní pro oboustranný test rozdílu od padesáti. Devadesátiprocentní pro test ekvivalence na hladině pěti setin. Jeho nižší hladina spolehlivosti neznamená, že celý test ekvivalence pracuje na hladině deseti setin.
+
+Snímek dvacet osm.
+
+Spojíme nyní oba výsledky. Test rozdílu a test ekvivalence mohou vytvořit čtyři kombinace. Devět příkladů ukáže také to, že stejná kombinace někdy připouští odlišné věcné závěry podle polohy intervalů.
+
+Snímek dvacet devět.
+
+V grafu je devět modelových studyjí online verze, označených Á až Í. Všechny mají výběrovou odchylku deset bodů, ale liší se průměrem a velikostí výběru. Vodorovná osa udává skór. Svislá tečkovaná čára označuje normu padesát. Vybarvené pásmo sahá od čtyřiceti sedmi do padesáti tří bodů.
+
+Každý řádek obsahuje dvě úsečky. Tenká je devadesátipětiprocentní interval a používáme ji pro test rozdílu. Tlustá je devadesátiprocentní interval a porovnáváme ji s celým pásmem ekvivalence.
+
+Nejprve si všimněte přesnosti. Studyje Bé, Cé a Gé mají čtyři sta studentů a krátké intervaly. Studyje Á s dvaceti pěti a Ef se šestnácti studenty mají intervaly mnohem delší. Ve studyji Ef je průměr přesně padesát, přesto její tlustá úsečka přesahuje pásmo na obou stranách. Samotná shoda výběrového průměru s normou tedy nestačí k doložení ekvivalence.
+
+Studyje Gé, Há a Í jsou zrcadlové obrazy studyjí Bé, Dé a É. Posun je stejně velký, ale směrem nahoru. Pro ekvivalenci se souměrnými hranicemi na znaménku posunu nezáleží. V dalším snímku výsledky postupně zařadíme.
+
+Snímek třicet.
+
+První kombinace: rozdíl je statystycky významný a ekvivalence je doložena. Patří sem studyje Bé a Gé. U studyje Bé je průměr čtyřicet osm a půl bodu. Devadesátipětiprocentní interval normu padesát nezahrnuje, ale celý devadesátiprocentní interval leží v pásmu ekvivalence. Rozdíl je dost přesně odhadnutý, aby byl odlišitelný od nuly, a současně dost malý pro stanovený účel.
+
+Druhá kombinace: rozdíl není statystycky významný a ekvivalence je doložena. To je studyje Cé. Její devadesátipětiprocentní interval zahrnuje normu a devadesátiprocentní interval zůstává celý v pásmu. Data podporují dostatečně malý rozdíl vzhledem k hranici tří bodů.
+
+Třetí kombinace: rozdíl je statystycky významný a ekvivalence není doložena. Sem patří studyje Dé, É, Há a Í. U Dé leží celý devadesátiprocentní interval pod dolní hranicí, u Há nad horní. Data tedy podporují rozdíl větší než stanovená hranice. U É a Í však interval protíná hranici pásma. Rozdíl od nuly je doložen, ale zůstává nejisté, zda je menší, nebo větší než věcně důležitá hranice.
+
+Čtvrtá kombinace: rozdíl není statystycky významný a ekvivalence také není doložena. Patří sem Á a Ef. Intervaly jsou široké a připouštějí malé i věcně důležité rozdíly. Výsledek je neprůkazný. U Á je pé-hodnota asi nula celých padesát sedm tisícin; u Ef dokonce jedna. Ani vysoká pé-hodnota sama nedokládá ekvivalenci.
+
+Při čtení tabulky proto vždy oddělujte dvě otázky: zda máme důkaz rozdílu od nuly a zda máme důkaz dostatečně malého rozdílu. Neprokázaná ekvivalence sama neprokazuje důležitý rozdíl.
+
+Snímek třicet jedna.
+
+Ve studyji Cé data podporují závěr, že populační průměr online verze leží v pásmu od čtyřiceti sedmi do padesáti tří bodů kolem normy padesát. Tento závěr je užitečný, ale vztahuje se právě k průměru a ke zvoleným hranicím.
+
+Obě verze mohou mít podobný průměr a přesto odlišnou variabilitu, tvar rozdělení nebo vztah k jiným ukazatelům. Mohou také poskytovat rozdílné výsledky jednotlivým lidem. Vyšší skóry u části osob a nižší u jiných se v průměru mohou vzájemně vyrušit. K posouzení indyviduální shody bychom potřebovali údaje týchž lidí v obou verzích. Samostatně bychom posuzovali i reliabilitu měření.
+
+Referenční hodnotu padesát jsme zatím brali jako pevné číslo. Pokud jde ve skutečnosti o odhad z normatyvního výběru, také tento odhad nese nejistotu. Jednovýběrový postup je přiměřený jen tehdy, pokud je tato nejistota vůči nejistotě našeho odhadu zanedbatelná. Jinak porovnáváme dva odhady a potřebujeme odpovídající postup.
+
+Závěr také závisí na hranicích. Při hranici jeden bod by stejná studyje nemusela ekvivalenci doložit. Ve zprávě proto vždy uvedeme jejich velikost a zdůvodnění. Závěr o ekvivalenci průměru nelze bez dalších důkazů rozšířit na celkovou zaměnitelnost testů.
+
+Snímek třicet dva.
+
+Poslední výkladový snímek ukazuje sdělení výsledků studyje Bé. Zpráva podle pravidel á-pé-á používá velké em pro průměr, es-dé pro směrodatnou odchylku a sí-aj pro interval spolehlivosti. Jde o zápis reportování; význam vypočtených veličin se nemění.
+
+Studyje měla čtyři sta studentů, průměr čtyřicet osm a půl bodu a směrodatnou odchylku deset celých nula desetin bodu. Odhadovaný rozdíl od normy je tedy minus jeden a půl bodu. Oboustranný té-test s třemi sty devadesáti devíti stupni volnosti dává statystyku minus tři a pé-hodnotu přibližně nula celých tři tisíciny. Devadesátipětiprocentní interval pro populační průměr sahá od čtyřiceti sedmi celých padesáti dvou setin do čtyřiceti devíti celých čtyřiceti osmi setin bodu.
+
+Následuje druhá část závěru. Hranice ekvivalence tři body na obě strany byly stanoveny před analýzou podle zamýšleného použití norem. Devadesátiprocentní interval od čtyřiceti sedmi celých šedesáti osmi setin do čtyřiceti devíti celých třiceti dvou setin leží celý uvnitř pásma. Dva jednostranné testy proto doložily ekvivalenci. Uvedená pé-hodnota přibližně jedna tisícina je větší z obou dílčích pé-hodnot; na snímku je zaokrouhlená.
+
+Čtenář tak dostává odhad velikosti rozdílu, jeho nejistotu, výsledek testu rozdílu i závěr vzhledem ke zdůvodněným hranicím. Průměr je statystycky významně nižší než norma, ale rozdíl je pro vymezený účel zanedbatelný. Tím výkladová část prezentace končí.

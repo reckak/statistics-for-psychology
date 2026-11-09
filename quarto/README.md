@@ -1,5 +1,28 @@
 # Autorská dokumentace
 
+<a id="scenar-kapitoly-7-20261109"></a>
+
+## 2026-11-09 — Scénář k prezentaci kapitoly 7
+
+Na výslovnou žádost autora připraven
+[scénář pro syntézu řeči](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
+ke snímkům 1–32 aktuálního místního PPTX. Zahrnuje výklad a řešené příklady,
+vynechává samostatné procvičování, diskusní otázky a organizační pokyny.
+Text má 4 774 slov; odhad při 105–125 slovech za minutu je 38–46 minut bez dalších pauz.
+Scénář obsahuje mluvený zápis čísel, vzorců a funkcí a požadované výslovnostní přepisy.
+[Průvodní dokument](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
+a manifest zachycují podklady, jejich SHA-256, mapování snímků a slovník výslovnosti.
+
+Načteny texty, poznámky, tabulky a vzorce z PPTX; vizuálně prohlédnuto deset
+vložených grafů. Číselné příklady, kvantily, intervaly, p-hodnoty, teoretické
+pokrytí a devět studií nezávisle přepočteny v základním R 4.5.1.
+Po interní didaktické revizi ověřeno pořadí všech úseků, mluvený zápis a přepisy.
+Kontrola `node scripts/check-doc-maps.cjs` prošla bez chyb, stejně jako `git diff --check`.
+Simulace nebyly opakovány, původní studie ani Howell nově ověřovány,
+desktopový Excel ani kontrola celé sazby v PowerPointu nebyly spuštěny.
+PPTX již obsahovalo necommitované úpravy autora a při této práci se nezměnilo.
+Kapitola ani studentský web se nemění. Placená syntéza ani poslech neproběhly.
+
 <a id="prezentace-kapitoly-7-20261109"></a>
 
 ## 2026-11-09 — Prezentace ke kapitole 7
