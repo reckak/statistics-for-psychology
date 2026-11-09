@@ -1,0 +1,1742 @@
+{
+ "note": "Expected values: erfc normal distribution, regularized incomplete gamma for chi-square, exact binomial and hypergeometric probabilities in Python (check-chapter-09-excel-expected.py). Not produced by Excel or R.",
+ "cells": [
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B7",
+   "expected": 0.5,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B8",
+   "expected": 1.9599639845400545,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B9",
+   "expected": 0.11180339887498948,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B10",
+   "expected": 0.28086936485585456,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B11",
+   "expected": 0.7191306351441454,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B13",
+   "expected": 0.5,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B14",
+   "expected": 0.20070199180178772,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B15",
+   "expected": 0.2992980081982123,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B16",
+   "expected": 0.7007019918017877,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B18",
+   "expected": 2.581988897471611,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B19",
+   "expected": 0.009823274507519297,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B8",
+   "expected": 0.4,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B9",
+   "expected": 0.3,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B10",
+   "expected": 0.10000000000000003,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B11",
+   "expected": 1.9599639845400545,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B12",
+   "expected": 0.3094012864324589,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B13",
+   "expected": 0.4979974132089383,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B14",
+   "expected": 0.21894885294932756,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B15",
+   "expected": 0.39584854633346667,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B16",
+   "expected": -0.03189037392596952,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B17",
+   "expected": 0.22717225103721772,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B19",
+   "expected": 0.35,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B20",
+   "expected": 0.06745368781616021,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B21",
+   "expected": 1.4824986333222028,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B22",
+   "expected": 0.13820766697402576,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B23",
+   "expected": 2.197802197802199,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B24",
+   "expected": 0.13820766697402642,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B7",
+   "expected": 80,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B8",
+   "expected": 10.1,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B9",
+   "expected": 3,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B10",
+   "expected": 0.017734947753728147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B11",
+   "expected": 7.81472790325118,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B12",
+   "expected": 0.017734947753728147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B13",
+   "expected": 1.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "D2",
+   "expected": 20.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "E2",
+   "expected": 3.2,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "D3",
+   "expected": 20.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "E3",
+   "expected": 0.8,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "D4",
+   "expected": 20.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "E4",
+   "expected": 0.05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "D5",
+   "expected": 20.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "E5",
+   "expected": 6.05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "E6",
+   "expected": 190,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "E3",
+   "expected": 55,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B9",
+   "expected": 18.81578947368421,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B14",
+   "expected": 2.0325726904674286,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B24",
+   "expected": 0.45454545454545453,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B28",
+   "expected": 1.4256832363703478,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B32",
+   "expected": 2.085233787420478,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B37",
+   "expected": 0.03704808434130147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C9",
+   "expected": 17.36842105263158,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C14",
+   "expected": 0.022966507177033506,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C24",
+   "expected": 0.32727272727272727,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C28",
+   "expected": 0.15154704608481653,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C32",
+   "expected": 0.2173514371741012,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C37",
+   "expected": 0.8279344740044317,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D9",
+   "expected": 18.81578947368421,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D14",
+   "expected": 2.4689363268310625,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D24",
+   "expected": 0.21818181818181817,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D28",
+   "expected": -1.5712849285954036,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D32",
+   "expected": -2.298193833795334,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D37",
+   "expected": 0.021550759500487793,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "E4",
+   "expected": 80,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B10",
+   "expected": 27.36842105263158,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B15",
+   "expected": 0.2530364372469636,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B25",
+   "expected": 0.375,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B29",
+   "expected": 0.5030272728659586,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B33",
+   "expected": 0.8150678894028793,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B38",
+   "expected": 0.41503345074375164,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C10",
+   "expected": 25.263157894736842,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C15",
+   "expected": 0.4214912280701755,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C25",
+   "expected": 0.275,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C29",
+   "expected": -0.6492235578521282,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C33",
+   "expected": -1.031525224628215,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C38",
+   "expected": 0.30229458553054256,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D10",
+   "expected": 27.36842105263158,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D15",
+   "expected": 0.01457489878542511,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D25",
+   "expected": 0.35,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D29",
+   "expected": 0.12072654548783009,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D33",
+   "expected": 0.1956162934566911,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D38",
+   "expected": 0.8449105063302229,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "E5",
+   "expected": 55,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B11",
+   "expected": 18.81578947368421,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B16",
+   "expected": 4.130474788369525,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B26",
+   "expected": 0.18181818181818182,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B30",
+   "expected": -2.03235695397475,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B34",
+   "expected": -2.972567313982382,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B39",
+   "expected": 0.002953204449685831,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C11",
+   "expected": 17.36842105263158,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C16",
+   "expected": 0.3987240829346093,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C26",
+   "expected": 0.36363636363636365,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C30",
+   "expected": 0.631446025353402,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C34",
+   "expected": 0.9056309882254214,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C39",
+   "expected": 0.3651312011750205,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D11",
+   "expected": 18.81578947368421,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D16",
+   "expected": 2.0325726904674286,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D26",
+   "expected": 0.45454545454545453,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D30",
+   "expected": 1.4256832363703478,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D34",
+   "expected": 2.085233787420478,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D39",
+   "expected": 0.03704808434130147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B6",
+   "expected": 65,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C6",
+   "expected": 60,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D6",
+   "expected": 65,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B17",
+   "expected": 11.775349650349654,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B18",
+   "expected": 4,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B19",
+   "expected": 0.019102400560095864,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B20",
+   "expected": 0.019102400560095864,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B21",
+   "expected": 0.17603341227665345,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B41",
+   "expected": 0.002953204449685831,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C41",
+   "expected": 0.005555555555555556,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B42",
+   "expected": 0.021550759500487793,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C42",
+   "expected": 0.00625,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B43",
+   "expected": 0.03704808434130147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C43",
+   "expected": 0.0071428571428571435,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B44",
+   "expected": 0.03704808434130147,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C44",
+   "expected": 0.008333333333333333,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B45",
+   "expected": 0.30229458553054256,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C45",
+   "expected": 0.01,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B46",
+   "expected": 0.3651312011750205,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C46",
+   "expected": 0.0125,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B47",
+   "expected": 0.41503345074375164,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C47",
+   "expected": 0.016666666666666666,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B48",
+   "expected": 0.8279344740044317,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C48",
+   "expected": 0.025,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B49",
+   "expected": 0.8449105063302229,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "C49",
+   "expected": 0.05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B5",
+   "expected": 0.4,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B6",
+   "expected": 0.17094017094017094,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B7",
+   "expected": 0.22905982905982908,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B8",
+   "expected": 2.3400000000000003,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B9",
+   "expected": 0.6666666666666666,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B10",
+   "expected": 0.20618556701030927,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B11",
+   "expected": 3.2333333333333334,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B12",
+   "expected": 257,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B13",
+   "expected": 16.056567825570443,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B14",
+   "expected": 6.147801598317691e-05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B15",
+   "expected": 0.24995383095528564,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B16",
+   "expected": 0.24995383095528564,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B19",
+   "expected": 1.9599639845400545,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B20",
+   "expected": 0.22840156997550864,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B21",
+   "expected": 1.4955470777609652,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B22",
+   "expected": 3.6612688971300797,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B23",
+   "expected": 0.3001186150714751,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B24",
+   "expected": 1.7955150562770277,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "cell": "B25",
+   "expected": 5.822532319011331,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B5",
+   "expected": 72,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B6",
+   "expected": 0.5833333333333334,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B7",
+   "expected": 0.6944444444444444,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B8",
+   "expected": 0.1111111111111111,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B9",
+   "expected": 16,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B10",
+   "expected": 0.076812744140625,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B11",
+   "expected": 4.0,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "cell": "B12",
+   "expected": 0.04550026389635833,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B5",
+   "expected": 10,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B6",
+   "expected": 11,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B7",
+   "expected": 20,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B8",
+   "expected": 1,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B9",
+   "expected": 10,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B10",
+   "expected": 0.03215051202667302,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B11",
+   "expected": 0.06977851869492736,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E3",
+   "expected": 5.953798523457966e-05,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E4",
+   "expected": 0.0026792093355560848,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E5",
+   "expected": 0.03215051202667302,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E6",
+   "expected": 0.15003572279114075,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E7",
+   "expected": 0.3150750178613956,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E8",
+   "expected": 0.3150750178613956,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E9",
+   "expected": 0.15003572279114075,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E10",
+   "expected": 0.03215051202667302,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E11",
+   "expected": 0.0026792093355560848,
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E12",
+   "expected": 5.953798523457966e-05,
+   "tolerance": 1e-07
+  }
+ ],
+ "formulas": [
+  {
+   "formula": "=CHISQ.DIST.RT(10,1;3)",
+   "expected": 0.017734947753728147,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=CHISQ.INV.RT(0,05;3)",
+   "expected": 7.81472790325118,
+   "tolerance": 1e-07
+  },
+  {
+   "formula": "=CHISQ.DIST.RT(4;1)",
+   "expected": 0.04550026389635833,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=CHISQ.DIST.RT(1,68;2)",
+   "expected": 0.4317105234290798,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=2*BINOM.DIST(4;16;0,5;PRAVDA)",
+   "expected": 0.076812744140625,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=2*BINOM.DIST(3;14;0,5;PRAVDA)",
+   "expected": 0.057373046875,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=HYPGEOM.DIST(8;10;11;20;NEPRAVDA)",
+   "expected": 0.03215051202667302,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=CHISQ.TEST(Pozice!B2:B5;Dobra_shoda!D2:D5)",
+   "expected": 0.017734947753728147,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=CHISQ.TEST(Zvladani!B2:D4;Tabulka!B9:D11)",
+   "expected": 0.019102400560095864,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=SUMA(Pozice!B2:B5)",
+   "expected": 80,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=SUMA(Zvladani!B2:D4)",
+   "expected": 190,
+   "tolerance": 1e-09
+  },
+  {
+   "formula": "=2*(1-NORM.S.DIST(ABS(Tabulka!B34);PRAVDA))",
+   "expected": 0.002953204449685831,
+   "tolerance": 1e-09
+  }
+ ],
+ "errors": [
+  "=CHISQ.TEST(Pozice!B2:B5;Pozice!B2:B4)",
+  "=CHISQ.DIST.RT(-1;3)",
+  "=CHISQ.INV.RT(1,5;3)"
+ ],
+ "texts": [
+  {
+   "sheet": "Tabulka",
+   "cell": "D41",
+   "expected": "zamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D42",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D43",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D44",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D45",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D46",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D47",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D48",
+   "expected": "nezamítáme"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "D49",
+   "expected": "nezamítáme"
+  }
+ ],
+ "blanks": [
+  {
+   "sheet": "Fisher",
+   "cell": "E2"
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "E13"
+  }
+ ],
+ "locals": [
+  {
+   "sheet": "Interval_podilu",
+   "cell": "B14",
+   "formula": "=B8/(1+B8^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B8^2/(4*B3^2))"
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B12",
+   "formula": "=(B8+B11^2/(2*B3))/(1+B11^2/B3)-B11/(1+B11^2/B3)*ODMOCNINA(B8*(1-B8)/B3+B11^2/(4*B3^2))"
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B16",
+   "formula": "=B10-ODMOCNINA((B8-B12)^2+(B15-B9)^2)"
+  },
+  {
+   "sheet": "Dva_podily",
+   "cell": "B17",
+   "formula": "=B10+ODMOCNINA((B13-B8)^2+(B9-B14)^2)"
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "cell": "B12",
+   "formula": "=CHISQ.TEST(B2:B5;D2:D5)"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B9",
+   "formula": "=$E3*B$6/$E$6"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B32",
+   "formula": "=(B3-B9)/ODMOCNINA(B9*(1-$E3/$E$6)*(1-B$6/$E$6))"
+  },
+  {
+   "sheet": "Tabulka",
+   "cell": "B21",
+   "formula": "=ODMOCNINA(B17/(E6*(MIN(ŘÁDKY(B3:D5);SLOUPCE(B3:D5))-1)))"
+  },
+  {
+   "sheet": "Fisher",
+   "cell": "B11",
+   "formula": "=SUMIF(E2:E22;\"<=\"&B10*(1+0,0000001))"
+  }
+ ],
+ "changes": [
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 18,
+    "B3": 60
+   },
+   "expect": {
+    "B7": 0.3,
+    "B8": 1.9599639845400545,
+    "B9": 0.05916079783099616,
+    "B10": 0.18404696695459213,
+    "B11": 0.41595303304540787,
+    "B13": 0.312034370428418,
+    "B14": 0.11305270904072691,
+    "B15": 0.19898166138769108,
+    "B16": 0.42508707946914487,
+    "B18": 0.8944271909999157,
+    "B19": 0.3710933695226979
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 72,
+    "B3": 240
+   },
+   "expect": {
+    "B7": 0.3,
+    "B8": 1.9599639845400545,
+    "B9": 0.02958039891549808,
+    "B10": 0.24202348347729608,
+    "B11": 0.3579765165227039,
+    "B13": 0.30315078398831174,
+    "B14": 0.05760425876155646,
+    "B15": 0.2455465252267553,
+    "B16": 0.3607550427498682,
+    "B18": 1.7888543819998315,
+    "B19": 0.07363827012030244
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 0,
+    "B3": 25
+   },
+   "expect": {
+    "B7": 0.0,
+    "B8": 1.9599639845400545,
+    "B9": 0.0,
+    "B10": 0.0,
+    "B11": 0.0,
+    "B13": 0.06659612546952427,
+    "B14": 0.06659612546952426,
+    "B15": 1.3877787807814457e-17,
+    "B16": 0.13319225093904852,
+    "B18": -2.8867513459481287,
+    "B19": 0.0038924171227785465
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 1,
+    "B3": 25
+   },
+   "expect": {
+    "B7": 0.04,
+    "B8": 1.9599639845400545,
+    "B9": 0.039191835884530846,
+    "B10": -0.03681458682168497,
+    "B11": 0.11681458682168497,
+    "B13": 0.10126843543196233,
+    "B14": 0.09417220192997507,
+    "B15": 0.007096233501987265,
+    "B16": 0.1954406373619374,
+    "B18": -2.424871130596428,
+    "B19": 0.015313821713431874
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 0,
+    "B3": 15
+   },
+   "expect": {
+    "B7": 0.0,
+    "B8": 1.9599639845400545,
+    "B9": 0.0,
+    "B10": 0.0,
+    "B11": 0.0,
+    "B13": 0.10194165051792434,
+    "B14": 0.10194165051792434,
+    "B15": 0.0,
+    "B16": 0.20388330103584867,
+    "B18": -2.23606797749979,
+    "B19": 0.025347318677468422
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Interval_podilu",
+   "set": {
+    "B2": 40,
+    "B3": 80
+   },
+   "expect": {
+    "B7": 0.5,
+    "B8": 1.9599639845400545,
+    "B9": 0.05590169943749474,
+    "B10": 0.3904346824279273,
+    "B11": 0.6095653175720728,
+    "B13": 0.5,
+    "B14": 0.10702584913880282,
+    "B15": 0.3929741508611972,
+    "B16": 0.6070258491388029,
+    "B18": 5.163977794943222,
+    "B19": 2.4175638824175394e-07
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "set": {
+    "B2": 13,
+    "B3": 49,
+    "B4": 14,
+    "B5": 44
+   },
+   "expect": {
+    "B8": 0.2653061224489796,
+    "B9": 0.3181818181818182,
+    "B10": -0.05287569573283857,
+    "B11": 1.9599639845400545,
+    "B12": 0.16211282134957405,
+    "B13": 0.4026228897131079,
+    "B14": 0.1999930771085342,
+    "B15": 0.4655689606218224,
+    "B16": -0.23279742079243962,
+    "B17": 0.12829955944390609,
+    "B19": 0.2903225806451613,
+    "B20": 0.09427314537086998,
+    "B21": -0.5608776022569938,
+    "B22": 0.5748809797375052,
+    "B23": 0.3145836847135545,
+    "B24": 0.5748809797375052
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "set": {
+    "B2": 56,
+    "B3": 140,
+    "B4": 20,
+    "B5": 117
+   },
+   "expect": {
+    "B8": 0.4,
+    "B9": 0.17094017094017094,
+    "B10": 0.22905982905982908,
+    "B11": 1.9599639845400545,
+    "B12": 0.3225668105142923,
+    "B13": 0.4827744295595903,
+    "B14": 0.11347000899851464,
+    "B15": 0.2493314603692672,
+    "B16": 0.11887320059572798,
+    "B17": 0.32982899945690924,
+    "B19": 0.29571984435797666,
+    "B20": 0.057163995083183206,
+    "B21": 4.007064739378495,
+    "B22": 6.147801598332947e-05,
+    "B23": 16.056567825570447,
+    "B24": 6.147801598317673e-05
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "set": {
+    "B2": 80,
+    "B3": 200,
+    "B4": 60,
+    "B5": 200
+   },
+   "expect": {
+    "B8": 0.4,
+    "B9": 0.3,
+    "B10": 0.10000000000000003,
+    "B11": 1.9599639845400545,
+    "B12": 0.33460578566807336,
+    "B13": 0.46916327960737997,
+    "B14": 0.24074744682371402,
+    "B15": 0.36679068372719265,
+    "B16": 0.006525946376356215,
+    "B17": 0.19107373004306577,
+    "B19": 0.35,
+    "B20": 0.047696960070847276,
+    "B21": 2.0965696734438377,
+    "B22": 0.03603168621823327,
+    "B23": 4.3956043956044,
+    "B24": 0.036031686218233556
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dva_podily",
+   "set": {
+    "B2": 6,
+    "B3": 8,
+    "B4": 2,
+    "B5": 9
+   },
+   "expect": {
+    "B8": 0.75,
+    "B9": 0.2222222222222222,
+    "B10": 0.5277777777777778,
+    "B11": 1.9599639845400545,
+    "B12": 0.40927543031016883,
+    "B13": 0.9285207872478909,
+    "B14": 0.06322510711784671,
+    "B15": 0.5474110308930111,
+    "B16": 0.056777784492164696,
+    "B17": 0.7668379252116836,
+    "B19": 0.47058823529411764,
+    "B20": 0.24253562503633297,
+    "B21": 2.1760835246315433,
+    "B22": 0.02954901561938228,
+    "B23": 4.73533950617284,
+    "B24": 0.029549015619382158
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Dobra_shoda",
+   "set": {
+    "B2": 52,
+    "B3": 50,
+    "B4": 31,
+    "B5": 17,
+    "C2": 0.4,
+    "C3": 0.3,
+    "C4": 0.2,
+    "C5": 0.1
+   },
+   "expect": {
+    "B7": 150,
+    "B8": 1.9222222222222223,
+    "B9": 3,
+    "B10": 0.5887056372411104,
+    "B11": 7.81472790325118,
+    "B12": 0.5887056372411104,
+    "B13": 1.0,
+    "D2": 60.0,
+    "E2": 1.0666666666666667,
+    "D3": 45.0,
+    "E3": 0.5555555555555556,
+    "D4": 30.0,
+    "E4": 0.03333333333333333,
+    "D5": 15.0,
+    "E5": 0.26666666666666666
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Tabulka",
+   "set": {
+    "B3": 28,
+    "C3": 14,
+    "D3": 18,
+    "B4": 22,
+    "C4": 25,
+    "D4": 13,
+    "B5": 12,
+    "C5": 30,
+    "D5": 18
+   },
+   "expect": {
+    "E6": 180,
+    "E3": 60,
+    "B9": 20.666666666666668,
+    "B14": 2.6021505376344076,
+    "B24": 0.4666666666666667,
+    "B28": 1.613118265234886,
+    "B32": 2.440096978416786,
+    "B37": 0.014683319553645324,
+    "C9": 23.0,
+    "C14": 3.5217391304347827,
+    "C24": 0.23333333333333334,
+    "C28": -1.876629726513673,
+    "C32": -2.9268400160302503,
+    "C37": 0.003424249754690578,
+    "D9": 16.333333333333332,
+    "D14": 0.1700680272108846,
+    "D24": 0.3,
+    "D28": 0.4123930494211615,
+    "D32": 0.5920488899952192,
+    "D37": 0.5538178504442028,
+    "E4": 60,
+    "B10": 20.666666666666668,
+    "B15": 0.08602150537634393,
+    "B25": 0.36666666666666664,
+    "B29": 0.2932942300427063,
+    "B33": 0.44365399607577893,
+    "B38": 0.6572927606342314,
+    "C10": 23.0,
+    "C15": 0.17391304347826086,
+    "C25": 0.4166666666666667,
+    "C29": 0.41702882811414954,
+    "C33": 0.6504088924511667,
+    "C38": 0.5154281347955454,
+    "D10": 16.333333333333332,
+    "D15": 0.6802721088435371,
+    "D25": 0.21666666666666667,
+    "D29": -0.8247860988423222,
+    "D33": -1.1840977799904373,
+    "D38": 0.23637435882729307,
+    "E5": 60,
+    "B11": 20.666666666666668,
+    "B16": 3.6344086021505384,
+    "B26": 0.2,
+    "B30": -1.9064124952775932,
+    "B34": -2.8837509744925662,
+    "B39": 0.003929693717581451,
+    "C11": 23.0,
+    "C16": 2.130434782608696,
+    "C26": 0.5,
+    "C30": 1.4596008983995234,
+    "C34": 2.276431123579084,
+    "C39": 0.02282021863448014,
+    "D11": 16.333333333333332,
+    "D16": 0.1700680272108846,
+    "D26": 0.3,
+    "D30": 0.4123930494211615,
+    "D34": 0.5920488899952192,
+    "D39": 0.5538178504442028,
+    "B6": 62,
+    "C6": 69,
+    "D6": 49,
+    "B17": 13.169075764948335,
+    "B18": 4,
+    "B19": 0.010478537129476904,
+    "B20": 0.010478537129476904,
+    "B21": 0.1912609892626967,
+    "B41": 0.003424249754690578,
+    "C41": 0.005555555555555556,
+    "B42": 0.003929693717581451,
+    "C42": 0.00625,
+    "B43": 0.014683319553645324,
+    "C43": 0.0071428571428571435,
+    "B44": 0.02282021863448014,
+    "C44": 0.008333333333333333,
+    "B45": 0.23637435882729307,
+    "C45": 0.01,
+    "B46": 0.5154281347955454,
+    "C46": 0.0125,
+    "B47": 0.5538178504442028,
+    "C47": 0.016666666666666666,
+    "B48": 0.5538178504442028,
+    "C48": 0.025,
+    "B49": 0.6572927606342314,
+    "C49": 0.05
+   },
+   "labels": {
+    "D41": "zamítáme",
+    "D42": "zamítáme",
+    "D43": "nezamítáme",
+    "D44": "nezamítáme",
+    "D45": "nezamítáme",
+    "D46": "nezamítáme",
+    "D47": "nezamítáme",
+    "D48": "nezamítáme",
+    "D49": "nezamítáme"
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "set": {
+    "B2": 19,
+    "C2": 74,
+    "B3": 22,
+    "C3": 187
+   },
+   "expect": {
+    "B5": 0.20430107526881722,
+    "B6": 0.10526315789473684,
+    "B7": 0.09903791737408038,
+    "B8": 1.9408602150537637,
+    "B9": 0.25675675675675674,
+    "B10": 0.11764705882352941,
+    "B11": 2.1824324324324325,
+    "B12": 302,
+    "B13": 5.380403071247698,
+    "B14": 0.02036417264600799,
+    "B15": 0.133476230878121,
+    "B16": 0.13347623087812102,
+    "B19": 1.9599639845400545,
+    "B20": 0.2873129778388988,
+    "B21": 1.1051799758333236,
+    "B22": 3.408438857696648,
+    "B23": 0.3419754837679378,
+    "B24": 1.1164794849248536,
+    "B25": 4.2660983801717824
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "set": {
+    "B2": 189,
+    "C2": 10845,
+    "B3": 104,
+    "C3": 10933
+   },
+   "expect": {
+    "B5": 0.017128874388254486,
+    "B6": 0.009422850412249705,
+    "B7": 0.0077060239760047815,
+    "B8": 1.8178017944535074,
+    "B9": 0.017427385892116183,
+    "B10": 0.009512485136741973,
+    "B11": 1.8320539419087138,
+    "B12": 22071,
+    "B13": 25.01388396719414,
+    "B14": 5.691896973740853e-07,
+    "B15": 0.03366507296510879,
+    "B16": 0.03366507296510879,
+    "B19": 1.9599639845400545,
+    "B20": 0.12134725629566442,
+    "B21": 1.4330309030505628,
+    "B22": 2.305884232422446,
+    "B23": 0.12284162364846611,
+    "B24": 1.4400423918486225,
+    "B25": 2.3307797500006404
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Mira_souvislosti",
+   "set": {
+    "B2": 40,
+    "C2": 60,
+    "B3": 30,
+    "C3": 70
+   },
+   "expect": {
+    "B5": 0.4,
+    "B6": 0.3,
+    "B7": 0.10000000000000003,
+    "B8": 1.3333333333333335,
+    "B9": 0.6666666666666666,
+    "B10": 0.42857142857142855,
+    "B11": 1.5555555555555556,
+    "B12": 200,
+    "B13": 2.197802197802198,
+    "B14": 0.13820766697402653,
+    "B15": 0.10482848367219183,
+    "B16": 0.10482848367219183,
+    "B19": 1.9599639845400545,
+    "B20": 0.19578900207451216,
+    "B21": 0.9084119442371806,
+    "B22": 1.9570171760242856,
+    "B23": 0.29880715233359845,
+    "B24": 0.8660449169492747,
+    "B25": 2.7940272369977794
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "set": {
+    "B2": 25,
+    "C2": 3,
+    "B3": 11,
+    "C3": 21
+   },
+   "expect": {
+    "B5": 60,
+    "B6": 0.4666666666666667,
+    "B7": 0.6,
+    "B8": 0.13333333333333333,
+    "B9": 14,
+    "B10": 0.057373046875,
+    "B11": 4.571428571428571,
+    "B12": 0.03250944464571954
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "McNemar",
+   "set": {
+    "B2": 40,
+    "C2": 0,
+    "B3": 0,
+    "C3": 32
+   },
+   "expect": {
+    "B5": 72,
+    "B6": 0.5555555555555556,
+    "B7": 0.5555555555555556,
+    "B8": 0.0,
+    "B9": 0
+   },
+   "labels": {
+    "B10": "nelze: žádná neshodná dvojice",
+    "B11": "nelze",
+    "B12": "nelze"
+   },
+   "tolerance": 1e-07
+  },
+  {
+   "sheet": "Fisher",
+   "set": {
+    "B2": 6,
+    "C2": 2,
+    "B3": 2,
+    "C3": 7
+   },
+   "expect": {
+    "B5": 8,
+    "B6": 8,
+    "B7": 17,
+    "B8": 0,
+    "B9": 8,
+    "B10": 0.04146441793500617,
+    "B11": 0.05668449197860963,
+    "E2": 0.00037021801727684083,
+    "E3": 0.011846976552858907,
+    "E4": 0.0967503085150144,
+    "E5": 0.29025092554504317,
+    "E6": 0.36281365693130396,
+    "E7": 0.1935006170300288,
+    "E8": 0.04146441793500617,
+    "E9": 0.0029617441382147267,
+    "E10": 4.113533525298231e-05
+   },
+   "tolerance": 1e-07
+  }
+ ]
+}

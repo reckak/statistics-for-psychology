@@ -39,6 +39,7 @@ book:
         - quarto/kapitola_06.qmd
         - quarto/kapitola_07.qmd
         - quarto/kapitola_08.qmd
+        - quarto/kapitola_09.qmd
     - part: "Interaktivní vizualizace"
       chapters:
         - quarto/viz_posun_a_jednotky.qmd
