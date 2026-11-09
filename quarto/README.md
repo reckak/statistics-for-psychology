@@ -1,5 +1,48 @@
 # Autorská dokumentace
 
+<a id="audio-kapitoly-7-20261109"></a>
+
+## 2026-11-09 — Nahrávka k prezentaci kapitoly 7 hlasem Adam
+
+Na následnou výslovnou žádost autora převeden nezměněný scénář snímků 1–32
+přes Creative Claw (`speech/heygen-voice-1`, veřejný český hlas Adam,
+jazyk cs, rychlost 1). Předem načten aktuální `get_model_params`, použity
+pouze podporované parametry stock hlasu. Osm částí kvůli limitu 5 000 znaků
+spojeno ve dvou krocích přes WAV, bez prolínání a normalizace.
+Místní MP3 `presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3`
+má 38:43 a 32 značek snímků podle časového zarovnání poskytovatele.
+Gitem je ignorován a automaticky se nepublikuje.
+
+[Podklady a manifest](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
+zachycují přesné nastavení, identitu výsledku a kontroly. Ověřeny shodné
+texty, úplné pořadí, dekódování částí i celku, součet délek, počet kapitol,
+hlasitost, pauzy a shoda zvukových úseků každé části s celkem.
+Skutečný poslech ani nezávislý přepis neproběhly; technická kontrola
+nepotvrzuje výslovnost. Scénář, PPTX ani studentský výklad se neměnily.
+
+<a id="scenar-kapitoly-7-20261109"></a>
+
+## 2026-11-09 — Scénář k prezentaci kapitoly 7
+
+Na výslovnou žádost autora připraven
+[scénář pro syntézu řeči](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
+ke snímkům 1–32 aktuálního místního PPTX. Zahrnuje výklad a řešené příklady,
+vynechává samostatné procvičování, diskusní otázky a organizační pokyny.
+Text má 4 774 slov; odhad při 105–125 slovech za minutu je 38–46 minut bez dalších pauz.
+Scénář obsahuje mluvený zápis čísel, vzorců a funkcí a požadované výslovnostní přepisy.
+[Průvodní dokument](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
+a manifest zachycují podklady, jejich SHA-256, mapování snímků a slovník výslovnosti.
+
+Načteny texty, poznámky, tabulky a vzorce z PPTX; vizuálně prohlédnuto deset
+vložených grafů. Číselné příklady, kvantily, intervaly, p-hodnoty, teoretické
+pokrytí a devět studií nezávisle přepočteny v základním R 4.5.1.
+Po interní didaktické revizi ověřeno pořadí všech úseků, mluvený zápis a přepisy.
+Kontrola `node scripts/check-doc-maps.cjs` prošla bez chyb, stejně jako `git diff --check`.
+Simulace nebyly opakovány, původní studie ani Howell nově ověřovány,
+desktopový Excel ani kontrola celé sazby v PowerPointu nebyly spuštěny.
+PPTX již obsahovalo necommitované úpravy autora a při této práci se nezměnilo.
+Kapitola ani studentský web se nemění. Placená syntéza ani poslech neproběhly.
+
 <a id="prezentace-kapitoly-7-20261109"></a>
 
 ## 2026-11-09 — Prezentace ke kapitole 7

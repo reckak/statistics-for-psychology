@@ -84,6 +84,13 @@ sloupec určuje konkrétní **procvičení**.
 
 ### Příklady, vizualizace a soubory
 
+**Doprovodný scénář (2026-11-09):** [mluvený text k prezentaci](../../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
+pokrývá snímky 1–32 místního PPTX, bez závěrečného procvičování a nepovinných rozšíření;
+[podklady a kontroly](../../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md).
+Jde o komentář k prezentaci, rozsah kapitoly se nemění. Na následnou žádost téhož dne
+vytvořena místní nahrávka hlasem Adam (38:43, 32 značek snímků); technicky ověřena,
+bez skutečného poslechu. Podrobnosti a omezení jsou v průvodním dokumentu.
+
 [Sešit kapitoly 7](../../data/kapitola_07.xlsx) má 19 listů (stav 2026-11-09): `Prehled`, čtyři
 výpočtové listy (`Interval_z`, `Interval_t`, `T_test`, `Ekvivalence`), tři
 vstupní listy výkladu (`Pozornost`, `PDI`, `Studie_ekv`), simulovaný list
