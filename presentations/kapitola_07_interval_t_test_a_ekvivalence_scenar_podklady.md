@@ -12,7 +12,8 @@ nepovinná rozšíření kapitoly.
 
 Text má **4 774 slov**. Při tempu 105–125 slov za minutu odpovídá přibližně
 **38–46 minutám** bez dalších pauz. Jde o odhad z počtu slov, nikoli
-o změřenou délku zvuku. Nahrávka nebyla vytvořena a placená syntéza nebyla spuštěna.
+o změřenou délku zvuku. Při přípravě samotného scénáře nahrávka nevznikla. Následný úplný převod
+na výslovnou žádost autora je zaznamenán níže.
 
 ## Podklady a rozsah ověření
 
@@ -63,9 +64,9 @@ je třeba před syntézou porovnat dotčené úseky s novou verzí.
 
 Výchozí zamýšlené pokračování dosavadních nahrávek podle
 [projektových pravidel](../docs/TEXT2SPEECH.md) je Creative Claw, model
-`speech/heygen-voice-1`, český hlas Adam, rychlost 1. Protože nyní vzniká
-pouze scénář, dostupnost modelu ani parametry služby nebyly nově ověřovány.
-Před případnou syntézou je nutné ověřit aktuální rozhraní. Níže uvedené
+`speech/heygen-voice-1`, český hlas Adam, rychlost 1. Při přípravě samotného scénáře se dostupnost neověřovala; před následnou
+syntézou byl načten aktuální `get_model_params` a použity pouze podporované
+ovládací prvky veřejného hlasu. Níže uvedené
 přepisy jsou použity v celém scénáři a nejsou závislé na provedení poslechu.
 
 | Odborný zápis | Zápis pro syntézu | Původ a textová kontrola |
@@ -97,4 +98,39 @@ Nejde o plošnou náhradu. Manifest zachycuje skutečně ponechaná slova.
 Textová kontrola ověřila 32 úseků právě jednou ve správném pořadí,
 nepřítomnost číslic, nezpracovaných matematických značek, URL, markdownu
 a původních rizikových základů. **Textová kontrola nepotvrzuje skutečnou
-výslovnost hlasu.** Zvuk ani poslechové ověření v tomto úkolu nevznikly.
+výslovnost hlasu.** Při přípravě scénáře zvuk nevznikl. Následná syntéza a technická kontrola
+jsou uvedeny níže; skutečný poslech nebyl proveden.
+
+
+## Úplná nahrávka — 2026-11-09
+
+Na následnou výslovnou žádost autora vytvořeno audio ke snímkům 1–32
+pomocí Creative Claw, modelu `speech/heygen-voice-1`, veřejného českého
+hlasu Adam (`32bb79c6f93241b7b956c219aa9bcf75`), jazyka `cs` a rychlosti 1.
+Před převodem načten aktuální `get_model_params`. Použity pouze podporované
+parametry `extras.speed` a `extras.language`; žádný expressiveness boost.
+Uložené náhrady služby vypnuty, protože přepisy již obsahuje scénář.
+
+Limit 5 000 znaků vyžadoval osm částí na hranicích snímků. Ověřena shoda
+všech odeslaných textů s nezměněným scénářem i pokrytí všech snímků.
+Části spojeny přes Creative Claw ve dvou navazujících operacích, bez
+prolínání a bez normalizace, s mezivýstupy WAV. Po dokončení celku vytvořen
+jeden MP3 (192 kb/s, 44,1 kHz, mono) se 32 značkami snímků.
+Značky vycházejí z časů slov vrácených poskytovatelem a skutečných délek
+dekódovaných částí, nikoli z odhadu podle počtu slov.
+
+Výstup: `presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3`.
+Skutečná délka je **38:43**. MP3 je místní výstup ignorovaný Gitem;
+nevkládá se automaticky do prezentace ani na studentský web.
+Manifest zachycuje jeho SHA-256, délku, nastavení, časy snímků a kontroly.
+Úlohy, přesné vstupy, URL a pracovní soubory jsou v `tmp/ch07-audio/`.
+
+Všech osm částí i celý MP3 se úspěšně dekódují. Délka odpovídá součtu
+částí s odchylkou menší než desetina sekundy; ověřeno všech 32 kapitol.
+Pořadí je dále ověřeno porovnáním pětisekundového zvukového úseku z každé
+části s odpovídajícím místem v celku po vyrovnání drobného posunu z převzorkování.
+Průměrná úroveň částí je −19,8 až −19,5 dB; detektor nenašel pauzy delší
+než dvě sekundy při prahu −50 dB. Zkontrolován také začátek a konec pomocí
+časového zarovnání poskytovatele. Jde o technickou kontrolu, nikoli poslech
+nebo nezávislou transkripci; správná výslovnost tím není potvrzena.
+Služba vykázala 674 kreditů za řeč a 4 za obě spojení.

@@ -309,9 +309,10 @@
     "simulations_rerun": false,
     "excel_run": false,
     "powerpoint_layout_rechecked": false,
-    "audio_generated": false,
+    "audio_generated": true,
     "listening_performed": false,
-    "original_study_reproduced": false
+    "original_study_reproduced": false,
+    "audio_technical_verification": "All eight parts and final MP3 decoded; complete ordered coverage, duration, chapter count, levels and waveform samples verified."
   },
   "numeric_results": {
     "attention": {
@@ -808,12 +809,226 @@
     45.5
   ],
   "future_synthesis": {
-    "requested": false,
+    "requested": true,
     "provider": "Creative Claw",
     "model": "speech/heygen-voice-1",
     "voice": "Adam",
     "language": "cs",
     "speed": 1,
-    "availability_verified": false
+    "availability_verified": true,
+    "status": "Full synthesis completed 2026-11-09 with the requested public stock voice."
+  },
+  "audio": {
+    "date": "2026-11-09",
+    "file": "presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3",
+    "sha256": "f78f65c08c0d2032b7e91ed65d602319073348d78ae9522d193b75cd31102564",
+    "bytes": 55747957,
+    "duration_seconds": 2322.6524943310656,
+    "slides": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "voice_id": "32bb79c6f93241b7b956c219aa9bcf75",
+    "language": "cs",
+    "speed": 1,
+    "parts": 8,
+    "chapters": [
+      {
+        "slide": 1,
+        "start_seconds": 0.256
+      },
+      {
+        "slide": 2,
+        "start_seconds": 77.402
+      },
+      {
+        "slide": 3,
+        "start_seconds": 125.312
+      },
+      {
+        "slide": 4,
+        "start_seconds": 135.637
+      },
+      {
+        "slide": 5,
+        "start_seconds": 216.368
+      },
+      {
+        "slide": 6,
+        "start_seconds": 294.8034897959183
+      },
+      {
+        "slide": 7,
+        "start_seconds": 390.91748979591836
+      },
+      {
+        "slide": 8,
+        "start_seconds": 477.3684897959183
+      },
+      {
+        "slide": 9,
+        "start_seconds": 488.0134897959183
+      },
+      {
+        "slide": 10,
+        "start_seconds": 580.5569591836734
+      },
+      {
+        "slide": 11,
+        "start_seconds": 677.9659591836734
+      },
+      {
+        "slide": 12,
+        "start_seconds": 756.8209591836734
+      },
+      {
+        "slide": 13,
+        "start_seconds": 845.0989999999999
+      },
+      {
+        "slide": 14,
+        "start_seconds": 930.3209999999999
+      },
+      {
+        "slide": 15,
+        "start_seconds": 1018.199
+      },
+      {
+        "slide": 16,
+        "start_seconds": 1033.139
+      },
+      {
+        "slide": 17,
+        "start_seconds": 1124.7920612244898
+      },
+      {
+        "slide": 18,
+        "start_seconds": 1208.8310612244898
+      },
+      {
+        "slide": 19,
+        "start_seconds": 1307.66106122449
+      },
+      {
+        "slide": 20,
+        "start_seconds": 1393.8230612244897
+      },
+      {
+        "slide": 21,
+        "start_seconds": 1405.0951836734696
+      },
+      {
+        "slide": 22,
+        "start_seconds": 1494.6781836734694
+      },
+      {
+        "slide": 23,
+        "start_seconds": 1577.0831836734694
+      },
+      {
+        "slide": 24,
+        "start_seconds": 1668.4791836734694
+      },
+      {
+        "slide": 25,
+        "start_seconds": 1681.9670204081635
+      },
+      {
+        "slide": 26,
+        "start_seconds": 1776.5490204081634
+      },
+      {
+        "slide": 27,
+        "start_seconds": 1835.0930204081635
+      },
+      {
+        "slide": 28,
+        "start_seconds": 1931.2910204081634
+      },
+      {
+        "slide": 29,
+        "start_seconds": 1947.4710204081634
+      },
+      {
+        "slide": 30,
+        "start_seconds": 2026.1994081632654
+      },
+      {
+        "slide": 31,
+        "start_seconds": 2138.8794081632655
+      },
+      {
+        "slide": 32,
+        "start_seconds": 2220.0304081632653
+      }
+    ],
+    "checks": {
+      "all_parts_decoded": true,
+      "all_input_texts_match": true,
+      "ordered_coverage": true,
+      "full_mp3_decoded": true,
+      "duration_matches_parts": true,
+      "embedded_chapters": 32,
+      "mean_db": -22.9,
+      "peak_db": -3.3,
+      "silences_over_2s": [],
+      "listening_performed": false,
+      "part_waveform_correlations": [
+        0.9996844533104738,
+        0.9963013808654996,
+        0.9980462058790717,
+        0.9998276952588004,
+        0.9999845048785323,
+        0.9987175720087175,
+        0.9996946337278447,
+        0.9990990054423692
+      ],
+      "part_alignment_lags_seconds": [
+        0.0,
+        0.0,
+        2.2675736961451248e-05,
+        2.2675736961451248e-05,
+        2.2675736961451248e-05,
+        2.2675736961451248e-05,
+        4.5351473922902495e-05,
+        4.5351473922902495e-05
+      ]
+    },
+    "credits": {
+      "speech": 674,
+      "merging": 4
+    }
   }
 }
