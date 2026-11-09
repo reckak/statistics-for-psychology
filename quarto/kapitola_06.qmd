@@ -15,7 +15,7 @@ Navazujeme na [výběrovou variabilitu](kapitola_01.qmd#sec-nejistota), kterou j
 - Před výpočtem stanovíte hypotézy a směr testu a určíte, které výsledky jsou extrémnější.
 - Vysvětlíte *p*-hodnotu a odlišíte ji od hladiny významnosti a kritického oboru.
 - Rozlišíte chybu I. a II. druhu a určíte, na čem závisí statistická síla.
-- Provedete binomický test a z-test.
+- Provedete binomický test a *z*-test.
 - Zformulujete rozhodnutí testu i věcnou interpretaci, vyjádříte velikost účinku v původních jednotkách a odlišíte statistickou, věcnou a praktickou významnost.
 
 Pět nepovinných rozšíření vysvětluje odvození směrodatné chyby, výpočet statistické síly, standardizovaný rozdíl průměrů, pohled na test jako na screening a dvě tradice testování; nejsou součástí povinných dovedností ani základních cvičení.
@@ -474,7 +474,7 @@ Směrodatná chyba a centrální limitní věta dohromady umožňují počítat 
 1. *Model.* $\mathrm{μ}=35$ s, $\mathrm{σ}=15$ s, výběr $n=100$ nezávislých řidičů.
 2. *Směrodatná chyba.* $\mathrm{σ}_m=15/\sqrt{100}=1{,}5$ s.
 3. *Tvar.* Výběr je velký a populace jen mírně zešikmená, takže podle centrální limitní věty se výběrové rozdělení průměru blíží normálnímu modelu se střední hodnotou 35 s a směrodatnou odchylkou 1,5 s.
-4. *Z-skór průměru.* $z=(38-35)/1{,}5=2$. Průměr 38 s leží dvě směrodatné chyby nad populačním průměrem.
+4. **z*-skór průměru.* $z=(38-35)/1{,}5=2$. Průměr 38 s leží dvě směrodatné chyby nad populačním průměrem.
 5. *Plocha.* Pravděpodobnost je plocha pod křivkou napravo od 38 s: $1-0{,}9772=0{,}0228$.
 
 **Odpověď.** Průměr větší než 38 s vyjde přibližně u 2,3 % výběrů, tedy asi u jednoho ze čtyřiceti čtyř. V simulaci to bylo 243 výběrů z 10 000, tedy 2,4 %.
@@ -492,7 +492,7 @@ Výpočet je na listu `Chyba`. Vstupy jsou ve žlutých buňkách, vzorce v modr
 | B4 | Velikost výběru $n$ | `100` | 100 |
 | B5 | Hranice pro průměr | `38` | 38 |
 | B7 | Směrodatná chyba průměru | `=B3/ODMOCNINA(B4)` | 1,5 |
-| B8 | Z-skór hranice | `=(B5-B2)/B7` | 2 |
+| B8 | *z*-skór hranice | `=(B5-B2)/B7` | 2 |
 | B9 | Průměr nejvýše roven hranici | `=NORM.DIST(B5;B2;B7;PRAVDA)` | 0,9772 |
 | B10 | Průměr větší než hranice | `=1-B9` | 0,0228 |
 | B12 | Dolní mez prostředních 95 % průměrů | `=NORM.INV(0,025;B2;B7)` | 32,06 |
@@ -613,7 +613,7 @@ Jak posoudit, zda je pozorovaný rozdíl slučitelný s nulovou hypotézou? Tent
 
 Máme hypotézy a směr. Nyní se zeptáme, nakolik je pozorovaný rozdíl v souladu s nulovou hypotézou. Pracujeme ve výukovém modelu: platí-li $H_0$, má rozdíl výběrových průměrů přibližně normální rozdělení se střední hodnotou 0 a směrodatnou chybou 2,12 s.
 
-Číslu, které spočítáme z dat a porovnáme s tímto rozdělením, se říká **testová statistika (*test statistic*)**. Zde je jí rozdíl průměrů, 6,88 s. Stejně dobře jej můžeme vyjádřit jako z-skór, tedy v jednotkách směrodatné chyby:
+Číslu, které spočítáme z dat a porovnáme s tímto rozdělením, se říká **testová statistika (*test statistic*)**. Zde je jí rozdíl průměrů, 6,88 s. Stejně dobře jej můžeme vyjádřit jako *z*-skór, tedy v jednotkách směrodatné chyby:
 
 $$z=\frac{6{,}88-0}{2{,}1213}\approx3{,}24.$$
 
@@ -934,7 +934,7 @@ Sekundy jsou srozumitelná jednotka. Body dotazníku nebo testu takové být nem
 
 $$d=\frac{m_1-m_2}{s}=\frac{6{,}88}{14{,}6}\approx0{,}47.$$
 
-Průměry obou skupin řidičů se liší o necelou polovinu směrodatné odchylky [@howell, s. 102]. Je to obdoba [z-skóru](kapitola_04.qmd#sec-z-skor): vzdálenost vyjádřená tím, kolikrát se do ní vejde typická odlišnost mezi lidmi.
+Průměry obou skupin řidičů se liší o necelou polovinu směrodatné odchylky [@howell, s. 102]. Je to obdoba [*z*-skóru](kapitola_04.qmd#sec-z-skor): vzdálenost vyjádřená tím, kolikrát se do ní vejde typická odlišnost mezi lidmi.
 
 Rozhodující je, **kterou směrodatnou odchylkou dělíme**. Ve jmenovateli je směrodatná odchylka dob jednotlivých řidičů uvnitř skupin, zde 14,6 s; v parkovací studii byla podle Howella v obou skupinách stejná, takže není třeba rozhodovat, kterou použít. Není to směrodatná chyba. Kdybychom dělili směrodatnou chybou rozdílu, dostali bychom testovou statistiku $z=3{,}24$, a ta roste s velikostí výběru, i když se rozdíl mezi skupinami nemění. Standardizovaný rozdíl na velikosti výběru nezávisí.
 
@@ -1033,7 +1033,7 @@ Tomuto postupu se říká **binomický test (*binomial test*)**. Je na listu `Bi
 
 Vzorec v B7 je [doplněk](kapitola_05.qmd#sec-binom-kumulace) z minulé kapitoly: „alespoň 10“ je opakem „nejvýše 9“. Funkce [BINOM.INV](kapitola_05.qmd#sec-binom-kumulace) v B8 vrátí nejmenší počet, pro který kumulativní pravděpodobnost dosáhne alespoň 0,95, zde 8. Počty větší než tento, tedy od 9 výše, mají dohromady pravděpodobnost nejvýše 0,05; proto přičítáme jedničku. Ve sloupcích D a E je pravděpodobnost $P(X\ge k)$ pro všechny počty od 0 do 20. List počítá test s alternativou „více“ pro nejvýše 20 pokusů a vyžaduje pozorovaný počet alespoň 1.
 
-### Z-test: průměr proti známé normě {#sec-z-test}
+### *z*-test: průměr proti známé normě {#sec-z-test}
 
 Druhý příklad se týká průměru. Test pozornosti má podle norem v populaci studentů průměr 50 bodů a směrodatnou odchylku 10 bodů; je to ilustrační [model z kapitoly o normálním rozdělení](kapitola_04.qmd#sec-normalni-model), ne norma skutečného testu. Výzkumnice chce vědět, zda studenti po noci s méně než pěti hodinami spánku dosahují v testu nižších skórů. Otestuje 25 takových studentů a jejich průměr je 46 bodů.
 
@@ -1041,11 +1041,11 @@ Druhý příklad se týká průměru. Test pozornosti má podle norem v populaci
 
 **2. Hladina významnosti.** $\mathrm{α}=0{,}05$.
 
-**3. Testová statistika.** Výběrový průměr vyjádřený jako z-skór ve svém výběrovém rozdělení. Směrodatná chyba průměru je $\mathrm{σ}_m=10/\sqrt{25}=2$ body, takže
+**3. Testová statistika.** Výběrový průměr vyjádřený jako *z*-skór ve svém výběrovém rozdělení. Směrodatná chyba průměru je $\mathrm{σ}_m=10/\sqrt{25}=2$ body, takže
 
 $$z=\frac{m-\mathrm{μ}_0}{\mathrm{σ}_m}=\frac{46-50}{2}=-2.$$
 
-Za platnosti nulové hypotézy na její hranici má průměr 25 studentů rozdělení $N(50,2)$ a $z$ normované normální rozdělení. Tento postup se nazývá **z-test (*z-test*)**.
+Za platnosti nulové hypotézy na její hranici má průměr 25 studentů rozdělení $N(50,2)$ a $z$ normované normální rozdělení. Tento postup se nazývá ***z*-test (**z*-test*)**.
 
 **4. *p*-hodnota a kritický obor.** Extrémnější jsou nižší průměry. *p*-hodnota je plocha pod normovanou normální křivkou nalevo od −2:
 
@@ -1059,7 +1059,7 @@ Kritický obor tvoří dolních 5 % rozdělení: $z\le-1{,}645$, tedy průměry 
 
 ::: {.teaching-figure role="region" aria-label="Binomický test a z-test: rozdělení testové statistiky za platnosti nulové hypotézy" tabindex="0"}
 
-![Vlevo binomický test: pravděpodobnosti počtu správných odpovědí při tipování. Vpravo z-test: výběrové rozdělení průměru 25 studentů za platnosti nulové hypotézy.](../assets/chapter-06/plots/dva-testy.svg){#fig-dva-testy fig-alt="Dva grafy. Vlevo sloupcový graf binomického rozdělení pro 20 otázek a pravděpodobnost úspěchu 0,25: sloupce 10 a více jsou zvýrazněny jako p-hodnota 0,014, sloupec 9 jako součást kritického oboru, ostatní jsou šedé. Vpravo normální křivka se středem 50 bodů a směrodatnou chybou 2 body: plocha nalevo od 46 je vybarvena jako p-hodnota 0,023 a přerušovaná čára u 46,7 vyznačuje kritickou hodnotu."}
+![Vlevo binomický test: pravděpodobnosti počtu správných odpovědí při tipování. Vpravo *z*-test: výběrové rozdělení průměru 25 studentů za platnosti nulové hypotézy.](../assets/chapter-06/plots/dva-testy.svg){#fig-dva-testy fig-alt="Dva grafy. Vlevo sloupcový graf binomického rozdělení pro 20 otázek a pravděpodobnost úspěchu 0,25: sloupce 10 a více jsou zvýrazněny jako p-hodnota 0,014, sloupec 9 jako součást kritického oboru, ostatní jsou šedé. Vpravo normální křivka se středem 50 bodů a směrodatnou chybou 2 body: plocha nalevo od 46 je vybarvena jako p-hodnota 0,023 a přerušovaná čára u 46,7 vyznačuje kritickou hodnotu."}
 
 :::
 
@@ -1083,24 +1083,24 @@ Výpočet je na listu `Z_test`:
 | B12 | *p*-hodnota oboustranně | `=2*(1-NORM.S.DIST(ABS(B9);PRAVDA))` | 0,0455 |
 | B13 | Kritická hodnota průměru pro alternativu „menší“ | `=B2+NORM.S.INV(B6)*B8` | 46,71 |
 
-: Z-test průměru v Excelu {#tbl-k06-19}
+: *z*-test průměru v Excelu {#tbl-k06-19}
 
 
 :::
 
 List ukazuje *p*-hodnotu pro všechny tři směry; v řádcích 14 až 16 jsou kritické hodnoty průměru pro oboustranný test a pro alternativu „větší“. Použít lze jen ten výsledek, který odpovídá směru zvolenému předem. Při alternativě „větší“ by tentýž průměr dal *p*-hodnotu 0,977: výsledek leží na opačné straně a proti takové nulové hypotéze nesvědčí vůbec. Oboustranná *p*-hodnota je dvojnásobkem menší z obou jednostranných, 0,046.
 
-Ke z-testu dvě upozornění.
+Ke *z*-testu dvě upozornění.
 
-**Z-skór ještě není test.** Ve [čtvrté kapitole](kapitola_04.qmd#sec-z-skor) jsme z-skórem popisovali polohu jednoho člověka mezi ostatními. To je popis. Testem se výpočet stává teprve tehdy, když k němu patří hypotézy, výběrové rozdělení statistiky za platnosti nulové hypotézy a předem stanovené pravidlo. Liší se i jmenovatel: ve z-skóru člověka je směrodatná odchylka, ve z-testu směrodatná chyba.
+***z*-skór ještě není test.** Ve [čtvrté kapitole](kapitola_04.qmd#sec-z-skor) jsme *z*-skórem popisovali polohu jednoho člověka mezi ostatními. To je popis. Testem se výpočet stává teprve tehdy, když k němu patří hypotézy, výběrové rozdělení statistiky za platnosti nulové hypotézy a předem stanovené pravidlo. Liší se i jmenovatel: ve *z*-skóru člověka je směrodatná odchylka, ve *z*-testu směrodatná chyba.
 
-**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a *p*-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový t-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
+**Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a *p*-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový *t*-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
 
 ### Co mají testy společného a čím se liší {#sec-kroky-testu}
 
 ::: {.table-scroll .chapter-06-wide role="region" aria-label="Srovnání tří testů v kapitole" tabindex="0"}
 
-| | Rozdíl dvou průměrů (parkování) | Binomický test | Z-test průměru |
+| | Rozdíl dvou průměrů (parkování) | Binomický test | *z*-test průměru |
 |---|---|---|---|
 | Nulová hypotéza | $\mathrm{μ}_1-\mathrm{μ}_2=0$ | $\mathrm{π}\le0{,}25$ | $\mathrm{μ}\ge50$ |
 | Směr | oboustranný | jednostranný, „více“ | jednostranný, „méně“ |
@@ -1386,7 +1386,7 @@ e)  Spolužák označil rozmezí z bodu c) za interval spolehlivosti. V čem se 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  $z=(105-100)/15\approx0{,}333$. `=1-NORM.DIST(105;100;15;PRAVDA)` vrátí 0,369.
 
-b)  Model: $\mathrm{μ}=100$, $\mathrm{σ}=15$, $n=9$. Směrodatná chyba: $15/\sqrt{9}=5$. Tvar: populace je normální, takže rozdělení průměru je normální i pro malý výběr, $N(100,5)$. Z-skór průměru: $(105-100)/5=1$. Plocha: `=1-NORM.DIST(105;100;5;PRAVDA)` vrátí 0,159.
+b)  Model: $\mathrm{μ}=100$, $\mathrm{σ}=15$, $n=9$. Směrodatná chyba: $15/\sqrt{9}=5$. Tvar: populace je normální, takže rozdělení průměru je normální i pro malý výběr, $N(100,5)$. *z*-skór průměru: $(105-100)/5=1$. Plocha: `=1-NORM.DIST(105;100;5;PRAVDA)` vrátí 0,159.
 
     Skór nad 105 má více než třetina lidí, ale jen necelá šestina devítičlenných výběrů má tak vysoký průměr.
 
@@ -1474,7 +1474,7 @@ d)  **Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypo
 e)  *p*-hodnota by byla 0,145. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** šest správných odpovědí z osmi je více, než se očekává při tipování, ale takový nebo lepší výsledek by při tipování nastal asi v jednom případě ze sedmi. Výsledky neposkytly dostatečně přesvědčivou podporu tomu, že účastnice číslice rozpoznává; tuto možnost však nevylučují. Při osmi pokusech má test malou sílu a k přesvědčivější odpovědi by bylo třeba pokusů více.
 :::
 
-### 9. Z-test v Excelu a volba směru
+### 9. *z*-test v Excelu a volba směru
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U09_pamet` A2:B6. K výpočtu můžete použít list `Z_test`.
 
@@ -1601,7 +1601,7 @@ d)  Hladina 0,05 platí pro jeden test provedený při předem stanovené veliko
 
 Vstupy v [sešitu ke kapitole](../data/kapitola_06.xlsx): `U13_sila` A2:B7.
 
-Vraťte se ke z-testu z výkladu: $H_0{:}\ \mathrm{μ}\ge50$, $H_1{:}\ \mathrm{μ}<50$, $\mathrm{σ}=10$, $n=25$, $\mathrm{α}=0{,}05$.
+Vraťte se ke *z*-testu z výkladu: $H_0{:}\ \mathrm{μ}\ge50$, $H_1{:}\ \mathrm{μ}<50$, $\mathrm{σ}=10$, $n=25$, $\mathrm{α}=0{,}05$.
 
 a)  Určete kritickou hodnotu průměru.
 b)  Spočítejte statistickou sílu pro skutečný populační průměr 45 bodů a pro 47 bodů.

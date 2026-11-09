@@ -8,7 +8,7 @@ rq <- function(actual,expected,d) stopifnot(all(abs(as.numeric(actual)-as.numeri
 tl <- function(t,v) { x <- v/(v+t^2); tail <- .5*pbeta(x,v/2,.5); ifelse(t>0,1-tail,tail) }
 eq(tl(c(-2,1.3,2.45),c(24,7,55)),pt(c(-2,1.3,2.45),c(24,7,55)),1e-12)
 # Running example: known sigma interval and margin of error.
-eq(ch7_att[c('mu0','sigma','s','n','m')],c(50,10,10,25,46))
+eq(ch7_att[c('mu0','sigma','s','n','m')],c(50,10,11,25,46))
 rq(qnorm(.975),1.960,3);rq(1.96*2,3.92,2);rq(ch7_ci_att_z,c(42.08,49.92),2);rq(2*qnorm(.975)*2,7.84,2)
 # Widths: confidence level, sigma and sample size.
 rq(2*qnorm(c(.95,.975,.995))*2,c(6.58,7.84,10.30),2);rq(2*qnorm(.975)*20/5,15.68,2);rq(2*qnorm(.975)*10/10,3.92,2)
@@ -23,32 +23,39 @@ rq(qt(.975,c(4,9,24,99)),c(2.776,2.262,2.064,1.984),3);rq(qt(.025,24),-2.064,3);
 rq(qt(.975,c(10,15,19,29,55,149)),c(2.228,2.131,2.093,2.045,2.004,1.976),3);rq(qt(.95,c(24,29,149,199)),c(1.711,1.699,1.655,1.653),3)
 rq(qt(.975,4)/qnorm(.975)-1,.42,2)
 # Interval with the t quantile.
-rq(qt(.975,24)*2,4.13,2);rq(ch7_ci_att_t,c(41.87,50.13),2);rq(diff(ch7_ci_att_t)-diff(ch7_ci_att_z),.42,2);rq(diff(ch7_ci_att_t),8.26,2)
+rq(qt(.975,24)*2.2,4.54,2);rq(ch7_ci_att_t,c(41.46,50.54),2);rq(diff(ch7_ci_att_t)-diff(ch7_ci_att_z),1.24,2);rq(diff(ch7_ci_att_t),9.08,2)
+# With s = 10 the interval would be wider only through the quantile; the rest is due to s = 11.
+rq(46+c(-1,1)*qt(.975,24)*2,c(41.87,50.13),2);rq(2*(qt(.975,24)-qnorm(.975))*2,.42,2);rq(2*qt(.975,24)*(2.2-2),.83,2)
 # Coverage of the wrong procedure with 1.96 and s.
 rq(c(2*tl(qnorm(.975),24)-1,ch7_cov_wrong,2*tl(qnorm(.975),4)-1),c(.938,.918,.878),3)
 # One-sample t-test on attention.
-eq(ch7_t(46,10,25,50),-2);rq(tl(-2,24),.028,3);rq(tl(-2,24),.0285,4);rq(1-tl(-2,24),.9715,4);rq(2*tl(-2,24),.057,3);rq(2*tl(-2,24),.0569,4)
-rq(qt(.05,24),-1.711,3);rq(50+qt(.05,24)*2,46.58,2);rq(46+qt(.95,24)*2,49.42,2);rq(46+c(-1,1)*qt(.95,24)*2,c(42.58,49.42),2)
+ta <- ch7_t(46,11,25,50);rq(ta,-1.818,3);rq(tl(ta,24),.041,3);rq(tl(ta,24),.0408,4);rq(1-tl(ta,24),.9592,4);rq(2*tl(ta,24),.082,3);rq(2*tl(ta,24),.0815,4)
+rq(tl(-2,24),.028,3)
+rq(qt(.05,24),-1.711,3);rq(50+qt(.05,24)*2.2,46.24,2);rq(46+qt(.95,24)*2.2,49.76,2);rq(ch7_ci_att_t90,c(42.24,49.76),2);rq(50-ch7_ci_att_t90,c(7.76,.24),2)
+# Mirror figure: acceptance region around mu0 and the interval around m share the margin of error.
+rq(ch7_accept,c(45.46,54.54),2);rq(qt(.975,24)*2.2,4.54,2);stopifnot(ch7_accept[1]<46,ch7_ci_att_t[2]>50,ta>-qt(.975,24),ta<=qt(.05,24))
 # PDI (Howell, 2013, pp. 186-189).
 se <- 12.584/sqrt(56);rq(se,1.682,3);rq(4.125/se,2.45,2);rq(2*tl(-4.125/se,55),.017,3);rq(104.125+c(-1,1)*qt(.975,55)*se,c(100.75,107.50),2)
 # Interior of the interval as the set of non-rejected values (reject at p <= alpha).
-u <- ch7_ci_att_t[2];eq(ch7_p2(46,10,25,u),.05,1e-12);rq(u,50.128,3);rq(ch7_p2(46,10,25,48),.33,2);rq(ch7_p2(46,10,25,50),.057,3)
-mu <- seq(38,54,by=.001);inside <- mu[ch7_p2(46,10,25,mu)>.05];rq(range(inside),ch7_ci_att_t,2)
+u <- ch7_ci_att_t[2];eq(ch7_p2(46,11,25,u),.05,1e-12);rq(u,50.541,3);rq(ch7_p2(46,11,25,48),.37,2);rq(ch7_p2(46,11,25,50),.082,3)
+mu <- seq(38,54,by=.001);inside <- mu[ch7_p2(46,11,25,mu)>.05];rq(range(inside),ch7_ci_att_t,2)
 # Independent tail probabilities at and on both sides of both exact limits.
 for (side in c(-1,1)) {
-  boundary <- 46+side*qt(.975,24)*2
-  probs <- 2*tl(-abs((46-(boundary+side*c(-1e-5,0,1e-5)))/2),24)
+  boundary <- 46+side*qt(.975,24)*2.2
+  probs <- 2*tl(-abs((46-(boundary+side*c(-1e-5,0,1e-5)))/2.2),24)
   stopifnot(probs[1]>.05,probs[3]<.05);eq(probs[2],.05,1e-12)
 }
-stopifnot(ch7_p2(46,10,25,50.128)<.05)
-# Equivalence: consequences of shifts and the five studies.
+stopifnot(ch7_p2(46,11,25,50.541)<.05)
+# Equivalence: consequences of shifts and the nine studies.
 rq(100*ch7_share,c(24.2,15.9,9.7),1)
 e <- ch7_eq
-rq(cbind(e$ci95_d,e$ci95_h),cbind(c(41.87,47.52,49.42,42.02,45.02),c(50.13,49.48,51.38,45.98,48.98)),2)
-rq(cbind(e$ci90_d,e$ci90_h),cbind(c(42.58,47.68,49.58,42.34,45.34),c(49.42,49.32,51.22,45.66,48.66)),2)
-rq(e$p_rozdil[c(1,2,3,5)],c(.057,.003,.42,.003),c(3,3,2,3));stopifnot(e$p_rozdil[4]<.001)
-equiv <- e$ci90_d>=47 & e$ci90_h<=53;stopifnot(identical(equiv,c(FALSE,TRUE,TRUE,FALSE,FALSE)))
-stopifnot(identical(equiv,e$p_tost<=.05));stopifnot(identical(e$p_rozdil<=.05,c(FALSE,TRUE,FALSE,TRUE,TRUE)))
+rq(cbind(e$ci95_d,e$ci95_h),cbind(c(41.87,47.52,49.42,42.02,45.02,44.67,50.52,54.02,51.02),c(50.13,49.48,51.38,45.98,48.98,55.33,52.48,57.98,54.98)),2)
+rq(cbind(e$ci90_d,e$ci90_h),cbind(c(42.58,47.68,49.58,42.34,45.34,45.62,50.68,54.34,51.34),c(49.42,49.32,51.22,45.66,48.66,54.38,52.32,57.66,54.66)),2)
+rq(e$p_rozdil[c(1,2,3,5,6,7,9)],c(.057,.003,.42,.003,1,.003,.003),c(3,3,2,3,3,3,3));stopifnot(e$p_rozdil[c(4,8)]<.001)
+equiv <- e$ci90_d>=47 & e$ci90_h<=53;stopifnot(identical(equiv,c(FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE)))
+stopifnot(identical(equiv,e$p_tost<=.05));stopifnot(identical(e$p_rozdil<=.05,c(FALSE,TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,TRUE,TRUE)))
+# Study F spans all three regions; H lies entirely above, I straddles the upper bound.
+stopifnot(e$ci90_d[6]<47,e$ci90_h[6]>53,e$ci90_d[8]>53,e$ci90_d[9]<53,e$ci90_h[9]>53)
 # Touching either equivalence bound: p = alpha; nearby positions on opposite sides.
 for (side in c(-1,1)) {
   q <- qt(.95,399);boundary_m <- 50+side*(3-q*.5)
@@ -99,6 +106,16 @@ stopifnot(identical(c95[,1]>500|c95[,2]<500,c(FALSE,TRUE,FALSE,TRUE,TRUE)),ident
 rq(c90[2,2]-500,11,0);stopifnot(c90[4,1]>520)
 # Exercise 12: the post-hoc bound.
 rq(50-46.1,3.9,1)
-# Exercise 14.
-se <- 10/sqrt(200);rq(se,.707,3);rq(48.2-qt(.95,199)*se,47.03,2);rq(1-tl((48.2-47)/se,199),.046,3)
+# Exercise 14: shorter training against the fixed reference 55, margin 3.
+se <- 10/sqrt(200);rq(se,.707,3);rq(53.2-qt(.95,199)*se,52.03,2);rq(1-tl((53.2-52)/se,199),.046,3);rq(53.2-qt(.95,199)*se-52,.03,2)
+# Optional extension: the robustness table must match the simulation (same seeds, about 15 s).
+invisible(capture.output(source('scripts/kapitola_07-odolnost.R',encoding='UTF-8')))
+qmd <- readLines('quarto/kapitola_07.qmd',encoding='UTF-8')
+rows <- qmd[(grep('^\\| Tvar populace',qmd)+2):(grep('^: Odolnost intervalu',qmd)-2)]
+cells <- lapply(strsplit(rows,'\\|'),function(x) trimws(x[-1]))
+num <- function(x) as.numeric(sub(',','.',sub(' %','',x)))
+tab <- t(sapply(cells,function(x) c(num(x[2]),num(x[3])/100,num(x[4]),num(x[5]),num(x[6]))))
+stopifnot(nrow(tab)==nrow(ch7r_res),all(tab[,1]==ch7r_res$n))
+rq(tab[,2],ch7r_res$pokryti95,3);rq(tab[,3],ch7r_res$alfa_mensi,3);rq(tab[,4],ch7r_res$alfa_vetsi,3);rq(tab[,5],ch7r_res$sila_05core,2)
+rq(ch7r_power_raw,c(.93,.41),2)
 cat('Chapter 7 checks passed\n')

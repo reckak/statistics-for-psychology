@@ -33,7 +33,8 @@
   {
    "sheet": "Interval_t",
    "cell": "B7",
-   "expected": 2.0
+   "expected": 2.2,
+   "tolerance": 1e-07
   },
   {
    "sheet": "Interval_t",
@@ -49,25 +50,26 @@
   {
    "sheet": "Interval_t",
    "cell": "B10",
-   "expected": 4.12779712325605,
+   "expected": 4.540576835581655,
    "tolerance": 1e-07
   },
   {
    "sheet": "Interval_t",
    "cell": "B11",
-   "expected": 41.87220287674395,
+   "expected": 41.45942316441835,
    "tolerance": 1e-07
   },
   {
    "sheet": "Interval_t",
    "cell": "B12",
-   "expected": 50.12779712325605,
+   "expected": 50.54057683558165,
    "tolerance": 1e-07
   },
   {
    "sheet": "T_test",
    "cell": "B8",
-   "expected": 2.0
+   "expected": 2.2,
+   "tolerance": 1e-07
   },
   {
    "sheet": "T_test",
@@ -77,24 +79,25 @@
   {
    "sheet": "T_test",
    "cell": "B10",
-   "expected": -2.0
+   "expected": -1.8181818181818181,
+   "tolerance": 1e-07
   },
   {
    "sheet": "T_test",
    "cell": "B11",
-   "expected": 0.028469924968295843,
+   "expected": 0.04077013322330889,
    "tolerance": 1e-07
   },
   {
    "sheet": "T_test",
    "cell": "B12",
-   "expected": 0.9715300750317042,
+   "expected": 0.9592298667766911,
    "tolerance": 1e-07
   },
   {
    "sheet": "T_test",
    "cell": "B13",
-   "expected": 0.05693984993659169,
+   "expected": 0.08154026644661778,
    "tolerance": 1e-07
   },
   {
@@ -292,6 +295,11 @@
    "tolerance": 1e-07
   },
   {
+   "formula": "=T.DIST(-1,818;24;PRAVDA)",
+   "expected": 0.040784440193475026,
+   "tolerance": 1e-07
+  },
+  {
    "formula": "=T.DIST.2T(2;15)",
    "expected": 0.06394500728472005,
    "tolerance": 1e-07
@@ -340,6 +348,11 @@
    "formula": "=1-T.DIST(1,697;199;PRAVDA)",
    "expected": 0.04563005110717788,
    "tolerance": 1e-07
+  },
+  {
+   "formula": "=1-T.DIST(1,6971;199;PRAVDA)",
+   "expected": 0.04562472171868337,
+   "tolerance": 0.0001
   },
   {
    "formula": "=T.DIST.2T(3,151;19)",
@@ -550,8 +563,8 @@
     "B5": 0.9
    },
    "expect": {
-    "B11": 42.578235840181144,
-    "B12": 49.421764159818856
+    "B11": 42.236059424199254,
+    "B12": 49.763940575800746
    },
    "tolerance": 1e-07
   },
@@ -672,6 +685,86 @@
     "B16": 0.0034155079215788917,
     "B18": 45.33960884398307,
     "B19": 48.66039115601693,
+    "B26": 0.5
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B17": "zamítáme nulovou hypotézu",
+    "B20": "ekvivalence nedoložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence",
+   "set": {
+    "B4": 50,
+    "B6": 16
+   },
+   "expect": {
+    "B14": 44.67137613610056,
+    "B15": 55.32862386389944,
+    "B16": 1.0,
+    "B18": 45.617374110768566,
+    "B19": 54.382625889231434,
+    "B26": 0.12437489369401133
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B17": "nulovou hypotézu nezamítáme",
+    "B20": "ekvivalence nedoložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence",
+   "set": {
+    "B4": 51.5,
+    "B6": 400
+   },
+   "expect": {
+    "B14": 50.51703635203957,
+    "B15": 52.48296364796043,
+    "B16": 0.0028691391789044734,
+    "B18": 50.67565923322219,
+    "B19": 52.32434076677781,
+    "B26": 0.0014345695894522367
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B17": "zamítáme nulovou hypotézu",
+    "B20": "ekvivalence doložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence",
+   "set": {
+    "B4": 56,
+    "B6": 100
+   },
+   "expect": {
+    "B14": 54.015783048413574,
+    "B15": 57.984216951586426,
+    "B16": 3.245916112345565e-08,
+    "B18": 54.33960884398307,
+    "B19": 57.66039115601693,
+    "B26": 0.9982922460392105
+   },
+   "tolerance": 1e-07,
+   "labels": {
+    "B17": "zamítáme nulovou hypotézu",
+    "B20": "ekvivalence nedoložena"
+   }
+  },
+  {
+   "sheet": "Ekvivalence",
+   "set": {
+    "B4": 53,
+    "B6": 100
+   },
+   "expect": {
+    "B14": 51.015783048413574,
+    "B15": 54.984216951586426,
+    "B16": 0.0034155079215788917,
+    "B18": 51.33960884398307,
+    "B19": 54.66039115601693,
     "B26": 0.5
    },
    "tolerance": 1e-07,

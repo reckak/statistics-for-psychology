@@ -339,3 +339,10 @@ Kapitola 8 vznikla podle [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-
 ## Odborná revize kapitoly 8 — 2026-11-01
 
 Kontrola Howella: s. 86, 198–201, 203–205 a 213–220, tabulky 7.3 a 7.7 také v obrazu; přepočet 17 dvojic hmotností souhlasí s kapitolou. Dále kontrolní pasáže Cumminga a Calin-Jagemana s. 176–178 a 213–215 (textová extrakce), [Wilcox](U15-wilcox.md#revize-08-20261101) a nově [Lakens (2013)](E06-lakens-2013.md#e06-lakens-2013). Příklad Gelmana a Sterna na s. 328 a dokumentace Microsoftu byly porovnány s výkladem a skutečným během Excelu. Výklad byl upřesněn v mezích R59; původní studie, doplňkové sešity zdrojů a jejich celé výklady nebyly reprodukovány. Výsledky technických kontrol a implementace patří do [historie práce](../../quarto/README.md#revize-kapitoly-8).
+
+<a id="wilcox-kapitola-07-20261109"></a>
+
+## Revize kapitoly 7 podle autorových připomínek — 2026-11-09
+
+Přečteny v textové extrakci: Wilcox ([U15](U15-wilcox.md#u15-overeni)) §4.6 a §5.5, s. 111–118 a 162–166; Howell ([U01](U01-howell.md#u01)) s. 186–188 znovu kvůli zdůvodnění oboustranného testu u PDI (intervence u matek poloviny dětí, s. 186; název Bayley Scales of Infant Development); Lakens, *Improving Your Statistical Inferences* ([U16](U16-lakens-kniha.md#u16)), kap. 9, s. 244–245 (test noninferiority) a s. 254 (Minimum Effect Tests), v místním PDF a kotvy kapitoly na webu knihy (přístup 2026-11-09). Ze souboru `prezentace_průměry.pptx` ([P08](P08-prumery.md#p08)) přečten text snímku 20 z XML originálu. Čísla rozšíření o odolnosti jsou z vlastní simulace; přehled shody s Wilcoxem je v kartě U15. Autorovo tvrzení o „více motorických podnětech“ u předčasně narozených dětí nebylo doloženo a do textu se nepřevzalo; zdůvodnění se opírá jen o Howella.
+

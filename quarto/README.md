@@ -1,5 +1,63 @@
 # Autorská dokumentace
 
+## 2026-11-09 — Revize kapitoly 7 podle autorových připomínek (R66, R67)
+
+<a id="revize-07-20261109"></a>
+
+Zkontrolovány a začleněny autorovy redakční úpravy kapitoly 7. Opraveny
+jazykové chyby v nich („by mít“, „o tematiku pozornost“, chybějící sloveso
+u věty o *p*-hodnotě, „nezohleňuje“ s chybnou příčinnou vazbou, dvojí
+„proto“ u TOST); „plauzibilní rozmezí“ nahrazeno rozmezím hodnot slučitelných
+s daty, „mnohačetné opakování“ opakovaným použitím. „Nerozhodný“ výsledek
+sjednocen na „neprůkazný“ i v tabulce, řešeních 10d a 11 a v kartě.
+
+Obsahové změny podle připomínek:
+
+- Výběrová *s* průběžného příkladu je 11 (dosud 10, shodně s modelovou σ):
+  interval (41,46; 50,54), *t* ≈ −1,818, *p*-hodnota 0,041 jednostranně
+  a 0,082 oboustranně, 90% interval (42,24; 49,76); rozdíl vůči z-intervalu
+  rozložen na vliv kvantilu a vliv *s*. Studie A ve čtyřech kombinacích
+  (jiná studie, *s* = 10) se nemění; kapitola 8 má vlastní data.
+- Volba hladiny spolehlivosti a obecný kvantil $z_{1-\mathrm{α}/2}$
+  (jednostranná mez $z_{1-\mathrm{α}}$) v oddílu o výpočtu intervalu.
+- Opraveno tvrzení o odolnosti (souměrné těžké chvosty pokrytí zvyšují)
+  a přidáno nepovinné rozšíření „kdy je *t*-test odolný a kdy ne“ podle
+  Wilcoxe (2017, §4.6 a 5.5) s tabulkou z vlastní simulace
+  (`scripts/kapitola_07-odolnost.R`, 7 tvarů populace × *n* 10, 25, 50, 100).
+- *t*-test: směrová hypotéza stanovená předem, vysvětlená hranice
+  μ = μ₀, věcná interpretace s 90% intervalem. PDI: Bayleyové škály,
+  „Nurcombe et al.“, oboustranný test zdůvodněn podle Howella (intervence
+  u matek poloviny dětí, jiná normativní populace); autorovo tvrzení
+  o motorických podnětech nemělo doložený zdroj a převzato nebylo.
+- Nový pododdíl „Tři cesty k témuž rozhodnutí“ s obrázkem zrcadla intervalu
+  a tabulkou podle snímku 20 prezentace průměrů; nový obrázek jednostranných
+  intervalů a výklad, proč se místo jednostranné meze uvádí 90% centrální
+  interval. Autorův návrh popsat bodový odhad jako „nejpravděpodobnější
+  hodnotu“ upraven: hodnoty u středu jsou s daty nejlépe slučitelné, nejde
+  o pravděpodobnost pro μ.
+- Dopad posunu o 3 body na podíl doporučených doplněn do textu před
+  obrázkem; čtyři kombinace rozšířeny na devět studií (F přes všechna pásma,
+  G–I zrcadla B, D, E); osa grafů popsána jako skór, ne populační průměr.
+- Rozšíření o noninferioritě přepsáno na trénink pozornosti a relaxační
+  program se superioritou, nonsuperioritou, noninferioritou a inferioritou;
+  úloha 14 převedena na kratší trénink vůči referenční hodnotě 55.
+- Obecné pokyny v kapitole 7: obměněno „Oddíl ukazuje…“, „variabilita“
+  místo „rozptýlenost“, reliabilita u přesnosti měření, kurzivní *s*,
+  „striktně uvnitř“, „kvantil vzdálenější od nuly“, citace „et al.“.
+
+Celoknižně podle R66: kurzivní *t*/*z* ve složeninách v kapitolách 4–8,
+přehledech, dvou vizualizacích, autorském slovníku a grafech kapitol 4, 6 a 7
+(skript nahrazoval jen prózu mimo matematiku, kód, odkazy, ID a alternativní
+texty; T-skór stojatě). V kapitole 8 „Aronson et al.“. Prezentace a balíčky
+AI tutora tímto nejsou upraveny.
+
+Upraveny také sešit kapitoly 7 (`Pozornost`, `Interval_t`, `T_test`,
+`Studie_ekv`, list `U14_noninferiorita`), generátory, nezávislé kontroly
+(`check-chapter-07.R` nově porovnává i tabulku odolnosti se simulací,
+`check-chapter-07-excel-expected.py`, `check-html.cjs`), slovníček, značení,
+registr, karta kapitoly, DATA.md, OSNOVA.md, PROVOZ.md, karty U15, U16, P08
+a historie ověřování zdrojů.
+
 ## 2026-11-07 — Vizualizace posunu a změny jednotek (upřesnění R65)
 
 Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun)

@@ -33,7 +33,7 @@ ch4_draw('standardizace', {
   v <- c(4,5,5,6,10); z <- (v-mean(v))/sd(v); h <- c(1,1,1.25,1,1)
   for(k in 1:2) {
     a <- if(k==1) v else z
-    plot(a,h,pch=19,cex=1.35,col=ch4_blue,yaxt='n',ylab='',ylim=c(.6,1.6),xlim=range(a)+c(-.15,.15)*diff(range(a)),bty='n',xlab=if(k==1)'Doba dokončení úlohy (minuty)' else 'Z-skór',main=if(k==1)'Původní hodnoty' else 'Po standardizaci')
+    plot(a,h,pch=19,cex=1.35,col=ch4_blue,yaxt='n',ylab='',ylim=c(.6,1.6),xlim=range(a)+c(-.15,.15)*diff(range(a)),bty='n',xlab=if(k==1)'Doba dokončení úlohy (minuty)' else expression(italic(z)*'-skór'),main=if(k==1)'Původní hodnoty' else 'Po standardizaci')
     abline(v=if(k==1)mean(v) else 0,lty=2,col=ch4_orange)
   }
 },height=5)
@@ -167,7 +167,7 @@ ch4_draw('skaly', {
     y<-5-k;segments(-3,y,3,y,col=ch4_blue,lwd=1.5)
     points(zz,rep(y,7),pch=19,col=ch4_blue)
     text(zz,y+.23,list(zz,50+10*zz,100+15*zz,10+3*zz)[[k]])
-    mtext(c('z-skór','T-skór','IQ-skór (100/15)','Subtestový skór (10/3)')[k],side=2,at=y,line=.5,las=1,cex=.85)
+    mtext(list(expression(italic(z)*'-skór'),'T-skór','IQ-skór (100/15)','Subtestový skór (10/3)')[[k]],side=2,at=y,line=.5,las=1,cex=.85)
   }
   segments(-3,0,3,0,col=ch4_orange,lwd=1.5)
   points(zz,rep(0,7),pch=19,col=ch4_orange)
@@ -219,7 +219,7 @@ ch4_draw('pasma-skoru', {
     mids<-(head(finite_breaks,-1)+tail(finite_breaks,-1))/2
     axis(1,at=inner,cex.axis=.78)
     # Axis title right under the z values; band numbers form a separate row below.
-    mtext('Z-skór',side=1,line=1.75,cex=.95)
+    mtext(expression(italic(z)*'-skór'),side=1,line=1.75,cex=.95)
     mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=4.4,at=-3.3,cex=.8)
     mtext(seq_along(mids),side=1,line=4.4,at=mids,cex=.85)
     # Model share of every band just above the axis; cumulative share above each boundary.
@@ -258,7 +258,7 @@ ch4_draw('normalizace', {
   points(xr,uz(z),pch=21,bg=ch4_hi_text,col='white',cex=1.25)
   axis(2,at=ux(seq(10,50,10)),labels=seq(10,50,10))
   axis(4,at=uz(-2:2),labels=c('−2','−1','0','1','2'))
-  mtext('Doba řešení (s)',side=2,line=2.8,las=0); mtext('z-skór po normalizaci',side=4,line=2.8,las=0)
+  mtext('Doba řešení (s)',side=2,line=2.8,las=0); mtext(expression(italic(z)*'-skór po normalizaci'),side=4,line=2.8,las=0)
   cnt <- 0:7
   axis(1,at=c(-g-cnt,g+cnt),labels=c(cnt,cnt))
   mtext('Četnost',side=1,line=2.5)

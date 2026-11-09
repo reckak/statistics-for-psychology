@@ -91,7 +91,21 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 - **Test ekvivalence** (*equivalence test*) je obecný pojem; **TOST, dva jednostranné testy** (*two one-sided tests*) je konkrétní postup, ne synonymum jakéhokoli testu ekvivalence.
 - **Hranice ekvivalence** a **pásmo ekvivalence** (*equivalence bounds, equivalence region*) se stanovují předem.
 - **Nejmenší věcně důležitý rozdíl** (*smallest effect size of interest, SESOI*) jako překlad navržený touto učebnicí; odlišit od velikosti účinku.
-- **Neinferiorita** (*non-inferiority*) jen v nepovinném rozšíření.
+- **Neinferiorita** (*non-inferiority*) jen v nepovinném rozšíření. *Doplněk 2026-11-09:* nahrazeno termínem noninferiorita podle [R67](#r67-revize-kapitoly-7).
 - Výběrová chyba ([R30](kapitola-06.md#r30-terminologie-kapitoly-6)) a stupně volnosti ([H09](../SLOVNIK.md#doklad-h09)) jsou zavedeny dříve a nemění se.
 
 **Doklad:** terminologická tabulka byla součástí schváleného plánu 2026-10-17. Autor ji upravil pokyny: „Doplnil bych ‚intervalový odhad‘, ‚přesnost odhadu‘ a ‚výběrová chyba‘, pokud poslední termín dosud není zaveden. Preferoval bych úplné označení mezní chyba odhadu. TOST bych neuváděl jako synonymum jakéhokoli testu ekvivalence, ale jako konkrétní postup dvou jednostranných testů.“ Záznam „Kapitola 7: dohoda o obsahu“ v [historii](../../quarto/README.md#dohoda-kapitola-07).
+
+<a id="r67-revize-kapitoly-7"></a>
+
+## R67 — Revize terminologie a příkladů kapitoly 7
+
+**Stav:** schváleno 2026-11-09. **Rozsah:** kapitola 7, slovníček, značení a autorský slovník. Částečně nahrazuje [R46](#r46-terminologie-kapitoly-7) v bodě „Neinferiorita“; ostatní body R46 platí.
+
+- **Noninferiorita** (*non-inferiority*) místo „neinferiorita“: když je už „inferiorita“ cizí slovo, předpona má být také latinská. V tomtéž nepovinném rozšíření nově **superiorita**, **nonsuperiorita** a **inferiorita** (*superiority, non-superiority, inferiority*) jako jednostranné otázky vůči hranicím $\mathrm{μ}_0\pm\mathrm{Δ}$. Příklad rozšíření i úlohy 14 je trénink pozornosti, nikoli „horší“ verze testu.
+- Nepovinné rozšíření o odolnosti *t*-testu zavádí **nominální** a **skutečnou hladinu významnosti** (*nominal, actual significance level*) a **liberální** a **konzervativní test** (*liberal, conservative test*). Názvy rozdělení (lognormální, smíšené normální) se nezavádějí, tvary populací se popisují slovy.
+- Výběrová směrodatná odchylka průběžného příkladu je $s=11$ místo 10, aby se nekryla s modelovou σ; příklad zachovává jednostranné zamítnutí při 95% intervalu obsahujícím normu.
+- Obecný zápis kvantilu pro hladinu spolehlivosti $1-\mathrm{α}$: $z_{1-\mathrm{α}/2}$ pro oboustranný interval a $z_{1-\mathrm{α}}$ pro jednostrannou mez; obdobně pro *t* podle [R45](#r45-znaceni-kapitoly-7).
+- Ve výkladu „variabilita“ místo „rozptýlenost“ a „reliabilita“ místo „spolehlivost“ měření, v souladu s [registrem](../SLOVNIK.md); „striktně uvnitř“ místo „přísně uvnitř“; „neprůkazný“ výsledek místo „nerozhodný“.
+
+**Doklad:** autorovy připomínky 2026-11-09: „Místo neinferiority bych používal noninferiorita, když už samotná inferiority je cizí slovo“, „bylo by nejlepší v rámci příkladu s pozorností uvažovat … o tom, zda nějaká intervence zlepšuje pozornost; a pak vysvětlit jak inferioritu a noninferioritu, tak superioritu a nonsuperioritu“ a požadavek na nepovinné rozšíření o odolnosti podle Wilcoxe s dopady na sílu, skutečnou alfa a CI. Hodnotu $s=11$ zvolil v otázce 2026-11-09; následně schválil plán revize, který uváděl i nové termíny.

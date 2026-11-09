@@ -515,7 +515,9 @@ ověřuje `check-chapter-06.R`.
 
 Sedmou kapitolu ověřuje `check-chapter-07.R`: intervaly, t-testy, TOST,
 řešení, obě simulace, screeningové podíly, Q–Q souřadnice a hraniční
-p-hodnoty. Skript `check-chapter-07-excel.ps1` kontroluje v samostatném
+p-hodnoty. Spouští také `scripts/kapitola_07-odolnost.R` (asi 15 s,
+100 000 výběrů na podmínku) a porovná jeho výsledky s tabulkou odolnosti
+v nepovinném rozšíření. Skript `check-chapter-07-excel.ps1` kontroluje v samostatném
 skrytém Excelu uložené výsledky, české vzorce, přepočet při změně vstupů,
 popisky pro hladiny 0,01/0,05/0,10 a spolehlivosti 0,90/0,95/0,99,
 přesný dotyk obou hranic ekvivalence a pravidlo p ≤ α. Změny neukládá.

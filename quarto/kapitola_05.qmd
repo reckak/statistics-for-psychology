@@ -892,7 +892,7 @@ Není to přesná hranice. Některé učebnice uvádějí mírnější požadave
 
 1.  *Podmínka.* Očekáváme $200\times0{,}6=120$ úspěchů a $200\times0{,}4=80$ neúspěchů. Obě hodnoty jsou větší než 10.
 2.  *Parametry.* $\mathrm{μ}=120$ a $\mathrm{σ}=\sqrt{200\times0{,}6\times0{,}4}$, tedy $\sqrt{48}\approx6{,}928$.
-3.  *Z-skór hranice.* $z=(135-120)/6{,}928\approx2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme nízkou pravděpodobnost.
+3.  **z*-skór hranice.* $z=(135-120)/6{,}928\approx2{,}165$. Hranice leží více než dvě směrodatné odchylky nad střední hodnotou; čekáme nízkou pravděpodobnost.
 4.  *Plocha nad hranicí.* `=1-NORM.S.DIST(2,165;PRAVDA)` vrátí přibližně 0,015.
 
 Podle normální aproximace dosáhne účastník 135 nebo více správných odpovědí s pravděpodobností přibližně 1,5 %.
@@ -910,7 +910,7 @@ Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pra
 | B6 | Očekávaný počet úspěchů | `=B2*B3` | 120 |
 | B7 | Očekávaný počet neúspěchů | `=B2*(1-B3)` | 80 |
 | B8 | Směrodatná odchylka | `=ODMOCNINA(B2*B3*(1-B3))` | 6,928 |
-| B9 | Z-skór hranice | `=(B4-B6)/B8` | 2,165 |
+| B9 | *z*-skór hranice | `=(B4-B6)/B8` | 2,165 |
 | B10 | Normální aproximace $P(X\ge135)$ | `=1-NORM.S.DIST(B9;PRAVDA)` | 0,0152 |
 | B11 | Přesná binomická hodnota | `=1-BINOM.DIST(B4-1;B2;B3;PRAVDA)` | 0,0173 |
 | B12 | Aproximace od hranice 134,5 | `=1-NORM.DIST(B4-0,5;B6;B8;PRAVDA)` | 0,0182 |
@@ -920,7 +920,7 @@ Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pra
 
 :::
 
-Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximace se z-skórem $(10-5)/1{,}94\approx2{,}58$ dává 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
+Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximace se *z*-skórem $(10-5)/1{,}94\approx2{,}58$ dává 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
 
 ::: {.teaching-figure role="region" aria-label="Normální křivka přes binomické rozdělení při nesplněné a splněné podmínce" tabindex="0"}
 
@@ -942,7 +942,7 @@ $$\text{střední hodnota podílu}=\frac{n\times\mathrm{π}}{n}=\mathrm{π},$$
 
 $$\begin{aligned}&\text{směrodatná odchylka podílu}\\&\quad=\dfrac{\sqrt{n\times\mathrm{π}\times(1-\mathrm{π})}}{n}=\sqrt{\dfrac{\mathrm{π}\times(1-\mathrm{π})}{n}}.\end{aligned}$$
 
-Ze střední hodnoty počet pokusů zmizí, ze směrodatné odchylky nikoli: zůstává ve jmenovateli pod odmocninou. Pro náš příklad je směrodatná odchylka podílu $\sqrt{0{,}6\times0{,}4/200}\approx0{,}03464$ a z-skór pozorovaného podílu
+Ze střední hodnoty počet pokusů zmizí, ze směrodatné odchylky nikoli: zůstává ve jmenovateli pod odmocninou. Pro náš příklad je směrodatná odchylka podílu $\sqrt{0{,}6\times0{,}4/200}\approx0{,}03464$ a *z*-skór pozorovaného podílu
 
 $$z=\frac{0{,}675-0{,}6}{0{,}03464}\approx2{,}165,$$
 
@@ -1233,16 +1233,16 @@ Znalostní test má 100 otázek typu ano–ne. Uvažujte zkoušeného, který u 
 a)  Ověřte podmínku pro použití normální aproximace.
 b)  Určete střední hodnotu a směrodatnou odchylku počtu správných odpovědí a normální aproximací pravděpodobnost 65 nebo více správných odpovědí.
 c)  Určete tutéž pravděpodobnost přesně a také aproximací od hranice 64,5. Porovnejte tři výsledky.
-d)  Převeďte úlohu na podíly: určete pozorovaný podíl, směrodatnou odchylku podílu a z-skór. Co se oproti b) změnilo?
+d)  Převeďte úlohu na podíly: určete pozorovaný podíl, směrodatnou odchylku podílu a *z*-skór. Co se oproti b) změnilo?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  Očekáváme $100\times0{,}5=50$ úspěchů a 50 neúspěchů; obě hodnoty jsou větší než 10. Při $\mathrm{π}=0{,}5$ je navíc rozdělení souměrné.
 
-b)  $\mathrm{μ}=50$; $\mathrm{σ}=\sqrt{100\times0{,}5\times0{,}5}=\sqrt{25}=5$. Z-skór hranice: $(65-50)/5=3$. `=1-NORM.S.DIST(3;PRAVDA)` vrátí 0,0013.
+b)  $\mathrm{μ}=50$; $\mathrm{σ}=\sqrt{100\times0{,}5\times0{,}5}=\sqrt{25}=5$. *z*-skór hranice: $(65-50)/5=3$. `=1-NORM.S.DIST(3;PRAVDA)` vrátí 0,0013.
 
 c)  Přesně: `=1-BINOM.DIST(64;100;0,5;PRAVDA)` vrátí 0,0018. Od hranice 64,5: $z=(64{,}5-50)/5=2{,}9$ a `=1-NORM.S.DIST(2,9;PRAVDA)` vrátí 0,0019. Aproximace od 65 je nižší než přesná hodnota. Část odchylky souvisí s vynecháním poloviny sloupce pro 65; další část vzniká tím, že normální a binomické rozdělení nemají přesně stejný tvar. Aproximace od 64,5 je přesné hodnotě velmi blízko. Všechny tři výsledky říkají totéž: při pouhém tipování nastane 65 a více správných odpovědí přibližně v jednom až dvou případech z tisíce.
 
-d)  Pozorovaný podíl je $65/100=0{,}65$. Směrodatná odchylka podílu: $\sqrt{0{,}5\times0{,}5/100}=0{,}05$. Z-skór: $(0{,}65-0{,}5)/0{,}05=3$. Změnily se jednotky, v nichž výsledek vyjadřujeme; z-skór ani pravděpodobnost se nezměnily.
+d)  Pozorovaný podíl je $65/100=0{,}65$. Směrodatná odchylka podílu: $\sqrt{0{,}5\times0{,}5/100}=0{,}05$. *z*-skór: $(0{,}65-0{,}5)/0{,}05=3$. Změnily se jednotky, v nichž výsledek vyjadřujeme; *z*-skór ani pravděpodobnost se nezměnily.
 :::
 
 ### 12. Které pravidlo použít

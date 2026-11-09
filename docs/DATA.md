@@ -213,12 +213,12 @@ a cvičení 11 hotové p-hodnoty; nejde o jednotlivá pozorování.
 
 ## Kapitola 7
 
-[Sešit](../data/kapitola_07.xlsx). Kontrola proti výkladu a zadáním: 2026-10-18.
+[Sešit](../data/kapitola_07.xlsx). Kontrola proti výkladu a zadáním: 2026-10-18; po revizi 2026-11-09 znovu sestaven a ověřen (viz níže).
 
 Výklad: `Pozornost` (průběžný příklad: norma 50, modelový předpoklad σ = 10,
-výběrová s = 10, n = 25, m = 46), `PDI` (souhrny podle Howella, s. 186–188,
-ze studie Nurcomba et al., 1984) a `Studie_ekv` (pět smyšlených studií online
-verze testu, hranice ekvivalence 47 a 53). Hotové výpočty jsou odděleně
+výběrová s = 11, n = 25, m = 46), `PDI` (souhrny podle Howella, s. 186–188,
+ze studie Nurcomba et al., 1984) a `Studie_ekv` (devět smyšlených studií online
+verze testu A–I, hranice ekvivalence 47 a 53). Hotové výpočty jsou odděleně
 na listech `Interval_z`, `Interval_t`, `T_test` a `Ekvivalence`; žluté buňky
 jsou vstupy, modré vzorce. `Ekvivalence` je nastavena na studii B a počítá
 test rozdílu (95% interval, oboustranná p-hodnota), test ekvivalence
@@ -227,6 +227,12 @@ Uvedená procenta platí pro výchozí α = 0,05; při změně B7 se mění
 meze i popisky (1 − α a 1 − 2α). Rozhodnutí respektují p ≤ α včetně
 přesného dotyku meze intervalu s hranicí ekvivalence. Na listu `Interval_z`
 se poznámka o pokrytí mění s hladinou v B5; modelový předpoklad v A3 je celý viditelný.
+
+**Revize 2026-11-09:** výběrová s průběžného příkladu změněna z 10 na 11
+(`Pozornost` B6, `Interval_t` B3, `T_test` B4), `Studie_ekv` doplněn o studie
+F–I a list úlohy 14 přejmenován z `U14_neinferiorita` na `U14_noninferiorita`
+s novým kontextem (referenční hodnota 55, průměr 53,2). Ostatní listy,
+adresy a vzorce se nezměnily; sešit prošel `build-workbooks.ps1 -Chapter 7 -Verify`.
 
 Od kontroly 2026-11-01 se velmi malá kladná p-hodnota v `Ekvivalence!B25`
 zobrazuje jako „< 0,001“. Formát zachovává číselnou hodnotu pro navazující
@@ -263,7 +269,7 @@ normálního modelu; nejde o jednotlivá pozorování.
 | 11 | `U11_studie` A2:E6; zadané meze intervalů |
 | 12 | Slovní / konceptuální zadání; individuální data nejsou zadána. |
 | 13 (nepovinné) | `U10_spokojenost` A2:B6; list `Ekvivalence` B22:B26 |
-| 14 (nepovinné) | `U14_neinferiorita` A2:B6 |
+| 14 (nepovinné) | `U14_noninferiorita` A2:B6 |
 
 <a id="kapitola-8"></a>
 
