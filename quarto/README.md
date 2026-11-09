@@ -1,5 +1,27 @@
 # Autorská dokumentace
 
+## 2026-11-09 — Kurzivní t/z v prezentacích kapitol 4–6 (R66)
+
+Podle [R66](../docs/rozhodnuti/spolecne-konvence.md#r66-kurziva-a-et-al) je
+písmeno ve složeninách *z*-skór, *z*-test a *t*-test kurzivou i v prezentacích:
+kapitola 4 (41 výskytů ve snímcích a poznámkách, 35 v DOCX poznámek, 41 buněk
+sešitu), kapitola 5 (2 + 2 + 2) a kapitola 6 (9 + 8 + 7). Na začátku věty
+a v nadpisech je malé písmeno, T-skór zůstává stojatě. Úpravy proběhly přímo
+v souborech přes PowerPoint a Excel (kurziva jen u písmene, ostatní formát
+beze změny); DOCX poznámek byly upraveny v XML, protože Word se při
+automatizaci opakovaně zasekl. Ve slidech 6, 20, 21 a 22 kapitoly 4 jsou
+obrázky grafů nahrazeny aktuálními rendery (`scripts/kapitola_04.R`)
+se stejnou polohou, šířkou a alternativním textem. PDF kapitol 4–6 jsou
+znovu exportována z PowerPointu.
+
+Kontroly: počty změn odpovídají předchozímu vyhledání ve všech souborech;
+XML upravených DOCX je platné a obsahuje 45 kurzivních písmen; změněné
+snímky (kap. 4: 2, 3, 5, 6, 12, 20, 21, 22, 41; kap. 6: 30) prohlédnuty
+v exportu PowerPointu. Neověřeno: otevření upravených DOCX ve Wordu
+(automatizace Wordu se zasekla již při práci s původními soubory) a vizuální
+prohlídka změněných buněk sešitů. Scénáře pro syntézu řeči se nemění,
+kurziva v nich nemá význam.
+
 ## 2026-11-09 — Revize kapitoly 7 podle autorových připomínek (R66, R67)
 
 <a id="revize-07-20261109"></a>
