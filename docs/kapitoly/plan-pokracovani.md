@@ -46,8 +46,9 @@ koeficienty povinně permutační test a percentilový bootstrapový interval.
 Před psaním se prototypem sešitu ověří proveditelnost převzorkování v Excelu
 bez maker. [Prototyp z 2026-11-09](../../quarto/README.md#prototyp-prevzorkovani-10)
 proveditelnost potvrdil (shoda s R; 9 999 opakování znamená sešit asi 22 MB
-a vzorec τ<sub>b</sub> vyžaduje Excel s dynamickými poli); počet opakování
-ve studentském sešitu zatím zvolen není. Navazuje na nezávislost z [kapitoly 5](05-pravdepodobnost.md#mapa-kapitola-05),
+a vzorec τ<sub>b</sub> vyžaduje Excel s dynamickými poli). Sešit proto
+počítá 1 999 opakování a uvede hotové výsledky 9 999 opakování
+([upřesnění R71](../rozhodnuti/kapitola-10.md#r71-upresneni-2026-11-09)). Navazuje na nezávislost z [kapitoly 5](05-pravdepodobnost.md#mapa-kapitola-05),
 testování a simulace z [kapitoly 6](06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06),
 interval z [kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07),
 párová data z [kapitoly 8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08)

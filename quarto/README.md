@@ -53,7 +53,11 @@ z repozitářových skriptů dalo pro *B* = 1 999 stejné výsledky.
 **Neověřeno:** přesná permutace pro šest osob v Excelu (jen v R:
 *p* = 0,0056 pro *r*<sub>s</sub> a 0,0111 pro τ<sub>b</sub>), pokrytí percentilového
 intervalu simulací, starší verze Excelu, Excel pro Mac a webový Excel, vzhled
-listů. Volba počtu opakování ve studentském sešitu čeká na autora.
+listů.
+
+**Rozhodnutí autora týž den:** sešit počítá vzorci 1 999 opakování a vedle
+uvede ověřené hotové výsledky 9 999 opakování
+([upřesnění R71](../docs/rozhodnuti/kapitola-10.md#r71-upresneni-2026-11-09)).
 
 <a id="dohoda-kapitola-10"></a>
 
