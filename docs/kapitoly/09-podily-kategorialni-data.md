@@ -58,7 +58,7 @@ sloupec určuje konkrétní **procvičení**. Jedenáct hlavních oddílů odpov
 | [Řádkové podíly a rezidua](../../quarto/kapitola_09.qmd#sec-rezidua) | Věk × strategie zvládání (190; $\mathrm{χ}^2=11{,}78$, 4 st. v., *p* 0,019, V 0,18); řádkové podíly a obrázek; Pearsonova a upravená rezidua s tabulkou obou; upravená rezidua jen popisně, generační výklad průřezu; list `Tabulka` s ŘÁDKY a SLOUPCE. | 7. |
 | [Nepovinné: Holmova korekce](../../quarto/kapitola_09.qmd#rozsireni-holm) | Postupné hranice α/m; v tabulce zvládání průkazná jen buňka senioři × řešení problému. List `Tabulka` A36:D50. | 13. |
 | [Předpoklady a Fisherův test](../../quarto/kapitola_09.qmd#sec-predpoklady-09) | Dva významy nezávislosti; absolutní četnosti; „Častý omyl“ s nevýskyty (letní čas, Howell s. 154); hierarchie pravidel očekávaných četností (≥ 5 jako konzervativní vodítko, další doporučení, ne samostatná záruka); Fisherův test povinně: otázka, podmínění okrajovými součty, čtení výsledku (pilot 8/10 vs. 3/10: χ² *p* 0,025, Fisher 0,070; stres 0,18 vs. 0,14), není jen pro malé výběry; „Častý omyl“ o neparametričnosti. | 9, 12. |
-| [Nepovinné: Fisher v Excelu](../../quarto/kapitola_09.qmd#rozsireni-fisher) | Hypergeometrické rozdělení (návrh termínu, viz SLOVNIK K09-N1), HYPGEOM.DIST, SUMIF; list `Fisher`. | Bez cvičení. |
+| [Nepovinné: Fisher v Excelu](../../quarto/kapitola_09.qmd#rozsireni-fisher) | Hypergeometrické rozdělení (schváleno doplněním R70), HYPGEOM.DIST, SUMIF; list `Fisher`. | Bez cvičení. |
 | [Velikost souvislosti](../../quarto/kapitola_09.qmd#sec-velikost-souvislosti) | Daniels podle Fielda (56/140 vs. 20/117): (a) rozdíl 22,9 bodu, Newcombe (11,9; 33,0), přirozené četnosti, procenta vs. procentní body; (b) riziko, poměr rizik 2,34 a referenční skupina (0,43), šance a poměr šancí 3,23, proč OR existuje, aspirin jako vzácný jev (1,82 a 1,83; 0,77 bodu); (c) φ = 0,25 se znaménkem podle kódování, Cramérovo V, omezení (aspirin φ 0,034), bez slovních pásem; věcná interpretace s výhradou k náhodnému rozdělení. List `Mira_souvislosti`. | 10, 14. |
 | [Nepovinné: intervaly pro poměry](../../quarto/kapitola_09.qmd#rozsireni-intervaly-pomeru) | LN a EXP; RR (1,50; 3,66), OR (1,80; 5,82). | 14. |
 | [Nepovinné: Simpsonův paradox](../../quarto/kapitola_09.qmd#rozsireni-simpson) | Berkeley 1973, obory B–F (Howell), tabulka podílů; odchylka Howellova 28,8 % od 27,1 % uvedena. | Bez cvičení. |
@@ -126,8 +126,8 @@ Tolerance 0,002 u podílů a mezí, 0,02 u statistik, 0,001 u *p*-hodnot.
 
 ### Pojmy, konvence a hranice návaznosti
 
-Nově vysvětleno 31 pojmů [registru](../SLOVNIK.md#kapitola-09); dva návrhy (hypergeometrické
-rozdělení, druhý význam referenční skupiny) čekají na rozhodnutí autora. Značení podle R69:
+Nově vysvětleno 32 pojmů [registru](../SLOVNIK.md#kapitola-09) včetně nepovinného hypergeometrického
+rozdělení; „referenční skupina“ má od kapitoly 9 druhý schválený význam (doplnění R70, 2026-11-09). Značení podle R69:
 $f_j$, $e_j$, $\mathrm{π}_{0j}$, $f_{jl}$, $e_{jl}$, $f_{j+}$, $f_{+l}$, $R\times S$,
 $\mathrm{χ}^2$, $\mathrm{φ}$, $V$, nepovinně $\mathrm{κ}$; RR a OR jen ve zprávách a v přehledu.
 Nové funkce Excelu: CHISQ.DIST.RT, CHISQ.INV.RT, CHISQ.TEST, ŘÁDKY, SLOUPCE, nepovinně

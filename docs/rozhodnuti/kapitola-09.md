@@ -91,3 +91,7 @@ Poměr šancí, který [R23](kapitola-05.md#r23-terminologie-kapitoly-5) při p�
 <a id="r70-doplneni-2026-11-09"></a>
 
 **Doplnění evidence 2026-11-09 (při psaní kapitoly, nejde o nové schválení):** termíny **skórový test** a **tabulka přechodů** seznam R70 výslovně neuvádí; v textu se používají, protože je autor sám užil ve schválených připomínkách k plánu („Wilsonův interval odpovídá obrácení skórového testu“; „Pearsonův test nezávislosti na tabulce přechodů“). Jako **návrhy k rozhodnutí** zůstávají v [registru](../SLOVNIK.md#návrhy-a-nejasně-doložené-volby--mimo-platný-registr) hypergeometrické rozdělení v nepovinném rozšíření (K09-N1) a střet termínu **referenční skupina** se starším heslem podle [R08](kapitola-04.md#r08-terminologie-kapitoly-4) (K09-N2).
+
+<a id="r70-schvaleni-navrhu-2026-11-09"></a>
+
+**Doplnění 2026-11-09 (schválení návrhů K09-N1 a K09-N2):** autor schválil oba návrhy: **hypergeometrické rozdělení** (*hypergeometric distribution*) zůstává v nepovinném rozšíření o výpočtu Fisherova testu a doplňuje se do slovníčku i registru; **referenční skupina** nese pod jedním termínem dva související významy — skupinu pro posouzení polohy výsledku podle [R08](kapitola-04.md#r08-terminologie-kapitoly-4) a skupinu ve jmenovateli poměru rizik nebo šancí v kapitole 9. R08 se tím nenahrazuje, jen rozšiřuje rozsah použití. Doklad: na dotaz k oběma návrhům autor odpověděl „Ano, oba termíny můžeš nechat (případně přidat) v textu i ve slovníčku.“
