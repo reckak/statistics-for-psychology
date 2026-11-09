@@ -655,7 +655,7 @@ ilustrace a knihu a ověřte navazující výklad. Pomocné výstupy patří do 
 
 ## Publikování na GitHub Pages
 
-Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–7. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování.
+Workflow **Ověřit a publikovat učebnici** v `.github/workflows/book.yml` při pull requestu sestaví celou knihu a spustí kontrolu HTML. Po změně `main` navíc publikuje ověřený obsah `_book/` na GitHub Pages. Workflow také vytváří grafy v R a spouští číselné kontroly kapitol 2–7. Desktopový Excel vyžaduje místní Windows a v CI se nespouští. Neúspěšné sestavení nebo kontrola HTML zabrání publikování. Sestavovací job běží na `ubuntu-24.04`, nikoli `ubuntu-latest`: od listopadu 2026 je `ubuntu-latest` Ubuntu 26.04, které Playwright 1.55 nepodporuje. Při povýšení systému je nutné současně povýšit Playwright na verzi s jeho podporou.
 
 Při prvním zprovoznění:
 
