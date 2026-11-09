@@ -314,3 +314,5 @@ následně schválil plán úprav.
 - U citace tří a více autorů uvedené jako součást věty se píše „Autor et al. [-@klic]“, nikoli „Autor a spolupracovníci“ či „a kolegové“; odpovídá to zkratce, kterou vytváří citační styl APA 7 v závorkových citacích.
 
 **Doklad:** autor 2026-11-09: „t-rozdělení, t-tes, z-test apod. bych také psal vždy s kurzivním t či z“ a „Při citacích více autorů bych používal např. Lakens et al., nikoli ‚a spolupracovníci‘ nebo ‚a kolegové‘“. V následné otázce zvolil rozsah „Celá kniha i z-skór“ a schválil plán úprav.
+
+*Doplněk 2026-11-09:* po sloučení PR #175 autor odpověděl „Ano, prezentace“; kurziva byla zavedena také v prezentacích kapitol 4–6 (snímky, poznámky ve snímcích, DOCX poznámek, doprovodné sešity a čtyři obrázky kapitoly 4 ve slidech). Prezentace kapitol 1–3 výskyt neobsahují. Balíčky AI tutora zůstávají ke sjednocení při příštím exportu.
