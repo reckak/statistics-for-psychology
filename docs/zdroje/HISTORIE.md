@@ -395,3 +395,27 @@ Kapitola 9 vznikla podle [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-
 - Kontrolní opora bez citace ve studentském textu: chování funkcí R `prop.test`, `chisq.test`, `fisher.test`, `binom.test`, `mcnemar.test`; jejich dokumentace čtena nebyla.
 
 Původní studie (Walsh a kol., Danielsová, aspirinová studie, Bem a Honorton, Howell a Huessy, Bickel a kol.) nebyly čteny; text je uvádí podle zprostředkujících učebnic bez samostatných bibliografických záznamů.
+
+<a id="priprava-10-20261109"></a>
+
+## Čtení pro návrh kapitoly 10 — 2026-11-09
+
+Úkol: připravit návrh kapitoly 10. Autor 2026-11-09 zvolil směr „jen korelace“ (Pearsonovo *r* a alternativní koeficienty včetně inference; jednoduchá regrese mimo kapitolu) a požadoval povinné Kendallovo τ. Rozsah zatím schválen není; záznam eviduje čtení a ověřování při návrhu, nikoli použití v textu.
+
+**Inventář:** všech 49 souborů v `sources/` porovnáno s inventářem podle názvu i prefixu SHA-256; žádný nový ani změněný soubor.
+
+**Vlastní čtení (Claude):**
+
+- [Howell](U01-howell.md#priprava-10-20261109) kap. 9 a 10 výběrově, v textové extrakci `pdftotext -layout`; obrázky neprohlédnuty.
+- [Cumming a Calin-Jageman](U03-cumming.md#priprava-10-20261109) kap. 11 podstatná část, v textové extrakci.
+- [Aron, Aron a Coups](U02-aron.md#priprava-10-20261109) kap. 11 výběrově, v textové extrakci.
+- [P10](P10-korelace-stps.md#priprava-10-20261109) a [P11](P11-korelace-psyb1170.md#priprava-10-20261109): text všech snímků z XML.
+- [C06](C06-ulohy-tyden-5.md#c06), [C07](C07-ulohy-tyden-8.md#c07) a [E02](E02-lakens-2017.md#e02-lakens-2017) znovu nečteny; využity podle stávajících karet. Oddíl Lakense (2017) o ekvivalenci korelací není v kartě E02 zmapován.
+
+**Nezávislé výpočty** (R 4.5.1, skript ve scratchpadu, mimo repozitář): Howellův stres (*r* = 1,336/(12,492 · 0,202) = 0,529; *t* = 6,39; Fisherův interval 0,377–0,653) a tempo života (5,74/(3,015 · 5,214) = 0,365); Howellova data alkohol × tabák (τ = 0,345, *r*<sub>S</sub> = 0,373, *r* = 0,224, *p* = 0,509; *z* = 1,48 a *p* = 0,139 s nulovou směrodatnou chybou, přesný test *p* = 0,165; *r* bez Severního Irska 0,784); Cumming *r* = 0,4, *N* = 30 (interval 0,046–0,665, *p* = 0,0285) a *r* = 0,38, *N* = 92 (0,190–0,543); příklady P10 a P11 viz karty. Vazba na kapitolu 8: pro hodnoty 2, 4, 6 a 6, 12, 18 je *r* = 1 a směrodatná odchylka rozdílů 4, shodně se vztahem *s*²<sub>D</sub> = *s*²<sub>1</sub> + *s*²<sub>2</sub> − 2*r s*<sub>1</sub>*s*<sub>2</sub>.
+
+**Excel:** v desktopovém českém Excelu skrytou instancí přes COM ověřeny místní názvy a výsledky na pěti dvojicích: CORREL, PEARSON, COVARIANCE.S, RANK.AVG, FISHER, FISHERINV a T.DIST.2T mají stejný místní název; RSQ je v české verzi RKQ. Funkce pro Kendallovo τ ani pro Spearmanův koeficient v Excelu není; ověřeno jen tím, že se návrh opírá o RANK.AVG s CORREL.
+
+**Nevyřešeno:** vzorce směrodatných chyb *r*<sub>S</sub> a τ pro intervaly (P10 sn. 40–41 a 48; Fiellerova aproximace τ použita jen pro orientační srovnání s Howellem), správnost slovních pásem síly *r* a původní empirické studie citované v učebnicích.
+
+**Doplnění téhož dne (sloučení s autorovým plánem):** autor předložil vlastní plán s povinným permutačním testem a percentilovým bootstrapovým intervalem pro *r*<sub>s</sub> a τ<sub>b</sub>. Proto doplněno čtení [Wilcoxe](U15-wilcox.md#priprava-10-20261109) (§5.9, §5.11, §6.5.1, §6.6, §6.9, §7.7) a [Howella](U01-howell.md#priprava-10-20261109) kap. 18, s. 657–665 (PDF 681–689: obecný úvod k převzorkování, bootstrap mediánu, bootstrapový interval pro *r*). Excelová proveditelnost bootstrapu bez maker zatím ověřena nebyla.

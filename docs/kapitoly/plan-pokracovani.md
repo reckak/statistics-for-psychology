@@ -19,7 +19,7 @@ skupin. Navazuje na [kartu kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-ka
 (interval s t-kvantilem, jednovýběrový t-test, test ekvivalence) a na
 parkovací studii kapitoly 6.
 
-**Stav k 2026-11-09: kapitola 9 je schválena a napsána; po ní není schválen žádný plán.**
+**Stav k 2026-11-09: kapitola 9 je schválena a napsána.**
 Kapitola 9 „Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost
 souvislosti“ (pracovní název) se řídí
 [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9) (rozsah, pořadí,
@@ -32,15 +32,38 @@ a směrodatnou chybu podílu z [kapitoly 6](06-vyberove-rozdeleni-testovani.md#m
 a na interval, párové a nezávislé uspořádání a velikost účinku z kapitol
 [7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07) a
 [8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08). Skutečný obsah eviduje
-[karta kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09), nikoli tento plán. Směr, rozsah ani pořadí dalších kapitol nebyly projednány.
+[karta kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09), nikoli tento plán.
 
-**Mimo kapitoly 6–9 a bez schváleného umístění:** bootstrap, znaménkový
-a pořadové testy, robustní alternativy porovnání průměrů, funkce Z.TEST,
+**Stav k 2026-11-09 (večer): pro kapitolu 10 je schválen plán, text zatím neexistuje.**
+Kapitola 10 „Korelace — souvislost dvou proměnných, její velikost a nejistota“
+(pracovní název) se řídí
+[R71](../rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10) (rozsah, pořadí,
+příklady a zásady), [R72](../rozhodnuti/kapitola-10.md#r72-znaceni-kapitoly-10)
+(značení) a [R73](../rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)
+(terminologie). Dohodnutý směr je „jen korelace“: Pearsonův, Spearmanův
+a Kendallův koeficient s výpočtem, testem a intervalem; pro pořadové
+koeficienty povinně permutační test a percentilový bootstrapový interval.
+Před psaním se prototypem sešitu ověří proveditelnost převzorkování v Excelu
+bez maker. Navazuje na nezávislost z [kapitoly 5](05-pravdepodobnost.md#mapa-kapitola-05),
+testování a simulace z [kapitoly 6](06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06),
+interval z [kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07),
+párová data z [kapitoly 8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08)
+a φ z [kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09).
+Jednoduchá regrese a koeficient determinace jsou vyřazeny z kapitoly 10;
+o jejich samostatné kapitole ani o pořadí dalších kapitol se nerozhodlo.
+
+**Mimo kapitoly 6–10 a bez schváleného umístění:** znaménkový
+a pořadové testy porovnání skupin, robustní alternativy porovnání průměrů, funkce Z.TEST,
 korekce pro více testů (mimo nepovinnou Holmovu korekci reziduí v kapitole 9),
-ANOVA, korelace, logistická regrese a loglineární modely, bayesovské
+ANOVA, jednoduchá regrese, logistická regrese a loglineární modely, bayesovské
 testování, plánování velikosti výběru, interval pro Cohenovo d a test
-minimálního účinku. Podklady k nim eviduje [mapa zdrojů](../ZDROJE.md);
-jejich zmínka zde není schválením tématu ani pořadí.
+minimálního účinku. Bootstrap a permutační test zavádí kapitola 10 jen pro
+korelace; jejich použití pro jiné statistiky schváleno není. Podklady
+eviduje [mapa zdrojů](../ZDROJE.md); zmínka zde není schválením tématu ani pořadí.
+
+**Historický stav k 2026-11-09** (před schválením plánu kapitoly 10; původní
+znění je v Gitu): po kapitole 9 nebyl schválen žádný plán; bootstrap a korelace
+byly uvedeny mezi tématy bez schváleného umístění.
 
 **Historický stav k 2026-11-01** (původní znění je v Gitu): po kapitole 8
 nebyl schválen žádný plán; interval pro podíl a chí-kvadrát byly uvedeny
