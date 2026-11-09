@@ -498,12 +498,19 @@ a první výklad vznikly s kapitolou 2026-11-09 pod zde uvedenými stabilními I
 | <a id="pojem-cramerovo-v"></a>**Cramérovo V** | Cramér's V | — | Nezáporné; bez slovních pásem v povinné části. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-cramerovo-v); [výklad](../quarto/kapitola_09.qmd#sec-phi-v) |
 | <a id="pojem-tabulka-prechodu"></a>**Tabulka přechodů** | transition table | — | Termín použil autor v připomínkách k plánu (doklad R68); v R70 výslovně neuveden. Odlišit od kontingenční tabulky různých lidí. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-tabulka-prechodu); [výklad](../quarto/kapitola_09.qmd#sec-tabulka-prechodu) |
 | <a id="pojem-mcnemaruv-test"></a>**McNemarův test** | McNemar's test | — | Porovnání podílů týchž lidí; přesně binomicky při malém počtu neshodných dvojic. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-mcnemaruv-test); [výklad](../quarto/kapitola_09.qmd#sec-mcnemaruv-test) |
-| <a id="pojem-neshodne-dvojice"></a>**Neshodné dvojice** | discordant pairs | neshodné páry | „Dvojice“ v souladu s kapitolou 8. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-neshodne-dvojice); [výklad](../quarto/kapitola_09.qmd#sec-mcnemaruv-test) |
+| <a id="pojem-neshodne-dvojice"></a>**Neshodné dvojice** | discordant pairs | neshodné páry | „Dvojice“ v souladu s kapitolou 8. Nezaměňovat s diskordantními dvojicemi Kendallova τ, které mají stejný anglický název ([R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)). | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-neshodne-dvojice); [výklad](../quarto/kapitola_09.qmd#sec-mcnemaruv-test) |
 | <a id="pojem-holmova-korekce"></a>**Holmova korekce** | Holm correction | Holmův postup | Jen nepovinně. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-holmova-korekce); [výklad](../quarto/kapitola_09.qmd#rozsireni-holm) |
 | <a id="pojem-simpsonuv-paradox"></a>**Simpsonův paradox** | Simpson's paradox | — | Jen nepovinně. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-simpsonuv-paradox); [výklad](../quarto/kapitola_09.qmd#rozsireni-simpson) |
 | <a id="pojem-cohenovo-kappa"></a>**Cohenovo kappa** | Cohen's kappa | — | Jen nepovinně; κ jako výjimka podle R69. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-cohenovo-kappa); [výklad](../quarto/kapitola_09.qmd#rozsireni-kappa) |
 
+<a id="navrhy"></a>
+
 ## Návrhy a nejasně doložené volby — mimo platný registr
+
+Terminologie kapitoly 10 byla schválena 2026-11-09 jako seznam plánu
+([R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)); hesla se do
+platné tabulky zapíší při psaní kapitoly, po kontrole proti dříve schváleným
+heslům. Do té doby R73 není náhradou hesel s pravidly použití.
 
 Návrhy K09-N1 (hypergeometrické rozdělení) a K09-N2 (druhý význam referenční skupiny) z psaní kapitoly 9 autor schválil 2026-11-09 ([doplnění R70](rozhodnuti/kapitola-09.md#r70-schvaleni-navrhu-2026-11-09)); oddíl je opět bez otevřených terminologických návrhů.
 

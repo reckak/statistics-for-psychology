@@ -4,8 +4,8 @@
 
 **Poslední kontrola mapy: 2026-11-09** (nová karta kapitoly 9 a dotčené řádky rozcestníku podle jejího textu; karta 8 naposledy 2026-11-01 včetně odborné revize;
 karta 7 naposledy 2026-10-18, karty 1, 5 a 6 2026-10-12 a 2026-10-15, karty 2–4 2026-10-11). Dokument
-popisuje aktuální zdrojové texty devíti výkladových kapitol. Po kapitole 9
-není schválen žádný plán ([plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly)).
+popisuje aktuální zdrojové texty devíti výkladových kapitol. Pro kapitolu 10
+je od 2026-11-09 schválen plán, text zatím neexistuje ([plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly)).
 Je autorskou pomůckou pro psaní, revize a plánování; není studentskou
 kapitolou ani potvrzením dokončení, odborné bezchybnosti nebo nasazení webu.
 
@@ -99,7 +99,7 @@ stabilní identifikátory Quarta.
 | [7. Interval spolehlivosti, t-test a test ekvivalence](kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07) | Odhad populačního průměru s nejistotou při známé i neznámé σ, t-rozdělení, jednovýběrový t-test, vztah intervalu a p-hodnoty, test ekvivalence pomocí 90% intervalu a čtyři kombinace výsledků. | 12 základních a 2 nepovinné úlohy; pět základních vyžaduje Excel. |
 | [8. Porovnání dvou průměrů: párová data a nezávislé skupiny](kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08) | Párová data a neúplné dvojice, párový t-test, podmíněný přínos párování; rozdíl dvou nezávislých průměrů, klasický a Welchův t-test; Cohenovo d; intervaly vedle sebe; změna ve dvou skupinách; ekvivalence dvou skupin. | 12 základních a 2 nepovinné úlohy; tři základní vyžadují Excel. |
 | [9. Podíly a kategoriální data](kapitoly/09-podily-kategorialni-data.md#mapa-kapitola-09) | Interval pro podíl (Wilson) a pro rozdíl podílů (Newcombe), dobrá shoda, nezávislost a homogenita, řádkové podíly a rezidua, předpoklady a Fisherův test, rozdíl podílů, poměr rizik a šancí, φ a V, McNemarův test. | 12 základních a 2 nepovinné úlohy; pět základních vyžaduje Excel. |
-| [Plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly) | Po kapitole 9 není schválen směr, rozsah ani pořadí dalších kapitol. | — |
+| [Plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly) | Schválen plán kapitoly 10 o korelaci ([R71](rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10), 2026-11-09); kapitola dosud není napsána. Po ní není schválen další směr. | — |
 
 <a id="tematicky-rozcestnik"></a>
 

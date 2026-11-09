@@ -1,5 +1,32 @@
 # Autorská dokumentace
 
+<a id="dohoda-kapitola-10"></a>
+
+## Kapitola 10: dohoda o obsahu (2026-11-09)
+
+Autor se zeptal, zda má kapitola 10 vykládat Pearsonovo *r*, alternativní
+koeficienty, jednoduchou regresi nebo jejich kombinaci. Doporučená kombinace
+korelace a regrese nebyla zvolena; autor vybral „Jen korelace“ a požadoval
+povinné Kendallovo τ. Poté předložil vlastní plán s povinným permutačním
+testem a percentilovým bootstrapovým intervalem pro pořadové koeficienty,
+τ<sub>b</sub> jako hlavní variantou a 16 + 2 cvičeními a požádal o porovnání
+s mým návrhem. Sloučený plán (jeho struktura doplněná o čtení *r* v kontextu,
+návaznost na párová data, Cummingův souboj kvadrantů, příklady omezení
+rozsahu a sloučených skupin a hranice ze zdrojů) schválil s doporučeními ke
+čtyřem otevřeným volbám: korelace jako koeficient reliability a validity
+krátce povinně (částečně rozšiřuje R55), populační Kendallův koeficient slovy,
+prototyp sešitu před psaním a termín „dvourozměrné normální rozdělení“.
+Dohodu eviduje [R71](../docs/rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10)–[R73](../docs/rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10);
+čtení zdrojů, přepočty v R a ověření českých názvů funkcí v Excelu
+[záznam z 2026-11-09](../docs/zdroje/HISTORIE.md#priprava-10-20261109).
+Při zápisu doplněna hranice mezi diskordantními dvojicemi Kendallova τ
+a neshodnými dvojicemi McNemarova testu (R70) a opraven rozcestník zdrojů,
+který u regrese chybně odkazoval na Howellovu kap. 10. Neověřeno: proveditelnost
+převzorkování v Excelu bez maker, pokrytí percentilového intervalu pro
+pořadové koeficienty a články Ruscio (2008) a srovnávací studie ve
+*Frontiers in Psychology* (2012). Kapitola zatím napsána není; změněna jen
+autorská dokumentace, web se nevykresloval.
+
 <a id="terminy-kapitoly-9-schvaleni"></a>
 
 ## Kapitola 9: schválení termínů K09-N1 a K09-N2 (2026-11-09)
