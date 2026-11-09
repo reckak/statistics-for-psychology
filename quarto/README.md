@@ -1,5 +1,60 @@
 # Autorská dokumentace
 
+<a id="prototyp-prevzorkovani-10"></a>
+
+## Kapitola 10: prototyp převzorkování v Excelu (2026-11-09)
+
+Podle [R71](../docs/rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10) se před
+psaním ověřilo, zda desktopový Excel bez maker zvládne percentilový bootstrap
+a permutační test pro *r*<sub>s</sub> a τ<sub>b</sub>. Smyšlená data: 30 dvojic
+(vnímaný stres 0–16 se 14 různými hodnotami, kvalita spánku 1–7 se 7 hodnotami),
+pevné indexy výběrů s vracením a permutací ze seedu. Skripty
+`scripts/kapitola_10-prototyp-prevzorkovani.R` (data, indexy a referenční
+výsledky) a `scripts/kapitola_10-prototyp-prevzorkovani.ps1` (sestavení
+v samostatné skryté instanci Excelu, výstup do `tmp/`); nejde o generátor
+studentského sešitu.
+
+**Konstrukce:** listy indexů, převzorkovaných hodnot (INDEX), pořadí
+(RANK.AVG v řádku) a výsledků; *r*<sub>s</sub> jako CORREL pořadí, τ<sub>b</sub>
+jako SOUČIN.SKALÁRNÍ(SIGN(…−TRANSPOZICE(…))·SIGN(…)) s počty shod v obou
+proměnných; meze PERCENTIL.INC; *p*-hodnota (počet |statistik| ≥ |pozorované|
++ 1)/(*B* + 1). U permutací se pořadí neopakují (permutují se pořadí druhé
+proměnné) a jmenovatel τ<sub>b</sub> je pevný.
+
+**Výsledky (Excel 16.0, build 20430, český):**
+
+| *B* | Meze *r*<sub>s</sub> | Meze τ<sub>b</sub> | *p* (*r*<sub>s</sub>; τ<sub>b</sub>) | Soubor | Otevření | Přepočet po změně vstupu |
+|---|---|---|---|---|---|---|
+| 1 999 | −0,7299; −0,1251 | −0,6100; −0,0962 | 0,0070; 0,0050 | 4,4 MB | asi 4 s | 0,1 s |
+| 9 999 | −0,7440; −0,1266 | −0,6313; −0,1000 | 0,0060; 0,0048 | 22,2 MB | asi 21 s | 0,8 s |
+
+Pozorované hodnoty *r*<sub>s</sub> = −0,4798 a τ<sub>b</sub> = −0,3836 i všechny meze
+a *p*-hodnoty se shodují s nezávislým výpočtem v R (`rank`, vlastní τ<sub>b</sub>
+ověřené proti `cor(..., method = "kendall")`, `quantile(type = 7)`) na všech
+vypsaných místech; nedefinovaný bootstrapový výběr se nevyskytl. Opakování
+z repozitářových skriptů dalo pro *B* = 1 999 stejné výsledky.
+
+**Nálezy:**
+
+- Výpočet je rychlý i pro 9 999 opakování; omezením je velikost souboru,
+  doba otevření a uložení (asi 14 s), nikoli přepočet.
+- Vzorec pro τ<sub>b</sub> s TRANSPOZICE uvnitř SOUČIN.SKALÁRNÍ funguje jen jako
+  vzorec dynamického pole (Excel 365 / 2021 a novější). Týž vzorec zadaný
+  klasicky (`Formula`, obdoba starší verze Excelu bez Ctrl+Shift+Enter) vrátil
+  bez chybového hlášení nesprávný součet 0,5 místo −146. Výklad i zadání musí
+  uvádět požadavek na verzi; chování sešitu otevřeného ve starší verzi
+  ověřeno nebylo.
+- Rozdíl mezí mezi 1 999 a 9 999 opakováními je ve druhém desetinném místě
+  (např. dolní mez τ<sub>b</sub> −0,610 vs. −0,631): simulační kolísání
+  bootstrapu je ve výkladu vidět a stojí za vysvětlení.
+- Načtení CSV v českém Excelu používá středník; vstupy prototyp čte přes
+  OpenText s výslovnou čárkou. Pro generátor sešitu jde jen o technickou poznámku.
+
+**Neověřeno:** přesná permutace pro šest osob v Excelu (jen v R:
+*p* = 0,0056 pro *r*<sub>s</sub> a 0,0111 pro τ<sub>b</sub>), pokrytí percentilového
+intervalu simulací, starší verze Excelu, Excel pro Mac a webový Excel, vzhled
+listů. Volba počtu opakování ve studentském sešitu čeká na autora.
+
 <a id="dohoda-kapitola-10"></a>
 
 ## Kapitola 10: dohoda o obsahu (2026-11-09)
