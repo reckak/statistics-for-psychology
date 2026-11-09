@@ -1,5 +1,15 @@
 # Autorská dokumentace
 
+<a id="terminy-kapitoly-9-schvaleni"></a>
+
+## Kapitola 9: schválení termínů K09-N1 a K09-N2 (2026-11-09)
+
+Autor schválil oba otevřené návrhy ([doplnění R70](../docs/rozhodnuti/kapitola-09.md#r70-schvaleni-navrhu-2026-11-09)).
+Do slovníčku a registru přibylo heslo **hypergeometrické rozdělení** (jen nepovinné
+rozšíření o výpočtu Fisherova testu); heslo **referenční skupina** v registru nese od kapitoly 9
+druhý související význam a studentské heslo jej už obsahovalo. Text kapitoly se nemění.
+Kontrola: vykreslení slovníčku, `check-doc-maps.cjs --require-sources` a `check-html.cjs`.
+
 <a id="vytvoreni-kapitoly-9"></a>
 
 ## Kapitola 9: vytvoření výkladu (2026-11-09)
