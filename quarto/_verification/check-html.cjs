@@ -266,6 +266,32 @@ const server = http.createServer((req, res) => {
         await page.locator('#rozsireni-rozdeleni-p').screenshot({path:'tmp/verification/ch06-rozsireni-rozdeleni-p-desktop.png'});
         await pdistToggle.click();await pdist6.waitFor({state:'hidden'});
       }
+      if (file === 'quarto/kapitola_09.html') {
+        assert.equal(await solutions.count(),14,'Chapter 9 has twelve core and two optional exercise solutions');
+        assert.equal(await page.locator('merror').count(),0,'Chapter 9 mathematics parses');
+        assert.equal(await page.locator('main img').count(),5);
+        for(const img of await page.locator('main img').all()) {
+          await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          assert((await img.getAttribute('alt')).length>30);
+        }
+        const greek9=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πχφκα]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
+        assert(greek9.filter(e=>e.text.includes('χ')).length>10,'Chi-square rendered with chi');
+        assert(greek9.every(e=>e.variant==='normal'),'Greek symbols of chapter 9 must be upright');
+        for(const id of ['rozsireni-ganzfeld','rozsireni-proc-chi','rozsireni-holm','rozsireni-fisher','rozsireni-intervaly-pomeru','rozsireni-simpson','rozsireni-kappa']) {
+          assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
+        }
+        const main9=await page.locator('main').innerText();
+        assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main9.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance');
+        assert(!/kategorick/i.test(main9),'Only the approved variant "kategoriální" is used');
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
+          const id=await fig.evaluate(el=>el.closest('[id]').id);
+          await fig.screenshot({path:`tmp/verification/ch09-${id}.png`});
+        }
+        for(const id of ['sec-wald','sec-interval-podilu-excel','sec-newcombe','sec-dobra-shoda-excel','sec-pearson-upravena','sec-tabulka-excel','sec-fisher','sec-pomer-rizik-sanci','sec-mcnemaruv-test','sec-ktery-postup-09']) {
+          await page.locator('#'+id).screenshot({path:`tmp/verification/ch09-${id}-desktop.png`});
+        }
+      }
       if (file === 'quarto/kapitola_08.html') {
         assert.equal(await solutions.count(),14,'Chapter 8 has twelve core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 8 mathematics parses');
@@ -606,7 +632,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
-    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),8);
+    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),9);
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');

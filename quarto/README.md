@@ -1,5 +1,48 @@
 # Autorská dokumentace
 
+<a id="vytvoreni-kapitoly-9"></a>
+
+## Kapitola 9: vytvoření výkladu (2026-11-09)
+
+Podle [R68](../docs/rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9)–[R70](../docs/rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9)
+a [upřesnění R69](../docs/rozhodnuti/kapitola-09.md#r69-upresneni-2026-11-09) vznikla kapitola
+[Podíly a kategoriální data](kapitola_09.qmd) (jedenáct oddílů, sedm nepovinných rozšíření,
+čtrnáct cvičení, pět obrázků), skript `scripts/kapitola_09.R`, sešit `data/kapitola_09.xlsx`
+(generátor `scripts/kapitola_09-sešit.mjs`, vstupy v `scripts/sesity-data.mjs`), kontroly
+`check-chapter-09.R`, `check-chapter-09-excel.ps1` s generátorem očekávaných hodnot
+a doplnění kontroly webu. Přehledy: 31 nových hesel slovníčku, rozšířená hesla
+„Šance“ a „Referenční skupina“, 12 řádků značení a 10 funkcí Excelu; registr
+[SLOVNIK](../docs/SLOVNIK.md#kapitola-09), [karta kapitoly](../docs/kapitoly/09-podily-kategorialni-data.md#mapa-kapitola-09),
+[DATA](../docs/DATA.md#kapitola-9), osnova, plán pokračování, provozní návod a záznam
+[použití podkladů](../docs/zdroje/HISTORIE.md#pouziti-kapitola-09). Build skripty sešitů
+a jejich kontroly nově připouštějí kapitolu 9.
+
+**Kontroly provedené 2026-11-09:** `check-chapter-09.R` prošel (Wilson proti
+`prop.test(..., correct = FALSE)` u dvanácti podílů, Pearsonův test proti
+`chisq.test(..., correct = FALSE)`, rezidua proti `$stdres` a `$residuals`, Fisher,
+přesný McNemar, Newcombe nezávislým vzorcem, okrajový případ bez neshodných dvojic,
+všechna citovaná čísla). `build-workbooks.ps1 -Chapter 9 -Verify` prošel: sešit
+v Excelu 16.0 má 23 listů a 226 vzorců; kontrola kapitoly porovnala 170 uložených
+výsledků, 12 českých vzorců zadaných jako student, 3 chybové případy, 315 výsledků
+po dosazení dat cvičení a 9 zápisů vzorců; kontrola všech devíti sešitů bez chyb.
+`check-workbooks.py` prošel. Celá kniha vykreslena bez varování; `check-html.cjs`
+prošel (odkazy, kotvy, řešení, přehledové tabulky, mobilní šířka 390 px), snímky
+oddílů a obrázků kapitoly 9 v `tmp/verification/` prohlédnuty, čtyři listy sešitu
+prohlédnuty v PDF exportu. České názvy CHISQ.*, HYPGEOM.DIST, SUMIF, SMALL, ŘÁDKY
+a SLOUPCE ověřeny v českém Excelu. Didaktická revize: vlastní čtení vůči cílům
+a vodítkům čitelnosti a strojová kontrola délky vět; samostatné čtení v roli studenta
+ani autorská odborná revize zatím neproběhly.
+
+**Nálezy a otevřené body:** Howell (tab. 6.9) uvádí 28,8 % přijatých žen, z četností
+vychází 27,1 % (v nepovinném rozšíření zmíněno). Excel u HYPGEOM.DIST s nemožnou
+kombinací argumentů nevrací chybu. K rozhodnutí autora zůstávají návrhy K09-N1
+(hypergeometrické rozdělení v nepovinném rozšíření) a K09-N2 (referenční skupina ve
+druhém významu). Pododdíl o poměru rizik a šancí zavádí šest pojmů najednou kvůli
+předepsaným třem pododdílům. **Neověřeno a nezahrnuto:** původní studie citované podle
+učebnic; dokumentace R k použitým funkcím; export AI tutora (kapitola 9 v balíčku
+není, katalog dál uvádí osm kapitol), pracovní PDF, prezentace a interaktivní
+vizualizace ke kapitole 9; nasazení webu.
+
 <a id="dohoda-kapitola-09"></a>
 
 ## Kapitola 9: dohoda o obsahu (2026-11-09)

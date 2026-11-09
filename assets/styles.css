@@ -64,7 +64,7 @@ figure.quarto-float-tbl > figcaption.quarto-float-caption { text-align: left !im
 #tbl-percentilove-poradi table { min-width: 1060px; }
 
 /* Chapter 4 calculation tables retain readable columns within a scrollable region. */
-.chapter-04-wide table, .chapter-05-wide table, .chapter-06-wide table, .chapter-07-wide table, .chapter-08-wide table { min-width: 620px; }
+.chapter-04-wide table, .chapter-05-wide table, .chapter-06-wide table, .chapter-07-wide table, .chapter-08-wide table, .chapter-09-wide table { min-width: 620px; }
 .chapter-04-figure { max-width: 100%; overflow-x: auto; }
 .chapter-04-figure img { width: 100%; min-width: 700px; max-width: none; }
 /* Data minus model differences: the cell is tinted by --qq, set per value in the chapter source. */
@@ -92,6 +92,7 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 #tbl-k08-07 :is(th, td) { padding-inline: .25rem; }
 @media (max-width: 600px) {
   #tbl-k08-01 :is(th, td), #tbl-k08-08 :is(th, td) { padding-inline: .35rem; }
+  #tbl-k09-09 :is(th, td), #tbl-k09-12 :is(th, td) { padding-inline: .2rem; }
 }
 
 /* Interactive visualizations (part "Interaktivní vizualizace"). */

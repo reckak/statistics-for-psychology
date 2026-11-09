@@ -62,6 +62,10 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Doklad:** autor k prvnímu plánu napsal: „Použití indexu i pro řádky kategorií by bylo v rozporu s dosavadní konvencí, kde označuje jednotlivá pozorování. Pro buňky bych navrhl jiné indexy; pro četnosti bych přednostně rozvinul zavedené f a doplnil e pro očekávané četnosti.“ Druhou verzi plánu s tímto značením schválil 2026-11-09.
 
+<a id="r69-upresneni-2026-11-09"></a>
+
+**Upřesnění 2026-11-09 (indexy buněk a příklad dobré shody):** před psaním kapitoly autor ve výběru voleb uzavřel oba otevřené body. Pro buňky platí řádek *j* = 1, …, *R* a sloupec *l* = 1, …, *S* (tabulka *R* × *S*), četnosti $f_{jl}$ a $e_{jl}$ a okrajové součty $f_{j+}$ a $f_{+l}$; vzorec $e_{jl}=f_{j+}f_{+l}/n$. Hlavním příkladem dobré shody (doplnění [R68](#r68-rozsah-kapitoly-9)) je autorský model poziční preference: 80 lidí volí jeden ze čtyř stejných vzorků čaje vystavených zleva doprava, nulová hypotéza rovnoměrné volby; varianta s nerovnoměrnými $\mathrm{π}_0$ je ve cvičení. Doklad: volby „j řádek, l sloupec (Recommended)“ a „Poziční preference (Recommended)“ na otázku před zahájením psaní.
+
 <a id="r70-terminologie-kapitoly-9"></a>
 
 ## R70 — Terminologie kapitoly 9
@@ -83,3 +87,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 Poměr šancí, který [R23](kapitola-05.md#r23-terminologie-kapitoly-5) při přípravě kapitoly 5 nezavedlo, se tímto schvaluje pro kapitolu 9; šance zůstávají v kapitole 5 nepovinné a kapitola 9 je vysvětlí znovu.
 
 **Doklad:** terminologický seznam byl součástí plánu schváleného 2026-11-09; autor k prvnímu plánu doplnil: „Ustálit jednu variantu, a to ‚kategoriální‘ podle slovníku a dohody, nikoli podle názvů zdrojových karet.“
+
+<a id="r70-doplneni-2026-11-09"></a>
+
+**Doplnění evidence 2026-11-09 (při psaní kapitoly, nejde o nové schválení):** termíny **skórový test** a **tabulka přechodů** seznam R70 výslovně neuvádí; v textu se používají, protože je autor sám užil ve schválených připomínkách k plánu („Wilsonův interval odpovídá obrácení skórového testu“; „Pearsonův test nezávislosti na tabulce přechodů“). Jako **návrhy k rozhodnutí** zůstávají v [registru](../SLOVNIK.md#návrhy-a-nejasně-doložené-volby--mimo-platný-registr) hypergeometrické rozdělení v nepovinném rozšíření (K09-N1) a střet termínu **referenční skupina** se starším heslem podle [R08](kapitola-04.md#r08-terminologie-kapitoly-4) (K09-N2).

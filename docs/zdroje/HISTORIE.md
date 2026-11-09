@@ -378,3 +378,20 @@ Přečteny v textové extrakci: Wilcox ([U15](U15-wilcox.md#u15-overeni)) §4.6 
 **Nálezy** (jejich stav je uveden v příslušných kartách): Howell s. 145 tiskové chyby v mezikrocích (aritmeticky ověřeno), P12 sn. 27 a 40 chybné hodnoty (přepočteno), Field §16.7.1 označuje Pearsonova rezidua za z-skóry (přepočtem vyvráceno), rozpory Fielda s Howellem a Wilcoxem v otázce předpokladů a věrohodnostního poměru (jen přečteno), Wilcoxova poznámka k `chisq.test` (potvrzena: výchozí Yatesova korekce). Odlišné doporučené intervaly pro podíl: OpenIntro Waldův s podmínkou alespoň 10 úspěchů a neúspěchů, Cumming přesnější postup bez vzorce, P12 Agrestiho–Coullův.
 
 **Neověřeno:** dokumentace R (`prop.test`, `binom.test`, `chisq.test`, `fisher.test`) nebyla v tomto záznamu čtena, použito jen chování funkcí; původní studie (Walsh a kol., 2006; Daniels, 2012; Rosa a kol., 1998; aspirinová studie; Bem a Honorton, 1994; Unah a Boger, 2001) a jejich bibliografické údaje; české názvy a chování funkcí CHISQ.TEST, CHISQ.DIST.RT, CHISQ.INV.RT a HYPGEOM.DIST v Excelu. Dílčí přepočet nepotvrzuje ostatní výpočty a tvrzení zdrojů. Původní soubory se nezměnily.
+
+<a id="pouziti-kapitola-09"></a>
+
+## Použití podkladů při tvorbě kapitoly 9 — 2026-11-09
+
+Kapitola 9 vznikla podle [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9)–[R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) a [upřesnění R69](../rozhodnuti/kapitola-09.md#r69-upresneni-2026-11-09). Použití podkladů:
+
+- [U01](U01-howell.md#priprava-09-20261109): pořadí výkladu; proč dělíme očekávanou četností (s. 140); kámen–nůžky–papír (s. 142–143) ve cvičení 5; očekávané četnosti ze součinového pravidla (s. 145); Prozac a anorexie (s. 146–147) ve cvičení 4; podmíněnost Fisherova testu (s. 148); malé očekávané četnosti a simulace (s. 151–152); nezávislost pozorování (s. 153); nevýskyty (s. 154); McNemarův test a vyhledávání pomoci (s. 154–155); nesměrovost (s. 156); Berkeley (s. 158–160) v nepovinném rozšíření; aspirin a rizika, šance, retrospektivní studie, φ (s. 160–166); kappa (s. 166–167); cvičení 6.8 a 6.9 jako zdroj cvičení 10 a dvojnásobného výběru. Nový nález: v tab. 6.9 (s. 159) je podíl přijatých žen v oborech B–F uveden jako 28,8 %, z četností vychází 468/1 727 = 27,1 % (aritmeticky ověřeno; v textu uvedeno).
+- [U03](U03-cumming.md#priprava-09-20261109): předpoklady intervalu pro podíl a procenta (s. 395–396); ganzfeld v nepovinném rozšíření (s. 390–398); přirozené četnosti, procenta a procentní body, obě rizika (s. 395–396, 404–406); zpráva (s. 408).
+- [U04](U04-openintro.md#priprava-09-20261109): kontrolní opora pro Waldův postup a podmínku úspěchů; v kapitole necitován.
+- [U08](U08-navarro.md#priprava-09-20261109): odvození v nepovinném rozšíření „proč chí-kvadrát“.
+- [U14](U14-field.md#priprava-09-20261109): údaje Danielsové (tab. 16.3, s. 638) jako hlavní příklad měr účinku; nepřesné tvrzení o Pearsonových reziduích převzato nebylo a text výslovně uvádí správné čtení; tvrzení o „bezpředpokladovosti“ je v textu jako častý omyl.
+- [U15](U15-wilcox.md#priprava-09-20261109): opora aproximace v rozšíření CLT (s. 610), intervaly kategorií po celkovém testu (s. 612), omezení φ (s. 618).
+- [P12](P12-kategorialni-data.md#priprava-09-20261109): příklad věk × strategie zvládání (sn. 21–28) s opravou chyby ve sn. 27 a pochopení priorit; P13 a C09 jen jako náměty.
+- Kontrolní opora bez citace ve studentském textu: chování funkcí R `prop.test`, `chisq.test`, `fisher.test`, `binom.test`, `mcnemar.test`; jejich dokumentace čtena nebyla.
+
+Původní studie (Walsh a kol., Danielsová, aspirinová studie, Bem a Honorton, Howell a Huessy, Bickel a kol.) nebyly čteny; text je uvádí podle zprostředkujících učebnic bez samostatných bibliografických záznamů.

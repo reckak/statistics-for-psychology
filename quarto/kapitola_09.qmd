@@ -1,0 +1,1037 @@
+# Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost souvislosti {#sec-kapitola-09}
+
+V kapitolách 6 až 8 jsme odhadovali a porovnávali průměry: skór pozornosti, dobu odjezdu z parkoviště, hmotnost. Mnoho psychologických údajů ale průměr nemá. Člověk buď vyhledá pomoc, nebo ne; zvolí jednu ze tří strategií zvládání stresu; v textu se objeví, nebo neobjeví určité téma. Takové údaje shrnujeme počty a podíly. V této kapitole se naučíme odhadnout podíl v populaci s jeho nejistotou, porovnat podíly dvou skupin, posoudit celé rozdělení kategorií i souvislost dvou kategoriálních proměnných a vyjádřit, jak velká souvislost je.
+
+Navazujeme na [kontingenční tabulku a nezávislé jevy](kapitola_05.qmd#sec-kontingencni-tabulka) z kapitoly 5, na [výběrové rozdělení podílu](kapitola_06.qmd#sec-chyba-podilu) a [binomický test](kapitola_06.qmd#sec-binomicky-test) z kapitoly 6 a na [interval spolehlivosti](kapitola_07.qmd#sec-bodovy-intervalovy) a [párová data](kapitola_08.qmd#sec-parova-nezavisla) z kapitol 7 a 8. Kapitolou prochází tabulka 200 studentů s údajem o stresu z kapitoly 5.
+
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_09.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění, oblasti buněk a návaznost na text. Hotové výpočty jsou na listech `Interval_podilu`, `Dva_podily`, `Dobra_shoda`, `Tabulka`, `Mira_souvislosti`, `McNemar` a nepovinně `Fisher`.
+
+::: {.callout-note title="Co budete po prostudování umět"}
+- Rozpoznáte kategoriální data a vysvětlíte, proč je shrnujeme podíly a kdy má smysl průměr kódů.
+- Spočítáte Wilsonův interval spolehlivosti pro podíl, vysvětlíte, proč známý postup „odhad ± kvantil × směrodatná chyba“ u podílů selhává, a vztáhnete interval k testu.
+- Porovnáte podíly ve dvou nezávislých skupinách Newcombovým intervalem pro rozdíl a testem se společným podílem.
+- Provedete test dobré shody a test nezávislosti v kontingenční tabulce, ručně i v Excelu, a vysvětlíte stupně volnosti a *p*-hodnotu chí-kvadrát rozdělení.
+- Pomocí řádkových podílů a reziduí popíšete, kde se tabulka od nezávislosti odchyluje, a nebudete jednotlivé buňky vykládat jako samostatné průkazné výsledky.
+- Posoudíte předpoklady testu chí-kvadrát a víte, kdy a jak číst výsledek Fisherova exaktního testu.
+- Vyjádříte velikost souvislosti rozdílem podílů, poměrem rizik, poměrem šancí, koeficientem φ a Cramérovým V a vysvětlíte, čím se liší.
+- U párových binárních údajů použijete McNemarův test a výsledek sdělíte ve dvou krocích: rozhodnutí testu a věcná interpretace.
+
+Nepovinná rozšíření ukazují kritický rozbor souhrnu několika studií, důvod, proč má statistika přibližně chí-kvadrát rozdělení, Holmovu korekci pro více buněk, výpočet Fisherova testu v Excelu, intervaly pro poměr rizik a poměr šancí, Simpsonův paradox a Cohenovo kappa; nejsou součástí povinných dovedností ani základních cvičení.
+:::
+
+## Od tabulky ve výběru k otázce o populaci {#sec-od-tabulky-k-populaci}
+
+Co nám tabulka četností řekne o lidech, kteří v ní nejsou? Oddíl připomíná, co jsou kategoriální data, jak je shrnujeme podílem a na jaké tři typy otázek kapitola odpovídá.
+
+### Kategoriální data a podíl {#sec-kategorialni-data}
+
+V [kapitole 5](kapitola_05.qmd#sec-prunik-sjednoceni) jsme pracovali se souborem 200 studentů, u nichž jsme zaznamenali pohlaví a to, zda podle dotazníku zažívají zvýšený, nebo nízký stres:
+
+::: {.table-scroll role="region" aria-label="Pohlaví a úroveň stresu u 200 studentů" tabindex="0"}
+
+| | Zvýšený stres | Nízký stres | Celkem |
+|---|---:|---:|---:|
+| Ženy | 40 | 60 | 100 |
+| Muži | 30 | 70 | 100 |
+| Celkem | 70 | 130 | 200 |
+
+: Pohlaví a úroveň stresu u 200 studentů {#tbl-k09-01}
+
+:::
+
+Obě proměnné jsou **kategoriální** (*categorical*): hodnotou je zařazení do kategorie, ne číslo na škále. Pohlaví a úroveň stresu tu mají po dvou kategoriích; v dalších příkladech budou mít tři nebo čtyři. Kategorie mohou být [nominální](kapitola_01.qmd#sec-nominalni), bez přirozeného pořadí, nebo [ordinální](kapitola_01.qmd#sec-ordinalni) s malým počtem úrovní. Údaje shrnujeme [absolutními četnostmi](kapitola_02.qmd#sec-od-zaznamu-k-cetnostem) a **podíly** (*proportion*): podíl je počet případů v kategorii dělený počtem všech případů, tedy [relativní četnost](kapitola_02.qmd#sec-relativni-cetnost). Zvýšený stres uvedlo 40 ze 100 žen, podíl je $p=40/100=0{,}40$.
+
+Proč tu nepočítáme průměr? Kategoriím můžeme přiřadit číselné kódy, třeba 1 pro „řešení problému“, 2 pro „vyhýbání“ a 3 pro „sociální oporu“. Průměr takových kódů obvykle nemá význam: kdybychom kódy přeházeli, změnil by se, ačkoli data zůstala stejná. Výjimkou je binární proměnná kódovaná 0 a 1. Dáme-li zvýšenému stresu kód 1 a nízkému kód 0, je součet kódů u žen 40 a průměr $40/100=0{,}40$. **Průměr proměnné kódované 0/1 je právě podíl jedniček.** Proto se mnoho úvah z kapitol 6 až 8 o průměrech přenáší i na podíly; uvidíme ale, že podíly mají vlastnosti, se kterými musíme zacházet zvlášť.
+
+V kapitole 5 jsme z tabulky počítali pravděpodobnosti, které **popisovaly těchto 200 studentů**. Nyní budeme tabulku chápat jako náhodný výběr ze studentské populace. Podíl ve výběru značíme jako dosud $p$, podíl v populaci, tedy parametr, $\mathrm{π}$ ([kapitola 5](kapitola_05.qmd#sec-binomicke-predpoklady)). Ve výběru uvádí zvýšený stres 40 % žen a 30 % mužů, rozdíl je 10 procentních bodů. To je popis. Otázkou této kapitoly je, jak přesně takové číslo odhaduje populační hodnotu a zda tabulka ukazuje na souvislost, která platí i mimo výběr.
+
+### Tři typy otázek {#sec-tri-otazky}
+
+Kategoriální data přinášejí tři typy otázek, které kapitola probírá v tomto pořadí:
+
+- **Jedna proměnná.** Jak velký je podíl v populaci, například podíl studentů se zvýšeným stresem? Odpovídají jiné kategorie předem očekávanému rozložení, například rovnoměrnému? Na to odpovídají [interval pro podíl](#sec-interval-podilu) a [test dobré shody](#sec-dobra-shoda).
+- **Dvě proměnné u různých lidí.** Liší se podíl mezi dvěma skupinami? Souvisí s sebou dvě kategoriální proměnné? Na to odpovídají [rozdíl dvou podílů](#sec-dva-podily), [test nezávislosti](#sec-nezavislost) a [míry velikosti souvislosti](#sec-velikost-souvislosti).
+- **Tíž lidé dvakrát.** Změnil se podíl mezi dvěma měřeními týchž lidí? Na to odpovídá [McNemarův test](#sec-mcnemar), obdoba párového uspořádání z kapitoly 8.
+
+## Jak přesně odhadneme podíl v populaci? {#sec-interval-podilu}
+
+Jak daleko může ležet populační podíl od podílu ve výběru? Oddíl ukazuje, proč postup z kapitoly 7 u podílů selhává, a zavádí interval, kterým budeme podíly odhadovat.
+
+### Známá konstrukce a kde selhává {#sec-wald}
+
+Vraťme se k testu z [kapitoly 6](kapitola_06.qmd#sec-binomicky-test): student odpověděl správně na 10 z 20 otázek se čtyřmi možnostmi, takže při pouhém hádání by měl pravděpodobnost úspěchu 0,25. Jeho podíl správných odpovědí je $p=10/20=0{,}50$. Jakou dlouhodobou úspěšnost $\mathrm{π}$ data připouštějí?
+
+V kapitole 6 jsme odvodili, že podíl úspěchů z $n$ nezávislých pokusů kolísá kolem $\mathrm{π}$ se [směrodatnou chybou](kapitola_06.qmd#sec-chyba-podilu) $\sqrt{\mathrm{π}(1-\mathrm{π})/n}$. V [kapitole 7](kapitola_07.qmd#sec-interval-zname-sigma) jsme interval pro průměr sestavili podle vzoru „odhad ± kvantil × směrodatná chyba“. Nabízí se postupovat stejně: neznámé $\mathrm{π}$ ve vzorci nahradit výběrovým podílem $p$ a přičíst a odečíst 1,96 směrodatné chyby:
+
+$$p\pm1{,}96\sqrt{\frac{p(1-p)}{n}}=0{,}50\pm1{,}96\times0{,}112=(0{,}28;\ 0{,}72).$$
+
+Tomuto postupu se říká **Waldův interval** (*Wald interval*). Uvádíme ho jen proto, abychom viděli, odkud další postup vychází a kde známá konstrukce selhává. Dvě slabiny jsou nejvíce vidět u malých výběrů a u podílů blízko 0 či 1:
+
+- **Odhad směrodatné chyby závisí na samotném podílu.** Představme si, že u 15 účastníků studie nenastal sledovaný nežádoucí jev ani jednou, $p=0/15=0$. Pak $p(1-p)=0$, odhad směrodatné chyby je nulový a Waldův interval má nulovou šířku: (0; 0). Tvrdil by, že populační podíl je přesně nula, ačkoli jsme viděli jen patnáct lidí.
+- **Výběrové rozdělení podílu není u okrajů souměrné.** Podíl nemůže klesnout pod 0 ani vystoupit nad 1. Blízko těchto mezí je jeho [výběrové rozdělení](kapitola_06.qmd#sec-rozdeleni-podilu) zešikmené, takže souměrný interval kolem $p$ mu neodpovídá. Waldův interval pak může vyjít i se zápornou dolní mezí.
+
+Výsledkem je, že Waldův interval často obsahuje populační podíl méně často, než slibuje jeho hladina spolehlivosti: jeho [pokrytí](kapitola_07.qmd#sec-co-znamena-95) bývá nižší než 95 %.
+
+### Wilsonův interval {#sec-wilson}
+
+**Wilsonův interval** (*Wilson score interval*) obě slabiny odstraňuje. Neodhaduje směrodatnou chybu z výběrového podílu, ale ptá se opačně: pro které hodnoty $\mathrm{π}$ by byl náš výsledek $p$ od $\mathrm{π}$ vzdálen nejvýše 1,96 směrodatné chyby spočítané **z tohoto $\mathrm{π}$**? Takové hodnoty tvoří interval. Řešením této úlohy je vzorec
+
+$$\text{střed}=\frac{p+\dfrac{z^2}{2n}}{1+\dfrac{z^2}{n}},\qquad\text{polovina šířky}=\frac{z}{1+\dfrac{z^2}{n}}\sqrt{\frac{p(1-p)}{n}+\frac{z^2}{4n^2}},$$
+
+kde $p$ je výběrový podíl, $n$ počet pokusů nebo lidí a $z$ kvantil normovaného normálního rozdělení pro zvolenou spolehlivost, u 95% intervalu $z=1{,}96$. Interval je střed ± polovina šířky. Vzorec si nemusíte pamatovat; podstatné je, co říká:
+
+- Střed intervalu není přesně $p$, ale je mírně posunut k 0,5. U podílu 0,5 posun nenastane, u podílu 0 je střed kladný.
+- Pod odmocninou je k odhadu rozptylu přičtena kladná hodnota $z^2/(4n^2)$. Interval proto nemá nulovou šířku ani při $p=0$ nebo $p=1$.
+- U velkých výběrů jsou zlomky se $z^2$ zanedbatelné a Wilsonův interval se blíží Waldovu. Rozdíl je důležitý právě u malých výběrů a krajních podílů.
+
+Pro 10 z 20 je střed 0,500 a polovina šířky 0,201, takže **95% Wilsonův interval je (0,30; 0,70)**. Pro 0 z 15 je střed 0,102 a interval (0; 0,20). Obrázek [-@fig-wald-wilson] oba postupy porovnává.
+
+::: {.teaching-figure role="region" aria-label="Waldův a Wilsonův interval pro dva příklady" tabindex="0"}
+
+![U podílu 10 z 20 dávají oba postupy podobný interval; Wilsonův je mírně užší a souměrný kolem 0,5. U výsledku 0 z 15 má Waldův interval nulovou šířku, kdežto Wilsonův interval ukazuje, že populační podíl může být až kolem 0,20.](../assets/chapter-09/plots/wald-wilson.svg){#fig-wald-wilson fig-alt="Čtyři vodorovné úsečky intervalů na ose podílu od 0 do 1. Pro 10 z 20: Waldův interval od 0,28 do 0,72 šedě, Wilsonův od 0,30 do 0,70 modře, oba s bodem v 0,50. Pro 0 z 15: Waldův interval je jen bod v nule, Wilsonův sahá od 0 do 0,20. Svislá přerušovaná čára označuje π = 0,25 při hádání; oba intervaly pro 10 z 20 leží napravo od ní."}
+
+:::
+
+Wilsonův interval se nemění jen podle výsledku, ale i podle počtu pokusů. Kdyby student odpověděl správně na 40 z 80 otázek, byl by podíl opět 0,50, ale interval by byl (0,39; 0,61), tedy zhruba poloviční šířky. Stejně jako u průměrů platí orientačně, že čtyřnásobný výběr zhruba půlí šířku intervalu.
+
+Wilsonův interval má stejné předpoklady jako [binomický model](kapitola_05.qmd#sec-binomicke-predpoklady): jednotlivé pokusy jsou nezávislé a každý má stejnou pravděpodobnost úspěchu $\mathrm{π}$. Podíl musí vzniknout z počtů. Procento typu „spal 87 % doby strávené v posteli“ není podíl nezávislých pokusů a interval pro něj takto počítat nelze [@cumming, s. 395–396].
+
+**Věcná interpretace příkladu:** student odpověděl správně na polovinu otázek. S daty je slučitelná dlouhodobá úspěšnost přibližně od 0,30 do 0,70. Interval neobsahuje hodnotu 0,25, kterou bychom čekali při pouhém hádání. Je ale široký: dvacet otázek o schopnosti studenta mnoho neprozradí.
+
+### Výpočet v Excelu {#sec-interval-podilu-excel}
+
+List `Interval_podilu` počítá oba intervaly a test, ke kterému se dostaneme v příštím pododdílu. Vstupy jsou žluté buňky B2:B5; změnou počtu úspěchů a pokusů můžete interval spočítat pro libovolná data.
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Excel: interval pro podíl na listu Interval_podilu" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| B2 | Počet úspěchů | `10` | 10 |
+| B3 | Počet pokusů $n$ | `20` | 20 |
+| B4 | Hladina spolehlivosti | `0,95` | 0,95 |
+| B5 | Testovaná hodnota $\mathrm{π}_0$ | `0,25` | 0,25 |
+| B7 | Výběrový podíl $p$ | `=B2/B3` | 0,500 |
+| B8 | Kvantil $z$ | `=NORM.S.INV(1-(1-B4)/2)` | 1,9600 |
+| B9 | Waldův interval: odhad směrodatné chyby | `=ODMOCNINA(B7*(1-B7)/B3)` | 0,1118 |
+| B10 | Waldův interval: dolní mez | `=B7-B8*B9` | 0,281 |
+| B11 | Waldův interval: horní mez | `=B7+B8*B9` | 0,719 |
+| B13 | Wilsonův interval: střed | `=(B7+B8^2/(2*B3))/(1+B8^2/B3)` | 0,500 |
+| B14 | Wilsonův interval: polovina šířky | `=B8/(1+B8^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B8^2/(4*B3^2))` | 0,201 |
+| B15 | Wilsonův interval: dolní mez | `=B13-B14` | 0,299 |
+| B16 | Wilsonův interval: horní mez | `=B13+B14` | 0,701 |
+| B18 | Skórový test: testová statistika $z$ | `=(B7-B5)/ODMOCNINA(B5*(1-B5)/B3)` | 2,582 |
+| B19 | Skórový test: oboustranná *p*-hodnota | `=2*(1-NORM.S.DIST(ABS(B18);PRAVDA))` | 0,0098 |
+
+: Interval pro podíl a test jednoho podílu v Excelu {#tbl-k09-02}
+
+:::
+
+::: {.table-note}
+Funkce NORM.S.INV a NORM.S.DIST známe z [kapitoly 4](kapitola_04.qmd#sec-normalni-kvantil). Waldův interval je na listu jen pro srovnání; pro výsledek používejte Wilsonův interval.
+:::
+
+### Interval a test jednoho podílu {#sec-interval-a-test-podilu}
+
+Wilsonův interval vznikl obrácením testu: obsahuje právě ty hodnoty $\mathrm{π}_0$, které by **skórový test** jednoho podílu na hladině 0,05 oboustranně nezamítl. Skórový test (*score test*) je [z-test](kapitola_06.qmd#sec-z-test) pro podíl, který počítá směrodatnou chybu z testované hodnoty $\mathrm{π}_0$, nikoli z výběrového podílu:
+
+$$z=\frac{p-\mathrm{π}_0}{\sqrt{\mathrm{π}_0(1-\mathrm{π}_0)/n}}=\frac{0{,}50-0{,}25}{\sqrt{0{,}25\times0{,}75/20}}=\frac{0{,}25}{0{,}0968}\approx2{,}58.$$
+
+Oboustranná *p*-hodnota je přibližně 0,0098. Test nulovou hypotézu $\mathrm{π}=0{,}25$ zamítá a hodnota 0,25 opravdu leží mimo Wilsonův interval.
+
+V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a dal *p*-hodnotu 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: souhrn několika studií o telepatii" #rozsireni-ganzfeld}
+Cumming a Calin-Jageman [-@cumming, s. 390–398] uvádějí výsledky deseti studií, v nichž se „příjemce“ pokoušel poznat, který ze čtyř obrázků mu „odesílatel“ v jiné místnosti posílal telepaticky; studie shrnuli Bem a Honorton. Při hádání by úspěšnost byla 0,25. Ve všech studiích dohromady bylo 106 zásahů z 329 pokusů, podíl 0,322 s 95% Wilsonovým intervalem (0,274; 0,374). Jednostranný binomický test nulové hypotézy $\mathrm{π}\le0{,}25$ dává *p*-hodnotu 0,002.
+
+Výpočet je správný, a přesto z něj nelze uzavřít, že telepatie existuje. Sečtením deseti studií předpokládáme, že všech 329 pokusů je nezávislých a mají stejnou pravděpodobnost úspěchu. Studie se ale lišily postupem i účastníky; souhrn nepoví, zda nevznikl ze studií, které by jednotlivě vyšly různě. Nevíme, zda byly zveřejněny všechny provedené studie. Hlavně binomický model počítá jen s hádáním a telepatií; výsledek nad 0,25 by vznikl i při jakémkoli úniku informace mezi místnostmi. Pro mimořádné tvrzení potřebujeme mimořádné důkazy: pečlivě kontrolovaný postup, předem zveřejněný plán a nezávislá opakování. Binomický výpočet sám odpovídá jen na otázku, zda by takový podíl byl při hádání neobvyklý.
+:::
+
+## Jak porovnat podíly ve dvou nezávislých skupinách? {#sec-dva-podily}
+
+Liší se podíl studentů se zvýšeným stresem mezi ženami a muži i v populaci? Oddíl přenáší úvahu o [rozdílu dvou průměrů](kapitola_08.qmd#sec-rozdil-nezavislych) z kapitoly 8 na podíly.
+
+### Rozdíl podílů a jeho interval {#sec-newcombe}
+
+V tabulce [-@tbl-k09-01] je podíl žen se zvýšeným stresem $p_1=0{,}40$ a podíl mužů $p_2=0{,}30$; rozdíl je $p_1-p_2=0{,}10$, tedy 10 procentních bodů. Ženy a muži tvoří dvě nezávislé skupiny. Stejně jako u průměrů v kapitole 8 se při odečítání nezávislých odhadů **sčítají jejich rozptyly**:
+
+$$\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}=\sqrt{\frac{0{,}40\times0{,}60}{100}+\frac{0{,}30\times0{,}70}{100}}=\sqrt{0{,}0045}\approx0{,}067.$$
+
+Waldův interval $0{,}10\pm1{,}96\times0{,}067$ by dal (−0,03; 0,23). Má ale tytéž slabiny jako u jednoho podílu. Proto počítáme **Newcombův interval** (*Newcombe hybrid score interval*), který vychází z Wilsonových intervalů obou skupin. Pro ženy je Wilsonův interval $(l_1;\,u_1)=(0{,}309;\ 0{,}498)$, pro muže $(l_2;\,u_2)=(0{,}219;\ 0{,}396)$. Meze intervalu pro rozdíl jsou
+
+$$\text{dolní}=(p_1-p_2)-\sqrt{(p_1-l_1)^2+(u_2-p_2)^2},\qquad\text{horní}=(p_1-p_2)+\sqrt{(u_1-p_1)^2+(p_2-l_2)^2}.$$
+
+Dolní mez rozdílu nastane, když je první podíl ve skutečnosti nižší a druhý vyšší, než ukazují výběry. Proto se v ní spojuje vzdálenost $p_1$ od dolní meze první skupiny se vzdáleností $p_2$ od horní meze druhé skupiny. Horní mez naopak. Odmocnina ze součtu čtverců je stejné „sčítání rozptylů“ jako u Waldova vzorce, jen místo souměrných vzdáleností $1{,}96$ směrodatné chyby používá skutečné, nesouměrné vzdálenosti k mezím Wilsonových intervalů. Pro náš příklad:
+
+$$\text{dolní}=0{,}10-\sqrt{(0{,}40-0{,}309)^2+(0{,}396-0{,}30)^2}\approx0{,}10-0{,}132=-0{,}03,$$
+$$\text{horní}=0{,}10+\sqrt{(0{,}498-0{,}40)^2+(0{,}30-0{,}219)^2}\approx0{,}10+0{,}127=0{,}23.$$
+
+**95% Newcombův interval pro rozdíl podílů je (−0,03; 0,23).** S daty jsou slučitelné populační rozdíly od přibližně tří procentních bodů ve prospěch mužů až po 23 bodů ve prospěch žen. V tomto příkladu s velkými skupinami a podíly daleko od 0 a 1 se Newcombův a Waldův interval téměř neliší; rozdíl se ukáže u malých skupin a krajních podílů, jako ve [cvičení 12](#sec-cviceni-09).
+
+### Test se společným podílem {#sec-test-dvou-podilu}
+
+Nulová hypotéza tvrdí, že se populační podíly neliší: $H_0{:}\ \mathrm{π}_1=\mathrm{π}_2$, alternativa $H_1{:}\ \mathrm{π}_1\neq\mathrm{π}_2$. Test počítá směrodatnou chybu rozdílu **v modelu nulové hypotézy**. Pokud jsou oba populační podíly stejné, nejlépe je odhadneme z obou skupin dohromady. Tomuto odhadu říkáme **společný podíl** (*pooled proportion*):
+
+$$p=\frac{40+30}{100+100}=0{,}35.$$
+
+Směrodatná chyba rozdílu za platnosti nulové hypotézy a testová statistika jsou
+
+$$\sqrt{p(1-p)\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}=\sqrt{0{,}35\times0{,}65\times0{,}02}\approx0{,}0675,\qquad z=\frac{0{,}10}{0{,}0675}\approx1{,}48.$$
+
+Oboustranná *p*-hodnota je přibližně 0,138. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu, že se populační podíly studentek a studentů se zvýšeným stresem neliší, nezamítáme. **Věcná interpretace:** ve výběru uvádí zvýšený stres o 10 procentních bodů více žen než mužů. Data ale připouštějí v populaci jak nulový rozdíl, tak rozdíl kolem 20 bodů. Nezamítnutí [neznamená](kapitola_06.qmd#sec-nezamitnuti), že se podíly neliší; studie má pro rozdíl této velikosti malou přesnost.
+
+Proč test používá společný podíl a interval ne? Test se ptá, jak neobvyklý by byl náš výsledek, **kdyby platila nulová hypotéza**, a proto počítá v jejím modelu. Interval odhaduje skutečný rozdíl a s rovností podílů nepočítá. Stejně jako u jednoho podílu tedy platí: Newcombův interval a test se společným podílem poskytují související informace, ale přesná shoda jejich rozhodnutí není zaručena.
+
+Na velikosti výběru záleží. Kdybychom měli dvakrát víc studentů se stejnými podíly, 80 z 200 žen a 60 z 200 mužů, vyšla by *p*-hodnota 0,036 a interval (0,007; 0,191). Rozdíl ve výběru by byl stejný, jen by byl odhadnut přesněji [@howell, s. 169, cv. 6.9].
+
+### Výpočet v Excelu {#sec-dva-podily-excel}
+
+List `Dva_podily` počítá Wilsonovy intervaly obou skupin, Newcombův interval a test se společným podílem; vstupy jsou žluté buňky B2:B6.
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Excel: rozdíl dvou podílů na listu Dva_podily" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| B2:B3 | Úspěchy a velikost první skupiny | `40`, `100` | |
+| B4:B5 | Úspěchy a velikost druhé skupiny | `30`, `100` | |
+| B6 | Hladina spolehlivosti | `0,95` | 0,95 |
+| B8 | Podíl $p_1$ | `=B2/B3` | 0,400 |
+| B9 | Podíl $p_2$ | `=B4/B5` | 0,300 |
+| B10 | Rozdíl $p_1-p_2$ | `=B8-B9` | 0,100 |
+| B11 | Kvantil $z$ | `=NORM.S.INV(1-(1-B6)/2)` | 1,9600 |
+| B12:B13 | Wilsonův interval první skupiny | vzorce jako na listu `Interval_podilu` | 0,309; 0,498 |
+| B14:B15 | Wilsonův interval druhé skupiny | totéž pro B4:B5 | 0,219; 0,396 |
+| B16 | Newcombův interval: dolní mez | `=B10-ODMOCNINA((B8-B12)^2+(B15-B9)^2)` | −0,032 |
+| B17 | Newcombův interval: horní mez | `=B10+ODMOCNINA((B13-B8)^2+(B9-B14)^2)` | 0,227 |
+| B19 | Společný podíl | `=(B2+B4)/(B3+B5)` | 0,350 |
+| B20 | Směrodatná chyba při $H_0$ | `=ODMOCNINA(B19*(1-B19)*(1/B3+1/B5))` | 0,0675 |
+| B21 | Testová statistika $z$ | `=B10/B20` | 1,482 |
+| B22 | Oboustranná *p*-hodnota | `=2*(1-NORM.S.DIST(ABS(B21);PRAVDA))` | 0,138 |
+
+: Rozdíl dvou nezávislých podílů v Excelu {#tbl-k09-03}
+
+:::
+
+::: {.table-note}
+Dolní mez Wilsonova intervalu první skupiny v B12 je `=(B8+B11^2/(2*B3))/(1+B11^2/B3)-B11/(1+B11^2/B3)*ODMOCNINA(B8*(1-B8)/B3+B11^2/(4*B3^2))`; horní mez v B13 se liší jen znaménkem před druhým zlomkem. Buňky B23:B24 obsahují tutéž *p*-hodnotu spočítanou jinou cestou, ke které se dostaneme v [oddílu o tabulkách](#sec-chi-a-z).
+:::
+
+## Jak daleko jsou pozorované četnosti od očekávaných? {#sec-dobra-shoda}
+
+Co když proměnná nemá dvě kategorie, ale čtyři, a chceme posoudit celé jejich rozložení najednou? Oddíl zavádí srovnání pozorovaných a očekávaných četností, které povede i k testům v tabulkách.
+
+### Očekávané četnosti {#sec-ocekavane-cetnosti}
+
+Ovlivňuje umístění výrobku, co si lidé vyberou? Psycholožka vystavila na stůl vedle sebe čtyři stejné vzorky čaje a požádala 80 lidí, aby si jeden vybrali jako nejlepší. Každý člověk vybíral jednou, sám a s náhodně zvoleným vzorkem na každé pozici. Kolik lidí zvolilo jednotlivé pozice, ukazuje obrázek [-@fig-pozice] a list `Pozice` (A2:B5).
+
+::: {.teaching-figure role="region" aria-label="Volba jednoho ze čtyř stejných vzorků čaje" tabindex="0"}
+
+![Kdyby na pozici nezáleželo, čekali bychom na každé pozici 20 voleb. Pozorované četnosti od levé pozice k pravé rostou: nejvíce lidí, 31, zvolilo vzorek úplně vpravo, nejméně, 12, vzorek úplně vlevo.](../assets/chapter-09/plots/pozice.svg){#fig-pozice fig-alt="Sloupcový graf se čtyřmi sloupci pro pozice zleva doprava: 12, 16, 21 a 31 lidí. Vodorovná přerušovaná čára ve výšce 20 označuje očekávanou četnost při rovnoměrné volbě."}
+
+:::
+
+Vzorky byly stejné, takže pokud by na pozici nezáleželo, měl by každý člověk stejnou pravděpodobnost zvolit kteroukoli pozici, tedy 0,25. Tak zní nulová hypotéza: $H_0{:}\ \mathrm{π}_1=\mathrm{π}_2=\mathrm{π}_3=\mathrm{π}_4=0{,}25$, kde $\mathrm{π}_j$ je populační podíl voleb pozice $j$. Alternativní hypotéza tvrdí, že alespoň jeden z podílů se od 0,25 liší.
+
+Podle nulové hypotézy bychom na každé pozici čekali $80\times0{,}25=20$ voleb. Takovým počtům říkáme **očekávané četnosti** (*expected frequencies*) a značíme je $e_j$; skutečné počty jsou **pozorované četnosti** (*observed frequencies*), které podle [kapitoly 2](kapitola_02.qmd#sec-relativni-cetnost) značíme $f_j$. Obecně
+
+$$e_j=n\times\mathrm{π}_{0j},$$
+
+kde $n$ je počet všech pozorování a $\mathrm{π}_{0j}$ podíl kategorie $j$ podle nulové hypotézy. Očekávaná četnost je dlouhodobý průměr počtu, ne počet, který musí nastat: nemusí být celým číslem a skutečné četnosti kolem ní kolísají, i když nulová hypotéza platí.
+
+Nulová hypotéza nemusí předpokládat stejné podíly. Představme si, že podle dlouhodobé evidence poradny přichází 40 % klientů s problémy ve studiu, 30 % ve vztazích, 20 % s úzkostí a 10 % s jinými obtížemi. Letošní klienty pak můžeme porovnat s tímto rozložením; očekávané četnosti by byly $n\times0{,}40$, $n\times0{,}30$ atd. Podíly $\mathrm{π}_{0j}$ ale musíme stanovit **před pohledem na data** a musí to být podíly, které považujeme za známé, ne odhady s vlastní nejistotou.
+
+::: {.callout-warning title="Častý omyl: „očekávané podíly vezmeme z jiného výběru“"}
+Očekávaný profil převzatý z jiného výběru není automaticky známým populačním rozdělením. Pokud loňských klientů poradny bylo jen 120, jejich podíly samy kolísají a test dobré shody by tuto nejistotu ignoroval. Správnější je porovnat dva výběry, loňský a letošní, [testem homogenity](#sec-nezavislost-homogenita), který s nejistotou obou počítá. Test dobré shody je vhodný, když jsou očekávané podíly dány teorií, konstrukcí úlohy (například čtyři stejné možnosti) nebo údaji tak rozsáhlými, že jejich nejistota je zanedbatelná.
+:::
+
+### Statistika chí-kvadrát {#sec-statistika-chi}
+
+Jak vyjádřit jedním číslem, nakolik se pozorované četnosti liší od očekávaných? Pro každou kategorii spočítáme rozdíl $f_j-e_j$, umocníme ho na druhou, aby se kladné a záporné odchylky nevyrušily, a vydělíme ho očekávanou četností. Výsledky sečteme. Tak vzniká **statistika chí-kvadrát** (*chi-square statistic*), přesněji Pearsonova statistika chí-kvadrát:
+
+$$\mathrm{χ}^2=\sum_{j=1}^{k}\frac{(f_j-e_j)^2}{e_j},$$
+
+kde $k$ je počet kategorií. Proč dělíme očekávanou četností? Odchylka o 5 voleb znamená něco jiného, když jsme čekali 20 voleb, a něco jiného, když jsme čekali 2 000. Dělením převádíme odchylky na srovnatelnou velikost vzhledem k tomu, kolik pozorování jsme čekali [@howell, s. 140]. Řecké písmeno chí ($\mathrm{χ}$) zde výjimečně neoznačuje populační parametr, ale statistiku spočítanou z dat; symbol je ustálený.
+
+Pro volbu čaje:
+
+::: {.table-scroll role="region" aria-label="Výpočet statistiky chí-kvadrát pro volbu čaje" tabindex="0"}
+
+| Pozice | Pozorovaná četnost $f_j$ | Očekávaná četnost $e_j$ | $f_j-e_j$ | $(f_j-e_j)^2/e_j$ |
+|---|---:|---:|---:|---:|
+| 1. zleva | 12 | 20 | −8 | 3,20 |
+| 2. zleva | 16 | 20 | −4 | 0,80 |
+| 3. zleva | 21 | 20 | 1 | 0,05 |
+| 4. zleva (vpravo) | 31 | 20 | 11 | 6,05 |
+| Celkem | 80 | 80 | 0 | 10,10 |
+
+: Pozorované a očekávané četnosti voleb a jejich příspěvky ke statistice chí-kvadrát {#tbl-k09-04}
+
+:::
+
+Statistika má hodnotu $\mathrm{χ}^2=10{,}10$. Největší příspěvky dávají krajní pozice: vpravo bylo voleb o 11 více, než jsme čekali, vlevo o 8 méně. Statistika je nulová, jen když se všechny pozorované četnosti přesně rovnají očekávaným; čím jsou odchylky větší, tím je větší. Zbývá posoudit, zda je hodnota 10,10 velká vzhledem k tomu, co by vzniklo náhodou při platnosti nulové hypotézy.
+
+### Dvě kategorie: chí-kvadrát a z-test {#sec-chi-a-z}
+
+Se dvěma kategoriemi jsme se už setkali. Student odpověděl správně na 10 z 20 otázek; při hádání bychom čekali 5 správných a 15 chybných odpovědí. Statistika chí-kvadrát je
+
+$$\mathrm{χ}^2=\frac{(10-5)^2}{5}+\frac{(10-15)^2}{15}=5+1{,}667=6{,}667.$$
+
+To je přesně druhá mocnina skórové statistiky z [oddílu o intervalu](#sec-interval-a-test-podilu): $2{,}582^2=6{,}667$. Platí to obecně: **u dvou kategorií je statistika chí-kvadrát rovna $z^2$ skórového testu jednoho podílu** a oba postupy dávají stejnou oboustrannou *p*-hodnotu. Stejně tak je u tabulky 2 × 2, ke které se dostaneme v [oddílu o nezávislosti](#sec-nezavislost), statistika chí-kvadrát rovna $z^2$ testu dvou podílů se společným podílem. Na listu `Dva_podily` to ukazují buňky B23 ($z^2=2{,}198$) a B24 (táž *p*-hodnota 0,138 spočítaná přes chí-kvadrát). Testy chí-kvadrát tedy nejsou nová logika, ale rozšíření testů pro podíly na více kategorií.
+
+## Kdy je hodnota chí-kvadrát neobvykle velká? {#sec-chi-rozdeleni}
+
+Jak poznat, zda $\mathrm{χ}^2=10{,}10$ svědčí proti nulové hypotéze? Oddíl ukazuje výběrové rozdělení statistiky chí-kvadrát a jeho stupně volnosti.
+
+### Chí-kvadrát rozdělení a stupně volnosti {#sec-stupne-volnosti-chi}
+
+Stejně jako jiné statistiky i $\mathrm{χ}^2$ kolísá od výběru k výběru a má [výběrové rozdělení](kapitola_06.qmd#sec-statistika-jako-promenna). Abychom ho viděli, nechali jsme počítač 10 000krát „vybrat“ 80 lidí, z nichž každý zvolí jednu ze čtyř pozic se stejnou pravděpodobností, a pokaždé spočítat $\mathrm{χ}^2$. Pravá část obrázku [-@fig-chi-kvadrat] ukazuje histogram těchto simulovaných hodnot: nejčastěji vycházejí malé hodnoty, rozdělení je zešikmené doprava a průměr simulovaných hodnot je 2,99.
+
+::: {.teaching-figure role="region" aria-label="Chí-kvadrát rozdělení a simulované výběrové rozdělení statistiky" tabindex="0"}
+
+![Vlevo: chí-kvadrát rozdělení pro 1, 2, 4 a 8 stupňů volnosti; s rostoucím počtem stupňů volnosti se rozdělení posouvá doprava a je méně zešikmené. Vpravo: 10 000 simulovaných hodnot statistiky pro 80 lidí při platnosti nulové hypotézy se shoduje s chí-kvadrát rozdělením se 3 stupni volnosti. Naše hodnota 10,10 leží za kritickou hodnotou 7,81; plocha napravo od ní je p-hodnota.](../assets/chapter-09/plots/chi-kvadrat.svg){#fig-chi-kvadrat fig-alt="Dva grafy. Vlevo čtyři křivky hustoty na ose od 0 do 20. Křivka pro 1 stupeň volnosti klesá od nuly, pro 2 stupně také, pro 4 a 8 stupňů má vrchol a je posunutá doprava. Legenda uvádí, že 5 % hodnot leží nad 3,84; 5,99; 9,49 a 15,51. Vpravo histogram 10 000 simulovaných hodnot statistiky, zešikmený doprava, a přes něj modrá křivka chí-kvadrát rozdělení se 3 stupni volnosti, která histogramu odpovídá. Svislá přerušovaná čára u 7,81 je kritická hodnota, šipka u 10,1 označuje naši hodnotu a oranžová plocha napravo od ní p-hodnotu."}
+
+:::
+
+Histogram téměř přesně sleduje modrou křivku, **chí-kvadrát rozdělení** (*chi-square distribution*). Je to spojité rozdělení nezáporných hodnot, které má jediný parametr: **počet stupňů volnosti**. Jeho střední hodnota je rovna počtu stupňů volnosti; v simulaci jsme dostali 2,99 při třech stupních volnosti. Levá část obrázku ukazuje, že s počtem stupňů volnosti se rozdělení posouvá doprava a stává se méně zešikmeným.
+
+Proč má test dobré shody pro čtyři kategorie tři stupně volnosti? [Stupně volnosti](kapitola_03.qmd#sec-korekce-rozptylu) jsou počet údajů, které se mohou měnit volně. Celkový počet 80 lidí je pevný. Známe-li počet voleb na prvních třech pozicích, je čtvrtý dán: 80 minus jejich součet. Volně se tedy mohou měnit tři četnosti ze čtyř. Obecně má test dobré shody pro $k$ kategorií $k-1$ stupňů volnosti.
+
+Shoda histogramu s křivkou je přibližná. Statistika $\mathrm{χ}^2$ může nabývat jen hodnot, které vzniknou z celých počtů, takže její skutečné rozdělení je nespojité; spojité chí-kvadrát rozdělení ho jen aproximuje. Aproximace se opírá o normální aproximaci jednotlivých četností, obdobu [centrální limitní věty](kapitola_06.qmd#sec-clv-zneni) [@wilcox2017, s. 610]. Funguje dobře, když očekávané četnosti nejsou příliš malé; k tomu se vrátíme v [oddílu o předpokladech](#sec-male-cetnosti).
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: proč má statistika přibližně chí-kvadrát rozdělení" #rozsireni-proc-chi}
+Chí-kvadrát rozdělení s $v$ stupni volnosti má součet $v$ nezávislých veličin, z nichž každá je druhou mocninou veličiny s [normovaným normálním rozdělením](kapitola_04.qmd#sec-normalni-model). Proč se mu podobá náš součet?
+
+Pokud platí nulová hypotéza, je počet voleb jedné pozice binomický s $n=80$ a $\mathrm{π}=0{,}25$. Podle [normální aproximace](kapitola_05.qmd#sec-normalni-aproximace) z kapitoly 5 má přibližně normální rozdělení se střední hodnotou $e_j=20$. Rozdíl $f_j-e_j$ vydělený svou směrodatnou odchylkou je proto přibližně normovaná normální veličina a jeho druhá mocnina přispívá jedním „normovaným čtvercem“. Dělíme ovšem $e_j$, nikoli přesným rozptylem $n\mathrm{π}(1-\mathrm{π})$, a čtyři četnosti nejsou nezávislé, protože jejich součet je pevný. Přesné odvození ukazuje, že tyto dvě odchylky se navzájem vyrovnají: součet $k$ příspěvků se chová jako součet $k-1$ nezávislých normovaných čtverců [@navarro, kap. 12.1]. Proto $k-1$ stupňů volnosti. U dvou kategorií to lze ověřit přímo: $\mathrm{χ}^2$ je čtverec jediné skórové statistiky $z$.
+:::
+
+### *p*-hodnota a rozhodnutí {#sec-p-chi}
+
+Velká hodnota $\mathrm{χ}^2$ znamená velké odchylky od nulové hypotézy, malá hodnota dobrou shodu. Proti nulové hypotéze proto svědčí jen **pravý chvost** rozdělení. *p*-hodnota je pravděpodobnost, že by při platnosti nulové hypotézy vyšla statistika alespoň tak velká jako ta naše:
+
+$$p\text{-hodnota}=P(\mathrm{χ}^2\ge10{,}10)\approx0{,}018\quad\text{(3 stupně volnosti)}.$$
+
+V simulaci vyšla hodnota alespoň 10,10 v 1,6 % výběrů, v dobré shodě s modelovou hodnotou. Kritická hodnota pro hladinu 0,05 a tři stupně volnosti je 7,81; v simulaci ji překročilo 5,0 % výběrů. Naše hodnota 10,10 ji převyšuje.
+
+**Rozhodnutí testu:** na hladině 0,05 zamítáme nulovou hypotézu, že lidé volí všechny čtyři pozice se stejnou pravděpodobností. **Věcná interpretace:** v tomto pokusu lidé častěji volili vzorek vpravo (31 z 80, tedy 39 %) a méně často vzorek vlevo (12 z 80, 15 %), ačkoli všechny vzorky byly stejné. Volba tedy zřejmě závisela i na umístění. Protože vzorky na pozicích byly náhodně střídány a lišila se jen pozice, nabízí se vysvětlit rozdíl umístěním; závěr ale platí pro tento typ úlohy a tyto lidi a jeho zobecnění vyžaduje opakování.
+
+Pozor na směr testu. V kapitole 6 jsme [rozlišovali](kapitola_06.qmd#sec-smer-testu) oboustranné a jednostranné testy podle alternativní hypotézy. Test chí-kvadrát počítá *p*-hodnotu z pravého chvostu, ale přitom je **nesměrový**: velkou hodnotu dává jakákoli odchylka od očekávání v kterékoli kategorii. Kdyby psycholožka předem předpokládala, že lidé preferují pravou stranu, test by tuto předpověď nijak nevyužil. Stejnou hodnotu 10,10 by dalo i rozložení 31, 21, 16, 12, tedy preference levé strany [@howell, s. 156]. Test chí-kvadrát nebere ohled na pořadí kategorií.
+
+### Výpočet v Excelu {#sec-dobra-shoda-excel}
+
+Excel má pro chí-kvadrát rozdělení tři funkce. Ve všech zůstávají anglické názvy; v českém Excelu se mění jen oddělovače.
+
+- **CHISQ.DIST.RT** (anglicky také CHISQ.DIST.RT): argumenty jsou hodnota statistiky a počet stupňů volnosti; vrací plochu napravo od hodnoty, tedy *p*-hodnotu. `=CHISQ.DIST.RT(10,1;3)` ≈ 0,0177.
+- **CHISQ.INV.RT** (anglicky také CHISQ.INV.RT): argumenty jsou plocha v pravém chvostu a počet stupňů volnosti; vrací kritickou hodnotu. `=CHISQ.INV.RT(0,05;3)` ≈ 7,815.
+- **CHISQ.TEST** (anglicky také CHISQ.TEST): argumenty jsou oblast pozorovaných a oblast očekávaných četností stejného tvaru; vrací přímo *p*-hodnotu. Stupně volnosti určí sama: u jednoho řádku nebo sloupce $k-1$, u tabulky (počet řádků − 1)(počet sloupců − 1). Statistiku neukáže, proto ji používáme spíš ke kontrole.
+
+List `Dobra_shoda` výpočet sestavuje krok za krokem:
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Excel: test dobré shody na listu Dobra_shoda" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| B2:B5 | Pozorované četnosti $f_j$ | vstup, výchozí hodnoty z listu `Pozice` | 12; 16; 21; 31 |
+| C2:C5 | Podíly podle nulové hypotézy $\mathrm{π}_{0j}$ | `0,25` (vstup) | 0,25 |
+| B7 | Počet pozorování $n$ | `=SUMA(B2:B5)` | 80 |
+| D2 | Očekávaná četnost $e_1$ | `=$B$7*C2` | 20 |
+| E2 | Příspěvek ke statistice | `=(B2-D2)^2/D2` | 3,20 |
+| B8 | Statistika $\mathrm{χ}^2$ | `=SUMA(E2:E5)` | 10,10 |
+| B9 | Stupně volnosti | `=POČET(B2:B5)-1` | 3 |
+| B10 | *p*-hodnota | `=CHISQ.DIST.RT(B8;B9)` | 0,0177 |
+| B11 | Kritická hodnota pro α = 0,05 | `=CHISQ.INV.RT(0,05;B9)` | 7,815 |
+| B12 | Kontrola: CHISQ.TEST | `=CHISQ.TEST(B2:B5;D2:D5)` | 0,0177 |
+| B13 | Kontrola: součet podílů $\mathrm{π}_{0j}$ | `=SUMA(C2:C5)` | 1 |
+
+: Test dobré shody v Excelu {#tbl-k09-05}
+
+:::
+
+::: {.table-note}
+Vzorce v D2 a E2 se kopírují do řádků 3–5. Podíly v C2:C5 můžete změnit na jiné předem dané rozložení; jejich součet musí být 1.
+:::
+
+### Co test dobré shody neříká {#sec-dobra-shoda-meze}
+
+Zamítnutí nulové hypotézy říká, že rozložení jako celek se od očekávaného liší. Neříká, **které** kategorie se liší ani o kolik. K tomu se vracíme k podílům jednotlivých kategorií a jejich [Wilsonovým intervalům](#sec-wilson) [@wilcox2017, s. 612]. Podíl voleb pravé pozice je 0,39 s intervalem (0,29; 0,50), podíl levé 0,15 s intervalem (0,09; 0,24); oba intervaly hodnotu 0,25 neobsahují. U prostředních pozic interval 0,25 obsahuje. Takové intervaly popisují, kde se rozložení od očekávání odchyluje; čtyři intervaly ale zároveň znamenají čtyři srovnání, a čím více jich děláme, tím snáze některé vyjde mimo hodnotu nulové hypotézy jen náhodou ([více testů najednou](kapitola_06.qmd#sec-vice-testu)).
+
+Nezamítnutí zase neznamená, že rozložení je rovnoměrné. Jen jsme neprokázali odchylku; při malém počtu lidí by test mohl přehlédnout i podstatnou preferenci.
+
+## Souvisejí spolu dvě kategoriální proměnné? {#sec-nezavislost}
+
+Jak posoudit souvislost dvou kategoriálních proměnných, když každá může mít více kategorií? Oddíl přenáší srovnání pozorovaných a očekávaných četností na kontingenční tabulku.
+
+### Očekávané četnosti v tabulce {#sec-ocekavane-tabulka}
+
+V [kapitole 5](kapitola_05.qmd#sec-nezavislost) jsme definovali nezávislost dvou jevů: $A$ a $B$ jsou nezávislé, když $P(A\cap B)=P(A)\times P(B)$. V tabulce [-@tbl-k09-01] je pravděpodobnost, že náhodně vybraný student je žena, $100/200=0{,}50$, a pravděpodobnost zvýšeného stresu $70/200=0{,}35$. Pokud by pohlaví a stres byly nezávislé, byla by pravděpodobnost „žena a zvýšený stres“ $0{,}50\times0{,}35=0{,}175$ a z 200 studentů bychom v této buňce čekali $200\times0{,}175=35$ studentek.
+
+Tato úvaha dává obecný vzorec pro **očekávanou četnost buňky** tabulky. Řádky tabulky označíme indexem $j=1,\ldots,R$ a sloupce indexem $l=1,\ldots,S$; tabulka má $R$ řádků a $S$ sloupců (tabulka $R\times S$). Pozorovaná četnost v buňce řádku $j$ a sloupce $l$ je $f_{jl}$, součet řádku $j$ je $f_{j+}$ a součet sloupce $l$ je $f_{+l}$; znaménko plus v indexu říká, přes který index sčítáme. Pak
+
+$$e_{jl}=\frac{f_{j+}\times f_{+l}}{n}.$$
+
+Vzorec vznikl z úvahy výše: $f_{j+}/n$ je podíl řádku, $f_{+l}/n$ podíl sloupce, jejich součin je podíl buňky při nezávislosti a vynásobení $n$ ho převede na počet. Pro tabulku stresu:
+
+$$e_{11}=\frac{100\times70}{200}=35,\qquad e_{12}=\frac{100\times130}{200}=65,$$
+
+a stejně pro muže, protože i jich je 100. Očekávané četnosti mají stejné řádkové i sloupcové součty jako pozorované; liší se jen tím, jak jsou počty rozděleny uvnitř tabulky.
+
+Statistika chí-kvadrát sečte příspěvky všech buněk:
+
+$$\mathrm{χ}^2=\sum_{j=1}^{R}\sum_{l=1}^{S}\frac{(f_{jl}-e_{jl})^2}{e_{jl}}=\frac{(40-35)^2}{35}+\frac{(60-65)^2}{65}+\frac{(30-35)^2}{35}+\frac{(70-65)^2}{65}\approx2{,}198.$$
+
+Dvojitá sumace znamená, že sčítáme přes všechny řádky i všechny sloupce, tedy přes všechny buňky. Výsledek je přesně $z^2=1{,}4825^2$ z [testu dvou podílů](#sec-test-dvou-podilu) a *p*-hodnota je opět 0,138.
+
+Statistické programy u tabulky 2 × 2 někdy výchozím nastavením použijí Yatesovu korekci, která statistiku zmenšuje; pro tabulku stresu by vypsaly 1,78 místo 2,20. V této knize ji nepoužíváme. Ve zprávě proto uvedeme, který výpočet jsme použili, a u malých tabulek sáhneme raději po [Fisherově testu](#sec-fisher).
+
+Stupně volnosti tabulky jsou $(R-1)(S-1)$. U tabulky 2 × 2 je to jeden: známe-li řádkové a sloupcové součty, stačí znát jedinou buňku a ostatní tři dopočítáme. U tabulky 3 × 3 jsou to čtyři stupně volnosti.
+
+### Test nezávislosti a test homogenity {#sec-nezavislost-homogenita}
+
+Tentýž výpočet odpovídá na dvě příbuzné otázky. Liší se tím, jak data vznikla:
+
+- **Test nezávislosti** (*test of independence*). Vybereme jeden náhodný výběr lidí a u každého zaznamenáme obě proměnné; řádkové ani sloupcové součty předem neurčujeme. Nulová hypotéza: obě proměnné jsou v populaci nezávislé. Závěr: proměnné spolu souvisejí, nebo souvislost neprokazujeme.
+- **Test homogenity** (*test of homogeneity*). Vybereme předem stanovený počet lidí z každé skupiny, například 100 žen a 100 mužů, a zaznamenáme jednu proměnnou. Nulová hypotéza: rozložení této proměnné je ve všech populacích skupin stejné. Závěr: rozložení se mezi skupinami liší, nebo rozdíl neprokazujeme.
+
+Výpočet, stupně volnosti i *p*-hodnota jsou v obou případech stejné; liší se formulace hypotéz a závěru. V tabulce stresu je přesně 100 žen a 100 mužů, což naznačuje, že velikosti skupin byly stanoveny předem. Přirozenější je tedy formulace testu homogenity: liší se podíl studentů se zvýšeným stresem mezi populací studentek a studentů? To je přesně otázka [testu dvou podílů](#sec-test-dvou-podilu). U tabulky 2 × 2 tedy dávají test dvou podílů a test chí-kvadrát stejný výsledek; test chí-kvadrát navíc zvládne tabulky s více řádky a sloupci. Test nezávislosti ani test homogenity samy neříkají nic o příčině: [souvislost není příčina](kapitola_01.qmd#sec-souvislost-pricina) a pohlaví zde nebylo přiřazeno.
+
+## Kde se tabulka od nezávislosti odchyluje? {#sec-rezidua}
+
+Statisticky významný test u velké tabulky říká jen, že nějaká souvislost existuje. Jak ji popsat? Oddíl ukazuje řádkové podíly a dva typy reziduí a vysvětluje, co z nich lze a nelze vyvodit.
+
+### Řádkové podíly {#sec-radkove-podily}
+
+Liší se preferovaný způsob zvládání stresu podle věku? Výzkumnice se zeptala 190 dospělých, kterou ze tří strategií v zátěži nejčastěji používají: řešení problému, vyhýbání, nebo hledání sociální opory. Účastníky rozdělila do tří věkových skupin. Data jsou v tabulce [-@tbl-k09-06] a na listu `Zvladani` (A2:D4).
+
+::: {.table-scroll role="region" aria-label="Věk a preferovaná strategie zvládání stresu" tabindex="0"}
+
+| Věková skupina | Řešení problému | Vyhýbání | Sociální opora | Celkem |
+|---|---:|---:|---:|---:|
+| Mladí (18–30) | 25 (18,82) | 18 (17,37) | 12 (18,82) | 55 |
+| Dospělí (31–60) | 30 (27,37) | 22 (25,26) | 28 (27,37) | 80 |
+| Senioři (60+) | 10 (18,82) | 20 (17,37) | 25 (18,82) | 55 |
+| Celkem | 65 | 60 | 65 | 190 |
+
+: Věková skupina a preferovaná strategie zvládání stresu {#tbl-k09-06}
+
+:::
+
+::: {.table-note}
+V závorkách jsou očekávané četnosti při nezávislosti, například $e_{11}=55\times65/190=18{,}82$.
+:::
+
+Statistika je $\mathrm{χ}^2=11{,}78$ se $(3-1)(3-1)=4$ stupni volnosti, *p*-hodnota 0,019; kritická hodnota pro hladinu 0,05 je 9,49. **Rozhodnutí testu:** zamítáme nulovou hypotézu, že preferovaná strategie a věková skupina jsou v populaci nezávislé. Kde se ale tabulka od nezávislosti odchyluje?
+
+Nejpřímější odpověď dávají **řádkové podíly** (*row proportions*): četnosti každého řádku vydělené jeho součtem. Ukazují rozložení strategií **uvnitř** každé věkové skupiny, takže skupiny různé velikosti lze porovnat. Za řádky volíme kategorie proměnné, kterou chápeme jako vysvětlující, zde věk. Obrázek [-@fig-zvladani] řádkové podíly porovnává s podíly ve všech 190 lidech.
+
+::: {.teaching-figure role="region" aria-label="Řádkové podíly strategií zvládání podle věku" tabindex="0"}
+
+![Mladí uvádějí řešení problému častěji (0,45) a sociální oporu méně často (0,22), než odpovídá celému souboru. U seniorů je tomu naopak: řešení problému uvádí 0,18, sociální oporu 0,45. Dospělí se od celého souboru liší málo. Vyhýbání je ve všech skupinách podobně časté.](../assets/chapter-09/plots/zvladani.svg){#fig-zvladani fig-alt="Seskupený sloupcový graf řádkových podílů. Pro mladé (n = 55): řešení problému 0,45, vyhýbání 0,33, sociální opora 0,22. Pro dospělé (n = 80): 0,38, 0,28 a 0,35. Pro seniory (n = 55): 0,18, 0,36 a 0,45. Vodorovné přerušované čáry u každé strategie ukazují podíl ve všech 190 lidech: 0,34 pro řešení problému, 0,32 pro vyhýbání a 0,34 pro sociální oporu."}
+
+:::
+
+Kdyby věk a strategie byly nezávislé, byly by řádkové podíly ve všech skupinách stejné a rovnaly by se podílům ve všech 190 lidech. Odchylky ukazují, kudy souvislost vede: s věkem ubývá řešení problému a přibývá hledání sociální opory.
+
+### Pearsonova a upravená rezidua {#sec-pearson-upravena}
+
+Řádkové podíly ukazují vzorec, ale nepovídají, jak velké odchylky lze čekat náhodou. Pro jednotlivé buňky proto počítáme **rezidua** (*residuals*), rozdíly pozorované a očekávané četnosti převedené na srovnatelné jednotky. Používají se dva typy:
+
+- **Pearsonovo reziduum** (*Pearson residual*) $(f_{jl}-e_{jl})/\sqrt{e_{jl}}$. Jeho druhá mocnina je příspěvek buňky ke statistice chí-kvadrát, takže Pearsonova rezidua ukazují, které buňky k celkové hodnotě přispívají nejvíc a jakým směrem.
+- **Upravené reziduum** (*adjusted residual*, také *standardized residual*)
+
+$$\frac{f_{jl}-e_{jl}}{\sqrt{e_{jl}\left(1-\dfrac{f_{j+}}{n}\right)\left(1-\dfrac{f_{+l}}{n}\right)}}.$$
+
+Proč dvě verze? Četnosti v tabulce jsou svázány pevnými řádkovými a sloupcovými součty, a Pearsonovo reziduum proto při platnosti nulové hypotézy kolísá méně než veličina s normovaným normálním rozdělením. Upravené reziduum tento rozdíl opravuje dělením přesnějším odhadem směrodatné odchylky rozdílu $f_{jl}-e_{jl}$. Při platnosti nulové hypotézy má přibližně normované normální rozdělení, takže hodnoty za ±1,96 jsou u jedné předem vybrané buňky neobvyklé na hladině 0,05. Pearsonova rezidua se takto číst nemají, i když to některé učebnice uvádějí.
+
+::: {.table-scroll role="region" aria-label="Pearsonova a upravená rezidua tabulky věk a zvládání" tabindex="0"}
+
+| Věková skupina | Řešení problému | Vyhýbání | Sociální opora |
+|---|---:|---:|---:|
+| Mladí | 1,43 / 2,09 | 0,15 / 0,22 | −1,57 / −2,30 |
+| Dospělí | 0,50 / 0,82 | −0,65 / −1,03 | 0,12 / 0,20 |
+| Senioři | −2,03 / −2,97 | 0,63 / 0,91 | 1,43 / 2,09 |
+
+: Pearsonovo / upravené reziduum v každé buňce {#tbl-k09-07}
+
+:::
+
+::: {.table-note}
+Kladné reziduum: v buňce je více lidí, než bychom čekali při nezávislosti; záporné: méně. Upravená rezidua jsou v absolutní hodnotě vždy větší než Pearsonova.
+:::
+
+Obě verze ukazují tentýž vzorec. Kladná rezidua mají mladí u řešení problému a senioři u sociální opory, záporná mladí u sociální opory a senioři u řešení problému. Dospělí a vyhýbání mají rezidua malá. **Věcná interpretace testu:** v této studii souvisí preferovaná strategie s věkovou skupinou; mladí uvádějí častěji řešení problému a méně často sociální oporu, senioři naopak. Síla souvislosti je umírněná (Cramérovo V = 0,18, viz [oddíl o velikosti souvislosti](#sec-phi-v)). Jde o průřezové srovnání tří věkových skupin; rozdíl může souviset s věkem, ale i se zkušenostmi celé generace, a nedokládá, že strategie se s věkem mění u jednotlivých lidí.
+
+Rezidua tu slouží **k popisu** vzorce odchylek, nikoli jako devět samostatných testů. Kdybychom každou buňku s upraveným reziduem za ±1,96 prohlásili za statisticky významnou, provedli bychom devět testů najednou a pravděpodobnost aspoň jednoho falešného „významného“ výsledku by byla mnohem vyšší než 0,05 ([více testů najednou](kapitola_06.qmd#sec-vice-testu)). Samotné konstatování, že nejde o nezávislé testy, tento problém neřeší. Chceme-li o jednotlivých buňkách rozhodovat, musíme vícenásobné testování ošetřit, například Holmovou korekcí v následujícím rozšíření.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: Holmova korekce pro buňky tabulky" #rozsireni-holm}
+Každé upravené reziduum převedeme na oboustrannou *p*-hodnotu jako u z-testu, `=2*(1-NORM.S.DIST(ABS(r);PRAVDA))`. **Holmova korekce** (*Holm correction*) pak udrží pravděpodobnost aspoň jedné chyby I. druhu mezi všemi $m$ buňkami nejvýše na hladině α:
+
+1. *p*-hodnoty seřadíme od nejmenší.
+2. Nejmenší porovnáme s $\mathrm{α}/m$, druhou nejmenší s $\mathrm{α}/(m-1)$, třetí s $\mathrm{α}/(m-2)$ atd.
+3. Zamítáme postupně, dokud *p*-hodnota hranici nepřekročí. Při prvním překročení se zastavíme a u této a všech dalších buněk nezamítáme.
+
+V tabulce zvládání je $m=9$. Nejmenší *p*-hodnota 0,0030 (senioři × řešení problému) je menší než $0{,}05/9=0{,}0056$, zamítáme. Druhá, 0,0216 (mladí × sociální opora), je větší než $0{,}05/8=0{,}0063$, takže se zastavíme. Po korekci tedy jen o jediné buňce můžeme říci, že se od nezávislosti průkazně odchyluje: senioři uvádějí řešení problému méně často, než by odpovídalo nezávislosti. Celkový vzorec popsaný řádkovými podíly tím nezaniká, jen jednotlivé buňky nedoložíme samostatně. Na listu `Tabulka` jsou tyto výpočty v oblasti A36:D50.
+:::
+
+### Výpočet v Excelu {#sec-tabulka-excel}
+
+List `Tabulka` má v oblasti B3:D5 žluté vstupy s výchozími četnostmi z listu `Zvladani`; do nich můžete zadat i jinou tabulku 3 × 3. List doplní součty a počítá očekávané četnosti, příspěvky, test, řádkové podíly a obě rezidua. Klíčové vzorce:
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Excel: test nezávislosti a rezidua na listu Tabulka" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| E3, B6, E6 | Řádkový součet, sloupcový součet, $n$ | `=SUMA(B3:D3)`, `=SUMA(B3:B5)`, `=SUMA(B3:D5)` | 55; 65; 190 |
+| B9 | Očekávaná četnost $e_{11}$ | `=$E3*B$6/$E$6` | 18,82 |
+| B14 | Příspěvek buňky | `=(B3-B9)^2/B9` | 2,03 |
+| B17 | Statistika $\mathrm{χ}^2$ | `=SUMA(B14:D16)` | 11,78 |
+| B18 | Stupně volnosti | `=(ŘÁDKY(B3:D5)-1)*(SLOUPCE(B3:D5)-1)` | 4 |
+| B19 | *p*-hodnota | `=CHISQ.DIST.RT(B17;B18)` | 0,0191 |
+| B20 | Kontrola: CHISQ.TEST | `=CHISQ.TEST(B3:D5;B9:D11)` | 0,0191 |
+| B21 | Cramérovo V | `=ODMOCNINA(B17/(E6*(MIN(ŘÁDKY(B3:D5);SLOUPCE(B3:D5))-1)))` | 0,176 |
+| B24 | Řádkový podíl | `=B3/$E3` | 0,455 |
+| B28 | Pearsonovo reziduum | `=(B3-B9)/ODMOCNINA(B9)` | 1,43 |
+| B32 | Upravené reziduum | `=(B3-B9)/ODMOCNINA(B9*(1-$E3/$E$6)*(1-B$6/$E$6))` | 2,09 |
+
+: Test nezávislosti a rezidua v Excelu {#tbl-k09-08}
+
+:::
+
+::: {.table-note}
+Vzorce v řádcích 9, 14, 24, 28 a 32 se kopírují do sloupců C a D a do dalších dvou řádků každé oblasti; dolary drží odkaz na součty. Funkce **ŘÁDKY** (anglicky ROWS) a **SLOUPCE** (anglicky COLUMNS) vracejí počet řádků a sloupců oblasti.
+:::
+
+## Kdy se na test chí-kvadrát nelze spolehnout a co použít místo něj? {#sec-predpoklady-09}
+
+Na čem stojí *p*-hodnota testu chí-kvadrát a co dělat, když předpoklady neplatí? Oddíl probírá čtyři podmínky a představuje Fisherův exaktní test.
+
+### Každý případ v jedné buňce {#sec-nezavislost-pozorovani}
+
+Slovo nezávislost se v této kapitole objevuje ve dvou významech. Test nezávislosti **testuje** nezávislost dvou proměnných. Všechny testy kapitoly ale **předpokládají** nezávislost pozorování: každý člověk nebo pokus přispívá do tabulky právě jednou a to, do které buňky se dostane jeden případ, neovlivňuje, kam se dostanou ostatní [@howell, s. 153]. Proto se v tabulce musí součet všech buněk rovnat počtu lidí nebo nezávislých pokusů.
+
+Předpoklad porušíme, když zapíšeme téhož člověka do tabulky vícekrát, například jeho odpovědi ve dvou podmínkách, nebo když se lidé navzájem ovlivňují, například volí ve skupině nahlas po sobě. Pro tytéž lidi měřené dvakrát slouží [McNemarův test](#sec-mcnemar). V pokusu s čajem byl předpoklad zajištěn tím, že každý vybíral jednou a sám.
+
+### Četnosti, ne procenta, a také nevýskyty {#sec-nevyskyty}
+
+Do výpočtu vstupují vždy **absolutní četnosti**. Kdybychom místo nich dosadili procenta, změnili bychom počet pozorování a s ním velikost statistiky. Tabulka se 40 % a 30 % by „vypadala“ jako tabulka se 100 lidmi v každé skupině, ať jich bylo 10, nebo 10 000.
+
+::: {.callout-warning title="Častý omyl: tabulka jen s „ano“"}
+Z 20 studentů z venkova je 17 pro celoroční letní čas, z 20 studentů z města 11 [@howell, s. 154]. Chybný postup porovná jen počty souhlasů 17 a 11 s očekávanými 14 a 14; vyjde $\mathrm{χ}^2=1{,}29$ s jedním stupněm volnosti a *p*-hodnota 0,26. Do tabulky ale patří i **nevýskyty** (*nonoccurrences*): 3 studenti z venkova a 9 z města, kteří jsou proti. Správná tabulka 2 × 2 dává $\mathrm{χ}^2=4{,}29$ a *p*-hodnotu 0,038. Chybný výpočet nerozlišuje, zda souhlasilo 17 z 20, nebo 17 z 2 000 venkovských studentů. Každý případ musí být zapsán v některé buňce, i když daný jev nenastal.
+:::
+
+### Malé očekávané četnosti {#sec-male-cetnosti}
+
+Chí-kvadrát rozdělení je jen [aproximací](#sec-stupne-volnosti-chi) skutečného rozdělení statistiky. Aproximace selhává, když jsou **očekávané** četnosti malé: statistika pak může nabývat jen několika málo hodnot a spojitá křivka jí neodpovídá, podobně jako normální křivka neodpovídala binomickému rozdělení při malém počtu pokusů v [kapitole 5](kapitola_05.qmd#sec-aproximace-presnost). Rozhodující jsou očekávané četnosti, ne pozorované; pozorovaná nula nevadí, pokud je očekávaná četnost dost velká.
+
+V této knize používáme pravidlo: **všechny očekávané četnosti mají být alespoň 5.** V příkladech kapitoly je splněno; nejmenší očekávaná četnost tabulky zvládání je 17,37. Je to konzervativní vodítko, ne přesná hranice. V literatuře najdete i mírnější doporučení, například že u větších tabulek stačí, aby žádná očekávaná četnost nebyla pod 1 a nejvýše pětina buněk byla pod 5. Simulační studie ukazují, že při malých očekávaných četnostech bývá větším problémem nízká síla testu než překročení hladiny významnosti [@howell, s. 151–152]. Žádné z těchto pravidel, ani podmínka dostatečně velkého celkového počtu pozorování, ale samo nezaručuje, že je aproximace v konkrétní tabulce dobrá. Když pravidlo neplatí, je bezpečnější použít postup, který na aproximaci nestojí.
+
+### Fisherův exaktní test {#sec-fisher}
+
+Pilotní studie porovnala krátkou intervenci s kontrolní podmínkou. Zlepšení nastalo u 8 z 10 lidí s intervencí a u 3 z 10 v kontrolní skupině (list `Pilot`, A2:C3). Očekávané četnosti jsou 5,5 a 4,5 v každém řádku, dvě jsou tedy pod 5. Test chí-kvadrát by dal $\mathrm{χ}^2=5{,}05$ a *p*-hodnotu 0,025; tuto hodnotu ale nemáme o co opřít.
+
+**Fisherův exaktní test** (*Fisher's exact test*) odpovídá v tabulce 2 × 2 na stejnou otázku jako test chí-kvadrát: souvisí obě proměnné, nebo jsou nezávislé? Nepoužívá ale aproximaci chí-kvadrát rozdělením. Postupuje takto:
+
+- **Podmíní okrajovými součty.** Bere řádkové a sloupcové součty jako dané: 10 lidí s intervencí, 10 kontrolních, 11 se zlepšením a 9 bez něj. Ptá se: pokud zlepšení se skupinou nesouvisí, jak pravděpodobné je, že z 11 zlepšených lidí bude ve skupině s intervencí právě 8, 7, 6 … lidí?
+- **Spočítá přesné pravděpodobnosti** všech tabulek se stejnými okrajovými součty. Při pevných součtech stačí znát počet v jedné buňce; ten může být 1 až 10.
+- **Sečte pravděpodobnosti tabulek**, které jsou při platnosti nulové hypotézy stejně nebo méně pravděpodobné než pozorovaná tabulka. Součet je oboustranná *p*-hodnota.
+
+Výpočet dělá statistický software; ruční postup ukazuje nepovinné rozšíření. Pro pilotní studii je *p*-hodnota Fisherova testu 0,070. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** ve vzorku se zlepšilo 80 % lidí s intervencí a 30 % kontrolních, ale tak malá studie nestačí k průkaznému závěru; potřebujeme větší studii. Aproximace chí-kvadrát by v tomto případě vedla k jinému rozhodnutí než přesný výpočet.
+
+Fisherův test není omezen jen na malé výběry; můžeme ho použít u každé tabulky 2 × 2, protože jeho platnost na velikosti očekávaných četností nezávisí. U velkých tabulek vede obvykle ke stejnému závěru jako test chí-kvadrát, ale *p*-hodnoty se mohou mírně lišit. Pro tabulku stresu dává Fisherův test *p*-hodnotu 0,18, test chí-kvadrát 0,14: jiné postupy, ale souvislá informace. Pro větší tabulky existují zobecnění Fisherova testu a simulační postupy, které tato kapitola neprobírá.
+
+::: {.callout-warning title="Častý omyl: „test chí-kvadrát je neparametrický, takže nemá předpoklady“"}
+Test chí-kvadrát nepředpokládá normální rozdělení měřené proměnné, ta je kategoriální. Své předpoklady ale má: nezávislá pozorování, absolutní četnosti včetně nevýskytů a dost velké očekávané četnosti. Samotná *p*-hodnota navíc stojí na normální aproximaci četností a na chí-kvadrát rozdělení jako aproximaci [@wilcox2017, s. 610]. Správně: „Test chí-kvadrát se hodí pro kategoriální data, pokud jsou pozorování nezávislá a očekávané četnosti nejsou příliš malé; jinak u tabulky 2 × 2 použijeme Fisherův exaktní test.“
+:::
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: výpočet Fisherova testu v Excelu" #rozsireni-fisher}
+Pravděpodobnost, že při daných okrajových součtech bude v levé horní buňce právě $a$ lidí, dává **hypergeometrické rozdělení**. V Excelu ji vrací funkce **HYPGEOM.DIST** (anglicky také HYPGEOM.DIST) se čtyřmi číselnými argumenty a logickým argumentem: počet „úspěchů“ ve vybraném řádku ($a$), velikost řádku, celkový počet „úspěchů“ (sloupcový součet), celkový počet lidí a NEPRAVDA pro pravděpodobnost jedné hodnoty. Pro pilotní studii je pravděpodobnost pozorované tabulky
+
+`=HYPGEOM.DIST(8;10;11;20;NEPRAVDA)` ≈ 0,0322.
+
+List `Fisher` spočítá pravděpodobnosti všech možných hodnot $a$ od 1 do 10 (sloupec E). Tabulky s pravděpodobností nejvýše 0,0322 jsou $a=1, 2, 3$ a $a=8, 9, 10$; jejich součet je *p*-hodnota 0,070. Funkce **SUMIF** (anglicky také SUMIF) sečte jen hodnoty, které splňují podmínku: `=SUMIF(E2:E22;"<="&B10*(1+0,0000001))`, kde B10 je pravděpodobnost pozorované tabulky. Nepatrné navýšení hranice zajistí, že se započítají i tabulky se stejnou pravděpodobností, které se od pozorované liší jen zaokrouhlením.
+:::
+
+## Jak velká je souvislost? {#sec-velikost-souvislosti}
+
+Statisticky významná souvislost může být velká i zanedbatelná. Oddíl ukazuje na jednom příkladu tři skupiny měr velikosti souvislosti a vysvětluje, co která vyjadřuje.
+
+Danielsová zkoumala, jak obrázky sportovkyň působí na sebehodnocení mladých žen [@field, s. 638]. Ženy si prohlédly buď fotografie úspěšných sportovkyň při sportovním výkonu, nebo fotografie sportovkyň pózujících v plavkách (sexualizované fotografie), a potom napsaly krátký text. Autorka zaznamenala, zda se v textu objevilo téma **sebeobjektivizace**, hodnocení vlastního vzhledu. Každá žena viděla jen jeden typ fotografií.
+
+::: {.table-scroll role="region" aria-label="Typ fotografií a téma sebeobjektivizace" tabindex="0"}
+
+| Typ fotografií | Téma přítomno | Téma nepřítomno | Celkem |
+|---|---:|---:|---:|
+| Sexualizované | 56 | 84 | 140 |
+| Sportovní výkon | 20 | 97 | 117 |
+| Celkem | 76 | 181 | 257 |
+
+: Typ fotografií a téma sebeobjektivizace v textu (údaje Danielsové podle Fielda et al.) {#tbl-k09-09}
+
+:::
+
+Test chí-kvadrát dává $\mathrm{χ}^2=16{,}06$ s jedním stupněm volnosti, *p*-hodnota je menší než 0,001. Souvislost je statisticky významná. Jak je velká?
+
+### Rozdíl podílů v procentních bodech {#sec-rozdil-bodech}
+
+Nejsrozumitelnější mírou je **rozdíl podílů** v procentních bodech, výsledek, který známe z [oddílu o dvou podílech](#sec-dva-podily). Po sexualizovaných fotografiích se téma objevilo u $56/140=0{,}400$ žen, po sportovních u $20/117=0{,}171$. Rozdíl je 0,229, tedy **22,9 procentního bodu**, s 95% Newcombovým intervalem (11,9; 33,0) bodu. Obrázek [-@fig-daniels] ukazuje oba podíly a jejich rozdíl.
+
+::: {.teaching-figure role="region" aria-label="Podíly žen se sebeobjektivizací a jejich rozdíl" tabindex="0"}
+
+![Po sexualizovaných fotografiích psalo o vlastním vzhledu 40 % žen, po sportovních 17 %. Interval pro rozdíl leží celý nad nulou: data jsou slučitelná s rozdílem od přibližně 12 do 33 procentních bodů.](../assets/chapter-09/plots/daniels.svg){#fig-daniels fig-alt="Dva grafy. Vlevo dva body s 95% Wilsonovými intervaly: podíl 0,400 s intervalem od 0,32 do 0,48 pro sexualizované fotografie a podíl 0,171 s intervalem od 0,11 do 0,25 pro sportovní fotografie. Vpravo rozdíl 0,229 s 95% Newcombovým intervalem od 0,119 do 0,330; přerušovaná vodorovná čára u nuly leží pod celým intervalem."}
+
+:::
+
+Rozdíl podílů má i podobu [přirozených četností](kapitola_05.qmd#sec-prirozene-cetnosti) z kapitoly 5: ze 100 žen, které viděly sexualizované fotografie, psalo o vlastním vzhledu přibližně 40, ze 100 žen po sportovních fotografiích přibližně 17. Takové vyjádření lidé čtou nejsnáze a nejméně zkresleně [@cumming, s. 404–406].
+
+Pozor na rozdíl mezi **procentními body** a **procenty**. Změna z 17 % na 40 % je nárůst o 23 procentních bodů, ale také o 134 % původní hodnoty. Obě čísla jsou správná, ale „nárůst o 134 %“ zní mnohem dramatičtěji. Ve zprávě proto uvádíme **oba podíly**, nejen jejich rozdíl nebo poměr.
+
+### Poměr rizik a poměr šancí {#sec-pomer-rizik-sanci}
+
+Podíl lidí, u nichž nastal sledovaný jev, se často nazývá **riziko** (*risk*); slovo se používá i u jevů, které nejsou nepříznivé. Riziko je [podmíněná pravděpodobnost](kapitola_05.qmd#sec-podminena) jevu ve skupině. Rozdíl podílů je pak **rozdíl rizik** (*risk difference*). Rizika můžeme také podělit. **Poměr rizik** (*risk ratio*), v literatuře také relativní riziko, říká, kolikrát je riziko v jedné skupině větší než ve druhé:
+
+$$\text{poměr rizik}=\frac{0{,}400}{0{,}171}=2{,}34.$$
+
+Riziko tématu sebeobjektivizace je po sexualizovaných fotografiích 2,34krát vyšší než po sportovních. Skupina ve jmenovateli je **referenční skupina** (*reference group*); obvykle to je kontrolní podmínka nebo skupina bez sledovaného vlivu. Zvolíme-li opačnou referenční skupinu, dostaneme převrácenou hodnotu, $1/2{,}34=0{,}43$: riziko po sportovních fotografiích je 0,43násobkem rizika po sexualizovaných. Obsah je stejný; ve zprávě vždy uvedeme, která skupina je referenční.
+
+Třetí míra pracuje se **šancemi**. Šance (*odds*) jevu je podíl lidí, u nichž jev nastal, k podílu lidí, u nichž nenastal; v tabulce stačí podělit počty ([kapitola 5](kapitola_05.qmd#rozsireni-sance) šance uvádí v nepovinném rozšíření). Po sexualizovaných fotografiích je šance $56/84=0{,}667$: na tři ženy bez tématu připadají dvě s tématem. Po sportovních fotografiích je šance $20/97=0{,}206$. **Poměr šancí** (*odds ratio*) je
+
+$$\text{poměr šancí}=\frac{56/84}{20/97}=\frac{0{,}667}{0{,}206}=3{,}23.$$
+
+Šance tématu je po sexualizovaných fotografiích 3,23krát vyšší. Poměr šancí **není** poměr rizik: oba poměry mají stejný směr a při nezávislosti se oba rovnají 1, ale jejich hodnoty se liší, zde 2,34 a 3,23. Číst poměr šancí jako „riziko je 3,23krát vyšší“ by bylo chybné.
+
+Proč tedy poměr šancí existuje? Lze ho spočítat i tam, kde rizika spočítat nelze. V retrospektivní studii (*case-control*) vybereme předem lidi, u nichž jev nastal, a lidi, u nichž nenastal, a zjišťujeme, kdo z nich byl vystaven určitému vlivu. Podíl lidí s jevem tu určil výzkumník, a podíl proto nevypovídá o riziku v populaci. Poměr šancí ale zůstává smysluplný [@howell, s. 162–163]. Používá se také v pokročilých modelech, které tato kapitola neprobírá.
+
+U **vzácných jevů** se poměr šancí a poměr rizik téměř shodují. Ve známé studii o aspirinu prodělalo infarkt 189 z 11 034 mužů s placebem (1,71 %) a 104 z 11 037 mužů s aspirinem (0,94 %) [@howell, s. 160–162]. Poměr rizik je 1,82, poměr šancí 1,83: když jev nastává zřídka, je počet lidí bez jevu téměř stejný jako počet všech lidí a šance se téměř rovná riziku. Rozdíl rizik je ale jen 0,77 procentního bodu: z 1 000 mužů by infarkt prodělalo přibližně 17 s placebem a 9 s aspirinem. Poměr „1,8krát“ a rozdíl „8 z 1 000“ popisují tentýž výsledek; pro rozhodování potřebujeme obojí. U Danielsové, kde jev zdaleka vzácný není, se poměr šancí od poměru rizik liší výrazně.
+
+### Koeficient φ a Cramérovo V {#sec-phi-v}
+
+Předchozí míry porovnávají dvě skupiny. Další dvě míry vyjadřují **sílu souvislosti** celé tabulky jedním číslem. U tabulky 2 × 2 je to **koeficient φ** (*phi coefficient*), čti „fí“:
+
+$$\mathrm{φ}=\sqrt{\frac{\mathrm{χ}^2}{n}}=\sqrt{\frac{16{,}06}{257}}=0{,}25.$$
+
+Dělení počtem pozorování odstraňuje závislost statistiky chí-kvadrát na velikosti výběru; při dvojnásobku lidí se stejnými podíly by se $\mathrm{χ}^2$ zdvojnásobilo, ale φ by zůstalo stejné. Koeficient je 0 při nezávislosti a nejvýše 1. Stejně jako u $\mathrm{χ}^2$ jde o řecké písmeno, které zde označuje statistiku.
+
+**Znaménko.** Vzorec s odmocninou dává vždy kladné číslo, tedy **absolutní hodnotu** φ. Koeficient φ lze ale spočítat také z dat, v nichž každou proměnnou zakódujeme čísly 0 a 1; pak může vyjít záporný. Jeho znaménko závisí na tom, kterou kategorii kódujeme jedničkou: pro sexualizované fotografie = 1 a přítomné téma = 1 vyjde +0,25; zakódujeme-li jedničkou sportovní fotografie, vyjde −0,25. Znaménko tedy nese jen informaci o orientaci kódů. Ve zprávě proto uvádíme kladnou hodnotu a směr souvislosti popíšeme slovy nebo podíly.
+
+U tabulek větších než 2 × 2 použijeme **Cramérovo V** (*Cramér's V*):
+
+$$V=\sqrt{\frac{\mathrm{χ}^2}{n\,(q-1)}},$$
+
+kde $q$ je menší z počtu řádků a sloupců. Pro tabulku zvládání stresu je $q=3$ a $V=\sqrt{11{,}78/(190\times2)}=0{,}18$. U tabulky 2 × 2 je $q=2$ a $V=\mathrm{φ}$. Cramérovo V je vždy nezáporné; směr souvislosti u větších tabulek ani nemá jednoduchý smysl.
+
+Obě míry mají omezení. Jejich velikost závisí i na okrajových součtech tabulky, a u tabulek větších než 2 × 2 nemá Cramérovo V jednoduchý výklad: neříká, které kategorie se liší. Ve studii o aspirinu je $\mathrm{φ}=0{,}034$, číslo blízké nule, ačkoli pro infarkt jde o podstatný rozdíl [@howell, s. 165–166]. Proto φ a V používáme jako souhrn a vedle nich vždy uvádíme podíly, rozdíl podílů a podle otázky i poměry. Slovní pásma „malá, střední, velká souvislost“ v této knize neuvádíme; velikost posuzujeme podle věcného kontextu, jako v [kapitole 6](kapitola_06.qmd#sec-tri-vyznamnosti).
+
+**Věcná interpretace příkladu:** po sexualizovaných fotografiích psalo o vlastním vzhledu o 23 procentních bodů více žen (40 % proti 17 %), s daty jsou slučitelné rozdíly přibližně od 12 do 33 bodů. Riziko tématu bylo 2,3krát vyšší. Každá žena viděla jen jeden typ fotografií. Zda byly ženy do skupin rozděleny náhodně, Field neuvádí; jen při náhodném rozdělení by bylo možné rozdíl připsat samotným fotografiím.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: intervaly pro poměr rizik a poměr šancí" #rozsireni-intervaly-pomeru}
+Poměry nemají souměrné výběrové rozdělení: nemohou klesnout pod 0, ale nahoru omezeny nejsou. Interval proto počítáme po převodu [přirozeným logaritmem](kapitola_03.qmd#sec-entropie) (funkce **LN**, anglicky také LN), ve kterém je rozdělení přibližně souměrné, a meze vrátíme zpět exponenciální funkcí (**EXP**, anglicky také EXP). Logaritmus převádí násobení na sčítání; $\ln 1=0$ odpovídá nezávislosti.
+
+Pro poměr rizik s počty $a$ a $c$ případů s jevem ve skupinách o velikostech $n_1$ a $n_2$ je odhad směrodatné chyby $\ln$ poměru $\sqrt{1/a-1/n_1+1/c-1/n_2}$; pro poměr šancí je to odmocnina součtu převrácených hodnot všech čtyř buněk. Pro Danielsovou:
+
+- poměr rizik: $\sqrt{1/56-1/140+1/20-1/117}=0{,}228$, interval $\exp(\ln 2{,}34\pm1{,}96\times0{,}228)=(1{,}50;\ 3{,}66)$;
+- poměr šancí: $\sqrt{1/56+1/84+1/20+1/97}=0{,}300$, interval $(1{,}80;\ 5{,}82)$.
+
+Oba intervaly leží celé nad 1 a jsou nesouměrné kolem odhadu. Výpočty jsou na listu `Mira_souvislosti` v buňkách B20:B25.
+:::
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: Simpsonův paradox" #rozsireni-simpson}
+Souvislost v souhrnné tabulce se může lišit od souvislosti ve všech jejích částech, a dokonce mít opačný směr. Známým příkladem jsou přihlášky k postgraduálnímu studiu na Kalifornské univerzitě v Berkeley v roce 1973 [@howell, s. 158–160]. V pěti velkých oborech B až F bylo přijato 686 z 1 866 mužů (36,8 %) a 468 z 1 727 žen (27,1 %). Souhrnná tabulka vypadá jako znevýhodnění žen.
+
+| Obor | Přijatí muži | Přijaté ženy | Přihlášky mužů | Přihlášky žen |
+|---|---:|---:|---:|---:|
+| B | 63 % | 68 % | 560 | 25 |
+| C | 37 % | 34 % | 325 | 593 |
+| D | 33 % | 35 % | 417 | 375 |
+| E | 28 % | 24 % | 191 | 393 |
+| F | 6 % | 7 % | 373 | 341 |
+
+: Podíl přijatých podle oboru a pohlaví (obory B–F, Berkeley 1973) {#tbl-k09-12}
+
+V jednotlivých oborech se podíly přijatých mužů a žen liší málo a ve třech z pěti oborů byly ženy přijímány dokonce o něco častěji. Souhrnný rozdíl vznikl jinak: ženy se častěji hlásily do oborů C a E, kde byla přijata menšina uchazečů obou pohlaví, muži častěji do oboru B s vysokou úspěšností. Obor tu působí jako třetí proměnná, která souvisí s pohlavím i s přijetím. Takové obrácení nebo zmizení souvislosti se nazývá **Simpsonův paradox** (*Simpson's paradox*). Připomíná [společnou příčinu](kapitola_01.qmd#souvislost-pedagogicka) z kapitoly 1: souvislost dvou proměnných nemusí vypovídat o vztahu, který nás zajímá, dokud nezvážíme další proměnné. Howell u těchto dat uvádí podíl přijatých žen 28,8 %; z jeho četností vychází 27,1 %, což závěr nemění.
+:::
+
+## Co když jsou ve dvou měřeních tíž lidé? {#sec-mcnemar}
+
+Jak porovnat podíly, když každý člověk odpověděl dvakrát? Oddíl ukazuje tabulku přechodů a McNemarův test, obdobu [párového uspořádání](kapitola_08.qmd#sec-parova-nezavisla) z kapitoly 8 pro dvě kategorie.
+
+### Tabulka přechodů {#sec-tabulka-prechodu}
+
+Psycholožka chtěla zvýšit ochotu dětí požádat v obtížné situaci o pomoc. Na podzim zaznamenala u 72 dětí jedné školy, zda o pomoc požádaly; v zimě proběhla intervence a na jaře záznam zopakovala u týchž dětí. Údaje jsou smyšlené a pocházejí z Howella [-@howell, s. 154–155]; jsou na listu `Pomoc` (A2:C3).
+
+::: {.table-scroll role="region" aria-label="Vyhledávání pomoci na podzim a na jaře" tabindex="0"}
+
+| Podzim | Jaro: ano | Jaro: ne | Celkem |
+|---|---:|---:|---:|
+| Ano | 38 | 4 | 42 |
+| Ne | 12 | 18 | 30 |
+| Celkem | 50 | 22 | 72 |
+
+: Vyhledávání pomoci u týchž 72 dětí na podzim a na jaře {#tbl-k09-10}
+
+:::
+
+Tabulka vypadá jako kontingenční, ale každé dítě je v ní jednou **jako dvojice dvou měření**. Takové tabulce říkáme **tabulka přechodů**: řádek ukazuje podzimní odpověď, sloupec jarní. Na podzim vyhledalo pomoc 42 dětí ze 72 (podíl 0,583), na jaře 50 (0,694); rozdíl je 0,111, tedy 11 procentních bodů.
+
+Podíly obou měření se počítají ze stejných dětí, nejsou to tedy dva nezávislé podíly z [oddílu o dvou skupinách](#sec-dva-podily). Pro porovnání podílů před a po proto potřebujeme postup pro párová data. Pearsonův test nezávislosti na tabulce přechodů by zkoumal jinou otázku: **zda odpověď před měřením souvisí s odpovědí po měření**. Taková souvislost je u týchž dětí skoro jistá, a o změně podílu nevypovídá.
+
+### McNemarův test {#sec-mcnemaruv-test}
+
+Pro porovnání podílů před a po použijeme **McNemarův test** (*McNemar's test*). Rozdíl podílů vzniká jen u dětí, které odpověď změnily. Dětí s odpovědí „ano–ano“ (38) a „ne–ne“ (18) je v obou měřeních stejně, k rozdílu nepřispívají. Zbývají **neshodné dvojice** (*discordant pairs*): 12 dětí přešlo z „ne“ na „ano“ a 4 z „ano“ na „ne“. Rozdíl podílů je
+
+$$p_{\text{jaro}}-p_{\text{podzim}}=\frac{50}{72}-\frac{42}{72}=\frac{12-4}{72}=0{,}111.$$
+
+Nulová hypotéza tvrdí, že se populační podíly na podzim a na jaře neliší. Pak by změna jedním směrem byla stejně pravděpodobná jako změna opačným směrem: každá z 16 neshodných dvojic by se změnila „nahoru“ s pravděpodobností 0,5. Počet změn „nahoru“ má tedy binomické rozdělení s $n=16$ a $\mathrm{π}=0{,}5$, a test je [binomický test](kapitola_06.qmd#sec-binomicky-test) z kapitoly 6:
+
+$$p\text{-hodnota}=2\times P(X\le4)\approx0{,}077,$$
+
+v Excelu `=2*BINOM.DIST(4;16;0,5;PRAVDA)`.
+
+Násobíme dvěma, protože test je oboustranný: i opačná změna by svědčila proti nulové hypotéze. Přibližnou verzi testu dostaneme statistikou chí-kvadrát s jedním stupněm volnosti, $(12-4)^2/(12+4)=4{,}0$, *p*-hodnota `=CHISQ.DIST.RT(4;1)` ≈ 0,046. Šestnáct neshodných dvojic je málo, očekávaná četnost každého směru je jen 8, a aproximace tu vede k jinému rozhodnutí než přesný výpočet. **Při malém počtu neshodných dvojic proto používáme přesný binomický výpočet.** List `McNemar` počítá obě verze.
+
+Dvě věci si zapamatujme. **Neshodné dvojice určují testovou statistiku, ale rozdíl podílů se vztahuje ke všem úplným dvojicím:** jmenovatel 72 nesmíme nahradit šestnácti. A jako u [párových dat](kapitola_08.qmd#sec-neuplne-dvojice) v kapitole 8 vstupují do analýzy jen děti s oběma měřeními; dítě, které na jaře chybělo, vyřadíme celé. Kdyby žádné dítě odpověď nezměnilo, test nelze spočítat: neshodných dvojic by bylo nula a změna podílu by byla přesně nulová.
+
+**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu, že se podíl dětí vyhledávajících pomoc mezi podzimem a jarem nezměnil, nezamítáme. **Věcná interpretace:** podíl dětí, které vyhledaly pomoc, vzrostl o 11 procentních bodů; dvanáct dětí se zlepšilo a čtyři zhoršily. Šestnáct změn je ale na průkazný závěr málo. I při statisticky významném výsledku by chybějící kontrolní skupina nedovolila připsat změnu intervenci; děti mohly během školního roku vyhledávat pomoc častěji i bez ní, jako ve [studii bez kontrolní skupiny](kapitola_08.qmd#sec-co-parovani-neresi) z kapitoly 8.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: shoda dvou posuzovatelů a Cohenovo kappa" #rozsireni-kappa}
+Čtvercová tabulka vzniká i tehdy, když tytéž případy zařadí do kategorií dva posuzovatelé. Dva psychologové zařadili 30 dospívajících do kategorií „bez problémů“, „internalizační problémy“ a „externalizační problémy“ [@howell, s. 166–167]. Shodli se u 15 + 3 + 3 = 21 dospívajících, podíl shody je 0,70. Část shody by ale vznikla, i kdyby každý posuzovatel zařazoval náhodně podle svých celkových četností. Očekávaný počet shod spočítáme stejně jako [očekávané četnosti](#sec-ocekavane-tabulka) na diagonále: 10,67 + 1,20 + 1,07 = 12,93. **Cohenovo kappa** (*Cohen's kappa*) porovná shodu nad náhodu s maximální možnou shodou nad náhodu:
+
+$$\mathrm{κ}=\frac{21-12{,}93}{30-12{,}93}\approx0{,}47.$$
+
+Posuzovatelé tedy dosáhli přibližně poloviny shody, která byla nad rámec náhody možná. Kappa souvisí s [reliabilitou](kapitola_01.qmd#sec-reliabilita-validita) hodnocení z kapitoly 1. Na rozdíl od McNemarova testu se neptá, zda se liší celkové podíly, ale jak často se posuzovatelé u jednotlivých případů shodnou.
+:::
+
+## Který postup zvolit a jak výsledek sdělit? {#sec-volba-postupu-09}
+
+Jak z otázky a uspořádání studie poznat, který postup použít? Oddíl shrnuje postupy kapitoly a ukazuje zprávu o výsledku.
+
+### Který postup? {#sec-ktery-postup-09}
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Volba postupu pro kategoriální data" tabindex="0"}
+
+| Otázka | Uspořádání | Postup | Velikost výsledku |
+|---|---|---|---|
+| Jak velký je podíl v populaci? | Jeden výběr, dvě kategorie | [Wilsonův interval](#sec-wilson), [skórový nebo binomický test](#sec-interval-a-test-podilu) | Podíl s intervalem |
+| Odpovídá rozložení kategorií předem danému? | Jeden výběr, více kategorií | [Test dobré shody](#sec-dobra-shoda) | Podíly kategorií s intervaly |
+| Liší se podíl mezi dvěma skupinami? | Dvě nezávislé skupiny | [Newcombův interval, test se společným podílem](#sec-dva-podily), u malých četností [Fisherův test](#sec-fisher) | Rozdíl podílů, poměr rizik, poměr šancí |
+| Souvisí dvě kategoriální proměnné? | Různí lidé, tabulka $R\times S$ | [Test nezávislosti nebo homogenity](#sec-nezavislost), [řádkové podíly a rezidua](#sec-rezidua) | Řádkové podíly, φ nebo Cramérovo V |
+| Změnil se podíl u týchž lidí? | Párová data, dvě kategorie | [McNemarův test](#sec-mcnemar), u malého počtu změn přesně | Rozdíl podílů všech úplných dvojic |
+
+: Volba postupu podle otázky a uspořádání studie {#tbl-k09-11}
+
+:::
+
+Ve všech případech platí, že do výpočtu vstupují absolutní četnosti a že každý případ je v tabulce jednou. Volba postupu nerozhoduje o příčině souvislosti; o té rozhoduje uspořádání studie, zejména náhodné přiřazení k podmínkám.
+
+### Ukázka sdělení výsledků {#sec-ukazka-sdeleni-09}
+
+Ve zprávě podle APA 7 uvádíme statistiku $\mathrm{χ}^2$ se stupni volnosti a počtem pozorování v závorce, *p*-hodnotu a vedle testu vždy podíly a míru velikosti souvislosti. Jde o [výjimku pro reportování](kapitola_03.qmd#sec-reportovani-apa); zkratky jako *N*, CI, RR (poměr rizik) a OR (poměr šancí) používáme jen ve zprávě, výpočetní značení učebnice se nemění. Pro studii Danielsové:
+
+> Ženy, které si prohlédly sexualizované fotografie sportovkyň (*n* = 140), psaly o vlastním vzhledu častěji (40,0 %) než ženy, které si prohlédly fotografie sportovního výkonu (*n* = 117; 17,1 %). Rozdíl činil 22,9 procentního bodu (95% CI [11,9; 33,0]), *χ*²(1, *N* = 257) = 16,06, *p* < 0,001; poměr rizik byl 2,34 (95% CI [1,50; 3,66]).
+
+Pro tabulku zvládání stresu:
+
+> Preferovaná strategie zvládání stresu souvisela s věkovou skupinou, *χ*²(4, *N* = 190) = 11,78, *p* = 0,019, Cramérovo *V* = 0,18. Řešení problému uvádělo 45 % mladých, 38 % dospělých a 18 % seniorů, sociální oporu 22 %, 35 % a 45 %.
+
+Zpráva obsahuje podíly, velikost rozdílu s nejistotou, výsledek testu i počet pozorování. Pokud jsme použili Fisherův test nebo přesný McNemarův test, uvedeme to výslovně.
+
+## Shrnutí {#sec-shrnuti-09}
+
+Hlavní myšlenky kapitoly s odkazy na jejich výklad:
+
+- Kategoriální data shrnujeme absolutními četnostmi a podíly. Průměr libovolných kódů kategorií obvykle nemá význam, ale průměr proměnné kódované 0/1 je podíl jedniček ([Od tabulky ve výběru k otázce o populaci](#sec-od-tabulky-k-populaci)).
+- Podíl v populaci odhadujeme Wilsonovým intervalem; známý postup „odhad ± kvantil × směrodatná chyba“ u malých výběrů a krajních podílů selhává. Interval a test poskytují související informace, přesná shoda rozhodnutí závisí na použitých postupech ([Jak přesně odhadneme podíl v populaci?](#sec-interval-podilu)).
+- Rozdíl podílů dvou nezávislých skupin odhadujeme Newcombovým intervalem a testujeme se společným podílem; nezamítnutí neznamená, že se podíly neliší ([Jak porovnat podíly ve dvou nezávislých skupinách?](#sec-dva-podily)).
+- Statistika chí-kvadrát sčítá čtverce rozdílů pozorovaných a očekávaných četností dělené očekávanými četnostmi. Má přibližně chí-kvadrát rozdělení s $k-1$ stupni volnosti v testu dobré shody a $(R-1)(S-1)$ v tabulce; *p*-hodnota je pravý chvost, test je přesto nesměrový. U dvou kategorií a tabulky 2 × 2 je $\mathrm{χ}^2=z^2$ ([Kdy je hodnota chí-kvadrát neobvykle velká?](#sec-chi-rozdeleni); [Souvisejí spolu dvě kategoriální proměnné?](#sec-nezavislost)).
+- Kde se tabulka od nezávislosti odchyluje, popisujeme řádkovými podíly a rezidui. Upravená rezidua mají přibližně normované normální rozdělení, ale označit jednotlivé buňky za průkazné lze jen s korekcí pro více testů ([Kde se tabulka od nezávislosti odchyluje?](#sec-rezidua)).
+- Test chí-kvadrát předpokládá nezávislá pozorování, absolutní četnosti včetně nevýskytů a dost velké očekávané četnosti; jinak u tabulky 2 × 2 použijeme Fisherův exaktní test ([Kdy se na test chí-kvadrát nelze spolehnout?](#sec-predpoklady-09)).
+- Velikost souvislosti vyjadřuje rozdíl podílů v procentních bodech, poměr rizik a poměr šancí vzhledem k referenční skupině a souhrnně φ nebo Cramérovo V. Poměr šancí není poměr rizik a ve zprávě uvádíme vždy oba podíly ([Jak velká je souvislost?](#sec-velikost-souvislosti)).
+- U týchž lidí měřených dvakrát porovnáváme podíly McNemarovým testem neshodných dvojic; rozdíl podílů se vztahuje ke všem úplným dvojicím ([Co když jsou ve dvou měřeních tíž lidé?](#sec-mcnemar)).
+
+## Cvičení {#sec-cviceni-09}
+
+V úlohách 1, 5, 8, 9, 10, 11 a 12 stačí kalkulačka a hodnoty ze zadání; úlohy 2, 3, 4, 6 a 7 vyžadují Excel (listy s hotovými výpočty můžete použít se změněnými vstupy). Podíly a meze intervalů uvádějte na tři desetinná místa, statistiku chí-kvadrát na dvě, *p*-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,002 u podílů a mezí, 0,02 u statistik a 0,001 u *p*-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 13 a 14 jsou nepovinné a navazují na nepovinná rozšíření.
+
+### 1. Kategoriální data, kódy a podíl
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+Výzkumník zaznamenal u 50 studentů obor studia (1 = psychologie, 2 = pedagogika, 3 = sociální práce) a zda během semestru vyhledali poradnu (1 = ano, 0 = ne). Průměr kódu oboru vyšel 1,8, průměr kódu poradny 0,24.
+
+a)  Které z obou proměnných jsou kategoriální? Jakou úroveň měření mají?
+b)  Má průměr 1,8 nějaký smysl? Co by se s ním stalo, kdybychom kódy oborů přeházeli?
+c)  Co znamená průměr 0,24? Kolik studentů vyhledalo poradnu?
+d)  Výzkumník chce odhadnout podíl studentů, kteří vyhledají poradnu, v celé fakultě. Jaký postup použije a co musí platit?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Obě proměnné jsou kategoriální. Obor je nominální (pořadí oborů nemá význam), vyhledání poradny je binární nominální proměnná se dvěma kategoriemi.
+
+b)  Nemá. Kódy 1, 2 a 3 jsou jen jména kategorií. Kdybychom psychologii dali kód 3 a sociální práci kód 1, změnil by se průměr, ačkoli by data byla stejná. Obor shrnujeme četnostmi a podíly jednotlivých oborů.
+
+c)  U proměnné kódované 0 a 1 je součet kódů počet jedniček a průměr podíl jedniček. Poradnu vyhledalo 24 % studentů, tedy $0{,}24\times50=12$ studentů.
+
+d)  Wilsonův interval pro podíl 12 z 50. Předpokládá, že studenti jsou náhodným výběrem fakulty, rozhodují se nezávisle na sobě a každý má stejnou pravděpodobnost vyhledat poradnu (podíl v populaci $\mathrm{π}$). Pokud byli osloveni jen studenti jednoho semináře, zobecnění na fakultu by vyžadovalo další úvahu.
+:::
+
+### 2. Interval pro podíl a velikost výběru
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U02_podil` B2:B5.
+
+V dotazníkovém průzkumu uvedlo 18 z 60 studentů, že se před zkouškou obvykle nevyspí. V rozsáhlejším průzkumu na jiné fakultě to uvedlo 72 z 240 studentů.
+
+a)  V Excelu (list `Interval_podilu`) spočítejte pro oba průzkumy podíl a 95% Wilsonův interval.
+b)  Porovnejte šířky obou intervalů. Jak souvisí se čtyřnásobným počtem studentů?
+c)  Zformulujte věcnou interpretaci intervalu pro menší průzkum.
+d)  Student tvrdí: „S pravděpodobností 95 % leží skutečný podíl v populaci mezi dolní a horní mezí našeho intervalu.“ Opravte jeho formulaci.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Menší průzkum: $p=18/60=0{,}300$, 95% Wilsonův interval (0,199; 0,425). Větší průzkum: $p=72/240=0{,}300$, interval (0,246; 0,361). V listu `Interval_podilu` stačí změnit B2 a B3 a přečíst B15 a B16.
+
+b)  Šířky jsou 0,226 a 0,115. Čtyřnásobný počet studentů zhruba půlí šířku intervalu, stejně jako u průměrů v kapitole 7, protože směrodatná chyba klesá s odmocninou velikosti výběru.
+
+c)  Ve výběru se před zkouškou obvykle nevyspí 30 % studentů. S daty jsou slučitelné populační podíly přibližně od 20 % do 43 %, odhad je tedy dost nepřesný. Platí za předpokladu, že studenti byli náhodně vybráni a odpovídali nezávisle.
+
+d)  Jeden spočítaný interval populační podíl buď obsahuje, nebo ne; 95 % je vlastnost postupu. Správně: „Postup, kterým jsme interval spočítali, při opakování výzkumu vytváří intervaly, z nichž přibližně 95 % obsahuje populační podíl.“ Viz [kapitolu 7](kapitola_07.qmd#sec-co-znamena-95).
+:::
+
+### 3. Když jev nenastal
+
+Tato úloha nemá datový list; použijte list `Interval_podilu` se změněnými vstupy.
+
+V pilotní studii nového relaxačního cvičení se u žádného z 25 účastníků neobjevila závrať. V jiné verzi studie se závrať objevila u jednoho z 25.
+
+a)  Spočítejte pro 0 z 25 Waldův a Wilsonův 95% interval. Co je na Waldově intervalu zjevně špatně?
+b)  Spočítejte oba intervaly pro 1 z 25. Jaký problém má nyní Waldův interval?
+c)  Autor studie napíše: „Závrať se nevyskytla, cvičení je tedy bezpečné.“ Co lze z výsledku 0 z 25 říci a co ne?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Waldův interval pro 0 z 25 je (0; 0): odhad směrodatné chyby z podílu 0 je nulový a interval tvrdí, že populační podíl je přesně nula, ačkoli jsme viděli jen 25 lidí. Wilsonův interval je (0; 0,133).
+
+b)  Pro 1 z 25 je $p=0{,}04$. Waldův interval vychází (−0,037; 0,117) s dolní mezí pod nulou, tedy s hodnotami, kterých podíl nabýt nemůže. Wilsonův interval je (0,007; 0,195) a leží celý v rozmezí od 0 do 1; je nesouměrný kolem 0,04, protože výběrové rozdělení podílu blízko nuly je zešikmené.
+
+c)  Výsledek 0 z 25 neznamená, že je riziko nulové. Wilsonův interval ukazuje, že s daty je slučitelné i riziko kolem 13 %, tedy zhruba jedna závrať na osm lidí. Správně: „U 25 účastníků se závrať nevyskytla; s daty je slučitelné riziko od 0 do přibližně 13 %. K posouzení bezpečnosti je potřeba větší studie.“
+:::
+
+### 4. Antidepresivum po léčbě anorexie
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U04_prozac` B2:C3.
+
+Walsh a kolegové sledovali 93 žen, které po léčbě mentální anorexie dosáhly přiměřené hmotnosti. 49 z nich dostávalo antidepresivum, 44 placebo; ani pacientky, ani ošetřující nevěděli, kdo dostává co. Po roce si váhu udrželo 13 žen s antidepresivem a 14 žen s placebem [@howell, s. 146–147].
+
+a)  Zapište hypotézy pro porovnání podílů žen, které si udržely váhu.
+b)  V Excelu (list `Dva_podily`) spočítejte oba podíly, jejich rozdíl (antidepresivum minus placebo), 95% Newcombův interval a test se společným podílem.
+c)  Zformulujte rozhodnutí testu a věcnou interpretaci.
+d)  Ověřte, že statistika chí-kvadrát tabulky 2 × 2 je rovna $z^2$ z testu. Jsou splněny podmínky pro test chí-kvadrát?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $H_0{:}\ \mathrm{π}_1=\mathrm{π}_2$, $H_1{:}\ \mathrm{π}_1\neq\mathrm{π}_2$, kde $\mathrm{π}_1$ a $\mathrm{π}_2$ jsou populační podíly žen, které si po roce udrží váhu, s antidepresivem a s placebem.
+
+b)  $p_1=13/49=0{,}265$, $p_2=14/44=0{,}318$, rozdíl $-0{,}053$. 95% Newcombův interval (−0,233; 0,128). Společný podíl $27/93=0{,}290$, odhad směrodatné chyby při $H_0$ 0,094, $z=-0{,}56$, oboustranná *p*-hodnota 0,575.
+
+c)  Rozhodnutí: na hladině 0,05 nulovou hypotézu nezamítáme. Věcná interpretace: váhu si udrželo 27 % žen s antidepresivem a 32 % s placebem; antidepresivum tedy ve vzorku nevyšlo lépe. Interval je ale široký: data připouštějí jak zhoršení o 23 procentních bodů, tak zlepšení o 13 bodů. Studie neprokázala přínos léku; neprokázala ani, že lék nepůsobí. Díky náhodnému přiřazení a zaslepení by ale případný rozdíl šlo připsat léku.
+
+d)  Očekávané četnosti: $49\times27/93=14{,}23$, $49\times66/93=34{,}77$, $44\times27/93=12{,}77$ a $44\times66/93=31{,}23$. Statistika $\mathrm{χ}^2=0{,}315=(-0{,}561)^2$, *p*-hodnota s jedním stupněm volnosti je opět 0,575. Všechny očekávané četnosti jsou větší než 5, každá žena je v tabulce jednou a do tabulky jsou zapsány obě kategorie výsledku. Podmínky jsou splněny.
+:::
+
+### 5. Kámen, nůžky, papír
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U05_knp` B2:B4.
+
+Howell [-@howell, s. 142–143] uvádí smyšlený příklad: na hřišti zaznamenali u 75 dětí jeden tah ve hře kámen–nůžky–papír. Kámen zvolilo 30 dětí, papír 21 a nůžky 24.
+
+a)  Formulujte nulovou hypotézu a spočítejte očekávané četnosti.
+b)  Spočítejte statistiku chí-kvadrát, stupně volnosti a *p*-hodnotu (`=CHISQ.DIST.RT(x;v)`). Zformulujte rozhodnutí testu a věcnou interpretaci.
+c)  Proč zaznamenali u každého dítěte jen jeden tah? Co by se změnilo, kdyby každé dítě přispělo deseti tahy?
+d)  Kdyby výzkumník předem předpokládal, že děti nejčastěji volí kámen, využil by test tuto předpověď? Proč?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  $H_0{:}$ každý tah se v populaci dětí volí s pravděpodobností 1/3. Očekávaná četnost je $75/3=25$ pro každý tah.
+
+b)  $\mathrm{χ}^2=\dfrac{5^2}{25}+\dfrac{(-4)^2}{25}+\dfrac{(-1)^2}{25}=1{,}00+0{,}64+0{,}04=1{,}68$, $3-1=2$ stupně volnosti, *p*-hodnota `=CHISQ.DIST.RT(1,68;2)` ≈ 0,432. Rozhodnutí: nulovou hypotézu nezamítáme. Věcná interpretace: kámen se objevil o něco častěji (40 % tahů), ale takové odchylky by byly běžné i při rovnoměrné volbě. Data nedokládají, že děti preferují některý tah; zároveň nedokazují, že volí přesně rovnoměrně.
+
+c)  Kvůli nezávislosti pozorování. Tahy téhož dítěte spolu souvisejí (dítě může mít oblíbený tah nebo střídat tahy podle vlastního plánu). Při deseti tazích od dítěte by tabulka obsahovala 750 tahů, ale ne 750 nezávislých pozorování; test by počítal s přílišnou přesností a *p*-hodnota by neodpovídala skutečné nejistotě.
+
+d)  Nevyužil. Test chí-kvadrát je nesměrový a nebere ohled na to, ve které kategorii je odchylka: stejnou hodnotu 1,68 by dalo i rozložení 21 kamenů a 30 papírů. Konkrétní předpověď by šlo testovat jinak, například binomickým testem podílu kamene proti 1/3, stanoveným předem.
+:::
+
+### 6. Klienti poradny proti dlouhodobé evidenci
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U06_poradna` B2:C5.
+
+Podle mnohaleté evidence velké poradny přichází 40 % klientů se studijními problémy, 30 % s problémy ve vztazích, 20 % s úzkostí a 10 % s jinými obtížemi. Letos přišlo 150 klientů: 52, 50, 31 a 17.
+
+a)  Spočítejte v Excelu (list `Dobra_shoda` se změněnými vstupy) očekávané četnosti, příspěvky, statistiku chí-kvadrát a *p*-hodnotu.
+b)  Zformulujte rozhodnutí testu a věcnou interpretaci.
+c)  Kolega namítne, že dlouhodobá evidence je také jen výběr. Kdy je námitka podstatná a co by bylo v takovém případě vhodnější?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Očekávané četnosti: $150\times0{,}40=60$, 45, 30 a 15. Příspěvky: $(52-60)^2/60=1{,}07$; $(50-45)^2/45=0{,}56$; $(31-30)^2/30=0{,}03$; $(17-15)^2/15=0{,}27$. Statistika $\mathrm{χ}^2=1{,}92$, 3 stupně volnosti, *p*-hodnota 0,589. Všechny očekávané četnosti jsou alespoň 15.
+
+b)  Rozhodnutí: nulovou hypotézu, že letošní klienti mají stejné rozložení důvodů jako v dlouhodobé evidenci, nezamítáme. Věcná interpretace: letos přišlo o něco méně klientů se studijními problémy (35 % místo 40 %) a o něco více se vztahovými (33 % místo 30 %), ale takové odchylky jsou slučitelné s náhodným kolísáním. Neprokázali jsme změnu; to neznamená, že se rozložení nezměnilo vůbec.
+
+c)  Test dobré shody bere podíly 0,40, 0,30, 0,20 a 0,10 jako známé. Pokud evidence zahrnuje mnoho tisíc klientů, je jejich nejistota zanedbatelná a test je vhodný. Pokud by šlo například jen o 120 loňských klientů, jejich podíly by samy výrazně kolísaly. Pak je vhodnější porovnat dva výběry, loňský a letošní, v tabulce 2 × 4 [testem homogenity](#sec-nezavislost-homogenita).
+:::
+
+### 7. Jak se učí studenti různých ročníků
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U07_uceni` A2:D4.
+
+Výzkumnice se zeptala 60 studentů z každého ze tří ročníků, jakou strategii při učení na zkoušku používají nejčastěji: opakované čtení, procvičování úloh, nebo vysvětlování látky druhým. V 1. ročníku odpovědělo 28, 14 a 18 studentů, ve 2. ročníku 22, 25 a 13, ve 3. ročníku 12, 30 a 18.
+
+a)  Jde o test nezávislosti, nebo homogenity? Formulujte nulovou hypotézu.
+b)  V Excelu (list `Tabulka` se změněnými vstupy) spočítejte očekávané četnosti, statistiku chí-kvadrát, stupně volnosti, *p*-hodnotu a Cramérovo V.
+c)  Spočítejte řádkové podíly a upravená rezidua a popište, kde se tabulka od nulové hypotézy odchyluje.
+d)  Kolega označí všechny buňky s upraveným reziduem za ±1,96 za „statisticky významné“. Proč to není správné?
+e)  Zformulujte věcnou interpretaci. Smíme tvrdit, že studenti s přibývajícími ročníky mění strategie?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Test homogenity: počet studentů v každém ročníku (60) byl stanoven předem. $H_0$: rozložení strategií je v populacích studentů všech tří ročníků stejné.
+
+b)  Očekávané četnosti jsou ve všech řádcích stejné, protože ročníky mají stejnou velikost: $60\times62/180=20{,}67$, $60\times69/180=23{,}00$ a $60\times49/180=16{,}33$. Statistika $\mathrm{χ}^2=13{,}17$ se $(3-1)(3-1)=4$ stupni volnosti, *p*-hodnota 0,010, Cramérovo $V=\sqrt{13{,}17/(180\times2)}=0{,}19$.
+
+c)  Řádkové podíly (čtení, procvičování, vysvětlování): 1. ročník 0,467; 0,233; 0,300; 2. ročník 0,367; 0,417; 0,217; 3. ročník 0,200; 0,500; 0,300. Upravená rezidua: 1. ročník 2,44; −2,93; 0,59; 2. ročník 0,44; 0,65; −1,18; 3. ročník −2,88; 2,28; 0,59. V prvním ročníku je více opakovaného čtení a méně procvičování, než by odpovídalo stejnému rozložení, ve třetím ročníku naopak. Vysvětlování se mezi ročníky téměř neliší.
+
+d)  Šlo by o devět testů najednou. I kdyby nulová hypotéza platila, byla by pravděpodobnost, že aspoň jedno z devíti reziduí přesáhne ±1,96, výrazně vyšší než 0,05. O jednotlivých buňkách lze rozhodovat jen s korekcí pro více testů (viz nepovinnou úlohu 13); bez ní rezidua jen popisují vzorec.
+
+e)  Rozhodnutí testu: zamítáme nulovou hypotézu stejného rozložení strategií. Věcná interpretace: ve vyšších ročnících uvádělo více studentů procvičování úloh a méně opakované čtení; souvislost je umírněná ($V=0{,}19$). Nesmíme ale tvrdit, že jednotliví studenti strategie mění: jde o různé studenty v různých ročnících. Rozdíl může souviset i s tím, kdo ze studia odejde, nebo s jinými požadavky předmětů. Změnu u týchž lidí by ukázala jen studie, která by tytéž studenty sledovala v čase.
+:::
+
+### 8. Který postup?
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+U každé situace určete vhodný postup a zdůvodněte volbu.
+
+a)  Z 400 náhodně vybraných dospělých uvedlo 92, že v posledním roce vyhledali psychologa. Výzkumník chce odhadnout podíl v populaci.
+b)  Šedesát lidí ohodnotí reklamu před shlédnutím dokumentu a po něm jako „důvěryhodnou“, nebo „nedůvěryhodnou“.
+c)  Dvě skupiny po 12 dětech: ve skupině s novou metodou dosáhlo cíle 10 dětí, v kontrolní 4.
+d)  Porovnává se rozložení čtyř typů vazby u 300 dětí v mateřských školách s rozložením známým z velké reprezentativní studie.
+e)  U 500 studentů se zjišťuje, zda souvisí typ bydlení (koleje, s rodiči, podnájem) s tím, zda studují v prezenční, nebo kombinované formě.
+f)  Dva psychologové nezávisle zařadí 50 dětí do tří diagnostických kategorií. Zajímá nás, jak často se shodnou.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Wilsonův interval pro podíl 92 z 400; jedna proměnná se dvěma kategoriemi, jeden výběr.
+
+b)  McNemarův test: tíž lidé dvakrát, dvě kategorie. Rozdíl podílů „důvěryhodná“ po a před se vztahuje ke všem 60 lidem s oběma hodnoceními. Pearsonův test nezávislosti by odpovídal na jinou otázku a porušoval by předpoklad, že každý člověk je v tabulce jednou.
+
+c)  Rozdíl dvou nezávislých podílů s Newcombovým intervalem. Očekávané četnosti jsou $12\times14/24=7$ a $12\times10/24=5$; pravidlo je splněno jen těsně. Při malých skupinách je vhodný Fisherův exaktní test.
+
+d)  Test dobré shody: jedna proměnná se čtyřmi kategoriemi, očekávané podíly z velké reprezentativní studie lze považovat za známé. Dostatečně velký výběr dětí musí být nezávislý; pokud jsou děti ze stejných tříd, je třeba posoudit, zda se navzájem neovlivňují.
+
+e)  Test nezávislosti v tabulce 3 × 2 z jednoho výběru 500 studentů; souvislost popíšeme řádkovými podíly a Cramérovým V.
+
+f)  Shodu dvou posuzovatelů popisuje podíl shody a Cohenovo kappa ([nepovinné rozšíření](#rozsireni-kappa)); test chí-kvadrát ani McNemarův test na otázku „jak často se shodnou“ neodpovídají.
+:::
+
+### 9. Kde je chyba?
+
+Tato úloha nemá datový list; jde o slovní zadání.
+
+U každého tvrzení najděte chybu a napište správný postup nebo formulaci.
+
+a)  „V prvním kurzu bylo spokojeno 80 % účastníků, ve druhém 60 %. Do tabulky jsem zapsal 80, 20, 60 a 40 a test chí-kvadrát vyšel významně.“ (Kurzy měly 10 a 15 účastníků.)
+b)  „Ze 30 lidí z experimentální skupiny se zlepšilo 18 a z 30 kontrolních 9. Porovnal jsem 18 a 9 s očekávanými 13,5 a 13,5.“
+c)  „Každý z 20 účastníků posoudil 12 fotografií jako veselé, nebo smutné. Výsledných 240 posouzení jsem zapsal do tabulky podle pohlaví posuzovatele a provedl test nezávislosti.“
+d)  „Test chí-kvadrát vyšel významně, takže každá buňka tabulky, kde se pozorovaná četnost liší od očekávané, ukazuje průkazný rozdíl.“
+e)  „Poměr šancí je 3,2, takže riziko je ve skupině s intervencí 3,2krát vyšší.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Do tabulky patří absolutní četnosti, ne procenta: 8 a 2 v prvním kurzu, 9 a 6 ve druhém. Procenta předstírala 100 lidí v každém kurzu a statistika byla několikanásobně nadsazená. Navíc jsou při 25 lidech očekávané četnosti malé (nejmenší 3,2), takže je vhodný Fisherův exaktní test.
+
+b)  Chybí nevýskyty: 12 a 21 lidí, kteří se nezlepšili. Správně je tabulka 2 × 2 (18, 12; 9, 21) a test chí-kvadrát s jedním stupněm volnosti nebo rozdíl dvou podílů 0,60 a 0,30 s Newcombovým intervalem.
+
+c)  Posouzení téhož člověka nejsou nezávislá; každý účastník přispívá do tabulky dvanáctkrát. Jednotkou analýzy je účastník: můžeme například spočítat podíl veselých posouzení u každého účastníka a porovnat tyto podíly mezi muži a ženami postupy pro průměry z kapitoly 8.
+
+d)  Celkový test říká jen, že tabulka jako celek se od nezávislosti odchyluje. Jednotlivé buňky popisují řádkové podíly a rezidua; za průkazné je lze označit jen s korekcí pro více testů. Rozdíl pozorované a očekávané četnosti je navíc nenulový skoro vždy.
+
+e)  Poměr šancí není poměr rizik. Pokud jev není vzácný, je poměr šancí od poměru rizik výrazně dál od 1. Správně: „Šance jevu je ve skupině s intervencí 3,2krát vyšší“; chceme-li mluvit o riziku, spočítáme poměr rizik a uvedeme obě rizika.
+:::
+
+### 10. Pozornost v dětství a vyrovnávací angličtina
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U10_add` B2:C3.
+
+Howell a Huessy posuzovací škálou zaznamenali ve 2., 4. a 5. třídě u dětí chování spojované s poruchou pozornosti a na konci 9. ročníku zjišťovali ze školních záznamů, zda děti navštěvovaly vyrovnávací kurz angličtiny [@howell, s. 169, cv. 6.8]. Z 93 dětí s projevy poruchy pozornosti navštěvovalo kurz 19, z 209 dětí bez těchto projevů 22.
+
+a)  Spočítejte riziko účasti v kurzu v obou skupinách, rozdíl rizik v procentních bodech a vyjádřete rizika přirozenými četnostmi.
+b)  Spočítejte poměr rizik a poměr šancí s referenční skupinou dětí bez projevů. Jak se změní, zvolíte-li opačnou referenční skupinu?
+c)  Spočítejte $\mathrm{χ}^2$ a φ. Proč vzorec $\sqrt{\mathrm{χ}^2/n}$ nedává záporné φ a kdy by záporné φ mohlo vyjít?
+d)  Shrňte výsledek ve dvou větách tak, aby mu porozuměl rodič.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Riziko: $19/93=0{,}204$ u dětí s projevy, $22/209=0{,}105$ u dětí bez nich. Rozdíl 0,099, tedy 9,9 procentního bodu. Přirozenými četnostmi: ze 100 dětí s projevy poruchy pozornosti navštěvovalo kurz přibližně 20, ze 100 dětí bez nich přibližně 11.
+
+b)  Poměr rizik $0{,}204/0{,}105=1{,}94$; šance $19/74=0{,}257$ a $22/187=0{,}118$, poměr šancí 2,18. S opačnou referenční skupinou dostaneme převrácené hodnoty: poměr rizik 0,52 a poměr šancí 0,46. Obsah se nemění, mění se jen to, ke které skupině poměr vztahujeme.
+
+c)  Očekávané četnosti $93\times41/302=12{,}63$, $80{,}37$, $28{,}37$ a $180{,}63$; $\mathrm{χ}^2=5{,}38$, *p*-hodnota 0,020; $\mathrm{φ}=\sqrt{5{,}38/302}=0{,}13$. Odmocnina dává vždy nezápornou hodnotu, tedy absolutní hodnotu φ. Záporné φ by mohlo vyjít, kdybychom ho počítali z dat kódovaných 0 a 1 a jedničkou kódovali například děti bez projevů; znaménko pak vyjadřuje jen orientaci kódů.
+
+d)  Vyrovnávací kurz angličtiny později navštěvovalo zhruba 20 ze 100 dětí s projevy poruchy pozornosti a 11 ze 100 dětí bez nich, tedy asi dvakrát více. Studie ukazuje souvislost, ne příčinu: děti s projevy poruchy pozornosti se mohou lišit i v dalších okolnostech.
+:::
+
+### 11. Názor na statistiku před kurzem a po něm
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U11_nazor` B2:C3.
+
+Šedesát studentů odpovědělo před kurzem statistiky a po něm na otázku „Bude pro mě statistika užitečná?“. Ano–ano odpovědělo 25 studentů, ano–ne 3, ne–ano 11 a ne–ne 21. Další 4 studenti vyplnili jen první dotazník.
+
+a)  Kolik je úplných dvojic? Spočítejte podíl odpovědí „ano“ před a po kurzu a jejich rozdíl.
+b)  Proveďte McNemarův test přesně (binomickým výpočtem) i přibližně statistikou chí-kvadrát. Proč se *p*-hodnoty liší a kterou použijete?
+c)  Zformulujte rozhodnutí testu a věcnou interpretaci.
+d)  Kolega navrhne zahrnout i čtyři studenty s jedním dotazníkem a porovnat podíl 32 z 64 před kurzem s podílem 36 z 60 po kurzu testem pro dvě nezávislé skupiny. Proč to není správné?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Úplných dvojic je 60. Před kurzem odpovědělo „ano“ $25+3=28$ studentů (0,467), po kurzu $25+11=36$ (0,600). Rozdíl $0{,}133=(11-3)/60$.
+
+b)  Neshodných dvojic je 14, z toho 11 změn k „ano“. Přesně: `=2*BINOM.DIST(3;14;0,5;PRAVDA)` ≈ 0,057. Přibližně: $\mathrm{χ}^2=(11-3)^2/14=4{,}57$ s jedním stupněm volnosti, *p*-hodnota 0,033. Při čtrnácti neshodných dvojicích je očekávaná četnost každého směru jen 7 a aproximace je nepřesná; použijeme přesný výpočet.
+
+c)  Rozhodnutí: na hladině 0,05 nulovou hypotézu, že se podíl odpovědí „ano“ nezměnil, nezamítáme (*p*-hodnota 0,057). Věcná interpretace: po kurzu považovalo statistiku za užitečnou o 13 procentních bodů více studentů; názor změnilo 14 ze 60 studentů, z toho 11 k lepšímu. Výsledek je na hranici průkaznosti a bez kontrolní skupiny by ani průkazná změna nedokládala vliv kurzu.
+
+d)  Podíly před a po se týkají převážně týchž studentů, takže nejde o nezávislé skupiny; test pro dvě nezávislé skupiny by nesprávně určil nejistotu. Navíc by porovnával dvě různé skupiny lidí: před kurzem 64, po kurzu 60. Do párové analýzy patří jen úplné dvojice, stejně jako v [kapitole 8](kapitola_08.qmd#sec-neuplne-dvojice).
+:::
+
+### 12. Malá pilotní studie
+
+Tato úloha nemá datový list; jde o slovní zadání s uvedenými výsledky.
+
+V pilotní studii se po novém programu zlepšilo 6 z 8 dětí, v kontrolní skupině 2 z 9. Statistický program vypsal: test chí-kvadrát $\mathrm{χ}^2=4{,}74$, *p*-hodnota 0,030; Fisherův exaktní test *p*-hodnota 0,057; rozdíl podílů 0,528 s 95% Newcombovým intervalem (0,057; 0,767).
+
+a)  Spočítejte očekávané četnosti. Je splněno pravidlo této kapitoly?
+b)  Kterou *p*-hodnotu použijete a proč? Zformulujte rozhodnutí testu.
+c)  Interval pro rozdíl neobsahuje nulu, a přesto Fisherův test nulovou hypotézu na hladině 0,05 nezamítá. Je to rozpor?
+d)  Napište věcnou interpretaci, kterou byste uvedli ve zprávě o pilotní studii.
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Součty: 8 a 9 dětí ve skupinách, 8 se zlepšením a 9 bez něj, $n=17$. Očekávané četnosti $8\times8/17=3{,}76$, $8\times9/17=4{,}24$, $9\times8/17=4{,}24$ a $9\times9/17=4{,}76$. Všechny jsou pod 5, pravidlo splněno není.
+
+b)  Fisherův exaktní test, protože nestojí na aproximaci, která při tak malých očekávaných četnostech selhává. Rozhodnutí: na hladině 0,05 nulovou hypotézu nezamítáme (*p*-hodnota 0,057).
+
+c)  Není. Interval a test poskytují související informace, ale přesná shoda rozhodnutí závisí na použitých postupech. Newcombův interval a Fisherův test vycházejí z odlišných výpočtů a u tak malých skupin se mohou rozejít, zvlášť když je výsledek blízko hranice. Obojí shodně říká, že rozdíl je odhadnut velmi nepřesně.
+
+d)  „Po programu se zlepšilo 6 z 8 dětí, v kontrolní skupině 2 z 9. Rozdíl je velký, ale velmi nepřesně odhadnutý: s daty jsou slučitelné rozdíly od přibližně 6 do 77 procentních bodů. Fisherův exaktní test nulovou hypotézu na hladině 0,05 nezamítá (*p* = 0,057). Výsledek podporuje provedení větší studie, ne závěr o účinnosti programu.“
+:::
+
+### 13. Nepovinně: Holmova korekce
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U07_uceni` A2:D4.
+
+Navazuje na úlohu 7 a [nepovinné rozšíření o Holmově korekci](#rozsireni-holm).
+
+a)  Převeďte devět upravených reziduí z úlohy 7 na oboustranné *p*-hodnoty.
+b)  Proveďte Holmovu korekci na hladině 0,05. O kterých buňkách můžeme říci, že se od stejného rozložení průkazně odchylují?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Seřazené *p*-hodnoty: 0,0034 (1. ročník × procvičování, reziduum −2,93), 0,0039 (3. ročník × opakované čtení, −2,88), 0,0147 (1. ročník × opakované čtení, 2,44), 0,0228 (3. ročník × procvičování, 2,28), dále 0,236, 0,515, 0,554, 0,554 a 0,657.
+
+b)  Hranice jsou $0{,}05/9=0{,}0056$, $0{,}05/8=0{,}0063$, $0{,}05/7=0{,}0071$ atd. První dvě *p*-hodnoty jsou pod svými hranicemi, třetí (0,0147) je nad hranicí 0,0071, takže se zastavíme. Průkazně se odchylují dvě buňky: v 1. ročníku je méně procvičování a ve 3. ročníku méně opakovaného čtení, než by odpovídalo stejnému rozložení. Opačné odchylky v týchž ročnících (více čtení v 1. ročníku, více procvičování ve 3.) po korekci samostatně doložit nelze, i když zapadají do stejného vzorce.
+:::
+
+### 14. Nepovinně: intervaly pro poměr rizik a poměr šancí
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U10_add` B2:C3.
+
+Navazuje na úlohu 10 a [nepovinné rozšíření o intervalech pro poměry](#rozsireni-intervaly-pomeru).
+
+a)  Spočítejte 95% interval pro poměr rizik a pro poměr šancí (referenční skupina: děti bez projevů).
+b)  Proč nejsou intervaly souměrné kolem odhadu? Co by znamenalo, kdyby obsahovaly hodnotu 1?
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+a)  Poměr rizik 1,94; odhad směrodatné chyby jeho logaritmu $\sqrt{1/19-1/93+1/22-1/209}=0{,}287$; interval $\exp(\ln 1{,}94\pm1{,}96\times0{,}287)=(1{,}11;\ 3{,}41)$. Poměr šancí 2,18; $\sqrt{1/19+1/74+1/22+1/187}=0{,}342$; interval $(1{,}12;\ 4{,}27)$.
+
+b)  Interval je souměrný na logaritmické škále; po návratu exponenciální funkcí se horní mez vzdálí od odhadu víc než dolní, protože poměry nemohou klesnout pod 0, ale nahoru omezeny nejsou. Hodnota 1 odpovídá stejnému riziku (stejné šanci) v obou skupinách; interval obsahující 1 by znamenal, že data jsou slučitelná i se žádnou souvislostí. Zde oba intervaly leží celé nad 1.
+:::

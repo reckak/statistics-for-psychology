@@ -472,6 +472,7 @@ Rscript --vanilla quarto/_verification/check-chapter-05.R
 Rscript --vanilla quarto/_verification/check-chapter-06.R
 Rscript --vanilla quarto/_verification/check-chapter-07.R
 Rscript --vanilla quarto/_verification/check-chapter-08.R
+Rscript --vanilla quarto/_verification/check-chapter-09.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -536,6 +537,25 @@ změně vstupů a přesný dotyk hranice ekvivalence. Změny neukládá. Nezávi
 reference jsou v `check-chapter-08-excel.json`; obnoví je
 `python quarto/_verification/check-chapter-08-excel-expected.py quarto/_verification/check-chapter-08-excel.json`.
 Sešit kapitoly 8 nepoužívá simulace z `scripts/sesity-simulace.R`.
+
+Devátou kapitolu ověřuje `check-chapter-09.R`: Wilsonův interval proti
+`prop.test(..., correct = FALSE)`, nekorigovaný Pearsonův test proti
+`chisq.test(..., correct = FALSE)` (výchozí `chisq.test` u tabulky 2 × 2
+používá Yatesovu korekci a dává jinou hodnotu), upravená a Pearsonova rezidua
+proti `chisq.test()$stdres` a `$residuals`, Fisherův test proti `fisher.test`,
+přesný McNemarův postup binomickým testem neshodných dvojic, Newcombův interval
+nezávisle vypsaným vzorcem, okrajový případ bez neshodných dvojic a všechna
+čísla citovaná v textu a v řešeních. Simulace 10 000 výběrů v `scripts/kapitola_09.R`
+má pevný seed. Skript `check-chapter-09-excel.ps1` kontroluje v samostatném
+skrytém Excelu uložené výsledky všech sedmi výpočtových listů včetně Holmových
+rozhodnutí, prázdné buňky nemožných hodnot listu `Fisher`, české vzorce z textu
+a řešení, chybové hodnoty u nepřípustných argumentů, přepočet při dosazení dat
+ze cvičení (včetně případu bez neshodných dvojic s textovým výsledkem „nelze“)
+a zápis devíti vzorců listů v češtině. Změny neukládá. Nezávislé reference
+jsou v `check-chapter-09-excel.json`; obnoví je
+`python quarto/_verification/check-chapter-09-excel-expected.py quarto/_verification/check-chapter-09-excel.json`.
+Funkce HYPGEOM.DIST u nemožné kombinace argumentů nemusí vracet chybu, proto
+ji list `Fisher` volá jen pro přípustné hodnoty.
 
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 

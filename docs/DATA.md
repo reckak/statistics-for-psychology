@@ -312,3 +312,47 @@ cvičení 1, 4, 8, 11 a 12 jsou slovní; jde o souhrny, nikoli o jednotlivá poz
 | 11, 12 | Slovní zadání. |
 | 13 | `U05_hrozba` A2:C4 (nepovinně) |
 | 14 | `U05_hrozba` a `U07_standardizace` (nepovinně) |
+
+<a id="kapitola-9"></a>
+
+## Kapitola 9
+
+[Sešit](../data/kapitola_09.xlsx). Kontrola proti výkladu a zadáním: 2026-11-09.
+
+Výklad: `Stres` A2:C3 (200 studentů z kapitoly 5, nyní jako náhodný výběr),
+`Test_20` A2:B6 (10 z 20 a kontrast 0 z 15), `Pozice` A2:B5 (volba čaje,
+80 lidí), `Zvladani` A2:D4 (věk × strategie, 190 lidí), `Pilot` A2:C3
+(8/10 a 3/10), `Daniels` A2:C3 (skutečné údaje podle Fielda, s. 638),
+`Aspirin` A2:C3 (skutečné údaje podle Howella, s. 161) a `Pomoc` A2:C3
+(Howellova smyšlená tabulka přechodů, 72 dětí). Všechny vstupy jsou tabulky
+četností: řádek je kategorie nebo skupina, ne jeden člověk, a individuální
+pozorování se ze souhrnů nesestavují.
+
+Hotové výpočty jsou na listech `Interval_podilu` (Wald pro srovnání, Wilson,
+skórový test), `Dva_podily` (Wilsonovy intervaly obou skupin, Newcombův
+interval, test se společným podílem a jeho χ² = z²), `Dobra_shoda` (vstupy
+B2:C5, CHISQ.DIST.RT, CHISQ.INV.RT a kontrola CHISQ.TEST), `Tabulka` (vstupy
+B3:D5; očekávané četnosti, příspěvky, test, V, řádkové podíly, Pearsonova
+a upravená rezidua, nepovinně Holm A36:D50), `Mira_souvislosti` (rizika, šance,
+poměry, χ², φ s absolutní hodnotou i se znaménkem, nepovinně intervaly B20:B25),
+`McNemar` (přesně binomicky i aproximací; bez neshodných dvojic textový výsledek
+„nelze“) a nepovinně `Fisher` (HYPGEOM.DIST jen pro přípustné hodnoty, SUMIF).
+Žluté vstupy mají výchozí hodnoty výkladu; data cvičení se do nich dosazují.
+Simulace 10 000 výběrů k obrázku chí-kvadrát rozdělení je jen v `scripts/kapitola_09.R`
+(seed 20261109) a do sešitu nepatří.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1 | Slovní zadání; souhrny (průměry kódů) jsou v textu. |
+| 2 | `U02_podil` A2:B5; výpočet na listu `Interval_podilu` |
+| 3 | Slovní zadání s počty v textu; výpočet na listu `Interval_podilu` |
+| 4 | `U04_prozac` A2:C3; skutečné údaje Walshe a kol. podle Howella (s. 146); výpočet na listu `Dva_podily` |
+| 5 | `U05_knp` A2:B4; Howellova smyšlená data |
+| 6 | `U06_poradna` A2:C5; výpočet na listu `Dobra_shoda` |
+| 7 | `U07_uceni` A2:D4; výpočet na listu `Tabulka` |
+| 8, 9 | Slovní zadání. |
+| 10 | `U10_add` A2:C3; údaje Howella a Huessyho podle Howella (s. 169) |
+| 11 | `U11_nazor` A2:C3; 60 úplných dvojic, 4 neúplné nejsou v tabulce |
+| 12 | Slovní zadání s výsledky programu v textu. |
+| 13 | `U07_uceni` A2:D4 (nepovinně; Holm na listu `Tabulka`) |
+| 14 | `U10_add` A2:C3 (nepovinně; intervaly na listu `Mira_souvislosti`) |

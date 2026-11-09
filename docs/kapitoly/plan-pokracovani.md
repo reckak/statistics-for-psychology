@@ -19,20 +19,20 @@ skupin. Navazuje na [kartu kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-ka
 (interval s t-kvantilem, jednovýběrový t-test, test ekvivalence) a na
 parkovací studii kapitoly 6.
 
-**Stav k 2026-11-09: plán kapitoly 9 je schválen, kapitola dosud není napsána.**
+**Stav k 2026-11-09: kapitola 9 je schválena a napsána; po ní není schválen žádný plán.**
 Kapitola 9 „Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost
 souvislosti“ (pracovní název) se řídí
 [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9) (rozsah, pořadí,
 příklady a zásady), [R69](../rozhodnuti/kapitola-09.md#r69-znaceni-kapitoly-9)
-(značení; indexy buněk tabulky zůstávají otevřené) a
+(značení; indexy buněk upřesněny týž den) a
 [R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) (terminologie).
 Schválené členění je v dokladu R68. Navazuje na tabulku stresu a nezávislost
 jevů z [kapitoly 5](05-pravdepodobnost.md#mapa-kapitola-05), binomický test
 a směrodatnou chybu podílu z [kapitoly 6](06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06)
 a na interval, párové a nezávislé uspořádání a velikost účinku z kapitol
 [7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07) a
-[8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08). Kartu kapitoly 9 založí
-až skutečný text; tento odstavec nepopisuje hotový obsah.
+[8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08). Skutečný obsah eviduje
+[karta kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09), nikoli tento plán. Směr, rozsah ani pořadí dalších kapitol nebyly projednány.
 
 **Mimo kapitoly 6–9 a bez schváleného umístění:** bootstrap, znaménkový
 a pořadové testy, robustní alternativy porovnání průměrů, funkce Z.TEST,
