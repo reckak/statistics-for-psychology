@@ -1,5 +1,67 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-7-20261109"></a>
+
+## 2026-11-09 — Prezentace ke kapitole 7
+
+Vytvořeny soubory v `presentations/`: `kapitola_07_interval_t_test_a_ekvivalence.pptx`
+(40 slidů), `kapitola_07_poznamky.docx`,
+`kapitola_07_interval_t_test_a_ekvivalence_cviceni.xlsx` a
+`kapitola_07_interval_t_test_a_ekvivalence_cviceni_grafy.pdf`. Rozsah dohodnut s autorem
+2026-11-09: jedna výuka za celou kapitolu (45 minut výkladu, 45 minut procvičování),
+všechna čtyři nepovinná rozšíření vynechána; výstupy PPTX, DOCX, sešit a pomocné
+grafy k excelovým úlohám, bez PDF prezentace. Výklad má 24 obsahových slidů v šesti
+oddílech podle [R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci)
+(od rozhodnutí testu k odhadu; šířka intervalu a *t*-rozdělení; jednovýběrový *t*-test;
+interval a *p*-hodnota; test ekvivalence; čtyři kombinace a sdělení výsledků).
+Bodový odhad a obrácení úvahy jsou na jednom slidu, předpoklady intervalu a jeho meze
+(zkreslení, chyba měření) jsou shrnuty u šířky intervalu, odolnost *t*-postupů jen slovně
+podle povinné části; *p*-hodnoty TOST se objevují jen v ukázce zprávy.
+
+Šest úloh bez Excelu (řešení jen v poznámkách): vlastní úlohy na interval při známé σ,
+výroky o intervalu, rozhodnutí z 95% a 90% intervalů, zdůvodnění hranic ekvivalence
+a čtyři kombinace; úloha 3 adaptuje Howella (7.6, 7.7 a 7.9). Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)
+má čtyři listy: U1_Kruger_Dunning (7.6–7.7, 11 hodnot), U2_SAT_bez_textu (7.13 ze
+souhrnů), U3_lez_skala (7.14–7.15 ze souhrnů) a U4_tablet_ekvivalence (vlastní modelová
+data 60 dětí, simulace z normálního modelu se středem 100,8 a SD 12,5, zaokrouhleno,
+seed 6; test rozdílu a test ekvivalence pro všech 60 a prvních 15 dětí). Řešení po
+krocích, 13 kontrol funkcemi (včetně T.DIST.RT, T.DIST.2T a CONFIDENCE.T) a 20 nativních
+rovnic. U U2 je *p*-hodnota v řádu 10⁻¹⁸, a proto ji krok počítá ze souměrnosti jako
+T.DIST(−*t*; *v*; PRAVDA); 1 − T.DIST by se zaokrouhlilo na 0. Pomocné grafy (8 stran,
+16 : 9) vytváří `scripts/kapitola_07-prezentace-cviceni-grafy.R` ze vstupů sešitu
+(balíček readxl), vzhledem navazuje na grafy kapitoly 6. Rozsah čtení Howella eviduje
+[karta U01](../docs/zdroje/U01-howell.md#u01). Kapitola 7, slovník, osnova ani
+`data/kapitola_07.xlsx` se neměnily; věcný rozpor mezi kapitolou a prezentací nebyl
+zjištěn. Všech 10 obrázků jsou obrázky kapitoly 7 (vlastní tvorba), před převodem znovu
+vykreslené `scripts/kapitola_07.R`; obrázek opakovaných intervalů je rozdělen na dva slidy.
+
+Postup: generátor v `tmp/chapter07-presentation/` navazuje na generátor kapitoly 6
+(stejná předloha a vzhled). Nově zpracuje kurzívu uvnitř tučného textu (tučný úsek se
+parsuje rekurzivně), má vzorce intervalů se *z* a *t* a statistiky *t* a před znakem %
+používá nezlomitelnou mezeru. Sdílené skripty v `scripts/` se neměnily.
+
+**Ověření:** všech 40 slidů vykresleno v PowerPointu a prohlédnuto (po rozšíření
+textových sloupců u čtyř slidů s obrázkem, opravě zalamování „95 %“ a „94 ze 100“
+a vnořené kurzívy v poznámkách); každý slide má poznámky, u výkladových slidů s otázkou
+k zamyšlení; jazyk všech 235 textových polí a 40 poznámek je čeština (objektový model
+PowerPointu); v textu PPTX ani DOCX nezůstala značka `*`; všech 23 různých oddílů, na které
+poznámky odkazují, v kapitole existuje. 64 čísel ze slidů, poznámek a sešitu přepočítáno nezávisle v R
+(`check.R` v tmp), včetně shody dat U4 se simulací. Sešit přepočítán v českém Excelu 16:
+0 chybových buněk, všech 13 kontrol „Shoda s kroky“ = ano, 20 rovnic, prázdné pracovní
+buňky; listy prohlédnuty z exportu do PDF. DOCX otevřen ve Wordu: 40 nadpisů
+„Slide N: titulek“, 19 stran, čeština. Data úlohy 7.6 a zadání 7.13–7.15 ověřena
+v obrazu s. 222–223. Všech 8 stran grafů prohlédnuto (pdftoppm) po opravě dolního
+indexu H₀ a překryvů popisků.
+
+**Omezení:** výklad trvá podle součtu časů 45 minut, skutečná délka nebyla vyzkoušena.
+Popisky uvnitř převzatých grafů (zejména devět studií a opakované intervaly) jsou při
+projekci drobné; hlavní hodnoty opakuje text slidu. Hodnoty úlohy 7.6 jsou podle Howella
+sestaveny tak, aby měly téměř stejný průměr a směrodatnou odchylku jako studie Krugera
+a Dunninga, nejde o původní data. Starší verze Excelu a PowerPointu, Excel pro Mac ani
+webový Excel nebyly zkoušeny. Didaktická revize byla interní, bez ověření na studentech.
+Studentský web se nemění, render knihy nebyl potřeba.
+
 ## 2026-11-09 — Oprava CI: runner ubuntu-24.04 kvůli Playwrightu
 
 Běhy workflow „Ověřit a publikovat učebnici“ pro PR #175 a #176 i po jejich
