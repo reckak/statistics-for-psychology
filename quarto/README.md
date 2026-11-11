@@ -1,5 +1,47 @@
 # Autorská dokumentace
 
+<a id="poznamky-kapitoly-7-heslovite"></a>
+
+## Prezentace kapitoly 7: heslovité poznámky v PPTX, podrobné v DOCX (2026-11-11)
+
+Podle pokynu autora (konvence [R74](../docs/rozhodnuti/postupy-a-dokumentace.md#r74-heslovite-poznamky))
+mají poznámky v `presentations/kapitola_07_interval_t_test_a_ekvivalence.pptx` nově
+heslovitou podobu pro vyučujícího: 224 odrážek, asi 3 300 slov místo 7 800. Výchozím
+podkladem byly dosavadní poznámky a scénář zvukového doprovodu. Na každém slidu zůstala
+otázka k zamyšlení se stručnou odpovědí; čas pro vyučujícího a odkaz na oddíl kapitoly
+jsou jen v DOCX. U úloh 34–39 je uveden výsledek a klíčový argument, u otevřených úloh
+jedno heslo k přijatelným odpovědím. Text slidů včetně autorových úprav z téhož dne
+(znak `=` před T.INV a T.DIST na slidech 12 a 16) se nezměnil.
+
+`presentations/kapitola_07_poznamky.docx` nese podrobné poznámky v celých větách.
+Slidy 5–40 mají původní znění z commitu aba1568 (shodné s dosavadním DOCX). Slidy 1–4
+přebírají autorovo zkrácené znění z 2026-11-11, doplněné o otázku k zamyšlení, čas
+a odkaz na oddíl z původní verze. Opraveny byly překlepy na slidu 4: norma μ = 50
+(ne 10), směrodatná chyba 10 / √25 = 2 (ne 10/√5), mínus místo pomlčky a značky
+σ = 10 a s = 11 místo mluveného „Sigma deset“ a „es jedenáct“.
+
+Postup (v gitignorovaném `tmp/chapter07-presentation/`): zdroj `notes-short.md`
+převádí `notes-short-json.cjs` na text a tučné úseky; `write-notes.ps1` je přes
+PowerPoint zapíše do kopie (Arial 12 b., odrážky, jazyk čeština) a teprve po kontrole
+nahradí cílový soubor. DOCX sestavuje `notes-docx-detail.cjs` ze stejné předlohy jako
+dosud.
+
+**Ověření:** text všech slidů je shodný s autorovou verzí ze dne 2026-11-11; v PowerPointu
+má každý ze 40 slidů poznámky shodné se zdrojem. Všech 224 odstavců má odrážku
+a češtinu, všech 126 tučných úseků je na místě (`check-notes.ps1`). Každé číslo
+v heslovitých poznámkách bylo porovnáno s podrobnými poznámkami a textem slidu.
+21 neshod tvoří čísla psaná slovy, √25 = 5 a krátké odpovědi doplněné k otázkám, které
+dosud odpověď neměly (slidy 19, 23, 30 a 32); interval u slidu 30 přepočítán v R. Stránky s poznámkami byly vytištěny do PDF
+a prohlédnuty (slidy 6, 30, 34). DOCX otevřen ve Wordu: 40 nadpisů „Slide N: titulek“,
+19 stran, čeština; první strana prohlédnuta.
+
+**Omezení:** zástupné symboly obrázku slidu a poznámek mají na stránkách poznámek
+nulovou velikost, a to už v předchozí verzi (generátor z 2026-11-09). Zobrazení
+řečníka a podokno poznámek to neovlivňuje, tisk stránek poznámek ano. Pro vizuální
+kontrolu byla proto pole zvětšena jen v pomocné kopii; v prezentaci se to neopravovalo.
+Zobrazení řečníka během skutečné projekce vyzkoušeno nebylo. Dolní indexy v Unicode
+(z₀,₉₇₅) PowerPoint vykresluje náhradním písmem.
+
 <a id="terminy-kapitoly-10-schvaleni"></a>
 
 ## Kapitola 10: schválení termínů K10-N1 až K10-N4 (2026-11-11)
