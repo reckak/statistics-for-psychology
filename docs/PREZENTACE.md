@@ -56,13 +56,40 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 
 ## Poznámky ke každému slidu
 
-- Každý slide musí mít poznámky odpovídající jeho aktuálnímu obsahu.
-  U přehledu obsahu a oddělovacích slidů stačí krátce uvést, k čemu
-  prezentace nebo oddíl směřuje a jak navazuje na předchozí výklad.
-- Poznámky tvoří samostatně srozumitelný výklad. Student, který
+<a id="dve-podoby-poznamek"></a>
+
+Každý slide má poznámky ve dvou podobách podle
+[R74](rozhodnuti/postupy-a-dokumentace.md#r74-heslovite-poznamky):
+heslovité v PPTX pro vyučujícího během prezentace a podrobné v DOCX
+pro samostudium a jako podklad scénáře zvukového doprovodu. Obě podoby
+odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
+
+<a id="poznamky-v-pptx"></a>
+
+### Heslovité poznámky v PPTX
+
+- Piš stručně a heslovitě, jedna myšlenka na odrážku; vyučující se v nich
+  musí rychle zorientovat při výkladu. Hesla musí zůstat srozumitelná
+  i bez DOCX: nezkracuj je do podoby, která zkresluje význam.
+- Uveď to, co vyučující potřebuje mít před očima: klíčové pojmy, čísla
+  a mezikroky výpočtu, hlavní interpretaci, podstatná omezení, častý omyl
+  se správnou formulací a u grafů, čeho si všimnout.
+- Ke každému výkladovému slidu uveď na konec otázku k zamyšlení se
+  stručnou odpovědí, pokud ji lze dát krátce.
+- U úloh uveď výsledek každé části a klíčový argument; u otevřených úloh
+  jedním heslem podmínky přijatelnosti dalších odpovědí.
+- U přehledu obsahu a oddělovacích slidů stačí jedno až dvě hesla
+  k tomu, k čemu prezentace nebo oddíl směřuje.
+- **Klíčové pojmy a výsledky zvýrazni tučně.** Čas pro vyučujícího
+  a odkaz na oddíl kapitoly do PPTX neuváděj; patří do DOCX.
+
+<a id="poznamky-v-docx"></a>
+
+### Podrobné poznámky v DOCX
+
+- Podrobné poznámky tvoří samostatně srozumitelný výklad. Student, který
   ve výuce chyběl, má porozumět slidu při jejich čtení nebo poslechu.
-- Piš úplné věty v logické návaznosti. Poznámky by měly být rozděleny
-  do odrážek, ale nesmějí být pouze hesly pro vyučujícího.
+- Piš úplné věty v logické návaznosti, rozdělené do odrážek.
 - První poznámka ke každému slidu by měla podle potřeby přirozeně navazovat
   na předchozí slide a připravit přechod k aktuálnímu tématu. Výklad tak má
   působit jako souvislý celek, nikoli jako sled izolovaných komentářů.
@@ -76,7 +103,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
   shrnují hlavní myšlenku, objasňují souvislost nebo upozorňují na zásadní
   omezení.
 - Nepředpokládej nevyřčené dovysvětlení vyučujícím. Pokyny k organizaci
-  výuky případně odděl od samotného výkladu.
+  výuky (například čas) odděl od samotného výkladu; na konec poznámek
+  výkladového slidu připoj odkaz na příslušný oddíl kapitoly.
 - Rozsah poznámek přizpůsob významu a obtížnosti tématu. Neprodlužuj
   je opakováním stejné myšlenky.
 
@@ -84,7 +112,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 
 - Ke každému výkladovému slidu navrhni jednu krátkou otázku
   k zamyšlení; přehled obsahu a oddělovací slidy ji nepotřebují. Výchozím místem je závěr poznámek; na slide ji přidej,
-  pokud to umožňuje jeho přehlednost.
+  pokud to umožňuje jeho přehlednost. V PPTX ji uveď se stručnou odpovědí,
+  v DOCX s úplným zdůvodněním.
 - Otázky mají podporovat použití pojmů, zdůvodnění a rozpoznání omylů,
   nikoli pouze opakování definic.
 - Samostatné procvičování zařazuj na konec výuky. Konceptuální otázky
@@ -95,7 +124,8 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Zadání musí obsahovat všechny potřebné údaje. Dlouhé případové
   studie rozděl do navazujících slidů a zachovej srozumitelný kontext.
 - U úloh v prezentaci zapisuj možné odpovědi a úplné zdůvodnění pouze
-  do poznámek ke slidu se zadáním, pokud není zadáno jinak.
+  do poznámek ke slidu se zadáním, pokud není zadáno jinak: úplné
+  zdůvodnění do DOCX, výsledek a klíčový argument do PPTX.
 - Samostatné slidy s řešením vytvářej pouze na výslovnou žádost.
   V takovém případě umísti řešení bezprostředně za příslušné zadání.
 - U otevřených úloh uváděj možné řešení a podmínky přijatelnosti
@@ -157,11 +187,15 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
   bez jejich začlenění.
 - Po vložení nebo odstranění slidů zkontroluj pořadí, číslování,
   návaznosti a přiřazení poznámek.
-- DOCX s poznámkami vytvářej na žádost z aktuálního PPTX.
-  Nadpis u každého slidu tvoří jeho číslo a titulek slidu, například
-  „Slide 3: Průměr jako těžiště dat“; u slidu bez titulku uveď jen
-  „Slide 3:“. Pod nadpisem uveď poznámky v odrážkách. Zachovej pořadí, text a smysluplné zvýraznění.
-  Bez zadání nepřidávej výklad ani text samotných slidů.
+- Podrobné poznámky ukládej vedle prezentace jako
+  `kapitola_NN_poznamky.docx`; DOCX je hlavním místem jejich znění,
+  nikoli export poznámek z PPTX. Nadpis u každého slidu tvoří jeho číslo
+  a titulek slidu, například „Slide 3: Průměr jako těžiště dat“; u slidu
+  bez titulku uveď jen „Slide 3:“. Pod nadpisem uveď poznámky v odrážkách.
+  Text samotných slidů do DOCX nepřidávej.
+- Při změně slidu uprav heslovité poznámky v PPTX i podrobné v DOCX.
+  Starší prezentace s úplnými poznámkami v PPTX převáděj na dvě podoby
+  jen na žádost.
 - Respektuj pravidla `.gitignore`. Ignorované prezentace a jejich
   exporty nepřidávej do Gitu násilně bez výslovného pokynu.
 
@@ -179,8 +213,10 @@ zdejší formát slidů a poznámek se nevztahuje na souvislý text učebnice.
 - Prezentaci vykresli a vizuálně zkontroluj čitelnost, diakritiku,
   zalamování, tabulky, překryvy a obsah přesahující plochu slidu.
   Při dílčí úpravě zvlášť porovnej změněné slidy s původní verzí.
-- U exportu do DOCX ověř úplnost textu, pořadí slidů, shodu nadpisů
-  s čísly a titulky slidů, odrážky a výsledné stránkování.
+- U DOCX ověř úplnost textu, pořadí slidů, shodu nadpisů s čísly
+  a titulky slidů, odrážky a výsledné stránkování. Ověř také, že heslovité
+  poznámky v PPTX obsahově odpovídají podrobným v DOCX, zejména čísla
+  a výsledky úloh.
 - Tvrzení o ověření v PowerPointu nebo Wordu uváděj pouze tehdy,
   pokud kontrola skutečně proběhla v dané aplikaci.
 - Předávej odkaz na výsledný soubor. Případná omezení kontroly

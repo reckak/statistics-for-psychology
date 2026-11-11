@@ -824,3 +824,40 @@ před a po bez spojnic a jedinému grafu se dvěma řadami popisků), všechny
 „Kontrast s nelineárním převodem“, „Vzorce českého Excelu“) a data „Data
 z kapitoly + předvolby“; plán téhož dne schválil. Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md).
+
+<a id="r74-heslovite-poznamky"></a>
+
+## R74 — Heslovité poznámky v PPTX, podrobné v DOCX
+
+**Stav:** schváleno 2026-11-11. **Rozsah:** nové prezentace a prezentace,
+jejichž poznámky se upravují; první použití u prezentace kapitoly 7.
+Starší prezentace s úplnými poznámkami v PPTX se převádějí jen na žádost.
+
+**Volba:** poznámky v PPTX jsou krátké, heslovité a stále srozumitelné,
+aby se v nich vyučující vyznal při prezentaci; ke každému výkladovému slidu
+obsahují otázku k zamyšlení se stručnou odpovědí, u úloh výsledek
+a klíčový argument. Čas pro vyučujícího a odkaz na oddíl kapitoly jsou jen
+v DOCX. Podrobné poznámky v celých větách, samostatně srozumitelné
+studentovi, nese `kapitola_NN_poznamky.docx`; ten je hlavním místem jejich
+znění a podkladem scénáře zvukového doprovodu. Aktuální znění pravidel je
+v [PREZENTACE.md](../PREZENTACE.md#dve-podoby-poznamek) a
+[TEXT2SPEECH.md](../TEXT2SPEECH.md#podklady-rozsah-a-účel-výkladu).
+
+**Nahrazuje:** v PREZENTACE.md pravidlo, že poznámky v PPTX nesmějí být
+pouze hesly pro vyučujícího, a pojetí DOCX jako exportu poznámek z PPTX.
+Tvar nadpisů DOCX podle [R50](#r50-struktura-prezentaci) zůstává;
+[R33](#r33-excelova-cviceni-prezentaci) a [R53](#r53-doprovodne-audio)
+se nemění.
+
+**Důvod:** úplné poznámky (u kapitoly 7 asi 7 800 slov na 40 slidů) byly
+pro orientaci během výkladu příliš rozsáhlé; podrobný výklad pro studenty
+zůstává zachován v DOCX a ve zvukovém doprovodu.
+
+**Doklad:** zadání autora z 2026-11-11: „myslím, že současné poznámky
+k přednášce 7 jsou moc rozsáhlé, chtěl bych, aby byly co nejvíce concise
+a heslovité, ale stále srozumitelné, tak, abych se v nich při prezentaci
+vyznal.“ Na otázku, zda jde o obecné pravidlo, odpověděl: „Nastavil bych
+to tak, ať v samotné prezentaci jsou poznámky (notes) krátké, heslovité,
+concise, ale stále srozumitelné; a v docx s poznámkami podrobné celé věty.“
+U úloh zvolil „Výsledek + klíčový argument“ a z doplňků v PPTX ponechal jen
+„Otázka k zamyšlení“. Plán úpravy schválil téhož dne.

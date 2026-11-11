@@ -19,7 +19,9 @@ a před generováním doprovodného audia. Platí společně s
 ## Podklady, rozsah a účel výkladu
 
 - Použij aktuální prezentaci a její poznámky, případně příslušnou kapitolu.
-  Prezentace určuje pořadí a vazbu na obrázky; poznámky dodávají vysvětlení.
+  Prezentace určuje pořadí a vazbu na obrázky; vysvětlení dodávají
+  podrobné poznámky v DOCX (u starších prezentací bez nich poznámky v PPTX),
+  viz [dvě podoby poznámek](PREZENTACE.md#dve-podoby-poznamek).
   Přečti skutečné podklady, včetně relevantních grafů, tabulek a vzorců.
   Při věcném rozporu jej pojmenuj a vyřeš před syntézou dotčeného úseku;
   kvůli přípravě audia svévolně neměň kapitolu ani prezentaci.
