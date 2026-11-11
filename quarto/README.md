@@ -1,5 +1,24 @@
 # Autorská dokumentace
 
+<a id="ci-casove-limity"></a>
+
+## CI: časové limity sestavení (2026-11-11)
+
+Dne 2026-11-11 mezi 15:00 a 16:55 se běhy workflow **Ověřit a publikovat učebnici**
+nedokázaly připojit k balíčkovému serveru Ubuntu (`Temporary failure resolving
+'azure.archive.ubuntu.com'`). Krok `setup-r` při instalaci R přes `apt` visel asi
+1,5 hodiny a skončil chybou `Failed to install R … exit code 100`. Šlo o výpadek
+mimo repozitář; po opakovaném spuštění instalace R prošla a sestavení po sloučení
+#187 bylo úspěšně publikováno.
+
+Aby další výpadek neblokoval běh hodiny, má `.github/workflows/book.yml` nově časové
+limity: sestavovací job 40 minut, kroky `setup-r` a `npx playwright install --with-deps`
+po 10 minutách, publikační job 15 minut. Běžné úspěšné běhy trvaly 7–15 minut
+(`setup-r` asi 30 s). Popis je v [provozním návodu](../docs/PROVOZ.md#kontroly-a-github).
+
+**Ověření:** úspěšný běh workflow v tomto PR. Chování limitu při skutečném výpadku
+ověřeno nebylo.
+
 <a id="poznamky-kapitoly-7-heslovite"></a>
 
 ## Prezentace kapitoly 7: heslovité poznámky v PPTX, podrobné v DOCX (2026-11-11)
