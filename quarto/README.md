@@ -13,9 +13,20 @@ nikoli text. Nově je v repozitáři export slidů
 `presentations/kapitola_07_interval_t_test_a_ekvivalence.pdf` (40 stran, Acrobat PDFMaker),
 stejně jako u předchozích kapitol.
 
+Následně byly opraveny dva překlepy v poznámkách (slide 9 „Hladina spolehlivosti“,
+slide 18 „matky v intervenčním programu“) a podle R74 sladěny podrobné poznámky
+v `kapitola_07_poznamky.docx` s věcnými doplňky autora: u slidu 4 důvody změny
+variability (citlivost vůči spánkové deprivaci, potřeba spánku), u slidu 14 směr
+liberálního jednostranného testu (opačný vůči zešikmení, při šikmosti doprava test
+„menší“; shodně s oddílem kapitoly o předpokladech) a označení „těžké chvosty“.
+Ostatní autorské úpravy už podrobné poznámky obsahovaly; podrobnosti, které autor
+z heslovitých poznámek vypustil (Howellova kontrola 56 hodnot PDI, odkaz na nepovinné
+rozšíření, listy sešitu), v DOCX zůstávají.
+
 **Ověření:** porovnání textu slidů a poznámek s verzí ze sloučeného PR 187; počet
-stran PDF odpovídá počtu slidů. Podrobné poznámky v `kapitola_07_poznamky.docx`
-s těmito úpravami sladěny nebyly.
+stran PDF odpovídá počtu slidů. Opravy provedeny přes PowerPoint a Word na kopiích;
+porovnání textu potvrdilo změnu jen na zamýšlených místech, formátování okolních
+úseků zůstalo. DOCX ve Wordu: 19 stran. PDF slidů se opravy netýkají (jen poznámky).
 
 <a id="ci-casove-limity"></a>
 
