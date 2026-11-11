@@ -89,3 +89,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 - **Bodově biseriální korelace** (*point-biserial correlation*).
 
 **Doklad:** terminologický seznam byl součástí sloučeného plánu schváleného 2026-11-09 volbou „Schvaluji s doporučeními“; doporučení „dvourozměrné normální rozdělení“ s alternativou „bivariační“ bylo jednou z otevřených voleb. Hranice vůči neshodným dvojicím McNemarova testu byla doplněna při zápisu dohody po kontrole proti R70.
+
+<a id="r73-doplneni-2026-11-11"></a>
+
+**Doplnění evidence 2026-11-11 (při psaní kapitoly, nejde o nové schválení):** kapitola zavádí tučně s anglickým ekvivalentem čtyři výrazy, které seznam R73 neuvádí: **omezení rozsahu** (*range restriction*), **korelační matice** (*correlation matrix*), **analýza citlivosti** (*sensitivity analysis*) a v nepovinném rozšíření **interval BCa**. Jsou evidovány jako otevřené návrhy K10-N1 až K10-N4 v [registru](../SLOVNIK.md#navrhy) a do studentského slovníčku zatím zapsány nejsou. Pomocné výrazy „korekce zkreslení“, „zrychlení“, „přeskupení“ a „výběr krajních skupin“ se v textu nezavádějí jako termíny.

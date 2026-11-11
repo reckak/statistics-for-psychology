@@ -6,7 +6,7 @@ $taskExcel=$null;$taskBook=$null
 try {
   $taskExcel=New-Object -ComObject Excel.Application
   $taskExcel.Visible=$false;$taskExcel.DisplayAlerts=$false
-  foreach($n in 1,2,3,4,5,6,7,8,9){
+  foreach($n in 1,2,3,4,5,6,7,8,9,10){
     $taskBook=$taskExcel.Workbooks.Open((Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $n)),0,$false)
     if($taskBook.Worksheets.Item(1).Name -ne 'Prehled'){throw 'Overview is not first'}
     $taskExcel.CalculateFullRebuild()
@@ -14,6 +14,13 @@ try {
     foreach($sh in $taskBook.Worksheets){
       # Sheets without any formula (large simulated inputs) need no cell-by-cell pass.
       if($sh.UsedRange.HasFormula -eq $false){continue}
+      # Large resampling sheets (chapter 10): count formulas and find error values in bulk.
+      if($sh.UsedRange.Cells.Count -gt 20000){
+        try{$formulaCount+=$sh.UsedRange.SpecialCells(-4123).Count}catch{}
+        $bad=$null;try{$bad=$sh.UsedRange.SpecialCells(-4123,16)}catch{}
+        if($null -ne $bad){throw "Excel error: $n $($sh.Name) $($bad.Cells.Item(1).Address())"}
+        continue
+      }
       foreach($cell in $sh.UsedRange.Cells){
         if($cell.HasFormula){$formulaCount++;if($cell.Text -match '^#'){throw "Excel error: $n $($sh.Name) $($cell.Address()) $($cell.Text)"}}
       }

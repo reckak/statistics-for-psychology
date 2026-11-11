@@ -43,4 +43,4 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 ## Související karty kapitol
 
-Tematické vazby pro výběr podkladů: [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04). Konkrétní použití a stav ověření určují záznamy výše.
+Tematické vazby pro výběr podkladů: [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.

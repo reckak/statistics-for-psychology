@@ -24,3 +24,7 @@
 **Podnět k opravě, dosud bez potvrzení úplného vykreslení:** X7_26 označuje hodnoty za z-skóry, ale sebehodnocení má průměr 0,58; klíč na nenulový průměr sám upozorňuje. Pro pět dvojic v tabulce dává nezávislý výpočet v R Pearsonovo r = **0,016615**. Hodnota klíče 0,011 odpovídá necentrovanému součtu součinů dělenému čtyřmi (0,01105), nikoli korelaci těchto dat. Výrok klíče o nepřítomnosti jakéhokoli vztahu navíc přesahuje význam téměř nulové lineární korelace. Před úpravou či převzetím potvrdit i podobu tabulky v originálním vykreslení.
 
 **Použití a neověřeno:** výběr různých typů otázek ke [P10](P10-korelace-stps.md#p10) a [P11](P11-korelace-psyb1170.md#p11); především volba koeficientu, grafická interpretace a srovnání studií. Celý klíč nebyl přepočten, grafické odpovědi a původ dat nebyly ověřeny. Přesná identita a vydání zdroje C7 ani jeho stránkové odkazy nejsou doloženy. Externí sešity, programy a odkazy nebyly spuštěny. Zápis není potvrzením správnosti zbývajících odpovědí.
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.

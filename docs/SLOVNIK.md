@@ -503,14 +503,49 @@ a první výklad vznikly s kapitolou 2026-11-09 pod zde uvedenými stabilními I
 | <a id="pojem-simpsonuv-paradox"></a>**Simpsonův paradox** | Simpson's paradox | — | Jen nepovinně. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-simpsonuv-paradox); [výklad](../quarto/kapitola_09.qmd#rozsireni-simpson) |
 | <a id="pojem-cohenovo-kappa"></a>**Cohenovo kappa** | Cohen's kappa | — | Jen nepovinně; κ jako výjimka podle R69. | S — [R70](rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) | [Heslo](../quarto/slovnicek.qmd#pojem-cohenovo-kappa); [výklad](../quarto/kapitola_09.qmd#rozsireni-kappa) |
 
+<a id="kapitola-10"></a>
+
+## Korelace
+
+Hesla schválená při projednání kapitoly 10 ([R71](rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10)–[R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)).
+Značení určuje [R72](rozhodnuti/kapitola-10.md#r72-znaceni-kapitoly-10). Studentská hesla
+a první výklad vznikly s kapitolou 2026-11-11 pod zde uvedenými stabilními ID.
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-korelace"></a>**Korelace; korelační koeficient** | correlation; correlation coefficient | — | Souvislost vs. její číselné shrnutí. Odlišit od korelační studie. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-korelace); [výklad](../quarto/kapitola_10.qmd#sec-dve-hodnoty) |
+| <a id="pojem-korelacni-studie"></a>**Korelační studie** | correlational design | korelační uspořádání | Uspořádání bez přiřazení k podmínkám; korelační koeficient lze spočítat i v experimentu. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-korelacni-studie); [výklad](../quarto/kapitola_10.qmd#sec-dve-hodnoty) |
+| <a id="pojem-bodovy-graf"></a>**Bodový graf** | scatterplot | bodový diagram | Graf dvou proměnných; odlišit od tečkového grafu jednotlivých pozorování (H06). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-bodovy-graf); [výklad](../quarto/kapitola_10.qmd#sec-bod-clovek) |
+| <a id="pojem-linearni-vztah"></a>**Lineární vztah** | linear relationship | — | Zvláštní případ monotónního vztahu. Pearsonovo *r* měří jen lineární složku. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-linearni-vztah); [výklad](../quarto/kapitola_10.qmd#sec-tvary-souvislosti) |
+| <a id="pojem-monotonni-vztah"></a>**Monotónní vztah** | monotonic relationship | — | Nemusí být lineární; vztah měnící směr monotónní není. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-monotonni-vztah); [výklad](../quarto/kapitola_10.qmd#sec-tvary-souvislosti) |
+| <a id="pojem-kovariance"></a>**Kovariance** | covariance | — | Výběrově $s_{xy}$ s dělením *n* − 1 (R72). Velikost závisí na jednotkách. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-kovariance); [výklad](../quarto/kapitola_10.qmd#sec-vyberova-kovariance) |
+| <a id="pojem-pearsonuv-koeficient"></a>**Pearsonův korelační koeficient; Pearsonovo *r*** | Pearson product-moment correlation coefficient | součinový momentový korelační koeficient | Výběrově *r*, populačně stojaté ρ (R72). ±1 je dokonalý lineární vztah, ne totožnost hodnot. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-pearsonuv-koeficient); [výklad](../quarto/kapitola_10.qmd#sec-vydelime) |
+| <a id="pojem-poradova-korelace"></a>**Pořadová korelace** | rank correlation | — | Společné označení rodiny postupů (Spearman, Kendall). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-poradova-korelace); [výklad](../quarto/kapitola_10.qmd#sec-prevod-poradi) |
+| <a id="pojem-poradi"></a>**Pořadí; průměrné pořadí; shodné hodnoty** | rank; average rank; ties | shody | Odlišit od pořadové statistiky (H12). Shodám se přiřazuje průměrné pořadí. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-poradi); [výklad](../quarto/kapitola_10.qmd#sec-prevod-poradi) |
+| <a id="pojem-spearmanuv-koeficient"></a>**Spearmanův korelační koeficient** | Spearman rank correlation coefficient | Spearmanovo ró | Výběrově $r_s$, populačně ρ<sub>s</sub> (R72). Počítá se jako Pearsonova korelace průměrných pořadí. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-spearmanuv-koeficient); [výklad](../quarto/kapitola_10.qmd#sec-pearson-poradi) |
+| <a id="pojem-kendalluv-koeficient"></a>**Kendallův korelační koeficient; Kendallovo τ** | Kendall rank correlation coefficient; Kendall’s tau | — | τ<sub>a</sub> k vysvětlení, τ<sub>b</sub> hlavní varianta; τ jen pro výběrový koeficient, populační hodnota slovy (R72). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-kendalluv-koeficient); [výklad](../quarto/kapitola_10.qmd#sec-tau-a) |
+| <a id="pojem-konkordantni-dvojice"></a>**Konkordantní a diskordantní dvojice** | concordant and discordant pairs | souhlasně a opačně seřazené dvojice | Dvojice dvou lidí seřazené dvěma proměnnými; nezaměňovat s [neshodnými dvojicemi](#pojem-neshodne-dvojice) McNemarova testu (stejný anglický název). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-konkordantni-dvojice); [výklad](../quarto/kapitola_10.qmd#sec-konkordantni) |
+| <a id="pojem-dvourozmerne-normalni"></a>**Dvourozměrné normální rozdělení** | bivariate normal distribution | bivariační normální rozdělení | Odlišit od normality každé proměnné zvlášť. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-dvourozmerne-normalni); [výklad](../quarto/kapitola_10.qmd#sec-model-pearson) |
+| <a id="pojem-homoskedasticita"></a>**Homoskedasticita; heteroskedasticita** | homoscedasticity; heteroscedasticity | stejná a proměnlivá rozptýlenost | Nejprve vysvětlit slovy na grafu. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-homoskedasticita); [výklad](../quarto/kapitola_10.qmd#sec-model-pearson) |
+| <a id="pojem-fisherova-transformace"></a>**Fisherova transformace** | Fisher transformation | Fisherovo *z* | Značka $z_r$ (R72); nezaměňovat se *z*-skórem ani testovou statistikou *z*. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-fisherova-transformace); [výklad](../quarto/kapitola_10.qmd#sec-fisher-interval) |
+| <a id="pojem-permutacni-test"></a>**Permutační test** | permutation test | randomizační test (v jiném uspořádání) | Zde přeskupování přiřazení hodnot; nulovou hypotézou je nezávislost. Navazuje na permutaci z kapitoly 5. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-permutacni-test); [výklad](../quarto/kapitola_10.qmd#sec-myslenka-permutace) |
+| <a id="pojem-bootstrap"></a>**Bootstrap; bootstrapový výběr** | bootstrap; bootstrap sample | — | Zde výběr celých dvojic s vracením; počet opakování *B* (R72). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-bootstrap); [výklad](../quarto/kapitola_10.qmd#sec-vyber-z-vyberu) |
+| <a id="pojem-percentilovy-bootstrap"></a>**Percentilový bootstrapový interval** | percentile bootstrap confidence interval | percentilový interval | Povinná základní konstrukce; neprezentovat jako univerzálně nejlepší. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-percentilovy-bootstrap); [výklad](../quarto/kapitola_10.qmd#sec-percentilovy) |
+| <a id="pojem-bodove-biserialni"></a>**Bodově biseriální korelace** | point-biserial correlation | — | $r_{pb}$; znaménko určuje kódování. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-bodove-biserialni); [výklad](../quarto/kapitola_10.qmd#sec-bodove-biserialni) |
+
 <a id="navrhy"></a>
 
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
+**Otevřené návrhy z psaní kapitoly 10 (2026-11-11, stav: návrh):** výrazy, které kapitola zavádí tučně s anglickým ekvivalentem, ale seznam R73 je neuvádí. Do studentského slovníčku zatím nejsou zapsány.
+
+- *K10-N1* **Omezení rozsahu** (*range restriction*). Kontext: oddíl o tom, co mění korelaci (přijímací test a přijatí uchazeči). Alternativy: restrikce rozsahu, omezené variační rozpětí (P11). Otázka: schválit jako termín, nebo jen popsat slovy?
+- *K10-N2* **Korelační matice** (*correlation matrix*). Kontext: sdělování výsledků (tabulka korelací čtyř proměnných s počty dvojic). Otázka: schválit jako termín?
+- *K10-N3* **Analýza citlivosti** (*sensitivity analysis*). Kontext: odlehlé pozorování a cvičení 16 (výpočet s ním i bez něj). Otázka: schválit jako termín, nebo ponechat opisem „výpočet s ním i bez něj“?
+- *K10-N4* **Interval BCa** (*bias-corrected and accelerated interval*). Kontext: jen nepovinné rozšíření a cvičení 17; R71 interval schválilo, název termínu ne. Otázka: ponechat zkratku BCa s anglickým rozvedením?
+
 Terminologie kapitoly 10 byla schválena 2026-11-09 jako seznam plánu
-([R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)); hesla se do
-platné tabulky zapíší při psaní kapitoly, po kontrole proti dříve schváleným
-heslům. Do té doby R73 není náhradou hesel s pravidly použití.
+([R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)) a je v [platné tabulce](#kapitola-10).
 
 Návrhy K09-N1 (hypergeometrické rozdělení) a K09-N2 (druhý význam referenční skupiny) z psaní kapitoly 9 autor schválil 2026-11-09 ([doplnění R70](rozhodnuti/kapitola-09.md#r70-schvaleni-navrhu-2026-11-09)); oddíl je opět bez otevřených terminologických návrhů.
 

@@ -11,6 +11,9 @@ class Range {
   set values(value) { this.emit('values', value); }
   set formulas(value) { this.emit('formulas', value); }
   set formulasLocal(value) { this.emit('formulasLocal', value); }
+  // Whole-range Czech formula (relative references shift); fillFormula2Local writes a dynamic-array formula.
+  fillFormulaLocal(value) { this.emit('fillFormulaLocal', value); }
+  fillFormula2Local(value) { this.emit('fillFormula2Local', value); }
   set format(value) { this.emit('format', value); }
   get format() { return new Proxy({}, {set:(_, key, value) => {this.format = {[key]:value}; return true;}}); }
   set dataValidation(value) { this.emit('validation', value.rule); }
