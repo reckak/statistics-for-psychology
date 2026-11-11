@@ -1,5 +1,22 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-7-autorske-upravy"></a>
+
+## Prezentace kapitoly 7: autorské úpravy poznámek a PDF slidů (2026-11-11)
+
+Autor upravil heslovité poznámky v `presentations/kapitola_07_interval_t_test_a_ekvivalence.pptx`
+po sloučení PR 187: zpřesnil formulace (slidy 2, 4–7, 9, 13, 14, 18–21), rozdělil
+víceřádkové postupy na samostatné odrážky (slidy 6, 12, 16) a vypustil odkazy na listy
+sešitu a na nepovinné rozšíření (slidy 12, 14, 19). U slidů 1, 3, 10, 17 a 22 a v textu
+slidů 7, 9, 10, 13, 21–23, 25, 26 a 29 se změnilo jen formátování (kurzíva značek),
+nikoli text. Nově je v repozitáři export slidů
+`presentations/kapitola_07_interval_t_test_a_ekvivalence.pdf` (40 stran, Acrobat PDFMaker),
+stejně jako u předchozích kapitol.
+
+**Ověření:** porovnání textu slidů a poznámek s verzí ze sloučeného PR 187; počet
+stran PDF odpovídá počtu slidů. Podrobné poznámky v `kapitola_07_poznamky.docx`
+s těmito úpravami sladěny nebyly.
+
 <a id="ci-casove-limity"></a>
 
 ## CI: časové limity sestavení (2026-11-11)
