@@ -25,3 +25,7 @@
 <a id="priprava-10-20261109"></a>
 
 **Čtení pro návrh kapitoly 10 (2026-11-09):** znovu text všech 55 snímků z XML (pořadí souborů ověřeno proti `presentation.xml`); poznámky ani obrazy snímků znovu prohlédnuty nebyly. Příklady přepočteny v R: Kendallovo τ u stáří vozu a věku (sn. 45–46: 4 konkordantní, 6 diskordantních dvojic, τ = −0,2) a délka učení a body (sn. 42: *r* = 0,725, *r*<sub>S</sub> = 0,677, τ<sub>b</sub> = 0,549). **Nové nálezy:** sn. 11 uvádí slovní pásma síly *r*; učebnice slovní pásma u *d* ani φ nepoužívá ([R56](../rozhodnuti/kapitola-06.md#r56-p-hodnota-cohen), [R68](../rozhodnuti/kapitola-09.md#r68-rozsah-kapitoly-9)), proto je bez nové dohody nepřebírat. Tvrzení sn. 24, že největší relativní oslabení restrikcí vzniká u středně silných vztahů, a vzorce směrodatných chyb *r*<sub>S</sub> a τ ve sn. 40–41 a 48 nebyly ověřeny. Sn. 28 (maximální |*r*| < 1 při odlišném tvaru rozdělení) je využitelný bez výpočtu. [Společný záznam](HISTORIE.md#priprava-10-20261109).
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.

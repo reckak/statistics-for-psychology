@@ -1,6 +1,7 @@
-param([ValidateRange(1,9)][int[]]$Chapter=@(1,2,3,4,5,6,7,8,9),[switch]$Verify)
+param([ValidateRange(1,10)][int[]]$Chapter=@(1,2,3,4,5,6,7,8,9,10),[switch]$Verify)
 # Common entry point. Requires ordinary Node.js, Windows PowerShell and Excel;
-# Rscript (base R only) supplies fixed simulations for chapters 1, 4, 5, 6 and 7.
+# Rscript (base R only) supplies fixed simulations for chapters 1, 4, 5, 6 and 7
+# and the data and fixed resampling indices for chapter 10.
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 Push-Location $taskRoot
@@ -8,6 +9,13 @@ try {
   if(@($Chapter | Where-Object {$_ -in 4,5,6,7}).Count){
     & Rscript --vanilla scripts/sesity-simulace.R
     if($LASTEXITCODE -ne 0){throw 'Simulation inputs failed'}
+  }
+  if(@($Chapter | Where-Object {$_ -eq 10}).Count){
+    # Same data and resampling indices as the book; figures are skipped.
+    $env:CH10_NOFIG='1'
+    & Rscript --vanilla -e "if(.Platform`$OS.type=='windows')Sys.setlocale('LC_CTYPE','.UTF-8');source('scripts/kapitola_10.R',encoding='UTF-8')"
+    $code=$LASTEXITCODE;Remove-Item Env:CH10_NOFIG
+    if($code -ne 0){throw 'Chapter 10 inputs failed'}
   }
   foreach($n in ($Chapter|Select-Object -Unique)){
     # Avoid non-ASCII literals in Windows PowerShell 5.1 source.

@@ -473,6 +473,7 @@ Rscript --vanilla quarto/_verification/check-chapter-06.R
 Rscript --vanilla quarto/_verification/check-chapter-07.R
 Rscript --vanilla quarto/_verification/check-chapter-08.R
 Rscript --vanilla quarto/_verification/check-chapter-09.R
+Rscript --vanilla quarto/_verification/check-chapter-10.R
 ```
 
 Ověření chování chybějících hodnot v instalovaném desktopovém Excelu pro Windows zajišťuje samostatný skript `quarto/_verification/check-excel.ps1`. Sešit druhé kapitoly ověřuje `quarto/_verification/check-chapter-02-excel.ps1` v samostatné skryté instanci Excelu. Kontroluje české vzorce, přesnost výsledků, všech 180 vstupních buněk a přepočet grafů při změně dat; změny z kontrol neukládá. Rozsah a výsledky provedených kontrol jsou v [autorské dokumentaci](../quarto/README.md). Automatické kontroly nenahrazují odbornou revizi textu a vizuální prohlídku webu.
@@ -557,6 +558,23 @@ jsou v `check-chapter-09-excel.json`; obnoví je
 Funkce HYPGEOM.DIST u nemožné kombinace argumentů nemusí vracet chybu, proto
 ji list `Fisher` volá jen pro přípustné hodnoty.
 
+Desátou kapitolu ověřuje `check-chapter-10.R`: koeficienty proti `cor`
+(Pearson, Spearman, Kendall τ<sub>b</sub>), test a Fisherův interval proti `cor.test`,
+bodově biseriální korelaci proti `t.test`, přesné permutace šesti lidí a všechna
+čísla citovaná v textu a v řešeních. Data, pevné indexy převzorkování a výsledky
+9 999 opakování vytváří `scripts/kapitola_10.R` (seedy 20261109 a další) do
+`tmp/chapter-10-indices/`; s `CH10_NOFIG=1` vynechá obrázky, s `CH10_PNG=1` je zapíše
+jako PNG do `tmp/chapter-10-png/` pro prohlídku. Simulaci pokrytí percentilového
+intervalu a chybovosti permutačního testu citovanou v textu obnoví
+`Rscript --vanilla scripts/kapitola_10-pokryti.R` (asi 8 minut, výsledek
+`tmp/chapter-10-pokryti.csv`, který kontrola porovná, pokud existuje). Skript
+`check-chapter-10-excel.ps1` kontroluje v samostatném skrytém Excelu uložené
+výsledky, české vzorce z textu, sedm scénářů s daty cvičení a to, že součty přes
+dvojice jsou vzorci dynamického pole; změny neukládá. Očekávané hodnoty obnoví
+`Rscript --vanilla quarto/_verification/check-chapter-10-excel-expected.R`.
+Sešit kapitoly 10 vyžaduje pro výpočty převzorkování Excel pro Microsoft 365
+nebo Excel 2021 a novější (vzorce `Formula2Local`).
+
 Všechny kapitoly používají společnou sadu záznamů `references.bib` i pro rozlišení stejně datovaných zdrojů téhož autora. Nastavení `nocite: '@*'` sjednocuje písmena za rokem mezi kapitolami, citačními náhledy a společnou literaturou. Do bibliografie proto ukládejte jen zdroje skutečně použité v knize; webová kontrola ověřuje shodu záznamů.
 
 Změny připravujte v tematické větvi `codex/` a předložte je prostřednictvím pull requestu. Sloučení do `main` provádí autor projektu.
@@ -565,7 +583,7 @@ Změny připravujte v tematické větvi `codex/` a předložte je prostřednictv
 
 ## Obnova sešitů a podkladů kapitol 1–7
 
-Všech sedm sešitů se vytváří **přímo v desktopovém Excelu pro Windows**.
+Všechny sešity (nyní kapitoly 1–10) se vytvářejí **přímo v desktopovém Excelu pro Windows**.
 Potřebujete nainstalovaný český Excel (ověřeno 16.0), Windows PowerShell
 5.1, Node.js a pro simulované vstupy kapitol 1 a 4–7 také R. Příkazy `node`
 a `Rscript` musí být dostupné v `PATH`. Generátory používají pouze

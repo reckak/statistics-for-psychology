@@ -24,3 +24,7 @@
 <a id="priprava-10-20261109"></a>
 
 **Čtení pro návrh kapitoly 10 (2026-11-09):** znovu text všech 58 snímků z XML (pořadí souborů ověřeno proti `presentation.xml`); poznámky ani obrazy snímků znovu prohlédnuty nebyly. Příklad známky z matematiky a obvodu hlavy (sn. 51 a 55) přepočten v R: τ = −0,4 (3 konkordantní, 7 diskordantních dvojic), *r*<sub>S</sub> = −0,6, Pearsonovo *r* = −0,515. **Nové nálezy:** sn. 41 vykládá *r*² jako podíl rozdílů v *X*, které by „se daly připsat na vrub“ rozdílům v *Y*; formulace svádí ke kauzálnímu čtení a bez regresního výkladu ji nepřebírat. Sn. 35 uvádí, že *r* lineární transformace neovlivňují; přesně: absolutní hodnotu nemění, záporný násobek obrátí znaménko. Pojetí souvislosti jako podmíněnosti rozdělení (sn. 10–11) a přehled koeficientů podle typu proměnných (sn. 14, 58) jsou využitelné pro úvod a pro propojení s kapitolami 8–9. [Společný záznam](HISTORIE.md#priprava-10-20261109).
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.

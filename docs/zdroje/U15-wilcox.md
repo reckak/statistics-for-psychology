@@ -112,3 +112,7 @@ V textové extrakci přečteny úvod §5.9 (s. 170, PDF 195), §5.11 (percentilo
 
 - **Využitelné:** bootstrap nejsou metody „bez předpokladů“ a nejsou všelékem (§5.9); percentilový interval jako prostředních 95 % bootstrapových odhadů (§5.11); výběr celých dvojic s vracením (§6.9). Velikost *r* ovlivňuje rozptýlenost kolem přímky, sklon, odlehlé body, omezení rozsahu (může *r* zvýšit i snížit) a zakřivení; ρ = 0 neimplikuje nezávislost (§6.5.1). Nezamítnutí ρ = 0 není přesvědčivým dokladem nezávislosti (§6.6.5). Klasický test ρ = 0 je platným testem nezávislosti, ale citlivě reaguje na heteroskedasticitu, pokud má testovat jen nulovou korelaci (§6.6.3, §6.9).
 - **Podmínky převzetí:** podle §6.9 se pokrytí základního percentilového intervalu pro Pearsonovo *r* může při *n* < 250 podstatně lišit od 95 %; Wilcox proto upravuje pořadí mezí (B = 599). Pro *r*<sub>S</sub> a τ<sub>b</sub> to přímo netestuje; základní percentilový interval proto nevydávat za ověřený postup bez vlastní simulace pokrytí. Permutační test podle §7.7 testuje shodu rozdělení (u korelace nezávislost), nikoli parametr, a nedává interval. [Společný záznam](HISTORIE.md#priprava-10-20261109).
+
+## Související karty kapitol
+
+Tematické vazby pro výběr podkladů: [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.

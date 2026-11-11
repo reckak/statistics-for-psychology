@@ -266,6 +266,32 @@ const server = http.createServer((req, res) => {
         await page.locator('#rozsireni-rozdeleni-p').screenshot({path:'tmp/verification/ch06-rozsireni-rozdeleni-p-desktop.png'});
         await pdistToggle.click();await pdist6.waitFor({state:'hidden'});
       }
+      if (file === 'quarto/kapitola_10.html') {
+        assert.equal(await solutions.count(),18,'Chapter 10 has sixteen core and two optional exercise solutions');
+        assert.equal(await page.locator('merror').count(),0,'Chapter 10 mathematics parses');
+        assert.equal(await page.locator('main img').count(),12);
+        for(const img of await page.locator('main img').all()) {
+          await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          assert((await img.getAttribute('alt')).length>30);
+        }
+        const greek10=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[ρτφχΦ]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
+        assert(greek10.filter(e=>e.text.includes('τ')).length>5,'Kendall tau rendered');
+        assert(greek10.filter(e=>/[ρτφχ]/.test(e.text)).every(e=>e.variant==='normal'),'Greek symbols of chapter 10 must be upright');
+        for(const id of ['rozsireni-rozptyl-rozdilu','rozsireni-bca','rozsireni-d-r']) {
+          assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
+        }
+        const main10=await page.locator('main').innerText();
+        assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main10.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance');
+        assert(/dynamickými poli/.test(main10),'The Excel version requirement is stated');
+        for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
+          const id=await fig.evaluate(el=>el.closest('[id]').id);
+          await fig.screenshot({path:`tmp/verification/ch10-${id}.png`});
+        }
+        for(const id of ['sec-ctyri-casti','sec-cist-r','sec-tau-b','sec-fisher-interval','sec-nahodny-permutacni','sec-pocet-opakovani','sec-rozhodovaci-tabulka','sec-korelacni-matice']) {
+          await page.locator('#'+id).screenshot({path:`tmp/verification/ch10-${id}-desktop.png`});
+        }
+      }
       if (file === 'quarto/kapitola_09.html') {
         assert.equal(await solutions.count(),14,'Chapter 9 has twelve core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 9 mathematics parses');
@@ -632,7 +658,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
-    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),9);
+    assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');

@@ -3,7 +3,7 @@ param([Parameter(Mandatory=$true)][string]$Manifest)
 $ErrorActionPreference='Stop'
 $taskRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $spec=Get-Content -LiteralPath $Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
-if($spec.chapter -notin 1,2,3,4,5,6,7,8,9){throw 'Unsupported chapter'}
+if($spec.chapter -notin 1,2,3,4,5,6,7,8,9,10){throw 'Unsupported chapter'}
 $target=Join-Path $taskRoot ('data/kapitola_{0:00}.xlsx' -f $spec.chapter)
 $staged=Join-Path (Split-Path -Parent $Manifest) 'workbook.xlsx'
 $taskExcel=$null;$taskBook=$null
@@ -79,6 +79,10 @@ try {
           }
         }
       }
+      # One Czech formula for a whole range; relative references shift as when filling (chapter 10 resampling blocks).
+      'fillFormulaLocal' {$r.FormulaLocal=[string]$op.value}
+      # Dynamic-array formula (Excel 365/2021+), e.g. SUMPRODUCT over TRANSPOSE; a legacy entry would compute wrongly.
+      'fillFormula2Local' {$r.Formula2Local=[string]$op.value}
       'format' {Set-Format $r $op.value}
       'merge' {[void]$r.Merge()}
       'fillDown' {[void]$r.FillDown()}
@@ -159,9 +163,18 @@ try {
   }
   $taskExcel.Calculation=-4105;$taskExcel.CalculateFullRebuild()
   $formulas=0
-  foreach($sh in $taskBook.Worksheets){foreach($cell in $sh.UsedRange.Cells){
-    if($cell.HasFormula){$formulas++;if($taskExcel.WorksheetFunction.IsError($cell)){throw "Excel error: $($sh.Name)!$($cell.Address()) $($cell.Text)"}}
-  }}
+  foreach($sh in $taskBook.Worksheets){
+    if($sh.UsedRange.Cells.Count -gt 20000){
+      # Large resampling sheets: count formulas and find error values in bulk (xlCellTypeFormulas, xlErrors).
+      try{$formulas+=$sh.UsedRange.SpecialCells(-4123).Count}catch{}
+      $bad=$null;try{$bad=$sh.UsedRange.SpecialCells(-4123,16)}catch{}
+      if($null -ne $bad){$c=$bad.Cells.Item(1);throw "Excel error: $($sh.Name)!$($c.Address()) $($c.Text)"}
+      continue
+    }
+    foreach($cell in $sh.UsedRange.Cells){
+      if($cell.HasFormula){$formulas++;if($taskExcel.WorksheetFunction.IsError($cell)){throw "Excel error: $($sh.Name)!$($cell.Address()) $($cell.Text)"}}
+    }
+  }
   $taskBook.Worksheets.Item('Prehled').Activate()
   $taskBook.RemovePersonalInformation=$true
   # Complete in tmp first: failures must not destroy the last published workbook.

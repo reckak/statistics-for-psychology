@@ -356,3 +356,44 @@ Simulace 10 000 výběrů k obrázku chí-kvadrát rozdělení je jen v `scripts
 | 12 | Slovní zadání s výsledky programu v textu. |
 | 13 | `U07_uceni` A2:D4 (nepovinně; Holm na listu `Tabulka`) |
 | 14 | `U10_add` A2:C3 (nepovinně; intervaly na listu `Mira_souvislosti`) |
+
+<a id="kapitola-10"></a>
+
+## Kapitola 10
+
+[Sešit](../data/kapitola_10.xlsx). Kontrola proti výkladu a zadáním: 2026-11-11.
+
+Všechny vstupy vytváří `scripts/kapitola_10.R` (autorské modely s pevnými seedy)
+a ukládá je do `tmp/chapter-10-indices/`; generátor sešitu je odtud čte, takže kniha
+i sešit používají stejná čísla. Výklad: `Mala_ukazka` A2:C7 (šest studentů, úzkost
+a výkon), `Uzkost` A2:C41 (40 studentů), `Stres_spanek` A2:C31 (30 studentů, stres
+0–16 a kvalita spánku 1–7, hodně shod), `Male_poradi` A2:C7 (šest studentů se shodami),
+`Spanek_k8` A2:C13 (12 úplných dvojic z kapitoly 8), `Skupiny_k8` A2:B43 (dvě nezávislé
+skupiny z kapitoly 8 jako kód 0/1 a skór) a `Hodnotitele` A2:C9 (osm esejí).
+Řádek je jeden člověk; obě hodnoty téhož člověka jsou ve stejném řádku.
+
+Hotové výpočty: `Kovariance` (vstupy B2:C11, až 10 lidí), `Pearson` (vstupy B2:B4;
+B5 kontrolně z listu `Uzkost`), `Spearman` (vstupy B2:C41, až 40 lidí), `Kendall`
+(vstupy B2:C7, výpis 15 dvojic), `Prevzorkovani_data` (vstupy B2:C31, právě 30 lidí),
+`Permutace` (1 999 přeskupení), `Bootstrap` (1 999 výběrů s vracením a v H2:I8 pevné
+výsledky 9 999 opakování jen pro výchozí data, podle upřesnění R71), `Perm_presna`
+(všech 720 přiřazení šesti lidí), `Parova_korelace`, `Rpb`, nepovinně `BCa`
+a `Dve_korelace`. Pomocné listy `Perm_*` a `Boot_*` obsahují pevné indexy ze seedu
+20261109 a z nich odvozené hodnoty a pořadí. Vzorce s TRANSPOZICE uvnitř
+SOUČIN.SKALÁRNÍ jsou vzorce dynamického pole (Excel pro Microsoft 365, Excel 2021
+a novější). Simulace k obrázkům (výběrové rozdělení *r*, tvary, faktory) a simulace
+pokrytí (`scripts/kapitola_10-pokryti.R`) do sešitu nepatří.
+
+| Cvičení | List a oblast / povaha zadání |
+|---|---|
+| 1, 2, 4, 11, 14, 15 | Slovní zadání; potřebná čísla jsou v textu. |
+| 3 | `U03` A2:C6; výpočet na listu `Kovariance` |
+| 5 | `U05` A2:C8 (pořadí, nikoli hodnoty) |
+| 6 | `U06` A2:C9; výpočet na listu `Spearman` |
+| 7 | `U07` A2:C6; výpočet na listu `Kendall` (pět lidí) |
+| 8 | `U08` A2:C7; výpočet na listech `Kendall` a `Perm_presna` |
+| 9, 10 | Souhrny v textu; výpočet na listu `Pearson` |
+| 12, 13 | `U12` A2:C31; výpočet po zkopírování do `Prevzorkovani_data` B2:C31 |
+| 16 | `U16` A2:C41; student 17 má záměrně nevěrohodný údaj 900 minut |
+| 17 | Nepovinně; list `BCa` s výchozími daty |
+| 18 | Nepovinně; souhrny podle Cumminga (s. 338–339) na listu `Dve_korelace` |

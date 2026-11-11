@@ -419,3 +419,19 @@ Původní studie (Walsh a kol., Danielsová, aspirinová studie, Bem a Honorton,
 **Nevyřešeno:** vzorce směrodatných chyb *r*<sub>S</sub> a τ pro intervaly (P10 sn. 40–41 a 48; Fiellerova aproximace τ použita jen pro orientační srovnání s Howellem), správnost slovních pásem síly *r* a původní empirické studie citované v učebnicích.
 
 **Doplnění téhož dne (sloučení s autorovým plánem):** autor předložil vlastní plán s povinným permutačním testem a percentilovým bootstrapovým intervalem pro *r*<sub>s</sub> a τ<sub>b</sub>. Proto doplněno čtení [Wilcoxe](U15-wilcox.md#priprava-10-20261109) (§5.9, §5.11, §6.5.1, §6.6, §6.9, §7.7) a [Howella](U01-howell.md#priprava-10-20261109) kap. 18, s. 657–665 (PDF 681–689: obecný úvod k převzorkování, bootstrap mediánu, bootstrapový interval pro *r*). Excelová proveditelnost bootstrapu bez maker zatím ověřena nebyla.
+
+<a id="pouziti-kapitola-10"></a>
+
+## Použití podkladů při tvorbě kapitoly 10 — 2026-11-11
+
+Kapitola 10 vznikla podle [R71](../rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10)–[R73](../rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) a [upřesnění R71](../rozhodnuti/kapitola-10.md#r71-upresneni-2026-11-09). Použití podkladů:
+
+- [U01](U01-howell.md#priprava-10-20261109): *r* není procento vztahu a obrácení škály (s. 260); dvourozměrné normální rozdělení (s. 273–274); *t*-test *r* = 0 (s. 280–281); Fisherova transformace a interval (s. 284–286); omezení rozsahu a heterogenní podskupiny (s. 291–293, čísla 0,65/0,43 a 0,78/0,60/0,49 jen v kartě, v textu vlastní data); průměrná pořadí a zjednodušený Spearmanův vzorec (s. 314); konkordantní a diskordantní dvojice a výklad τ jako rozdílu pravděpodobností (s. 315–316); bodově biseriální korelace (s. 305–308); bootstrap celých dvojic (s. 659–664). Howellův interval pro τ s nulovou směrodatnou chybou převzat nebyl.
+- [U03](U03-cumming.md#priprava-10-20261109): bodový graf a nelinearita (s. 311–313); kvadranty a součiny *z*-skórů (s. 317–319); odlehlý bod 0,89 → 0,26 (s. 319–320); omezení rozsahu (s. 322); data celé populace (s. 327–328); kauzalita (s. 333–334); srovnávací hodnoty, reliabilita a validita, Chan (s. 336–338); dvě nezávislé korelace ve cvičení 18 (s. 338–339).
+- [U02](U02-aron.md#priprava-10-20261109): korelační studie vs. korelační koeficient a příklad s náhodným přidělením (s. 512); korelační matice (s. 522). Srovnání korelací přes *r*² převzato nebylo.
+- [U15](U15-wilcox.md#priprava-10-20261109): bootstrap není postup bez předpokladů (s. 170); percentilový interval (s. 176–178); co ovlivňuje *r* a ρ = 0 bez nezávislosti (s. 216–219); heteroskedasticita a nezamítnutí (s. 223–224); pokrytí percentilového intervalu pro *r* (s. 227–228); permutační test testuje shodu rozdělení (s. 275).
+- [P10](P10-korelace-stps.md#priprava-10-20261109) a [P11](P11-korelace-psyb1170.md#priprava-10-20261109): priority (tři koeficienty, grafy, faktory, Fisherova transformace); nepřevzaty slovní pásma, lineární převod *d* na *r*, kauzální výklad *r*² a oprava *r* přes upravené *r*².
+- Vlastní simulace (`scripts/kapitola_10-pokryti.R`, seed 7010, 1 000 výběrů, B = 999 a 499): pokrytí 95% percentilového intervalu pro *r*<sub>s</sub> a τ<sub>b</sub> při ρ −0,5 a −0,8 bylo pro *n* = 30 0,942–0,955, pro *n* = 10 0,961–0,971 s průměrnou šířkou 0,81–1,14; chyba I. druhu permutačního testu 0,055 a 0,057 pro *n* = 30, 0,037 a 0,032 pro *n* = 10. Platí jen pro spojité dvourozměrné normální populace bez shod.
+- Kontrolní opora bez citace ve studentském textu: funkce R `cor`, `cor.test`, `rank`, `t.test`, `quantile(type = 7)`; jejich dokumentace čtena nebyla.
+
+Původní studie (Bosco et al., Chan, Gump et al.) nebyly čteny; text je uvádí podle zprostředkujících učebnic. Ruscio (2008) a srovnávací studie ve *Frontiers in Psychology* (2012) nebyly přečteny ani použity.

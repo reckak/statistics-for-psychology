@@ -7,7 +7,7 @@ uvažování s psychologickými příklady a cvičeními se sbaleným řešením
 
 **[Otevřít webovou učebnici](https://reckak.github.io/statistics-for-psychology/)**
 
-Kniha obsahuje devět výkladových kapitol, společnou literaturu a tři
+Kniha obsahuje deset výkladových kapitol, společnou literaturu a tři
 průběžně doplňované přehledy: slovníček, značení a vzorce a funkce Excelu.
 Každá výkladová kapitola má jeden excelový sešit se vstupy k příkladům
 a cvičením. Podrobný obsah a návaznosti zachycuje [mapa knihy](docs/OSNOVA.md),

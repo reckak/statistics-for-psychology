@@ -1,5 +1,56 @@
 # Autorská dokumentace
 
+<a id="terminy-kapitoly-10-schvaleni"></a>
+
+## Kapitola 10: schválení termínů K10-N1 až K10-N4 (2026-11-11)
+
+Autor schválil všechny čtyři návrhy ([doplnění R73](../docs/rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)).
+Do slovníčku a registru přibyla hesla **omezení rozsahu**, **korelační matice**, **analýza citlivosti**
+a nepovinné **interval BCa**; text kapitoly se nezměnil. Kontrola: render kapitoly a slovníčku,
+`check-html.cjs` a `check-doc-maps.cjs`.
+
+<a id="vytvoreni-kapitoly-10"></a>
+
+## Kapitola 10: vytvoření kapitoly o korelaci (2026-11-11)
+
+Podle [R71](../docs/rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10)–[R73](../docs/rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)
+a [upřesnění R71](../docs/rozhodnuti/kapitola-10.md#r71-upresneni-2026-11-09) vznikla
+kapitola `quarto/kapitola_10.qmd` (13 oddílů, tři nepovinná rozšíření, 16 + 2 cvičení
+s úplnými řešeními), skript `scripts/kapitola_10.R` (data, výpočty, 12 obrázků, export
+vstupů a pevných indexů převzorkování), simulace `scripts/kapitola_10-pokryti.R`,
+sešit `data/kapitola_10.xlsx` (35 listů) s generátorem `scripts/kapitola_10-sešit.mjs`,
+kontroly `check-chapter-10.R`, `check-chapter-10-excel.ps1` a jejich očekávané hodnoty
+z `check-chapter-10-excel-expected.R`, hesla ve slovníčku, značení a přehledu Excelu,
+karta kapitoly, oddíl `DATA.md` a záznam použití podkladů.
+
+**Společná infrastruktura:** zapisovač sešitů nově zná hromadný zápis jednoho českého
+vzorce do celé oblasti (`fillFormulaLocal`) a vzorce dynamického pole (`fillFormula2Local`);
+kontrola chyb vzorců u listů nad 20 000 buněk používá `SpecialCells` místo procházení
+buněk. Ostatní kapitoly se chovají jako dosud. Spouštěč sešitů a kontroly přijímají
+kapitolu 10; před sestavením kapitoly 10 se spustí `scripts/kapitola_10.R`
+s `CH10_NOFIG=1` (bez obrázků).
+
+**Ověření:** `check-chapter-10.R` porovnal postupy se základním R (`cor`, `cor.test`,
+`t.test`, `rank`) a všechna čísla citovaná v textu a řešeních včetně výsledků simulace
+pokrytí. `check-chapter-10-excel.ps1` v samostatném skrytém Excelu 16.0 (český) prošel
+131 kontrol: uložené výsledky všech výpočtových listů, devět českých vzorců z textu,
+sedm scénářů s daty cvičení 3, 6, 7, 8, 9, 12 a 13 a ověření, že součty přes dvojice
+jsou vzorci dynamického pole (zadání postaru dává jiný výsledek). Kontrola chyb všech
+deseti sešitů a `check-workbooks.py` prošly. Celá kniha vykreslena; `check-html.cjs`
+prošel včetně nového bloku pro kapitolu 10 (18 řešení, 12 obrázků, stojaté řecké
+symboly, sbalená rozšíření, mobilní šířka 390 px). Při kontrole byly opraveny tři
+přetékající rovnice či vzorce na mobilu a ručně psaná čísla oddílů v odkazech.
+Obrázky prohlédnuty v PNG kopiích (`CH10_PNG=1`) a ve snímcích kontroly webu.
+
+**Omezení:** sešit nebyl otevřen ve starší verzi Excelu, v Excelu pro Mac ani ve
+webovém Excelu. Simulace pokrytí platí jen pro spojité dvourozměrné normální populace
+bez shod. Ruscio (2008) a srovnávací studie ve *Frontiers in Psychology* nebyly čteny.
+Didaktická revize proběhla vlastním čtením; samostatný agent v roli studenta ani
+autorská odborná revize zatím neproběhly. Otevřené jsou terminologické návrhy
+K10-N1 až K10-N4 (omezení rozsahu, korelační matice, analýza citlivosti, interval BCa).
+Necommitované úpravy kapitol 1 a 2 (formátování vizuálním editorem RStudia, které
+odstranilo identifikátory tabulek) byly na pokyn autora zahozeny.
+
 <a id="prototyp-prevzorkovani-10"></a>
 
 ## Kapitola 10: prototyp převzorkování v Excelu (2026-11-09)

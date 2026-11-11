@@ -34,7 +34,9 @@ a na interval, párové a nezávislé uspořádání a velikost účinku z kapit
 [8](08-porovnani-dvou-prumeru.md#mapa-kapitola-08). Skutečný obsah eviduje
 [karta kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09), nikoli tento plán.
 
-**Stav k 2026-11-09 (večer): pro kapitolu 10 je schválen plán, text zatím neexistuje.**
+**Stav k 2026-11-11: kapitola 10 je napsána; po ní není schválen žádný plán.** Skutečný obsah eviduje
+[karta kapitoly 10](10-korelace.md#mapa-kapitola-10), nikoli tento plán. Historický stav k 2026-11-09
+(večer): pro kapitolu 10 byl schválen plán, text ještě neexistoval.
 Kapitola 10 „Korelace — souvislost dvou proměnných, její velikost a nejistota“
 (pracovní název) se řídí
 [R71](../rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly-10) (rozsah, pořadí,
