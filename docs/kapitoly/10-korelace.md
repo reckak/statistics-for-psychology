@@ -12,8 +12,8 @@ sestavena podle výkladu, zadání a řešení 2026-11-11. Dohodu dokládají
 [R73](../rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-10). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-10).
-Soulad karty s textem zkontrolován 2026-11-11. Autorská odborná revize zatím neproběhla;
-otevřené jsou terminologické návrhy K10-N1 až K10-N4 ([registr](../SLOVNIK.md#navrhy)).
+Soulad karty s textem zkontrolován 2026-11-11. Autorská odborná revize zatím neproběhla. Terminologické návrhy K10-N1 až K10-N4
+autor schválil 2026-11-11 ([doplnění R73](../rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)).
 
 **Vstup:** souvislost a příčina, role proměnných, ordinální úroveň, reliabilita a validita
 (kap. 1); tečkový graf a odlehlé pozorování (kap. 2); průměr, rozptyl, směrodatná odchylka,
@@ -128,12 +128,12 @@ slovní: 1, 2, 4, 14, 15.
 
 ### Pojmy, konvence a hranice návaznosti
 
-Nově vysvětleno 19 hesel [registru](../SLOVNIK.md#kapitola-10). Značení podle R72:
+Nově vysvětleno 23 hesel [registru](../SLOVNIK.md#kapitola-10), z toho čtyři schválená doplněním R73. Značení podle R72:
 $s_{xy}$, *r* a ρ, $r_s$ a ρ<sub>s</sub>, τ<sub>a</sub> a τ<sub>b</sub> (výběrově, populační hodnota
 slovy), $n_c$, $n_d$, $t_x$, $t_y$, $n_0$, $z_r$, $r_{pb}$, *B*. Nové funkce Excelu: CORREL,
 COVARIANCE.S, RANK.AVG, SIGN, SOUČIN.SKALÁRNÍ, TRANSPOZICE, FISHER, FISHERINV.
-Otevřené terminologické návrhy K10-N1 až K10-N4: omezení rozsahu, korelační matice,
-analýza citlivosti, interval BCa.
+Doplněním R73 schválena hesla omezení rozsahu, korelační matice, analýza citlivosti
+a nepovinně interval BCa.
 
 **Nepovinné:** rozptyl rozdílů přes *r*, interval BCa, převod *d* na *r*<sub>pb</sub>,
 porovnání dvou nezávislých korelací (jen cvičení 18). Další kapitola je nesmí předpokládat.

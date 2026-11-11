@@ -1,5 +1,14 @@
 # Autorská dokumentace
 
+<a id="terminy-kapitoly-10-schvaleni"></a>
+
+## Kapitola 10: schválení termínů K10-N1 až K10-N4 (2026-11-11)
+
+Autor schválil všechny čtyři návrhy ([doplnění R73](../docs/rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)).
+Do slovníčku a registru přibyla hesla **omezení rozsahu**, **korelační matice**, **analýza citlivosti**
+a nepovinné **interval BCa**; text kapitoly se nezměnil. Kontrola: render kapitoly a slovníčku,
+`check-html.cjs` a `check-doc-maps.cjs`.
+
 <a id="vytvoreni-kapitoly-10"></a>
 
 ## Kapitola 10: vytvoření kapitoly o korelaci (2026-11-11)

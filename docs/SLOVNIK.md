@@ -532,17 +532,16 @@ a první výklad vznikly s kapitolou 2026-11-11 pod zde uvedenými stabilními I
 | <a id="pojem-bootstrap"></a>**Bootstrap; bootstrapový výběr** | bootstrap; bootstrap sample | — | Zde výběr celých dvojic s vracením; počet opakování *B* (R72). | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-bootstrap); [výklad](../quarto/kapitola_10.qmd#sec-vyber-z-vyberu) |
 | <a id="pojem-percentilovy-bootstrap"></a>**Percentilový bootstrapový interval** | percentile bootstrap confidence interval | percentilový interval | Povinná základní konstrukce; neprezentovat jako univerzálně nejlepší. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-percentilovy-bootstrap); [výklad](../quarto/kapitola_10.qmd#sec-percentilovy) |
 | <a id="pojem-bodove-biserialni"></a>**Bodově biseriální korelace** | point-biserial correlation | — | $r_{pb}$; znaménko určuje kódování. | S — [R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-bodove-biserialni); [výklad](../quarto/kapitola_10.qmd#sec-bodove-biserialni) |
+| <a id="pojem-omezeni-rozsahu"></a>**Omezení rozsahu** | range restriction | restrikce rozsahu; omezené variační rozpětí | Popisuje výběr, ne vlastnost proměnné; odlišit od výběru krajních skupin, který korelaci zvětšuje. | S — [doplnění R73](rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11) | [Heslo](../quarto/slovnicek.qmd#pojem-omezeni-rozsahu); [výklad](../quarto/kapitola_10.qmd#sec-omezeni-rozsahu) |
+| <a id="pojem-korelacni-matice"></a>**Korelační matice** | correlation matrix | — | Uvádět počet dvojic u každé korelace při chybějících hodnotách; pozor na mnoho testů. | S — [doplnění R73](rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11) | [Heslo](../quarto/slovnicek.qmd#pojem-korelacni-matice); [výklad](../quarto/kapitola_10.qmd#sec-korelacni-matice) |
+| <a id="pojem-analyza-citlivosti"></a>**Analýza citlivosti** | sensitivity analysis | — | Neslouží k výběru „lepšího“ výsledku; uvádějí se obě varianty. | S — [doplnění R73](rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11) | [Heslo](../quarto/slovnicek.qmd#pojem-analyza-citlivosti); [výklad](../quarto/kapitola_10.qmd#sec-odlehle-korelace) |
+| <a id="pojem-interval-bca"></a>**Interval BCa** | bias-corrected and accelerated (BCa) bootstrap interval | BCa interval | Jen v nepovinném rozšíření; zkratka BCa s anglickým rozvedením. | S — [doplnění R73](rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11) | [Heslo](../quarto/slovnicek.qmd#pojem-interval-bca); [výklad](../quarto/kapitola_10.qmd#rozsireni-bca) |
 
 <a id="navrhy"></a>
 
 ## Návrhy a nejasně doložené volby — mimo platný registr
 
-**Otevřené návrhy z psaní kapitoly 10 (2026-11-11, stav: návrh):** výrazy, které kapitola zavádí tučně s anglickým ekvivalentem, ale seznam R73 je neuvádí. Do studentského slovníčku zatím nejsou zapsány.
-
-- *K10-N1* **Omezení rozsahu** (*range restriction*). Kontext: oddíl o tom, co mění korelaci (přijímací test a přijatí uchazeči). Alternativy: restrikce rozsahu, omezené variační rozpětí (P11). Otázka: schválit jako termín, nebo jen popsat slovy?
-- *K10-N2* **Korelační matice** (*correlation matrix*). Kontext: sdělování výsledků (tabulka korelací čtyř proměnných s počty dvojic). Otázka: schválit jako termín?
-- *K10-N3* **Analýza citlivosti** (*sensitivity analysis*). Kontext: odlehlé pozorování a cvičení 16 (výpočet s ním i bez něj). Otázka: schválit jako termín, nebo ponechat opisem „výpočet s ním i bez něj“?
-- *K10-N4* **Interval BCa** (*bias-corrected and accelerated interval*). Kontext: jen nepovinné rozšíření a cvičení 17; R71 interval schválilo, název termínu ne. Otázka: ponechat zkratku BCa s anglickým rozvedením?
+Návrhy K10-N1 (omezení rozsahu), K10-N2 (korelační matice), K10-N3 (analýza citlivosti) a K10-N4 (interval BCa) z psaní kapitoly 10 autor schválil 2026-11-11 ([doplnění R73](rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)); oddíl je opět bez otevřených terminologických návrhů.
 
 Terminologie kapitoly 10 byla schválena 2026-11-09 jako seznam plánu
 ([R73](rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10)) a je v [platné tabulce](#kapitola-10).
