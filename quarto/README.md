@@ -14,7 +14,7 @@ nikoli text. Nově je v repozitáři export slidů
 stejně jako u předchozích kapitol.
 
 Následně byly opraveny dva překlepy v poznámkách (slide 9 „Hladina spolehlivosti“,
-slide 18 „matky v intervenčním programu“) a podle R74 sladěny podrobné poznámky
+slide 18 „matky v intervenčním programu“), na slidu 2 sjednocena terminologie („hladina spolehlivosti“ místo „úroveň spolehlivosti“, „interval“ místo zkratky „CI“; zkratka CI zůstává jen v ukázce reportování podle APA 7 na slidu 32) a podle R74 sladěny podrobné poznámky
 v `kapitola_07_poznamky.docx` s věcnými doplňky autora: u slidu 4 důvody změny
 variability (citlivost vůči spánkové deprivaci, potřeba spánku), u slidu 14 směr
 liberálního jednostranného testu (opačný vůči zešikmení, při šikmosti doprava test
