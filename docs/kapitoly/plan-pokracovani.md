@@ -105,10 +105,14 @@ nebyla, autor schválil 2026-11-07 jako stránku
 [Co s rozdělením udělá posun a změna jednotek](../../quarto/viz_posun_a_jednotky.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun),
 [karta kapitoly 3](03-poloha-variabilita.md#interaktivni-vizualizace-03)).
+Námět ke kapitole 7 „t a normální rozdělení podle stupňů volnosti“ autor
+2026-11-12 schválil s doplňky a je realizován jako stránka
+[Jak se *t*-rozdělení liší od normovaného normálního](../../quarto/viz_t_rozdeleni.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t),
+[karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
-t a normální rozdělení podle stupňů volnosti, pásmo ekvivalence; kap. 8
-přínos párování a interval rozdílu vedle dvou intervalů.
+pásmo ekvivalence; kap. 8 přínos párování a interval rozdílu vedle dvou intervalů.
 
 **Historický stav k 2026-10-17** (původní znění je v Gitu): po kapitole 7
 nebyl schválen žádný plán; párový t-test a t-test pro dva nezávislé výběry

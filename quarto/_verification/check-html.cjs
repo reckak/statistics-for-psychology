@@ -659,7 +659,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1235,6 +1235,99 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_03.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_posun_a_jednotky.html"]').count(), 1, 'Chapter 3 links to the shift-and-units visualization');
+
+    // t and standard normal distributions: densities, distribution functions and quantiles against R, slider, bound, error switch, both tables and a phone screen.
+    await page.goto(base + 'quarto/viz_t_rozdeleni.html', { waitUntil: 'networkidle' });
+    const td = page.locator('#viz-t-rozdeleni');
+    const tdPlots = td.locator('.viz-plots svg[aria-label]');
+    await tdPlots.nth(3).waitFor();
+    assert.equal(await tdPlots.count(), 4, 'Densities, Q–Q plot and two error charts');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const tdState = () => td.evaluate(el => el.vizCheck.state());
+    const tdNear = (a, b, msg) => assert(Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    // R: dt(x, v), pt(x, v) and qt(p, v) for v = 1, 4, 30, 100; pnorm(x), qnorm(p).
+    const tdX = [-5, -3, -1.645, -1, 0, 0.5, 2, 4.5], tdP = [0.0005, 0.001, 0.025, 0.3, 0.9, 0.975, 0.9995];
+    const tdR = {
+      1: {d: [0.0122426879301, 0.0318309886184, 0.0858898378138, 0.159154943092, 0.318309886184, 0.254647908947, 0.0636619772368, 0.0149792887616],
+        p: [0.062832958189, 0.10241638235, 0.173864068852, 0.25, 0.5, 0.64758361765, 0.85241638235, 0.930395512727],
+        q: [-636.619248769, -318.308838986, -12.7062047362, -0.726542528005, 3.07768353718, 12.7062047362, 636.619248769]},
+      4: {d: [0.00264963621656, 0.0196934980908, 0.103042960001, 0.21466252584, 0.375, 0.32226186856, 0.0662912607362, 0.00414382960369],
+        p: [0.00374521694064, 0.0199709840359, 0.0876575335631, 0.18695048315, 0.5, 0.678335018409, 0.941941738242, 0.994588724769],
+        q: [-8.61030158138, -7.17318221978, -2.7764451052, -0.56864906305, 1.53320627406, 2.7764451052, 8.61030158138]},
+      30: {d: [3.28889020529e-05, 0.00677906274609, 0.103738679311, 0.237993342323, 0.395632184894, 0.347878579697, 0.0568522750472, 0.000133371193688],
+        p: [1.16483427335e-05, 0.00269498203283, 0.0552046424764, 0.162654307713, 0.5, 0.689638497557, 0.972687477519, 0.999952403203],
+        q: [-3.64595863504, -3.38518486683, -2.0422724563, -0.530019003907, 1.31041502539, 2.0422724563, 3.64595863504]},
+      100: {d: [5.08005823473e-06, 0.00512608970232, 0.103330927642, 0.240765896929, 0.397946186936, 0.350802833392, 0.0549086432954, 3.59358194751e-05],
+        p: [1.22508670675e-06, 0.00170395767166, 0.0515548825875, 0.159862077892, 0.5, 0.690913217085, 0.975893910634, 0.999990807694],
+        q: [-3.39049131116, -3.17373949374, -1.98397151852, -0.5260762706, 1.29007476135, 1.98397151852, 3.39049131116]}
+    };
+    for (const [v, want] of Object.entries(tdR)) {
+      const got = await td.evaluate((el, a) => ({d: a.xs.map(x => el.vizCheck.dt(x, a.v)), p: a.xs.map(x => el.vizCheck.pt(x, a.v)), q: a.ps.map(p => el.vizCheck.qt(p, a.v))}), {v: +v, xs: tdX, ps: tdP});
+      // Relative tolerance: the R values are printed to 12 significant digits.
+      ['d', 'p', 'q'].forEach(k => want[k].forEach((w, i) => assert(Math.abs(got[k][i] - w) <= 1e-9 * Math.abs(w) + 1e-15, `t ${k} v = ${v} #${i}: ${got[k][i]} vs ${w}`)));
+    }
+    const tdNorm = await td.evaluate((el, xs) => xs.map(el.vizCheck.pnorm), tdX);
+    [2.86651571879e-07, 0.00134989803163, 0.0499849055391, 0.158655253931, 0.5, 0.691462461274, 0.977249868052, 0.999996602327].forEach((w, i) => assert(Math.abs(tdNorm[i] - w) <= 1e-9 * w, `pnorm #${i}`));
+    // Default: 4 degrees of freedom, bound −1,645, tail shares; R: pt(-1.645, 4), pnorm(-1.645).
+    let ts = await tdState();
+    assert.equal(ts.v, 4); assert.equal(ts.x, -1.645); assert.equal(ts.mode, 'tail');
+    assert.deepEqual(await td.locator('#viz-t-v').evaluate(el => [el.min, el.max, el.step, el.value]), ['1', '100', '1', '4'], 'Slider range');
+    tdNear(ts.tail.pT, 0.0876575335631, 'Tail share of t'); tdNear(ts.tail.pN, 0.0499849055391, 'Tail share of the normal');
+    tdNear(ts.tail.rel, -42.97705684, 'Relative error of the tail share');
+    assert.deepEqual([ts.tail.formulaT, ts.tail.formulaN], ['=T.DIST(-1,645;4;PRAVDA)', '=NORM.S.DIST(-1,645;PRAVDA)']);
+    assert.match(await td.locator('[data-stats]').innerText(), /−0,03767 \/ 0,08766 · 100 % = −43,0 %/);
+    assert.equal(ts.qqOutside, 6, 'Q–Q points beyond ±8 for 4 degrees of freedom');
+    assert.match(await td.locator('[data-qq-note]').innerText(), /8,610/);
+    // Live table: R qt(c(.9, .95, .975, .99, .995, .9995), 4) and the relative error (z − t)/t.
+    [1.53320627406, 2.13184678633, 2.7764451052, 3.74694738798, 4.60409487135, 8.61030158138].forEach((w, i) => tdNear(ts.live[i].t, w, `Live table t #${i}`));
+    tdNear(ts.live[2].r, -29.4074289144, 'Relative error of the 0,975 quantile');
+    assert.match(await td.locator('[data-live]').innerText(), /2,776/);
+    // Keyboard on the slider: arrows by one, Home and End to the limits.
+    await td.locator('#viz-t-v').focus();
+    await page.keyboard.press('ArrowRight'); assert.equal((await tdState()).v, 5, 'ArrowRight adds one');
+    await page.keyboard.press('ArrowLeft'); await page.keyboard.press('ArrowLeft'); assert.equal((await tdState()).v, 3, 'ArrowLeft subtracts one');
+    await page.keyboard.press('Home'); assert.equal((await tdState()).v, 1, 'Home sets 1');
+    assert.match(await td.locator('#viz-t-v-value').innerText(), /v = 1 stupeň volnosti/);
+    await page.keyboard.press('End'); ts = await tdState();
+    assert.equal(ts.v, 100, 'End sets 100'); assert.equal(ts.qqOutside, 0, 'No Q–Q points beyond ±8 for 100 degrees of freedom');
+    tdNear(ts.tail.pT, 0.0515548825875, 'Tail share of t, 100 degrees of freedom');
+    // A value outside the fixed table is inserted and highlighted; R: qt(0.975, 7).
+    await td.locator('#viz-t-v').evaluate(el => { el.value = '7'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    ts = await tdState();
+    const tdRow7 = ts.fixed.rows.find(r => r.v === 7);
+    assert(tdRow7 && tdRow7.current && tdRow7.inserted, 'Row for 7 degrees of freedom inserted'); tdNear(tdRow7.q[2], 2.36462425159, 'Fixed table t for 7');
+    assert.equal(ts.fixed.rows.length, 14); assert.equal(await td.locator('.viz-t-current').count(), 1);
+    // Bound on the right and at zero; R: 1 - pt(2, 30), 1 - pnorm(2).
+    await td.locator('#viz-t-v').evaluate(el => { el.value = '30'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    await td.locator('#viz-t-x').fill('2');
+    ts = await tdState();
+    assert(ts.tail.right, 'Bound 2 uses the right tail');
+    tdNear(ts.tail.pT, 0.0273125224815, 'Right tail of t'); tdNear(ts.tail.pN, 0.0227501319482, 'Right tail of the normal');
+    assert.equal(ts.tail.formulaT, '=1-T.DIST(2;30;PRAVDA)');
+    await td.locator('#viz-t-x').fill('0');
+    ts = await tdState(); assert.equal(ts.tail.pT, 0.5); assert.equal(ts.tail.abs, 0);
+    // Decimal comma, typographic minus and rejected values.
+    await td.locator('#viz-t-x').fill('−3');
+    ts = await tdState(); tdNear(ts.tail.rel, -49.9106852963, 'Relative error at −3 with 30 degrees of freedom');
+    for (const bad of ['abc', '11', '1,2,3']) {
+      await td.locator('#viz-t-x').fill(bad);
+      assert.equal(await td.locator('#viz-t-x').getAttribute('aria-invalid'), 'true', `Rejected bound ${bad}`);
+      assert(await td.locator('#viz-t-x-error').isVisible(), `Message for bound ${bad}`);
+      assert.equal((await tdState()).x, -3, `Kept bound after ${bad}`);
+    }
+    // Density heights; R: dt(-3, 30), dnorm(-3).
+    await td.locator('input[name="viz-t-mode"][value="density"]').check();
+    ts = await tdState();
+    assert.equal(ts.mode, 'density'); tdNear(ts.heights.t, 0.00677906274609, 'Height of t'); tdNear(ts.heights.n, 0.00443184841194, 'Height of the normal');
+    assert.match(await td.locator('[data-stats]').innerText(), /=T\.DIST\(-3;30;NEPRAVDA\)/);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await tdPlots.nth(3).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 't-distribution visualization fits a phone');
+    await td.screenshot({path:'tmp/verification/viz-t-rozdeleni-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_07.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('.callout-tip a[href$="viz_t_rozdeleni.html"]').count(), 1, 'Chapter 7 links to the t-distribution visualization');
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

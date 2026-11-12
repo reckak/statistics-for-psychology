@@ -1,5 +1,48 @@
 # Autorská dokumentace
 
+<a id="vizualizace-t-rozdeleni"></a>
+
+## Vizualizace *t*-rozdělení a normovaného normálního (2026-11-12, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t)
+přibyla sedmá stránka části „Interaktivní vizualizace“,
+[Jak se *t*-rozdělení liší od normovaného normálního](viz_t_rozdeleni.qmd),
+v menu za statistickou silou. Obsahuje:
+
+- **ovládání:** posuvník 1–100 stupňů volnosti (výchozí 4), hranici *x* (−10 až 10, výchozí −1,645) a přepínač veličiny chyb (podíl ve chvostu, nebo výška hustoty);
+- **výsledky:** podíly za hranicí v obou rozděleních, obě chyby s dosazením a vzorce českého Excelu;
+- **čtyři grafy:** hustoty s vybarveným chvostem, normální Q–Q graf, absolutní chyba a relativní chyba;
+- **dvě tabulky:** živou tabulku kvantilů pro úrovně 0,90–0,9995 a pevnou tabulku pro 13 vybraných stupňů volnosti se zvýrazněným, případně vloženým řádkem;
+- **výklad chyb:** oddíl „Co ukazují grafy chyb“ se vzorcem, řešeným příkladem (30 stupňů volnosti, hranice −1,645 a −3) a zdůvodněním růstu relativní chyby ve chvostech.
+
+Kapitola 7 odkazuje blokem „Vyzkoušejte si: *t*-rozdělení a normované normální rozdělení“ v oddílu Studentovo *t*-rozdělení; jiný text kapitoly se nemění.
+
+Upravené soubory: `_quarto.yml`, styly (`.viz-t-…`), `check-html.cjs` (pořadí v menu, nová kontrola), karta kapitoly 7, OSNOVA.md, plán pokračování, registr, doklad R65 a PROVOZ.md. Nové pojmy, značení ani funkce Excelu nepřibyly: absolutní a relativní chyba jsou popsány bez hesla, funkce jsou v přehledu Excelu. Slovníček a přehledy se nemění.
+
+Redakční volby při realizaci:
+
+- **Osy:** vodorovná osa je pevná od −5 do 5. Osa absolutní chyby se přizpůsobuje stupňům volnosti (chyba se mezi 1 a 100 stupni volnosti zmenší asi osmdesátkrát).
+- **Odchylka od schváleného plánu:** osa relativní chyby vede od −100 % do +30 %. Výjimkou je výška hustoty při 1–3 stupních volnosti, kde relativní chyba kolem středu dosahuje až +52 % (R) a horní mez se zvýší. Pevná osa podle plánu by křivku ořízla; stránka to uvádí.
+- **Q–Q graf** zobrazuje úrovně 0,0005–0,9995 se svislou osou ±8. Body mimo ni jsou oříznuté a poznámka uvede úroveň, od které leží mimo graf.
+- **Tabulky** se při šířce okna 1024 px vejdou díky užšímu odsazení buněk a zalomeným záhlavím; na mobilu se posouvají jen uvnitř rámečku.
+- **Numerika:** distribuční funkce *t*-rozdělení se počítá z regularizované neúplné beta funkce, kvantil Newtonovou metodou s bisekční pojistkou (pro 1 a 2 stupně volnosti uzavřeným tvarem).
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- **R:** `dt`, `pt` a `qt` pro 1, 2, 4, 29, 30 a 100 stupňů volnosti, `pnorm` a `qnorm`, čísla řešeného příkladu, úkolů a oddílu „Čeho si všimnout“ (maximum absolutní chyby, relativní chyba v *x* = 5) a obě tabulky. Stránka se shoduje na 10⁻⁹ relativně a hodnoty jsou zapsány v kontrole webu.
+- **Excel:** deset vzorců stránky (`T.DIST` s PRAVDA i NEPRAVDA, `1-T.DIST`, `NORM.S.DIST`, `T.INV`, `NORM.S.INV`) bylo zadáno přes `FormulaLocal` do skryté samostatné instance českého Excelu v novém sešitu bez uložení. Výsledky se shodují s R a se stránkou.
+
+Celá kniha byla vykreslena. Prošly `check-html.cjs` (nová kontrola podle PROVOZ.md), `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+Prohlédnuty snímky při 1, 4, 30 a 100 stupních volnosti, výška hustoty při 1 stupni volnosti a šířka 375 px. Podle nich byly upraveny:
+
+- horní mez osy relativní chyby;
+- okraj a počet desetinných míst osy absolutní chyby;
+- zalamování záhlaví tabulek;
+- dílky osy *x* na mobilu.
+
+Didaktická revize stránky proběhla interně čtením očima studenta po kapitole 7. Upřesnila „v absolutní hodnotě menší“ a nulovou chybu u hranice 0; nové pojmy nepřibyly. Není ověřením na studentech. Neověřeno: ovládání čtečkou obrazovky; klávesy Page Up a Page Down posuvníku (nativní chování prohlížeče, krok závisí na prohlížeči).
+
 <a id="prezentace-kapitoly-7-autorske-upravy"></a>
 
 ## Prezentace kapitoly 7: autorské úpravy poznámek a PDF slidů (2026-11-11)

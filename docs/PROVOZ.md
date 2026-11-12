@@ -425,6 +425,24 @@ U vizualizace posunu a změny jednotek kontrola ověřuje:
   a ponecháním poslední platné hodnoty, volbu osy šipkami, šířku 375 px
   bez přetékání stránky a odkaz z kapitoly 3.
 
+U vizualizace *t*-rozdělení a normovaného normálního kontrola ověřuje:
+
+- čtyři grafy (hustoty, normální Q–Q graf, absolutní a relativní chyba)
+  a žádný viditelný kód, tlačítko schránky ani chybu OJS;
+- hustotu, distribuční funkci a kvantil *t*-rozdělení stránky pro 1, 4, 30
+  a 100 stupňů volnosti včetně vzdálených chvostů proti `dt`, `pt` a `qt`
+  z R a `pnorm` proti R;
+- výchozí stav (4 stupně volnosti, hranice −1,645), podíly za hranicí,
+  relativní chybu, přesné znění vzorců `T.DIST`/`NORM.S.DIST`, počet bodů
+  Q–Q grafu mimo osu a kvantily živé tabulky proti `qt` z R;
+- posuvník (meze, krok, šipky, Home a End), vložení a zvýraznění řádku
+  pro 7 stupňů volnosti v pevné tabulce, pravý chvost u kladné hranice,
+  hranici 0, desetinnou čárku a typografické minus;
+- odmítnutí neplatné hranice (text, 11, „1,2,3“) se zprávou a ponecháním
+  poslední platné hodnoty, přepnutí na výšku hustoty s výškami proti `dt`
+  a `dnorm` a vzorcem `T.DIST(…;NEPRAVDA)`, šířku 375 px bez přetékání
+  a odkaz z kapitoly 7.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
