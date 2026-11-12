@@ -78,7 +78,7 @@ $$46-3{,}92=42{,}08,\qquad 46+3{,}92=49{,}92.$$
 
 Jak výsledek číst? Na základě tohoto výběru a za předpokladů výpočtu jsou s daty v souladu populační průměry přibližně od 42 do 50 bodů. Pokles pozornosti oproti normě tak může být jen malý, přibližně 0,1 bodu, ale také téměř osm bodů. Bodový odhad 46 bodů leží uprostřed a interval nám říká, jak moc mu můžeme věřit.
 
-Hladinu spolehlivosti si volíme sami. Nejčastěji se používá 95 %, ale je to zvyklost, ne pravidlo; počítat lze i 90%, 99% nebo jiný interval. Obecně ji zapisujeme jako $1-\mathrm{α}$, kde α je podíl případů, ve kterých postup parametr mine; pro 95% interval je $\mathrm{α}=0{,}05$. Stejné písmeno jako pro hladinu významnosti není náhoda; souvislost vysvětlí oddíl o *p*-hodnotě. Interval s mezemi na obou stranách nechává polovinu z α v každém chvostu, a proto používá kvantil $z_{1-\mathrm{α}/2}$; pro 95 % je to $z_{0{,}975}$. Kdybychom chtěli mez jen na jedné straně, použili bychom kvantil $z_{1-\mathrm{α}}$, protože celé α leží v jediném chvostu. K takovým jednostranným mezím se vrátíme v [oddílu o *p*-hodnotě](#sec-jednostranny-a-interval).
+Hladinu spolehlivosti si volíme sami. Nejčastěji se používá 95 %, ale je to zvyklost, ne pravidlo; počítat lze i 90%, 99% nebo jiný interval. Obecně ji zapisujeme jako $1-\mathrm{α}$, kde α je podíl případů, ve kterých postup parametr mine; pro 95% interval je $\mathrm{α}=0{,}05$. Stejné písmeno jako pro hladinu významnosti není náhoda; souvislost vysvětlí oddíl o *p*-hodnotě. Interval s mezemi na obou stranách nechává polovinu z α v každém chvostu, a proto používá kvantil $z_{1-\mathrm{α}/2}$; pro 95 % je to $z_{0{,}975}$. Kdybychom chtěli mez jen na jedné straně, použili bychom kvantil $z_{1-\mathrm{α}}$, protože celé α leží v jediném chvostu. K takovým jednostranným intervalům se vrátíme v [oddílu o *p*-hodnotě](#sec-jednostranny-a-interval).
 
 ### Co znamená „95 %“: opakované vytváření intervalů {#sec-co-znamena-95}
 
@@ -350,7 +350,7 @@ Funkce **T.DIST** (anglicky také T.DIST) vrací při posledním argumentu PRAVD
 
 **5. Rozhodnutí testu.** Na hladině významnosti 0,05 zamítáme nulovou hypotézu, že populační průměr studentů po krátkém spánku je alespoň 50 bodů. *p*-hodnota je 0,041.
 
-**6. Věcná interpretace.** Směr odpovídá výzkumné hypotéze. Velikost: odhadovaný pokles jsou 4 body. Nejistota: odhad směrodatné chyby je 2,2 bodu. S jednostranným testem na hladině 0,05 je v souladu 90% interval spolehlivosti (42,24; 49,76); proč právě 90%, vysvětlíme v [oddílu o jednostranných mezích](#sec-jednostranny-a-interval). Interval zahrnuje populační průměry od výrazného poklesu o téměř 8 bodů po pokles jen o čtvrt bodu. Uspořádání: platí totéž co v kapitole 6, příčinný závěr o spánku závisí na tom, jak se studenti do skupiny dostali. Dohromady: data podporují hypotézu o nižší pozornosti, ale velikost poklesu je odhadnuta nepřesně.
+**6. Věcná interpretace.** Směr odpovídá výzkumné hypotéze. Velikost: odhadovaný pokles jsou 4 body. Nejistota: odhad směrodatné chyby je 2,2 bodu. S jednostranným testem na hladině 0,05 je v souladu 90% interval spolehlivosti (42,24; 49,76); proč právě 90%, vysvětlíme v [oddílu o jednostranném intervalu](#sec-jednostranny-a-interval). Interval zahrnuje populační průměry od výrazného poklesu o téměř 8 bodů po pokles jen o čtvrt bodu. Uspořádání: platí totéž co v kapitole 6, příčinný závěr o spánku závisí na tom, jak se studenti do skupiny dostali. Dohromady: data podporují hypotézu o nižší pozornosti, ale velikost poklesu je odhadnuta nepřesně.
 
 Ve srovnání se *z*-testem z kapitoly 6 vyšla *p*-hodnota větší (0,041 místo 0,023). Část rozdílu má stejný důvod jako u intervalu: *t*-rozdělení má těžší chvosty, a stejně velká statistika je v něm proto méně neobvyklá. Kdyby $s$ vyšla 10 bodů, byla by statistika stejná jako u *z*-testu, $t=-2$, a *p*-hodnota by vzrostla jen na 0,028. Zbytek rozdílu způsobila větší výběrová směrodatná odchylka, která zmenšila statistiku na −1,818. Oboustranná *p*-hodnota by byla dvojnásobná, 0,082.
 
@@ -433,15 +433,15 @@ Proč interval a test vedou ke stejnému rozhodnutí? Obě cesty porovnávají t
 
 Obrázek [-@fig-zrcadlo-intervalu] ukazuje, že jde o zrcadlový obraz. Výběrový průměr je od testované hodnoty vzdálen 4 body, méně než mezní chyba 4,54 bodu. Proto průměr leží v oblasti nezamítnutí kolem 50 a zároveň 50 leží v intervalu kolem průměru. Třetí cestou je *p*-hodnota: ta je větší než 0,05 právě tehdy, když statistika neleží v kritickém oboru.
 
-Tytéž tři cesty platí pro jednostranné testy, jen se mění kvantil a interval. Tabulka [-@tbl-k07-tri-cesty] je shrnuje pro hladinu významnosti α a ukazuje je na našem příkladu; proč u jednostranného testu rozhoduje mez intervalu se spolehlivostí $1-2\mathrm{α}$, vysvětlí [další pododdíl](#sec-jednostranny-a-interval).
+Tytéž tři cesty platí pro jednostranné testy, jen se mění kvantil a interval. Tabulka [-@tbl-k07-tri-cesty] je shrnuje pro hladinu významnosti α a ukazuje je na našem příkladu; proč u jednostranného testu rozhoduje mez jednostranného intervalu se spolehlivostí $1-\mathrm{α}$, která je zároveň mezí oboustranného intervalu se spolehlivostí $1-2\mathrm{α}$, vysvětlí [další pododdíl](#sec-jednostranny-a-interval).
 
 ::: {.table-scroll .chapter-07-wide role="region" aria-label="Tři cesty k rozhodnutí testu: statistika, p-hodnota a interval" tabindex="0"}
 
 | Směr testu | Zamítáme, když statistika $t$ | Zamítáme, když *p*-hodnota | Zamítáme, když $\mathrm{μ}_0$ | Pozornost po krátkém spánku, $\mathrm{α}=0{,}05$ |
 |---|---|---|---|---|
-| Oboustranný, $H_1{:}\ \mathrm{μ}\neq\mathrm{μ}_0$ | $t\le-t_{1-\mathrm{α}/2\,(v)}$ nebo $t\ge t_{1-\mathrm{α}/2\,(v)}$ | oboustranná $\le\mathrm{α}$ | leží mimo interval se spolehlivostí $1-\mathrm{α}$ nebo na jeho mezi | $t=-1{,}818$ leží mezi $\pm2{,}064$; *p*-hodnota 0,082; 50 leží uvnitř (41,46; 50,54): **nezamítáme** |
-| „Menší“, $H_1{:}\ \mathrm{μ}<\mathrm{μ}_0$ | $t\le-t_{1-\mathrm{α}\,(v)}$ | pro alternativu „menší“ $\le\mathrm{α}$ | leží nad horní mezí intervalu se spolehlivostí $1-2\mathrm{α}$ nebo na ní | $t=-1{,}818\le-1{,}711$; *p*-hodnota 0,041; 50 leží nad horní mezí 90% intervalu (42,24; 49,76): **zamítáme** |
-| „Větší“, $H_1{:}\ \mathrm{μ}>\mathrm{μ}_0$ | $t\ge t_{1-\mathrm{α}\,(v)}$ | pro alternativu „větší“ $\le\mathrm{α}$ | leží pod dolní mezí intervalu se spolehlivostí $1-2\mathrm{α}$ nebo na ní | $t=-1{,}818<1{,}711$; *p*-hodnota 0,959; 50 neleží pod dolní mezí 42,24: **nezamítáme** |
+| Oboustranný, $H_1{:}\ \mathrm{μ}\neq\mathrm{μ}_0$ | $t\le-t_{1-\mathrm{α}/2\,(v)}$ nebo $t\ge t_{1-\mathrm{α}/2\,(v)}$ | oboustranná $\le\mathrm{α}$ | leží mimo oboustranný interval se spolehlivostí $1-\mathrm{α}$ nebo na jeho mezi | $t=-1{,}818$ leží mezi $\pm2{,}064$; *p*-hodnota 0,082; 50 leží uvnitř (41,46; 50,54): **nezamítáme** |
+| „Menší“, $H_1{:}\ \mathrm{μ}<\mathrm{μ}_0$ | $t\le-t_{1-\mathrm{α}\,(v)}$ | pro alternativu „menší“ $\le\mathrm{α}$ | leží nad horní mezí jednostranného intervalu se spolehlivostí $1-\mathrm{α}$, tedy i oboustranného se spolehlivostí $1-2\mathrm{α}$, nebo na ní | $t=-1{,}818\le-1{,}711$; *p*-hodnota 0,041; 50 leží nad horní mezí 90% intervalu (42,24; 49,76): **zamítáme** |
+| „Větší“, $H_1{:}\ \mathrm{μ}>\mathrm{μ}_0$ | $t\ge t_{1-\mathrm{α}\,(v)}$ | pro alternativu „větší“ $\le\mathrm{α}$ | leží pod dolní mezí jednostranného intervalu se spolehlivostí $1-\mathrm{α}$, tedy i oboustranného se spolehlivostí $1-2\mathrm{α}$, nebo na ní | $t=-1{,}818<1{,}711$; *p*-hodnota 0,959; 50 neleží pod dolní mezí 42,24: **nezamítáme** |
 
 : Tři cesty k témuž rozhodnutí testu {#tbl-k07-tri-cesty}
 
@@ -461,25 +461,31 @@ Tytéž tři cesty platí pro jednostranné testy, jen se mění kvantil a inter
 
 Z oboustranné *p*-hodnoty 0,082 samotné nic z toho nevyčteme. Proto se ve výzkumných zprávách interval uvádí společně s *p*-hodnotou; jedno nemůže nahradit druhé.
 
-### Jednostranný test a jednostranná mez {#sec-jednostranny-a-interval}
+### Jednostranný test a jednostranný interval {#sec-jednostranny-a-interval}
 
-V [řešeném *t*-testu](#sec-t-test-pozornost) výzkumnice testovala jednostranně a nulovou hypotézu zamítla (*p*-hodnota 0,041), i když 95% interval (41,46; 50,54) normu 50 obsahuje. Není to rozpor: 95% centrální interval odpovídá oboustrannému testu, ne jednostrannému. Oboustranný test rozděluje α = 0,05 do dvou chvostů, jednostranný ji celou dává do jednoho.
+V [řešeném *t*-testu](#sec-t-test-pozornost) výzkumnice testovala jednostranně a nulovou hypotézu zamítla (*p*-hodnota 0,041), i když 95% interval (41,46; 50,54) normu 50 obsahuje. Není to rozpor: tento interval odpovídá oboustrannému testu, ne jednostrannému. Oboustranný test rozděluje α = 0,05 do dvou chvostů, jednostranný ji celou dává do jednoho.
 
-Jednostrannému testu na hladině 0,05 s alternativou „menší“ odpovídá **horní jednostranná mez** se spolehlivostí 95 %:
+Všechny intervaly, které jsme zatím počítali, mají konečnou dolní i horní mez. Nazýváme je **oboustranné intervaly spolehlivosti** (*two-sided confidence intervals*). V každém jejich chvostu leží α/2, a v literatuře se jim proto říká také centrální intervaly. Píšeme-li v této knize „95% interval spolehlivosti“ bez přívlastku, myslíme oboustranný interval.
+
+Jednostrannému testu na hladině 0,05 s alternativou „menší“ odpovídá 95% **jednostranný interval spolehlivosti s horní mezí** (*one-sided confidence interval*, *upper confidence bound*). Ten má jedinou konečnou mez, horní:
 
 $$m+t_{0{,}95\,(v=24)}\times s_m=46+1{,}711\times2{,}2\approx49{,}76.$$
 
-Kvantil má úroveň $1-\mathrm{α}=0{,}95$, protože celé α leží v jednom chvostu. S daty jsou za předpokladů testu slučitelné populační průměry nejvýše 49,76 bodu. Norma 50 leží nad touto mezí, a jednostranný test ji proto zamítá. Postup, který takovou mez vytváří, ji při opakování umístí nad μ v 95 % případů, stejně jako 95% centrální interval zachytí μ v 95 % případů.
+Kvantil má úroveň $1-\mathrm{α}=0{,}95$, protože celé α leží v jednom chvostu. Interval zapisujeme (−∞; 49,76]: s daty jsou za předpokladů testu slučitelné populační průměry nejvýše 49,76 bodu. Norma 50 leží mimo interval, nad jeho horní mezí, a jednostranný test ji proto zamítá. Postup, který takový interval vytváří, umístí při opakování horní mez nad μ v 95 % případů. Interval tedy zachytí μ ve stejném podílu případů jako 95% oboustranný interval. Pro alternativu „větší“ by obdobně odpovídal **jednostranný interval spolehlivosti s dolní mezí** (*lower confidence bound*) $m-t_{0{,}95\,(v=24)}\times s_m\approx42{,}24$, zapsaný [42,24; ∞).
 
-Tatáž hodnota 49,76 je horní mezí **90%** centrálního intervalu (42,24; 49,76). 90% centrální interval nechává 5 % v každém chvostu, takže jeho horní mez je přesně jednostranná 95% mez. Obecně jednostrannému testu na hladině α odpovídá mez centrálního intervalu se spolehlivostí $1-2\mathrm{α}$. Při čtení je nutné hlídat směr: pro alternativu „větší“ by odpovídající mezí byla dolní mez 90% intervalu.
+Tatáž hodnota 49,76 je horní mezí **90%** oboustranného intervalu (42,24; 49,76). 90% oboustranný interval nechává 5 % v každém chvostu, takže jeho horní mez je přesně horní mezí 95% jednostranného intervalu. Obecně jednostrannému testu na hladině α odpovídá jednostranný interval se spolehlivostí $1-\mathrm{α}$ a stejnou mez má oboustranný interval se spolehlivostí $1-2\mathrm{α}$. Při čtení je nutné hlídat směr: pro alternativu „větší“ by odpovídající mezí byla dolní mez 90% intervalu.
 
-::: {.teaching-figure role="region" aria-label="Jednostranná mez a centrální intervaly pro jednostranný test" tabindex="0"}
+::: {.teaching-figure role="region" aria-label="Jednostranný interval a oboustranné intervaly pro jednostranný test" tabindex="0"}
 
-![Pro jednostranný test „menší“ na hladině 0,05 rozhoduje horní mez 49,76: je to horní jednostranná 95% mez i horní mez 90% centrálního intervalu. Norma 50 leží nad ní, test proto zamítá. 95% centrální interval patří k oboustrannému testu a normu 50 obsahuje.](../assets/chapter-07/plots/jednostranne-intervaly.svg){#fig-jednostranne-intervaly fig-alt="Vodorovná osa skóre od 36 do 56 bodů, svislá tečkovaná čára u normy 50 a tři řádky. Nahoře 95% centrální interval od 41,46 do 50,54 se středem 46, který přesahuje normu. Uprostřed 90% centrální interval od 42,24 do 49,76, který končí těsně před normou. Dole horní jednostranná 95% mez 49,76 se šipkou doleva, popsanou jako bez dolní meze."}
+![Pro jednostranný test „menší“ na hladině 0,05 rozhoduje horní mez 49,76: je to mez 95% jednostranného intervalu s horní mezí i horní mez 90% oboustranného intervalu. Norma 50 leží nad ní, test proto zamítá. 95% oboustranný interval patří k oboustrannému testu a normu 50 obsahuje.](../assets/chapter-07/plots/jednostranne-intervaly.svg){#fig-jednostranne-intervaly fig-alt="Vodorovná osa skóre od 36 do 56 bodů, svislá tečkovaná čára u normy 50 a tři řádky. Nahoře 95% oboustranný interval od 41,46 do 50,54 se středem 46, který přesahuje normu. Uprostřed 90% oboustranný interval od 42,24 do 49,76, který končí těsně před normou. Dole 95% jednostranný interval s horní mezí 49,76 se šipkou doleva, popsaný jako bez dolní meze."}
 
 :::
 
-Obrázek [-@fig-jednostranne-intervaly] ukazuje, proč se ve zprávách místo jednostranné meze obvykle uvádí 90% centrální interval. Jednostranná mez má slibované pokrytí, ale druhou mez nemá. Zapisuje se jako interval (−∞; 49,76], a jeho dolní konec nemá věcný význam: skór testu nemůže být libovolně nízký. Takový zápis říká jen to, že s daty jsou slučitelné populační průměry nejvýše 49,76 bodu. Neříká nic o tom, jak velký pokles ještě s daty slučitelný je, a právě to je otázka „o kolik“, se kterou kapitola začala. 90% centrální interval odpovídá na obě otázky: jeho horní mez rozhoduje jednostranný test a dolní mez 42,24 ukazuje, že s daty je slučitelný i pokles téměř o 8 bodů. Navíc má výběrový průměr uprostřed, takže je z něj vidět i bodový odhad. Hodnoty u středu intervalu jsou s daty nejlépe slučitelné; na křivce *p*-hodnot leží u jejího vrcholu. Neznamená to, že by μ ležela uprostřed s nějakou pravděpodobností; to je stejný omyl jako u [výroku o 95 %](#sec-co-znamena-95).
+Obrázek [-@fig-jednostranne-intervaly] ukazuje, proč se ve zprávách místo jednostranného intervalu obvykle uvádí 90% oboustranný interval. Jednostranný interval má slibované pokrytí, ale druhou mez nemá. Jeho dolní konec, −∞, nemá věcný význam: skór testu nemůže být libovolně nízký. Interval říká jen to, že s daty jsou slučitelné populační průměry nejvýše 49,76 bodu. Neříká nic o tom, jak velký pokles ještě s daty slučitelný je, a právě to je otázka „o kolik“, se kterou kapitola začala. 90% oboustranný interval odpovídá na obě otázky: jeho horní mez rozhoduje jednostranný test a dolní mez 42,24 ukazuje, že s daty je slučitelný i pokles téměř o 8 bodů. Navíc má výběrový průměr uprostřed, takže je z něj vidět i bodový odhad. Hodnoty u středu intervalu jsou s daty nejlépe slučitelné; na křivce *p*-hodnot leží u jejího vrcholu. Neznamená to, že by μ ležela uprostřed s nějakou pravděpodobností; to je stejný omyl jako u [výroku o 95 %](#sec-co-znamena-95).
+
+::: {.callout-tip title="Vyzkoušejte si: interval spolehlivosti a *p*-hodnota"}
+V [interaktivní vizualizaci](viz_interval_a_test.qmd) nastavíte testovanou hodnotu, výběrový průměr, *s*, *n*, hladinu významnosti a směr testu. Jeden graf ukazuje *p*-hodnotu pro různé testované hodnoty spolu s intervalem spolehlivosti, druhý *p*-hodnotu pro různé výběrové průměry spolu s oblastí nezamítnutí. U jednostranného testu vedle sebe uvidíte jednostranný interval a oboustranný interval se spolehlivostí $1-2\mathrm{α}$.
+:::
 
 Tento vztah mezi jednostrannými testy a 90% intervalem využijeme v [testu ekvivalence](#sec-test-ekvivalence).
 
@@ -548,7 +554,7 @@ Proč celý test zůstává na hladině 0,05, i když provádíme dva testy? Pop
 
 ### Proč 90% interval {#sec-proc-90}
 
-Výsledek obou jednostranných testů lze přečíst z jediného intervalu. V [oddílu o jednostranných mezích](#sec-jednostranny-a-interval) jsme viděli, že jednostrannému testu na hladině 0,05 odpovídá mez 90% centrálního intervalu ve správném směru:
+Výsledek obou jednostranných testů lze přečíst z jediného intervalu. V [oddílu o jednostranném intervalu](#sec-jednostranny-a-interval) jsme viděli, že jednostrannému testu na hladině 0,05 odpovídá mez 90% oboustranného intervalu ve správném směru:
 
 - Test vůči dolní hranici zamítá, když **dolní mez** 90% intervalu leží nad 47 nebo přesně na 47.
 - Test vůči horní hranici zamítá, když **horní mez** 90% intervalu leží pod 53 nebo přesně na 53.
@@ -645,7 +651,7 @@ Zpráva obsahuje všechny části, které čtenář potřebuje: odhad a jeho př
 - **Trénink pozornosti** má pozornost zlepšit. Chceme doložit, že ji zlepšuje o více než 3 body, tedy o víc než nejmenší věcně důležitý rozdíl. Taková otázka se nazývá **superiorita** (*superiority*). Opačná otázka, zda program pozornost **nezlepšuje** o více než 3 body, je **nonsuperiorita** (*non-superiority*).
 - **Relaxační program** má snížit stres a pozornost by zhoršit neměl. Chceme doložit, že ji **nezhoršuje** o více než 3 body. To je **noninferiorita** (*non-inferiority*). Opačná otázka, zda program pozornost zhoršuje o více než 3 body, je **inferiorita** (*inferiority*).
 
-Každá z těchto otázek je jeden jednostranný test vůči jedné hranici $\mathrm{μ}_0-\mathrm{Δ}$, nebo $\mathrm{μ}_0+\mathrm{Δ}$. Na hladině 0,05 o něm rozhodne jedna mez 90% intervalu, stejně jako u každého jednostranného testu ([jednostranná mez](#sec-jednostranny-a-interval)):
+Každá z těchto otázek je jeden jednostranný test vůči jedné hranici $\mathrm{μ}_0-\mathrm{Δ}$, nebo $\mathrm{μ}_0+\mathrm{Δ}$. Na hladině 0,05 o něm rozhodne jedna mez 90% intervalu, stejně jako u každého jednostranného testu ([jednostranný interval](#sec-jednostranny-a-interval)):
 
 ::: {.table-scroll .chapter-07-wide role="region" aria-label="Čtyři jednostranné otázky vůči hranicím ekvivalence" tabindex="0"}
 
@@ -680,7 +686,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Šířka intervalu roste s hladinou spolehlivosti a s variabilitou a s větším výběrem klesá; při známé σ je nepřímo úměrná odmocnině velikosti výběru, u *t*-intervalu se mění také kvantil; vyjadřuje přesnost odhadu, ne jeho správnost ([Šířka intervalu](#sec-sirka-intervalu)).
 - Když σ neznáme, dosadíme výběrovou $s$ a statistika $(m-\mathrm{μ})/(s/\sqrt{n})$ má za nezávislého výběru z normální populace *t*-rozdělení s $n-1$ stupni volnosti. Má těžší chvosty než normované normální rozdělení. Při stejné číselné hodnotě $s$ a σ je *t*-interval širší, protože používá kvantil vzdálenější od nuly ([*t*-rozdělení](#sec-t-rozdeleni); [Interval s *t*-kvantilem](#sec-interval-t)).
 - Jednovýběrový *t*-test postupuje stejně jako *z*-test; mění se jen rozdělení testové statistiky. Po rozhodnutí testu následuje věcná interpretace ([Jednovýběrový *t*-test](#sec-t-test)).
-- Odpovídající oboustranný test na hladině 0,05 nezamítá hodnoty striktně uvnitř 95% intervalu; hodnoty mimo něj a přesně na mezích podle našeho pravidla zamítá. Test, *p*-hodnota a interval porovnávají tutéž vzdálenost $|m-\mathrm{μ}_0|$ s mezní chybou. Interval navíc ukazuje velikost rozdílu a přesnost odhadu; jednostrannému testu na hladině α odpovídá jednostranná mez nebo mez intervalu se spolehlivostí $1-2\mathrm{α}$ ve správném směru ([Interval a *p*-hodnota](#sec-interval-a-p)).
+- Odpovídající oboustranný test na hladině 0,05 nezamítá hodnoty striktně uvnitř 95% intervalu; hodnoty mimo něj a přesně na mezích podle našeho pravidla zamítá. Test, *p*-hodnota a interval porovnávají tutéž vzdálenost $|m-\mathrm{μ}_0|$ s mezní chybou. Interval navíc ukazuje velikost rozdílu a přesnost odhadu; jednostrannému testu na hladině α odpovídá jednostranný interval se spolehlivostí $1-\mathrm{α}$, jehož mez je zároveň mezí oboustranného intervalu se spolehlivostí $1-2\mathrm{α}$ ve správném směru ([Interval a *p*-hodnota](#sec-interval-a-p)).
 - Test ekvivalence potřebuje předem stanovené a věcně zdůvodněné hranice. Dva jednostranné testy na hladině 0,05 doloží ekvivalenci právě tehdy, když celý 90% interval nepřesahuje hranice ekvivalence; přesný dotyk hranice odpovídá *p*-hodnotě 0,05 ([Pásmo ekvivalence](#sec-pasmo-ekvivalence); [Test ekvivalence](#sec-test-ekvivalence)).
 - Test rozdílu a test ekvivalence se kombinují čtyřmi způsoby. Výsledek může být statisticky, ale ne věcně významný; nezamítnutí rozdílu nedokládá ekvivalenci a neprokázaná ekvivalence nedokládá důležitý rozdíl ([Čtyři kombinace](#sec-ctyri-kombinace); [Co závěr říká](#sec-sdeleni-07)).
 
@@ -872,7 +878,7 @@ a)  a: 500 leží nad horní mezí, test zamítá. b: 500 leží uvnitř, test n
 
 b)  Zadání výslovně uvádí, že dolní mez je přesně 500 ms. *p*-hodnota je proto přesně 0,05 a podle pravidla učebnice „zamítáme při *p*-hodnotě menší nebo rovné hladině významnosti“ nulovou hypotézu zamítáme. Kdyby údaj 500 byl pouze zaokrouhlený, takto rozhodnout by nešlo. Hraniční výsledek sám o sobě neznamená věcně důležitý rozdíl.
 
-c)  Horní mez 90% intervalu, 498, je jednostrannou 95% mezí pro alternativu „menší“. Hodnota 500 leží nad ní, jednostranný test proto zamítá. O oboustranném testu na hladině 0,05 rozhodne 95% interval, který je širší; z 90% intervalu nevíme, zda by 500 obsahoval.
+c)  Horní mez 90% intervalu, 498, je zároveň mezí 95% jednostranného intervalu s horní mezí (−∞; 498], který odpovídá alternativě „menší“. Hodnota 500 leží nad ní, jednostranný test proto zamítá. O oboustranném testu na hladině 0,05 rozhodne 95% interval, který je širší; z 90% intervalu nevíme, zda by 500 obsahoval.
 
 d)  Šířka b je 25 ms, šířka d 35 ms. Studie b odhadla populační průměr přesněji. Šířka nezávisí na tom, zda test zamítá: přesnost a výsledek testu jsou různé informace.
 :::

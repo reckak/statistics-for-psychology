@@ -1,5 +1,52 @@
 # Autorská dokumentace
 
+<a id="vizualizace-interval-a-test"></a>
+
+## Interval spolehlivosti a *p*-hodnota: vizualizace a terminologie intervalů (2026-11-13, R75, upřesnění R65)
+
+**Terminologie ([R75](../docs/rozhodnuti/kapitola-07.md#r75-oboustranny-jednostranny-interval)).**
+„Centrální interval“ a „horní/dolní jednostranná mez“ nahradily termíny
+oboustranný interval spolehlivosti a jednostranný interval spolehlivosti
+s horní, nebo dolní mezí. Upraveno:
+
+- kapitola 7: nadpis a výklad oddílu `sec-jednostranny-a-interval` (ID beze změny; tři termíny tučně s anglickými ekvivalenty, jedna věta o „centrálním“ intervalu, nově i interval s dolní mezí [42,24; ∞)), věta o kvantilu $z_{1-\mathrm{α}}$, odkazy v řešeném *t*-testu, tabulce tří cest, oddílu TOST a rozšíření o noninferioritě, Shrnutí a řešení 8c, popisek a alternativní text obrázku `fig-jednostranne-intervaly`;
+- `scripts/kapitola_07.R`: popisky řádků obrázku (třetí řádek dvouřádkově, aby se vešel do okraje);
+- slovníček (dvě nová hesla), autorský slovník, přehled značení (`vztah-kvantil-hladina`);
+- prezentace: slide 23 v PPTX (text a vložený obrázek znovu vykreslený týmž kódem jako PNG 1980 × 792 px), heslovité poznámky slidu 23, podrobné poznámky v DOCX u slidů 23 a 27, strana 23 v PDF slidů;
+- scénář: výklad snímku 23; manifest dostal záznam `post_audio_script_edits`, podklady scénáře datovaný oddíl.
+
+Grep po repozitáři (mimo `_book`, `sources`, `tmp`) po úpravě nenašel „centrální interval“ ani „jednostranná mez“ v kapitole, přehledech a prezentaci kromě záměrných míst: alternativa ve slovníčku a slovníku, věta o označení „centrální“, historické záznamy a doklady. Grafy cvičení prezentace a sešit kapitoly 7 staré termíny nepoužívaly.
+
+**Vizualizace ([upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval)).**
+Osmá stránka části „Interaktivní vizualizace“,
+[Jak spolu souvisí interval spolehlivosti a *p*-hodnota](viz_interval_a_test.qmd),
+v menu za vizualizací *t*-rozdělení. Obsahuje:
+
+- **ovládání:** μ₀ a *m* posuvníkem i polem, *s*, *n*, α, směr testu a tři předvolby kapitoly 7;
+- **dva grafy pod sebou** se společnou osou skóre: pohled intervalu (*p*-hodnota podle μ₀, interval kolem *m*) a pohled testu (*p*-hodnota podle *m*, oblast nezamítnutí kolem μ₀), v obou *m*, μ₀ a vzdálenost |*m* − μ₀| s mezní chybou;
+- **jednostranný test:** jednostranný interval a oboustranný interval 1 − 2α, zrcadlově jednostranná a souměrná oblast, tenká křivka oboustranné *p*-hodnoty s hladinou 2α;
+- **výpočet** se vzorci českého Excelu a tabulku čtyř pohledů na rozhodnutí.
+
+Kapitola 7 odkazuje blokem „Vyzkoušejte si: interval spolehlivosti a *p*-hodnota“ na konci oddílu o jednostranném intervalu. Upravené soubory pro vizualizaci: `_quarto.yml`, styly (`.viz-ia-…`), `check-html.cjs` (pořadí v menu, nová kontrola), karta kapitoly 7, OSNOVA.md, plán pokračování, registr, doklad R65 a PROVOZ.md.
+
+Redakční volby při realizaci:
+
+- **Rozsah osy** se mění jen při změně *s*, *n*, α, směru, předvolby nebo zápisu hodnoty mimo rozsah, nikdy při tažení posuvníku; krok posuvníku je řád *s<sub>m</sub>*/10 (výchozí 0,1 bodu). Pole přijímá libovolně přesné číslo.
+- **Pohled testu** drží *s* pevnou; stránka výslovně upozorňuje, že jiný výběr by měl i jinou *s*, jak uvádí kapitola 7.
+- **Rozhodnutí na mezi** zamítá (p ≤ α); čtyři pohledy počítá stránka zvlášť s tolerancí 10⁻⁹, aby se přesně na mezi nerozcházely.
+- **Mobil:** popisky řádků se zalamují, popisek *p*-hodnoty u bodu je zkrácený na „p = …“, popisky α a 2α stojí na opačných okrajích.
+- **Numerika** (distribuční funkce a kvantil *t*-rozdělení) je převzata z vizualizace *t*-rozdělení.
+- **Odchylka od plánu:** v obou grafech je jen jedna šipka |*m* − μ₀| s textem mezní chyby; mezní chyba sama se nekreslí jako další úsečka, odpovídá polovině šířky pruhu.
+
+Nezávislá kontrola (skripty ve `scratchpad`, mimo repozitář):
+
+- **R:** pro sedm nastavení (tři směry, pozornost, PDI, záporné μ₀ s α = 0,01, *n* = 200 s α = 0,1, *n* = 2 s α = 0,5) *p*-hodnota, kvantil, mezní chyba a meze podle vzorců a navíc `t.test` na datech s přesně zadaným *m* a *s*. Stránka se shoduje na 10⁻⁹ relativně; hodnoty jsou v kontrole webu.
+- **Excel:** dvanáct vzorců stránky (`ODMOCNINA`, `T.DIST.2T`, `T.DIST`, `1-T.DIST`, `T.INV`, `T.INV.2T`) zadáno přes `FormulaLocal` do skryté samostatné instance českého Excelu v novém sešitu bez uložení; výsledky se shodují s R.
+
+Celá kniha byla vykreslena. Prošly `check-html.cjs` (nová kontrola podle PROVOZ.md), `check-table-layout.cjs` a `check-doc-maps.cjs`. Prohlédnuty snímky výchozího stavu, jednostranného testu a PDI při šířce 1280 a 375 px; podle nich byly upraveny rozestupy řádků, zalamování popisků a umístění popisků α. Prohlédnut oddíl kapitoly 7 s novým obrázkem a slide 23 v exportu PowerPointu (strana 23 nahrazena v původním PDF z Acrobat PDFMaker, ostatní strany beze změny).
+
+Neověřeno: rozvržení DOCX ve Wordu (export do PDF přes COM se opakovaně zasekl a instance byla ukončena; DOCX ověřen jen extrakcí textu, Word jej otevřel); MP3 nahrávka nebyla znovu syntetizována a u snímku 23 zůstává ve starší terminologii; ovládání čtečkou obrazovky. Didaktická revize stránky a změněného oddílu proběhla interně čtením očima studenta; není ověřením na studentech.
+
 <a id="vizualizace-t-rozdeleni"></a>
 
 ## Vizualizace *t*-rozdělení a normovaného normálního (2026-11-12, upřesnění R65)

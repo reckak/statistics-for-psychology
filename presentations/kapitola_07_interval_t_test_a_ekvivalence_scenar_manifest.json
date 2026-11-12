@@ -1030,5 +1030,23 @@
       "speech": 674,
       "merging": 4
     }
-  }
+  },
+  "post_audio_script_edits": [
+    {
+      "date": "2026-11-13",
+      "reason": "R75 terminology: two-sided confidence interval and one-sided confidence interval with an upper/lower bound instead of central interval and one-sided bound",
+      "slides": [
+        23
+      ],
+      "script_sha256": "8689ad3bbd4e98bb06d0f51b25d1a75755b826736132ec00eb90d4ace820d603",
+      "word_count": 4827,
+      "character_count": 33866,
+      "new_words_with_di_ti_ni_contextually_reviewed": [
+        "jedinou",
+        "obdobně"
+      ],
+      "audio_regenerated": false,
+      "note": "Top-level script_sha256, slide character offsets and the audio section describe the recording made from the earlier script; the current script differs only in the narration of slide 23. Paid synthesis was not requested."
+    }
+  ]
 }

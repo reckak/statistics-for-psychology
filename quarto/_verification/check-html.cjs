@@ -659,7 +659,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak spolu souvisí interval spolehlivosti a p-hodnota']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1328,6 +1328,82 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_07.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_t_rozdeleni.html"]').count(), 1, 'Chapter 7 links to the t-distribution visualization');
+    assert.equal(await page.locator('.callout-tip a[href$="viz_interval_a_test.html"]').count(), 1, 'Chapter 7 links to the interval and p-value visualization');
+
+    // Confidence interval and p-value: one-sample t-test against R, both views, sliders, presets, directions, invalid input and a phone screen.
+    await page.goto(base + 'quarto/viz_interval_a_test.html', { waitUntil: 'networkidle' });
+    const ia = page.locator('#viz-interval-a-test');
+    const iaPlots = ia.locator('.viz-plots svg[aria-label]');
+    await iaPlots.nth(1).waitFor();
+    assert.equal(await iaPlots.count(), 2, 'Interval view and test view');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const iaState = () => ia.evaluate(el => el.vizCheck.state());
+    const iaNear = (a, b, msg) => assert(a === b || Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    // R: p-value, quantile, margin of error and interval (formulas; p and interval also equal t.test on data with this m and s).
+    const iaR = [
+      {mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: 'two', p: 0.0815402664466, q: 2.06389856163, me: 4.54057683558, ci: [41.4594231644, 50.5405768356]},
+      {mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: 'less', p: 0.0407701332233, q: 1.71088207991, me: 3.7639405758, ci: [-Infinity, 49.7639405758]},
+      {mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: 'greater', p: 0.959229866777, q: 1.71088207991, me: 3.7639405758, ci: [42.2360594242, Infinity]},
+      {mu0: 100, m: 104.125, s: 12.584, n: 56, alpha: 0.05, side: 'two', p: 0.0173653341173, q: 2.00404478329, me: 3.37001720709, ci: [100.754982793, 107.495017207]},
+      {mu0: -3, m: 2.7, s: 4.2, n: 7, alpha: 0.01, side: 'greater', p: 0.00574736306005, q: 3.14266840329, me: 4.98883142895, ci: [-2.28883142895, Infinity]},
+      {mu0: 500, m: 498, s: 30, n: 200, alpha: 0.1, side: 'two', p: 0.346921762632, q: 1.65254674617, me: 3.50558103133, ci: [494.494418969, 501.505581031]},
+      {mu0: 12, m: 12.4, s: 1, n: 2, alpha: 0.5, side: 'less', p: 0.663867824981, q: 0, me: 0, ci: [-Infinity, 12.4]}
+    ];
+    const iaGot = await ia.evaluate((el, cases) => cases.map(c => { const r = el.vizCheck.compute(c); return {p: r.p, q: r.q, me: r.me, ci: r.ci.map(String), same: [r.byP, r.byT, r.byCI, r.byAcc].every(d => d === r.byP)}; }), iaR);
+    iaR.forEach((w, i) => {
+      ['p', 'q', 'me'].forEach(k => iaNear(iaGot[i][k], w[k], `Interval case ${i} ${k}`));
+      w.ci.forEach((b, j) => Number.isFinite(b) ? iaNear(Number(iaGot[i].ci[j]), b, `Interval case ${i} bound ${j}`) : assert.equal(iaGot[i].ci[j], String(b), `Interval case ${i} infinite bound`));
+      assert(iaGot[i].same, `Four routes agree in case ${i}`);
+    });
+    // Exactly on the bound of the interval the p-value equals α and all four routes reject.
+    const iaEdge = await ia.evaluate(el => { const C = el.vizCheck.compute; const b = C({mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: 'two'}).ci[1]; const r = C({mu0: b, m: 46, s: 11, n: 25, alpha: 0.05, side: 'two'}); return [r.p, r.byP, r.byT, r.byCI, r.byAcc]; });
+    iaNear(iaEdge[0], 0.05, 'p-value on the bound'); assert.deepEqual(iaEdge.slice(1), [true, true, true, true], 'Rejection on the bound');
+    // Default: the two-sided test of attention from chapter 7.
+    let is = await iaState();
+    assert.deepEqual([is.mu0, is.m, is.s, is.n, is.alpha, is.side], [50, 46, 11, 25, 0.05, 'two']);
+    iaNear(is.p, 0.0815402664466, 'Default p-value'); assert.deepEqual(is.dom, [35, 60], 'Default score range');
+    iaNear(is.acc[0], 45.4594231644, 'Region of non-rejection'); assert.deepEqual(is.decisions, [false, false, false, false]);
+    assert.deepEqual(await ia.locator('#viz-ia-mu0-range').evaluate(el => [el.min, el.max, el.step, el.value]), ['35', '60', '0.1', '50'], 'Slider for μ0');
+    let iaText = await ia.locator('[data-stats]').innerText();
+    assert(iaText.includes('=T.DIST.2T(ABS((46-50)/(11/ODMOCNINA(25)));24)') && iaText.includes('(41,46; 50,54)') && iaText.includes('=T.INV.2T(0,05;24)'), 'Two-sided formulas and interval');
+    assert.match(await ia.locator('[data-ways]').innerText(), /leží uvnitř 95% oboustranného intervalu \(41,46; 50,54\)/);
+    // Keyboard on the slider moves μ0 by one step and updates the field.
+    await ia.locator('#viz-ia-mu0-range').focus();
+    await page.keyboard.press('ArrowRight');
+    is = await iaState(); assert.equal(is.mu0, 50.1, 'ArrowRight moves μ0 by 0,1');
+    assert.equal(await ia.locator('#viz-ia-mu0').inputValue(), '50,1');
+    // One-sided test „menší“: one-sided interval with an upper bound and the 90% two-sided interval share the bound.
+    await ia.locator('[data-preset="mensi"]').click();
+    is = await iaState();
+    iaNear(is.p, 0.0407701332233, 'One-sided p-value'); assert.equal(is.ci[0], '-Infinity'); iaNear(is.ci[1], 49.7639405758, 'Upper bound');
+    iaNear(is.central[0], 42.2360594242, '90% interval lower bound'); iaNear(is.acc[0], 46.2360594242, 'One-sided region');
+    assert.deepEqual(is.decisions, [true, true, true, true]);
+    iaText = await ia.locator('[data-stats]').innerText();
+    assert(iaText.includes('=T.DIST((46-50)/(11/ODMOCNINA(25));24;PRAVDA)') && iaText.includes('(−∞; 49,76]') && iaText.includes('(42,24; 49,76)'), 'One-sided formulas and intervals');
+    assert.match(await iaPlots.nth(0).getAttribute('aria-description'), /95% jednostranný interval s horní mezí: \(−∞; 49,76\]/);
+    await ia.locator('input[name="viz-ia-side"][value="greater"]').check();
+    is = await iaState(); iaNear(is.p, 0.959229866777, 'Opposite direction'); iaNear(is.ci[0], 42.2360594242, 'Lower bound'); assert.equal(is.ci[1], 'Infinity');
+    // PDI example from Howell.
+    await ia.locator('[data-preset="pdi"]').click();
+    is = await iaState(); iaNear(is.p, 0.0173653341173, 'PDI p-value'); iaNear(is.ci[0], 100.754982793, 'PDI lower bound');
+    assert(is.dom[0] <= 100 && is.dom[1] >= 107.5, 'Range follows the PDI example');
+    // A typed value beyond the range widens it; invalid values are rejected and the last valid one kept.
+    await ia.locator('#viz-ia-m').fill('130');
+    is = await iaState(); assert.equal(is.m, 130); assert(is.dom[1] >= 130, 'Range widened for m = 130');
+    for (const [id, bad] of [['s', '0'], ['n', '1'], ['n', '2.5'], ['alpha', '0,6'], ['mu0', 'abc'], ['m', '1,2,3']]) {
+      const before = await iaState();
+      await ia.locator(`#viz-ia-${id}`).fill(bad);
+      assert.equal(await ia.locator(`#viz-ia-${id}`).getAttribute('aria-invalid'), 'true', `Rejected ${id} ${bad}`);
+      assert(await ia.locator(`#viz-ia-${id}-error`).isVisible(), `Message for ${id} ${bad}`);
+      assert.equal(JSON.stringify((await iaState())[id]), JSON.stringify(before[id]), `Kept ${id} after ${bad}`);
+    }
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await iaPlots.nth(1).waitFor();
+    await ia.locator('[data-preset="mensi"]').click();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Interval and p-value visualization fits a phone');
+    await ia.screenshot({path:'tmp/verification/viz-interval-a-test-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

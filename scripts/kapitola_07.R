@@ -151,11 +151,11 @@ ch7_draw('ctyri-kombinace', {
   points(e$m,y,pch=21,bg='white',col=ch7_ink,cex=1.2)
   legend('top',c('95% interval: test rozdílu od 50','90% interval: test ekvivalence','pásmo ekvivalence','norma 50'),lwd=c(1.4,6,NA,1.5),lty=c(1,1,NA,3),col=c(ch7_ink,ch7_blue,NA,ch7_gray),fill=c(NA,NA,adjustcolor(ch7_fill,.55),NA),border=NA,bty='n',cex=.78,ncol=2)
 },width=9.4,height=6.4)
-# One-sided bound versus central intervals for the one-sided test of the running example.
+# One-sided interval with an upper bound versus two-sided intervals for the one-sided test of the running example.
 ch7_draw('jednostranne-intervaly', {
   par(mar=c(4.6,13.5,2.7,.8))
   up1 <- ch7_ci_att_t90[2]; y <- 3:1
-  lab <- c('95% centrální interval','90% centrální interval','Horní jednostranná 95% mez')
+  lab <- c('95% oboustranný interval','90% oboustranný interval','95% jednostranný interval\ns horní mezí')
   plot(NA,xlim=c(36,56),ylim=c(.4,3.8),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',main='Jednostranný test „menší“ a odpovídající intervaly',bty='l')
   axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
   abline(v=50,lty=3,lwd=1.6,col=ch7_gray); text(50.2,3.65,'norma 50',adj=0,cex=.82,col=ch7_gray)

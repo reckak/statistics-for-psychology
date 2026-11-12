@@ -871,6 +871,49 @@ plánu upřesnil: „Pro stupně volnosti bych dal jako input posuvník od 1
 do 100“; upravený plán téhož dne schválil. Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md).
 
+<a id="r65-upresneni-2026-11-12-interval"></a>
+
+### Upřesnění 2026-11-12 — Vizualizace intervalu spolehlivosti a *p*-hodnoty
+
+Osmá vizualizace podle R65, ke kapitole 7: stránka
+`quarto/viz_interval_a_test.qmd` („Jak spolu souvisí interval spolehlivosti
+a *p*-hodnota“, `#sec-viz-interval-a-test`), v menu za vizualizací
+*t*-rozdělení. Spojuje obrázky kapitoly 7 `fig-p-funkce` a
+`fig-zrcadlo-intervalu`; statické obrázky v kapitole zůstávají.
+
+- Model jednovýběrového *t*-testu. Vstupy: testovaná hodnota μ₀ a výběrový
+  průměr *m* (posuvník a číselné pole), *s* a *n* (výchozí 11 a 25), α jako
+  desetinné číslo 0 < α ≤ 0,5 a směr testu (oboustranný, jednostranný
+  s alternativou μ < μ₀ nebo μ > μ₀).
+- Dva grafy pod sebou se společnou osou skóre, vždy s *m* i μ₀: pohled
+  intervalu (*p*-hodnota podle μ₀, interval spolehlivosti kolem *m*) a pohled
+  testu (*p*-hodnota podle *m*, oblast nezamítnutí kolem μ₀).
+- U jednostranného testu jednostranný interval spolehlivosti
+  ([R75](kapitola-07.md#r75-oboustranny-jednostranny-interval)) i oboustranný
+  interval se spolehlivostí 1 − 2α; zrcadlově v pohledu testu jednostranná
+  a souměrná oblast nezamítnutí.
+- Doplňky: tabulka čtyř pohledů na totéž rozhodnutí s čísly, vzorce českého
+  Excelu, předvolby příkladů kapitoly (pozornost oboustranně a jednostranně,
+  PDI) a u jednostranného testu tenká křivka oboustranné *p*-hodnoty
+  s hladinou 2α.
+
+**Doklad:** autor 2026-11-12 zadal: „Myslím, že tyto dva obrázky by také bylo
+možné spojit do jedné interaktivní vizualizace, např. zrcadlově vedle sebe
+svisle ukázat interval spolehlivosti a oblast nezamítnutí, vždy zobrazit
+výběrový průměr a průměr pod H0; v grafu pro CI ukázat, jak se p-hodnota mění
+pro různé testované H0, a v grafu pro oblast zamítnutí ukázat, jak se
+p-hodnota mění pro různé výběrové průměry. Jako input nechat nastavovat různé
+hodnoty mí pod H0 a pozorovaného výběrového průměru, hladinu významnosti alfa
+a typ testu (oboustranný, jednostranný s alternativou "menší" nebo "větší").
+U jednostranných testů zobrazit jak noncentrální CI, tak odpovídají centrální
+CI s hladinou spolehlivosti 1–2alfa.“ Na doplňující otázky zvolil uspořádání
+„Pod sebou, společná osa“, *s* a *n* „Nastavitelné, výchozí 11 a 25“, zadání
+*m* a μ₀ „Posuvník + číselné pole“, všechny čtyři doplňky („Tři cesty
+s čísly“, „Vzorce českého Excelu“, „Předvolby příkladů kapitoly“, „Oboustranná
+křivka i u jednostranného“), zrcadlení „Ano, obě varianty“ a α „Desetinné číslo
+0 < α ≤ 0,5“. K pojmenování intervalů zavedl R75. Plán schválil 2026-11-13.
+Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

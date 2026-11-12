@@ -1,0 +1,560 @@
+---
+code-copy: false
+---
+
+# Jak spolu souvisí interval spolehlivosti a *p*-hodnota {#sec-viz-interval-a-test .unnumbered}
+
+Proč jednovýběrový *t*-test zamítá testovanou hodnotu právě tehdy, když leží mimo odpovídající interval spolehlivosti? Vizualizace ukazuje tutéž úvahu ze dvou stran. Nahoře se díváme z výběrového průměru *m*: pro každou možnou testovanou hodnotu $\mathrm{μ}_0$ vidíme její *p*-hodnotu a interval spolehlivosti. Dole se díváme z testované hodnoty: pro každý možný výběrový průměr vidíme *p*-hodnotu a oblast nezamítnutí. Oba pohledy porovnávají tutéž vzdálenost $|m-\mathrm{μ}_0|$ s mezní chybou. Navazuje na kapitolu 7: na [jednovýběrový *t*-test](kapitola_07.qmd#sec-t-test-pozornost) a na oddíly [Vnitřek intervalu jako množina nezamítnutých hodnot](kapitola_07.qmd#sec-mnozina-nezamitnutych), [Tři cesty k témuž rozhodnutí](kapitola_07.qmd#sec-tri-cesty) a [Jednostranný test a jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval).
+
+## Model a ovládání {#sec-viz-ia-ovladani .unnumbered}
+
+Model je jednovýběrový *t*-test z kapitoly 7. Z výběru velikosti $n$ známe výběrový průměr $m$ a výběrovou směrodatnou odchylku $s$. Odhad směrodatné chyby je $s_m=s/\sqrt{n}$ a statistika $t=(m-\mathrm{μ}_0)/s_m$ má za nulové hypotézy *t*-rozdělení s $v=n-1$ stupni volnosti. Platí to za předpokladů testu: nezávislý výběr z normální populace.
+
+Nastavit můžete:
+
+- **testovanou hodnotu** $\mathrm{μ}_0$ a **výběrový průměr** $m$, každou posuvníkem nebo číslem v poli; desetinná čísla můžete psát s čárkou i s tečkou. Krok posuvníku se řídí velikostí $s_m$ (ve výchozím nastavení 0,1 bodu), do pole lze zapsat libovolně přesné číslo;
+- **výběrovou směrodatnou odchylku** $s$, kladné číslo;
+- **velikost výběru** $n$, celé číslo od 2 do 1 000; měnit ji lze i šipkami v poli nebo klávesami nahoru a dolů;
+- **hladinu významnosti** $\mathrm{α}$, číslo větší než 0 a nejvýše 0,5;
+- **směr testu**: oboustranný test s alternativou $\mathrm{μ}\neq\mathrm{μ}_0$, nebo jednostranný test s alternativou $\mathrm{μ}<\mathrm{μ}_0$ či $\mathrm{μ}>\mathrm{μ}_0$.
+
+Po načtení stránky odpovídají vstupy oboustrannému testu pozornosti po krátkém spánku z kapitoly 7: $\mathrm{μ}_0=50$, $m=46$, $s=11$, $n=25$ a $\mathrm{α}=0{,}05$. Tlačítka nastaví tentýž příklad s jednostranným testem „menší“, jak jej výzkumnice zvolila předem, nebo [příklad psychomotorického vývoje](kapitola_07.qmd#sec-t-test-pdi) s oboustranným testem. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+Pod ovládáním jsou dva grafy se stejnou vodorovnou osou skóre:
+
+- **Pohled intervalu.** Křivka ukazuje *p*-hodnotu testu pro každou možnou testovanou hodnotu $\mathrm{μ}_0$ při pevném výběrovém průměru $m$; vrchol má u $m$. Světle modrý pás pokrývá testované hodnoty, které test nezamítá. Pod křivkou je interval spolehlivosti kolem $m$: u oboustranného testu oboustranný interval se spolehlivostí $1-\mathrm{α}$, u jednostranného testu jednostranný interval se spolehlivostí $1-\mathrm{α}$ a pod ním oboustranný interval se spolehlivostí $1-2\mathrm{α}$, který má stejnou konečnou mez.
+- **Pohled testu.** Křivka ukazuje *p*-hodnotu pro každý možný výběrový průměr při pevné testované hodnotě $\mathrm{μ}_0$; vrchol má u $\mathrm{μ}_0$. Pod křivkou je oblast nezamítnutí kolem $\mathrm{μ}_0$, tedy výběrové průměry, které by test nezamítl. U jednostranného testu se oblast táhne do nekonečna a pod ní je souměrná oblast se stejnou mezní chybou.
+
+V obou grafech označuje bílé kolečko výběrový průměr $m$ a oranžový kosočtverec testovanou hodnotu $\mathrm{μ}_0$. Vodorovná čárkovaná čára je hladina významnosti α. U jednostranného testu tenká čárkovaná křivka ukazuje pro srovnání oboustrannou *p*-hodnotu a druhá vodorovná čára hladinu 2α. Nejspodnější řádek každého grafu ukazuje vzdálenost $|m-\mathrm{μ}_0|$.
+
+Pohled testu předpokládá, že výběr se stejnou $s$ dal jiný průměr. Ve skutečnosti by jiný výběr měl i jinou $s$, a tedy i jinou šířku oblasti; proto v kapitole 7 [rozhodujeme podle vypočtené statistiky *t*](kapitola_07.qmd#sec-t-test-pozornost). Pod grafy je výpočet se vzorci českého Excelu a tabulka čtyř pohledů na totéž rozhodnutí. Meze a vzdálenosti zaokrouhlujeme na dvě desetinná místa, statistiku a kvantily na tři a *p*-hodnoty na tři desetinná místa; mezivýpočty probíhají s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the chapter 7 figures (scripts/kapitola_07.R).
+  const blue = "#245D78", orange = "#B54E24", fill = "#B8DDE8", sand = "#FAECDD", ink = "#223744", gray = "#4D5A63", mute = "#A9BAC3", hiText = "#9A3F17";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+
+  // Density of the t distribution with v degrees of freedom.
+  const dt = (x, v) => Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2) - 0.5 * Math.log(v * Math.PI) - (v + 1) / 2 * Math.log1p(x * x / v));
+
+  // Continued fraction of the incomplete beta function (modified Lentz), as in Numerical Recipes (betacf).
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  // Regularised incomplete beta function I_x(a, b).
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail; accurate also far in the tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+  const pt = (x, v) => x > 0 ? 1 - tTail(x, v) : tTail(x, v);
+
+  // Quantile of the t distribution: closed forms for 1 and 2 degrees of freedom, otherwise
+  // Newton steps on the upper tail started at the normal quantile, kept inside a shrinking bracket.
+  function qt(p, v) {
+    if (p === 0.5) return 0;
+    if (v === 1) return Math.tan(Math.PI * (p - 0.5));
+    if (v === 2) return (2 * p - 1) / Math.sqrt(2 * p * (1 - p));
+    const q = Math.min(p, 1 - p), sign = p > 0.5 ? 1 : -1;
+    let lo = 0, hi = 1;
+    while (tTail(hi, v) > q) { lo = hi; hi *= 2; }
+    let x = Math.min(Math.max(-qnorm(q), lo), hi);
+    for (let i = 0; i < 100; i++) {
+      const f = tTail(x, v) - q;
+      if (f > 0) lo = x; else hi = x;
+      let next = x + f / dt(x, v);
+      if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+      if (Math.abs(next - x) <= 1e-14 * Math.max(1, x)) { x = next; break; }
+      x = next;
+    }
+    return sign * x;
+  }
+
+  // p-value of the one-sample t-test for the statistic t; side "two", "less" (H1: μ < μ₀) or "greater" (H1: μ > μ₀).
+  const pval = (t, side, v) => side === "two" ? Math.min(1, 2 * tTail(t, v)) : side === "less" ? pt(t, v) : pt(-t, v);
+
+  // Everything the page shows for one setting of the inputs.
+  function compute({mu0, m, s, n, alpha, side}) {
+    const v = n - 1, se = s / Math.sqrt(n), t = (m - mu0) / se;
+    const q = side === "two" ? qt(1 - alpha / 2, v) : qt(1 - alpha, v);
+    const me = q * se, p = pval(t, side, v);
+    const ci = side === "two" ? [m - me, m + me] : side === "less" ? [-Infinity, m + me] : [m - me, Infinity];
+    const acc = side === "two" ? [mu0 - me, mu0 + me] : side === "less" ? [mu0 - me, Infinity] : [-Infinity, mu0 + me];
+    const central = side === "two" ? null : [m - me, m + me];
+    const accSym = side === "two" ? null : [mu0 - me, mu0 + me];
+    const crit = side === "two" ? [-q, q] : side === "less" ? [-q] : [q];
+    // Rejection at equality, as in chapter 6; a tiny tolerance keeps the four routes consistent at an exact bound.
+    const tol = 1e-9 * Math.max(1, Math.abs(mu0), Math.abs(m));
+    const byP = p <= alpha * (1 + 1e-9);
+    const byT = side === "two" ? Math.abs(t) >= q - 1e-9 : side === "less" ? t <= -q + 1e-9 : t >= q - 1e-9;
+    const byCI = side === "two" ? mu0 <= ci[0] + tol || mu0 >= ci[1] - tol : side === "less" ? mu0 >= ci[1] - tol : mu0 <= ci[0] + tol;
+    const byAcc = side === "two" ? m <= acc[0] + tol || m >= acc[1] - tol : side === "less" ? m <= acc[0] + tol : m >= acc[1] - tol;
+    return {mu0, m, s, n, alpha, side, v, se, t, q, me, p, pTwo: pval(t, "two", v), ci, acc, central, accSym, crit, byP, byT, byCI, byAcc, reject: byP};
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, d) => { let s = v.toFixed(d); if (Number(s) === 0) s = Math.abs(0).toFixed(d); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const xl = v => v < 0 ? `(${excel(v)})` : excel(v);
+  const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 1 - Math.floor(Math.log10(Math.abs(v)))));
+  const pfmt = p => p >= 0.001 || p === 0 ? fixed(p, 3) : fixed(p, sigDigits(p));
+  const sc = v => fixed(v, 2), q3 = v => fixed(v, 3);
+  const level = a => { const pct = Math.round(1e8 * (1 - a)) / 1e6; return `${typed(pct)}%`; };
+  // Intervals as in chapter 7: (a; b) for two-sided, (−∞; b] and [a; ∞) for one-sided; regions open.
+  const ciFmt = c => !Number.isFinite(c[0]) ? `(−∞; ${sc(c[1])}]` : !Number.isFinite(c[1]) ? `[${sc(c[0])}; ∞)` : `(${sc(c[0])}; ${sc(c[1])})`;
+  const accFmt = c => !Number.isFinite(c[0]) ? `(−∞; ${sc(c[1])})` : !Number.isFinite(c[1]) ? `(${sc(c[0])}; ∞)` : `(${sc(c[0])}; ${sc(c[1])})`;
+
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const H1op = {two: "≠", less: "&lt;", greater: "&gt;"}, H0op = {two: "=", less: "≥", greater: "≤"};
+  const sideLabel = {two: "oboustranný", less: "jednostranný", greater: "jednostranný"};
+  const sideGen = {two: "oboustranného", less: "jednostranného", greater: "jednostranného"};
+  const PRESETS = {
+    pozornost: {mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: "two"},
+    mensi: {mu0: 50, m: 46, s: 11, n: 25, alpha: 0.05, side: "less"},
+    pdi: {mu0: 100, m: 104.125, s: 12.584, n: 56, alpha: 0.05, side: "two"}
+  };
+  const LIMIT = 100000;
+
+  const lineSwatch = (stroke, dash, w = 2.4) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = (f, stroke) => `<svg width="16" height="14" aria-hidden="true"><rect x="1" y="2" width="14" height="10" fill="${f}"${stroke ? ` stroke="${stroke}"` : ""}/></svg>`;
+  const circleSwatch = `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="white" stroke="${ink}" stroke-width="1.5"/></svg>`;
+  const diamondSwatch = `<svg width="14" height="14" aria-hidden="true"><path d="M7 1.5 L12.5 7 L7 12.5 L1.5 7 Z" fill="${orange}" stroke="${ink}" stroke-width="1"/></svg>`;
+
+  const pair = (id, label, value) => html`<div class="viz-field viz-ia-pair" data-field="${id}">
+    <label for="viz-ia-${id}">${label}</label>
+    <input id="viz-ia-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-ia-${id}-error">
+    <div class="viz-t-slider"><input id="viz-ia-${id}-range" type="range" aria-label="${id === "mu0" ? "Testovaná hodnota μ₀, posuvník" : "Výběrový průměr m, posuvník"}"></div>
+    <span id="viz-ia-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const field = (id, label, value, hint, number) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-ia-${id}">${label}</label>
+    <input id="viz-ia-${id}" type="${number ? "number" : "text"}" ${number ? "min=\"2\" max=\"1000\" step=\"1\"" : ""} inputmode="${number ? "numeric" : "decimal"}" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-ia-${id}-hint viz-ia-${id}-error">
+    <span id="viz-ia-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-ia-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+
+  const root = html`<div class="viz" id="viz-interval-a-test">
+    <div class="viz-controls">
+      ${pair("mu0", html`Testovaná hodnota μ<sub>0</sub>`, "50")}
+      ${pair("m", html`Výběrový průměr <i>m</i>`, "46")}
+    </div>
+    <div class="viz-controls viz-ia-row">
+      ${field("s", html`Výběrová směrodatná odchylka <i>s</i>`, "11", "kladné číslo")}
+      ${field("n", html`Velikost výběru <i>n</i>`, "25", "celé číslo 2–1 000", true)}
+      ${field("alpha", html`Hladina významnosti α`, "0,05", "větší než 0, nejvýše 0,5")}
+      <fieldset class="viz-choice viz-ia-side">
+        <legend>Směr testu</legend>
+        <label><input type="radio" name="viz-ia-side" value="two" checked><span>oboustranný, <i>H</i><sub>1</sub>: μ ≠ μ<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-ia-side" value="less"><span>jednostranný, <i>H</i><sub>1</sub>: μ &lt; μ<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-ia-side" value="greater"><span>jednostranný, <i>H</i><sub>1</sub>: μ &gt; μ<sub>0</sub></span></label>
+      </fieldset>
+    </div>
+    <div class="viz-pj-presets" role="group" aria-label="Příklady z kapitoly 7">
+      <button type="button" data-preset="pozornost">Pozornost: oboustranný test</button>
+      <button type="button" data-preset="mensi">Pozornost: jednostranný test „menší“</button>
+      <button type="button" data-preset="pdi">Psychomotorický vývoj (PDI)</button>
+    </div>
+    <p class="viz-ss-summary" data-summary aria-live="polite"></p>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-ia-calc-title">
+      <h3 id="viz-ia-calc-title" class="viz-part-title">Výpočet</h3>
+      <dl class="viz-stats" data-stats></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ia-ways-title">
+      <h3 id="viz-ia-ways-title" class="viz-part-title">Čtyři pohledy na totéž rozhodnutí</h3>
+      <div class="viz-bay-table-wrap" data-ways tabindex="0" role="region" aria-labelledby="viz-ia-ways-title"></div>
+      <p class="viz-note" data-ways-note></p>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const state = {...PRESETS.pozornost, dom: [35, 60], step: 0.1};
+  let last = {};
+
+  // Score range shown on both axes and on both sliders. It changes only when s, n, α, the direction,
+  // a preset or a typed value outside the range require it, never while a slider is being dragged.
+  const niceStep = x => { const e = 10 ** Math.floor(Math.log10(x)); return [1, 2, 5, 10].map(k => k * e).find(k => k >= x); };
+  function needed(c) {
+    const pad = Math.max(c.me + 2 * c.se, 4.5 * c.se);
+    return [Math.min(c.m, c.mu0) - pad, Math.max(c.m, c.mu0) + pad];
+  }
+  function rescale(force) {
+    const c = compute(state), [lo, hi] = needed(c);
+    const [a, b] = state.dom;
+    if (!force && lo >= a && hi <= b && (b - a) <= 3 * (hi - lo)) return;
+    const step = niceStep((hi - lo) / 5);
+    state.dom = [Math.floor(lo / step) * step, Math.ceil(hi / step) * step];
+    state.step = 10 ** Math.floor(Math.log10(c.se / 10));
+    for (const id of ["mu0", "m"]) {
+      const r = $(`#viz-ia-${id}-range`);
+      r.min = String(state.dom[0]); r.max = String(state.dom[1]); r.step = String(state.step);
+    }
+  }
+  const stepDigits = () => Math.max(0, -Math.round(Math.log10(state.step)));
+  function syncSlider(id) {
+    const r = $(`#viz-ia-${id}-range`), v = state[id];
+    r.value = String(Math.min(state.dom[1], Math.max(state.dom[0], v)));
+    r.setAttribute("aria-valuetext", typed(v));
+  }
+
+  function showError(id, message) {
+    const input = $(`#viz-ia-${id}`), error = $(`#viz-ia-${id}-error`);
+    error.hidden = !message;
+    error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+
+  // μ₀ and m: a typed number or the slider; both stay in sync.
+  for (const id of ["mu0", "m"]) {
+    const input = $(`#viz-ia-${id}`), r = $(`#viz-ia-${id}-range`);
+    input.addEventListener("input", () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? `Zadejte číslo, například ${id === "mu0" ? "50" : "46"}.` : Math.abs(v) > LIMIT ? "Zadejte číslo od −100 000 do 100 000." : null;
+      showError(id, message);
+      if (!message) { state[id] = v; rescale(false); syncSlider("mu0"); syncSlider("m"); render(); }
+    });
+    r.addEventListener("input", () => {
+      const v = Number(Number(r.value).toFixed(stepDigits()));
+      state[id] = v; input.value = typed(v); showError(id, null);
+      r.setAttribute("aria-valuetext", typed(v));
+      render();
+    });
+  }
+  function numberField(id, check, apply, example) {
+    const input = $(`#viz-ia-${id}`);
+    input.addEventListener("input", () => {
+      const v = parseDecimal(input.value);
+      const message = v === null ? `Zadejte číslo, například ${example}.` : check(v);
+      showError(id, message);
+      if (!message) { apply(v); rescale(true); syncSlider("mu0"); syncSlider("m"); render(); }
+    });
+  }
+  numberField("s", v => v <= 0 ? "Směrodatná odchylka musí být kladná." : v > LIMIT ? "Zadejte číslo nejvýše 100 000." : null, v => { state.s = v; }, "11");
+  numberField("n", v => !Number.isInteger(v) || v < 2 || v > 1000 ? "Velikost výběru musí být celé číslo od 2 do 1 000." : null, v => { state.n = v; }, "25");
+  numberField("alpha", v => v <= 0 || v > 0.5 ? "Hladina významnosti musí být větší než 0 a nejvýše 0,5." : null, v => { state.alpha = v; }, "0,05");
+  root.querySelectorAll('input[name="viz-ia-side"]').forEach(el => el.addEventListener("change", () => { state.side = el.value; rescale(true); syncSlider("mu0"); syncSlider("m"); render(); }));
+
+  function setInputs(p) {
+    Object.assign(state, p);
+    $("#viz-ia-mu0").value = typed(p.mu0); $("#viz-ia-m").value = typed(p.m);
+    $("#viz-ia-s").value = typed(p.s); $("#viz-ia-n").value = String(p.n); $("#viz-ia-alpha").value = typed(p.alpha);
+    root.querySelectorAll('input[name="viz-ia-side"]').forEach(el => { el.checked = el.value === p.side; });
+    for (const id of ["mu0", "m", "s", "n", "alpha"]) showError(id, null);
+    rescale(true); syncSlider("mu0"); syncSlider("m"); render();
+  }
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => setInputs(PRESETS[b.dataset.preset])));
+
+  // One panel: the p-value curve over the score axis with the interval or region rows below it.
+  // kind "ci": x is the tested value μ₀, the sample mean m is fixed; kind "test": x is the sample mean, μ₀ is fixed.
+  function panel(c, kind, width) {
+    const small = width < 520;
+    const [a, b] = state.dom;
+    const xs = d3.range(0, 601).map(i => a + (b - a) * i / 600);
+    const tOf = x => kind === "ci" ? (c.m - x) / c.se : (x - c.mu0) / c.se;
+    const one = c.side !== "two";
+    const curve = xs.map(x => ({x, p: pval(tOf(x), c.side, c.v)}));
+    const curveTwo = one ? xs.map(x => ({x, p: pval(tOf(x), "two", c.v)})) : [];
+    const centre = kind === "ci" ? c.m : c.mu0, moving = kind === "ci" ? c.mu0 : c.m;
+    const range = kind === "ci" ? c.ci : c.acc;
+    const clampX = x => Math.min(b, Math.max(a, x));
+    const lvl = level(c.alpha), lvl2 = level(2 * c.alpha);
+
+    // Rows below the curve (y < 0): the interval or region, its two-sided twin for one-sided tests, the distance.
+    const rows = [];
+    if (kind === "ci") {
+      rows.push({lo: c.ci[0], hi: c.ci[1], main: true, label: one
+        ? `${lvl} jednostranný interval s ${c.side === "less" ? "horní" : "dolní"} mezí: ${ciFmt(c.ci)}`
+        : `${lvl} oboustranný interval: ${ciFmt(c.ci)}`});
+      if (one) rows.push({lo: c.central[0], hi: c.central[1], main: false, label: `${lvl2} oboustranný interval: ${ciFmt(c.central)}`});
+    } else {
+      rows.push({lo: c.acc[0], hi: c.acc[1], main: true, label: `oblast nezamítnutí${one ? " jednostranného testu" : ""}: ${accFmt(c.acc)}`});
+      if (one) rows.push({lo: c.accSym[0], hi: c.accSym[1], main: false, label: `souměrná oblast (oboustranný test na hladině ${typed(2 * c.alpha)}): ${accFmt(c.accSym)}`});
+    }
+    const gap = small ? 0.3 : 0.24;
+    // Row labels wrap within the plot on narrow screens (Plot measures lineWidth in ems).
+    const labelEms = (width - (small ? 48 : 58) - 24) / (small ? 10.5 : 12);
+    rows.forEach((r, i) => { r.y = -gap * (i + 1); });
+    const yDist = -gap * (rows.length + 1);
+    const yMin = yDist - 0.12;
+
+    const bandLo = clampX(range[0]), bandHi = clampX(range[1]);
+    const marks = [
+      // Values the test does not reject: pale band over the full height of the curve area.
+      bandHi > bandLo ? Plot.rect([0], {x1: bandLo, x2: bandHi, y1: 0, y2: 1.04, fill: fill, fillOpacity: 0.45}) : null,
+      Plot.ruleY([0], {stroke: ink}),
+      Plot.ruleY([c.alpha], {stroke: gray, strokeDasharray: "5,4"}),
+      Plot.text([c.alpha], {x: a, y: d => d, dy: -7, dx: 2, textAnchor: "start", fill: gray, fontSize: 11, text: d => `α = ${typed(d)}`, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+      one && 2 * c.alpha < 1 ? Plot.ruleY([2 * c.alpha], {stroke: mute, strokeDasharray: "2,3"}) : null,
+      one && 2 * c.alpha < 1 ? Plot.text([2 * c.alpha], {x: b, y: d => d, dy: -7, textAnchor: "end", fill: gray, fontSize: 11, text: d => `2α = ${typed(d)}`, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}) : null,
+      one ? Plot.line(curveTwo, {x: "x", y: "p", stroke: mute, strokeWidth: 1.6, strokeDasharray: "6,4", clip: true}) : null,
+      Plot.line(curve, {x: "x", y: "p", stroke: blue, strokeWidth: 2.4, clip: true}),
+      // Vertical guides through the whole panel at m and μ₀.
+      Plot.ruleX([c.m], {y1: yDist, y2: 1.04, stroke: ink, strokeOpacity: 0.55, strokeDasharray: "1.5,3", clip: true}),
+      Plot.ruleX([c.mu0], {y1: yDist, y2: 1.04, stroke: orange, strokeOpacity: 0.7, strokeDasharray: "5,4", clip: true})
+    ];
+    for (const r of rows) {
+      const lo = clampX(r.lo), hi = clampX(r.hi);
+      if (kind === "ci") {
+        marks.push(Plot.ruleY([r.y], {x1: lo, x2: hi, stroke: r.main ? blue : mute, strokeWidth: r.main ? 7 : 5}));
+      } else {
+        const h = r.main ? 0.045 : 0.035;
+        marks.push(Plot.rect([0], {x1: lo, x2: hi, y1: r.y - h, y2: r.y + h, fill: sand, stroke: orange, strokeWidth: r.main ? 1.4 : 1, strokeDasharray: r.main ? null : "4,3"}));
+      }
+      // An arrow head where a one-sided interval or region continues beyond the axis.
+      const col = kind === "ci" ? (r.main ? blue : mute) : orange;
+      if (!Number.isFinite(r.lo)) marks.push(Plot.arrow([0], {x1: hi, x2: a, y1: r.y, y2: r.y, stroke: col, strokeWidth: 2.4, headLength: 10, insetEnd: 1}));
+      if (!Number.isFinite(r.hi)) marks.push(Plot.arrow([0], {x1: lo, x2: b, y1: r.y, y2: r.y, stroke: col, strokeWidth: 2.4, headLength: 10, insetEnd: 1}));
+      marks.push(Plot.text([r.label], {x: a, y: r.y, dy: -11, dx: 2, textAnchor: "start", lineAnchor: "bottom", lineWidth: labelEms, fill: ink, fontSize: small ? 10.5 : 12, text: d => d, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}));
+      marks.push(Plot.dot([c.m], {x: d => d, y: r.y, r: 5, fill: "white", stroke: ink, strokeWidth: 1.5, clip: true}));
+      marks.push(Plot.dot([c.mu0], {x: d => d, y: r.y, r: 5.5, symbol: "diamond", fill: orange, stroke: ink, strokeWidth: 1, clip: true}));
+    }
+    // Distance between m and μ₀, the quantity both views compare with the margin of error.
+    const dist = Math.abs(c.m - c.mu0);
+    if (dist > 0) {
+      const mid = (c.m + c.mu0) / 2;
+      marks.push(Plot.arrow([0], {x1: mid, x2: c.m, y1: yDist, y2: yDist, stroke: ink, strokeWidth: 1.3, headLength: 7, clip: true}));
+      marks.push(Plot.arrow([0], {x1: mid, x2: c.mu0, y1: yDist, y2: yDist, stroke: ink, strokeWidth: 1.3, headLength: 7, clip: true}));
+    }
+    marks.push(Plot.text([`|m − μ₀| = ${sc(dist)}; mezní chyba ${sc(c.me)}`], {x: a, y: yDist, dy: -9, dx: 2, textAnchor: "start", lineAnchor: "bottom", fill: gray, fontSize: small ? 10.5 : 12, text: d => d, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}));
+    // The point whose p-value is read in this view: μ₀ on the upper curve, m on the lower one.
+    const pAt = c.p, inside = moving >= a && moving <= b;
+    if (inside) {
+      const right = (moving - a) / (b - a) > (small ? 0.45 : 0.62);
+      marks.push(kind === "ci"
+        ? Plot.dot([moving], {x: d => d, y: pAt, r: 6, symbol: "diamond", fill: orange, stroke: ink, strokeWidth: 1})
+        : Plot.dot([moving], {x: d => d, y: pAt, r: 5.5, fill: "white", stroke: ink, strokeWidth: 1.6}));
+      marks.push(Plot.text([moving], {x: d => d, y: pAt, dx: right ? -10 : 10, dy: pAt < c.alpha + 0.12 ? -12 : -7, lineAnchor: "bottom", textAnchor: right ? "end" : "start", fill: hiText, fontWeight: 600, fontSize: small ? 11.5 : 13, stroke: "white", strokeWidth: 3, paintOrder: "stroke",
+        text: d => small ? `p = ${pfmt(pAt)}` : `${kind === "ci" ? "μ₀" : "m"} = ${typed(Number(d.toFixed(6)))}: p = ${pfmt(pAt)}`}));
+    }
+
+    const axisLabel = kind === "ci" ? "Testovaná hodnota μ₀ (body)" : "Výběrový průměr m (body)";
+    const digits = Math.max(0, -Math.floor(Math.log10(niceStep((b - a) / (small ? 5 : 8)))));
+    const what = kind === "ci"
+      ? `p-hodnota ${sideGen[c.side]} testu pro testované hodnoty od ${typed(a)} do ${typed(b)} při výběrovém průměru ${typed(c.m)}`
+      : `p-hodnota ${sideGen[c.side]} testu pro výběrové průměry od ${typed(a)} do ${typed(b)} při testované hodnotě ${typed(c.mu0)}`;
+    const chart = Plot.plot({
+      width, height: (small ? 330 : 330) + rows.length * (small ? 44 : 26), marginLeft: small ? 48 : 58, marginRight: 14, marginTop: 14, marginBottom: 44,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain: state.dom, label: axisLabel, labelAnchor: "center", labelArrow: "none", ticks: small ? 5 : 8, tickFormat: t => fixed(t, digits)},
+      y: {domain: [yMin, 1.04], label: "p-hodnota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 46, ticks: [0, 0.2, 0.4, 0.6, 0.8, 1], tickFormat: t => fixed(t, 1)},
+      ariaLabel: what,
+      ariaDescription: kind === "ci"
+        ? `Křivka má vrchol 1 u výběrového průměru ${sc(c.m)}. ${rows.map(r => r.label).join(". ")}. V testované hodnotě ${typed(c.mu0)} je p-hodnota ${pfmt(c.p)}.`
+        : `Křivka má vrchol 1 u testované hodnoty ${sc(c.mu0)}. ${rows.map(r => r.label).join(". ")}. Ve výběrovém průměru ${typed(c.m)} je p-hodnota ${pfmt(c.p)}, stejná jako v horním grafu.`,
+      marks: marks.filter(Boolean)
+    });
+    return chart;
+  }
+
+  function legend(c) {
+    const one = c.side !== "two";
+    const el = html`<div class="viz-legend"></div>`;
+    el.innerHTML = [
+      `<span>${lineSwatch(blue)}<span><i>p</i>-hodnota ${one ? "jednostranného" : "oboustranného"} testu</span></span>`,
+      one ? `<span>${lineSwatch(mute, "6,4", 1.6)}<span>oboustranná <i>p</i>-hodnota pro srovnání</span></span>` : "",
+      `<span>${lineSwatch(gray, "5,4", 1.4)}<span>hladina α${one ? " (tečkovaně 2α)" : ""}</span></span>`,
+      `<span>${circleSwatch}<span>výběrový průměr <i>m</i></span></span>`,
+      `<span>${diamondSwatch}<span>testovaná hodnota μ<sub>0</sub></span></span>`
+    ].join("");
+    return el;
+  }
+
+  function statsRows(c) {
+    const S = xl(c.s), N = c.n, A = excel(c.alpha), tExpr = `(${xl(c.m)}-${xl(c.mu0)})/(${S}/ODMOCNINA(${N}))`;
+    const hyp = `<i>H</i><sub>0</sub>: μ ${H0op[c.side]} ${typed(c.mu0)}; <i>H</i><sub>1</sub>: μ ${H1op[c.side]} ${typed(c.mu0)}`;
+    const qName = c.side === "two" ? `<i>t</i><sub>1−α/2 (<i>v</i> = ${c.v})</sub>` : `<i>t</i><sub>1−α (<i>v</i> = ${c.v})</sub>`;
+    const qFormula = c.side === "two" ? `=T.INV.2T(${A};${c.v})` : `=T.INV(1-${A};${c.v})`;
+    const critText = c.side === "two" ? `±${q3(c.q)}` : c.side === "less" ? q3(-c.q) : q3(c.q);
+    const critFormula = c.side === "two" ? `=T.INV.2T(${A};${c.v})` : c.side === "less" ? `=T.INV(${A};${c.v})` : `=T.INV(1-${A};${c.v})`;
+    const pFormula = c.side === "two" ? `=T.DIST.2T(ABS(${tExpr});${c.v})` : c.side === "less" ? `=T.DIST(${tExpr};${c.v};PRAVDA)` : `=1-T.DIST(${tExpr};${c.v};PRAVDA)`;
+    const pName = c.side === "two" ? "oboustranná" : c.side === "less" ? "pro alternativu „menší“" : "pro alternativu „větší“";
+    const one = c.side !== "two";
+    const rows = [
+      ["Hypotézy", `${hyp} (${sideLabel[c.side]} test)`],
+      ["Odhad směrodatné chyby <i>s<sub>m</sub></i> = <i>s</i> / √<i>n</i>", `${typed(c.s)} / √${c.n} = <strong>${q3(c.se)}</strong><br><code>=${S}/ODMOCNINA(${N})</code>`],
+      ["Stupně volnosti <i>v</i> = <i>n</i> − 1", `<strong>${c.v}</strong>`],
+      ["Testová statistika <i>t</i> = (<i>m</i> − μ<sub>0</sub>) / <i>s<sub>m</sub></i>", `(${typed(c.m)} − ${typed(c.mu0)}) / ${q3(c.se)} = <strong>${q3(c.t)}</strong><br><code>=${tExpr}</code>`],
+      [`Kritická hodnota <i>t</i>`, `<strong>${critText}</strong><br><code>${critFormula}</code>`],
+      [`<i>p</i>-hodnota ${pName}`, `<strong>${pfmt(c.p)}</strong><br><code>${pFormula}</code>`],
+      [`Mezní chyba ${qName} × <i>s<sub>m</sub></i>`, `${q3(c.q)} × ${q3(c.se)} = <strong>${sc(c.me)}</strong><br><code>${qFormula}*${S}/ODMOCNINA(${N})</code>`],
+      [one ? `${level(c.alpha)} jednostranný interval s ${c.side === "less" ? "horní" : "dolní"} mezí` : `${level(c.alpha)} oboustranný interval spolehlivosti`,
+        one ? `<i>m</i> ${c.side === "less" ? "+" : "−"} mezní chyba: <strong>${ciFmt(c.ci)}</strong>` : `<i>m</i> ± mezní chyba: <strong>${ciFmt(c.ci)}</strong>`],
+      one ? [`${level(2 * c.alpha)} oboustranný interval spolehlivosti`, `<i>m</i> ± mezní chyba: <strong>${ciFmt(c.central)}</strong> (stejná ${c.side === "less" ? "horní" : "dolní"} mez)`] : null,
+      [`Oblast nezamítnutí pro <i>m</i>${one ? " (jednostranný test)" : ""}`, one ? `μ<sub>0</sub> ${c.side === "less" ? "−" : "+"} mezní chyba: <strong>${accFmt(c.acc)}</strong>` : `μ<sub>0</sub> ± mezní chyba: <strong>${accFmt(c.acc)}</strong>`]
+    ].filter(Boolean);
+    return rows;
+  }
+
+  function waysTable(c) {
+    const dec = r => r ? "<strong>zamítáme</strong>" : "nezamítáme";
+    const one = c.side !== "two";
+    const tCmp = c.side === "two"
+      ? (c.byT ? `|<i>t</i>| = ${q3(Math.abs(c.t))} ≥ ${q3(c.q)}` : `<i>t</i> = ${q3(c.t)} leží mezi ${q3(-c.q)} a ${q3(c.q)}`)
+      : c.side === "less" ? `<i>t</i> = ${q3(c.t)} ${c.byT ? "≤" : ">"} ${q3(-c.q)}` : `<i>t</i> = ${q3(c.t)} ${c.byT ? "≥" : "<"} ${q3(c.q)}`;
+    const pCmp = `${pfmt(c.p)} ${c.byP ? "≤" : ">"} α = ${typed(c.alpha)}`;
+    const ciName = one ? `${level(c.alpha)} jednostranného intervalu ${ciFmt(c.ci)}` : `${level(c.alpha)} oboustranného intervalu ${ciFmt(c.ci)}`;
+    const ciCmp = `μ<sub>0</sub> = ${typed(c.mu0)} leží ${c.byCI ? "mimo vnitřek" : "uvnitř"} ${ciName}`;
+    const accCmp = `<i>m</i> = ${typed(c.m)} leží ${c.byAcc ? "mimo" : "v"} oblasti nezamítnutí ${accFmt(c.acc)}`;
+    const rowsT = [
+      ["Statistika <i>t</i> a kritická hodnota", tCmp, c.byT],
+      ["<i>p</i>-hodnota a hladina významnosti", pCmp, c.byP],
+      ["Interval spolehlivosti kolem <i>m</i> (horní graf)", ciCmp, c.byCI],
+      ["Oblast nezamítnutí kolem μ<sub>0</sub> (dolní graf)", accCmp, c.byAcc]
+    ];
+    const markup = `<table class="viz-bay-table viz-pj-table viz-ia-ways" aria-label="Čtyři pohledy na rozhodnutí testu">
+      <thead><tr><th scope="col">Pohled</th><th scope="col">Porovnání</th><th scope="col">Rozhodnutí</th></tr></thead>
+      <tbody>${rowsT.map(([a, b, r]) => `<tr><th scope="row">${a}</th><td class="viz-pj-rule">${b}</td><td class="viz-ia-dec">${dec(r)}</td></tr>`).join("")}</tbody></table>`;
+    return {markup, decisions: rowsT.map(r => r[2])};
+  }
+
+  const plots = $("[data-plots]");
+  function render() {
+    const c = compute(state);
+    const width = Math.max(260, Math.min(plots.clientWidth || 640, 780));
+    const one = c.side !== "two";
+    const head1 = html`<p class="viz-panel-title">Pohled intervalu: které testované hodnoty μ<sub>0</sub> test při <i>m</i> = ${typed(c.m)} nezamítá?</p>`;
+    const head2 = html`<p class="viz-panel-title">Pohled testu: které výběrové průměry <i>m</i> by test při μ<sub>0</sub> = ${typed(c.mu0)} nezamítl?</p>`;
+    const p1 = html`<div class="viz-panel"></div>`, p2 = html`<div class="viz-panel"></div>`;
+    p1.append(head1, legend(c), panel(c, "ci", width));
+    p2.append(head2, panel(c, "test", width));
+    const outside = [c.m, c.mu0].some(x => x < state.dom[0] || x > state.dom[1]);
+    const nodes = [p1, p2];
+    if (outside) nodes.push(html`<p class="viz-note">Bod mimo zobrazený rozsah není zakreslen.</p>`);
+    plots.replaceChildren(...nodes);
+
+    $("[data-summary]").innerHTML = `${one ? "Jednostranný" : "Oboustranný"} test na hladině ${typed(c.alpha)}: <i>t</i> = ${q3(c.t)}, <i>p</i>-hodnota ${pfmt(c.p)}. ${c.reject ? "Nulovou hypotézu zamítáme" : "Nulovou hypotézu nezamítáme"}; oba grafy ukazují tutéž <i>p</i>-hodnotu.`;
+    const rows = statsRows(c);
+    $("[data-stats]").innerHTML = rows.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join("");
+    const ways = waysTable(c);
+    $("[data-ways]").innerHTML = ways.markup;
+    const same = ways.decisions.every(d => d === c.reject);
+    $("[data-ways-note]").innerHTML = same
+      ? `Všechny čtyři pohledy dávají totéž rozhodnutí, protože porovnávají tutéž vzdálenost: |<i>m</i> − μ<sub>0</sub>| = ${sc(Math.abs(c.m - c.mu0))} ${one ? `ve směru alternativy (${c.side === "less" ? "μ<sub>0</sub> − <i>m</i>" : "<i>m</i> − μ<sub>0</sub>"} = ${sc(c.side === "less" ? c.mu0 - c.m : c.m - c.mu0)})` : ""} s mezní chybou ${sc(c.me)}. Na mezi intervalu je <i>p</i>-hodnota rovna α a zamítáme.`
+      : "Pohledy se liší jen kvůli zaokrouhlení přesně na mezi; rozhoduje nezaokrouhlená p-hodnota.";
+    last = {...c, ci: c.ci.slice(), acc: c.acc.slice(), central: c.central && c.central.slice(), accSym: c.accSym && c.accSym.slice(), crit: c.crit.slice(),
+      dom: state.dom.slice(), step: state.step, decisions: ways.decisions, sameDecision: same,
+      sliders: {mu0: Number($("#viz-ia-mu0-range").value), m: Number($("#viz-ia-m-range").value)},
+      stats: rows.map(([a]) => a.replace(/<[^>]+>/g, ""))};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pt, qt, tTail, pval, compute, parseDecimal, state: () => JSON.parse(JSON.stringify(last, (k, v) => v === Infinity ? "Infinity" : v === -Infinity ? "-Infinity" : v))};
+
+  rescale(true); syncSlider("mu0"); syncSlider("m");
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Křivku <i>p</i>-hodnoty pro různé testované hodnoty ukazuje <a href="kapitola_07.html#fig-p-funkce">obrázek v kapitole 7</a>, oblast nezamítnutí a interval jako zrcadlo <a href="kapitola_07.html#fig-zrcadlo-intervalu">další obrázek</a> a jednostranný a oboustranné intervaly <a href="kapitola_07.html#fig-jednostranne-intervaly">třetí obrázek</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-ia-vyzkousejte .unnumbered}
+
+1. Ve výchozím nastavení posouvejte testovanou hodnotu $\mathrm{μ}_0$ od 50 dolů k 46 a pak dál až pod 41. Jak se mění *p*-hodnota v horním a v dolním grafu? Najděte obě testované hodnoty, při kterých je *p*-hodnota právě 0,05. Proč je to právě mez 95% intervalu a proč v tu chvíli leží výběrový průměr přesně na kraji oblasti nezamítnutí?
+2. Klikněte na „Pozornost: jednostranný test „menší““. Proč test zamítá s *p*-hodnotou 0,041, i když 95% oboustranný interval z prvního úkolu normu 50 obsahuje? Porovnejte mez 95% jednostranného intervalu s horní mezí 90% oboustranného intervalu a sledujte, kde tenká čárkovaná křivka protíná hladinu 2α.
+3. Vraťte se k oboustrannému testu a zvětšete velikost výběru z 25 na 100, potom snižte hladinu významnosti na 0,01. Co se stane s mezní chybou, s šířkou intervalu a oblasti nezamítnutí a s rozhodnutím? Která z obou změn závisí na datech a která je volbou výzkumnice?
+4. Klikněte na „Psychomotorický vývoj (PDI)“. Interval (100,75; 107,50) normu 100 neobsahuje. Přepněte pak směr testu na jednostranný s alternativou $\mathrm{μ}<\mathrm{μ}_0$. Proč je *p*-hodnota téměř 1 a co to říká o tom, [proč se směr testu volí předem](kapitola_07.qmd#sec-t-test-pdi)?
+
+## Čeho si všimnout {#sec-viz-ia-vsimnete .unnumbered}
+
+Obě křivky mají stejný tvar, jen zrcadlově převrácený, a v bodech μ₀ a *m* mají stejnou výšku: horní graf čte *p*-hodnotu u testované hodnoty, dolní u výběrového průměru, ale obě vycházejí z téže statistiky $t=(m-\mathrm{μ}_0)/s_m$. Interval kolem *m* a oblast nezamítnutí kolem μ₀ jsou stejně široké, protože obě vznikají přičtením a odečtením téže mezní chyby. Šířku určují jen $s_m$ a hladina α, nikoli poloha *m* a μ₀. Vnitřek intervalu je proto přesně množina testovaných hodnot, které test nezamítá, jak ukazuje oddíl [Vnitřek intervalu jako množina nezamítnutých hodnot](kapitola_07.qmd#sec-mnozina-nezamitnutych).
+
+U jednostranného testu leží celé α v jednom chvostu. Odpovídající jednostranný interval má jen jednu konečnou mez a tatáž mez patří oboustrannému intervalu se spolehlivostí $1-2\mathrm{α}$. Proto se ve zprávách k jednostrannému testu obvykle uvádí 90% oboustranný interval, který ukáže i druhou mez ([Jednostranný test a jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval)). Na straně alternativy je oboustranná *p*-hodnota dvojnásobkem jednostranné; tenká čárkovaná křivka proto protíná 2α tam, kde plná křivka protíná α.
+
+Přesně na mezi intervalu je *p*-hodnota rovna α a podle pravidla z [kapitoly 6](kapitola_06.qmd#sec-hladina-kriticky-obor) zamítáme. Zaokrouhlené meze k takovému rozhodnutí nestačí. Všechny výpočty platí za předpokladů *t*-testu, jak je shrnuje oddíl [Normalita a odolnost](kapitola_07.qmd#sec-t-predpoklady); interval i *p*-hodnota se týkají výběrové nejistoty a neříkají nic o věcné důležitosti rozdílu, ke které kapitola 7 [přidává pásmo ekvivalence](kapitola_07.qmd#sec-pasmo-ekvivalence).

@@ -443,6 +443,24 @@ U vizualizace *t*-rozdělení a normovaného normálního kontrola ověřuje:
   a `dnorm` a vzorcem `T.DIST(…;NEPRAVDA)`, šířku 375 px bez přetékání
   a odkaz z kapitoly 7.
 
+U vizualizace intervalu spolehlivosti a *p*-hodnoty kontrola ověřuje:
+
+- dva grafy (pohled intervalu a pohled testu) a žádný viditelný kód,
+  tlačítko schránky ani chybu OJS;
+- *p*-hodnotu, kvantil, mezní chybu a meze intervalu pro sedm nastavení
+  (všechny tři směry testu, příklady kapitoly 7, záporné μ₀, α = 0,5)
+  proti R a shodu čtyř pohledů na rozhodnutí; na přesné mezi intervalu
+  *p*-hodnotu rovnou α a zamítnutí všemi čtyřmi pohledy;
+- výchozí stav (pozornost oboustranně), rozsah osy a posuvníků, krok
+  posuvníku šipkou a souběh s polem, přesné znění vzorců `T.DIST.2T`,
+  `T.INV.2T` a `T.DIST`;
+- předvolby (jednostranný test „menší“ s jednostranným intervalem
+  a 90% oboustranným intervalem, PDI), přepnutí na alternativu „větší“,
+  rozšíření rozsahu po zápisu hodnoty mimo něj;
+- odmítnutí neplatných vstupů (*s* = 0, *n* = 1 a 2,5, α = 0,6, text,
+  „1,2,3“) se zprávou a ponecháním poslední platné hodnoty, šířku 375 px
+  bez přetékání, pořadí v menu a odkaz z kapitoly 7.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
