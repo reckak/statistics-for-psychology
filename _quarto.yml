@@ -50,6 +50,7 @@ book:
         - quarto/viz_vyberove_rozdeleni_prumeru.qmd
         - quarto/viz_statisticka_sila.qmd
         - quarto/viz_t_rozdeleni.qmd
+        - quarto/viz_interval_a_test.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

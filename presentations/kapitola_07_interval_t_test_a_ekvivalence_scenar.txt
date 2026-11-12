@@ -208,13 +208,13 @@ Třetím vyjádřením je pé-hodnota větší než pět setin. Testová statyst
 
 Snímek dvacet tři.
 
-Jednostranný té-test pozornosti zamítl nulovou hypotézu, přestože devadesátipětiprocentní interval obsahuje padesát. Tyto dva výsledky odpovídají odlišným otázkám. Centrální devadesátipětiprocentní interval souvisí s oboustranným testem. Ten rozděluje celkových pět procent do dvou chvostů. Jednostranný test používá všech pět procent v jednom směru.
+Jednostranný té-test pozornosti zamítl nulovou hypotézu, přestože devadesátipětiprocentní interval obsahuje padesát. Tyto dva výsledky odpovídají odlišným otázkám. Devadesátipětiprocentní interval má konečnou dolní i horní mez. Je to oboustranný interval spolehlivosti a souvisí s oboustranným testem. Ten rozděluje celkových pět procent do dvou chvostů, a v literatuře se proto takovému intervalu říká také centrální. Jednostranný test používá všech pět procent v jednom směru.
 
-Pro alternatyvu menší potřebujeme horní jednostrannou mez se spolehlivostí devadesát pět procent. K průměru čtyřicet šest přičteme kvantyl s úrovní devadesát pět setin krát odhad směrodatné chyby. Vychází přibližně čtyřicet devět celých sedmdesát šest setin bodu. Norma padesát je nad touto mezí, takže test zamítá.
+Pro alternatyvu menší potřebujeme jednostranný interval spolehlivosti s horní mezí, se spolehlivostí devadesát pět procent. Má jedinou konečnou mez, horní. K průměru čtyřicet šest přičteme kvantyl s úrovní devadesát pět setin krát odhad směrodatné chyby. Vychází přibližně čtyřicet devět celých sedmdesát šest setin bodu. Norma padesát je nad touto mezí, leží tedy mimo interval, takže test zamítá. Pro alternatyvu větší by obdobně odpovídal jednostranný interval s dolní mezí.
 
-V grafu porovnejte prostřední a dolní řádek. Horní mez centrálního devadesátiprocentního intervalu je přesně stejná jako jednostranná devadesátipětiprocentní mez. Centrální interval totiž nechává pět procent v každém chvostu. Jednostranný interval dole sahá doleva bez omezení; centrální interval má navíc dolní mez čtyřicet dva celých dvacet čtyři setiny bodu.
+V grafu porovnejte prostřední a dolní řádek. Horní mez devadesátiprocentního oboustranného intervalu je přesně stejná jako mez devadesátipětiprocentního jednostranného intervalu. Oboustranný interval totiž nechává pět procent v každém chvostu. Jednostranný interval dole sahá doleva bez omezení; oboustranný interval má navíc dolní mez čtyřicet dva celých dvacet čtyři setiny bodu.
 
-Obecně k jednostrannému testu na hladině alfa patří odpovídající mez centrálního intervalu se spolehlivostí jedna minus dvakrát alfa. Pro alternatyvu menší sledujeme horní mez, pro alternatyvu větší dolní. Centrální interval navíc ukazuje nejistotu na obě strany. Tento vztah využijeme při testování ekvivalence.
+Obecně k jednostrannému testu na hladině alfa patří jednostranný interval se spolehlivostí jedna minus alfa. Stejnou mez má oboustranný interval se spolehlivostí jedna minus dvakrát alfa. Pro alternatyvu menší sledujeme horní mez, pro alternatyvu větší dolní. Oboustranný interval navíc ukazuje nejistotu na obě strany. Tento vztah využijeme při testování ekvivalence.
 
 Snímek dvacet čtyři.
 

@@ -134,3 +134,17 @@ než dvě sekundy při prahu −50 dB. Zkontrolován také začátek a konec pom
 časového zarovnání poskytovatele. Jde o technickou kontrolu, nikoli poslech
 nebo nezávislou transkripci; správná výslovnost tím není potvrzena.
 Služba vykázala 674 kreditů za řeč a 4 za obě spojení.
+
+## Úprava po nahrávce: terminologie intervalů (2026-11-13)
+
+Podle [R75](../docs/rozhodnuti/kapitola-07.md#r75-oboustranny-jednostranny-interval)
+byl přepsán výklad snímku 23: místo „centrálního intervalu“ a „jednostranné
+meze“ mluví o oboustranném intervalu spolehlivosti a o jednostranném
+intervalu s horní, případně dolní mezí; „centrální“ zazní jednou jako
+označení z literatury. Ostatní snímky se nezměnily. Nová slova s di/ti/ni
+(„jedinou“, „obdobně“) jsou česká a nevyžadují úpravu výslovnosti.
+
+MP3 nebylo znovu syntetizováno, placená syntéza nebyla vyžádána. Nahrávka
+proto u snímku 23 zůstává ve starší terminologii a hlavní údaje manifestu
+(hash scénáře, rozsahy snímků, audio) popisují verzi, z níž vznikla.
+Současný hash a počty slov uvádí záznam `post_audio_script_edits`.

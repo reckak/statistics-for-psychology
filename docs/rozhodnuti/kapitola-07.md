@@ -109,3 +109,17 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 - Ve výkladu „variabilita“ místo „rozptýlenost“ a „reliabilita“ místo „spolehlivost“ měření, v souladu s [registrem](../SLOVNIK.md); „striktně uvnitř“ místo „přísně uvnitř“; „neprůkazný“ výsledek místo „nerozhodný“.
 
 **Doklad:** autorovy připomínky 2026-11-09: „Místo neinferiority bych používal noninferiorita, když už samotná inferiority je cizí slovo“, „bylo by nejlepší v rámci příkladu s pozorností uvažovat … o tom, zda nějaká intervence zlepšuje pozornost; a pak vysvětlit jak inferioritu a noninferioritu, tak superioritu a nonsuperioritu“ a požadavek na nepovinné rozšíření o odolnosti podle Wilcoxe s dopady na sílu, skutečnou alfa a CI. Hodnotu $s=11$ zvolil v otázce 2026-11-09; následně schválil plán revize, který uváděl i nové termíny.
+
+<a id="r75-oboustranny-jednostranny-interval"></a>
+
+## R75 — Oboustranný a jednostranný interval spolehlivosti
+
+**Stav:** schváleno 2026-11-13 (volba vyslovena 2026-11-12). **Rozsah:** kapitola 7, slovníček, přehled značení, interaktivní vizualizace intervalu a *p*-hodnoty, prezentace a scénář kapitoly 7 a další použití. Upřesňuje [R67](#r67-revize-kapitoly-7) v bodě „jednostranná mez“; ostatní body R46 a R67 platí.
+
+- **Oboustranný interval spolehlivosti** (*two-sided confidence interval*): má konečnou dolní i horní mez. V učebnici leží v každém chvostu α/2; v literatuře se takovému intervalu říká také **centrální** (*central, equal-tailed*). „Centrální interval“ je alternativa ve slovníčku, ve výkladu se jednou vysvětlí a dál nepoužívá.
+- **Jednostranný interval spolehlivosti s horní mezí** a **jednostranný interval spolehlivosti s dolní mezí** (*one-sided confidence interval with an upper/lower bound; upper/lower confidence bound*): mají jen jednu konečnou mez, například (−∞; 49,76] nebo [42,24; ∞). Nahrazují dosavadní „horní/dolní jednostranná mez“; slovo mez zůstává pro konečný krajní bod intervalu.
+- Spolehlivost se uvádí před podstatným jménem: „95% oboustranný interval“, „95% jednostranný interval s horní mezí“. Samotné „95% interval spolehlivosti“ bez přívlastku nadále znamená oboustranný interval.
+
+**Důvod:** dosavadní dvojice „centrální interval“ a „jednostranná mez“ stavěla vedle sebe interval a jeden jeho bod. Jednotné pojmenování podle počtu konečných mezí ukazuje, že jde o tři varianty téhož postupu, a umožňuje je souběžně zobrazit ve vizualizaci intervalu a *p*-hodnoty.
+
+**Doklad:** autor 2026-11-12 při projednávání vizualizace intervalu a *p*-hodnoty ([upřesnění R65](postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval)) požadoval zobrazit u jednostranných testů „jak noncentrální CI, tak odpovídající centrální CI s hladinou spolehlivosti 1–2alfa“. Na otázku, jak interval pojmenovat, odpověděl: „Zavedl bych ve vizualizaci i v kapitole rozlišení intervalů: Oboustranný interval spolehlivosti – má konečnou dolní i horní mez. Jednostranný interval spolehlivosti s dolní mezí – má pouze konečnou dolní mez. Jednostranný interval spolehlivosti s horní mezí – má pouze konečnou horní mez.“ K termínu „centrální“ zvolil „Alternativa + jedna věta“ a sladění prezentace a scénáře kapitoly 7 „V tomto úkolu“. Plán, který tyto volby uváděl, schválil 2026-11-13.

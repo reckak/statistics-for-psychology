@@ -110,6 +110,11 @@ Námět ke kapitole 7 „t a normální rozdělení podle stupňů volnosti“ a
 [Jak se *t*-rozdělení liší od normovaného normálního](../../quarto/viz_t_rozdeleni.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
+Spojení obrázků funkce *p*-hodnoty a zrcadla intervalu ke kapitole 7, které
+v návrhu z 2026-11-05 nebylo, autor zadal 2026-11-12 a schválil 2026-11-13
+jako stránku [Jak spolu souvisí interval spolehlivosti a *p*-hodnota](../../quarto/viz_interval_a_test.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval),
+[karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
 pásmo ekvivalence; kap. 8 přínos párování a interval rozdílu vedle dvou intervalů.

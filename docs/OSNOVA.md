@@ -73,7 +73,7 @@ patří před vizualizace, literaturu a přehledy.
 **Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
 výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
-této mapy. Existuje jich sedm, v pořadí podle první navazující kapitoly a oddílu:
+této mapy. Existuje jich osm, v pořadí podle první navazující kapitoly a oddílu:
 [co s rozdělením udělá posun a změna jednotek](../quarto/viz_posun_a_jednotky.qmd)
 ke kapitole 3 ([karta](kapitoly/03-poloha-variabilita.md#interaktivni-vizualizace-03)),
 [plochy pod normální křivkou](../quarto/viz_normalni_rozdeleni.qmd)
@@ -85,6 +85,7 @@ ke kapitole 5 ([karta](kapitoly/05-pravdepodobnost.md#interaktivni-vizualizace-0
 a [statistická síla](../quarto/viz_statisticka_sila.qmd)
 ke kapitole 6 ([karta](kapitoly/06-vyberove-rozdeleni-testovani.md#interaktivni-vizualizace-06)),
 [srovnání *t*-rozdělení s normovaným normálním](../quarto/viz_t_rozdeleni.qmd)
+a [interval spolehlivosti a *p*-hodnota](../quarto/viz_interval_a_test.qmd)
 ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
