@@ -1,0 +1,495 @@
+---
+code-copy: false
+---
+
+# Jak se *t*-rozdělení liší od normovaného normálního {#sec-viz-t-rozdeleni .unnumbered}
+
+Jak moc se *t*-rozdělení liší od normovaného normálního rozdělení, kde přesně rozdíl leží a kdy na něm záleží? Vizualizace obě rozdělení porovná pro 1 až 100 stupňů volnosti: křivkami hustoty, normálním Q–Q grafem a dvěma grafy chyby, které vznikne, když *t*-rozdělení nahradíme normálním modelem. Tabulky pod grafy srovnávají nejčastěji používané kvantily. Navazuje na kapitolu 7: na oddíly [Proč nestačí dosadit s](kapitola_07.qmd#sec-proc-nestaci-s), [Studentovo *t*-rozdělení](kapitola_07.qmd#sec-studentovo-t) a [Kvantily *t*-rozdělení](kapitola_07.qmd#sec-t-kvantily). Čtení normálního Q–Q grafu vykládá [kapitola 4](kapitola_04.qmd#sec-qq-graf).
+
+## Model a ovládání {#sec-viz-t-ovladani .unnumbered}
+
+Porovnáváme dvě souměrná rozdělení se středem v nule: *t*-rozdělení s *v* stupni volnosti a [normované normální rozdělení](kapitola_04.qmd#sec-normovane-normalni) $N(0,1)$. Pro jeden výběr velikosti $n$ má *t*-rozdělení $v=n-1$ stupňů volnosti. Normální model tu chápeme jako náhradu neboli aproximaci *t*-rozdělení. Ptáme se, jak velkou chybu bychom udělali, kdybychom místo *t*-rozdělení použili normální model, například kvantil 1,960 místo $t_{0{,}975\,(v)}$.
+
+Nahoře nastavíte tři věci:
+
+- **Stupně volnosti** posuvníkem od 1 do 100. Posouvat jej lze myší, prstem i klávesnicí: šipky mění počet o 1, klávesy Page Up a Page Down o větší krok, Home a End nastaví 1 a 100. Po načtení stránky jsou nastaveny 4 stupně volnosti jako u výběrů pěti lidí v kapitole 7.
+- **Hranici** $x$, číslo od −10 do 10; desetinná čísla můžete psát s čárkou i s tečkou. Výchozí hranice −1,645 je kvantil $z_{0{,}05}$. Vyznačený podíl leží za hranicí směrem od nuly: u záporné hranice vlevo od ní, u kladné vpravo. U hranice 0 je to polovina vlevo. Kdyby hranice byla vypočtená statistika *t*, byl by podíl za ní jednostrannou *p*-hodnotou jako v [jednovýběrovém *t*-testu](kapitola_07.qmd#sec-t-test-pozornost). Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hranici.
+- **Co porovnávají grafy chyb**: podíl ve chvostu za hranicí (po načtení stránky), nebo výšku hustoty.
+
+Pod ovládáním jsou podíly za hranicí v obou rozděleních s výpočtem obou chyb a se vzorci českého Excelu. Při volbě výšky hustoty přibudou výšky obou křivek v hranici. Následují čtyři grafy:
+
+- **Hustoty.** Plná modrá křivka je *t*-rozdělení, čárkovaná oranžová normovaná normální. Podíl za hranicí je pod *t*-křivkou vybarven modře a pod normální křivkou oranžově; oranžová plocha leží přes modrou, takže tam, kde je modrá vidět, má *t*-rozdělení víc plochy. Vodorovná osa vede vždy od −5 do 5 a svislá má stálé měřítko, aby šlo při posouvání stupňů volnosti tvar přímo srovnat.
+- **Normální Q–Q graf.** Každý bod křivky odpovídá jedné úrovni kvantilu $p$ od 0,0005 do 0,9995. Na vodorovné ose je kvantil normovaného normálního rozdělení $z_p$, na svislé kvantil *t*-rozdělení $t_{p\,(v)}$, stejně jako v Q–Q grafu kapitoly 4. Čárkovaná přímka shody označuje místa, kde by se oba kvantily rovnaly. Body vyznačují úrovně z tabulky kvantilů. Svislá osa končí v ±8; kvantily dál od nuly leží mimo graf a poznámka pod grafem uvede, od které úrovně.
+- **Absolutní chyba** pro každé $x$ od −5 do 5. Svislá osa se přizpůsobuje zvoleným stupňům volnosti, protože při 100 stupních volnosti je chyba mnohokrát menší než při jednom (u podílu ve chvostu asi osmdesátkrát). Sledujte proto i čísla na ose.
+- **Relativní chyba** v procentech. Svislá osa vede od −100 % do +30 %; jen u výšky hustoty při několika málo stupních volnosti, kdy je normální křivka v okolí středu vyšší o víc než 30 %, se horní mez zvýší.
+
+V obou grafech chyb označuje svislá čárkovaná čára hranici a tečka s popiskem hodnotu chyby v ní. Podíly zaokrouhlujeme na čtyři platné číslice, chyby v procentech na jedno desetinné místo a kvantily na tři desetinná místa. Mezivýpočty probíhají s plnou přesností.
+
+### Co ukazují grafy chyb {#sec-viz-t-chyby .unnumbered}
+
+Chybu měříme dvojím způsobem. **Absolutní chyba** je rozdíl mezi hodnotou z normálního modelu a hodnotou z *t*-rozdělení. Je vyjádřená ve stejných jednotkách jako srovnávané hodnoty, u podílu tedy v podílu. **Relativní chyba** vyjadřuje absolutní chybu jako část hodnoty z *t*-rozdělení v procentech:
+
+$$\text{absolutní chyba}=\text{hodnota z normálního modelu}-\text{hodnota z }t\text{-rozdělení},$$
+
+$$\text{relativní chyba}=\frac{\text{absolutní chyba}}{\text{hodnota z }t\text{-rozdělení}}\cdot100\,\%.$$
+
+Záporná chyba znamená, že normální model dává menší hodnotu než *t*-rozdělení. Relativní chyba −50 % znamená, že normální model dává polovinu správné hodnoty, a −100 % by znamenalo nulu.
+
+Ukážeme to na 30 stupních volnosti a hranici −1,645. Podíl vlevo od hranice je v *t*-rozdělení 0,0552 a v normálním modelu 0,0500. Absolutní chyba je $0{,}0500-0{,}0552=-0{,}0052$, tedy normální model podíl ve chvostu podhodnocuje asi o pět tisícin. Relativní chyba je $-0{,}0052/0{,}0552\cdot100\,\%\approx-9{,}5\,\%$ (počítáno z nezaokrouhlených podílů). Při hranici −3 jsou podíly 0,00269 a 0,00135. Absolutní chyba −0,0013 je v absolutní hodnotě ještě menší než u hranice −1,645, relativní chyba −49,9 % je ale asi pětkrát větší: normální model dá jen polovinu správného podílu.
+
+Proč absolutní a relativní chyba vypovídají tak rozdílně? Ve chvostech jsou oba podíly malé, takže i malý rozdíl je velkou částí každého z nich. Rozdíl 0,001 je u podílu 0,05 zanedbatelný, u podílu 0,002 je to polovina. Právě malé podíly ve chvostech přitom určují kritické hodnoty a malé *p*-hodnoty. Pro ně je proto důležitější relativní chyba: *p*-hodnota 0,001 a 0,002 se liší dvojnásobně, i když absolutně jen o tisícinu. Při volbě podílu ve chvostu je chyba všude mimo nulu záporná: *t*-rozdělení má těžší chvosty, a normální model proto podíl za hranicí vždy podhodnotí. U hranice 0 jsou oba podíly 0,5 a chyba je nulová.
+
+Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Výška hustoty sama podílem není, podíl je plocha pod křivkou ([kapitola 4](kapitola_04.qmd#sec-hustota)). Uprostřed je chyba kladná, normální křivka je vyšší. Plocha pod každou z křivek je 1, takže když má *t*-rozdělení víc plochy ve chvostech, musí jí mít méně uprostřed. Ve chvostech klesá normální křivka k nule mnohem rychleji než *t*-křivka. Relativní chyba se proto s rostoucí vzdáleností od nuly blíží −100 %: normální model tam předpovídá téměř nulovou výšku, kdežto *t*-rozdělení ještě ne.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the t-distribution figure of chapter 7 (scripts/kapitola_07.R).
+  const blue = "#245D78", orange = "#B54E24", fillT = "#B8DDE8", fillN = "#F0B08C", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", hiText = "#9A3F17";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+  const dnorm = z => Math.exp(-0.5 * z * z) / SQRT2PI;
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+
+  // Density of the t distribution with v degrees of freedom.
+  const dt = (x, v) => Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2) - 0.5 * Math.log(v * Math.PI) - (v + 1) / 2 * Math.log1p(x * x / v));
+
+  // Continued fraction of the incomplete beta function (modified Lentz), as in Numerical Recipes (betacf).
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  // Regularised incomplete beta function I_x(a, b).
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail; accurate also far in the tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+  const pt = (x, v) => x > 0 ? 1 - tTail(x, v) : tTail(x, v);
+  const nTail = x => pnorm(-Math.abs(x));
+
+  // Quantile of the t distribution: closed forms for 1 and 2 degrees of freedom, otherwise
+  // Newton steps on the upper tail started at the normal quantile, kept inside a shrinking bracket.
+  function qt(p, v) {
+    if (p === 0.5) return 0;
+    if (v === 1) return Math.tan(Math.PI * (p - 0.5));
+    if (v === 2) return (2 * p - 1) / Math.sqrt(2 * p * (1 - p));
+    const q = Math.min(p, 1 - p), sign = p > 0.5 ? 1 : -1;
+    let lo = 0, hi = 1;
+    while (tTail(hi, v) > q) { lo = hi; hi *= 2; }
+    let x = Math.min(Math.max(-qnorm(q), lo), hi);
+    for (let i = 0; i < 100; i++) {
+      const f = tTail(x, v) - q;
+      if (f > 0) lo = x; else hi = x;
+      let next = x + f / dt(x, v);
+      if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+      if (Math.abs(next - x) <= 1e-14 * Math.max(1, x)) { x = next; break; }
+      x = next;
+    }
+    return sign * x;
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, d) => { let s = v.toFixed(d); if (Number(s) === 0) s = Math.abs(0).toFixed(d); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  // Four significant digits, written out without exponent.
+  const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 3 - Math.floor(Math.log10(Math.abs(v)))));
+  const sig = v => fixed(v, sigDigits(v));
+  // Percent with one decimal, more when one decimal would round a value just above −100 % to −100 %.
+  const pct = v => { let d = 1; while (d < 6 && Math.abs(Number(v.toFixed(d))) === 100 && Math.abs(v) < 100) d++; return fixed(v, d) + " %"; };
+  const q3 = v => fixed(v, 3);
+  const level = p => fixed(p, Math.max(2, (String(p).split(".")[1] || "").length));
+  const dfWord = v => v === 1 ? "stupeň" : v <= 4 ? "stupně" : "stupňů";
+
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const LEVELS = [
+    [0.90, "80% interval; jednostranný test na hladině 0,10"],
+    [0.95, "90% interval a test ekvivalence; jednostranný test na hladině 0,05"],
+    [0.975, "95% interval; oboustranný test na hladině 0,05"],
+    [0.99, "98% interval; jednostranný test na hladině 0,01"],
+    [0.995, "99% interval; oboustranný test na hladině 0,01"],
+    [0.9995, "99,9% interval; oboustranný test na hladině 0,001"]
+  ];
+  const FIXED_DF = [1, 2, 3, 4, 5, 10, 15, 20, 24, 29, 30, 50, 100];
+  const XMAX = 5, QQ_Y = 8, LIMIT = 10;
+
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = fill => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-t-rozdeleni">
+    <div class="viz-controls">
+      <div class="viz-field viz-t-df">
+        <label for="viz-t-v">Stupně volnosti <i>v</i></label>
+        <div class="viz-t-slider">
+          <span class="viz-hint" aria-hidden="true">1</span>
+          <input id="viz-t-v" type="range" min="1" max="100" step="1" value="4" aria-describedby="viz-t-v-value">
+          <span class="viz-hint" aria-hidden="true">100</span>
+        </div>
+        <output id="viz-t-v-value" for="viz-t-v" class="viz-t-value" aria-live="polite"></output>
+      </div>
+      <div class="viz-field" data-field="x">
+        <label for="viz-t-x">Hranice <i>x</i></label>
+        <input id="viz-t-x" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="−1,645" aria-describedby="viz-t-x-hint viz-t-x-error">
+        <span id="viz-t-x-hint" class="viz-hint">číslo od −10 do 10</span>
+        <span id="viz-t-x-error" class="viz-error" hidden></span>
+      </div>
+      <fieldset class="viz-choice viz-t-mode">
+        <legend>Co porovnávají grafy chyb</legend>
+        <label><input type="radio" name="viz-t-mode" value="tail" checked><span>podíl ve chvostu za hranicí</span></label>
+        <label><input type="radio" name="viz-t-mode" value="density"><span>výšku hustoty</span></label>
+      </fieldset>
+    </div>
+    <dl class="viz-stats" data-stats aria-live="polite"></dl>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-t-live-title">
+      <h3 id="viz-t-live-title" class="viz-part-title">Nejčastěji používané kvantily při zvolených stupních volnosti</h3>
+      <div class="viz-bay-table-wrap" data-live></div>
+      <p class="viz-note" data-live-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-t-fixed-title">
+      <h3 id="viz-t-fixed-title" class="viz-part-title">Kvantily <i>t</i>-rozdělení pro vybrané stupně volnosti</h3>
+      <div class="viz-bay-table-wrap" data-fixed tabindex="0" role="region" aria-labelledby="viz-t-fixed-title"></div>
+      <p class="viz-note">Každý sloupec je jedna úroveň kvantilu <i>p</i> (podíl vlevo). Poslední řádek jsou kvantily normovaného normálního rozdělení. Zvolené stupně volnosti jsou zvýrazněny; nejsou-li v přehledu, vloží se na své místo.</p>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const state = {v: 4, x: -1.645, mode: "tail"};
+  const slider = $("#viz-t-v"), valueOut = $("#viz-t-v-value");
+
+  slider.addEventListener("input", () => { state.v = Number(slider.value); render(); });
+  root.querySelectorAll('input[name="viz-t-mode"]').forEach(r => r.addEventListener("change", () => { state.mode = r.value; render(); }));
+
+  const xInput = $("#viz-t-x"), xError = $("#viz-t-x-error");
+  xInput.addEventListener("input", () => {
+    const v = parseDecimal(xInput.value);
+    const message = v === null ? "Zadejte číslo, například −1,645." : Math.abs(v) > LIMIT ? "Zadejte číslo od −10 do 10." : null;
+    xError.hidden = !message;
+    xError.textContent = message ? `${message} Používá se dál poslední platná hranice.` : "";
+    xInput.setAttribute("aria-invalid", message ? "true" : "false");
+    if (!message) { state.x = v; render(); }
+  });
+
+  // Error of the normal approximation at x: tail share beyond x, or the height of the density.
+  const values = (x, v, mode) => mode === "tail" ? {t: tTail(x, v), n: nTail(x)} : {t: dt(x, v), n: dnorm(x)};
+  const absErr = (x, v, mode) => { const {t, n} = values(x, v, mode); return n - t; };
+  const relErr = (x, v, mode) => { const {t, n} = values(x, v, mode); return t > 0 ? 100 * (n - t) / t : 0; };
+
+  // Share beyond the bound in the direction away from zero (left half at zero).
+  function tailTask() {
+    const {x, v} = state, right = x > 0;
+    const pT = tTail(x, v), pN = nTail(x), abs = pN - pT, rel = pT > 0 ? 100 * abs / pT : NaN;
+    const where = right ? `vpravo od hranice ${typed(x)}` : `vlevo od hranice ${typed(x)}`;
+    const fT = right ? `=1-T.DIST(${excel(x)};${v};PRAVDA)` : `=T.DIST(${excel(x)};${v};PRAVDA)`;
+    const fN = right ? `=1-NORM.S.DIST(${excel(x)};PRAVDA)` : `=NORM.S.DIST(${excel(x)};PRAVDA)`;
+    return {right, pT, pN, abs, rel, where, fT, fN};
+  }
+
+  function relLine(abs, t, rel) {
+    return Number.isFinite(rel) ? `${sig(abs)} / ${sig(t)} · 100 % = <strong>${pct(rel)}</strong>` : "nelze spočítat, podíl v <i>t</i>-rozdělení je prakticky nulový";
+  }
+
+  function statsRows() {
+    const {x, v, mode} = state, T = tailTask();
+    const rows = [
+      [`Podíl ${T.where} v <i>t</i>-rozdělení (<i>v</i> = ${v})`, `<strong>${sig(T.pT)}</strong><br><code>${T.fT}</code>`],
+      [`Podíl ${T.where} v normovaném normálním rozdělení`, `<strong>${sig(T.pN)}</strong><br><code>${T.fN}</code>`],
+      ["Absolutní chyba podílu (normální − <i>t</i>)", `${sig(T.pN)} − ${sig(T.pT)} = <strong>${sig(T.abs)}</strong>`],
+      ["Relativní chyba podílu", relLine(T.abs, T.pT, T.rel)]
+    ];
+    if (mode === "density") {
+      const hT = dt(x, v), hN = dnorm(x), a = hN - hT, r = hT > 0 ? 100 * a / hT : NaN;
+      rows.push(
+        [`Výška <i>t</i>-křivky v hranici ${typed(x)}`, `<strong>${sig(hT)}</strong><br><code>=T.DIST(${excel(x)};${v};NEPRAVDA)</code>`],
+        [`Výška normální křivky v hranici ${typed(x)}`, `<strong>${sig(hN)}</strong><br><code>=NORM.S.DIST(${excel(x)};NEPRAVDA)</code>`],
+        ["Absolutní chyba výšky (normální − <i>t</i>)", `${sig(hN)} − ${sig(hT)} = <strong>${sig(a)}</strong>`],
+        ["Relativní chyba výšky", relLine(a, hT, r)]
+      );
+    }
+    return {rows, T};
+  }
+
+  // Q–Q curve: levels evenly spaced on the z scale between 0,0005 and 0,9995, plus the table levels.
+  const zEdge = -qnorm(0.0005);
+  const qqLevels = d3.range(0, 241).map(i => pnorm(-zEdge + 2 * zEdge * i / 240));
+  const tableLevels = LEVELS.flatMap(([p]) => [Number((1 - p).toFixed(6)), p]);
+
+  function charts(container, T) {
+    const {v, x, mode} = state;
+    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const small = width < 520;
+    const base = {width, marginLeft: small ? 56 : 66, marginRight: 16, marginTop: 16, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}};
+    const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52});
+    const xAxis = {domain: [-XMAX, XMAX], label: "x", labelAnchor: "center", labelArrow: "none", ticks: d3.range(-XMAX, XMAX + 1, small ? 2 : 1).concat(small ? [XMAX] : []), tickFormat: t => minus(String(t))};
+    const grid = d3.range(0, 501).map(i => -XMAX + 2 * XMAX * i / 500);
+    const inside = Math.abs(x) <= XMAX;
+
+    // 1. Densities with the shaded tail beyond the bound.
+    const tailFrom = T.right ? Math.min(x, XMAX) : -XMAX, tailTo = T.right ? XMAX : Math.max(x, -XMAX);
+    const tailPts = tailTo > tailFrom ? [tailFrom, ...grid.filter(g => g > tailFrom && g < tailTo), tailTo] : [];
+    const density = Plot.plot({
+      ...base, height: small ? 260 : 300, marginBottom: 42,
+      x: xAxis,
+      y: {...yLabel("Hustota"), domain: [0, 0.42], ticks: [0, 0.1, 0.2, 0.3, 0.4], tickFormat: t => fixed(t, 1)},
+      ariaLabel: `Hustota t-rozdělení s ${v} ${dfWord(v)} volnosti a normovaného normálního rozdělení`,
+      ariaDescription: `Výška obou křivek v nule: t-rozdělení ${fixed(dt(0, v), 3)}, normální ${fixed(dnorm(0), 3)}. Podíl ${T.where}: t-rozdělení ${sig(T.pT)}, normální ${sig(T.pN)}.`,
+      marks: [
+        Plot.areaY(tailPts, {x: d => d, y: d => dt(d, v), fill: fillT}),
+        Plot.areaY(tailPts, {x: d => d, y: dnorm, fill: fillN, fillOpacity: 0.75}),
+        Plot.lineY(grid, {x: d => d, y: dnorm, stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
+        Plot.lineY(grid, {x: d => d, y: d => dt(d, v), stroke: blue, strokeWidth: 2.2}),
+        inside ? Plot.ruleX([x], {stroke: ink, strokeWidth: 1.3, strokeDasharray: "5,4"}) : null,
+        inside ? Plot.text([x], {x: d => d, frameAnchor: "top", dx: T.right ? 6 : -6, textAnchor: T.right ? "start" : "end", lineAnchor: "top", fill: hiText, fontWeight: 600, text: d => `x = ${typed(d)}`}) : null,
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    // 2. Normal Q–Q plot of the t quantiles against z quantiles.
+    const qq = qqLevels.map(p => ({p, z: qnorm(p), t: qt(p, v)}));
+    const qqMarks = tableLevels.map(p => ({p, z: qnorm(p), t: qt(p, v)}));
+    const inPlot = qq.filter(d => Math.abs(d.t) <= QQ_Y);
+    const zr = zEdge + 0.1;
+    const qqPlot = Plot.plot({
+      ...base, height: small ? 300 : 340, marginBottom: 46,
+      x: {domain: [-zr, zr], label: "Kvantil normovaného normálního rozdělení (z)", labelAnchor: "center", labelArrow: "none", ticks: [-3, -2, -1, 0, 1, 2, 3], tickFormat: t => minus(String(t))},
+      y: {...yLabel("Kvantil t-rozdělení"), domain: [-QQ_Y, QQ_Y], ticks: d3.range(-QQ_Y, QQ_Y + 1, 2), tickFormat: t => minus(String(t))},
+      ariaLabel: `Normální Q–Q graf: kvantily t-rozdělení s ${v} ${dfWord(v)} volnosti proti kvantilům normovaného normálního rozdělení`,
+      ariaDescription: `Vpravo leží křivka nad přímkou shody a vlevo pod ní. Například úrovni 0,975 odpovídá z = 1,960 a t = ${q3(qt(0.975, v))}.`,
+      marks: [
+        Plot.ruleY([0], {stroke: pale}), Plot.ruleX([0], {stroke: pale}),
+        Plot.line([[-zr, -zr], [zr, zr]], {stroke: gray, strokeWidth: 1.3, strokeDasharray: "5,4"}),
+        Plot.line(qq, {x: "z", y: "t", stroke: blue, strokeWidth: 2.2, clip: true}),
+        Plot.dot(qqMarks.filter(d => Math.abs(d.t) <= QQ_Y), {x: "z", y: "t", r: 3.6, fill: blue, stroke: "white", strokeWidth: 0.8, title: d => `p = ${level(d.p)}: z = ${q3(d.z)}, t = ${q3(d.t)}`})
+      ]
+    });
+    const outside = qq.length - inPlot.length;
+    const pOut = pt(QQ_Y, v);
+    const qqNote = outside
+      ? `Svislá osa končí v ±8. Kvantily <i>t</i>-rozdělení nad úrovní ${fixed(pOut, 4)} a pod úrovní ${fixed(1 - pOut, 4)} leží mimo graf; například <i>t</i><sub>0,9995 (<i>v</i> = ${v})</sub> = ${q3(qt(0.9995, v))}.`
+      : `Všechny kvantily od úrovně 0,0005 do 0,9995 leží v grafu; nejvzdálenější je ${q3(qt(0.9995, v))} proti ${q3(qnorm(0.9995))} u normovaného normálního rozdělení.`;
+
+    // 3. and 4. Absolute and relative error of the normal approximation.
+    const what = mode === "tail" ? "podílu ve chvostu" : "výšky hustoty";
+    const absPts = grid.map(g => ({x: g, e: absErr(g, v, mode)}));
+    const relPts = grid.map(g => ({x: g, e: relErr(g, v, mode)}));
+    const absAt = inside ? (mode === "tail" ? T.abs : dnorm(x) - dt(x, v)) : null;
+    const relAt = inside ? relErr(x, v, mode) : null;
+    const emin = Math.min(0, ...absPts.map(d => d.e)), emax = Math.max(0, ...absPts.map(d => d.e));
+    const span = (emax - emin) || 1e-6;
+    const absDomain = [emin - 0.15 * span, emax + 0.15 * span];
+    const absDigits = Math.max(1, -Math.floor(Math.log10(span / 5)));
+    // The relative error stays above −100 %; its top is 30 % unless the density error of few degrees of freedom is larger.
+    const rmax = Math.max(0, ...relPts.map(d => d.e));
+    const relTop = Math.max(30, Math.ceil(rmax * 1.15 / 10) * 10);
+    const marker = (val, fmt) => inside ? [
+      Plot.ruleX([x], {stroke: ink, strokeWidth: 1.2, strokeDasharray: "5,4"}),
+      Plot.dot([val], {x: () => x, y: d => d, r: 4, fill: hiText}),
+      Plot.text([val], {x: () => x, y: d => d, dx: x > 2.5 ? -8 : 8, dy: -10, textAnchor: x > 2.5 ? "end" : "start", fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: fmt})
+    ] : [];
+    const absPlot = Plot.plot({
+      ...base, marginLeft: small ? 70 : 80, height: small ? 240 : 270, marginBottom: 42,
+      x: xAxis,
+      y: {...yLabel("Absolutní chyba"), labelOffset: small ? 60 : 70, domain: absDomain, ticks: 5, tickFormat: t => fixed(t, absDigits)},
+      ariaLabel: `Absolutní chyba normální aproximace ${what} pro t-rozdělení s ${v} ${dfWord(v)} volnosti`,
+      ariaDescription: `Chyba leží mezi ${sig(emin)} a ${sig(emax)}.${inside ? ` V hranici ${typed(x)} je ${sig(absAt)}.` : ""}`,
+      marks: [
+        Plot.areaY(absPts, {x: "x", y: "e", fill: pale}),
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.lineY(absPts, {x: "x", y: "e", stroke: blue, strokeWidth: 2.2}),
+        ...marker(absAt, sig)
+      ]
+    });
+    const relPlot = Plot.plot({
+      ...base, height: small ? 240 : 270, marginBottom: 42,
+      x: xAxis,
+      y: {...yLabel("Relativní chyba (%)"), domain: [-100, relTop], ticks: d3.range(-100, relTop + 1, 25), tickFormat: t => minus(String(t))},
+      ariaLabel: `Relativní chyba normální aproximace ${what} v procentech pro t-rozdělení s ${v} ${dfWord(v)} volnosti`,
+      ariaDescription: `V x = 5 je relativní chyba ${pct(relErr(5, v, mode))}.${inside ? ` V hranici ${typed(x)} je ${pct(relAt)}.` : ""}`,
+      marks: [
+        Plot.ruleY([-100], {stroke: pale}),
+        Plot.areaY(relPts, {x: "x", y: "e", fill: pale}),
+        Plot.ruleY([0], {stroke: ink}),
+        Plot.lineY(relPts, {x: "x", y: "e", stroke: blue, strokeWidth: 2.2}),
+        ...marker(relAt, pct)
+      ]
+    });
+
+    const panel = (title, chart, ...extra) => { const d = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; extra.forEach(e => d.append(e)); d.append(chart); return d; };
+    const legend = html`<div class="viz-legend"></div>`;
+    legend.innerHTML = `<span>${lineSwatch(blue)}<span><i>t</i>-rozdělení, ${v} ${dfWord(v)} volnosti</span></span><span>${lineSwatch(orange, "6,4")}<span>normované normální rozdělení</span></span><span>${boxSwatch(fillT)}<span>podíl za hranicí, <i>t</i></span></span><span>${boxSwatch(fillN)}<span>podíl za hranicí, normální</span></span>`;
+    const qqLegend = html`<div class="viz-legend"></div>`;
+    qqLegend.innerHTML = `<span>${lineSwatch(blue)}<span>kvantily <i>t</i>-rozdělení</span></span><span>${lineSwatch(gray, "5,4")}<span>přímka shody</span></span><span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4" fill="${blue}"/></svg><span>úrovně z tabulky kvantilů</span></span>`;
+    const note = html`<p class="viz-note" data-qq-note></p>`;
+    note.innerHTML = qqNote;
+    const nodes = [
+      panel("Hustoty obou rozdělení", density, legend),
+      panel("Normální Q–Q graf", qqPlot, qqLegend),
+      note,
+      panel(html`Absolutní chyba ${what}: normální − <i>t</i>`, absPlot),
+      panel(html`Relativní chyba ${what}: (normální − <i>t</i>) / <i>t</i> · 100 %`, relPlot)
+    ];
+    if (!inside) nodes.splice(1, 0, html`<p class="viz-note">Hranice ${typed(x)} leží mimo zobrazený rozsah od −5 do 5, a proto v grafech není zakreslena.</p>`);
+    container.replaceChildren(...nodes);
+    return {qqOutside: outside, absDomain};
+  }
+
+  function liveTable() {
+    const v = state.v;
+    const rows = LEVELS.map(([p, use]) => {
+      const z = qnorm(p), t = qt(p, v), a = z - t, r = 100 * a / t;
+      return {p, use, z, t, a, r};
+    });
+    const markup = `<table class="viz-bay-table viz-t-table" aria-label="Kvantily normovaného normálního a t-rozdělení při ${v} ${dfWord(v)} volnosti">
+      <thead><tr><th scope="col">Úroveň <i>p</i></th><th scope="col">Použití v kapitole 7</th><th scope="col"><i>z</i><sub><i>p</i></sub></th><th scope="col"><i>t</i><sub><i>p</i>&nbsp;(<i>v</i>&nbsp;=&nbsp;${v})</sub></th><th scope="col">Absolutní chyba<br><i>z</i> − <i>t</i></th><th scope="col">Relativní<br>chyba</th></tr></thead>
+      <tbody>${rows.map(d => `<tr><th scope="row">${level(d.p)}</th><td class="viz-t-use">${d.use}</td><td>${q3(d.z)}</td><td>${q3(d.t)}</td><td>${q3(d.a)}</td><td>${pct(d.r)}</td></tr>`).join("")}</tbody></table>`;
+    return {rows, markup};
+  }
+
+  function fixedTable() {
+    const v = state.v;
+    const dfs = FIXED_DF.includes(v) ? FIXED_DF : [...FIXED_DF, v].sort((a, b) => a - b);
+    const rows = dfs.map(d => ({v: d, current: d === v, inserted: !FIXED_DF.includes(d), q: LEVELS.map(([p]) => qt(p, d))}));
+    const zRow = LEVELS.map(([p]) => qnorm(p));
+    const markup = `<table class="viz-bay-table viz-t-fixed" aria-label="Kvantily t-rozdělení pro vybrané stupně volnosti">
+      <thead><tr><th scope="col">Stupně<br>volnosti <i>v</i></th>${LEVELS.map(([p]) => `<th scope="col">${level(p)}</th>`).join("")}</tr></thead>
+      <tbody>${rows.map(r => `<tr${r.current ? ' class="viz-t-current"' : ""}><th scope="row">${r.v}${r.current ? ' <span class="viz-t-tag">(zvoleno)</span>' : ""}</th>${r.q.map(q => `<td>${q3(q)}</td>`).join("")}</tr>`).join("")}
+      <tr class="viz-bay-total"><th scope="row"><i>z</i> (normované normální)</th>${zRow.map(q => `<td>${q3(q)}</td>`).join("")}</tr></tbody></table>`;
+    return {rows: rows.map(r => ({v: r.v, current: r.current, inserted: r.inserted, q: r.q})), z: zRow, markup};
+  }
+
+  const statsBox = $("[data-stats]"), plots = $("[data-plots]");
+  let last = {};
+
+  function render() {
+    const {v, x, mode} = state;
+    valueOut.innerHTML = `<i>v</i> = ${v} ${dfWord(v)} volnosti (jeden výběr <i>n</i> = ${v + 1})`;
+    slider.setAttribute("aria-valuetext", `${v} ${dfWord(v)} volnosti`);
+    const {rows, T} = statsRows();
+    statsBox.innerHTML = rows.map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    const drawn = charts(plots, T);
+    const live = liveTable(), fixedT = fixedTable();
+    $("[data-live]").innerHTML = live.markup;
+    $("[data-live-note]").innerHTML = `Vzorce českého Excelu pro řádek s úrovní 0,975: <code>=T.INV(0,975;${v})</code> → ${q3(qt(0.975, v))} a <code>=NORM.S.INV(0,975)</code> → 1,960. Pro jinou úroveň stačí změnit první argument. Absolutní chyba je rozdíl kvantilů, relativní chyba jej vyjadřuje jako část kvantilu <i>t</i>-rozdělení.`;
+    $("[data-fixed]").innerHTML = fixedT.markup;
+    last = {v, x, mode, tail: {right: T.right, pT: T.pT, pN: T.pN, abs: T.abs, rel: T.rel, formulaT: T.fT, formulaN: T.fN},
+      heights: mode === "density" ? {t: dt(x, v), n: dnorm(x)} : null,
+      stats: rows.map(([a]) => a.replace(/<[^>]+>/g, "")),
+      live: live.rows.map(({p, z, t, a, r}) => ({p, z, t, a, r})), fixed: {rows: fixedT.rows, z: fixedT.z},
+      qqOutside: drawn.qqOutside, absDomain: drawn.absDomain};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pnorm, qnorm, dnorm, dt, pt, qt, tTail, parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Srovnání <i>t</i>-rozdělení s normovaným normálním rozdělením ukazuje statický <a href="kapitola_07.html#fig-t-rozdeleni">obrázek v kapitole 7</a> a hodnoty kvantilů uvádí oddíl <a href="kapitola_07.html#sec-t-kvantily">Kvantily <i>t</i>-rozdělení</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-t-vyzkousejte .unnumbered}
+
+1. Nechte 4 stupně volnosti jako u výběrů pěti lidí. Porovnejte v grafu hustot chvosty obou křivek. V první tabulce najděte $t_{0{,}975\,(v=4)}$ a $z_{0{,}975}$. O kolik procent je normovaný kvantil menší a co by to znamenalo pro šířku 95% intervalu, kdybychom jej použili místo *t*-kvantilu?
+2. Nastavte hranici −3 a postupně 29, 30 a 100 stupňů volnosti. Jak velká je absolutní a jak velká relativní chyba podílu? Vysvětlete, proč tvrzení „od 30 lidí je *t*-rozdělení stejné jako normální“ neplatí pro malé *p*-hodnoty.
+3. Při 4 stupních volnosti si prohlédněte normální Q–Q graf. Proč křivka vpravo stoupá nad přímku shody a vlevo klesá pod ni? Porovnejte ji s [Q–Q grafem rozdělení s těžšími chvosty](kapitola_04.qmd#fig-qq-chvosty-04) v kapitole 4. Co se s křivkou stane při 1 a při 100 stupních volnosti?
+4. Přepněte grafy chyb na výšku hustoty. Kde je absolutní chyba kladná a kde záporná? Proč je při 1 stupni volnosti relativní chyba v nule asi +25 % a daleko od nuly se blíží −100 %?
+
+## Čeho si všimnout {#sec-viz-t-vsimnete .unnumbered}
+
+S rostoucími stupni volnosti se všechny chyby zmenšují, ale žádný počet stupňů volnosti je neodstraní. Absolutní chyba podílu ve chvostu je největší asi 1,5 až 1,9 od nuly, tedy právě v oblasti obvyklých kritických hodnot. Při 1 stupni volnosti dosahuje −0,126, při 30 asi −0,005 a při 100 asi −0,0016. Relativní chyba daleko ve chvostech zůstává velká i při 100 stupních volnosti: za hranicí 5 dává normální model jen asi čtvrtinu správného podílu. Odpovídá to výkladu kapitoly 7, že *t*-rozdělení s jakýmkoli konečným počtem stupňů volnosti má [těžší chvosty](kapitola_07.qmd#sec-studentovo-t).
+
+Normální Q–Q graf ukazuje totéž v kvantilech. Pro úrovně nad 0,5 je kvantil *t*-rozdělení vždy dál od nuly než $z_p$, a to tím víc, čím vyšší je úroveň a čím méně je stupňů volnosti. Proto interval s *t*-kvantilem vychází širší než interval s kvantilem $z$. Kdybychom při neznámé σ použili $z_{0{,}975}=1{,}960$, interval by byl příliš úzký a zachytil by populační průměr méně často, než slibuje hladina spolehlivosti. Ukazuje to oddíl [Proč nestačí dosadit s](kapitola_07.qmd#sec-proc-nestaci-s).
+
+Rozdíl je největší tam, kde na něm nejvíc záleží: u vysokých úrovní spolehlivosti a malých *p*-hodnot. Při neznámé σ proto *t*-rozdělení používáme vždy, nejen u malých výběrů, jak ukazuje [interval s *t*-kvantilem](kapitola_07.qmd#sec-interval-t); přesný kvantil dá Excel funkcí T.INV. Obě rozdělení jsou modely: *t*-rozdělení přesně popisuje statistiku *t* jen při [normální populaci](kapitola_07.qmd#sec-t-predpoklady).

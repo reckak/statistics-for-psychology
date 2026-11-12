@@ -825,6 +825,52 @@ před a po bez spojnic a jedinému grafu se dvěma řadami popisků), všechny
 z kapitoly + předvolby“; plán téhož dne schválil. Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md).
 
+<a id="r65-upresneni-2026-11-12-t"></a>
+
+### Upřesnění 2026-11-12 — Vizualizace *t*-rozdělení a normovaného normálního
+
+Sedmá vizualizace podle R65, ke kapitole 7: stránka
+`quarto/viz_t_rozdeleni.qmd` („Jak se *t*-rozdělení liší od normovaného
+normálního“, `#sec-viz-t-rozdeleni`), v menu za vizualizací statistické síly.
+Realizuje námět „t a normální rozdělení podle stupňů volnosti“ z plánu
+pokračování.
+
+- Jediným vstupem stupňů volnosti je posuvník 1–100, výchozí 4 (výběr pěti
+  lidí z kapitoly 7); číselné pole se nepoužívá.
+- Čtyři grafy: hustoty obou rozdělení, normální Q–Q graf $t_{p\,(v)}$ proti
+  $z_p$ v orientaci kapitoly 4, absolutní chyba normální aproximace
+  (normální − *t*) a relativní chyba (absolutní chyba dělená hodnotou
+  z *t*-rozdělení, v %). Grafy chyb mají přepínač veličiny: podíl ve chvostu
+  za hranicí (výchozí), nebo výška hustoty.
+- Stránka chyby vysvětluje vlastním oddílem se vzorcem, řešeným příkladem
+  a zdůvodněním, proč relativní chyba ve chvostech roste. Absolutní
+  a relativní chyba se popisují bez hesla ve slovníčku a nejsou zavedeny
+  jako pojmy učebnice.
+- Doplňky: zadávaná hranice s podíly za ní v obou rozděleních a s oběma
+  chybami, vzorce českého Excelu (T.DIST, NORM.S.DIST, T.INV, NORM.S.INV)
+  s dosazenými hodnotami. Tabulky: živá tabulka kvantilů úrovní 0,90; 0,95;
+  0,975; 0,99; 0,995; 0,9995 pro zvolené stupně volnosti s použitím
+  v kapitole 7 a pevná tabulka pro vybrané stupně volnosti se zvýrazněným
+  řádkem.
+- Předlohou námětu je stránka R. Magnussona „Student's t-distribution“
+  (rpsychologist.com/d3/tdist/). Jde o vlastní inspiraci: text, kód ani
+  grafika se nepřebírají a studentská stránka ji proto necituje.
+
+**Doklad:** autor 2026-11-12 zadal: „Myslím, že další interaktivní
+vizualizace by mohla zahrnovat srovnání Studentova t-rozdělení
+a normovaného normálního rozdělení, něco jako:
+https://rpsychologist.com/d3/tdist/ Se stupni volnosti 1 až 100, křivkami
+hustoty, QQ grafem, grafem absolutní chyby s vysvětlením a grafem relativní
+chyby s vysvětlením (myslím že právě to na rpsychologist není moc dobře
+vysvětleno) a tabulkou se srovnání nejčastěji používaných kvantilů t-
+a z-rozdělení“. Na doplňující otázky zvolil pro grafy chyb „Obojí
+s přepínačem“ (podíl ve chvostu a výška hustoty), tabulku „Pro zvolené v
++ pevná“, doplňky „Hranice s podíly“, „Vzorce českého Excelu“ a „Posuvník
+k číselnému poli“ a pojmenování chyb „Popisně, bez hesla“. Při schvalování
+plánu upřesnil: „Pro stupně volnosti bych dal jako input posuvník od 1
+do 100“; upravený plán téhož dne schválil. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

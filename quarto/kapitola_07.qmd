@@ -178,6 +178,10 @@ V [kapitole 3](kapitola_03.qmd#sec-korekce-rozptylu) jsme výběrový rozptyl d�
 
 Obrázek [-@fig-t-rozdeleni] ukazuje tvar *t*-rozdělení. Je souměrné kolem nuly a připomíná normovanou normální křivku, ale má **těžší chvosty**: hodnoty daleko od nuly jsou pravděpodobnější. Čím víc stupňů volnosti, tím přesněji odhaduje $s$ skutečnou σ a tím víc se *t*-rozdělení blíží normálnímu. Neexistuje však hranice, od které by byl rozdíl nulový; *t*-rozdělení s jakýmkoli konečným počtem stupňů volnosti má chvosty o něco těžší.
 
+::: {.callout-tip title="Vyzkoušejte si: *t*-rozdělení a normované normální rozdělení"}
+V [interaktivní vizualizaci](viz_t_rozdeleni.qmd) posuvníkem nastavíte 1 až 100 stupňů volnosti a porovnáte *t*-rozdělení s normovaným normálním v křivkách hustoty a v normálním Q–Q grafu. Dva grafy ukazují, jak velkou absolutní a relativní chybu by přinesla náhrada *t*-rozdělení normálním modelem, a tabulky srovnávají nejčastěji používané kvantily.
+:::
+
 ### Kvantily *t*-rozdělení {#sec-t-kvantily}
 
 Pro interval potřebujeme místo $z_{0{,}975}$ odpovídající kvantil *t*-rozdělení. Zapisujeme jej obdobně jako normovaný kvantil: $t_{0{,}975\,(v=24)}$ je hodnota, pod kterou leží 97,5 % *t*-rozdělení s 24 stupni volnosti. V dolním indexu je tedy úroveň kvantilu (podíl vlevo) a v závorce počet stupňů volnosti *v*.

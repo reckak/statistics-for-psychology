@@ -117,6 +117,22 @@ používá čísla úlohy 9 kapitoly 6.
 | [Čtyři kombinace](../../quarto/kapitola_07.qmd#fig-ctyri-kombinace) | 90% a 95% intervaly devíti studií souběžně vůči pásmu; osa popsána jako skór, ne populační průměr. |
 | [Q–Q graf úzkosti](../../quarto/kapitola_07.qmd#fig-qq-uzkost-07) | Vzorová konstrukce podle kap. 4 uvnitř sbaleného řešení 7d; omezení posouzení normality z 20 hodnot. |
 
+<a id="interaktivni-vizualizace-07"></a>
+
+**Interaktivní vizualizace (2026-11-12, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t)):**
+v oddílu [Studentovo *t*-rozdělení](../../quarto/kapitola_07.qmd#sec-studentovo-t)
+za výkladem obrázku t-rozdělení odkazuje blok „Vyzkoušejte si: *t*-rozdělení
+a normované normální rozdělení“ na stránku
+[Jak se *t*-rozdělení liší od normovaného normálního](../../quarto/viz_t_rozdeleni.qmd).
+
+- **Ovládání:** stupně volnosti se nastavují posuvníkem 1–100 (výchozí 4 jako u výběrů pěti lidí). Dále se zadává hranice *x* (−10 až 10, výchozí −1,645) a přepínač veličiny chyb: podíl ve chvostu za hranicí, nebo výška hustoty.
+- **Grafy:** hustoty se vybarveným chvostem a normální Q–Q graf $t_{p\,(v)}$ proti $z_p$ v orientaci kapitoly 4. Dále dva grafy chyby normální aproximace: absolutní (normální − *t*) a relativní (děleno hodnotou *t*, v %).
+- **Tabulky:** živá tabulka kvantilů pro úrovně 0,90–0,9995 s použitím v kapitole 7 a pevná tabulka pro vybrané *v* se zvýrazněným zvoleným řádkem. Stránka uvádí také vzorce T.DIST, NORM.S.DIST, T.INV a NORM.S.INV.
+- **Vztah k výkladu:** absolutní a relativní chyba jsou na stránce vysvětleny popisně se vzorcem a řešeným příkladem (30 stupňů volnosti, hranice −1,645 a −3), nejsou zavedeny jako pojmy učebnice. Úkoly „Vyzkoušejte si“ míří na kvantil pro 4 stupně volnosti, omyl „od 30 je to normální“ (cvičení 4c), Q–Q graf těžších chvostů a kladnou chybu výšky uprostřed.
+- **Rozsah:** vizualizace jen opakuje učivo oddílů [Proč nestačí dosadit s](../../quarto/kapitola_07.qmd#sec-proc-nestaci-s), [Studentovo *t*-rozdělení](../../quarto/kapitola_07.qmd#sec-studentovo-t) a [Kvantily *t*-rozdělení](../../quarto/kapitola_07.qmd#sec-t-kvantily) a Q–Q grafů z kapitoly 4. Není samostatným cvičením.
+
+Kontrola souladu s textem uvedených oddílů: 2026-11-12; ostatní části karty se nemění.
+
 ### Cvičení a očekávané dovednosti
 
 [Čtrnáct úloh](../../quarto/kapitola_07.qmd#sec-cviceni-07) má úplná sbalená řešení.

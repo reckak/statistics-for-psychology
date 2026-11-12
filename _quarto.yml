@@ -49,6 +49,7 @@ book:
         - quarto/viz_binomicke_rozdeleni.qmd
         - quarto/viz_vyberove_rozdeleni_prumeru.qmd
         - quarto/viz_statisticka_sila.qmd
+        - quarto/viz_t_rozdeleni.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd
