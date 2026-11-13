@@ -659,7 +659,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Co znamená rozdíl o d směrodatných odchylek']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1606,6 +1606,84 @@ const server = http.createServer((req, res) => {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Coverage visualization fits a phone');
     await pi.screenshot({path:'tmp/verification/viz-pokryti-intervalu-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
+
+    // Cohen's d: three indicators against R (scripts/viz-cohenovo-d.R), slider, σ field, fill switch, table, full screen, phone and the link from chapter 8.
+    await page.goto(base + 'quarto/viz_cohenovo_d.html', { waitUntil: 'networkidle' });
+    const cd = page.locator('#viz-cohenovo-d');
+    const cdPlots = cd.locator('.viz-plots svg[aria-label]');
+    await cdPlots.nth(1).waitFor();
+    assert.equal(await cdPlots.count(), 2, 'Two groups and the difference of a random pair');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const cdState = () => cd.evaluate(el => el.vizCheck.state());
+    const cdNear = (a, b, msg) => assert(Math.abs(a - b) <= 1e-9, `${msg}: ${a} vs ${b}`);
+    // R: pnorm(d), 2 * pnorm(-d / 2), pnorm(d / sqrt(2)); the shared area also by integration of the lower density.
+    const cdR = {
+      0: [0.5, 1, 0.5], 0.2: [0.579259709439, 0.920344325446, 0.556231458009], 0.47: [0.680822491217, 0.814208733221, 0.630183801126],
+      0.5: [0.691462461274, 0.802587348634, 0.638163195084], 0.8: [0.788144601417, 0.689156516779, 0.714196177523],
+      0.95: [0.828943873692, 0.634786973283, 0.749129026856], 1: [0.841344746069, 0.617075077452, 0.760249938907],
+      1.5: [0.933192798731, 0.453254704754, 0.855577816827], 2: [0.977249868052, 0.317310507863, 0.921350396475]
+    };
+    for (const [d, want] of Object.entries(cdR)) {
+      const got = await cd.evaluate((el, v) => el.vizCheck.indicators(v), +d);
+      [got.above, got.shared, got.superior].forEach((g, i) => cdNear(g, want[i], `Indicator ${i} for d = ${d}`));
+    }
+    // Default: d = 0,5, σ = 10, shared area.
+    let cs = await cdState();
+    assert.deepEqual([cs.d, cs.sd, cs.fill, cs.diff], [0.5, 10, 'shared', 5]);
+    assert.deepEqual(await cd.locator('#viz-cd-d').evaluate(el => [el.min, el.max, el.step, el.value]), ['0', '2', '0.01', '0.5'], 'Slider range');
+    assert.deepEqual([cs.formulas.above, cs.formulas.shared, cs.formulas.superior], ['=NORM.S.DIST(0,5;PRAVDA)', '=2*NORM.S.DIST(-0,25;PRAVDA)', '=NORM.S.DIST(0,5/ODMOCNINA(2);PRAVDA)']);
+    const cdStats = await cd.locator('[data-stats]').innerText();
+    for (const s of ['69,1 %', '80,3 %', '63,8 %', '0,50 · 10 = 5']) assert(cdStats.includes(s), `Stats show ${s}`);
+    assert.equal(cs.fixed.length, 7); assert.equal(await cd.locator('.viz-t-current').count(), 1);
+    assert.match(await cd.locator('[data-fixed]').innerText(), /0,80\s*\(velký\)/);
+    // Keyboard on the slider: arrows by 0,01 without floating-point residue, Home and End to the limits.
+    await cd.locator('#viz-cd-d').focus();
+    await page.keyboard.press('ArrowRight'); assert.equal((await cdState()).d, 0.51, 'ArrowRight adds 0,01');
+    await page.keyboard.press('ArrowLeft'); await page.keyboard.press('ArrowLeft'); assert.equal((await cdState()).d, 0.49, 'ArrowLeft subtracts 0,01');
+    await page.keyboard.press('Home'); cs = await cdState();
+    assert.equal(cs.d, 0, 'Home sets 0'); assert.deepEqual([cs.indicators.above, cs.indicators.shared, cs.indicators.superior], [0.5, 1, 0.5]);
+    await page.keyboard.press('End'); cs = await cdState();
+    assert.equal(cs.d, 2, 'End sets 2'); cdNear(cs.indicators.shared, 0.317310507863, 'Shared area for d = 2');
+    assert.match(await cd.locator('#viz-cd-d-value').innerText(), /d = 2,00/);
+    // A value outside the fixed table is inserted and highlighted.
+    await cd.locator('#viz-cd-d').evaluate(el => { el.value = '0.47'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    cs = await cdState();
+    const cdRow = cs.fixed.find(r => r.d === 0.47);
+    assert(cdRow && cdRow.current && cdRow.inserted, 'Row for d = 0,47 inserted'); assert.equal(cs.fixed.length, 8);
+    cdNear(cdRow.superior, 0.630183801126, 'Inserted row, random pair');
+    assert.equal(cs.formulas.superior, '=NORM.S.DIST(0,47/ODMOCNINA(2);PRAVDA)');
+    // σ field: decimal comma; rejected values keep the last valid one.
+    await cd.locator('#viz-cd-sd').fill('14,6');
+    cs = await cdState(); assert.equal(cs.sd, 14.6); cdNear(cs.diff, 6.862, 'Difference in seconds');
+    for (const bad of ['0', '−1', 'abc', '2000000']) {
+      await cd.locator('#viz-cd-sd').fill(bad);
+      assert.equal(await cd.locator('#viz-cd-sd').getAttribute('aria-invalid'), 'true', `Rejected σ ${bad}`);
+      assert(await cd.locator('#viz-cd-sd-error').isVisible(), `Message for σ ${bad}`);
+      assert.equal((await cdState()).sd, 14.6, `Kept σ after ${bad}`);
+    }
+    // Fill switch.
+    await cd.locator('input[name="viz-cd-fill"][value="above"]').check();
+    assert.equal((await cdState()).fill, 'above');
+    assert.match(await cdPlots.first().getAttribute('aria-description'), /68,1 %/);
+    // Full screen widens the charts and Escape closes it.
+    const cdFull = cd.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await cdFull.count(), 1, 'One full-screen button');
+    const cdInline = await cdPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    assert(cdInline <= 781, `Inline chart width ${cdInline}`);
+    await cdFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-cohenovo-d .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, cdInline);
+    await page.screenshot({path:'tmp/verification/viz-cohenovo-d-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await cdPlots.nth(1).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), "Cohen's d visualization fits a phone");
+    await cd.screenshot({path:'tmp/verification/viz-cohenovo-d-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+    await page.goto(base + 'quarto/kapitola_08.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-d-nezavisle .callout-tip a[href$="viz_cohenovo_d.html"]').count(), 1, "Chapter 8 links to the Cohen's d visualization");
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

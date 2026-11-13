@@ -489,6 +489,10 @@ Ve jmenovateli je **směrodatná odchylka jednotlivých hodnot**, ne směrodatn�
 
 Smysl společné směrodatné odchylky stojí na předpokladu shodných rozptylů. Liší-li se rozptyly skupin výrazně, jako ve variantě B, je $s_p$ průměrem dvou různých čísel. Pak je lepší d vztáhnout k jedné zvolené skupině, nejčastěji kontrolní, a ve zprávě to výslovně uvést [@howell, s. 213].
 
+::: {.callout-tip title="Vyzkoušejte si: co znamená rozdíl o d směrodatných odchylek"}
+V [interaktivní vizualizaci](viz_cohenovo_d.qmd) posuvníkem nastavíte Cohenovo d od 0 do 2 a uvidíte rozdělení obou skupin. Stránka d převede na tři čísla o jednotlivých lidech: jaká část jedné skupiny leží nad průměrem druhé, jak velká část obou rozdělení je společná a s jakou pravděpodobností má náhodně vybraný člověk z jedné skupiny vyšší hodnotu než náhodně vybraný člověk z druhé.
+:::
+
 ### Párová data: kterou směrodatnou odchylku? {#sec-d-parova}
 
 U párových dat se nabízejí dvě směrodatné odchylky a každá vede k d s jiným významem. Ukažme to na dívkách s anorexií:

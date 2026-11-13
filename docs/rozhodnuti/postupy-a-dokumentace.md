@@ -963,6 +963,54 @@ dolní mezí) naše očekávání, jestli bude vyšší, nebo nižší než nomi
 u malých výběrů.“ Upravený plán téhož dne schválil. Realizaci a ověření
 eviduje [autorská historie](../../quarto/README.md#vizualizace-pokryti-intervalu).
 
+<a id="r65-upresneni-2026-11-13-cohen"></a>
+
+### Upřesnění 2026-11-13 — Vizualizace Cohenova d
+
+Desátá vizualizace podle R65, ke kapitole 8: stránka
+`quarto/viz_cohenovo_d.qmd` („Co znamená rozdíl o *d* směrodatných
+odchylek“, `#sec-viz-cohenovo-d`), v menu za vizualizací intervalu
+a *p*-hodnoty. Kapitola 8 na ni odkazuje blokem „Vyzkoušejte si“ na konci
+oddílu `sec-d-nezavisle`.
+
+- Model: dvě normální populace se shodnou σ, skupina 1 s vyšším průměrem,
+  $d=(\mathrm{μ}_1-\mathrm{μ}_2)/\mathrm{σ}$.
+- Vstupy: posuvník *d* 0–2 po 0,01, výchozí 0,5, obecné „skupina 1“
+  a „skupina 2“; pole σ v původních jednotkách (výchozí 10) jen pro převod
+  na rozdíl průměrů $d\cdot\mathrm{σ}$; přepínač vybarvení (společná plocha,
+  nebo skupina 1 nad průměrem skupiny 2).
+- Tři ukazatele **jen českým opisem**, bez anglických názvů a bez hesel ve
+  slovníčku: podíl skupiny 1 nad průměrem skupiny 2 $\mathrm{Φ}(d)$ (v literatuře
+  Cohenovo U₃), společná plocha obou rozdělení $2\,\mathrm{Φ}(-d/2)$ (overlap;
+  slovo „překryv“ se nepoužívá kvůli překryvu intervalů v kap. 8)
+  a pravděpodobnost, že náhodně vybraný člověk ze skupiny 1 má vyšší
+  hodnotu než náhodně vybraný člověk ze skupiny 2, $\mathrm{Φ}(d/\sqrt2)$
+  (probability of superiority). Každý se vzorcem českého Excelu
+  s dosazeným *d*.
+- Grafy: rozdělení obou skupin a rozdělení rozdílu hodnot náhodné dvojice
+  $N(d,\sqrt2)$ s vybarvenou plochou vpravo od nuly; σ√2 se opírá
+  o sčítání rozptylů z oddílu kap. 8 `sec-rozdil-nezavislych`.
+- Doplňky: pevná tabulka pro *d* = 0; 0,2; 0,5; 0,8; 1; 1,5; 2 se
+  zvýrazněným (případně vloženým) zvoleným *d*; Cohenovy orientační hodnoty
+  jako značky posuvníku a štítky tabulky s výhradou podle
+  [R56](kapitola-06.md#r56-p-hodnota-cohen).
+- Předlohou námětu je stránka R. Magnussona „Interpreting Cohen's d“
+  (rpsychologist.com/cohend). Jde o vlastní inspiraci: text, kód ani
+  grafika se nepřebírají a studentská stránka ji proto necituje.
+
+**Doklad:** autor 2026-11-13 zadal: „Jako další vizualizaci bych doplnil
+vizualizaci Cohenova d, podobně jako: https://rpsychologist.com/cohend
+Myslím, že jako input by stačilo mít slider s Cohenovým d. A uvádět Cohen's
+U₃, % Overlap a Probability of Superiority; nemusíme nutně zavádět nové
+termíny, ale vyjádřit to opisem.“ Na doplňující otázky zvolil posuvník
+„0 až 2, krok 0,01“, „d = 0,5, obecné skupiny“, všechny čtyři doplňky
+(„Vzorce českého Excelu“, „Pevná tabulka pro vybraná d“, „Cohenova pásma
+s výhradou“, „Převod na původní jednotky“) a „Jen český opis“. Plán téhož
+dne schválil. Druhý graf (rozdíl hodnot náhodné dvojice) a přepínač
+vybarvení přibyly při realizaci jako názorné doplnění třetího, resp.
+prvního ukazatele. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md#vizualizace-cohenovo-d).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

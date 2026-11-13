@@ -93,6 +93,21 @@ jsou autorská.
 | [Ekvivalence skupin](../../quarto/kapitola_08.qmd#fig-ekvivalence-skupin) | 90% a 95% intervaly rozdílu dvou studií vůči ±3. |
 | [Q–Q graf rozdílů](../../quarto/kapitola_08.qmd#fig-qq-rozdily-08) | Vzorová konstrukce uvnitř sbaleného řešení 3e. |
 
+<a id="interaktivni-vizualizace-08"></a>
+
+**Interaktivní vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen)):**
+na konci oddílu [Cohenovo d pro nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-d-nezavisle)
+odkazuje blok „Vyzkoušejte si: co znamená rozdíl o d směrodatných odchylek“
+na stránku [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz_cohenovo_d.qmd).
+
+- **Ovládání:** posuvník *d* 0–2 po 0,01 (výchozí 0,5) se značkami Cohenových orientačních hodnot, pole σ v původních jednotkách (výchozí 10) pro převod na rozdíl průměrů a přepínač vybarvení.
+- **Grafy:** rozdělení obou skupin (osa v jednotkách σ, průměr skupiny 2 v nule) se společnou plochou, nebo částí skupiny 1 nad průměrem skupiny 2; rozdělení rozdílu hodnot náhodné dvojice se směrodatnou odchylkou σ√2.
+- **Výpočet a tabulka:** tři ukazatele opisem, $\mathrm{Φ}(d)$, $2\,\mathrm{Φ}(-d/2)$ a $\mathrm{Φ}(d/\sqrt2)$, se vzorci NORM.S.DIST a ODMOCNINA; pevná tabulka pro sedm hodnot *d*.
+- **Vztah k výkladu:** ukazatele nejsou zavedeny jako pojmy učebnice a nemají hesla. Úkoly „Vyzkoušejte si“ míří na *d* = 0,5, parkovací *d* ≈ 0,47 a σ = 14,6 s, hledání *d* pro pravděpodobnost 75 % (asi 0,95) a „malý“ účinek *d* = 0,2 při σ = 15.
+- **Rozsah:** opakuje učivo oddílu [Cohenovo d pro nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-d-nezavisle), ploch pod normální křivkou z kapitoly 4 a sčítání rozptylů z oddílu [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych). Není samostatným cvičením.
+
+Kontrola souladu s textem uvedených oddílů: 2026-11-13; ostatní části karty se nemění.
+
 ### Cvičení a očekávané dovednosti
 
 [Čtrnáct úloh](../../quarto/kapitola_08.qmd#sec-cviceni-08) má úplná sbalená řešení.
