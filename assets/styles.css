@@ -97,6 +97,12 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 
 /* Interactive visualizations (part "Interaktivní vizualizace"). */
 .viz { border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: .9rem 0 .6rem; margin: 1.5rem 0; }
+/* Full-screen view (assets/viz-fullscreen.js): opaque, scrollable, content centred up to the raised chart width. */
+.viz-fullscreen-bar { display: flex; justify-content: flex-end; margin: -.3rem 0 .4rem; }
+.viz .viz-fullscreen { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; padding: .25rem .6rem; }
+.viz:is(:fullscreen, :-webkit-full-screen) { background: white; overflow-y: auto; margin: 0; border: 0; padding: 1rem max(1rem, calc((100vw - 1240px) / 2)) 2rem; }
+.viz:is(:fullscreen, :-webkit-full-screen) .viz-fullscreen-bar { position: sticky; top: -1rem; z-index: 2; margin: -1rem 0 .4rem; padding: .6rem 0; background: white; }
+.viz::backdrop { background: white; }
 .viz-controls { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; align-items: flex-start; }
 .viz-field { display: flex; flex-direction: column; gap: .2rem; }
 .viz-field input { width: 6.5rem; font: inherit; padding: .3rem .5rem; border: 1px solid #80969e; border-radius: .25rem; color: var(--ink); background: white; }

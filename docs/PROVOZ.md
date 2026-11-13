@@ -302,6 +302,16 @@ Zdrojový kód buňky ponechává Quarto ve skrytém bloku `.cell-code`;
 kontrola webu hlídá, aby se nikdy nezobrazil. Sdílené styly mají
 předponu `.viz` v `assets/styles.css`.
 
+Zobrazení na celou obrazovku zajišťuje sdílený skript
+`assets/viz-fullscreen.js` (připojený v `assets/after-body.html`). Každý
+blok `.viz` dostane tlačítko „Zobrazit na celou obrazovku“; celý blok
+včetně ovládání se zobrazí přes Fullscreen API a Escape jej zavře.
+V prohlížečích bez této funkce (Safari na iPhonu) se tlačítko nevloží.
+Na celé obrazovce má kořen vizualizace třídu `viz-is-fullscreen`; nová
+vizualizace má proto strop šířky grafů zapsat jako
+`Math.min(<kontejner>.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780)`
+a překreslovat se vlastním `ResizeObserver` jako stávající stránky.
+
 Stránka se vykreslí s celou knihou (`quarto render`) i samostatně
 (`quarto render quarto/viz_<tema>.qmd`). Pro náhled ji otevřete přes
 místní server, ne jako `file://`. Ruční PDF ani export tutora vizualizace

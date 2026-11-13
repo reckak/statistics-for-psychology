@@ -351,7 +351,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
   const swatchSpread = `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${ink}" stroke-width="2"/><circle cx="14" cy="6" r="3.5" fill="${ink}"/></svg>`;
 
   function charts(container, n, pi, pmf, F, q, ap) {
-    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const small = width < 520;
     const mu = n * pi, sd = Math.sqrt(n * pi * (1 - pi));
     const {lo: kLo, hi: kHi, far} = windowFor(n, mu, sd, q.cuts);

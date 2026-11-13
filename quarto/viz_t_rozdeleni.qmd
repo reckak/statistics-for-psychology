@@ -295,7 +295,7 @@ Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Vý
 
   function charts(container, T) {
     const {v, x, mode} = state;
-    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const small = width < 520;
     const base = {width, marginLeft: small ? 56 : 66, marginRight: 16, marginTop: 16, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}};
     const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52});

@@ -270,7 +270,7 @@ Pod volbami se zobrazuje převod hranic na *z*-skóry, výpočet podílu z ploch
   }
 
   function charts(container, shading, bounds, arrows, fmtX, describe) {
-    const width = Math.max(260, Math.min(container.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const small = width < 520;
     const [zlo, zhi] = domainFor(bounds);
     const X = z => mu + sigma * z;

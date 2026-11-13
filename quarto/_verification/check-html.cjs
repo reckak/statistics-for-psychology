@@ -1320,6 +1320,30 @@ const server = http.createServer((req, res) => {
     ts = await tdState();
     assert.equal(ts.mode, 'density'); tdNear(ts.heights.t, 0.00677906274609, 'Height of t'); tdNear(ts.heights.n, 0.00443184841194, 'Height of the normal');
     assert.match(await td.locator('[data-stats]').innerText(), /=T\.DIST\(-3;30;NEPRAVDA\)/);
+    // Full screen (assets/viz-fullscreen.js): the whole block, wider charts, controls still work, Escape closes.
+    const tdFull = td.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await tdFull.count(), 1, 'One full-screen button');
+    assert.equal(await tdFull.getAttribute('aria-pressed'), 'false');
+    const tdWidth = () => tdPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    const tdInline = await tdWidth();
+    assert(tdInline <= 781, `Inline chart width ${tdInline}`);
+    await tdFull.click();
+    await page.waitForFunction(() => document.fullscreenElement?.id === 'viz-t-rozdeleni');
+    await page.waitForFunction(w => document.querySelector('#viz-t-rozdeleni .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, tdInline);
+    assert.equal(await tdFull.getAttribute('aria-pressed'), 'true');
+    assert.match(await tdFull.innerText(), /Zavřít celou obrazovku/);
+    assert.equal(await td.evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(255, 255, 255)', 'Opaque full-screen background');
+    await td.locator('#viz-t-v').evaluate(el => { el.value = '12'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    assert.equal((await tdState()).v, 12, 'Slider works in full screen');
+    assert((await tdWidth()) > tdInline + 100, 'Redraw in full screen keeps the wide charts');
+    await page.screenshot({path:'tmp/verification/viz-t-rozdeleni-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    // fullscreenElement clears before the fullscreenchange event; wait for the button to follow.
+    await page.waitForFunction(() => document.querySelector('#viz-t-rozdeleni .viz-fullscreen').getAttribute('aria-pressed') === 'false');
+    await page.waitForFunction(w => document.querySelector('#viz-t-rozdeleni .viz-plots svg[aria-label]').getBoundingClientRect().width <= w + 1, tdInline);
+    assert(!(await td.evaluate(el => el.classList.contains('viz-is-fullscreen'))), 'Full-screen class removed');
     await page.setViewportSize({width:375,height:812});
     await page.reload({ waitUntil: 'networkidle' });
     await tdPlots.nth(3).waitFor();

@@ -494,7 +494,7 @@ Pohled testu předpokládá, že výběr se stejnou $s$ dal jiný průměr. Ve s
   const plots = $("[data-plots]");
   function render() {
     const c = compute(state);
-    const width = Math.max(260, Math.min(plots.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(plots.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const one = c.side !== "two";
     const head1 = html`<p class="viz-panel-title">Pohled intervalu: které testované hodnoty μ<sub>0</sub> test při <i>m</i> = ${typed(c.m)} nezamítá?</p>`;
     const head2 = html`<p class="viz-panel-title">Pohled testu: které výběrové průměry <i>m</i> by test při μ<sub>0</sub> = ${typed(c.mu0)} nezamítl?</p>`;

@@ -289,7 +289,7 @@ Kvartily počítáme lineární interpolací jako funkce PERCENTIL.INC, směroda
 
   // Two dot plots joined by links from each distinct original value to its new value.
   function draw(container, X, Y, S, T, d) {
-    const width = Math.max(280, Math.min(container.clientWidth || 640, 780)), small = width < 520;
+    const width = Math.max(280, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780)), small = width < 520;
     const r = small ? 3.2 : 4.2, step = 2 * r + 1, mL = 14, mR = 14;
     const key = v => Math.round(v * 1e9) / 1e9;
     const people = X.map((x, i) => ({x, y: Y[i]})).sort((p, q) => p.x - q.x);

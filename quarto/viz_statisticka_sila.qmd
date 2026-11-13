@@ -386,7 +386,7 @@ Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrod
 
   function render() {
     const S = situations();
-    const width = Math.max(260, Math.min(mainPlots.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(mainPlots.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const view = sharedView([S.A, S.B]);
     const nodes = [];
     for (const id of ["A", "B"]) {
