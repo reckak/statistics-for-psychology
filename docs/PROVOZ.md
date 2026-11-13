@@ -483,6 +483,8 @@ U vizualizace pokrytí intervalu spolehlivosti kontrola ověřuje:
 - výchozí stav s pevným seedem (94 ze 100 intervalů), nezávislé přepočítání
   zachycených intervalů z uložených *m* a *s*, tytéž výběry po změně
   postupu, typu i hladiny, vzorce Excelu a výběr intervalu klávesami;
+- rozsah osy grafu intervalů, který u normální i extrémně zešikmené
+  populace a všech tří typů intervalu obsahuje všechny konečné meze;
 - normální populaci se 100 000 výběry ve čtyřech kombinacích (pokrytí do
   čtyř směrodatných chyb od přesné hodnoty), strop 100 000 se zprávou
   a „Začít znovu“;

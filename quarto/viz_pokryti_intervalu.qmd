@@ -24,7 +24,7 @@ Tlačítko „Vylosovat“ přidá zadaný počet výběrů k dosavadním; velk�
 
 Pod ovládáním jsou grafy:
 
-- **Posledních 100 intervalů.** Každá vodorovná úsečka je interval z jednoho výběru, tečka na ní výběrový průměr $m$, nejnovější výběr je nahoře. Svislá přerušovaná čára označuje $\mathrm{μ}$. Modré intervaly $\mathrm{μ}$ zachytily, oranžové minuly. Trojúhelník na okraji grafu znamená, že interval pokračuje mimo zobrazený rozsah; u jednostranného intervalu až do nekonečna. Najetím myší nebo klepnutím vyberete jeden interval; po kliknutí do grafu nebo přechodu klávesou Tab jej vybíráte šipkami nahoru a dolů. Údaje o vybraném intervalu se vypíší pod grafem a jeho výpočet najdete pod grafy.
+- **Posledních 100 intervalů.** Každá vodorovná úsečka je interval z jednoho výběru, tečka na ní výběrový průměr $m$, nejnovější výběr je nahoře. Svislá přerušovaná čára označuje $\mathrm{μ}$. Modré intervaly $\mathrm{μ}$ zachytily, oranžové minuly. Rozsah vodorovné osy se přizpůsobí tak, aby byly vidět všechny konečné meze zobrazených intervalů. Trojúhelník na okraji grafu má jen jednostranný interval: ukazuje, že na této straně pokračuje do nekonečna. Najetím myší nebo klepnutím vyberete jeden interval; po kliknutí do grafu nebo přechodu klávesou Tab jej vybíráte šipkami nahoru a dolů. Údaje o vybraném intervalu se vypíší pod grafem a jeho výpočet najdete pod grafy.
 - **Vývoj pokrytí.** Podíl intervalů, které $\mathrm{μ}$ zachytily, mezi prvními *k* výběry. Vodorovná čára je očekávané pokrytí postupu. Světlý pás kolem ní ukazuje [náhodné kolísání podílu](kapitola_06.qmd#sec-chyba-podilu): očekávané pokrytí $\pm 1{,}96$ směrodatné chyby podílu při *k* výběrech. U zešikmených populací očekávané pokrytí přesně spočítat nelze; pás je proto kolem slibovaného pokrytí.
 - **Tři histogramy**: výběrové průměry, výběrové směrodatné odchylky *s* a šířky intervalů (u jednostranného intervalu vzdálenost konečné meze od $m$, tedy mezní chyba). Každý sloupec je rozdělen barvou: modrá část jsou výběry, jejichž interval $\mathrm{μ}$ zachytil, oranžová ty, jejichž interval jej minul. U histogramu průměrů je čárkovaně normální model $N(\mathrm{μ},\mathrm{σ}/\sqrt{n})$; při známé σ svislé čáry ukazují, jak daleko od $\mathrm{μ}$ může průměr ležet, aby interval $\mathrm{μ}$ ještě zachytil. Při známé σ mají všechny intervaly stejnou šířku, a histogram šířek se proto nekreslí. Hodnoty mimo zobrazený rozsah histogram nekreslí, ve výpočtech ale zůstávají.
 
@@ -446,16 +446,20 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
   const yLabel = (label, small) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 42 : 50});
 
   // 1. The last (up to) 100 intervals, newest on top; the selected one is highlighted.
-  let ivScale = null;
+  let ivScale = null, ivDomain = [NaN, NaN];
   function renderIntervals() {
     const small = chartWidth < 520, L = Math.min(SHOW, K), first = K - L + 1;
     const rows = d3.range(first, K + 1).map(k => { const ci = interval(M[k - 1], SD[k - 1], S, D.q); return {k, m: M[k - 1], s: SD[k - 1], lo: ci[0], hi: ci[1], pos: D.pos[k - 1]}; });
-    // Fixed range for a setting: μ ± (typical margin of error + 3 standard errors), at least 4,5 standard errors.
-    const half = Math.max(D.q * D.se + 3 * D.se, 4.5 * D.se), a = S.mu - half, b = S.mu + half;
+    // The range fits all finite bounds and means of the shown intervals and at least μ ± 4,5 standard errors;
+    // only an infinite bound of a one-sided interval ends with an arrow head at the edge.
+    const finite = rows.flatMap(r => [r.lo, r.hi, r.m]).filter(Number.isFinite);
+    const lo0 = Math.min(S.mu - 4.5 * D.se, ...finite), hi0 = Math.max(S.mu + 4.5 * D.se, ...finite), pad = 0.03 * (hi0 - lo0);
+    const [a, b] = d3.scaleLinear().domain([lo0 - pad, hi0 + pad]).nice(small ? 5 : 8).domain();
+    ivDomain = [a, b];
     const clamp = x => Math.min(b, Math.max(a, x));
     const col = d => d.pos ? orange : blue;
     const sel = rows.find(r => r.k === selected) || rows[rows.length - 1];
-    const rowH = small ? 4.2 : 4.6;
+    const rowH = L > 50 ? (small ? 6 : 7) : (small ? 9 : 11);
     const chart = Plot.plot({
       ...base(small), height: Math.max(200, L * rowH + 72),
       x: {domain: [a, b], label: "Skór (body)", labelAnchor: "center", labelArrow: "none", labelOffset: 40, ticks: small ? 5 : 8, tickFormat: t => typed(Number(t.toFixed(6)))},
@@ -467,8 +471,8 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
         Plot.ruleX([S.mu], {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
         Plot.text([S.mu], {x: d => d, frameAnchor: "top", dy: -16, fill: ink, fontWeight: 600, text: d => `μ = ${typed(d)}`}),
         Plot.ruleY(rows, {y: "k", x1: d => clamp(d.lo), x2: d => clamp(d.hi), stroke: col, strokeWidth: d => d.pos ? (L > 50 ? 2.4 : 3.2) : (L > 50 ? 1.4 : 2.2)}),
-        Plot.dot(rows.filter(r => r.lo < a), {x: a, y: "k", symbol: "triangle", rotate: -90, r: 3, fill: col}),
-        Plot.dot(rows.filter(r => r.hi > b), {x: b, y: "k", symbol: "triangle", rotate: 90, r: 3, fill: col}),
+        Plot.dot(rows.filter(r => !Number.isFinite(r.lo)), {x: a, y: "k", symbol: "triangle", rotate: -90, r: 3, fill: col}),
+        Plot.dot(rows.filter(r => !Number.isFinite(r.hi)), {x: b, y: "k", symbol: "triangle", rotate: 90, r: 3, fill: col}),
         Plot.dot(rows, {x: "m", y: "k", r: L > 50 ? 1.6 : 2.4, fill: col, clip: true}),
         Plot.ruleY([sel], {y: "k", x1: d => clamp(d.lo), x2: d => clamp(d.hi), stroke: ink, strokeWidth: 3}),
         Plot.dot([sel], {x: "m", y: "k", r: 4, fill: "white", stroke: ink, strokeWidth: 1.5, clip: true})
@@ -701,7 +705,7 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
     populations: populations.map(p => ({id: p.id, skew: p.skew, std: p.std})), maxReps: MAX_REPS,
     samples: () => K <= 20000 ? {m: Array.from(M.subarray(0, K)), s: Array.from(SD.subarray(0, K))} : null,
     state: () => ({...S, K, busy, selected, hit: D ? D.hit : 0, below: D ? D.below : 0, above: D ? D.above : 0, q: D ? D.q : NaN,
-      expected: D ? D.exp : null, direction: D ? D.dir : null,
+      expected: D ? D.exp : null, xDomain: ivDomain.slice(), direction: D ? D.dir : null,
       last: d3.range(Math.max(0, K - SHOW), K).map(i => { const ci = interval(M[i], SD[i], S); return {k: i + 1, m: M[i], s: SD[i], ci: ci.map(finite), pos: position(ci, S)}; })})
   };
 

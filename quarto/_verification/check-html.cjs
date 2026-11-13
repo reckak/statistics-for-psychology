@@ -1500,6 +1500,18 @@ const server = http.createServer((req, res) => {
     piText = await pi.locator('[data-calc]').innerText();
     assert(piText.includes('=T.INV(0,95;24)') && piText.includes('(−∞;') && !piText.includes('Dolní mez'), 'One-sided interval with an upper bound');
     ps = await piState(); assert.equal(ps.above, 0, 'An upper bound cannot miss above μ');
+    // The axis fits every finite bound of the shown intervals; only infinite bounds reach the edge.
+    for (const pop of ['normalni', 'extremne']) {
+      if (pop !== 'normalni') { await pi.locator('input[name="viz-pi-pop"][value="extremne"]').check(); await piWait(); }
+      for (const side of ['two', 'upper', 'lower']) {
+        await pi.locator(`input[name="viz-pi-side"][value="${side}"]`).check();
+        ps = await piState();
+        const fin = ps.last.flatMap(r => r.ci).filter(v => typeof v === 'number');
+        assert(fin.every(v => v >= ps.xDomain[0] && v <= ps.xDomain[1]), `Axis fits finite bounds: ${pop} ${side}`);
+      }
+    }
+    await pi.locator('input[name="viz-pi-pop"][value="normalni"]').check(); await piWait();
+    await pi.locator('input[name="viz-pi-side"][value="upper"]').check();
     // Keyboard selection of an interval.
     await pi.locator('[data-intervals]').focus();
     await page.keyboard.press('Home');
