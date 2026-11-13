@@ -120,6 +120,11 @@ v rozšířené podobě a téhož dne schválil jako stránku
 [Jak často interval spolehlivosti zachytí populační průměr](../../quarto/viz_pokryti_intervalu.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
+Vizualizaci Cohenova d ke kapitole 8, která v návrhu z 2026-11-05 nebyla,
+autor zadal a schválil 2026-11-13 jako stránku
+[Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz_cohenovo_d.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen),
+[karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
 pásmo ekvivalence; kap. 8 přínos párování a interval rozdílu vedle dvou intervalů.

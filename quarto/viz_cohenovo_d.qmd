@@ -1,0 +1,292 @@
+---
+code-copy: false
+---
+
+# Co znamená rozdíl o *d* směrodatných odchylek {#sec-viz-cohenovo-d .unnumbered}
+
+Cohenovo *d* říká, o kolik směrodatných odchylek se liší průměry dvou skupin. Co to ale znamená pro jednotlivé lidi? Vizualizace převede zvolené *d* na obrázek dvou rozdělení a na tři čísla, která se týkají lidí, ne průměrů: jaká část jedné skupiny leží nad průměrem druhé, jak velká část obou rozdělení je společná a jak pravděpodobné je, že náhodně vybraný člověk z jedné skupiny má vyšší hodnotu než náhodně vybraný člověk z druhé. Navazuje na kapitolu 8, oddíly [Jak velký je rozdíl](kapitola_08.qmd#sec-cohenovo-d) a [Cohenovo d pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle), a na [nepovinné rozšíření o standardizovaném rozdílu průměrů](kapitola_06.qmd#rozsireni-standardizovany-rozdil) v kapitole 6. Plochy pod normální křivkou vykládá [kapitola 4](kapitola_04.qmd#sec-hustota).
+
+## Model a ovládání {#sec-viz-cohenovo-d-ovladani .unnumbered}
+
+Pracujeme s výukovým modelem dvou populací. Hodnoty v obou skupinách mají normální rozdělení se stejnou směrodatnou odchylkou σ a skupina 1 má vyšší průměr než skupina 2. Vzdálenost průměrů vyjádřená ve směrodatných odchylkách je Cohenovo *d*:
+
+$$d=\frac{\mathrm{μ}_1-\mathrm{μ}_2}{\mathrm{σ}}.$$
+
+V kapitole 8 počítáme *d* z dat, z výběrových průměrů a společné směrodatné odchylky, $d=(m_1-m_2)/s_p$. Tady naopak *d* zadáváme jako známou vlastnost populací a ptáme se, jak takový rozdíl vypadá.
+
+Nahoře nastavíte dvě věci:
+
+- **Cohenovo *d*** posuvníkem od 0 do 2 po setinách. Posouvat jej lze myší, prstem i klávesnicí: šipky mění *d* o 0,01, klávesy Page Up a Page Down o větší krok, Home a End nastaví 0 a 2. Po načtení stránky je nastaveno *d* = 0,5. Značky u posuvníku ukazují Cohenovy orientační hodnoty 0,2, 0,5 a 0,8.
+- **Směrodatnou odchylku σ v původních jednotkách**, kladné číslo (výchozí 10 bodů); desetinná čísla můžete psát s čárkou i s tečkou. Slouží jen k převodu *d* na rozdíl průměrů v bodech, $\mathrm{μ}_1-\mathrm{μ}_2=d\cdot\mathrm{σ}$; tvar grafů ani tři ukazatele nemění. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+Pod ovládáním je rozdíl v původních jednotkách a tři ukazatele s výpočtem a vzorcem českého Excelu. Následují dva grafy:
+
+- **Rozdělení obou skupin.** Na vodorovné ose jsou hodnoty v jednotkách σ, s průměrem skupiny 2 v nule; je to tedy *z*-skór vzhledem ke skupině 2. Oranžová čárkovaná křivka je skupina 2, modrá plná skupina 1, posunutá o *d* doprava. Přepínačem zvolíte, co se vybarví: plocha, kterou mají obě křivky společnou (po načtení stránky), nebo část skupiny 1 nad průměrem skupiny 2. Osy mají stálé měřítko, aby šlo při posouvání *d* tvar přímo srovnat.
+- **Rozdíl hodnot náhodné dvojice.** Představme si, že ze skupiny 1 a ze skupiny 2 vybereme náhodně po jednom člověku a odečteme jejich hodnoty (skupina 1 − skupina 2). Křivka ukazuje rozdělení tohoto rozdílu; vybarvená plocha vpravo od nuly je pravděpodobnost, že vyšší hodnotu má člověk ze skupiny 1.
+
+Pod grafy je tabulka tří ukazatelů pro vybraná *d*. Podíly a pravděpodobnosti uvádíme v procentech s jedním desetinným místem; mezivýpočty probíhají s plnou přesností.
+
+### Odkud se tři čísla berou {#sec-viz-cohenovo-d-vypocet .unnumbered}
+
+Všechna tři čísla jsou plochy pod normální křivkou, které umíme spočítat z [kapitoly 4](kapitola_04.qmd#sec-normovane-normalni). Označme $\mathrm{Φ}(z)$ podíl normovaného normálního rozdělení vlevo od $z$; v Excelu `NORM.S.DIST(z;PRAVDA)`.
+
+**Kolik lidí ze skupiny 1 je nad průměrem skupiny 2.** Průměr skupiny 2 leží *d* směrodatných odchylek pod průměrem skupiny 1. Pro skupinu 1 má tedy *z*-skór −*d* a nad ním leží podíl $1-\mathrm{Φ}(-d)=\mathrm{Φ}(d)$. Ve skupině 2 je nad jejím průměrem polovina lidí; při *d* = 0 by to tedy bylo 50 % i ve skupině 1.
+
+**Jak velká část obou rozdělení je společná.** Obě křivky se protínají přesně uprostřed mezi průměry, ve vzdálenosti *d*/2 od každého z nich. Vlevo od průsečíku je nižší křivka skupiny 1, vpravo křivka skupiny 2. Společná plocha je proto součet dvou chvostů, každý za hranicí vzdálenou *d*/2 od průměru: $2\,\mathrm{Φ}(-d/2)$. Při *d* = 0 jsou křivky totožné a společná je celá plocha, 100 %.
+
+**Jak pravděpodobné je, že vyšší hodnotu má člověk ze skupiny 1.** Rozdíl hodnot dvou náhodně a nezávisle vybraných lidí má průměr $\mathrm{μ}_1-\mathrm{μ}_2$. Rozptyly nezávislých hodnot se při odečtení sčítají, jako v [kapitole 8](kapitola_08.qmd#sec-rozdil-nezavislych) u rozdílu dvou průměrů, takže rozdíl má směrodatnou odchylku $\sqrt{\mathrm{σ}^2+\mathrm{σ}^2}=\mathrm{σ}\sqrt2$. Kladný rozdíl má pravděpodobnost $\mathrm{Φ}\bigl(d/\sqrt2\bigr)$. Při *d* = 0 je to 50 %, jako hod mincí.
+
+Ukážeme to na *d* = 0,5. Nad průměrem skupiny 2 leží $\mathrm{Φ}(0{,}5)\approx69{,}1\,\%$ skupiny 1. Společná plocha je $2\,\mathrm{Φ}(-0{,}25)\approx80{,}3\,\%$. Náhodně vybraný člověk ze skupiny 1 má vyšší hodnotu než náhodně vybraný člověk ze skupiny 2 s pravděpodobností $\mathrm{Φ}(0{,}5/\sqrt2)=\mathrm{Φ}(0{,}354)\approx63{,}8\,\%$.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the t-distribution visualization: blue for group 1, orange for group 2.
+  const blue = "#245D78", orange = "#B54E24", fill1 = "#B8DDE8", fillShared = "#C9BFD6", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", hiText = "#9A3F17";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+  const dnorm = (x, mu = 0, sd = 1) => Math.exp(-0.5 * ((x - mu) / sd) ** 2) / (sd * SQRT2PI);
+
+  // The three indicators for a given d (normal populations with equal SD).
+  const indicators = d => ({above: pnorm(d), shared: 2 * pnorm(-d / 2), superior: pnorm(d / Math.SQRT2)});
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, k) => { let s = v.toFixed(k); if (Number(s) === 0) s = Math.abs(0).toFixed(k); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 10}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 10}).replace(".", ",");
+  const pct = v => fixed(100 * v, 1) + " %";
+  const d2 = v => fixed(v, 2);
+
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const FIXED_D = [0, 0.2, 0.5, 0.8, 1, 1.5, 2];
+  const BAND = {0.2: "malý", 0.5: "střední", 0.8: "velký"};
+  const XMIN = -3.5, XMAX = 5.5, DMIN = -5.5, DMAX = 7.5, SD_MAX = 1e6;
+
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = fill => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-cohenovo-d">
+    <div class="viz-controls">
+      <div class="viz-field viz-t-df">
+        <label for="viz-cd-d">Cohenovo <i>d</i></label>
+        <div class="viz-t-slider">
+          <span class="viz-hint" aria-hidden="true">0</span>
+          <input id="viz-cd-d" type="range" min="0" max="2" step="0.01" value="0.5" list="viz-cd-bands" aria-describedby="viz-cd-d-value viz-cd-d-hint">
+          <span class="viz-hint" aria-hidden="true">2</span>
+        </div>
+        <datalist id="viz-cd-bands"><option value="0.2"></option><option value="0.5"></option><option value="0.8"></option></datalist>
+        <output id="viz-cd-d-value" for="viz-cd-d" class="viz-t-value" aria-live="polite"></output>
+        <span id="viz-cd-d-hint" class="viz-hint">značky: 0,2 malý, 0,5 střední a 0,8 velký účinek podle Cohena (jen hrubé vodítko)</span>
+      </div>
+      <div class="viz-field" data-field="sd">
+        <label for="viz-cd-sd">Směrodatná odchylka σ v původních jednotkách</label>
+        <input id="viz-cd-sd" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="10" aria-describedby="viz-cd-sd-hint viz-cd-sd-error">
+        <span id="viz-cd-sd-hint" class="viz-hint">kladné číslo, například 10 bodů</span>
+        <span id="viz-cd-sd-error" class="viz-error" hidden></span>
+      </div>
+      <fieldset class="viz-choice viz-t-mode">
+        <legend>Co vybarvit v rozdělení skupin</legend>
+        <label><input type="radio" name="viz-cd-fill" value="shared" checked><span>společnou plochu obou křivek</span></label>
+        <label><input type="radio" name="viz-cd-fill" value="above"><span>skupinu 1 nad průměrem skupiny 2</span></label>
+      </fieldset>
+    </div>
+    <dl class="viz-stats" data-stats aria-live="polite"></dl>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-cd-fixed-title">
+      <h3 id="viz-cd-fixed-title" class="viz-part-title">Tři ukazatele pro vybraná <i>d</i></h3>
+      <div class="viz-bay-table-wrap" data-fixed tabindex="0" role="region" aria-labelledby="viz-cd-fixed-title"></div>
+      <p class="viz-note">Slovní označení u 0,2, 0,5 a 0,8 jsou Cohenovy orientační hodnoty. Sám Cohen je považoval jen za hrubé vodítko pro případ, kdy chybí lepší podklad. Zvolené <i>d</i> je zvýrazněno; není-li v přehledu, vloží se na své místo.</p>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const state = {d: 0.5, sd: 10, fill: "shared"};
+  const slider = $("#viz-cd-d"), valueOut = $("#viz-cd-d-value");
+
+  // The slider works in hundredths; rounding avoids values like 0.30000000000000004.
+  slider.addEventListener("input", () => { state.d = Math.round(Number(slider.value) * 100) / 100; render(); });
+  root.querySelectorAll('input[name="viz-cd-fill"]').forEach(r => r.addEventListener("change", () => { state.fill = r.value; render(); }));
+
+  const sdInput = $("#viz-cd-sd"), sdError = $("#viz-cd-sd-error");
+  sdInput.addEventListener("input", () => {
+    const v = parseDecimal(sdInput.value);
+    const message = v === null ? "Zadejte číslo, například 10." : v <= 0 ? "Směrodatná odchylka musí být kladná." : v > SD_MAX ? "Zadejte číslo nejvýše 1 000 000." : null;
+    sdError.hidden = !message;
+    sdError.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+    sdInput.setAttribute("aria-invalid", message ? "true" : "false");
+    if (!message) { state.sd = v; render(); }
+  });
+
+  function statsRows() {
+    const {d, sd} = state, I = indicators(d);
+    const diff = d * sd;
+    const formulas = {
+      above: `=NORM.S.DIST(${excel(d)};PRAVDA)`,
+      shared: `=2*NORM.S.DIST(${excel(-d / 2)};PRAVDA)`,
+      superior: `=NORM.S.DIST(${excel(d)}/ODMOCNINA(2);PRAVDA)`
+    };
+    const rows = [
+      ["Rozdíl průměrů v původních jednotkách", `<i>d</i> · σ = ${d2(d)} · ${typed(sd)} = <strong>${typed(Math.round(diff * 1e6) / 1e6)}</strong>`],
+      ["Podíl skupiny 1 nad průměrem skupiny 2", `Φ(${d2(d)}) = <strong>${pct(I.above)}</strong><br><code>${formulas.above}</code>`],
+      ["Společná plocha obou rozdělení", `2 · Φ(${fixed(-d / 2, 3)}) = <strong>${pct(I.shared)}</strong><br><code>${formulas.shared}</code>`],
+      ["Pravděpodobnost, že náhodně vybraný člověk ze skupiny 1 má vyšší hodnotu než náhodně vybraný člověk ze skupiny 2", `Φ(${d2(d)} / √2) = Φ(${fixed(d / Math.SQRT2, 3)}) = <strong>${pct(I.superior)}</strong><br><code>${formulas.superior}</code>`]
+    ];
+    return {rows, I, diff, formulas};
+  }
+
+  function charts(container, I) {
+    const {d, fill} = state;
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const small = width < 520;
+    const base = {width, marginLeft: small ? 56 : 66, marginRight: 16, marginTop: 22, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}};
+    const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52});
+    const intTicks = (lo, hi, step) => d3.range(Math.ceil(lo), Math.floor(hi) + 1, step);
+
+    // 1. Both groups with the shared area or the part of group 1 above the mean of group 2.
+    const grid = d3.range(0, 601).map(i => XMIN + (XMAX - XMIN) * i / 600);
+    const g1 = x => dnorm(x, d), g2 = x => dnorm(x);
+    const fillPts = fill === "shared" ? grid : [0, ...grid.filter(x => x > 0)];
+    const fillMark = fill === "shared"
+      ? Plot.areaY(fillPts, {x: x => x, y: x => Math.min(g1(x), g2(x)), fill: fillShared, fillOpacity: 0.9})
+      : Plot.areaY(fillPts, {x: x => x, y: g1, fill: fill1});
+    const groups = Plot.plot({
+      ...base, height: small ? 270 : 310, marginBottom: 44,
+      x: {domain: [XMIN, XMAX], label: "Hodnota v jednotkách σ (průměr skupiny 2 = 0)", labelAnchor: "center", labelArrow: "none", ticks: intTicks(XMIN, XMAX, small ? 2 : 1), tickFormat: t => minus(String(t))},
+      y: {...yLabel("Hustota"), domain: [0, 0.46], ticks: [0, 0.1, 0.2, 0.3, 0.4], tickFormat: t => fixed(t, 1)},
+      ariaLabel: `Normální rozdělení dvou skupin se stejnou směrodatnou odchylkou, průměry vzdálené o d = ${d2(d)}`,
+      ariaDescription: fill === "shared"
+        ? `Vybarvená společná plocha obou křivek je ${pct(I.shared)}.`
+        : `Vybarvená část skupiny 1 nad průměrem skupiny 2 je ${pct(I.above)}.`,
+      marks: [
+        fillMark,
+        Plot.lineY(grid, {x: x => x, y: g2, stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
+        Plot.lineY(grid, {x: x => x, y: g1, stroke: blue, strokeWidth: 2.2}),
+        Plot.ruleX([0], {y1: 0, y2: dnorm(0), stroke: orange, strokeWidth: 1.3}),
+        Plot.ruleX([d], {y1: 0, y2: dnorm(0), stroke: blue, strokeWidth: 1.3}),
+        d > 0 ? Plot.link([0], {x1: 0, x2: d, y1: 0.425, y2: 0.425, stroke: ink, strokeWidth: 1.3, markerStart: "arrow", markerEnd: "arrow"}) : null,
+        Plot.text([d], {x: d / 2, y: 0.425, dy: -9, fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: () => `d = ${d2(d)}`}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    // 2. Difference between a random member of group 1 and a random member of group 2: N(d, √2).
+    const dGrid = d3.range(0, 601).map(i => DMIN + (DMAX - DMIN) * i / 600);
+    const diffDens = x => dnorm(x, d, Math.SQRT2);
+    const diffPlot = Plot.plot({
+      ...base, height: small ? 230 : 260, marginBottom: 44,
+      x: {domain: [DMIN, DMAX], label: "Rozdíl hodnot (skupina 1 − skupina 2) v jednotkách σ", labelAnchor: "center", labelArrow: "none", ticks: intTicks(DMIN, DMAX, small ? 2 : 1), tickFormat: t => minus(String(t))},
+      y: {...yLabel("Hustota"), domain: [0, 0.3], ticks: [0, 0.1, 0.2, 0.3], tickFormat: t => fixed(t, 1)},
+      ariaLabel: `Rozdělení rozdílu hodnot náhodně vybrané dvojice: průměr ${d2(d)}, směrodatná odchylka odmocnina ze dvou`,
+      ariaDescription: `Vybarvená plocha vpravo od nuly je ${pct(I.superior)}.`,
+      marks: [
+        Plot.areaY([0, ...dGrid.filter(x => x > 0)], {x: x => x, y: diffDens, fill: fill1}),
+        Plot.lineY(dGrid, {x: x => x, y: diffDens, stroke: blue, strokeWidth: 2.2}),
+        Plot.ruleX([0], {stroke: ink, strokeWidth: 1.3, strokeDasharray: "5,4"}),
+        Plot.text([0], {x: 1.3 + d / 2, y: 0.05, textAnchor: "start", fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: () => pct(I.superior)}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    const panel = (title, chart, ...extra) => { const el = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; extra.forEach(e => el.append(e)); el.append(chart); return el; };
+    const legend = html`<div class="viz-legend"></div>`;
+    legend.innerHTML = `<span>${lineSwatch(blue)}<span>skupina 1</span></span><span>${lineSwatch(orange, "6,4")}<span>skupina 2</span></span>` +
+      (fill === "shared" ? `<span>${boxSwatch(fillShared)}<span>společná plocha, ${pct(I.shared)}</span></span>` : `<span>${boxSwatch(fill1)}<span>skupina 1 nad průměrem skupiny 2, ${pct(I.above)}</span></span>`);
+    const diffLegend = html`<div class="viz-legend"></div>`;
+    diffLegend.innerHTML = `<span>${lineSwatch(blue)}<span>rozdíl hodnot náhodné dvojice</span></span><span>${boxSwatch(fill1)}<span>vyšší hodnotu má člověk ze skupiny 1, ${pct(I.superior)}</span></span>`;
+    container.replaceChildren(
+      panel("Rozdělení obou skupin", groups, legend),
+      panel("Rozdíl hodnot náhodně vybrané dvojice: člověk ze skupiny 1 − člověk ze skupiny 2", diffPlot, diffLegend)
+    );
+  }
+
+  function fixedTable() {
+    const d = state.d;
+    const ds = FIXED_D.includes(d) ? FIXED_D : [...FIXED_D, d].sort((a, b) => a - b);
+    const rows = ds.map(v => ({d: v, current: v === d, inserted: !FIXED_D.includes(v), ...indicators(v)}));
+    const markup = `<table class="viz-bay-table viz-t-fixed viz-cd-table" aria-label="Tři ukazatele pro vybraná Cohenova d">
+      <thead><tr><th scope="col"><i>d</i></th><th scope="col">Skupina 1 nad<br>průměrem skupiny 2</th><th scope="col">Společná plocha</th><th scope="col">Vyšší hodnota u člověka<br>ze skupiny 1</th></tr></thead>
+      <tbody>${rows.map(r => `<tr${r.current ? ' class="viz-t-current"' : ""}><th scope="row">${d2(r.d)}${BAND[r.d] ? ` <span class="viz-t-tag">(${BAND[r.d]})</span>` : ""}${r.current ? ' <span class="viz-t-tag">(zvoleno)</span>' : ""}</th><td>${pct(r.above)}</td><td>${pct(r.shared)}</td><td>${pct(r.superior)}</td></tr>`).join("")}</tbody></table>`;
+    return {rows, markup};
+  }
+
+  const statsBox = $("[data-stats]"), plots = $("[data-plots]");
+  let last = {};
+
+  function render() {
+    const {d, sd, fill} = state;
+    valueOut.innerHTML = `<i>d</i> = ${d2(d)}: průměry se liší o ${d2(d)} σ`;
+    slider.setAttribute("aria-valuetext", `d = ${d2(d)}`);
+    const {rows, I, diff, formulas} = statsRows();
+    statsBox.innerHTML = rows.map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    charts(plots, I);
+    const fixedT = fixedTable();
+    $("[data-fixed]").innerHTML = fixedT.markup;
+    last = {d, sd, fill, diff, indicators: I, formulas, stats: rows.map(([a]) => a), fixed: fixedT.rows};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pnorm, dnorm, indicators, parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Výklad Cohenova <i>d</i> najdete v <a href="kapitola_08.html#sec-d-nezavisle">kapitole 8</a>; tři ukazatele lze spočítat podle vzorců v oddílu „Odkud se tři čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-cohenovo-d-vyzkousejte .unnumbered}
+
+1. Nechte *d* = 0,5. Jaká část skupiny 1 leží nad průměrem skupiny 2 a jak velká část obou rozdělení je společná? Přepněte vybarvení a najděte obě plochy v grafu. Platí, že „skupina 1 má vyšší hodnoty“ o každém jejím členovi?
+2. V parkovací studii z kapitoly 8 vyšlo *d* ≈ 0,47 ([Cohenovo d pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle)). Nastavte je a zjistěte, s jakou pravděpodobností odjíždí náhodně vybraný řidič, na kterého čekalo auto, později než náhodně vybraný řidič, na kterého nikdo nečekal, pokud by doby odjezdu měly normální rozdělení se stejnou směrodatnou odchylkou. Nastavte σ = 14,6 a porovnejte rozdíl v sekundách s výsledkem kapitoly.
+3. Posuvníkem najděte *d*, při kterém má náhodně vybraný člověk ze skupiny 1 vyšší hodnotu než náhodně vybraný člověk ze skupiny 2 se 75% pravděpodobností. Kolik procent obou rozdělení je v tu chvíli ještě společných?
+4. Nastavte *d* = 0,2 a σ = 15. O kolik bodů se liší průměry a jak se změnila tři čísla oproti *d* = 0? Proč z označení „malý účinek“ samo neplyne, že rozdíl je nedůležitý?
+
+## Čeho si všimnout {#sec-viz-cohenovo-d-vsimnete .unnumbered}
+
+I rozdíl, kterému se podle Cohena říká velký, ponechává obě skupiny z velké části společné. Při *d* = 0,8 je společná asi 69 % plochy obou rozdělení, nad průměrem skupiny 2 leží asi 79 % skupiny 1 a náhodně vybraný člověk ze skupiny 1 má vyšší hodnotu jen asi v 71 % dvojic. Rozdíl průměrů proto neopravňuje k výrokům o každém jednotlivci ze skupiny. Pravděpodobnost 75 % vychází zhruba při *d* = 0,95.
+
+Tři ukazatele rostou s *d* různě rychle. Podíl skupiny 1 nad průměrem skupiny 2 roste nejrychleji, protože porovnává jednotlivce s pevnou hodnotou, průměrem. Pravděpodobnost u náhodné dvojice roste pomaleji: proměnlivé jsou obě hodnoty, a rozdíl dvojice má proto směrodatnou odchylku σ√2. Při *d* = 0 jsou oba ukazatele 50 % a společná plocha 100 %.
+
+Ukazatele popisují výukový model populací: dvě normální rozdělení se stejnou směrodatnou odchylkou. Liší-li se rozptyly skupin nebo tvar rozdělení, mohou se skutečné podíly od vypočtených lišit. Z dat navíc *d* jen odhadujeme a odhad kolísá mezi výběry ([kapitola 8](kapitola_08.qmd#sec-d-nezavisle)); tři čísla pak nesou stejnou nejistotu. Zda je rozdíl prakticky důležitý, rozhoduje obsah: srovnání s jinými výzkumy téhož jevu a důsledky v původních jednotkách, jak je vykládá [kapitola 6](kapitola_06.qmd#sec-velikost-ucinku-jednotky).

@@ -52,6 +52,7 @@ book:
         - quarto/viz_t_rozdeleni.qmd
         - quarto/viz_pokryti_intervalu.qmd
         - quarto/viz_interval_a_test.qmd
+        - quarto/viz_cohenovo_d.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

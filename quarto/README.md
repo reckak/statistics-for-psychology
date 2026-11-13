@@ -1,5 +1,37 @@
 # Autorská dokumentace
 
+<a id="vizualizace-cohenovo-d"></a>
+
+## Vizualizace Cohenova d (2026-11-13, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen)
+přibyla desátá stránka části „Interaktivní vizualizace“,
+[Co znamená rozdíl o *d* směrodatných odchylek](viz_cohenovo_d.qmd),
+v menu za intervalem a *p*-hodnotou. Kapitola 8 na ni odkazuje blokem
+„Vyzkoušejte si: co znamená rozdíl o d směrodatných odchylek“ na konci
+oddílu `sec-d-nezavisle`; jinak se výklad kapitoly nemění. Obsahuje:
+
+- **ovládání:** posuvník *d* 0–2 po 0,01 (výchozí 0,5) se značkami 0,2, 0,5 a 0,8, pole σ v původních jednotkách (výchozí 10) a přepínač vybarvení;
+- **grafy:** rozdělení obou skupin na ose v jednotkách σ s průměrem skupiny 2 v nule (společná plocha, nebo skupina 1 nad průměrem skupiny 2) a rozdělení rozdílu hodnot náhodné dvojice $N(d,\sqrt2)$ s plochou vpravo od nuly;
+- **výpočet a tabulka:** rozdíl průměrů $d\cdot\mathrm{σ}$, tři ukazatele opisem se vzorci českého Excelu a pevná tabulka pro *d* = 0; 0,2; 0,5; 0,8; 1; 1,5; 2.
+
+Redakční volby při realizaci:
+
+- **Jen český opis** podle volby autora: Cohenovo U₃, overlap a probability of superiority nejsou na stránce pojmenovány a nemají hesla ve slovníčku. Pro společnou plochu se nepoužívá slovo „překryv“, které kapitola 8 používá pro překryv intervalů spolehlivosti.
+- **Druhý graf a přepínač vybarvení** nebyly v plánu výslovně uvedeny. Graf rozdílu dvojice vysvětluje, proč třetí ukazatel dělí *d* odmocninou ze dvou (opora: sčítání rozptylů v `sec-rozdil-nezavislych`); přepínač ukazuje první ukazatel v témže grafu jako společnou plochu.
+- **Cohenovy hodnoty** jsou jen značkami posuvníku a štítky řádků tabulky s výhradou podle R56; stránka nepřiřazuje zvolenému *d* slovní kategorii.
+- **Numerika** (`pnorm`, `parseDecimal`) a formátování čísel jsou převzaty z vizualizace *t*-rozdělení. Plot 0.6.11 ze standardní knihovny OJS nezná značku `tick`; šipka vzdálenosti průměrů proto používá `arrow`.
+- **Úkol 2** používá parkovací *d* ≈ 0,47 a σ = 14,6 s; rozdíl 6,86 s se od 6,88 s kapitoly liší jen zaokrouhlením *d*.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-cohenovo-d.R`, v repozitáři): tři ukazatele pro devět hodnot *d*, společná plocha i numerickou integrací nižší z hustot (shoda na 1e-9), pravděpodobnost u dvojice simulací milionu dvojic (odchylka pod 0,003), *d* ≈ 0,954 pro pravděpodobnost 0,75 a převody na původní jednotky. Čísla v textu, úkolech a „Čeho si všimnout“ pocházejí z tohoto výstupu.
+- **Prohlížeč:** výchozí stav, *d* = 0 a 2, oba režimy vybarvení, celá obrazovka a šířka 375 px prohlédnuty na snímcích.
+
+**Kontroly:** celá kniha vykreslena bez varování (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem (popis v [provozním návodu](../docs/PROVOZ.md#interaktivni-vizualizace)) a s novým pořadím menu prošel celý (25 stránek, bez chyb JavaScriptu); prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+**Omezení:** ověřeno v Chromiu (Playwright a prohlížeč aplikace); Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Vzorce Excelu jsou kontrolovány jen jako text a v českém Excelu je nikdo nezadal; jde o funkce NORM.S.DIST a ODMOCNINA, které učebnice používá i jinde.
+
 <a id="vizualizace-pokryti-intervalu"></a>
 
 ## Vizualizace pokrytí intervalu spolehlivosti (2026-11-13, upřesnění R65)

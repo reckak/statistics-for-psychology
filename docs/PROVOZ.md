@@ -498,6 +498,22 @@ U vizualizace pokrytí intervalu spolehlivosti kontrola ověřuje:
   celé obrazovce, šířku 375 px bez přetékání, pořadí v menu a odkaz
   z kapitoly 7.
 
+U vizualizace Cohenova d kontrola ověřuje:
+
+- dva grafy (rozdělení skupin a rozdíl hodnot náhodné dvojice) a žádný
+  viditelný kód, tlačítko schránky ani chybu OJS;
+- tři ukazatele pro devět hodnot *d* od 0 do 2 proti `pnorm` z R
+  (`scripts/viz-cohenovo-d.R`, kde je společná plocha ověřena i numerickou
+  integrací a pravděpodobnost u dvojice simulací);
+- výchozí stav (*d* = 0,5, σ = 10), rozsah a krok posuvníku, vzorce Excelu,
+  zaokrouhlené hodnoty ve výpisu a štítky Cohenových hodnot v tabulce;
+- posuvník klávesnicí (šipky po 0,01 bez zbytků desetinné aritmetiky,
+  Home a End s krajními hodnotami), vložení a zvýraznění *d* mimo tabulku;
+- pole σ s desetinnou čárkou a odmítnutí hodnot 0, −1, textu a 2 000 000
+  se zprávou a ponecháním poslední platné hodnoty, přepínač vybarvení;
+- rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
+  v menu a odkaz z oddílu kapitoly 8 `sec-d-nezavisle`.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
