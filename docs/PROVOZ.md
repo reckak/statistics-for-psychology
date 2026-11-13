@@ -46,32 +46,32 @@ popisků Quarta číslo a název na samostatných řádcích; tato sazba funguje
 i bez JavaScriptu. Číslování a odkazy nadále spravuje Quarto. V nečíslovaných
 referenčních kapitolách má každá tabulka místní číslo 1; rozlišují je
 kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
-`scripts/pdf/layout.typ`; úplnou konvenci stanoví [projektová pravidla](../AGENTS.md#sazba-tabulek).
+`scripts/pdf/layout.typ` (v PDF centruje tabulky užší než text); úplnou konvenci stanoví [projektová pravidla](../AGENTS.md#sazba-tabulek).
 
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3, 4, 5, 6 a 7. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3–8. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
 ./scripts/render-chapter-pdf.ps1 -Chapter 4
 ```
 
-Pro kapitoly 5, 6 a 7 použijte `-Chapter 5`, `-Chapter 6` či `-Chapter 7`
+Pro kapitoly 5 až 8 použijte `-Chapter 5`, `-Chapter 6`, `-Chapter 7` či `-Chapter 8`
 a stejné číslo v kontrole `--chapter`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
 Výstup skriptu nepřesměrovávejte pomocí `2>&1` ani `2>$null`: Windows
 PowerShell 5.1 pak běžná hlášení Quarta na chybovém výstupu považuje za chybu
 a export přeruší.
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 07. Skript používá aktuální
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 08. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
 Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
 R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7, 14 v kapitole 8), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -101,7 +101,7 @@ nepřetékání stránky a odstranění drobných desktopových přesahů (2–3
 Podrobný výsledek ukládá do `tmp/verification/table-layout.json`.
 Skutečné PDF po sestavení všech podporovaných kapitol prověří
 `python scripts/check-rendered-pdf.py` (veřejný balíček `pypdf`): velikost
-všech poznámek v PDF a přítomnost světle šedých tahů. Poznámky hledá podle
+všech poznámek v PDF (9 pt jako popisky obrázků) a přítomnost světle šedých tahů. Poznámky hledá podle
 úvodního „*Poznámka.*“; poznámka bez něj kontrolu neprojde. Tato kontrola
 nenahrazuje vizuální prohlédnutí tabulek a nového kapitolového exportu.
 

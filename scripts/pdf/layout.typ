@@ -11,7 +11,10 @@
     let label = [#cap.supplement #counter(figure.where(kind: "quarto-float-tbl")).display(it.numbering)]
     block(above: 0pt, below: 6pt)[#strong(label) #linebreak()#emph(cap.body)]
   }
-  it
+  // A table narrower than the text width is centred together with its caption,
+  // which keeps the table's left edge. The auto column takes the natural width
+  // (at most the text width) and, unlike layout(), still breaks across pages.
+  grid(columns: (1fr, auto, 1fr), [], it, [])
 }
 // Pandoc supplies table.header and cells in source order. Find semantic totals.
 #show table: it => {

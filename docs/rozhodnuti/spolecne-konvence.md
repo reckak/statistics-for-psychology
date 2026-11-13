@@ -282,6 +282,25 @@ realizuje již schválený postup R31 a nezavádí automatickou publikaci PDF.
 
 Obsah a výpočty kapitol zůstávají zachovány. PDF se nadále vytvářejí ručně, odděleně od publikování webu.
 
+### Upřesnění R54 z 2026-11-13 — úzké tabulky a poznámky v PDF
+
+**Volba:** v pracovních PDF se tabulka užší než sazební obrazec centruje
+vodorovně na střed i se svým označením a názvem, které začínají u levého
+okraje tabulky. Tabulky na plnou šířku se nemění. Poznámky pod tabulkami
+(`table-note`) se v PDF sázejí stejně velkým písmem jako popisky obrázků
+(nyní 9 pt) místo dosavadního o 1 pt menšího než běžný text (10 pt). Web
+se nemění: poznámky jsou tam dál o 1 pt menší než běžný text.
+
+**Technika:** `scripts/pdf/layout.typ` vkládá tabulku do mřížky se sloupci
+`(1fr, auto, 1fr)`; prostřední sloupec převezme přirozenou šířku tabulky
+(nejvýše šířku textu) a na rozdíl od `layout()` se může lámat přes stránky.
+Velikost poznámek nastavuje `scripts/pdf/typography.lua`.
+
+**Doklad:** autor 2026-11-13 při žádosti o PDF kapitoly 8: „instrukce
+k tvorbě PDF upravil tak, aby tabulky, které nezabírají celou šíři
+stránky, byly vycentrovány na střed. A aby poznámky k tabulkám byly
+menším písmem, stejně velkým jako jsou popisky obrázků.“
+
 <a id="r58-nazvy-knihy-a-kapitol"></a>
 
 ## R58 — Název učebnice a kapitoly 3
