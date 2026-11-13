@@ -32,6 +32,8 @@ Nezávislá kontrola:
 
 **Omezení:** ověřeno v Chromiu (Playwright a prohlížeč aplikace); Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Vzorce Excelu jsou kontrolovány jen jako text a v českém Excelu je nikdo nezadal; jde o funkce NORM.S.DIST a ODMOCNINA, které učebnice používá i jinde.
 
+**Oprava po CI (2026-11-13):** workflow „Ověřit a publikovat učebnici“ po sloučení selhal v `check-table-layout.cjs`: pevná tabulka ukazatelů přetékala při šířce 1024 px o 2 px (541 px k dispozici). Lokálně v systému Windows se vešla; rozdíl je v písmech na Linuxu. Příčinou bylo `white-space: nowrap` záhlaví převzaté z tabulky *t*-rozdělení. V `assets/styles.css` smí záhlaví tabulky `.viz-cd-table` zalomit i mimo ruční zlomy; minimální šířka tabulky klesla na 305 px, při dostatku místa se vzhled nemění. Lokálně ověřeno měřením v Chromiu (1024 a 390 px); výsledek na CI potvrdí až nový běh workflow.
+
 <a id="vizualizace-pokryti-intervalu"></a>
 
 ## Vizualizace pokrytí intervalu spolehlivosti (2026-11-13, upřesnění R65)

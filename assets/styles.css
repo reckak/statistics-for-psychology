@@ -221,6 +221,8 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-t-fixed .viz-t-current > * { font-weight: 700; color: #9A3F17; }
 .viz-t-tag { font-weight: 600; font-size: .85em; }
 .viz-t-table thead th:is(:nth-child(1), :nth-child(3), :nth-child(4)), .viz-t-fixed thead th { white-space: nowrap; }
+/* Cohen's d table: long headers may wrap beyond the manual breaks when fonts are wider (CI). */
+.viz-t-fixed.viz-cd-table thead th { white-space: normal; }
 .viz-ia-pair { flex: 1 1 18rem; min-width: 0; }
 .viz-ia-row { margin-top: .8rem; }
 .viz-ia-side { flex-direction: column; margin-bottom: 0; }
