@@ -509,6 +509,9 @@ Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
 - Používej Quarto OJS bez zobrazeného kódu, modely a hodnoty shodné
   s výkladem, platnou terminologii a značení, srozumitelné české ovládání
   s ověřením vstupů, ovládání klávesnicí a zobrazení na mobilu bez přetékání.
+  Kořen s třídou `.viz` dostane tlačítko pro celou obrazovku automaticky;
+  grafy mají na celé obrazovce využít větší šířku (postup v
+  [provozním návodu](docs/PROVOZ.md#interaktivni-vizualizace)).
 - Simulace a výpočty ověř nezávislým výpočtem a vizualizaci zahrň do
   kontroly webu podle [provozního návodu](docs/PROVOZ.md#interaktivni-vizualizace).
 

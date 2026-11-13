@@ -324,7 +324,7 @@ Přirozené četnosti jsou počty osob, a proto celá čísla. Když součin, na
 
   function render() {
     const {p, se, sp, N, layout, range} = s;
-    const W = Math.max(260, Math.min($("[data-grid]").clientWidth || 640, 780)), narrow = W < 520;
+    const W = Math.max(260, Math.min($("[data-grid]").clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780)), narrow = W < 520;
     const b = bayes(p, se, sp), c = counts(N, p, se, sp);
 
     // Results.

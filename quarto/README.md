@@ -1,5 +1,41 @@
 # Autorská dokumentace
 
+## Interaktivní vizualizace na celou obrazovku (2026-11-13)
+
+Na autorův dotaz, zda lze lightbox použít i pro vizualizace: GLightbox
+zvětšuje jen obrázky `<img>`, kdežto grafy vizualizací jsou živá SVG, která
+OJS překresluje při každé změně vstupu. Autor zvolil místo lightboxu
+zobrazení celého bloku na celou obrazovku. Nový sdílený skript
+`assets/viz-fullscreen.js` (připojen v `assets/after-body.html`) vloží do
+každého `.viz` tlačítko „Zobrazit na celou obrazovku“ / „Zavřít celou
+obrazovku (Esc)“ s `aria-pressed`; celý blok včetně ovládání, výsledků
+a tabulek zůstává funkční. V prohlížečích bez Fullscreen API pro prvky
+(Safari na iPhonu) se tlačítko nevloží. Všech osm stránek `viz_*.qmd` zvedá
+na celé obrazovce strop šířky grafů ze 780 na 1200 px (třída
+`viz-is-fullscreen`), překreslení zajišťuje stávající `ResizeObserver`.
+Styly v `assets/styles.css`: bílé neprůhledné pozadí, posouvání,
+obsah vystředěný do 1240 px, lišta s tlačítkem přilepená nahoře. Výklad,
+data ani PDF se nemění. Pravidlo pro nové vizualizace doplněno do
+`AGENTS.md` a [provozního návodu](../docs/PROVOZ.md#interaktivni-vizualizace).
+Nové rozhodnutí v registru nezaloženo (technická úprava webu jako lightbox
+2026-11-01).
+
+**Kontroly:** celá kniha vykreslena; `check-html.cjs` s novým testem
+u vizualizace *t*-rozdělení (jedno tlačítko, celá obrazovka je blok `.viz`,
+grafy širší o víc než 100 px, posuvník dál mění stav, neprůhledné pozadí,
+po zavření původní šířka a stav tlačítka) prošel celý. Pomocným průchodem
+všech osmi stránek ověřeno: jedno tlačítko na stránce, šířka grafů 749 px →
+1200 px → 749 px, mobil 375 px bez vodorovného přetékání s viditelným
+tlačítkem. Snímky celé obrazovky prohlédnuty u *t*-rozdělení, statistické
+síly a Bayesovy věty; nalezený překryv prvního řádku přilepenou lištou
+opraven (`top: -1rem` podle odsazení bloku).
+
+**Omezení:** ověřeno jen v Chromiu (Playwright, bez zobrazení); v něm
+Escape celou obrazovku nezavírá, test proto zavírá přes
+`document.exitFullscreen()`. Firefox, Safari, skutečný telefon a čtečka
+obrazovky nebyly vyzkoušeny. Mřížka osob Bayesovy věty a některé tabulky
+mají vlastní šířku a na celé obrazovce se nezvětšují.
+
 <a id="vizualizace-interval-a-test"></a>
 
 ## Interval spolehlivosti a *p*-hodnota: vizualizace a terminologie intervalů (2026-11-13, R75, upřesnění R65)

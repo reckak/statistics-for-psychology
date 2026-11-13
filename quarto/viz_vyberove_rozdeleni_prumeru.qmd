@@ -253,7 +253,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     ];
     stats.innerHTML = rows.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("");
 
-    const width = Math.max(260, Math.min(plots.clientWidth || 640, 780));
+    const width = Math.max(260, Math.min(plots.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
     const small = width < 520;
     const base = {
       width, marginLeft: small ? 54 : 64, marginRight: 14, marginTop: 14, marginBottom: 46,
