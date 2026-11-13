@@ -115,8 +115,13 @@ v návrhu z 2026-11-05 nebylo, autor zadal 2026-11-12 a schválil 2026-11-13
 jako stránku [Jak spolu souvisí interval spolehlivosti a *p*-hodnota](../../quarto/viz_interval_a_test.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
+Námět ke kapitole 7 „pokrytí intervalů spolehlivosti“ autor zadal 2026-11-13
+v rozšířené podobě a téhož dne schválil jako stránku
+[Jak často interval spolehlivosti zachytí populační průměr](../../quarto/viz_pokryti_intervalu.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti),
+[karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
-hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7 pokrytí intervalů spolehlivosti,
+hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
 pásmo ekvivalence; kap. 8 přínos párování a interval rozdílu vedle dvou intervalů.
 
 **Historický stav k 2026-10-17** (původní znění je v Gitu): po kapitole 7

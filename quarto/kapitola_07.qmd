@@ -256,6 +256,10 @@ Vraťme se k obrázku [-@fig-opakovane-intervaly]. Pravý panel ukazuje interval
 
 Co by se stalo, kdybychom při neznámé σ ponechali násobek 1,96? Za normálního modelu lze pokrytí takového chybného postupu spočítat přesně. Pro 25 studentů je 93,8 %, pro 10 lidí 91,8 % a pro 5 lidí 87,8 %. Jde o teoretické dlouhodobé pokrytí postupu. Simulace se sto opakováními se k těmto hodnotám jen přibližuje, stejně jako 94 a 96 se jen přibližují k 95 %.
 
+::: {.callout-tip title="Vyzkoušejte si: pokrytí intervalu spolehlivosti"}
+V [interaktivní vizualizaci](viz_pokryti_intervalu.qmd) vylosujete libovolný počet výběrů a sledujete, kolik intervalů zachytí populační průměr. Na týchž výběrech porovnáte interval se známou σ, s *t*-kvantilem a chybný postup s kvantilem *z*, změníte hladinu spolehlivosti a typ intervalu a vyzkoušíte zešikmené populace z oddílu [Normalita a odolnost](#sec-t-predpoklady). Grafy ukazují posledních sto intervalů, vývoj pokrytí a rozdělení průměrů, směrodatných odchylek a šířek intervalů.
+:::
+
 ### Normalita a odolnost {#sec-t-predpoklady}
 
 Přesné *t*-rozdělení statistiky $t$ a přesné pokrytí 95 % vycházejí ze dvou předpokladů: nezávislý náhodný výběr a normální populace. Druhý předpoklad v praxi nikdy neplatí úplně přesně. Jak moc na tom záleží?

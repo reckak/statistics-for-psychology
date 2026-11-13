@@ -659,7 +659,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak spolu souvisí interval spolehlivosti a p-hodnota']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1353,6 +1353,7 @@ const server = http.createServer((req, res) => {
     await page.goto(base + 'quarto/kapitola_07.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('.callout-tip a[href$="viz_t_rozdeleni.html"]').count(), 1, 'Chapter 7 links to the t-distribution visualization');
     assert.equal(await page.locator('.callout-tip a[href$="viz_interval_a_test.html"]').count(), 1, 'Chapter 7 links to the interval and p-value visualization');
+    assert.equal(await page.locator('.callout-tip a[href$="viz_pokryti_intervalu.html"]').count(), 1, 'Chapter 7 links to the coverage visualization');
 
     // Confidence interval and p-value: one-sample t-test against R, both views, sliders, presets, directions, invalid input and a phone screen.
     await page.goto(base + 'quarto/viz_interval_a_test.html', { waitUntil: 'networkidle' });
@@ -1427,6 +1428,183 @@ const server = http.createServer((req, res) => {
     await ia.locator('[data-preset="mensi"]').click();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Interval and p-value visualization fits a phone');
     await ia.screenshot({path:'tmp/verification/viz-interval-a-test-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+
+    // Coverage of confidence intervals: quantiles, intervals and exact coverage against R, populations, the same samples
+    // under another procedure, simulated coverage against scripts/viz-pokryti-intervalu.R, directions, inputs, batches, limit and a phone.
+    await page.goto(base + 'quarto/viz_pokryti_intervalu.html', { waitUntil: 'networkidle' });
+    const pi = page.locator('#viz-pokryti-intervalu');
+    const piPlots = pi.locator('.viz-plots svg[aria-label]');
+    await piPlots.nth(3).waitFor();
+    assert.equal(await piPlots.count(), 4, 'Intervals, coverage and two histograms; equal widths with known σ need no histogram');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const piState = () => pi.evaluate(el => el.vizCheck.state());
+    const piNear = (a, b, msg, tol = 1e-9) => assert(Math.abs(a - b) <= tol * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    const piWait = () => page.waitForFunction(() => !document.querySelector('#viz-pokryti-intervalu').vizCheck.state().busy, null, { timeout: 120000 });
+    // R: qnorm, qt and bounds for m = 46, s = 11, σ = 10, n = 25 at 95 % (scripts/viz-pokryti-intervalu.R).
+    const piBase = {pop: 'normalni', mu: 47, sigma: 10, n: 25, level: 95};
+    const piQ = await pi.evaluate((el, b) => [['z', 'two'], ['z', 'upper'], ['t', 'two'], ['t', 'lower'], ['zs', 'two']].map(([proc, side]) => el.vizCheck.quantile({...b, proc, side})), piBase);
+    [1.95996398454005, 1.64485362695147, 2.06389856162803, 1.71088207990943, 1.95996398454005].forEach((w, i) => piNear(piQ[i], w, `Quantile ${i}`));
+    piNear(await pi.evaluate(el => el.vizCheck.quantile({pop: 'normalni', mu: 0, sigma: 1, n: 5, level: 95, proc: 't', side: 'two'})), 2.77644510519779, 't quantile, 4 degrees of freedom');
+    const piCI = {
+      z: {two: [42.0800720309199, 49.9199279690801], upper: ['-Infinity', 49.2897072539029], lower: [42.7102927460971, 'Infinity']},
+      t: {two: [41.4594231644183, 50.5405768355817], upper: ['-Infinity', 49.7639405758007], lower: [42.2360594241993, 'Infinity']},
+      zs: {two: [41.6880792340119, 50.3119207659881], upper: ['-Infinity', 49.6186779792932], lower: [42.3813220207068, 'Infinity']}
+    };
+    for (const [proc, sides] of Object.entries(piCI)) for (const [side, want] of Object.entries(sides)) {
+      const got = await pi.evaluate((el, a) => el.vizCheck.interval(46, 11, a), {...piBase, proc, side});
+      want.forEach((b, j) => typeof b === 'string' ? assert.equal(got[j], b, `${proc} ${side} infinite bound`) : piNear(got[j], b, `${proc} ${side} bound ${j}`));
+    }
+    // Two-sided intervals are open, one-sided ones closed at their bound.
+    assert.deepEqual(await pi.evaluate(el => { const P = el.vizCheck.position, s = side => ({mu: 47, side}); return [P([40, 47], s('two')), P([47, 50], s('two')), P([-Infinity, 47], s('upper')), P([47, Infinity], s('lower')), P([-Infinity, 46.9], s('upper')), P([47.1, Infinity], s('lower'))]; }), [-1, 1, 0, 0, -1, 1]);
+    // R: exact coverage of s with the z quantile in a normal population.
+    const piWrong = [[5, 95, 'two', 0.878440340212802], [10, 95, 'two', 0.918350868269318], [25, 95, 'two', 0.938289531058927], [100, 95, 'two', 0.947188613909688],
+      [5, 95, 'upper', 0.912327382370723], [25, 95, 'lower', 0.943481873254805], [25, 90, 'two', 0.886963746509610], [25, 99, 'upper', 0.985615771951268]];
+    const piExp = await pi.evaluate((el, cases) => cases.map(([n, level, side]) => el.vizCheck.expected({pop: 'normalni', mu: 0, sigma: 1, n, level, side, proc: 'zs'})), piWrong);
+    piWrong.forEach((c, i) => {
+      piNear(piExp[i].cover, c[3], `Wrong procedure n = ${c[0]}, ${c[1]} %, ${c[2]}`);
+      piNear(piExp[i].below + piExp[i].above, 1 - c[3], `Misses add up, case ${i}`);
+    });
+    assert.deepEqual(await pi.evaluate(el => [el.vizCheck.expected({pop: 'normalni', level: 95, side: 'two', proc: 't', n: 5}), el.vizCheck.expected({pop: 'vyrazne', level: 95, side: 'two', proc: 't', n: 5})]).then(r => [Math.round(r[0].cover * 1e12) / 1e12, Math.round(r[0].below * 1e12) / 1e12, r[1]]), [0.95, 0.025, null]);
+    // Populations: mean 0, SD 1, and the exact share at or below the mean (R: pnorm, pgamma).
+    const piPops = await pi.evaluate(el => el.vizCheck.populations.map(p => { let s1 = 0, s2 = 0, s3 = 0, le = 0; const N = 200000; const xs = new Float64Array(N);
+      for (let i = 0; i < N; i++) { const x = p.std(); xs[i] = x; s1 += x; if (x <= 0) le++; }
+      const m = s1 / N; for (const x of xs) { s2 += (x - m) ** 2; s3 += (x - m) ** 3; } const sd = Math.sqrt(s2 / N);
+      return {id: p.id, mean: m, sd, skew: s3 / N / sd ** 3, le: le / N}; }));
+    const piPopR = {normalni: [0.5, -0.1, 0.1], mirne: [0.547039190513005, 0.6, 0.82], zesikmena: [0.632120558828558, 1.8, 2.2], vyrazne: [0.691462461274013, 4, 10], extremne: [0.707304584890077, 5, 14]};
+    for (const p of piPops) {
+      const [le, s0, s1] = piPopR[p.id];
+      assert(Math.abs(p.mean) < 0.02 && Math.abs(p.sd - 1) < 0.03, `Population ${p.id}: mean ${p.mean}, SD ${p.sd}`);
+      assert(Math.abs(p.le - le) < 0.005, `Population ${p.id}: share at or below the mean ${p.le} vs ${le}`);
+      assert(p.skew > s0 && p.skew < s1, `Population ${p.id}: skewness ${p.skew}`);
+    }
+    // Default: the model of chapter 7 with a fixed seed; 94 of the first 100 intervals with known σ capture μ.
+    let ps = await piState();
+    assert.deepEqual([ps.pop, ps.mu, ps.sigma, ps.n, ps.level, ps.proc, ps.side, ps.K, ps.hit], ['normalni', 47, 10, 25, 95, 'z', 'two', 100, 94]);
+    let piText = await pi.locator('[data-calc]').innerText();
+    assert(piText.includes('=NORM.S.INV(1-(1-0,95)/2)') && piText.includes('=10/ODMOCNINA(25)'), 'Excel formulas with known σ');
+    assert.match(await pi.locator('[data-hist-w]').innerText(), /u všech intervalů stejná, 7,84 bodu/);
+    // Counting checked independently from the stored m and s with the R quantiles.
+    const piCount = (samples, q, se) => samples.m.reduce((k, m, i) => k + (Math.abs(m - 47) < q * (se ?? samples.s[i] / 5) ? 1 : 0), 0);
+    const piSamples = await pi.evaluate(el => el.vizCheck.samples());
+    assert.equal(piCount(piSamples, 1.95996398454005, 2), 94, 'Independent count with known σ');
+    // Another procedure recomputes the same samples.
+    await pi.locator('input[name="viz-pi-proc"][value="t"]').check();
+    ps = await piState();
+    assert.deepEqual(await pi.evaluate(el => el.vizCheck.samples()), piSamples, 'Same samples after switching to t');
+    assert.equal(ps.hit, piCount(piSamples, 2.06389856162803), 'Independent count with t');
+    assert.equal(await piPlots.count(), 5, 'Width histogram with s');
+    piText = await pi.locator('[data-calc]').innerText();
+    assert(piText.includes('=T.INV(1-(1-0,95)/2;24)'), 'Excel t quantile');
+    await pi.locator('input[name="viz-pi-side"][value="upper"]').check();
+    piText = await pi.locator('[data-calc]').innerText();
+    assert(piText.includes('=T.INV(0,95;24)') && piText.includes('(−∞;') && !piText.includes('Dolní mez'), 'One-sided interval with an upper bound');
+    ps = await piState(); assert.equal(ps.above, 0, 'An upper bound cannot miss above μ');
+    // The axis fits every finite bound of the shown intervals; only infinite bounds reach the edge.
+    for (const pop of ['normalni', 'extremne']) {
+      if (pop !== 'normalni') { await pi.locator('input[name="viz-pi-pop"][value="extremne"]').check(); await piWait(); }
+      for (const side of ['two', 'upper', 'lower']) {
+        await pi.locator(`input[name="viz-pi-side"][value="${side}"]`).check();
+        ps = await piState();
+        const fin = ps.last.flatMap(r => r.ci).filter(v => typeof v === 'number');
+        assert(fin.every(v => v >= ps.xDomain[0] && v <= ps.xDomain[1]), `Axis fits finite bounds: ${pop} ${side}`);
+      }
+    }
+    await pi.locator('input[name="viz-pi-pop"][value="normalni"]').check(); await piWait();
+    await pi.locator('input[name="viz-pi-side"][value="upper"]').check();
+    // Keyboard selection of an interval.
+    await pi.locator('[data-intervals]').focus();
+    await page.keyboard.press('Home');
+    assert.equal((await piState()).selected, 1); assert.match(await pi.locator('[data-detail]').innerText(), /Vybraný výběr č\. 1:/);
+    await page.keyboard.press('ArrowUp'); assert.equal((await piState()).selected, 2);
+    await page.keyboard.press('End'); assert.equal((await piState()).selected, 100);
+    // The confidence level recomputes without new samples.
+    await pi.locator('#viz-pi-level').fill('99'); await pi.locator('#viz-pi-level').press('Enter');
+    ps = await piState(); assert.deepEqual([ps.level, ps.K], [99, 100], 'Level changed on the same samples');
+    // Invalid inputs are rejected and the last valid value kept.
+    for (const [id, bad, key] of [['sigma', '0'], ['sigma', '-2'], ['n', '1'], ['n', '1001'], ['level', '50'], ['level', '100'], ['mu', 'abc'], ['draws', '0'], ['draws', '10001']]) {
+      const before = await piState();
+      await pi.locator(`#viz-pi-${id}`).fill(bad); await pi.locator(`#viz-pi-${id}`).press('Enter');
+      assert.equal(await pi.locator(`#viz-pi-${id}`).getAttribute('aria-invalid'), 'true', `Rejected ${id} ${bad}`);
+      assert(await pi.locator(`#viz-pi-${id}-error`).isVisible(), `Message for ${id} ${bad}`);
+      const after = await piState();
+      assert.deepEqual([after[id], after.K], [before[id], before.K], `Kept ${id} after ${bad}`);
+    }
+    // Normal population, 100 000 samples: simulated coverage within 4 standard errors of the exact one for all procedures.
+    await pi.locator('[data-preset="kapitola"]').click(); await piWait();
+    await pi.locator('#viz-pi-draws').fill('10000'); await pi.locator('#viz-pi-draws').press('Enter');
+    for (let i = 0; i < 10; i++) { await pi.locator('[data-draw]').click(); await piWait(); }
+    ps = await piState();
+    assert.equal(ps.K, 100000, 'Limit of 100 000 samples');
+    assert(await pi.locator('.viz-limit').isVisible() && await pi.locator('[data-draw]').isDisabled(), 'Limit message and disabled button');
+    for (const [proc, side, want] of [['z', 'two', 0.95], ['t', 'two', 0.95], ['zs', 'two', 0.938289531058927], ['t', 'lower', 0.95]]) {
+      await pi.locator(`input[name="viz-pi-proc"][value="${proc}"]`).check(); await pi.locator(`input[name="viz-pi-side"][value="${side}"]`).check();
+      ps = await piState();
+      assert(Math.abs(ps.hit / ps.K - want) < 4 * Math.sqrt(want * (1 - want) / ps.K), `Normal ${proc} ${side}: ${ps.hit / ps.K} vs ${want}`);
+    }
+    await pi.locator('[data-restart]').click(); await piWait();
+    ps = await piState(); assert.equal(ps.K, 100, 'Restart draws 100 new samples'); assert(!(await pi.locator('.viz-limit').isVisible()));
+    // Skewed populations, n = 25, 95 %: simulated coverage against R (100 000 samples each) and the stated direction.
+    // R columns: two-sided, upper bound, lower bound for the procedures z, t, zs (scripts/viz-pokryti-intervalu.R).
+    const piSkewR = {
+      vyrazne: {z: [0.957, 0.987, 0.938], t: [0.874, 0.837, 0.991], zs: [0.863, 0.829, 0.988]},
+      extremne: {z: [0.958, 0.992, 0.939], t: [0.860, 0.819, 0.993], zs: [0.848, 0.810, 0.991]}
+    };
+    // Expected directions against the R simulations for n = 5, 10, 25 and all skewed populations.
+    const piDirR = {
+      mirne: {z: [[0.951, 0.960, 0.942], [0.952, 0.957, 0.945], [0.951, 0.954, 0.946]], t: [[0.941, 0.921, 0.970], [0.944, 0.927, 0.968], [0.946, 0.933, 0.963]], zs: [[0.870, 0.877, 0.939], [0.912, 0.907, 0.953], [0.934, 0.926, 0.957]]},
+      zesikmena: {z: [[0.956, 0.989, 0.932], [0.955, 0.974, 0.937], [0.952, 0.965, 0.941]], t: [[0.885, 0.843, 0.989], [0.900, 0.866, 0.986], [0.923, 0.897, 0.979]], zs: [[0.812, 0.794, 0.971], [0.869, 0.846, 0.976], [0.912, 0.889, 0.975]]},
+      vyrazne: {z: [[0.957, 1.000, 0.940], [0.956, 0.998, 0.938], [0.957, 0.987, 0.938]], t: [[0.820, 0.766, 0.996], [0.840, 0.795, 0.995], [0.874, 0.837, 0.991]], zs: [[0.743, 0.712, 0.986], [0.806, 0.770, 0.989], [0.863, 0.829, 0.988]]},
+      extremne: {z: [[0.958, 1.000, 0.942], [0.958, 1.000, 0.941], [0.958, 0.992, 0.939]], t: [[0.799, 0.744, 0.997], [0.817, 0.772, 0.996], [0.860, 0.819, 0.993]], zs: [[0.723, 0.692, 0.989], [0.784, 0.748, 0.992], [0.848, 0.810, 0.991]]}
+    };
+    const sides = ['two', 'upper', 'lower'];
+    const dirs = await pi.evaluate(el => Object.fromEntries(['z', 't', 'zs'].map(proc => [proc, ['two', 'upper', 'lower'].map(side => el.vizCheck.direction({pop: 'mirne', proc, side}).dir)])));
+    for (const [pop, procs] of Object.entries(piDirR)) for (const [proc, rows] of Object.entries(procs)) sides.forEach((side, j) => {
+      const dir = dirs[proc][j], vals = rows.map(r => r[j]);
+      if (dir.startsWith('nižší')) assert(vals.every(v => v < 0.95), `${pop} ${proc} ${side}: lower`);
+      else if (dir.includes('vyšší')) assert(vals.every(v => v > 0.95), `${pop} ${proc} ${side}: higher`);
+      else assert.match(dir, /nejednoznačné/);
+    });
+    assert(Object.values(piDirR).some(p => p.zs.some(r => r[2] < 0.95)) && Object.values(piDirR).some(p => p.zs.some(r => r[2] > 0.95)), 'Ambiguous direction occurs both ways');
+    for (const [pop, procs] of Object.entries(piSkewR)) {
+      await pi.locator(`input[name="viz-pi-pop"][value="${pop}"]`).check(); await piWait();
+      for (let i = 0; i < 10; i++) { await pi.locator('[data-draw]').click(); await piWait(); }
+      for (const [proc, want] of Object.entries(procs)) for (let j = 0; j < 3; j++) {
+        await pi.locator(`input[name="viz-pi-proc"][value="${proc}"]`).check(); await pi.locator(`input[name="viz-pi-side"][value="${sides[j]}"]`).check();
+        ps = await piState();
+        assert(Math.abs(ps.hit / ps.K - want[j]) < 0.008, `${pop} ${proc} ${sides[j]}: ${ps.hit / ps.K} vs R ${want[j]}`);
+        assert.equal(ps.expected, null);
+        if (proc !== 'z' && j === 0) assert(ps.below > 20 * ps.above, `${pop} ${proc}: misses lie below μ`);
+      }
+      assert.match(await pi.locator('[data-cover-note]').innerText(), /přesně spočítat nelze/);
+    }
+    // Large requests run in batches with locked controls.
+    await pi.locator('input[name="viz-pi-pop"][value="normalni"]').check(); await piWait();
+    await pi.locator('#viz-pi-n').fill('1000'); await pi.locator('#viz-pi-n').press('Enter'); await piWait();
+    await pi.locator('[data-draw]').click();
+    await page.waitForFunction(() => document.querySelector('#viz-pokryti-intervalu').vizCheck.state().busy);
+    assert(await pi.locator('#viz-pi-mu').isDisabled() && await pi.locator('.viz-progress').isVisible(), 'Locked controls and progress while drawing');
+    await piWait();
+    ps = await piState(); assert.equal(ps.K, 10100); assert(!(await pi.locator('#viz-pi-mu').isDisabled()));
+    // Preset with the wrong procedure for n = 5.
+    await pi.locator('[data-preset="male"]').click(); await piWait();
+    ps = await piState(); assert.deepEqual([ps.n, ps.proc, ps.K], [5, 'zs', 1000]);
+    assert.match(await pi.locator('[data-cover-note]').innerText(), /jen v 87,8 % případů/);
+    // Full screen widens the charts.
+    const piFull = pi.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    const piInline = await piPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    await piFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-pokryti-intervalu .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, piInline);
+    await page.screenshot({path:'tmp/verification/viz-pokryti-intervalu-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await piPlots.nth(3).waitFor();
+    await pi.locator('[data-preset="sikma"]').click(); await piWait();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Coverage visualization fits a phone');
+    await pi.screenshot({path:'tmp/verification/viz-pokryti-intervalu-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });

@@ -226,3 +226,13 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-ia-side { flex-direction: column; margin-bottom: 0; }
 .viz-ia-ways thead th { text-align: left; }
 .viz .viz-ia-ways td.viz-ia-dec { text-align: left; white-space: nowrap; }
+/* Coverage of confidence intervals (viz_pokryti_intervalu.qmd). */
+.viz-pi-row { margin-top: .8rem; }
+.viz-pi-column { flex-direction: column; margin-bottom: 0; }
+.viz-pi-intervals { cursor: crosshair; touch-action: pan-y; }
+.viz-pi-intervals:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.viz-pi-detail { margin: .3rem 0 0; font-variant-numeric: tabular-nums; }
+.viz-pi-notes p { margin: .4rem 0; }
+.viz-pi-table td { white-space: nowrap; }
+.viz-pi-table td:last-child { white-space: normal; text-align: left; min-width: 9rem; }
+.viz-pi-hist > div + div { margin-top: .8rem; }

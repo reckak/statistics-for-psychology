@@ -471,6 +471,33 @@ U vizualizace intervalu spolehlivosti a *p*-hodnoty kontrola ověřuje:
   „1,2,3“) se zprávou a ponecháním poslední platné hodnoty, šířku 375 px
   bez přetékání, pořadí v menu a odkaz z kapitoly 7.
 
+U vizualizace pokrytí intervalu spolehlivosti kontrola ověřuje:
+
+- čtyři grafy při známé σ (stejné šířky se nekreslí) a pět s výběrovou *s*,
+  žádný viditelný kód, tlačítko schránky ani chybu OJS;
+- kvantily *z* a *t*, meze všech devíti kombinací postupu a typu intervalu
+  a přesné pokrytí chybného postupu (*s* s kvantilem *z*) pro *n* 5–100,
+  hladiny 90, 95 a 99 % proti R; otevřené a uzavřené meze;
+- pět populací (průměr 0, směrodatná odchylka 1, šikmost a přesný podíl
+  hodnot do průměru proti `pnorm` a `pgamma` z R);
+- výchozí stav s pevným seedem (94 ze 100 intervalů), nezávislé přepočítání
+  zachycených intervalů z uložených *m* a *s*, tytéž výběry po změně
+  postupu, typu i hladiny, vzorce Excelu a výběr intervalu klávesami;
+- rozsah osy grafu intervalů, který u normální i extrémně zešikmené
+  populace a všech tří typů intervalu obsahuje všechny konečné meze;
+- normální populaci se 100 000 výběry ve čtyřech kombinacích (pokrytí do
+  čtyř směrodatných chyb od přesné hodnoty), strop 100 000 se zprávou
+  a „Začít znovu“;
+- u výrazně a extrémně zešikmené populace pokrytí všech devíti kombinací
+  proti simulaci v R (`scripts/viz-pokryti-intervalu.R`, odchylka do 0,008)
+  a soulad slovního směru očekávání s výsledky R pro všechny zešikmené
+  populace a *n* = 5, 10 a 25;
+- odmítnutí neplatných vstupů (σ = 0 a −2, *n* = 1 a 1001, hladina 50
+  a 100, text, počet výběrů 0 a 10 001), losování po dávkách se
+  zablokovaným ovládáním, předvolbu chybného postupu, rozšíření grafů na
+  celé obrazovce, šířku 375 px bez přetékání, pořadí v menu a odkaz
+  z kapitoly 7.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
