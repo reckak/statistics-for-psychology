@@ -102,7 +102,7 @@ Výzkumnice provedla variantu A s třinácti studenty. Jejich skóry jsou v tabu
 :::
 
 ::: {.table-note}
-Kladný rozdíl znamená, že student měl po krátkém spánku nižší skór než po běžném. Student 9 nemá úplnou dvojici, proto nemá ani rozdíl.
+*Poznámka.* Kladný rozdíl znamená, že student měl po krátkém spánku nižší skór než po běžném. Student 9 nemá úplnou dvojici, proto nemá ani rozdíl.
 :::
 
 S chybějícím údajem v párových datech zacházíme podle tří zásad:
@@ -175,7 +175,7 @@ List `Parovy_test` nejdřív v oblasti F2:I14 převezme data a ponechá jen úpl
 :::
 
 ::: {.table-note}
-Vzorce v G2 a I2 se kopírují do řádků 3–14; obdobný vzorec v H2 převezme skór po krátkém spánku. V řádku studenta 9 zůstanou buňky G, H a I prázdné.
+*Poznámka.* Vzorce v G2 a I2 se kopírují do řádků 3–14; obdobný vzorec v H2 převezme skór po krátkém spánku. V řádku studenta 9 zůstanou buňky G, H a I prázdné.
 :::
 
 Funkce **T.TEST** (anglicky také T.TEST) vrací *p*-hodnotu přímo z dvou oblastí dat. Jejími argumenty jsou obě oblasti, počet chvostů (2 pro oboustranný test) a typ testu: 1 pro párová data, 2 pro dvě nezávislé skupiny se společným odhadem rozptylu, 3 pro Welchův test, se kterým se seznámíme později. Neuvádí testovou statistiku ani interval, proto ji používáme spíš ke kontrole. U typu 1 Excel sám vynechá dvojice, kde jedna hodnota chybí. Na tuto vlastnost se ale nespoléhejte místo vlastní kontroly: počet úplných dvojic a jejich složení musíte znát kvůli stupňům volnosti, intervalu i interpretaci.
@@ -566,7 +566,7 @@ Kontrolní skupina zachytí všechno, co se za čtyři týdny mohlo stát i bez 
 :::
 
 ::: {.table-note}
-Řádky skupin jsou párové *t*-testy změny uvnitř skupiny (15 stupňů volnosti). Řádek rozdílu změn je klasický *t*-test pro dva nezávislé výběry změn s $s_p\approx6{,}30$ bodu a 30 stupni volnosti; Welchův test dává při stejně velkých skupinách téměř stejný výsledek.
+*Poznámka.* Řádky skupin jsou párové *t*-testy změny uvnitř skupiny (15 stupňů volnosti). Řádek rozdílu změn je klasický *t*-test pro dva nezávislé výběry změn s $s_p\approx6{,}30$ bodu a 30 stupni volnosti; Welchův test dává při stejně velkých skupinách téměř stejný výsledek.
 :::
 
 V trénované skupině se pozornost v průměru zlepšila o 4 body a párový test tuto změnu označuje za statisticky významnou. V kontrolní skupině se zlepšila o 2 body a test ji za statisticky významnou neoznačuje. Láká závěr: „Trénink funguje, protože jen v trénované skupině došlo k významnému zlepšení.“ Takový závěr ale není oprávněný.

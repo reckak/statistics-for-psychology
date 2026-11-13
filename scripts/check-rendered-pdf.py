@@ -6,7 +6,7 @@ from pypdf.generic import ContentStream
 
 report = []
 # Chapter PDFs and, when it has been built, the book PDF of chapters 1-6.
-targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7)]
+targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7, 8)]
 if Path('output/pdf/ucebnice_01-06.pdf').exists():
     targets.append(('ucebnice_01-06', [1, 2, 3, 4, 5, 6]))
 for name, chapters in targets:
@@ -24,7 +24,7 @@ for name, chapters in targets:
             if op in (b'RG', b'SCN') and len(args) == 3 and all(abs(float(x)-200/255) < 0.0001 for x in args):
                 gray_strokes += 1
     assert len(notes) == source.count('{.table-note}'), (chapter, notes)
-    assert all(abs(size - 10) < 0.001 for size in notes), (chapter, notes)
+    assert all(abs(size - 9) < 0.001 for size in notes), (chapter, notes)
     assert gray_strokes > 0, f'Chapter {chapter}: faint table lines missing'
     report.append(dict(chapter=chapter, pages=len(reader.pages), note_sizes=notes, gray_strokes=gray_strokes))
 print(json.dumps(report, ensure_ascii=False, indent=2))

@@ -112,7 +112,7 @@ Výstupem je Quarto Book průběžně publikovaný na GitHubu jako web.
   výslovné vyžádání, bez automatického spouštění nebo publikování s webem.
   V PDF soustřeď řešení do samostatné části za všechna zadání; v PDF
   jednotlivé kapitoly závěrečné přehledy zatím vynech. Ověřen je export
-  kapitol 3, 4, 5, 6 a 7 (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly))
+  kapitol 3–8 (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly))
   a souhrnné PDF kapitol 1–6 s literaturou a přehledy omezenými na tyto
   kapitoly (viz [PDF kapitol 1–6](docs/PROVOZ.md#ruční-pdf-kapitol-16)).
   Finální knižní sazbu budeme řešit při finalizaci knihy; neomezuj kvůli
@@ -542,10 +542,11 @@ Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
 - V PDF tabulky nezarovnávej do bloku a neděl slova. Text zarovnej vlevo,
   čísla zpravidla vpravo, krátké kategorie podle účelu na střed. Dlouhá slova
   řeš šířkami sloupců nebo rozvržením. Opakuj záhlaví dlouhých tabulek
-  a drž popisek se začátkem tabulky.
-- Poznámky pod tabulkami označ třídou `table-note` a sázej o 1 pt menším
-  písmem než běžný text kapitoly (nyní v PDF 10 místo 11 pt, na webu rozdíl
-  1 pt). Při malém přesahu tabulky na webu nejprve uprav minimální šířku
+  a drž popisek se začátkem tabulky. Tabulku užší než sazební obrazec
+  v PDF vycentruj na střed; označení a název začínají u jejího levého okraje.
+- Poznámky pod tabulkami označ třídou `table-note`. V PDF je sázej stejně
+  velkým písmem jako popisky obrázků (nyní 9 pt při běžném textu 11 pt), na
+  webu o 1 pt menším písmem než běžný text. Při malém přesahu tabulky na webu nejprve uprav minimální šířku
   či odsazení buněk; nezmenšuj písmo ani neskrývej obsah. U skutečně širokých
   tabulek zachovej místní posouvání, bez přetékání celé stránky.
 - V českém PDF vázej jednopísmenná slova a, i, k, o, s, u, v, z (také

@@ -22,7 +22,7 @@ end
 return {
   { Div = function(el)
       if el.classes:includes('table-note') then
-        el.content:insert(1, pandoc.RawBlock('typst', '#block[\n#set text(size: 1em - 1pt)'))
+        el.content:insert(1, pandoc.RawBlock('typst', '#block[\n#set text(size: 9pt)'))
         el.content:insert(pandoc.RawBlock('typst', ']'))
         return el
       end
