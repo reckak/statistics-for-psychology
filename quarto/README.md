@@ -1,5 +1,40 @@
 # Autorská dokumentace
 
+<a id="vizualizace-pokryti-intervalu"></a>
+
+## Vizualizace pokrytí intervalu spolehlivosti (2026-11-13, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti)
+přibyla devátá stránka části „Interaktivní vizualizace“,
+[Jak často interval spolehlivosti zachytí populační průměr](viz_pokryti_intervalu.qmd),
+v menu mezi *t*-rozdělením a intervalem a *p*-hodnotou. Kapitola 7 na ni
+odkazuje blokem „Vyzkoušejte si: pokrytí intervalu spolehlivosti“ na konci
+oddílu `sec-interval-t-simulace`. Obsahuje:
+
+- **ovládání:** pět populací (normální; zešikmené se šikmostí 0,7, 2 a 6 ve tvarech `tbl-k07-odolnost` a 8 jako u výběrového rozdělení průměru), μ, σ, *n* 2–1 000, hladinu v %, tři postupy (σ a *z*, *s* a *t*, chybně *s* a *z*), tři typy intervalu (R75), počet nových výběrů 1–10 000 se stropem 100 000 a tři předvolby;
+- **grafy:** posledních 100 intervalů s výběrem jednoho z nich, vývoj pokrytí s pásem ± 1,96 směrodatné chyby podílu a histogramy průměrů, *s* a šířek (u jednostranného intervalu mezní chyby) rozdělené barvou podle výsledku;
+- **tabulky:** pokrytí a minutí pod a nad μ v simulaci a podle očekávání, souhrny rozdělení a výpočet vybraného intervalu se vzorci českého Excelu.
+
+Redakční volby při realizaci:
+
+- **Ukládají se jen *m* a *s*** každého výběru (Welfordův postup). Proto lze po změně hladiny, postupu nebo typu přepočítat tytéž výběry; změna populace, μ, σ nebo *n* začne znovu se 100 výběry.
+- **Seed** 20261110 byl vybrán tak, aby prvních 100 výběrů výchozího modelu dalo 94 zachycených intervalů se známou σ (jako obrázek kapitoly) a 97 s *t*-kvantilem; s původně zvoleným seedem jich bylo 99, což by při prvním pohledu mátlo.
+- **Očekávání u zešikmených populací** je uvedeno slovně podle tabulky v plánu a výsledků `scripts/viz-pokryti-intervalu.R` (100 000 výběrů na řádek, *n* = 5, 10, 25 a 100). Oproti plánu: oboustranný interval se známou σ má pokrytí „o málo vyšší než slibované“ (95,1–95,8 %), ne „přibližně slibované“; u chybného postupu s dolní mezí text uvádí, že při mírné šikmosti a *n* = 5 převážil příliš malý kvantil (93,9 %), jinak šikmost (95–99 %). Řádek *s* a *t* pro *n* = 25 odpovídá tabulce kapitoly 7 (94,6 / 92,3 / 87,4 % proti 94,7 / 92,4 / 87,7 %, rozdíly v mezích náhodné chyby simulace).
+- **Histogram šířek** se při známé σ nekreslí (všechny šířky stejné); místo něj věta s šířkou a odkazem na hranice μ ± mezní chyba v histogramu průměrů. Rozsah histogramů pokrývá od 1 000 výběrů prostředních 99,8 % hodnot; počet hodnot mimo rozsah je uveden pod grafem.
+- **Pás kolísání** u zešikmených populací leží kolem slibovaného pokrytí, protože očekávané přesně neznáme.
+- **Souhrn průměru *s*** obsahuje krátkou poznámku, že výběrová *s* σ v průměru mírně podhodnocuje; nejde o nový pojem učebnice a nemá heslo.
+- **Numerika** (`pnorm`, `qnorm`, `pt`, `qt`) a formátování čísel jsou převzaty z vizualizace intervalu a *p*-hodnoty, dávkové losování z vizualizace výběrového rozdělení průměru.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-pokryti-intervalu.R`, v repozitáři): kvantily, přesné pokrytí chybného postupu, meze pro *m* = 46, *s* = 11, simulace pokrytí pro pět populací, tři postupy, tři typy a čtyři velikosti výběru; hodnoty jsou v kontrole webu. Text úkolů a „Čeho si všimnout“ používá jen čísla z R (87,8 / 93,8 / 94,7 %, asi 92 % při *n* = 100) a deterministický výchozí stav (94 ze 100).
+- **Excel:** kvantily, směrodatná chyba a meze ve tvaru, který stránka nabízí (`NORM.S.INV`, `T.INV`, `ODMOCNINA`, záporné *m* v závorce), zadány přes `FormulaLocal` do skryté samostatné instance českého Excelu v novém sešitu bez uložení; výsledky se shodují s R.
+- **Prohlížeč:** výchozí stav, postup *t* na týchž výběrech, výrazně zešikmená populace, 10 000 výběrů po 1 000 (dávky, asi 0,7 s), šířka 375 px bez přetékání; grafy prohlédnuty na snímcích. Na 10 100 výběrech normální populace s *t*-kvantilem minulo μ 7,6 % intervalů s *s* < σ a 2,3 % ostatních, což podkládá větu o častějším minutí úzkých intervalů.
+
+**Kontroly:** celá kniha vykreslena bez varování (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem (popis v [provozním návodu](../docs/PROVOZ.md#interaktivni-vizualizace)) a s novým pořadím menu prošel celý (24 stránek, bez chyb JavaScriptu); prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`. Snímky celé obrazovky a mobilu z kontroly prohlédnuty. Po posledním vykreslení se změnila jen jedna věta úvodu stránky (histogram šířek při známé σ); stránka byla znovu vykreslena samostatně.
+
+**Omezení:** ověřeno v Chromiu (Playwright a prohlížeč aplikace); Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Výběr intervalu myší je ověřen ručně, automaticky jen klávesami. Losování v prohlížeči používá generátor d3, simulace v R generátor R; shoda pokrytí je proto jen v mezích náhodné chyby (kontrola připouští 0,008, resp. čtyři směrodatné chyby). Didaktická revize textu proběhla interně čtením očima studenta, ne na studentech.
+
 ## Interaktivní vizualizace na celou obrazovku (2026-11-13)
 
 Na autorův dotaz, zda lze lightbox použít i pro vizualizace: GLightbox

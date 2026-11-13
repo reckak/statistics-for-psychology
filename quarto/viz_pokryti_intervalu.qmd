@@ -1,0 +1,735 @@
+---
+code-copy: false
+---
+
+# Jak často interval spolehlivosti zachytí populační průměr {#sec-viz-pokryti-intervalu .unnumbered}
+
+Co přesně slibuje „95%“ interval spolehlivosti a kdy svůj slib nedodrží? Vizualizace opakuje pokus z kapitoly 7: z populace se známým průměrem $\mathrm{μ}$ losuje mnoho výběrů, z každého vypočte interval spolehlivosti a sleduje, kolik intervalů $\mathrm{μ}$ zachytilo. Navazuje na oddíly [Co znamená „95 %“: opakované vytváření intervalů](kapitola_07.qmd#sec-co-znamena-95), [Opakované intervaly s výběrovou *s*](kapitola_07.qmd#sec-interval-t-simulace), [Normalita a odolnost](kapitola_07.qmd#sec-t-predpoklady) a [Jednostranný test a jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval).
+
+## Model a ovládání {#sec-viz-pi-ovladani .unnumbered}
+
+Po načtení stránky odpovídá model obrázku [-@fig-opakovane-intervaly] v kapitole 7: skór studentů po krátkém spánku v populaci s průměrem $\mathrm{μ}=47$ bodů a směrodatnou odchylkou $\mathrm{σ}=10$ bodů, výběry po 25 studentech a 95% interval se známou σ. Jde o výukový model; simulace losuje výběry z populace, kterou jsme si sami zvolili, abychom mohli kontrolovat, zda intervaly $\mathrm{μ}$ zachytily.
+
+Nastavit můžete:
+
+- **populaci**: normální, nebo jednu ze čtyř zešikmených doprava. Tři mají tytéž tvary jako [tabulka odolnosti](kapitola_07.qmd#tbl-k07-odolnost) v kapitole 7 (šikmost 0,7, 2 a 6), čtvrtá je extrémně zešikmená se šikmostí 8 jako ve [vizualizaci výběrového rozdělení průměru](viz_vyberove_rozdeleni_prumeru.qmd). Všechny populace mají zadané $\mathrm{μ}$ a $\mathrm{σ}$; liší se jen tvarem. Zešikmené populace jsou výukové modely proměnných, jako je doba řešení úlohy nebo počet chyb;
+- **populační průměr** $\mathrm{μ}$ a **směrodatnou odchylku** $\mathrm{σ}$ (kladné číslo); desetinná čísla můžete psát s čárkou i s tečkou;
+- **velikost výběru** $n$, celé číslo od 2 do 1 000;
+- **hladinu spolehlivosti** v procentech, číslo větší než 50 a menší než 100;
+- **postup výpočtu**: se známou σ a [kvantilem *z*](kapitola_07.qmd#sec-interval-z-vypocet), s výběrovou *s* a [kvantilem *t*](kapitola_07.qmd#sec-interval-t), nebo s výběrovou *s* a kvantilem *z*. Poslední postup je chybný; kapitola 7 jej rozebírá v [oddílu o opakovaných intervalech](kapitola_07.qmd#sec-interval-t-simulace);
+- **typ intervalu**: oboustranný (*a*; *b*), jednostranný s horní mezí (−∞; *b*], nebo jednostranný s dolní mezí [*a*; ∞);
+- **počet nových výběrů**, které se vylosují najednou, celé číslo od 1 do 10 000.
+
+Tlačítko „Vylosovat“ přidá zadaný počet výběrů k dosavadním; velké požadavky se losují postupně a ovládání je mezitím zablokované. Celkový počet výběrů je omezen na 100 000. Změna hladiny spolehlivosti, postupu nebo typu intervalu dosavadní výběry nemaže: intervaly se přepočítají **z týchž výběrů**, stejně jako levý a pravý panel obrázku v kapitole. Po změně populace, $\mathrm{μ}$, $\mathrm{σ}$ nebo $n$ a po stisknutí „Začít znovu“ se výběry smažou a vylosuje se nových 100. Tři tlačítka nastaví příklady pro úkoly pod vizualizací.
+
+Pod ovládáním jsou grafy:
+
+- **Posledních 100 intervalů.** Každá vodorovná úsečka je interval z jednoho výběru, tečka na ní výběrový průměr $m$, nejnovější výběr je nahoře. Svislá přerušovaná čára označuje $\mathrm{μ}$. Modré intervaly $\mathrm{μ}$ zachytily, oranžové minuly. Trojúhelník na okraji grafu znamená, že interval pokračuje mimo zobrazený rozsah; u jednostranného intervalu až do nekonečna. Najetím myší nebo klepnutím vyberete jeden interval; po kliknutí do grafu nebo přechodu klávesou Tab jej vybíráte šipkami nahoru a dolů. Údaje o vybraném intervalu se vypíší pod grafem a jeho výpočet najdete pod grafy.
+- **Vývoj pokrytí.** Podíl intervalů, které $\mathrm{μ}$ zachytily, mezi prvními *k* výběry. Vodorovná čára je očekávané pokrytí postupu. Světlý pás kolem ní ukazuje [náhodné kolísání podílu](kapitola_06.qmd#sec-chyba-podilu): očekávané pokrytí $\pm 1{,}96$ směrodatné chyby podílu při *k* výběrech. U zešikmených populací očekávané pokrytí přesně spočítat nelze; pás je proto kolem slibovaného pokrytí.
+- **Tři histogramy**: výběrové průměry, výběrové směrodatné odchylky *s* a šířky intervalů (u jednostranného intervalu vzdálenost konečné meze od $m$, tedy mezní chyba). Každý sloupec je rozdělen barvou: modrá část jsou výběry, jejichž interval $\mathrm{μ}$ zachytil, oranžová ty, jejichž interval jej minul. U histogramu průměrů je čárkovaně normální model $N(\mathrm{μ},\mathrm{σ}/\sqrt{n})$; při známé σ svislé čáry ukazují, jak daleko od $\mathrm{μ}$ může průměr ležet, aby interval $\mathrm{μ}$ ještě zachytil. Při známé σ mají všechny intervaly stejnou šířku, a histogram šířek se proto nekreslí. Hodnoty mimo zobrazený rozsah histogram nekreslí, ve výpočtech ale zůstávají.
+
+Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech tří rozdělení a výpočet vybraného intervalu se vzorci českého Excelu. Průměry, směrodatné odchylky a meze zaokrouhlujeme na dvě desetinná místa, podíly na desetinu procenta; mezivýpočty probíhají s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the chapter 7 figures (scripts/kapitola_07.R).
+  const blue = "#245D78", orange = "#B54E24", fill = "#B8DDE8", sand = "#FAECDD", ink = "#223744", gray = "#4D5A63", mute = "#A9BAC3";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+
+  // Density of the t distribution with v degrees of freedom.
+  const dt = (x, v) => Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2) - 0.5 * Math.log(v * Math.PI) - (v + 1) / 2 * Math.log1p(x * x / v));
+
+  // Continued fraction of the incomplete beta function (modified Lentz), as in Numerical Recipes (betacf).
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  // Regularised incomplete beta function I_x(a, b).
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail; accurate also far in the tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+  const pt = (x, v) => x > 0 ? 1 - tTail(x, v) : tTail(x, v);
+
+  // Quantile of the t distribution: closed forms for 1 and 2 degrees of freedom, otherwise
+  // Newton steps on the upper tail started at the normal quantile, kept inside a shrinking bracket.
+  function qt(p, v) {
+    if (p === 0.5) return 0;
+    if (v === 1) return Math.tan(Math.PI * (p - 0.5));
+    if (v === 2) return (2 * p - 1) / Math.sqrt(2 * p * (1 - p));
+    const q = Math.min(p, 1 - p), sign = p > 0.5 ? 1 : -1;
+    let lo = 0, hi = 1;
+    while (tTail(hi, v) > q) { lo = hi; hi *= 2; }
+    let x = Math.min(Math.max(-qnorm(q), lo), hi);
+    for (let i = 0; i < 100; i++) {
+      const f = tTail(x, v) - q;
+      if (f > 0) lo = x; else hi = x;
+      let next = x + f / dt(x, v);
+      if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+      if (Math.abs(next - x) <= 1e-14 * Math.max(1, x)) { x = next; break; }
+      x = next;
+    }
+    return sign * x;
+  }
+
+  const normalPdf = (x, m, s) => Math.exp(-0.5 * ((x - m) / s) ** 2) / (s * SQRT2PI);
+
+  // Populations with mean 0 and SD 1; a value is μ + σ·std(). The skewed shapes are those of
+  // scripts/kapitola_07-odolnost.R (gamma with shape 8, exponential, lognormal) and the shifted
+  // lognormal with skewness 8 of viz_vyberove_rozdeleni_prumeru.qmd. A fixed seed makes the first draws reproducible.
+  const source = d3.randomLcg(20261110);
+  const z01 = d3.randomNormal.source(source)(0, 1);
+  const gamma8 = d3.randomGamma.source(source)(8, 1);
+  const expo = d3.randomExponential.source(source)(1);
+  const LN_MEAN = Math.exp(0.5), LN_SD = Math.sqrt((Math.E - 1) * Math.E);
+  // For a lognormal with w = exp(sdlog²) the skewness is (w + 2)·√(w − 1); solve for w by bisection.
+  function lognormalW(g) {
+    let lo = 1, hi = 50;
+    for (let i = 0; i < 200; i++) { const w = (lo + hi) / 2; if ((w + 2) * Math.sqrt(w - 1) < g) lo = w; else hi = w; }
+    return (lo + hi) / 2;
+  }
+  const W8 = lognormalW(8), SDLOG8 = Math.sqrt(Math.log(W8)), MEAN8 = Math.sqrt(W8), SD8 = Math.sqrt(W8 * (W8 - 1));
+  const populations = [
+    {id: "normalni", label: "normální", skew: "0", std: () => z01()},
+    {id: "mirne", label: "mírně zešikmená", skew: "0,7", std: () => (gamma8() - 8) / Math.sqrt(8)},
+    {id: "zesikmena", label: "zešikmená", skew: "2", std: () => expo() - 1},
+    {id: "vyrazne", label: "výrazně zešikmená", skew: "6", std: () => (Math.exp(z01()) - LN_MEAN) / LN_SD},
+    {id: "extremne", label: "extrémně zešikmená", skew: "8", std: () => (Math.exp(SDLOG8 * z01()) - MEAN8) / SD8}
+  ];
+  const popOf = id => populations.find(p => p.id === id);
+
+  // Czech number formatting with a true minus sign (as in viz_interval_a_test.qmd).
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, d) => { let s = v.toFixed(d); if (Number(s) === 0) s = Math.abs(0).toFixed(d); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 12}).replace(".", ","));
+  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
+  const int = v => v.toLocaleString("cs-CZ");
+  const sc = v => fixed(v, 2), q3 = v => fixed(v, 3);
+  const plural = (k, one, few, many) => k === 1 ? one : k >= 2 && k <= 4 ? few : many;
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const MAX_REPS = 100000, DRAWS_MAX = 10000, N_MIN = 2, N_MAX = 1000, SHOW = 100, VALUES_PER_BATCH = 400000, LIMIT = 100000;
+  const DEFAULTS = {pop: "normalni", mu: 47, sigma: 10, n: 25, level: 95, proc: "z", side: "two", draws: 100};
+  const PRESETS = {
+    kapitola: {...DEFAULTS, count: SHOW},
+    male: {...DEFAULTS, n: 5, proc: "zs", draws: 1000, count: 1000},
+    sikma: {...DEFAULTS, pop: "vyrazne", proc: "t", draws: 1000, count: 1000}
+  };
+  const S = {...DEFAULTS};
+  const M = new Float64Array(MAX_REPS), SD = new Float64Array(MAX_REPS);
+  let K = 0, busy = false, selected = 0;
+
+  // Percent with one decimal place, or more when the confidence level itself has more.
+  const levelDigits = () => Math.min(4, Math.max(1, (String(S.level).split(".")[1] || "").length + 1));
+  const pct = p => `${fixed(100 * p, levelDigits())} %`;
+  const levelAdj = () => `${typed(S.level)}%`;
+  const nominalPct = () => `${typed(S.level)} %`;
+  const alphaOf = s => (100 - s.level) / 100;
+
+  // Quantile, interval and its position relative to μ for one setting.
+  function quantile(s) {
+    const a = alphaOf(s), p = s.side === "two" ? 1 - a / 2 : 1 - a;
+    return s.proc === "t" ? qt(p, s.n - 1) : qnorm(p);
+  }
+  function interval(m, sd, s, q = quantile(s)) {
+    const se = (s.proc === "z" ? s.sigma : sd) / Math.sqrt(s.n), me = q * se;
+    return s.side === "two" ? [m - me, m + me] : s.side === "upper" ? [-Infinity, m + me] : [m - me, Infinity];
+  }
+  // 0: the interval captured μ; −1: it lies entirely below μ; 1: entirely above. Two-sided intervals are open, one-sided closed at the bound.
+  function position(ci, s) {
+    const [lo, hi] = ci;
+    if (s.side === "two") return hi <= s.mu ? -1 : lo >= s.mu ? 1 : 0;
+    if (s.side === "upper") return hi < s.mu ? -1 : 0;
+    return lo > s.mu ? 1 : 0;
+  }
+  // Exact long-run coverage; known only for the normal population.
+  function expected(s) {
+    if (s.pop !== "normalni") return null;
+    const a = alphaOf(s);
+    const cover = s.proc !== "zs" ? 1 - a : s.side === "two" ? 2 * pt(qnorm(1 - a / 2), s.n - 1) - 1 : pt(qnorm(1 - a), s.n - 1);
+    const miss = 1 - cover;
+    return {cover, below: s.side === "two" ? miss / 2 : s.side === "upper" ? miss : 0, above: s.side === "two" ? miss / 2 : s.side === "lower" ? miss : 0};
+  }
+  // Expected direction for populations skewed to the right with small samples; checked by simulation in scripts/viz-pokryti-intervalu.R.
+  const DIRECTIONS = {
+    z: {
+      two: ["o málo vyšší než slibované", "Výběrové průměry mají kratší levý a delší pravý chvost. Interval celý pod μ proto vzniká méně často, celý nad μ častěji; úbytek převáží, takže intervaly minou μ o něco méně často."],
+      upper: ["vyšší než slibované", "Horní mez leží pod μ, jen když je výběrový průměr hodně nízký. Levý chvost rozdělení průměrů je kratší, a tak se to stává méně často."],
+      lower: ["nižší než slibované", "Dolní mez leží nad μ, když je výběrový průměr hodně vysoký. Pravý chvost rozdělení průměrů je delší, a tak se to stává častěji."]
+    },
+    t: {
+      two: ["nižší než slibované", "Výběr bez vzácných vysokých hodnot má zároveň nízký průměr i malou s. Jeho interval je úzký a leží celý pod μ; intervalů celých nad μ je naopak velmi málo."],
+      upper: ["nižší než slibované", "Výběry bez vzácných vysokých hodnot mají nízký průměr i malou s, a tedy i horní mez blízko m, často pod μ. Odpovídá to liberálnímu testu „menší“ z kapitoly 7."],
+      lower: ["vyšší než slibované", "Výběr s vysokým průměrem obvykle obsahuje vzácnou vysokou hodnotu, která zvětší i s. Dolní mez je pak daleko od m a nad μ se dostane zřídka. Odpovídá to konzervativnímu testu „větší“ z kapitoly 7."]
+    },
+    zs: {
+      two: ["nižší než slibované", "Oba vlivy působí stejným směrem: kvantil z je pro odhadnutou s příliš malý a šikmost přidává úzké intervaly celé pod μ."],
+      upper: ["nižší než slibované", "Oba vlivy působí stejným směrem: kvantil z je pro odhadnutou s příliš malý a šikmost přidává horní meze pod μ."],
+      lower: ["předem nejednoznačné", "Příliš malý kvantil z pokrytí snižuje, šikmost je u dolní meze zvyšuje. V simulacích 95% intervalu převážil u mírně zešikmené populace při n = 5 kvantil (pokrytí asi 94 %), ve všech ostatních případech šikmost (95 až 99 %)."]
+    }
+  };
+  const direction = s => s.pop === "normalni" ? null : {dir: DIRECTIONS[s.proc][s.side][0], why: DIRECTIONS[s.proc][s.side][1]};
+
+  // One sample: running mean and variance (Welford), so only m and s are kept.
+  function drawCore(k) {
+    const p = popOf(S.pop), n = S.n;
+    for (let j = 0; j < k; j++) {
+      let mean = 0, m2 = 0;
+      for (let i = 1; i <= n; i++) { const x = S.mu + S.sigma * p.std(); const d = x - mean; mean += d / i; m2 += d * (x - mean); }
+      M[K] = mean; SD[K] = Math.sqrt(m2 / (n - 1)); K++;
+    }
+  }
+  async function drawSamples(k) {
+    k = Math.min(k, MAX_REPS - K);
+    if (k <= 0) return;
+    const perBatch = Math.max(1, Math.floor(VALUES_PER_BATCH / S.n));
+    if (k > perBatch) {
+      setBusy(true);
+      for (let done = 0; done < k;) {
+        const step = Math.min(perBatch, k - done);
+        drawCore(step); done += step;
+        progress.textContent = `Losuji… ${Math.floor(100 * done / k)} %`;
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+      setBusy(false);
+    } else drawCore(k);
+    selected = K;
+    render();
+  }
+  function restart(count = SHOW) { K = 0; return drawSamples(count); }
+
+  const field = (id, label, value, hint, number) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-pi-${id}">${label}</label>
+    <input id="viz-pi-${id}" type="${number ? "number" : "text"}" ${number ? `min="${number[0]}" max="${number[1]}" step="1"` : ""} inputmode="${number ? "numeric" : "decimal"}" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-pi-${id}-hint viz-pi-${id}-error">
+    <span id="viz-pi-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-pi-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const radio = (name, value, label) => html`<label><input type="radio" name="viz-pi-${name}" value="${value}"><span>${label}</span></label>`;
+
+  const root = html`<div class="viz" id="viz-pokryti-intervalu">
+    <fieldset class="viz-choice">
+      <legend>Populace</legend>
+      ${populations.map(p => radio("pop", p.id, html`${p.label} <span class="viz-hint">(šikmost ${p.skew})</span>`))}
+    </fieldset>
+    <div class="viz-controls">
+      ${field("mu", html`Populační průměr μ`, "47", "číslo")}
+      ${field("sigma", html`Směrodatná odchylka σ`, "10", "kladné číslo")}
+      ${field("n", html`Velikost výběru <i>n</i>`, "25", "celé číslo 2–1&nbsp;000", [N_MIN, N_MAX])}
+      ${field("level", html`Hladina spolehlivosti (%)`, "95", "větší než 50, menší než 100")}
+    </div>
+    <div class="viz-controls viz-pi-row">
+      <fieldset class="viz-choice viz-pi-column">
+        <legend>Postup výpočtu</legend>
+        ${radio("proc", "z", html`známá σ, kvantil <i>z</i>`)}
+        ${radio("proc", "t", html`výběrová <i>s</i>, kvantil <i>t</i>`)}
+        ${radio("proc", "zs", html`výběrová <i>s</i>, kvantil <i>z</i> (chybný postup)`)}
+      </fieldset>
+      <fieldset class="viz-choice viz-pi-column">
+        <legend>Typ intervalu</legend>
+        ${radio("side", "two", html`oboustranný (<i>a</i>; <i>b</i>)`)}
+        ${radio("side", "upper", html`jednostranný s horní mezí (−∞; <i>b</i>]`)}
+        ${radio("side", "lower", html`jednostranný s dolní mezí [<i>a</i>; ∞)`)}
+      </fieldset>
+    </div>
+    <div class="viz-controls viz-pi-row">
+      ${field("draws", html`Počet nových výběrů`, "100", "celé číslo 1–10&nbsp;000", [1, DRAWS_MAX])}
+      <div class="viz-buttons">
+        <button type="button" data-draw>Vylosovat</button>
+        <button type="button" data-restart>Začít znovu</button>
+      </div>
+    </div>
+    <div class="viz-pj-presets" role="group" aria-label="Příklady pro úkoly">
+      <button type="button" data-preset="kapitola">Model kapitoly 7</button>
+      <button type="button" data-preset="male">Malé výběry, chybný kvantil <i>z</i></button>
+      <button type="button" data-preset="sikma">Výrazně zešikmená populace, kvantil <i>t</i></button>
+    </div>
+    <p class="viz-progress" role="status" hidden></p>
+    <p class="viz-limit" role="status" hidden>Bylo dosaženo maximálního počtu 100&nbsp;000 výběrů. Pro nové losování stiskněte „Začít znovu“, nebo změňte populaci, μ, σ či velikost výběru.</p>
+    <p class="viz-ss-summary" data-summary aria-live="polite"></p>
+    <div class="viz-plots" data-plots>
+      <div class="viz-panel">
+        <p class="viz-panel-title" data-title-intervals></p>
+        <div class="viz-legend" data-legend-intervals></div>
+        <div class="viz-pi-intervals" data-intervals tabindex="0" role="group" aria-label="Graf posledních intervalů. Šipkami nahoru a dolů vyberete interval, klávesami Home a End nejstarší a nejnovější."></div>
+        <p class="viz-pi-detail" data-detail aria-live="polite"></p>
+      </div>
+      <div class="viz-panel">
+        <p class="viz-panel-title">Vývoj pokrytí s přibývajícími výběry</p>
+        <div class="viz-legend" data-legend-coverage></div>
+        <div data-coverage></div>
+      </div>
+      <div class="viz-panel">
+        <p class="viz-panel-title">Rozdělení výběrových průměrů, směrodatných odchylek a šířek intervalů</p>
+        <div class="viz-legend" data-legend-hist></div>
+        <div class="viz-pi-hist">
+          <div data-hist-m></div>
+          <div data-hist-s></div>
+          <div data-hist-w></div>
+        </div>
+      </div>
+    </div>
+    <section class="viz-part" aria-labelledby="viz-pi-cover-title">
+      <h3 id="viz-pi-cover-title" class="viz-part-title">Pokrytí: simulace a očekávání</h3>
+      <div class="viz-bay-table-wrap" data-cover tabindex="0" role="region" aria-labelledby="viz-pi-cover-title"></div>
+      <div class="viz-pi-notes" data-cover-note></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-pi-dist-title">
+      <h3 id="viz-pi-dist-title" class="viz-part-title">Souhrny rozdělení</h3>
+      <dl class="viz-stats" data-dist></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-pi-calc-title">
+      <h3 id="viz-pi-calc-title" class="viz-part-title">Výpočet vybraného intervalu</h3>
+      <dl class="viz-stats" data-calc></dl>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const progress = $(".viz-progress"), limitNote = $(".viz-limit"), drawButton = $("[data-draw]"), plots = $("[data-plots]");
+  const ivBox = $("[data-intervals]");
+
+  function setBusy(value) {
+    busy = value;
+    progress.hidden = !value;
+    root.querySelectorAll(".viz-choice input, .viz-controls input, .viz-controls button, .viz-pj-presets button").forEach(el => { el.disabled = value; });
+  }
+  function syncInputs() {
+    $("#viz-pi-mu").value = typed(S.mu); $("#viz-pi-sigma").value = typed(S.sigma); $("#viz-pi-n").value = String(S.n);
+    $("#viz-pi-level").value = typed(S.level); $("#viz-pi-draws").value = String(S.draws);
+    for (const name of ["pop", "proc", "side"]) root.querySelectorAll(`input[name="viz-pi-${name}"]`).forEach(el => { el.checked = el.value === S[name]; });
+    for (const id of ["mu", "sigma", "n", "level", "draws"]) showError(id, null);
+  }
+  function showError(id, message) {
+    const input = $(`#viz-pi-${id}`), error = $(`#viz-pi-${id}-error`);
+    error.hidden = !message;
+    error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+
+  // Fields: errors show while typing; a valid value is applied on change (Enter or leaving the field).
+  // Values that define the population or the sample size start again; the others recompute the same samples.
+  const checks = {
+    mu: v => v === null ? "Zadejte číslo, například 47." : Math.abs(v) > LIMIT ? "Zadejte číslo od −100 000 do 100 000." : null,
+    sigma: v => v === null ? "Zadejte číslo, například 10." : v <= 0 ? "Směrodatná odchylka musí být kladná." : v > LIMIT ? "Zadejte číslo nejvýše 100 000." : null,
+    n: v => v === null || !Number.isInteger(v) || v < N_MIN || v > N_MAX ? "Velikost výběru musí být celé číslo od 2 do 1 000." : null,
+    level: v => v === null ? "Zadejte číslo, například 95." : v <= 50 || v >= 100 ? "Hladina spolehlivosti musí být větší než 50 a menší než 100 %." : null,
+    draws: v => v === null || !Number.isInteger(v) || v < 1 || v > DRAWS_MAX ? "Počet nových výběrů musí být celé číslo od 1 do 10 000." : null
+  };
+  const readField = id => { const input = $(`#viz-pi-${id}`); if (input.validity && input.validity.badInput) return null; return parseDecimal(input.value.replace(/\s*%$/, "")); };
+  for (const id of Object.keys(checks)) {
+    const input = $(`#viz-pi-${id}`);
+    input.addEventListener("input", () => showError(id, checks[id](readField(id))));
+    input.addEventListener("change", () => {
+      const v = readField(id), message = checks[id](v);
+      showError(id, message);
+      if (message || busy || v === S[id]) return;
+      S[id] = v;
+      if (id === "level") render();
+      else if (id !== "draws") restart();
+    });
+  }
+  for (const name of ["pop", "proc", "side"]) root.querySelectorAll(`input[name="viz-pi-${name}"]`).forEach(el => el.addEventListener("change", () => {
+    S[name] = el.value;
+    if (name === "pop") restart(); else render();
+  }));
+  drawButton.addEventListener("click", () => { if (!busy) drawSamples(S.draws); });
+  $("[data-restart]").addEventListener("click", () => { if (!busy) restart(); });
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    if (busy) return;
+    const {count, ...p} = PRESETS[b.dataset.preset];
+    Object.assign(S, p); syncInputs(); restart(count);
+  }));
+
+  // Everything derived from the stored samples for the current setting.
+  let D = null;
+  function derive() {
+    const q = quantile(S), pos = new Int8Array(K);
+    let hit = 0, below = 0, above = 0;
+    for (let i = 0; i < K; i++) { const p = position(interval(M[i], SD[i], S, q), S); pos[i] = p; if (p === 0) hit++; else if (p < 0) below++; else above++; }
+    const se = S.sigma / Math.sqrt(S.n), qz = S.side === "two" ? qnorm(1 - alphaOf(S) / 2) : qnorm(1 - alphaOf(S));
+    // Width of a two-sided interval, or the margin of error of a one-sided one.
+    const wFactor = S.side === "two" ? 2 : 1;
+    const width = i => wFactor * q * (S.proc === "z" ? S.sigma : SD[i]) / Math.sqrt(S.n);
+    D = {q, pos, hit, below, above, se, qz, wFactor, width, exp: expected(S), dir: direction(S)};
+  }
+
+  const lineSwatch = (stroke, dash, w = 2.4) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = (f, stroke) => `<svg width="16" height="14" aria-hidden="true"><rect x="1" y="2" width="14" height="10" fill="${f}"${stroke ? ` stroke="${stroke}"` : ""}/></svg>`;
+  const ciFmt = c => !Number.isFinite(c[0]) ? `(−∞; ${sc(c[1])}]` : !Number.isFinite(c[1]) ? `[${sc(c[0])}; ∞)` : `(${sc(c[0])}; ${sc(c[1])})`;
+  const sideName = {two: "oboustranný", upper: "jednostranný s horní mezí", lower: "jednostranný s dolní mezí"};
+  const procName = {z: "se známou σ a kvantilem z", t: "s výběrovou s a kvantilem t", zs: "s výběrovou s a kvantilem z (chybný postup)"};
+  const procHtml = {z: "se známou σ a kvantilem <i>z</i>", t: "s výběrovou <i>s</i> a kvantilem <i>t</i>", zs: "s výběrovou <i>s</i> a kvantilem <i>z</i> (chybný postup)"};
+  const widthName = () => S.side === "two" ? "Šířka intervalu" : "Mezní chyba (vzdálenost meze od m)";
+
+  let chartWidth = 640;
+  const base = small => ({width: chartWidth, marginLeft: small ? 54 : 64, marginRight: 16, marginTop: 22, marginBottom: 46,
+    style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
+  const yLabel = (label, small) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 42 : 50});
+
+  // 1. The last (up to) 100 intervals, newest on top; the selected one is highlighted.
+  let ivScale = null;
+  function renderIntervals() {
+    const small = chartWidth < 520, L = Math.min(SHOW, K), first = K - L + 1;
+    const rows = d3.range(first, K + 1).map(k => { const ci = interval(M[k - 1], SD[k - 1], S, D.q); return {k, m: M[k - 1], s: SD[k - 1], lo: ci[0], hi: ci[1], pos: D.pos[k - 1]}; });
+    // Fixed range for a setting: μ ± (typical margin of error + 3 standard errors), at least 4,5 standard errors.
+    const half = Math.max(D.q * D.se + 3 * D.se, 4.5 * D.se), a = S.mu - half, b = S.mu + half;
+    const clamp = x => Math.min(b, Math.max(a, x));
+    const col = d => d.pos ? orange : blue;
+    const sel = rows.find(r => r.k === selected) || rows[rows.length - 1];
+    const rowH = small ? 4.2 : 4.6;
+    const chart = Plot.plot({
+      ...base(small), height: Math.max(200, L * rowH + 72),
+      x: {domain: [a, b], label: "Skór (body)", labelAnchor: "center", labelArrow: "none", labelOffset: 40, ticks: small ? 5 : 8, tickFormat: t => typed(Number(t.toFixed(6)))},
+      y: {domain: [first - 0.5, K + 0.5], ...yLabel("Výběr č.", small), ticks: Math.min(L, 5), tickFormat: t => Number.isInteger(t) ? int(t) : ""},
+      ariaLabel: `Posledních ${L} ${plural(L, "interval", "intervaly", "intervalů")} ${S.side === "two" ? "oboustranných" : "jednostranných"} ${procName[S.proc]}`,
+      ariaDescription: `${d3.sum(rows, r => r.pos === 0)} z ${L} intervalů zachytilo populační průměr ${typed(S.mu)}. Vybraný je výběr číslo ${sel.k} s intervalem ${ciFmt([sel.lo, sel.hi])}.`,
+      marks: [
+        Plot.ruleY([sel.k], {stroke: sand, strokeWidth: rowH + 4}),
+        Plot.ruleX([S.mu], {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
+        Plot.text([S.mu], {x: d => d, frameAnchor: "top", dy: -16, fill: ink, fontWeight: 600, text: d => `μ = ${typed(d)}`}),
+        Plot.ruleY(rows, {y: "k", x1: d => clamp(d.lo), x2: d => clamp(d.hi), stroke: col, strokeWidth: d => d.pos ? (L > 50 ? 2.4 : 3.2) : (L > 50 ? 1.4 : 2.2)}),
+        Plot.dot(rows.filter(r => r.lo < a), {x: a, y: "k", symbol: "triangle", rotate: -90, r: 3, fill: col}),
+        Plot.dot(rows.filter(r => r.hi > b), {x: b, y: "k", symbol: "triangle", rotate: 90, r: 3, fill: col}),
+        Plot.dot(rows, {x: "m", y: "k", r: L > 50 ? 1.6 : 2.4, fill: col, clip: true}),
+        Plot.ruleY([sel], {y: "k", x1: d => clamp(d.lo), x2: d => clamp(d.hi), stroke: ink, strokeWidth: 3}),
+        Plot.dot([sel], {x: "m", y: "k", r: 4, fill: "white", stroke: ink, strokeWidth: 1.5, clip: true})
+      ]
+    });
+    ivScale = chart.scale("y");
+    ivBox.replaceChildren(chart);
+    const verdict = sel.pos === 0 ? `<strong>zachytil</strong> μ = ${typed(S.mu)}` : `<strong>minul</strong> μ = ${typed(S.mu)}: leží celý ${sel.pos < 0 ? "pod" : "nad"} ní`;
+    $("[data-detail]").innerHTML = `Vybraný výběr č. ${int(sel.k)}: <i>m</i> = ${sc(sel.m)}, <i>s</i> = ${sc(sel.s)}; ${levelAdj()} ${sideName[S.side]} interval ${ciFmt([sel.lo, sel.hi])} ${verdict}.`;
+    $("[data-title-intervals]").textContent = `Posledních ${int(L)} ${plural(L, "interval", "intervaly", "intervalů")}: ${int(d3.sum(rows, r => r.pos === 0))} ${plural(d3.sum(rows, r => r.pos === 0), "zachytil", "zachytily", "zachytilo")} μ`;
+    renderCalc(sel);
+  }
+  function pick(clientY) {
+    const svg = ivBox.querySelector("svg");
+    if (!svg || !ivScale) return;
+    const r = svg.getBoundingClientRect(), y = (clientY - r.top) * Number(svg.getAttribute("height")) / r.height;
+    const k = Math.round(ivScale.invert(y)), L = Math.min(SHOW, K);
+    const v = Math.min(K, Math.max(K - L + 1, k));
+    if (v !== selected) { selected = v; renderIntervals(); }
+  }
+  let pickFrame = 0;
+  ivBox.addEventListener("pointermove", e => { cancelAnimationFrame(pickFrame); const y = e.clientY; pickFrame = requestAnimationFrame(() => pick(y)); });
+  ivBox.addEventListener("pointerdown", e => pick(e.clientY));
+  ivBox.addEventListener("keydown", e => {
+    const L = Math.min(SHOW, K), lo = K - L + 1;
+    const next = {ArrowUp: selected + 1, ArrowDown: selected - 1, Home: lo, End: K}[e.key];
+    if (next === undefined) return;
+    e.preventDefault();
+    selected = Math.min(K, Math.max(lo, next));
+    renderIntervals();
+  });
+
+  // 2. Cumulative share of captured intervals with the band of random fluctuation around the expected coverage.
+  function renderCoverage() {
+    const small = chartWidth < 520, nominal = S.level / 100, ref = D.exp ? D.exp.cover : nominal;
+    const idx = K <= 1000 ? d3.range(1, K + 1) : [...new Set([...d3.range(1, 201), ...d3.range(0, 801).map(j => 200 + Math.round(j * (K - 200) / 800))])];
+    const pts = [];
+    let hits = 0, j = 0;
+    for (let k = 1; k <= K; k++) { if (D.pos[k - 1] === 0) hits++; if (k === idx[j]) { pts.push({k, p: 100 * hits / k}); j++; } }
+    const band = d3.range(0, 201).map(i => Math.max(1, Math.round(K ** (i / 200)))).filter((k, i, a) => i === 0 || k !== a[i - 1])
+      .map(k => { const h = 196 * Math.sqrt(ref * (1 - ref) / k); return {k, lo: Math.max(0, 100 * ref - h), hi: Math.min(100, 100 * ref + h)}; });
+    const final = 100 * D.hit / K;
+    const yLo = Math.max(0, 5 * Math.floor((Math.min(100 * nominal, 100 * ref, final) - 12) / 5));
+    const chart = Plot.plot({
+      ...base(small), height: small ? 240 : 270,
+      x: {domain: [0, Math.max(K, 10)], label: "Počet výběrů", labelAnchor: "center", labelArrow: "none", labelOffset: 40, ticks: small ? 4 : 7, tickFormat: int},
+      y: {domain: [yLo, 100], ...yLabel("Zachytilo μ (%)", small), ticks: 5, tickFormat: t => typed(t)},
+      ariaLabel: `Vývoj pokrytí pro ${int(K)} výběrů`,
+      ariaDescription: `Po ${int(K)} výběrech zachytilo μ ${pct(D.hit / K)} intervalů; ${D.exp ? `očekávané pokrytí je ${pct(ref)}` : `slibované pokrytí je ${pct(nominal)}, očekávané přesně spočítat nelze`}.`,
+      marks: [
+        Plot.areaY(band, {x: "k", y1: "lo", y2: "hi", fill: fill, fillOpacity: 0.55, curve: "step-after", clip: true}),
+        D.exp && Math.abs(ref - nominal) > 1e-9 ? Plot.ruleY([100 * nominal], {stroke: gray, strokeDasharray: "2,3"}) : null,
+        Plot.ruleY([100 * ref], {stroke: ink, strokeDasharray: "6,4", strokeWidth: 1.4}),
+        Plot.line(pts, {x: "k", y: "p", stroke: blue, strokeWidth: 1.8, clip: true}),
+        Plot.dot([{k: K, p: final}], {x: "k", y: "p", r: 4, fill: blue, stroke: "white", clip: true}),
+        Plot.text([{k: K, p: final}], {x: "k", y: "p", dy: final < 100 * ref ? 16 : -12, textAnchor: "end", fill: blue, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: d => `${pct(d.p / 100)}`, clip: false})
+      ]
+    });
+    $("[data-coverage]").replaceChildren(chart);
+    $("[data-legend-coverage]").innerHTML = [
+      `<span>${lineSwatch(blue, null, 1.8)}<span>podíl intervalů, které zachytily μ</span></span>`,
+      `<span>${lineSwatch(ink, "6,4", 1.4)}<span>${D.exp ? "očekávané pokrytí" : "slibované pokrytí (očekávané přesně spočítat nelze)"}</span></span>`,
+      D.exp && Math.abs(ref - nominal) > 1e-9 ? `<span>${lineSwatch(gray, "2,3", 1.4)}<span>slibované pokrytí ${nominalPct()}</span></span>` : "",
+      `<span>${boxSwatch(fill)}<span>náhodné kolísání: ±&nbsp;1,96 směrodatné chyby podílu</span></span>`
+    ].join("");
+  }
+
+  // 3. Histograms of counts stacked by outcome; values beyond the shown range are counted in the note.
+  function histogram(values, {lo, hi, small, xLabel, refs = [], curve = null, aria}) {
+    const step = d3.tickStep(lo, hi, Math.min(small ? 24 : 36, Math.max(10, Math.round(1.5 * Math.sqrt(K))))), x0 = Math.floor(lo / step) * step, nb = Math.ceil((hi - x0) / step);
+    const hit = new Array(nb).fill(0), miss = new Array(nb).fill(0);
+    let out = 0;
+    for (let i = 0; i < K; i++) { const b = Math.floor((values(i) - x0) / step); if (b < 0 || b >= nb) { out++; continue; } (D.pos[i] === 0 ? hit : miss)[b]++; }
+    const rects = [];
+    for (let b = 0; b < nb; b++) {
+      const x1 = x0 + b * step, x2 = x1 + step;
+      if (hit[b]) rects.push({x1, x2, y1: 0, y2: hit[b], c: "hit"});
+      if (miss[b]) rects.push({x1, x2, y1: hit[b], y2: hit[b] + miss[b], c: "miss"});
+    }
+    const curvePts = curve ? d3.range(0, 301).map(i => { const x = x0 + (nb * step) * i / 300; return {x, y: K * step * curve(x)}; }) : [];
+    const yMax = 1.1 * Math.max(1, d3.max(rects, r => r.y2) ?? 1, curve ? d3.max(curvePts, p => p.y) : 0);
+    const chart = Plot.plot({
+      ...base(small), height: small ? 200 : 220,
+      x: {domain: [x0, x0 + nb * step], label: xLabel, labelAnchor: "center", labelArrow: "none", labelOffset: 40, ticks: small ? 5 : 8, tickFormat: t => typed(Number(t.toFixed(6)))},
+      y: {domain: [0, yMax], ...yLabel("Počet výběrů", small), ticks: 4, tickFormat: int},
+      ariaLabel: aria,
+      ariaDescription: `Histogram ${int(K)} hodnot; modře výběry, jejichž interval zachytil μ, oranžově ty, jejichž interval μ minul.${out ? ` Mimo zobrazený rozsah: ${int(out)}.` : ""}`,
+      marks: [
+        Plot.rect(rects, {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: d => d.c === "hit" ? fill : orange, stroke: d => d.c === "hit" ? blue : orange, strokeWidth: 0.6, fillOpacity: d => d.c === "hit" ? 1 : 0.85}),
+        curve ? Plot.line(curvePts, {x: "x", y: "y", stroke: ink, strokeWidth: 1.6, strokeDasharray: "6,4", clip: true}) : null,
+        ...refs.map(r => Plot.ruleX([r.x], {stroke: r.color || ink, strokeWidth: 1.4, strokeDasharray: r.dash || null, clip: true})),
+        ...refs.filter(r => r.label).map(r => Plot.text([r.x], {x: d => d, frameAnchor: "top", dy: -16, dx: r.dx || 0, textAnchor: r.anchor || "middle", fill: r.color || ink, fontSize: small ? 11 : 12, text: () => r.label})),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+    const box = html`<div></div>`;
+    box.append(chart);
+    if (out) box.append(html`<p class="viz-note">${int(out)} ${plural(out, "hodnota leží", "hodnoty leží", "hodnot leží")} mimo zobrazený rozsah.</p>`);
+    return box;
+  }
+  // Shown range: central 99,8 % of the values once there are enough of them, always including the reference values.
+  function range(values, include, minHalf) {
+    const v = Float64Array.from({length: K}, (_, i) => values(i)).sort();
+    const lo0 = K >= 1000 ? d3.quantileSorted(v, 0.001) : v[0], hi0 = K >= 1000 ? d3.quantileSorted(v, 0.999) : v[K - 1];
+    let lo = Math.min(lo0, ...include), hi = Math.max(hi0, ...include);
+    if (hi - lo < 2 * minHalf) { const c = (lo + hi) / 2; lo = c - minHalf; hi = c + minHalf; }
+    const pad = 0.04 * (hi - lo);
+    return [lo - pad, hi + pad];
+  }
+  function renderHistograms() {
+    const small = chartWidth < 520, se = D.se, me = D.q * se;
+    // Known σ: the interval misses μ exactly when the mean is farther from μ than the margin of error.
+    const bounds = S.proc !== "z" ? [] : S.side === "two" ? [S.mu - me, S.mu + me] : S.side === "upper" ? [S.mu - me] : [S.mu + me];
+    const [mLo, mHi] = range(i => M[i], [S.mu - 4 * se, S.mu + 4 * se, ...bounds], 4 * se);
+    $("[data-hist-m]").replaceChildren(histogram(i => M[i], {lo: mLo, hi: mHi, small, xLabel: "Výběrový průměr m (body)", curve: x => normalPdf(x, S.mu, se),
+      refs: [{x: S.mu, label: "μ"}, ...bounds.map((x, i) => ({x, color: orange, dash: "4,3"}))],
+      aria: `Histogram výběrových průměrů ${int(K)} výběrů`}));
+    const [sLo, sHi] = range(i => SD[i], [S.sigma], 0.5 * S.sigma);
+    $("[data-hist-s]").replaceChildren(histogram(i => SD[i], {lo: Math.max(0, sLo), hi: sHi, small, xLabel: "Výběrová směrodatná odchylka s (body)",
+      refs: [{x: S.sigma, label: "σ"}], aria: `Histogram výběrových směrodatných odchylek ${int(K)} výběrů`}));
+    const wKnown = D.wFactor * D.q * se;
+    if (S.proc === "z") {
+      $("[data-hist-w]").replaceChildren(html`<p class="viz-note viz-pi-same">${widthName()}: u všech intervalů stejná, ${sc(wKnown)} bodu. Při známé σ nezávisí na výběru, a proto se rozdělení nekreslí; interval zachytí μ, právě když průměr leží mezi oranžovými čarami v histogramu průměrů.</p>`);
+    } else {
+      const [wLo, wHi] = range(D.width, [wKnown], 0.5 * wKnown);
+      $("[data-hist-w]").replaceChildren(histogram(D.width, {lo: Math.max(0, wLo), hi: wHi, small, xLabel: `${widthName()} (body)`,
+        refs: [{x: wKnown, label: "při s = σ"}], aria: `Histogram: ${widthName().toLowerCase()} ${int(K)} intervalů`}));
+    }
+    $("[data-legend-hist]").innerHTML = [
+      `<span>${boxSwatch(fill, blue)}<span>interval zachytil μ</span></span>`,
+      `<span>${boxSwatch(orange)}<span>interval minul μ</span></span>`,
+      `<span>${lineSwatch(ink, "6,4", 1.6)}<span>normální model <i>N</i>(μ, σ/√<i>n</i>)</span></span>`,
+      bounds.length ? `<span>${lineSwatch(orange, "4,3", 1.4)}<span>${bounds.length === 2 ? "μ ± mezní chyba" : S.side === "upper" ? "μ − mezní chyba" : "μ + mezní chyba"}</span></span>` : ""
+    ].join("");
+  }
+
+  // Coverage table: simulation against the exact expectation (normal population) or the expected direction (skewed).
+  function renderTables() {
+    const e = D.exp, nominal = S.level / 100, share = c => `${int(c)} (${pct(c / K)})`;
+    const rows = [
+      ["Zachytily μ", share(D.hit), e ? pct(e.cover) : `přesně spočítat nelze; ${D.dir.dir}`],
+      ["Minuly: interval celý pod μ", S.side === "lower" ? "nemůže nastat" : share(D.below), S.side === "lower" ? "—" : e ? pct(e.below) : "—"],
+      ["Minuly: interval celý nad μ", S.side === "upper" ? "nemůže nastat" : share(D.above), S.side === "upper" ? "—" : e ? pct(e.above) : "—"]
+    ];
+    $("[data-cover]").innerHTML = `<table class="viz-bay-table viz-pi-table" aria-label="Pokrytí intervalů v simulaci a podle očekávání">
+      <thead><tr><th scope="col">Výsledek</th><th scope="col">V simulaci (${int(K)} ${plural(K, "výběr", "výběry", "výběrů")})</th><th scope="col">Očekávání</th></tr></thead>
+      <tbody>${rows.map(([a, b, c]) => `<tr><th scope="row">${a}</th><td>${b}</td><td>${c}</td></tr>`).join("")}</tbody></table>`;
+    const notes = [`<p>Slibované pokrytí, tedy hladina spolehlivosti postupu: <strong>${nominalPct()}</strong>.</p>`];
+    if (e) {
+      if (S.proc === "zs") notes.push(`<p>Chybný postup slibuje ${nominalPct()}, ale za normálního modelu zachytí μ jen v <strong>${pct(e.cover)}</strong> případů: kvantil <i>z</i> nepočítá s tím, že i <i>s</i> se od výběru k výběru mění. S rostoucím <i>n</i> se skutečné pokrytí ke slibovanému blíží.</p>`);
+      else notes.push(`<p>Za normálního modelu je očekávané pokrytí přesně rovno slibovanému.</p>`);
+      const h = 1.96 * Math.sqrt(e.cover * (1 - e.cover) / K), lo = Math.max(0, e.cover - h), hi = Math.min(1, e.cover + h), obs = D.hit / K;
+      notes.push(`<p>Při ${int(K)} ${plural(K, "výběru", "výběrech", "výběrech")} leží podíl v simulaci obvykle mezi ${pct(lo)} a ${pct(hi)} (očekávané pokrytí ± 1,96 směrodatné chyby podílu). Podíl ${pct(obs)} v tomto rozmezí ${obs >= lo && obs <= hi ? "leží" : "<strong>neleží</strong>; i to se občas stane náhodou"}.</p>`);
+    } else {
+      notes.push(`<p>U zešikmené populace očekávané pokrytí přesně spočítat nelze; odhaduje je simulace. U malých výběrů čekáme pokrytí <strong>${D.dir.dir}</strong>. ${D.dir.why} S rostoucím <i>n</i> se odchylka zmenšuje, u výrazně a extrémně zešikmené populace jen pomalu.</p>`);
+    }
+    $("[data-cover-note]").innerHTML = notes.join("");
+
+    const sdM = K > 1 ? d3.deviation(M.subarray(0, K)) : NaN, wKnown = D.wFactor * D.q * D.se;
+    const ws = S.proc === "z" ? null : Float64Array.from({length: K}, (_, i) => D.width(i));
+    const dist = [
+      ["Průměr výběrových průměrů", `${sc(d3.mean(M.subarray(0, K)))} (μ = ${typed(S.mu)})`],
+      ["Směrodatná odchylka výběrových průměrů", K > 1 ? `${sc(sdM)} (σ/√<i>n</i> = ${typed(S.sigma)}/√${S.n} = ${sc(D.se)})` : "zatím jen jeden výběr"],
+      ["Průměr výběrových <i>s</i>", `${sc(d3.mean(SD.subarray(0, K)))} (σ = ${typed(S.sigma)}; výběrová <i>s</i> σ v průměru mírně podhodnocuje, u malých výběrů znatelněji)`],
+      [widthName(), ws ? `průměr ${sc(d3.mean(ws))}, nejmenší ${sc(d3.min(ws))}, největší ${sc(d3.max(ws))} (při <i>s</i> = σ by byla ${sc(wKnown)})` : `u všech intervalů ${sc(wKnown)}`]
+    ];
+    $("[data-dist]").innerHTML = dist.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join("");
+  }
+
+  // Calculation of the selected interval with Czech Excel formulas.
+  function renderCalc(sel) {
+    const L = excel(S.level / 100), v = S.n - 1, two = S.side === "two";
+    const qFormula = S.proc === "t" ? (two ? `=T.INV(1-(1-${L})/2;${v})` : `=T.INV(${L};${v})`) : (two ? `=NORM.S.INV(1-(1-${L})/2)` : `=NORM.S.INV(${L})`);
+    const qName = `${S.proc === "t" ? `<i>t</i>` : `<i>z</i>`}<sub>${two ? "1−α/2" : "1−α"}${S.proc === "t" ? ` (<i>v</i> = ${v})` : ""}</sub>`;
+    const sRound = Number(sel.s.toFixed(3)), mRound = Number(sel.m.toFixed(3));
+    const seArg = S.proc === "z" ? excel(S.sigma) : excel(sRound);
+    const se = (S.proc === "z" ? S.sigma : sel.s) / Math.sqrt(S.n), me = D.q * se;
+    const seName = S.proc === "z" ? "Směrodatná chyba σ<sub><i>m</i></sub> = σ / √<i>n</i>" : "Odhad směrodatné chyby <i>s<sub>m</sub></i> = <i>s</i> / √<i>n</i>";
+    const meF = `${qFormula}*${seArg}/ODMOCNINA(${S.n})`;
+    const mX = mRound < 0 ? `(${excel(mRound)})` : excel(mRound);
+    const rows = [
+      ["Vybraný výběr", `č. ${int(sel.k)}: <i>m</i> = ${q3(sel.m)}, <i>s</i> = ${q3(sel.s)} (ve vzorcích zaokrouhleno na tři desetinná místa)`],
+      [`Kvantil ${qName}`, `<strong>${q3(D.q)}</strong><br><code>${qFormula}</code>`],
+      [seName, `${typed(S.proc === "z" ? S.sigma : sRound)} / √${S.n} = <strong>${q3(se)}</strong><br><code>=${seArg}/ODMOCNINA(${S.n})</code>`],
+      [`Mezní chyba ${qName} × ${S.proc === "z" ? "σ<sub><i>m</i></sub>" : "<i>s<sub>m</sub></i>"}`, `${q3(D.q)} × ${q3(se)} = <strong>${sc(me)}</strong><br><code>${meF}</code>`],
+      S.side !== "upper" ? ["Dolní mez <i>m</i> − mezní chyba", `<strong>${sc(sel.m - me)}</strong><br><code>=${mX}-${meF.slice(1)}</code>`] : null,
+      S.side !== "lower" ? ["Horní mez <i>m</i> + mezní chyba", `<strong>${sc(sel.m + me)}</strong><br><code>=${mX}+${meF.slice(1)}</code>`] : null,
+      [`${levelAdj()} ${sideName[S.side]} interval`, `<strong>${ciFmt([sel.lo, sel.hi])}</strong>: ${sel.pos === 0 ? "zachytil" : "minul"} μ = ${typed(S.mu)}${S.proc === "zs" ? ". Pozor, chybný postup: s výběrovou <i>s</i> patří kvantil <i>t</i>." : ""}`]
+    ].filter(Boolean);
+    $("[data-calc]").innerHTML = rows.map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join("");
+  }
+
+  function render() {
+    if (!K) return;
+    derive();
+    chartWidth = Math.max(260, Math.min(plots.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    if (selected < K - Math.min(SHOW, K) + 1 || selected > K) selected = K;
+    const full = K >= MAX_REPS;
+    drawButton.disabled = full || busy;
+    limitNote.hidden = !full;
+    $("[data-summary]").innerHTML = `${int(D.hit)} z ${int(K)} ${levelAdj()} ${S.side === "two" ? "oboustranných" : "jednostranných"} intervalů ${procHtml[S.proc]} zachytilo μ = ${typed(S.mu)}, tedy ${pct(D.hit / K)}; slibované pokrytí je ${nominalPct()}${D.exp && S.proc === "zs" ? `, skutečné ${pct(D.exp.cover)}` : ""}.`;
+    $("[data-legend-intervals]").innerHTML = [
+      `<span>${lineSwatch(blue, null, 1.6)}<span>interval zachytil μ</span></span>`,
+      `<span>${lineSwatch(orange, null, 2.6)}<span>interval minul μ</span></span>`,
+      `<span>${lineSwatch(ink, "5,4", 1.4)}<span>populační průměr μ</span></span>`,
+      `<span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4" fill="white" stroke="${ink}" stroke-width="1.5"/></svg><span>vybraný interval a jeho průměr <i>m</i></span></span>`
+    ].join("");
+    renderIntervals();
+    renderCoverage();
+    renderHistograms();
+    renderTables();
+  }
+
+  // Redraw at a new width without changing the samples.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  const finite = v => v === Infinity ? "Infinity" : v === -Infinity ? "-Infinity" : v;
+  root.vizCheck = {
+    pnorm, qnorm, pt, qt, quantile, interval: (m, s, setting) => interval(m, s, {...S, ...setting}).map(finite), position, expected, direction, parseDecimal,
+    populations: populations.map(p => ({id: p.id, skew: p.skew, std: p.std})), maxReps: MAX_REPS,
+    samples: () => K <= 20000 ? {m: Array.from(M.subarray(0, K)), s: Array.from(SD.subarray(0, K))} : null,
+    state: () => ({...S, K, busy, selected, hit: D ? D.hit : 0, below: D ? D.below : 0, above: D ? D.above : 0, q: D ? D.q : NaN,
+      expected: D ? D.exp : null, direction: D ? D.dir : null,
+      last: d3.range(Math.max(0, K - SHOW), K).map(i => { const ci = interval(M[i], SD[i], S); return {k: i + 1, m: M[i], s: SD[i], ci: ci.map(finite), pos: position(ci, S)}; })})
+  };
+
+  syncInputs();
+  restart();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Sto intervalů se známou σ a s výběrovou <i>s</i> ukazuje <a href="kapitola_07.html#fig-opakovane-intervaly">obrázek v kapitole 7</a> a pokrytí pro různé tvary populace <a href="kapitola_07.html#tbl-k07-odolnost">tabulka odolnosti</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-pi-vyzkousejte .unnumbered}
+
+1. Po načtení stránky zachytilo $mathrm{μ}$ 94 ze 100 intervalů a všechny mají stejnou šířku. Vyberte šipkami některý oranžový interval a najděte jeho průměr v histogramu průměrů: kde leží vzhledem k oranžovým čarám? Potom vylosujte 10 000 výběrů najednou a sledujte graf vývoje pokrytí. Proč se podíl s přibývajícími výběry ustálí blízko 95 %, ale ne přesně na 95 %?
+2. Přepněte postup na výběrovou *s* s kvantilem *t*; výběry zůstanou stejné. Proč některé intervaly změnily barvu? V histogramu šířek porovnejte, zda μ míjejí častěji úzké, nebo široké intervaly.
+3. Klikněte na „Malé výběry, chybný kvantil *z*“. Kolik procent intervalů zachytilo μ, ačkoli postup slibuje 95 %? Přepněte na kvantil *t* a pak zpět na chybný postup a zvětšete velikost výběru na 25 a na 100. Proč se rozdíl mezi slibovaným a skutečným pokrytím s rostoucím $n$ zmenšuje?
+4. Klikněte na „Výrazně zešikmená populace, kvantil *t*“. Kolik intervalů minulo μ zdola a kolik shora? Porovnejte pokrytí s [tabulkou odolnosti](kapitola_07.qmd#tbl-k07-odolnost) v kapitole 7. Pak vyzkoušejte jednostranné intervaly s horní i s dolní mezí a také postup se známou σ. Ve kterých kombinacích je pokrytí nižší a ve kterých vyšší než slibované?
+
+## Čeho si všimnout {#sec-viz-pi-vsimnete .unnumbered}
+
+Pokrytí je vlastnost postupu, ne jednoho intervalu. Každý interval $mathrm{μ}$ buď zachytil, nebo minul; ve skutečném výzkumu ale $mathrm{μ}$ neznáme, a proto nevíme, který z obou případů nastal. Podíl zachycených intervalů v simulaci kolísá: po sto výběrech může vyjít 94 i 97 %. S přibývajícími výběry se pás náhodného kolísání zužuje (při 10 000 výběrech je to asi ±0,4 procentního bodu) a podíl se blíží dlouhodobému pokrytí, jak popisuje oddíl [Co znamená „95 %“](kapitola_07.qmd#sec-co-znamena-95). Simulace přitom sama zůstává náhodná: i při velkém počtu výběrů se podíl liší od očekávaného pokrytí o malou náhodnou odchylku.
+
+Při známé σ mají všechny intervaly stejnou šířku a mění se jen jejich poloha. Zda interval $mathrm{μ}$ zachytí, proto závisí jen na výběrovém průměru: zachytí ji, právě když průměr leží blíž k $mathrm{μ}$ než mezní chyba, tedy mezi oranžovými čarami v histogramu průměrů. Takových průměrů je za normálního modelu přesně 95 %; tak jsme interval [odvodili](kapitola_07.qmd#sec-obraceni-uvahy).
+
+S výběrovou *s* se mění i šířka intervalu. Tytéž výběry pak mohou dát jiný výsledek: interval z výběru s malou *s* je užší a může $mathrm{μ}$ minout, i když se se známou σ trefil. Proto μ míjejí častěji úzké intervaly. Kvantil *t* je větší než kvantil *z* a právě vyrovná, že *s* od výběru k výběru kolísá; za normální populace je pokrytí opět 95 %. Chybný postup s kvantilem *z* slibuje 95 %, ale za normálního modelu zachytí μ jen v 87,8 % případů při $n=5$, v 93,8 % při $n=25$ a v 94,7 % při $n=100$. S rostoucím $n$ kolísá *s* méně a kvantil *t* se blíží kvantilu *z*, jak vysvětluje oddíl [Opakované intervaly s výběrovou *s*](kapitola_07.qmd#sec-interval-t-simulace).
+
+Vyšší hladina spolehlivosti znamená širší intervaly, které μ míjejí méně často ([Šířka intervalu a přesnost odhadu](kapitola_07.qmd#sec-sirka-intervalu)). Jednostranný interval má celé α v jednom chvostu: interval s horní mezí může μ minout jen tak, že leží celý pod ní, interval s dolní mezí jen tak, že leží celý nad ní. Slibované pokrytí je stejné jako u oboustranného intervalu se stejnou hladinou ([Jednostranný test a jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval)).
+
+U zešikmené populace nejsou výběrový průměr a *s* nezávislé. Výběr, do kterého se nedostala žádná ze vzácných vysokých hodnot, má zároveň nízký průměr i malou *s*; jeho interval je úzký a leží celý pod μ. S kvantilem *t* proto oboustranný interval i interval s horní mezí zachytí μ méně často, než slibuje hladina, a intervaly, které μ minou, leží téměř všechny pod ní. Interval s dolní mezí naopak μ zachytí častěji. Při známé σ je to obráceně: šířka se nemění a rozhoduje jen tvar rozdělení průměrů, který má kratší levý a delší pravý chvost. Interval s horní mezí pak zachytí μ častěji, interval s dolní mezí méně často a oboustranný interval o málo častěji, než slibuje hladina. Odchylky se s rostoucím $n$ zmenšují jen pomalu: u výrazně zešikmené populace je pokrytí 95% intervalu s kvantilem *t* i při $n=100$ asi 92 %, jak ukazuje oddíl [Normalita a odolnost](kapitola_07.qmd#sec-t-predpoklady).
+
+Pokrytí v simulaci se týká jen výběrové variability. Výběry tu jsou opravdu náhodné a měření přesné; ve skutečném výzkumu interval nezachycuje [systematické zkreslení výběru ani chybu měření](kapitola_07.qmd#sec-interval-predpoklady), a jeho skutečné pokrytí pak může být mnohem nižší, než slibuje hladina.

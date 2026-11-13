@@ -914,6 +914,55 @@ křivka i u jednostranného“), zrcadlení „Ano, obě varianty“ a α „Des
 0 < α ≤ 0,5“. K pojmenování intervalů zavedl R75. Plán schválil 2026-11-13.
 Realizaci a ověření eviduje [autorská historie](../../quarto/README.md).
 
+<a id="r65-upresneni-2026-11-13-pokryti"></a>
+
+### Upřesnění 2026-11-13 — Vizualizace pokrytí intervalu spolehlivosti
+
+Devátá vizualizace podle R65, ke kapitole 7: stránka
+`quarto/viz_pokryti_intervalu.qmd` („Jak často interval spolehlivosti
+zachytí populační průměr“, `#sec-viz-pokryti-intervalu`), v menu mezi
+vizualizací *t*-rozdělení a vizualizací intervalu a *p*-hodnoty. Rozšiřuje
+obrázek kapitoly 7 `fig-opakovane-intervaly`, který v kapitole zůstává.
+
+- Vstupy: populace (normální a čtyři zešikmené doprava: tvary tabulky
+  `tbl-k07-odolnost` se šikmostí 0,7, 2 a 6 a posunutá lognormální se
+  šikmostí 8 jako ve vizualizaci výběrového rozdělení průměru, vše převedené
+  na zadané μ a σ), μ, σ, *n* 2–1 000, hladina spolehlivosti v % (větší
+  než 50, menší než 100), postup (známá σ s kvantilem *z*, *s* s kvantilem *t*,
+  *s* s kvantilem *z* jako chybný postup), typ intervalu (oboustranný,
+  jednostranný s horní nebo dolní mezí podle
+  [R75](kapitola-07.md#r75-oboustranny-jednostranny-interval)) a počet nových
+  výběrů 1–10 000 se stropem 100 000.
+- Losování po dávkách; změna hladiny, postupu nebo typu přepočítá intervaly
+  z týchž výběrů, změna populace, μ, σ nebo *n* začne znovu.
+- Grafy: posledních 100 intervalů (zachytil modře, minul oranžově), vývoj
+  pokrytí s pásem ± 1,96 směrodatné chyby podílu, histogramy průměrů, *s*
+  a šířek intervalů rozdělené barvou podle výsledku.
+- Pokrytí v simulaci proti očekávanému: u normální populace přesně
+  (pro chybný postup z *t*-rozdělení), u zešikmených populací slovně směr
+  očekávání u malých výběrů podle postupu a typu intervalu se zdůvodněním.
+- Doplňky: detail vybraného intervalu (myš, klepnutí, šipky), výpočet
+  vybraného intervalu se vzorci českého Excelu a tři předvolby.
+
+**Doklad:** autor 2026-11-13 zadal: „Myslím, že další vizualizace by se mohla
+týkat intervalů spolehlivosti podobně jako: https://rpsychologist.com/d3/CI/
+Uživatel by měl možnost nastavit hladinu spolehlivosti, mí a sigma, to zda se
+předpokládá známá sigma nebo se odhaduje na základě výběru, jestli chce
+tradiční oboustranné CI nebo jednostranné (a s kterou hranicí), jaká má být
+velikost výběru a počet simulovaných výběrů. Barevně bych odlišil, které
+intervaly zachytily vs nezachytili mí. Ukázal bych také podíly: skutečné vs
+očekávané pokrytí. vývoj pokrytí, rozdělení výběrových průměrů, směrodatných
+odchylek a šířek CI.“ Na doplňující otázky zvolil „Tři postupy“, populace
+„I zešikmená“, losování „Po dávkách“ a všechny čtyři doplňky („Barvy
+i v histogramech“, „Pás náhodného kolísání“, „Detail intervalu“, „Vzorce
+českého Excelu“). K plánu doplnil: „Ve vizualizaci výběrového rozdělení
+průměru je i extrémně zešikmená (šikmost 8), takže by mohla být i tady.“
+a „U zešikmených bych kromě ‚nelze spočítat přesně, odhaduje simulace‘ ale
+uvedl, jaké je podle typu intervalu (oboustranný, jednostranný s horní vs
+dolní mezí) naše očekávání, jestli bude vyšší, nebo nižší než nominální
+u malých výběrů.“ Upravený plán téhož dne schválil. Realizaci a ověření
+eviduje [autorská historie](../../quarto/README.md#vizualizace-pokryti-intervalu).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

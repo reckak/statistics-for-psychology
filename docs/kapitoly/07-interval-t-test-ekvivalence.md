@@ -146,6 +146,19 @@ odkazuje blok „Vyzkoušejte si: interval spolehlivosti a *p*-hodnota“ na str
 
 Kontrola souladu s textem oddílu Interval a *p*-hodnota po zavedení R75 a druhé vizualizace: 2026-11-13.
 
+**Třetí vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti)):**
+na konci oddílu [Opakované intervaly s výběrovou *s*](../../quarto/kapitola_07.qmd#sec-interval-t-simulace)
+odkazuje blok „Vyzkoušejte si: pokrytí intervalu spolehlivosti“ na stránku
+[Jak často interval spolehlivosti zachytí populační průměr](../../quarto/viz_pokryti_intervalu.qmd).
+
+- **Ovládání:** populace (normální; zešikmené se šikmostí 0,7, 2 a 6 jako v tabulce odolnosti a 8), μ a σ (výchozí 47 a 10 jako obrázek `fig-opakovane-intervaly`), *n* 2–1 000, hladina spolehlivosti v %, postup (známá σ a *z*, *s* a *t*, *s* a *z* jako chybný postup), typ intervalu podle R75, počet nových výběrů 1–10 000 se stropem 100 000; tři předvolby (model kapitoly, *n* = 5 s chybným postupem, výrazně zešikmená populace s *t*).
+- **Grafy:** posledních 100 intervalů s výběrem jednoho intervalu, vývoj pokrytí s pásem ± 1,96 směrodatné chyby podílu (kap. 6), histogramy průměrů (s normálním modelem a při známé σ s hranicemi μ ± mezní chyba), *s* a šířek intervalů, rozdělené barvou podle toho, zda interval μ zachytil.
+- **Výpočet:** tabulka pokrytí a minutí pod a nad μ v simulaci a podle očekávání, souhrny rozdělení a výpočet vybraného intervalu se vzorci českého Excelu (NORM.S.INV, T.INV, ODMOCNINA).
+- **Vztah k výkladu:** opakuje oddíly [Co znamená „95 %“](../../quarto/kapitola_07.qmd#sec-co-znamena-95), [Opakované intervaly s výběrovou *s*](../../quarto/kapitola_07.qmd#sec-interval-t-simulace) (chybný postup: 87,8 / 91,8 / 93,8 %) a [Normalita a odolnost](../../quarto/kapitola_07.qmd#sec-t-predpoklady); u zešikmených populací uvádí směr očekávání u malých výběrů. Směr pro známou σ (u horní meze vyšší, u dolní nižší, oboustranně o málo vyšší pokrytí) kapitola výslovně neuvádí; vyplývá z tvaru rozdělení průměru a je ověřen simulací. Nové pojmy nezavádí. Úkoly „Vyzkoušejte si“ míří na hranice zachycení při známé σ a ustálení podílu, změnu barvy týchž výběrů s *t*-kvantilem a častější minutí úzkých intervalů, chybný kvantil *z* a jeho zmenšování s *n* a zešikmenou populaci s oběma jednostrannými intervaly.
+- **Rozsah:** vizualizace není samostatným cvičením.
+
+Kontrola souladu s textem oddílů o pokrytí a odolnosti po třetí vizualizaci: 2026-11-13.
+
 ### Cvičení a očekávané dovednosti
 
 [Čtrnáct úloh](../../quarto/kapitola_07.qmd#sec-cviceni-07) má úplná sbalená řešení.
