@@ -81,8 +81,10 @@ Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38 (Typst 0.14.2) a 1.10.
 (Typst 0.15.1), R 4.5.1 a Windows PowerShellem 5.1. Pandoc v Quartu 1.10 zapisuje
 českou zavírací uvozovku (“) jako chytrou uvozovku Typstu, která by v PDF otevírala novou citaci;
 `scripts/pdf/typography.lua` proto české uvozovky převádí na escape sekvence
-Typstu a v titulcích bloků na uvozovky Markdownu. Quarto 1.10 Typstu nepředává
-písmo Font Awesome, takže ikony v titulcích bloků se zobrazují jako prázdný rámeček. Není potřeba instalovat LaTeX.
+Typstu a v titulcích bloků na uvozovky Markdownu. Náhledy stránek
+vykreslené samostatně příkazem `quarto typst compile` potřebují
+`--font-path` se složkou `share/formats/typst/fonts` Quarta, jinak místo
+ikon bloků ukazují prázdné rámečky; samotné PDF je má správně. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
