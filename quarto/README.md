@@ -51,6 +51,16 @@ Autor upozornil, že vzorec v G2 tabulky 8.3 rozšiřuje tabulku, a pro zalamov�
 
 **Druhá oprava po CI (2026-11-14):** workflow po sloučení PR #202 selhal znovu, tentokrát při šířce 1280 px (678 px k dispozici). Přehled Excelu přetékal o 28 px a tabulka 10.6 o 23 px. Dříve přetékaly o víc než 32 px; kontrola to bere jako širokou tabulku s posouváním a nehlásí. Zúžením se dostaly do pásma malého, odstranitelného přesahu. Odsazení buněk je nyní 0,2 rem u přehledu Excelu a 0,3 rem u tabulky 10.6. Z hodnot v CI to vychází asi na 672 px a 647 px. Lokálně je nejmenší šířka 650 px (pevné minimum přehledových tabulek) a 637 px. Zkoušel jsem i `<wbr>` za tečkami v názvech funkcí přehledu. Prohlížeč pak ale dával prvnímu sloupci jen nejmenší šířku a lámal i krátké názvy („VAR.“ / „P“), proto jsem tuto úpravu nepoužil. Kontrola měří přehled Excelu ve výchozím zobrazení 10 řádků; při 25 řádcích je tabulka kvůli delším vzorcům v dalších řádcích posouvatelná. `check-table-layout.cjs` lokálně prošel.
 
+<a id="kapitola-08-t-obecne-2026-11-14"></a>
+
+## Kapitola 8: obecný tvar *t* pro dvě nezávislé skupiny a obrázek 2 × 2 (2026-11-14)
+
+Úprava podle autorových připomínek.
+
+- `kapitola_08.qmd`, oddíl o společném odhadu rozptylu: čitatel testové statistiky klasického testu je nejprve obecně $(m_1-m_2)-(\mathrm{μ}_1-\mathrm{μ}_2)$ a text pak vysvětluje, že nejčastěji nulová hypotéza tvrdí $\mathrm{μ}_1-\mathrm{μ}_2=0$, stejně jako u párového testu s $\mathrm{μ}_0$. Řešený příklad a výsledky se nemění.
+- `znaceni.qmd`: řádky `vztah-klasicky-t` a pro soulad i `vztah-parovy-t` uvádějí obecný tvar s nejčastější nulovou hodnotou.
+- `scripts/kapitola_08.R`, obrázek `korelace-rozdily`: místo čtyř panelů v řadě matice 2 × 2; podle autora nejprve tři simulované soubory (r = 0,9; 0; −0,5), vpravo dole křivka SD rozdílů podle korelace. Popisky osy x „po běžném/krátkém spánku“, popisky bodů na křivce posunuty pod křivku, aby ji nepřekrývaly. Data a seed beze změny. Popisek a `fig-alt` přepsány podle nového pořadí.
+
 <a id="kapitola-08-obrazky-pomer-2026-11-14"></a>
 
 ## Kapitola 8: obrázky směrodatné chyby a Welchových stupňů volnosti pro 90 lidí (2026-11-14)
