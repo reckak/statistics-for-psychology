@@ -31,6 +31,7 @@ book:
     center: "© 2026 Karel Rečka · Text a data: [CC BY 4.0](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE-TEXT.md) · Kód: [MIT](https://github.com/reckak/statistics-for-psychology/blob/main/LICENSE)"
   chapters:
     - index.qmd
+    - quarto/ai_tutor.qmd
     - part: "Výkladové kapitoly"
       chapters:
         - quarto/kapitola_01.qmd

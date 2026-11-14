@@ -1,21 +1,21 @@
 # Statistika pro psychology – AI tutor
 
-Zdroj instrukcí a metadat pluginu, verze 0.3.4. Autor: Karel Rečka.
+Zdroj instrukcí a metadat pluginu, verze 0.3.5. Autor: Karel Rečka.
 
 Tato složka je **vstup exportu**, nikoli hotový instalační balíček.
 Kapitoly, výukové plány, nabídka kapitol, přehledy, obrázky, index, registr a literatura se sestavují z hlavních
 zdrojů učebnice. Nevytvářej zde druhou ručně udržovanou kopii výkladu.
 
 Instalační archiv vytváří node scripts/export-tutor.cjs spuštěný z repozitáře.
-Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-tutor-chatGPT-0.3.4.zip,
-claude/statistika-tutor-claude-0.3.4.zip a gemini/statistika-tutor-gemini-0.3.4.zip.
+Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-tutor-chatGPT-0.3.5.zip,
+claude/statistika-tutor-claude-0.3.5.zip a gemini/statistika-tutor-gemini-0.3.5.zip.
 Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jsou
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
 Hotový plugin obsahuje úplné kapitoly 1–6, úvod, literaturu a celé aktuální
-přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–8 mají
+přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–10 mají
 k dispozici přehledový výklad; jejich celé kapitoly přibalené nejsou.
-Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech osm kapitol s dostupností; texty a plány přibaluje pro 1–6.
+Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech deset kapitol s dostupností; texty a plány přibaluje pro 1–6.
 
 Student používá nainstalovaný plugin ve vlastním chatu bez nahrávání kapitol.
 

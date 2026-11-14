@@ -56,7 +56,7 @@ const registry = JSON.parse(read(path.join(refs, 'KAPITOLY.json')));
 assert.equal(registry.status, 'chapters_available');
 assert.equal(registry.schema_version, 2);
 assert.equal(registry.package_version, manifest.version);
-assert.equal(registry.chapters.length, 8);
+assert.equal(registry.chapters.length, bookChapters(q).length);
 assert.equal(registry.plans.length, 6);
 assert.equal(registry.overviews.length, 3);
 const bundled = registry.chapters.filter(d => d.availability === 'bundled');
@@ -177,7 +177,7 @@ for (const d of documents.filter(d => d.kind !== 'overview')) {
   retains(expectedCites, actualCites, `${d.id}: citations`);
 }
 
-const entities = {amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' '};
+const entities = {amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' '};
 const decode = s => s.replace(/&#(x[\da-f]+|\d+);|&([a-z]+);/gi, (whole, num, named) => {
   if (num) return String.fromCodePoint(num[0].toLowerCase() === 'x' ? parseInt(num.slice(1), 16) : Number(num));
   assert(Object.hasOwn(entities, named.toLowerCase()), `Unrecognised entity: ${whole}`);
@@ -200,7 +200,7 @@ for (const d of documents.filter(d => d.kind === 'overview')) {
     for (const [field, cell] of cells.entries()) {
       assert.equal(normalized(text(section[field * 2 + 1])), normalized(cell[1]), `${d.id}/${row[1]}: field ${field + 1}`);
       // Excel absolute references and literal formulas must survive exactly.
-      const sourceCode = [...cell[1].matchAll(/<code>([\s\S]*?)<\/code>/g)].map(m => decode(m[1]));
+      const sourceCode = [...cell[1].matchAll(/<code(?:\s[^>]*)?>([\s\S]*?)<\/code>/g)].map(m => decode(m[1]));
       const outputCode = nodes(section[field * 2 + 1], 'Code').map(n => n.c[1]);
       assert.deepEqual(outputCode, sourceCode, `${d.id}/${row[1]}: code`);
     }

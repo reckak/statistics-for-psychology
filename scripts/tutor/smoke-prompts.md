@@ -174,7 +174,7 @@ Před vydáním spusť celý export a kontroly archivu. Potom ověř kandidáta 
 | Dotaz / postup | Přijetí |
 |---|---|
 | Chci začít studovat. | Přesné názvy kapitol 1–6 v pořadí, stručně hranice balíčku. Další volby postupně. |
-| Vypiš všechny kapitoly učebnice a dostupnost. | Všech osm skutečných názvů; 7–8 web/přehledy, nikoli přibalený úplný text. |
+| Vypiš všechny kapitoly učebnice a dostupnost. | Všech deset skutečných názvů; 7–10 web/přehledy, nikoli přibalený úplný text. |
 | Chci studovat popisné statistiky. | Přiřazení zejména ke 2 a 3 pod jejich skutečnými názvy. |
 | Začněme kapitolou 2 – Popisné statistiky. | Oprava názvu, převzetí záměru, žádná vymyšlená kapitola. |
 | Kapitola 3, vysvětlování, celá kapitola, bez rozšíření. | Krátký plán a první úsek, bez opakovaného průvodce a bez výkladu celé kapitoly naráz. |

@@ -1,0 +1,144 @@
+# AI tutor: stažení a instalace {#sec-ai-tutor .unnumbered}
+
+Tato stránka popisuje, jak si stáhnout AI tutora k učebnici, nainstalovat jej do chatovacího asistenta a začít s ním studovat. Tutora nemusíte používat; výklad, příklady i cvičení v učebnici jsou úplné i bez něj.
+
+## Co vám AI tutor nabízí {#sec-ai-tutor-nabidka}
+
+AI tutor je doplněk k učebnici. Nainstalujete si jej do chatovacího asistenta, kterého používáte (ChatGPT, Claude nebo Gemini), a potom s ním můžete probírat učivo podobně jako s lektorem. Tutor má k dispozici úplný text kapitol 1–6 včetně cvičení a řešení, slovníček pojmů, přehled značení a vzorců a přehled funkcí Excelu. Kapitoly ani přehledy do chatu nenahráváte, jsou součástí tutora.
+
+Tutor umí pracovat čtyřmi způsoby:
+
+- **Vysvětlování:** vyloží pojem nebo postup a průběžně ověří, zda mu rozumíte.
+- **Sokratovské vedení:** nedá vám hotovou odpověď, ale otázkami vás navádí, abyste na řešení přišli sami.
+- **Procvičování:** zadá úlohu, počká na váš pokus a potom jej okomentuje.
+- **Zkoušení:** položí několik otázek, ohodnotí odpovědi a ukáže, co si zopakovat.
+
+Tutor využívá jazykový model, a proto může udělat chybu. Učebnici nenahrazuje. Důležité definice, vzorce a výsledky si ověřte v učebnici; tutor u odpovědí uvádí kapitolu a oddíl, ze kterých čerpá. Pokud se odpověď s učebnicí rozchází, platí učebnice.
+
+Kapitoly 7–10 tutor zatím nemá celé. Zná k nim jen hesla ze slovníčku a přehledů a sám vás na tuto hranici upozorní.
+
+## Který soubor stáhnout {#sec-ai-tutor-stazeni}
+
+Tutor existuje ve třech variantách, pro každou platformu jedna. Všechny mají stejný obsah; varianta pro Gemini jen místo obrázků z učebnice odkazuje na jejich verzi ve webové učebnici. Platformy se ale liší spolehlivostí, rychlostí, limity i stylem odpovědí. Klidně si tutora nainstalujte na více z nich a porovnejte je. Každá služba má vlastní limit zpráv: když jej na jedné vyčerpáte, nechte si od tutora vytvořit shrnutí dosavadního studia a pokračujte s ním v novém chatu na jiné platformě.
+
+Odkazy v tabulce [-@tbl-ai-tutor-soubory] vedou vždy na nejnovější verzi tutora.
+
+| Platforma | Soubor ke stažení | Kde jej nahrajete |
+|---|---|---|
+| ChatGPT | [statistika-tutor-chatGPT.zip](https://github.com/reckak/statistics-for-psychology/releases/latest/download/statistika-tutor-chatGPT.zip) | Pluginy → Přidat → Nahrát archiv pluginu |
+| Claude | [statistika-tutor-claude.zip](https://github.com/reckak/statistics-for-psychology/releases/latest/download/statistika-tutor-claude.zip) | Customize → Skills → + → Create skill → Upload a skill |
+| Gemini | [statistika-tutor-gemini.zip](https://github.com/reckak/statistics-for-psychology/releases/latest/download/statistika-tutor-gemini.zip) | Přizpůsobit → Dovednosti → Vytvořit → Nahrát |
+
+: Soubor tutora pro každou platformu a místo, kde jej nahrajete {#tbl-ai-tutor-soubory}
+
+Přehled všech verzí s datem vydání a popisem změn najdete na [stránce vydání tutora](https://github.com/reckak/statistics-for-psychology/releases).
+
+## Než začnete instalovat {#sec-ai-tutor-pred-instalaci}
+
+- **Soubory nejsou zaměnitelné.** Každá služba vyžaduje jiné uspořádání archivu, proto stáhněte soubor určený právě pro vaši platformu.
+- **Soubor nerozbalujte.** Nahrává se celý archiv ZIP tak, jak jste jej stáhli. Pokud jej prohlížeč sám rozbalil (to se stává například v Safari na Macu), stáhněte jej znovu jiným prohlížečem nebo vypněte automatické otevírání stažených souborů.
+- **Instalujte ve webovém prohlížeči na počítači.** Nabídky v mobilních aplikacích bývají omezenější.
+- **Nabídky se mohou lišit** podle tarifu, země a verze rozhraní. Pokud volbu pro nahrání nenajdete, použijte jinou platformu.
+
+## Instalace v ChatGPT {#sec-ai-tutor-chatgpt}
+
+Nahrání pluginu:
+
+1. Otevřete **chatgpt.com** a přihlaste se.
+2. V levém panelu otevřete **Pluginy**.
+3. Zvolte **Přidat** a potom **Nahrát archiv pluginu**.
+4. Vyberte stažený soubor `statistika-tutor-chatGPT.zip` a nahrání potvrďte.
+5. Plugin **Statistika pro psychology – AI tutor** se objeví mezi vašimi pluginy (zpravidla v části Osobní).
+
+Spuštění tutora:
+
+1. Založte **nový chat**. Pokud rozhraní nabízí přepínač režimů **Chat** a **Work**, zvolte **Chat**.
+2. Do pole pro zprávu napište **\@**, začněte psát „Statistika“ a vyberte plugin **Statistika pro psychology – AI tutor**.
+3. Za název pluginu napište, co chcete studovat, a zprávu odešlete. Příklady najdete v oddílu [Jak začít studovat](#sec-ai-tutor-studium).
+
+V detailu pluginu (Pluginy → Statistika pro psychology – AI tutor) jsou také tři připravené zahajovací volby: výběr kapitoly a způsobu studia, sokratovské vedení při řešení úlohy a vyzkoušení z tématu. Kliknutím na volbu zahájíte nový chat. Pokud se přitom režim přepne na Work, přepněte jej před odesláním zpět na Chat.
+
+## Instalace v Claude {#sec-ai-tutor-claude}
+
+Názvy položek uvádíme podle anglického rozhraní claude.ai. Máte-li rozhraní v jiném jazyce, hledejte jejich obdobu na stejném místě.
+
+Nahrání dovednosti:
+
+1. Otevřete **claude.ai** a přihlaste se.
+2. Zapněte spouštění kódu: **Settings → Capabilities** a zapněte **Code execution and file creation** (v novějším rozhraní **Create and edit files**). Bez této volby dovednosti nefungují.
+3. Otevřete **Customize → Skills**.
+4. Klikněte na **+**, zvolte **Create skill** a potom **Upload a skill**.
+5. Vyberte stažený soubor `statistika-tutor-claude.zip`.
+6. Zkontrolujte, že dovednost **statistika-tutor** je v seznamu zapnutá (přepínač vpravo).
+
+Spuštění tutora:
+
+1. Založte **nový chat** mimo projekt.
+2. Napište například „Chci studovat statistiku pro psychology.“ Claude dovednost podle obsahu zprávy spustí sám; u odpovědi uvidíte, že použil **statistika-tutor**.
+
+Pokud se tutor nespustí, oslovte jej výslovně, například: „Použij dovednost statistika-tutor a pomoz mi vybrat kapitolu.“
+
+## Instalace v Gemini {#sec-ai-tutor-gemini}
+
+Nahrání dovednosti:
+
+1. Otevřete **gemini.google.com** a přihlaste se.
+2. Otevřete **Přizpůsobit → Dovednosti**. Na stejné místo se dostanete také přes **Nastavení → Dovednosti**.
+3. Zvolte **Vytvořit** a potom **Nahrát**.
+4. Vyberte stažený soubor `statistika-tutor-gemini.zip`.
+5. Zkontrolujte, že se dovednost **statistika-tutor** objevila mezi vašimi dovednostmi.
+
+Spuštění tutora:
+
+1. Založte **nový chat**.
+2. Napište lomítko **/** a z nabídky vyberte dovednost **statistika-tutor**. Za ni napište, co chcete studovat. Můžete také psát běžně, například „Chci studovat statistiku pro psychology.“
+
+Varianta pro Gemini neobsahuje obrázky z učebnice, protože Gemini nepřijme dovednost s tolika soubory. Tutor vám obrázek popíše slovy a nabídne odkaz na tentýž obrázek ve webové učebnici.
+
+## Jak začít studovat {#sec-ai-tutor-studium}
+
+Každé nové téma začněte v **novém chatu** bez příloh a mimo projekty; tutor pak vychází z učebnice, a ne z jiných souborů. Na začátku se vás může zeptat na tři věci: kapitolu, způsob studia a rozsah (celá kapitola, konkrétní téma nebo cvičení). Můžete je uvést rovnou, nebo místo toho položit přímou otázku.
+
+Příklady první zprávy:
+
+- „Pomoz mi vybrat kapitolu, způsob a rozsah studia.“
+- „Kapitola 6, procvičování, směrodatná chyba.“
+- „Jaký je rozdíl mezi směrodatnou odchylkou a směrodatnou chybou?“
+- „Veď mě sokratovsky při řešení cvičení 3.1.“
+- „Vyzkoušej mě z kapitoly 4, pět otázek.“
+
+Několik rad pro práci s tutorem:
+
+- Řešení cvičení vám tutor ukáže po vašem vlastním pokusu, nebo když o ně výslovně požádáte.
+- Můžete přiložit vlastní zadání nebo data, například list z excelového sešitu ke kapitole.
+- Kde to platforma umožňuje, tutor připraví interaktivní graf nebo simulaci. Můžete si o ni také říct.
+- Tutor si nevede záznam o vašem studiu mezi rozhovory. Na konci si můžete říct o shrnutí a vložit je na začátek dalšího chatu.
+
+## Přechod na novou verzi {#sec-ai-tutor-nova-verze}
+
+Novou verzi tutora stáhnete stejnými odkazy z tabulky [-@tbl-ai-tutor-soubory]; co se v ní změnilo, uvádí [stránka vydání](https://github.com/reckak/statistics-for-psychology/releases). Nainstalujete ji takto:
+
+- **ChatGPT:** v nabídce Pluginy otevřete tutora a nahrajte nový archiv. Pokud tato možnost chybí, starý plugin odeberte a nainstalujte nový stejným postupem jako poprvé.
+- **Claude a Gemini:** starou dovednost **statistika-tutor** smažte a nahrajte nový soubor stejným postupem jako poprvé.
+
+Kterou verzi právě používáte, zjistíte dotazem „Jakou verzi tutora používáš?“
+
+## Řešení potíží {#sec-ai-tutor-potize}
+
+| Potíž | Co udělat |
+|---|---|
+| Nenajdu volbu pro nahrání. | Použijte webový prohlížeč na počítači a zkontrolujte, že jste přihlášeni. Nabídky se liší podle tarifu, země a verze rozhraní; pokud volba chybí, zvolte jinou platformu. |
+| Nahrání selže nebo soubor nejde vybrat. | Ověřte, že nahráváte nerozbalený soubor ZIP určený právě pro tuto platformu (tabulka [-@tbl-ai-tutor-soubory]). |
+| Gemini hlásí „Složka dovednosti obsahuje příliš mnoho souborů“. | Nahráváte soubor pro Claude nebo ChatGPT. Použijte `statistika-tutor-gemini.zip`. |
+| V Claude nefunguje dovednost nebo chybí nabídka Skills. | Zapněte spouštění kódu: Settings → Capabilities → Code execution and file creation. |
+| Tutor odpovídá obecně a nezná kapitoly učebnice. | Založte nový chat. V ChatGPT vyberte plugin přes \@, v Claude a Gemini oslovte dovednost statistika-tutor výslovně. Zkontrolujte, že je tutor zapnutý. |
+| Odpověď se liší od učebnice. | Platí učebnice. Upozorněte tutora na rozpor a požádejte jej, ať uvede kapitolu a oddíl, ze kterého vychází. |
+| Narazím na limit zpráv. | Limity určuje váš tarif u dané služby, ne tutor. Pokračujte později, nebo si nechte vytvořit shrnutí a pokračujte v novém chatu na jiné platformě, kde máte tutora nainstalovaného. |
+
+: Nejčastější potíže při instalaci a používání tutora a jejich řešení {#tbl-ai-tutor-potize}
+
+## Soukromí {#sec-ai-tutor-soukromi}
+
+Rozhovory probíhají ve vašem vlastním účtu a řídí se podmínkami a nastavením soukromí dané služby. Tutor nemá vlastní server ani databázi a vyučující vaše rozhovory nevidí.
+
+Nevkládejte do chatu osobní ani citlivé údaje o sobě nebo jiných lidech, například skutečná výzkumná data, podle nichž by bylo možné účastníky identifikovat.
