@@ -200,7 +200,7 @@ for (const d of documents.filter(d => d.kind === 'overview')) {
     for (const [field, cell] of cells.entries()) {
       assert.equal(normalized(text(section[field * 2 + 1])), normalized(cell[1]), `${d.id}/${row[1]}: field ${field + 1}`);
       // Excel absolute references and literal formulas must survive exactly.
-      const sourceCode = [...cell[1].matchAll(/<code>([\s\S]*?)<\/code>/g)].map(m => decode(m[1]));
+      const sourceCode = [...cell[1].matchAll(/<code(?:\s[^>]*)?>([\s\S]*?)<\/code>/g)].map(m => decode(m[1]));
       const outputCode = nodes(section[field * 2 + 1], 'Code').map(n => n.c[1]);
       assert.deepEqual(outputCode, sourceCode, `${d.id}/${row[1]}: code`);
     }
