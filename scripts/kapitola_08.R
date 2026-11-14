@@ -232,22 +232,23 @@ ch8_draw('ekvivalence-skupin', {
   legend('topright',c('95% interval:\ntest rozdílu','90% interval:\ntest ekvivalence'),lwd=c(1.4,6),col=c(ch8_ink,ch8_blue),bty='n',cex=.78,y.intersp=1.6,inset=c(0,-.02))
 },width=8.8,height=3.8)
 ch8_draw('korelace-rozdily', {
-  layout(matrix(1:4,1),widths=c(1.35,1,1,1)); par(mar=c(4.6,4.6,3.4,.6))
+  # 2 x 2: three simulated data sets first, the general curve last (bottom right).
+  layout(matrix(1:4,2,byrow=TRUE)); par(mar=c(4.6,4.8,3.4,.8),cex=1)
+  for(i in seq_along(ch8_sim)) {
+    u <- ch8_sim[[i]]; dd <- u$bezny-u$kratky
+    plot(NA,xlim=c(.7,2.3),ylim=c(28,68),xaxt='n',xlab='',ylab='Skór pozornosti (body)',
+         main=paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; SD rozdílů ',ch8_num(sd(dd),1)),bty='l')
+    axis(1,at=1:2,labels=c('po běžném spánku','po krátkém spánku'))
+    segments(1,u$bezny,2,u$kratky,col=adjustcolor(ch8_blue,.75),lwd=1.6)
+    points(rep(1,12),u$bezny,pch=21,bg=ch8_fill,col=ch8_ink,cex=1.05); points(rep(2,12),u$kratky,pch=21,bg=ch8_sand,col=ch8_ink,cex=1.05)
+  }
   rr <- seq(-1,1,by=.01)
   plot(rr,ch8_sd_rozdilu(rr),type='l',lwd=2.4,col=ch8_blue,xlab='Korelace obou měření r',ylab='Směrodatná odchylka rozdílů (body)',
        main='SD rozdílů podle korelace',bty='l',ylim=c(0,14.5))
   pts <- c(0,ch8_par_r); points(pts,ch8_sd_rozdilu(pts),pch=21,bg=c('white',ch8_orange),col=ch8_ink,cex=1.4)
-  text(0,ch8_sd_rozdilu(0)+1.1,paste0('r = 0: ',ch8_num(ch8_sd_rozdilu(0))),cex=.8)
-  text(ch8_par_r-.03,ch8_sd_rozdilu(ch8_par_r)+1.6,paste0('varianta A\nr = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r))),adj=1,cex=.8,col=ch8_orange)
-  for(i in seq_along(ch8_sim)) {
-    u <- ch8_sim[[i]]; dd <- u$bezny-u$kratky
-    plot(NA,xlim=c(.7,2.3),ylim=c(28,68),xaxt='n',xlab='',ylab=if(i==1) 'Skór pozornosti (body)' else '',
-         main=paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; SD rozdílů ',ch8_num(sd(dd),1)),bty='l')
-    axis(1,at=1:2,labels=c('běžný','krátký'))
-    segments(1,u$bezny,2,u$kratky,col=adjustcolor(ch8_blue,.75),lwd=1.6)
-    points(rep(1,12),u$bezny,pch=21,bg=ch8_fill,col=ch8_ink,cex=1.05); points(rep(2,12),u$kratky,pch=21,bg=ch8_sand,col=ch8_ink,cex=1.05)
-  }
-},width=11.4,height=4.4)
+  text(-.06,ch8_sd_rozdilu(0)-1.3,paste0('r = 0: ',ch8_num(ch8_sd_rozdilu(0))),adj=1,cex=.85)  # below left of the point, clear of the curve
+  text(ch8_par_r-.08,ch8_sd_rozdilu(ch8_par_r)-1.1,paste0('varianta A\nr = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r))),adj=1,cex=.85,col=ch8_orange)
+},width=9.4,height=8.4)
 ch8_draw('pomer-skupin', {
   # Two panels per row at most: the equal-sigma panel centred on top, the unequal-sigma panels below.
   layout(matrix(c(0,1,1,0,2,2,3,3),2,byrow=TRUE)); par(mar=c(5.6,5,3.4,1),cex=1)

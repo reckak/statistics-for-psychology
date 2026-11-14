@@ -238,7 +238,7 @@ S nezaokrouhlenými vstupy vyjde přesně směrodatná odchylka rozdílů spoč�
 
 ::: {.teaching-figure role="region" aria-label="Směrodatná odchylka rozdílů podle korelace obou měření" tabindex="0"}
 
-![Vlevo: při stejných směrodatných odchylkách obou měření jako ve variantě A klesá směrodatná odchylka rozdílů s rostoucí korelací; při $r=0{,}95$ je asi 2,4 bodu, při nulové korelaci 9,8 bodu. Vpravo tři simulované soubory dvanácti studentů: při kladné korelaci spojnice běží téměř souběžně a rozdíly jsou podobné, při nulové a záporné korelaci se kříží a rozdíly se mezi studenty výrazně liší.](../assets/chapter-08/plots/korelace-rozdily.svg){#fig-korelace-rozdily fig-alt="Čtyři panely. První: křivka směrodatné odchylky rozdílů v bodech na svislé ose proti korelaci obou měření od minus 1 do 1 na vodorovné ose; křivka klesá zleva doprava od 13,8 bodu při minus 1 k 0,9 bodu při 1. Vyznačeny jsou body při korelaci 0 (9,75 bodu) a při korelaci 0,95 z varianty A (2,39 bodu). Další tři panely ukazují dvanáct simulovaných studentů se spojnicemi mezi skórem po běžném a po krátkém spánku. Při korelaci 0,9 jsou spojnice téměř rovnoběžné a směrodatná odchylka rozdílů je 3,2 bodu. Při korelaci 0 se spojnice různě kříží a směrodatná odchylka rozdílů je 9,8 bodu. Při korelaci minus 0,5 se kříží výrazně a směrodatná odchylka rozdílů je 11,9 bodu."}
+![Nahoře a vlevo dole tři simulované soubory dvanácti studentů: při kladné korelaci spojnice běží téměř souběžně a rozdíly jsou podobné, při nulové a záporné korelaci se kříží a rozdíly se mezi studenty výrazně liší. Vpravo dole obecný vztah: při stejných směrodatných odchylkách obou měření jako ve variantě A klesá směrodatná odchylka rozdílů s rostoucí korelací; při $r=0{,}95$ je asi 2,4 bodu, při nulové korelaci 9,8 bodu.](../assets/chapter-08/plots/korelace-rozdily.svg){#fig-korelace-rozdily fig-alt="Čtyři panely ve dvou řadách. Vlevo nahoře, vpravo nahoře a vlevo dole jsou tři soubory dvanácti simulovaných studentů se spojnicemi mezi skórem po běžném a po krátkém spánku. Vlevo nahoře je korelace 0,9: spojnice jsou téměř rovnoběžné a směrodatná odchylka rozdílů je 3,2 bodu. Vpravo nahoře je korelace 0: spojnice se různě kříží a směrodatná odchylka rozdílů je 9,8 bodu. Vlevo dole je korelace minus 0,5: spojnice se kříží výrazně a směrodatná odchylka rozdílů je 11,9 bodu. Vpravo dole je křivka směrodatné odchylky rozdílů v bodech na svislé ose proti korelaci obou měření od minus 1 do 1 na vodorovné ose; křivka klesá zleva doprava od 13,8 bodu při minus 1 k 0,9 bodu při 1. Vyznačeny jsou body při korelaci 0 (9,75 bodu) a při korelaci 0,95 z varianty A (2,39 bodu)."}
 
 :::
 
@@ -319,9 +319,9 @@ $$s_{m_1-m_2}=\sqrt{\frac{s_p^2}{n_1}+\frac{s_p^2}{n_2}}=s_p\sqrt{\frac{1}{n_1}+
 
 a testová statistika
 
-$$t=\frac{(m_1-m_2)-0}{s_{m_1-m_2}}$$
+$$t=\frac{(m_1-m_2)-(\mathrm{μ}_1-\mathrm{μ}_2)}{s_{m_1-m_2}},$$
 
-má za platnosti nulové hypotézy $\mathrm{μ}_1=\mathrm{μ}_2$, za předpokladu nezávislých výběrů z normálních populací se shodnými rozptyly, *t*-rozdělení s $n_1+n_2-2$ stupni volnosti. Celému postupu říkáme ***t*-test pro dva nezávislé výběry** (*independent-samples *t*-test*), v této podobě **klasický** neboli **Studentův *t*-test se společným odhadem rozptylu**. Interval spolehlivosti pro rozdíl populačních průměrů je
+kde $\mathrm{μ}_1-\mathrm{μ}_2$ je rozdíl populačních průměrů, který tvrdí nulová hypotéza. Za platnosti nulové hypotézy a za předpokladu nezávislých výběrů z normálních populací se shodnými rozptyly má statistika *t*-rozdělení s $n_1+n_2-2$ stupni volnosti. Nejčastěji nulová hypotéza tvrdí, že se populační průměry neliší, tedy $\mathrm{μ}_1-\mathrm{μ}_2=0$; čitatel je pak jen $m_1-m_2$. Celému postupu říkáme ***t*-test pro dva nezávislé výběry** (*independent-samples *t*-test*), v této podobě **klasický** neboli **Studentův *t*-test se společným odhadem rozptylu**. Interval spolehlivosti pro rozdíl populačních průměrů je
 
 $$(m_1-m_2)\pm t_{0{,}975\,(v=n_1+n_2-2)}\times s_{m_1-m_2}.$$
 
