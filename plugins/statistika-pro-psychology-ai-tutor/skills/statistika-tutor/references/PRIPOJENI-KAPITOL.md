@@ -3,7 +3,7 @@
 Tento návod je určen autorovi. Aktuální kapitoly a tři přehledy se exportují
 z hlavních zdrojů učebnice, nikoli ručním přepisováním souborů v instalaci.
 Plugin přibaluje kapitoly 1–6 a celé aktuální přehledy včetně hesel
-z kapitol 7–8. Úplné kapitoly 7–8 v této verzi nejsou.
+z kapitol 7–10. Úplné kapitoly 7–10 v této verzi nejsou.
 
 ## Aktualizace
 
@@ -13,7 +13,7 @@ z kapitol 7–8. Úplné kapitoly 7–8 v této verzi nejsou.
    výchozí prompty, vazby a aktuální oprávnění.
 3. Sestav a ověř instalační archiv podle
    [provozního návodu](https://github.com/reckak/statistics-for-psychology/blob/main/docs/PROVOZ.md#export-ai-tutora).
-   Registr osmi kapitol, index, šest výukových plánů, nabídka v hlavním skillu, otisky, literatura a kopie obrázků vznikají automaticky. Plány čerpají hloubku učiva a dovednosti z kapitolových karet a cíle, lokátory i nepovinné části z textu. Přehledy dodávají úplný rejstřík navázaných pojmů, značení a funkcí.
+   Registr deseti kapitol, index, šest výukových plánů, nabídka v hlavním skillu, otisky, literatura a kopie obrázků vznikají automaticky. Plány čerpají hloubku učiva a dovednosti z kapitolových karet a cíle, lokátory i nepovinné části z textu. Přehledy dodávají úplný rejstřík navázaných pojmů, značení a funkcí.
 4. Ověř aktuální verzi a identitu existujícího cloudového pluginu, pak
    použij „Nahrát novou verzi“. Pokud je dostupný Plugin Creator update_plugin,
    načti aktuální zdroje a použij ověřené ID i expected_release_id.

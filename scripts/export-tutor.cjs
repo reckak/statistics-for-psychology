@@ -222,7 +222,7 @@ fs.copyFileSync(path.join(root, 'LICENSE'), path.join(refs, 'LICENSE'));
 fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology – AI tutor\n\n` +
   `Verze ${version}; autor Karel Rečka.\n\n` +
   'Vyber plugin v ChatGPT a uveď téma a režim: vysvětlení, sokratovské vedení, procvičování nebo zkoušení.\n\n' +
-  'Kapitoly 1–6 a tři celé aktuální přehledy jsou přibalené; nemusíš je nahrávat. Úplné kapitoly 7–8 nejsou součástí této verze.\n\n' +
+  'Kapitoly 1–6 a tři celé aktuální přehledy jsou přibalené; nemusíš je nahrávat. Úplné kapitoly 7–10 nejsou součástí této verze.\n\n' +
   '[Obsah podkladů](skills/statistika-tutor/references/INDEX.md) · ' +
   '[Údržba a distribuce](skills/statistika-tutor/references/PRIPOJENI-KAPITOL.md) · ' +
   '[Původ a licence](skills/statistika-tutor/references/LICENCE.md)\n\n' +
@@ -257,7 +257,7 @@ fs.writeFileSync(skillPath, template.replace('<!-- tutor:chapter-menu -->', chap
 const catalog = {
   schema_version: 2, package_version: version, updated: stamp, status: 'chapters_available',
   source_revision: sourceRevision, source_dirty: sourceDirty, reference_package: 'REFERENCE.md', index: 'INDEX.md',
-  notice: 'Úplný výklad kapitol 1–6; celé aktuální přehledy obsahují i hesla kapitol 7–8. Úplné kapitoly 7–8 nejsou přibalené.',
+  notice: 'Úplný výklad kapitol 1–6; celé aktuální přehledy obsahují i hesla kapitol 7–10. Úplné kapitoly 7–10 nejsou přibalené.',
   chapters: chapterEntries, plans,
   overviews: exported.filter(d => d.kind === 'overview').map(entry),
   introduction: entry(exported.find(d => d.kind === 'introduction')),
@@ -267,7 +267,7 @@ const catalog = {
 write('KAPITOLY.json', JSON.stringify(catalog, null, 2) + '\n');
 const index = [`# Obsah podkladů AI tutora`, '', `Verze ${version}; snímek učebnice z ${stamp}.`, '',
   'Student nemusí nahrávat kapitoly 1–6 ani tři přehledy. Načítej potřebný oddíl, nikoli všechny soubory najednou.', '',
-  'Úplné kapitoly 7–8 nejsou přibalené. Hesla z těchto kapitol jsou dostupná ve třech přehledech; jejich odkazy na výklad vedou na web.', '',
+  'Úplné kapitoly 7–10 nejsou přibalené. Hesla z těchto kapitol jsou dostupná ve třech přehledech; jejich odkazy na výklad vedou na web.', '',
   '[O učebnici a původu dat](uvod.md) · [Krátká reference](REFERENCE.md) · [Literatura](literatura.md) · [Licence](LICENCE.md)', '',
   '## Výkladové kapitoly', ''];
 index.push('### Katalog celé učebnice', '', '| Kapitola | Dostupnost |', '|---|---|');

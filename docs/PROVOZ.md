@@ -200,7 +200,7 @@ node scripts/export-tutor.cjs
 Export obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
 zadání a řešení, celé aktuální přehledy (slovníček, značení a vzorce, Excel),
 literaturu citovanou v těchto materiálech a obrázky s textovými popisy.
-Od revize 0.3.0 přidává šest výukových plánů a katalog všech osmi kapitol
+Od revize 0.3.0 přidává šest výukových plánů a katalog všech kapitol knihy (nyní deseti)
 s výslovnou dostupností. Přesné názvy v nabídce hlavního skillu, indexu
 a registru vznikají ze stejného katalogu podle `_quarto.yml` a nadpisů kapitol.
 Zdrojový skill obsahuje značku `tutor:chapter-menu`, kterou export nahradí;
@@ -214,8 +214,8 @@ změně aktualizujte hlavní kapitolovou kartu a text a proveďte nový export;
 generované plány se ručně nesynchronizují. Export kontroluje existenci
 a návaznost odkazů, redakční kontrola posuzuje skutečnou hloubku učiva.
 Přehledy se na rozdíl od souhrnného PDF **neomezují na kapitoly 1–6**;
-obsahují i hesla z kapitol 7–8, jejichž úplný výklad v pluginu není.
-Odkazy na přibalené materiály jsou místní, na kapitoly 7–8 a sešity vedou
+obsahují i hesla z kapitol 7–10, jejichž úplný výklad v pluginu není.
+Odkazy na přibalené materiály jsou místní, na kapitoly 7–10 a sešity vedou
 na web knihy. Původ a licence zůstávají přibalené.
 
 Potřebujete Node.js 18 nebo novější, Quarto s Pandocem 3.x, R se závislostmi
@@ -338,7 +338,7 @@ Přepínač `--report <soubor>` slouží jen k vyzkoušení pojistek nad upraven
 kopií `overeni.json`; s `--draft` jej nelze použít.
 
 Registr `KAPITOLY.json` má od 0.3.0 `schema_version: 2`: `chapters` obsahuje
-všech osm kapitol (`number`, `availability`, `web_url`, `plan`), přibalené
+všechny kapitoly knihy, nyní deset (`number`, `availability`, `web_url`, `plan`), přibalené
 záznamy mají místní `path` a otisk, nepřibalené mají `path` a `plan` rovné
 `null`. Pole `plans` obsahuje šest plánů s otisky a vazbou na zdrojové karty.
 Skript čtoucí plné texty musí filtrovat `availability: bundled`.

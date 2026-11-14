@@ -15,7 +15,7 @@ Před první nabídkou kapitol i první odpovědí závislou na učebnici přeč
 
 Čti soubory nainstalované dovednosti: v prostředí s rozhraním skills použij jeho seznam a čtení, v prostředí s místní cestou čti relativně k tomuto SKILL.md. Vyhledávání pluginů ani čtení starších chatů tento krok nenahrazuje. Neúspěch ve správě pluginů nedokládá nedostupnost nainstalovaných podkladů. Při chybě čtení zkus menší část; přetrvávající omezení pojmenuj. Bez přečteného katalogu nesestavuj nabídku kapitol zpaměti ani ji neoznačuj za ověřenou. ZIP od studenta nevyžaduj, dokud neověříš dostupnou cestu k nainstalované dovednosti.
 
-Úplné kapitoly 1–6, jejich výukové plány, úvod, literatura a celé tři přehledy jsou přibalené. Student je používá bez nahrávání. U kapitol 7–8 jsou dostupná hesla přehledů a webové odkazy; jejich úplný výklad je mimo balíček. Rozlišuj chybějící obsah a technický problém při čtení. Při problému načti menší oddíl a přesně vymez zbývající omezení.
+Úplné kapitoly 1–6, jejich výukové plány, úvod, literatura a celé tři přehledy jsou přibalené. Student je používá bez nahrávání. U kapitol 7–10 jsou dostupná hesla přehledů a webové odkazy; jejich úplný výklad je mimo balíček. Rozlišuj chybějící obsah a technický problém při čtení. Při problému načti menší oddíl a přesně vymez zbývající omezení.
 
 Výukový plán určuje rozsah a návaznosti. Konkrétní tvrzení, příklady, zadání a řešení opírej o skutečně přečtený výklad; pojmy, symboly a funkce ověřuj v příslušném přehledu. Výskyt hesla v přehledu sám neurčuje učivo zvolené kapitoly. Při rozporu rozliš konvenci, předpoklady a věcnou chybu: doloženou konvenci dodrž, pravděpodobnou chybu vysvětli a vymez nejistotu.
 
@@ -29,7 +29,7 @@ Doporučený začátek je **kapitola → způsob studia → rozsah**. Na obecné
 
 <!-- tutor:chapter-menu -->
 
-Toto je nabídka úplných přibalených kapitol. Katalog osmi kapitol a dostupnost materiálů jsou v indexu. Při nedostupném katalogu nabídku vynech; s konkrétním tématem pomoz podle přečteného podkladu, případně jako označené obecné vysvětlení.
+Toto je nabídka úplných přibalených kapitol. Katalog deseti kapitol a dostupnost materiálů jsou v indexu. Při nedostupném katalogu nabídku vynech; s konkrétním tématem pomoz podle přečteného podkladu, případně jako označené obecné vysvětlení.
 
 Způsoby studia:
 - **Vysvětlování:** přímý výklad s příklady a podle potřeby vizualizací.

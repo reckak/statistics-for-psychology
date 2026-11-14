@@ -13,9 +13,9 @@ Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jso
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
 Hotový plugin obsahuje úplné kapitoly 1–6, úvod, literaturu a celé aktuální
-přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–8 mají
+přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–10 mají
 k dispozici přehledový výklad; jejich celé kapitoly přibalené nejsou.
-Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech osm kapitol s dostupností; texty a plány přibaluje pro 1–6.
+Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech deset kapitol s dostupností; texty a plány přibaluje pro 1–6.
 
 Student používá nainstalovaný plugin ve vlastním chatu bez nahrávání kapitol.
 

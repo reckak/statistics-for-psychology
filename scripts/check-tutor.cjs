@@ -56,7 +56,7 @@ const registry = JSON.parse(read(path.join(refs, 'KAPITOLY.json')));
 assert.equal(registry.status, 'chapters_available');
 assert.equal(registry.schema_version, 2);
 assert.equal(registry.package_version, manifest.version);
-assert.equal(registry.chapters.length, 8);
+assert.equal(registry.chapters.length, bookChapters(q).length);
 assert.equal(registry.plans.length, 6);
 assert.equal(registry.overviews.length, 3);
 const bundled = registry.chapters.filter(d => d.availability === 'bundled');
