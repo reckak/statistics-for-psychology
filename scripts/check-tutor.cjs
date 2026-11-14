@@ -177,7 +177,7 @@ for (const d of documents.filter(d => d.kind !== 'overview')) {
   retains(expectedCites, actualCites, `${d.id}: citations`);
 }
 
-const entities = {amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' '};
+const entities = {amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' '};
 const decode = s => s.replace(/&#(x[\da-f]+|\d+);|&([a-z]+);/gi, (whole, num, named) => {
   if (num) return String.fromCodePoint(num[0].toLowerCase() === 'x' ? parseInt(num.slice(1), 16) : Number(num));
   assert(Object.hasOwn(entities, named.toLowerCase()), `Unrecognised entity: ${whole}`);
