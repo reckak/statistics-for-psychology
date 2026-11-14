@@ -1,5 +1,21 @@
 # Autorská dokumentace
 
+<a id="zalamovani-vzorcu-2026-11-14"></a>
+
+## Zalamování dlouhých vzorců Excelu v tabulkách (2026-11-14, R78)
+
+Autor upozornil, že vzorec v G2 tabulky 8.3 rozšiřuje tabulku, a pro zalamování takových vzorců zvolil rozsah „Celá kniha“ ([R78](../docs/rozhodnuti/spolecne-konvence.md#r78-zalamovani-vzorcu)).
+
+- `filters/table-style.lua` (web, PDF kapitoly i knihy) nově v buňkách tabulek zalamuje inline kód začínající „=“ a delší než 50 znaků. Vzorec rozdělí na úseky za středníkem mimo uvozovky, případně před binárním operátorem. Nejdřív zkusí zlomy na úrovni vnoření 0, pak hlubší, dokud řádky nemají nejvýše asi 45 znaků. Úseky skládá do řádků zhruba do 40 znaků a pokračování odsadí nezlomitelnými mezerami pod otevírací závorku. Pokud by tím řádek přesáhl limit (dlouhý název funkce, např. `SOUČIN.SKALÁRNÍ`), odsadí ho závěsně o dva znaky od začátku názvu. Krátký závěrečný zbytek do 6 znaků nový řádek nezačíná.
+- Tabulky obsahující vzorec mají automatické šířky sloupců (`ColWidthDefault`). Pandoc jinak kvůli dlouhému řádku zdroje dával všem sloupcům stejný podíl a sloupec se vzorcem se mačkal; dřív se tak lámaly i kratší vzorce, např. v tabulkách 5.12 a 6.18. V `assets/styles.css` se od 601 px řádky vzorců v buňkách dál nelámou (`white-space: nowrap`); na mobilu zůstává lámání kdekoli a tabulky se posouvají.
+- Tabulka 10.6: v adrese `Prevzorkovani_data!B2:C31` v prvním sloupci je za vykřičníkem nulová mezera (U+200B). Umožní zlom, aby se tabulka vešla do 1280 px. Výsledkem je několik prvků `Code` oddělených `LineBreak`, takže zdroj, tutor a vyhledávání vidí vzorec na jednom řádku.
+- Dotčeno 13 vzorců v tabulkách kapitol 5, 6, 8, 9 a 10. Např. G2 v tabulce 8.3 má tři řádky: `=KDYŽ(A(JE.ČISLO(Spanek_par!B2);` / odsazené `JE.ČISLO(Spanek_par!C2));` / `Spanek_par!B2;"")`, stejně jako v autorově ukázce.
+- `quarto/excel.qmd` (surové HTML, filtr ho nezpracuje): čtyři vzorce delší než 50 znaků (COUNTIFS, T.TEST, kvantil přes BETA.INV, SOUČIN.SKALÁRNÍ) zalomeny ručně `<br>` a `&nbsp;` podle výstupu filtru.
+- Studentům: věta v kapitole 2 (oddíl o Excelu) a v úvodu přehledu Excelu, že zalomení slouží jen čitelnosti a do buňky se vzorec zapisuje jako jeden řádek.
+- Pravidlo v `AGENTS.md` (Excel), postup v `docs/PROVOZ.md`, doklad R78 a řádek v registru.
+
+**Kontroly:** výstup filtru jsem ověřil přes `quarto pandoc` na všech dotčených vzorcích. Kapitola 8 vykreslena: G2 v tabulce 8.3 má na webu tři řádky, stránka nepřetéká při 1280 ani 390 px a `check-html.cjs` prošel. Ruční PDF (Typst) jsem po této úpravě nevykresloval a neověřoval.
+
 <a id="kapitola-08-obrazky-pomer-2026-11-14"></a>
 
 ## Kapitola 8: obrázky směrodatné chyby a Welchových stupňů volnosti pro 90 lidí (2026-11-14)

@@ -447,7 +447,7 @@ Graf získaného souboru také automaticky nepopisuje celou populaci. V malém s
 
 ## Četnosti a grafy v Excelu {#sec-excel-cetnosti}
 
-Otevřete [sešit ke kapitole](../data/kapitola_02.xlsx). Postup využívá běžné funkce dostupné v Excelu 2016 a novějších verzích, včetně Microsoft 365. Ukázky používají české názvy funkcí, středníky mezi argumenty a desetinnou čárku. V jiném jazykovém nebo místním nastavení se mohou názvy a oddělovače lišit. Vzorce v hotovém sešitu Excel zobrazuje podle svého nastavení.
+Otevřete [sešit ke kapitole](../data/kapitola_02.xlsx). Postup využívá běžné funkce dostupné v Excelu 2016 a novějších verzích, včetně Microsoft 365. Ukázky používají české názvy funkcí, středníky mezi argumenty a desetinnou čárku. Dlouhé vzorce jsou v tabulkách zalomeny do více řádků a odsazeny jen kvůli čitelnosti; do buňky je zapisujte jako jeden řádek. V jiném jazykovém nebo místním nastavení se mohou názvy a oddělovače lišit. Vzorce v hotovém sešitu Excel zobrazuje podle svého nastavení.
 
 Na listu `Data` jsou v řádku 1 názvy proměnných a v řádcích 2–37 data. Sloupce jsou A = `id`, B = `spanek_h`, C = `slova`, D = `cast_dne`, E = `odpocatost`. Číselné vstupy zapisujte jako čísla, bez jednotek v buňce. Tři prázdné buňky spánku ponechte prázdné. Samostatný popis proměnných je vpravo od dat.
 

@@ -358,3 +358,20 @@ Pravidla psaní jsou v [AGENTS.md](../../AGENTS.md#didaktika-a-jazyk), termíny 
 **Doklad:** autorovy připomínky ke kapitole 8 z 2026-11-14: „Cohenovo *d* by by vždy mělo být kurzivou“; „termín ‚rozptýlenost‘ ve smyslu variability nezní odborně, nepoužíval bych ho ani neuváděl ve slovníku jako alternativu variability“; „nepoužíval bych místo ‚intervence‘ termín ‚zásah‘“; „U ‚upraveného‘ počtu stupňů volnosti také odborněji zní ‚korigovaný‘“; „Obecně bych za každou cenu netrval na českém termínu“; „X dalo Y … v češtině to ale nezní tak přirozeně“; „Všechny tyto jazykové nuance bych nějakým způsobem zapsal do pravidel“. V upřesňující otázce autor zvolil rozsah „Kap. 8 + pravidla“ (terminologie a kurzivní *d* v celé knize, úvody oddílů a vazby „dát“ v ostatních kapitolách v samostatném PR) a schválil plán úprav. Záznam v [historii](../../quarto/README.md#revize-kapitola-08-2026-11-14).
 
 *Doplněk 2026-11-14:* po sloučení PR #197 byly jazykové konvence v samostatném PR uplatněny i v kapitolách 1–7, 9, 10 a na stránkách interaktivních vizualizací. Při realizaci byl použit tento výklad pravidel, který autor zatím zvlášť neschválil: ustálené obraty („dát pozor“, „dávat smysl“, „dávají dohromady 1“ u součtů), „dávat stejné výsledky“ ve smyslu vlastnosti měřicího nástroje a doslovné „dávat body“ zůstávají; anaforické „rozdíl“ bezprostředně po uvedení průměrů zůstává, „rozdíl průměrů“ se doplňuje tam, kde holé „rozdíl“ otevírá oddíl, odstavec, odrážku či popisek; „rozdíl podílů“ se pravidla netýká. U srovnání průměru s normou se místo „poklesu“ či „vzestupu“ píše o průměru nižším či vyšším než norma, protože ani zde nejde o změnu v čase. Záznam v [historii](../../quarto/README.md#jazyk-r76-kapitoly-2026-11-14).
+
+<a id="r78-zalamovani-vzorcu"></a>
+
+## R78 — Zalamování dlouhých vzorců Excelu v tabulkách
+
+**Stav:** schváleno 2026-11-14. **Rozsah:** vzorce Excelu v buňkách tabulek celé knihy (kapitoly, řešení, přehled funkcí Excelu) na webu i v ručních PDF.
+
+**Volba a důvod:**
+
+- Vzorec delší než 50 znaků se v tabulce vykreslí na více řádků: zalamuje se za středníkem mezi argumenty, u vzorců bez argumentů na nejvyšší úrovni před operátorem. Přednost mají zlomy na nejmělčí úrovni vnoření, řádky mají zhruba do 40 znaků a pokračování je odsazené pod otevírací závorku seznamu argumentů, k němuž patří; u dlouhého názvu funkce, kvůli kterému by řádek přesáhl limit, závěsně o dva znaky od začátku názvu. Krátký závěrečný zbytek (např. „/2“) nový řádek nezačíná. Tabulky se vzorci mají automatické šířky sloupců a na širších obrazovkách se řádky vzorce dál nelámou.
+- Ve zdroji zůstává vzorec na jednom řádku, takže ho tutor, vyhledávání i kontroly vidí beze změny. Zalomení provádí společný filtr `filters/table-style.lua`, v surovém HTML přehledu Excelu se zalamuje ručně stejným rozvržením.
+- Studenti se v kapitole 2 a v přehledu Excelu dozvědí, že zalomení slouží jen čitelnosti a do buňky se vzorec zapisuje jako jeden řádek.
+- Důvod: dlouhé vzorce (např. v tabulce 8.3) rozšiřovaly tabulky a zhoršovaly čitelnost.
+
+Postup je v [provozním návodu](../PROVOZ.md), pravidlo v [AGENTS.md](../../AGENTS.md#výpočty-kalkulačka-excel-a-interní-r).
+
+**Doklad:** autor 2026-11-14 po sloučení PR #198: „výraz: =KDYŽ(A(JE.ČISLO(Spanek_par!B2);JE.ČISLO(Spanek_par!C2));Spanek_par!B2;"") Je moc rozsáhlý, a kvůli němu je tabulka Tabulka 8.3 příliš široká. Myslím, že by bylo vhodné takové výrazy zalamovat“ (s ukázkou zalomení za středníkem a odsazením). V upřesňující otázce na rozsah zvolil „Celá kniha“ a schválil plán úprav. Záznam v [historii](../../quarto/README.md#zalamovani-vzorcu-2026-11-14).

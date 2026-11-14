@@ -400,6 +400,9 @@ konkrétního místa.
 - Používej české názvy funkcí a českou syntaxi Excelu; při zavedení funkce
   připoj její anglický název. Název, argumenty a chování ověřuj, nepřekládej
   odhadem.
+- Dlouhé vzorce v tabulkách se ve výstupu zalamují s odsazením podle
+  [R78](docs/rozhodnuti/spolecne-konvence.md#r78-zalamovani-vzorcu); ve zdroji
+  je zapisuj na jeden řádek (postup v [provozním návodu](docs/PROVOZ.md)).
 - U excelového příkladu uveď vstupy a jejich buňky, vzorec, význam argumentů,
   vracený výsledek a interpretaci, případně nároky na verzi Excelu. Student
   musí mít vše potřebné k zopakování postupu.

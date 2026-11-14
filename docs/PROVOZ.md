@@ -40,7 +40,16 @@ Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pr
 
 Renderování webu vyžaduje také Node.js pro úpravu popisků po sestavení.
 Společný filtr `filters/table-style.lua` označuje souhrnné řádky a zarovnává
-jednoznačně číselné sloupce, pokud autor neurčil zarovnání. Skript
+jednoznačně číselné sloupce, pokud autor neurčil zarovnání. Podle
+[R78](rozhodnuti/spolecne-konvence.md#r78-zalamovani-vzorcu) také zalamuje
+vzorce Excelu delší než 50 znaků v buňkách tabulek: za středníkem nebo před
+operátorem na co nejmělčí úrovni vnoření, řádky zhruba do 40 znaků, pokračování
+odsazené nezlomitelnými mezerami pod otevírací závorku (u dlouhého názvu funkce,
+který by řádek přetáhl, závěsně o dva znaky od začátku názvu). Zdroj ponechává
+vzorec na jednom řádku. Tabulky se vzorci mají automatické šířky sloupců (Pandoc by
+jinak kvůli dlouhému řádku zdroje dal všem sloupcům stejný podíl) a od šířky 601 px
+se řádky vzorců v buňkách dál nelámou (`assets/styles.css`). Filtr používá web i ruční PDF; surové HTML přehledu
+`quarto/excel.qmd` zalamujeme ručně (`<br>`, `&nbsp;`) stejným rozvržením. Skript
 `scripts/style-html-tables.cjs` po renderování vytvoří z automatických
 popisků Quarta číslo a název na samostatných řádcích; tato sazba funguje
 i bez JavaScriptu. Číslování a odkazy nadále spravuje Quarto. V nečíslovaných
