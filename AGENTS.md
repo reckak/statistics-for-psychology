@@ -112,7 +112,7 @@ Výstupem je Quarto Book průběžně publikovaný na GitHubu jako web.
   výslovné vyžádání, bez automatického spouštění nebo publikování s webem.
   V PDF soustřeď řešení do samostatné části za všechna zadání; v PDF
   jednotlivé kapitoly závěrečné přehledy zatím vynech. Ověřen je export
-  kapitol 3–8 (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly))
+  kapitol 3–9 (viz [provozní návod](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly))
   a souhrnné PDF kapitol 1–6 s literaturou a přehledy omezenými na tyto
   kapitoly (viz [PDF kapitol 1–6](docs/PROVOZ.md#ruční-pdf-kapitol-16)).
   Finální knižní sazbu budeme řešit při finalizaci knihy; neomezuj kvůli

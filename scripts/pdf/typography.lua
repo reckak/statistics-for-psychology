@@ -21,11 +21,21 @@ end
 
 return {
   { Div = function(el)
+      local changed = false
+      local title = el.attributes.title
+      if title then
+        -- Quarto parses callout titles as Markdown; ASCII quotes become a
+        -- quotation that Typst sets with Czech quotes (the Str pass cannot see it).
+        local new = title:gsub('\u{201E}', '"'):gsub('\u{201C}', '"')
+          :gsub('\u{201A}', "'"):gsub('\u{2018}', "'")
+        if new ~= title then el.attributes.title = new; changed = true end
+      end
       if el.classes:includes('table-note') then
         el.content:insert(1, pandoc.RawBlock('typst', '#block[\n#set text(size: 9pt)'))
         el.content:insert(pandoc.RawBlock('typst', ']'))
         return el
       end
+      if changed then return el end
     end },
   { Span = function(el)
       -- Empty source anchors following a heading must not label that heading twice.
@@ -52,5 +62,25 @@ return {
       el.text = text:gsub('(%d+{,}%d+)', function(number) return upright('', number, '') end)
       return el
     end },
-  { Inlines = bind }
+  { Inlines = bind },
+  { Str = function(el)
+      -- Pandoc 3.10 writes a literal “ or ‘ as a Typst smart quote, which then
+      -- opens a new quotation („). Typst escapes keep the Czech quotes as typed.
+      -- Lua patterns are byte-based, so search the three-byte sequences literally.
+      local quotes = {'\u{201E}', '\u{201C}', '\u{201A}', '\u{2018}'}
+      local out = pandoc.List()
+      local rest = el.text
+      while rest ~= '' do
+        local best
+        for _, q in ipairs(quotes) do
+          local p = rest:find(q, 1, true)
+          if p and (not best or p < best[1]) then best = {p, q} end
+        end
+        if not best then out:insert(pandoc.Str(rest)); break end
+        if best[1] > 1 then out:insert(pandoc.Str(rest:sub(1, best[1] - 1))) end
+        out:insert(pandoc.RawInline('typst', string.format('\\u{%X}', utf8.codepoint(best[2]))))
+        rest = rest:sub(best[1] + #best[2])
+      end
+      return out
+    end }
 }
