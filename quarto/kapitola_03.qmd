@@ -150,7 +150,7 @@ Z velikostí skupin a jejich mediánů obecně medián všech lidí nezrekonstru
 
 ::: {.teaching-figure role="region" aria-label="Příspěvky různě velkých skupin ke společnému průměru" tabindex="0"}
 
-![Společný průměr zachovává příspěvek každého účastníka.](../assets/chapter-03/plots/vazeny-prumer.svg){#fig-vazeny-prumer fig-alt="Deset lidí s průměrem čtyři minuty přispívá celkovým časem 40 minut. Třicet lidí s průměrem osm minut přispívá 240 minutami. Součet 280 dělený 40 lidmi dává sedm minut, blíže průměru větší skupiny."}
+![Společný průměr zachovává příspěvek každého účastníka.](../assets/chapter-03/plots/vazeny-prumer.svg){#fig-vazeny-prumer fig-alt="Deset lidí s průměrem čtyři minuty přispívá celkovým časem 40 minut. Třicet lidí s průměrem osm minut přispívá 240 minutami. Po vydělení součtu 280 počtem 40 lidí vychází sedm minut, blíže průměru větší skupiny."}
 
 :::
 
@@ -251,7 +251,7 @@ Jiná konvence určí kvantil jako **nejnižší pozorovanou hodnotu nebo katego
 
 :::
 
-Hledáme-li úroveň **90 %**, u 6 minut máme teprve 80 %, a proto pokračujeme k 10 minutám, kde dosáhneme 100 %. Podle této konvence je 90. percentil **10 minut**, zatímco lineární interpolace dala **8,4 minuty**. Rozdíl odpovídá jinému pravidlu, nikoli početní chybě [@hyndman1996].
+Hledáme-li úroveň **90 %**, u 6 minut máme teprve 80 %, a proto pokračujeme k 10 minutám, kde dosáhneme 100 %. Podle této konvence je 90. percentil **10 minut**, zatímco lineární interpolací vychází **8,4 minuty**. Rozdíl odpovídá jinému pravidlu, nikoli početní chybě [@hyndman1996].
 
 **Pokud požadovanou úroveň dosáhneme už u nejnižší hodnoty, vybereme tuto hodnotu.** Například 10. i 20. percentil jsou podle tohoto pravidla 4 minuty, protože už u nejkratší doby dosahuje kumulativní podíl 20 %. Pro 25. percentil už 4 minuty nestačí; vybereme 5 minut, u nichž podíl dosahuje 60 %. Podíl se tedy může dostat nad požadovanou úroveň a několik různých percentilů může odpovídat stejné hodnotě. Nevyžadujeme přesnou shodu podílů.
 
@@ -275,7 +275,7 @@ Značka $\approx$ znamená **přibližnou rovnost**: v následující tabulce js
 
 Pro **75. percentil** hledáme první kategorii s kumulativním podílem alespoň 75 %. Kategorie „trochu“ by pro jeho dosažení nestačila (50,0 %), „dost“ již ano (83,3 %). Výsledkem je tedy **kategorie „dost“**: je to nejnižší kategorie, do níž včetně spadá alespoň 75 % odpovědí. Pro 90 % stejným pravidlem vybereme „zcela“ a pro 50 % „trochu“, protože už u této kategorie kumulativní podíl dosahuje 50 %. Při popisu [mediánu](#sec-median) jsme u sudého počtu odpovědí uvedli obě prostřední kategorie, zde „trochu“ a „dost“. Kumulativní pravidlo z nich jako 50. percentil vybírá nižší; je to dohodnutá volba, nikoli zjištění, že „trochu“ vystihuje střed lépe než „dost“.
 
-Kdybychom kategoriím přiřadili kódy 1, 2, 3, 4 a interpolovali např. 90. percentil, vyšlo by 3,5. **„Odpočatost 3,5“ však není definovanou kategorií ani doloženou intenzitou odpočatosti.** Stejné pořadí bychom mohli zakódovat i čísly 1, 2, 10, 100; interpolace by pak dala 55, zatímco kumulativní odečet by stále vybral kategorii „zcela“.
+Kdybychom kategoriím přiřadili kódy 1, 2, 3, 4 a interpolovali např. 90. percentil, vyšlo by 3,5. **„Odpočatost 3,5“ však není definovanou kategorií ani doloženou intenzitou odpočatosti.** Stejné pořadí bychom mohli zakódovat i čísly 1, 2, 10, 100; interpolací by pak vyšlo 55, zatímco kumulativní odečet by stále vybral kategorii „zcela“.
 
 ### Percentilové pořadí není hodnota percentilu {#sec-percentilove-poradi}
 
@@ -426,18 +426,18 @@ Z této populace náhodně vybíráme **s vracením**: v každém tahu má každ
 
 :::
 
-Všechny rozptyly jsou v min². Při dělení $n-1$ se průměry od přesné hodnoty 8 liší jen nepatrně, což souvisí s konečným počtem náhodných opakování. Při dělení $n$ vidíme navíc systematické podhodnocení, výraznější u malých výběrů; výsledky odpovídají očekávaným hodnotám $8\times4/5=6{,}4$, $8\times19/20=7{,}6$ a $8\times99/100=7{,}92$. Podhodnocení činí vždy podíl $1/n$ z $\mathrm{σ}^2$, protože $(n-1)/n=1-1/n$. Pro $n=5$ je poměr 0,80 a průměrný výsledek s dělením $n$ postrádá pětinu rozptylu; pro $n=20$ je poměr 0,95 a pro $n=100$ už 0,99. Čím menší výběr, tím víc se od sebe $n$ a $n-1$ poměrně liší, a tím důležitější je oprava. Ve velkých výběrech dávají oba výpočty téměř stejný výsledek. Simulace vztah názorně ilustruje; nenahrazuje obecné matematické zdůvodnění.
+Všechny rozptyly jsou v min². Při dělení $n-1$ se průměry od přesné hodnoty 8 liší jen nepatrně, což souvisí s konečným počtem náhodných opakování. Při dělení $n$ vidíme navíc systematické podhodnocení, výraznější u malých výběrů; výsledky odpovídají očekávaným hodnotám $8\times4/5=6{,}4$, $8\times19/20=7{,}6$ a $8\times99/100=7{,}92$. Podhodnocení činí vždy podíl $1/n$ z $\mathrm{σ}^2$, protože $(n-1)/n=1-1/n$. Pro $n=5$ je poměr 0,80 a průměrný výsledek s dělením $n$ postrádá pětinu rozptylu; pro $n=20$ je poměr 0,95 a pro $n=100$ už 0,99. Čím menší výběr, tím víc se od sebe $n$ a $n-1$ poměrně liší, a tím důležitější je oprava. Ve velkých výběrech vedou oba výpočty k téměř stejnému výsledku. Simulace vztah názorně ilustruje; nenahrazuje obecné matematické zdůvodnění.
 ::::
 
 ![Rozptyly jednotlivých simulovaných výběrů a jejich průměry. Při dělení $n$ leží průměr pod populačním rozptylem 8, při dělení $n-1$ na něm; jednotlivé výsledky přitom kolísají, nejvíce u malých výběrů.](../assets/chapter-03/plots/korekce-rozptylu.svg){#fig-korekce-rozptylu fig-alt="Bodový graf pro velikosti výběru 5, 20 a 100. Každý bod je rozptyl jednoho výběru, oranžově při dělení n, modrozeleně při dělení n minus jedna; zobrazeno je prvních 400 výběrů každé velikosti. Křížky značí průměry ze všech 20 000 výběrů: při dělení n přibližně 6,41, 7,62 a 7,93, při dělení n minus jedna přibližně 8,01, 8,02 a 8,01, blízko populačnímu rozptylu 8 vyznačenému čárkovanou čarou. Při n = 5 leží jednotlivé rozptyly zhruba mezi 0 a 19, při n = 100 těsně kolem 8."}
 
-Na obrázku [-@fig-korekce-rozptylu] každý bod představuje rozptyl jednoho výběru; kvůli přehlednosti je zobrazeno prvních 400 výběrů každé velikosti, křížky jsou průměry ze všech 20 000. Dělení $n-1$ zvětší každý výsledek v poměru $n/(n-1)$, takže se celý oblak bodů posune nahoru a jeho průměr dosáhne populačního rozptylu. Rozptýlenost jednotlivých výsledků však zůstává: při $n=5$ může jeden výběr dát rozptyl blízký nule i více než dvojnásobek skutečné hodnoty. S rostoucím $n$ se body stahují k osmi a obě varianty se k sobě přibližují. To je přesně rozdíl mezi nestranností postupu a přesností jednoho výsledku.
+Na obrázku [-@fig-korekce-rozptylu] každý bod představuje rozptyl jednoho výběru; kvůli přehlednosti je zobrazeno prvních 400 výběrů každé velikosti, křížky jsou průměry ze všech 20 000. Dělení $n-1$ zvětší každý výsledek v poměru $n/(n-1)$, takže se celý oblak bodů posune nahoru a jeho průměr dosáhne populačního rozptylu. Rozptýlenost jednotlivých výsledků však zůstává: při $n=5$ může v jednom výběru vyjít rozptyl blízký nule i více než dvojnásobek skutečné hodnoty. S rostoucím $n$ se body stahují k osmi a obě varianty se k sobě přibližují. To je přesně rozdíl mezi nestranností postupu a přesností jednoho výsledku.
 
 Korekce se týká tohoto konkrétního problému odhadování. Sama nenapravuje nereprezentativní výběr, chybné měření ani závislost pozorování. V uvedené simulaci jsou podmínky záměrně splněny.
 
 ### Směrodatná odchylka a původní jednotky {#sec-smerodatna-odchylka}
 
-Rozptyl je ve „čtverečních“ jednotkách (zde v min²), nikoli v původních jednotkách měření. Pro srozumitelnější vyjádření variability se vrátíme k minutám pomocí **druhé odmocniny (*square root*)**. Odmocnina z nezáporného čísla je nezáporné číslo, jehož druhá mocnina dává původní hodnotu. Například $\sqrt{9}=3$, protože $3^2=9$.
+Rozptyl je ve „čtverečních“ jednotkách (zde v min²), nikoli v původních jednotkách měření. Pro srozumitelnější vyjádření variability se vrátíme k minutám pomocí **druhé odmocniny (*square root*)**. Odmocnina z nezáporného čísla je nezáporné číslo, jehož druhá mocnina se rovná původní hodnotě. Například $\sqrt{9}=3$, protože $3^2=9$.
 
 **Směrodatná (standardní) odchylka (*standard deviation*)** je odmocnina rozptylu. Pro výběrovou variantu:
 
@@ -471,7 +471,7 @@ Další možností je upravit příspěvek krajních hodnot. **Ořezání (*trim
 
 V této učebnici se **procentní úroveň ořezání či winsorizace vztahuje ke každému konci zvlášť**: 10% ořezání znamená vynechat 10 % nejnižších i 10 % nejvyšších hodnot, celkem tedy 20 %. To platí, pokud tyto podíly odpovídají celým počtům. U winsorizace stejný počet hodnot na obou koncích nahrazujeme: nejnižší hodnoty nejnižší ponechanou hodnotou a nejvyšší hodnoty nejvyšší ponechanou hodnotou. Jiné zdroje mohou udávat celkový podíl nebo používat jiné zaokrouhlení, proto konvenci vždy uvedeme [@rDocumentation, [Arithmetic mean](https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html); @scipyDocumentation, [scipy.stats.mstats.winsorize](https://docs.scipy.org/doc/scipy-1.18.0/reference/generated/scipy.stats.mstats.winsorize.html)].
 
-**Nejprve spočítáme počet pro jeden konec a zaokrouhlíme jej dolů.** Například při 10% ořezání 18 hodnot je $0{,}10\times18=1{,}8$. Na každém konci tedy vynecháme **jednu** hodnotu, nikoli dvě. Celkem odstraníme dvě z osmnácti, tedy přibližně 11,1 %, a průměrujeme zbývajících 16. Při stejné winsorizaci jednu nejnižší hodnotu nahradíme druhou nejnižší a jednu nejvyšší druhou nejvyšší; průměrujeme všech 18. U pěti hodnot dává 10 % pouze 0,5, po zaokrouhlení dolů nulu: podle tohoto pravidla se neupraví žádná hodnota.
+**Nejprve spočítáme počet pro jeden konec a zaokrouhlíme jej dolů.** Například při 10% ořezání 18 hodnot je $0{,}10\times18=1{,}8$. Na každém konci tedy vynecháme **jednu** hodnotu, nikoli dvě. Celkem odstraníme dvě z osmnácti, tedy přibližně 11,1 %, a průměrujeme zbývajících 16. Při stejné winsorizaci jednu nejnižší hodnotu nahradíme druhou nejnižší a jednu nejvyšší druhou nejvyšší; průměrujeme všech 18. U pěti hodnot činí 10 % pouze 0,5, po zaokrouhlení dolů nulu: podle tohoto pravidla se neupraví žádná hodnota.
 
 ::: worked-example
 Deset dob dokončení úlohy v minutách je již seřazeno:
@@ -546,7 +546,7 @@ $$h=0{,}5\times1+0{,}25\times2+0{,}25\times2=1{,}5\ \text{bitu}.$$
 
 Kategorii s nulovým zastoupením do součtu nezahrnujeme; její příspěvek je **nulový**. Logaritmus nuly není definován, proto zde nenásobíme nulu jejím logaritmem. Dohoda je přirozená: při zmenšování podílu kategorie se její příspěvek k entropii blíží nule.
 
-Čtyři stejně zastoupené kategorie dávají $4\times0{,}25\times2=2$ bity. Obecně je maximum pro $k$ kategorií $\log_2 k$. Entropie 1,5 bitu neznamená „1,5 různých strategií“ ani „75 % jistoty“; jde o průměrné množství informace v popsaném smyslu [@shannon1948, oddíl 6].
+U čtyř stejně zastoupených kategorií vychází $4\times0{,}25\times2=2$ bity. Obecně je maximum pro $k$ kategorií $\log_2 k$. Entropie 1,5 bitu neznamená „1,5 různých strategií“ ani „75 % jistoty“; jde o průměrné množství informace v popsaném smyslu [@shannon1948, oddíl 6].
 
 **Normalizovaná entropie (*normalized entropy*)** vyjadřuje podíl dosažené entropie z jejího teoretického maxima. Pro více než jednu vymezenou kategorii ji vypočítáme jako
 
@@ -659,7 +659,7 @@ Slovní popis i obě jazykové verze odborného zápisu ukazují tatáž data; v
 
 APA 7 doporučuje volit přesnost podle měření a účelu, nikoli mechanicky ponechávat tolik míst, kolik zobrazuje statistický program. U průměrů a směrodatných odchylek **celočíselných dat** doporučuje zpravidla jedno desetinné místo, u ostatních dvě. Proto v odborné ukázce uvádíme počet slov jako 7.0 a 2.6, ale dobu spánku jako 7.06 a 1.29. Počty osob zůstávají celá čísla [@apaNumbers2024, s. 2].
 
-**Pro procenta v této učebnici volíme zpravidla jedno desetinné místo**, například $33/36\times100\approx91{,}7\,\%$. Je to naše redakční konvence, nikoli univerzální požadavek APA na všechna procenta. U malých souborů uvádíme také četnost a základ procenta: „33 z 36 účastníků (91,7 %)“. Procenta po zaokrouhlení nemusejí dávat přesně 100 %.
+**Pro procenta v této učebnici volíme zpravidla jedno desetinné místo**, například $33/36\times100\approx91{,}7\,\%$. Je to naše redakční konvence, nikoli univerzální požadavek APA na všechna procenta. U malých souborů uvádíme také četnost a základ procenta: „33 z 36 účastníků (91,7 %)“. Součet procent po zaokrouhlení nemusí činit přesně 100 %.
 
 Pro srovnatelné hodnoty v tabulce zachováme stejný počet desetinných míst. V přesném anglickém formátu APA se před desetinnou tečkou vynechává nula u statistik, které nemohou přesáhnout hodnotu 1, například u podílu .92; u směrodatné odchylky 0.85 zůstává. Český výklad používá zápis podílu 0,92 [@apaManual2020, oddíl 6.36]. Mezivýpočty ponecháváme v plné přesnosti a zaokrouhlujeme až sdělovaný výsledek. Přesnost výpočtu není přesností měřicího nástroje; pro kontrolu ručního postupu můžeme ukázat více číslic než ve výsledné zprávě určené k prezentaci či publikaci.
 
@@ -782,14 +782,14 @@ Korigovaný exces získáme jako
 
 $$\frac{n-1}{(n-2)(n-3)}\bigl[(n+1)g_2+6\bigr].$$
 
-V obou výrazech je $n$ počet platných hodnot a $g_1$, $g_2$ základní koeficienty definované výše. Nejprve vyhodnotíme závorky a až potom násobení a dělení. V našem příkladu první násobitel činí $\sqrt{20}/3$, takže korigovaná šikmost vyjde přibližně **1,74**. Druhý vztah dává přibližně **3,32**. Rozdíl od základních výsledků 1,17 a −0,17 je u pouhých pěti hodnot značný. Nejde o chybu zaokrouhlení [@msExcel, [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
+V obou výrazech je $n$ počet platných hodnot a $g_1$, $g_2$ základní koeficienty definované výše. Nejprve vyhodnotíme závorky a až potom násobení a dělení. V našem příkladu první násobitel činí $\sqrt{20}/3$, takže korigovaná šikmost vyjde přibližně **1,74**. Podle druhého vztahu vychází přibližně **3,32**. Rozdíl od základních výsledků 1,17 a −0,17 je u pouhých pěti hodnot značný. Nejde o chybu zaokrouhlení [@msExcel, [SKEW (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-function), [SKEW.P (funkce)](https://support.microsoft.com/cs-cz/excel/functions/skew-p-function), [KURT (funkce)](https://support.microsoft.com/cs-cz/excel/functions/kurt-function)].
 
 U 33 dob spánku jsou rozdíly malé: základní $g_1\approx-0{,}12$ a $g_2\approx-0{,}65$ proti korigovaným −0,13 a −0,55. S rostoucím $n$ se obě varianty sbližují. Ne každá taková korekce zaručuje nestrannost pro každé populační rozdělení. Normální populační model má nulovou šikmost a nulový exces; výběr z něj nemusí mít (kvůli výběrové variabilitě) ani jeden vypočtený koeficient přesně nulový. Ani opačné uvažování by nebylo oprávněné: nulová výběrová šikmost a exces samy o sobě nedokládají, že výběr pochází z normálního rozdělení.
 :::
 
 ## Výpočty v Excelu {#sec-excel-poloha}
 
-Jak provést výpočty z této kapitoly rychle i u většího souboru? Oddíl ukazuje odpovídající funkce Excelu; ruční postup z předchozích oddílů pomáhá jejich výsledkům rozumět.
+Jak provést výpočty z této kapitoly rychle i u většího souboru? Tento oddíl ukazuje odpovídající funkce Excelu; ruční postup z předchozích oddílů pomáhá jejich výsledkům rozumět.
 
 Otevřete [sešit ke kapitole](../data/kapitola_03.xlsx). List `Priklad` obsahuje v **A2:A6** časy 4, 5, 5, 6, 10 minut, v řádku 1 je záhlaví. List `Souhrn` shrnuje známá data o spánku a paměti z listu `Data`; list `Rozsireni` ukazuje entropii a momentové výpočty. Samostatné vstupy pro [výpočet kvantilů](#sec-vypocet-kvantilu) jsou na listu `Kvantily` v A2:A12, pro [ořezání a winsorizaci](#sec-orezani-winsorizace) na listu `Orezani` v A2:A11 a pro [krabicový graf](#sec-boxplot) na listu `Boxplot` v A2:A42. List `Kontrola_prikladu` z těchto vstupů přebírá hodnoty a počítá kontrolní výsledky. Pět základních časů bez hotových výpočtů najdete na listu `Zaklad_data` v A2:A6. Další příklady i cvičení mají vlastní listy uvedené v přehledu. Číselné buňky obsahují čísla, jednotky jsou v popiscích. Žluté vstupy lze měnit, modré buňky obsahují výpočty. Prázdné údaje o spánku zůstávají prázdné.
 
@@ -930,7 +930,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U05_variabilita` A2:A
 Pro tři doby 2, 4 a 6 minut vypočtěte průměr, jednotlivé odchylky, průměrnou absolutní odchylku, součet čtverců odchylek, výběrový rozptyl a směrodatnou odchylku. Proč nelze variabilitu měřit průměrem podepsaných odchylek? Kolik stupňů volnosti mají tyto odchylky a jak určíte třetí, znáte-li první dvě?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průměr jsou nulové, přestože hodnoty se liší. Absolutní odchylky 2, 0, 2 dávají průměr $4/3\approx1{,}33$ minuty. Čtverce 4, 0, 4 mají součet 8 min². Výběrový rozptyl je $8/(3-1)=4$ min² a směrodatná odchylka $\sqrt4=2$ minuty. Průměr čtverců s dělením $n$ by byl $8/3\approx2{,}67$ min²; jde o jinou popisnou konvenci, nikoli totéž $s^2$. Odchylky mají $3-1=2$ stupně volnosti. Po určení −2 a 0 musí třetí odchylka být 2, aby součet byl nula; do rozptylu přesto vstupují všechny tři.
+Průměr je $12/3=4$ minuty. Odchylky jsou −2, 0, 2 a jejich součet i průměr jsou nulové, přestože hodnoty se liší. Absolutní odchylky 2, 0, 2 mají průměr $4/3\approx1{,}33$ minuty. Čtverce 4, 0, 4 mají součet 8 min². Výběrový rozptyl je $8/(3-1)=4$ min² a směrodatná odchylka $\sqrt4=2$ minuty. Průměr čtverců s dělením $n$ by byl $8/3\approx2{,}67$ min²; jde o jinou popisnou konvenci, nikoli totéž $s^2$. Odchylky mají $3-1=2$ stupně volnosti. Po určení −2 a 0 musí třetí odchylka být 2, aby součet byl nula; do rozptylu přesto vstupují všechny tři.
 :::
 
 ### 6. Co dokládá simulace korekce

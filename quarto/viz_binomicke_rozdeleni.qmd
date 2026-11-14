@@ -12,7 +12,7 @@ Nahoře zadejte počet pokusů $n$ (celé číslo od 1 do 1 000, lze použít i 
 
 V části **Hledaná pravděpodobnost** zvolíte typ otázky:
 
-- **Jedna hranice $k$.** Zadáte počet úspěchů $k$ a zaškrtnete, které počty chcete zahrnout: méně než $k$, právě $k$, více než $k$. Možnosti lze kombinovat. Právě $k$ spolu s méně než $k$ dává nejvýše $k$, právě $k$ spolu s více než $k$ dává alespoň $k$, méně než $k$ spolu s více než $k$ dává jiný počet než $k$. Nezaškrtnuté možnosti tvoří [opačný jev](kapitola_05.qmd#sec-doplnkovy-jev).
+- **Jedna hranice $k$.** Zadáte počet úspěchů $k$ a zaškrtnete, které počty chcete zahrnout: méně než $k$, právě $k$, více než $k$. Možnosti lze kombinovat. Právě $k$ spolu s méně než $k$ tvoří nejvýše $k$, právě $k$ spolu s více než $k$ tvoří alespoň $k$, méně než $k$ spolu s více než $k$ tvoří jiný počet než $k$. Nezaškrtnuté možnosti tvoří [opačný jev](kapitola_05.qmd#sec-doplnkovy-jev).
 - **Rozpětí od $k_1$ do $k_2$.** Zadáte dolní a horní mez; obě meze patří do rozpětí. Vizualizace spočítá pravděpodobnost počtu úspěchů v rozpětí i mimo ně. Dolní mez nesmí být větší než horní.
 
 Počet úspěchů nemůže převýšit počet pokusů. Když $n$ snížíte pod některou hranici, hranice se sníží na $n$.
@@ -503,7 +503,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
       const zLine = x => `<i>z</i> = (${typed(x)} − ${typed(ap.mu)}) / ${fixed(ap.sd, 3)} = ${fixed((x - ap.mu) / ap.sd, 3)}`;
       const exact = q.value, range = q.key === "range";
       const compare = (v, restV) => range ? `v rozpětí ≈ <strong>${prob4(v)}</strong> (přesně ${prob4(exact)}; rozdíl ${signed(v - exact)})<br>mimo rozpětí ≈ ${prob4(restV)} (přesně ${prob4(q.rest_value)}; rozdíl ${signed(restV - q.rest_value)})` : `≈ <strong>${prob4(v)}</strong> (přesně ${prob4(exact)}; rozdíl ${signed(v - exact)})`;
-      const midText = ap.point ? "Jediný bod nemá v normálním modelu žádnou plochu, aproximace dává 0." : "";
+      const midText = ap.point ? "Jediný bod nemá v normálním modelu žádnou plochu, aproximací vychází 0." : "";
       rows.push(["Hranice uprostřed sloupce (bez posunu)", `${ap.midCuts.map(x => `hranice ${typed(x)}: ${zLine(x)}`).join("<br>")}${ap.midCuts.length ? "<br>" : ""}${midText ? midText + "<br>" : ""}${compare(ap.midArea, 1 - ap.midArea)}`]);
       rows.push(["Hranice na okraji sloupců (posun o 0,5)", `${ap.edgeCuts.map(x => `hranice ${typed(x)}: ${zLine(x)}`).join("<br>")}${ap.edgeCuts.length ? "<br>" : ""}${compare(ap.edgeArea, 1 - ap.edgeArea)}`]);
       const fm = (label, f) => `${label} <code>${f}</code>`;
@@ -554,7 +554,7 @@ Každá otázka na počet úspěchů se dá rozložit na sloupce, které sčít�
 
 Tvar rozdělení určují oba parametry, jak ukazuje oddíl [Tvar, střední hodnota a směrodatná odchylka](kapitola_05.qmd#sec-binomicke-tvar). Při $\mathrm{π}=0{,}5$ je rozdělení souměrné, při nízké pravděpodobnosti úspěchu zešikmené doprava a při vysoké doleva. S rostoucím počtem pokusů se rozdělení v počtech rozšiřuje, jednotlivé sloupce jsou nižší a tvar se blíží souměrnému zvonu.
 
-Normální křivka sedí na vrcholy sloupců, když očekáváme dost úspěchů i neúspěchů. Hranice uprostřed sloupce však polovinu krajního sloupce vynechá nebo přidá. Pro „právě $k$“ dává dokonce nulu, protože jediný bod nemá pod spojitou křivkou žádnou plochu. Hranice na okrajích sloupců pokrývají stejný úsek osy jako sečtené sloupce, a výsledek je proto zpravidla bližší přesné hodnotě. Navíc nezávisí na tom, jak otázku zapíšeme: „méně než $k$“ i „nejvýše $k-1$“ vedou ke stejné hranici $k-0{,}5$. Hranice uprostřed sloupce by v obou zápisech ležela jinde, jednou v $k$ a jednou v $k-1$. Když podmínka aproximace splněna není, křivka zasahuje do záporných počtů nebo nad $n$ a nepomůže ani posun hranic. Excel dnes vrátí přesnou hodnotu okamžitě; aproximace je důležitá hlavně proto, že ukazuje přibližně normální tvar počtu úspěchů v mnoha pokusech ([Jak přesná aproximace je](kapitola_05.qmd#sec-aproximace-presnost)).
+Normální křivka sedí na vrcholy sloupců, když očekáváme dost úspěchů i neúspěchů. Hranice uprostřed sloupce však polovinu krajního sloupce vynechá nebo přidá. Pro „právě $k$“ vychází dokonce nula, protože jediný bod nemá pod spojitou křivkou žádnou plochu. Hranice na okrajích sloupců pokrývají stejný úsek osy jako sečtené sloupce, a výsledek je proto zpravidla bližší přesné hodnotě. Navíc nezávisí na tom, jak otázku zapíšeme: „méně než $k$“ i „nejvýše $k-1$“ vedou ke stejné hranici $k-0{,}5$. Hranice uprostřed sloupce by v obou zápisech ležela jinde, jednou v $k$ a jednou v $k-1$. Když podmínka aproximace splněna není, křivka zasahuje do záporných počtů nebo nad $n$ a nepomůže ani posun hranic. Excel dnes vrátí přesnou hodnotu okamžitě; aproximace je důležitá hlavně proto, že ukazuje přibližně normální tvar počtu úspěchů v mnoha pokusech ([Jak přesná aproximace je](kapitola_05.qmd#sec-aproximace-presnost)).
 
 Řada $p$ pod osou převádí počty na podíly úspěchů. Při čtyřnásobném počtu pokusů se úsečka $\mathrm{μ}\pm\mathrm{σ}$ v počtech prodlouží na dvojnásobek, ale v podílech se zkrátí na polovinu. Proto podíl úspěchů s rostoucím počtem pokusů kolísá kolem $\mathrm{π}$ stále méně, jak vysvětluje oddíl [Od počtu k podílu](kapitola_05.qmd#sec-od-poctu-k-podilu).
 

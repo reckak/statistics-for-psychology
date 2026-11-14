@@ -4,7 +4,7 @@ code-copy: false
 
 # Na čem závisí statistická síla {#sec-viz-statisticka-sila .unnumbered}
 
-Jak pravděpodobně test odhalí rozdíl, který v populaci skutečně existuje, a co tuto pravděpodobnost zvyšuje nebo snižuje? Vizualizace ukazuje statistickou sílu testu rozdílu dvou průměrů jako plochu pod křivkou a dovoluje porovnat dvě nastavení vedle sebe. Navazuje na kapitolu 6: na [rozdíl dvou průměrů](kapitola_06.qmd#sec-rozdil-dvou-prumeru), [směr testu](kapitola_06.qmd#sec-smer-testu), [hladinu významnosti a kritický obor](kapitola_06.qmd#sec-hladina-kriticky-obor), [chybu I. a II. druhu](kapitola_06.qmd#sec-dve-chyby), [statistickou sílu pro konkrétní alternativy](kapitola_06.qmd#sec-statisticka-sila) a nepovinné rozšíření o [výpočtu statistické síly](kapitola_06.qmd#rozsireni-vypocet-sily).
+Jak pravděpodobně test odhalí rozdíl průměrů, který v populaci skutečně existuje, a co tuto pravděpodobnost zvyšuje nebo snižuje? Vizualizace ukazuje statistickou sílu testu rozdílu dvou průměrů jako plochu pod křivkou a dovoluje porovnat dvě nastavení vedle sebe. Navazuje na kapitolu 6: na [rozdíl dvou průměrů](kapitola_06.qmd#sec-rozdil-dvou-prumeru), [směr testu](kapitola_06.qmd#sec-smer-testu), [hladinu významnosti a kritický obor](kapitola_06.qmd#sec-hladina-kriticky-obor), [chybu I. a II. druhu](kapitola_06.qmd#sec-dve-chyby), [statistickou sílu pro konkrétní alternativy](kapitola_06.qmd#sec-statisticka-sila) a nepovinné rozšíření o [výpočtu statistické síly](kapitola_06.qmd#rozsireni-vypocet-sily).
 
 ## Model a ovládání {#sec-viz-ss-ovladani .unnumbered}
 

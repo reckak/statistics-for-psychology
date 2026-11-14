@@ -370,7 +370,7 @@ Kvartily počítáme lineární interpolací jako funkce PERCENTIL.INC, směroda
     table.innerHTML = tableHtml(S, T, P, d);
     note.textContent = s.mode === "linear"
       ? "Sloupec převedených dat je spočten znovu z převedených hodnot, předpověď jen z původních ukazatelů. Obě cesty vedou ke stejnému výsledku."
-      : "Po nelineárním převodu je nutné ukazatele spočítat znovu z převedených hodnot. Převod původního ukazatele dá správný výsledek jen u ukazatelů, které jsou přímo některou pozorovanou hodnotou, například u mediánu lichého počtu hodnot; průměr ani ukazatele variability a tvaru takto získat nelze.";
+      : "Po nelineárním převodu je nutné ukazatele spočítat znovu z převedených hodnot. Převod původního ukazatele vede ke správnému výsledku jen u ukazatelů, které jsou přímo některou pozorovanou hodnotou, například u mediánu lichého počtu hodnot; průměr ani ukazatele variability a tvaru takto získat nelze.";
     const ex = excelRows(d);
     excelBox.innerHTML = ex.html.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join("");
     last = {data: s.data, mode: s.mode, a: s.a, b: s.b, unit: s.unit, axis: s.axis, values: X.slice(), transformed: Y,
@@ -414,4 +414,4 @@ Na vlastní ose vypadá rozdělení po lineární transformaci s kladným násob
 
 Záporný násobitel obrací pořadí: spojnice se kříží a rozdělení se zrcadlově převrátí. Nový 1. kvartil proto vzniká z původního 3. kvartilu a šikmost změní znaménko, protože delší chvost přejde na druhou stranu. Exces a směrodatná odchylka se nezmění. Při $b=0$ dostanou všichni stejnou hodnotu a původní rozdíly zaniknou; šikmost ani exces pak nelze určit, protože směrodatná odchylka je nulová.
 
-Nelineární převod, například druhá mocnina, mění vzdálenosti různě podle toho, kde na ose leží. Spojnice se rozbíhají nestejnoměrně a na vlastní ose je vidět, že se změnil tvar rozdělení. Pravidla pro posun a násobení tu neplatí: průměr druhých mocnin pěti časů je 40,4, nikoli $6^2=36$. Ukazatele proto [musíme spočítat znovu z převedených hodnot](kapitola_03.qmd#sec-nelinearni-transformace). Převod původního ukazatele dá správný výsledek jen tehdy, když je ukazatel přímo některou pozorovanou hodnotou, jako medián lichého počtu hodnot.
+Nelineární převod, například druhá mocnina, mění vzdálenosti různě podle toho, kde na ose leží. Spojnice se rozbíhají nestejnoměrně a na vlastní ose je vidět, že se změnil tvar rozdělení. Pravidla pro posun a násobení tu neplatí: průměr druhých mocnin pěti časů je 40,4, nikoli $6^2=36$. Ukazatele proto [musíme spočítat znovu z převedených hodnot](kapitola_03.qmd#sec-nelinearni-transformace). Převod původního ukazatele vede ke správnému výsledku jen tehdy, když je ukazatel přímo některou pozorovanou hodnotou, jako medián lichého počtu hodnot.

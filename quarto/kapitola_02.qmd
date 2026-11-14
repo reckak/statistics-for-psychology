@@ -101,7 +101,7 @@ Pro běžnou tabulku rozdělení jedné proměnné budeme pracovat se vzájemně
 
 V této učebnici budeme podíly zpravidla zobrazovat na **tři desetinná místa**, procenta na **jedno desetinné místo**. Absolutní četnosti zůstávají celá čísla. Hodnota 0,400 je tedy tentýž podíl jako 0,4; nuly sjednocují přesnost zobrazení v tabulce.
 
-Mezivýpočty nezaokrouhlujeme. Procenta i pozdější součty počítáme z původních četností nebo z nezkrácených podílů. Například tři kategorie po jednom případu mají každá přesný podíl $1/3$. Zobrazené hodnoty 0,333 dají součet 0,999 a zobrazených 33,3 % třikrát dá 99,9 %. Ve skutečnosti pokrývají celý soubor. Chybějící desetinu procenta proto svévolně nepřičítáme jedné kategorii; případný rozdíl vysvětlíme zaokrouhlením.
+Mezivýpočty nezaokrouhlujeme. Procenta i pozdější součty počítáme z původních četností nebo z nezkrácených podílů. Například tři kategorie po jednom případu mají každá přesný podíl $1/3$. Součet tří zobrazených hodnot 0,333 činí 0,999 a součet tří zobrazených 33,3 % činí 99,9 %. Ve skutečnosti pokrývají celý soubor. Chybějící desetinu procenta proto svévolně nepřičítáme jedné kategorii; případný rozdíl vysvětlíme zaokrouhlením.
 
 ## Součty četností a znak sumace {#sec-sumace}
 
@@ -308,7 +308,7 @@ Dolní dvojice v obrázku [-@fig-sirka-intervalu] mění pouze polohu mezí: š�
 Zvolené členění porovnáme s několika blízkými šířkami i posuny mezí. Za přesvědčivější rys dat považujeme takový, který zůstává patrný při více přiměřených nastaveních. Jestliže drobný vrchol po malém posunu mezí zmizí, samotný histogram nám nedává dostatečnou oporu pro tvrzení, že data tvoří zvláštní skupinu. Automatická pravidla mohou nabídnout výchozí nastavení, ale nenahrazují posouzení účelu grafu a konkrétních dat [@howell, s. 20–21].
 
 ::: {.callout-note collapse="true" title="Rozšíření: nestejně široké intervaly"}
-Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případů v intervalu šířky 1 hodina dá výšku 10 případů na hodinu; 10 případů v intervalu šířky 2 hodiny dá výšku 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
+Pokud mají intervaly různé šířky, stejné výšky obdélníků vytvářejí různé plochy. Aby plocha odpovídala četnosti, vydělíme četnost šířkou intervalu. Například 10 případům v intervalu šířky 1 hodina odpovídá výška 10 případů na hodinu; 10 případům v intervalu šířky 2 hodiny výška 5 případů na hodinu. Plochy jsou v obou případech stejné: $10\times1=5\times2=10$.
 
 Výška pak vyjadřuje četnost připadající na jednotku šířky intervalu. U relativní varianty vydělíme šířkou intervalu relativní četnost; celková plocha je pak 1. Výška sama už není podíl a může být větší než 1. V základních příkladech této kapitoly používáme stejně široké intervaly a osu s absolutními četnostmi. Rozdílná měřítka histogramu popisuje statistická příručka [National Institute of Standards and Technology (NIST), -@nistHandbook, oddíl [Histogram](https://www.itl.nist.gov/div898/handbook/eda/section3/eda33e.htm), část Definition].
 :::
@@ -546,7 +546,7 @@ Dvanáct účastníků ohodnotilo odpočatost kódy 1 = vůbec, 2 = trochu, 3 = 
 Sestavte tabulku absolutních a relativních četností i procent. Uveďte $n$ a $k$, zkontrolujte součty a vysvětlete, zda nejčetnější odpověď zvolila většina účastníků.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Máme $n=12$ případů a $k=4$ kategorie. Postupné počítání výskytů dává:
+Máme $n=12$ případů a $k=4$ kategorie. Postupným počítáním výskytů dostaneme:
 
 | Odpověď | $f_j$ | $p_j$ | Procenta |
 |---------|------:|------:|---------:|
@@ -558,7 +558,7 @@ Máme $n=12$ případů a $k=4$ kategorie. Postupné počítání výskytů dáv
 : Četnosti odpovědí: řešení úlohy 1 {#tbl-k02-08}
 
 
-Například $p_2=5/12$, zobrazeno 0,417 a 41,7 %. Součet četností je $1+5+4+2=12$; přesné podíly dávají $12/12=1$. Nejčetnější je „trochu“, ale pět z dvanácti není více než polovina. Nejčetnější kategorie proto nemusí představovat většinu.
+Například $p_2=5/12$, zobrazeno 0,417 a 41,7 %. Součet četností je $1+5+4+2=12$; součet přesných podílů je $12/12=1$. Nejčetnější je „trochu“, ale pět z dvanácti není více než polovina. Nejčetnější kategorie proto nemusí představovat většinu.
 :::
 
 ### Úloha 2: Co říká sumace {#sec-uloha-02-2}

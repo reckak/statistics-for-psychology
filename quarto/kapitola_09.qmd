@@ -21,7 +21,7 @@ Nepovinná rozšíření ukazují kritický rozbor souhrnu několika studií, d�
 
 ## Od tabulky ve výběru k otázce o populaci {#sec-od-tabulky-k-populaci}
 
-Co nám tabulka četností řekne o lidech, kteří v ní nejsou? Oddíl připomíná, co jsou kategoriální data, jak je shrnujeme podílem a na jaké tři typy otázek kapitola odpovídá.
+Co nám tabulka četností řekne o lidech, kteří v ní nejsou? Tento oddíl připomíná, co jsou kategoriální data, jak je shrnujeme podílem a na jaké tři typy otázek kapitola odpovídá.
 
 ### Kategoriální data a podíl {#sec-kategorialni-data}
 
@@ -55,7 +55,7 @@ Kategoriální data přinášejí tři typy otázek, které kapitola probírá v
 
 ## Jak přesně odhadneme podíl v populaci? {#sec-interval-podilu}
 
-Jak daleko může ležet populační podíl od podílu ve výběru? Oddíl ukazuje, proč postup z kapitoly 7 u podílů selhává, a zavádí interval, kterým budeme podíly odhadovat.
+Jak daleko může ležet populační podíl od podílu ve výběru? Tento oddíl ukazuje, proč postup z kapitoly 7 u podílů selhává, a zavádí interval, kterým budeme podíly odhadovat.
 
 ### Známá konstrukce a kde selhává {#sec-wald}
 
@@ -88,7 +88,7 @@ Pro 10 z 20 je střed 0,500 a polovina šířky 0,201, takže **95% Wilsonův in
 
 ::: {.teaching-figure role="region" aria-label="Waldův a Wilsonův interval pro dva příklady" tabindex="0"}
 
-![U podílu 10 z 20 dávají oba postupy podobný interval; Wilsonův je mírně užší a souměrný kolem 0,5. U výsledku 0 z 15 má Waldův interval nulovou šířku, kdežto Wilsonův interval ukazuje, že populační podíl může být až kolem 0,20.](../assets/chapter-09/plots/wald-wilson.svg){#fig-wald-wilson fig-alt="Čtyři vodorovné úsečky intervalů na ose podílu od 0 do 1. Pro 10 z 20: Waldův interval od 0,28 do 0,72 šedě, Wilsonův od 0,30 do 0,70 modře, oba s bodem v 0,50. Pro 0 z 15: Waldův interval je jen bod v nule, Wilsonův sahá od 0 do 0,20. Svislá přerušovaná čára označuje π = 0,25 při hádání; oba intervaly pro 10 z 20 leží napravo od ní."}
+![U podílu 10 z 20 vedou oba postupy k podobnému intervalu; Wilsonův je mírně užší a souměrný kolem 0,5. U výsledku 0 z 15 má Waldův interval nulovou šířku, kdežto Wilsonův interval ukazuje, že populační podíl může být až kolem 0,20.](../assets/chapter-09/plots/wald-wilson.svg){#fig-wald-wilson fig-alt="Čtyři vodorovné úsečky intervalů na ose podílu od 0 do 1. Pro 10 z 20: Waldův interval od 0,28 do 0,72 šedě, Wilsonův od 0,30 do 0,70 modře, oba s bodem v 0,50. Pro 0 z 15: Waldův interval je jen bod v nule, Wilsonův sahá od 0 do 0,20. Svislá přerušovaná čára označuje π = 0,25 při hádání; oba intervaly pro 10 z 20 leží napravo od ní."}
 
 :::
 
@@ -138,17 +138,17 @@ $$z=\frac{p-\mathrm{π}_0}{\sqrt{\mathrm{π}_0(1-\mathrm{π}_0)/n}}=\frac{0{,}50
 
 Oboustranná *p*-hodnota je přibližně 0,0098. Test nulovou hypotézu $\mathrm{π}=0{,}25$ zamítá a hodnota 0,25 opravdu leží mimo Wilsonův interval.
 
-V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a dal *p*-hodnotu 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí.
+V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a vyšla v něm *p*-hodnota 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí.
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: souhrn několika studií o telepatii" #rozsireni-ganzfeld}
-Cumming a Calin-Jageman [-@cumming, s. 390–398] uvádějí výsledky deseti studií, v nichž se „příjemce“ pokoušel poznat, který ze čtyř obrázků mu „odesílatel“ v jiné místnosti posílal telepaticky; studie shrnuli Bem a Honorton. Při hádání by úspěšnost byla 0,25. Ve všech studiích dohromady bylo 106 zásahů z 329 pokusů, podíl 0,322 s 95% Wilsonovým intervalem (0,274; 0,374). Jednostranný binomický test nulové hypotézy $\mathrm{π}\le0{,}25$ dává *p*-hodnotu 0,002.
+Cumming a Calin-Jageman [-@cumming, s. 390–398] uvádějí výsledky deseti studií, v nichž se „příjemce“ pokoušel poznat, který ze čtyř obrázků mu „odesílatel“ v jiné místnosti posílal telepaticky; studie shrnuli Bem a Honorton. Při hádání by úspěšnost byla 0,25. Ve všech studiích dohromady bylo 106 zásahů z 329 pokusů, podíl 0,322 s 95% Wilsonovým intervalem (0,274; 0,374). V jednostranném binomickém testu nulové hypotézy $\mathrm{π}\le0{,}25$ vychází *p*-hodnota 0,002.
 
 Výpočet je správný, a přesto z něj nelze uzavřít, že telepatie existuje. Sečtením deseti studií předpokládáme, že všech 329 pokusů je nezávislých a mají stejnou pravděpodobnost úspěchu. Studie se ale lišily postupem i účastníky; souhrn nepoví, zda nevznikl ze studií, které by jednotlivě vyšly různě. Nevíme, zda byly zveřejněny všechny provedené studie. Hlavně binomický model počítá jen s hádáním a telepatií; výsledek nad 0,25 by vznikl i při jakémkoli úniku informace mezi místnostmi. Pro mimořádné tvrzení potřebujeme mimořádné důkazy: pečlivě kontrolovaný postup, předem zveřejněný plán a nezávislá opakování. Binomický výpočet sám odpovídá jen na otázku, zda by takový podíl byl při hádání neobvyklý.
 :::
 
 ## Jak porovnat podíly ve dvou nezávislých skupinách? {#sec-dva-podily}
 
-Liší se podíl studentů se zvýšeným stresem mezi ženami a muži i v populaci? Oddíl přenáší úvahu o [rozdílu dvou průměrů](kapitola_08.qmd#sec-rozdil-nezavislych) z kapitoly 8 na podíly.
+Liší se podíl studentů se zvýšeným stresem mezi ženami a muži i v populaci? Tento oddíl přenáší úvahu o [rozdílu dvou průměrů](kapitola_08.qmd#sec-rozdil-nezavislych) z kapitoly 8 na podíly.
 
 ### Rozdíl podílů a jeho interval {#sec-newcombe}
 
@@ -156,7 +156,7 @@ V tabulce [-@tbl-k09-01] je podíl žen se zvýšeným stresem $p_1=0{,}40$ a po
 
 $$\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}=\sqrt{\frac{0{,}40\times0{,}60}{100}+\frac{0{,}30\times0{,}70}{100}}=\sqrt{0{,}0045}\approx0{,}067.$$
 
-Waldův interval $0{,}10\pm1{,}96\times0{,}067$ by dal (−0,03; 0,23). Má ale tytéž slabiny jako u jednoho podílu. Proto počítáme **Newcombův interval** (*Newcombe hybrid score interval*), který vychází z Wilsonových intervalů obou skupin. Pro ženy je Wilsonův interval $(l_1;\,u_1)=(0{,}309;\ 0{,}498)$, pro muže $(l_2;\,u_2)=(0{,}219;\ 0{,}396)$. Meze intervalu pro rozdíl jsou
+Waldův interval $0{,}10\pm1{,}96\times0{,}067$ by vyšel (−0,03; 0,23). Má ale tytéž slabiny jako u jednoho podílu. Proto počítáme **Newcombův interval** (*Newcombe hybrid score interval*), který vychází z Wilsonových intervalů obou skupin. Pro ženy je Wilsonův interval $(l_1;\,u_1)=(0{,}309;\ 0{,}498)$, pro muže $(l_2;\,u_2)=(0{,}219;\ 0{,}396)$. Meze intervalu pro rozdíl jsou
 
 $$\text{dolní}=(p_1-p_2)-\sqrt{(p_1-l_1)^2+(u_2-p_2)^2},\qquad\text{horní}=(p_1-p_2)+\sqrt{(u_1-p_1)^2+(p_2-l_2)^2}.$$
 
@@ -217,7 +217,7 @@ Dolní mez Wilsonova intervalu první skupiny v B12 je `=(B8+B11^2/(2*B3))/(1+B1
 
 ## Jak daleko jsou pozorované četnosti od očekávaných? {#sec-dobra-shoda}
 
-Co když proměnná nemá dvě kategorie, ale čtyři, a chceme posoudit celé jejich rozložení najednou? Oddíl zavádí srovnání pozorovaných a očekávaných četností, které povede i k testům v tabulkách.
+Co když proměnná nemá dvě kategorie, ale čtyři, a chceme posoudit celé jejich rozložení najednou? Tento oddíl zavádí srovnání pozorovaných a očekávaných četností, které povede i k testům v tabulkách.
 
 ### Očekávané četnosti {#sec-ocekavane-cetnosti}
 
@@ -267,7 +267,7 @@ Pro volbu čaje:
 
 :::
 
-Statistika má hodnotu $\mathrm{χ}^2=10{,}10$. Největší příspěvky dávají krajní pozice: vpravo bylo voleb o 11 více, než jsme čekali, vlevo o 8 méně. Statistika je nulová, jen když se všechny pozorované četnosti přesně rovnají očekávaným; čím jsou odchylky větší, tím je větší. Zbývá posoudit, zda je hodnota 10,10 velká vzhledem k tomu, co by vzniklo náhodou při platnosti nulové hypotézy.
+Statistika má hodnotu $\mathrm{χ}^2=10{,}10$. Největší příspěvky mají krajní pozice: vpravo bylo voleb o 11 více, než jsme čekali, vlevo o 8 méně. Statistika je nulová, jen když se všechny pozorované četnosti přesně rovnají očekávaným; čím jsou odchylky větší, tím je větší. Zbývá posoudit, zda je hodnota 10,10 velká vzhledem k tomu, co by vzniklo náhodou při platnosti nulové hypotézy.
 
 ### Dvě kategorie: chí-kvadrát a z-test {#sec-chi-a-z}
 
@@ -275,11 +275,11 @@ Se dvěma kategoriemi jsme se už setkali. Student odpověděl správně na 10 z
 
 $$\mathrm{χ}^2=\frac{(10-5)^2}{5}+\frac{(10-15)^2}{15}=5+1{,}667=6{,}667.$$
 
-To je přesně druhá mocnina skórové statistiky z [oddílu o intervalu](#sec-interval-a-test-podilu): $2{,}582^2=6{,}667$. Platí to obecně: **u dvou kategorií je statistika chí-kvadrát rovna $z^2$ skórového testu jednoho podílu** a oba postupy dávají stejnou oboustrannou *p*-hodnotu. Stejně tak je u tabulky 2 × 2, ke které se dostaneme v [oddílu o nezávislosti](#sec-nezavislost), statistika chí-kvadrát rovna $z^2$ testu dvou podílů se společným podílem. Na listu `Dva_podily` to ukazují buňky B23 ($z^2=2{,}198$) a B24 (táž *p*-hodnota 0,138 spočítaná přes chí-kvadrát). Testy chí-kvadrát tedy nejsou nová logika, ale rozšíření testů pro podíly na více kategorií.
+To je přesně druhá mocnina skórové statistiky z [oddílu o intervalu](#sec-interval-a-test-podilu): $2{,}582^2=6{,}667$. Platí to obecně: **u dvou kategorií je statistika chí-kvadrát rovna $z^2$ skórového testu jednoho podílu** a oba postupy vedou ke stejné oboustranné *p*-hodnotě. Stejně tak je u tabulky 2 × 2, ke které se dostaneme v [oddílu o nezávislosti](#sec-nezavislost), statistika chí-kvadrát rovna $z^2$ testu dvou podílů se společným podílem. Na listu `Dva_podily` to ukazují buňky B23 ($z^2=2{,}198$) a B24 (táž *p*-hodnota 0,138 spočítaná přes chí-kvadrát). Testy chí-kvadrát tedy nejsou nová logika, ale rozšíření testů pro podíly na více kategorií.
 
 ## Kdy je hodnota chí-kvadrát neobvykle velká? {#sec-chi-rozdeleni}
 
-Jak poznat, zda $\mathrm{χ}^2=10{,}10$ svědčí proti nulové hypotéze? Oddíl ukazuje výběrové rozdělení statistiky chí-kvadrát a jeho stupně volnosti.
+Jak poznat, zda $\mathrm{χ}^2=10{,}10$ svědčí proti nulové hypotéze? Tento oddíl ukazuje výběrové rozdělení statistiky chí-kvadrát a jeho stupně volnosti.
 
 ### Chí-kvadrát rozdělení a stupně volnosti {#sec-stupne-volnosti-chi}
 
@@ -313,7 +313,7 @@ V simulaci vyšla hodnota alespoň 10,10 v 1,6 % výběrů, v dobré shodě s mo
 
 **Rozhodnutí testu:** na hladině 0,05 zamítáme nulovou hypotézu, že lidé volí všechny čtyři pozice se stejnou pravděpodobností. **Věcná interpretace:** v tomto pokusu lidé častěji volili vzorek vpravo (31 z 80, tedy 39 %) a méně často vzorek vlevo (12 z 80, 15 %), ačkoli všechny vzorky byly stejné. Volba tedy zřejmě závisela i na umístění. Protože vzorky na pozicích byly náhodně střídány a lišila se jen pozice, nabízí se vysvětlit rozdíl umístěním; závěr ale platí pro tento typ úlohy a tyto lidi a jeho zobecnění vyžaduje opakování.
 
-Pozor na směr testu. V kapitole 6 jsme [rozlišovali](kapitola_06.qmd#sec-smer-testu) oboustranné a jednostranné testy podle alternativní hypotézy. Test chí-kvadrát počítá *p*-hodnotu z pravého chvostu, ale přitom je **nesměrový**: velkou hodnotu dává jakákoli odchylka od očekávání v kterékoli kategorii. Kdyby psycholožka předem předpokládala, že lidé preferují pravou stranu, test by tuto předpověď nijak nevyužil. Stejnou hodnotu 10,10 by dalo i rozložení 31, 21, 16, 12, tedy preference levé strany [@howell, s. 156]. Test chí-kvadrát nebere ohled na pořadí kategorií.
+Pozor na směr testu. V kapitole 6 jsme [rozlišovali](kapitola_06.qmd#sec-smer-testu) oboustranné a jednostranné testy podle alternativní hypotézy. Test chí-kvadrát počítá *p*-hodnotu z pravého chvostu, ale přitom je **nesměrový**: k velké hodnotě vede jakákoli odchylka od očekávání v kterékoli kategorii. Kdyby psycholožka předem předpokládala, že lidé preferují pravou stranu, test by tuto předpověď nijak nevyužil. Stejná hodnota 10,10 by vyšla i u rozložení 31, 21, 16, 12, tedy preference levé strany [@howell, s. 156]. Test chí-kvadrát nebere ohled na pořadí kategorií.
 
 ### Výpočet v Excelu {#sec-dobra-shoda-excel}
 
@@ -357,13 +357,13 @@ Nezamítnutí zase neznamená, že rozložení je rovnoměrné. Jen jsme neprok�
 
 ## Souvisejí spolu dvě kategoriální proměnné? {#sec-nezavislost}
 
-Jak posoudit souvislost dvou kategoriálních proměnných, když každá může mít více kategorií? Oddíl přenáší srovnání pozorovaných a očekávaných četností na kontingenční tabulku.
+Jak posoudit souvislost dvou kategoriálních proměnných, když každá může mít více kategorií? Tento oddíl přenáší srovnání pozorovaných a očekávaných četností na kontingenční tabulku.
 
 ### Očekávané četnosti v tabulce {#sec-ocekavane-tabulka}
 
 V [kapitole 5](kapitola_05.qmd#sec-nezavislost) jsme definovali nezávislost dvou jevů: $A$ a $B$ jsou nezávislé, když $P(A\cap B)=P(A)\times P(B)$. V tabulce [-@tbl-k09-01] je pravděpodobnost, že náhodně vybraný student je žena, $100/200=0{,}50$, a pravděpodobnost zvýšeného stresu $70/200=0{,}35$. Pokud by pohlaví a stres byly nezávislé, byla by pravděpodobnost „žena a zvýšený stres“ $0{,}50\times0{,}35=0{,}175$ a z 200 studentů bychom v této buňce čekali $200\times0{,}175=35$ studentek.
 
-Tato úvaha dává obecný vzorec pro **očekávanou četnost buňky** tabulky. Řádky tabulky označíme indexem $j=1,\ldots,R$ a sloupce indexem $l=1,\ldots,S$; tabulka má $R$ řádků a $S$ sloupců (tabulka $R\times S$). Pozorovaná četnost v buňce řádku $j$ a sloupce $l$ je $f_{jl}$, součet řádku $j$ je $f_{j+}$ a součet sloupce $l$ je $f_{+l}$; znaménko plus v indexu říká, přes který index sčítáme. Pak
+Z této úvahy plyne obecný vzorec pro **očekávanou četnost buňky** tabulky. Řádky tabulky označíme indexem $j=1,\ldots,R$ a sloupce indexem $l=1,\ldots,S$; tabulka má $R$ řádků a $S$ sloupců (tabulka $R\times S$). Pozorovaná četnost v buňce řádku $j$ a sloupce $l$ je $f_{jl}$, součet řádku $j$ je $f_{j+}$ a součet sloupce $l$ je $f_{+l}$; znaménko plus v indexu říká, přes který index sčítáme. Pak
 
 $$e_{jl}=\frac{f_{j+}\times f_{+l}}{n}.$$
 
@@ -390,11 +390,11 @@ Tentýž výpočet odpovídá na dvě příbuzné otázky. Liší se tím, jak d
 - **Test nezávislosti** (*test of independence*). Vybereme jeden náhodný výběr lidí a u každého zaznamenáme obě proměnné; řádkové ani sloupcové součty předem neurčujeme. Nulová hypotéza: obě proměnné jsou v populaci nezávislé. Závěr: proměnné spolu souvisejí, nebo souvislost neprokazujeme.
 - **Test homogenity** (*test of homogeneity*). Vybereme předem stanovený počet lidí z každé skupiny, například 100 žen a 100 mužů, a zaznamenáme jednu proměnnou. Nulová hypotéza: rozložení této proměnné je ve všech populacích skupin stejné. Závěr: rozložení se mezi skupinami liší, nebo rozdíl neprokazujeme.
 
-Výpočet, stupně volnosti i *p*-hodnota jsou v obou případech stejné; liší se formulace hypotéz a závěru. V tabulce stresu je přesně 100 žen a 100 mužů, což naznačuje, že velikosti skupin byly stanoveny předem. Přirozenější je tedy formulace testu homogenity: liší se podíl studentů se zvýšeným stresem mezi populací studentek a studentů? To je přesně otázka [testu dvou podílů](#sec-test-dvou-podilu). U tabulky 2 × 2 tedy dávají test dvou podílů a test chí-kvadrát stejný výsledek; test chí-kvadrát navíc zvládne tabulky s více řádky a sloupci. Test nezávislosti ani test homogenity samy neříkají nic o příčině: [souvislost není příčina](kapitola_01.qmd#sec-souvislost-pricina) a pohlaví zde nebylo přiřazeno.
+Výpočet, stupně volnosti i *p*-hodnota jsou v obou případech stejné; liší se formulace hypotéz a závěru. V tabulce stresu je přesně 100 žen a 100 mužů, což naznačuje, že velikosti skupin byly stanoveny předem. Přirozenější je tedy formulace testu homogenity: liší se podíl studentů se zvýšeným stresem mezi populací studentek a studentů? To je přesně otázka [testu dvou podílů](#sec-test-dvou-podilu). U tabulky 2 × 2 tedy vedou test dvou podílů a test chí-kvadrát ke stejnému výsledku; test chí-kvadrát navíc zvládne tabulky s více řádky a sloupci. Test nezávislosti ani test homogenity samy neříkají nic o příčině: [souvislost není příčina](kapitola_01.qmd#sec-souvislost-pricina) a pohlaví zde nebylo přiřazeno.
 
 ## Kde se tabulka od nezávislosti odchyluje? {#sec-rezidua}
 
-Statisticky významný test u velké tabulky říká jen, že nějaká souvislost existuje. Jak ji popsat? Oddíl ukazuje řádkové podíly a dva typy reziduí a vysvětluje, co z nich lze a nelze vyvodit.
+Statisticky významný test u velké tabulky říká jen, že nějaká souvislost existuje. Jak ji popsat? Tento oddíl ukazuje řádkové podíly a dva typy reziduí a vysvětluje, co z nich lze a nelze vyvodit.
 
 ### Řádkové podíly {#sec-radkove-podily}
 
@@ -419,7 +419,7 @@ V závorkách jsou očekávané četnosti při nezávislosti, například $e_{11
 
 Statistika je $\mathrm{χ}^2=11{,}78$ se $(3-1)(3-1)=4$ stupni volnosti, *p*-hodnota 0,019; kritická hodnota pro hladinu 0,05 je 9,49. **Rozhodnutí testu:** zamítáme nulovou hypotézu, že preferovaná strategie a věková skupina jsou v populaci nezávislé. Kde se ale tabulka od nezávislosti odchyluje?
 
-Nejpřímější odpověď dávají **řádkové podíly** (*row proportions*): četnosti každého řádku vydělené jeho součtem. Ukazují rozložení strategií **uvnitř** každé věkové skupiny, takže skupiny různé velikosti lze porovnat. Za řádky volíme kategorie proměnné, kterou chápeme jako vysvětlující, zde věk. Obrázek [-@fig-zvladani] řádkové podíly porovnává s podíly ve všech 190 lidech.
+Nejpřímější odpověď poskytují **řádkové podíly** (*row proportions*): četnosti každého řádku vydělené jeho součtem. Ukazují rozložení strategií **uvnitř** každé věkové skupiny, takže skupiny různé velikosti lze porovnat. Za řádky volíme kategorie proměnné, kterou chápeme jako vysvětlující, zde věk. Obrázek [-@fig-zvladani] řádkové podíly porovnává s podíly ve všech 190 lidech.
 
 ::: {.teaching-figure role="region" aria-label="Řádkové podíly strategií zvládání podle věku" tabindex="0"}
 
@@ -500,7 +500,7 @@ Vzorce v řádcích 9, 14, 24, 28 a 32 se kopírují do sloupců C a D a do dal�
 
 ## Kdy se na test chí-kvadrát nelze spolehnout a co použít místo něj? {#sec-predpoklady-09}
 
-Na čem stojí *p*-hodnota testu chí-kvadrát a co dělat, když předpoklady neplatí? Oddíl probírá čtyři podmínky a představuje Fisherův exaktní test.
+Na čem stojí *p*-hodnota testu chí-kvadrát a co dělat, když předpoklady neplatí? Tento oddíl probírá čtyři podmínky a představuje Fisherův exaktní test.
 
 ### Každý případ v jedné buňce {#sec-nezavislost-pozorovani}
 
@@ -513,7 +513,7 @@ Předpoklad porušíme, když zapíšeme téhož člověka do tabulky vícekrát
 Do výpočtu vstupují vždy **absolutní četnosti**. Kdybychom místo nich dosadili procenta, změnili bychom počet pozorování a s ním velikost statistiky. Tabulka se 40 % a 30 % by „vypadala“ jako tabulka se 100 lidmi v každé skupině, ať jich bylo 10, nebo 10 000.
 
 ::: {.callout-warning title="Častý omyl: tabulka jen s „ano“"}
-Z 20 studentů z venkova je 17 pro celoroční letní čas, z 20 studentů z města 11 [@howell, s. 154]. Chybný postup porovná jen počty souhlasů 17 a 11 s očekávanými 14 a 14; vyjde $\mathrm{χ}^2=1{,}29$ s jedním stupněm volnosti a *p*-hodnota 0,26. Do tabulky ale patří i **nevýskyty** (*nonoccurrences*): 3 studenti z venkova a 9 z města, kteří jsou proti. Správná tabulka 2 × 2 dává $\mathrm{χ}^2=4{,}29$ a *p*-hodnotu 0,038. Chybný výpočet nerozlišuje, zda souhlasilo 17 z 20, nebo 17 z 2 000 venkovských studentů. Každý případ musí být zapsán v některé buňce, i když daný jev nenastal.
+Z 20 studentů z venkova je 17 pro celoroční letní čas, z 20 studentů z města 11 [@howell, s. 154]. Chybný postup porovná jen počty souhlasů 17 a 11 s očekávanými 14 a 14; vyjde $\mathrm{χ}^2=1{,}29$ s jedním stupněm volnosti a *p*-hodnota 0,26. Do tabulky ale patří i **nevýskyty** (*nonoccurrences*): 3 studenti z venkova a 9 z města, kteří jsou proti. Ze správné tabulky 2 × 2 vychází $\mathrm{χ}^2=4{,}29$ a *p*-hodnota 0,038. Chybný výpočet nerozlišuje, zda souhlasilo 17 z 20, nebo 17 z 2 000 venkovských studentů. Každý případ musí být zapsán v některé buňce, i když daný jev nenastal.
 :::
 
 ### Malé očekávané četnosti {#sec-male-cetnosti}
@@ -524,7 +524,7 @@ V této knize používáme pravidlo: **všechny očekávané četnosti mají bý
 
 ### Fisherův exaktní test {#sec-fisher}
 
-Pilotní studie porovnala krátkou intervenci s kontrolní podmínkou. Zlepšení nastalo u 8 z 10 lidí s intervencí a u 3 z 10 v kontrolní skupině (list `Pilot`, A2:C3). Očekávané četnosti jsou 5,5 a 4,5 v každém řádku, dvě jsou tedy pod 5. Test chí-kvadrát by dal $\mathrm{χ}^2=5{,}05$ a *p*-hodnotu 0,025; tuto hodnotu ale nemáme o co opřít.
+Pilotní studie porovnala krátkou intervenci s kontrolní podmínkou. Zlepšení nastalo u 8 z 10 lidí s intervencí a u 3 z 10 v kontrolní skupině (list `Pilot`, A2:C3). Očekávané četnosti jsou 5,5 a 4,5 v každém řádku, dvě jsou tedy pod 5. V testu chí-kvadrát by vyšlo $\mathrm{χ}^2=5{,}05$ a *p*-hodnota 0,025; tuto hodnotu ale nemáme o co opřít.
 
 **Fisherův exaktní test** (*Fisher's exact test*) odpovídá v tabulce 2 × 2 na stejnou otázku jako test chí-kvadrát: souvisí obě proměnné, nebo jsou nezávislé? Nepoužívá ale aproximaci chí-kvadrát rozdělením. Postupuje takto:
 
@@ -534,14 +534,14 @@ Pilotní studie porovnala krátkou intervenci s kontrolní podmínkou. Zlepšen�
 
 Výpočet dělá statistický software; ruční postup ukazuje nepovinné rozšíření. Pro pilotní studii je *p*-hodnota Fisherova testu 0,070. **Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** ve vzorku se zlepšilo 80 % lidí s intervencí a 30 % kontrolních, ale tak malá studie nestačí k průkaznému závěru; potřebujeme větší studii. Aproximace chí-kvadrát by v tomto případě vedla k jinému rozhodnutí než přesný výpočet.
 
-Fisherův test není omezen jen na malé výběry; můžeme ho použít u každé tabulky 2 × 2, protože jeho platnost na velikosti očekávaných četností nezávisí. U velkých tabulek vede obvykle ke stejnému závěru jako test chí-kvadrát, ale *p*-hodnoty se mohou mírně lišit. Pro tabulku stresu dává Fisherův test *p*-hodnotu 0,18, test chí-kvadrát 0,14: jiné postupy, ale souvislá informace. Pro větší tabulky existují zobecnění Fisherova testu a simulační postupy, které tato kapitola neprobírá.
+Fisherův test není omezen jen na malé výběry; můžeme ho použít u každé tabulky 2 × 2, protože jeho platnost na velikosti očekávaných četností nezávisí. U velkých tabulek vede obvykle ke stejnému závěru jako test chí-kvadrát, ale *p*-hodnoty se mohou mírně lišit. Pro tabulku stresu vychází ve Fisherově testu *p*-hodnota 0,18, v testu chí-kvadrát 0,14: jiné postupy, ale souvislá informace. Pro větší tabulky existují zobecnění Fisherova testu a simulační postupy, které tato kapitola neprobírá.
 
 ::: {.callout-warning title="Častý omyl: „test chí-kvadrát je neparametrický, takže nemá předpoklady“"}
 Test chí-kvadrát nepředpokládá normální rozdělení měřené proměnné, ta je kategoriální. Své předpoklady ale má: nezávislá pozorování, absolutní četnosti včetně nevýskytů a dost velké očekávané četnosti. Samotná *p*-hodnota navíc stojí na normální aproximaci četností a na chí-kvadrát rozdělení jako aproximaci [@wilcox2017, s. 610]. Správně: „Test chí-kvadrát se hodí pro kategoriální data, pokud jsou pozorování nezávislá a očekávané četnosti nejsou příliš malé; jinak u tabulky 2 × 2 použijeme Fisherův exaktní test.“
 :::
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: výpočet Fisherova testu v Excelu" #rozsireni-fisher}
-Pravděpodobnost, že při daných okrajových součtech bude v levé horní buňce právě $a$ lidí, dává **hypergeometrické rozdělení**. V Excelu ji vrací funkce **HYPGEOM.DIST** (anglicky také HYPGEOM.DIST) se čtyřmi číselnými argumenty a logickým argumentem: počet „úspěchů“ ve vybraném řádku ($a$), velikost řádku, celkový počet „úspěchů“ (sloupcový součet), celkový počet lidí a NEPRAVDA pro pravděpodobnost jedné hodnoty. Pro pilotní studii je pravděpodobnost pozorované tabulky
+Pravděpodobnost, že při daných okrajových součtech bude v levé horní buňce právě $a$ lidí, udává **hypergeometrické rozdělení**. V Excelu ji vrací funkce **HYPGEOM.DIST** (anglicky také HYPGEOM.DIST) se čtyřmi číselnými argumenty a logickým argumentem: počet „úspěchů“ ve vybraném řádku ($a$), velikost řádku, celkový počet „úspěchů“ (sloupcový součet), celkový počet lidí a NEPRAVDA pro pravděpodobnost jedné hodnoty. Pro pilotní studii je pravděpodobnost pozorované tabulky
 
 `=HYPGEOM.DIST(8;10;11;20;NEPRAVDA)` ≈ 0,0322.
 
@@ -550,7 +550,7 @@ List `Fisher` spočítá pravděpodobnosti všech možných hodnot $a$ od 1 do 1
 
 ## Jak velká je souvislost? {#sec-velikost-souvislosti}
 
-Statisticky významná souvislost může být velká i zanedbatelná. Oddíl ukazuje na jednom příkladu tři skupiny měr velikosti souvislosti a vysvětluje, co která vyjadřuje.
+Statisticky významná souvislost může být velká i zanedbatelná. Tento oddíl ukazuje na jednom příkladu tři skupiny měr velikosti souvislosti a vysvětluje, co která vyjadřuje.
 
 Danielsová zkoumala, jak obrázky sportovkyň působí na sebehodnocení mladých žen [@field, s. 638]. Ženy si prohlédly buď fotografie úspěšných sportovkyň při sportovním výkonu, nebo fotografie sportovkyň pózujících v plavkách (sexualizované fotografie), a potom napsaly krátký text. Autorka zaznamenala, zda se v textu objevilo téma **sebeobjektivizace**, hodnocení vlastního vzhledu. Každá žena viděla jen jeden typ fotografií.
 
@@ -566,7 +566,7 @@ Danielsová zkoumala, jak obrázky sportovkyň působí na sebehodnocení mladý
 
 :::
 
-Test chí-kvadrát dává $\mathrm{χ}^2=16{,}06$ s jedním stupněm volnosti, *p*-hodnota je menší než 0,001. Souvislost je statisticky významná. Jak je velká?
+V testu chí-kvadrát vychází $\mathrm{χ}^2=16{,}06$ s jedním stupněm volnosti, *p*-hodnota je menší než 0,001. Souvislost je statisticky významná. Jak je velká?
 
 ### Rozdíl podílů v procentních bodech {#sec-rozdil-bodech}
 
@@ -608,7 +608,7 @@ $$\mathrm{φ}=\sqrt{\frac{\mathrm{χ}^2}{n}}=\sqrt{\frac{16{,}06}{257}}=0{,}25.$
 
 Dělení počtem pozorování odstraňuje závislost statistiky chí-kvadrát na velikosti výběru; při dvojnásobku lidí se stejnými podíly by se $\mathrm{χ}^2$ zdvojnásobilo, ale φ by zůstalo stejné. Koeficient je 0 při nezávislosti a nejvýše 1. Stejně jako u $\mathrm{χ}^2$ jde o řecké písmeno, které zde označuje statistiku.
 
-**Znaménko.** Vzorec s odmocninou dává vždy kladné číslo, tedy **absolutní hodnotu** φ. Koeficient φ lze ale spočítat také z dat, v nichž každou proměnnou zakódujeme čísly 0 a 1; pak může vyjít záporný. Jeho znaménko závisí na tom, kterou kategorii kódujeme jedničkou: pro sexualizované fotografie = 1 a přítomné téma = 1 vyjde +0,25; zakódujeme-li jedničkou sportovní fotografie, vyjde −0,25. Znaménko tedy nese jen informaci o orientaci kódů. Ve zprávě proto uvádíme kladnou hodnotu a směr souvislosti popíšeme slovy nebo podíly.
+**Znaménko.** Ze vzorce s odmocninou vychází vždy kladné číslo, tedy **absolutní hodnotu** φ. Koeficient φ lze ale spočítat také z dat, v nichž každou proměnnou zakódujeme čísly 0 a 1; pak může vyjít záporný. Jeho znaménko závisí na tom, kterou kategorii kódujeme jedničkou: pro sexualizované fotografie = 1 a přítomné téma = 1 vyjde +0,25; zakódujeme-li jedničkou sportovní fotografie, vyjde −0,25. Znaménko tedy nese jen informaci o orientaci kódů. Ve zprávě proto uvádíme kladnou hodnotu a směr souvislosti popíšeme slovy nebo podíly.
 
 U tabulek větších než 2 × 2 použijeme **Cramérovo V** (*Cramér's V*):
 
@@ -649,7 +649,7 @@ V jednotlivých oborech se podíly přijatých mužů a žen liší málo a ve t
 
 ## Co když jsou ve dvou měřeních tíž lidé? {#sec-mcnemar}
 
-Jak porovnat podíly, když každý člověk odpověděl dvakrát? Oddíl ukazuje tabulku přechodů a McNemarův test, obdobu [párového uspořádání](kapitola_08.qmd#sec-parova-nezavisla) z kapitoly 8 pro dvě kategorie.
+Jak porovnat podíly, když každý člověk odpověděl dvakrát? Tento oddíl ukazuje tabulku přechodů a McNemarův test, obdobu [párového uspořádání](kapitola_08.qmd#sec-parova-nezavisla) z kapitoly 8 pro dvě kategorie.
 
 ### Tabulka přechodů {#sec-tabulka-prechodu}
 
@@ -699,7 +699,7 @@ Posuzovatelé tedy dosáhli přibližně poloviny shody, která byla nad rámec 
 
 ## Který postup zvolit a jak výsledek sdělit? {#sec-volba-postupu-09}
 
-Jak z otázky a uspořádání studie poznat, který postup použít? Oddíl shrnuje postupy kapitoly a ukazuje zprávu o výsledku.
+Jak z otázky a uspořádání studie poznat, který postup použít? Tento oddíl shrnuje postupy kapitoly a ukazuje zprávu o výsledku.
 
 ### Který postup? {#sec-ktery-postup-09}
 
@@ -847,7 +847,7 @@ b)  $\mathrm{χ}^2=\dfrac{5^2}{25}+\dfrac{(-4)^2}{25}+\dfrac{(-1)^2}{25}=1{,}00+
 
 c)  Kvůli nezávislosti pozorování. Tahy téhož dítěte spolu souvisejí (dítě může mít oblíbený tah nebo střídat tahy podle vlastního plánu). Při deseti tazích od dítěte by tabulka obsahovala 750 tahů, ale ne 750 nezávislých pozorování; test by počítal s přílišnou přesností a *p*-hodnota by neodpovídala skutečné nejistotě.
 
-d)  Nevyužil. Test chí-kvadrát je nesměrový a nebere ohled na to, ve které kategorii je odchylka: stejnou hodnotu 1,68 by dalo i rozložení 21 kamenů a 30 papírů. Konkrétní předpověď by šlo testovat jinak, například binomickým testem podílu kamene proti 1/3, stanoveným předem.
+d)  Nevyužil. Test chí-kvadrát je nesměrový a nebere ohled na to, ve které kategorii je odchylka: stejná hodnota 1,68 by vyšla i u rozložení 21 kamenů a 30 papírů. Konkrétní předpověď by šlo testovat jinak, například binomickým testem podílu kamene proti 1/3, stanoveným předem.
 :::
 
 ### 6. Klienti poradny proti dlouhodobé evidenci
@@ -959,7 +959,7 @@ a)  Riziko: $19/93=0{,}204$ u dětí s projevy, $22/209=0{,}105$ u dětí bez ni
 
 b)  Poměr rizik $0{,}204/0{,}105=1{,}94$; šance $19/74=0{,}257$ a $22/187=0{,}118$, poměr šancí 2,18. S opačnou referenční skupinou dostaneme převrácené hodnoty: poměr rizik 0,52 a poměr šancí 0,46. Obsah se nemění, mění se jen to, ke které skupině poměr vztahujeme.
 
-c)  Očekávané četnosti $93\times41/302=12{,}63$, $80{,}37$, $28{,}37$ a $180{,}63$; $\mathrm{χ}^2=5{,}38$, *p*-hodnota 0,020; $\mathrm{φ}=\sqrt{5{,}38/302}=0{,}13$. Odmocnina dává vždy nezápornou hodnotu, tedy absolutní hodnotu φ. Záporné φ by mohlo vyjít, kdybychom ho počítali z dat kódovaných 0 a 1 a jedničkou kódovali například děti bez projevů; znaménko pak vyjadřuje jen orientaci kódů.
+c)  Očekávané četnosti $93\times41/302=12{,}63$, $80{,}37$, $28{,}37$ a $180{,}63$; $\mathrm{χ}^2=5{,}38$, *p*-hodnota 0,020; $\mathrm{φ}=\sqrt{5{,}38/302}=0{,}13$. Odmocnina je vždy nezáporná, tedy absolutní hodnotu φ. Záporné φ by mohlo vyjít, kdybychom ho počítali z dat kódovaných 0 a 1 a jedničkou kódovali například děti bez projevů; znaménko pak vyjadřuje jen orientaci kódů.
 
 d)  Vyrovnávací kurz angličtiny později navštěvovalo zhruba 20 ze 100 dětí s projevy poruchy pozornosti a 11 ze 100 dětí bez nich, tedy asi dvakrát více. Studie ukazuje souvislost, ne příčinu: děti s projevy poruchy pozornosti se mohou lišit i v dalších okolnostech.
 :::

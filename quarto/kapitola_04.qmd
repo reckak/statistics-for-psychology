@@ -42,7 +42,7 @@ Ze *z*-skóru lze získat původní hodnotu, např. původní hrubý skór. Děl
 
 $$x_i=m+s z_i.$$
 
-Například $z_i=-1{,}5$ dává $x_i=50+10\times(-1{,}5)=50-15=35$ bodů. Připomeňme si [těsný zápis násobení z kapitoly 3](kapitola_03.qmd#sec-prumer): $s z_i=s\times z_i$. Převod vyžaduje kladnou směrodatnou odchylku: při $s=0$ jsou všechny hodnoty stejné a dělení nulou není definováno. Pro výběrovou směrodatnou odchylku navíc potřebujeme alespoň dvě pozorování.
+Například pro $z_i=-1{,}5$ vychází $x_i=50+10\times(-1{,}5)=50-15=35$ bodů. Připomeňme si [těsný zápis násobení z kapitoly 3](kapitola_03.qmd#sec-prumer): $s z_i=s\times z_i$. Převod vyžaduje kladnou směrodatnou odchylku: při $s=0$ jsou všechny hodnoty stejné a dělení nulou není definováno. Pro výběrovou směrodatnou odchylku navíc potřebujeme alespoň dvě pozorování.
 
 *z*-skóry dovolují porovnat **relativní polohu** na různých škálách. V ilustračním testu A má člověk 60 bodů při $m=50$, $s=10$, tedy $z=1$. V testu B má 42 bodů při $m=30$, $s=6$, tedy $z=(42-30)/6=2$. Ve druhém testu je tudíž relativně dále nad průměrem své referenční skupiny, přestože původní hrubý skór je nižší. Nemůžeme z toho bez dalšího zdůvodnění ale vyvodit, že je „dvakrát schopnější“ nebo že dva testy měří totéž. U škály měřící obtíže může vyšší hodnota znamenat více potíží; kladný *z*-skór proto neznamená automaticky „lepší“ výsledek.
 
@@ -291,7 +291,7 @@ Chceme-li vymezit **prostředních 95 %** normálního rozdělení, zbývá mimo
 
 Hodnoty `=NORM.S.INV(0,025)` a `=NORM.S.INV(0,975)` jsou přibližně −1,959964 a 1,959964. V modelu $N(50,10)$ tak získáme meze **30,40 a 69,60 bodu**. Na listu `Model` je podíl 0,95 v B22, podíl v jednom chvostu `=(1-B22)/2` v B23 a meze `=NORM.INV(B23;B2;B3)` v B24 a `=NORM.INV(1-B23;B2;B3)` v B25. Používáme skutečné nezaokrouhlené výsledky funkcí; hodnota 1,96 je jejich běžné zaokrouhlení.
 
-Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vpravo 5 %. Výpočet `=NORM.INV(0,95;50;10)` dává **66,45 bodu**. Nepůlíme zde chvost mezi dvě strany rozdělení.
+Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vpravo 5 %. Výpočet `=NORM.INV(0,95;50;10)` vrátí **66,45 bodu**. Nepůlíme zde chvost mezi dvě strany rozdělení.
 
 ::: {.chapter-04-figure role="region" aria-label="Jednostranná hranice a prostřední interval." tabindex="0"}
 
@@ -473,7 +473,7 @@ Princip si ukážeme na patnácti dobách řešení úlohy v sekundách (list `N
 
 :::
 
-Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní pořadí je $(4+3/2)/15\times100\approx36{,}7$ a `=NORM.S.INV((4+3/2)/15)` vrátí přibližně −0,341. Všechny tři shodné doby dostanou stejný *z*-skór. Kompromisní konvenci volíme proto, že nikdy nedá pořadí 0 ani 100. Inkluzivní konvence by nejdelší době přiřadila 100 % a `NORM.S.INV(1)` není definováno. Bez shodných hodnot dává kompromisní konvence podíly $(i-0{,}5)/n$, tedy tytéž, které později použijeme pro [Q–Q graf](#sec-excel-qq).
+Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní pořadí je $(4+3/2)/15\times100\approx36{,}7$ a `=NORM.S.INV((4+3/2)/15)` vrátí přibližně −0,341. Všechny tři shodné doby dostanou stejný *z*-skór. Kompromisní konvenci volíme proto, že nikdy nedá pořadí 0 ani 100. Inkluzivní konvence by nejdelší době přiřadila 100 % a `NORM.S.INV(1)` není definováno. Bez shodných hodnot přiřazuje kompromisní konvence podíly $(i-0{,}5)/n$, tedy tytéž, které později použijeme pro [Q–Q graf](#sec-excel-qq).
 
 ::: {.chapter-04-figure role="region" aria-label="Histogramy dob před normalizací a po ní se spojnicemi jednotlivých hodnot" tabindex="0"}
 
@@ -501,7 +501,7 @@ Dosavadní výpočty podílů a kvantilů z normální křivky platí pro zadan�
 
 ### Začínáme významem měření a histogramem
 
-Výpočty podílů dávají přesnou odpověď pro zadaný normální model. Jejich užitečnost pro skutečná data však závisí na tom, zda model vystihuje podstatné vlastnosti daného rozdělení. Nejprve ujasníme, **kterou proměnnou, kterou skupinu a kterou otázku** posuzujeme. Pro odhad podílu velmi vysokých skórů potřebujeme věrný pravý chvost; dobrá shoda modelu s daty ve středu rozdělení sama nestačí.
+Výpočty podílů poskytují přesnou odpověď pro zadaný normální model. Jejich užitečnost pro skutečná data však závisí na tom, zda model vystihuje podstatné vlastnosti daného rozdělení. Nejprve ujasníme, **kterou proměnnou, kterou skupinu a kterou otázku** posuzujeme. Pro odhad podílu velmi vysokých skórů potřebujeme věrný pravý chvost; dobrá shoda modelu s daty ve středu rozdělení sama nestačí.
 
 Zkontrolujeme přípustné hodnoty, jednotky, chybějící údaje a možné chyby záznamu. Má proměnná jen několik kategorií? Hromadí se výsledky u nejvyššího dosažitelného skóru? Mohly se smíchat skupiny s různými průměry? Takové okolnosti mají pro vhodnost modelu přímý význam. Například reakční časy nemohou být záporné, a proto vykazují často dlouhý pravý chvost; normální model nelze odůvodnit jen tím, že měříme psychologickou proměnnou.
 
@@ -580,7 +580,7 @@ Na listu `QQ` vytvořte následující rozložení; stejné obsahuje přiložen�
 
 :::
 
-Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde dávají $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy pro každé pořadí obsahuje modelovou srovnávací hodnotu normálního rozdělení s průměrem a směrodatnou odchylkou souboru.
+Funkce `POČET`, `PRŮMĚR` a `SMODCH.VÝBĚR.S` mají anglické názvy `COUNT`, `AVERAGE` a `STDEV.S`; jejich význam známe z [předchozí kapitoly](kapitola_03.qmd#sec-excel-odchylky-03). Zde vracejí $n=12$, $m=50$ a $s\approx8{,}99$ bodu. Dolarové znaky upevňují odkazy na H2:H4 při kopírování. Vzorce C2:E2 zkopírujte dolů až do řádku 13. Sloupec C určuje podíl, D převede tento podíl na normální kvantil a E vrátí kvantil do bodového měřítka pomocí průměru a směrodatné odchylky souboru. Sloupec E tedy pro každé pořadí obsahuje modelovou srovnávací hodnotu normálního rozdělení s průměrem a směrodatnou odchylkou souboru.
 
 První bod má vodorovnou souřadnici přibližně −1,73 a svislou 35 bodů. Poslední má přibližně 1,73 a 65 bodů. Referenční hodnoty v E jsou hodnoty přímky, nikoli náhrada pozorovaných skórů v B.
 
@@ -671,7 +671,7 @@ Obě cesty se shodují ve směru. Oblouky zešikmených souborů odpovídají vy
 
 Ani soubor vygenerovaný z normálního modelu nemá koeficienty nulové: jeho exces −0,41 je běžným výběrovým kolísáním, podobně jako drobné nepravidelnosti bodů kolem přímky. Oba zešikmené soubory mají vedle šikmosti také vysoký exces, protože jejich dlouhý chvost obsahuje velmi vzdálené hodnoty. Exces sám tedy nerozliší, zda vzdálené hodnoty leží na jedné straně, nebo na obou; to ukáže šikmost a především graf.
 
-Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces lehčích chvostů i směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: jiný výběr dvou set hodnot ze stejného modelu by mohl dát exces znatelně nižší, ale také několikanásobně vyšší než 3,23. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
+Graf přitom říká víc než dvě čísla. Ukazuje, **kde** se data od modelu odchylují a zda jde o několik bodů, nebo o celý chvost. Záporný exces lehčích chvostů i směsi říká jen, že chybějí velmi vzdálené hodnoty; dva vrcholy a mezeru mezi skupinami odhalí až histogram nebo zlom uprostřed Q–Q grafu. U těžkých chvostů je navíc exces velmi nestálý, protože o něm rozhoduje několik nejvzdálenějších hodnot: v jiném výběru dvou set hodnot ze stejného modelu by mohl vyjít exces znatelně nižší, ale také několikanásobně vyšší než 3,23. Koeficienty proto používáme jako stručný doplněk grafů, nikoli jako jejich náhradu.
 
 Zvýrazněné kvantily všech šesti souborů shrnuje na závěr @tbl-qq-kvantily-04. U každého souboru uvádí empirické percentily vypočtené funkcí `PERCENTIL.INC`, modelové percentily z funkce `NORM.INV` s průměrem a směrodatnou odchylkou téhož souboru a jejich rozdíl. Kladný rozdíl znamená, že model daný kvantil podhodnocuje a bod v Q–Q grafu leží nad přímkou. Záporný rozdíl znamená, že jej nadhodnocuje a bod leží pod přímkou. Čím sytější je barva buňky, tím větší je rozdíl.
 
@@ -743,7 +743,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - *z*-skór vyjadřuje, o kolik směrodatných odchylek leží hodnota nad průměrem nebo pod ním. Umožňuje porovnat relativní polohu na různých škálách; převod lze použít u jakéhokoli rozdělení a jeho tvar nemění ([Poloha výsledku a *z*-skór](#sec-z-skor)).
 - Normální rozdělení je model spojité veličiny určený průměrem $\mathrm{μ}$ a směrodatnou odchylkou $\mathrm{σ}$, zapisovaný $N(\mathrm{μ},\mathrm{σ})$. Přidává konkrétní předpoklad o tvaru rozdělení; oba parametry lze volit nezávisle na sobě ([Normální rozdělení jako model](#sec-normalni-model)).
 - Modelový podíl výsledků odpovídá ploše pod křivkou, nikoli její výšce. Orientačně leží do vzdálenosti jedné, dvou a tří směrodatných odchylek od průměru 68,3 %, 95,4 % a 99,7 % hodnot ([Podíly jako plochy pod křivkou](#sec-plochy-normalniho)).
-- Distribuční funkce dává podíl vlevo od zvolené hranice; v Excelu ji počítají `NORM.S.DIST` a `NORM.DIST`. Podíl nad hranicí a v intervalu získáme odečtením ([Od hodnoty k podílu](#sec-hodnota-podil)).
+- Distribuční funkce udává podíl vlevo od zvolené hranice; v Excelu ji počítají `NORM.S.DIST` a `NORM.DIST`. Podíl nad hranicí a v intervalu získáme odečtením ([Od hodnoty k podílu](#sec-hodnota-podil)).
 - Inverzní funkce `NORM.S.INV` a `NORM.INV` převádějí podíl vlevo na odpovídající hranici. Prostředních 95 % a horních 5 % jsou různé úlohy ([Od podílu zpět k hodnotě](#sec-podil-hodnota)).
 - Standardní skóry vyjadřují tutéž relativní polohu na různých škálách, zatímco steny a staniny ji shrnují do pásem. Lineární převod normalitu nepotřebuje, převod na percentilové pořadí pomocí normální křivky ano ([Standardní skóry v psychologii](#sec-standardni-skory)).
 - Přesný výpočet nezaručuje přiměřenost použitého modelu. Posuzujeme ji podle účelu z významu měření, histogramu a normálního Q–Q grafu, v němž rozpoznáme zešikmení, těžší (leptokurtické) či lehčí (platykurtické) chvosty a směs skupin i to, které kvantily by model zkreslil. Šikmost a exces vypovídají o týchž rysech tvaru a grafy stručně doplňují. Statisticky neobvyklý výsledek není automaticky chybný, závažný nebo klinicky významný ([Je normální model přiměřený?](#sec-primerenost-modelu)).
@@ -761,7 +761,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U01_reference` A2:E3.
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Ve skupině A je $z=(62-50)/8=12/8=1{,}5$, tedy jeden a půl směrodatné odchylky nad průměrem. Ve skupině B je $z=(62-65)/6=-3/6=-0{,}5$, tedy půl směrodatné odchylky pod průměrem. Hrubý výsledek se nezměnil; změnila se skupina, vůči níž jej hodnotíme.
 
-Zpětný převod ve skupině A dává $x=50+8\times(-0{,}75)=50-6=44$ bodů. Pro percentilové pořadí potřebujeme rozdělení výsledků, normy nebo jednotlivá data; samotné $m$, $s$ a $z$ nestačí.
+Zpětným převodem ve skupině A vychází $x=50+8\times(-0{,}75)=50-6=44$ bodů. Pro percentilové pořadí potřebujeme rozdělení výsledků, normy nebo jednotlivá data; samotné $m$, $s$ a $z$ nestačí.
 :::
 
 ### 2. Standardizace zešikmených dat
@@ -799,9 +799,9 @@ Pro model skóru pozornosti $N(50,10)$ načrtněte a vypočítejte podíl výsle
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 Směrodatná odchylka je 10. Dolní mez má $z=(45-50)/10=-0{,}5$, horní $z=(65-50)/10=1{,}5$.
 
-a) Vybarvíme levou plochu do −0,5. `=NORM.S.DIST(-0,5;PRAVDA)` dává přibližně 0,308538, tedy **30,9 %**.
+a) Vybarvíme levou plochu do −0,5. `=NORM.S.DIST(-0,5;PRAVDA)` vrátí přibližně 0,308538, tedy **30,9 %**.
 
-b) Vybarvíme pravou plochu od 1,5. `=1-NORM.S.DIST(1,5;PRAVDA)` dává přibližně 0,066807, tedy **6,7 %**.
+b) Vybarvíme pravou plochu od 1,5. `=1-NORM.S.DIST(1,5;PRAVDA)` vrátí přibližně 0,066807, tedy **6,7 %**.
 
 c) Od levé plochy do horní meze odečteme levou plochu do dolní: `=NORM.S.DIST(1,5;PRAVDA)-NORM.S.DIST(-0,5;PRAVDA)`. Výsledek je přibližně 0,624655, tedy **62,5 %**. Všechny tři oblasti společně pokrývají celé rozdělení; nezaokrouhlené podíly se sečtou na 1.
 
@@ -815,9 +815,9 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U05_percentily` A2:B6
 V modelu $N(50,10)$ najděte a) 20. percentil, b) hranici horních 10 %, c) meze prostředních 90 %. Vždy nejprve napište, jaký podíl zadáte do inverzní funkce a proč.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a) Vlevo má být 20 %, proto $p=0{,}2$. `=NORM.INV(0,2;50;10)` dává **41,58 bodu**. Odpovídající $z\approx-0{,}841621$ je záporné, protože hledaná hranice leží pod průměrem.
+a) Vlevo má být 20 %, proto $p=0{,}2$. `=NORM.INV(0,2;50;10)` vrátí **41,58 bodu**. Odpovídající $z\approx-0{,}841621$ je záporné, protože hledaná hranice leží pod průměrem.
 
-b) Jestliže vpravo zbývá 10 %, vlevo je 90 %. `=NORM.INV(0,9;50;10)` dává **62,82 bodu**.
+b) Jestliže vpravo zbývá 10 %, vlevo je 90 %. `=NORM.INV(0,9;50;10)` vrátí **62,82 bodu**.
 
 c) Mimo prostřední interval zbývá 10 %, tedy 5 % v každém chvostu. Zadáme podíly 0,05 a 0,95: `=NORM.INV(0,05;50;10)` a `=NORM.INV(0,95;50;10)`. Meze jsou **33,55 a 66,45 bodu**. Interval vymezuje jednotlivé hodnoty podle modelu, nikoli nejistotu odhadu průměru.
 :::
@@ -829,7 +829,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `U06_zaokrouhleni` A2:
 Spojitý skór se řídí modelem $N(50,10)$ a zaznamenává se zaokrouhlený na celé body. Který interval původních hodnot se zobrazí jako 50 a jaký modelový podíl mu odpovídá? Proč není výsledek nulový?
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Jde o interval od 49,5 do 50,5; volba zahrnutí přesných půlbodových mezí nemění plochu spojitého modelu. *z*-skóry mezí jsou −0,05 a 0,05. Výpočet `=NORM.S.DIST(0,05;PRAVDA)-NORM.S.DIST(-0,05;PRAVDA)` dává přibližně 0,039878, tedy **4,0 %**. Ptáme se na celý interval kladné šířky, nikoli na jedinou přesnou hodnotu 50 před zaokrouhlením.
+Jde o interval od 49,5 do 50,5; volba zahrnutí přesných půlbodových mezí nemění plochu spojitého modelu. *z*-skóry mezí jsou −0,05 a 0,05. Výpočet `=NORM.S.DIST(0,05;PRAVDA)-NORM.S.DIST(-0,05;PRAVDA)` vrátí přibližně 0,039878, tedy **4,0 %**. Ptáme se na celý interval kladné šířky, nikoli na jedinou přesnou hodnotu 50 před zaokrouhlením.
 :::
 
 ### 7. Převody standardních skórů
@@ -865,7 +865,7 @@ Vstupy v [sešitu ke kapitole](../data/kapitola_04.xlsx): `QQ_data` A2:A13.
 V Excelu znovu sestavte Q–Q graf pro dvanáct skórů z [výkladu](#sec-excel-qq). Zkontrolujte souřadnice prvního a posledního bodu. Potom změňte poslední skór z 65 na 90, přepočítejte graf a popište změnu. Vysvětlete, proč není správné použít pro poslední pořadí podíl $12/12$.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Pro první pořadí je $p=0{,}5/12\approx0{,}041667$ a `=NORM.S.INV(0,5/12)` dává $z\approx-1{,}731664$. První bod má tedy souřadnice přibližně (−1,73; 35). Pro poslední pořadí je $p=11{,}5/12\approx0{,}958333$, $z\approx1{,}731664$ a bod (1,73; 65). Teoretické kvantily patří na osu X a pozorované skóry na osu Y; přímka používá vypočtené $m$ a $s$.
+Pro první pořadí je $p=0{,}5/12\approx0{,}041667$ a `=NORM.S.INV(0,5/12)` vrátí $z\approx-1{,}731664$. První bod má tedy souřadnice přibližně (−1,73; 35). Pro poslední pořadí je $p=11{,}5/12\approx0{,}958333$, $z\approx1{,}731664$ a bod (1,73; 65). Teoretické kvantily patří na osu X a pozorované skóry na osu Y; přímka používá vypočtené $m$ a $s$.
 
 Po nahrazení 65 hodnotou 90 se teoretická souřadnice posledního bodu nemění, protože počet a pořadí zůstaly stejné. Bod se posune svisle vzhůru na 90. Zároveň se změní $m$ na přibližně 52,08 a $s$ na 14,18, takže se posune i referenční přímka. Nejvyšší hodnota nyní vybočuje nad její pravý konec. Je třeba prověřit okolnosti tohoto výsledku; samotný obrázek neříká, zda je údaj chybný. Po pokusu vraťte 65.
 
