@@ -1,5 +1,22 @@
 # Autorská dokumentace
 
+<a id="pdf-kapitola-09-2026-11-14"></a>
+
+## PDF: export kapitoly 9 a české uvozovky v Quartu 1.10 (2026-11-14)
+
+Autor požádal o pracovní PDF kapitoly 9 a o doplnění kapitoly mezi podporované exporty.
+
+- `render-chapter-pdf.ps1`, `check-chapter-pdf.cjs` (14 řešení) a `check-rendered-pdf.py` podporují kapitolu 9.
+- `kapitola_09.qmd`: šest poznámek pod tabulkami začíná „*Poznámka.*“ jako v ostatních kapitolách (kontrola PDF je podle toho hledá).
+- RStudio nyní dodává Quarto 1.10.19 (Pandoc 3.10, Typst 0.15.1). Pandoc zapisuje českou zavírací uvozovku jako chytrou uvozovku Typstu, která v PDF otevírala novou citaci („…„). `scripts/pdf/typography.lua` převádí „ “ ‚ ‘ na escape sekvence Typstu; v titulcích bloků (atribut `title`) je mění na uvozovky Markdownu, které Typst sází česky. Kontrola `check-pdf-typography.cjs` má nový případ a test oddělovače v $N(50,10)$ toleruje mezery, které nová verze Pandocu nevypisuje.
+- Dokumentace: `AGENTS.md` (export kapitol 3–9), `docs/PROVOZ.md`.
+
+**Kontroly:** PDF kapitol 3–9 znovu sestavena Quartem 1.10.19 (50/38/43/56/38/38/35 stran); `check-chapter-pdf.cjs` pro kapitoly 3–9, `check-pdf-typography.cjs` a `check-rendered-pdf.py` prošly. Počet otevíracích a zavíracích uvozovek v textu PDF se shoduje ve všech kapitolách (kapitola 7 má 66/66 jako se starším Quartem). Kapitola 9 celá vizuálně prohlédnuta na náhledech stránek; drobnosti: poznámka tabulky 9.7 se oddělila na další stranu, na s. 7 a 14 zůstává volné místo před tabulkou či obrázkem. Kapitola 9 vykreslena i jako web.
+
+**Oprava omylu (téhož dne):** Náhledy stránek pro vizuální kontrolu vznikly samostatným `quarto typst compile` bez složky písem Quarta, a proto místo ikon bloků ukazovaly prázdné rámečky. Ve skutečných PDF se ikony vykreslují správně (vloženo písmo Font Awesome; ověřeno autorem i náhledem s `--font-path`). Krátce zavedené `callout-icon: false` bylo vráceno, PDF kapitol 3–9 znovu sestavena s ikonami a uloženy do `output/pdf/`.
+
+**Omezení:** Ostatní kapitoly 3–8 nebyly po změně vizuálně prohlédnuty, jen ověřeny kontrolami a počtem uvozovek.
+
 <a id="ai-tutor-vydani-2026-11-14"></a>
 
 ## AI tutor 0.3.5: stránka ke stažení a vydání na GitHubu (2026-11-14, R79)

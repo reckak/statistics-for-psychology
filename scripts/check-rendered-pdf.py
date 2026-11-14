@@ -6,7 +6,7 @@ from pypdf.generic import ContentStream
 
 report = []
 # Chapter PDFs and, when it has been built, the book PDF of chapters 1-6.
-targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7, 8)]
+targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7, 8, 9)]
 if Path('output/pdf/ucebnice_01-06.pdf').exists():
     targets.append(('ucebnice_01-06', [1, 2, 3, 4, 5, 6]))
 for name, chapters in targets:

@@ -127,7 +127,7 @@ List `Interval_podilu` počítá oba intervaly a test, ke kterému se dostaneme 
 :::
 
 ::: {.table-note}
-Funkce NORM.S.INV a NORM.S.DIST známe z [kapitoly 4](kapitola_04.qmd#sec-normalni-kvantil). Waldův interval je na listu jen pro srovnání; pro výsledek používejte Wilsonův interval.
+*Poznámka.* Funkce NORM.S.INV a NORM.S.DIST známe z [kapitoly 4](kapitola_04.qmd#sec-normalni-kvantil). Waldův interval je na listu jen pro srovnání; pro výsledek používejte Wilsonův interval.
 :::
 
 ### Interval a test jednoho podílu {#sec-interval-a-test-podilu}
@@ -212,7 +212,7 @@ List `Dva_podily` počítá Wilsonovy intervaly obou skupin, Newcombův interval
 :::
 
 ::: {.table-note}
-Dolní mez Wilsonova intervalu první skupiny v B12 je `=(B8+B11^2/(2*B3))/(1+B11^2/B3)-B11/(1+B11^2/B3)*ODMOCNINA(B8*(1-B8)/B3+B11^2/(4*B3^2))`; horní mez v B13 se liší jen znaménkem před druhým zlomkem. Buňky B23:B24 obsahují tutéž *p*-hodnotu spočítanou jinou cestou, ke které se dostaneme v [oddílu o tabulkách](#sec-chi-a-z).
+*Poznámka.* Dolní mez Wilsonova intervalu první skupiny v B12 je `=(B8+B11^2/(2*B3))/(1+B11^2/B3)-B11/(1+B11^2/B3)*ODMOCNINA(B8*(1-B8)/B3+B11^2/(4*B3^2))`; horní mez v B13 se liší jen znaménkem před druhým zlomkem. Buňky B23:B24 obsahují tutéž *p*-hodnotu spočítanou jinou cestou, ke které se dostaneme v [oddílu o tabulkách](#sec-chi-a-z).
 :::
 
 ## Jak daleko jsou pozorované četnosti od očekávaných? {#sec-dobra-shoda}
@@ -346,7 +346,7 @@ List `Dobra_shoda` výpočet sestavuje krok za krokem:
 :::
 
 ::: {.table-note}
-Vzorce v D2 a E2 se kopírují do řádků 3–5. Podíly v C2:C5 můžete změnit na jiné předem dané rozložení; jejich součet musí být 1.
+*Poznámka.* Vzorce v D2 a E2 se kopírují do řádků 3–5. Podíly v C2:C5 můžete změnit na jiné předem dané rozložení; jejich součet musí být 1.
 :::
 
 ### Co test dobré shody neříká {#sec-dobra-shoda-meze}
@@ -414,7 +414,7 @@ Liší se preferovaný způsob zvládání stresu podle věku? Výzkumnice se ze
 :::
 
 ::: {.table-note}
-V závorkách jsou očekávané četnosti při nezávislosti, například $e_{11}=55\times65/190=18{,}82$.
+*Poznámka.* V závorkách jsou očekávané četnosti při nezávislosti, například $e_{11}=55\times65/190=18{,}82$.
 :::
 
 Statistika je $\mathrm{χ}^2=11{,}78$ se $(3-1)(3-1)=4$ stupni volnosti, *p*-hodnota 0,019; kritická hodnota pro hladinu 0,05 je 9,49. **Rozhodnutí testu:** zamítáme nulovou hypotézu, že preferovaná strategie a věková skupina jsou v populaci nezávislé. Kde se ale tabulka od nezávislosti odchyluje?
@@ -453,7 +453,7 @@ Proč dvě verze? Četnosti v tabulce jsou svázány pevnými řádkovými a slo
 :::
 
 ::: {.table-note}
-Kladné reziduum: v buňce je více lidí, než bychom čekali při nezávislosti; záporné: méně. Upravená rezidua jsou v absolutní hodnotě vždy větší než Pearsonova.
+*Poznámka.* Kladné reziduum: v buňce je více lidí, než bychom čekali při nezávislosti; záporné: méně. Upravená rezidua jsou v absolutní hodnotě vždy větší než Pearsonova.
 :::
 
 Obě verze ukazují tentýž vzorec. Kladná rezidua mají mladí u řešení problému a senioři u sociální opory, záporná mladí u sociální opory a senioři u řešení problému. Dospělí a vyhýbání mají rezidua malá. **Věcná interpretace testu:** v této studii souvisí preferovaná strategie s věkovou skupinou; mladí uvádějí častěji řešení problému a méně často sociální oporu, senioři naopak. Síla souvislosti je umírněná (Cramérovo V = 0,18, viz [oddíl o velikosti souvislosti](#sec-phi-v)). Jde o průřezové srovnání tří věkových skupin; rozdíl může souviset s věkem, ale i se zkušenostmi celé generace, a nedokládá, že strategie se s věkem mění u jednotlivých lidí.
@@ -495,7 +495,7 @@ List `Tabulka` má v oblasti B3:D5 žluté vstupy s výchozími četnostmi z lis
 :::
 
 ::: {.table-note}
-Vzorce v řádcích 9, 14, 24, 28 a 32 se kopírují do sloupců C a D a do dalších dvou řádků každé oblasti; dolary drží odkaz na součty. Funkce **ŘÁDKY** (anglicky ROWS) a **SLOUPCE** (anglicky COLUMNS) vracejí počet řádků a sloupců oblasti.
+*Poznámka.* Vzorce v řádcích 9, 14, 24, 28 a 32 se kopírují do sloupců C a D a do dalších dvou řádků každé oblasti; dolary drží odkaz na součty. Funkce **ŘÁDKY** (anglicky ROWS) a **SLOUPCE** (anglicky COLUMNS) vracejí počet řádků a sloupců oblasti.
 :::
 
 ## Kdy se na test chí-kvadrát nelze spolehnout a co použít místo něj? {#sec-predpoklady-09}

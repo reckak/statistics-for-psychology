@@ -12,15 +12,18 @@ $z=-1{,}5; t\approx -2{,}064; 46-3{,}92$
 
 $$x=49{,}92.$$
 
-A **v** textu a *i jinak*; k [odkazu](https://example.org). $a$ je proměnná. ` + '`a v kodu`' + '\n';
+A **v** textu a *i jinak*; k [odkazu](https://example.org). $a$ je proměnná. Pro „řešení problému“ a ‚jiné‘. ` + '`a v kodu`' + '\n';
 const result = spawnSync(quarto, ['pandoc','--from=markdown','--to=typst','--lua-filter=scripts/pdf/typography.lua'], {input:source,encoding:'utf8'});
 assert.equal(result.status,0,result.stderr);
 assert(result.stdout.includes('#set text(size: 9pt)'), 'table notes match figure captions (9 pt)');
 for (const value of ['0,025','0,975','−1,25','2,5','−1,5','−2,064','49,92.']) assert(result.stdout.includes(`upright("${value}")`),value);
 assert(result.stdout.includes('46 - upright("3,92")'),'binary minus stays an operator');
-assert(result.stdout.includes(String.raw`N \( 50 \, 10 \)`),'distribution separator');
+// Pandoc in Quarto 1.9 spaces the tokens, in Quarto 1.10 not; both keep the separator.
+assert(/N ?\\\( ?50 ?\\, ?10 ?\\\)/.test(result.stdout),'distribution separator');
 assert(result.stdout.includes('A~#strong[v]~textu a~#emph[i~jinak]'),'inline boundaries');
 assert(result.stdout.includes('k~#link'),'link boundary');
 assert(result.stdout.includes('$a$ je'),'math variable is not a conjunction');
 assert(result.stdout.includes('a v kodu'),'code unchanged');
-console.log('PDF typography conversion: decimal literals, separator commas, emphasis, links, math and code passed.');
+// Czech quotes as escapes: Typst smart quotes would turn the closing “ into „.
+assert(/Pro\s+\\u\{201E\}řešení\s+problému\\u\{201C\}\s+a~\\u\{201A\}jiné\\u\{2018\}/.test(result.stdout),'Czech quotes');
+console.log('PDF typography conversion: decimal literals, separator commas, emphasis, links, math, code and Czech quotes passed.');

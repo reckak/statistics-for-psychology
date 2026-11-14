@@ -62,27 +62,33 @@ kapitoly a jedinečná ID. Styly tabulek jsou v `assets/styles.css` a
 ## Ruční PDF vybrané kapitoly
 
 Pracovní PDF se sestavuje pouze na výslovné vyžádání. Aktuálně je připraven
-a ověřen export kapitol 3–8. Z kořene projektu v PowerShellu spusťte
+a ověřen export kapitol 3–9. Z kořene projektu v PowerShellu spusťte
 příkaz pro požadovanou kapitolu, například:
 
 ```powershell
 ./scripts/render-chapter-pdf.ps1 -Chapter 4
 ```
 
-Pro kapitoly 5 až 8 použijte `-Chapter 5`, `-Chapter 6`, `-Chapter 7` či `-Chapter 8`
+Pro kapitoly 5 až 9 použijte `-Chapter 5` až `-Chapter 9`
 a stejné číslo v kontrole `--chapter`.
 Pro kapitolu 3 použijte `-Chapter 3` (také výchozí volba).
 Výstup skriptu nepřesměrovávejte pomocí `2>&1` ani `2>$null`: Windows
 PowerShell 5.1 pak běžná hlášení Quarta na chybovém výstupu považuje za chybu
 a export přeruší.
-Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 08. Skript používá aktuální
+Výsledek je `output/pdf/kapitola_NN.pdf`, kde NN je 03 až 09. Skript používá aktuální
 `quarto/kapitola_NN.qmd`, obnoví její grafy v R a sestaví PDF prostřednictvím
-Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38, Typstem 0.14.2,
-R 4.5.1 a Windows PowerShellem 5.1. Není potřeba instalovat LaTeX.
+Typstu dodávaného s Quartem. Ověřeno s Quartem 1.9.38 (Typst 0.14.2) a 1.10.19
+(Typst 0.15.1), R 4.5.1 a Windows PowerShellem 5.1. Pandoc v Quartu 1.10 zapisuje
+českou zavírací uvozovku (“) jako chytrou uvozovku Typstu, která by v PDF otevírala novou citaci;
+`scripts/pdf/typography.lua` proto české uvozovky převádí na escape sekvence
+Typstu a v titulcích bloků na uvozovky Markdownu. Náhledy stránek
+vykreslené samostatně příkazem `quarto typst compile` potřebují
+`--font-path` se složkou `share/formats/typst/fonts` Quarta, jinak místo
+ikon bloků ukazují prázdné rámečky; samotné PDF je má správně. Není potřeba instalovat LaTeX.
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7, 14 v kapitole 8), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7, 14 v kapitole 8, 14 v kapitole 9), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
