@@ -240,6 +240,17 @@ Výstupem je Quarto Book průběžně publikovaný na GitHubu jako web.
 - Piš odbornou, přirozenou češtinou v souvislém výkladu, soustředěně
   a podpůrně: vysvětluj obtížná místa a běžné omyly, nenahrazuj výklad
   motivační řečí. Výčty, tabulky a zvýrazněné bloky používej, když pomáhají.
+- Vyhýbej se kalkům z angličtiny. Výsledky nevyjadřuj vazbou „X dalo Y“
+  („online verze dala průměr“), ale přirozeně: „v online verzi činil průměr“,
+  „test ukázal“, „vychází“. Úvod oddílu uveď obratem „Tento oddíl …“ nebo
+  „Následující oddíl …“, ne holým „Oddíl ukazuje …“.
+- Pojmenuj přesně, čeho se číslo týká: jde-li o průměry, piš „rozdíl
+  průměrů“, „průměrná změna“, „průměrný pokles“, ne holé „rozdíl“ či
+  „pokles“. U nezávislých skupin nemluv o poklesu, nejde o změnu v čase.
+- Na českém termínu netrvej za každou cenu: má-li obor zavedený, odbornější
+  a výstižnější cizí termín, dej mu přednost. Konkrétní volby (např.
+  variabilita, intervence, korigovaný) udržuj ve [slovníku](docs/SLOVNIK.md);
+  dohodu dokládá [R76](docs/rozhodnuti/spolecne-konvence.md#r76-jazykove-konvence).
 - Kde to usnadní pochopení pojmu, vztahu nebo principu postupu, zařazuj
   diagramy, schémata či grafy (např. schéma odlišující výběr z populace
   od přiřazení k podmínkám v první kapitole). Propoj je s výkladem

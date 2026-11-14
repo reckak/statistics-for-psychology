@@ -38,14 +38,8 @@ Obě otázky jsou nezávislé. Všichni mohou ztratit 3 až 4 body, a přitom si
 
 Korelace obou měření vysvětluje, proč párování v kapitole 8 tolik zpřesnilo odhad. Když si lidé zachovávají postavení, jejich stabilní rozdíly se při odečtení odstraní a rozdíly kolísají málo: jejich směrodatná odchylka byla jen 2,39 bodu. Kdyby obě měření spolu nesouvisela ($r = 0$), měly by rozdíly za jinak stejných směrodatných odchylek obou měření směrodatnou odchylku 9,75 bodu. Samotné zachování pořadí ale nestačí. Jak jsme viděli v [kapitole 8](kapitola_08.qmd#sec-kdy-parovani), u hodnot 2, 4, 6 a 6, 12, 18 je pořadí zachováno dokonale ($r = 1$), a přesto rozdíly kolísají víc než hodnoty prvního měření, protože druhé měření má trojnásobný rozptyl.
 
-::: {.callout-note collapse="true" title="Nepovinné rozšíření: rozptyl rozdílů a korelace obou měření" #rozsireni-rozptyl-rozdilu}
-Rozptyl rozdílů $D = X_1 - X_2$ párových dat lze vyjádřit pomocí rozptylů obou měření a jejich korelace:
-
-$$
-s_D^2 = s_1^2 + s_2^2 - 2\,r\,s_1 s_2 .
-$$
-
-Pro data spánku z kapitoly 8 je $s_1 = 7{,}34$, $s_2 = 6{,}42$ a $r = 0{,}948$, takže $s_D = \sqrt{7{,}34^2 + 6{,}42^2 - 2 \cdot 0{,}948 \cdot 7{,}34 \cdot 6{,}42} = 2{,}39$ bodu, tedy přesně směrodatná odchylka rozdílů spočítaná přímo. Při $r = 0$ by vyšlo $\sqrt{7{,}34^2 + 6{,}42^2} = 9{,}75$. Vzorec ukazuje dvě věci. Čím vyšší kladná korelace, tím víc se odečítá a tím méně rozdíly kolísají. Zároveň výsledek závisí i na tom, jak podobné jsou obě směrodatné odchylky: pro 2, 4, 6 a 6, 12, 18 je $s_1 = 2$, $s_2 = 6$, $r = 1$ a $s_D = \sqrt{4 + 36 - 24} = 4$. Výpočet je na listu `Parova_korelace`.
+::: {.callout-tip title="Připomenutí: variabilita rozdílů a korelace obou měření" #rozsireni-rozptyl-rozdilu}
+Jak přesně závisí směrodatná odchylka rozdílů párových dat na korelaci obou měření, $s_D^2=s_1^2+s_2^2-2\,r\,s_1s_2$, ukazuje i s grafem [nepovinné rozšíření kapitoly 8](kapitola_08.qmd#rozsireni-rozptyl-rozdilu-08). Pro data spánku vychází $r=0{,}948$ a $s_D=2{,}39$ bodu. Výpočet s funkcí CORREL je na listu `Parova_korelace`.
 :::
 
 ## Co poznáme z bodového grafu? {#sec-bodovy-graf}
@@ -142,7 +136,7 @@ $$
 r = \frac{-27{,}6}{8{,}075 \cdot 4{,}336} = -0{,}788 .
 $$
 
-Pearsonovo $r$ je výběrová charakteristika; odpovídající populační parametr, korelaci v celé populaci, označujeme $\mathrm{ρ}$ (čti „ró“). Proč dělení směrodatnými odchylkami pomáhá? Kovariance roste s rozptýleností obou proměnných, a když ji podělíme součinem jejich směrodatných odchylek, vliv jednotek i rozptýlenosti se vyruší. Lze dokázat, že kovariance nikdy nepřesáhne v absolutní hodnotě součin $s_x s_y$. Proto $r$ leží vždy mezi −1 a 1 [@howell, s. 260].
+Pearsonovo $r$ je výběrová charakteristika; odpovídající populační parametr, korelaci v celé populaci, označujeme $\mathrm{ρ}$ (čti „ró“). Proč dělení směrodatnými odchylkami pomáhá? Kovariance roste s variabilitou obou proměnných, a když ji podělíme součinem jejich směrodatných odchylek, vliv jednotek i variability se vyruší. Lze dokázat, že kovariance nikdy nepřesáhne v absolutní hodnotě součin $s_x s_y$. Proto $r$ leží vždy mezi −1 a 1 [@howell, s. 260].
 
 Stejné číslo dostaneme z [*z*-skórů](kapitola_04.qmd#sec-standardni-skory). Převedeme-li obě proměnné na *z*-skóry s výběrovými směrodatnými odchylkami, je $r$ součtem součinů *z*-skórů děleným $n - 1$:
 
@@ -337,9 +331,9 @@ Koeficient lze **spočítat** pro jakoukoli dvojici číselných sloupců. To je
 
 Klasický test a interval pro Pearsonovo $r$ vycházejí z modelu **dvourozměrného normálního rozdělení** (*bivariate normal distribution*), v literatuře též bivariačního normálního rozdělení. Představíme si populaci dvojic hodnot, jejíž mrak má tvar elipsy, nejhustší uprostřed a řídnoucí k okrajům. Každá proměnná má normální rozdělení. Navíc pro každou pevnou hodnotu jedné proměnné má druhá normální rozdělení se stejnou směrodatnou odchylkou [@howell, s. 273–274; @cumming, s. 325–326]. Není to totéž jako normalita každé proměnné zvlášť: obě proměnné mohou být normální, a přesto jejich společný mrak může mít jiný tvar.
 
-![Vlevo vzorek 400 dvojic z dvourozměrného normálního rozdělení: mrak tvaru elipsy se stejnou svislou rozptýleností v celém rozsahu X. Vpravo heteroskedasticita: rozptýlenost Y roste s X, mrak se rozšiřuje doprava.](../assets/chapter-10/plots/dvourozmerne.svg){#fig-dvourozmerne fig-alt="Dva bodové grafy po 400 bodech. Vlevo modrý mrak tvaru šikmé elipsy stoupající zleva doprava, na všech místech osy X přibližně stejně široký. Vpravo oranžový mrak, který je vlevo úzký a doprava se rozšiřuje jako vějíř."}
+![Vlevo vzorek 400 dvojic z dvourozměrného normálního rozdělení: mrak tvaru elipsy se stejnou svislou variabilitou v celém rozsahu X. Vpravo heteroskedasticita: variabilita Y roste s X, mrak se rozšiřuje doprava.](../assets/chapter-10/plots/dvourozmerne.svg){#fig-dvourozmerne fig-alt="Dva bodové grafy po 400 bodech. Vlevo modrý mrak tvaru šikmé elipsy stoupající zleva doprava, na všech místech osy X přibližně stejně široký. Vpravo oranžový mrak, který je vlevo úzký a doprava se rozšiřuje jako vějíř."}
 
-Dvě vlastnosti modelu lze posoudit z grafu. **Linearita**: zakřivený mrak modelu neodpovídá. **Stejná rozptýlenost** neboli **homoskedasticita** (*homoscedasticity*): mrak je ve svislém směru všude přibližně stejně široký. Rozšiřuje-li se jako vějíř, mluvíme o **heteroskedasticitě** (*heteroscedasticity*; obrázek [-@fig-dvourozmerne] vpravo). Při heteroskedasticitě klasický test stále platí jako test nezávislosti obou proměnných, ale jako test toho, že je nulová právě korelace, už spolehlivý není [@wilcox2017, s. 223–224]. Jako u [*t*-testů](kapitola_07.qmd#sec-t-test) nerozhodujeme podle testu normality, ale podle grafu, velikosti výběru a povahy proměnných.
+Dvě vlastnosti modelu lze posoudit z grafu. **Linearita**: zakřivený mrak modelu neodpovídá. **Stejná variabilita** neboli **homoskedasticita** (*homoscedasticity*): mrak je ve svislém směru všude přibližně stejně široký. Rozšiřuje-li se jako vějíř, mluvíme o **heteroskedasticitě** (*heteroscedasticity*; obrázek [-@fig-dvourozmerne] vpravo). Při heteroskedasticitě klasický test stále platí jako test nezávislosti obou proměnných, ale jako test toho, že je nulová právě korelace, už spolehlivý není [@wilcox2017, s. 223–224]. Jako u [*t*-testů](kapitola_07.qmd#sec-t-test) nerozhodujeme podle testu normality, ale podle grafu, velikosti výběru a povahy proměnných.
 
 ## Test a interval pro Pearsonovo *r* {#sec-test-interval-r}
 
@@ -530,7 +524,7 @@ Interval a test zde odpovídají na různé otázky a vycházejí z různých po
 :::
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: interval BCa" #rozsireni-bca}
-Percentilový interval předpokládá, že bootstrapové rozdělení je kolem pozorované hodnoty rozložené „správně“. Interval **BCa** (*bias-corrected and accelerated*) tento předpoklad zmírňuje dvěma opravami. Korekce zkreslení $z_0$ vychází z podílu bootstrapových hodnot menších než pozorovaná hodnota: kdyby jich bylo právě 50 %, byla by nulová. Zrychlení $a$ popisuje, jak se rozptýlenost koeficientu mění s jeho velikostí; počítá se z hodnot koeficientu spočítaných vždy bez jednoho člověka. Obě opravy posunou percentily, které použijeme jako meze: místo 2,5. a 97,5. percentilu bereme percentily
+Percentilový interval předpokládá, že bootstrapové rozdělení je kolem pozorované hodnoty rozložené „správně“. Interval **BCa** (*bias-corrected and accelerated*) tento předpoklad zmírňuje dvěma opravami. Korekce zkreslení $z_0$ vychází z podílu bootstrapových hodnot menších než pozorovaná hodnota: kdyby jich bylo právě 50 %, byla by nulová. Zrychlení $a$ popisuje, jak se variabilita koeficientu mění s jeho velikostí; počítá se z hodnot koeficientu spočítaných vždy bez jednoho člověka. Obě opravy posunou percentily, které použijeme jako meze: místo 2,5. a 97,5. percentilu bereme percentily
 
 $$
 \mathrm{α}_{1,2} = \Phi\!\left(z_0 + \frac{z_0 + z_{0,025;\,0,975}}{1 - a\,(z_0 + z_{0,025;\,0,975})}\right),
@@ -585,7 +579,7 @@ Postup volíme podle otázky, úrovně měření a grafu, nikoli podle toho, kte
 
 | Otázka a data | Graf ukazuje | Koeficient | Test | Interval |
 |---|---|---|---|---|
-| Lineární souvislost dvou intervalových proměnných | přibližně lineární mrak, bez odlehlých bodů, rozptýlenost podobná | Pearsonovo $r$ | $t$-test, $n-2$ stupňů volnosti | Fisherův interval |
+| Lineární souvislost dvou intervalových proměnných | přibližně lineární mrak, bez odlehlých bodů, variabilita podobná | Pearsonovo $r$ | $t$-test, $n-2$ stupňů volnosti | Fisherův interval |
 | Monotónní souvislost; pořadová data nebo nestejně rychlý růst | body jen rostou (nebo jen klesají) | Spearmanovo $r_s$ nebo Kendallovo $\mathrm{τ}_b$ | permutační test nezávislosti | percentilový bootstrapový interval |
 | Pořadová data s mnoha shodami, výklad přes dvojice | překrývající se body | Kendallovo $\mathrm{τ}_b$ | permutační test nezávislosti | percentilový bootstrapový interval |
 | Vztah mění směr (obrácené U) | body nejprve rostou, pak klesají | žádný z koeficientů; popsat tvar | — | — |
@@ -656,7 +650,7 @@ Jsou-li dichotomické obě proměnné, je Pearsonova korelace jejich kódů 0 a 
 
 Ve všech třech případech jde o stejný výpočet. Mění se typ vstupů a interpretace: u dvou intervalových proměnných měříme těsnost lineární souvislosti, u jedné dichotomické proměnné rozdíl průměrů skupin, u dvou dichotomických proměnných souvislost v tabulce 2 × 2.
 
-::: {.callout-note collapse="true" title="Nepovinné rozšíření: převod Cohenova d na bodově biseriální korelaci" #rozsireni-d-r}
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: převod Cohenova *d* na bodově biseriální korelaci" #rozsireni-d-r}
 Velikost rozdílu dvou skupin lze vyjádřit [Cohenovým *d*](kapitola_08.qmd#sec-cohenovo-d) nebo bodově biseriální korelací. Pro *d* se společnou směrodatnou odchylkou platí
 
 $$

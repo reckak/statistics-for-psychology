@@ -94,3 +94,9 @@ V textové extrakci přečtena podstatná část kap. 11 od s. 311 (PDF 346) po 
 
 - **Využitelné:** *r* jako míra lineární složky vztahu, nelinearita a efekt stropu (s. 311–313); odhad *r* z grafu pomocí kříže průměrů a „souboje kvadrantů“ se součiny *z*-skórů a dělením *N* − 1 (s. 313–319); vliv jedné odlehlé hodnoty (0,89 → 0,26, s. 319–320); čtení skóre s prázdným kvadrantem (s. 321); omezení rozsahu (s. 322). Z oddílů „Inference: CIs and p values“ a „Interpreting correlations and scatterplots“: kolísání *r* mezi výběry a šikmost jeho rozdělení, dvourozměrný normální model a kdy nemá smysl interval počítat (celá populace), asymetrie a délka intervalu podle *r* a *N*, orientační přesnost podle *N*, příčinnost, srovnávací hodnoty v kontextu (Cohen 0,1/0,3/0,5, Hinkle et al., kvartily 0,07/0,16/0,32 podle Bosca et al., 2015), korelace jako koeficient reliability a validity a příklad Chan (2007) s nulou jako nevhodnou referencí.
 - **Nálezy:** pro *r* = 0,4 a *N* = 30 vychází Fisherův interval (0,046; 0,665) v souladu s [.05, .66], *p* = 0,0285 (kniha .028, rozdíl zaokrouhlení či metody). Interval pro Chan (*r* = 0,38, *N* = 92) přepočten (0,190; 0,543). Věta, že při *r* blízkém nule „most likely“ nejsou zajímavé příčinné vazby, není obecně platná (nelineární vztah, protichůdné vlivy); nepřebírat. Původní studie (Bosco et al., Chan, Bornstein a Bornstein) nečteny. [Společný záznam](HISTORIE.md#priprava-10-20261109).
+
+<a id="revize-08-20261114"></a>
+
+## Revize kapitoly 8 — 2026-11-14
+
+V textové extrakci přečtena s. 190 (oddíl *Confidence Intervals on d*): interval pro *d* u nezávislých skupin předpokládá náhodný výběr, normalitu a shodu rozptylů, jeho výpočet je obtížný (autoři odkazují na esci) a interval je mírně nesouměrný. Citováno v [nepovinném rozšíření o intervalu pro *d*](../../quarto/kapitola_08.qmd#rozsireni-interval-d). Postup esci ani další části kapitoly 7 nebyly při této revizi znovu čteny.

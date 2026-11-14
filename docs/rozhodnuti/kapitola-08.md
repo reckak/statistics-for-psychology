@@ -82,3 +82,27 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 - **Vyvážení pořadí** a **efekt pořadí** (*counterbalancing, order effect*); **úplná a neúplná dvojice** (*complete / incomplete pair*).
 
 **Doklad:** terminologická tabulka byla součástí plánu schváleného 2026-11-01; autor k ní doplnil: „Zachoval bych také tvé širší rozlišení párových dat, opakovaných měření a dvojic různých osob.“ Před zápisem do registru se hesla ověří proti [SLOVNIK.md](../SLOVNIK.md), zda nekolidují s dříve schválenými.
+
+<a id="r77-revize-kapitoly-8"></a>
+
+## R77 — Revize kapitoly 8: korelace měření, interval pro *d*, nenulová nulová hypotéza a doporučení klasický/Welch
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r77-revize-kapitoly-8). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-14. **Rozsah:** kapitola 8, její cvičení 4 a 12, sešit, přehledy a kapitola 10 (přesun rozšíření). Skutečný obsah eviduje [karta kapitoly 8](../kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08).
+
+**Volba**
+
+- **Nepovinné rozšíření o variabilitě rozdílů a korelaci obou měření** v kapitole 8 se vzorcem $s_D^2=s_1^2+s_2^2-2rs_1s_2$, neformálním představením Pearsonova *r* s odkazem na kapitolu 10 a grafem (směrodatná odchylka rozdílů podle *r*; tři simulované soubory s kladnou, nulovou a zápornou korelací ve stylu obrázku párových dat). Rozšíření se přesouvá z kapitoly 10, kde zůstává krátké připomenutí se zachovaným ID `#rozsireni-rozptyl-rozdilu`.
+- **Nepovinné rozšíření o intervalu spolehlivosti pro Cohenovo *d*:** přibližný vzorec pro *d* vztažené ke směrodatné odchylce kontrolní skupiny (Howell, 2013, s. 632) s výpočtem v Excelu; přesný interval z necentrálního *t*-rozdělení jen jako srovnání. Pro párová data postup Alginy a Keselmana (2003, s. 544–545) pro *d* vztažené k odmocnině průměru rozptylů obou měření, výsledek bez výpočtu v Excelu.
+- **Ukázky sdělení výsledků podle APA** uvádějí *d* s 95% intervalem; u párových dat také *SD* rozdílů a korelaci obou měření.
+- **Nulová hypotéza nemusí předpokládat nulový rozdíl:** obecný tvar párového *t*-testu s $\mathrm{μ}_0$ a příklad efektu opakování testu (μ₀ = 2) s výhradou, že spolehlivější je kontrolní skupina.
+- **Doporučení klasický, nebo Welchův test:** klasický test u přibližně stejně velkých skupin nebo při dobrém předem známém důvodu ke shodě rozptylů, jinak rovnou Welchův; zachováno Howellovo obecné doporučení odděleně odhadnutých rozptylů. Doplněna tabulka robustnosti *t*-testů vůči porušení předpokladů.
+- **Grafy** směrodatné chyby rozdílu průměrů a Welchových stupňů volnosti podle poměru velikostí skupin (1:1, 2:1, 4:1) a shody rozptylů jako statické obrázky kapitoly.
+- **Aktivní kontrolní skupina** v příkladu tréninku pozornosti; vysvětlení vyvážení pořadí jako oddělení podmínky od pořadí; chybové úsečky při čtení dvou intervalů.
+
+**Nahrazuje:** částečně [R59](#r59-rozsah-kapitoly-8), body „mimo kapitolu: interval pro d“ a „korelační koeficient (vztah obou měření jen slovně)“; korelace se v kapitole 8 objevuje jen v nepovinném rozšíření a v ukázce zprávy s odkazem na kapitolu 10. Ostatní části R59 platí.
+
+**Důvod:** autor požadoval úplnější reportování velikosti účinku, názorné vysvětlení podmínek přínosu párování a praktické vodítko pro volbu klasického a Welchova testu.
+
+**Doklad:** autorovy připomínky ke kapitole 8 z 2026-11-14, mimo jiné: „V nepovinném rozšíření bych to ukázal, že to závisí na korelaci, která je představena v příští kapitole.“; „výpočet jeho intervalu spolehlivosti je složitější a v této kapitole jej neprovádíme. Ukázal by to přece jen v nepovinném rozšíření.“; „V reportu podle APA bych uváděl i Cohenovo d s intervalem spolehlivosti; u párového t-testu bych reportoval navíc i SD rozdílových skórů a případně i korelace mezi měřeními.“; „Nikde v kapitole není vysvětleno, že H0 nemusí nutně předpokládat nulový rozdíl“. V upřesňujících otázkách autor zvolil „Přesunout do kap. 8“, „Statické grafy v kap. 8“ a „Přibližný vzorec“; pro párové *d* doplnil do podkladů článek Alginy a Keselmana (2003). Plán úprav schválil týž den. Záznam v [historii](../../quarto/README.md#revize-kapitola-08-2026-11-14).

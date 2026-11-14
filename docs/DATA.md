@@ -275,7 +275,7 @@ normálního modelu; nejde o jednotlivá pozorování.
 
 ## Kapitola 8
 
-[Sešit](../data/kapitola_08.xlsx). Kontrola proti výkladu a zadáním: 2026-11-01.
+[Sešit](../data/kapitola_08.xlsx). Kontrola proti výkladu a zadáním: 2026-11-01; po revizi podle [R77](rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8) znovu 2026-11-14.
 
 Výklad: `Spanek_par` A2:C14 (varianta A, 13 studentů po běžném a po krátkém
 spánku; studentu 9 chybí druhé měření, buňka C10 je prázdná), `Spanek_skupiny`
@@ -283,10 +283,10 @@ A2:A31 a B2:B13 (varianta B, 30 a 12 studentů; hodnoty v jednom řádku k sobě
 nepatří), `Parkovani` (souhrny podle Howella, s. 86), `Anorexie` (souhrny
 spočítané z Howellovy tab. 7.3 převedené na kg a zaokrouhlené na tři desetinná
 místa; jednotlivé hodnoty se nesestavují), `Vedle_sebe` (dvě skupiny po 25),
-`Trenink` A2:D33 (2 × 16 studentů, skór před a po) a `Ekv_studie` (dvě smyšlené
+`Trenink` A2:D33 (2 × 16 studentů, skór před a po; od 2026-11-14 popsána jako aktivní kontrolní skupina, data beze změny) a `Ekv_studie` (dvě smyšlené
 studie online a papírové verze, hranice ±3). Popis listu `Anorexie` i jeho řádek v přehledu po revizi správně odlišují samotnou párovou analýzu od celého výzkumu s kontrolní skupinou; číselné vstupy se nezměnily. Hotové výpočty jsou odděleně na
 listech `Parovy_test` (úplné dvojice v F2:I14 vzorci s JE.ČISLO, výsledky
-B2:B14), `Klasicky_test` (ze souhrnů, výchozí parkování), `Welch` (z dat
+B2:B14), `Klasicky_test` (ze souhrnů, výchozí parkování; B21:B24 přibližný 95% interval pro *d* vůči směrodatné odchylce skupiny 2 podle Howella, s. 632), `Welch` (z dat
 `Spanek_skupiny`; kvantil přes BETA.INV, protože T.INV a T.INV.2T zkracují
 neceločíselné stupně volnosti; B19:B20 jen pro srovnání), `Zmeny` (změny
 v F2:F33, testy B2:B22) a `Ekvivalence_skupin` (test rozdílu, test ekvivalence,

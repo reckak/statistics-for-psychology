@@ -54,7 +54,7 @@ rq(ch8_vedle_ci,c(41.87,47.87,50.13,56.13),2);rq(ch8_vedle_ci['kratky',2]-ch8_ve
 x <- ch8_vedle;rq(x['t'],2.12,2);eq(x['df'],48);rq(x['p'],.039,3);rq(c(x['dolni'],x['horni']),c(.31,11.69),2)
 rq(tq(.975,24)*2,4.13,2);rq(2*tq(.975,24)*2,8.26,2);rq(tq(.975,48),2.011,3);rq(x['se'],2.828,3);rq(x['q']*x['se'],5.69,2)
 rq(ch8_par_ci,c(42.75,45.67,50.91,55.00),2)
-# Change in two groups (table 9) and the Gelman-Stern example.
+# Change in two groups (table 9) and the comparison of two separate tests.
 i <- ch8_tr_i;k <- ch8_tr_k;dz <- ch8_tr_rozdil
 rq(c(i['m'],i['s'],i['t'],i['p'],i['dolni'],i['horni']),c(4,6.82,2.35,.033,.37,7.63),2)
 rq(i['p'],.033,3);rq(k['p'],.183,3);rq(dz['p'],.376,3)
@@ -62,7 +62,6 @@ rq(c(k['m'],k['s'],k['t'],k['dolni'],k['horni']),c(2,5.73,1.40,-1.05,5.05),2)
 rq(c(dz['rozdil'],dz['sp'],dz['se'],dz['t'],dz['dolni'],dz['horni']),c(2,6.30,2.23,.90,-2.55,6.55),2);eq(dz['df'],30)
 stopifnot(all(ch8_tr$zmena==c(ch8_tr_zmena_i,ch8_tr_zmena_k)),nrow(ch8_tr)==32)
 eq(t.test(ch8_tr_zmena_i,ch8_tr_zmena_k)$p.value,t.test(ch8_tr_zmena_i,ch8_tr_zmena_k,var.equal=TRUE)$p.value,1e-2)
-rq(sqrt(10^2+10^2),14,0)
 # Equivalence of two test versions (text, figure, optional block).
 e <- ch8_ekv_res
 rq(e['velká',c('se','d95','h95','p','d90','h90')],c(1,-2.87,1.07,.369,-2.55,.75),2);rq(e['velká','p'],.369,3)
@@ -96,4 +95,27 @@ for (n in c(250,40)) { r95 <- ch8_pooled(30.6,8,n,30,8,n,.95);r90 <- ch8_pooled(
   if (n==250) {rq(r95['se'],.716,3);rq(c(r95['dolni'],r95['horni'],r90['dolni'],r90['horni']),c(-.81,2.01,-.58,1.78),2)}
   else {rq(r95['se'],1.789,3);rq(c(r95['dolni'],r95['horni'],r90['dolni'],r90['horni']),c(-2.96,4.16,-2.38,3.58),2)} }
 rq(c(1-3/(4*21-1),.9879*(1-3/83)),c(.964,.95),c(3,2));rq(100*3/83,3.6,1);rq(c(1-3/(4*198-1),1-3/(4*18-1)),c(.996,.958),3)
+# Revision 2026-11-14: nonzero null value, SD of differences and correlation, group-size ratios,
+# Welch df, approximate and exact intervals for Cohen's d, report values.
+rq((4-2)/(6.82/sqrt(16)),1.17,2);rq(2*pt(-(4-2)/(6.82/4),15),.26,2);rq(c(4/sqrt(3),sqrt(4/3+36/3)),c(2.31,3.65),2);rq(10/sqrt(25),2,6);rq(qt(.975,c(24,48)),c(2.064,2.011),3)
+r12 <- cor(ch8_par_u$bezny,ch8_par_u$kratky);rq(r12,.948,3);rq(r12,.95,2)
+s1 <- sd(ch8_par_u$bezny);s2 <- sd(ch8_par_u$kratky)
+eq(sqrt(s1^2+s2^2-2*r12*s1*s2),sd(ch8_par_d),1e-12);rq(sqrt(s1^2+s2^2),9.75,2);rq(sqrt(7.34^2+6.42^2-2*.948*7.34*6.42),2.40,2)
+rq(c(s1+s2,abs(s1-s2)),c(13.8,.9),1);eq(sqrt(4+36-24),4)
+rq(sapply(ch8_sim,function(u) cor(u$bezny,u$kratky)),c(.9,0,-.5),6)
+rq(sapply(ch8_sim,function(u) sd(u$bezny-u$kratky)),c(3.2,9.8,11.9),1)
+n1 <- c(30,40,48);n2 <- c(30,20,12)
+rq(sqrt(100/n1+100/n2),c(2.58,2.74,3.23),2);rq(sqrt(100/n1+400/n2),c(4.08,4.74,5.95),2);rq(sqrt(400/n1+100/n2),c(4.08,3.87,4.08),2)
+pl <- function(a,b) sqrt(((n1-1)*a+(n2-1)*b)/58*(1/n1+1/n2));rq(pl(100,400),c(4.08,3.86,4.04),2);rq(pl(400,100),c(4.08,4.76,5.98),2)
+wd <- function(a,b) (a/n1+b/n2)^2/((a/n1)^2/(n1-1)+(b/n2)^2/(n2-1))
+rq(wd(100,100),c(58,38.1,16.9),1);rq(wd(100,400),c(42.6,23.9,12.4),1);rq(wd(400,100),c(42.6,58.0,35.7),1)
+dB <- 8/sd(ch8_sk_bezny);rq(dB,1.00,2);rq(c(42/360,dB^2/60),c(.1167,.0168),4);sB <- sqrt(42/360+dB^2/60);rq(sB,.365,3)
+rq(dB+c(-1,1)*qnorm(.975)*sB,c(.29,1.72),2)
+dP <- 6.88/14.6;sP <- sqrt(.02+dP^2/200);rq(sP,.145,3);rq(sP,.1453,4);rq(dP+c(-1,1)*qnorm(.975)*sP,c(.19,.76),2)
+nct <- function(t,v,p) suppressWarnings(uniroot(function(l) pt(t,v,ncp=l)-p,c(t-20,t+20),tol=1e-12)$root)
+tP <- 6.88/(14.6*sqrt(.02));rq(c(nct(tP,198,.975),nct(tP,198,.025))*sqrt(.02),c(.19,.75),2)
+stz <- sqrt((s1^2+s2^2)/2);rq(stz,6.90,2);rq(3.5/stz,.51,2)
+tA <- 3.5/(sd(ch8_par_d)/sqrt(12));mA <- sqrt(2*sd(ch8_par_d)^2/(12*(s1^2+s2^2)))
+rq(c(nct(tA,11,.975),nct(tA,11,.025))*mA,c(.22,.79),2);eq(tA*mA,3.5/stz,1e-12)
+eq(ch8_par_dci,c(nct(tA,11,.975),nct(tA,11,.025))*mA,1e-6);eq(ch8_sk_dci[c('dolni','horni')],dB+c(-1,1)*qnorm(.975)*sB,1e-12)
 cat('Chapter 8 checks passed.\n')

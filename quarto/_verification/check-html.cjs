@@ -278,7 +278,7 @@ const server = http.createServer((req, res) => {
         const greek10=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[ρτφχΦ]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek10.filter(e=>e.text.includes('τ')).length>5,'Kendall tau rendered');
         assert(greek10.filter(e=>/[ρτφχ]/.test(e.text)).every(e=>e.variant==='normal'),'Greek symbols of chapter 10 must be upright');
-        for(const id of ['rozsireni-rozptyl-rozdilu','rozsireni-bca','rozsireni-d-r']) {
+        for(const id of ['rozsireni-bca','rozsireni-d-r']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         const main10=await page.locator('main').innerText();
@@ -321,13 +321,15 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_08.html') {
         assert.equal(await solutions.count(),14,'Chapter 8 has twelve core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 8 mathematics parses');
-        assert.equal(await page.locator('main img').count(),7);
+        assert.equal(await page.locator('main img').count(),10);
         assert.equal(await page.locator('.callout-body-container #fig-qq-rozdily-08').count(),1,'Exercise 3 Q-Q plot is inside the solution');
         const qq8=page.locator('#fig-qq-rozdily-08');
         assert.equal(await qq8.isVisible(),false,'Exercise Q-Q plot is hidden initially');
         const qq8Toggle=qq8.locator('xpath=ancestor::div[contains(@class,"callout") and contains(@class,"callout-style-default")][1]').locator('[data-bs-toggle="collapse"]');
         await qq8Toggle.focus();await page.keyboard.press('Enter');await qq8.waitFor({state:'visible'});
         for(const img of await page.locator('main img').all()) {
+          // Figures inside collapsed optional extensions are checked after expanding them below.
+          if(!(await img.isVisible())) { assert((await img.getAttribute('alt')).length>30); continue; }
           await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
           assert((await img.getAttribute('alt')).length>30);
@@ -335,7 +337,7 @@ const server = http.createServer((req, res) => {
         const greek8=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[μσα]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek8.filter(e=>e.text.includes('μ')).length>10,'Population means rendered with mu');
         assert(greek8.every(e=>e.variant==='normal'),'Greek symbols of chapter 8 must be upright');
-        for(const id of ['rozsireni-welch-stupne','rozsireni-standardizace-08','rozsireni-tost-skupiny']) {
+        for(const id of ['rozsireni-rozptyl-rozdilu-08','rozsireni-welch-stupne','rozsireni-interval-d','rozsireni-standardizace-08','rozsireni-tost-skupiny']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         const main8=await page.locator('main').innerText();
@@ -343,6 +345,7 @@ const server = http.createServer((req, res) => {
         assert(!/nevypovídají vůbec/.test(main8),'Approved wording about paired intervals');
         for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
+          if(!(await fig.isVisible())) continue; // collapsed optional extensions are captured in the mobile figure check
           await fig.screenshot({path:`tmp/verification/ch08-${id}.png`});
         }
         for(const id of ['sec-neuplne-dvojice','sec-parovy-excel','sec-chybna-analyza','sec-welch-excel','sec-dva-intervaly','sec-rozdil-zmen','sec-ekvivalence-skupin','sec-ktery-postup']) {
@@ -613,11 +616,11 @@ const server = http.createServer((req, res) => {
         'quarto/kapitola_05.html': ['fig-relativni-cetnost','fig-karticky','fig-prunik-sjednoceni','fig-podmineni','fig-nezavislost','fig-strom','fig-dve-prevalence','fig-rozdeleni-model-data','fig-kombinace','fig-binomicke-tvar','fig-binom-oblasti','fig-aproximace'],
         'quarto/kapitola_06.html': ['fig-tri-vrstvy','fig-podil-rozdeleni','fig-devet-vyberu','fig-tri-urovne','fig-prumery-simulace','fig-smerodatna-chyba','fig-trychtyr','fig-zvc-clv','fig-clv-qq','fig-jine-statistiky','fig-plocha-prumeru','fig-extremnejsi','fig-p-hodnota','fig-sila','fig-rozdeleni-p','fig-stejny-rozdil','fig-dva-testy'],
         'quarto/kapitola_07.html': ['fig-opakovane-intervaly','fig-sirka-intervalu','fig-t-rozdeleni','fig-p-funkce','fig-pasmo-pouziti','fig-hypotezy-ekvivalence','fig-ctyri-kombinace','fig-qq-uzkost-07'],
-        'quarto/kapitola_08.html': ['fig-dve-usporadani','fig-parova-data','fig-dve-skupiny','fig-intervaly-vedle-sebe','fig-zmeny-skupin','fig-ekvivalence-skupin','fig-qq-rozdily-08']
+        'quarto/kapitola_08.html': ['fig-dve-usporadani','fig-parova-data','fig-korelace-rozdily','fig-pomer-skupin','fig-dve-skupiny','fig-welch-stupne','fig-intervaly-vedle-sebe','fig-zmeny-skupin','fig-ekvivalence-skupin','fig-qq-rozdily-08']
       };
       for (const id of conceptFigures[file] || []) {
         const fig = page.locator('#'+id);
-        const hiddenSolution=id==='fig-qq-uzkost-07'||id==='fig-rozdeleni-p'||id==='fig-qq-rozdily-08';
+        const hiddenSolution=id==='fig-qq-uzkost-07'||id==='fig-rozdeleni-p'||id==='fig-qq-rozdily-08'||id==='fig-korelace-rozdily'||id==='fig-welch-stupne';
         const toggle=hiddenSolution ? fig.locator('xpath=ancestor::div[contains(@class,"callout") and contains(@class,"callout-style-default")][1]').locator('[data-bs-toggle="collapse"]') : null;
         if(hiddenSolution){await toggle.click();await fig.waitFor({state:'visible'});}
         const region = fig.locator('xpath=ancestor::div[contains(@class,"teaching-figure") or contains(@class,"chapter-04-figure")][1]');

@@ -87,8 +87,10 @@ def pooled(m1, s1, n1, m2, s2, n2, level=0.95):
 
 def classic_cells(*args):
     r = pooled(*args)
+    m1, s1, n1, m2, s2, n2 = args
+    dk = (m1 - m2) / s2; sdk = math.sqrt((n1 + n2) / (n1 * n2) + dk ** 2 / (2 * n2)); z = 1.959963984540054
     return {'B10': r['d'], 'B11': r['sp2'], 'B12': r['sp'], 'B13': r['se'], 'B14': r['v'], 'B15': r['t'], 'B16': r['p'], 'B17': r['q'],
-            'B18': r['lo'], 'B19': r['hi'], 'B20': r['cd']}
+            'B18': r['lo'], 'B19': r['hi'], 'B20': r['cd'], 'B21': dk, 'B22': sdk, 'B23': dk - z * sdk, 'B24': dk + z * sdk}
 
 for a, v in classic_cells(39.03, 14.6, 100, 32.15, 14.6, 100).items():
     add('Klasicky_test', a, v)
@@ -184,6 +186,8 @@ out = {
                {'sheet': 'Parovy_test', 'cell': 'I2', 'formula': '=KDYŽ(G2="";"";G2-H2)'},
                {'sheet': 'Parovy_test', 'cell': 'B14', 'formula': '=T.TEST(G2:G14;H2:H14;2;1)'},
                {'sheet': 'Klasicky_test', 'cell': 'B11', 'formula': '=((B4-1)*B3^2+(B7-1)*B6^2)/(B4+B7-2)'},
+               {'sheet': 'Klasicky_test', 'cell': 'B22', 'formula': '=ODMOCNINA((B4+B7)/(B4*B7)+B21^2/(2*B7))'},
+               {'sheet': 'Klasicky_test', 'cell': 'B23', 'formula': '=B21-NORM.S.INV(0,975)*B22'},
                {'sheet': 'Welch', 'cell': 'B12', 'formula': '=(B3^2/B4+B6^2/B7)^2/((B3^2/B4)^2/(B4-1)+(B6^2/B7)^2/(B7-1))'},
                {'sheet': 'Welch', 'cell': 'B14', 'formula': '=T.TEST(Spanek_skupiny!A2:A31;Spanek_skupiny!B2:B13;2;3)'},
                {'sheet': 'Welch', 'cell': 'B15', 'formula': '=ODMOCNINA(B12*(1-BETA.INV(1-B8;B12/2;0,5))/BETA.INV(1-B8;B12/2;0,5))'},
