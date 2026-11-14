@@ -15,7 +15,7 @@ Autor chtěl v úvodu „O učebnici“ odkaz na stažení PDF verze; zvolil cel
 
 **Kontroly:** PDF celé knihy sestaveno (Quarto 1.10.19, 430 stran); `check-book-pdf.cjs` (132 řešení v kapitolách 1–10, 707 cílů odkazů), `check-rendered-pdf.py` (27 poznámek 9 pt) a `check-pdf-typography.cjs` prošly. Vizuálně prohlédnuty náhledy titulní strany, úvodu (bez odstavce o stažení), tabulek 7.2, 7.3, 10.1, 10.6, cvičení kapitol 7 a 10 a slovníčku; ostatní strany jen kontrolami. PDF kapitoly 7 po přesunu šířek sloupců znovu sestaveno a `check-chapter-pdf.cjs --chapter 7` prošla. `check-doc-maps.cjs` prošla.
 
-**Omezení:** Vydání `ucebnice-pdf` zatím neexistuje, odkaz z úvodu bude fungovat až po jeho založení autorem schváleným nahráním.
+**Vydání:** Na pokyn autora založeno vydání `ucebnice-pdf` („Učebnice v PDF“) z revize `fcd4018` s `--latest=false`. Odkaz z úvodu stáhne soubor se shodným SHA-256 jako místní PDF; nejnovějším vydáním zůstává `tutor-v0.3.5` a odkaz tutora `latest/download` funguje. Veřejný web odkaz zobrazí až po sloučení PR.
 
 <a id="pdf-kapitola-09-2026-11-14"></a>
 
