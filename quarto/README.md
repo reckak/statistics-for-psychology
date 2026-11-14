@@ -35,6 +35,8 @@ Autor upozornil, že vzorec v G2 tabulky 8.3 rozšiřuje tabulku, a pro zalamov�
 - Přehled Excelu má užší vodorovné odsazení buněk (0,4 rem). Jeho nejmenší šířku neurčuje nezalomený kód, ale zalomený řádek COUNTIFS a slova v prvních sloupcích.
 - Nejmenší šířka (lokálně, 1360 px): přehled Excelu 721 → 670 px, tabulka 10.6 710 → 664 px; ostatní tabulky se vzorci 620 px (minimální šířka tabulky). `check-table-layout.cjs` a `check-html.cjs` po vykreslení celé knihy prošly. Výsledek na Linuxu potvrdí až běh workflow.
 
+**Druhá oprava po CI (2026-11-14):** workflow po sloučení PR #202 selhal znovu, tentokrát při šířce 1280 px (678 px k dispozici). Přehled Excelu přetékal o 28 px a tabulka 10.6 o 23 px. Dříve přetékaly o víc než 32 px; kontrola to bere jako širokou tabulku s posouváním a nehlásí. Zúžením se dostaly do pásma malého, odstranitelného přesahu. Odsazení buněk je nyní 0,2 rem u přehledu Excelu a 0,3 rem u tabulky 10.6. Z hodnot v CI to vychází asi na 672 px a 647 px. Lokálně je nejmenší šířka 650 px (pevné minimum přehledových tabulek) a 637 px. Zkoušel jsem i `<wbr>` za tečkami v názvech funkcí přehledu. Prohlížeč pak ale dával prvnímu sloupci jen nejmenší šířku a lámal i krátké názvy („VAR.“ / „P“), proto jsem tuto úpravu nepoužil. Kontrola měří přehled Excelu ve výchozím zobrazení 10 řádků; při 25 řádcích je tabulka kvůli delším vzorcům v dalších řádcích posouvatelná. `check-table-layout.cjs` lokálně prošel.
+
 <a id="kapitola-08-obrazky-pomer-2026-11-14"></a>
 
 ## Kapitola 8: obrázky směrodatné chyby a Welchových stupňů volnosti pro 90 lidí (2026-11-14)
