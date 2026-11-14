@@ -130,3 +130,29 @@ Pravidlo testování v režimu Chat z doplnění R63 bylo převzato
 a zobecněno na běžný konverzační režim každé platformy; jeho tehdejší
 znění výše zůstává dokladem. Verze zůstává společná pro všechny platformy
 a nemění se, když se obsah balíčků pro studenty nemění.
+
+<a id="r79-vydani-tutora-na-githubu"></a>
+
+## R79 — Vydání tutora na GitHubu a stránka ke stažení v učebnici
+
+**Schváleno 2026-11-14:** autor se zeptal, zda nevyřadit `ai-tutor/`
+z `.gitignore`, aby se balíčky verzovaly. Na doporučení vydávat archivy
+jako GitHub Releases odpověděl „Ano, připrav návrh“. V dotazníku zvolil,
+že vydání slouží „I ke stažení studenty“. Návrh doplnil: „Nebylo by
+nejlepší, aby návod na stažení a instalaci tutorů byl i součástí
+učebnice jako kapitola před výkladovými částmi, která by obsahovala
+odkazy přímo ke stažení nejnovějších verzí tutorů“. V dalším dotazníku
+zvolil stránku „Za úvod, před výklad“, názvy archivů „Ve vydání bez
+verze“, „Nahradit stránkou v knize“ pro `navod.docx` a „První vydání
+před sloučením“. Plán s těmito body výslovně schválil.
+
+Rozsah: archivy se dál necommitují; každá verze má veřejné vydání
+`tutor-v<verze>` se třemi archivy pod stálými názvy, vzniklé jen
+z čistého exportu na odeslaném commitu, nejprve jako koncept, zveřejněné
+autorem a později nepřepisované. Studentský návod je nečíslovaná stránka
+`quarto/ai_tutor.qmd` mezi úvodem a výkladovými kapitolami s odkazy
+`releases/latest/download/`; nahrazuje `ai-tutor/navod.docx`. Stránka
+není součástí PDF ani balíčku tutora. Upřesňuje [R64](#r64-pravidla-ai-tutoru)
+(umístění výstupů a verze zůstávají). Hlavní místo pravidel je
+[AITUTORS.md](../AITUTORS.md#verze-a-vydání), postup v
+[provozním návodu](../PROVOZ.md#vydani-ai-tutora-na-githubu).

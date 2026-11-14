@@ -13,7 +13,7 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 | Pedagogické chování tutora: zahájení, režimy, cvičení, vizualizace, značení | [Instrukce tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md) a jejich reference; dohody [R62](rozhodnuti/ai-tutor.md#r62-ai-tutor) a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora). |
 | Pravidla tvorby, vydání a ověřování pro všechny platformy | Tento dokument. |
 | Příkazy exportu, kontroly, cesty výstupů a postupy nahrání | [Provozní návod](PROVOZ.md#export-ai-tutora). |
-| Studentský návod k instalaci na všech třech platformách | `ai-tutor/navod.docx` (mimo Git, rozesílá autor); aktualizuj jej při změně verze, názvů archivů nebo postupu nahrání. |
+| Studentský návod ke stažení a instalaci na všech třech platformách | Stránka učebnice [AI tutor: stažení a instalace](../quarto/ai_tutor.qmd) (od 2026-11-14, [R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu); nahradila `ai-tutor/navod.docx`). Aktualizuj ji při změně postupu nahrání, názvů souborů ve vydání nebo rozsahu tutora; na verzi nezávisí. |
 | Testovací scénáře | [smoke-prompts.md](../scripts/tutor/smoke-prompts.md). |
 | Provedené exporty, nahrání a výsledky testů | [Autorská historie](../quarto/README.md). |
 | Učivo kapitol a jeho hloubka | Kapitoly a [kapitolové karty](OSNOVA.md); výukové plány tutora z nich generuje export. |
@@ -44,6 +44,16 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
   (revize zdroje, datum sestavení) verzi nemění.
 - Hotové balíčky vznikají v ignorované složce `ai-tutor/` s podsložkami
   `chatgpt/`, `claude/` a `gemini/`; necommitují se.
+- Studenti je stahují z veřejného vydání na GitHubu `tutor-v<verze>`
+  ([R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu)). Vydání
+  obsahuje jen tři archivy pod stálými názvy `statistika-tutor-chatGPT.zip`,
+  `statistika-tutor-claude.zip` a `statistika-tutor-gemini.zip`, na které
+  odkazuje [stránka učebnice](../quarto/ai_tutor.qmd) přes
+  `releases/latest/download/`. Bez záznamů testů a `overeni.json`.
+- Vydání vzniká jen z exportu bez necommitovaných vstupů a na commitu,
+  ze kterého export vznikl a který je na GitHubu. Nejprve jako koncept;
+  zveřejnění je samostatný krok na výslovný pokyn autora. Zveřejněné
+  vydání se nepřepisuje: oprava je nová verze.
 - Nejprve sestav a zkontroluj kandidáta. Nahrání, publikování nebo sdílení
   je samostatný krok jen na výslovný pokyn autora. Novou verzi nahrávej
   na stejné místo (existující plugin či skill), nezakládej další kopii;

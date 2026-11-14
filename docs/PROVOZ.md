@@ -298,6 +298,45 @@ chování tutora a skutečné ovládání vizualizací. Test kandidátního arch
 jako přílohy nezaměňujte za test instalovaného vydání; do autorizovaného
 publikování může cloudový plugin dál obsahovat předchozí verzi.
 
+<a id="vydani-ai-tutora-na-githubu"></a>
+
+### Vydání na GitHubu
+
+Studenti stahují tutora z vydání `tutor-v<verze>` na GitHubu, na které vedou
+odkazy `releases/latest/download/…` ze stránky
+[AI tutor: stažení a instalace](../quarto/ai_tutor.qmd). Pravidla stanoví
+[AITUTORS.md](AITUTORS.md#verze-a-vydání). Postup:
+
+1. Zvyšte verzi v obou manifestech, commitněte všechny vstupy exportu
+   a odešlete je na GitHub.
+2. Spusťte `node scripts/export-tutor.cjs` z tohoto stavu; v `ai-tutor/overeni.json`
+   musí být `"source_dirty": false`.
+3. Suchý běh vypíše, co se nahraje, a připraví soubory do `tmp/tutor-release-<verze>/`:
+
+   ```powershell
+   node scripts/release-tutor.cjs
+   ```
+
+   Skript odmítne export z necommitovaných zdrojů, revizi, která není na
+   GitHubu, existující štítek, neshodu verze s manifestem a archivy, jejichž
+   SHA-256 se liší od `overeni.json`; pak spustí `check-tutor.cjs`.
+   Archivy zkopíruje pod stálé názvy bez verze a vytvoří české poznámky
+   k vydání.
+4. Koncept vydání (potřebuje přihlášené `gh`):
+
+   ```powershell
+   node scripts/release-tutor.cjs --draft
+   ```
+
+5. Autor koncept na GitHubu zkontroluje a zveřejní. Po zveřejnění ověřte,
+   že tři odkazy `releases/latest/download/` stahují soubory se shodným SHA-256.
+6. Teprve potom nahrajte novou verzi do cloudového pluginu ChatGPT podle
+   odstavce výše. Stránka učebnice se při nové verzi nemění, pokud se
+   nezměnil postup instalace nebo rozsah tutora.
+
+Přepínač `--report <soubor>` slouží jen k vyzkoušení pojistek nad upravenou
+kopií `overeni.json`; s `--draft` jej nelze použít.
+
 Registr `KAPITOLY.json` má od 0.3.0 `schema_version: 2`: `chapters` obsahuje
 všech osm kapitol (`number`, `availability`, `web_url`, `plan`), přibalené
 záznamy mají místní `path` a otisk, nepřibalené mají `path` a `plan` rovné
