@@ -12,6 +12,16 @@
 
 **Kontroly:** `check-chapter-08.R` prošel. Oba SVG jsem vizuálně prohlédl v prohlížeči (legenda Welchova grafu po první prohlídce přesunuta dolů vlevo, protože překrývala čáru 88). Kapitola 8 vykreslena bez varování; `check-html.cjs` (25 stran, mobil 390 px), `scripts/check-table-layout.cjs` a `check-doc-maps.cjs` prošly. PDF kapitoly 8 nebylo vyžádáno a neověřoval jsem ho.
 
+<a id="kapitola-08-obrazky-doplnek-2026-11-14"></a>
+
+**Doplněk po dalších připomínkách (2026-11-14):** úpravy obrázků 8.4, 8.7 a 8.9 v `scripts/kapitola_08.R`, hodnoty se nemění.
+
+- Obrázek 8.4 (`pomer-skupin`): osa x má `gap.axis=-1` a menší písmo, takže se zobrazí popisky všech čtyř poměrů (R jinak vynechal 2:1 a 8:1). Popisky hodnot pod bodem jsou dál od bodu (−0,78 místo −0,5, nad bodem +0,48), aby se nedotýkaly klesajících čar. Legenda spodních panelů je vpravo dole, protože nahoře překrývala popisky 6,42 a 6,45. V horním panelu je legenda dvouřádková: „skutečná směrodatná chyba (podle společného odhadu rozptylu)“, protože při stejných σ vede společný odhad rozptylu ke stejné hodnotě. Totéž doplněno do `fig-alt`.
+- Obrázek 8.7 (`intervaly-vedle-sebe`): `layout()` se čtyřmi sloupci zmenšoval písmo na 0,66; nyní `cex=1`, větší popisky os i hodnot.
+- Obrázek 8.9 (`ekvivalence-skupin`): popisky legendy jsou na dvou řádcích a horní mez osy y je 3, aby legenda nezasahovala do grafu.
+
+**Kontroly:** všechny tři SVG prohlédnuty jako PNG (Playwright). `check-chapter-08.R` prošel, kapitola 8 vykreslena bez varování a `check-html.cjs` prošel.
+
 <a id="jazyk-r76-kapitoly-2026-11-14"></a>
 
 ## Jazykové konvence R76 v kapitolách 1–7, 9, 10 a ve vizualizacích (2026-11-14)
