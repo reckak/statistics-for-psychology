@@ -16,6 +16,12 @@ Autor upozornil, že vzorec v G2 tabulky 8.3 rozšiřuje tabulku, a pro zalamov�
 
 **Kontroly:** výstup filtru jsem ověřil přes `quarto pandoc` na všech dotčených vzorcích. Kapitola 8 vykreslena: G2 v tabulce 8.3 má na webu tři řádky, stránka nepřetéká při 1280 ani 390 px a `check-html.cjs` prošel. Ruční PDF (Typst) jsem po této úpravě nevykresloval a neověřoval.
 
+**Oprava po CI (2026-11-14):** po sloučení PR #200 a #201 selhal workflow „Ověřit a publikovat učebnici“ v `check-table-layout.cjs`. Při šířkách 1360–1920 px (749 px k dispozici) přetékal přehled Excelu o 7 px a tabulka 10.6 o 2 px; lokálně ve Windows se obě vešly. Příčinou bylo `white-space: nowrap` pro veškerý inline kód v tabulkách, včetně nezalomených vzorců (např. 45znakového vzorce v tabulce 10.6), spolu s širšími písmy na Linuxu.
+
+- Filtr ve výstupu HTML označí řádky zalomeného vzorce třídou `formula-line` (v Typstu ne, protože by ji četl jako jazyk). Stejnou třídu mají ručně zalomené vzorce v `excel.qmd`. `nowrap` se týká jen těchto řádků; ostatní kód se lámat smí, jako před R78.
+- Přehled Excelu má užší vodorovné odsazení buněk (0,4 rem). Jeho nejmenší šířku neurčuje nezalomený kód, ale zalomený řádek COUNTIFS a slova v prvních sloupcích.
+- Nejmenší šířka (lokálně, 1360 px): přehled Excelu 721 → 670 px, tabulka 10.6 710 → 664 px; ostatní tabulky se vzorci 620 px (minimální šířka tabulky). `check-table-layout.cjs` a `check-html.cjs` po vykreslení celé knihy prošly. Výsledek na Linuxu potvrdí až běh workflow.
+
 <a id="kapitola-08-obrazky-pomer-2026-11-14"></a>
 
 ## Kapitola 8: obrázky směrodatné chyby a Welchových stupňů volnosti pro 90 lidí (2026-11-14)

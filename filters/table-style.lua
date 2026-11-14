@@ -75,7 +75,8 @@ local function wrap_formula(text)
   local inlines = {}
   for i, l in ipairs(lines) do
     if i > 1 then inlines[#inlines + 1] = pandoc.LineBreak() end
-    inlines[#inlines + 1] = pandoc.Code(l)
+    -- The class lets the web CSS keep each line whole; other formats (Typst would read it as a language) get none.
+    inlines[#inlines + 1] = FORMAT:match('html') and pandoc.Code(l, pandoc.Attr('', {'formula-line'})) or pandoc.Code(l)
   end
   return inlines
 end
