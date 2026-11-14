@@ -456,7 +456,7 @@ Výsledek s náhodným výběrem přeskupení je mírně jiný při každém nov
 
 | Buňka | Význam | Český vzorec | Výsledek |
 |---|---|---|---:|
-| Prevzorkovani_data!B2:C31 | Data 30 lidí (X a Y); výchozí: stres a kvalita spánku | vstupy | — |
+| Prevzorkovani_data!​B2:C31 | Data 30 lidí (X a Y); výchozí: stres a kvalita spánku | vstupy | — |
 | B2 | Pozorované $r_s$ | `=CORREL(Prevzorkovani_data!D2:D31;Prevzorkovani_data!E2:E31)` | −0,480 |
 | B3 | Pozorované $n_c - n_d$ | `=SOUČIN.SKALÁRNÍ(SIGN(X-TRANSPOZICE(X))*SIGN(Y-TRANSPOZICE(Y)))/2` | −146 |
 | B4, B5 | Dvojice se shodou v X a v Y | `=(SOUČIN.SKALÁRNÍ(--(X=TRANSPOZICE(X)))-30)/2` | 27; 80 |
