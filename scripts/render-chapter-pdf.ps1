@@ -43,14 +43,7 @@ try {
     $source = [IO.File]::ReadAllText((Join-Path $repo "quarto/kapitola_$number.qmd"))
     # Adapt the one instruction that otherwise refers to the web's disclosure control.
     $source = $source.Replace('Řešení otevírejte až po vlastním pokusu.', 'Řešení v závěrečné části čtěte až po vlastním pokusu.')
-    # Pipe tables with long cells get equal PDF columns; give wide ones text-led widths.
-    $pdfColumnWidths = @{
-        'tbl-k07-02' = '[9,37,40,14]'
-        'tbl-k07-03' = '[7,10,15,14,15,13,26]'
-    }
-    foreach ($table in $pdfColumnWidths.Keys) {
-        $source = $source.Replace("{#$table}", "{#$table tbl-colwidths=`"$($pdfColumnWidths[$table])`"}")
-    }
+    $source = Set-PdfColumnWidths $source
     [IO.File]::WriteAllText("$build/quarto/kapitola_$number.qmd", $source, $utf8)
     Push-Location $build
     try {

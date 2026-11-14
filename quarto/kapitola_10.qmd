@@ -99,7 +99,7 @@ Znaménko součinu ukazuje, do které části bod patří. Je-li student nad pr�
 :::
 
 ::: {.table-note}
-Průměry $m_x = 23$ a $m_y = 19$ bodů; výběrové směrodatné odchylky $s_x = 8{,}075$ a $s_y = 4{,}336$ bodu. Součet odchylek od průměru je vždy nula, proto nemůže sloužit jako míra souvislosti. *z*-skóry jsou zaokrouhleny, součet jejich součinů je spočítán z přesných hodnot.
+*Poznámka.* Průměry $m_x = 23$ a $m_y = 19$ bodů; výběrové směrodatné odchylky $s_x = 8{,}075$ a $s_y = 4{,}336$ bodu. Součet odchylek od průměru je vždy nula, proto nemůže sloužit jako míra souvislosti. *z*-skóry jsou zaokrouhleny, součet jejich součinů je spočítán z přesných hodnot.
 :::
 
 ### Výběrová kovariance {#sec-vyberova-kovariance}
@@ -186,7 +186,7 @@ Pro 40 studentů z obrázku [-@fig-uzkost-vykon] vychází $r = -0{,}52$. V Exce
 :::
 
 ::: {.table-note}
-Sloupce G a H obsahují *z*-skóry (`=KDYŽ(B2="";"";D2/$L$8)`), sloupec I jejich součin. Funkce PRŮMĚR a SMODCH.VÝBĚR.S známe z [kapitoly 3](kapitola_03.qmd#sec-excel-poloha). CORREL i COVARIANCE.S vynechávají dvojice, v nichž chybí některá hodnota; ověřte ale vždy, že obě oblasti obsahují tytéž lidi ve stejném pořadí.
+*Poznámka.* Sloupce G a H obsahují *z*-skóry (`=KDYŽ(B2="";"";D2/$L$8)`), sloupec I jejich součin. Funkce PRŮMĚR a SMODCH.VÝBĚR.S známe z [kapitoly 3](kapitola_03.qmd#sec-excel-poloha). CORREL i COVARIANCE.S vynechávají dvojice, v nichž chybí některá hodnota; ověřte ale vždy, že obě oblasti obsahují tytéž lidi ve stejném pořadí.
 :::
 
 ### Kdy je korelace velká? {#sec-velka-korelace}
@@ -407,7 +407,7 @@ Interval není souměrný kolem −0,52: k nule sahá dál než k −1. To je d�
 :::
 
 ::: {.table-note}
-Funkce **FISHER** (*FISHER*) vrátí $z_r$ k zadané korelaci, **FISHERINV** (*FISHERINV*) převede hodnotu zpět na korelaci. Pro jiný výzkum přepište vstupy B2:B4.
+*Poznámka.* Funkce **FISHER** (*FISHER*) vrátí $z_r$ k zadané korelaci, **FISHERINV** (*FISHERINV*) převede hodnotu zpět na korelaci. Pro jiný výzkum přepište vstupy B2:B4.
 :::
 
 ### Kdy je nula špatné srovnání {#sec-nula-srovnani}
@@ -471,7 +471,7 @@ Výsledek s náhodným výběrem přeskupení je mírně jiný při každém nov
 :::
 
 ::: {.table-note}
-V tabulce zkracujeme `Prevzorkovani_data!B2:B31` na X a `Prevzorkovani_data!C2:C31` na Y. Funkce **SOUČIN.SKALÁRNÍ** (*SUMPRODUCT*) sečte součiny; **TRANSPOZICE** (*TRANSPOSE*) otočí sloupec na řádek, takže rozdíl `X-TRANSPOZICE(X)` vytvoří tabulku rozdílů všech dvojic 30 × 30. Každou dvojici tak započítá dvakrát, proto dělíme 2. Vzorec vyžaduje Excel s dynamickými poli (Microsoft 365, Excel 2021 a novější). Malé číslo 0,000000000001 jen chrání před zaokrouhlovacími chybami při porovnání shodných hodnot. Pro vlastní data přepište 30 řádků na listu `Prevzorkovani_data`.
+*Poznámka.* V tabulce zkracujeme `Prevzorkovani_data!B2:B31` na X a `Prevzorkovani_data!C2:C31` na Y. Funkce **SOUČIN.SKALÁRNÍ** (*SUMPRODUCT*) sečte součiny; **TRANSPOZICE** (*TRANSPOSE*) otočí sloupec na řádek, takže rozdíl `X-TRANSPOZICE(X)` vytvoří tabulku rozdílů všech dvojic 30 × 30. Každou dvojici tak započítá dvakrát, proto dělíme 2. Vzorec vyžaduje Excel s dynamickými poli (Microsoft 365, Excel 2021 a novější). Malé číslo 0,000000000001 jen chrání před zaokrouhlovacími chybami při porovnání shodných hodnot. Pro vlastní data přepište 30 řádků na listu `Prevzorkovani_data`.
 :::
 
 ## Bootstrapový interval pro pořadové koeficienty {#sec-bootstrap}
@@ -510,7 +510,7 @@ Bootstrapový interval závisí i na tom, které výběry náhodně padly. Tabul
 :::
 
 ::: {.table-note}
-Výsledky 9 999 opakování jsou na listu `Bootstrap` jako pevné hodnoty v oblasti H2:I8; platí jen pro výchozí data. Sešit jich nepočítá vzorci, protože by byl asi pětkrát větší a otevíral se pomaleji.
+*Poznámka.* Výsledky 9 999 opakování jsou na listu `Bootstrap` jako pevné hodnoty v oblasti H2:I8; platí jen pro výchozí data. Sešit jich nepočítá vzorci, protože by byl asi pětkrát větší a otevíral se pomaleji.
 :::
 
 ### Omezení bootstrapu {#sec-omezeni-bootstrapu}
@@ -619,7 +619,7 @@ Měříme-li víc proměnných, uvádějí se korelace všech dvojic v **korela�
 :::
 
 ::: {.table-note}
-Pod úhlopříčkou Pearsonovy korelace, nad ní počet studentů, kteří měli obě hodnoty. Autorský modelový soubor 120 studentů s chybějícími hodnotami.
+*Poznámka.* Pod úhlopříčkou Pearsonovy korelace, nad ní počet studentů, kteří měli obě hodnoty. Autorský modelový soubor 120 studentů s chybějícími hodnotami.
 :::
 
 Pozor na dvě věci. **Chybějící hodnoty**: každá korelace v tabulce [-@tbl-k10-09] je spočítána z jiného počtu studentů (od 99 do 116), protože se použijí všechny úplné dvojice. Počty proto uvádíme. **Mnoho testů**: šest korelací znamená šest testů. Kdybychom všech šest zkoumali bez předchozí hypotézy a hledali „ty významné“, rostla by pravděpodobnost, že některá vyjde jako statisticky významná jen náhodou.

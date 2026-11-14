@@ -1,12 +1,12 @@
--- Used only by render-book-pdf.ps1: one PDF from chapters 1-6, literature and
--- the three reference overviews. It runs before Quarto's own filters.
+-- Used only by render-book-pdf.ps1: one PDF from the introduction, the chapters,
+-- literature and the three reference overviews. It runs before Quarto's own filters.
 local site = 'https://reckak.github.io/statistics-for-psychology/'
--- Pages contained in the PDF and the identifier of their first heading.
+-- Pages contained in the PDF and the identifier of their first heading;
+-- chapters are added from the document's top-level headings in Pandoc().
 local pages = {
   index = 'pdf-index', literatura = 'pdf-literatura', slovnicek = 'pdf-slovnicek',
   znaceni = 'pdf-znaceni', excel = 'pdf-excel'
 }
-for n = 1, 6 do pages[string.format('kapitola_%02d', n)] = string.format('sec-kapitola-%02d', n) end
 -- Short tables in chapters 4 and 5 stay on one page, as in the chapter PDFs.
 local chapterRules = {
   [4] = '#show table: it => block(breakable: false, it)',
@@ -106,7 +106,7 @@ local function reference_table(html)
   for _, body in ipairs(table.bodies) do
     local kept = pandoc.List()
     for _, row in ipairs(body.body) do
-      -- Rows explained only in chapters 7 and 8 are outside this PDF.
+      -- Rows explained only in chapters outside this PDF are left out.
       if only_later(pandoc.Div(row.cells:map(function(c) return pandoc.Div(c.contents) end))) then
         dropped = dropped + 1
       else
@@ -125,7 +125,7 @@ local function reference_table(html)
   if widths then
     for i, spec in ipairs(table.colspecs) do table.colspecs[i] = {spec[1], widths[i]} end
   end
-  io.stderr:write('PDF: ' .. id .. ': omitted ' .. dropped .. ' rows for chapters 7-8.\n')
+  io.stderr:write('PDF: ' .. id .. ': omitted ' .. dropped .. ' rows for chapters outside the PDF.\n')
   return table:walk({
     Span = function(span)
       if span.classes:includes('math') then
@@ -147,6 +147,10 @@ function Pandoc(doc)
       error('Content before the first top-level heading')
     end
   end
+  for _, part in ipairs(parts) do
+    local n = part.header.identifier:match('^sec%-kapitola%-(%d+)$')
+    if n then pages['kapitola_' .. n] = part.header.identifier end
+  end
   local result = pandoc.List()
   for _, part in ipairs(parts) do
     local number = tonumber(part.header.identifier:match('^sec%-kapitola%-(%d+)$'))
@@ -164,7 +168,7 @@ function Pandoc(doc)
       blocks = arrange_chapter(blocks, number)
     else
       result:insert(raw('#['))
-      -- Overview paragraphs that only point to chapters 7 and 8 are left out;
+      -- Overview paragraphs that only point to chapters outside the PDF are left out;
       -- chapter text keeps its references to later chapters.
       blocks = blocks:filter(function(block) return not (block.t == 'Para' and only_later(block)) end)
     end

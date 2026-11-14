@@ -10,4 +10,6 @@ Pokud není uvedeno jinak, jsou studie, účastníci a čísla v příkladech i 
 
 V části **Literatura a přehledy** najdete [společný seznam literatury](quarto/literatura.qmd) a tři průběžně doplňované přehledy: [slovníček pojmů](quarto/slovnicek.qmd), [značení a vzorce](quarto/znaceni.qmd) a [funkce Excelu](quarto/excel.qmd). Slouží k připomenutí látky a odkazují zpět k jejímu vysvětlení.
 
+Celou učebnici si můžete stáhnout také jako [PDF](https://github.com/reckak/statistics-for-psychology/releases/download/ucebnice-pdf/zaklady-statistiky-pro-psychology.pdf), například k tisku nebo ke čtení bez připojení. Řešení cvičení jsou v něm na konci každé kapitoly. Interaktivní vizualizace a sešity s daty jsou jen na webu a odkazy z PDF vedou tam. Web průběžně doplňujeme; datum na titulní straně PDF ukazuje, ze kdy je stažená verze.
+
 S učivem vám může pomáhat také nepovinný AI tutor pro ChatGPT, Claude nebo Gemini. Jak si jej stáhnout a nainstalovat, popisuje stránka [AI tutor: stažení a instalace](quarto/ai_tutor.qmd).

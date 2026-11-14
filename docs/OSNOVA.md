@@ -64,7 +64,9 @@ a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora) určují použití p
 
 ## Současné uspořádání
 
-Pořadí určuje [_quarto.yml](../_quarto.yml). Za [úvodem](../index.qmd) je
+Pořadí určuje [_quarto.yml](../_quarto.yml). Úvod odkazuje také na stažení
+PDF celé učebnice (od 2026-11-14, [R80](rozhodnuti/postupy-a-dokumentace.md#r80-pdf-cele-ucebnice)).
+Za [úvodem](../index.qmd) je
 nečíslovaná stránka [AI tutor: stažení a instalace](../quarto/ai_tutor.qmd)
 (od 2026-11-14, [R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu));
 nejde o výklad učiva. Následuje deset výkladových kapitol; za nimi je část „Interaktivní vizualizace“,

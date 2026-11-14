@@ -1,14 +1,16 @@
 """Check actual rendered PDFs with public pypdf, not just conversion settings."""
 import json
+import re
 from pathlib import Path
 from pypdf import PdfReader
 from pypdf.generic import ContentStream
 
 report = []
-# Chapter PDFs and, when it has been built, the book PDF of chapters 1-6.
+# Chapter PDFs and, when it has been built, the PDF of the whole book.
 targets = [(f'kapitola_{c:02}', [c]) for c in (3, 4, 5, 6, 7, 8, 9)]
-if Path('output/pdf/ucebnice_01-06.pdf').exists():
-    targets.append(('ucebnice_01-06', [1, 2, 3, 4, 5, 6]))
+if Path('output/pdf/zaklady-statistiky-pro-psychology.pdf').exists():
+    book = [int(n) for n in re.findall(r'quarto/kapitola_(\d\d)\.qmd', Path('_quarto.yml').read_text(encoding='utf8'))]
+    targets.append(('zaklady-statistiky-pro-psychology', book))
 for name, chapters in targets:
     chapter = name
     source = ''.join(Path(f'quarto/kapitola_{c:02}.qmd').read_text(encoding='utf8') for c in chapters)

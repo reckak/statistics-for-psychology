@@ -72,7 +72,8 @@ výstupy a dočasné soubory se do Gitu neukládají.
 ## Provozní návody
 
 - [Export AI tutora](docs/PROVOZ.md#export-ai-tutora) — plugin s kapitolami 1–6 a celými aktuálními přehledy, bez nahrávání materiálů studenty.
-- <a id="ruční-pdf-vybrané-kapitoly"></a>[Pracovní PDF kapitoly](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly) — pouze na vyžádání; ověřen export kapitoly 3.
+- <a id="ruční-pdf-vybrané-kapitoly"></a>[Pracovní PDF kapitoly](docs/PROVOZ.md#ruční-pdf-vybrané-kapitoly) — pouze na vyžádání; ověřen export kapitol 3–9.
+- [PDF celé učebnice](docs/PROVOZ.md#pdf-cele-ucebnice) — sestavení na vyžádání a zveřejnění ve vydání `ucebnice-pdf`, na které odkazuje úvod knihy.
 - <a id="kontroly-a-github"></a>[Kontroly dokumentace, webu a výpočtů](docs/PROVOZ.md#kontroly-a-github).
 - <a id="obnova-sešitů-a-podkladů-kapitol-16"></a>[Obnova sešitů](docs/PROVOZ.md#obnova-sešitů-a-podkladů-kapitol-17) — vyžaduje místní český desktopový Excel pro Windows.
 - <a id="zdroje-a-průběh-sestavení"></a>[Generátory a průběh sestavení](docs/PROVOZ.md#zdroje-a-průběh-sestavení).
