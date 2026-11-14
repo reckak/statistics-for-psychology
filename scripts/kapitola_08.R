@@ -108,8 +108,10 @@ ch8_sim_par <- function(r,seed) {
 }
 ch8_sim_r <- c(.9,0,-.5)
 ch8_sim <- lapply(seq_along(ch8_sim_r),function(i) ch8_sim_par(ch8_sim_r[i],20261114+i))
-# Standard error of the difference and Welch df for 60 people split 1:1, 2:1 and 4:1 (population values).
-ch8_pomer <- data.frame(pomer=c('1:1','2:1','4:1'),n1=c(30,40,48),n2=c(30,20,12))
+# Standard error of the difference and Welch df for 90 people split 1:1, 2:1, 4:1 and 8:1 (population values).
+ch8_pomer <- data.frame(pomer=c('1:1','2:1','4:1','8:1'),n1=c(45,60,72,80),n2=c(45,30,18,10))
+ch8_pomer_lab <- paste0(ch8_pomer$pomer,'
+(',ch8_pomer$n1,' a ',ch8_pomer$n2,')')
 ch8_se_dif <- function(s1,n1,s2,n2) sqrt(s1^2/n1+s2^2/n2)
 ch8_se_pool <- function(s1,n1,s2,n2) sqrt(((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2)*(1/n1+1/n2))
 ch8_welch_df <- function(s1,n1,s2,n2) { a <- s1^2/n1; b <- s2^2/n2; (a+b)^2/(a^2/(n1-1)+b^2/(n2-1)) }
@@ -246,37 +248,37 @@ ch8_draw('korelace-rozdily', {
   }
 },width=11.4,height=4.4)
 ch8_draw('pomer-skupin', {
-  par(mfrow=c(1,3),mar=c(5.2,4.7,3.4,.8))
-  lab <- c('1:1
-(30 a 30)','2:1
-(40 a 20)','4:1
-(48 a 12)'); x <- 1:3; pm <- ch8_pomer
-  panel <- function(main,se,se_pool=NULL,col) {
-    plot(NA,xlim=c(.7,3.3),ylim=c(0,6.8),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main=main,bty='l')
-    axis(1,at=x,labels=lab,padj=.5); mtext('Poměr velikostí skupin (celkem 60)',1,3.8,cex=.8)
-    up <- if(is.null(se_pool)) rep(TRUE,3) else se>=se_pool-1e-9  # label the higher point above, the lower below
-    if(!is.null(se_pool)) { lines(x,se_pool,lwd=2.2,lty=2,col=ch8_gray,type='b',pch=4); text(x,se_pool+ifelse(up,-.45,.45),ch8_num(se_pool),cex=.8,col=ch8_gray) }
-    lines(x,se,lwd=2.4,col=col,type='b',pch=21,bg='white',cex=1.3); text(x,se+ifelse(up,.45,-.45),ch8_num(se),cex=.8,col=col)
+  # Two panels per row at most: the equal-sigma panel centred on top, the unequal-sigma panels below.
+  layout(matrix(c(0,1,1,0,2,2,3,3),2,byrow=TRUE)); par(mar=c(5.6,5,3.4,1),cex=1)
+  x <- seq_len(nrow(ch8_pomer)); pm <- ch8_pomer
+  panel <- function(main,se,se_pool=NULL) {
+    plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,7.2),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main=main,bty='l',cex.main=1.05)
+    axis(1,at=x,labels=ch8_pomer_lab,padj=.5); mtext('Poměr velikostí skupin (celkem 90 lidí)',1,4.1,cex=.9)
+    up <- if(is.null(se_pool)) rep(TRUE,length(x)) else se>=se_pool-1e-9  # label the higher point above, the lower below
+    if(!is.null(se_pool)) { lines(x,se_pool,lwd=2.2,lty=2,col=ch8_gray,type='b',pch=4,cex=1.2); text(x,se_pool+ifelse(up,-.5,.5),ch8_num(se_pool),cex=.9,col=ch8_gray) }
+    # The true standard error keeps one colour and line type in every panel.
+    lines(x,se,lwd=2.6,col=ch8_orange,type='b',pch=21,bg='white',cex=1.4); text(x,se+ifelse(up,.5,-.5),ch8_num(se),cex=.9,col=ch8_orange)
   }
-  panel('Stejné σ = 10 v obou populacích',pm$se_shodne,col=ch8_ink)
-  panel('Menší skupina σ = 20, větší σ = 10',pm$se_mala_var,pm$se_mala_var_pool,ch8_orange)
-  legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_orange,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.4,2.2),bty='n',cex=.82)
-  panel('Větší skupina σ = 20, menší σ = 10',pm$se_velka_var,pm$se_velka_var_pool,ch8_blue)
-  legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_blue,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.4,2.2),bty='n',cex=.82)
-},width=12,height=4.6)
+  leg <- function() legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_orange,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.6,2.2),bty='n',cex=.9)
+  panel('Stejné σ = 10 v obou populacích',pm$se_shodne)
+  legend('topleft','skutečná směrodatná chyba',col=ch8_orange,lty=1,pch=21,lwd=2.6,bty='n',cex=.9)
+  panel('Menší skupina σ = 20, větší σ = 10',pm$se_mala_var,pm$se_mala_var_pool); leg()
+  panel('Větší skupina σ = 20, menší σ = 10',pm$se_velka_var,pm$se_velka_var_pool); leg()
+},width=9,height=8.4)
 ch8_draw('welch-stupne', {
-  par(mar=c(5.2,4.7,3,.8))
-  lab <- c('1:1\n(30 a 30)','2:1\n(40 a 20)','4:1\n(48 a 12)'); x <- 1:3; pm <- ch8_pomer
-  plot(NA,xlim=c(.7,3.3),ylim=c(0,62),xaxt='n',xlab='',ylab='Stupně volnosti',main='Welchovy stupně volnosti (celkem 60 lidí)',bty='l')
-  axis(1,at=x,labels=lab,padj=.5); mtext('Poměr velikostí skupin',1,3.8,cex=.85)
-  abline(h=58,lty=2,col=ch8_gray); text(3.3,59.8,'n₁ + n₂ − 2 = 58',adj=1,cex=.78,col=ch8_gray)
+  par(mar=c(5.6,4.9,3,1))
+  x <- seq_len(nrow(ch8_pomer)); pm <- ch8_pomer; dfmax <- sum(pm$n1[1],pm$n2[1])-2
+  # Distinct hues and point shapes, so the three Welch lines do not rely on colour alone.
+  cols <- c(ch8_green,ch8_orange,'#3A8FB7'); pchs <- c(21,22,24)
+  plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,dfmax+6),xaxt='n',xlab='',ylab='Stupně volnosti',main='Welchovy stupně volnosti (celkem 90 lidí)',bty='l')
+  axis(1,at=x,labels=ch8_pomer_lab,padj=.5); mtext('Poměr velikostí skupin',1,4.1,cex=.9)
+  abline(h=dfmax,lty=2,col=ch8_gray); text(max(x)+.4,dfmax+3,bquote(n[1]+n[2]-2==.(dfmax)),adj=1,cex=.85,col=ch8_gray)
   lines(x,pmin(pm$n1,pm$n2)-1,lty=3,lwd=2,col=ch8_gray,type='b',pch=20)
-  lines(x,pm$df_shodne,lwd=2.4,col=ch8_ink,type='b',pch=21,bg='white',cex=1.2)
-  lines(x,pm$df_mala_var,lwd=2.4,col=ch8_orange,type='b',pch=21,bg='white',cex=1.2)
-  lines(x,pm$df_velka_var,lwd=2.4,col=ch8_blue,type='b',pch=21,bg='white',cex=1.2)
+  ys <- list(pm$df_shodne,pm$df_mala_var,pm$df_velka_var)
+  for(k in 1:3) lines(x,ys[[k]],lwd=2.6,col=cols[k],type='b',pch=pchs[k],bg='white',cex=1.3)
   legend('bottomleft',c('stejné σ','menší skupina dvakrát variabilnější','větší skupina dvakrát variabilnější','stupně volnosti menší skupiny'),
-         col=c(ch8_ink,ch8_orange,ch8_blue,ch8_gray),lty=c(1,1,1,3),lwd=c(2.4,2.4,2.4,2),bty='n',cex=.78)
-},width=8.4,height=4.6)
+         col=c(cols,ch8_gray),lty=c(1,1,1,3),pch=c(pchs,20),pt.bg='white',lwd=c(2.6,2.6,2.6,2),bty='n',cex=.85,inset=c(.01,.01))
+},width=8.4,height=5)
 # Exercise 3: Q-Q plot of the differences with the plotting positions of chapter 4.
 ch8_qq_y <- sort(ch8_u03_d); ch8_qq_z <- qnorm((seq_along(ch8_qq_y)-.5)/length(ch8_qq_y))
 ch8_draw('qq-rozdily', {
