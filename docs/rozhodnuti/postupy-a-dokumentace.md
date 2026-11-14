@@ -1047,3 +1047,37 @@ to tak, ať v samotné prezentaci jsou poznámky (notes) krátké, heslovité,
 concise, ale stále srozumitelné; a v docx s poznámkami podrobné celé věty.“
 U úloh zvolil „Výsledek + klíčový argument“ a z doplňků v PPTX ponechal jen
 „Otázka k zamyšlení“. Plán úpravy schválil téhož dne.
+
+<a id="r80-pdf-cele-ucebnice"></a>
+
+## R80 — PDF celé učebnice ke stažení z vydání na GitHubu
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r80-pdf-cele-ucebnice). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-14. **Rozsah:** souhrnné PDF knihy a odkaz na něj
+z úvodní stránky „O učebnici“. PDF jednotlivých kapitol se nemění.
+
+**Volba:** souhrnné PDF obsahuje úvod, všechny výkladové kapitoly uvedené
+v `_quarto.yml` (nyní 1–10), literaturu a tři přehledy; řešení cvičení jsou
+na konci každé kapitoly. Sestavuje se dál ručně, bez spouštění při renderu
+webu a bez změny CI. Studentům se zpřístupňuje jako jediný soubor
+`zaklady-statistiky-pro-psychology.pdf` ve vydání na GitHubu se stálým
+štítkem `ucebnice-pdf`, na který odkazuje úvod knihy. Vydání se nikdy
+neoznačuje jako „Latest“, aby odkazy tutora `releases/latest/download/…`
+podle [R79](ai-tutor.md#r79-vydani-tutora-na-githubu) dál vedly na tutora.
+Nahrání nové verze PDF je samostatný krok na výslovný pokyn autora.
+Postup je v [provozním návodu](../PROVOZ.md#pdf-cele-ucebnice).
+
+**Nahrazuje:** z [R31](#r31-pracovni-pdf) část „bez automatické publikace“
+pro souhrnné PDF a dosavadní omezení souhrnného PDF na kapitoly 1–6.
+Sestavení jen na výslovné vyžádání a umístění řešení za zadáními zůstávají.
+
+**Důvod:** studenti mají mít možnost učebnici vytisknout nebo číst bez
+připojení; stálá adresa vydání umožňuje aktualizovat PDF bez změny odkazu
+a bez ukládání PDF do Gitu.
+
+**Doklad:** zadání autora z 2026-11-14: „Myslím, že v úvodní sekci "O učebnici"
+by mohl být odkaz na stažení PDF verze učebnice“. Na otázku, na jaké PDF má
+odkaz vést, zvolil „Celá kniha“ a po upozornění na kapitolu 10 „Ano,
+kapitoly 1–10“; na otázku, jak PDF zveřejnit, zvolil „Vydání na GitHubu“.
+Plán úpravy schválil téhož dne.

@@ -11,7 +11,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 
 - [Sestavení a náhled webu](#práce-s-projektem)
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
-- [Pracovní PDF kapitol 1–6](#ruční-pdf-kapitol-16)
+- [PDF celé učebnice a jeho vydání](#pdf-cele-ucebnice)
 - [Export podkladů AI tutora](#export-ai-tutora)
 - [Interaktivní vizualizace](#interaktivni-vizualizace)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
@@ -141,10 +141,15 @@ Po renderování skript navíc váže jednopísmenné slovo před odkazem
 v bibliografii vytvořené citeprocem a podle potřeby opakuje překlad Typstu
 s místními balíčky a fonty dodanými s Quartem. Adresy odkazů se nemění.
 
-## Ruční PDF kapitol 1–6
+<a id="ruční-pdf-kapitol-16"></a>
+<a id="pdf-cele-ucebnice"></a>
 
-Souhrnné pracovní PDF kapitol 1–6 se také sestavuje pouze na výslovné
-vyžádání. Z kořene projektu v PowerShellu spusťte:
+## PDF celé učebnice
+
+Souhrnné PDF celé knihy se také sestavuje pouze na výslovné vyžádání
+a studentům se zpřístupňuje vydáním na GitHubu
+([R80](rozhodnuti/postupy-a-dokumentace.md#r80-pdf-cele-ucebnice)).
+Z kořene projektu v PowerShellu spusťte:
 
 ```powershell
 ./scripts/render-book-pdf.ps1
@@ -152,18 +157,27 @@ vyžádání. Z kořene projektu v PowerShellu spusťte:
 
 Platí stejné závislosti, parametry `-QuartoPath` a `-RscriptPath` a zákaz
 přesměrování výstupu jako u PDF jednotlivé kapitoly. Výsledek je
-`output/pdf/ucebnice_01-06.pdf` (při ověření 277 stran). Obsahuje úvod,
-obsah, kapitoly 1–6, literaturu citovanou v těchto kapitolách, slovníček,
-přehled značení a přehled funkcí Excelu. Řešení cvičení jsou vždy v oddílu
-„Řešení cvičení“ na konci své kapitoly, s obousměrnými odkazy. Obrázky
-a tabulky se číslují podle kapitol, odkazy mezi kapitolami vedou uvnitř PDF.
+`output/pdf/zaklady-statistiky-pro-psychology.pdf` (při ověření 430 stran).
+Obsahuje titulní stranu s datem sestavení, úvod, obsah, všechny kapitoly
+uvedené v `book.chapters` v `_quarto.yml` (nyní 1–10; nová kapitola se
+přidá sama), literaturu, slovníček, přehled značení a přehled funkcí Excelu.
+Řešení cvičení jsou vždy v oddílu „Řešení cvičení“ na konci své kapitoly,
+s obousměrnými odkazy. Obrázky a tabulky se číslují podle kapitol, odkazy
+mezi kapitolami vedou uvnitř PDF.
 
-Přehledy obsahují jen řádky, jejichž odkazy na výklad vedou do kapitol 1–6;
-řádky vysvětlené pouze v kapitolách 7–8 a úvodní odstavce přehledu Excelu
-o těchto kapitolách se vynechají. Odkazy na kapitoly 7–8, na vynechané řádky
-a na sešity XLSX vedou na veřejný web. Několik vět popisujících ovládání webu
-(rozbalení řešení, vyhledávání v přehledech) skript pro PDF přeformuluje;
-nenalezení očekávané věty export zastaví.
+Pokud by v PDF některá kapitola chyběla, přehledy vynechají řádky
+a úvodní odstavce vysvětlené jen v ní a odkazy na ni vedou na veřejný web;
+s celou knihou se nevynechá nic. Odkazy na interaktivní vizualizace a sešity
+XLSX vedou na veřejný web. Několik vět popisujících ovládání webu (rozbalení
+řešení, vyhledávání v přehledech) skript pro PDF přeformuluje a odstavec
+úvodu s odkazem na stažení PDF vypustí; nenalezení očekávané věty export
+zastaví. Při změně tohoto odstavce v `index.qmd` proto upravte i jeho kopii
+v `render-book-pdf.ps1`. Identifikátor, který se na webu opakuje v různých
+kapitolách (nyní `fig-sirka-intervalu` v kapitolách 2 a 7 a `sec-nezavislost`
+v kapitolách 5 a 9), dostane v pozdější kapitole jen v PDF příponu `-kNN`;
+skript upraví i odkazy na ni a přejmenování vypíše. Opakování mimo kapitoly
+export zastaví. Šířky sloupců širokých tabulek jen pro PDF sdílí
+s PDF kapitol tabulka `$PdfColumnWidths` v `scripts/pdf/common.ps1`.
 
 Nastavení je v `scripts/pdf/book.yml`, `book.lua` (rozdělení na kapitoly,
 přesun řešení, převod HTML přehledů na tabulky, odkazy) a `book-page.typ`
@@ -178,11 +192,44 @@ Po sestavení zkontrolujte převod:
 node scripts/check-book-pdf.cjs
 ```
 
-Kontrola ověří počet a umístění řešení v každé kapitole (9/10/15/10/12/16),
-zpětné odkazy, zachování rovnic, kódu, obrázků a citací, existenci cílů
-vnitřních odkazů a omezení přehledů na kapitoly 1–6. Skutečné PDF prověří
-také `python scripts/check-rendered-pdf.py`, pokud soubor existuje.
-Prohlédnutí výsledného PDF nenahrazuje.
+Kontrola ověří počet a umístění řešení v každé kapitole (počty čte ze
+zdrojových kapitol), zpětné odkazy, zachování rovnic, kódu, obrázků
+a citací, existenci cílů vnitřních odkazů a omezení přehledů na kapitoly
+obsažené v PDF. Skutečné PDF prověří také `py scripts/check-rendered-pdf.py`,
+pokud soubor existuje. Prohlédnutí výsledného PDF nenahrazuje.
+
+<a id="vydani-pdf-na-githubu"></a>
+
+### Vydání PDF na GitHubu
+
+Úvod knihy odkazuje na stálou adresu
+`https://github.com/reckak/statistics-for-psychology/releases/download/ucebnice-pdf/zaklady-statistiky-pro-psychology.pdf`.
+Vydání `ucebnice-pdf` nese jediný soubor; nová verze PDF jej nahradí,
+štítek ani adresa se nemění. Nahrání je veřejný krok, proveďte jej jen na
+výslovný pokyn autora:
+
+1. Commitněte a odešlete na GitHub všechny změny, ze kterých PDF vzniká,
+   sestavte PDF z tohoto stavu a projděte kontroly výše včetně prohlédnutí.
+2. První zveřejnění vydání (jen jednou):
+
+   ```powershell
+   gh release create ucebnice-pdf output/pdf/zaklady-statistiky-pro-psychology.pdf --title "Učebnice v PDF" --notes-file <poznámky> --latest=false --target main
+   ```
+
+3. Každá další verze:
+
+   ```powershell
+   gh release upload ucebnice-pdf output/pdf/zaklady-statistiky-pro-psychology.pdf --clobber
+   gh release edit ucebnice-pdf --notes-file <poznámky> --latest=false
+   ```
+
+Poznámky k vydání uvedou datum sestavení, krátký commit zdroje a obsah
+(kapitoly 1–N, literatura, přehledy). `--latest=false` je nutné: odkazy
+tutora `releases/latest/download/…` musí dál vést na vydání `tutor-v…`.
+Po nahrání ověřte, že odkaz z úvodu stáhne nové PDF a že
+`gh release view --json tagName` (bez štítku, tj. nejnovější vydání)
+stále vrací štítek tutora. Vydání PDF založte dřív, než se odkaz z úvodu
+dostane na veřejný web, jinak by vedl na chybu 404.
 
 <a id="export-ai-tutora"></a>
 

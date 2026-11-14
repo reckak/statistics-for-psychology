@@ -3,7 +3,7 @@ project:
   render:
     - kniha.qmd
 title: "Základy statistiky pro psychology"
-subtitle: "Kapitoly 1–6, literatura a přehledy"
+subtitle: "Verze PDF, stav k @DATE@"
 author: "Karel Rečka"
 lang: cs
 bibliography: references.bib
