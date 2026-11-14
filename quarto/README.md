@@ -1,5 +1,17 @@
 # Autorská dokumentace
 
+<a id="jazyk-r76-kapitoly-2026-11-14"></a>
+
+## Jazykové konvence R76 v kapitolách 1–7, 9, 10 a ve vizualizacích (2026-11-14)
+
+Po sloučení PR #197 byly jazykové konvence [R76](../docs/rozhodnuti/spolecne-konvence.md#r76-jazykove-konvence) uplatněny i mimo kapitolu 8: v `kapitola_01.qmd`–`kapitola_07.qmd`, `kapitola_09.qmd`, `kapitola_10.qmd` a na stránkách `viz_*.qmd`. Terminologii a kurzivní *d* řešil už PR #197. Žádná náhrada nebyla hromadná: každý výskyt byl posouzen v kontextu a nahrazen samostatně. Kapitola 1 změnu nepotřebovala; obsah, čísla, ID ani odkazy se nemění.
+
+- **Úvody oddílů:** 24 úvodů „Oddíl ukazuje/zavádí/přenáší …“ v kapitolách 3, 9 a 10 → „Tento oddíl …“. Ostatní kapitoly a vizualizace holé „Oddíl …“ neobsahovaly (kapitoly 3–7 už používaly „Tento oddíl“).
+- **Vazby „dát“:** ze 143 výskytů tvarů slovesa bylo přeformulováno přibližně 100 míst, kde metoda, test, model, výběr či vzorec „dává/dal“ výsledek: „vychází“, „vyšlo“, „vrátí“ (funkce Excelu), „vede k“, „udává“ (model, rozdělení), „poskytuje“, „přisuzuje“. Ponechány byly ustálené obraty („dát pozor“, „dávat smysl“, „dá se“, „dát přednost“), součty „dávají dohromady 1“, „dávat stejné výsledky“ ve smyslu vlastnosti měřicího nástroje (shodně s kapitolou 8), doslovné „dávat body“ či „dát kód“ a přímá řeč postav v cvičeních.
+- **Rozdíl a pokles průměrů:** v kapitole 6 doplněno „rozdíl průměrů“ přibližně na 20 místech, kde holé „rozdíl“ otevírá oddíl, odstavec, odrážku, popisek nebo záhlaví tabulky (úvody oddílů, rozhodnutí a velikost v parkovací studii, *d* ≈ 0,47, malé školy); v kapitole 10, ve vizualizacích Cohenova *d* a statistické síly na pěti místech. Anaforické „rozdíl“ bezprostředně po uvedení průměrů zůstalo, stejně jako v kapitole 8; „rozdíl podílů“ v kapitole 9 a ustálený „test rozdílu“ v kapitole 7 se pravidla netýkají. U srovnání průměru s normou (kapitola 6, *z*-test a cvičení 13; kapitola 7, výklad intervalu, tabulka devíti studií a cvičení) nahrazeny „pokles“, „vzestup“ a „zrychlení“ obraty „průměr nižší/vyšší než norma“ nebo „rozdíl od normy“, protože jde o srovnání s jinou populací, nikoli o změnu v čase.
+
+**Kontroly:** každá náhrada skriptem s přesnou dvojicí původního a nového textu, který zapisuje jen při právě jedné shodě; rozdíl po slovech pročten kvůli gramatice (opraveno „ke stejnému výsledku“ v kapitole 9). Celá kniha vykreslena bez varování; `check-html.cjs` prošel (25 stran, odkazy, 132 řešení, mobil 390 px), `check-doc-maps.cjs` prošel; vybrané nové formulace ověřeny ve vykresleném HTML (kap. 4, 7, 10, vizualizace). Kapitolové karty a mapa obsahu se nemění (jazykové úpravy bez změny významu). Neověřeno: PDF kapitol (nebylo vyžádáno), prezentace a balíčky AI tutora (sjednotí se podle R76 při své příští úpravě); samostatná didaktická revize celých kapitol neproběhla, posouzena byla jen dotčená místa a jejich bezprostřední kontext.
+
 <a id="revize-kapitola-08-2026-11-14"></a>
 
 ## Kapitola 8: revize podle autorových připomínek (2026-11-14, R76, R77)

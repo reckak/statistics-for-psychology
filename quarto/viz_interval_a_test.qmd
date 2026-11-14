@@ -27,7 +27,7 @@ Pod ovládáním jsou dva grafy se stejnou vodorovnou osou skóre:
 
 V obou grafech označuje bílé kolečko výběrový průměr $m$ a oranžový kosočtverec testovanou hodnotu $\mathrm{μ}_0$. Vodorovná čárkovaná čára je hladina významnosti α. U jednostranného testu tenká čárkovaná křivka ukazuje pro srovnání oboustrannou *p*-hodnotu a druhá vodorovná čára hladinu 2α. Nejspodnější řádek každého grafu ukazuje vzdálenost $|m-\mathrm{μ}_0|$.
 
-Pohled testu předpokládá, že výběr se stejnou $s$ dal jiný průměr. Ve skutečnosti by jiný výběr měl i jinou $s$, a tedy i jinou šířku oblasti; proto v kapitole 7 [rozhodujeme podle vypočtené statistiky *t*](kapitola_07.qmd#sec-t-test-pozornost). Pod grafy je výpočet se vzorci českého Excelu a tabulka čtyř pohledů na totéž rozhodnutí. Meze a vzdálenosti zaokrouhlujeme na dvě desetinná místa, statistiku a kvantily na tři a *p*-hodnoty na tři desetinná místa; mezivýpočty probíhají s plnou přesností.
+Pohled testu předpokládá, že ve výběru se stejnou $s$ vyšel jiný průměr. Ve skutečnosti by jiný výběr měl i jinou $s$, a tedy i jinou šířku oblasti; proto v kapitole 7 [rozhodujeme podle vypočtené statistiky *t*](kapitola_07.qmd#sec-t-test-pozornost). Pod grafy je výpočet se vzorci českého Excelu a tabulka čtyř pohledů na totéž rozhodnutí. Meze a vzdálenosti zaokrouhlujeme na dvě desetinná místa, statistiku a kvantily na tři a *p*-hodnoty na tři desetinná místa; mezivýpočty probíhají s plnou přesností.
 
 ```{ojs}
 //| echo: false
@@ -513,7 +513,7 @@ Pohled testu předpokládá, že výběr se stejnou $s$ dal jiný průměr. Ve s
     $("[data-ways]").innerHTML = ways.markup;
     const same = ways.decisions.every(d => d === c.reject);
     $("[data-ways-note]").innerHTML = same
-      ? `Všechny čtyři pohledy dávají totéž rozhodnutí, protože porovnávají tutéž vzdálenost: |<i>m</i> − μ<sub>0</sub>| = ${sc(Math.abs(c.m - c.mu0))} ${one ? `ve směru alternativy (${c.side === "less" ? "μ<sub>0</sub> − <i>m</i>" : "<i>m</i> − μ<sub>0</sub>"} = ${sc(c.side === "less" ? c.mu0 - c.m : c.m - c.mu0)})` : ""} s mezní chybou ${sc(c.me)}. Na mezi intervalu je <i>p</i>-hodnota rovna α a zamítáme.`
+      ? `Všechny čtyři pohledy vedou k témuž rozhodnutí, protože porovnávají tutéž vzdálenost: |<i>m</i> − μ<sub>0</sub>| = ${sc(Math.abs(c.m - c.mu0))} ${one ? `ve směru alternativy (${c.side === "less" ? "μ<sub>0</sub> − <i>m</i>" : "<i>m</i> − μ<sub>0</sub>"} = ${sc(c.side === "less" ? c.mu0 - c.m : c.m - c.mu0)})` : ""} s mezní chybou ${sc(c.me)}. Na mezi intervalu je <i>p</i>-hodnota rovna α a zamítáme.`
       : "Pohledy se liší jen kvůli zaokrouhlení přesně na mezi; rozhoduje nezaokrouhlená p-hodnota.";
     last = {...c, ci: c.ci.slice(), acc: c.acc.slice(), central: c.central && c.central.slice(), accSym: c.accSym && c.accSym.slice(), crit: c.crit.slice(),
       dom: state.dom.slice(), step: state.step, decisions: ways.decisions, sameDecision: same,

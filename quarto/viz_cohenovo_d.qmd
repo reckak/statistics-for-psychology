@@ -19,7 +19,7 @@ Nahoře nastavíte dvě věci:
 - **Cohenovo *d*** posuvníkem od 0 do 2 po setinách. Posouvat jej lze myší, prstem i klávesnicí: šipky mění *d* o 0,01, klávesy Page Up a Page Down o větší krok, Home a End nastaví 0 a 2. Po načtení stránky je nastaveno *d* = 0,5. Značky u posuvníku ukazují Cohenovy orientační hodnoty 0,2, 0,5 a 0,8.
 - **Směrodatnou odchylku σ v původních jednotkách**, kladné číslo (výchozí 10 bodů); desetinná čísla můžete psát s čárkou i s tečkou. Slouží jen k převodu *d* na rozdíl průměrů v bodech, $\mathrm{μ}_1-\mathrm{μ}_2=d\cdot\mathrm{σ}$; tvar grafů ani tři ukazatele nemění. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
 
-Pod ovládáním je rozdíl v původních jednotkách a tři ukazatele s výpočtem a vzorcem českého Excelu. Následují dva grafy:
+Pod ovládáním je rozdíl průměrů v původních jednotkách a tři ukazatele s výpočtem a vzorcem českého Excelu. Následují dva grafy:
 
 - **Rozdělení obou skupin.** Na vodorovné ose jsou hodnoty v jednotkách σ, s průměrem skupiny 2 v nule; je to tedy *z*-skór vzhledem ke skupině 2. Oranžová čárkovaná křivka je skupina 2, modrá plná skupina 1, posunutá o *d* doprava. Přepínačem zvolíte, co se vybarví: plocha, kterou mají obě křivky společnou (po načtení stránky), nebo část skupiny 1 nad průměrem skupiny 2. Osy mají stálé měřítko, aby šlo při posouvání *d* tvar přímo srovnat.
 - **Rozdíl hodnot náhodné dvojice.** Představme si, že ze skupiny 1 a ze skupiny 2 vybereme náhodně po jednom člověku a odečteme jejich hodnoty (skupina 1 − skupina 2). Křivka ukazuje rozdělení tohoto rozdílu; vybarvená plocha vpravo od nuly je pravděpodobnost, že vyšší hodnotu má člověk ze skupiny 1.
@@ -279,13 +279,13 @@ Ukážeme to na *d* = 0,5. Nad průměrem skupiny 2 leží $\mathrm{Φ}(0{,}5)\a
 ## Vyzkoušejte si {#sec-viz-cohenovo-d-vyzkousejte .unnumbered}
 
 1. Nechte *d* = 0,5. Jaká část skupiny 1 leží nad průměrem skupiny 2 a jak velká část obou rozdělení je společná? Přepněte vybarvení a najděte obě plochy v grafu. Platí, že „skupina 1 má vyšší hodnoty“ o každém jejím členovi?
-2. V parkovací studii z kapitoly 8 vyšlo *d* ≈ 0,47 ([Cohenovo *d* pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle)). Nastavte je a zjistěte, s jakou pravděpodobností odjíždí náhodně vybraný řidič, na kterého čekalo auto, později než náhodně vybraný řidič, na kterého nikdo nečekal, pokud by doby odjezdu měly normální rozdělení se stejnou směrodatnou odchylkou. Nastavte σ = 14,6 a porovnejte rozdíl v sekundách s výsledkem kapitoly.
+2. V parkovací studii z kapitoly 8 vyšlo *d* ≈ 0,47 ([Cohenovo *d* pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle)). Nastavte je a zjistěte, s jakou pravděpodobností odjíždí náhodně vybraný řidič, na kterého čekalo auto, později než náhodně vybraný řidič, na kterého nikdo nečekal, pokud by doby odjezdu měly normální rozdělení se stejnou směrodatnou odchylkou. Nastavte σ = 14,6 a porovnejte rozdíl průměrů v sekundách s výsledkem kapitoly.
 3. Posuvníkem najděte *d*, při kterém má náhodně vybraný člověk ze skupiny 1 vyšší hodnotu než náhodně vybraný člověk ze skupiny 2 se 75% pravděpodobností. Kolik procent obou rozdělení je v tu chvíli ještě společných?
 4. Nastavte *d* = 0,2 a σ = 15. O kolik bodů se liší průměry a jak se změnila tři čísla oproti *d* = 0? Proč z označení „malý účinek“ samo neplyne, že rozdíl je nedůležitý?
 
 ## Čeho si všimnout {#sec-viz-cohenovo-d-vsimnete .unnumbered}
 
-I rozdíl, kterému se podle Cohena říká velký, ponechává obě skupiny z velké části společné. Při *d* = 0,8 je společná asi 69 % plochy obou rozdělení, nad průměrem skupiny 2 leží asi 79 % skupiny 1 a náhodně vybraný člověk ze skupiny 1 má vyšší hodnotu jen asi v 71 % dvojic. Rozdíl průměrů proto neopravňuje k výrokům o každém jednotlivci ze skupiny. Pravděpodobnost 75 % vychází zhruba při *d* = 0,95.
+I rozdíl průměrů, kterému se podle Cohena říká velký, ponechává obě skupiny z velké části společné. Při *d* = 0,8 je společná asi 69 % plochy obou rozdělení, nad průměrem skupiny 2 leží asi 79 % skupiny 1 a náhodně vybraný člověk ze skupiny 1 má vyšší hodnotu jen asi v 71 % dvojic. Rozdíl průměrů proto neopravňuje k výrokům o každém jednotlivci ze skupiny. Pravděpodobnost 75 % vychází zhruba při *d* = 0,95.
 
 Tři ukazatele rostou s *d* různě rychle. Podíl skupiny 1 nad průměrem skupiny 2 roste nejrychleji, protože porovnává jednotlivce s pevnou hodnotou, průměrem. Pravděpodobnost u náhodné dvojice roste pomaleji: proměnlivé jsou obě hodnoty, a rozdíl dvojice má proto směrodatnou odchylku σ√2. Při *d* = 0 jsou oba ukazatele 50 % a společná plocha 100 %.
 

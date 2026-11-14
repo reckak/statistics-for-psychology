@@ -182,7 +182,7 @@ Dva jevy jsou **vzájemně výlučné (*mutually exclusive*)**, jestliže nemoho
 
 $$P(A\cup B)=P(A)+P(B).$$
 
-Kartička nemůže nést zároveň podstatné jméno a sloveso, proto je $P(\text{podstatné jméno}\cup\text{sloveso})$ rovno $0{,}40+0{,}35=0{,}75$. Jevy „žena“ a „zvýšený stres“ výlučné nejsou, a prostý součet by proto dal chybný výsledek 0,85. Stejnou podmínku jsme potkali u [četnostních tabulek](kapitola_02.qmd#sec-sumace): procenta kategorií smíme sčítat jen tehdy, když se kategorie nepřekrývají. Jev a jeho opačný jev jsou zvláštním případem vzájemně výlučných jevů, které navíc společně pokrývají celý výběrový prostor.
+Kartička nemůže nést zároveň podstatné jméno a sloveso, proto je $P(\text{podstatné jméno}\cup\text{sloveso})$ rovno $0{,}40+0{,}35=0{,}75$. Jevy „žena“ a „zvýšený stres“ výlučné nejsou, a prostým součtem by proto vyšel chybný výsledek 0,85. Stejnou podmínku jsme potkali u [četnostních tabulek](kapitola_02.qmd#sec-sumace): procenta kategorií smíme sčítat jen tehdy, když se kategorie nepřekrývají. Jev a jeho opačný jev jsou zvláštním případem vzájemně výlučných jevů, které navíc společně pokrývají celý výběrový prostor.
 
 ### Kontingenční tabulka a tři druhy pravděpodobností {#sec-kontingencni-tabulka}
 
@@ -252,7 +252,7 @@ Při čtení tabulky je nejdůležitější otázka: **z koho počítám?** Spol
 
 :::
 
-Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto dávají rozdílné výsledky: 0,40 a 0,57.
+Poslední dva řádky tabulky se liší jen pořadím jevů v zápisu, a přesto vedou k rozdílným výsledkům: 0,40 a 0,57.
 
 ::: {.callout-warning title="Častý omyl: obrácení podmínky"}
 Podíl studentů se zvýšeným stresem mezi ženami není totéž co podíl žen mezi studenty se zvýšeným stresem. Pravděpodobnosti $P(A\mid B)$ a $P(B\mid A)$ jsou obecně různá čísla, protože se vztahují k různým celkům. Jejich záměna patří k nejčastějším chybám v práci s pravděpodobností. Vrátíme se k ní u [obrácení podmínky](#sec-bayes).
@@ -474,7 +474,7 @@ V sešitu je výpočet na listu `Bayes`. Vstupy jsou ve žlutých buňkách B2:B
 
 :::
 
-Výpočet používá jen sčítání, odčítání, násobení a dělení; žádnou zvláštní funkci nepotřebuje. Buňky B16 a B20 musí dát stejnou hodnotu, což slouží jako kontrola.
+Výpočet používá jen sčítání, odčítání, násobení a dělení; žádnou zvláštní funkci nepotřebuje. V buňkách B16 a B20 musí vyjít stejná hodnota, což slouží jako kontrola.
 
 ### Stejný dotazník, jiná prevalence {#sec-dve-prevalence}
 
@@ -571,7 +571,7 @@ U diskrétní proměnné můžeme rozdělení uvést v tabulce hodnot a jejich p
 
 :::
 
-Každá pravděpodobnost leží mezi 0 a 1. Hodnoty 0 až 5 jsou vzájemně výlučné a jiná možnost není, takže pravděpodobnosti musí dát dohromady 1; zaokrouhlená čísla v tabulce dávají 1,001. Pravděpodobnost složitějšího jevu získáme sečtením příslušných hodnot podle součtového pravidla. Znak $\ge$ čteme „větší nebo rovno“; $P(X\ge3)$ je tedy pravděpodobnost alespoň tří správných tipů:
+Každá pravděpodobnost leží mezi 0 a 1. Hodnoty 0 až 5 jsou vzájemně výlučné a jiná možnost není, takže pravděpodobnosti musí dát dohromady 1; součet zaokrouhlených čísel v tabulce je 1,001. Pravděpodobnost složitějšího jevu získáme sečtením příslušných hodnot podle součtového pravidla. Znak $\ge$ čteme „větší nebo rovno“; $P(X\ge3)$ je tedy pravděpodobnost alespoň tří správných tipů:
 
 $$\begin{aligned}&P(X\ge3)\\&\quad=P(X=3)+P(X=4)+P(X=5)\\&\quad=0{,}088+0{,}015+0{,}001=0{,}104.\end{aligned}$$
 
@@ -585,7 +585,7 @@ Rozdělení pravděpodobnosti připomíná tabulku relativních četností z [dr
 
 :::
 
-Na obrázku [-@fig-rozdeleni-model-data] se oba grafy podobají, ale neshodují se. Žádnou otázku neuhodlo 13 ze 40 simulovaných studentů, tedy 32,5 %, zatímco model udává 23,7 %. Čtyři ani pět otázek neuhodl nikdo, ačkoli model těmto hodnotám dává nízkou kladnou pravděpodobnost. Neznamená to, že je model chybný: jde o simulaci, která se jím řídila přesně. Rozdíly jsou důsledkem náhody ve výběru čtyřiceti lidí, stejné jako u [kolísání relativní četnosti](#sec-dlouha-rada). Ve větším výběru by se relativní četnosti pravděpodobnostem zpravidla blížily více.
+Na obrázku [-@fig-rozdeleni-model-data] se oba grafy podobají, ale neshodují se. Žádnou otázku neuhodlo 13 ze 40 simulovaných studentů, tedy 32,5 %, zatímco model udává 23,7 %. Čtyři ani pět otázek neuhodl nikdo, ačkoli model těmto hodnotám přisuzuje nízkou kladnou pravděpodobnost. Neznamená to, že je model chybný: jde o simulaci, která se jím řídila přesně. Rozdíly jsou důsledkem náhody ve výběru čtyřiceti lidí, stejné jako u [kolísání relativní četnosti](#sec-dlouha-rada). Ve větším výběru by se relativní četnosti pravděpodobnostem zpravidla blížily více.
 
 Počet správných tipů je [diskrétní proměnná](kapitola_01.qmd#sec-diskretni-spojite): její možné hodnoty lze vyjmenovat a každé přiřadit pravděpodobnost. U spojité proměnné, například reakčního času, to nejde. Jednotlivá přesná hodnota má nulovou pravděpodobnost a rozdělení popisujeme [hustotou](kapitola_04.qmd#sec-hustota), z níž čteme pravděpodobnosti intervalů jako plochy. Sloupec v grafu diskrétního rozdělení ukazuje přímo pravděpodobnost konkrétní hodnoty; výška křivky hustoty pravděpodobností není.
 
@@ -920,7 +920,7 @@ Výpočty jsou na listu `Aproximace`; vstupy jsou v B2 (počet pokusů), B3 (pra
 
 :::
 
-Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximace se *z*-skórem $(10-5)/1{,}94\approx2{,}58$ dává 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
+Když podmínka splněna není, může se aproximace mýlit výrazně. Pro test s 20 otázkami a $\mathrm{π}=0{,}25$ očekáváme jen 5 úspěchů. Přesná pravděpodobnost alespoň 10 správných tipů je 0,0139. Normální aproximací se *z*-skórem $(10-5)/1{,}94\approx2{,}58$ vychází 0,0049, tedy téměř třikrát méně. Binomické rozdělení je zde zešikmené doprava a má delší pravý chvost než souměrná normální křivka.
 
 ::: {.teaching-figure role="region" aria-label="Normální křivka přes binomické rozdělení při nesplněné a splněné podmínce" tabindex="0"}
 
@@ -1219,7 +1219,7 @@ a)  $n=15$, $\mathrm{π}=1/5=0{,}2$. Střední hodnota $15\times0{,}2=3$ správn
 
 b)  `=BINOM.DIST(3;15;0,2;NEPRAVDA)` vrátí 0,250. `=BINOM.DIST(3;15;0,2;PRAVDA)` vrátí 0,648.
 
-c)  `=1-BINOM.DIST(6;15;0,2;PRAVDA)` vrátí 0,0181. „Alespoň 7“ znamená 7 až 15; opačným jevem je „nejvýše 6“, proto odečítáme kumulativní pravděpodobnost pro 6. Vzorec s číslem 7 by hodnotu 7 vynechal a vrátil pravděpodobnost „alespoň 8“. Stejný výsledek dá `=BINOM.DIST.RANGE(15;0,2;7;15)`.
+c)  `=1-BINOM.DIST(6;15;0,2;PRAVDA)` vrátí 0,0181. „Alespoň 7“ znamená 7 až 15; opačným jevem je „nejvýše 6“, proto odečítáme kumulativní pravděpodobnost pro 6. Vzorec s číslem 7 by hodnotu 7 vynechal a vrátil pravděpodobnost „alespoň 8“. Stejný výsledek vrátí `=BINOM.DIST.RANGE(15;0,2;7;15)`.
 
 d)  Při pouhém tipování by 7 a více bodů získal přibližně jeden student z 55. Model čistého tipování tedy takový výsledek vysvětluje špatně, což je důvod se domnívat, že student alespoň část látky zná nebo umí některé možnosti vyloučit. Výsledek nedokazuje znalost u tohoto konkrétního studenta a neříká, s jakou pravděpodobností tipoval; k tomu bychom museli obrátit podmínku a znát další údaje.
 :::

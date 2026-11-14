@@ -343,7 +343,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       x: {domain: [Z_MIN, Z_MAX], ticks: d3.range(Z_MIN, Z_MAX + 1), tickFormat: tick, label: "Standardizovaný průměr (z)", labelAnchor: "center", labelArrow: "none", labelOffset: 40},
       y: {...yLabel("Hustota"), ticks: 4, tickFormat: tick, domain: [0, zTop]},
       ariaLabel: `Histogram standardizovaných průměrů, počet opakování ${K}`,
-      ariaDescription: K > 1 ? `Nad 2 leží ${pct(zAbove)} a pod −2 ${pct(zBelow)} standardizovaných průměrů; normální model dává v obou případech 2,3 %.` : "Zatím jen jeden průměr.",
+      ariaDescription: K > 1 ? `Nad 2 leží ${pct(zAbove)} a pod −2 ${pct(zBelow)} standardizovaných průměrů; normální model udává v obou případech 2,3 %.` : "Zatím jen jeden průměr.",
       marks: [
         Plot.rectY(zBins, {x1: "x1", x2: "x2", y: "d", fill, stroke: blue, strokeWidth: 0.6, clip: true}),
         showNormal ? Plot.lineY(zGrid, {x: d => d, y: d => normalPdf(d, 0, 1), stroke: orange, strokeWidth: 2.2, strokeDasharray: "6,4"}) : null,
