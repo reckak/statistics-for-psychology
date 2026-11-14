@@ -194,10 +194,11 @@ ch8_draw('dve-skupiny', {
   text(ch8_sk_pool['rozdil'],y+.3,c('klasický test se společným rozptylem','Welchův test'),cex=.8,col=cols)
 },width=10,height=4.4)
 ch8_draw('intervaly-vedle-sebe', {
-  layout(matrix(1:4,1),widths=c(1.25,.8,1.25,.8)); par(mar=c(4.6,4.4,3.4,.6))
+  # layout() with four columns shrinks cex to 0.66; restore readable labels.
+  layout(matrix(1:4,1),widths=c(1.25,.8,1.25,.8)); par(mar=c(4.6,4.6,3.4,.6),cex=1,cex.axis=1,cex.lab=1.05,cex.main=1.1)
   draw_groups <- function(ci,m,main,lab) {
     plot(NA,xlim=c(.5,2.5),ylim=c(38,60),xaxt='n',xlab='',ylab='Skór pozornosti (body)',main=main,bty='l')
-    axis(1,at=1:2,labels=lab,cex.axis=.85)
+    axis(1,at=1:2,labels=lab)
     segments(1:2,ci[,1],1:2,ci[,2],lwd=3,col=c(ch8_orange,ch8_blue)); points(1:2,m,pch=21,bg='white',col=ch8_ink,cex=1.4)
     rect(.5,max(ci[,1]),2.5,min(ci[,2]),col=adjustcolor(ch8_mute,.25),border=NA)
   }
@@ -223,12 +224,12 @@ ch8_draw('zmeny-skupin', {
 ch8_draw('ekvivalence-skupin', {
   par(mar=c(4.6,10.5,2.8,.8))
   e <- ch8_ekv_res; y <- 2:1
-  plot(NA,xlim=c(-7,6),ylim=c(.5,2.6),yaxt='n',xlab='Rozdíl průměrů online − papír (body)',ylab='',main='Dvě studie vůči pásmu ekvivalence ±3 body',bty='l')
-  rect(-3,0,3,3,col=adjustcolor(ch8_fill,.55),border=NA); abline(v=c(-3,3),lty=2,lwd=1.5,col=ch8_ink); abline(v=0,lty=3,lwd=1.5,col=ch8_gray)
+  plot(NA,xlim=c(-7,6),ylim=c(.5,3),yaxt='n',xlab='Rozdíl průměrů online − papír (body)',ylab='',main='Dvě studie vůči pásmu ekvivalence ±3 body',bty='l')
+  rect(-3,0,3,4,col=adjustcolor(ch8_fill,.55),border=NA); abline(v=c(-3,3),lty=2,lwd=1.5,col=ch8_ink); abline(v=0,lty=3,lwd=1.5,col=ch8_gray)
   axis(2,at=y,labels=c('200 + 200 studentů','30 + 30 studentů'),tick=FALSE,cex.axis=.9)
   segments(e[,'d95'],y,e[,'h95'],y,lwd=1.4,col=ch8_ink); segments(e[,'d95'],y-.07,e[,'d95'],y+.07,lwd=1.4,col=ch8_ink); segments(e[,'h95'],y-.07,e[,'h95'],y+.07,lwd=1.4,col=ch8_ink)
   segments(e[,'d90'],y,e[,'h90'],y,lwd=6,col=ch8_blue,lend=1); points(e[,'rozdil'],y,pch=21,bg='white',col=ch8_ink,cex=1.2)
-  legend('topright',c('95% interval: test rozdílu','90% interval: test ekvivalence'),lwd=c(1.4,6),col=c(ch8_ink,ch8_blue),bty='n',cex=.78)
+  legend('topright',c('95% interval:\ntest rozdílu','90% interval:\ntest ekvivalence'),lwd=c(1.4,6),col=c(ch8_ink,ch8_blue),bty='n',cex=.78,y.intersp=1.6,inset=c(0,-.02))
 },width=8.8,height=3.8)
 ch8_draw('korelace-rozdily', {
   layout(matrix(1:4,1),widths=c(1.35,1,1,1)); par(mar=c(4.6,4.6,3.4,.6))
@@ -253,15 +254,18 @@ ch8_draw('pomer-skupin', {
   x <- seq_len(nrow(ch8_pomer)); pm <- ch8_pomer
   panel <- function(main,se,se_pool=NULL) {
     plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,7.2),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main=main,bty='l',cex.main=1.05)
-    axis(1,at=x,labels=ch8_pomer_lab,padj=.5); mtext('Poměr velikostí skupin (celkem 90 lidí)',1,4.1,cex=.9)
+    axis(1,at=x,labels=ch8_pomer_lab,padj=.5,cex.axis=.9,gap.axis=-1); mtext('Poměr velikostí skupin (celkem 90 lidí)',1,4.1,cex=.9)
     up <- if(is.null(se_pool)) rep(TRUE,length(x)) else se>=se_pool-1e-9  # label the higher point above, the lower below
-    if(!is.null(se_pool)) { lines(x,se_pool,lwd=2.2,lty=2,col=ch8_gray,type='b',pch=4,cex=1.2); text(x,se_pool+ifelse(up,-.5,.5),ch8_num(se_pool),cex=.9,col=ch8_gray) }
+    # Labels above a point sit closer than labels below it, which would otherwise touch the descending lines.
+    off_above <- .48; off_below <- -.78
+    if(!is.null(se_pool)) { lines(x,se_pool,lwd=2.2,lty=2,col=ch8_gray,type='b',pch=4,cex=1.2); text(x,se_pool+ifelse(up,off_below,off_above),ch8_num(se_pool),cex=.9,col=ch8_gray) }
     # The true standard error keeps one colour and line type in every panel.
-    lines(x,se,lwd=2.6,col=ch8_orange,type='b',pch=21,bg='white',cex=1.4); text(x,se+ifelse(up,.5,-.5),ch8_num(se),cex=.9,col=ch8_orange)
+    lines(x,se,lwd=2.6,col=ch8_orange,type='b',pch=21,bg='white',cex=1.4); text(x,se+ifelse(up,off_above,off_below),ch8_num(se),cex=.9,col=ch8_orange)
   }
-  leg <- function() legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_orange,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.6,2.2),bty='n',cex=.9)
+  leg <- function() legend('bottomright',inset=c(0,.02),c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_orange,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.6,2.2),bty='n',cex=.9)
   panel('Stejné σ = 10 v obou populacích',pm$se_shodne)
-  legend('topleft','skutečná směrodatná chyba',col=ch8_orange,lty=1,pch=21,lwd=2.6,bty='n',cex=.9)
+  # With equal sigmas the pooled-variance value equals the true standard error.
+  legend('topleft','skutečná směrodatná chyba\n(podle společného odhadu rozptylu)',col=ch8_orange,lty=1,pch=21,lwd=2.6,bty='n',cex=.9)
   panel('Menší skupina σ = 20, větší σ = 10',pm$se_mala_var,pm$se_mala_var_pool); leg()
   panel('Větší skupina σ = 20, menší σ = 10',pm$se_velka_var,pm$se_velka_var_pool); leg()
 },width=9,height=8.4)
@@ -271,7 +275,7 @@ ch8_draw('welch-stupne', {
   # Distinct hues and point shapes, so the three Welch lines do not rely on colour alone.
   cols <- c(ch8_green,ch8_orange,'#3A8FB7'); pchs <- c(21,22,24)
   plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,dfmax+6),xaxt='n',xlab='',ylab='Stupně volnosti',main='Welchovy stupně volnosti (celkem 90 lidí)',bty='l')
-  axis(1,at=x,labels=ch8_pomer_lab,padj=.5); mtext('Poměr velikostí skupin',1,4.1,cex=.9)
+  axis(1,at=x,labels=ch8_pomer_lab,padj=.5,cex.axis=.9,gap.axis=-1); mtext('Poměr velikostí skupin',1,4.1,cex=.9)
   abline(h=dfmax,lty=2,col=ch8_gray); text(max(x)+.4,dfmax+3,bquote(n[1]+n[2]-2==.(dfmax)),adj=1,cex=.85,col=ch8_gray)
   lines(x,pmin(pm$n1,pm$n2)-1,lty=3,lwd=2,col=ch8_gray,type='b',pch=20)
   ys <- list(pm$df_shodne,pm$df_mala_var,pm$df_velka_var)
