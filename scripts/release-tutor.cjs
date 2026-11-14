@@ -28,6 +28,8 @@ run('git', ['fetch', '--quiet', 'origin']);
 assert(run('git', ['branch', '-r', '--contains', revision]).trim() !== '', `Revision ${revision} is not pushed to origin`);
 assert(!ok('git', ['rev-parse', '--verify', '--quiet', `refs/tags/${tag}`]), `Tag ${tag} already exists locally`);
 assert.equal(run('git', ['ls-remote', '--tags', 'origin', tag]).trim(), '', `Tag ${tag} already exists on GitHub`);
+// A draft release has no tag yet, so ask GitHub for the release itself.
+assert(!ok('gh', ['release', 'view', tag]), `Release ${tag} (possibly a draft) already exists`);
 
 // Release assets keep the same names in every release, so the book can link
 // to releases/latest/download/<name>. Local archives keep the version.
@@ -63,7 +65,7 @@ const notes = [
   '',
   ...assets.map(a => `- **${a.platform}:** \`${a.name}\``),
   '',
-  `Tutor obsahuje úplný text ${report.chapters} kapitol včetně cvičení a řešení a tři přehledy (slovníček, značení a vzorce, funkce Excelu). Učebnici nenahrazuje; při rozporu platí učebnice.`,
+  `Tutor obsahuje úplný text kapitol 1–${report.chapters} včetně cvičení a řešení a tři přehledy (slovníček, značení a vzorce, funkce Excelu). Učebnici nenahrazuje; při rozporu platí učebnice.`,
   '',
   `Revize zdroje: ${revision}`,
   '',

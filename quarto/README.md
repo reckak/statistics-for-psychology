@@ -1,5 +1,19 @@
 # Autorská dokumentace
 
+<a id="ai-tutor-vydani-2026-11-14"></a>
+
+## AI tutor 0.3.5: stránka ke stažení a vydání na GitHubu (2026-11-14, R79)
+
+Autor chtěl mít verze tutora dohledatelné a návod přímo v učebnici ([R79](../docs/rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu)).
+
+- Nová nečíslovaná stránka `quarto/ai_tutor.qmd` „AI tutor: stažení a instalace“ za úvodem. Text vychází z `ai-tutor/navod.docx` (verze 0.3.4), který nahrazuje. Údaje o verzi odstraněny. Názvy souborů jsou stálé a vedou přes `releases/latest/download/`. Rozsah opraven na „kapitoly 7–10 zatím nemá celé“ (dříve 7–8). Znak `@` je escapovaný, jinak ho Pandoc četl jako citaci. Odkaz na stránku je v úvodu knihy; export tutora jej převádí na webovou adresu (`export-tutor.cjs`, stejně jako u vizualizací).
+- `scripts/release-tutor.cjs`: pojistky (export bez necommitovaných vstupů, revize na GitHubu, neexistující štítek i koncept vydání, shoda verze a SHA-256, `check-tutor.cjs`), kopie archivů pod stálými názvy do `tmp/tutor-release-<verze>/`, české poznámky; bez přepínače suchý běh, `--draft` vytvoří koncept.
+- Verze tutora 0.3.5: zdroje kapitol 1–6 se od 0.3.4 změnily. Texty tutora (SKILL.md, PRIPOJENI-KAPITOL.md, manifesty, README pluginu, export, testovací scénář) uváděly nepřibalené kapitoly 7–8 a katalog osmi kapitol; opraveno na 7–10 a deset.
+- Opravy kontroly `check-tutor.cjs`, které bránily exportu od přidání kapitol 9–10 a od R78: počet kapitol se bere z knihy místo pevných 8; vzorce s třídou `formula-line` se porovnávají a `&nbsp;` se dekóduje jako nezlomitelná mezera.
+- Dokumentace: pravidla v `docs/AITUTORS.md`, postup v `docs/PROVOZ.md` (oddíl Vydání na GitHubu), uspořádání v `docs/OSNOVA.md`, R79 a řádek v registru.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.10.19); `check-html.cjs`, `check-table-layout.cjs` a `check-doc-maps.cjs` prošly. Stránka nepřetéká při 375 px; styly jsem kvůli statickému náhledu vizuálně neověřil, jen kontrolními skripty. Export 0.3.5 z čisté revize `0a398e9` prošel včetně `check-tutor.cjs` a smazal starší pracovní složku exportu. Suchý běh vydání prošel. Pojistky jsem vyzkoušel na upravených kopiích `overeni.json`: neshoda SHA, neodeslaná revize, jiná verze a `--draft` s `--report`. Koncept vydání `tutor-v0.3.5` jsem vytvořil; odkazy `latest/download` začnou fungovat až po jeho zveřejnění autorem. Tutora 0.3.5 jsem na platformách netestoval.
+
 <a id="zdroje-webu-tmp-2026-11-14"></a>
 
 ## Zdroje webu bez kopií z `tmp/` (2026-11-14)
