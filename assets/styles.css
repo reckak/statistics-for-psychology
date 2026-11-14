@@ -46,9 +46,10 @@ figure.quarto-float-tbl > figcaption.quarto-float-caption { text-align: left !im
 }
 
 /* Excel formulas in tables are already broken into short lines by filters/table-style.lua (R78);
-   on wider screens keep each line whole instead of breaking at hyphens or brackets. */
+   on wider screens keep each of those lines whole instead of breaking at hyphens or brackets.
+   Other inline code keeps normal breaking, so it never forces a table wider than the page. */
 @media (min-width: 601px) {
-  main table td code:not(.sourceCode) { white-space: nowrap; }
+  main table td code.formula-line { white-space: nowrap; }
 }
 
 /* Keep prose comparisons readable inside their horizontal scroll containers. */
@@ -96,6 +97,8 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 
 /* Small local overflows: retain type size and fit the comparison columns. */
 #tbl-k08-07 :is(th, td) { padding-inline: .25rem; }
+/* The Excel overview keeps wrapped formula lines whole (R78); narrower padding leaves room for wider fonts. */
+#tbl-prehled-excel :is(th, td) { padding-inline: .4rem; }
 @media (max-width: 600px) {
   #tbl-k08-01 :is(th, td), #tbl-k08-08 :is(th, td) { padding-inline: .35rem; }
   #tbl-k09-09 :is(th, td), #tbl-k09-12 :is(th, td) { padding-inline: .2rem; }
