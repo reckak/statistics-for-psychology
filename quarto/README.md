@@ -1,5 +1,17 @@
 # Autorská dokumentace
 
+<a id="kapitola-08-obrazky-pomer-2026-11-14"></a>
+
+## Kapitola 8: obrázky směrodatné chyby a Welchových stupňů volnosti pro 90 lidí (2026-11-14)
+
+Úprava podle autorových připomínek po sloučení PR #198. Obrázek 8.4 (`fig-pomer-skupin`) měl tři panely v řadě a malé popisky. U obrázku 8.6 (`fig-welch-stupne`) se černá a tmavě modrá čára špatně rozlišovaly a dolní indexy v popisku `n₁ + n₂ − 2` se v SVG vykreslovaly jako čtverečky. Autor chtěl přidat i poměr 8:1. Ten nejde při 60 lidech rozdělit na celé osoby, proto autor zvolil celkem 90 lidí: 45 a 45, 60 a 30, 72 a 18, 80 a 10.
+
+- `scripts/kapitola_08.R`: `ch8_pomer` má čtyři poměry. Obrázek 8.4 má podle autorovy preference nejvýše dva panely na řádek: panel se stejnými σ je samostatně nahoře a vycentrovaný, dva panely s rozdílnými σ jsou pod ním. Písmo je větší a skutečná směrodatná chyba je ve všech panelech oranžová plná čára, odhad podle společného rozptylu šedá přerušovaná. Obrázek 8.6 má zelenou, oranžovou a světlejší modrou čáru s různými tvary bodů a popisek je přepsán na plotmath (`bquote(n[1]+n[2]-2==88)`), takže se indexy zobrazují. V ostatních R skriptech se znaky indexů nevyskytují.
+- `kapitola_08.qmd`: odstavce, popisky a alternativní texty obou obrázků a odkaz na přerušované čáry v oddílu o klasickém testu přepsány na nové hodnoty. Směrodatná chyba při stejných σ je 2,11–3,35. Při variabilnější menší skupině je 3,33–6,42, společný odhad 3,83 při poměru 8:1. Welchovy df: stejné σ 88 až 11,4; menší skupina variabilnější 9,6 při 8:1 proti 9 df menší skupiny; větší skupina variabilnější 88,0 při 2:1.
+- `check-chapter-08.R` ověřuje všechny nové hodnoty a shodu `ch8_pomer` s kontrolou. Sešit kapitoly se nemění (modelové obrázky bez listu).
+
+**Kontroly:** `check-chapter-08.R` prošel. Oba SVG jsem vizuálně prohlédl v prohlížeči (legenda Welchova grafu po první prohlídce přesunuta dolů vlevo, protože překrývala čáru 88). Kapitola 8 vykreslena bez varování; `check-html.cjs` (25 stran, mobil 390 px), `scripts/check-table-layout.cjs` a `check-doc-maps.cjs` prošly. PDF kapitoly 8 nebylo vyžádáno a neověřoval jsem ho.
+
 <a id="jazyk-r76-kapitoly-2026-11-14"></a>
 
 ## Jazykové konvence R76 v kapitolách 1–7, 9, 10 a ve vizualizacích (2026-11-14)
