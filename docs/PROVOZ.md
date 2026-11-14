@@ -38,6 +38,8 @@ quarto preview
 
 Výstup vzniká ve složce `_book/`, úvodní stránka je `_book/index.html`. Pro přenos nebo publikování zachovejte celou složku `_book/` včetně podpůrných souborů. Generované HTML neupravujte ručně.
 
+Vzory v `project.resources` v `_quarto.yml` začínají lomítkem (`/assets/`, `/data/*.xlsx`). Quarto je čte podobně jako `.gitignore`: vzor bez úvodního lomítka by platil v libovolné hloubce a do `_book/` by zkopíroval i složky `assets/` a `data/` z `tmp/`, `plugins/` či `node_modules/`. Obsahuje-li `_book/` po renderu jiné složky než `assets/`, `data/`, `quarto/` a `site_libs/`, zkontrolujte nové zdroje.
+
 Renderování webu vyžaduje také Node.js pro úpravu popisků po sestavení.
 Společný filtr `filters/table-style.lua` označuje souhrnné řádky a zarovnává
 jednoznačně číselné sloupce, pokud autor neurčil zarovnání. Podle
@@ -231,7 +233,10 @@ kapitolu. Citace vznikají jedním společným průchodem citeproc s APA stylem
 a celou bibliografií kvůli shodě rozlišujících přípon roků; přibalený seznam
 literatury pak ponechá pouze skutečně citované položky.
 
-Sestavení vzniká v nové pomocné složce pod `tmp/`. Před nahrazením cílového
+Sestavení vzniká v nové pomocné složce `tmp/tutor-export-*`. Po úspěšném
+exportu skript smaže starší složky `tmp/tutor-export-*` a ponechá jen tu,
+na kterou odkazuje `ai-tutor/overeni.json` (používá ji `check-tutor.cjs`);
+po neúspěšném exportu se nic nemaže. Před nahrazením cílového
 archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
 ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
 

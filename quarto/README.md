@@ -1,5 +1,18 @@
 # Autorská dokumentace
 
+<a id="zdroje-webu-tmp-2026-11-14"></a>
+
+## Zdroje webu bez kopií z `tmp/` (2026-11-14)
+
+Místní `_book/` měl 635 MB, z toho asi 600 MB v `_book/tmp/`. Quarto čte vzory `project.resources` podobně jako `.gitignore`, takže `assets/` a `data/*.xlsx` bez úvodního lomítka platily v libovolné hloubce. Do webu se tak kopírovaly složky `assets/` a `data/` z pracovních exportů tutora a starších kontrolních kopií webu v `tmp/`, a také z `plugins/` a `node_modules/`. Zveřejněný web se `tmp/` netýkal, protože workflow vykresluje z čisté kopie repozitáře. Logo z `plugins/…/assets/` se ale publikovalo zbytečně.
+
+- `_quarto.yml`: vzory ukotveny ke kořeni (`/assets/`, `/data/*.xlsx`), vylučovací vzory beze změny.
+- `scripts/export-tutor.cjs`: po úspěšném exportu smaže starší složky `tmp/tutor-export-*` a ponechá aktuální, na kterou odkazuje `ai-tutor/overeni.json`.
+- `docs/PROVOZ.md`: popis ukotvení vzorů a úklidu exportu.
+- Místně smazáno `_book/` (vykresleno znovu) a 27 starších složek `tmp/tutor-export-*` (asi 580 MB); ponechána `tmp/tutor-export-hz2bNL`.
+
+**Kontroly:** celá kniha vykreslena místně Quartem 1.10.19 (projekt je jinak ověřován s 1.9.38). `_book/` má 34 MB a obsahuje jen `assets/`, `data/`, `quarto/`, `site_libs/` a soubory v kořeni. Seznam souborů `_book/assets/` se shoduje s `assets/`, v `_book/data/` je všech deset sešitů. Prošly `check-html.cjs`, `check-table-layout.cjs` a `check-doc-maps.cjs`. Úklidovou smyčku exportu jsem ověřil simulací na pomocných složkách; celý export tutora jsem nespouštěl.
+
 <a id="zalamovani-vzorcu-2026-11-14"></a>
 
 ## Zalamování dlouhých vzorců Excelu v tabulkách (2026-11-14, R78)

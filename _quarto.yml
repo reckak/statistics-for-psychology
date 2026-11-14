@@ -9,9 +9,11 @@ project:
   render:
     - index.qmd
     - quarto/*.qmd
+  # Leading "/" anchors globs at the project root; without it Quarto also
+  # copies matching folders from tmp/, plugins/ and node_modules/.
   resources:
-    - assets/
-    - data/*.xlsx
+    - /assets/
+    - /data/*.xlsx
     - "!data/*.csv"
     - "!sources/**"
     - "!quarto/README.md"

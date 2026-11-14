@@ -402,6 +402,12 @@ fs.copyFileSync(geminiStageArchive, geminiArchive);
 report.claude.archive = claudeArchive;
 report.gemini.archive = geminiArchive;
 fs.writeFileSync(path.join(output, 'overeni.json'), JSON.stringify({...report, archive}, null, 2) + '\n');
+// Only after success: earlier work folders are superseded; overeni.json points to this one.
+for (const entry of fs.readdirSync(workRoot, {withFileTypes: true})) {
+  if (entry.isDirectory() && entry.name.startsWith('tutor-export-') && entry.name !== path.basename(work)) {
+    fs.rmSync(path.join(workRoot, entry.name), {recursive: true, force: true});
+  }
+}
 console.log(JSON.stringify({archive, claudeArchive, geminiArchive, geminiFiles: geminiInventory.length, figures: figures.length,
   package: stage, version, chapters: report.chapters,
   overviews: report.overview_entries, images: report.images, citations: report.citations}, null, 2));
