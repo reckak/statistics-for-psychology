@@ -8,6 +8,19 @@ function Find-Executable($Specified, $Name, $Fallback) {
     throw "Install $Name or supply its path explicitly."
 }
 
+# Pipe tables with long cells get equal PDF columns; give wide ones text-led widths.
+# Shared by the chapter and book PDFs; the web keeps its own column layout.
+$PdfColumnWidths = @{
+    'tbl-k07-02' = '[9,37,40,14]'
+    'tbl-k07-03' = '[7,10,15,14,15,13,26]'
+}
+function Set-PdfColumnWidths([string]$Source) {
+    foreach ($table in $PdfColumnWidths.Keys) {
+        $Source = $Source.Replace("{#$table}", "{#$table tbl-colwidths=`"$($PdfColumnWidths[$table])`"}")
+    }
+    $Source
+}
+
 # Final Typst corrections after Quarto's render; recompiles only when something changed.
 function Complete-PdfTypography($Quarto, $TypPath, $Root, $ReferencesLabel) {
     $utf8 = New-Object System.Text.UTF8Encoding($false)

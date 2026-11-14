@@ -1,5 +1,22 @@
 # Autorská dokumentace
 
+<a id="pdf-cele-ucebnice-2026-11-14"></a>
+
+## PDF celé učebnice a odkaz na jeho stažení z úvodu (2026-11-14, R80)
+
+Autor chtěl v úvodu „O učebnici“ odkaz na stažení PDF verze; zvolil celou knihu (kapitoly 1–10) a zveřejnění vydáním na GitHubu ([R80](../docs/rozhodnuti/postupy-a-dokumentace.md#r80-pdf-cele-ucebnice)).
+
+- `index.qmd`: nový odstavec s odkazem na `releases/download/ucebnice-pdf/zaklady-statistiky-pro-psychology.pdf` (co PDF obsahuje, že vizualizace a sešity jsou na webu a že datum verze je na titulní straně).
+- `render-book-pdf.ps1`: kapitoly bere z `_quarto.yml` (nyní 1–10), výstup `output/pdf/zaklady-statistiky-pro-psychology.pdf`, titulní strana s datem sestavení (`book.yml`), odstavec o stažení PDF v PDF vypouští, náhrada věty o literatuře „kapitolách 1–6“ zrušena. Identifikátory opakované ve dvou kapitolách (`fig-sirka-intervalu` v kap. 2 a 7, `sec-nezavislost` v kap. 5 a 9) dostanou v pozdější kapitole příponu `-kNN` včetně odkazů; dřív by se v jednom dokumentu střetly.
+- Šířky sloupců širokých tabulek kapitoly 7 přesunuty z `render-chapter-pdf.ps1` do `scripts/pdf/common.ps1` a používají je obě PDF.
+- `book.lua`, `check-book-pdf.cjs`, `check-rendered-pdf.py`: rozsah kapitol a počty řešení se berou ze zdrojů místo pevných 1–6; vynechávání řádků přehledů platí obecně pro kapitoly mimo PDF.
+- `kapitola_10.qmd`: šest poznámek pod tabulkami nově začíná „*Poznámka.*“ jako v ostatních kapitolách (kontrola PDF je podle toho hledá).
+- Dokumentace: R80 a registr (R31 částečně nahrazeno), `docs/PROVOZ.md` (oddíl PDF celé učebnice a postup vydání; stará kotva zachována), `AGENTS.md`, `README.md`, `docs/OSNOVA.md`.
+
+**Kontroly:** PDF celé knihy sestaveno (Quarto 1.10.19, 430 stran); `check-book-pdf.cjs` (132 řešení v kapitolách 1–10, 707 cílů odkazů), `check-rendered-pdf.py` (27 poznámek 9 pt) a `check-pdf-typography.cjs` prošly. Vizuálně prohlédnuty náhledy titulní strany, úvodu (bez odstavce o stažení), tabulek 7.2, 7.3, 10.1, 10.6, cvičení kapitol 7 a 10 a slovníčku; ostatní strany jen kontrolami. PDF kapitoly 7 po přesunu šířek sloupců znovu sestaveno a `check-chapter-pdf.cjs --chapter 7` prošla. `check-doc-maps.cjs` prošla.
+
+**Omezení:** Vydání `ucebnice-pdf` zatím neexistuje, odkaz z úvodu bude fungovat až po jeho založení autorem schváleným nahráním.
+
 <a id="pdf-kapitola-09-2026-11-14"></a>
 
 ## PDF: export kapitoly 9 a české uvozovky v Quartu 1.10 (2026-11-14)
