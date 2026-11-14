@@ -435,3 +435,9 @@ Kapitola 10 vznikla podle [R71](../rozhodnuti/kapitola-10.md#r71-rozsah-kapitoly
 - Kontrolní opora bez citace ve studentském textu: funkce R `cor`, `cor.test`, `rank`, `t.test`, `quantile(type = 7)`; jejich dokumentace čtena nebyla.
 
 Původní studie (Bosco et al., Chan, Gump et al.) nebyly čteny; text je uvádí podle zprostředkujících učebnic. Ruscio (2008) a srovnávací studie ve *Frontiers in Psychology* (2012) nebyly přečteny ani použity.
+
+<a id="algina-keselman-2026-11-14"></a>
+
+## Revize kapitoly 8: nový podklad a ověřené pasáže — 2026-11-14
+
+Autor doplnil do `sources/ostatní zdroje/` článek Alginy a Keselmana (2003); zmapován jako [D14](D14-algina-keselman.md#d14) (17 stran PDF, otisk `93809c9f911b42d9`). Inventář má nyní 50 souborů; ostatní soubory se při této revizi znovu neporovnávaly. Pro revizi kapitoly 8 ([R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)) byly dále ověřeny Howell s. 219 a 632 ([U01](U01-howell.md#revize-08-20261114)) a Cumming s. 190 ([U03](U03-cumming.md#revize-08-20261114)). Hledání přibližného vzorce pro interval *d* v podkladech (Howell, Cumming, Lakens, Field) našlo jen Howellův vzorec pro *d* vůči kontrolní skupině; Lakensova kniha (s. 177–178) odkazuje na software, Cumming na esci. Gelmanův a Sternův číselný příklad ([E05](E05-gelman-stern.md#e05-gelman-stern)) byl z kapitoly odstraněn.

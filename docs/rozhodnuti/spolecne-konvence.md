@@ -335,3 +335,24 @@ následně schválil plán úprav.
 **Doklad:** autor 2026-11-09: „t-rozdělení, t-tes, z-test apod. bych také psal vždy s kurzivním t či z“ a „Při citacích více autorů bych používal např. Lakens et al., nikoli ‚a spolupracovníci‘ nebo ‚a kolegové‘“. V následné otázce zvolil rozsah „Celá kniha i z-skór“ a schválil plán úprav.
 
 *Doplněk 2026-11-09:* po sloučení PR #175 autor odpověděl „Ano, prezentace“; kurziva byla zavedena také v prezentacích kapitol 4–6 (snímky, poznámky ve snímcích, DOCX poznámek, doprovodné sešity a čtyři obrázky kapitoly 4 ve slidech). Prezentace kapitol 1–3 výskyt neobsahují. Balíčky AI tutora zůstávají ke sjednocení při příštím exportu.
+
+<a id="r76-jazykove-konvence"></a>
+
+## R76 — Jazykové konvence a terminologie: variabilita, intervence, korigovaný, kurzivní *d*
+
+**Stav:** schváleno 2026-11-14. **Rozsah:** terminologie a kurzivní *d* v celé knize (kapitoly, slovníček, značení, vizualizace, popisky grafů, autorský slovník); jazykové konvence úvodů oddílů a vyjadřování výsledků v kapitole 8 a v nových či upravovaných textech. Ostatní kapitoly se po této stránce projdou v samostatném PR; prezentace a balíčky AI tutora se sjednotí při své příští úpravě.
+
+**Volba a důvod:**
+
+- **Variabilita** místo „rozptýlenosti“ ve smyslu variability; „rozptýlenost“ se neuvádí ani jako alternativa hesla Variabilita. Popisné „rozptýlené body“ v grafech zůstávají. Důvod: „rozptýlenost“ nezní odborně.
+- **Intervence** místo „zásahu“ ve smyslu zkoumaného zásahu; jiné významy („zásah“ jako úspěšný pokus) zůstávají.
+- **Korigovaný počet stupňů volnosti** místo „upraveného“ (Welchův test); ustálený termín „upravené reziduum“ se nemění.
+- **Cohenovo *d*** se vždy sází s kurzivním *d*, stejně jako *t*, *z* a *p* ([R66](#r66-kurziva-a-et-al), [R56](kapitola-06.md#r56-p-hodnota-cohen)); obdobně Hedgesovo *g*. V tabulkách psaných HTML `<em>d</em>`; kotvy, ID a alternativní texty se nemění.
+- **Zavedený odborný cizí termín** má přednost před méně výstižným českým opisem (např. intervence, korigovaný, design).
+- **Úvod oddílu** se uvádí obratem „Tento oddíl …“ nebo „Následující oddíl …“, nikoli holým „Oddíl ukazuje …“.
+- **Výsledky se nevyjadřují kalkem „X dalo Y“** („online verze dala průměr“); přirozeně „v online verzi činil průměr“, „test ukázal“, „vychází“.
+- **Rozdíl a změna průměrů:** kde jde o průměry, píše se „rozdíl průměrů“, „průměrná změna“, „průměrný pokles“, nikoli holé „rozdíl“ či „pokles“; u nezávislých skupin se nehovoří o „poklesu“, protože nejde o změnu v čase.
+
+Pravidla psaní jsou v [AGENTS.md](../../AGENTS.md#didaktika-a-jazyk), termíny v [SLOVNIK.md](../SLOVNIK.md).
+
+**Doklad:** autorovy připomínky ke kapitole 8 z 2026-11-14: „Cohenovo *d* by by vždy mělo být kurzivou“; „termín ‚rozptýlenost‘ ve smyslu variability nezní odborně, nepoužíval bych ho ani neuváděl ve slovníku jako alternativu variability“; „nepoužíval bych místo ‚intervence‘ termín ‚zásah‘“; „U ‚upraveného‘ počtu stupňů volnosti také odborněji zní ‚korigovaný‘“; „Obecně bych za každou cenu netrval na českém termínu“; „X dalo Y … v češtině to ale nezní tak přirozeně“; „Všechny tyto jazykové nuance bych nějakým způsobem zapsal do pravidel“. V upřesňující otázce autor zvolil rozsah „Kap. 8 + pravidla“ (terminologie a kurzivní *d* v celé knize, úvody oddílů a vazby „dát“ v ostatních kapitolách v samostatném PR) a schválil plán úprav. Záznam v [historii](../../quarto/README.md#revize-kapitola-08-2026-11-14).

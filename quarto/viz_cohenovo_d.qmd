@@ -279,7 +279,7 @@ Ukážeme to na *d* = 0,5. Nad průměrem skupiny 2 leží $\mathrm{Φ}(0{,}5)\a
 ## Vyzkoušejte si {#sec-viz-cohenovo-d-vyzkousejte .unnumbered}
 
 1. Nechte *d* = 0,5. Jaká část skupiny 1 leží nad průměrem skupiny 2 a jak velká část obou rozdělení je společná? Přepněte vybarvení a najděte obě plochy v grafu. Platí, že „skupina 1 má vyšší hodnoty“ o každém jejím členovi?
-2. V parkovací studii z kapitoly 8 vyšlo *d* ≈ 0,47 ([Cohenovo d pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle)). Nastavte je a zjistěte, s jakou pravděpodobností odjíždí náhodně vybraný řidič, na kterého čekalo auto, později než náhodně vybraný řidič, na kterého nikdo nečekal, pokud by doby odjezdu měly normální rozdělení se stejnou směrodatnou odchylkou. Nastavte σ = 14,6 a porovnejte rozdíl v sekundách s výsledkem kapitoly.
+2. V parkovací studii z kapitoly 8 vyšlo *d* ≈ 0,47 ([Cohenovo *d* pro nezávislé skupiny](kapitola_08.qmd#sec-d-nezavisle)). Nastavte je a zjistěte, s jakou pravděpodobností odjíždí náhodně vybraný řidič, na kterého čekalo auto, později než náhodně vybraný řidič, na kterého nikdo nečekal, pokud by doby odjezdu měly normální rozdělení se stejnou směrodatnou odchylkou. Nastavte σ = 14,6 a porovnejte rozdíl v sekundách s výsledkem kapitoly.
 3. Posuvníkem najděte *d*, při kterém má náhodně vybraný člověk ze skupiny 1 vyšší hodnotu než náhodně vybraný člověk ze skupiny 2 se 75% pravděpodobností. Kolik procent obou rozdělení je v tu chvíli ještě společných?
 4. Nastavte *d* = 0,2 a σ = 15. O kolik bodů se liší průměry a jak se změnila tři čísla oproti *d* = 0? Proč z označení „malý účinek“ samo neplyne, že rozdíl je nedůležitý?
 

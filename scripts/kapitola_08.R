@@ -95,6 +95,49 @@ ch8_u03_ok <- with(ch8_u03,!is.na(kongr)&!is.na(nekongr))
 ch8_u03_d <- with(ch8_u03[ch8_u03_ok,],nekongr-kongr)
 ch8_u06_a <- c(78,41,95,62,54,88,47,71,39,66)
 ch8_u06_b <- c(52,48,61,44,57,50,46,55,49,63,51,45,58,53,47,60,50,54,42,56,49,52,59,48,51)
+# Correlation of the two paired measurements and the SD of differences (optional extension) --
+ch8_par_r <- cor(ch8_par_u$bezny,ch8_par_u$kratky)
+ch8_sd_rozdilu <- function(r,s1=unname(ch8_par_b['s']),s2=unname(ch8_par_k['s'])) sqrt(s1^2+s2^2-2*r*s1*s2)
+# Three simulated sets of 12 students with exactly the SDs and means of variant A and a chosen sample r
+# (orthogonalised normal deviates, seed fixed); used only to illustrate the shape of paired data.
+ch8_sim_par <- function(r,seed) {
+  set.seed(seed); z <- scale(matrix(rnorm(24),12))
+  z[,2] <- resid(lm(z[,2]~z[,1])); z <- scale(z)
+  y <- r*z[,1]+sqrt(1-r^2)*z[,2]
+  data.frame(bezny=ch8_par_b[['m']]+ch8_par_b[['s']]*z[,1],kratky=ch8_par_k[['m']]+ch8_par_k[['s']]*as.numeric(scale(y)))
+}
+ch8_sim_r <- c(.9,0,-.5)
+ch8_sim <- lapply(seq_along(ch8_sim_r),function(i) ch8_sim_par(ch8_sim_r[i],20261114+i))
+# Standard error of the difference and Welch df for 60 people split 1:1, 2:1 and 4:1 (population values).
+ch8_pomer <- data.frame(pomer=c('1:1','2:1','4:1'),n1=c(30,40,48),n2=c(30,20,12))
+ch8_se_dif <- function(s1,n1,s2,n2) sqrt(s1^2/n1+s2^2/n2)
+ch8_se_pool <- function(s1,n1,s2,n2) sqrt(((n1-1)*s1^2+(n2-1)*s2^2)/(n1+n2-2)*(1/n1+1/n2))
+ch8_welch_df <- function(s1,n1,s2,n2) { a <- s1^2/n1; b <- s2^2/n2; (a+b)^2/(a^2/(n1-1)+b^2/(n2-1)) }
+ch8_pomer <- within(ch8_pomer, {
+  se_shodne <- ch8_se_dif(10,n1,10,n2)
+  se_mala_var <- ch8_se_dif(10,n1,20,n2); se_mala_var_pool <- ch8_se_pool(10,n1,20,n2)
+  se_velka_var <- ch8_se_dif(20,n1,10,n2); se_velka_var_pool <- ch8_se_pool(20,n1,10,n2)
+  df_shodne <- ch8_welch_df(10,n1,10,n2); df_mala_var <- ch8_welch_df(10,n1,20,n2); df_velka_var <- ch8_welch_df(20,n1,10,n2)
+})
+# Approximate CI for Cohen's d standardised by the control-group SD (Howell, 2013, p. 632) and the
+# exact noncentral-t interval for the pooled d (comparison only); paired d after Algina & Keselman (2003, pp. 544-545).
+ch8_d_ci <- function(d,n_kontrola,n_druha,level=.95) {
+  se <- sqrt((n_kontrola+n_druha)/(n_kontrola*n_druha)+d^2/(2*n_kontrola)); z <- qnorm(1-(1-level)/2)
+  c(d=d,se=se,dolni=d-z*se,horni=d+z*se)
+}
+ch8_nct_ci <- function(t,df,level=.95) {
+  a <- (1-level)/2
+  # pt() with a noncentrality parameter may warn about the last digits; the limits are checked against the text.
+  suppressWarnings(c(uniroot(function(l) pt(t,df,ncp=l)-(1-a),c(t-20,t+20),tol=1e-10)$root,
+    uniroot(function(l) pt(t,df,ncp=l)-a,c(t-20,t+20),tol=1e-10)$root))
+}
+ch8_park_dci <- ch8_d_ci(unname(ch8_park['d']),100,100)
+ch8_park_dci_presne <- ch8_nct_ci(unname(ch8_park['t']),198)*sqrt(1/100+1/100)
+ch8_sk_d <- unname(ch8_sk_pool['rozdil']/ch8_sk_b['s'])
+ch8_sk_dci <- ch8_d_ci(ch8_sk_d,30,12)
+ch8_par_stdz <- sqrt((ch8_par_b[['s']]^2+ch8_par_k[['s']]^2)/2)
+ch8_par_dav <- unname(ch8_par_res['m'])/ch8_par_stdz
+ch8_par_dci <- ch8_nct_ci(unname(ch8_par_res['t']),11)*sqrt(2*unname(ch8_par_res['s'])^2/(12*(ch8_par_b[['s']]^2+ch8_par_k[['s']]^2)))
 # Figures ----------------------------------------------------------------------------------
 ch8_draw('dve-usporadani', {
   par(mfrow=c(1,2),mar=c(1,1,3,1))
@@ -137,7 +180,7 @@ ch8_draw('parova-data', {
 },width=10,height=4.4)
 ch8_draw('dve-skupiny', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,3,.8))
-  plot(NA,xlim=c(.5,2.5),ylim=c(18,72),xaxt='n',xlab='',ylab='Skór pozornosti (body)',main='Dvě skupiny různé velikosti a rozptýlenosti',bty='l')
+  plot(NA,xlim=c(.5,2.5),ylim=c(18,72),xaxt='n',xlab='',ylab='Skór pozornosti (body)',main='Dvě skupiny různé velikosti a variability',bty='l')
   axis(1,at=1:2,labels=c('běžný spánek (n = 30)','krátký spánek (n = 12)'))
   boxplot(list(ch8_sk_bezny,ch8_sk_kratky),at=1:2,add=TRUE,axes=FALSE,boxwex=.42,col=c(adjustcolor(ch8_fill,.6),adjustcolor(ch8_sand,.9)),border=ch8_gray,outline=FALSE)
   set.seed(9); points(1+runif(30,-.17,.17),ch8_sk_bezny,pch=21,bg=ch8_blue,col=ch8_ink,cex=.9); points(2+runif(12,-.17,.17),ch8_sk_kratky,pch=21,bg=ch8_orange,col=ch8_ink,cex=.9)
@@ -185,6 +228,55 @@ ch8_draw('ekvivalence-skupin', {
   segments(e[,'d90'],y,e[,'h90'],y,lwd=6,col=ch8_blue,lend=1); points(e[,'rozdil'],y,pch=21,bg='white',col=ch8_ink,cex=1.2)
   legend('topright',c('95% interval: test rozdílu','90% interval: test ekvivalence'),lwd=c(1.4,6),col=c(ch8_ink,ch8_blue),bty='n',cex=.78)
 },width=8.8,height=3.8)
+ch8_draw('korelace-rozdily', {
+  layout(matrix(1:4,1),widths=c(1.35,1,1,1)); par(mar=c(4.6,4.6,3.4,.6))
+  rr <- seq(-1,1,by=.01)
+  plot(rr,ch8_sd_rozdilu(rr),type='l',lwd=2.4,col=ch8_blue,xlab='Korelace obou měření r',ylab='Směrodatná odchylka rozdílů (body)',
+       main='SD rozdílů podle korelace',bty='l',ylim=c(0,14.5))
+  pts <- c(0,ch8_par_r); points(pts,ch8_sd_rozdilu(pts),pch=21,bg=c('white',ch8_orange),col=ch8_ink,cex=1.4)
+  text(0,ch8_sd_rozdilu(0)+1.1,paste0('r = 0: ',ch8_num(ch8_sd_rozdilu(0))),cex=.8)
+  text(ch8_par_r-.03,ch8_sd_rozdilu(ch8_par_r)+1.6,paste0('varianta A\nr = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r))),adj=1,cex=.8,col=ch8_orange)
+  for(i in seq_along(ch8_sim)) {
+    u <- ch8_sim[[i]]; dd <- u$bezny-u$kratky
+    plot(NA,xlim=c(.7,2.3),ylim=c(28,68),xaxt='n',xlab='',ylab=if(i==1) 'Skór pozornosti (body)' else '',
+         main=paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; SD rozdílů ',ch8_num(sd(dd),1)),bty='l')
+    axis(1,at=1:2,labels=c('běžný','krátký'))
+    segments(1,u$bezny,2,u$kratky,col=adjustcolor(ch8_blue,.75),lwd=1.6)
+    points(rep(1,12),u$bezny,pch=21,bg=ch8_fill,col=ch8_ink,cex=1.05); points(rep(2,12),u$kratky,pch=21,bg=ch8_sand,col=ch8_ink,cex=1.05)
+  }
+},width=11.4,height=4.4)
+ch8_draw('pomer-skupin', {
+  par(mfrow=c(1,3),mar=c(5.2,4.7,3.4,.8))
+  lab <- c('1:1
+(30 a 30)','2:1
+(40 a 20)','4:1
+(48 a 12)'); x <- 1:3; pm <- ch8_pomer
+  panel <- function(main,se,se_pool=NULL,col) {
+    plot(NA,xlim=c(.7,3.3),ylim=c(0,6.8),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main=main,bty='l')
+    axis(1,at=x,labels=lab,padj=.5); mtext('Poměr velikostí skupin (celkem 60)',1,3.8,cex=.8)
+    up <- if(is.null(se_pool)) rep(TRUE,3) else se>=se_pool-1e-9  # label the higher point above, the lower below
+    if(!is.null(se_pool)) { lines(x,se_pool,lwd=2.2,lty=2,col=ch8_gray,type='b',pch=4); text(x,se_pool+ifelse(up,-.45,.45),ch8_num(se_pool),cex=.8,col=ch8_gray) }
+    lines(x,se,lwd=2.4,col=col,type='b',pch=21,bg='white',cex=1.3); text(x,se+ifelse(up,.45,-.45),ch8_num(se),cex=.8,col=col)
+  }
+  panel('Stejné σ = 10 v obou populacích',pm$se_shodne,col=ch8_ink)
+  panel('Menší skupina σ = 20, větší σ = 10',pm$se_mala_var,pm$se_mala_var_pool,ch8_orange)
+  legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_orange,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.4,2.2),bty='n',cex=.82)
+  panel('Větší skupina σ = 20, menší σ = 10',pm$se_velka_var,pm$se_velka_var_pool,ch8_blue)
+  legend('topleft',c('skutečná směrodatná chyba','podle společného odhadu rozptylu'),col=c(ch8_blue,ch8_gray),lty=c(1,2),pch=c(21,4),lwd=c(2.4,2.2),bty='n',cex=.82)
+},width=12,height=4.6)
+ch8_draw('welch-stupne', {
+  par(mar=c(5.2,4.7,3,.8))
+  lab <- c('1:1\n(30 a 30)','2:1\n(40 a 20)','4:1\n(48 a 12)'); x <- 1:3; pm <- ch8_pomer
+  plot(NA,xlim=c(.7,3.3),ylim=c(0,62),xaxt='n',xlab='',ylab='Stupně volnosti',main='Welchovy stupně volnosti (celkem 60 lidí)',bty='l')
+  axis(1,at=x,labels=lab,padj=.5); mtext('Poměr velikostí skupin',1,3.8,cex=.85)
+  abline(h=58,lty=2,col=ch8_gray); text(3.3,59.8,'n₁ + n₂ − 2 = 58',adj=1,cex=.78,col=ch8_gray)
+  lines(x,pmin(pm$n1,pm$n2)-1,lty=3,lwd=2,col=ch8_gray,type='b',pch=20)
+  lines(x,pm$df_shodne,lwd=2.4,col=ch8_ink,type='b',pch=21,bg='white',cex=1.2)
+  lines(x,pm$df_mala_var,lwd=2.4,col=ch8_orange,type='b',pch=21,bg='white',cex=1.2)
+  lines(x,pm$df_velka_var,lwd=2.4,col=ch8_blue,type='b',pch=21,bg='white',cex=1.2)
+  legend('bottomleft',c('stejné σ','menší skupina dvakrát variabilnější','větší skupina dvakrát variabilnější','stupně volnosti menší skupiny'),
+         col=c(ch8_ink,ch8_orange,ch8_blue,ch8_gray),lty=c(1,1,1,3),lwd=c(2.4,2.4,2.4,2),bty='n',cex=.78)
+},width=8.4,height=4.6)
 # Exercise 3: Q-Q plot of the differences with the plotting positions of chapter 4.
 ch8_qq_y <- sort(ch8_u03_d); ch8_qq_z <- qnorm((seq_along(ch8_qq_y)-.5)/length(ch8_qq_y))
 ch8_draw('qq-rozdily', {

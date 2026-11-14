@@ -14,6 +14,8 @@
 
 **Použití:** [kapitola 8, rozdíl změn](../../quarto/kapitola_08.qmd#sec-rozdil-zmen), citace s. 328. Formulace v kapitole nepoužívá heslo o „rozdílu významností“, ale přesnější větu podle [R59](../rozhodnuti/kapitola-08.md#r59-rozsah-kapitoly-8).
 
+*Revize 2026-11-14:* na autorův podnět ([R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)) byl číselný příklad 25 a 10 z textu odstraněn; kapitola cituje hlavní tezi článku (s. 328) a ilustruje ji na vlastních datech tréninku pozornosti.
+
 ## Související karty kapitol
 
 [Kapitola 8](../kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08).

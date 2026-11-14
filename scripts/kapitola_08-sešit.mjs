@@ -54,8 +54,11 @@ const sheets=[
   L('A17','Kvantil t-rozdělení'),C('B17','=T.INV(1-(1-B8)/2;B14)','0.0000'),
   L('A18','Dolní mez intervalu pro rozdíl'),C('B18','=B10-B17*B13','0.00'),L('A19','Horní mez intervalu pro rozdíl'),C('B19','=B10+B17*B13','0.00'),
   L('A20','Cohenovo d'),C('B20','=B10/B12','0.0000'),
+  L('A21','Cohenovo d vůči směrodatné odchylce skupiny 2'),C('B21','=B10/B6','0.0000'),
+  L('A22','Přibližná směrodatná chyba d (s_d)'),C('B22','=ODMOCNINA((B4+B7)/(B4*B7)+B21^2/(2*B7))','0.0000'),
+  L('A23','Dolní mez přibližného 95% intervalu pro d'),C('B23','=B21-NORM.S.INV(0,975)*B22','0.00'),L('A24','Horní mez přibližného 95% intervalu pro d'),C('B24','=B21+NORM.S.INV(0,975)*B22','0.00'),
   N('D2','Výchozí vstupy: parkovací studie (list Parkovani).'),N('D8','Žlutě: vstupy. Modře: výpočty.'),
-  N('D11','Předpokládá shodné rozptyly obou populací.'),N('D20','Ve jmenovateli je společná směrodatná odchylka, ne chyba.')]},
+  N('D11','Předpokládá shodné rozptyly obou populací.'),N('D20','Ve jmenovateli je společná směrodatná odchylka, ne chyba.'),N('D21','Skupina 2 je kontrolní; přibližný interval podle Howella (2013, s. 632).')]},
  {name:'Welch',widths:{A:52,B:14,C:3,D:58},cells:[
   H('A1','Welchův t-test pro dva nezávislé výběry'),H('B1','Hodnota'),
   L('A2','Průměr skupiny po běžném spánku m₁'),C('B2','=PRŮMĚR(Spanek_skupiny!A2:A31)','0.000'),

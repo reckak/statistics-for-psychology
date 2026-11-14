@@ -202,7 +202,7 @@ Označení dohledáte také ve slovníčku u hesel [nezávislá proměnná](slov
 
 ### Interní a externí validita {#sec-interni-externi-validita}
 
-Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro kauzální závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumanému zásahu, nebo připadají v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
+Při hodnocení výzkumu se ptáme, nakolik jsou jeho závěry opodstatněné. V tomto smyslu zde používáme slovo validita. **Interní validita (*internal validity*)** se týká opory pro kauzální závěr v dané studii: máme důvod připsat zjištěný rozdíl právě zkoumané intervenci, nebo připadají v úvahu jiná vysvětlení? **Externí validita (*external validity*)** se týká opory pro přenos závěru na další lidi, situace, podmínky nebo období. Například závěr o učení krátkého seznamu slov v laboratoři nemusí platit stejně pro přípravu na zkoušku doma.
 
 Howell [-@howell, s. 3] propojuje náhodné přiřazení s interní validitou a pravděpodobnostní výběr z populace s externí validitou. Náhodné přiřazení omezuje systematické rozdíly ve složení porovnávaných skupin; kontrolu provedení experimentu však nenahrazuje. Pravděpodobnostní výběr podporuje zobecnění na populaci, z níž vybíráme. Přenos do jiného prostředí nebo na jiný druh úlohy je samostatná otázka; rozsah přenosu je proto potřeba vymezit a zdůvodnit [@simons, s. 1123].
 
@@ -753,7 +753,7 @@ Názvy a popisy mají tento rozdíl zachovat, například vlastní hodnocení pa
 
 Posuďte a zdůvodněte následující tvrzení. Uveďte, zda je lze obhájit z dostupných informací, nebo jaký předpoklad chybí.
 
-a)  „Skupina označená 4 dostala dvakrát silnější zásah než skupina 2.“ Čísla byla přidělena jako libovolné názvy skupin.
+a)  „Skupina označená 4 dostala dvakrát silnější intervenci než skupina 2.“ Čísla byla přidělena jako libovolné názvy skupin.
 
 b)  „Rozdíl mezi odpověďmi 1 a 2 je stejně velký jako mezi 3 a 4.“ Jde o hodnocení odpočatosti od „vůbec“ po „zcela“, bez dalších poznatků o měření.
 
@@ -772,7 +772,7 @@ h)  „Test má mnoho položek a jemně rozlišené výsledky, takže jeho skór
 i)  „Poměrová proměnná musí být spojitá.“ Uvažujte o počtu slov a době spánku.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a)  Tvrzení nelze obhájit. Kódy rozlišují kategorie nominálně; nevyjadřují dávku ani intenzitu zásahu. Poměr kódů nemá uvedený význam.
+a)  Tvrzení nelze obhájit. Kódy rozlišují kategorie nominálně; nevyjadřují dávku ani intenzitu intervence. Poměr kódů nemá uvedený význam.
 
 b)  Z pořadí odpovědí plyne nanejvýš ordinální interpretace. Rovnost rozdílů v odpočatosti by vyžadovala další argument pro intervalovou interpretaci. Stejná vzdálenost vytištěných čísel nestačí.
 

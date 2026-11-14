@@ -1,5 +1,35 @@
 # Autorská dokumentace
 
+<a id="revize-kapitola-08-2026-11-14"></a>
+
+## Kapitola 8: revize podle autorových připomínek (2026-11-14, R76, R77)
+
+Autor kapitolu prošel, sám upravil 18 řádků (např. „vypočtete“ místo „provedete“ test, úvod prvního oddílu, interpretace nestejných rozptylů) a poslal 14 připomínek ke konkrétním místům a 15 obecných požadavků. Jeho úpravy jsou zachovány; opraveny v nich byly jen „stojí terapii“ → „stojí terapie“, „záporné by opak“ → „záporné by znamenalo opak“ a vazba „Jeho volba“ k množnému číslu „designů“. Nové konvence dokládají [R76](../docs/rozhodnuti/spolecne-konvence.md#r76-jazykove-konvence) (jazyk a terminologie) a [R77](../docs/rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8) (obsah kapitoly 8, částečně nahrazuje R59); skutečný obsah eviduje [karta kapitoly 8](../docs/kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08).
+
+**Obsahové úpravy kapitoly 8:**
+
+- párový *t*-test nejdřív v obecném tvaru s $\mathrm{μ}_0$; nenulová nulová hypotéza na příkladu efektu opakování (+2 body) s výhradou ve prospěch kontrolní skupiny; u dvou skupin odkaz na TOST;
+- nepovinné rozšíření o variabilitě rozdílů a korelaci obou měření, přesunuté z kapitoly 10, s novým obrázkem `korelace-rozdily` (tři simulované soubory s přesným výběrovým *r* 0,9; 0; −0,5 a SD varianty A, seed 20261114 + i); kontrastní věta o přesnosti párové analýzy přepsána (i v řešení úlohy 4c); zaokrouhlené vstupy dávají 2,40, nezaokrouhlené 2,39 a text to vysvětluje;
+- vyvážení pořadí vysvětleno jako oddělení podmínky od pořadí; převod liber přibližně (1 lb ≈ 0,454 kg);
+- nový obrázek `pomer-skupin` (směrodatná chyba rozdílu průměrů pro 60 lidí v poměru 1:1, 2:1, 4:1, skutečná vs. společný odhad) a v nepovinném rozšíření `welch-stupne`;
+- doporučení klasický/Welch podle Howella (s. 219): klasický u přibližně stejně velkých skupin nebo při předem zdůvodněné shodě rozptylů, jinak Welch; nová tabulka `tbl-k08-odolnost` o robustnosti vůči porušení předpokladů;
+- standardizace odlišena od informace o variabilitě; *d* = 1,00 pro variantu B vůči skupině po běžném spánku; nepovinné rozšíření `rozsireni-interval-d` (Howell s. 632, Cumming s. 190, Algina a Keselman 2003) a list `Klasicky_test` B21:B24;
+- chybové úsečky a vysvětlení, proč se intervaly mohou překrývat při významném rozdílu ($\sqrt{a^2+b^2}<a+b$, pásmo 5,69–8,26 bodu);
+- aktivní kontrolní skupina v příkladu tréninku (data beze změny); Gelmanův a Sternův číselný příklad nahrazen ilustrací na vlastních datech;
+- ukázky APA s *d* a 95% CI, *SD* rozdílů a *r*; úloha 12b doplněna o CI pro *d*; shrnutí mluví o párovém *t*-testu;
+- jazyk: „Tento oddíl …“ v úvodech oddílů, bez vazeb „X dalo Y“, „rozdíl průměrů“ a „průměrná změna“ místo holých výrazů, kurzivní *d*, „variabilita“, „intervence“, „korigovaný“ počet stupňů volnosti.
+
+**Mimo kapitolu 8:** kapitola 10 má místo rozšíření připomenutí se zachovaným ID; „rozptýlenost“ → „variabilita“ v kapitole 10 (popisné „rozptýlené body“ zůstaly), „zásah“ → „intervence“ v kapitole 1 a ve slovníčku („zásahy“ jako úspěšné pokusy v kap. 5 a 9 zůstaly); kurzivní *d* ve slovníčku, značení a vizualizaci; nová hesla chybová úsečka a aktivní kontrolní skupina, symbol $s_d$; pravidla v AGENTS.md (oddíl Didaktika a jazyk); nový zdroj [D14](../docs/zdroje/D14-algina-keselman.md#d14), záznam `algina2003` v `references.bib`. Úvody oddílů a vazby „dát“ v ostatních kapitolách zůstávají na samostatný PR; prezentace a balíčky AI tutora se sjednotí při příští úpravě.
+
+**Kontroly:**
+
+- `check-chapter-08.R` doplněn o všechna nová čísla (μ₀ = 2, *s_D* podle *r*, simulace, směrodatné chyby a Welchovy stupně volnosti podle poměrů, intervaly pro *d* přibližně i z necentrálního *t*, párové *d* podle Alginy a Keselmana); prošel. `check-chapter-10.R` prošel.
+- Sešit: `build-workbooks.ps1 -Chapter 8 -Verify` v českém Excelu 16.0; 86 buněk, 32 vzorců a 9 změn vstupů souhlasí s nezávislými referencemi z `check-chapter-08-excel-expected.py` (nové B21:B24 ve čtyřech sadách vstupů, české vzorce B22 a B23 s NORM.S.INV); kontroly sešitů kapitol 1–10 prošly.
+- Nové obrázky vizuálně prohlédnuty (PNG náhledy ze stejného kódu); u `pomer-skupin` po první prohlídce rozdělen pravý panel na dva, protože se čáry obou scénářů překrývaly.
+- Celá kniha vykreslena bez varování; `check-html.cjs` prošel (25 stran, odkazy, řešení, mobil 390 px; test kapitoly 8 nově počítá s 10 obrázky a pěti sbalenými rozšířeními, obrázky ve sbalených rozšířeních kontroluje po rozbalení), `check-table-layout.cjs` a `check-doc-maps.cjs` prošly.
+- Didaktická revize změněných pasáží samostatným agentem v roli studenta po kapitole 7. Opraveno: nesoulad 12/13 studentů v ukázce zprávy A (chyba už v předchozí verzi), nedefinované *a*, *b* u $\sqrt{a^2+b^2}<a+b$ (nyní se směrodatnými chybami 2 a 2,83 a s rozdílem kvantilů), popis Welchových stupňů volnosti, jasná závěrečná věta k volbě testu, odpověď k příkladu 2, 4, 6 / 6, 12, 18 (směrodatná chyba 2,31 vs. 3,65), zaokrouhlení *d* = 1,004, rozdíl mezi odmocninou průměru rozptylů a průměrem směrodatných odchylek, srozumitelnější záhlaví tabulky robustnosti, korelace vysvětlená v ukázce zprávy a další drobnosti. Nejde o ověření porozumění na skutečných studentech.
+- Neověřeno: PDF kapitoly 8 (nebylo vyžádáno), prezentace a balíčky AI tutora (sjednotí se podle R76 při své příští úpravě).
+
 <a id="vizualizace-cohenovo-d"></a>
 
 ## Vizualizace Cohenova d (2026-11-13, upřesnění R65)

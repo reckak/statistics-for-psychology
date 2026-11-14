@@ -150,3 +150,11 @@ V obrazech stran přečtena kap. 6, s. 137–171 (PDF 161–195): χ² rozdělen
 ## Související karty kapitol
 
 Tematické vazby pro výběr podkladů: [kapitola 1](../kapitoly/01-otazka-data.md#mapa-kapitola-01), [kapitola 2](../kapitoly/02-cetnosti.md#mapa-kapitola-02), [kapitola 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03), [kapitola 4](../kapitoly/04-normalni-rozdeleni.md#mapa-kapitola-04), [kapitola 5](../kapitoly/05-pravdepodobnost.md#mapa-kapitola-05), [kapitola 6](../kapitoly/06-vyberove-rozdeleni-testovani.md#mapa-kapitola-06), [kapitola 7](../kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07), [kapitola 10](../kapitoly/10-korelace.md#mapa-kapitola-10). Konkrétní použití a stav ověření určují záznamy výše.
+
+<a id="revize-08-20261114"></a>
+
+## Revize kapitoly 8 — 2026-11-14
+
+V obraze strany ověřena s. 632 (PDF 656, §17.2 *Calculating the Overall Effect*): *d* vztažené ke směrodatné odchylce kontrolní skupiny, rozptyl $s_d^2=(n_1+n_2)/(n_1n_2)+d^2/(2n_1)$ a interval $d\pm1{,}96\,s_d$. V textové extrakci znovu přečtena s. 219 (PDF 243, *The Robustness of t with Heterogeneous Variances*): při stejných velikostech skupin skutečná α zhruba v rozmezí ±0,02 kolem 0,05 (3–7 %), obdobně pro nenormalitu při podobném tvaru nebo souměrnosti obou populací; výrazná šikmost opačným směrem je problém, pokud se rozptyly liší; při více než nepatrně rozdílných velikostech skupin doporučení Welchova postupu („little to lose“); s. 219–220 obecné doporučení odděleně odhadnutých rozptylů podle Hayese a Caie.
+
+**Použití:** [doporučení klasický/Welch a tabulka robustnosti](../../quarto/kapitola_08.qmd#sec-volba-varianty), [nepovinné rozšíření o intervalu pro *d*](../../quarto/kapitola_08.qmd#rozsireni-interval-d). Howellův vzorec je určen pro *d* vůči kontrolní skupině; v kapitole je tak také zaveden. Kapitola 17 jinak čtena nebyla.
