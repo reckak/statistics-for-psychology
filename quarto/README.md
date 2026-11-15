@@ -6725,3 +6725,20 @@ prohlížeči Chromia; překryvy popisků s křivkami, čarami a osou z-skórů 
 a znovu zkontrolovány. Čárkované čáry a okraje ploch vykresluje starý pdftoppm
 jako duté obrysy, v Chromiu jsou v pořádku. Necommitovaná změna sešitu
 (stejný obsah buněk, jiná metadata) zůstala mimo tento commit.
+
+## 2026-11-16 — Pracovní PDF kapitoly 10
+
+Na vyžádání byl export pracovního PDF rozšířen na kapitolu 10
+(`scripts/render-chapter-pdf.ps1 -Chapter 10`, kontrola
+`scripts/check-chapter-pdf.cjs --chapter 10` s 18 řešeními). Při prohlídce
+se ukázalo, že Pandoc převádí zápornou mezeru `\!` na `#h(-1em)`, takže
+v „H₀: ρ = 0“ (oddíl 10.8.2) a ve vzorci intervalu BCa se znaky překrývaly.
+`scripts/pdf/common.ps1` nyní mezeru zkracuje na −1/6 em jako v TeXu; web
+se nemění, kapitoly 3–9 zápornou mezeru `\!` v PDF nepoužívají.
+
+**Kontroly:** render proběhl bez chyby (36 stran), kontrola transformace
+prošla (18 řešení přesunuto, obousměrné odkazy, matematika, kód, obrázky,
+tabulky a citace beze změny). Všech 36 stran vizuálně prohlédnuto,
+oba opravené vzorce znovu zkontrolovány. **Neověřeno:** kontrola
+`scripts/check-rendered-pdf.py` (příkaz `python` není v PATH) a srovnání
+v jiném prohlížeči PDF.
