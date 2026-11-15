@@ -33,6 +33,9 @@ function Complete-PdfTypography($Quarto, $TypPath, $Root, $ReferencesLabel) {
     $finalSource = [regex]::Replace($finalSource, '(?<=upright\("[^"]*"\)) (?=\\/)', '')
     # Escaped bars around one symbol are an absolute value, e.g. |t|.
     $finalSource = [regex]::Replace($finalSource, '\\\| (\w+) \\\|', 'abs($1)')
+    # Pandoc writes TeX's negative thin space \! as #h(-1em), which overlaps
+    # neighbouring symbols (H_0\!: ρ); TeX's \! is -3mu, i.e. -1/6 em.
+    $finalSource = $finalSource.Replace('#h(-1em)', '#h(-0.1667em)')
     # Citeproc emits bibliography text after Lua. Bind a final Czech single-letter
     # word to the following hyperlink there as well, without editing URL strings.
     $refsStart = $finalSource.IndexOf("<$ReferencesLabel>")
