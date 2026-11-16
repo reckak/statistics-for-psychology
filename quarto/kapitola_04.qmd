@@ -80,7 +80,7 @@ Histogram shrnuje konkrétní naměřené hodnoty. **Normální rozdělení (*no
 
 Model nemusí být přesným popisem mechanismu, který data vytváří. Může být užitečným přiblížením pro určitou skupinu a otázku. Skór omezený například na 0 až 100 bodů nemůže mít přesně normální rozdělení s neomezenými chvosty. Normální model přesto může dobře aproximovat jeho střední část, pokud většina výsledků leží daleko od nejnižšího i nejvyššího možného skóru (zde 0 a 100 bodů) a škála má dostatek možných hodnot. Přiměřenost posoudíme v [závěrečném oddílu](#sec-primerenost-modelu).
 
-Název „normální“ se ustálil v 19. století, kdy se tento tvar považoval za obvyklý zákon rozložení chyb měření a nacházel se i u tělesných a později psychologických měr [@howell, s. 68]. Označuje tedy tvar matematického modelu, nikoli zdraví, žádoucnost nebo správnost výsledku. Mnoho proměnných se jím řídí jen přibližně, nebo vůbec ne.
+Název „normální“ se ustálil v 19. století, kdy se tento tvar považoval za obvyklý zákon rozdělení chyb měření a nacházel se i u tělesných a později psychologických měr [@howell, s. 68]. Označuje tedy tvar matematického modelu, nikoli zdraví, žádoucnost nebo správnost výsledku. Mnoho proměnných se jím řídí jen přibližně, nebo vůbec ne.
 
 ### Dva parametry a zápis rozdělení {#sec-parametry-normalniho}
 
@@ -104,7 +104,7 @@ Pozor na odlišnou konvenci: mnoho učebnic a programů uvádí jako druhý úda
 
 :::
 
-Vlevo v obrázku [-@fig-parametry-04] mají obě křivky stejný tvar a šířku, ale jiný střed. Vpravo je střed společný; větší směrodatná odchylka znamená širší rozložení. Vrchol přitom klesá, protože celková plocha pod každou křivkou musí zůstat stejná. Význam této plochy vysvětlíme v oddílu [Podíly jako plochy pod křivkou](#sec-plochy-normalniho).
+Vlevo v obrázku [-@fig-parametry-04] mají obě křivky stejný tvar a šířku, ale jiný střed. Vpravo je střed společný; větší směrodatná odchylka znamená širší rozdělení. Vrchol přitom klesá, protože celková plocha pod každou křivkou musí zůstat stejná. Význam této plochy vysvětlíme v oddílu [Podíly jako plochy pod křivkou](#sec-plochy-normalniho).
 
 Obrázek ukazuje také důležitou vlastnost normálního modelu: **průměr a směrodatnou odchylku lze volit nezávisle na sobě.** Posunutí středu nemění šířku a změna šířky neposouvá střed. U mnoha jiných rozdělení tomu tak není a variabilita se mění spolu s průměrem. Například počet správných odpovědí v testu se při průměru blízko nejvyššího možného skóru nemůže příliš rozptýlit nahoru, takže variabilita bývá menší než u testu se středním průměrem (srovnejte [efekt stropu](kapitola_02.qmd#sec-podlaha-strop)); totéž platí u průměru blízko nuly. Normální model naproti tomu dovoluje popsat variabilitu bez ohledu na polohu středu. Když se ve srovnatelných skupinách variabilita mění spolu s průměrem, je to jedno z upozornění, že normální model nemusí být vhodný.
 
@@ -299,7 +299,7 @@ Hranice **horních 5 %** je naproti tomu 95. percentil: vlevo od ní je 95 %, vp
 
 :::
 
-Interval v pravé části obrázku [-@fig-kvantily-04] popisuje rozložení **jednotlivých výsledků při zadaném modelu**. Není intervalem spolehlivosti průměru: ten by vyjadřoval nejistotu odhadu parametru a bude předmětem pozdějšího výkladu [@howell, s. 74–75]. Ani meze prostředních 95 % nejsou samy o sobě hranicí zdraví nebo vhodným diagnostickým prahem.
+Interval v pravé části obrázku [-@fig-kvantily-04] popisuje rozdělení **jednotlivých výsledků při zadaném modelu**. Není intervalem spolehlivosti průměru: ten by vyjadřoval nejistotu odhadu parametru a bude předmětem pozdějšího výkladu [@howell, s. 74–75]. Ani meze prostředních 95 % nejsou samy o sobě hranicí zdraví nebo vhodným diagnostickým prahem.
 
 ### Hodnoty, které je užitečné znát zpaměti {#sec-hodnoty-zpameti}
 
@@ -477,7 +477,7 @@ Například 14 sekund má čtyři menší hodnoty a tři shodné. Kompromisní p
 
 ::: {.chapter-04-figure role="region" aria-label="Histogramy dob před normalizací a po ní se spojnicemi jednotlivých hodnot" tabindex="0"}
 
-![Normalizace zachová pořadí, ale změní rozestupy: dlouhý pravý chvost se stáhne a shluk krátkých dob se roztáhne.](../assets/chapter-04/plots/normalizace.svg){#fig-normalizace-04 fig-alt="Zrcadlový histogram. Vlevo vodorovné sloupce původních dob od 10 do 55 sekund, nejvíce sedm dob mezi 10 a 15 sekundami a jednotlivé dlouhé doby až 52 sekund. Vpravo sloupce z-skórů po normalizaci od −2 do 2, souměrnější rozložení s nejvýše třemi hodnotami v intervalu. Uprostřed jsou body jednotlivých hodnot vlevo a vpravo spojené čarami: čáry od krátkých dob se rozbíhají, čáry od dlouhých dob se sbíhají."}
+![Normalizace zachová pořadí, ale změní rozestupy: dlouhý pravý chvost se stáhne a shluk krátkých dob se roztáhne.](../assets/chapter-04/plots/normalizace.svg){#fig-normalizace-04 fig-alt="Zrcadlový histogram. Vlevo vodorovné sloupce původních dob od 10 do 55 sekund, nejvíce sedm dob mezi 10 a 15 sekundami a jednotlivé dlouhé doby až 52 sekund. Vpravo sloupce z-skórů po normalizaci od −2 do 2, souměrnější rozdělení s nejvýše třemi hodnotami v intervalu. Uprostřed jsou body jednotlivých hodnot vlevo a vpravo spojené čarami: čáry od krátkých dob se rozbíhají, čáry od dlouhých dob se sbíhají."}
 
 :::
 

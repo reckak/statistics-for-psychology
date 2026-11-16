@@ -249,6 +249,12 @@ Výstupem je Quarto Book průběžně publikovaný na GitHubu jako web.
 - Pojmenuj přesně, čeho se číslo týká: jde-li o průměry, piš „rozdíl
   průměrů“, „průměrná změna“, „průměrný pokles“, ne holé „rozdíl“ či
   „pokles“. U nezávislých skupin nemluv o poklesu, nejde o změnu v čase.
+- Pro *distribution* piš vždy „rozdělení“ (rozdělení četností, výběrové
+  rozdělení, rozdělení kategorií), nikdy „rozložení“; „rozložení“ ponech jen
+  pro uspořádání stránky, listu či grafu. Počet případů v kategorii nebo
+  buňce tabulky nazývej „četnost“; „počet“ ponech pro *n*, pokusy, stupně
+  volnosti a podobné veličiny (viz [slovník](docs/SLOVNIK.md) a
+  [doplnění R76](docs/rozhodnuti/spolecne-konvence.md#r76-doplneni-2026-11-16)).
 - Na českém termínu netrvej za každou cenu: má-li obor zavedený, odbornější
   a výstižnější cizí termín, dej mu přednost. Konkrétní volby (např.
   variabilita, intervence, korigovaný) udržuj ve [slovníku](docs/SLOVNIK.md);

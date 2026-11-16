@@ -444,4 +444,4 @@ Druhá část dělá opačný převod: z podílu vlevo najde *z*-skór a z něj 
 
 Podíly blízké 0 nebo 1 posouvají hranici daleko od průměru, ale podíl 0 ani 1 zadat nelze. Normální model nemá konečnou nejmenší ani největší hodnotu, takže žádná hranice nemá pod sebou úplně nulovou plochu.
 
-Všechny výsledky jsou modelové podíly. Popisují rozložení hodnot v populaci, pokud ji zvolený normální model přiměřeně vystihuje; o tom, jak tento předpoklad posoudit, pojednává oddíl [Je normální model přiměřený?](kapitola_04.qmd#sec-primerenost-modelu).
+Všechny výsledky jsou modelové podíly. Popisují rozdělení hodnot v populaci, pokud ji zvolený normální model přiměřeně vystihuje; o tom, jak tento předpoklad posoudit, pojednává oddíl [Je normální model přiměřený?](kapitola_04.qmd#sec-primerenost-modelu).

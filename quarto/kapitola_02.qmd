@@ -323,7 +323,7 @@ V obrázku [-@fig-kumulativni-slova] se ptáme na **nejvýše** daný počet slo
 
 U seskupených údajů můžeme kumulativní četnosti zakreslit na horních mezích intervalů a body propojit úsečkami [@privitera, s. 59]. Pro naše intervaly spánku, které horní mez zahrnují, odpovídá každý bod podílu údajů **nejvýše rovných** dané mezi. Jeho význam je tedy stejný jako u grafu kumulativních četností jednotlivých hodnot.
 
-![Kumulativní procenta platných údajů o době spánku sestavená z jednohodinových intervalů.](../assets/chapter-02/plots/kumulativni-seskupene.svg){#fig-kumulativni-spanek fig-alt="Body na mezích 4, 5, 6, 7, 8, 9 a 10 hodin odpovídají kumulativním absolutním četnostem 0, 3, 8, 16, 26, 31 a 33. Bod u 7 hodin označuje 48,5 procenta údajů nejvýše rovných 7 hodinám. Přerušované spojnice mezi body neurčují skutečné rozložení uvnitř intervalů."}
+![Kumulativní procenta platných údajů o době spánku sestavená z jednohodinových intervalů.](../assets/chapter-02/plots/kumulativni-seskupene.svg){#fig-kumulativni-spanek fig-alt="Body na mezích 4, 5, 6, 7, 8, 9 a 10 hodin odpovídají kumulativním absolutním četnostem 0, 3, 8, 16, 26, 31 a 33. Bod u 7 hodin označuje 48,5 procenta údajů nejvýše rovných 7 hodinám. Přerušované spojnice mezi body neurčují skutečné rozdělení hodnot uvnitř intervalů."}
 
 V obrázku [-@fig-kumulativni-spanek] u meze 7 sečteme četnosti prvních tří intervalů: $3+5+8=16$. Nejvýše 7 hodin tedy uvedlo $16/33$, přibližně 0,485 neboli 48,5 % účastníků s platným údajem o spánku. U meze 8 přidáme dalších 10 případů: $26/33$, přibližně 0,788 neboli 78,8 %. Bod u 4 hodin začíná na nule, protože žádný platný údaj není nejvýše 4 hodiny. U 10 hodin dosáhneme všech 33 platných údajů, tedy 100,0 %. Počáteční nulu smíme zakreslit jen na mezi, pro kterou opravdu nejsou žádné hodnoty menší nebo rovné této mezi.
 
@@ -407,7 +407,7 @@ Stonek | Listy       Jednotky v řádku
 Klíč: 1 | 2 znamená 12 sekund.
 ```
 
-„Po dvojicích“ znamená dvě možné číslice listu na řádek, nikoli nejvýše dvě pozorování. Každý výskyt hodnoty stále zapisujeme zvlášť. Ve všech třech zobrazeních zůstává stejných osm časů; vstupy najdete v [sešitu ke kapitole](../data/kapitola_02.xlsx), list `Stonek`, buňky A2:A9. Jemnější dělení volíme podle přehlednosti a rozložení hodnot, nikoli automaticky podle velikosti souboru. Pro těchto osm časů postačí původní zápis: dělení po dvojicích zde vytváří mnoho prázdných řádků. U početnějších dat může naopak odhalit podrobnosti skryté v dlouhém řádku listů.
+„Po dvojicích“ znamená dvě možné číslice listu na řádek, nikoli nejvýše dvě pozorování. Každý výskyt hodnoty stále zapisujeme zvlášť. Ve všech třech zobrazeních zůstává stejných osm časů; vstupy najdete v [sešitu ke kapitole](../data/kapitola_02.xlsx), list `Stonek`, buňky A2:A9. Jemnější dělení volíme podle přehlednosti a rozdělení hodnot, nikoli automaticky podle velikosti souboru. Pro těchto osm časů postačí původní zápis: dělení po dvojicích zde vytváří mnoho prázdných řádků. U početnějších dat může naopak odhalit podrobnosti skryté v dlouhém řádku listů.
 
 ## Co nám říká tvar rozdělení {#sec-tvar-rozdeleni}
 

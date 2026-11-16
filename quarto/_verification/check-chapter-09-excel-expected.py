@@ -140,6 +140,17 @@ def fisher_cells(a, b, c, d):
     return out
 
 
+def sign_cells(pairs):
+    d = [a - b for a, b in pairs]; pos = sum(x > 0 for x in d); neg = sum(x < 0 for x in d); n = pos + neg
+    out = {'B2': pos, 'B3': neg, 'B4': sum(x == 0 for x in d), 'B5': n, 'B6': min(pos, neg)}
+    if n: out['B7'] = min(1, 2 * binom_cdf(min(pos, neg), n, 0.5))
+    for i, x in enumerate(d): out[f'F{2+i}'] = x
+    return out
+
+
+SPANEK = [(58, 53), (44, 42), (51, 45), (39, 38), (62, 55), (47, 44), (55, 51), (42, 43), (49, 44), (60, 58), (45, 39), (52, 50)]
+UZKOST = [(4, 3), (5, 3), (3, 3), (4, 2), (2, 3), (5, 4), (4, 4), (3, 2), (4, 3), (5, 2), (3, 4), (4, 3), (2, 2), (5, 3), (3, 2)]
+
 cells = []
 def put(sheet, d):
     for k, v in d.items(): cells.append({'sheet': sheet, 'cell': k, 'expected': v, 'tolerance': QT})
@@ -151,6 +162,7 @@ put('Tabulka', tab)
 put('Mira_souvislosti', effect_cells(56, 84, 20, 97))
 put('McNemar', mcnemar_cells(38, 4, 12, 18))
 put('Fisher', fisher_cells(8, 2, 3, 7))
+put('Znamenkovy', sign_cells(SPANEK))
 
 # Czech formulas quoted in the chapter and its solutions, typed as a student would.
 f = []
@@ -159,6 +171,7 @@ F('=CHISQ.DIST.RT(10,1;3)', chi_rt(10.1, 3)); F('=CHISQ.INV.RT(0,05;3)', chi_inv
 F('=CHISQ.DIST.RT(4;1)', chi_rt(4, 1)); F('=CHISQ.DIST.RT(1,68;2)', chi_rt(1.68, 2))
 F('=2*BINOM.DIST(4;16;0,5;PRAVDA)', 2 * binom_cdf(4, 16, 0.5)); F('=2*BINOM.DIST(3;14;0,5;PRAVDA)', 2 * binom_cdf(3, 14, 0.5))
 F('=HYPGEOM.DIST(8;10;11;20;NEPRAVDA)', hyper(8, 10, 11, 20))
+F('=2*BINOM.DIST(1;12;0,5;PRAVDA)', 2 * binom_cdf(1, 12, 0.5)); F('=2*BINOM.DIST(2;12;0,5;PRAVDA)', 2 * binom_cdf(2, 12, 0.5))
 F('=CHISQ.TEST(Pozice!B2:B5;Dobra_shoda!D2:D5)', chi_rt(10.1, 3))
 F('=CHISQ.TEST(Zvladani!B2:D4;Tabulka!B9:D11)', tab['B19'])
 F('=SUMA(Pozice!B2:B5)', 80); F('=SUMA(Zvladani!B2:D4)', 190)
@@ -181,6 +194,13 @@ changes.append({'sheet': 'McNemar', 'set': {'B2': 40, 'C2': 0, 'B3': 0, 'C3': 32
                 'labels': {'B10': 'nelze: žádná neshodná dvojice', 'B11': 'nelze', 'B12': 'nelze'}})
 fu = fisher_cells(6, 2, 2, 7)
 changes.append({'sheet': 'Fisher', 'set': {'B2': 6, 'C2': 2, 'B3': 2, 'C3': 7}, 'expect': fu})
+uz_set = {}
+for i, (a, b) in enumerate(UZKOST): uz_set[f'D{2+i}'] = a; uz_set[f'E{2+i}'] = b
+changes.append({'sheet': 'Znamenkovy', 'set': uz_set, 'expect': sign_cells(UZKOST)})
+same = {}
+for i in range(12): same[f'D{2+i}'] = 3; same[f'E{2+i}'] = 3
+changes.append({'sheet': 'Znamenkovy', 'set': same, 'expect': {'B2': 0, 'B3': 0, 'B4': 12, 'B5': 0},
+                'labels': {'B7': 'nelze: žádný nenulový rozdíl'}})
 for c in changes: c['tolerance'] = QT
 
 out = {
@@ -198,7 +218,9 @@ out = {
                {'sheet': 'Tabulka', 'cell': 'B9', 'formula': '=$E3*B$6/$E$6'},
                {'sheet': 'Tabulka', 'cell': 'B32', 'formula': '=(B3-B9)/ODMOCNINA(B9*(1-$E3/$E$6)*(1-B$6/$E$6))'},
                {'sheet': 'Tabulka', 'cell': 'B21', 'formula': '=ODMOCNINA(B17/(E6*(MIN(ŘÁDKY(B3:D5);SLOUPCE(B3:D5))-1)))'},
-               {'sheet': 'Fisher', 'cell': 'B11', 'formula': '=SUMIF(E2:E22;"<="&B10*(1+0,0000001))'}],
+               {'sheet': 'Fisher', 'cell': 'B11', 'formula': '=SUMIF(E2:E22;"<="&B10*(1+0,0000001))'},
+               {'sheet': 'Znamenkovy', 'cell': 'B2', 'formula': '=COUNTIFS(F2:F21;">0")'},
+               {'sheet': 'Znamenkovy', 'cell': 'B7', 'formula': '=KDYŽ(B5=0;"nelze: žádný nenulový rozdíl";MIN(1;2*BINOM.DIST(B6;B5;0,5;PRAVDA)))'}],
     'changes': changes,
 }
 open(sys.argv[1], 'w', encoding='utf-8', newline='\n').write(json.dumps(out, ensure_ascii=False, indent=1) + '\n')

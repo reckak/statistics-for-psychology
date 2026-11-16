@@ -88,7 +88,7 @@ ikon bloků ukazují prázdné rámečky; samotné PDF je má správně. Není p
 Quarto a Rscript se hledají v PATH a poté v běžných místních umístěních;
 jinde použijte parametry `-QuartoPath` a `-RscriptPath` s cestami k programům.
 
-PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7, 14 v kapitole 8, 14 v kapitole 9, 18 v kapitole 10), samostatný oddíl řešení s obousměrnými
+PDF obsahuje výklad, všechna zadání (15 v kapitole 3, 10 v kapitole 4, 12 v kapitole 5, 16 v kapitole 6, 14 v kapitole 7, 14 v kapitole 8, 15 v kapitole 9, 18 v kapitole 10), samostatný oddíl řešení s obousměrnými
 odkazy a literaturu citovanou v kapitole. Nepovinná rozšíření jsou rozepsaná.
 Závěrečný slovníček, přehled značení ani přehled funkcí Excelu se nepřipojují.
 Odkazy mimo kapitolu a na XLSX vedou na veřejný web a potřebují internet;
@@ -737,17 +737,22 @@ Sešit kapitoly 8 nepoužívá simulace z `scripts/sesity-simulace.R`.
 Devátou kapitolu ověřuje `check-chapter-09.R`: Wilsonův interval proti
 `prop.test(..., correct = FALSE)`, nekorigovaný Pearsonův test proti
 `chisq.test(..., correct = FALSE)` (výchozí `chisq.test` u tabulky 2 × 2
-používá Yatesovu korekci a dává jinou hodnotu), upravená a Pearsonova rezidua
+používá Yatesovu korekci a dává jinou hodnotu), standardizovaná a Pearsonova rezidua
 proti `chisq.test()$stdres` a `$residuals`, Fisherův test proti `fisher.test`,
 přesný McNemarův postup binomickým testem neshodných dvojic, Newcombův interval
 nezávisle vypsaným vzorcem, okrajový případ bez neshodných dvojic a všechna
 čísla citovaná v textu a v řešeních. Simulace 10 000 výběrů v `scripts/kapitola_09.R`
 má pevný seed. Skript `check-chapter-09-excel.ps1` kontroluje v samostatném
-skrytém Excelu uložené výsledky všech sedmi výpočtových listů včetně Holmových
+skrytém Excelu uložené výsledky všech osmi výpočtových listů včetně Holmových
 rozhodnutí, prázdné buňky nemožných hodnot listu `Fisher`, české vzorce z textu
 a řešení, chybové hodnoty u nepřípustných argumentů, přepočet při dosazení dat
 ze cvičení (včetně případu bez neshodných dvojic s textovým výsledkem „nelze“)
-a zápis devíti vzorců listů v češtině. Změny neukládá. Nezávislé reference
+a zápis jedenácti vzorců listů v češtině. Změny neukládá. Od revize 2026-11-16
+`check-chapter-09.R` ověřuje také přesné pokrytí Waldova a Wilsonova intervalu
+(nezávislým výpočtem s `prop.test`), tabulku Holmovy korekce proti `p.adjust`,
+znaménkový test proti `binom.test`, φ se znaménkem proti korelaci kódů 0/1
+a simulovanou *p*-hodnotu proti `chisq.test(simulate.p.value = TRUE)`
+a `fisher.test`; simulace mají pevné seedy 20261116 a 20261117. Nezávislé reference
 jsou v `check-chapter-09-excel.json`; obnoví je
 `python quarto/_verification/check-chapter-09-excel-expected.py quarto/_verification/check-chapter-09-excel.json`.
 Funkce HYPGEOM.DIST u nemožné kombinace argumentů nemusí vracet chybu, proto

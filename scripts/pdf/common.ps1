@@ -13,6 +13,7 @@ function Find-Executable($Specified, $Name, $Fallback) {
 $PdfColumnWidths = @{
     'tbl-k07-02' = '[9,37,40,14]'
     'tbl-k07-03' = '[7,10,15,14,15,13,26]'
+    'tbl-k09-13' = '[8,32,12,13,19,16]'
 }
 function Set-PdfColumnWidths([string]$Source) {
     foreach ($table in $PdfColumnWidths.Keys) {

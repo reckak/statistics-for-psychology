@@ -441,3 +441,9 @@ Původní studie (Bosco et al., Chan, Gump et al.) nebyly čteny; text je uvád�
 ## Revize kapitoly 8: nový podklad a ověřené pasáže — 2026-11-14
 
 Autor doplnil do `sources/ostatní zdroje/` článek Alginy a Keselmana (2003); zmapován jako [D14](D14-algina-keselman.md#d14) (17 stran PDF, otisk `93809c9f911b42d9`). Inventář má nyní 50 souborů; ostatní soubory se při této revizi znovu neporovnávaly. Pro revizi kapitoly 8 ([R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)) byly dále ověřeny Howell s. 219 a 632 ([U01](U01-howell.md#revize-08-20261114)) a Cumming s. 190 ([U03](U03-cumming.md#revize-08-20261114)). Hledání přibližného vzorce pro interval *d* v podkladech (Howell, Cumming, Lakens, Field) našlo jen Howellův vzorec pro *d* vůči kontrolní skupině; Lakensova kniha (s. 177–178) odkazuje na software, Cumming na esci. Gelmanův a Sternův číselný příklad ([E05](E05-gelman-stern.md#e05-gelman-stern)) byl z kapitoly odstraněn.
+
+<a id="revize-09-20261116"></a>
+
+## Revize kapitoly 9: znaménkový test a tabulka posuzovatelů — 2026-11-16
+
+Při revizi kapitoly 9 podle [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9) byly znovu čteny jen pasáže Howella potřebné pro nový výklad: [U01](U01-howell.md#revize-09-20261116), §5.9 (s. 130–131), §18.8 (s. 677–678) a tab. 6.13 (s. 166–167), vše v textové extrakci. Autorova starší prezentace [P13](P13-chikvadrat-neparametricke.md#p13) uvádí znaménkový test na snímcích 41–44 podle obsahové mapy karty; snímky při revizi znovu otevřeny nebyly. Simulovaná *p*-hodnota, přesné pokrytí intervalů, vztah *z*² a chí-kvadrát rozdělení a vzorec φ z četností jsou vlastní výpočty ověřené v `quarto/_verification/check-chapter-09.R`; pro ně nebyl čten ani citován žádný další zdroj. Inventář `sources/` se při revizi neměnil.
