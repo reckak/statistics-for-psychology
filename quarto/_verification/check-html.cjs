@@ -293,14 +293,15 @@ const server = http.createServer((req, res) => {
         }
       }
       if (file === 'quarto/kapitola_09.html') {
-        assert.equal(await solutions.count(),14,'Chapter 9 has twelve core and two optional exercise solutions');
+        assert.equal(await solutions.count(),15,'Chapter 9 has thirteen core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 9 mathematics parses');
-        assert.equal(await page.locator('main img').count(),5);
+        assert.equal(await page.locator('main img').count(),11);
         for(const img of await page.locator('main img').all()) {
-          await img.scrollIntoViewIfNeeded();
-          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          if(await img.isVisible()) await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(async el=>{ if(!el.complete) await el.decode().catch(()=>{}); return el.complete && el.naturalWidth>0; }));
           assert((await img.getAttribute('alt')).length>30);
         }
+        for(const id of ['fig-pokryti','fig-newcombe','fig-z2-chi2','fig-fisher','fig-monte-carlo','fig-kappa','sec-monte-carlo','sec-znamenkovy-test','tbl-k09-13','tbl-k09-14']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 9 revision element: ${id}`);
         const greek9=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πχφκα]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek9.filter(e=>e.text.includes('χ')).length>10,'Chi-square rendered with chi');
         assert(greek9.every(e=>e.variant==='normal'),'Greek symbols of chapter 9 must be upright');
@@ -310,11 +311,14 @@ const server = http.createServer((req, res) => {
         const main9=await page.locator('main').innerText();
         assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main9.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance');
         assert(!/kategorick/i.test(main9),'Only the approved variant "kategoriální" is used');
+        assert(!/rozložen|upraven\S+ rezidu|tabulk\S+ přechod/i.test(main9),'Chapter 9 uses rozdělení, standardizované reziduum and tabulka párových dat');
+        assert.equal(await page.locator('main blockquote em').evaluateAll(items=>items.filter(e=>/χ/.test(e.textContent)).length),0,'Chi in APA report examples is upright');
         for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
+          if(!(await fig.isVisible())) await fig.evaluate(el=>{const c=el.closest('.callout');if(c)c.querySelectorAll('.callout-collapse').forEach(x=>x.classList.add('show'));});
           await fig.screenshot({path:`tmp/verification/ch09-${id}.png`});
         }
-        for(const id of ['sec-wald','sec-interval-podilu-excel','sec-newcombe','sec-dobra-shoda-excel','sec-pearson-upravena','sec-tabulka-excel','sec-fisher','sec-pomer-rizik-sanci','sec-mcnemaruv-test','sec-ktery-postup-09']) {
+        for(const id of ['sec-wald','sec-interval-podilu-excel','sec-newcombe','sec-dobra-shoda-excel','sec-pearson-upravena','sec-tabulka-excel','sec-fisher','sec-pomer-rizik-sanci','sec-phi-v','sec-monte-carlo','sec-mcnemaruv-test','sec-znamenkovy-test','sec-ktery-postup-09','sec-ukazka-sdeleni-09']) {
           await page.locator('#'+id).screenshot({path:`tmp/verification/ch09-${id}-desktop.png`});
         }
       }

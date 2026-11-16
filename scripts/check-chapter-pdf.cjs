@@ -39,7 +39,7 @@ for (const type of ['Math', 'Code', 'Image', 'Table', 'Cite']) {
 }
 const solutions = before.blocks.filter(b => b.t === 'Div' &&
   b.c[0][2].some(([k,v]) => k === 'title' && v === 'Ukázat řešení'));
-assert.equal(solutions.length, {3: 15, 4: 10, 5: 12, 6: 16, 7: 14, 8: 14, 9: 14, 10: 18}[chapter]);
+assert.equal(solutions.length, {3: 15, 4: 10, 5: 12, 6: 16, 7: 14, 8: 14, 9: 15, 10: 18}[chapter]);
 const start = after.blocks.findIndex(b => b.t === 'Header' && b.c[1][0] === 'pdf-solutions');
 assert(start > 0);
 for (let i = 1; i <= solutions.length; i++) {

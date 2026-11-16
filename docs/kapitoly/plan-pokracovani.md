@@ -58,8 +58,8 @@ a φ z [kapitoly 9](09-podily-kategorialni-data.md#mapa-kapitola-09).
 Jednoduchá regrese a koeficient determinace jsou vyřazeny z kapitoly 10;
 o jejich samostatné kapitole ani o pořadí dalších kapitol se nerozhodlo.
 
-**Mimo kapitoly 6–10 a bez schváleného umístění:** znaménkový
-a pořadové testy porovnání skupin, robustní alternativy porovnání průměrů, funkce Z.TEST,
+**Mimo kapitoly 6–10 a bez schváleného umístění** (znaménkový test je od 2026-11-16 povinnou součástí kapitoly 9, [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9))**:**
+pořadové testy porovnání skupin, robustní alternativy porovnání průměrů, funkce Z.TEST,
 korekce pro více testů (mimo nepovinnou Holmovu korekci reziduí v kapitole 9),
 ANOVA, jednoduchá regrese, logistická regrese a loglineární modely, bayesovské
 testování, plánování velikosti výběru, interval pro Cohenovo d a test

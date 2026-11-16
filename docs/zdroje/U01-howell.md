@@ -139,6 +139,16 @@ V obrazech stran přečtena kap. 6, s. 137–171 (PDF 161–195): χ² rozdělen
 
 **Nálezy:** s. 145 tiskové chyby v mezikrocích — u $E_{21}$ dělitel 285 místo 825 a ve výpočtu χ² hodnota 497,82 místo 497,72; aritmeticky ověřeno (43,28 a 497,72), výsledek χ² = 7,71 přepočten v R (7,7099). S. 165 odkazuje na data aspirinu jako „Table 6.7“, správně tab. 6.11 (jen přečteno). Poměr rizik je na s. 161 1,819 a na s. 166 „1,82“ (zaokrouhlení). Howell (s. 157, podle Agrestiho) uvádí, že u malých výběrů je Pearsonova statistika aproximována lépe než věrohodnostní poměr; Field (§16.3.4) tvrdí opak — rozpor jen zaznamenán, G² je mimo kapitolu 9. Data vyhledávání pomoci (s. 154–155) jsou podle Howella smyšlená; terapeutický dotek a Prozac jsou skutečné studie citované Howellem, původní články nečteny. [Společný záznam](HISTORIE.md#priprava-09-20261109).
 
+<a id="revize-09-20261116"></a>
+
+## Revize kapitoly 9 — 2026-11-16
+
+**Přečteno v textové extrakci** (`pdftotext -layout`, čísla stran podle záhlaví extrakce): §5.9 The Sign Test, s. 130–131 (tab. 5.5, 10 z 12 kladných rozdílů, jednostranná pravděpodobnost 0,0192); §18.8 The Sign Test, s. 677–678 (data Manningové a kol., 13 z 16, oboustranně 0,021; věta o ztrátě informace a síly na s. 677); tab. 6.13 na s. 166–167 (sloupce Judge I se součty 16, 6, 8; řádky Judge II se součty 20, 6, 4; očekávané četnosti na úhlopříčce 10,67; 1,20; 1,07).
+
+**Použití:** kapitola 9 cituje s. 677 u tvrzení, že znaménkový test nevyužívá velikost rozdílů a má menší sílu; příklad je autorský (skóry z kapitoly 8), Howellovy příklady převzaty nebyly. Orientace tabulky posuzovatelů v novém obrázku odpovídá tab. 6.13 (řádky druhý, sloupce první posuzovatel).
+
+**Nálezy a omezení:** extrakce v tab. 5.5 a 18.8 vynechává záporná znaménka rozdílů a rozhazuje sloupce tab. 6.13; počty znamének a součty byly ověřeny z doprovodného textu, originální sazba stran v PDF vizuálně kontrolována nebyla. Poznámka o podílu 28,8 % u dat z Berkeley (z četností vychází 27,1 %) byla ze studentského textu vypuštěna a zůstává jen v [kontrole kapitoly](../../quarto/_verification/check-chapter-09.R). [Společný záznam](HISTORIE.md#revize-09-20261116).
+
 <a id="priprava-10-20261109"></a>
 
 **Čtení pro návrh kapitoly 10 (2026-11-09):** v textové extrakci `pdftotext -layout` přečteny kap. 9, s. 251–265 (PDF 275–289: rozlišení korelace a regrese, bodový graf, tempo života, stres a symptomy, kovariance, *r*, upravené *r*, regresní přímka jen pro orientaci), s. 272–274 (PDF 296–298: předpoklady, dvourozměrné normální rozdělení), s. 280–281 (PDF 304–305: test *r* = 0), s. 285–287 (PDF 309–311: test proti jiné hodnotě, Fisherův interval, interval vs. test) a s. 290–293 (PDF 314–317: role předpokladů, omezení rozsahu, heterogenní podskupiny, začátek síly). Dále kap. 10, s. 304–317 (PDF 328–341: bodově biseriální *r* a jeho vztah k *t* a *d*, φ a χ², Rosenthal a Rubin o *r*², biseriální a tetrachorická korelace, pořadí se shodami, Spearman, Kendall). Obrázky, cvičení, §9.10–9.11, §9.13, rozdíl korelací a závislé korelace (s. 283–285, 287–289) ani §10.4–10.5 nečteny; přesné kotvy oddílů neověřeny v obrazech stran.

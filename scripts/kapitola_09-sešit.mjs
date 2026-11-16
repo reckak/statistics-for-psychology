@@ -41,6 +41,13 @@ for(let a=0;a<=20;a++){
  const R=2+a;
  fisherRows.push(L(`D${R}`,a),C(`E${R}`,`=KDYŽ(A(D${R}>=$B$8;D${R}<=$B$9);HYPGEOM.DIST(D${R};$B$5;$B$6;$B$7;NEPRAVDA);"")`,'0.00000'));
 }
+// Sign test: pairs in D2:E21 (first and second measurement), differences in F; defaults = sleep scores of chapter 8.
+const spanek=[[58,53],[44,42],[51,45],[39,38],[62,55],[47,44],[55,51],[42,43],[49,44],[60,58],[45,39],[52,50]];
+const signRows=[];
+for(let i=0;i<20;i++){
+ const R=2+i,row=spanek[i];
+ signRows.push(I(`D${R}`,row?row[0]:null,'0'),I(`E${R}`,row?row[1]:null,'0'),C(`F${R}`,`=KDYŽ(POČET(D${R}:E${R})=2;D${R}-E${R};"")`,'0'));
+}
 const sheets=[
  {name:'Interval_podilu',widths:{A:50,B:14,C:3,D:58},cells:[
   H('A1','Interval pro podíl a skórový test'),H('B1','Hodnota'),
@@ -101,14 +108,14 @@ const sheets=[
   L('A19','P-hodnota'),C('B19','=CHISQ.DIST.RT(B17;B18)','0.0000'),
   L('A20','Kontrola: CHISQ.TEST'),C('B20','=CHISQ.TEST(B3:D5;B9:D11)','0.0000'),
   L('A21','Cramérovo V'),C('B21','=ODMOCNINA(B17/(E6*(MIN(ŘÁDKY(B3:D5);SLOUPCE(B3:D5))-1)))','0.000'),
-  H('A23','Řádkové podíly'),H('A27','Pearsonova rezidua'),H('A31','Upravená rezidua'),
-  H('A36','Nepovinně: p-hodnoty upravených reziduí'),
+  H('A23','Řádkové podíly'),H('A27','Pearsonova rezidua'),H('A31','Standardizovaná rezidua'),
+  H('A36','Nepovinně: p-hodnoty standardizovaných reziduí'),
   H('A40','Pořadí k'),H('B40','Seřazená p-hodnota'),H('C40','Holmova hranice'),H('D40','Rozhodnutí'),
   L('A50','Hladina α pro Holmovu korekci'),I('B50',.05,'0.00'),
   ...grid,...holm,
   N('G3','Výchozí vstupy: věk a strategie zvládání (list Zvladani); žluté buňky lze změnit.'),N('G9','e = řádkový součet × sloupcový součet / n.'),
   N('G17','Všechny očekávané četnosti mají být alespoň 5.'),N('G24','Řádkové podíly porovnávají skupiny různé velikosti.'),
-  N('G32','Upravená rezidua: přibližně N(0, 1) při H₀.'),N('G33','Bez korekce jen popisují vzorec, nejsou to samostatné testy.'),
+  N('G32','Standardizovaná rezidua: přibližně N(0, 1) při H₀.'),N('G33','Bez korekce jen popisují vzorec, nejsou to samostatné testy.'),
   N('G41','Holmova korekce: zamítáme postupně, dokud p-hodnota nepřekročí hranici α/(m − k + 1).')]},
  {name:'Mira_souvislosti',widths:{A:56,B:16,C:16,D:3,E:58},cells:[
   H('A1','Míry velikosti souvislosti v tabulce 2 × 2'),H('B1','Jev nastal'),H('C1','Jev nenastal'),
@@ -138,7 +145,7 @@ const sheets=[
   N('E8','Poměr rizik a poměr šancí nejsou totéž.'),N('E16','Znaménko φ závisí jen na pořadí řádků a sloupců.'),
   N('E7','Interval pro rozdíl spočítáte na listu Dva_podily.')]},
  {name:'McNemar',widths:{A:56,B:16,C:16,D:3,E:58},cells:[
-  H('A1','Tabulka přechodů: podzim (řádky) × jaro (sloupce)'),H('B1','Jaro: ano'),H('C1','Jaro: ne'),
+  H('A1','Tabulka párových dat: podzim (řádky) × jaro (sloupce)'),H('B1','Jaro: ano'),H('C1','Jaro: ne'),
   L('A2','Podzim: ano'),I('B2',38,'0'),I('C2',4,'0'),L('A3','Podzim: ne'),I('B3',12,'0'),I('C3',18,'0'),
   L('A5','Počet úplných dvojic n'),C('B5','=SUMA(B2:C3)','0'),
   L('A6','Podíl „ano“ v prvním měření'),C('B6','=(B2+C2)/B5','0.000'),
@@ -151,6 +158,19 @@ const sheets=[
   N('E2','Výchozí vstupy: vyhledávání pomoci (list Pomoc).'),N('E3','Jen úplné dvojice; každá dvojice je v tabulce jednou.'),
   N('E8','Rozdíl podílů se vztahuje ke všem úplným dvojicím.'),N('E9','Testovou statistiku určují jen neshodné dvojice.'),
   N('E10','Při malém počtu neshodných dvojic používejte přesný výpočet.')]},
+ {name:'Znamenkovy',widths:{A:52,B:16,C:3,D:16,E:16,F:12,G:3,H:56},cells:[
+  H('A1','Znaménkový test'),H('B1','Hodnota'),H('D1','První měření'),H('E1','Druhé měření'),H('F1','Rozdíl'),
+  L('A2','Počet kladných rozdílů'),C('B2','=COUNTIFS(F2:F21;">0")','0'),
+  L('A3','Počet záporných rozdílů'),C('B3','=COUNTIFS(F2:F21;"<0")','0'),
+  L('A4','Počet nulových rozdílů (do testu nevstupují)'),C('B4','=COUNTIFS(F2:F21;0)','0'),
+  L('A5','Počet dvojic v testu n'),C('B5','=B2+B3','0'),
+  L('A6','Menší z obou počtů'),C('B6','=MIN(B2;B3)','0'),
+  L('A7','Přesná oboustranná p-hodnota (binomický test)'),C('B7','=KDYŽ(B5=0;"nelze: žádný nenulový rozdíl";MIN(1;2*BINOM.DIST(B6;B5;0,5;PRAVDA)))','0.0000'),
+  ...signRows,
+  N('H2','Výchozí vstupy: skóry pozornosti po běžném a po krátkém spánku (list Spanek_rozdily).'),
+  N('H3','Rozdíl = první − druhé měření; žluté buňky D2:E21 lze změnit.'),
+  N('H4','Nulové rozdíly a neúplné dvojice do testu nevstupují.'),
+  N('H7','Test využívá jen znaménko rozdílu, ne jeho velikost.')]},
  {name:'Fisher',widths:{A:56,B:14,C:14,D:10,E:16,F:3,G:50},cells:[
   H('A1','Nepovinně: Fisherův exaktní test (2 × 2)'),H('B1','Zlepšení'),H('C1','Bez zlepšení'),H('D1','Hodnota a'),H('E1','P(a) při daných součtech'),
   L('A2','Intervence'),I('B2',8,'0'),I('C2',2,'0'),L('A3','Kontrola'),I('B3',3,'0'),I('C3',7,'0'),

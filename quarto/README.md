@@ -1,5 +1,36 @@
 # Autorská dokumentace
 
+<a id="revize-kapitoly-9-2026-11-16"></a>
+
+## Revize kapitoly 9 podle autorových připomínek (2026-11-16, R81)
+
+Autor kapitolu 9 prošel, provedl v ní vlastní redakční úpravy a připojil 19 připomínek k místům textu a 5 obecných pokynů. Termíny, značku a rozsah schválil plánem revize ([R81](../docs/rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9)).
+
+**Autorovy úpravy.** Věcně převzaty beze změny; opraveny jazykové a formální chyby: „O čem tabulka četností řekne vypovídá?“, „se které vyžadují“, slitá věta o mezích Waldova intervalu, „ne četnost, který“, „co která vyjadřuje“ u ukazatelů, „pro celou tabulky“, „závísí“, „v jednotlivé buňky“; nezavedené „copingové strategie“ nahrazeny „strategiemi zvládání stresu“; „síla souvislosti je nízká“ a „souvislost je umírněná“ (řešení cvičení 7) sjednoceny na „souvislost je slabá“; „*p*-hodnotu reprezentuje pravý chvost“ → „*p*-hodnotě odpovídá plocha v pravém chvostu“.
+
+**Kapitola 9 (`quarto/kapitola_09.qmd`).**
+
+- Směrodatná chyba rozdílu podílů je pojmenována, vysvětlena a označena $s_{p_1-p_2}$; výklad Newcombova intervalu čte nový obrázek konstrukce (poloviny Wilsonových intervalů, čtverce vzdáleností, Pythagorova věta).
+- Nový obrázek přesného pokrytí Waldova a Wilsonova intervalu (*n* = 10, 20, 50, 100) s odstavcem výkladu.
+- Směr testu chí-kvadrát: obrázek *z* → *z*² → chí-kvadrát rozdělení s jedním stupněm volnosti, odstavec o významu levého chvostu; závěr testu dobré shody formulován jako výrok o populaci (místo „platí pro tyto lidi“).
+- „Upravené reziduum“ → standardizované reziduum (text, tabulka, cvičení, Shrnutí) s upozorněním na názvy v programech; Holmova korekce doplněna tabulkou devíti buněk.
+- Fisherův test: věta „nemáme o co opřít“ nahrazena vysvětlením nespolehlivé aproximace; obrázek deseti možných tabulek; nový povinný pododdíl „Simulovaná *p*-hodnota“ s obrázkem (10 000 přeskupení, seed 20261117); „Častý omyl“ o neparametričnosti přesunut na konec oddílu.
+- Tabulka fotografií s řádkovými procenty; zdůvodnění φ a Cramérova V, φ² jako součin dvou rozdílů podílů, vzorec φ z četností se znaménkem; vypuštěna věta o Howellově údaji 28,8 %.
+- „Tabulka přechodů“ → tabulka párových dat; nový povinný pododdíl „Znaménkový test“ (rozdíly skóru pozornosti z kapitoly 8); obrázek shod a neshod u Cohenova kappa.
+- Tabulka volby postupu (znaménkový test, simulovaná *p*-hodnota, přesná verze McNemarova testu); ukázky APA se stojatým χ a nová ukázka kontingenční tabulky podle APA; Shrnutí má nadále osm bodů.
+- Cvičení: nové povinné cvičení 13 (znaménkový test), situace 8g, doplněné řešení 10c; dosavadní nepovinná cvičení 13 a 14 mají čísla 14 a 15.
+- „Rozložení“ → „rozdělení“ (18 míst), „počet“ → „četnost“ u počtu případů v kategorii, tři výskyty *z*-testu kurzivou.
+
+**Ostatní studentské texty.** „Rozložení“ ve smyslu distribuce nahrazeno v kapitolách 2 (2×) a 4 (4×), ve slovníčku (3×) a ve vizualizaci normálního rozdělení (1×); slovesné tvary („hodnoty jsou rozloženy“) a „rozložení“ ve smyslu uspořádání listu zůstaly. Slovníček: hesla Standardizované reziduum a Tabulka párových dat (ID zachována), nová hesla Znaménkový test a Simulace Monte Carlo, kurzivní *z* u skórového testu. Značení: nový řádek $s_{p_1-p_2}$, doplněný řádek φ. Přehled Excelu: list `Znamenkovy`, „standardizovaných reziduí“. Kapitola 10: zpětný odkaz na simulovanou *p*-hodnotu u náhodného výběru přeskupení.
+
+**Obrázky, sešit a kontroly.** `scripts/kapitola_09.R`: výpočty revize a šest nových obrázků (`pokryti-wald-wilson`, `newcombe-konstrukce`, `z2-chi2`, `fisher-tabulky`, `monte-carlo`, `kappa-shody`); popisek osy obrázku `pozice` a legenda obrázku `zvladani`. Sešit má 26 listů: nové vstupní listy `Spanek_rozdily` a `U13_uzkost`, nový výpočtový list `Znamenkovy` (COUNTIFS, BINOM.DIST; až 20 dvojic), přejmenované popisky na listech `Tabulka` a `McNemar`. `check-chapter-09-excel.ps1` nově vrací po dosazení dat cvičení původně prázdné buňky do prázdného stavu. `check-html.cjs`: 15 řešení, 11 obrázků, nové prvky revize, zákaz „rozložení“, „upraveného rezidua“ a „tabulky přechodů“ v kapitole 9, stojaté χ v ukázkách zpráv; skrytý obrázek v nepovinném rozšíření se před snímkem rozbalí. `check-chapter-pdf.cjs`: 15 řešení; `scripts/pdf/common.ps1`: šířky sloupců tabulky Holmovy korekce v PDF.
+
+**Dokumentace.** R81 a doplnění R76 ([doklady](../docs/rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9)), registr (R70 částečně nahrazeno), slovník, karta kapitoly 9, mapa a plán pokračování (znaménkový test už není mimo kapitoly 6–10), `docs/DATA.md`, `docs/PROVOZ.md`, `AGENTS.md` (pravidlo „rozdělení“ a „četnost“), karta U01 a historie ověřování podkladů.
+
+**Kontroly (vše 2026-11-16).** `check-chapter-09.R` prošel: pokrytí proti nezávislému výpočtu s `prop.test`, Holmova tabulka proti `p.adjust`, Fisherovy pravděpodobnosti a *p*-hodnota proti `fisher.test`, simulovaná *p*-hodnota 0,068 proti `chisq.test(simulate.p.value = TRUE)` a proti přesné hodnotě 0,070, φ se znaménkem proti korelaci kódů 0/1, znaménkový test proti `binom.test`, očekávané četnosti tabulky posuzovatelů, všechna nová čísla v textu. Sešit sestaven `build-workbooks.ps1 -Chapter 9 -Verify` v českém Excelu 16 (26 listů, 252 vzorců; 188 uložených výsledků, 14 českých vzorců z textu, 340 přepočtů po dosazení dat cvičení, 11 zápisů vzorců); `check-workbooks.py` prošel. Celá kniha vykreslena (Quarto 1.10.19); `check-html.cjs`, `check-table-layout.cjs` a `check-doc-maps.cjs` prošly. Kontrola rozvržení tabulek nejprve zachytila přesah tabulky Holmovy korekce o 14 px při šířce 1024 px; záhlaví a jeden popisek byly zkráceny. Pracovní PDF kapitoly 9 sestaveno (42 stran), `check-chapter-pdf.cjs --chapter 9` a `check-pdf-typography.cjs` prošly; devět poznámek pod tabulkami má 9 pt. Všech šest nových obrázků bylo prohlédnuto jako PNG, ve vykresleném webu vizuálně oddíly o φ a o sdělení výsledků, v PDF strany s obrázkem konstrukce Newcombova intervalu, s tabulkou Holmovy korekce a s tabulkou podle APA. Povinná část má přibližně 10 700 slov; strojová kontrola našla dvě věty nad 35 slov (výčet nepovinných rozšíření a bod Shrnutí s odkazem).
+
+**Omezení a neprovedeno.** Didaktická revize proběhla jen interně; porozumění nebylo ověřeno na studentech. V PDF je písmo uvnitř obrázku konstrukce Newcombova intervalu drobné (obrázek je vysoký a zmenšuje se na šířku strany). `check-rendered-pdf.py` byl spuštěn jen v části pro kapitolu 9: místní souhrnné PDF celé knihy pochází z 2026-11-14, revizi neobsahuje a jeho kontrola proto neprochází; souhrnné PDF ani vydání `ucebnice-pdf` se bez výslovného pokynu neobnovují. Balíček AI tutora nebyl znovu exportován. Mobilní zobrazení bylo ověřeno jen automatickou kontrolou šířky 390 px, nové obrázky na mobilu vizuálně prohlédnuty nebyly. Howellovy pasáže o znaménkovém testu a tab. 6.13 byly čteny jen v textové extrakci. „Četnost“ místo „počtu“ byla sjednocena jen v kapitole 9. V kapitolách 2–4 a 10 zůstávají slovesné tvary „rozloženy“.
+
 <a id="pdf-cele-ucebnice-2026-11-14"></a>
 
 ## PDF celé učebnice a odkaz na jeho stažení z úvodu (2026-11-14, R80)

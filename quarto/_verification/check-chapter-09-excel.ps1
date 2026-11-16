@@ -53,7 +53,7 @@ try {
       if([string]$sh.Range($p.Name).Value2 -cne [string]$p.Value){throw "Stale label $($sh.Name)!$($p.Name): $($sh.Range($p.Name).Value2)"}
       $labels++
     }}
-    foreach($a in $old.Keys){$sh.Range($a).Value2=[double]$old[$a]}
+    foreach($a in $old.Keys){if($null -eq $old[$a]){[void]$sh.Range($a).ClearContents()}else{$sh.Range($a).Value2=[double]$old[$a]}}
   }
   $taskExcel.CalculateFullRebuild()
   Assert-Stored
