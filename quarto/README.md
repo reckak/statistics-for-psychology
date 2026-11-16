@@ -1,5 +1,73 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-8-20261117"></a>
+
+## 2026-11-17 — Prezentace ke kapitole 8
+
+Vytvořeny soubory v `presentations/`: `kapitola_08_porovnani_dvou_prumeru.pptx` (39 slidů),
+`kapitola_08_poznamky.docx`, `kapitola_08_porovnani_dvou_prumeru_cviceni.xlsx` a
+`kapitola_08_porovnani_dvou_prumeru_cviceni_grafy.pdf`. Rozsah dohodnut s autorem 2026-11-17:
+jedna výuka za celou kapitolu (45 minut výkladu, 45 minut procvičování), všech pět nepovinných
+rozšíření vynecháno; výstupy PPTX, DOCX, sešit a pomocné grafy k excelovým úlohám, bez PDF
+prezentace, scénáře a audia. **Welchův *t*-test je podle pokynu autora z téhož dne vyložen jen
+jako princip:** jeden slide ukazuje, že se oproti klasickému testu jinak počítá směrodatná chyba
+(rozptyly skupin zvlášť) a počet stupňů volnosti (korigovaný), a porovnává hotové výsledky
+varianty B; výpočet ručně ani v Excelu (vzorec stupňů volnosti, BETA.INV, T.TEST typu 3) se
+v prezentaci, úlohách ani sešitu nepožaduje. Jde o rozsah této výuky, kapitola se nemění.
+
+Výklad má 22 obsahových slidů v sedmi oddílech podle
+[R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci): párová data, nebo
+nezávislé skupiny; párový *t*-test; kdy párování zpřesňuje odhad; dvě nezávislé skupiny; jak
+velký je rozdíl; rozdíl posuzujeme přímo (intervaly vedle sebe, změna ve dvou skupinách,
+ekvivalence dvou skupin); volba postupu a sdělení výsledků. Nenulová testovaná hodnota
+párového testu, tabulka odolnosti a ukázka zprávy pro variantu A jsou jen v poznámkách;
+ukázka zprávy na slidu je zkrácena o interval pro *d* (nepovinné rozšíření). Poznámky mají dvě
+podoby podle [R74](../docs/rozhodnuti/postupy-a-dokumentace.md#r74-heslovite-poznamky):
+heslovité v PPTX a podrobné v DOCX (asi 8 800 slov, 20 stran).
+
+Šest úloh bez Excelu (vlastní, řešení jen v poznámkách): rozpoznání uspořádání, párový *t*-test
+ze souhrnů, výroky o přínosu párování, Cohenovo *d* a jeho jmenovatel, čtyři chybné závěry,
+volba postupu a zpráva. Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci) má čtyři
+listy s vlastními modelovými daty: U1_parova_data (14 studentů, dvě neúplné dvojice, simulace,
+seed 801), U2_dve_skupiny (16 a 15 studentů; seed 842 vybrán z 805–860 tak, aby rozdíl byl
+středně velký a statisticky významný), U3_zmeny_skupin (2 × 14 studentů před a po; seed 8312
+vybrán tak, aby změna byla významná jen v intervenční skupině a rozdíl změn ne) a
+U4_ekvivalence (zadané souhrny velké a malé studie, Δ = 5). Řešení po krocích, 17 kontrol
+funkcemi (PRŮMĚR, SMODCH.VÝBĚR.S, T.TEST typu 1 a 2, CONFIDENCE.T, T.DIST.2T, T.INV.2T)
+a 24 nativních rovnic. Pomocné grafy (4 strany, 16 : 9) vytváří
+`scripts/kapitola_08-prezentace-cviceni-grafy.R` ze vstupů sešitu (balíček readxl). Howellovy
+úlohy použity nebyly; karty zdrojů se nemění. Kapitola 8, slovník, osnova ani
+`data/kapitola_08.xlsx` se neměnily; věcný rozpor mezi kapitolou a prezentací nebyl zjištěn.
+Šest obrázků kapitoly 8 (sedm vložení; vlastní tvorba) je převzato z `assets/chapter-08/plots/`
+ve stavu z 2026-11-16, novějším než `scripts/kapitola_08.R`, proto se znovu nevykreslovaly.
+
+Postup: generátor v `tmp/chapter08-presentation/` navazuje na generátor kapitoly 7 (stejná
+předloha a vzhled). Heslovité poznámky zapisuje přímo do PPTX z pole `short`, podrobné poznámky
+jsou v samostatném souboru a DOCX se sestavuje z něj; nové jsou vzorce párového a klasického
+testu, společného odhadu rozptylu a Cohenova *d* a dolní indexy v DOCX. Sešit sestavuje
+desktopový Excel přes `scripts/excel-workbook.mjs`; sdílené skripty se neměnily.
+
+**Ověření:** všech 39 slidů vykresleno v PowerPointu a prohlédnuto; každý slide má poznámky,
+všech 23 výkladových slidů otázku v PPTX i DOCX; jazyk všech 217 textových polí a 39 poznámek
+je čeština (objektový model PowerPointu); v textu PPTX ani DOCX nezůstala značka formátování;
+přehled obsahu se shoduje s oddělovacími slidy; všech 22 odkazovaných oddílů v kapitole
+existuje. 29 skupin čísel ze slidů, poznámek, úloh a sešitu přepočítáno nezávisle v R
+(`check.R` v tmp); přepočet odhalil zaokrouhlení *p*-hodnoty úlohy 2 (0,025, ne 0,024),
+opraveno. Sešit přepočítán v českém Excelu 16: 0 chybových buněk, všech 17 kontrol „Shoda
+s kroky“ = ano, 24 rovnic, prázdné pracovní buňky; listy prohlédnuty z exportu do PDF. DOCX
+otevřen ve Wordu: 39 nadpisů „Slide N: titulek“, 20 stran, čeština. Všechny 4 strany grafů
+prohlédnuty. Didaktická revize samostatným čtením v roli studenta: zapracováno mimo jiné
+doplnění, že i v protipříkladu 2, 4, 6 / 6, 12, 18 je párový odhad přesnější, omezení pravidla
+o nepřekrývajících se intervalech na podobně velké a variabilní skupiny, doplnění kvantilů
+a mezivýpočtů v poznámkách a směru rozdílu v úloze 6.
+
+**Omezení:** výklad trvá podle součtu časů 45 minut; 22 slidů za tuto dobu je hodně a skutečná
+délka nebyla vyzkoušena. Popisky uvnitř převzatých grafů jsou při projekci drobné; hlavní
+hodnoty opakuje text slidu. Starší verze Excelu a PowerPointu, Excel pro Mac ani webový Excel
+nebyly zkoušeny. Didaktická revize byla interní, bez ověření na studentech. Studentský web se
+nemění, render knihy nebyl potřeba.
+
 <a id="revize-kapitoly-9-2026-11-16"></a>
 
 ## Revize kapitoly 9 podle autorových připomínek (2026-11-16, R81)
