@@ -305,10 +305,10 @@ určuje [R54](../rozhodnuti/spolecne-konvence.md#r54-sazba-tabulek-pdf).
 ### Doprovodný scénář k prezentaci
 
 Od 2026-11-02 je připraven
-[scénář pro syntézu řeči](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
-k aktuální [prezentaci](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani.pptx),
+[scénář pro syntézu řeči](../../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
+k aktuální [prezentaci](../../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani.pptx),
 pro výkladové snímky 1–31 bez závěrečného procvičování.
-[Průvodní dokument](../../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+[Průvodní dokument](../../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
 odkazuje na identitu podkladů, mapu úseků, slovník výslovnosti a výsledky
 kontrol. Na následnou žádost autora téhož dne vznikla místní nahrávka
 hlasem Adam ke snímkům 1–31, se 31 značkami kapitol; její identitu

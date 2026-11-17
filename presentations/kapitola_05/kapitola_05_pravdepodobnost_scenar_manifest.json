@@ -1,12 +1,12 @@
 {
   "date": "2026-10-27",
-  "script": "presentations/kapitola_05_pravdepodobnost_scenar.txt",
+  "script": "presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar.txt",
   "script_sha256": "a7883d4e67e3ee41a92a6ba1fa703547c335be670a052aa32d4b0ea6b4410da6",
   "word_count": 5708,
   "character_count": 40122,
   "sources": [
     {
-      "path": "presentations/kapitola_05_pravdepodobnost.pptx",
+      "path": "presentations/kapitola_05/kapitola_05_pravdepodobnost.pptx",
       "sha256": "96e1692748c4f4f7e2e91b1e904f80ce2aa08c55febaa1a19570acbe5962cb4e"
     },
     {
@@ -293,7 +293,7 @@
     "apply_saved_pronunciations": false,
     "credits_used": 806,
     "output": {
-      "path": "presentations/kapitola_05_pravdepodobnost_Adam.mp3",
+      "path": "presentations/kapitola_05/kapitola_05_pravdepodobnost_Adam.mp3",
       "sha256": "0360b36716a5fa2ee350c7e905307466b37779a30b6af4b4e748df0c1e180cd8",
       "duration_seconds": 3075.6310204081633,
       "bytes": 98524007,

@@ -1,12 +1,12 @@
 {
   "date": "2026-11-09",
-  "script": "presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt",
+  "script": "presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt",
   "script_sha256": "8d0a0c9aeca671529237c8ad9eef94779080d46ab5c7337ad6d207ab63b6877a",
   "word_count": 4774,
   "character_count": 33500,
   "sources": [
     {
-      "path": "presentations/kapitola_07_interval_t_test_a_ekvivalence.pptx",
+      "path": "presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence.pptx",
       "sha256": "c79796a4f0de45951bce133eb5ce3fed4abec6051b3c186af842f6e98326fa35"
     },
     {
@@ -820,7 +820,7 @@
   },
   "audio": {
     "date": "2026-11-09",
-    "file": "presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3",
+    "file": "presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3",
     "sha256": "f78f65c08c0d2032b7e91ed65d602319073348d78ae9522d193b75cd31102564",
     "bytes": 55747957,
     "duration_seconds": 2322.6524943310656,

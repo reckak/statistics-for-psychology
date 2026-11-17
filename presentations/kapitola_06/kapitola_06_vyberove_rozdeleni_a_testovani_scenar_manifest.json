@@ -1,12 +1,12 @@
 {
   "date": "2026-11-02",
-  "script": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt",
+  "script": "presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt",
   "script_sha256": "c24a05283850e368cbdb4b1ab3e373fbceae57f8c5bc299d2a36b93c1f2ea45c",
   "word_count": 5714,
   "character_count": 40334,
   "sources": [
     {
-      "path": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani.pptx",
+      "path": "presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani.pptx",
       "sha256": "664b7d7026dde1ec1653d9c41c4aaace38a43d4666510b6e2286750f011d4003"
     },
     {
@@ -681,7 +681,7 @@
   },
   "audio": {
     "date": "2026-11-02",
-    "file": "presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3",
+    "file": "presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3",
     "sha256": "73f8884ac38e5321abe5f95dc05f39881aacbc1862b6189a90428123b4da1333",
     "bytes": 66412721,
     "duration_seconds": 2767.0214739229027,

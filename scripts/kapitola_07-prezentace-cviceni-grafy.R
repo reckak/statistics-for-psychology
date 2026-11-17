@@ -1,11 +1,11 @@
 # Helper graphs for the Excel exercises of the chapter 7 presentation
-# (presentations/kapitola_07_interval_t_test_a_ekvivalence_cviceni.xlsx, sheets U1 to U4).
+# (presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_cviceni.xlsx, sheets U1 to U4).
 # Inputs are read from the workbook, so the graphs follow its data. Needs the readxl package.
 # Run from the project root: Rscript scripts/kapitola_07-prezentace-cviceni-grafy.R
-# Output: presentations/kapitola_07_interval_t_test_a_ekvivalence_cviceni_grafy.pdf, one graph per page (16:9).
+# Output: presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_cviceni_grafy.pdf, one graph per page (16:9).
 suppressPackageStartupMessages(library(readxl))
-wb <- 'presentations/kapitola_07_interval_t_test_a_ekvivalence_cviceni.xlsx'
-out_file <- 'presentations/kapitola_07_interval_t_test_a_ekvivalence_cviceni_grafy.pdf'
+wb <- 'presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_cviceni.xlsx'
+out_file <- 'presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_cviceni_grafy.pdf'
 old_options <- options(OutDec=',')
 
 cells <- function(sheet,range) {

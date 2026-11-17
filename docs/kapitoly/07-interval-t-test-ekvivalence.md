@@ -84,9 +84,9 @@ sloupec určuje konkrétní **procvičení**.
 
 ### Příklady, vizualizace a soubory
 
-**Doprovodný scénář (2026-11-09):** [mluvený text k prezentaci](../../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
+**Doprovodný scénář (2026-11-09):** [mluvený text k prezentaci](../../presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
 pokrývá snímky 1–32 místního PPTX, bez závěrečného procvičování a nepovinných rozšíření;
-[podklady a kontroly](../../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md).
+[podklady a kontroly](../../presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md).
 Jde o komentář k prezentaci, rozsah kapitoly se nemění. Na následnou žádost téhož dne
 vytvořena místní nahrávka hlasem Adam (38:43, 32 značek snímků); technicky ověřena,
 bez skutečného poslechu. Podrobnosti a omezení jsou v průvodním dokumentu.

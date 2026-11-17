@@ -23,10 +23,10 @@ Dlouhé číselné výrazy a konkrétní hlas mohou skutečné tempo změnit.
 Pořadí, titulky, viditelný text, tabulky a poznámky byly načteny z PPTX.
 Vizuálně bylo prohlédnuto všech 13 vložených výkladových obrázků
 (grafy a diagramy). Podrobnosti byly porovnány s příslušnými pasážemi
-[kapitoly](../quarto/kapitola_05.qmd), její
-[karty](../docs/kapitoly/05-pravdepodobnost.md) a
-[terminologického registru](../docs/SLOVNIK.md#kapitola-05).
-Postup odpovídá [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md).
+[kapitoly](../../quarto/kapitola_05.qmd), její
+[karty](../../docs/kapitoly/05-pravdepodobnost.md) a
+[terminologického registru](../../docs/SLOVNIK.md#kapitola-05).
+Postup odpovídá [TEXT2SPEECH.md](../../docs/TEXT2SPEECH.md).
 Nové odborné téma ani terminologická konvence se nezavádí.
 
 [Manifest](kapitola_05_pravdepodobnost_scenar_manifest.json) uchovává
@@ -84,7 +84,7 @@ nikoli o tvrzení o skutečné výslovnosti. Scénář nepoužívá SSML ani IPA
 
 Na následnou výslovnou žádost autora byla celá výkladová část převedena
 hlasem Adam pomocí Creative Claw. Místní výstup je
-`presentations/kapitola_05_pravdepodobnost_Adam.mp3`; generované audio
+`presentations/kapitola_05/kapitola_05_pravdepodobnost_Adam.mp3`; generované audio
 je podle pravidel ignorované Gitem, není součástí veřejného PR ani webu.
 
 Skutečná délka je **51 minut 15,63 sekundy**, velikost 98 524 007 bajtů,

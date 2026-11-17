@@ -29,9 +29,9 @@ PPTX ani DOCX nebyly měněny; prezentace nebyla znovu renderována
 v PowerPointu a stránkování DOCX nebylo znovu ověřováno ve Wordu.
 
 Výklad byl porovnán s relevantními pasážemi
-[kapitoly 8](../quarto/kapitola_08.qmd), její
-[karty](../docs/kapitoly/08-porovnani-dvou-prumeru.md),
-[terminologického registru](../docs/SLOVNIK.md#kapitola-08)
+[kapitoly 8](../../quarto/kapitola_08.qmd), její
+[karty](../../docs/kapitoly/08-porovnani-dvou-prumeru.md),
+[terminologického registru](../../docs/SLOVNIK.md#kapitola-08)
 a platnými konvencemi R53, R59–R61, R74, R76 a R77.
 Scénář respektuje užší rozsah prezentace: ruční výpočet Welchových stupňů
 volnosti ani intervalů pro Cohenovo *d* nevyučuje.
@@ -66,7 +66,7 @@ v uvedeném zaokrouhlení. Ve výpočtech se používají přesnější vstupy,
 ne již zaokrouhlené mezivýsledky.
 
 Kontrola vycházela z pevných vstupů a zdrojových souhrnů v
-[kapitolovém skriptu](../scripts/kapitola_08.R); nepoužívala jeho výpočetní
+[kapitolovém skriptu](../../scripts/kapitola_08.R); nepoužívala jeho výpočetní
 funkce. U souhrnných vstupů vytvořila deterministické pomocné vektory
 se zadanými průměry a výběrovými směrodatnými odchylkami pro kontrolu
 testu a intervalu. Nejde o rekonstrukci skutečných individuálních dat.
@@ -78,7 +78,7 @@ název funkce je převzat z aktuálních podkladů.
 ## Slovník výslovnosti
 
 Při přípravě scénáře bylo zamýšlené pokračování dosavadních nahrávek podle
-[projektových pravidel](../docs/TEXT2SPEECH.md) je Creative Claw,
+[projektových pravidel](../../docs/TEXT2SPEECH.md) je Creative Claw,
 model `speech/heygen-voice-1`, český hlas Adam, rychlost 1.
 Dostupnost ani parametry služby nebyly při přípravě samotného textu
 ověřovány. Před následným převodem bylo ověřeno aktuální rozhraní
@@ -153,7 +153,7 @@ Z WAV bylo lokálně vytvořeno jediné MP3 se společnou úpravou hlasitosti
 celé nahrávky a 31 značkami snímků. Značky vycházejí z časů slov
 poskytovatele a skutečných délek dekódovaných částí, nikoli z počtu slov.
 
-Výstup: `presentations/kapitola_08_porovnani_dvou_prumeru_Adam.mp3`.
+Výstup: `presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_Adam.mp3`.
 Skutečná délka je přibližně **43:09**. MP3 zůstává místním souborem
 ignorovaným Gitem; nebylo přidáno do prezentace ani publikováno na webu.
 Scénář, slovník a veřejné údaje o výstupu uchovává manifest. Přesné
