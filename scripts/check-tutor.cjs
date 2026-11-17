@@ -132,7 +132,7 @@ function subsequence(needle, haystack) {
   for (const token of haystack) if (token === needle[p]) p++;
   return p === needle.length;
 }
-const expectedSolutions = {kapitola_01: 9, kapitola_02: 10, kapitola_03: 15,
+const expectedSolutions = {kapitola_01: 9, kapitola_02: 10, kapitola_03: 16,
   kapitola_04: 10, kapitola_05: 12, kapitola_06: 16};
 for (const d of documents.filter(d => d.kind !== 'overview')) {
   const before = parseSource(q, d.source, false);

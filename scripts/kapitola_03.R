@@ -336,6 +336,47 @@ ch3_draw('korekce-rozptylu',{
     col=c(cols,'#223744','#223744'),pch=c(16,16,4,NA),pt.cex=c(1,1,1.3,NA),
     lty=c(NA,NA,NA,2),lwd=c(NA,NA,2.5,2),bty='n',cex=.85,ncol=2)
 },height=5.2)
+# Optional extension: every equally likely sample of two (with replacement)
+# from a two-value population; exact long-run averages, no simulation.
+ch3_all_samples <- function(pop, n=2L) {
+  mu <- mean(pop); s2 <- mean((pop-mu)^2)
+  x <- as.matrix(expand.grid(rep(list(pop), n)))[, n:1, drop=FALSE]
+  m <- rowMeans(x)
+  z <- data.frame(label=apply(x,1,paste,collapse=', '), m=m,
+    ss_mu=rowSums((x-mu)^2), loss=n*(m-mu)^2, ss_m=rowSums((x-m)^2))
+  z$var_n <- z$ss_m/n; z$var_n1 <- z$ss_m/(n-1)
+  stopifnot(isTRUE(all.equal(z$ss_mu, z$ss_m+z$loss)),
+    isTRUE(all.equal(mean(z$ss_mu), n*s2)), isTRUE(all.equal(mean(z$loss), s2)),
+    isTRUE(all.equal(mean((m-mu)^2), s2/n)),
+    isTRUE(all.equal(mean(z$ss_m), (n-1)*s2)),
+    isTRUE(all.equal(mean(z$var_n), (n-1)/n*s2)), isTRUE(all.equal(mean(z$var_n1), s2)))
+  z
+}
+ch3_decomposition <- ch3_all_samples(c(4,8))
+ch3_decomposition_u16 <- ch3_all_samples(c(3,9))
+stopifnot(identical(ch3_decomposition$ss_mu, rep(8,4)), identical(ch3_decomposition$loss, c(8,0,0,8)),
+  identical(ch3_decomposition$var_n1, c(0,8,8,0)), mean(ch3_decomposition$var_n)==2,
+  identical(ch3_decomposition_u16$loss, c(18,0,0,18)), mean(ch3_decomposition_u16$var_n)==4.5,
+  mean(ch3_decomposition_u16$var_n1)==9,
+  # The five times around a hypothetical reference point of 7 minutes.
+  sum((ch3_x-7)^2)==27, sum((ch3_x-mean(ch3_x))^2)==22, length(ch3_x)*(mean(ch3_x)-7)^2==5,
+  # Any n: the simulated population (variance 8) and n = 5.
+  isTRUE(all.equal(mean(ch3_all_samples(ch3_population,3L)$var_n1), 8)), (5*8-8)/5==6.4)
+write.csv(rbind(ch3_decomposition,ch3_decomposition_u16),'tmp/chapter-03-build/decomposition.csv',row.names=FALSE)
+ch3_draw('rozklad-souctu-ctvercu',{
+  z<-ch3_decomposition;cols<-c('#267888','#E8B98A')
+  h<-rbind(c(z$ss_m,mean(z$ss_m)),c(z$loss,mean(z$loss)))
+  par(mar=c(4.6,4.6,3.4,1))
+  b<-barplot(h,col=cols,border='white',space=c(.35,.35,.35,.35,1),ylim=c(0,8.6),
+    names.arg=c(z$label,'Průměr'),xlab='Výběr dvou hodnot (min)',
+    ylab='Součet čtverců kolem populačního průměru (min²)',axes=FALSE)
+  axis(2,at=seq(0,8,2))
+  for(j in seq_along(b)) for(i in 1:2) if(h[i,j]>0)
+    text(b[j],(if(i==1) 0 else h[1,j])+h[i,j]/2,h[i,j],font=2,col=c('white','#223744')[i])
+  abline(v=mean(b[4:5]),lty=3,col='#667078')
+  legend('top',inset=c(0,-.14),xpd=NA,horiz=TRUE,bty='n',fill=rev(cols),border='white',cex=.9,
+    legend=c('Úbytek n (m − μ)²','Součet čtverců kolem výběrového průměru m'))
+},width=7.5,height=4.8)
 ch3_draw('entropie',{
   par(mfrow=c(1,3),mar=c(4,4.6,3,.4),cex=.9)
   entropies <- list(c(1,0,0,0),c(.5,.25,.25,0),rep(.25,4))

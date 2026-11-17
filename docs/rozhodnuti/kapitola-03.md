@@ -171,3 +171,38 @@ konvergentní informace“. Odpovědi na upřesňující otázky téhož dne:
 „SKEW a KURT povinně“, „Zvýraznit chvosty“, „4.7.4 + rozšířit cvičení 10“.
 Provedení: záznam „Kapitoly 3 a 4: povinné ukazatele tvaru“ v
 [historii](../../quarto/README.md).
+
+<a id="r83-rozsireni-proc-n-minus-1"></a>
+
+## R83 — Nepovinné rozšíření: proč právě n − 1
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r83-rozsireni-proc-n-minus-1). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-17. **Rozsah:** kapitola 3 (oddíl o dělení
+$n-1$, cvičení, sešit).
+
+- Na konec oddílu „Proč při odhadování používáme $n-1$“ patří sbalené
+  nepovinné rozšíření, které zdůvodňuje velikost korekce: při známém μ by
+  stačilo dělit $n$; součet čtverců kolem μ se rozkládá na součet čtverců
+  kolem $m$ a $n(m-\mathrm{μ})^2$; tato část má dlouhodobý průměr σ².
+- Rozklad se ověřuje číselně a zdůvodňuje slovně (nulový součet odchylek),
+  bez algebraického důkazu a bez značky očekávané hodnoty; používá se
+  „dlouhodobý průměr“. Část $n(m-\mathrm{μ})^2$ se v rozšíření pracovně
+  nazývá „úbytek“; nejde o nový termín slovníku.
+- Úplný výčet používá populaci 4 a 8 minut a výběry dvou hodnot s vracením;
+  doprovází jej obrázek rozkladu a nepovinné cvičení 16 (populace 3 a 9 minut).
+- Povinný rozsah, shrnutí kapitoly, slovníček, značení ani přehled Excelu
+  se nemění. Poznámka o střední kvadratické chybě se nezařazuje.
+
+**Důvod:** stupně volnosti vysvětlují omezení mezi odchylkami, ne to, proč
+podhodnocení napraví právě dělení $n-1$; hlavní výklad vztah jen uvádí
+a ilustruje simulací.
+
+**Doklad:** pokyn autora 2026-11-17: „u výběrového rozptylu by mělo být …
+uvedeno nepovinné rozšíření s podrobnějším vysvětlením toho, proč dělíme
+n - 1 místo n“ s odkazem na vzorové vysvětlení (tři kroky odvození a příklad
+se dvěma pozorováními). Odpovědi na upřesňující otázky téhož dne: příklad
+„4 a 8 minut“, odvození „Číselně + slovní zdůvodnění“, doplňky „Nepovinné
+cvičení 16, Obrázek“; následně schválený plán. Provedení: záznam
+„Nepovinné rozšíření o dělení n − 1 v kapitole 3“ v
+[historii](../../quarto/README.md#rozsireni-n-minus-1-20261117).

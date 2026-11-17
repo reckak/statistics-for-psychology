@@ -435,6 +435,61 @@ Na obrázku [-@fig-korekce-rozptylu] každý bod představuje rozptyl jednoho v�
 
 Korekce se týká tohoto konkrétního problému odhadování. Sama nenapravuje nereprezentativní výběr, chybné měření ani závislost pozorování. V uvedené simulaci jsou podmínky záměrně splněny.
 
+Proč je správným dělitelem právě $n-1$, a ne třeba $n-2$, zdůvodňuje nepovinné rozšíření.
+
+::::: {#rozsireni-korekce-rozptylu .callout-note collapse="true" title="Nepovinné rozšíření: proč právě n − 1"}
+Simulace ukázala, *že* dělení $n-1$ podhodnocení odstraňuje. Toto rozšíření ve čtyřech krocích vysvětluje, *proč* k tomu stačí zmenšit dělitele právě o jednu. Vystačíme s pojmy tohoto oddílu. Dlouhodobým průměrem rozumíme stejně jako výše průměr výsledků z velmi mnoha opakovaných výběrů.
+
+**1. Kdybychom znali populační průměr, dělili bychom $n$.** Populační rozptyl $\mathrm{σ}^2$ je průměr čtverců odchylek všech hodnot populace od $\mathrm{μ}$. Čtverec odchylky jedné náhodně vybrané hodnoty od $\mathrm{μ}$ má proto dlouhodobý průměr právě $\mathrm{σ}^2$. Výběr obsahuje $n$ takových hodnot, takže součet jejich čtverců odchylek od $\mathrm{μ}$ má dlouhodobý průměr $n\,\mathrm{σ}^2$. Po vydělení $n$ bychom dostali nestranný odhad bez jakékoli korekce.
+
+**2. Výběrový průměr součet čtverců zmenší o přesně danou část.** Populační průměr zpravidla neznáme, a proto odchylky počítáme od $m$. Už víme, že součet čtverců tím nemůže vzrůst. Lze říci i to, o kolik klesne:
+
+$$\sum_{i=1}^{n}(x_i-\mathrm{μ})^2=\sum_{i=1}^{n}(x_i-m)^2+n\,(m-\mathrm{μ})^2.$$
+
+Vlevo je součet čtverců odchylek od populačního průměru. Vpravo stojí součet čtverců odchylek od výběrového průměru a k němu přičtený **úbytek** $n\,(m-\mathrm{μ})^2$: čtverec vzdálenosti obou průměrů vynásobený počtem pozorování. Čím dál vyšel výběrový průměr od populačního, tím víc součet čtverců kolem $m$ ubral.
+
+Rozklad si ověříme na našich pěti dobách 4, 5, 5, 6 a 10 minut s průměrem $m=6$ a součtem čtverců 22 min². Kdyby populační průměr činil 7 minut, byly by odchylky od něj −3, −2, −2, −1 a 3. Jejich čtverce 9, 4, 4, 1 a 9 dávají součet 27 min². Úbytek je $5\times(6-7)^2=5$ min² a skutečně $27=22+5$.
+
+Rovnost platí pro každý výběr a pro jakýkoli referenční bod, nejen pro $\mathrm{μ}$. Odchylka hodnoty od $\mathrm{μ}$ se totiž skládá z její odchylky od $m$ a z posunu $m-\mathrm{μ}$, který je pro všechna pozorování stejný. Při umocnění přibude ke čtverci odchylky a čtverci posunu ještě dvojnásobek jejich součinu. Tyto součiny se v součtu vyruší, protože se odchylky od $m$ sečtou na nulu. Je to táž podmínka, která určila počet stupňů volnosti.
+
+**3. Úbytek má dlouhodobý průměr přesně jedno $\mathrm{σ}^2$.** Ukážeme to na populaci tak malé, že lze vypsat všechny možné výběry. Dvě stejně zastoupené hodnoty, 4 a 8 minut, mají $\mathrm{μ}=6$ minut. Čtverce odchylek jsou 4 a 4, takže $\mathrm{σ}^2=4$ min². Vybíráme s vracením dvě hodnoty ($n=2$). Nastat mohou čtyři stejně pravděpodobné výběry:
+
+::: table-scroll
+| Výběr (min) | Průměr $m$ (min) | Součet čtverců kolem $\mathrm{μ}$ | Úbytek $n\,(m-\mathrm{μ})^2$ | Součet čtverců kolem $m$ | Rozptyl s dělením $n$ | Rozptyl s dělením $n-1$ |
+|:------------|------:|------:|------:|------:|------:|------:|
+| 4, 4 | 4 | 8 | 8 | 0 | 0 | 0 |
+| 4, 8 | 6 | 8 | 0 | 8 | 4 | 8 |
+| 8, 4 | 6 | 8 | 0 | 8 | 4 | 8 |
+| 8, 8 | 8 | 8 | 8 | 0 | 0 | 0 |
+| **Průměr** | **6** | **8** | **4** | **4** | **2** | **4** |
+
+: Všechny výběry dvou hodnot z populace 4 a 8 minut {#tbl-k03-12}
+
+:::
+
+::: {.table-note}
+*Poznámka.* Součty čtverců, úbytek i rozptyly jsou v min². Poslední řádek je průměr čtyř stejně pravděpodobných výběrů, tedy přesný dlouhodobý průměr.
+:::
+
+V každém řádku platí rozklad z druhého kroku: třetí sloupec je součtem čtvrtého a pátého. Součet čtverců kolem $\mathrm{μ}$ má průměr $8=n\,\mathrm{σ}^2$, jak říká první krok. Úbytek má průměr 4 min², tedy jedno $\mathrm{σ}^2$. Kolem výběrového průměru proto v průměru zbývá jen $8-4=4$ min². Dělení $n$ pak dává v průměru 2 min², polovinu skutečného rozptylu, kdežto dělení $n-1$ přesně 4 min². Žádný jednotlivý výběr přitom nevede k hodnotě 4: nestranný je postup, nikoli každý výsledek.
+
+![V každém výběru je součet čtverců kolem populačního průměru 8 min². Část, o kterou jej výběrový průměr zmenší, činí v průměru 4 min², tedy jedno $\mathrm{σ}^2$; kolem výběrového průměru proto v průměru zbývá jen $(n-1)\,\mathrm{σ}^2$.](../assets/chapter-03/plots/rozklad-souctu-ctvercu.svg){#fig-rozklad-souctu-ctvercu fig-alt="Pět skládaných sloupců o celkové výšce 8 minut čtverečních: čtyři možné výběry dvou hodnot z populace 4 a 8 minut a jejich průměr. U výběrů 4, 4 a 8, 8 tvoří celý sloupec úbytek 8 a součet čtverců kolem výběrového průměru je 0. U výběrů 4, 8 a 8, 4 je úbytek 0 a součet čtverců kolem výběrového průměru 8. Sloupec průměru je rozdělen na 4 a 4."}
+
+Na obrázku [-@fig-rozklad-souctu-ctvercu] má každý sloupec stejnou výšku, liší se jen jeho rozdělení. Úbytek je velký tam, kde výběrový průměr vyšel daleko od populačního (výběry 4, 4 a 8, 8), a nulový tam, kde se s ním shoduje.
+
+**4. Proč to platí pro každou velikost výběru.** Úbytek závisí na tom, jak daleko vyšel výběrový průměr od populačního. Výběrové průměry kolísají kolem $\mathrm{μ}$ méně než jednotlivé hodnoty, a to tím méně, čím větší je výběr. Pro nezávislá pozorování ze stejného rozdělení má čtverec odchylky $(m-\mathrm{μ})^2$ dlouhodobý průměr $\mathrm{σ}^2/n$. Tento vztah vysvětluje [kapitola o výběrovém rozdělení](kapitola_06.qmd#sec-chyba-prumeru). V naší tabulce jsou čtverce odchylek průměrů 4, 0, 0 a 4, v průměru 2 min², což je právě $4/2$. Úbytek je $n$krát větší, a jeho dlouhodobý průměr je proto
+
+$$n\times\frac{\mathrm{σ}^2}{n}=\mathrm{σ}^2.$$
+
+Velikost výběru se vykrátí: větší výběr má průměr blíže k $\mathrm{μ}$, ale tuto menší vzdálenost započítá vícekrát. Součet čtverců odchylek od $m$ má tedy dlouhodobý průměr
+
+$$n\,\mathrm{σ}^2-\mathrm{σ}^2=(n-1)\,\mathrm{σ}^2.$$
+
+Vydělíme-li jej $n$, dostaneme v průměru $(n-1)/n$ násobek $\mathrm{σ}^2$, tedy vztah uvedený v hlavním výkladu. Vydělíme-li jej $n-1$, dostaneme v průměru celé $\mathrm{σ}^2$. Pro simulaci v tabulce [-@tbl-k03-07] s $\mathrm{σ}^2=8$ a $n=5$ vychází $(5\times8-8)/5=6{,}4$ min², ve shodě s nasimulovanou hodnotou 6,41.
+
+Přizpůsobení průměru datům tedy „stojí“ v průměru právě jedno $\mathrm{σ}^2$ z $n$, ať je výběr jakkoli velký. Jedna podmínka svazující odchylky tak odpovídá jednomu ubranému $\mathrm{σ}^2$, a proto dělíme počtem stupňů volnosti $n-1$. Zdůvodnění se opírá o nezávislá pozorování ze stejného rozdělení; kdybychom $\mathrm{μ}$ znali a odchylky počítali od něj, žádný úbytek by nevznikl a dělili bychom $n$.
+:::::
+
 ### Směrodatná odchylka a původní jednotky {#sec-smerodatna-odchylka}
 
 Rozptyl je ve „čtverečních“ jednotkách (zde v min²), nikoli v původních jednotkách měření. Pro srozumitelnější vyjádření variability se vrátíme k minutám pomocí **druhé odmocniny (*square root*)**. Odmocnina z nezáporného čísla je nezáporné číslo, jehož druhá mocnina se rovná původní hodnotě. Například $\sqrt{9}=3$, protože $3^2=9$.
@@ -1043,4 +1098,37 @@ Soubor obsahuje čtyřikrát −2, pětkrát −1, desetkrát 1 a jednou 3 body.
 Počet hodnot je 20 a součet $4(-2)+5(-1)+10(1)+1(3)=0$, tedy průměr 0. Odchylky jsou totožné s hodnotami. Součet třetích mocnin je $4(-8)+5(-1)+10(1)+1(27)=0$. Rozptyl s dělením $n$ je $(4\times4+5\times1+10\times1+1\times9)/20=2$, takže jmenovatel koeficientu není nulový a $g_1=0$. Soubor přesto není souměrný: například hodnota 3 nemá protějšek −3 a četnosti hodnot −1 a 1 se liší. Nulový součet třetích mocnin je slabší podmínka než souměrnost.
 
 Špičatost používá čtvrté mocniny odchylek a jejich přepočet vzhledem k variabilitě. U levého souboru v obrázku je průměr čtverců 0,2 a čtvrtých mocnin rovněž 0,2: špičatost je $0{,}2/0{,}2^2=5$ a exces 2. Vpravo jsou tyto průměry 0,36 a 1,8: špičatost je $1{,}8/0{,}36^2\approx13{,}89$ a exces 10,89. Stejných osmdesát hodnot ve středu tedy neurčuje vliv ostatních hodnot; rozhodly dvě hodnoty vzdálené tři body od středu, jejichž čtvrté mocniny jsou 81. Výšku sloupce nelze zaměňovat za exces ani špičatost.
+:::
+
+### 16. Nepovinně: všechny výběry a dělení $n-1$
+
+Vstupy v [sešitu ke kapitole](../data/kapitola_03.xlsx): `U16_populace` A2:A3.
+
+Populaci tvoří dvě stejně zastoupené doby, 3 a 9 minut. Určete $\mathrm{μ}$ a $\mathrm{σ}^2$. Vypište všechny stejně pravděpodobné výběry dvou hodnot s vracením a pro každý vypočtěte průměr, součet čtverců odchylek od $\mathrm{μ}$, součet čtverců odchylek od $m$ a úbytek $n\,(m-\mathrm{μ})^2$. Ověřte, že v každém výběru platí rozklad z [nepovinného rozšíření](#rozsireni-korekce-rozptylu). Potom zprůměrujte rozptyly s dělením $n$ a s dělením $n-1$ a porovnejte je s $\mathrm{σ}^2$. Nakonec posuďte výrok: „Dělíme $n-1$, protože jedno pozorování je k ničemu.“
+
+::: {.callout-note collapse="true" title="Ukázat řešení"}
+Populační průměr je $(3+9)/2=6$ minut. Odchylky −3 a 3 mají čtverce 9 a 9, takže $\mathrm{σ}^2=18/2=9$ min².
+
+::: table-scroll
+| Výběr (min) | Průměr $m$ (min) | Součet čtverců kolem $\mathrm{μ}$ | Úbytek $n\,(m-\mathrm{μ})^2$ | Součet čtverců kolem $m$ | Rozptyl s dělením $n$ | Rozptyl s dělením $n-1$ |
+|:------------|------:|------:|------:|------:|------:|------:|
+| 3, 3 | 3 | 18 | 18 | 0 | 0 | 0 |
+| 3, 9 | 6 | 18 | 0 | 18 | 9 | 18 |
+| 9, 3 | 6 | 18 | 0 | 18 | 9 | 18 |
+| 9, 9 | 9 | 18 | 18 | 0 | 0 | 0 |
+| **Průměr** | **6** | **18** | **9** | **9** | **4,5** | **9** |
+
+: Všechny výběry dvou hodnot z populace 3 a 9 minut {#tbl-k03-13}
+
+:::
+
+::: {.table-note}
+*Poznámka.* Součty čtverců, úbytek i rozptyly jsou v min².
+:::
+
+Například ve výběru 3, 3 je $m=3$. Odchylky od $\mathrm{μ}=6$ jsou −3 a −3, součet jejich čtverců je 18 min². Odchylky od $m$ jsou nulové a úbytek činí $2\times(3-6)^2=18$ min². Rozklad platí v každém řádku: $18=18+0$ nebo $18=0+18$.
+
+Součet čtverců kolem $\mathrm{μ}$ má průměr $18=n\,\mathrm{σ}^2$. Úbytek má průměr 9 min², tedy jedno $\mathrm{σ}^2$, a kolem výběrového průměru zbývá v průměru $18-9=9=(n-1)\,\mathrm{σ}^2$. Rozptyl s dělením $n$ má proto průměr 4,5 min², jen polovinu skutečné hodnoty; při $n=2$ je poměr $(n-1)/n=1/2$. Rozptyl s dělením $n-1$ má průměr přesně 9 min². Žádný jednotlivý výběr ovšem hodnotu 9 nedává: výsledky jsou 0 nebo 18.
+
+Výrok je chybný. Do součtu čtverců vstupují obě pozorování a žádné se nevyřazuje. Dělíme $n-1$, protože průměr přizpůsobený datům ubere ze součtu čtverců v dlouhodobém průměru právě jedno $\mathrm{σ}^2$ z $n$. Kdybychom $\mathrm{μ}$ znali a počítali odchylky od něj, žádný úbytek by nevznikl a dělili bychom $n$.
 :::

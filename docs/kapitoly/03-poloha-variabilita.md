@@ -4,6 +4,8 @@
 
 [Mapa celé knihy](../OSNOVA.md) · [Rozcestník zdrojů](../ZDROJE.md)
 
+**Kontrola souladu s textem 2026-11-17 (rozšíření o dělení n − 1):** podle [R83](../rozhodnuti/kapitola-03.md#r83-rozsireni-proc-n-minus-1) nové nepovinné rozšíření [Proč právě n − 1](../../quarto/kapitola_03.qmd#rozsireni-korekce-rozptylu) na konci oddílu o korekci, obrázek rozkladu součtu čtverců, nepovinné cvičení 16 a dva listy sešitu; povinný text získal jedinou větu s odkazem. Ověřen dotčený oddíl, cvičení 16 a sešit; ostatní obsah se nemění.
+
 **Kontrola souladu s textem 2026-11-01 (název a obrázky):** podle [R58](../rozhodnuti/spolecne-konvence.md#r58-nazvy-knihy-a-kapitol) nový název kapitoly „Ukazatele polohy, variability a tvaru“ (ID kapitoly beze změny); u grafů kapitoly zvětšen odstup popisku osy od hodnot, obsah grafů ani výklad se nemění.
 
 **Kontrola souladu s textem 2026-10-17 (ukazatele tvaru):** podle [R47](../rozhodnuti/kapitola-03.md#r47-ukazatele-tvaru) nový povinný oddíl [Ukazatele tvaru](../../quarto/kapitola_03.qmd#sec-ukazatele-tvaru), obrázek modelů tří úrovní šikmosti a excesu, přesun protipříkladu stejného vrcholu do povinné části, SKEW/KURT v Excelu, nové cvičení 13 a přečíslování nepovinných 14–15; ověřeny dotčené oddíly, shrnutí, cvičení a sešit.
@@ -44,7 +46,7 @@ momentových koeficientů jsou nepovinné, základní význam entropie je souč�
 | [Rozpětí](../../quarto/kapitola_03.qmd#sec-rozpeti) | Pozorované minimum/maximum versus meze nástroje; variační a mezikvartilové rozpětí. Přidávání údajů nemůže zmenšit rozpětí (nová hodnota je uvnitř dosavadního rozmezí, nebo za ním; příklad 7 a 12 minut), ale větší samostatný výběr nemusí mít vždy větší rozpětí. Kvartilový interval nemusí obsahovat přesně polovinu a rozdíl ordinálních kódů není vzdálenost. | 3, 7, 9 a 12. |
 | [Odchylky](../../quarto/kapitola_03.qmd#sec-odchylky) a [MeanAD](../../quarto/kapitola_03.qmd#sec-prumerna-absolutni) | Podepsané odchylky se kolem přesného průměru vyruší; absolutní hodnota převádí odchylku na vzdálenost. Výpočet MeanAD a jeho citlivost; odlišení nejednoznačné zkratky MAD od zdejších MeanAD/MedAD. | 5. |
 | [Čtverce a rozptyl](../../quarto/kapitola_03.qmd#sec-rozptyl) | Druhá mocnina, součet čtverců odchylek versus čtverce hodnot či součtu; geometrická plocha a čtvereční jednotky. Dělení n pro empirické rozdělení (u celé populace jde o σ²) versus výběrové s² s n−1; nemožnost výpočtu s² z jediné hodnoty. | 5. |
-| [Korekce a stupně volnosti](../../quarto/kapitola_03.qmd#sec-korekce-rozptylu) | Zavedení μ a σ² jako populačních protějšků m a s². Přizpůsobení průměru datům snižuje součet čtverců; podmínka nulového součtu váže poslední odchylku, žádná osoba se nevyřazuje. Nestrannost jako vlastnost opakovaného odhadování při uvedených předpokladech. Očekávání (n − 1)/n · σ²; simulace 20 000 výběrů pro každé n = 5, 20, 100 z pětihodnotové populace (μ = 6, σ² = 8) a vysvětlení, proč je podhodnocení 1/n výrazné u malých n. | 5–6; simulace není obecný důkaz. |
+| [Korekce a stupně volnosti](../../quarto/kapitola_03.qmd#sec-korekce-rozptylu) | Zavedení μ a σ² jako populačních protějšků m a s². Přizpůsobení průměru datům snižuje součet čtverců; podmínka nulového součtu váže poslední odchylku, žádná osoba se nevyřazuje. Nestrannost jako vlastnost opakovaného odhadování při uvedených předpokladech. Očekávání (n − 1)/n · σ²; simulace 20 000 výběrů pro každé n = 5, 20, 100 z pětihodnotové populace (μ = 6, σ² = 8) a vysvětlení, proč je podhodnocení 1/n výrazné u malých n. Nepovinně ([rozšíření](../../quarto/kapitola_03.qmd#rozsireni-korekce-rozptylu), R83): proč právě n − 1 ve čtyřech krocích — dělení n při známém μ; rozklad součtu čtverců kolem μ na součet kolem m a „úbytek“ n(m − μ)², ověřený na pěti časech (27 = 22 + 5) a slovně zdůvodněný nulovým součtem odchylek; úplný výčet čtyř výběrů n = 2 z populace 4 a 8 min (průměr úbytku σ² = 4, dělení n dává průměrně 2, n − 1 přesně 4); obecně úbytek n · σ²/n = σ², tedy (n − 1)σ², s dopředným odkazem na směrodatnou chybu průměru v kap. 6. Bez značky očekávané hodnoty a bez algebraického důkazu. | 5–6; simulace není obecný důkaz. Nepovinně 16. |
 | [Směrodatná odchylka](../../quarto/kapitola_03.qmd#sec-smerodatna-odchylka) | Odmocnina vrací původní jednotky, přibližná rovnost, značka σ a rozdíl od MeanAD. SD není stejná odchylka každého člověka ani bez modelu neurčuje podíl v m ± s. Nestrannost rozptylu se nepřenáší na jeho odmocninu. | 5–6 a 12. |
 | [MedAD](../../quarto/kapitola_03.qmd#sec-median-absolutnich) | Tři kroky přes medián dat a medián absolutních vzdáleností. Robustnost/odolnost a její meze; nulové MedAD nemusí znamenat shodná data. Používá se nepřepočtená hodnota, zmíněna softwarová škálovací konstanta. | 7. |
 | [Ořezání a winsorizace](../../quarto/kapitola_03.qmd#sec-orezani-winsorizace) | Vynechání versus nahrazení krajních hodnot nejbližší ponechanou hodnotou na téže straně, zachování originálů. Podíl na každém konci a zaokrouhlení počtu dolů; 10 dob a příklad 18 hodnot. Medián jako krajní případ ořezání; nevolit úpravu podle žádoucího výsledku a nezaměňovat odhadované charakteristiky. | 8. |
@@ -71,7 +73,7 @@ souborem této kapitoly. Podle výkladu obsahuje `Priklad` (pět časů v A2:A6)
 `Data` a `Souhrn` (spánek/paměť), `Rozsireni` a oddělené vstupy
 `Kvantily` A2:A12, `Orezani` A2:A11 a `Boxplot` A2:A42. Kontrolní výpočty
 jsou na `Kontrola_prikladu`, pět časů bez výpočtů na `Zaklad_data`.
-Další listy pokrývají menší příklady a všech 15 cvičení včetně zadaných
+Další listy pokrývají menší příklady (včetně `Dve_hodnoty` A2:A3 k nepovinnému rozšíření o dělení n − 1) a všech 16 cvičení včetně zadaných
 souhrnů; `Souhrn` B12:C13 obsahuje SKEW a KURT spánku a paměti. První list `Prehled` uvádí umístění. [Pokrytí cvičení](../DATA.md).
 
 | Příklad / lokátor | Didaktický účel a původ |
@@ -81,6 +83,7 @@ souhrnů; `Souhrn` B12:C13 obsahuje SKEW a KURT spánku a paměti. První list `
 | [Jedenáct různých časů](../../quarto/kapitola_03.qmd#fig-kvantil-interpolace) a [percentil/pořadí](../../quarto/kapitola_03.qmd#fig-percentil-a-poradi) | Úrovně přiřazené pozicím, detail 17. percentilu a opačné otázky „podíl → hodnota“ / „hodnota → zastoupení“. |
 | [Odchylky a čtverce](../../quarto/kapitola_03.qmd#fig-odchylky-ctverce) | Délky a plochy vysvětlují absolutní a kvadratické příspěvky; plocha nemění jednotku svislé osy. |
 | [Simulace korekce](../../quarto/kapitola_03.qmd#fig-korekce-rozptylu) | Opakované náhodné výběry s vracením ze známé modelové populace: bodový graf s jitterem ukazuje rozptyly jednotlivých výběrů (prvních 400 z 20 000 pro každé n) a křížkem průměry; ilustruje dlouhodobé podhodnocení při dělení n i trvající rozptýlenost jednotlivých výsledků (nestrannost ≠ přesnost). |
+| [Rozklad součtu čtverců](../../quarto/kapitola_03.qmd#fig-rozklad-souctu-ctvercu) (nepovinné rozšíření) | Skládané sloupce čtyř výběrů z populace 4 a 8 min a jejich průměru: stejná výška 8 min², různé rozdělení na úbytek a součet čtverců kolem m; přesný výčet, bez simulace. Vstup na listu `Dve_hodnoty`. |
 | [Deset časů](../../quarto/kapitola_03.qmd#fig-orezani-winsorizace) | Stejné krajní hodnoty, ale jiný počet členů/jmenovatel při ořezání a winsorizaci. |
 | [41 skórů](../../quarto/kapitola_03.qmd#fig-boxplot-03) | Vedle původních bodů ukazuje krabici, pomocné meze, skutečné konce vousů a samostatné body. |
 | [Strategie učení](../../quarto/kapitola_03.qmd#fig-entropie) | Tři rozdělení mezi čtyři kategorie oddělují koncentraci a rovnoměrnost bez nutnosti výpočtu logaritmů. |
@@ -114,7 +117,7 @@ zkontrolován 2026-11-07 pro dotčený oddíl a odkaz.
 
 ### Cvičení a očekávané dovednosti
 
-[Úlohy 1–15](../../quarto/kapitola_03.qmd#sec-cviceni-03) mají bezprostřední
+[Úlohy 1–16](../../quarto/kapitola_03.qmd#sec-cviceni-03) mají bezprostřední
 sbalená řešení na webu. Ručně vyžádané pracovní PDF kapitoly 3 přesouvá
 všechna řešení za všechna zadání, s obousměrnými odkazy; obsah úloh zachovává.
 Závěrečné přehledy nepřipojuje. Export ověřen 2026-10-13, viz
@@ -142,6 +145,7 @@ na dvě místa s tolerancí 0,01. Reportovací část 12 má vlastní přesnost.
 | 13. Šikmost a exces počtu vybavených slov | V Excelu získá SKEW −0,47 a KURT 0,48, propojí je s tečkovým grafem, na kopii bez platné nuly (−0,09; −0,25) ukáže citlivost bez vyřazení údaje a odmítne závěr o normalitě z koeficientů blízkých nule. |
 | 14. Nepovinně: entropie od četností | Spočítá entropii i normalizovanou variantu; odliší přidání prázdné kategorie od změny zastoupení a interpretuje úplnou koncentraci. |
 | 15. Nepovinně: nulová šikmost a stejný vrchol | Ověří nesouměrný protipříklad s g₁ = 0 a výpočtem vysvětlí různý exces při stejné četnosti vrcholu. |
+| 16. Nepovinně: všechny výběry a dělení n − 1 | Pro populaci 3 a 9 min (μ = 6, σ² = 9) vypíše čtyři výběry n = 2, ověří rozklad součtu čtverců, zprůměruje obě varianty rozptylu (4,5 a 9) a odmítne výklad „jedno pozorování je k ničemu“. |
 
 <a id="pojmy-hranice-a-návaznosti-2"></a>
 
@@ -164,7 +168,7 @@ interval nejistoty průměru se odlišuje od ± SD, nekonstruuje se.
 
 **Nepovinné:** [logaritmus, entropie a její normalizace](../../quarto/kapitola_03.qmd#rozsireni-entropie),
 [momenty a koeficienty](../../quarto/kapitola_03.qmd#rozsireni-momenty),
-[odpovídající Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03) a úlohy 14–15.
+[odpovídající Excel](../../quarto/kapitola_03.qmd#rozsireni-excel-03), [zdůvodnění dělení n − 1](../../quarto/kapitola_03.qmd#rozsireni-korekce-rozptylu) a úlohy 14–16.
 Kapitola 4 může předpokládat průměr, SD, kvantily, lineární převod, grafy
 a rozlišení dat/modelu; znalost logaritmů, entropického vzorce a momentů
 předpokládat nesmí. Na konci výkladu již existuje most k normální rodině,
@@ -175,7 +179,7 @@ nikoli ještě výpočet jejích ploch.
 
 Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z tematického rozcestníku a existujících záznamů použití. Samotný odkaz neznamená převzetí příkladu ani nové prostudování; přesné lokátory, použití, nálezy a rozsah ověření jsou v cílových kartách.
 
-- [U01](../zdroje/U01-howell.md#u01) — §2.6–2.12.
+- [U01](../zdroje/U01-howell.md#u01) — §2.6–2.12; k rozšíření o dělení n − 1 [čtení 2026-11-17](../zdroje/U01-howell.md#rozsireni-03-20261117).
 - [U06](../zdroje/U06-gravetter.md#u06) — kap. 3–4.
 - [U05](../zdroje/U05-dostal.md#u05) — kap. 3.
 - [U11](../zdroje/U11-russo.md#u11) — §2.5–2.10.

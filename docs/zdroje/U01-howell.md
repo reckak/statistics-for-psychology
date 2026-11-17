@@ -76,6 +76,10 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Doplnění při přípravě prezentace ke kapitole 7 (2026-11-09):** znovu přečtena cvičení kapitoly 7, s. 222–223 (PDF 246–247), úlohy 7.6–7.18 a začátek 7.19, v textové extrakci a obě strany také v obrazu. Data úlohy 7.6 (40 58 72 73 76 78 52 72 84 70 72) a souhrny úloh 7.13 (n = 28, m = 46,6, s = 6,8, náhoda 20 ze 100) a 7.14 (μ = 3,87, n = 36, m = 4,39, s = 2,61) se v obraze shodují s extrakcí. **Podmínky použití:** Howell u úlohy 7.6 výslovně uvádí, že hodnoty mají jen „téměř stejný“ průměr a směrodatnou odchylku jako studie Krugera a Dunninga (1999); v sešitu jsou proto označeny jako Howellova sestavená data. Úloha 7.8 porovnává odhady s průměrným skutečným percentilem týchž studentů, a protože jde o párovou situaci (kapitola 8), použita nebyla. Úlohy 7.11–7.12 a 7.16–7.19 pracují s rozdíly párových měření a patří kapitole 8. **Použití:** místní prezentace ke kapitole 7 adaptuje úlohy 7.6, 7.7 a 7.9 (úloha 3), doprovodný sešit úlohy 7.6–7.7, 7.13 a 7.14–7.15. Hodnoty řešení nezávisle přepočítány v R; podrobnosti v [historii práce](../../quarto/README.md#prezentace-kapitoly-7-20261109).
 
+<a id="rozsireni-03-20261117"></a>
+
+**Čtení k nepovinnému rozšíření kapitoly 3 (2026-11-17):** v textové extrakci (`pdftotext -layout`, čísla stran podle záhlaví extrakce) znovu přečten pododdíl „Unbiased Estimators“ §2.8, s. 45–47, včetně navazujícího výkladu stupňů volnosti. Howell uvádí, že průměr součtu čtverců děleného $N$ je $(N-1)/N$ násobkem populačního rozptylu, a korekci dále vysvětluje stupni volnosti; rozklad součtu čtverců ani úplný výčet výběrů neobsahuje. **Použití:** [rozšíření](../../quarto/kapitola_03.qmd#rozsireni-korekce-rozptylu) je vlastní výklad ([karta kapitoly 3](../kapitoly/03-poloha-variabilita.md#mapa-kapitola-03)); Howellova citace zůstává u tvrzení hlavního výkladu. **Omezení:** originální sazba stran v obraze znovu kontrolována nebyla.
+
 <a id="priprava-07-20261017"></a>
 
 ## Čtení pro návrh kapitoly 7 — 2026-10-17

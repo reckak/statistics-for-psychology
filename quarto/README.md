@@ -1,5 +1,52 @@
 # Autorská dokumentace
 
+<a id="rozsireni-n-minus-1-20261117"></a>
+
+## 2026-11-17 — Nepovinné rozšíření o dělení n − 1 v kapitole 3
+
+Na žádost autora doplněno na konec oddílu
+[Proč při odhadování používáme n − 1](kapitola_03.qmd#sec-korekce-rozptylu)
+nepovinné rozšíření [Proč právě n − 1](kapitola_03.qmd#rozsireni-korekce-rozptylu)
+([R83](../docs/rozhodnuti/kapitola-03.md#r83-rozsireni-proc-n-minus-1)):
+dělení $n$ při známém μ; rozklad součtu čtverců kolem μ na součet kolem $m$
+a „úbytek“ $n(m-\mathrm{μ})^2$, ověřený na pěti časech kapitoly a zdůvodněný
+slovně; úplný výčet čtyř výběrů dvou hodnot z populace 4 a 8 minut
+(tabulka `tbl-k03-12`); obecný závěr $(n-1)\,\mathrm{σ}^2$ s odkazem na
+směrodatnou chybu průměru v kapitole 6. Nový obrázek
+`rozklad-souctu-ctvercu.svg` (`scripts/kapitola_03.R`) a nepovinné cvičení 16
+(populace 3 a 9 minut, tabulka `tbl-k03-13`). Povinný text získal jedinou
+větu s odkazem; shrnutí, slovníček, značení ani přehled Excelu se neměnily.
+Sešit kapitoly 3 má dva nové vstupní listy `Dve_hodnoty` a `U16_populace`
+(34 listů). Aktualizována [karta kapitoly](../docs/kapitoly/03-poloha-variabilita.md#mapa-kapitola-03),
+[pokrytí daty](../docs/DATA.md#kapitola-3), mapa knihy a
+[karta Howella](../docs/zdroje/U01-howell.md#rozsireni-03-20261117).
+
+**Kontroly:** `scripts/kapitola_03.R` nově úplným výčtem ověřuje pro obě
+populace rozklad v každém výběru a průměry $n\,\mathrm{σ}^2$, $\mathrm{σ}^2$,
+$\mathrm{σ}^2/n$, $(n-1)\,\mathrm{σ}^2$ i obou variant rozptylu, dále čísla
+27 = 22 + 5 a 6,4 a obecnost pro $n=3$ z pětihodnotové populace;
+`check-chapter-03.R` prošel (16 řešení). Sešit sestaven
+`build-workbooks.ps1 -Chapter 3 -Verify` v desktopovém Excelu (247 vstupních
+buněk, numerické kontroly a kontrola chyb vzorců bez chyb);
+`check-workbooks.py` po renderu prošel. Celá kniha vykreslena;
+`check-html.cjs` prošel s upraveným počtem řešení (16) a obrázků (18)
+kapitoly 3 a s novým rozšířením v kontrole sbalení a mobilního přetékání;
+`check-doc-maps.cjs` bez chyb. Rozbalené rozšíření a řešení cvičení 16
+prohlédnuty na snímcích při šířce 1280 a 375 px: rovnice se stojatým μ a σ,
+souhrnný řádek tabulek, obrázek i odkazy jsou v pořádku, stránka vodorovně
+nepřetéká a široká tabulka se na mobilu posouvá místně. Didaktická revize:
+rozšíření nezavádí nový termín ani symbol, každý krok navazuje na pojmy
+oddílu a nejdelší věty zkontrolovány výpočtem.
+
+**Neověřeno:** pracovní PDF kapitoly 3 ani PDF celé knihy nebyly sestaveny
+(jen na vyžádání), takže sazba rozšíření a nové tabulky v PDF zkontrolována
+není. Balíčky AI tutora nebyly znovu exportovány ani vydány;
+`check-tutor.cjs` má upravený očekávaný počet řešení kapitoly 3 (16), ale
+proti dosavadnímu exportu neprochází už kvůli dřívější změně úvodu knihy.
+Howell byl čten jen v textové extrakci. Automatické číslo tabulek kapitoly 3
+za novou tabulkou se posunulo o jednu (ID beze změny). Porozumění rozšíření
+nebylo ověřeno na studentech.
+
 <a id="poznamky-bez-casu-a-podkladu-20261117"></a>
 
 ## 2026-11-17 — Podrobné poznámky k prezentacím bez času a odkazu na oddíl
