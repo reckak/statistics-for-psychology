@@ -237,12 +237,12 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 
 ### Doprovodný scénář k prezentaci
 
-K aktuální [prezentaci](../../presentations/kapitola_05_pravdepodobnost.pptx)
+K aktuální [prezentaci](../../presentations/kapitola_05/kapitola_05_pravdepodobnost.pptx)
 je od 2026-10-27 připraven
-[mluvený scénář](../../presentations/kapitola_05_pravdepodobnost_scenar.txt)
+[mluvený scénář](../../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar.txt)
 pro výkladové snímky 1–35, bez závěrečného procvičování. Identitu podkladů,
 mapu úseků, slovník výslovnosti a omezení ověření uvádí
-[průvodní dokument](../../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md).
+[průvodní dokument](../../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar_podklady.md).
 Na následnou výslovnou žádost autora vznikla také místní nahrávka hlasem
 Adam (51:15,63; snímky 1–35), ignorovaná Gitem. Technické ověření
 a jeho omezení popisuje tentýž průvodní dokument. Obsah kapitoly ani její

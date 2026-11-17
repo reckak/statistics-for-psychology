@@ -1,6 +1,6 @@
 {
   "date": "2026-11-17",
-  "script": "presentations/kapitola_08_porovnani_dvou_prumeru_scenar.txt",
+  "script": "presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar.txt",
   "script_sha256": "d6e1765026f0376547b99d1350d6cc5da85ea6906a5fc3edf54cb525d16e50c0",
   "encoding": "UTF-8",
   "word_count": 4934,
@@ -23,11 +23,11 @@
   ],
   "sources": [
     {
-      "path": "presentations/kapitola_08_porovnani_dvou_prumeru.pptx",
+      "path": "presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru.pptx",
       "sha256": "e44c81fef466fbbc0b25fbfefbedabafda67e738cfce1f0143c577d0ecc12efb"
     },
     {
-      "path": "presentations/kapitola_08_poznamky.docx",
+      "path": "presentations/kapitola_08/kapitola_08_poznamky.docx",
       "sha256": "21f3e8c4f3d931dda23914ccc5d1643ece3fbae3896cd4864f7cfbbaf542531d"
     },
     {
@@ -815,7 +815,7 @@
   },
   "audio": {
     "date": "2026-11-17",
-    "path": "presentations/kapitola_08_porovnani_dvou_prumeru_Adam.mp3",
+    "path": "presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_Adam.mp3",
     "sha256": "f664bb1f0f40042895dc22daa61ac2abc2654175c2af8c675e84a7441da71ded",
     "duration_seconds": 2589.570612244898,
     "decoded_duration_seconds": 2589.52,

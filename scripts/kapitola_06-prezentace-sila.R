@@ -1,8 +1,8 @@
 # Helper graphs for slide 36 of the chapter 6 presentation (task 4: what changes the power).
 # Normal model of the chapter: sigma = 15 s, 100 drivers per group, SE of the difference 2.12 s.
 # Run from the project root: Rscript scripts/kapitola_06-prezentace-sila.R
-# Output: presentations/kapitola_06_uloha_4_sila_grafy.pdf, one graph per page (16:9).
-out_file <- 'presentations/kapitola_06_uloha_4_sila_grafy.pdf'
+# Output: presentations/kapitola_06/kapitola_06_uloha_4_sila_grafy.pdf, one graph per page (16:9).
+out_file <- 'presentations/kapitola_06/kapitola_06_uloha_4_sila_grafy.pdf'
 old_options <- options(OutDec=',')
 
 # Chapter 6 palette (scripts/kapitola_06.R).

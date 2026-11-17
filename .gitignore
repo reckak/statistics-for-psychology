@@ -26,4 +26,4 @@ assets/chapter-10/plots/
 **/*.quarto_ipynb
 
 # Audio recordings of presentations stay local.
-presentations/*.mp3
+presentations/**/*.mp3

@@ -189,7 +189,7 @@ a před generováním doprovodného audia. Platí společně s
   Identifikátory ani přístupové údaje účtu nepatří do veřejné dokumentace.
 - Pracovní úseky a pomocné výstupy drž v `tmp/`; výsledné audio pojmenuj
   podle kapitoly a hlasu, například
-  `presentations/kapitola_04_normalni_rozdeleni_Adam.mp3`. Respektuj
+  `presentations/kapitola_04/kapitola_04_normalni_rozdeleni_Adam.mp3`. Respektuj
   pravidla repozitáře: generované MP3 se necommitují. Uložení a předání
   přizpůsob prostředí a zadání; scénář a manifest musí zůstat dohledatelné
   pro pozdější opravu. Webovou publikaci ani vložení do prezentace

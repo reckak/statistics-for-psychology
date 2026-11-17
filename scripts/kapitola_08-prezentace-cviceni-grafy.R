@@ -1,11 +1,11 @@
 # Helper graphs for the Excel exercises of the chapter 8 presentation
-# (presentations/kapitola_08_porovnani_dvou_prumeru_cviceni.xlsx, sheets U1 to U4).
+# (presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_cviceni.xlsx, sheets U1 to U4).
 # Inputs are read from the workbook, so the graphs follow its data. Needs the readxl package.
 # Run from the project root: Rscript scripts/kapitola_08-prezentace-cviceni-grafy.R
-# Output: presentations/kapitola_08_porovnani_dvou_prumeru_cviceni_grafy.pdf, one page per sheet (16:9).
+# Output: presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_cviceni_grafy.pdf, one page per sheet (16:9).
 suppressPackageStartupMessages(library(readxl))
-wb <- 'presentations/kapitola_08_porovnani_dvou_prumeru_cviceni.xlsx'
-out_file <- 'presentations/kapitola_08_porovnani_dvou_prumeru_cviceni_grafy.pdf'
+wb <- 'presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_cviceni.xlsx'
+out_file <- 'presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_cviceni_grafy.pdf'
 old_options <- options(OutDec=',')
 
 cells <- function(sheet,range) {

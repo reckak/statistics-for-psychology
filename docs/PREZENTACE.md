@@ -163,8 +163,8 @@ odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
 - V závěru prezentace uveď odkaz na sešit a názvy příslušných listů.
   Sešit musí být použitelný i samostatně, bez dohledávání zadání v PPTX
   nebo přístupu k neveřejným podkladům.
-- Sešit ukládej vedle prezentace v `presentations/` pod stejným základem
-  názvu s příponou `_cviceni.xlsx`. Jde o doprovodný materiál k výuce;
+- Sešit ukládej vedle prezentace do složky kapitoly `presentations/kapitola_NN/`
+  pod stejným základem názvu s příponou `_cviceni.xlsx`. Jde o doprovodný materiál k výuce;
   nenahrazuje jediný studentský datový sešit příslušné kapitoly učebnice.
 - Pro reprodukovatelnou tvorbu, české vzorce a ověření v desktopovém Excelu
   platí [společná pravidla pro sešity](../AGENTS.md#data-ke-kapitolám).
@@ -180,8 +180,10 @@ odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
 
 ## Soubory, úpravy a export poznámek
 
-- Prezentace ukládej jako PPTX do `presentations/` s názvem
-  identifikujícím kapitolu a téma.
+- Prezentace ukládej jako PPTX do složky kapitoly `presentations/kapitola_NN/`
+  (například `presentations/kapitola_04/`) s názvem identifikujícím kapitolu
+  a téma. Do téže složky patří všechny doprovodné materiály kapitoly:
+  poznámky, sešit cvičení, PDF exporty a grafy, scénář, manifest a místní audio.
 - Před úpravou přečti aktuální soubor včetně poznámek. Zachovej
   uživatelovy změny; neobnovuj prezentaci ze staršího generátoru
   bez jejich začlenění.

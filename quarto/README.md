@@ -1,5 +1,31 @@
 # Autorská dokumentace
 
+## 2026-11-17 — Materiály k prezentacím ve složkách podle kapitol
+
+Na žádost autora rozděleny soubory ve `presentations/` do podsložek
+`presentations/kapitola_01/` až `presentations/kapitola_08/`; názvy souborů
+se nezměnily. Přesunuty všechny PPTX, PDF, DOCX, sešity cvičení, PDF s grafy,
+scénáře, manifesty a průvodní dokumenty, místně i Gitem ignorované MP3.
+Pravidlo umístění aktualizováno v [pokynech k prezentacím](../docs/PREZENTACE.md)
+a příklad cesty v [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md); `.gitignore` nyní
+ignoruje `presentations/**/*.mp3` a `.gitattributes` míří na novou cestu
+scénáře kapitoly 8. Upraveny vstupní a výstupní cesty skriptů
+`scripts/kapitola_0[678]-prezentace-*.R`, cesty v manifestech a průvodních
+dokumentech, odkazy v kartách kapitol 5–8 a hypertextové odkazy v této
+historii. Cesty uvedené v kódu ve starších záznamech zachycují tehdejší stav
+a zůstávají beze změny. Obsah souborů kromě cest se neměnil; samotné MP3,
+PPTX, DOCX ani XLSX nebyly otevírány ani upravovány.
+
+Ověřeno, že všechny relativní odkazy na `presentations/` v dokumentaci vedou
+na existující soubory (včetně odkazů `../../` z průvodních dokumentů,
+upravených kvůli větší hloubce složky), cesty ve skriptech R na existující
+soubory a ve složce nezůstal žádný soubor mimo podsložky.
+Skripty R prošly syntaktickou kontrolou, ale nebyly znovu spuštěny.
+Manifest kapitoly 5 nadále uvádí `kapitola_05_pravdepodobnost_Adam.mp3`,
+místní soubor se však jmenuje `kapitola_05_pravdepodobnost.mp3`; tento
+starší nesoulad nebyl opravován.
+
+
 <a id="audio-kapitoly-8-20261117"></a>
 
 ## 2026-11-17 — Nahrávka k prezentaci kapitoly 8 hlasem Adam
@@ -20,8 +46,8 @@ do jednoho WAV a lokálně převedeny do jediného MP3 s úpravou celkové
 hlasitosti. Výstup `presentations/kapitola_08_porovnani_dvou_prumeru_Adam.mp3`
 má přibližně 43:09 a 31 značek snímků podle časů slov a skutečných délek
 částí. MP3 je ignorované Gitem, nebylo vloženo do prezentace ani publikováno.
-Rozšířen [manifest](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json),
-[průvodní dokument](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md#audio-kapitoly-8-20261117)
+Rozšířen [manifest](../presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json),
+[průvodní dokument](../presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md#audio-kapitoly-8-20261117)
 a karta kapitoly; výklad, scénář, PPTX a DOCX se nezměnily.
 
 Ověřeno dekódování, délka, všech 31 značek a shoda celého textu časovaných
@@ -39,14 +65,14 @@ Nejde o poslech ani nezávislou transkripci; skutečná výslovnost nebyla ově�
 ## 2026-11-17 — Scénář zvukového doprovodu prezentace kapitoly 8
 
 Na výslovnou žádost autora připraven
-[mluvený scénář v UTF-8](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar.txt)
+[mluvený scénář v UTF-8](../presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar.txt)
 ke snímkům 1–31 aktuální prezentace a podrobným poznámkám v DOCX.
 Vynechává procvičování na snímcích 32–39, diskusní otázky a organizační pokyny.
 Text má 4 934 slov, odhad 39–47 minut při 105–125 slovech za minutu;
 nejde o změřenou délku nahrávky. Čísla, značky a operace jsou rozepsány
 pro poslech a výslovnostní přepisy podle R53 uplatněny v celém textu.
-Připojen [průvodní dokument](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md)
-a [manifest](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json)
+Připojen [průvodní dokument](../presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md)
+a [manifest](../presentations/kapitola_08/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json)
 s otisky podkladů, mapováním úseků, slovníkem a výsledky kontrol;
 odkazy doplněny do karty kapitoly. PPTX, DOCX ani výklad kapitoly nebyly měněny.
 
@@ -842,7 +868,7 @@ Místní MP3 `presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3`
 má 38:43 a 32 značek snímků podle časového zarovnání poskytovatele.
 Gitem je ignorován a automaticky se nepublikuje.
 
-[Podklady a manifest](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
+[Podklady a manifest](../presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
 zachycují přesné nastavení, identitu výsledku a kontroly. Ověřeny shodné
 texty, úplné pořadí, dekódování částí i celku, součet délek, počet kapitol,
 hlasitost, pauzy a shoda zvukových úseků každé části s celkem.
@@ -854,12 +880,12 @@ nepotvrzuje výslovnost. Scénář, PPTX ani studentský výklad se neměnily.
 ## 2026-11-09 — Scénář k prezentaci kapitoly 7
 
 Na výslovnou žádost autora připraven
-[scénář pro syntézu řeči](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
+[scénář pro syntézu řeči](../presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar.txt)
 ke snímkům 1–32 aktuálního místního PPTX. Zahrnuje výklad a řešené příklady,
 vynechává samostatné procvičování, diskusní otázky a organizační pokyny.
 Text má 4 774 slov; odhad při 105–125 slovech za minutu je 38–46 minut bez dalších pauz.
 Scénář obsahuje mluvený zápis čísel, vzorců a funkcí a požadované výslovnostní přepisy.
-[Průvodní dokument](../presentations/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
+[Průvodní dokument](../presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_scenar_podklady.md)
 a manifest zachycují podklady, jejich SHA-256, mapování snímků a slovník výslovnosti.
 
 Načteny texty, poznámky, tabulky a vzorce z PPTX; vizuálně prohlédnuto deset
@@ -2023,8 +2049,8 @@ kapitol podle skutečných časů. Soubor
 `presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3`
 zůstává místní a ignorovaný Gitem.
 
-[Průvodní dokument](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
-a [manifest](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
+[Průvodní dokument](../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+a [manifest](../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
 zachycují parametry, identitu výstupu, časové značky a ověření.
 Všechny části i celý MP3 se úspěšně dekódují, délka odpovídá součtu
 částí, pořadí ověřeno také porovnáním průběhu zvuku z každé části
@@ -2035,7 +2061,7 @@ prezentace, kapitola ani sešity se při převodu neměnily.
 
 ## 2026-11-02 — Scénář k prezentaci kapitoly 6
 
-Připraven [souvislý scénář pro syntézu řeči](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
+Připraven [souvislý scénář pro syntézu řeči](../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar.txt)
 pro výkladové snímky 1–31 aktuální prezentace. Má 5 714 slov; samostatné
 procvičování na snímcích 32–38, diskusní otázky a organizační pokyny
 neobsahuje. Vychází z aktuálního místního PPTX včetně autorových úprav,
@@ -2044,9 +2070,9 @@ při tvorbě scénáře přepisováno. Výslovnostní přepisy podle R53 jsou p�
 v textu, například „statystycký“, „alternatyvní“, „medyán“ a „kvantyly“.
 Kanonický odborný zápis kapitoly ani terminologický registr se nemění.
 
-[Průvodní dokument](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
+[Průvodní dokument](../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_podklady.md)
 obsahuje slovník výslovnosti, podklady a omezení kontrol;
-[manifest](../presentations/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
+[manifest](../presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_scenar_manifest.json)
 eviduje SHA-256, přiřazení úseků ke snímkům a číselné kontroly.
 Ověřeno pořadí a pokrytí 31 snímků, slovní zápis čísel a značek,
 nepřítomnost původních rizikových základů a zbývající měkké skupiny
@@ -2365,9 +2391,9 @@ má 51:15,63 a 35 značek snímků ID3 CHAP/CTOC. Části byly spojeny
 FFmpeg bez dalšího ztrátového kódování nebo překryvu řeči. Soubor zůstává
 ignorovaný Gitem, není publikován na webu. Přesné délky, mapování časů,
 otisk výsledku a kontroly jsou v
-[manifestu](../presentations/kapitola_05_pravdepodobnost_scenar_manifest.json),
+[manifestu](../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar_manifest.json),
 postup a omezení v
-[průvodním dokumentu](../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md).
+[průvodním dokumentu](../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar_podklady.md).
 Identifikátory úloh a pracovní zvukové soubory jsou uchovány v `tmp/`.
 
 Ověření: původní podklady i scénář mají shodné otisky; poskytovatelem
@@ -2380,7 +2406,7 @@ výslovnosti se tím nedokládá. Učebnice a PPTX se neupravovaly.
 ## 2026-10-27 — Scénář k výkladové části prezentace kapitoly 5
 
 Na výslovnou žádost autora připraven
-[mluvený scénář v UTF-8](../presentations/kapitola_05_pravdepodobnost_scenar.txt)
+[mluvený scénář v UTF-8](../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar.txt)
 pro snímky 1–35 aktuálního PPTX, včetně předělů a řešených příkladů.
 Samostatné procvičování na snímcích 36–43 a diskusní otázky v poznámkách
 nejsou zahrnuty, podle [pravidel scénářů](../docs/TEXT2SPEECH.md).
@@ -2388,9 +2414,9 @@ Text má 5 708 slov; čísla, značky a vzorce jsou přepsány pro poslech.
 Průběžně pojmenovává osy a relevantní části grafů, vysvětluje celek
 při podmínění, předpoklady modelů a význam výsledků.
 
-[Průvodní dokument](../presentations/kapitola_05_pravdepodobnost_scenar_podklady.md)
+[Průvodní dokument](../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar_podklady.md)
 obsahuje rozsah, omezení kontroly a jediný slovník výslovnosti projektu
-této nahrávky; [manifest](../presentations/kapitola_05_pravdepodobnost_scenar_manifest.json)
+této nahrávky; [manifest](../presentations/kapitola_05/kapitola_05_pravdepodobnost_scenar_manifest.json)
 uchovává otisky podkladů a scénáře, přiřazení 35 úseků k titulům snímků,
 počty slov a nezávisle přepočtené hodnoty.
 

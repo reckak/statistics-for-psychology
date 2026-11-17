@@ -26,9 +26,9 @@ z generátoru. Bylo prohlédnuto všech 12 vložených grafů a diagramů;
 nejde o novou kontrolu celé sazby prezentace v PowerPointu.
 
 Obsah je porovnán s relevantními pasážemi
-[kapitoly](../quarto/kapitola_06.qmd), její
-[karty](../docs/kapitoly/06-vyberove-rozdeleni-testovani.md),
-[terminologického registru](../docs/SLOVNIK.md#kapitola-06)
+[kapitoly](../../quarto/kapitola_06.qmd), její
+[karty](../../docs/kapitoly/06-vyberove-rozdeleni-testovani.md),
+[terminologického registru](../../docs/SLOVNIK.md#kapitola-06)
 a platnými rozhodnutími R28–R30 a R56. Scénář nerozšiřuje prezentaci
 o nová nepovinná rozšíření kapitoly. Původ čísel parkovací studie a modelu
 se přebírá z kapitoly; původní článek ani Howellova učebnice nebyly
@@ -66,7 +66,7 @@ a kauzální omezení závěrů. Nenahrazuje ověření porozumění na studente
 ## Slovník výslovnosti pro tento scénář
 
 Přepisy jsou závazně použity v samotném textu podle
-[TEXT2SPEECH.md](../docs/TEXT2SPEECH.md#slovník-výslovnosti)
+[TEXT2SPEECH.md](../../docs/TEXT2SPEECH.md#slovník-výslovnosti)
 a upřesnění R53. Výchozí konfigurace případného převodu je Creative Claw,
 model `speech/heygen-voice-1`, český hlas Adam, rychlost 1. Její aktuální
 dostupnost a podporované parametry byly ověřeny před následným převodem.
@@ -137,7 +137,7 @@ s mezivýstupy WAV. Z úplného WAV jednou vytvořen finální MP3 (192 kb/s,
 Značky vycházejí z časů slov vrácených poskytovatelem a skutečných délek
 dekódovaných částí, nikoli z počtu slov.
 
-Místní výstup: `presentations/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3`.
+Místní výstup: `presentations/kapitola_06/kapitola_06_vyberove_rozdeleni_a_testovani_Adam.mp3`.
 MP3 se podle pravidel projektu necommituje ani automaticky nepublikuje.
 Manifest obsahuje SHA-256, délku, nastavení, časy všech 31 snímků
 a technické kontroly; přesné úlohy, výstupní URL a pracovní úseky

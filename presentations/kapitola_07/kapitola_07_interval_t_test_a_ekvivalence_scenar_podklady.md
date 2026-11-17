@@ -30,9 +30,9 @@ ekvivalence a devět studií. Kontrola není novým ověřením celé sazby
 prezentace v PowerPointu.
 
 Obsah je porovnán s relevantními pasážemi
-[kapitoly 7](../quarto/kapitola_07.qmd), její
-[karty](../docs/kapitoly/07-interval-t-test-ekvivalence.md),
-[terminologického registru](../docs/SLOVNIK.md#kapitola-07)
+[kapitoly 7](../../quarto/kapitola_07.qmd), její
+[karty](../../docs/kapitoly/07-interval-t-test-ekvivalence.md),
+[terminologického registru](../../docs/SLOVNIK.md#kapitola-07)
 a rozhodnutími R44–R46, R53, R66 a R67. Původ skutečných dat
 psychomotorického vývoje se přebírá z kapitoly a prezentace. Původní studie
 ani Howellova učebnice nebyly v tomto úkolu nově nezávisle ověřovány.
@@ -63,7 +63,7 @@ je třeba před syntézou porovnat dotčené úseky s novou verzí.
 ## Slovník výslovnosti
 
 Výchozí zamýšlené pokračování dosavadních nahrávek podle
-[projektových pravidel](../docs/TEXT2SPEECH.md) je Creative Claw, model
+[projektových pravidel](../../docs/TEXT2SPEECH.md) je Creative Claw, model
 `speech/heygen-voice-1`, český hlas Adam, rychlost 1. Při přípravě samotného scénáře se dostupnost neověřovala; před následnou
 syntézou byl načten aktuální `get_model_params` a použity pouze podporované
 ovládací prvky veřejného hlasu. Níže uvedené
@@ -119,7 +119,7 @@ jeden MP3 (192 kb/s, 44,1 kHz, mono) se 32 značkami snímků.
 Značky vycházejí z časů slov vrácených poskytovatelem a skutečných délek
 dekódovaných částí, nikoli z odhadu podle počtu slov.
 
-Výstup: `presentations/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3`.
+Výstup: `presentations/kapitola_07/kapitola_07_interval_t_test_a_ekvivalence_Adam.mp3`.
 Skutečná délka je **38:43**. MP3 je místní výstup ignorovaný Gitem;
 nevkládá se automaticky do prezentace ani na studentský web.
 Manifest zachycuje jeho SHA-256, délku, nastavení, časy snímků a kontroly.
@@ -137,7 +137,7 @@ Služba vykázala 674 kreditů za řeč a 4 za obě spojení.
 
 ## Úprava po nahrávce: terminologie intervalů (2026-11-13)
 
-Podle [R75](../docs/rozhodnuti/kapitola-07.md#r75-oboustranny-jednostranny-interval)
+Podle [R75](../../docs/rozhodnuti/kapitola-07.md#r75-oboustranny-jednostranny-interval)
 byl přepsán výklad snímku 23: místo „centrálního intervalu“ a „jednostranné
 meze“ mluví o oboustranném intervalu spolehlivosti a o jednostranném
 intervalu s horní, případně dolní mezí; „centrální“ zazní jednou jako
