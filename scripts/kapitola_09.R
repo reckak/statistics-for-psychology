@@ -21,6 +21,12 @@ ch9_wilson <- function(x,n,z=ch9_z) {
   p <- x/n; stred <- (p+z^2/(2*n))/(1+z^2/n); pul <- z/(1+z^2/n)*sqrt(p*(1-p)/n+z^2/(4*n^2))
   c(p=p,stred=stred,pul=pul,dolni=stred-pul,horni=stred+pul)
 }
+# Derivation of the Wilson interval (optional extension): the limits are the roots of the quadratic
+# A*pi^2 + B*pi + C = 0 that follows from (p - pi)^2 <= z^2 * pi * (1 - pi) / n.
+ch9_wilson_koreny <- function(x,n,z=ch9_z) {
+  p <- x/n; A <- 1+z^2/n; B <- -(2*p+z^2/n); C <- p^2; D <- B^2-4*A*C
+  c(A=A,B=B,C=C,D=D,dolni=(-B-sqrt(D))/(2*A),horni=(-B+sqrt(D))/(2*A))
+}
 # Score test of one proportion (standard error from the null value); its inversion gives the Wilson interval.
 ch9_score1 <- function(x,n,p0) { z <- (x/n-p0)/sqrt(p0*(1-p0)/n); c(z=z,p=2*pnorm(-abs(z))) }
 # Two independent proportions: Newcombe hybrid score interval from the two Wilson intervals,
@@ -74,6 +80,7 @@ ch9_t20_wald <- ch9_wald(10,20); ch9_t20_wil <- ch9_wilson(10,20); ch9_t20_score
 ch9_t20_binom <- pbinom(9,20,.25,lower.tail=FALSE)
 ch9_n15_wald <- ch9_wald(0,15); ch9_n15_wil <- ch9_wilson(0,15)
 ch9_t80_wil <- ch9_wilson(40,80)
+ch9_t20_kor <- ch9_wilson_koreny(10,20); ch9_n15_kor <- ch9_wilson_koreny(0,15)
 # 3. Goodness of fit: 80 people choose one of four identical tea samples placed left to right (authored).
 ch9_pozice <- c(12,16,21,31); names(ch9_pozice) <- c('1. zleva','2. zleva','3. zleva','4. zleva (vpravo)')
 ch9_poz <- ch9_gof(ch9_pozice,rep(.25,4))
@@ -186,6 +193,21 @@ ch9_draw('wald-wilson', {
   text(c(rows[1:2,3]+.02,.28,.28),y,lab,adj=0,cex=.78)
   text(.48,1.8,'← Waldův interval má nulovou šířku',adj=0,cex=.76,col=ch9_orange)
 },width=9,height=4.2)
+ch9_draw('wilson-odvozeni', {
+  par(mar=c(4.6,4.8,2.8,.8))
+  x <- seq(0,1,length.out=501); lo <- ch9_t20_kor['dolni']; hi <- ch9_t20_kor['horni']
+  left <- (.5-x)^2; right <- ch9_z^2*x*(1-x)/20; inside <- x>=lo & x<=hi
+  plot(NA,xlim=c(0,1),ylim=c(0,.105),xaxs='i',yaxs='i',xlab='Populační podíl π',ylab='Hodnota obou stran nerovnice',main='10 z 20: pro která π platí nerovnice?',bty='l')
+  polygon(c(x[inside],rev(x[inside])),c(left[inside],rev(right[inside])),col=ch9_fill,border=NA)
+  lines(x[left<=.105],left[left<=.105],col=ch9_orange,lwd=2); lines(x,right,col=ch9_blue,lwd=2)
+  segments(c(lo,hi),0,c(lo,hi),(.5-lo)^2,lty=2,col=ch9_gray)
+  points(c(lo,hi),rep((.5-lo)^2,2),pch=21,bg='white',col=ch9_ink,cex=1.3)
+  segments(lo,.003,hi,.003,lwd=5,col=ch9_blue,lend=1)
+  text(c(lo,hi),rep(.011,2),ch9_num(c(lo,hi)),adj=c(1.25,.5),cex=.8); text(.5,.011,'Wilsonův interval',cex=.8,col=ch9_blue)
+  text(.5,.03,'nerovnice platí',cex=.8,col=ch9_ink)
+  text(.2,.098,'čtverec vzdálenosti (p − π)²',adj=0,cex=.82,col=ch9_orange)
+  text(.5,.054,'mez z²π(1 − π)/n',cex=.82,col=ch9_blue)
+},width=8,height=4.4)
 ch9_draw('pozice', {
   par(mar=c(4.6,4.7,2.8,.8))
   b <- barplot(ch9_pozice,ylim=c(0,36),col=ch9_fill,border=ch9_ink,names.arg=c('1. zleva','2.','3.','4. (vpravo)'),

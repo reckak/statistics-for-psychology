@@ -295,17 +295,17 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_09.html') {
         assert.equal(await solutions.count(),15,'Chapter 9 has thirteen core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 9 mathematics parses');
-        assert.equal(await page.locator('main img').count(),11);
+        assert.equal(await page.locator('main img').count(),12);
         for(const img of await page.locator('main img').all()) {
           if(await img.isVisible()) await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(async el=>{ if(!el.complete) await el.decode().catch(()=>{}); return el.complete && el.naturalWidth>0; }));
           assert((await img.getAttribute('alt')).length>30);
         }
-        for(const id of ['fig-pokryti','fig-newcombe','fig-z2-chi2','fig-fisher','fig-monte-carlo','fig-kappa','sec-monte-carlo','sec-znamenkovy-test','tbl-k09-13','tbl-k09-14']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 9 revision element: ${id}`);
+        for(const id of ['fig-wilson-odvozeni','fig-pokryti','fig-newcombe','fig-z2-chi2','fig-fisher','fig-monte-carlo','fig-kappa','sec-monte-carlo','sec-znamenkovy-test','tbl-k09-13','tbl-k09-14']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 9 revision element: ${id}`);
         const greek9=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πχφκα]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek9.filter(e=>e.text.includes('χ')).length>10,'Chi-square rendered with chi');
         assert(greek9.every(e=>e.variant==='normal'),'Greek symbols of chapter 9 must be upright');
-        for(const id of ['rozsireni-ganzfeld','rozsireni-proc-chi','rozsireni-holm','rozsireni-fisher','rozsireni-intervaly-pomeru','rozsireni-simpson','rozsireni-kappa']) {
+        for(const id of ['rozsireni-wilson-odvozeni','rozsireni-ganzfeld','rozsireni-proc-chi','rozsireni-holm','rozsireni-fisher','rozsireni-intervaly-pomeru','rozsireni-simpson','rozsireni-kappa']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         const main9=await page.locator('main').innerText();

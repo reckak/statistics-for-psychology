@@ -136,5 +136,17 @@ eq(ch9_pomoc_mc['presne'],binom.test(4,16,.5)$p.value,1e-12) # the exact McNemar
 # Kappa figure: expected counts of all nine cells and the margins (rows Judge II, columns Judge I).
 rq(ch9_kappa_e,matrix(c(10.67,3.20,2.13,4.00,1.20,.80,5.33,1.60,1.07),3),2); eq(rowSums(ch9_kappa_t),c(20,6,4)); eq(colSums(ch9_kappa_t),c(16,6,8))
 eq(ch9_kappa_e,suppressWarnings(chisq.test(ch9_kappa_t))$expected,1e-12)
-stopifnot(all(file.exists(file.path('assets/chapter-09/plots',paste0(c('pokryti-wald-wilson','newcombe-konstrukce','z2-chi2','fisher-tabulky','monte-carlo','kappa-shody'),'.svg')))))
+# Derivation of the Wilson interval (optional extension): the roots of the quadratic agree with the closed formula,
+# with prop.test and with polyroot; the simplified expression under the square root; the numbers quoted in the text.
+for (xn in list(c(10,20),c(0,15),c(18,60),c(1,25),c(106,329))) { k <- ch9_wilson_koreny(xn[1],xn[2])
+  eq(k[c('dolni','horni')],ch9_wilson(xn[1],xn[2])[c('dolni','horni')],1e-10)
+  eq(k[c('dolni','horni')],suppressWarnings(pt2(xn[1],xn[2]))$conf.int,1e-10)
+  eq(k[c('dolni','horni')],sort(Re(polyroot(k[c('C','B','A')]))),1e-8)
+  p <- xn[1]/xn[2]; n <- xn[2]; z <- qnorm(.975); eq(k['D'],4*z^2*(p*(1-p)/n+z^2/(4*n^2)),1e-12)
+  eq(k['D'],4*p*z^2/n-4*p^2*z^2/n+z^4/n^2,1e-12) }
+rq(qnorm(.975)^2,3.8415,4); rq(ch9_t20_kor[c('A','B','C')],c(1.192,-1.192,.25),3); rq(ch9_t20_kor['A']-1,.192,3)
+rq(ch9_t20_kor[c('dolni','horni')],c(.299,.701),3); rq(15+qnorm(.975)^2,18.8415,4)
+eq(ch9_n15_kor[c('C','dolni')],c(0,0)); eq(ch9_n15_kor['horni'],qnorm(.975)^2/(15+qnorm(.975)^2),1e-12); rq(ch9_n15_kor['horni'],.204,3)
+stopifnot(abs(max(qnorm(.975)^2*seq(0,1,.001)*(1-seq(0,1,.001))/20)-.048)<5e-4) # peak of the bound quoted in the alt text
+stopifnot(all(file.exists(file.path('assets/chapter-09/plots',paste0(c('wilson-odvozeni','pokryti-wald-wilson','newcombe-konstrukce','z2-chi2','fisher-tabulky','monte-carlo','kappa-shody'),'.svg')))))
 cat('Chapter 9 checks passed.\n')
