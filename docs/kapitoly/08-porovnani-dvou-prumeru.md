@@ -167,7 +167,12 @@ a otázky k zamyšlení vynechává. Rozsah kapitoly ani prezentace se nemění.
 vymezuje podklady, číselné a textové kontroly a jejich omezení;
 [manifest](../../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json)
 uchovává otisky podkladů, přiřazení úseků ke snímkům a slovník výslovnosti.
-Nahrávka nebyla vytvořena. Soulad tohoto doplnění s rozsahem prezentace
+Následně na výslovnou žádost autora 2026-11-17 vytvořena úplná místní
+nahrávka hlasem Adam (ElevenLabs v4 přes Creative Claw), délka přibližně
+43:09, s 31 značkami snímků. MP3 není verzováno ani publikováno;
+[průvodní dokument](../../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md#audio-kapitoly-8-20261117)
+vymezuje technické ověření a neprovedený poslech.
+Soulad tohoto doplnění s rozsahem prezentace
 a scénářem zkontrolován 2026-11-17; datum kontroly výkladu kapitoly výše
 se tím nemění.
 
