@@ -1,5 +1,38 @@
 # Autorská dokumentace
 
+<a id="poznamky-bez-casu-a-podkladu-20261117"></a>
+
+## 2026-11-17 — Podrobné poznámky k prezentacím bez času a odkazu na oddíl
+
+Na žádost autora odstraněny z poznámek k prezentacím všechny odrážky
+„Čas pro vyučujícího: …“ a „Podklad: kapitola N, …, příslušný oddíl:
+https://…“, včetně dovětku „Příklady jsou modelové výukové údaje…“, který
+v kapitolách 2–7 byl součástí téže odrážky:
+
+- `presentations/kapitola_02/` až `kapitola_08/` `*_poznamky.docx`:
+  216 odrážek s časem a 170 s podkladem;
+- poznámky řečníka v PPTX kapitol 2–6 (starší podoba před R74): 152 odrážek
+  s časem a 122 s podkladem. PPTX kapitol 7 a 8 je už neobsahovaly.
+
+Kapitola 1 takové odrážky neměla v DOCX ani PPTX. Ponechány jsou organizační
+pokyny jiného typu, např. „Organizace výuky: …“ v DOCX kapitoly 2
+a „Doporučený postup: přibližně N minut …“ u slidů s cvičeními.
+Odstraňovány byly celé odstavce v `word/document.xml`, resp.
+`ppt/notesSlides/*.xml`; ostatní členy balíčků zůstaly beze změny.
+
+**Kontroly:** porovnání textu odstavců se stavem v Gitu ukázalo jen
+odstranění uvedených odrážek, žádnou jinou změnu a žádný slide bez poznámek;
+po úpravě v souborech nezůstal žádný výskyt „Čas pro vyučujícího“
+ani „příslušný oddíl“. Desktopový Word otevřel všech osm DOCX a PowerPoint
+pět upravených PPTX bez chyby; všechny slidy mají neprázdné poznámky.
+PDF prezentací poznámky neobsahují a nebyly měněny.
+
+**Omezení:** [pokyny k prezentacím](../docs/PREZENTACE.md#poznamky-v-docx)
+nadále předepisují do DOCX čas pro vyučujícího i odkaz na oddíl kapitoly;
+pravidlo zatím nebylo změněno. Otisky `sha256` DOCX v manifestech scénářů
+kapitol 5–8 zachycují vstup v době tvorby scénáře a s upravenými soubory
+se už neshodují; scénáře samotné tyto odrážky neobsahovaly.
+
 <a id="odvozeni-wilsonova-intervalu-20261117"></a>
 
 ## 2026-11-17 — Nepovinné odvození Wilsonova intervalu v kapitole 9
