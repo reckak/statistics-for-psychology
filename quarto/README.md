@@ -1,5 +1,39 @@
 # Autorská dokumentace
 
+<a id="audio-kapitoly-8-20261117"></a>
+
+## 2026-11-17 — Nahrávka k prezentaci kapitoly 8 hlasem Adam
+
+Na výslovnou žádost autora převeden nezměněný scénář snímků 1–31
+na úplnou nahrávku přes Creative Claw. Původní požadavek s HeyGen hlasem
+byl odmítnut před syntézou bez účtování. Autor následně výslovně určil
+model `speech/elevenlabs-v4`, veřejný hlas Adam – Velvety and Conversational
+(`uYFJyGaibp4N2VwYQshk`) a `extras.language_code: cs`.
+Aktuální parametry modelu ověřeny před převodem; použity časové značky
+slov a MP3 44,1 kHz / 192 kb/s, bez nepodporovaných ovladačů a bez dalších
+náhrad služby. Výslovnostní přepisy jsou již ve scénáři.
+
+Limit 10 000 znaků vyžadoval čtyři části, snímky 1–11, 12–18, 19–26
+a 27–31. Jejich úplné texty pokrývají původní scénář přesně jednou.
+Všechny části dokončeny, přes Creative Claw spojeny bez prolínání
+do jednoho WAV a lokálně převedeny do jediného MP3 s úpravou celkové
+hlasitosti. Výstup `presentations/kapitola_08_porovnani_dvou_prumeru_Adam.mp3`
+má přibližně 43:09 a 31 značek snímků podle časů slov a skutečných délek
+částí. MP3 je ignorované Gitem, nebylo vloženo do prezentace ani publikováno.
+Rozšířen [manifest](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json),
+[průvodní dokument](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md#audio-kapitoly-8-20261117)
+a karta kapitoly; výklad, scénář, PPTX a DOCX se nezměnily.
+
+Ověřeno dekódování, délka, všech 31 značek a shoda celého textu časovaných
+slov se scénářem po sjednocení interpunkce, mezer a velikosti písmen.
+Dekódované vzorky spojeného WAV jsou přesně shodné se vstupy převedenými
+do téhož formátu a seřazenými za sebou; ověřeno tím úplné spojení bez
+vynechání, duplikací a překrytí. Zkontrolována hlasitost a pauzy.
+Podrobné výsledky a otisk MP3 jsou v manifestu; požadavky, úlohy a média
+pro cílené opravy v ignorovaném `tmp/ch08-audio-elevenlabs/`.
+Služba vykázala 688 kreditů za řeč a 2 za spojení.
+Nejde o poslech ani nezávislou transkripci; skutečná výslovnost nebyla ověřena.
+
 <a id="scenar-kapitoly-8-20261117"></a>
 
 ## 2026-11-17 — Scénář zvukového doprovodu prezentace kapitoly 8

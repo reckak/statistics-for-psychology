@@ -15,7 +15,8 @@ Nezařazuje výpočet nepovinných rozšíření kapitoly.
 
 Text má **4 934 slov**. Při tempu 105–125 slov za minutu odpovídá
 přibližně **39–47 minutám** bez dalších pauz. Jde o odhad z počtu slov,
-nikoli o změřenou délku zvuku. **Nahrávka nebyla vytvářena.**
+nikoli o změřenou délku zvuku. Při přípravě scénáře nahrávka nevznikla;
+následný úplný převod na výslovnou žádost autora je zaznamenán níže.
 
 ## Podklady a obsahová kontrola
 
@@ -76,11 +77,12 @@ název funkce je převzat z aktuálních podkladů.
 
 ## Slovník výslovnosti
 
-Výchozí zamýšlené pokračování dosavadních nahrávek podle
+Při přípravě scénáře bylo zamýšlené pokračování dosavadních nahrávek podle
 [projektových pravidel](../docs/TEXT2SPEECH.md) je Creative Claw,
 model `speech/heygen-voice-1`, český hlas Adam, rychlost 1.
 Dostupnost ani parametry služby nebyly při přípravě samotného textu
-ověřovány. Před případným převodem je nutné ověřit aktuální rozhraní.
+ověřovány. Před následným převodem bylo ověřeno aktuální rozhraní
+a podle nového výslovného zadání použit jiný model a veřejný hlas níže.
 Textové přepisy jsou již součástí scénáře.
 
 | Odborný zápis | Zápis pro syntézu | Původ a stav |
@@ -123,5 +125,49 @@ Pro soubor scénáře je v `.gitattributes` zachováno LF, aby převod konců
 řádků při práci s Gitem nezměnil jeho otisk a hranice úseků.
 Po změně prezentace nebo podrobných poznámek je třeba před syntézou
 ověřit soulad dotčených úseků. Textová kontrola **nepotvrzuje skutečnou
-výslovnost konkrétního hlasu**. Zvuk ani automatický přepis nevznikly
-a poslech nebyl proveden.
+výslovnost konkrétního hlasu**. Při přípravě scénáře zvuk ani automatický
+přepis nevznikly. Následná syntéza a technické ověření jsou uvedeny níže;
+skutečný poslech nebyl proveden.
+
+<a id="audio-kapitoly-8-20261117"></a>
+
+## Úplná nahrávka — 2026-11-17
+
+Na výslovnou žádost autora převeden celý nezměněný scénář snímků 1–31
+přes Creative Claw. Původně zadaný hlas HeyGen nebyl službou přijat;
+požadavek byl odmítnut před syntézou bez účtování kreditů.
+Následně autor výslovně zvolil `speech/elevenlabs-v4`, veřejné
+`voice_id` `uYFJyGaibp4N2VwYQshk`, hlas **Adam – Velvety and Conversational**
+a češtinu (`extras.language_code: cs`). Podle aktuálně načteného
+`get_model_params` byly použity podporované parametry časových značek
+a výstupu MP3 44,1 kHz / 192 kb/s. Rychlost, expressiveness boost,
+SSML ani jiné nepodporované ovladače nebyly posílány. Uložené náhrady
+služby vypnuty, protože požadované přepisy již obsahuje scénář.
+
+Limit 10 000 znaků vyžadoval čtyři části na hranicích snímků:
+1–11, 12–18, 19–26 a 27–31. Jejich text po spojení přesně odpovídá
+scénáři. Všechny části byly dokončeny a spojeny přes Creative Claw
+do jednoho WAV, bez prolínání a bez změny hlasitosti jednotlivých částí.
+Nevznikla pouze dílčí sestava: operace zahrnula všechny čtyři vstupy.
+Z WAV bylo lokálně vytvořeno jediné MP3 se společnou úpravou hlasitosti
+celé nahrávky a 31 značkami snímků. Značky vycházejí z časů slov
+poskytovatele a skutečných délek dekódovaných částí, nikoli z počtu slov.
+
+Výstup: `presentations/kapitola_08_porovnani_dvou_prumeru_Adam.mp3`.
+Skutečná délka je přibližně **43:09**. MP3 zůstává místním souborem
+ignorovaným Gitem; nebylo přidáno do prezentace ani publikováno na webu.
+Scénář, slovník a veřejné údaje o výstupu uchovává manifest. Přesné
+požadavky, identifikátory úloh, adresy médií, časované tokeny a pracovní
+kontroly jsou v ignorovaném `tmp/ch08-audio-elevenlabs/`.
+
+Technická kontrola ověřila dekódování bez chyb, všechny značky snímků,
+shodu délky se součtem částí a nezkrácený začátek i konec časovaného textu.
+Dekódovaný spojený WAV má přesně stejné vzorky jako čtyři vstupy
+dekódované ve stejném formátu a seřazené za sebou. Tím je ověřeno pořadí,
+úplnost i neexistence překrytí ve spoji. Slova vrácená v časových značkách
+odpovídají celému scénáři po sjednocení mezer, interpunkce a velikosti
+písmen. Nejde o nezávislou transkripci zvuku. Zkontrolována také hlasitost
+a pauzy; přesné výsledky jsou v manifestu. **Poslech ani ověření
+skutečné výslovnosti nebyly provedeny.**
+
+Creative Claw vykázal 688 kreditů za čtyři převody a 2 kredity za spojení.
