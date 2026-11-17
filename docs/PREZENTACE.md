@@ -62,7 +62,9 @@ Každý slide má poznámky ve dvou podobách podle
 [R74](rozhodnuti/postupy-a-dokumentace.md#r74-heslovite-poznamky):
 heslovité v PPTX pro vyučujícího během prezentace a podrobné v DOCX
 pro samostudium a jako podklad scénáře zvukového doprovodu. Obě podoby
-odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
+odpovídají aktuálnímu obsahu slidu a navzájem si neodporují. Čas pro
+vyučujícího ani odkaz na příslušný oddíl kapitoly v nich neuváděj
+([R82](rozhodnuti/postupy-a-dokumentace.md#r82-poznamky-bez-casu-a-odkazu)).
 
 <a id="poznamky-v-pptx"></a>
 
@@ -80,8 +82,7 @@ odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
   jedním heslem podmínky přijatelnosti dalších odpovědí.
 - U přehledu obsahu a oddělovacích slidů stačí jedno až dvě hesla
   k tomu, k čemu prezentace nebo oddíl směřuje.
-- **Klíčové pojmy a výsledky zvýrazni tučně.** Čas pro vyučujícího
-  a odkaz na oddíl kapitoly do PPTX neuváděj; patří do DOCX.
+- **Klíčové pojmy a výsledky zvýrazni tučně.**
 
 <a id="poznamky-v-docx"></a>
 
@@ -102,9 +103,9 @@ odpovídají aktuálnímu obsahu slidu a navzájem si neodporují.
 - *Nejdůležitější vysvětlující informace uveď kurzivou*, zejména pokud
   shrnují hlavní myšlenku, objasňují souvislost nebo upozorňují na zásadní
   omezení.
-- Nepředpokládej nevyřčené dovysvětlení vyučujícím. Pokyny k organizaci
-  výuky (například čas) odděl od samotného výkladu; na konec poznámek
-  výkladového slidu připoj odkaz na příslušný oddíl kapitoly.
+- Nepředpokládej nevyřčené dovysvětlení vyučujícím. Případné pokyny
+  k organizaci výuky (například postup u cvičení) odděl od samotného
+  výkladu.
 - Rozsah poznámek přizpůsob významu a obtížnosti tématu. Neprodlužuj
   je opakováním stejné myšlenky.
 

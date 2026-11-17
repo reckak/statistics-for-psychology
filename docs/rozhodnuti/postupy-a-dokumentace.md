@@ -1081,3 +1081,30 @@ by mohl být odkaz na stažení PDF verze učebnice“. Na otázku, na jaké PDF
 odkaz vést, zvolil „Celá kniha“ a po upozornění na kapitolu 10 „Ano,
 kapitoly 1–10“; na otázku, jak PDF zveřejnit, zvolil „Vydání na GitHubu“.
 Plán úpravy schválil téhož dne.
+
+<a id="r82-poznamky-bez-casu-a-odkazu"></a>
+
+## R82 — Poznámky k prezentacím bez času a odkazu na oddíl kapitoly
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r82-poznamky-bez-casu-a-odkazu). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-17. **Rozsah:** heslovité poznámky v PPTX
+i podrobné poznámky v DOCX všech prezentací, nových i upravovaných.
+
+**Volba:** poznámky ke slidům neobsahují odrážku s časem pro vyučujícího
+(„Čas pro vyučujícího: přibližně N min.“) ani odkaz na příslušný oddíl
+kapitoly („Podklad: kapitola N, …, příslušný oddíl: https://…“). Jiné
+organizační pokyny, například doporučený postup u cvičení, se nemění.
+Aktuální znění je v [PREZENTACE.md](../PREZENTACE.md#dve-podoby-poznamek).
+
+**Nahrazuje:** část [R74](#r74-heslovite-poznamky), podle níž čas pro
+vyučujícího a odkaz na oddíl kapitoly patří do DOCX; ostatní části R74
+platí.
+
+**Doklad:** autor 2026-11-17 zadal: „Můžeš z poznámek k prezentacím vymazat
+odrážky s ‚časem pro vyučujícího‘ a reference typu ‚Podklad: kapitola 8,
+Porovnání dvou průměrů: párová data a nezávislé skupiny, příslušný oddíl:
+https://…‘.“ Po odstranění z existujících poznámek (DOCX kapitol 2–8, PPTX
+kapitol 2–6) odpověděl na otázku, zda upravit i pravidlo v PREZENTACE.md,
+aby je budoucí poznámky neobsahovaly: „Ano, upravit pravidlo“. Odstranění
+eviduje [autorská historie](../../quarto/README.md) v záznamu z téhož dne.
