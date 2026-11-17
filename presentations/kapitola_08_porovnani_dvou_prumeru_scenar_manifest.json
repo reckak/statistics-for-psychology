@@ -1,0 +1,798 @@
+{
+  "date": "2026-11-17",
+  "script": "presentations/kapitola_08_porovnani_dvou_prumeru_scenar.txt",
+  "script_sha256": "d6e1765026f0376547b99d1350d6cc5da85ea6906a5fc3edf54cb525d16e50c0",
+  "encoding": "UTF-8",
+  "word_count": 4934,
+  "character_count": 34327,
+  "offset_convention": "Zero-based Unicode BMP character offsets, end exclusive; offsets include separating whitespace.",
+  "scope": {
+    "included_slides": [
+      1,
+      31
+    ],
+    "excluded_slides": [
+      32,
+      39
+    ],
+    "exclusions": "Závěrečné procvičování, jeho řešení, otázky k zamyšlení, organizační a bibliografické pokyny."
+  },
+  "estimated_duration_minutes_at_105_to_125_wpm": [
+    39,
+    47
+  ],
+  "sources": [
+    {
+      "path": "presentations/kapitola_08_porovnani_dvou_prumeru.pptx",
+      "sha256": "e44c81fef466fbbc0b25fbfefbedabafda67e738cfce1f0143c577d0ecc12efb"
+    },
+    {
+      "path": "presentations/kapitola_08_poznamky.docx",
+      "sha256": "21f3e8c4f3d931dda23914ccc5d1643ece3fbae3896cd4864f7cfbbaf542531d"
+    },
+    {
+      "path": "quarto/kapitola_08.qmd",
+      "sha256": "b3f681ef0076e82e06ef001371f4424a32af00308981d34947892f7debd6bce6"
+    },
+    {
+      "path": "scripts/kapitola_08.R",
+      "sha256": "0a4248caeb6de09e5be441351005163bf23b33e0c447b0d690af9f2dfa59b659"
+    },
+    {
+      "path": "docs/TEXT2SPEECH.md",
+      "sha256": "51dc2b553db156d3a8399c68cb60da83e9396a78f0afbc958c3b3e70be907e69"
+    },
+    {
+      "path": "docs/PREZENTACE.md",
+      "sha256": "bd8cbc1d0feb359f20e863b248740cfc62aba5597c505971221ddc7d25782d1a"
+    },
+    {
+      "path": "docs/SLOVNIK.md",
+      "sha256": "2ed9ff002776027a40512e56f31351df45e76c830dcb4623db2cb95b0cd21c46"
+    },
+    {
+      "path": "docs/rozhodnuti/kapitola-08.md",
+      "sha256": "93ba1c0f7838a7baa809f7500baff9a73d32c8bbb3ee38b684c5b7bdafabe6ff"
+    }
+  ],
+  "slides": [
+    {
+      "number": 1,
+      "title": "Porovnání dvou průměrů: párová data a nezávislé skupiny",
+      "announcement": "Snímek jedna.",
+      "start_character": 0,
+      "end_character": 1011,
+      "word_count": 147
+    },
+    {
+      "number": 2,
+      "title": "Obsah přednášky",
+      "announcement": "Snímek dva.",
+      "start_character": 1011,
+      "end_character": 1745,
+      "word_count": 103
+    },
+    {
+      "number": 3,
+      "title": "Párová data, nebo nezávislé skupiny?",
+      "announcement": "Snímek tři.",
+      "start_character": 1745,
+      "end_character": 1959,
+      "word_count": 29
+    },
+    {
+      "number": 4,
+      "title": "Dvě podoby téže otázky",
+      "announcement": "Snímek čtyři.",
+      "start_character": 1959,
+      "end_character": 2874,
+      "word_count": 140
+    },
+    {
+      "number": 5,
+      "title": "Rozhoduje uspořádání studie, ne čísla",
+      "announcement": "Snímek pět.",
+      "start_character": 2874,
+      "end_character": 3868,
+      "word_count": 152
+    },
+    {
+      "number": 6,
+      "title": "Jak vypadají v datové matici",
+      "announcement": "Snímek šest.",
+      "start_character": 3868,
+      "end_character": 4648,
+      "word_count": 116
+    },
+    {
+      "number": 7,
+      "title": "Párový t-test",
+      "announcement": "Snímek sedm.",
+      "start_character": 4648,
+      "end_character": 4839,
+      "word_count": 28
+    },
+    {
+      "number": 8,
+      "title": "Úplné a neúplné dvojice",
+      "announcement": "Snímek osm.",
+      "start_character": 4839,
+      "end_character": 6083,
+      "word_count": 181
+    },
+    {
+      "number": 9,
+      "title": "Rozdílové skóre a párový t-test",
+      "announcement": "Snímek devět.",
+      "start_character": 6083,
+      "end_character": 7387,
+      "word_count": 193
+    },
+    {
+      "number": 10,
+      "title": "Varianta A: výpočet a interpretace",
+      "announcement": "Snímek deset.",
+      "start_character": 7387,
+      "end_character": 8983,
+      "word_count": 228
+    },
+    {
+      "number": 11,
+      "title": "Kdy párování zpřesňuje odhad",
+      "announcement": "Snímek jedenáct.",
+      "start_character": 8983,
+      "end_character": 9208,
+      "word_count": 30
+    },
+    {
+      "number": 12,
+      "title": "Stejná data, chybná analýza",
+      "announcement": "Snímek dvanáct.",
+      "start_character": 9208,
+      "end_character": 10305,
+      "word_count": 166
+    },
+    {
+      "number": 13,
+      "title": "Proč rozdíly kolísají méně",
+      "announcement": "Snímek třináct.",
+      "start_character": 10305,
+      "end_character": 11846,
+      "word_count": 236
+    },
+    {
+      "number": 14,
+      "title": "Co párování neřeší",
+      "announcement": "Snímek čtrnáct.",
+      "start_character": 11846,
+      "end_character": 13467,
+      "word_count": 237
+    },
+    {
+      "number": 15,
+      "title": "Dvě nezávislé skupiny",
+      "announcement": "Snímek patnáct.",
+      "start_character": 13467,
+      "end_character": 13686,
+      "word_count": 28
+    },
+    {
+      "number": 16,
+      "title": "Směrodatná chyba rozdílu dvou průměrů",
+      "announcement": "Snímek šestnáct.",
+      "start_character": 13686,
+      "end_character": 15221,
+      "word_count": 225
+    },
+    {
+      "number": 17,
+      "title": "Klasický t-test: společný odhad rozptylu",
+      "announcement": "Snímek sedmnáct.",
+      "start_character": 15221,
+      "end_character": 16643,
+      "word_count": 190
+    },
+    {
+      "number": 18,
+      "title": "Parkovací studie bez známé σ",
+      "announcement": "Snímek osmnáct.",
+      "start_character": 16643,
+      "end_character": 18035,
+      "word_count": 201
+    },
+    {
+      "number": 19,
+      "title": "Welchův t-test: když se rozptyly liší",
+      "announcement": "Snímek devatenáct.",
+      "start_character": 18035,
+      "end_character": 19829,
+      "word_count": 258
+    },
+    {
+      "number": 20,
+      "title": "Kterou variantu zvolit",
+      "announcement": "Snímek dvacet.",
+      "start_character": 19829,
+      "end_character": 20925,
+      "word_count": 148
+    },
+    {
+      "number": 21,
+      "title": "Předpoklady a odolnost",
+      "announcement": "Snímek dvacet jedna.",
+      "start_character": 20925,
+      "end_character": 22355,
+      "word_count": 197
+    },
+    {
+      "number": 22,
+      "title": "Jak velký je rozdíl",
+      "announcement": "Snímek dvacet dva.",
+      "start_character": 22355,
+      "end_character": 22552,
+      "word_count": 29
+    },
+    {
+      "number": 23,
+      "title": "Původní jednotky a Cohenovo d",
+      "announcement": "Snímek dvacet tři.",
+      "start_character": 22552,
+      "end_character": 24169,
+      "word_count": 230
+    },
+    {
+      "number": 24,
+      "title": "Párová data: kterou směrodatnou odchylku?",
+      "announcement": "Snímek dvacet čtyři.",
+      "start_character": 24169,
+      "end_character": 25413,
+      "word_count": 173
+    },
+    {
+      "number": 25,
+      "title": "Rozdíl posuzujeme přímo",
+      "announcement": "Snímek dvacet pět.",
+      "start_character": 25413,
+      "end_character": 25657,
+      "word_count": 33
+    },
+    {
+      "number": 26,
+      "title": "Dva intervaly vedle sebe nejsou interval rozdílu",
+      "announcement": "Snímek dvacet šest.",
+      "start_character": 25657,
+      "end_character": 27333,
+      "word_count": 244
+    },
+    {
+      "number": 27,
+      "title": "Změna ve dvou skupinách: intervence a kontrola",
+      "announcement": "Snímek dvacet sedm.",
+      "start_character": 27333,
+      "end_character": 29317,
+      "word_count": 289
+    },
+    {
+      "number": 28,
+      "title": "Ekvivalence dvou skupin",
+      "announcement": "Snímek dvacet osm.",
+      "start_character": 29317,
+      "end_character": 31340,
+      "word_count": 288
+    },
+    {
+      "number": 29,
+      "title": "Volba postupu a sdělení výsledků",
+      "announcement": "Snímek dvacet devět.",
+      "start_character": 31340,
+      "end_character": 31521,
+      "word_count": 26
+    },
+    {
+      "number": 30,
+      "title": "Který postup?",
+      "announcement": "Snímek třicet.",
+      "start_character": 31521,
+      "end_character": 32604,
+      "word_count": 145
+    },
+    {
+      "number": 31,
+      "title": "Ukázka sdělení výsledků",
+      "announcement": "Snímek třicet jedna.",
+      "start_character": 32604,
+      "end_character": 34327,
+      "word_count": 244
+    }
+  ],
+  "intended_synthesis": {
+    "provider": "Creative Claw",
+    "model": "speech/heygen-voice-1",
+    "voice": "Adam",
+    "language": "cs",
+    "speed": 1,
+    "availability_checked": false,
+    "synthesis_performed": false
+  },
+  "pronunciation_dictionary": [
+    {
+      "term": "kvantil",
+      "tts": "kvantyl",
+      "origin": "Výslovný požadavek autora, TEXT2SPEECH.md / R53.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "statistika, statistický",
+      "tts": "statystyka, statystycký a tvary",
+      "origin": "Tvrdé ti; projektové pravidlo R53.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "studie",
+      "tts": "studyje, studyji, studyjí",
+      "origin": "Tvrdé di a přechod mezi samohláskami; návaznost na scénáře 5–7.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "standardizace",
+      "tts": "standardyzace",
+      "origin": "Tvrdé di podle R53.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "identifikační",
+      "tts": "identyfikační",
+      "origin": "Tvrdé di podle jazykového posouzení.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "aktivní",
+      "tts": "aktyvní",
+      "origin": "Tvrdé ti; měkká koncovka ní zůstává.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "praktický",
+      "tts": "praktycký",
+      "origin": "Tvrdé ti podle jazykového posouzení.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "Welchův, Welchova",
+      "tts": "Velčův, Velčova a tvary",
+      "origin": "Český výslovnostní přepis příjmení.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "Cohenovo d",
+      "tts": "Kouenovo dé",
+      "origin": "Český výslovnostní přepis příjmení a názvu písmene.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "Howell, Howellova",
+      "tts": "Hauel, Hauelova a tvary",
+      "origin": "Návaznost na předchozí scénáře.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "online",
+      "tts": "onlajn",
+      "origin": "Český výslovnostní přepis.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "t-test, t-rozdělení",
+      "tts": "té-test, té-rozdělení",
+      "origin": "Mluvené názvy značek se spojovníkem.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "p-hodnota, Q–Q graf",
+      "tts": "pé-hodnota, kvé-kvé-graf",
+      "origin": "Mluvené názvy značek se spojovníkem.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "m_D, s_D, μ_0, n, s_p",
+      "tts": "em s indexem dé, es s indexem dé, mí s indexem nula, en, es s indexem pé",
+      "origin": "Mluvené názvy písmen a indexů.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "T.DIST.2T",
+      "tts": "té-tečka-dyst-tečka-dva-té",
+      "origin": "Projektové pravidlo pro Excel.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "M, SD, CI, APA",
+      "tts": "em, es-dé, sí-aj, á-pé-á",
+      "origin": "Mluvené zkratky v ukázce reportování.",
+      "text_checked": true,
+      "listening_checked": false
+    },
+    {
+      "term": "Everitt",
+      "tts": "Everitt",
+      "origin": "Ponechaný pravopis; přednes konkrétního hlasu neověřen.",
+      "text_checked": true,
+      "listening_checked": false
+    }
+  ],
+  "remaining_di_ti_ni_words_reviewed": [
+    "ani",
+    "Ani",
+    "cvičením",
+    "definici",
+    "deseti",
+    "desetin",
+    "desetinu",
+    "desetiny",
+    "desetitisícin",
+    "desetitisíciny",
+    "devadesáti",
+    "devadesátipětiprocentn",
+    "Devadesátipětiprocentn",
+    "devadesátiprocentn",
+    "Devadesátiprocentn",
+    "devadesátiprocentním",
+    "devíti",
+    "dívek",
+    "dívkách",
+    "dívky",
+    "dolním",
+    "doplníme",
+    "důležitosti",
+    "dvaceti",
+    "dvanácti",
+    "edesáti",
+    "esti",
+    "estnácti",
+    "hladin",
+    "hladiny",
+    "hmotnosti",
+    "hodinami",
+    "horním",
+    "hranic",
+    "hranice",
+    "hranicemi",
+    "hranici",
+    "chráníme",
+    "idi",
+    "idiči",
+    "inil",
+    "innosti",
+    "jedenácti",
+    "jedním",
+    "lidi",
+    "matice",
+    "měnit",
+    "měřením",
+    "měřeními",
+    "mezních",
+    "mocnin",
+    "mocniny",
+    "možnosti",
+    "nahradíme",
+    "neměníme",
+    "nevznikl",
+    "nezávislosti",
+    "nezměnilo",
+    "nezúčastnil",
+    "ni",
+    "nikoli",
+    "ním",
+    "nimi",
+    "normálním",
+    "obrátíme",
+    "obrátit",
+    "odmocníme",
+    "odmocnina",
+    "Odmocnina",
+    "odmocninou",
+    "Odmocninou",
+    "odmocninu",
+    "odstranili",
+    "osmdesáti",
+    "ovlivnit",
+    "padesáti",
+    "párováním",
+    "pěti",
+    "pětiprocentn",
+    "podílej",
+    "podíváme",
+    "Podívejme",
+    "Podívejte",
+    "populačního",
+    "populačních",
+    "pořadím",
+    "posoudili",
+    "posoudit",
+    "pozornosti",
+    "pozorováním",
+    "proti",
+    "prvním",
+    "přiřazeni",
+    "původních",
+    "původními",
+    "rodinn",
+    "rodinnou",
+    "rozděleni",
+    "rozdíl",
+    "Rozdíl",
+    "rozdílem",
+    "rozdílnou",
+    "Rozdílnou",
+    "rozdílných",
+    "rozdílným",
+    "rozdílov",
+    "Rozdílov",
+    "rozdílových",
+    "rozdílu",
+    "rozdíly",
+    "Rozdíly",
+    "sedmdesáti",
+    "sedmnácti",
+    "seřadíme",
+    "setin",
+    "setina",
+    "setiny",
+    "slovního",
+    "složením",
+    "Snímek",
+    "snímk",
+    "snímku",
+    "spojnic",
+    "spolehlivosti",
+    "sti",
+    "studenti",
+    "Studenti",
+    "stupni",
+    "technickou",
+    "testováni",
+    "tím",
+    "Tím",
+    "tisícin",
+    "tisícina",
+    "toti",
+    "tréninku",
+    "třiceti",
+    "třinácti",
+    "tyřiceti",
+    "učebnice",
+    "uspořádáním",
+    "uvádíme",
+    "uvedením",
+    "uvnit",
+    "velikosti",
+    "vlastním",
+    "volnosti",
+    "vrátíme",
+    "všichni",
+    "Všichni",
+    "vybráni",
+    "Výzkumnici",
+    "významnosti",
+    "vznikaj",
+    "vznikla",
+    "vznikly",
+    "vzniku",
+    "zatímco",
+    "zdůvodníme",
+    "zdůvodnit",
+    "zhoršením",
+    "zjistit",
+    "zlepšením",
+    "Změnil",
+    "zobecnitelnost",
+    "zpřesnit",
+    "ztratit"
+  ],
+  "pronunciation_review": "Zbývající di/ti/ni a dí/tí/ní posouzeny slovně; ponechány české měkké skupiny a koncovky. Přepisy jsou textově ověřeny, přednes hlasu nikoli.",
+  "numeric_verification": {
+    "engine": "Base R 4.5.1, stats::t.test",
+    "input_source": "Fixed data and source summaries in scripts/kapitola_08.R, independently entered; chapter calculation functions were not sourced.",
+    "summary_fixtures": "Parking, anorexia and equivalence calculations use deterministic vectors with exactly the specified sample means and SDs; not reconstructed observations.",
+    "results": [
+      {
+        "example": "paired_sleep",
+        "estimate": 3.5,
+        "t": 5.06622805119022,
+        "df": 11,
+        "p": 0.00036272293948505,
+        "lower": 1.97945098750323,
+        "upper": 5.02054901249677
+      },
+      {
+        "example": "wrong_independent",
+        "estimate": 3.5,
+        "t": 1.24313982444791,
+        "df": 22,
+        "p": 0.22690222263577,
+        "lower": -2.33888923427232,
+        "upper": 9.33888923427232
+      },
+      {
+        "example": "B_classic",
+        "estimate": 8,
+        "t": 2.3427459347893,
+        "df": 40,
+        "p": 0.0242037493107412,
+        "lower": 1.09843936452957,
+        "upper": 14.9015606354704
+      },
+      {
+        "example": "B_welch",
+        "estimate": 8,
+        "t": 1.86245178150338,
+        "df": 13.9477318633612,
+        "p": 0.0837372316780714,
+        "lower": -1.21598506832135,
+        "upper": 17.2159850683214
+      },
+      {
+        "example": "parking",
+        "estimate": 6.88,
+        "t": 3.33211962641332,
+        "df": 198,
+        "p": 0.0010283779587747,
+        "lower": 2.80827336090637,
+        "upper": 10.9517266390936
+      },
+      {
+        "example": "anorexia",
+        "estimate": 3.29521521189322,
+        "t": 4.18490824796507,
+        "df": 16,
+        "p": 0.000700252940540191,
+        "lower": 1.62599242949084,
+        "upper": 4.9644379942956
+      },
+      {
+        "example": "overlapping_intervals",
+        "estimate": 6,
+        "t": 2.12132034355964,
+        "df": 48,
+        "p": 0.0390854943290537,
+        "lower": 0.313066113578141,
+        "upper": 11.6869338864219
+      },
+      {
+        "example": "training_change",
+        "estimate": 4,
+        "t": 2.34551330517574,
+        "df": 15,
+        "p": 0.0331661196862266,
+        "lower": 0.365060831918718,
+        "upper": 7.63493916808128
+      },
+      {
+        "example": "control_change",
+        "estimate": 2,
+        "t": 1.39686059153916,
+        "df": 15,
+        "p": 0.182780307946178,
+        "lower": -1.05177131987266,
+        "upper": 5.05177131987266
+      },
+      {
+        "example": "difference_of_changes",
+        "estimate": 2,
+        "t": 0.898177426278144,
+        "df": 30,
+        "p": 0.376243330036705,
+        "lower": -2.54759248351182,
+        "upper": 6.54759248351182
+      },
+      {
+        "example": "equivalence_200_0.95",
+        "estimate": -0.899999999999999,
+        "t": -0.899999999999999,
+        "df": 398,
+        "p": 0.368664472787111,
+        "lower": -2.86594232397626,
+        "upper": 1.06594232397627
+      },
+      {
+        "example": "equivalence_200_0.9",
+        "estimate": -0.899999999999999,
+        "t": -0.899999999999999,
+        "df": 398,
+        "p": 0.368664472787111,
+        "lower": -2.54869117395983,
+        "upper": 0.748691173959832
+      },
+      {
+        "example": "equivalence_30_0.95",
+        "estimate": -0.899999999999999,
+        "t": -0.348568501158667,
+        "df": 58,
+        "p": 0.728675413701727,
+        "lower": -6.0684123199378,
+        "upper": 4.2684123199378
+      },
+      {
+        "example": "equivalence_30_0.9",
+        "estimate": -0.899999999999999,
+        "t": -0.348568501158667,
+        "df": 58,
+        "p": 0.728675413701727,
+        "lower": -5.21593067419645,
+        "upper": 3.41593067419645
+      }
+    ],
+    "additional": [
+      {
+        "measure": "paired_sd",
+        "value": 2.3931721056524
+      },
+      {
+        "measure": "paired_se",
+        "value": 0.690849279707757
+      },
+      {
+        "measure": "column_difference",
+        "value": 3.7051282051282
+      },
+      {
+        "measure": "parking_d",
+        "value": 0.471232876712329
+      },
+      {
+        "measure": "B_reference_d",
+        "value": 1.0037930236411
+      },
+      {
+        "measure": "anorexia_baseline_d",
+        "value": 1.44810655146727
+      },
+      {
+        "measure": "anorexia_change_d",
+        "value": 1.01498933763991
+      },
+      {
+        "measure": "balanced_se",
+        "value": 2.10818510677892
+      },
+      {
+        "measure": "unbalanced_se",
+        "value": 3.35410196624968
+      }
+    ]
+  },
+  "checks": {
+    "announcements_in_order_once": true,
+    "no_digits": true,
+    "no_unprocessed_math_markdown_or_urls": true,
+    "required_pronunciations_applied": true,
+    "all_seven_embedded_images_visually_inspected": true,
+    "comparison_with_slide_text_and_detailed_docx_notes": true,
+    "internal_didactic_review": true,
+    "pptx_modified": false,
+    "docx_modified": false,
+    "audio_generated": false,
+    "listening_performed": false
+  },
+  "limitations": [
+    "Prezentace nebyla znovu renderována v PowerPointu; vizuální kontrola se týká sedmi vložených grafů a schématu.",
+    "Desktopový Excel nebyl spuštěn; název funkce převzat z podkladů.",
+    "Původní odborné zdroje nebyly v tomto úkolu nově nezávisle ověřovány.",
+    "Textová kontrola nedokládá správnou výslovnost konkrétního hlasu."
+  ]
+}

@@ -1,0 +1,301 @@
+Snímek jedna.
+
+Tento výklad doprovází prezentaci osmé kapitoly, Porovnání dvou průměrů: párová data a nezávislé skupiny. Otevřete si prezentaci a postupujte podle čísel snímků. Přehrávání můžete kdykoli pozastavit, zejména u výpočtů a grafů, a potřebný krok si projít vlastním tempem.
+
+V předchozí kapitole jsme porovnávali průměr jedné skupiny s pevnou hodnotou. Například skór pozornosti po krátkém spánku s normou padesát bodů. Naučili jsme se sestrojit interval spolehlivosti a provést jednovýběrový té-test i test ekvivalence.
+
+Teď budeme přímo porovnávat dvě podmínky nebo dvě skupiny. Zajímá nás třeba pozornost po běžném a po krátkém spánku, změna po tréninku ve srovnání s kontrolní skupinou nebo rozdíl mezi dvěma verzemi testu.
+
+Hlavní myšlenka je jednoduchá: výpočet závisí na tom, jak data vznikla. Jinak postupujeme, když tytéž lidi změříme dvakrát, a jinak, když porovnáváme dvě různé skupiny lidí. V obou případech chceme odhadnout velikost rozdílu a jeho nejistotu a správně vyložit výsledek.
+
+Snímek dva.
+
+První část vysvětlí rozdíl mezi párovými daty a nezávislými skupinami. Potom převedeme párová data na rozdíly a použijeme známý jednovýběrový postup. Ukážeme také, kdy nám párování pomáhá odhad zpřesnit a co samo neřeší.
+
+Následují dvě nezávislé skupiny. Nejdřív vysvětlíme směrodatnou chybu rozdílu průměrů, potom klasický té-test a jeho Velčovu variantu. Velikost rozdílu vyjádříme v původních jednotkách a také pomocí Kouenova dé.
+
+Další část spojuje tři situace: překryv intervalů, změnu ve dvou skupinách a ekvivalenci. Ve všech budeme potřebovat posoudit přímo rozdíl, který nás zajímá. Výklad uzavřeme volbou postupu a ukázkou zprávy o výsledcích. Závěrečné samostatné procvičování v této nahrávce zahrnuto není.
+
+Snímek tři.
+
+Začneme otázkou, podle čeho poznáme párová data a nezávislé skupiny. Stejnou psychologickou otázku totiž můžeme zkoumat různým uspořádáním studyje. Právě uspořádání určí, jak budeme s čísly pracovat.
+
+Snímek čtyři.
+
+Výzkumnici zajímá, zda se pozornost liší po běžném a po krátkém spánku. Přímé srovnání ve stejné studyji má výhodu proti porovnání se starší normou. Lidé jsou testováni stejným postupem a v podobném období. Stále ale musíme promyslet, jak srovnání uspořádáme.
+
+Ve variantě Á otestujeme tytéž studenty dvakrát. Jednou po běžném spánku, podruhé po noci s méně než pěti hodinami spánku. Přibližně polovina začne krátkým spánkem a druhá polovina běžným. Pořadí určíme náhodně, aby se podmínka nekryla s tím, zda student píše test poprvé, nebo podruhé.
+
+Ve variantě Bé rozdělíme studenty náhodně do dvou skupin. Jedna přijde po běžném spánku, druhá po krátkém. Každý student je testován jen jednou.
+
+Obě varianty se ptají na rozdíl populačních průměrů pozornosti. V první ale porovnáváme dvě hodnoty u téhož člověka. Ve druhé porovnáváme hodnoty různých lidí. Tuto informaci nesmíme při analýze ztratit.
+
+Snímek pět.
+
+Ve variantě Á tvoří dvě hodnoty jednoho studenta dvojici. Takovým údajům říkáme párová data. Opakované měření týchž lidí je jedním způsobem, jak párová data vznikají.
+
+Druhým způsobem jsou dvojice různých osob. Můžeme porovnávat partnery, sourozence nebo lidi záměrně spárované podle věku a výchozího výkonu. Každou hodnotu sice poskytne jiný člověk, ale ke každé hodnotě z jedné podmínky patří určitá hodnota z druhé. Jednotkou analýzy je dvojice.
+
+Podívejte se na levou část schématu. Každý student je zachycen dvakrát a jeho dvě hodnoty spojuje čára. Ve schématu vpravo jsou dvě skupiny různých studentů bez spojnic. Jde o nezávislé skupiny a jejich velikosti se mohou lišit.
+
+U párových dat máme po výběru úplných dvojic v obou podmínkách stejný počet hodnot. Stejná délka sloupců ale párování nedokazuje. Také dvě nezávislé skupiny mohou být stejně velké. Rozhoduje původ dat: zda hodnoty skutečně patří k sobě, nebo zda jsme jen náhodou získali stejně dlouhé sloupce čísel.
+
+Snímek šest.
+
+Tabulka ukazuje, jak obě uspořádání zaznamenáme do datové matice. U opakovaného měření je na jednom řádku jeden student. Má svůj identyfikační kód a dvě hodnoty: skór po běžném a skór po krátkém spánku.
+
+U nezávislých skupin je na řádku také jeden student, ale má jen jeden skór. Další sloupec označuje skupinu, do které patří. Dvě skupiny tedy nemusíme ukládat do dvou oddělených sloupců. Mohou být pod sebou, pokud skupinu jednoznačně rozpoznáme.
+
+U párových dat chráníme především vazbu uvnitř řádku. Jestliže jeden sloupec samostatně seřadíme podle velikosti, ocitnou se vedle sebe hodnoty různých lidí. Průměry sloupců sice zůstanou stejné, ale rozdíly v řádcích přestanou vyjadřovat rozdíly u jednotlivých studentů. Proto společně přesouváme vždy celé řádky.
+
+Snímek sedm.
+
+Teď přejdeme k párovému té-testu. Dvě měření u každého člověka nahradíme jedním rozdílem. Nejdřív ale musíme vyřešit, kteří studenti mají pro tento výpočet oba potřebné údaje.
+
+Snímek osm.
+
+Ve variantě Á bylo třináct studentů. Student číslo devět přišel po běžném spánku, ale druhého měření se nezúčastnil. Jeho dvojice je neúplná.
+
+Prázdnou buňku ponecháme na místě. Kdybychom ji odstranili a zbytek sloupce posunuli nahoru, spojili bychom údaje jiných lidí. Pro párovou analýzu společně vybereme jen řádky, které mají obě hodnoty. Zůstane dvanáct úplných dvojic. Písmeno en ve vzorci proto označuje dvanáct dvojic. Ani třináct původních studentů, ani dvacet pět zaznamenaných hodnot.
+
+Proč nestačí odečíst průměry sloupců, které Excel vypočítá z dostupných buněk? První sloupec má třináct hodnot a průměr padesát celých padesát čtyři setin bodu. Druhý má dvanáct hodnot a průměr čtyřicet šest celých osmdesát tři setin bodu. Rozdíl tři celé sedmdesát jedna setin bodu porovnává soubory s odlišným složením. U dvanácti úplných dvojic je průměrný rozdíl tři celé pět desetin bodu.
+
+Vyřazení neúplné dvojice také může ovlivnit zobecnitelnost závěru. Pokud student nepřišel právě proto, že krátký spánek snášel zvlášť špatně, může vypadnout člověk s velkým zhoršením. Potřebujeme tedy vědět, proč údaj chybí. Správné zachování řádků řeší technickou stránku párování, ale samo neodstraní možné zkreslení z chybějících dat.
+
+Snímek devět.
+
+U každého studenta teď odečteme skór po krátkém spánku od skóru po běžném spánku. Dostaneme rozdílové skóre. Kladná hodnota v tomto směru znamená nižší pozornost po krátkém spánku. Směr odečítání můžeme zvolit i obráceně, ale musíme ho výslovně uvést a dodržet.
+
+Dvě řady hodnot jsme převedli na jednu řadu dvanácti rozdílů. Otázka po rozdílu průměrů se tím mění na otázku, zda je populační průměr rozdílů nulový. Na jednu řadu čísel už umíme použít jednovýběrový té-test. V této situaci mu říkáme párový té-test.
+
+Projděme vzorec. Em s indexem dé je výběrový průměr rozdílů. Odečteme od něj testovanou hodnotu populačního průměru, mí s indexem nula. Celý výsledek vydělíme odhadem směrodatné chyby. Tu spočítáme jako směrodatnou odchylku rozdílů, es s indexem dé, dělenou odmocninou z počtu úplných dvojic.
+
+Při testování nulového průměrného rozdílu zůstane v čitateli jen průměr rozdílů. Stupňů volnosti je počet dvojic minus jedna, tedy jedenáct. Testujeme-li jinou hodnotu než nulu, v čitateli ji ponecháme. Můžeme například porovnávat průměrnou změnu s předem známým zlepšením o dva body z pouhého opakování testu. Považujeme-li tuto hodnotu za pevnou, její vlastní nejistotu do výpočtu nezahrnujeme. Kontrolní skupina ve stejné studyji proto může nabídnout přesvědčivější srovnání.
+
+Snímek deset.
+
+Použijme postup na dvanáct úplných dvojic. Rozdíly jsou vypsané na snímku. Nemusíme je všechny předčítat. Důležité je, že jejich průměr činí tři celé pět desetin bodu a směrodatná odchylka přibližně dva celé tři sta devadesát tři tisícin bodu.
+
+Směrodatnou odchylku rozdílů vydělíme odmocninou z dvanácti. Odhad směrodatné chyby je přibližně nula celých šest set devadesát jedna tisícin bodu. Průměrný rozdíl vydělíme touto chybou. Té vychází přibližně pět celých sedm setin s jedenácti stupni volnosti.
+
+Předem jsme zvolili oboustranný test na hladině nula celých pět setin. Oboustranná pé-hodnota je přibližně nula celých čtyři desetitisíciny. Na zvolené hladině tedy zamítáme nulovou hypotézu nulového populačního průměru rozdílů. V Excelu tuto pé-hodnotu vrací funkce té-tečka-dyst-tečka-dva-té. Samotný výsledek testu ale ještě neříká, jak velký průměrný rozdíl připouštějí data.
+
+Proto sestrojíme devadesátipětiprocentní interval spolehlivosti. Kvantyl té-rozdělení pro jedenáct stupňů volnosti je přibližně dva celé dvě stě jedna tisícin. Vynásobíme jím směrodatnou chybu a dostaneme mezní chybu přibližně jedna celá padesát dvě setiny bodu. Tu odečteme od průměrného rozdílu a také ji k němu přičteme.
+
+Interval sahá od jedné celé devadesáti osmi setin do pěti celých dvou setin bodu. Po krátkém spánku byl průměrný skór nižší o tři a půl bodu. Za předpokladů postupu jsou s daty slučitelné populační průměrné poklesy přibližně od dvou do pěti bodů. Výsledek vychází z lidí s oběma měřeními. Přesnost mezivýpočtů ponecháváme vyšší než přesnost konečného slovního shrnutí.
+
+Snímek jedenáct.
+
+Proč může párování odhad tolik zpřesnit? Porovnáme správnou analýzu s chybnou analýzou stejných dat. Potom se podíváme na vztah mezi hodnotami jednotlivých studentů a připomeneme omezení celého uspořádání.
+
+Snímek dvanáct.
+
+Tabulka porovnává dvě analýzy dvanácti úplných dvojic. Správný párový postup má směrodatnou chybu přibližně nula celých šedesát devět setin bodu. Kdybychom stejné sloupce chybně považovali za dvě nezávislé skupiny, vyšla by přibližně dva celé osmdesát dvě setiny bodu.
+
+Odhad rozdílu je v obou řádcích stejný, tři a půl bodu. U úplných dvojic se totiž průměr rozdílů rovná rozdílu průměrů. Analýzy se rozcházejí v nejistotě odhadu. Chybný postup má té přibližně jedna celá dvacet čtyři setin a pé-hodnotu nula celých dvě stě dvacet sedm tisícin. Jeho interval sahá od minus dvou celých třiceti čtyř setin do devíti celých třiceti čtyř setin bodu. V tomto příkladu je podstatně širší než párový interval a zahrnuje nulu.
+
+Nejde o dvě přípustné možnosti, mezi kterými si vybereme podle výsledku. Nezávislá analýza ignoruje souvislost hodnot téhož studenta. V těchto datech tím ztrácí informaci, která pomáhá oddělit stabilní rozdíly mezi lidmi od rozdílu mezi podmínkami. U jiných párových dat nemusí chyba působit stejným směrem. Správný postup vždy vychází z uspořádání studyje.
+
+Snímek třináct.
+
+Podívejte se nejprve na levý graf. Vodorovná osa rozlišuje běžný a krátký spánek, svislá osa ukazuje skór pozornosti v bodech. Dva body spojené čarou patří témuž studentovi. Oranžový křížek připomíná studenta s chybějícím druhým měřením; v párovém výpočtu zahrnut není.
+
+Studenti se celkovou úrovní výkonu hodně liší. Směrodatné odchylky skórů jsou sedm celých třicet čtyři setin a šest celých čtyřicet dvě setiny bodu. Většina spojnic ale klesá přibližně o podobný kus. Kdo měl vysoký skór v jedné podmínce, zpravidla ho má vysoký i ve druhé.
+
+Při odečtení dvou hodnot téhož člověka se stabilní část těchto rozdílů mezi lidmi z velké části odstraní. Rozdílová skóre proto kolísají méně než původní skóry. V pravém grafu je vodorovně rozdíl běžný minus krátký spánek v bodech. Body jsou rozdíly jednotlivců. Svislá přerušovaná čára označuje nulu. Úsečka dole je interval pro průměr rozdílů. Směrodatná odchylka rozdílů činí jen dva celé třicet devět setin bodu.
+
+Takový výsledek ale není zaručen samotným párováním. Záleží na vztahu obou měření. Ani zachované pořadí lidí neznamená, že rozdíly musejí kolísat méně než každé měření. Mají-li tři lidé nejprve hodnoty dva, čtyři a šest a potom šest, dvanáct a osmnáct, změny jsou čtyři, osm a dvanáct. Kolísají víc než první měření, přestože se pořadí lidí nezměnilo.
+
+Přesnost odhadu tedy posuzujeme podle směrodatné chyby a šířky intervalu průměrného rozdílu. V našem příkladu spánku je malá variabilita rozdílů důvodem, proč z dvanácti dvojic získáme poměrně přesný odhad.
+
+Snímek čtrnáct.
+
+Párování má i omezení. Při druhém měření se člověk může zlepšit jen proto, že už test zná. Nebo se zhorší únavou. Jde o efekt pořadí. Kdyby všichni začínali běžným spánkem a končili krátkým, vliv podmínky bychom nedokázali oddělit od vlivu pořadí.
+
+Proto pořadí vyvažujeme: přibližně polovina studentů začíná jednou podmínkou a polovina druhou. Podmínka se pak nekryje s pořadím. Vyvážení ovšem nezaručuje odstranění všech vlivů, například pokud první podmínka působí ještě při druhém měření.
+
+U měření před intervencí a po ní pořadí obrátit nelze. Ukazuje to skutečný příklad z Hauelovy učebnice s údaji Everitta o sedmnácti dívkách s mentální anorexií. Údaje byly převedeny z liber na kilogramy. Před rodinnou terapií byla průměrná hmotnost třicet sedm celých sedmdesát pět setin kilogramu. Po terapii čtyřicet jedna celých pět setin kilogramu.
+
+Průměrný přírůstek činil přibližně tři celé tři desetiny kilogramu. Párový té-test má šestnáct stupňů volnosti, té přibližně čtyři celé osmnáct setin a pé-hodnotu přibližně nula celých sedm desetitisícin. Devadesátipětiprocentní interval průměrné změny sahá od jedné celé šedesáti tří setin do čtyř celých devadesáti šesti setin kilogramu.
+
+Tento test dokládá kladnou průměrnou změnu za předpokladů postupu. Sám ale neporovnává změnu se změnou bez terapie. Hmotnost se mohla měnit i z jiných příčin. Hauel uvádí, že v témže výzkumu existovala také skupina bez rodinné terapie. Neříkáme tedy, že celý výzkum kontrolní skupinu neměl. Poučení se týká samotné párové analýzy: abychom posoudili výhodu terapie, potřebujeme přímo porovnat změny mezi skupinami.
+
+Snímek patnáct.
+
+Přecházíme ke dvěma nezávislým skupinám. Každý člověk poskytuje jednu hodnotu a žádné dvojice mezi skupinami nevytváříme. Potřebujeme odhadnout, jak mezi opakovanými výběry kolísá rozdíl dvou průměrů.
+
+Snímek šestnáct.
+
+Každý průměr má vlastní nejistotu. U nezávislých výběrů se příspěvky obou průměrů ke kolísání jejich rozdílu sčítají. Sčítáme ale rozptyly, tedy druhé mocniny směrodatných chyb.
+
+Vzorec přečteme po krocích. Výběrový rozptyl první skupiny vydělíme počtem jejích členů. Totéž uděláme ve druhé skupině. Oba výsledky sečteme a z celého součtu uděláme odmocninu. Dostaneme odhad směrodatné chyby rozdílu průměrů. Odmocnina vrátí výsledek do původních jednotek.
+
+V modelu parkovací studyje z šesté kapitoly měla směrodatná chyba každého průměru hodnotu jedna celá pět desetin sekundy. Směrodatná chyba rozdílu proto není tři sekundy. Je to odmocnina ze součtu dvou druhých mocnin jedné a půl, přibližně dva celé dvanáct setin sekundy.
+
+Graf na snímku ukazuje devadesát lidí rozdělených do různě velkých skupin. Vodorovná osa zachycuje poměr velikostí, svislá směrodatnou chybu rozdílu v bodech. V horním panelu mají obě populace směrodatnou odchylku deset bodů. Při rozdělení na čtyřicet pět a čtyřicet pět lidí je chyba přibližně dva celé jedenáct setin bodu. Při rozdělení na osmdesát a deset vzroste přibližně na tři celé třicet pět setin bodu.
+
+Menší skupina má méně přesně odhadnutý průměr. Pokud je navíc variabilnější, její příspěvek k nejistotě ještě zesílí. To ukazuje levý dolní panel: oranžová skutečná směrodatná chyba stoupá mnohem rychleji než šedý společný odhad. V pravém dolním panelu je variabilnější větší skupina a společný odhad naopak nejistotu nadhodnocuje. K důvodu se vrátíme při porovnání testů.
+
+Snímek sedmnáct.
+
+Klasický té-test předpokládá shodné populační rozptyly. Obě výběrové směrodatné odchylky pak odhadují stejnou populační směrodatnou odchylku, sigmu. Můžeme proto informace z obou skupin spojit.
+
+První vzorec udává společný odhad rozptylu. Rozptyl první skupiny násobíme její velikostí zmenšenou o jednu. Stejně zvážíme rozptyl druhé skupiny. Oba součiny sečteme a celý součet vydělíme součtem velikostí skupin zmenšeným o dva. Jde o vážený průměr rozptylů. Váhy odpovídají stupňům volnosti a větší skupina má větší vliv.
+
+Odmocninou společného rozptylu dostaneme společnou směrodatnou odchylku, es s indexem pé. Pro směrodatnou chybu rozdílu ji vynásobíme odmocninou ze součtu převrácených velikostí skupin. Odmocňujeme tedy celý součet jedné dělené velikostí první skupiny a jedné dělené velikostí druhé.
+
+Testujeme-li nulový rozdíl populačních průměrů, vydělíme rozdíl výběrových průměrů touto směrodatnou chybou. Dostaneme testovou statystyku té. Stupňů volnosti je součet velikostí skupin minus dva. Z každé skupiny jsme jeden stupeň volnosti použili pro odhad jejího průměru.
+
+Interval pro rozdíl sestavíme stejně jako dříve. K odhadu rozdílu přičteme a odečteme mezní chybu, tedy příslušný kvantyl té-rozdělení násobený odhadem směrodatné chyby. Platnost přesného té-postupu stojí vedle shody rozptylů také na nezávislosti a normálním modelu populací. Odolnost vůči odchylkám probereme za chvíli.
+
+Snímek osmnáct.
+
+Vraťme se k parkovací studyji. Sto řidičů, na jejichž místo čekalo jiné auto, odjíždělo v průměru za třicet devět celých tři setiny sekundy. Sto řidičů bez čekajícího auta za třicet dva celých patnáct setin sekundy. Rozdíl průměrů je šest celých osmdesát osm setin sekundy.
+
+Tentokrát populační směrodatnou odchylku nepovažujeme za známou. Odhadujeme ji z dat. Výběrová směrodatná odchylka je v obou skupinách čtrnáct celých šest desetin sekundy, a stejný je tedy i společný odhad.
+
+Vynásobíme tuto hodnotu odmocninou ze součtu jedné setiny a jedné setiny. Odhad směrodatné chyby rozdílu je přibližně dva celé šedesát pět tisícin sekundy. Rozdíl průměrů vydělíme touto chybou. Té vychází přibližně tři celé třicet tři setin se sto devadesáti osmi stupni volnosti.
+
+Oboustranná pé-hodnota je přibližně nula celých jedna tisícina. Na hladině nula celých pět setin zamítáme hypotézu stejných populačních průměrů. Devadesátipětiprocentní interval rozdílu sahá od dvou celých osmdesáti jedné setiny do deseti celých devadesáti pěti setin sekundy.
+
+Řidiči s čekajícím autem odjížděli v průměru přibližně o sedm sekund déle. Za předpokladů postupu jsou s daty slučitelné populační rozdíly přibližně od tří do jedenácti sekund. Řidiči ovšem nebyli k podmínkám náhodně přiřazeni. Skupiny vznikly pozorováním. Samotný test proto neprokazuje, že zdržení způsobilo právě čekající auto.
+
+Snímek devatenáct.
+
+Co když skupiny nejsou stejně velké a mají rozdílnou variabilitu? Ve variantě Bé máme třicet studentů po běžném spánku a dvanáct po krátkém. Jejich průměry jsou padesát a čtyřicet dva bodů. Směrodatné odchylky přibližně sedm celých devadesát sedm setin a čtrnáct bodů.
+
+V grafu je na svislé ose skór pozornosti a na vodorovné skupina. Body představují jednotlivé studenty. Menší skupina po krátkém spánku má výrazně větší variabilitu. Klasický společný odhad přitom více ovlivňuje větší, méně variabilní skupina. V této situaci pak podhodnocuje nejistotu rozdílu průměrů.
+
+Velčův té-test rozptyly nespojuje. Směrodatnou chybu spočítá z příspěvku každé skupiny zvlášť, vzorcem z předchozí části. Zároveň použije korigovaný počet stupňů volnosti. Ten zpravidla není celé číslo. Zde je přibližně třináct celých devadesát pět setin.
+
+Tabulka porovnává výsledky. Klasický test má směrodatnou chybu přibližně tři celé čtyřicet dvě setiny bodu a pé-hodnotu nula celých dvacet čtyři tisícin. Velčův postup má směrodatnou chybu čtyři celé tři desetiny bodu a pé-hodnotu nula celých osmdesát čtyři tisícin. Rozdíl osmi bodů tedy podle Velčova testu na hladině nula celých pět setin není statystycky významný.
+
+Jeho devadesátipětiprocentní interval sahá od minus jedné celé dvaceti dvou setin do sedmnácti celých dvaceti dvou setin bodu. Odhad je velmi nepřesný. Data jsou slučitelná s nulovým rozdílem, s mírným rozdílem opačným směrem i s podstatně vyšším průměrem po běžném spánku.
+
+Nezamítnutí nulové hypotézy proto není dokladem shodných průměrů. A rozdíl mezi výsledky testů nevznikl změnou odhadu osmi bodů. Změnil se odhad jeho nejistoty. Přesný výpočet korigovaných stupňů volnosti zde přenecháváme softwaru; pro porozumění je klíčový důvod, proč společný odhad nepoužijeme.
+
+Snímek dvacet.
+
+Kterou variantu tedy zvolit? Při stejně velkých skupinách vychází oběma postupy stejná směrodatná chyba i statystyka té. Mohou se však lišit stupně volnosti, a tím také pé-hodnota a interval. Klasický test bývá při vyvážených velikostech vůči rozdílným rozptylům poměrně odolný.
+
+Při rozdílných velikostech i rozptylech může být odchylka výrazná. Má-li menší skupina větší variabilitu, klasický test nejistotu podceňuje. Je-li naopak variabilnější větší skupina, může být zbytečně opatrný. To vysvětluje obě dolní části grafu směrodatné chyby.
+
+Velčův test je bezpečná výchozí volba. Klasický test můžeme použít u přibližně stejně velkých skupin nebo tehdy, máme-li předem dobrý věcný důvod předpokládat shodné populační rozptyly. Volbu zdůvodníme předem. Nerozhodujeme podle toho, který test přinesl menší pé-hodnotu.
+
+Jako rozhodovací bránu nepoužíváme ani předběžný test shody rozptylů. V malém výběru nemusí podstatnou nerovnost odhalit. Rozdílnou variabilitu navíc popíšeme jako samostatnou vlastnost dat. Může být věcně zajímavá, ale sama ještě nevysvětluje, proč vznikla.
+
+Snímek dvacet jedna.
+
+Tabulka shrnuje předpoklady tří postupů. Nejdřív sledujme řádek nezávislosti. U párového testu požadujeme nezávislost dvojic navzájem. Dvě hodnoty uvnitř dvojice naopak souviset mohou a tuto souvislost využíváme. U nezávislých skupin potřebujeme nezávislost uvnitř skupin i mezi nimi. Samotné rozdělení do dvou sloupců ji nezajistí.
+
+V řádku tvaru rozdělení je důležitý rozdíl. U párového testu se normální model týká rozdílových skórů. Nevyžaduje, aby každé původní měření zvlášť mělo normální rozdělení. U klasického a Velčova testu se model týká obou populací.
+
+Té-postupy jsou vůči některým odchylkám od normality poměrně odolné, zvlášť u větších výběrů a souměrných rozdělení. Malé skupiny s výraznou šikmostí nebo odlehlými hodnotami vyžadují opatrnost. Proto prohlédneme také data. U párové analýzy zejména graf rozdílů, například krabicový nebo kvé-kvé-graf. U nezávislých skupin prohlédneme každou skupinu zvlášť.
+
+Poslední řádek připomíná, že shodné rozptyly vyžaduje jen klasický test. Velčův test jejich shodu nepotřebuje, ale stále potřebuje ostatní předpoklady. Ani jeden test výpočtem neopraví závislá pozorování.
+
+Nakonec oddělme dvě další otázky. Zobecnění na populaci závisí na tom, jak byli lidé vybráni. Kauzální výklad závisí na uspořádání studyje, zejména na náhodném přiřazení k podmínkám a na kontrole dalších vlivů. Volba mezi klasickým a Velčovým testem tyto podmínky nenahrazuje.
+
+Snímek dvacet dva.
+
+Dosud jsme řešili odhad nejistoty a test rozdílu. Teď se zaměříme na velikost rozdílu. Vyjádříme ji v jednotkách měření a potom ve směrodatných odchylkách jednotlivých hodnot.
+
+Snímek dvacet tři.
+
+Začněme původními jednotkami. Průměrný přírůstek hmotnosti o tři celé tři desetiny kilogramu nebo delší odjezd přibližně o sedm sekund si umíme představit. Rozdíl průměrů proto vždy uvádíme spolu s intervalem.
+
+U testové škály ale samotné tři a půl bodu nemusí být srozumitelné. Potřebujeme vědět, jak se lidé na škále běžně liší. Kouenovo dé vztahuje rozdíl průměrů ke směrodatné odchylce jednotlivých hodnot. Pro nezávislé skupiny se shodnými rozptyly používáme společnou směrodatnou odchylku.
+
+V parkovací studyji vydělíme rozdíl šest celých osmdesát osm setin sekundy směrodatnou odchylkou čtrnáct celých šest desetin sekundy. Vyjde přibližně nula celých čtyřicet sedm setin. Průměry skupin tedy dělí necelá polovina směrodatné odchylky dob odjezdu.
+
+Ve jmenovateli je směrodatná odchylka jednotlivých hodnot, nikoli směrodatná chyba průměru nebo rozdílu. Tím se dé liší od testové statystyky té. Při stejných průměrech a směrodatných odchylkách zůstane dé stejné i ve větším výběru, zatímco směrodatná chyba se zmenší. Samo dé přitom také mezi výběry kolísá, a proto je ve zprávě doplníme intervalem spolehlivosti.
+
+Liší-li se rozptyly výrazně, musíme volbu jmenovatele zdůvodnit. Ve variantě Bé vztáhneme rozdíl osmi bodů ke směrodatné odchylce skupiny po běžném spánku, přibližně sedm celých devadesát sedm setin bodu. Dé pak vychází přibližně jedna. Průměrný skór skupiny po krátkém spánku byl nižší přibližně o jednu směrodatnou odchylku běžně spících studentů. Výslovně uvedeme, ke které skupině jsme rozdíl vztáhli. Samotné číslo dé ještě nerozhoduje o praktycké důležitosti výsledku.
+
+Snímek dvacet čtyři.
+
+U párových dat existuje více možností standardyzace. Každá může odpovídat na jinou otázku. Podívejme se znovu na průměrný přírůstek hmotnosti tři celé tři desetiny kilogramu.
+
+Vydělíme-li ho směrodatnou odchylkou hmotnosti před terapií, dva celé dvacet osm setin kilogramu, vyjde dé přibližně jedna celá čtyřicet pět setin. Průměrný přírůstek tedy odpovídá téměř jednomu a půl násobku výchozí směrodatné odchylky hmotnosti. Srovnáváme změnu s tím, jak se dívky lišily na začátku.
+
+Jestliže stejnou průměrnou změnu vydělíme směrodatnou odchylkou změn, tři celé dvacet pět setin kilogramu, dostaneme přibližně jedna celá jedna setina. Tentokrát porovnáváme průměrnou změnu s tím, jak se lišily změny jednotlivých dívek.
+
+Oba výpočty jsou správné. Nevyjadřují ale stejnou veličinu. Druhá varianta navíc závisí na vztahu obou měření, který ovlivňuje variabilitu změn. V tomto příkladu vyšla menší, v jiných datech může být naopak výrazně větší.
+
+Proto nelze uvést jen neurčité párové dé bez dalšího vysvětlení. Vždy řekneme, jakou směrodatnou odchylku jsme použili. Pro porovnávání studyjí potřebujeme shodnou definici i srovnatelný kontext. Žádná volba standardyzace sama nedoplňuje chybějící srovnání s kontrolní skupinou.
+
+Snímek dvacet pět.
+
+Následující tři příklady mají společnou zásadu: rozdíl, který nás zajímá, posuzujeme přímo. Nestačí porovnat dva intervaly pohledem, dva samostatné výsledky testů ani jen zjistit, že test rozdílu nezamítl nulovou hypotézu.
+
+Snímek dvacet šest.
+
+Graf obsahuje čtyři panely. První dva patří nezávislým skupinám po dvaceti pěti studentech. Jejich průměry jsou čtyřicet šest a padesát dva bodů, směrodatná odchylka deset bodů. V prvním panelu jsou na svislé ose skóry, body označují průměry a úsečky jejich devadesátipětiprocentní intervaly spolehlivosti. Šedý pás vyznačuje překryv intervalů.
+
+Z překryvu ale neplyne, že rozdíl průměrů není statystycky významný. Druhý panel ukazuje interval přímo pro rozdíl průměrů, počítaný jako běžný minus krátký spánek. Jeho střed je šest bodů a interval sahá od nuly celých třiceti jedné setiny do jedenácti celých šedesáti devíti setin bodu. Leží celý nad nulou. Odpovídající oboustranná pé-hodnota je přibližně nula celých třicet devět tisícin.
+
+Proč se oba závěry mohou zdát odlišné? Směrodatná chyba každého průměru je dva body. U rozdílu ale nesčítáme dvě a dvě. Sečteme jejich druhé mocniny a výsledek odmocníme. Dostaneme přibližně dva celé osmdesát tři setin bodu. Také mezní chyba intervalu rozdílu je menší než součet mezních chyb obou samostatných intervalů. Zde přibližně pět celých šedesát devět setin proti součtu čtyř celých třinácti setin a čtyř celých třinácti setin bodu. Rozdíl šesti bodů proto může být významný, i když se intervaly průměrů překrývají.
+
+Třetí a čtvrtý panel patří párovým datům z varianty Á. Samostatné intervaly podmínek se značně překrývají, ale interval průměrného párového rozdílu nulu nezahrnuje. Využívá totiž souvislost hodnot uvnitř dvojic, kterou ze samostatných intervalů nevyčteme.
+
+Graf průměrů s intervaly pomáhá popsat každou podmínku. Otázku po rozdílu ale řešíme intervalem rozdílu nebo odpovídajícím testem.
+
+Snímek dvacet sedm.
+
+Další příklad porovnává změnu ve dvou skupinách. Třicet dva studentů bylo náhodně rozděleno po šestnácti. Jedna skupina čtyři týdny trénovala pozornost. Aktyvní kontrolní skupina se podobně dlouho věnovala jiným počítačovým cvičením bez tréninku pozornosti. Všichni absolvovali měření před programem a po něm.
+
+Analýza má dva kroky. Nejprve u každého studenta spočítáme změnu, tedy hodnotu po programu minus hodnotu před ním. Potom tyto změny porovnáme mezi dvěma nezávislými skupinami. Každý student vstupuje do druhého kroku jedním číslem.
+
+Aktyvní kontrola pomáhá vyrovnat čas věnovaný činnosti, kontakt se studyjí i očekávání zlepšení. To, nakolik se to podařilo, závisí na jejím provedení. Samotný název aktyvní kontrola shodu očekávání nezaručuje.
+
+Graf má vodorovnou osu v bodech a svislou přerušovanou čáru u nuly. Horní úsečka patří průměrné změně trénované skupiny, prostřední kontrolní a dolní rozdílu jejich průměrných změn. Všude jde o devadesátipětiprocentní intervaly.
+
+Trénovaná skupina se zlepšila v průměru o čtyři body a její pé-hodnota je nula celých třicet tři tisícin. Kontrolní skupina se zlepšila o dva body a její pé-hodnota je nula celých sto osmdesát tři tisícin. Jen první samostatný test tedy překročí hranici významnosti.
+
+Otázka po účinku tréninku ale směřuje k dolní úsečce, k rozdílu průměrných změn. Ten činí dva body se směrodatnou chybou přibližně dva celé dvacet tři setin bodu. Pé-hodnota je nula celých tři sta sedmdesát šest tisícin. Interval sahá od minus dvou celých padesáti pěti setin do šesti celých padesáti pěti setin bodu.
+
+Na hladině nula celých pět setin nezamítáme hypotézu stejné populační průměrné změny. Odhadovaný účinek je kladný, ale velmi nepřesný. Statystycky významná změna v jedné skupině a nevýznamná ve druhé samy nedokládají rozdíl mezi změnami. Náhodné přiřazení podporuje kauzální interpretaci přímého srovnání, jeho interval ale stále zahrnuje nulový účinek i rozdíly několika bodů oběma směry.
+
+Snímek dvacet osm.
+
+Teď obrátíme otázku. Chceme doložit, že se průměry dvou verzí testu liší pouze zanedbatelně. Vydavatel proto porovná onlajn a papírovou verzi ve stejné studyji. Před analýzou stanoví věcně zdůvodněné hranice ekvivalence: minus tři a plus tři body pro rozdíl onlajn minus papír.
+
+Ve větší studyji má každá skupina dvě stě studentů. Průměry činí čtyřicet devět celých dvě desetiny a padesát celých jednu desetinu bodu. Rozdíl je minus nula celých devět desetin bodu. Směrodatná odchylka je v obou skupinách deset bodů, takže směrodatná chyba rozdílu vychází jeden bod.
+
+V grafu je vodorovně rozdíl průměrů. Modré pásmo leží mezi hranicemi ekvivalence. Tenká úsečka je devadesátipětiprocentní interval pro test rozdílu. Silná je devadesátiprocentní interval pro test ekvivalence na hladině nula celých pět setin. Tyto dvě hladiny intervalu mají různé funkce. Devadesátiprocentní interval odpovídá dvojici jednostranných testů, každý na pětiprocentní hladině.
+
+U horní studyje sahá devadesátiprocentní interval od minus dvou celých padesáti pěti setin do nuly celých sedmdesáti pěti setin bodu. Celý leží uvnitř zvolených hranic, a ekvivalence je tedy doložena. Devadesátipětiprocentní interval přitom zahrnuje nulu. V tomto příkladu není doložen rozdíl od nuly a současně máme dost přesný odhad pro doložení ekvivalence.
+
+Dolní dvojice úseček patří studyji se třiceti studenty v každé skupině a se stejnými popisnými výsledky. Její devadesátiprocentní interval sahá od minus pěti celých dvaceti dvou setin do tří celých čtyřiceti dvou setin bodu. Přesahuje hranice ekvivalence. Výsledek je nerozhodný: data připouštějí nulový rozdíl i rozdíly, které už za zanedbatelné nepovažujeme.
+
+Nevýznamný test rozdílu proto ekvivalenci nenahrazuje. Potřebujeme věcně zdůvodněné hranice a dost přesný interval. Závěr se týká populačních průměrů verzí. Neříká, že oba testy dávají stejné výsledky každému jednotlivému člověku. Obě strany srovnání navíc odhadujeme z dat, a proto se na nejistotě podílejí obě skupiny.
+
+Snímek dvacet devět.
+
+Zbývá spojit probrané postupy do přehledu a ukázat, jak výsledek sdělit. Začneme vždy výzkumnou otázkou a způsobem vzniku dat. Teprve potom vybíráme výpočet.
+
+Snímek třicet.
+
+Tabulku čtěte jako několik rozhodnutí. Porovnáváme jednu skupinu s pevnou hodnotou? Pak použijeme jednovýběrový té-test a interval pro jeden populační průměr.
+
+Máme tytéž lidi dvakrát nebo dvojice různých osob? Pak spočítáme rozdíly uvnitř dvojic a použijeme párový té-test s intervalem průměrného rozdílu.
+
+Porovnáváme dvě nezávislé skupiny? Pak potřebujeme klasický nebo Velčův té-test a interval rozdílu populačních průměrů. Velčův postup je bezpečná výchozí volba, zejména pokud velikosti a rozptyly skupin nejsou podobné.
+
+Máme měření před programem a po něm ve dvou skupinách? Nejprve vytvoříme změny jednotlivců. Potom porovnáme jejich průměry mezi skupinami. Dva samostatné párové testy tuto otázku nezodpovědí.
+
+A chceme doložit zanedbatelný rozdíl? Pak použijeme test ekvivalence s předem zvolenými hranicemi. Na pětiprocentní hladině pracujeme s devadesátiprocentním intervalem rozdílu.
+
+Postup tedy nevolíme podle menší pé-hodnoty. Volíme ho podle cíle a uspořádání. Také průběžně oddělujeme popis rozdílu, statystyckou inferenci a závěr o jeho příčině.
+
+Snímek třicet jedna.
+
+Na snímku je zkrácená zpráva o variantě Bé. Přečteme ji významově, aby bylo jasné, které informace v ní hledat. Studenti byli náhodně rozděleni do dvou skupin. Po běžném spánku bylo třicet studentů s průměrem padesát bodů a směrodatnou odchylkou sedm celých devadesát sedm setin bodu. Po krátkém spánku bylo dvanáct studentů s průměrem čtyřicet dva bodů a směrodatnou odchylkou čtrnáct bodů.
+
+Rozdíl průměrů osm bodů nebyl podle Velčova té-testu statystycky významný. Té bylo přibližně jedna celá osmdesát šest setin, korigovaný počet stupňů volnosti třináct celých devadesát pět setin a pé-hodnota nula celých osmdesát čtyři tisícin. Devadesátipětiprocentní interval rozdílu sahal od minus jedné celé dvaceti dvou setin do sedmnácti celých dvaceti dvou setin bodu.
+
+Zpráva tedy uvádí uspořádání, velikosti skupin, jejich popisné výsledky, rozdíl v původních jednotkách, jeho nejistotu a název i výsledek testu. Ve zkratkách na snímku znamená em průměr, es-dé směrodatnou odchylku a sí-aj interval spolehlivosti. Jde o značení používané ve zprávách podle á-pé-á; výpočetní značení učebnice tím neměníme.
+
+Úplnější zpráva připojí Kouenovo dé s uvedením jmenovatele a intervalem spolehlivosti. Zde dé odpovídá přibližně jedné směrodatné odchylce skupiny po běžném spánku. U párových dat přidáme počet úplných dvojic a směrodatnou odchylku rozdílů, která je důležitá pro přesnost párového odhadu.
+
+Nakonec vždy oddělíme rozhodnutí testu od věcné interpretace. V tomto příkladu nulovou hypotézu nezamítáme. Současně ale uvádíme pozorovaný rozdíl osmi bodů a široký interval. Výsledek tak popisujeme jako nepřesný odhad, nikoli jako důkaz stejných populačních průměrů. Tím končí výkladová část prezentace.
