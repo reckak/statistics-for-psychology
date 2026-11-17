@@ -156,6 +156,21 @@ a více skupin, korekce pro více testů, neparametrické a robustní postupy,
 bootstrap, výpočet síly a plánování velikosti výběru, částečně párovaná data,
 výpočet a inference korelace.
 
+### Doprovodný scénář k prezentaci
+
+Na výslovnou žádost autora připraven 2026-11-17
+[scénář pro syntézu řeči](../../presentations/kapitola_08_porovnani_dvou_prumeru_scenar.txt)
+ke snímkům 1–31 prezentace, podle aktuálních podrobných poznámek v DOCX.
+Zahrnuje řešené příklady; samostatné procvičování na snímcích 32–39
+a otázky k zamyšlení vynechává. Rozsah kapitoly ani prezentace se nemění.
+[Průvodní dokument](../../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md)
+vymezuje podklady, číselné a textové kontroly a jejich omezení;
+[manifest](../../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json)
+uchovává otisky podkladů, přiřazení úseků ke snímkům a slovník výslovnosti.
+Nahrávka nebyla vytvořena. Soulad tohoto doplnění s rozsahem prezentace
+a scénářem zkontrolován 2026-11-17; datum kontroly výkladu kapitoly výše
+se tím nemění.
+
 ## Vazby na podklady
 
 - [U01](../zdroje/U01-howell.md#priprava-08-20261101) — §7.4–7.6, s. 197–220 (párová data, anorexie s. 198–201 a 200, d s. 203–204 a 213, Welch a doporučení s. 217–220, robustnost při stejných velikostech skupin s. 219, hrozba stereotypu s. 215–217, parkování s. 86); §17.2, s. 632 (přibližná směrodatná chyba *d*, [revize 2026-11-14](../zdroje/U01-howell.md#revize-08-20261114)).

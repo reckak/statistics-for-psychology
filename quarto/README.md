@@ -1,5 +1,36 @@
 # Autorská dokumentace
 
+<a id="scenar-kapitoly-8-20261117"></a>
+
+## 2026-11-17 — Scénář zvukového doprovodu prezentace kapitoly 8
+
+Na výslovnou žádost autora připraven
+[mluvený scénář v UTF-8](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar.txt)
+ke snímkům 1–31 aktuální prezentace a podrobným poznámkám v DOCX.
+Vynechává procvičování na snímcích 32–39, diskusní otázky a organizační pokyny.
+Text má 4 934 slov, odhad 39–47 minut při 105–125 slovech za minutu;
+nejde o změřenou délku nahrávky. Čísla, značky a operace jsou rozepsány
+pro poslech a výslovnostní přepisy podle R53 uplatněny v celém textu.
+Připojen [průvodní dokument](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_podklady.md)
+a [manifest](../presentations/kapitola_08_porovnani_dvou_prumeru_scenar_manifest.json)
+s otisky podkladů, mapováním úseků, slovníkem a výsledky kontrol;
+odkazy doplněny do karty kapitoly. PPTX, DOCX ani výklad kapitoly nebyly měněny.
+
+Ověřeno pořadí 31 úseků, nepřítomnost číslic a nezpracovaných značek,
+použití přepisů včetně `kvantyl`, shoda s textem snímků a podrobnými poznámkami.
+Vizuálně prohlédnuto všech sedm vložených obrázků. Nezávislý přepočet
+pomocí základního R 4.5.1 (`stats::t.test`) potvrdil použité příklady testů
+a intervalů včetně Welchových neceločíselných stupňů volnosti,
+porovnání změn, ekvivalence a standardizací. U souhrnných vstupů byly
+pro kontrolní test vytvořeny pomocné vektory se stejnými průměry a SD,
+nikoli rekonstruována původní individuální data. Provedena interní
+didaktická revize návazností a významu vzorců, grafů a závěrů.
+
+Omezení: původní odborné zdroje nebyly nově ověřovány, prezentace nebyla
+znovu renderována v PowerPointu a desktopový Excel nebyl spuštěn.
+Zvuk nevznikl, služba syntézy nebyla volána; textová kontrola nepotvrzuje
+výslovnost konkrétního hlasu a nejde o poslechové ověření.
+
 <a id="prezentace-kapitoly-8-20261117"></a>
 
 ## 2026-11-17 — Prezentace ke kapitole 8
