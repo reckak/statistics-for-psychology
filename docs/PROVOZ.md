@@ -752,7 +752,10 @@ a zápis jedenácti vzorců listů v češtině. Změny neukládá. Od revize 20
 (nezávislým výpočtem s `prop.test`), tabulku Holmovy korekce proti `p.adjust`,
 znaménkový test proti `binom.test`, φ se znaménkem proti korelaci kódů 0/1
 a simulovanou *p*-hodnotu proti `chisq.test(simulate.p.value = TRUE)`
-a `fisher.test`; simulace mají pevné seedy 20261116 a 20261117. Nezávislé reference
+a `fisher.test`; simulace mají pevné seedy 20261116 a 20261117. Od 2026-11-17
+ověřuje také nepovinné odvození Wilsonova intervalu: kořeny kvadratické rovnice
+proti uzavřenému vzorci, `prop.test` a `polyroot`, zjednodušený výraz pod
+odmocninou a čísla citovaná v rozšíření. Nezávislé reference
 jsou v `check-chapter-09-excel.json`; obnoví je
 `python quarto/_verification/check-chapter-09-excel-expected.py quarto/_verification/check-chapter-09-excel.json`.
 Funkce HYPGEOM.DIST u nemožné kombinace argumentů nemusí vracet chybu, proto

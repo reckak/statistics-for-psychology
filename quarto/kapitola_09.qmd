@@ -84,7 +84,7 @@ kde $p$ je výběrový podíl, $n$ počet pokusů nebo lidí a $z$ kvantil normo
 - Pod odmocninou je k odhadu rozptylu přičtena kladná hodnota $z^2/(4n^2)$. Interval proto nemá nulovou šířku ani při $p=0$ nebo $p=1$.
 - U velkých výběrů jsou zlomky se $z^2$ zanedbatelné (blížící se 0) a Wilsonův interval se blíží Waldovu. Rozdíl je důležitý právě u malých výběrů a krajních podílů.
 
-Pro 10 z 20 je střed 0,500 a polovina šířky 0,201, takže **95% Wilsonův interval je (0,30; 0,70)**. Pro 0 z 15 je střed 0,102 a interval (0; 0,20). Obrázek [-@fig-wald-wilson] oba postupy porovnává.
+Pro 10 z 20 je střed 0,500 a polovina šířky 0,201, takže **95% Wilsonův interval je (0,30; 0,70)**. Pro 0 z 15 je střed 0,102 a interval (0; 0,20). Jak vzorec z úlohy plyne, ukazuje [nepovinné rozšíření](#rozsireni-wilson-odvozeni) na konci tohoto pododdílu. Obrázek [-@fig-wald-wilson] oba postupy porovnává.
 
 ::: {.teaching-figure role="region" aria-label="Waldův a Wilsonův interval pro dva příklady" tabindex="0"}
 
@@ -105,6 +105,56 @@ Wilsonův interval se nemění jen podle výsledku, ale i podle počtu pokusů. 
 Wilsonův interval má stejné předpoklady jako [binomický model](kapitola_05.qmd#sec-binomicke-predpoklady): jednotlivé pokusy jsou nezávislé a každý má stejnou pravděpodobnost úspěchu $\mathrm{π}$. Podíl musí vzniknout z četností. Procento typu „spal 87 % doby strávené v posteli“ není podíl nezávislých pokusů a interval pro něj takto počítat nelze [@cumming, s. 395–396].
 
 **Věcná interpretace příkladu:** student odpověděl správně na polovinu otázek. S daty je slučitelná dlouhodobá úspěšnost přibližně od 0,30 do 0,70. Interval neobsahuje hodnotu 0,25, kterou bychom čekali při pouhém hádání. Je ale široký: dvacet otázek o schopnosti studenta mnoho neprozradí.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: odvození Wilsonova intervalu" #rozsireni-wilson-odvozeni}
+Toto rozšíření ukazuje krok za krokem, jak z úlohy formulované na začátku pododdílu vznikne vzorec pro střed a polovinu šířky. Vystačíme s úpravami výrazů a s jedním středoškolským vzorcem, který připomeneme.
+
+**Od úlohy k nerovnici.** Hledáme hodnoty $\mathrm{π}$, od nichž je výběrový podíl $p$ vzdálen nejvýše $z$ směrodatných chyb spočítaných z $\mathrm{π}$:
+
+$$|p-\mathrm{π}|\le z\sqrt{\frac{\mathrm{π}(1-\mathrm{π})}{n}}.$$
+
+Svislé čáry značí absolutní hodnotu, tedy vzdálenost bez ohledu na směr. Obě strany jsou nezáporné, proto nerovnost zůstane v platnosti, když je umocníme na druhou. Odmocnina tím zmizí:
+
+$$(p-\mathrm{π})^2\le\frac{z^2\,\mathrm{π}(1-\mathrm{π})}{n}.$$
+
+Obrázek [-@fig-wilson-odvozeni] ukazuje obě strany této nerovnice pro 10 správných odpovědí z 20. Levá strana je čtverec vzdálenosti: pro $\mathrm{π}=p$ je nulový a na obě strany roste. Pravá strana je mez odvozená ze směrodatné chyby: největší je pro $\mathrm{π}=0{,}5$ a ke krajním hodnotám klesá k nule. Nerovnice platí pro ta $\mathrm{π}$, u nichž první křivka leží pod druhou nebo se jí dotýká. Meze intervalu jsou tedy dva průsečíky křivek.
+
+::: {.teaching-figure role="region" aria-label="Odvození Wilsonova intervalu: obě strany nerovnice pro 10 z 20" tabindex="0"}
+
+![Wilsonův interval tvoří hodnoty $\mathrm{π}$, pro které čtverec vzdálenosti výběrového podílu od $\mathrm{π}$ nepřesáhne mez danou směrodatnou chybou spočítanou z $\mathrm{π}$. Pro 10 z 20 se obě křivky protínají v bodech 0,30 a 0,70, což jsou meze intervalu.](../assets/chapter-09/plots/wilson-odvozeni.svg){#fig-wilson-odvozeni fig-alt="Graf s populačním podílem π od 0 do 1 na vodorovné ose. Oranžová křivka čtverce vzdálenosti (p − π)² má tvar údolí s nulou v bodě 0,5 a na obě strany strmě roste. Modrá křivka meze z²π(1 − π)/n má tvar nízkého oblouku s vrcholem asi 0,048 v bodě 0,5 a nulou v bodech 0 a 1. Křivky se protínají v bodech 0,30 a 0,70; mezi nimi leží oranžová křivka pod modrou a oblast mezi křivkami je vybarvena. Úsečka na vodorovné ose mezi těmito body je označena jako Wilsonův interval."}
+
+:::
+
+**Kvadratická nerovnice.** Průsečíky najdeme výpočtem. Obě strany roznásobíme:
+
+$$p^2-2p\,\mathrm{π}+\mathrm{π}^2\le\frac{z^2}{n}\,\mathrm{π}-\frac{z^2}{n}\,\mathrm{π}^2.$$
+
+Všechny členy převedeme na levou stranu a seřadíme podle mocnin $\mathrm{π}$:
+
+$$\left(1+\frac{z^2}{n}\right)\mathrm{π}^2-\left(2p+\frac{z^2}{n}\right)\mathrm{π}+p^2\le0.$$
+
+Neznámá $\mathrm{π}$ tu vystupuje nejvýše ve druhé mocnině. Položíme-li levou stranu rovnu nule, dostaneme **kvadratickou rovnici** (*quadratic equation*); hodnotám, které ji splňují, se říká kořeny. Číslo, kterým se násobí $\mathrm{π}^2$, je kladné. Levá strana je proto pro hodně malá i hodně velká $\mathrm{π}$ kladná a záporná je jen mezi oběma kořeny. Řešením nerovnice jsou všechna $\mathrm{π}$ od menšího kořene po větší.
+
+**Vzorec pro kořeny.** Kvadratická rovnice $Ax^2+Bx+C=0$ má kořeny
+
+$$x=\frac{-B\pm\sqrt{B^2-4AC}}{2A}.$$
+
+V naší rovnici je neznámou $\mathrm{π}$ a platí $A=1+z^2/n$, $B=-(2p+z^2/n)$ a $C=p^2$. Nejprve upravíme výraz pod odmocninou. Roznásobíme jej, členy $4p^2$ se odečtou a ze zbytku vytkneme $4z^2$:
+
+$$\begin{aligned}B^2-4AC&=\left(2p+\frac{z^2}{n}\right)^2-4\left(1+\frac{z^2}{n}\right)p^2\\&=\frac{4p\,z^2}{n}-\frac{4p^2z^2}{n}+\frac{z^4}{n^2}\\&=4z^2\left[\frac{p(1-p)}{n}+\frac{z^2}{4n^2}\right].\end{aligned}$$
+
+Odmocnina z tohoto výrazu je $2z\sqrt{p(1-p)/n+z^2/(4n^2)}$. Dosadíme do vzorce pro kořeny a čitatele i jmenovatele vydělíme dvěma:
+
+$$\mathrm{π}=\frac{p+\dfrac{z^2}{2n}}{1+\dfrac{z^2}{n}}\pm\frac{z}{1+\dfrac{z^2}{n}}\sqrt{\frac{p(1-p)}{n}+\frac{z^2}{4n^2}}.$$
+
+První zlomek je střed intervalu, výraz za znaménkem ± polovina jeho šířky. Je také vidět, odkud se berou vlastnosti popsané výše. Posun středu k 0,5 i kladný člen $z^2/(4n^2)$ pod odmocninou vznikají tím, že směrodatnou chybu počítáme z $\mathrm{π}$, nikoli z $p$.
+
+**Kontrola na příkladech.** Pro 10 z 20 je $p=0{,}5$ a $z^2/n=3{,}8415/20\approx0{,}192$. Nerovnice má tvar $1{,}192\,\mathrm{π}^2-1{,}192\,\mathrm{π}+0{,}25\le0$ a její kořeny jsou 0,299 a 0,701, tedy meze intervalu (0,30; 0,70). Pro 0 z 15 je $p=0$, takže poslední člen vypadne a z levé strany lze vytknout $\mathrm{π}$:
+
+$$\mathrm{π}\left[\left(1+\frac{z^2}{n}\right)\mathrm{π}-\frac{z^2}{n}\right]\le0.$$
+
+Součin je nulový, když je nulový některý z činitelů. Jeden kořen je proto přesně 0 a druhý $z^2/(n+z^2)=3{,}8415/18{,}8415\approx0{,}204$. Dolní mez tedy leží v nule, a horní mez je přesto kladná: interval (0; 0,20) nemá nulovou šířku, ačkoli jev ve výběru nenastal ani jednou.
+:::
 
 ### Výpočet v Excelu {#sec-interval-podilu-excel}
 

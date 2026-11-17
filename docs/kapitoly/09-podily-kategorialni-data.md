@@ -11,7 +11,7 @@ sestavena podle výkladu, zadání a řešení 2026-11-09. Dohodu dokládají
 [R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-09). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-9).
-Autor kapitolu prošel a připomínkoval 2026-11-16; revizi podle jeho připomínek dokládá [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9) a [záznam o revizi](../../quarto/README.md#revize-kapitoly-9-2026-11-16). Soulad karty s textem zkontrolován 2026-11-16.
+Autor kapitolu prošel a připomínkoval 2026-11-16; revizi podle jeho připomínek dokládá [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9) a [záznam o revizi](../../quarto/README.md#revize-kapitoly-9-2026-11-16). Nepovinné odvození Wilsonova intervalu přidáno 2026-11-17 ([doplnění R68](../rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-17), [záznam](../../quarto/README.md#odvozeni-wilsonova-intervalu-20261117)). Soulad karty s textem zkontrolován 2026-11-16; 2026-11-17 jen pro pododdíl o Wilsonově intervalu a nové rozšíření.
 
 **Vstup:** nominální a ordinální úroveň měření, souvislost a příčina (kap. 1);
 absolutní a relativní četnost, značka $f_j$ a sumace (kap. 2); stupně volnosti
@@ -49,6 +49,7 @@ sloupec určuje konkrétní **procvičení**. Jedenáct hlavních oddílů odpov
 |---|---|---|
 | [Od tabulky ve výběru k populaci](../../quarto/kapitola_09.qmd#sec-od-tabulky-k-populaci) | Tabulka 200 studentů z kap. 5 jako náhodný výběr (40 % a 30 %); kategoriální data, podíl $p$ a parametr $\mathrm{π}$; průměr kódů nominálních kategorií bez smyslu, průměr 0/1 je podíl; tři typy otázek. | 1. |
 | [Jak přesně odhadneme podíl](../../quarto/kapitola_09.qmd#sec-interval-podilu) | 10 z 20 (test z kap. 6): Wald (0,28; 0,72) jen jako mezikrok, selhání u 0 z 15 a zešikmení u okrajů; Wilsonův interval vzorcem (střed, polovina šířky; 0,30–0,70; 0 z 15: 0–0,20; 40 z 80: 0,39–0,61); předpoklady a procenta; přesně spočítané pokrytí Waldova a Wilsonova intervalu pro *n* = 10, 20, 50 a 100 a podíl Waldových intervalů mimo 0–1 (obrázek). List `Interval_podilu`. Skórový test ($z=2{,}58$, *p*-hodnota 0,0098) a vztah k binomickému testu kap. 6 (0,014) formulací R68. | 2, 3. |
+| [Nepovinné: odvození Wilsonova intervalu](../../quarto/kapitola_09.qmd#rozsireni-wilson-odvozeni) | Od podmínky $\lvert p-\mathrm{π}\rvert\le z\sqrt{\mathrm{π}(1-\mathrm{π})/n}$ přes umocnění ke kvadratické nerovnici; obrázek obou stran pro 10 z 20; připomenutý vzorec pro kořeny ($A$, $B$, $C$), úprava výrazu pod odmocninou, střed ± polovina šířky; kontrola na 10 z 20 (0,299; 0,701) a 0 z 15 (0; 0,204). Pojem kvadratická rovnice jen zde ([doplnění R68](../rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-17)). | Bez cvičení. |
 | [Nepovinné: souhrn studií o telepatii](../../quarto/kapitola_09.qmd#rozsireni-ganzfeld) | 106 z 329 (Cumming, Bem a Honorton), Wilson (0,274; 0,374), *p* 0,002; proč výpočet sám neprokazuje telepatii. | Bez cvičení. |
 | [Dva nezávislé podíly](../../quarto/kapitola_09.qmd#sec-dva-podily) | Směrodatná chyba rozdílu podílů a její odhad $s_{p_1-p_2}=0{,}067$ sčítáním rozptylů (Wald −0,03; 0,23 jako princip); Newcombův interval z Wilsonových intervalů (−0,032; 0,227) s vysvětlením mezí a obrázkem konstrukce (poloviny intervalů, čtverce vzdáleností, Pythagorova věta); test se společným podílem 0,35, $z=1{,}48$, *p* 0,138; proč test používá společný podíl a interval ne; dvojnásobný výběr *p* 0,036. List `Dva_podily`. | 4, 12. |
 | [Dobrá shoda](../../quarto/kapitola_09.qmd#sec-dobra-shoda) | Volba jednoho ze čtyř stejných vzorků čaje (80 lidí; 12, 16, 21, 31); $e_j=n\mathrm{π}_{0j}$; nerovnoměrné π₀ (poradna); „Častý omyl“ o profilu z jiného výběru; statistika $\mathrm{χ}^2=10{,}10$ s tabulkou příspěvků; dvě kategorie $\mathrm{χ}^2=z^2$ (6,667). | 5, 6. |
@@ -91,6 +92,7 @@ zdroje: Daniels (podle Fielda, s. 638), aspirinová studie, Prozac a anorexie
 | Obrázek | Didaktický účel |
 |---|---|
 | [Waldův a Wilsonův interval](../../quarto/kapitola_09.qmd#fig-wald-wilson) | Selhání Waldova intervalu u 0 z 15; podobnost u 10 z 20. |
+| [Odvození Wilsonova intervalu](../../quarto/kapitola_09.qmd#fig-wilson-odvozeni) | Nepovinné rozšíření: čtverec vzdálenosti $(p-\mathrm{π})^2$ a mez $z^2\mathrm{π}(1-\mathrm{π})/n$ pro 10 z 20; interval leží tam, kde první křivka nepřesahuje druhou, průsečíky 0,30 a 0,70. |
 | [Volba čaje](../../quarto/kapitola_09.qmd#fig-pozice) | Pozorované a očekávané četnosti. |
 | [Chí-kvadrát rozdělení](../../quarto/kapitola_09.qmd#fig-chi-kvadrat) | Tvar podle stupňů volnosti; simulace statistiky odpovídá modelu; *p*-hodnota a kritická hodnota. |
 | [Strategie zvládání podle věku](../../quarto/kapitola_09.qmd#fig-zvladani) | Řádkové podíly proti podílům celého souboru. |

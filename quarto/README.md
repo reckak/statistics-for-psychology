@@ -1,5 +1,46 @@
 # Autorská dokumentace
 
+<a id="odvozeni-wilsonova-intervalu-20261117"></a>
+
+## 2026-11-17 — Nepovinné odvození Wilsonova intervalu v kapitole 9
+
+Na žádost autora doplněno na konec pododdílu
+[Wilsonův interval](kapitola_09.qmd#sec-wilson) nepovinné rozšíření
+[Odvození Wilsonova intervalu](kapitola_09.qmd#rozsireni-wilson-odvozeni)
+([doplnění R68](../docs/rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-17)):
+podmínka s absolutní hodnotou, umocnění, kvadratická nerovnice, připomenutý
+vzorec pro kořeny se zápisem $Ax^2+Bx+C=0$, úprava výrazu pod odmocninou,
+výsledný tvar střed ± polovina šířky a kontrola na příkladech 10 z 20
+a 0 z 15. Nový obrázek `wilson-odvozeni.svg` (`scripts/kapitola_09.R`) ukazuje
+obě strany nerovnice pro 10 z 20. Povinný text získal jedinou větu s odkazem
+na rozšíření; vzorec, sešit, cvičení ani přehled značení se neměnily. Pojem
+kvadratická rovnice doplněn do [slovníku](../docs/SLOVNIK.md#pojem-kvadraticka-rovnice)
+a studentského slovníčku jako pojem nepovinného rozšíření; aktualizována
+[karta kapitoly](../docs/kapitoly/09-podily-kategorialni-data.md#skutecny-obsah-09)
+a [provozní návod](../docs/PROVOZ.md#kontroly-a-github).
+
+**Kontroly:** `check-chapter-09.R` prošel; nově porovnává kořeny kvadratické
+rovnice s uzavřeným vzorcem, s `prop.test(..., correct = FALSE)` a s `polyroot`
+pro pět dvojic (včetně 10/20 a 0/15), ověřuje oba tvary výrazu pod odmocninou
+a čísla citovaná v rozšíření (3,8415; 0,192; 1,192; 0,299; 0,701; 18,8415;
+0,204; vrchol meze 0,048 v alternativním textu). Celá kniha vykreslena;
+`check-html.cjs` prošel bez chyb (26 stránek, 343 hesel slovníčku, 133 řešení),
+s upraveným počtem obrázků kapitoly 9 (12) a s novým rozšířením v kontrole
+výchozího sbalení. `check-doc-maps.cjs` bez chyb. Rozbalené rozšíření
+prohlédnuto na snímcích při šířce 1280 a 375 px: rovnice se vykreslují se
+stojatým π a desetinnými čárkami bez mezery, nejdelší úprava je rozdělena
+do tří řádků a stránka vodorovně nepřetéká; obrázek se na mobilu posouvá
+místně jako ostatní obrázky kapitoly. Délka vět rozšíření ověřena výpočtem
+(žádná nad 30 slov). Didaktická revize: každý krok úpravy je pojmenován,
+absolutní hodnota, kořen a kvadratická rovnice jsou vysvětleny na místě,
+rozšíření nepoužívá dosud nezavedený skórový test.
+
+**Neověřeno:** pracovní PDF kapitoly 9 ani PDF celé knihy nebyly sestaveny
+(jen na vyžádání), takže sazba rozšíření v PDF zkontrolována není. Balíčky
+AI tutora nebyly znovu exportovány ani vydány. Odkaz z textu vede na záhlaví
+sbaleného bloku; ten se stejně jako u ostatních rozšíření sám nerozbalí.
+Porozumění odvození nebylo ověřeno na studentech.
+
 ## 2026-11-17 — Materiály k prezentacím ve složkách podle kapitol
 
 Na žádost autora rozděleny soubory ve `presentations/` do podsložek
