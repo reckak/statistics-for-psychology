@@ -59,7 +59,9 @@ export const inputs = {
     item('U10_transformace','Cvičení 10',['Vstup','Hodnota','Jednotka'],[['Průměr',4,'min'],['Směrodatná odchylka',1.5,'min'],['Medián',3.5,'min'],['Přičítaný čas',2,'min'],['Sekund za minutu',60,'s/min']], 'Zadány jsou souhrny, nikoli jednotlivé doby.'),
     item('U11_strategie','Cvičení 11',['Strategie','Skupina A','Skupina B'],[['A',20,5],['B',0,5],['C',0,5],['D',0,5]]),
     item('Entropie_data','Výklad; nepovinné cvičení 14',['Kategorie','Četnost'],[['A',4],['B',2],['C',2],['D',0]],'Výchozí tři kategorie A–C; D je rozšíření s nulovou četností. Další varianta: 8, 0, 0, 0.'),
-    item('U15_sikmost','Nepovinné cvičení 15',['Skór (body)','Četnost'],[[-2,4],[-1,5],[1,10],[3,1]])
+    item('U15_sikmost','Nepovinné cvičení 15',['Skór (body)','Četnost'],[[-2,4],[-1,5],[1,10],[3,1]]),
+    vector('Dve_hodnoty','Nepovinné rozšíření: všechny výběry dvou hodnot','Doba (min)',[4,8],'Známá modelová populace se dvěma stejně zastoupenými hodnotami. Všechny čtyři výběry dvou hodnot s vracením vypisuje tabulka v kapitole; nejde o měření lidí.'),
+    vector('U16_populace','Nepovinné cvičení 16','Doba (min)',[3,9],'Známá modelová populace se dvěma stejně zastoupenými hodnotami. Výběry dvou hodnot s vracením sestavte sami.')
   ],
   4: [
     item('Z_skory','Výklad: dvě různé referenční skupiny',['Test','Skór (body)','Průměr (body)','Směrodatná odchylka (body)'],[['A',60,50,10],['B',42,30,6]]),

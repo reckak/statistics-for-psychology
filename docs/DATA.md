@@ -69,7 +69,7 @@ příklady; `Tvary` a `Podlaha_strop` zachovávají schematické četnosti obrá
 
 Výklad: `Zaklad_data`, `Stejny_prumer`, `Dva_mody`, `Sudy_median`,
 `Vazeny_prumer`, `Kvantily`, `Percentil_ctyri`, `Ordinalni_kvantily`,
-`Vyjimky_stredu` (četnosti obrázku výjimek, A2:D6), `Orezani`, `Boxplot`, `Populace`, `Entropie_data`, `Spicatost`,
+`Vyjimky_stredu` (četnosti obrázku výjimek, A2:D6), `Orezani`, `Boxplot`, `Populace`, `Dve_hodnoty` (populace 4 a 8 min nepovinného rozšíření o dělení n − 1, A2:A3; čtyři výběry vypisuje tabulka v kapitole), `Entropie_data`, `Spicatost`,
 `Transformace` a `Data` pokrývají zadané soubory i souhrnné vstupy.
 Varianty změny 10 na 30 a transformací jsou popsány u vstupů, původní
 hodnoty se nepřepisují. Hotové výpočty jsou na `Priklad`, `Souhrn` (od 2026-10-17 včetně SKEW a KURT v řádcích 12–13 k povinnému oddílu o ukazatelích tvaru),
@@ -93,6 +93,7 @@ listů `Kvantily`, `Orezani` a `Boxplot`.
 | 13 | `Data` C2:C37 (SKEW, KURT; kopie bez nuly v řádku 7 vzniká až při řešení) |
 | 14 | `Entropie_data` A2:B5 |
 | 15 | `U15_sikmost` A2:B5 a `Spicatost` A2:C6 |
+| 16 (nepovinné) | `U16_populace` A2:A3; výběry sestavuje student, řešení je jen v kapitole |
 
 ## Kapitola 4
 

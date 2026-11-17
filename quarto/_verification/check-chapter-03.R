@@ -171,7 +171,7 @@ z<-c(rep(-2,4),rep(-1,5),rep(1,10),3);eq(c(sum(z),sum(z^3),mean(z^2)),c(0,0,2));
 stopifnot(sum(z==1)!=sum(z== -1))
 # Definitions must explicitly include ties, unscaled MAD and n/n-1 distinctions.
 text<-paste(readLines('quarto/kapitola_03.qmd',encoding='UTF-8'),collapse='\n')
-stopifnot(length(gregexpr('title="Ukázat řešení"',text,fixed=TRUE)[[1]])==15,
+stopifnot(length(gregexpr('title="Ukázat řešení"',text,fixed=TRUE)[[1]])==16,
   !grepl('=LOG(',text,fixed=TRUE),grepl('LOGZ',text,fixed=TRUE),
   !grepl('```{r',text,fixed=TRUE))
-cat('Chapter 3: all numerical examples and 15 solutions checked; exact sampling enumeration and Monte Carlo targets agree.\n')
+cat('Chapter 3: all numerical examples and 16 solutions checked; exact sampling enumeration and Monte Carlo targets agree.\n')
