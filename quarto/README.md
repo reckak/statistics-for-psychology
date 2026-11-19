@@ -503,6 +503,8 @@ Nezávislá kontrola:
 
 **Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Didaktická revize je interní, ne ověření na studentech.
 
+**Úpravy po sloučení (2026-11-19, podle připomínek autora):** mezní chyba rozdílu a přepona trojúhelníku jsou zelené (`#3B7D3A`) místo tmavě šedé, která splývala s modrou. Trojúhelník je zrcadlově obrácen: pravý úhel leží v počátku, odvěsny podél os a přepona z (*a*; 0) do (0; *b*). Popisky jsou natočeny podél svých stran; úhel přepony se počítá z pixelových měřítek obou os a její popisek je posunut kolmo ven, protože Plot posun `dx`/`dy` neotáčí. Ve vizualizaci přínosu párování jsou vyšší graf skórů obou měření (440 px, na mobilu 340 px) a graf směrodatné chyby v modelu (360 px, na mobilu 300 px). Ověřeno prohlídkou v prohlížeči aplikace (výchozí stav a nestejné skupiny) a novým během `check-html.cjs`.
+
 <a id="vizualizace-prinos-parovani"></a>
 
 ## Vizualizace přínosu párování (2026-11-19, upřesnění R65)
