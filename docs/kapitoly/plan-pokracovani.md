@@ -125,9 +125,14 @@ autor zadal a schválil 2026-11-13 jako stránku
 [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz_cohenovo_d.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen),
 [karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
+Námět ke kapitole 8 „přínos párování“ z návrhu 2026-11-05 autor 2026-11-19
+vybral a schválil s volbami ovládání a doplňků jako stránku
+[Kdy párování zpřesní odhad průměrného rozdílu](../../quarto/viz_prinos_parovani.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-parovani),
+[karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
-pásmo ekvivalence; kap. 8 přínos párování a interval rozdílu vedle dvou intervalů.
+pásmo ekvivalence; kap. 8 interval rozdílu vedle dvou intervalů.
 
 **Návaznost kapitol 8 a 10 (2026-11-14, [R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)):** nepovinné rozšíření o variabilitě rozdílů a korelaci obou měření se přesunulo z kapitoly 10 do kapitoly 8, která Pearsonovo *r* představuje jen neformálně s odkazem dopředu; kapitola 10 na rozšíření odkazuje připomenutím. Povinný výklad kapitoly 10 korelaci z kapitoly 8 nepředpokládá.
 

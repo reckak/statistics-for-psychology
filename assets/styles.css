@@ -240,6 +240,16 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-ia-side { flex-direction: column; margin-bottom: 0; }
 .viz-ia-ways thead th { text-align: left; }
 .viz .viz-ia-ways td.viz-ia-dec { text-align: left; white-space: nowrap; }
+/* Benefit of pairing (viz_prinos_parovani.qmd): one row of sliders per way of setting the model. */
+.viz .viz-controls[hidden] { display: none; }
+.viz-pp-row { margin-top: .8rem; }
+.viz-pp-source { margin: .9rem 0 0; }
+.viz-pp-table thead th:first-child { text-align: left; }
+.viz-pp-table td:last-child { white-space: nowrap; }
+.viz-pp-table tbody th { min-width: 9rem; }
+.viz-pp-table .viz-pp-paired th { color: #245D78; }
+.viz-pp-table .viz-pp-independent th { color: #9A3F17; }
+.viz .viz-pp-sim-buttons { padding-top: 0; margin: .3rem 0 .6rem; }
 /* Coverage of confidence intervals (viz_pokryti_intervalu.qmd). */
 .viz-pi-row { margin-top: .8rem; }
 .viz-pi-column { flex-direction: column; margin-bottom: 0; }

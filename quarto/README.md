@@ -470,6 +470,40 @@ Autor kapitolu prošel, sám upravil 18 řádků (např. „vypočtete“ místo
 - Didaktická revize změněných pasáží samostatným agentem v roli studenta po kapitole 7. Opraveno: nesoulad 12/13 studentů v ukázce zprávy A (chyba už v předchozí verzi), nedefinované *a*, *b* u $\sqrt{a^2+b^2}<a+b$ (nyní se směrodatnými chybami 2 a 2,83 a s rozdílem kvantilů), popis Welchových stupňů volnosti, jasná závěrečná věta k volbě testu, odpověď k příkladu 2, 4, 6 / 6, 12, 18 (směrodatná chyba 2,31 vs. 3,65), zaokrouhlení *d* = 1,004, rozdíl mezi odmocninou průměru rozptylů a průměrem směrodatných odchylek, srozumitelnější záhlaví tabulky robustnosti, korelace vysvětlená v ukázce zprávy a další drobnosti. Nejde o ověření porozumění na skutečných studentech.
 - Neověřeno: PDF kapitoly 8 (nebylo vyžádáno), prezentace a balíčky AI tutora (sjednotí se podle R76 při své příští úpravě).
 
+<a id="vizualizace-prinos-parovani"></a>
+
+## Vizualizace přínosu párování (2026-11-19, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-parovani)
+přibyla jedenáctá stránka části „Interaktivní vizualizace“,
+[Kdy párování zpřesní odhad průměrného rozdílu](viz_prinos_parovani.qmd),
+v menu před vizualizací Cohenova *d*. Kapitola 8 na ni odkazuje blokem
+„Vyzkoušejte si: kdy párování zpřesní odhad“ na konci oddílu
+`sec-proc-rozdily`, před nepovinným rozšířením; jinak se výklad kapitoly
+nemění. Obsahuje:
+
+- **data a ovládání:** přepínač dat varianty A a výběru z modelu, dva způsoby zadání souvislosti (stabilní rozdíly a kolísání; σ₁, σ₂ a korelace), μ_D a *n* 3–200, tlačítko nového výběru;
+- **grafy a výsledky:** spojnice jednotlivců, tečkový graf rozdílů s intervalem, oba intervaly na společné ose, tabulka obou analýz, křivka směrodatné chyby v modelu, vzorce českého Excelu;
+- **opakované losování:** 100, 1000 nebo 10 000 výběrů po dávkách se stropem 100 000, podíl zamítnutí H₀, pokrytí μ_D, průměrná šířka a histogram šířek intervalů.
+
+Redakční volby při realizaci:
+
+- **Bez nových symbolů.** Model prvního způsobu je popsán slovy výkladu („stabilní rozdíly mezi lidmi“, „kolísání téhož člověka“); korelace v populaci nemá symbol (ρ není schválen), výběrové *r* se zobrazuje jen ve druhém způsobu. σ₁ a σ₂ používá kapitola 8 v oddílu `sec-rozdil-nezavislych`.
+- **Spánková studie místo obecných měření:** popisky „po běžném / po krátkém spánku“ navazují na variantu A; populační průměr po běžném spánku je v modelu pevně 50 bodů.
+- **Stejná náhodná čísla** se při změně nastavení znovu používají, aby student viděl vliv parametru, ne nové losování.
+- **Doplněné zjištění:** při prohlídce vyšlo, že při malém podílu stabilních rozdílů (1 a 7 bodů) je párový interval v průměru o něco širší než interval chybné analýzy (asi 12,4 proti 11,9 bodu z 1000 výběrů) kvůli *n* − 1 st. v. „Čeho si všimnout“ to proto uvádí, aby text nesliboval vždy přesnější párový odhad.
+- **Numerika** (`pnorm`, `qnorm`, `lgamma`, `ibeta`, `pt`, `qt`) převzata z vizualizace pokrytí intervalu, formátování a `parseDecimal` z vizualizace Cohenova *d*.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-prinos-parovani.R`, v repozitáři): obě analýzy pro data varianty A (shoda s tab. 8.4), kontrastní příklad a testovací soubor přes `t.test`; směrodatné chyby modelu; podíly zamítnutí párové analýzy přesně z necentrálního *t*-rozdělení a chybné analýzy simulací 400 000 výběrů (seed 20261119). Čísla v „Odkud se čísla berou“ a „Čeho si všimnout“ pocházejí z tohoto výstupu.
+- **Excel:** v desktopovém českém Excelu (skrytá instance, sešit otevřen jen pro čtení a zavřen bez uložení) vrací na listu `Parovy_test` vzorec `=T.TEST(G2:G14;H2:H14;2;2)` 0,2269 a typ 1 0,00036, `=T.DIST.2T(ABS(1,2431);22)` 0,2269 a `=ODMOCNINA(7,3402^2/12+6,422^2/12)` 2,8154, shodně s R.
+- **Prohlížeč:** výchozí stav, výběr z modelu se stabilními rozdíly 1 a kolísáním 7, opakované losování a tabulky prohlédnuty v prohlížeči aplikace; při prohlídce doplněno nezalamování mezí intervalu v tabulce.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem (popis v [provozním návodu](../docs/PROVOZ.md#interaktivni-vizualizace)) a s novým pořadím menu prošel celý bez chyb JavaScriptu; prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`. Při ladění testu bylo třeba zachytit zamčené ovládání při losování po dávkách v jednom kroku a s *n* = 200, jinak dávky doběhly dřív, než je test zachytil.
+
+**Omezení:** ověřeno v Chromiu (Playwright a prohlížeč aplikace); Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Na šířce 375 px se tabulka obou analýz posouvá uvnitř svého rámečku. Podíly z opakovaného losování test porovnává s R jen v toleranci simulace. Didaktická revize je interní (čtení autorem změny), ne ověření na studentech.
+
 <a id="vizualizace-cohenovo-d"></a>
 
 ## Vizualizace Cohenova d (2026-11-13, upřesnění R65)

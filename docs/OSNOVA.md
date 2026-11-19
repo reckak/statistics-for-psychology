@@ -91,7 +91,8 @@ ke kapitole 6 ([karta](kapitoly/06-vyberove-rozdeleni-testovani.md#interaktivni-
 [srovnání *t*-rozdělení s normovaným normálním](../quarto/viz_t_rozdeleni.qmd),
 [pokrytí intervalu spolehlivosti](../quarto/viz_pokryti_intervalu.qmd)
 a [interval spolehlivosti a *p*-hodnota](../quarto/viz_interval_a_test.qmd)
-ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07))
+ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)),
+[kdy párování zpřesní odhad průměrného rozdílu](../quarto/viz_prinos_parovani.qmd)
 a [co znamená rozdíl o *d* směrodatných odchylek](../quarto/viz_cohenovo_d.qmd)
 ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě

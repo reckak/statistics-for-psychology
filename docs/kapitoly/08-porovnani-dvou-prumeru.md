@@ -111,7 +111,17 @@ na stránku [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz
 - **Vztah k výkladu:** ukazatele nejsou zavedeny jako pojmy učebnice a nemají hesla. Úkoly „Vyzkoušejte si“ míří na *d* = 0,5, parkovací *d* ≈ 0,47 a σ = 14,6 s, hledání *d* pro pravděpodobnost 75 % (asi 0,95) a „malý“ účinek *d* = 0,2 při σ = 15.
 - **Rozsah:** opakuje učivo oddílu [Cohenovo d pro nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-d-nezavisle), ploch pod normální křivkou z kapitoly 4 a sčítání rozptylů z oddílu [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych). Není samostatným cvičením.
 
-Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 2026-11-14. Oddíly „Rozdíl dvou průměrů“ a „Welchovy stupně volnosti“ po přechodu obrázků na 90 lidí ([záznam](../../quarto/README.md#kapitola-08-obrazky-pomer-2026-11-14)) znovu 2026-11-14.
+**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-parovani)):**
+na konci oddílu [Proč rozdíly kolísají méně](../../quarto/kapitola_08.qmd#sec-proc-rozdily),
+před nepovinným rozšířením o korelaci, odkazuje blok „Vyzkoušejte si: kdy
+párování zpřesní odhad“ na stránku [Kdy párování zpřesní odhad průměrného rozdílu](../../quarto/viz_prinos_parovani.qmd).
+
+- **Data a ovládání:** po načtení dvanáct úplných dvojic varianty A (výsledky jako tab. 8.4), jinak výběr 3–200 studentů z normálního modelu se stejnými náhodnými čísly při změně nastavení; μ_D (výchozí 3,5). Souvislost měření buď stabilními rozdíly mezi lidmi a kolísáním téhož člověka (SD 6,7 a 1,7 bodu), nebo σ₁, σ₂ a korelací v populaci (7,34; 6,42; 0,95).
+- **Grafy a výsledky:** spojnice jednotlivců, tečkový graf rozdílů s intervalem, intervaly obou analýz na společné ose, tabulka obou analýz, křivka směrodatné chyby v modelu; opakované losování (zamítnutí H₀, pokrytí, šířky intervalů); vzorce Excelu včetně `T.TEST` typ 1 a 2 na listu `Parovy_test`.
+- **Vztah k výkladu:** nové pojmy nezavádí; výběrové *r* a korelace v populaci jen ve druhém způsobu zadání s odkazem na nepovinné rozšíření. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění modelu: chybná analýza při kladné souvislosti téměř nezamítá platnou H₀ a při záporné zamítá častěji než 5 %; při malém podílu stabilních rozdílů může být párový interval kvůli $n-1$ st. v. o něco širší; čára chybné analýzy odpovídá studii s nezávislými skupinami po *n* lidech.
+- **Rozsah:** opakuje oddíly [Stejná data, chybná analýza](../../quarto/kapitola_08.qmd#sec-chybna-analyza), [Proč rozdíly kolísají méně](../../quarto/kapitola_08.qmd#sec-proc-rozdily), sčítání rozptylů z [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych) a chyby I. druhu z kap. 6. Není samostatným cvičením.
+
+Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 2026-11-14; oddíly „Stejná data, chybná analýza“ a „Proč rozdíly kolísají méně“ s vizualizací přínosu párování 2026-11-19. Oddíly „Rozdíl dvou průměrů“ a „Welchovy stupně volnosti“ po přechodu obrázků na 90 lidí ([záznam](../../quarto/README.md#kapitola-08-obrazky-pomer-2026-11-14)) znovu 2026-11-14.
 
 ### Cvičení a očekávané dovednosti
 
