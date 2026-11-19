@@ -640,6 +640,10 @@ Překryv 95% intervalů dvou nezávislých skupin neznamená, že rozdíl není 
 
 Grafy průměrů s intervaly jsou užitečné: ukazují, kde průměry leží a jak přesně jsou odhadnuté. Na otázku po rozdílu ale odpovídá jen interval rozdílu průměrů. Pokud je rozdíl průměrů hlavním výsledkem, zobrazíme ho přímo.
 
+::: {.callout-tip title="Vyzkoušejte si: dva intervaly a interval rozdílu"}
+V [interaktivní vizualizaci](viz_dva_intervaly.qmd) nastavíte průměry, směrodatné odchylky a velikosti dvou skupin, klasický nebo Welchův postup a hladinu spolehlivosti. Uvidíte oba intervaly vedle sebe, interval rozdílu a pásmo rozdílů, v němž se intervaly překrývají, a rozdíl je přesto statisticky významný. U párových dat posuvníkem směrodatné odchylky rozdílů změníte interval průměrného rozdílu, zatímco intervaly obou podmínek zůstanou stejné.
+:::
+
 ## Změna ve dvou skupinách: intervence a kontrola {#sec-zmena-dvou-skupin}
 
 Jak zjistit, zda intervence přinesla víc než samotné plynutí času? Tento oddíl spojuje oba typy uspořádání: změnu počítáme u každého člověka a změny pak porovnáme mezi skupinami.

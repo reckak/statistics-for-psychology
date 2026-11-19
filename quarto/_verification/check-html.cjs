@@ -666,7 +666,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1826,6 +1826,117 @@ const server = http.createServer((req, res) => {
     await ppPlots.nth(3).waitFor();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Pairing visualization fits a phone');
     await pp.screenshot({path:'tmp/verification/viz-prinos-parovani-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+
+    // Two intervals and the interval of the difference: values against R (scripts/viz-dva-intervaly.R),
+    // design, method and level switches, presets, fields, the s_D slider, Excel formulas, full screen and phone.
+    await page.goto(base + 'quarto/kapitola_08.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-dva-intervaly .callout-tip a[href$="viz_dva_intervaly.html"]').count(), 1, 'Chapter 8 links to the two-intervals visualization');
+    await page.goto(base + 'quarto/viz_dva_intervaly.html', { waitUntil: 'networkidle' });
+    const di = page.locator('#viz-dva-intervaly');
+    const diPlots = di.locator('.viz-plots svg[aria-label]');
+    await diPlots.nth(4).waitFor();
+    assert.equal(await diPlots.count(), 5, 'Two intervals, difference, band, margins of error and triangle');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const diState = () => di.evaluate(el => el.vizCheck.state());
+    const diNear = (a, b, msg, tol = 1e-9) => assert(Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    const diCalc = s => di.evaluate((el, v) => el.vizCheck.compute(v), s);
+    // R: example of chapter 8 at three levels [lo1, hi1, lo2, hi2, t, p, loD, hiD, sigFrom, apartFrom].
+    const diBase = {design: 'nezavisle', method: 'klasicky', m1: 46, s1: 10, n1: 25, m2: 52, s2: 10, n2: 25};
+    const diR = {
+      0.95: [41.8722028767, 50.1277971233, 47.8722028767, 56.1277971233, 2.1213203435596, 0.0390854943291, 0.3130661135781, 11.6869338864219, 5.68693388642, 8.25559424651],
+      0.9: [42.5782358402, 49.4217641598, 48.5782358402, 55.4217641598, 2.1213203435596, 0.0390854943291, 1.2560935894013, 10.7439064105987, 4.74390641060, 6.84352831964],
+      0.99: [40.4061209905, 51.5938790095, 46.4061209905, 57.5938790095, 2.1213203435596, 0.0390854943291, -1.5864186239295, 13.5864186239295, 7.58641862393, 11.18775801910]
+    };
+    for (const [level, want] of Object.entries(diR)) {
+      const c = await diCalc({...diBase, level: +level});
+      [c.g1.lo, c.g1.hi, c.g2.lo, c.g2.hi, c.diff.t, c.diff.p, c.diff.lo, c.diff.hi, c.sigFrom, c.apartFrom].forEach((g, i) => diNear(g, want[i], `Example at ${level}, value ${i}`, 1e-8));
+    }
+    // R: Welch and classical for unequal groups; classical with the larger group more variable; paired data of variant A.
+    let dc = await diCalc({...diBase, level: 0.95, method: 'welch', s1: 15, n1: 10, s2: 5, n2: 40});
+    [dc.diff.df, dc.diff.q, dc.diff.p, dc.diff.lo, dc.diff.hi].forEach((g, i) => diNear(g, [9.50525191383, 2.24395953966, 0.2420028415673, -4.790855891054, 16.7908558911][i], `Welch ${i}`, 1e-8));
+    dc = await diCalc({...diBase, level: 0.95, s1: 15, n1: 10, s2: 5, n2: 40});
+    [dc.diff.p, dc.diff.lo, dc.diff.hi].forEach((g, i) => diNear(g, [0.0369051690497, 0.380105005036, 11.6198949950][i], `Classical unequal ${i}`, 1e-8));
+    dc = await diCalc({...diBase, level: 0.95, s1: 5, n1: 10, m2: 55, s2: 15, n2: 40});
+    diNear(dc.diff.p, 0.06915885636057, 'Classical, larger group more variable', 1e-8); diNear(dc.apartFrom, 8.37401726225, 'Apart from', 1e-8);
+    assert(!dc.overlaps && !dc.significant, 'Apart but not significant with the classical test');
+    const diA = {design: 'parove', level: 0.95, m1: 46.8333333333333, s1: 6.42202649032, n1: 12, m2: 50.3333333333333, s2: 7.34021715474};
+    dc = await diCalc({...diA, sD: 2.39317210565});
+    [dc.g1.lo, dc.g1.hi, dc.g2.lo, dc.g2.hi, dc.diff.lo, dc.diff.hi, dc.diff.p].forEach((g, i) => diNear(g, [42.7529723701, 50.9136942965, 45.6695818548, 54.9970848119, 1.97945098750, 5.02054901250, 0.000362722939485][i], `Variant A ${i}`, 1e-8));
+    dc = await diCalc({...diA, sD: 13.762243645067});
+    diNear(dc.diff.lo, -5.24411244173, 'Largest s_D', 1e-8); diNear(dc.diff.me, dc.apartFrom, 'Largest s_D: margin equals the sum', 1e-9);
+    // Default state, verdict, statistics and Excel formulas.
+    let ds = await diState();
+    assert.deepEqual([ds.design, ds.method, ds.level, ds.m1, ds.m2, ds.n2], ['nezavisle', 'klasicky', 0.95, 46, 52, 25]);
+    assert.match(ds.verdict, /překrývají, a přesto 95% interval rozdílu nulu nezahrnuje/);
+    const diStats = await di.locator('[data-stats]').innerText();
+    for (const s of ['(41,87; 50,13)', '(47,87; 56,13)', '(0,31; 11,69)', '0,039', '5,69 / 8,26', '2,26 bodu']) assert(diStats.includes(s), `Statistics show ${s}`);
+    for (const f of ['=T.INV(0,975;24)', '=2,0639*10/ODMOCNINA(25)', '=ODMOCNINA(((25-1)*10^2+(25-1)*10^2)/(25+25-2))', '=10*ODMOCNINA(1/25+1/25)', '=T.INV(0,975;48)', '=T.DIST.2T(ABS(2,1213);48)'])
+      assert(ds.excel.some(x => x.includes(f)), `Excel formula ${f}`);
+    // Level and method switches.
+    await di.locator('input[name="viz-di-level"][value="0.99"]').check();
+    ds = await diState(); diNear(ds.result.diff.lo, -1.5864186239295, '99 % switch', 1e-8);
+    assert.match(ds.verdict, /překrývají a 99% interval rozdílu zahrnuje nulu/);
+    assert(ds.excel.some(x => x.includes('=T.INV(0,995;24)')), 'Quantile 0,995');
+    // Presets: unequal groups with Welch, the BETA.INV quantile and the switch to the classical test.
+    await di.locator('[data-preset="nestejne"]').click();
+    ds = await diState();
+    assert.deepEqual([ds.method, ds.level, ds.n1, ds.n2], ['welch', 0.95, 10, 40]);
+    assert(ds.excel.some(x => x.includes('=ODMOCNINA(9,5053*(1-BETA.INV(0,05;9,5053/2;0,5))/BETA.INV(0,05;9,5053/2;0,5))')), 'Welch quantile through BETA.INV');
+    assert(ds.excel.some(x => x.includes('=(22,5+0,625)^2/(22,5^2/(10-1)+0,625^2/(40-1))')), 'Welch degrees of freedom');
+    await di.locator('input[name="viz-di-method"][value="klasicky"]').check();
+    diNear((await diState()).result.diff.p, 0.0369051690497, 'Classical after the switch', 1e-8);
+    // Just touching intervals in the example of chapter 8.
+    await di.locator('[data-preset="kapitola"]').click();
+    await di.locator('[data-preset="dotyk"]').click();
+    ds = await diState();
+    diNear(ds.m2, 54.2556, 'Touching mean', 1e-9); diNear(ds.result.diff.p, 0.00533511607874, 'p when the intervals touch', 2e-5);
+    // Fields: decimal comma and rejected values.
+    await di.locator('[data-preset="kapitola"]').click();
+    const diField = async (id, v) => { await di.locator(`#viz-di-${id}`).fill(v); await di.locator(`#viz-di-${id}`).dispatchEvent('change'); };
+    await diField('m2', '53,5'); assert.equal((await diState()).m2, 53.5);
+    for (const [id, bad, keep] of [['n1', '1', 25], ['n1', '1001', 25], ['n1', '2,5', 25], ['s1', '0', 10], ['s1', '−1', 10], ['s1', 'abc', 10], ['m1', 'x', 46]]) {
+      await diField(id, bad);
+      assert.equal(await di.locator(`#viz-di-${id}`).getAttribute('aria-invalid'), 'true', `Rejected ${id} ${bad}`);
+      assert(await di.locator(`#viz-di-${id}-error`).isVisible(), `Message for ${id} ${bad}`);
+      assert.equal((await diState())[id], keep, `Kept ${id} after ${bad}`);
+    }
+    // Paired data of variant A: hidden fields, the s_D slider by keyboard and its limits.
+    await di.locator('[data-preset="variantaA"]').click();
+    ds = await diState();
+    assert.equal(ds.design, 'parove');
+    assert(!(await di.locator('[data-field="n2"]').isVisible()) && !(await di.locator('[data-method]').isVisible()) && await di.locator('#viz-di-sD').isVisible(), 'Paired controls');
+    assert.equal(await diPlots.count(), 4, 'No triangle for paired data');
+    assert.deepEqual(ds.sdRange, [0.92, 13.76]);
+    const g1Before = [ds.result.g1.lo, ds.result.g1.hi];
+    await di.locator('#viz-di-sD').focus();
+    await page.keyboard.press('Home'); ds = await diState(); assert.equal(ds.sD, 0.92, 'Home sets the smallest s_D');
+    assert.deepEqual([ds.result.g1.lo, ds.result.g1.hi], g1Before, 'Condition intervals do not depend on s_D');
+    await page.keyboard.press('End'); ds = await diState(); assert.equal(ds.sD, 13.76, 'End sets the largest s_D');
+    assert(ds.result.diff.lo < 0, 'Largest s_D: the paired interval includes zero');
+    await page.keyboard.press('ArrowLeft'); assert.equal((await diState()).sD, 13.75, 'ArrowLeft subtracts 0,01');
+    assert(ds.excel.some(x => x.includes('=13,76/ODMOCNINA(12)')), 'Paired standard error formula');
+    // A smaller s1 moves the limits and clamps s_D.
+    await diField('s1', '2'); ds = await diState();
+    assert.deepEqual(ds.sdRange, [5.34, 9.34]); assert.equal(ds.sD, 9.34, 's_D clamped to the new limit');
+    // Full screen widens the charts and Escape closes it.
+    await di.locator('[data-preset="kapitola"]').click();
+    await diPlots.nth(4).waitFor();
+    const diFull = di.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await diFull.count(), 1, 'One full-screen button');
+    const diInline = await diPlots.nth(2).evaluate(el => el.getBoundingClientRect().width);
+    assert(diInline <= 781, `Inline chart width ${diInline}`);
+    await diFull.click();
+    await page.waitForFunction(w => document.querySelectorAll('#viz-dva-intervaly .viz-plots svg[aria-label]')[2].getBoundingClientRect().width > w + 100, diInline);
+    await page.screenshot({path:'tmp/verification/viz-dva-intervaly-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await diPlots.nth(4).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Two-intervals visualization fits a phone');
+    await di.screenshot({path:'tmp/verification/viz-dva-intervaly-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });

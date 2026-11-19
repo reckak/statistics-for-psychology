@@ -250,6 +250,13 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-pp-table .viz-pp-paired th { color: #245D78; }
 .viz-pp-table .viz-pp-independent th { color: #9A3F17; }
 .viz .viz-pp-sim-buttons { padding-top: 0; margin: .3rem 0 .6rem; }
+/* Two intervals and the interval of the difference (viz_dva_intervaly.qmd). */
+.viz-di-group { margin-top: .9rem; }
+.viz-di-row { margin-top: .8rem; }
+.viz-di-pair { display: flex; gap: 12px; align-items: flex-start; }
+@media (max-width: 519px) {
+  .viz-di-pair { flex-direction: column; }
+}
 /* Coverage of confidence intervals (viz_pokryti_intervalu.qmd). */
 .viz-pi-row { margin-top: .8rem; }
 .viz-pi-column { flex-direction: column; margin-bottom: 0; }

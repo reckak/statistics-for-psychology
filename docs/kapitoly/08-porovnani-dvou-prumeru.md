@@ -121,7 +121,17 @@ párování zpřesní odhad“ na stránku [Kdy párování zpřesní odhad prů
 - **Vztah k výkladu:** nové pojmy nezavádí; výběrové *r* a korelace v populaci jen ve druhém způsobu zadání s odkazem na nepovinné rozšíření. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění modelu: chybná analýza při kladné souvislosti téměř nezamítá platnou H₀ a při záporné zamítá častěji než 5 %; při malém podílu stabilních rozdílů může být párový interval kvůli $n-1$ st. v. o něco širší; čára chybné analýzy odpovídá studii s nezávislými skupinami po *n* lidech.
 - **Rozsah:** opakuje oddíly [Stejná data, chybná analýza](../../quarto/kapitola_08.qmd#sec-chybna-analyza), [Proč rozdíly kolísají méně](../../quarto/kapitola_08.qmd#sec-proc-rozdily), sčítání rozptylů z [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych) a chyby I. druhu z kap. 6. Není samostatným cvičením.
 
-Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 2026-11-14; oddíly „Stejná data, chybná analýza“ a „Proč rozdíly kolísají méně“ s vizualizací přínosu párování 2026-11-19. Oddíly „Rozdíl dvou průměrů“ a „Welchovy stupně volnosti“ po přechodu obrázků na 90 lidí ([záznam](../../quarto/README.md#kapitola-08-obrazky-pomer-2026-11-14)) znovu 2026-11-14.
+**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-intervaly)):**
+na konci oddílu [Dva intervaly vedle sebe](../../quarto/kapitola_08.qmd#sec-dva-intervaly)
+odkazuje blok „Vyzkoušejte si: dva intervaly a interval rozdílu“ na stránku
+[Co prozradí dva intervaly vedle sebe o rozdílu průměrů](../../quarto/viz_dva_intervaly.qmd).
+
+- **Ovládání:** nezávislé skupiny (průměr, *s*, *n*; klasický nebo Welchův postup) nebo párová data s posuvníkem $s_D$ mezi $|s_1-s_2|$ a $s_1+s_2$; hladina 90/95/99 %; předvolby příklad kapitoly (46 a 52, *s* 10, *n* 25), právě se dotýkající intervaly, nestejné skupiny s Welchem, data varianty A párově.
+- **Grafy a výsledky:** chybové úsečky se společnou částí a interval rozdílu; *p*-hodnota podle rozdílu průměrů s pásmy (5,69 a 8,26 bodu v příkladu); sloupce mezních chyb a trojúhelník směrodatných chyb; slovní závěr; vzorce Excelu včetně kvantilu Welche přes `BETA.INV`.
+- **Vztah k výkladu:** nové pojmy nezavádí; pravidlo překryvu záměrně neuvádí, stejně jako kapitola. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění: *p* ≈ 0,005 u právě se dotýkajících 95% intervalů v příkladu; nepřekrývající se intervaly a nevýznamný klasický test, když je variabilnější větší skupina (*s* 5, *n* 10 proti *s* 15, *n* 40, rozdíl 9); u párových dat se při $s_D=s_1+s_2$ mezní chyba rozdílu rovná součtu mezních chyb.
+- **Rozsah:** opakuje oddíl Dva intervaly vedle sebe, sčítání rozptylů, klasický, Welchův a párový test. Není samostatným cvičením; doplňuje úlohu 8.
+
+Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 2026-11-14; oddíly „Stejná data, chybná analýza“ a „Proč rozdíly kolísají méně“ s vizualizací přínosu párování 2026-11-19; oddíl „Dva intervaly vedle sebe“ s vizualizací dvou intervalů 2026-11-19. Oddíly „Rozdíl dvou průměrů“ a „Welchovy stupně volnosti“ po přechodu obrázků na 90 lidí ([záznam](../../quarto/README.md#kapitola-08-obrazky-pomer-2026-11-14)) znovu 2026-11-14.
 
 ### Cvičení a očekávané dovednosti
 
