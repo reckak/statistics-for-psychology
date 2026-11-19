@@ -57,6 +57,7 @@ book:
         - quarto/viz_interval_a_test.qmd
         - quarto/viz_prinos_parovani.qmd
         - quarto/viz_cohenovo_d.qmd
+        - quarto/viz_dva_intervaly.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

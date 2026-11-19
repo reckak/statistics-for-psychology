@@ -470,6 +470,39 @@ Autor kapitolu prošel, sám upravil 18 řádků (např. „vypočtete“ místo
 - Didaktická revize změněných pasáží samostatným agentem v roli studenta po kapitole 7. Opraveno: nesoulad 12/13 studentů v ukázce zprávy A (chyba už v předchozí verzi), nedefinované *a*, *b* u $\sqrt{a^2+b^2}<a+b$ (nyní se směrodatnými chybami 2 a 2,83 a s rozdílem kvantilů), popis Welchových stupňů volnosti, jasná závěrečná věta k volbě testu, odpověď k příkladu 2, 4, 6 / 6, 12, 18 (směrodatná chyba 2,31 vs. 3,65), zaokrouhlení *d* = 1,004, rozdíl mezi odmocninou průměru rozptylů a průměrem směrodatných odchylek, srozumitelnější záhlaví tabulky robustnosti, korelace vysvětlená v ukázce zprávy a další drobnosti. Nejde o ověření porozumění na skutečných studentech.
 - Neověřeno: PDF kapitoly 8 (nebylo vyžádáno), prezentace a balíčky AI tutora (sjednotí se podle R76 při své příští úpravě).
 
+<a id="vizualizace-dva-intervaly"></a>
+
+## Vizualizace dvou intervalů a intervalu rozdílu (2026-11-19, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-intervaly)
+přibyla dvanáctá stránka části „Interaktivní vizualizace“,
+[Co prozradí dva intervaly vedle sebe o rozdílu průměrů](viz_dva_intervaly.qmd),
+v menu za vizualizací Cohenova *d*. Kapitola 8 na ni odkazuje blokem
+„Vyzkoušejte si: dva intervaly a interval rozdílu“ na konci oddílu
+`sec-dva-intervaly`; jinak se výklad kapitoly nemění. Obsahuje:
+
+- **ovládání:** nezávislé skupiny (průměr, *s*, *n*; klasický nebo Welchův postup) a párová data s posuvníkem $s_D$; hladina 90/95/99 %; čtyři předvolby;
+- **grafy:** chybové úsečky se společnou částí a interval rozdílu; *p*-hodnota podle rozdílu průměrů se třemi pásmy; sloupce mezních chyb a trojúhelník směrodatných chyb;
+- **výsledky:** slovní závěr ve čtyřech případech, souhrny a vzorce českého Excelu.
+
+Redakční volby při realizaci:
+
+- **Meze posuvníku $s_D$** jsou vysvětleny slovně (dokonale zachované postavení a úměrně opačný skór), bez korelace; nejmenší hodnota je alespoň 0,01, aby *t* zůstalo konečné.
+- **Předvolba „Intervaly se právě dotýkají“** posune průměr po běžném spánku o součet mezních chyb při aktuálním nastavení (zaokrouhleno na čtyři desetinná místa), takže funguje pro všechna uspořádání a hladiny.
+- **Kontrastní případ** nepřekrývajících se intervalů s nevýznamným klasickým testem (*s* 5, *n* 10 proti *s* 15, *n* 40, rozdíl 9) je jen v úkolu a v „Čeho si všimnout“; nevznikla pro něj předvolba.
+- **Welchova *p*-hodnota** nemá vzorec Excelu ze souhrnů: T.DIST.2T zkracuje stupně volnosti a jiná funkce by byla nová; stránka odkazuje na `T.TEST` typ 3 z dat.
+- **Numerika** převzata z vizualizace přínosu párování.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-dva-intervaly.R`, v repozitáři): příklad kapitoly na třech hladinách včetně *p* při dotyku intervalů (0,0053 pro 95 %), nestejné skupiny Welchem (shoda s `t.test` na datech se stejnými souhrny) i klasicky, kvantil přes `qbeta` jako `BETA.INV`, variabilnější větší skupina, data varianty A s krajními $s_D$. Čísla v textu pocházejí z tohoto výstupu.
+- **Excel:** v desktopovém českém Excelu (nový sešit ve skryté instanci, zavřen bez uložení) spuštěny vzorce stránky: `T.INV(0,975;24)` 2,0639, společný odhad 10, směrodatná chyba 2,8284, `T.DIST.2T(ABS(2,1213);48)` 0,0391, Welchova směrodatná chyba 4,8088 a stupně volnosti 9,5053, kvantil přes `BETA.INV` 2,2440, `T.INV(0,995;24)` 2,7969; vše shodně s R.
+- **Prohlížeč:** výchozí stav, předvolby, Welch a párová data prohlédnuty v prohlížeči aplikace; při prohlídce změněna barva sloupce a přepony rozdílu na tmavou, aby se nepletla s oranžovou skupiny po krátkém spánku.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem (popis v [provozním návodu](../docs/PROVOZ.md#interaktivni-vizualizace)) a s novým pořadím menu prošel celý (28 stránek, bez chyb JavaScriptu); prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Didaktická revize je interní, ne ověření na studentech.
+
 <a id="vizualizace-prinos-parovani"></a>
 
 ## Vizualizace přínosu párování (2026-11-19, upřesnění R65)

@@ -643,6 +643,27 @@ U vizualizace přínosu párování kontrola ověřuje:
 - návrat k datům varianty A, rozšíření grafů na celé obrazovce, šířku
   375 px bez přetékání a odkaz z oddílu kapitoly 8 `sec-proc-rozdily`.
 
+U vizualizace dvou intervalů a intervalu rozdílu kontrola ověřuje:
+
+- pět grafů u nezávislých skupin (intervaly průměrů, interval rozdílu,
+  pásma podle rozdílu, mezní chyby, trojúhelník) a čtyři u párových dat;
+  žádný viditelný kód, tlačítko schránky ani chybu OJS;
+- meze obou intervalů, *t*, *p*, interval rozdílu a hranice pásma pro
+  příklad kapitoly na hladinách 90, 95 a 99 %, Welchův a klasický postup
+  pro nestejné skupiny, klasický postup s variabilnější větší skupinou
+  (intervaly se nepřekrývají, rozdíl nevýznamný) a párová data varianty A
+  včetně největšího $s_D$ proti R (`scripts/viz-dva-intervaly.R`);
+- výchozí stav, slovní závěr, souhrny a znění vzorců Excelu (včetně
+  kvantilu přes `BETA.INV` a Welchových stupňů volnosti), přepínače
+  hladiny a postupu, předvolby včetně právě se dotýkajících intervalů;
+- odmítnutí neplatných vstupů (*n* 1, 1001, 2,5; *s* 0, −1, text; průměr
+  text) se zprávou a ponecháním poslední platné hodnoty;
+- párové uspořádání: skrytá pole, posuvník $s_D$ klávesnicí s mezemi
+  $|s_1-s_2|$ a $s_1+s_2$, nezávislost intervalů podmínek na $s_D$
+  a přizpůsobení mezí při změně *s*;
+- rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
+  v menu a odkaz z oddílu kapitoly 8 `sec-dva-intervaly`.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při

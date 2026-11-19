@@ -1,0 +1,560 @@
+---
+code-copy: false
+---
+
+# Co prozradí dva intervaly vedle sebe o rozdílu průměrů {#sec-viz-dva-intervaly .unnumbered}
+
+Graf se dvěma průměry a jejich intervaly spolehlivosti je běžný. Můžeme z něj poznat, zda se průměry statisticky významně liší? Vizualizace ukazuje vedle dvou intervalů také interval pro rozdíl průměrů. Mění se v ní průměry, směrodatné odchylky, velikosti skupin, postup výpočtu a hladina spolehlivosti, takže je vidět, kdy překryv intervalů o rozdílu něco říká a kdy ne. Navazuje na kapitolu 8, oddíl [Dva intervaly vedle sebe nejsou interval rozdílu](kapitola_08.qmd#sec-dva-intervaly), a využívá [směrodatnou chybu rozdílu průměrů](kapitola_08.qmd#sec-rozdil-nezavislych), [klasický](kapitola_08.qmd#sec-klasicky-t-test) a [Welchův](kapitola_08.qmd#sec-welch) *t*-test a [párový *t*-test](kapitola_08.qmd#sec-parovy-t-test). Mezní chybu jako polovinu šířky intervalu zavádí [kapitola 7](kapitola_07.qmd#sec-interval-z-vypocet).
+
+## Model a ovládání {#sec-viz-di-ovladani .unnumbered}
+
+Pracujeme se studií o spánku a pozornosti z kapitoly 8. Skupina nebo podmínka 1 je „po krátkém spánku“, skupina nebo podmínka 2 „po běžném spánku“; rozdíl počítáme jako „po běžném spánku minus po krátkém spánku“. Vizualizace počítá ze souhrnů, ne z jednotlivých hodnot.
+
+Nahoře zvolíte **uspořádání**:
+
+- **Nezávislé skupiny.** Pro každou skupinu zadáte průměr, výběrovou směrodatnou odchylku $s$ a počet osob $n$ (celé číslo od 2 do 1000). Interval rozdílu se počítá [klasickým *t*-testem](kapitola_08.qmd#sec-klasicky-t-test) se společným odhadem rozptylu (po načtení stránky), nebo [Welchovým *t*-testem](kapitola_08.qmd#sec-welchuv-test); přepínač určuje oba výpočty.
+- **Párová data.** Tíž studenti v obou podmínkách: zadáte průměr a $s$ každé podmínky a jeden počet studentů $n$. Posuvníkem pak nastavíte **směrodatnou odchylku rozdílů** $s_D$. Intervaly obou podmínek na ní nezávisejí, interval průměrného rozdílu ano. Posuvník nabízí jen hodnoty, které jsou při zadaných $s$ obou podmínek možné: rozdíly nemohou kolísat víc než $s_1+s_2$ (kdyby studenti s vyšším skórem v jedné podmínce měli úměrně nižší skór v druhé) ani méně než $|s_1-s_2|$ (kdyby si dokonale zachovávali postavení); podrobněji to vysvětluje [nepovinné rozšíření](kapitola_08.qmd#rozsireni-rozptyl-rozdilu-08).
+
+**Hladinu spolehlivosti** zvolíte 90, 95 (po načtení stránky) nebo 99 %. Platí pro oba intervaly průměrů i pro interval rozdílu; test je oboustranný na odpovídající hladině významnosti 0,10, 0,05 nebo 0,01. Desetinná čísla můžete psát s čárkou i s tečkou; neplatnou hodnotu vizualizace odmítne se zprávou a dál používá poslední platnou. Tlačítka předvoleb nastaví příklad kapitoly, intervaly, které se právě dotýkají, dvě nestejné skupiny a data varianty A jako párová data.
+
+Pod ovládáním jsou souhrny, slovní závěr a tři grafy:
+
+- **Dva intervaly vedle sebe a interval rozdílu.** Vlevo chybové úsečky obou průměrů; společnou část obou intervalů vyznačuje šedé pásmo. Vpravo interval pro rozdíl průměrů s přerušovanou čarou v nule.
+- **Kdy se intervaly překrývají a kdy je rozdíl významný.** Při stejných $s$ a $n$ ukazuje *p*-hodnotu testu pro různé rozdíly průměrů. Svislé čáry oddělují tři pásma: rozdíl není významný a intervaly se překrývají; rozdíl je významný, a intervaly se přesto překrývají; intervaly se nepřekrývají. Bod je aktuální rozdíl.
+- **Mezní chyby.** Sloupce porovnávají součet mezních chyb obou intervalů s mezní chybou intervalu rozdílu. U nezávislých skupin je vedle pravoúhlý trojúhelník ze směrodatných chyb obou průměrů.
+
+### Odkud se čísla berou {#sec-viz-di-vypocet .unnumbered}
+
+**Interval průměru** každé skupiny je $m\pm t\cdot s/\sqrt n$ s kvantilem *t*-rozdělení s $n-1$ stupni volnosti; pro 95% interval je to kvantil 0,975. Součin $t\cdot s/\sqrt n$ je mezní chyba. Dva intervaly se **přestanou překrývat**, když je rozdíl průměrů větší než součet obou mezních chyb.
+
+**Interval rozdílu** je rozdíl průměrů plus minus jeho vlastní mezní chyba. **Rozdíl je statisticky významný**, když interval rozdílu nezahrnuje nulu, tedy když je rozdíl průměrů v absolutní hodnotě větší než tato mezní chyba. Mezní chyba rozdílu se počítá podle uspořádání a postupu:
+
+- **klasický *t*-test:** směrodatná chyba $s_p\sqrt{1/n_1+1/n_2}$ se společným odhadem rozptylu a $n_1+n_2-2$ stupni volnosti;
+- **Welchův *t*-test:** směrodatná chyba $s_{m_1-m_2}=\sqrt{s_1^2/n_1+s_2^2/n_2}$ s korigovaným počtem stupňů volnosti podle [nepovinného rozšíření](kapitola_08.qmd#rozsireni-welch-stupne);
+- **párová data:** směrodatná chyba $s_D/\sqrt n$ s $n-1$ stupni volnosti.
+
+V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) má každý průměr směrodatnou chybu $10/\sqrt{25}=2$ body a mezní chybu $2{,}064\times2\approx4{,}13$ bodu. Intervaly se tedy přestanou překrývat až při rozdílu větším než $8{,}26$ bodu. Směrodatná chyba rozdílu je ale jen $\sqrt{2^2+2^2}\approx2{,}83$ bodu a mezní chyba rozdílu $2{,}011\times2{,}83\approx5{,}69$ bodu. Rozdíly mezi 5,69 a 8,26 bodu jsou proto statisticky významné, a intervaly se přitom překrývají. Pravoúhlý trojúhelník to ukazuje geometricky: přepona $\sqrt{a^2+b^2}$ je vždy kratší než součet odvěsen $a+b$.
+
+```{ojs}
+//| echo: false
+{
+  // Colours: blue for the condition after normal sleep and the difference, orange for short sleep.
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17", band = "#F6DCCB", bandSig = "#B8DDE8", overlapFill = "#D5DADD";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+
+  // Density of the t distribution with v degrees of freedom.
+  const dt = (x, v) => Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2) - 0.5 * Math.log(v * Math.PI) - (v + 1) / 2 * Math.log1p(x * x / v));
+
+  // Continued fraction of the incomplete beta function (modified Lentz), as in Numerical Recipes (betacf).
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  // Regularised incomplete beta function I_x(a, b).
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail; accurate also far in the tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+
+  // Quantile of the t distribution: closed forms for 1 and 2 degrees of freedom, otherwise
+  // Newton steps on the upper tail started at the normal quantile, kept inside a shrinking bracket.
+  function qt(p, v) {
+    if (p === 0.5) return 0;
+    if (v === 1) return Math.tan(Math.PI * (p - 0.5));
+    if (v === 2) return (2 * p - 1) / Math.sqrt(2 * p * (1 - p));
+    const q = Math.min(p, 1 - p), sign = p > 0.5 ? 1 : -1;
+    let lo = 0, hi = 1;
+    while (tTail(hi, v) > q) { lo = hi; hi *= 2; }
+    let x = Math.min(Math.max(-qnorm(q), lo), hi);
+    for (let i = 0; i < 100; i++) {
+      const f = tTail(x, v) - q;
+      if (f > 0) lo = x; else hi = x;
+      let next = x + f / dt(x, v);
+      if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+      if (Math.abs(next - x) <= 1e-14 * Math.max(1, x)) { x = next; break; }
+      x = next;
+    }
+    return sign * x;
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, k) => { let s = v.toFixed(k); if (Number(s) === 0) s = Math.abs(0).toFixed(k); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 10}).replace(".", ","));
+  const excel = (v, k = 4) => String(Number(v.toFixed(k))).replace(".", ",");
+  const pText = p => p < 0.0001 ? "< 0,0001" : p < 0.001 ? fixed(p, 4) : fixed(p, 3);
+  const ciText = (lo, hi) => `(${fixed(lo, 2)}; ${fixed(hi, 2)})`;
+  const levelPct = L => `${Math.round(100 * L)} %`;
+  const levelAdj = L => `${Math.round(100 * L)}%`;
+
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  const N_MIN = 2, N_MAX = 1000, LIMIT = 100000;
+  const DEFAULTS = {design: "nezavisle", method: "klasicky", level: 0.95, m1: 46, s1: 10, n1: 25, m2: 52, s2: 10, n2: 25, sD: 2.3932};
+  const PRESETS = {
+    kapitola: {design: "nezavisle", method: "klasicky", level: 0.95, m1: 46, s1: 10, n1: 25, m2: 52, s2: 10, n2: 25},
+    nestejne: {design: "nezavisle", method: "welch", level: 0.95, m1: 46, s1: 15, n1: 10, m2: 52, s2: 5, n2: 40},
+    variantaA: {design: "parove", level: 0.95, m1: 46.8333, s1: 6.422, n1: 12, m2: 50.3333, s2: 7.3402, sD: 2.3932}
+  };
+  const S = {...DEFAULTS};
+
+  // Limits of s_D allowed by the two standard deviations (correlation between −1 and 1); s_D = 0 is excluded.
+  const sdRange = (s = S) => [Math.max(0.01, Math.round(Math.abs(s.s1 - s.s2) * 100) / 100), Math.round((s.s1 + s.s2) * 100) / 100];
+
+  // All quantities for one setting.
+  function compute(s = S) {
+    const L = s.level, p = (1 + L) / 2;
+    const n2 = s.design === "parove" ? s.n1 : s.n2;
+    const group = (m, sd, n) => { const q = qt(p, n - 1), se = sd / Math.sqrt(n), me = q * se; return {m, s: sd, n, df: n - 1, q, se, me, lo: m - me, hi: m + me}; };
+    const g1 = group(s.m1, s.s1, s.n1), g2 = group(s.m2, s.s2, n2);
+    const d = s.m2 - s.m1;
+    let se, df, sp = null;
+    if (s.design === "parove") { se = s.sD / Math.sqrt(s.n1); df = s.n1 - 1; }
+    else if (s.method === "klasicky") {
+      sp = Math.sqrt(((s.n1 - 1) * s.s1 ** 2 + (s.n2 - 1) * s.s2 ** 2) / (s.n1 + s.n2 - 2));
+      se = sp * Math.sqrt(1 / s.n1 + 1 / s.n2); df = s.n1 + s.n2 - 2;
+    } else {
+      const a = s.s1 ** 2 / s.n1, b = s.s2 ** 2 / s.n2;
+      se = Math.sqrt(a + b); df = (a + b) ** 2 / (a * a / (s.n1 - 1) + b * b / (s.n2 - 1));
+    }
+    const t = d / se, q = qt(p, df), me = q * se;
+    const pv = 2 * tTail(Math.abs(t), df);
+    const overlap = Math.min(g1.hi, g2.hi) - Math.max(g1.lo, g2.lo);
+    const diff = {d, se, df, sp, t, p: pv, q, me, lo: d - me, hi: d + me, seWelch: Math.sqrt(g1.se ** 2 + g2.se ** 2)};
+    return {g1, g2, diff, level: L, alpha: 1 - L, overlap, overlaps: overlap > 0, significant: Math.abs(d) > me,
+      sigFrom: me, apartFrom: g1.me + g2.me};
+  }
+
+  // Controls.
+  const field = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-di-${id}">${label}</label>
+    <input id="viz-di-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-di-${id}-hint viz-di-${id}-error">
+    <span id="viz-di-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-di-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const radio = (name, value, label) => html`<label><input type="radio" name="viz-di-${name}" value="${value}"><span>${label}</span></label>`;
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = fill => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-dva-intervaly">
+    <div class="viz-controls">
+      <fieldset class="viz-choice viz-pi-column">
+        <legend>Uspořádání</legend>
+        ${radio("design", "nezavisle", "nezávislé skupiny")}
+        ${radio("design", "parove", "párová data (tíž studenti v obou podmínkách)")}
+      </fieldset>
+      <fieldset class="viz-choice viz-pi-column" data-method>
+        <legend>Interval rozdílu</legend>
+        ${radio("method", "klasicky", html`klasický <i>t</i>-test (společný odhad rozptylu)`)}
+        ${radio("method", "welch", html`Welchův <i>t</i>-test`)}
+      </fieldset>
+      <fieldset class="viz-choice viz-pi-column">
+        <legend>Hladina spolehlivosti</legend>
+        ${radio("level", "0.9", "90 %")}
+        ${radio("level", "0.95", "95 %")}
+        ${radio("level", "0.99", "99 %")}
+      </fieldset>
+    </div>
+    <fieldset class="viz-model viz-di-group">
+      <legend data-legend="1"></legend>
+      <div class="viz-controls">
+        ${field("m1", "Průměr (body)", "46", "číslo")}
+        ${field("s1", html`Směrodatná odchylka <i>s</i> (body)`, "10", "kladné číslo")}
+        ${field("n1", html`Počet osob <i>n</i>`, "25", "celé číslo 2–1 000")}
+      </div>
+    </fieldset>
+    <fieldset class="viz-model viz-di-group">
+      <legend data-legend="2"></legend>
+      <div class="viz-controls">
+        ${field("m2", "Průměr (body)", "52", "číslo")}
+        ${field("s2", html`Směrodatná odchylka <i>s</i> (body)`, "10", "kladné číslo")}
+        ${field("n2", html`Počet osob <i>n</i>`, "25", "celé číslo 2–1 000")}
+      </div>
+    </fieldset>
+    <div class="viz-controls viz-di-row" data-paired hidden>
+      <div class="viz-field viz-t-df">
+        <label for="viz-di-sD">Směrodatná odchylka rozdílů <i>s<sub>D</sub></i> (body)</label>
+        <div class="viz-t-slider">
+          <span class="viz-hint" aria-hidden="true" data-sd-min></span>
+          <input id="viz-di-sD" type="range" step="0.01" aria-describedby="viz-di-sD-value viz-di-sD-hint">
+          <span class="viz-hint" aria-hidden="true" data-sd-max></span>
+        </div>
+        <output id="viz-di-sD-value" for="viz-di-sD" class="viz-t-value" aria-live="polite"></output>
+        <span id="viz-di-sD-hint" class="viz-hint">možné hodnoty leží mezi |<i>s</i><sub>1</sub> − <i>s</i><sub>2</sub>| a <i>s</i><sub>1</sub> + <i>s</i><sub>2</sub></span>
+      </div>
+    </div>
+    <div class="viz-pj-presets" role="group" aria-label="Předvolby příkladů">
+      <button type="button" data-preset="kapitola">Příklad kapitoly 8</button>
+      <button type="button" data-preset="dotyk">Intervaly se právě dotýkají</button>
+      <button type="button" data-preset="nestejne">Nestejné skupiny, Welch</button>
+      <button type="button" data-preset="variantaA">Data varianty A (párově)</button>
+    </div>
+    <p class="viz-ss-summary" data-verdict aria-live="polite"></p>
+    <dl class="viz-stats" data-stats></dl>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-di-excel-title">
+      <h3 id="viz-di-excel-title" class="viz-part-title">Výpočet v českém Excelu</h3>
+      <p class="viz-note">Vzorce mají dosazené hodnoty zaokrouhlené na čtyři desetinná místa; výsledek se proto může od přesného výpočtu nahoře lišit v posledním místě.</p>
+      <dl class="viz-stats" data-excel></dl>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const plots = $("[data-plots]"), sdSlider = $("#viz-di-sD");
+
+  function showError(id, message) {
+    const input = $(`#viz-di-${id}`), error = $(`#viz-di-${id}-error`);
+    error.hidden = !message;
+    error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+  const mean = v => v === null ? "Zadejte číslo, například 46." : Math.abs(v) > LIMIT ? "Zadejte číslo od −100 000 do 100 000." : null;
+  const sd = v => v === null ? "Zadejte číslo, například 10." : v <= 0 ? "Směrodatná odchylka musí být kladná." : v > LIMIT ? "Zadejte číslo nejvýše 100 000." : null;
+  const count = v => v === null || !Number.isInteger(v) || v < N_MIN || v > N_MAX ? "Počet osob musí být celé číslo od 2 do 1 000." : null;
+  const checks = {m1: mean, m2: mean, s1: sd, s2: sd, n1: count, n2: count};
+  // Fields: errors show while typing; a valid value is applied on change (Enter or leaving the field).
+  for (const id of Object.keys(checks)) {
+    const input = $(`#viz-di-${id}`);
+    input.addEventListener("input", () => showError(id, checks[id](parseDecimal(input.value))));
+    input.addEventListener("change", () => {
+      const v = parseDecimal(input.value), message = checks[id](v);
+      showError(id, message);
+      if (message || v === S[id]) return;
+      S[id] = v;
+      render();
+    });
+  }
+  for (const name of ["design", "method", "level"]) root.querySelectorAll(`input[name="viz-di-${name}"]`).forEach(el => el.addEventListener("change", () => {
+    S[name] = name === "level" ? Number(el.value) : el.value;
+    render();
+  }));
+  sdSlider.addEventListener("input", () => { S.sD = Math.round(Number(sdSlider.value) * 100) / 100; render(); });
+
+  function syncInputs() {
+    for (const id of Object.keys(checks)) { $(`#viz-di-${id}`).value = typed(S[id]); showError(id, null); }
+    root.querySelectorAll('input[name="viz-di-design"]').forEach(el => { el.checked = el.value === S.design; });
+    root.querySelectorAll('input[name="viz-di-method"]').forEach(el => { el.checked = el.value === S.method; });
+    root.querySelectorAll('input[name="viz-di-level"]').forEach(el => { el.checked = Number(el.value) === S.level; });
+  }
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const id = b.dataset.preset;
+    if (id === "dotyk") {
+      // Keep everything and move the mean after normal sleep so that the intervals just touch.
+      const C = compute();
+      S.m2 = Math.round((S.m1 + (S.m2 < S.m1 ? -1 : 1) * C.apartFrom) * 1e4) / 1e4;
+    } else Object.assign(S, PRESETS[id]);
+    syncInputs(); render();
+  }));
+
+  // Results.
+  function verdict(C) {
+    const lvl = levelAdj(C.level);
+    if (C.overlaps && C.significant) return `Intervaly obou průměrů se překrývají, a přesto ${lvl} interval rozdílu nulu nezahrnuje: rozdíl je statisticky významný na hladině ${fixed(C.alpha, 2)}. Z překryvu by se to vyčíst nedalo.`;
+    if (C.overlaps) return `Intervaly obou průměrů se překrývají a ${lvl} interval rozdílu zahrnuje nulu: rozdíl není statisticky významný na hladině ${fixed(C.alpha, 2)}. O tom ale rozhodl interval rozdílu, ne překryv.`;
+    if (C.significant) return `Intervaly obou průměrů se nepřekrývají a ${lvl} interval rozdílu nulu nezahrnuje: rozdíl je statisticky významný na hladině ${fixed(C.alpha, 2)}.`;
+    return `Intervaly obou průměrů se nepřekrývají, a přesto ${lvl} interval rozdílu zahrnuje nulu: rozdíl není statisticky významný na hladině ${fixed(C.alpha, 2)}. Mezní chyba rozdílu je tu větší než součet mezních chyb obou intervalů.${S.design === "nezavisle" && S.method === "klasicky" ? " Klasický postup se společným odhadem rozptylu ji nadhodnocuje, když je variabilnější větší skupina; porovnejte s Welchovým postupem." : ""}`;
+  }
+  function statsRows(C) {
+    const {g1, g2, diff} = C, paired = S.design === "parove";
+    const rows = [
+      [`${levelAdj(C.level)} interval: po krátkém spánku`, `${ciText(g1.lo, g1.hi)}, mezní chyba ${fixed(g1.me, 2)}`],
+      [`${levelAdj(C.level)} interval: po běžném spánku`, `${ciText(g2.lo, g2.hi)}, mezní chyba ${fixed(g2.me, 2)}`],
+      ["Společná část obou intervalů", C.overlaps ? `${fixed(C.overlap, 2)} bodu, od ${fixed(Math.max(g1.lo, g2.lo), 2)} do ${fixed(Math.min(g1.hi, g2.hi), 2)}` : `žádná; mezera ${fixed(-C.overlap, 2)} bodu`],
+      [paired ? "Průměrný rozdíl (běžný − krátký)" : "Rozdíl průměrů (běžný − krátký)", `<strong>${fixed(diff.d, 2)}</strong> bodu`],
+      ["Směrodatná chyba rozdílu", `${fixed(diff.se, 3)} bodu${diff.sp !== null ? ` (<i>s<sub>p</sub></i> = ${fixed(diff.sp, 3)})` : ""}`],
+      ["Test", `<i>t</i> = ${Number.isFinite(diff.t) ? fixed(diff.t, 2) : "—"}, ${Number.isInteger(diff.df) ? diff.df : fixed(diff.df, 2)} st. v., <i>p</i> = ${pText(diff.p)}`],
+      [`${levelAdj(C.level)} interval rozdílu`, `<strong>${ciText(diff.lo, diff.hi)}</strong>, mezní chyba ${fixed(diff.me, 2)}`],
+      ["Rozdíl je významný od / intervaly se přestanou překrývat od", `${fixed(C.sigFrom, 2)} / ${fixed(C.apartFrom, 2)} bodu`]
+    ];
+    return rows;
+  }
+  function excelRows(C) {
+    const {g1, g2, diff} = C, p = excel((1 + C.level) / 2, 3);
+    const grp = (name, g) => [`${name}: kvantil, mezní chyba a meze`, `<code>=T.INV(${p};${g.df})</code><br><code>=${excel(g.q)}*${excel(g.s)}/ODMOCNINA(${g.n})</code><br><code>=${excel(g.m)}-${excel(g.me)}</code>, <code>=${excel(g.m)}+${excel(g.me)}</code>`];
+    const rows = [grp("Po krátkém spánku", g1), grp("Po běžném spánku", g2)];
+    const tail = [`Rozdíl: <i>t</i>, kvantil a meze`, `<code>=${excel(diff.d)}/${excel(diff.se)}</code><br>QUANT<br><code>=${excel(diff.d)}-${excel(diff.q)}*${excel(diff.se)}</code>, <code>=${excel(diff.d)}+${excel(diff.q)}*${excel(diff.se)}</code>`];
+    if (S.design === "parove") {
+      rows.push(["Párový rozdíl: směrodatná chyba", `<code>=${excel(S.sD)}/ODMOCNINA(${S.n1})</code>`]);
+      tail[1] = tail[1].replace("QUANT", `<code>=T.INV(${p};${diff.df})</code>`);
+      rows.push(tail, ["Rozdíl: <i>p</i>-hodnota", `<code>=T.DIST.2T(ABS(${excel(diff.t)});${diff.df})</code>`]);
+    } else if (S.method === "klasicky") {
+      rows.push(["Klasický: společný odhad a směrodatná chyba", `<code>=ODMOCNINA(((${S.n1}-1)*${excel(S.s1)}^2+(${S.n2}-1)*${excel(S.s2)}^2)/(${S.n1}+${S.n2}-2))</code><br><code>=${excel(diff.sp)}*ODMOCNINA(1/${S.n1}+1/${S.n2})</code>`]);
+      tail[1] = tail[1].replace("QUANT", `<code>=T.INV(${p};${diff.df})</code>`);
+      rows.push(tail, ["Rozdíl: <i>p</i>-hodnota", `<code>=T.DIST.2T(ABS(${excel(diff.t)});${diff.df})</code>`]);
+    } else {
+      const a = excel(S.s1 ** 2 / S.n1), b = excel(S.s2 ** 2 / S.n2), v = excel(diff.df), al = excel(1 - C.level, 3);
+      rows.push(["Welch: směrodatná chyba a stupně volnosti", `<code>=ODMOCNINA(${excel(S.s1)}^2/${S.n1}+${excel(S.s2)}^2/${S.n2})</code><br><code>=(${a}+${b})^2/(${a}^2/(${S.n1}-1)+${b}^2/(${S.n2}-1))</code>`]);
+      tail[1] = tail[1].replace("QUANT", `<code>=ODMOCNINA(${v}*(1-BETA.INV(${al};${v}/2;0,5))/BETA.INV(${al};${v}/2;0,5))</code>`);
+      rows.push(tail, ["Rozdíl: <i>p</i>-hodnota", "Funkce T.DIST.2T i T.INV zkracují stupně volnosti na celé číslo, proto kvantil počítáme přes BETA.INV jako na listu <code>Welch</code> sešitu kapitoly 8. Přesnou <i>p</i>-hodnotu Welchova testu vrací z dat funkce <code>T.TEST</code> s typem 3."]);
+    }
+    return rows;
+  }
+
+  function charts(container, C) {
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const small = width < 520;
+    const style = {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"};
+    const tick = t => minus(String(t).replace(".", ","));
+    const {g1, g2, diff} = C, lvl = levelAdj(C.level);
+
+    // 1a. Two intervals side by side with their common part.
+    const yLo = Math.min(g1.lo, g2.lo), yHi = Math.max(g1.hi, g2.hi), pad = 0.08 * (yHi - yLo || 1);
+    const half = small ? width : Math.floor(width * 0.56);
+    const groups = [{x: 0, g: g1, color: orange, label: "po krátkém spánku"}, {x: 1, g: g2, color: blue, label: "po běžném spánku"}];
+    const twoPlot = Plot.plot({
+      width: half, height: small ? 280 : 320, marginLeft: small ? 52 : 60, marginRight: 12, marginTop: 16, marginBottom: 36, style,
+      x: {domain: [-0.6, 1.6], ticks: [0, 1], tickFormat: t => t === 0 ? "po krátkém spánku" : "po běžném spánku", label: null},
+      y: {domain: [yLo - pad, yHi + pad], label: "Průměrný skór (body)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, tickFormat: tick},
+      ariaLabel: `${lvl} intervaly průměrů obou skupin`,
+      ariaDescription: `Po krátkém spánku ${ciText(g1.lo, g1.hi)}, po běžném spánku ${ciText(g2.lo, g2.hi)}. ${C.overlaps ? `Společná část ${fixed(C.overlap, 2)} bodu.` : "Intervaly se nepřekrývají."}`,
+      marks: [
+        C.overlaps ? Plot.rect([0], {x1: -0.6, x2: 1.6, y1: Math.max(g1.lo, g2.lo), y2: Math.min(g1.hi, g2.hi), fill: overlapFill, fillOpacity: 0.8}) : null,
+        ...groups.flatMap(d => [
+          Plot.link([d], {x1: d.x, x2: d.x, y1: d.g.lo, y2: d.g.hi, stroke: d.color, strokeWidth: 3}),
+          Plot.link([d.g.lo, d.g.hi], {x1: d.x - 0.12, x2: d.x + 0.12, y1: v => v, y2: v => v, stroke: d.color, strokeWidth: 2}),
+          Plot.dot([d], {x: d.x, y: d.g.m, r: 5, fill: d.color})
+        ])
+      ]
+    });
+
+    // 1b. Interval of the difference with zero.
+    const dLo = Math.min(0, diff.lo), dHi = Math.max(0, diff.hi), dPad = 0.1 * (dHi - dLo || 1);
+    const diffPlot = Plot.plot({
+      width: small ? width : width - half - 12, height: small ? 220 : 320, marginLeft: small ? 52 : 56, marginRight: 12, marginTop: 16, marginBottom: 36, style,
+      x: {domain: [-1, 1], ticks: [0], tickFormat: () => "běžný − krátký", label: null},
+      y: {domain: [dLo - dPad, dHi + dPad], label: "Rozdíl průměrů (body)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 44, tickFormat: tick},
+      ariaLabel: `${lvl} interval rozdílu průměrů`,
+      ariaDescription: `${ciText(diff.lo, diff.hi)}; ${C.significant ? "nulu nezahrnuje" : "zahrnuje nulu"}.`,
+      marks: [
+        Plot.ruleY([0], {stroke: ink, strokeDasharray: "5,4", strokeWidth: 1.2}),
+        Plot.link([diff], {x1: 0, x2: 0, y1: diff.lo, y2: diff.hi, stroke: blue, strokeWidth: 3}),
+        Plot.link([diff.lo, diff.hi], {x1: -0.15, x2: 0.15, y1: v => v, y2: v => v, stroke: blue, strokeWidth: 2}),
+        Plot.dot([diff], {x: 0, y: diff.d, r: 5, fill: blue})
+      ]
+    });
+
+    // 2. Band chart: p-value against the difference of means for the same s and n.
+    const xMax = Math.max(C.apartFrom, C.sigFrom, Math.abs(diff.d)) * 1.25;
+    const grid = d3.range(0, 401).map(i => xMax * i / 400);
+    const curve = grid.map(x => ({x, p: 2 * tTail(x / diff.se, diff.df)}));
+    const lowEnd = Math.min(C.sigFrom, C.apartFrom), highEnd = Math.max(C.sigFrom, C.apartFrom);
+    const middleSig = C.sigFrom < C.apartFrom;
+    const bandPlot = Plot.plot({
+      width, height: small ? 250 : 280, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 20, marginBottom: 44, style,
+      x: {domain: [0, xMax], label: "Rozdíl průměrů v absolutní hodnotě (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {domain: [0, 1], label: "p-hodnota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, tickFormat: t => fixed(t, 1)},
+      ariaLabel: "p-hodnota testu podle rozdílu průměrů a tři pásma podle překryvu intervalů a významnosti",
+      ariaDescription: `Rozdíl je významný od ${fixed(C.sigFrom, 2)} bodu, intervaly se přestanou překrývat od ${fixed(C.apartFrom, 2)} bodu. Aktuální rozdíl ${fixed(Math.abs(diff.d), 2)} bodu, p = ${pText(diff.p)}.`,
+      marks: [
+        Plot.rect([0], {x1: lowEnd, x2: highEnd, y1: 0, y2: 1, fill: middleSig ? bandSig : band, fillOpacity: 0.85}),
+        Plot.ruleY([C.alpha], {stroke: gray, strokeDasharray: "3,3"}),
+        Plot.line(curve, {x: "x", y: "p", stroke: ink, strokeWidth: 2}),
+        Plot.ruleX([C.sigFrom], {stroke: blue, strokeWidth: 1.6}),
+        Plot.ruleX([C.apartFrom], {stroke: orange, strokeWidth: 1.6, strokeDasharray: "6,4"}),
+        Plot.dot([diff], {x: Math.abs(diff.d), y: diff.p, r: 5.5, fill: hiText, stroke: "white"}),
+        Plot.text([C.alpha], {x: xMax, y: C.alpha, dy: -7, textAnchor: "end", text: () => `α = ${fixed(C.alpha, 2)}`, fill: gray, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    // 3a. Margins of error: sum of both intervals against the interval of the difference.
+    const bars = [
+      {row: "součet mezních chyb obou intervalů", x1: 0, x2: g1.me, fill: orange},
+      {row: "součet mezních chyb obou intervalů", x1: g1.me, x2: g1.me + g2.me, fill: blue},
+      {row: "mezní chyba intervalu rozdílu", x1: 0, x2: diff.me, fill: ink}
+    ];
+    const barPlot = Plot.plot({
+      width, height: small ? 190 : 140, marginLeft: small ? 10 : 230, marginRight: 30, marginTop: 10, marginBottom: 40, style,
+      x: {domain: [0, Math.max(g1.me + g2.me, diff.me) * 1.08], label: "Body", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {domain: ["součet mezních chyb obou intervalů", "mezní chyba intervalu rozdílu"], label: null, axis: small ? null : "left"},
+      ariaLabel: "Součet mezních chyb obou intervalů a mezní chyba intervalu rozdílu",
+      ariaDescription: `Součet ${fixed(g1.me, 2)} + ${fixed(g2.me, 2)} = ${fixed(g1.me + g2.me, 2)} bodu, mezní chyba rozdílu ${fixed(diff.me, 2)} bodu.`,
+      marks: [
+        ...bars.map(d => Plot.barX([d], {y: () => d.row, x1: d.x1, x2: d.x2, fill: d.fill, fillOpacity: 0.85, insetTop: small ? 22 : 6, insetBottom: 6})),
+        Plot.text(bars.filter((d, i) => i !== 0), {y: "row", x: "x2", dx: 4, textAnchor: "start", text: (d, i) => fixed(d.x2, 2), fill: ink}),
+        small ? Plot.text(["součet mezních chyb obou intervalů", "mezní chyba intervalu rozdílu"], {y: d => d, x: 0, dy: -24, textAnchor: "start", text: d => d, fill: ink}) : null
+      ]
+    });
+
+    // 3b. Right triangle of standard errors (independent groups only).
+    let triangle = null;
+    if (S.design === "nezavisle") {
+      const a = g1.se, b = g2.se, c = Math.sqrt(a * a + b * b), m = Math.max(a, b) * 1.18;
+      const side = Math.min(small ? width : 360, 360);
+      triangle = Plot.plot({
+        width: side, height: side, marginLeft: 46, marginRight: 20, marginTop: 20, marginBottom: 40, style,
+        x: {domain: [0, m], label: "Směrodatná chyba průměru po krátkém spánku (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick, ticks: 4},
+        y: {domain: [0, m], label: "… po běžném spánku (body)", labelAnchor: "center", labelArrow: "none", labelOffset: 36, tickFormat: tick, ticks: 4},
+        ariaLabel: "Pravoúhlý trojúhelník ze směrodatných chyb obou průměrů",
+        ariaDescription: `Odvěsny ${fixed(a, 3)} a ${fixed(b, 3)} bodu, přepona ${fixed(c, 3)} bodu, součet odvěsen ${fixed(a + b, 3)} bodu.`,
+        marks: [
+          Plot.link([0], {x1: 0, y1: 0, x2: a, y2: 0, stroke: orange, strokeWidth: 3}),
+          Plot.link([0], {x1: a, y1: 0, x2: a, y2: b, stroke: blue, strokeWidth: 3}),
+          Plot.link([0], {x1: 0, y1: 0, x2: a, y2: b, stroke: ink, strokeWidth: 3}),
+          Plot.text([0], {x: a / 2, y: 0, dy: -8, text: () => fixed(a, 2), fill: orange, fontWeight: 600}),
+          Plot.text([0], {x: a, y: b / 2, dx: 6, textAnchor: "start", text: () => fixed(b, 2), fill: blue, fontWeight: 600}),
+          Plot.text([0], {x: a / 2, y: b / 2, dx: -8, dy: -6, textAnchor: "end", text: () => `√(${fixed(a, 2)}² + ${fixed(b, 2)}²) = ${fixed(c, 2)}`, fill: ink, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"})
+        ]
+      });
+    }
+
+    const panel = (title, legendHtml, ...charts) => { const el = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; if (legendHtml) { const lg = html`<div class="viz-legend"></div>`; lg.innerHTML = legendHtml; el.append(lg); } charts.forEach(c => c && el.append(c)); return el; };
+    const pair = html`<div class="viz-di-pair"></div>`; pair.append(twoPlot, diffPlot);
+    const bandLegend = `<span>${lineSwatch(blue)}<span>rozdíl je významný od ${fixed(C.sigFrom, 2)}</span></span><span>${lineSwatch(orange, "6,4")}<span>intervaly se přestanou překrývat od ${fixed(C.apartFrom, 2)}</span></span><span>${boxSwatch(middleSig ? bandSig : band)}<span>${middleSig ? "překrývají se, a přesto je rozdíl významný" : "nepřekrývají se, a přesto rozdíl není významný"}</span></span>`;
+    const triNote = html`<p class="viz-note"></p>`;
+    triNote.innerHTML = S.design === "parove"
+      ? `U párových dat závisí směrodatná chyba rozdílu na <i>s<sub>D</sub></i>, ne jen na směrodatných chybách obou průměrů; trojúhelník proto nezobrazujeme. Při největším možném <i>s<sub>D</sub></i> = <i>s</i><sub>1</sub> + <i>s</i><sub>2</sub> je mezní chyba rozdílu rovna součtu mezních chyb obou intervalů.`
+      : `Přepona trojúhelníku je směrodatná chyba rozdílu při sčítání rozptylů, √(<i>a</i>² + <i>b</i>²); je vždy kratší než součet odvěsen <i>a</i> + <i>b</i>.${S.method === "klasicky" && S.n1 !== S.n2 ? ` Klasický postup se společným odhadem rozptylu dává při různých velikostech skupin jinou hodnotu (${fixed(diff.se, 3)} bodu místo ${fixed(diff.seWelch, 3)}).` : ""}`;
+    container.replaceChildren(
+      panel(`${lvl} intervaly obou průměrů a interval rozdílu`, `<span>${boxSwatch(overlapFill)}<span>společná část obou intervalů</span></span><span>${lineSwatch(ink, "5,4")}<span>nula</span></span>`, pair),
+      panel("Kdy se intervaly překrývají a kdy je rozdíl významný", bandLegend, bandPlot),
+      panel("Mezní chyby", `<span>${boxSwatch(orange)}<span>po krátkém spánku</span></span><span>${boxSwatch(blue)}<span>po běžném spánku</span></span><span>${boxSwatch(ink)}<span>rozdíl</span></span>`, barPlot, triangle, triNote)
+    );
+  }
+
+  const statsBox = $("[data-stats]"), verdictBox = $("[data-verdict]");
+  let last = {};
+
+  function render() {
+    const paired = S.design === "parove";
+    $("[data-legend='1']").textContent = paired ? "Podmínka 1: po krátkém spánku" : "Skupina 1: po krátkém spánku";
+    $("[data-legend='2']").textContent = paired ? "Podmínka 2: po běžném spánku" : "Skupina 2: po běžném spánku";
+    $("[data-field='n2']").hidden = paired;
+    $("[data-method]").hidden = paired;
+    $("[data-paired]").hidden = !paired;
+    $("label[for='viz-di-n1']").innerHTML = paired ? "Počet studentů <i>n</i>" : "Počet osob <i>n</i>";
+    const [lo, hi] = sdRange();
+    S.sD = Math.min(hi, Math.max(lo, S.sD));
+    sdSlider.min = String(lo); sdSlider.max = String(hi); sdSlider.value = String(S.sD);
+    $("[data-sd-min]").textContent = fixed(lo, 2); $("[data-sd-max]").textContent = fixed(hi, 2);
+    $("#viz-di-sD-value").innerHTML = `<i>s<sub>D</sub></i> = ${fixed(S.sD, 2)} bodu`;
+    sdSlider.setAttribute("aria-valuetext", `směrodatná odchylka rozdílů ${fixed(S.sD, 2)} bodu`);
+    const C = compute();
+    verdictBox.textContent = verdict(C);
+    const rows = statsRows(C);
+    statsBox.innerHTML = rows.map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    const ex = excelRows(C);
+    $("[data-excel]").innerHTML = ex.map(([term, desc]) => `<div class="viz-wide"><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    charts(plots, C);
+    last = {...JSON.parse(JSON.stringify(S)), result: JSON.parse(JSON.stringify(C)), sdRange: [lo, hi], verdict: verdictBox.textContent,
+      excel: ex.map(([a, b]) => b.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim())};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {qt, compute: s => compute({...S, ...s}), parseDecimal, state: () => JSON.parse(JSON.stringify(last))};
+
+  syncInputs();
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Příklad dvou intervalů a intervalu rozdílu vykládá <a href="kapitola_08.html#sec-dva-intervaly">kapitola 8</a>; výpočty najdete v oddílu „Odkud se čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-di-vyzkousejte .unnumbered}
+
+1. Po načtení stránky je nastaven příklad kapitoly. Ověřte meze obou intervalů a interval rozdílu (0,31; 11,69). Pak zvyšujte průměr po běžném spánku po bodu od 52 do 55. Kdy se intervaly přestanou překrývat a jaká je v tu chvíli *p*-hodnota? Totéž zkuste pro hladinu 90 % a 99 %.
+2. Nastavte příklad kapitoly a stiskněte „Intervaly se právě dotýkají“. Intervaly mají jediný společný bod. Jaká je *p*-hodnota? Proč je mnohem menší než slibovaná hladina významnosti?
+3. Stiskněte „Nestejné skupiny, Welch“ a přepínejte mezi Welchovým a klasickým *t*-testem. Intervaly průměrů se nemění; co se stane s intervalem rozdílu a se slovním závěrem? Pak nastavte pro skupinu po krátkém spánku $s=5$, $n=10$ a pro skupinu po běžném spánku průměr 55, $s=15$, $n=40$ a znovu porovnejte oba postupy.
+4. Stiskněte „Data varianty A (párově)“ a posouvejte $s_D$ od nejmenší po největší hodnotu. Které čísla se mění a které ne? Co z toho plyne pro graf, který ukazuje jen intervaly obou podmínek?
+
+## Čeho si všimnout {#sec-viz-di-vsimnete .unnumbered}
+
+U nezávislých skupin se intervaly přestanou překrývat až při rozdílu větším než součet obou mezních chyb, ale k významnému rozdílu stačí rozdíl větší než mezní chyba rozdílu. Ta je menší, protože se sčítají rozptyly obou odhadů, ne mezní chyby. V příkladu kapitoly je rozdíl významný od 5,69 bodu a intervaly se přestanou překrývat od 8,26 bodu. Když se 95% intervaly právě dotýkají, je *p*-hodnota asi 0,005, tedy desetkrát menší než 0,05. Pásmo, ve kterém se intervaly překrývají a rozdíl je přesto významný, existuje na každé hladině; s vyšší hladinou spolehlivosti se posouvá k větším rozdílům (pro 90 % 4,74 až 6,84 bodu, pro 99 % 7,59 až 11,19 bodu).
+
+Nepřekrývající se intervaly obvykle znamenají významný rozdíl, ale ani to neplatí bez výjimky. Klasický *t*-test se společným odhadem rozptylu nadhodnocuje směrodatnou chybu, když je variabilnější větší skupina, jak ukazuje [oddíl o poměru velikostí skupin](kapitola_08.qmd#sec-rozdil-nezavislych). Pro skupiny se $s=5$, $n=10$ a $s=15$, $n=40$ s rozdílem průměrů 9 bodů se intervaly nepřekrývají, klasický test přesto dává *p* ≈ 0,069, zatímco Welchův test *p* ≈ 0,003. Velikost překryvu, při níž je rozdíl ještě významný, tedy závisí na velikostech skupin, jejich směrodatných odchylkách a postupu; proto kapitola žádné obecné pravidlo pro čtení překryvu neuvádí.
+
+U párových dat intervaly obou podmínek na $s_D$ nezávisejí, interval průměrného rozdílu ano. U dat varianty A se jen posunem $s_D$ při stejném grafu dvou intervalů mění interval rozdílu od velmi úzkého (2,92; 4,08) po (−5,24; 12,24), který nulu zahrnuje. Graf dvou intervalů proto o párovém rozdílu nerozhoduje. Při největším možném $s_D=s_1+s_2$ je mezní chyba rozdílu přesně rovna součtu mezních chyb obou intervalů; nepřekrývající se intervaly tedy u párových dat vždy znamenají významný rozdíl, překrývající se o něm nic neříkají.
+
+Graf průměrů s intervaly je užitečný: ukazuje, kde průměry leží a jak přesně jsou odhadnuté. Na otázku po rozdílu odpovídá [interval rozdílu](kapitola_08.qmd#sec-dva-intervaly), a pokud je rozdíl hlavním výsledkem, zobrazíme ho přímo.

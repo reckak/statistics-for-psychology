@@ -1053,6 +1053,41 @@ losování“, „Vzorce českého Excelu“, „Graf rozdílů jednotlivců“)
 konci „Proč rozdíly kolísají méně“. Plán téhož dne schválil. Realizaci
 a ověření eviduje [autorská historie](../../quarto/README.md#vizualizace-prinos-parovani).
 
+<a id="r65-upresneni-2026-11-19-intervaly"></a>
+
+### Upřesnění 2026-11-19 — Vizualizace dvou intervalů a intervalu rozdílu
+
+Dvanáctá vizualizace podle R65, ke kapitole 8: stránka
+`quarto/viz_dva_intervaly.qmd` („Co prozradí dva intervaly vedle sebe
+o rozdílu průměrů“, `#sec-viz-dva-intervaly`), v menu za vizualizací
+Cohenova *d* podle pořadí oddílů kapitoly. Kapitola 8 na ni odkazuje
+blokem „Vyzkoušejte si“ na konci oddílu `sec-dva-intervaly`.
+
+- Uspořádání přepínačem: nezávislé skupiny (průměr, *s*, *n* 2–1000 pro
+  každou; interval rozdílu klasickým *t*-testem, nebo Welchovým), nebo
+  párová data (průměr a *s* obou podmínek, jedno *n*, posuvník $s_D$
+  v mezích $|s_1-s_2|$ až $s_1+s_2$, vysvětlených bez korelace).
+- Hladina spolehlivosti 90, 95 nebo 99 % pro intervaly průměrů i rozdílu.
+- Grafy: chybové úsečky obou průměrů se společnou částí a interval rozdílu
+  s nulou; *p*-hodnota podle rozdílu průměrů se třemi pásmy (hranice
+  „rozdíl významný od“ a „intervaly se přestanou překrývat od“); sloupce
+  mezních chyb a u nezávislých skupin pravoúhlý trojúhelník směrodatných
+  chyb.
+- Doplňky: slovní závěr ve čtyřech případech, předvolby (příklad kapitoly,
+  právě se dotýkající intervaly, nestejné skupiny s Welchem, data varianty A
+  párově), vzorce českého Excelu včetně kvantilu Welche přes `BETA.INV`
+  jako na listu `Welch`.
+- Bez nových pojmů a symbolů; bez pravidla pro čtení překryvu, které
+  kapitola záměrně neuvádí.
+
+**Doklad:** 2026-11-19 autor požádal: „můžeš vytvořit také vizualizaci
+2. Dva intervaly vedle sebe a interval rozdílu?“ Na doplňující otázky
+zvolil uspořádání „Nezávislé i párové“, postup „Klasický + přepínač
+Welch“, všechny čtyři doplňky („Graf pásma podle rozdílu“, „Znázornění
+mezních chyb“, „Vzorce českého Excelu“, „Předvolby příkladů“) a hladinu
+„Volitelná (90/95/99 %)“. Plán téhož dne schválil. Realizaci a ověření
+eviduje [autorská historie](../../quarto/README.md#vizualizace-dva-intervaly).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX
