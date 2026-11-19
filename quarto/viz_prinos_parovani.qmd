@@ -1,0 +1,670 @@
+---
+code-copy: false
+---
+
+# Kdy párování zpřesní odhad průměrného rozdílu {#sec-viz-prinos-parovani .unnumbered}
+
+Párová analýza odečte u každého člověka jeho dvě hodnoty a nejistotu průměrného rozdílu počítá z variability rozdílů. Kdy tím získáme přesnější odhad, než kdybychom tatáž data chybně analyzovali jako dvě nezávislé skupiny, a o kolik? Vizualizace obě analýzy počítá vedle sebe a dovolí měnit, jak velké jsou stabilní rozdíly mezi lidmi a jak moc kolísá výkon téhož člověka mezi měřeními. Navazuje na kapitolu 8, oddíly [Stejná data, chybná analýza](kapitola_08.qmd#sec-chybna-analyza) a [Proč rozdíly kolísají méně](kapitola_08.qmd#sec-proc-rozdily), na sčítání rozptylů z oddílu [Dvě nezávislé skupiny](kapitola_08.qmd#sec-rozdil-nezavislych) a na [nepovinné rozšíření o variabilitě rozdílů a korelaci](kapitola_08.qmd#rozsireni-rozptyl-rozdilu-08).
+
+## Model a ovládání {#sec-viz-pp-ovladani .unnumbered}
+
+Pracujeme se studií o spánku a pozornosti z kapitoly 8: každý z $n$ studentů má skór pozornosti po běžném a po krátkém spánku a rozdíl počítáme jako „po běžném spánku minus po krátkém spánku“. Populační průměr rozdílů je $\mathrm{μ}_D$.
+
+Nahoře zvolíte **zdroj dat**. Po načtení stránky jsou zobrazena data varianty A, tedy dvanáct studentů s úplnou dvojicí z [tabulky 8.2](kapitola_08.qmd#tbl-k08-02); výsledky odpovídají [tabulce 8.4](kapitola_08.qmd#tbl-k08-04). U těchto dat skutečný $\mathrm{μ}_D$ neznáme. Druhou možností je **výběr z modelu**: $n$ studentů vylosovaných z výukového modelu s normálním rozdělením. Každá změna nastavení modelu přepne na výběr z modelu. Výběr se přitom přepočítá ze stejných náhodných čísel, takže vidíte vliv změny, a ne nové losování. Nová náhodná čísla přinese tlačítko „Vylosovat nový výběr“.
+
+Souvislost obou měření lze v modelu zadat dvěma způsoby:
+
+- **Stabilní rozdíly a kolísání** (po načtení stránky). Skór studenta je součtem průměru podmínky, jeho stabilní úrovně a náhodného kolísání. Stabilní úroveň je u téhož studenta v obou měřeních stejná; posuvníkem zadáte její směrodatnou odchylku mezi lidmi (výchozí 6,7 bodu). Kolísání se losuje pro každé měření zvlášť; posuvníkem zadáte jeho směrodatnou odchylku (výchozí 1,7 bodu). Obě měření mají v tomto modelu stejnou směrodatnou odchylku a souvislost mezi nimi nemůže být záporná.
+- **Korelace obou měření**, pro čtenáře nepovinného rozšíření. Zadáte populační směrodatné odchylky $\mathrm{σ}_1$ (po běžném spánku, výchozí 7,34 bodu) a $\mathrm{σ}_2$ (po krátkém spánku, výchozí 6,42 bodu) a korelaci obou měření v populaci od −0,99 do 0,99 (výchozí 0,95). Tak lze nastavit i různé směrodatné odchylky obou měření nebo zápornou souvislost.
+
+Posuvníky ovládáte myší, prstem i klávesnicí: šipky mění hodnotu o nejmenší krok, Page Up a Page Down o větší, Home a End nastaví meze. Pro oba způsoby dále zadáte **populační průměr rozdílů** $\mathrm{μ}_D$ (výchozí 3,5 bodu) a **počet studentů** $n$ (celé číslo od 3 do 200, výchozí 12). Desetinná čísla můžete psát s čárkou i s tečkou; neplatnou hodnotu vizualizace odmítne se zprávou a dál používá poslední platnou. Hladina spolehlivosti je stejně jako v kapitole 95 % a test oboustranný na hladině 0,05.
+
+Pod ovládáním jsou souhrny dat, tabulka obou analýz a čtyři grafy:
+
+- **Skóry obou měření.** Body téhož studenta spojuje čára. Souběžné čáry znamenají, že si studenti v obou měřeních zachovávají své postavení.
+- **Rozdíly jednotlivých studentů** s 95% intervalem pro průměrný rozdíl z párové analýzy. Svislá přerušovaná čára je nula.
+- **Dvě analýzy týchž dat.** 95% interval pro rozdíl průměrů z párové analýzy (modře) a z chybné analýzy jako dvou nezávislých skupin (oranžově). U výběru z modelu je tečkovanou čarou vyznačen skutečný $\mathrm{μ}_D$. Vodorovné osy grafu rozdílů a tohoto grafu mají stejné měřítko.
+- **Směrodatná chyba v modelu** pro obě analýzy podle síly souvislosti obou měření, se zvýrazněným aktuálním nastavením. Graf počítá s populačními hodnotami modelu, ne s vylosovaným výběrem.
+
+Část **Opakované losování** vylosuje z modelu sto, tisíc nebo deset tisíc výběrů najednou a sleduje, jak se obě analýzy chovají při opakování studie. Výsledky se sčítají přes další losování; změna nastavení modelu je vynuluje.
+
+### Odkud se čísla berou {#sec-viz-pp-vypocet .unnumbered}
+
+**Párová analýza** počítá stejně jako v kapitole 8 s rozdíly: odhad směrodatné chyby průměrného rozdílu je $s_D/\sqrt n$ a testová statistika má $n-1$ stupňů volnosti. **Chybná analýza jako dvou nezávislých skupin** je [klasický *t*-test](kapitola_08.qmd#sec-klasicky-t-test) s odhadem směrodatné chyby $s_{m_1-m_2}=\sqrt{s_1^2/n+s_2^2/n}$ a $2n-2$ stupni volnosti; při stejně velkých skupinách vychází společný odhad rozptylu na totéž. Obě analýzy mají stejný odhad, protože rozdíl průměrů je roven průměru rozdílů. U dat varianty A je $s_D\approx2{,}39$, $s_1\approx7{,}34$ a $s_2\approx6{,}42$ bodu, takže
+
+$$\frac{2{,}393}{\sqrt{12}}\approx0{,}69\qquad\text{a}\qquad\sqrt{\frac{7{,}340^2}{12}+\frac{6{,}422^2}{12}}\approx2{,}82\ \text{bodu}.$$
+
+**Směrodatné chyby v modelu se stabilními rozdíly a kolísáním.** Skór jednoho měření se skládá ze stabilní úrovně a kolísání, které spolu nesouvisejí; jejich rozptyly se proto sčítají. Při výchozím nastavení má každé měření směrodatnou odchylku $\sqrt{6{,}7^2+1{,}7^2}\approx6{,}91$ bodu. Při odečtení obou měření téhož studenta se jeho stabilní úroveň odečte celá a zbude rozdíl dvou nezávislých kolísání. Jejich rozptyly se sčítají stejně jako u [dvou nezávislých průměrů](kapitola_08.qmd#sec-rozdil-nezavislych), takže rozdíly mají směrodatnou odchylku $\sqrt{1{,}7^2+1{,}7^2}=1{,}7\cdot\sqrt2\approx2{,}40$ bodu. Pro 12 studentů je směrodatná chyba párové analýzy $2{,}40/\sqrt{12}\approx0{,}69$ bodu, zatímco chybná analýza počítá s $\sqrt{6{,}91^2/12+6{,}91^2/12}\approx2{,}82$ bodu. Vodorovná osa grafu směrodatné chyby udává, jakou část rozptylu jednoho měření tvoří stabilní rozdíly mezi lidmi: při výchozím nastavení $6{,}7^2/(6{,}7^2+1{,}7^2)\approx0{,}94$. Celkovou směrodatnou odchylku měření graf přitom ponechává stejnou.
+
+**Směrodatné chyby v modelu s korelací** vycházejí ze vzorce nepovinného rozšíření, do kterého dosadíme populační hodnoty: rozdíly mají směrodatnou odchylku $\sqrt{\mathrm{σ}_1^2+\mathrm{σ}_2^2-2\cdot\text{korelace}\cdot\mathrm{σ}_1\mathrm{σ}_2}$. Při výchozím nastavení je to $\sqrt{7{,}34^2+6{,}42^2-2\cdot0{,}95\cdot7{,}34\cdot6{,}42}\approx2{,}36$ bodu a směrodatná chyba párové analýzy pro 12 studentů asi 0,68 bodu. Směrodatná chyba chybné analýzy, $\sqrt{(\mathrm{σ}_1^2+\mathrm{σ}_2^2)/n}\approx2{,}82$ bodu, na korelaci nezávisí.
+
+**Opakované losování** u každé analýzy počítá, v jaké části výběrů test zamítl nulovou hypotézu $\mathrm{μ}_D=0$ na hladině 0,05, jaká část 95% intervalů zachytila skutečný $\mathrm{μ}_D$ a jak široké intervaly v průměru byly. Když $\mathrm{μ}_D=0$, je zamítnutí chybou I. druhu z [kapitoly 6](kapitola_06.qmd#sec-dve-chyby), jinak správným zamítnutím. U párové analýzy vychází při normálním rozdělení rozdílů podíl chyb I. druhu přesně 5 % a pokrytí 95 %; simulace se od nich liší jen náhodným kolísáním.
+
+```{ojs}
+//| echo: false
+{
+  // Colours: blue for the paired analysis, orange for the incorrect analysis as two independent groups.
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", line = "#6F8792", hiText = "#9A3F17", fillBlue = "#B8DDE8", fillOrange = "#F2C6AE";
+  const SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    if (x < -37) return x;
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+
+  // Density of the t distribution with v degrees of freedom.
+  const dt = (x, v) => Math.exp(lgamma((v + 1) / 2) - lgamma(v / 2) - 0.5 * Math.log(v * Math.PI) - (v + 1) / 2 * Math.log1p(x * x / v));
+
+  // Continued fraction of the incomplete beta function (modified Lentz), as in Numerical Recipes (betacf).
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d;
+    let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  // Regularised incomplete beta function I_x(a, b).
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail; accurate also far in the tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+  const pt = (x, v) => x > 0 ? 1 - tTail(x, v) : tTail(x, v);
+
+  // Quantile of the t distribution: closed forms for 1 and 2 degrees of freedom, otherwise
+  // Newton steps on the upper tail started at the normal quantile, kept inside a shrinking bracket.
+  function qt(p, v) {
+    if (p === 0.5) return 0;
+    if (v === 1) return Math.tan(Math.PI * (p - 0.5));
+    if (v === 2) return (2 * p - 1) / Math.sqrt(2 * p * (1 - p));
+    const q = Math.min(p, 1 - p), sign = p > 0.5 ? 1 : -1;
+    let lo = 0, hi = 1;
+    while (tTail(hi, v) > q) { lo = hi; hi *= 2; }
+    let x = Math.min(Math.max(-qnorm(q), lo), hi);
+    for (let i = 0; i < 100; i++) {
+      const f = tTail(x, v) - q;
+      if (f > 0) lo = x; else hi = x;
+      let next = x + f / dt(x, v);
+      if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+      if (Math.abs(next - x) <= 1e-14 * Math.max(1, x)) { x = next; break; }
+      x = next;
+    }
+    return sign * x;
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, k) => { let s = v.toFixed(k); if (Number(s) === 0) s = Math.abs(0).toFixed(k); return minus(s.replace(".", ",")); };
+  const typed = v => minus(v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 10}).replace(".", ","));
+  const excel = (v, k = 4) => String(Number(v.toFixed(k))).replace(".", ",");
+  const pct = v => fixed(100 * v, 1) + " %";
+  const pText = p => p < 0.0001 ? "< 0,0001" : p < 0.001 ? fixed(p, 4) : fixed(p, 3);
+  const ciText = (lo, hi) => `(${fixed(lo, 2)}; ${fixed(hi, 2)})`;
+
+  function parseDecimal(raw) {
+    const s = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(s)) return null;
+    const v = Number(s);
+    return Number.isFinite(v) ? v : null;
+  }
+
+  // Variant A of chapter 8: the twelve complete pairs of table 8.2 (student 9 has no second measurement).
+  const VARIANT_A = {
+    id: [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13],
+    x1: [58, 44, 51, 39, 62, 47, 55, 42, 49, 60, 45, 52],
+    x2: [53, 42, 45, 38, 55, 44, 51, 43, 44, 58, 39, 50]
+  };
+  const BASE = 50;                     // population mean after normal sleep in the model (points)
+  const N_MIN = 3, N_MAX = 200, MU_MAX = 50, MAX_REPS = 100000, VALUES_PER_BATCH = 400000;
+  const DEFAULTS = {source: "A", mode: "osoby", stable: 6.7, noise: 1.7, s1: 7.34, s2: 6.42, rho: 0.95, muD: 3.5, n: 12};
+  const S = {...DEFAULTS};
+
+  // Both analyses of one data set: paired t-test and the classical t-test with a pooled variance (equal n).
+  function analyze(x1, x2) {
+    const n = x1.length;
+    let a1 = 0, a2 = 0;
+    for (let i = 0; i < n; i++) { a1 += x1[i]; a2 += x2[i]; }
+    const m1 = a1 / n, m2 = a2 / n, mD = m1 - m2;
+    let q1 = 0, q2 = 0, qD = 0, c12 = 0;
+    for (let i = 0; i < n; i++) {
+      const e1 = x1[i] - m1, e2 = x2[i] - m2, eD = e1 - e2;
+      q1 += e1 * e1; q2 += e2 * e2; qD += eD * eD; c12 += e1 * e2;
+    }
+    const s1 = Math.sqrt(q1 / (n - 1)), s2 = Math.sqrt(q2 / (n - 1)), sD = Math.sqrt(qD / (n - 1));
+    const r = s1 > 0 && s2 > 0 ? c12 / Math.sqrt(q1 * q2) : NaN;
+    const test = (se, df) => {
+      const t = se > 0 ? mD / se : (mD === 0 ? NaN : Math.sign(mD) * Infinity);
+      const p = Number.isFinite(t) ? 2 * tTail(Math.abs(t), df) : (Number.isNaN(t) ? NaN : 0);
+      const q = qt(0.975, df);
+      return {se, t, df, p, q, lo: mD - q * se, hi: mD + q * se};
+    };
+    return {n, m1, m2, mD, s1, s2, sD, r,
+      paired: test(sD / Math.sqrt(n), n - 1),
+      independent: test(Math.sqrt((s1 * s1 + s2 * s2) / n), 2 * n - 2)};
+  }
+
+  // Population values of the model for the current settings.
+  function model(s = S) {
+    if (s.mode === "osoby") {
+      const sd = Math.sqrt(s.stable ** 2 + s.noise ** 2);
+      return {sd1: sd, sd2: sd, share: sd > 0 ? s.stable ** 2 / sd ** 2 : 0, sdD: s.noise * Math.SQRT2};
+    }
+    return {sd1: s.s1, sd2: s.s2, share: s.rho, sdD: Math.sqrt(Math.max(0, s.s1 ** 2 + s.s2 ** 2 - 2 * s.rho * s.s1 * s.s2))};
+  }
+  const modelSE = (s = S) => { const M = model(s); return {paired: M.sdD / Math.sqrt(s.n), independent: Math.sqrt((M.sd1 ** 2 + M.sd2 ** 2) / s.n), sdD: M.sdD, sd1: M.sd1, sd2: M.sd2, share: M.share}; };
+
+  // Model samples: the same standard normal numbers are reused when settings change; a new draw replaces them.
+  const source = d3.randomLcg(20261119);
+  const z01 = d3.randomNormal.source(source)(0, 1);
+  let Z1 = [], Z2 = [], Z3 = [];
+  function extendZ(n) { while (Z1.length < n) { Z1.push(z01()); Z2.push(z01()); Z3.push(z01()); } }
+  function newZ() { Z1 = []; Z2 = []; Z3 = []; extendZ(S.n); }
+  function modelPair(i, s, z1, z2, z3) {
+    if (s.mode === "osoby") { const p = s.stable * z1; return [BASE + p + s.noise * z2, BASE - s.muD + p + s.noise * z3]; }
+    return [BASE + s.s1 * z1, BASE - s.muD + s.s2 * (s.rho * z1 + Math.sqrt(1 - s.rho * s.rho) * z2)];
+  }
+  function currentData() {
+    if (S.source === "A") return {id: VARIANT_A.id, x1: VARIANT_A.x1, x2: VARIANT_A.x2};
+    extendZ(S.n);
+    const x1 = [], x2 = [], id = [];
+    for (let i = 0; i < S.n; i++) { const [a, b] = modelPair(i, S, Z1[i], Z2[i], Z3[i]); x1.push(a); x2.push(b); id.push(i + 1); }
+    return {id, x1, x2};
+  }
+
+  // Repeated sampling from the model: counts and interval widths of both analyses.
+  const WP = new Float64Array(MAX_REPS), WI = new Float64Array(MAX_REPS);
+  const SIM = {K: 0, rejP: 0, rejI: 0, covP: 0, covI: 0};
+  let busy = false;
+  function resetSim() { SIM.K = 0; SIM.rejP = 0; SIM.rejI = 0; SIM.covP = 0; SIM.covI = 0; }
+  function simCore(k) {
+    const s = S, n = s.n, qP = qt(0.975, n - 1), qI = qt(0.975, 2 * n - 2), sqn = Math.sqrt(n);
+    for (let j = 0; j < k; j++) {
+      let a1 = 0, a2 = 0, b1 = 0, b2 = 0, aD = 0, bD = 0;
+      for (let i = 0; i < n; i++) {
+        const [x1, x2] = modelPair(i, s, z01(), z01(), z01());
+        const d = x1 - x2;
+        a1 += x1; b1 += x1 * x1; a2 += x2; b2 += x2 * x2; aD += d; bD += d * d;
+      }
+      // Sums of squares about the mean; values centred near 50 keep the rounding error negligible.
+      const v1 = Math.max(0, (b1 - a1 * a1 / n) / (n - 1)), v2 = Math.max(0, (b2 - a2 * a2 / n) / (n - 1)), vD = Math.max(0, (bD - aD * aD / n) / (n - 1));
+      const mD = aD / n, seP = Math.sqrt(vD) / sqn, seI = Math.sqrt((v1 + v2) / n);
+      const meP = qP * seP, meI = qI * seI;
+      if (Math.abs(mD) > meP) SIM.rejP++;
+      if (Math.abs(mD) > meI) SIM.rejI++;
+      if (Math.abs(mD - s.muD) < meP) SIM.covP++;
+      if (Math.abs(mD - s.muD) < meI) SIM.covI++;
+      WP[SIM.K] = 2 * meP; WI[SIM.K] = 2 * meI; SIM.K++;
+    }
+  }
+  async function simulate(k) {
+    k = Math.min(k, MAX_REPS - SIM.K);
+    if (k <= 0 || busy) return;
+    const perBatch = Math.max(1, Math.floor(VALUES_PER_BATCH / (3 * S.n)));
+    if (k > perBatch) {
+      setBusy(true);
+      for (let done = 0; done < k;) {
+        const step = Math.min(perBatch, k - done);
+        simCore(step); done += step;
+        progress.textContent = `Losuji… ${Math.floor(100 * done / k)} %`;
+        await new Promise(resolve => setTimeout(resolve, 0));
+      }
+      setBusy(false);
+    } else simCore(k);
+    renderSim();
+  }
+
+  // Controls.
+  const slider = (id, label, min, max, step, value, hint) => html`<div class="viz-field viz-t-df" data-slider="${id}">
+    <label for="viz-pp-${id}">${label}</label>
+    <div class="viz-t-slider">
+      <span class="viz-hint" aria-hidden="true">${typed(min)}</span>
+      <input id="viz-pp-${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}" aria-describedby="viz-pp-${id}-value${hint ? ` viz-pp-${id}-hint` : ""}">
+      <span class="viz-hint" aria-hidden="true">${typed(max)}</span>
+    </div>
+    <output id="viz-pp-${id}-value" for="viz-pp-${id}" class="viz-t-value" aria-live="polite"></output>
+    ${hint ? html`<span id="viz-pp-${id}-hint" class="viz-hint">${hint}</span>` : ""}
+  </div>`;
+  const field = (id, label, value, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-pp-${id}">${label}</label>
+    <input id="viz-pp-${id}" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" value="${value}" aria-describedby="viz-pp-${id}-hint viz-pp-${id}-error">
+    <span id="viz-pp-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-pp-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const radio = (name, value, label) => html`<label><input type="radio" name="viz-pp-${name}" value="${value}"><span>${label}</span></label>`;
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = fill => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-prinos-parovani">
+    <fieldset class="viz-choice">
+      <legend>Zdroj dat</legend>
+      ${radio("source", "A", "data varianty A (12 studentů z tabulky 8.2)")}
+      ${radio("source", "model", "výběr z modelu")}
+    </fieldset>
+    <fieldset class="viz-choice">
+      <legend>Jak zadat souvislost obou měření v modelu</legend>
+      ${radio("mode", "osoby", "stabilní rozdíly mezi lidmi a kolísání téhož člověka")}
+      ${radio("mode", "korelace", "korelace obou měření (nepovinné rozšíření)")}
+    </fieldset>
+    <div class="viz-controls" data-mode-controls="osoby">
+      ${slider("stable", "Stabilní rozdíly mezi lidmi: směrodatná odchylka (body)", 0, 15, 0.1, 6.7, "stejná úroveň studenta v obou měřeních")}
+      ${slider("noise", "Kolísání téhož člověka mezi měřeními: směrodatná odchylka (body)", 0.5, 15, 0.1, 1.7, "losuje se pro každé měření zvlášť")}
+    </div>
+    <div class="viz-controls" data-mode-controls="korelace" hidden>
+      ${slider("s1", html`Směrodatná odchylka po běžném spánku σ<sub>1</sub> (body)`, 0.5, 15, 0.01, 7.34)}
+      ${slider("s2", html`Směrodatná odchylka po krátkém spánku σ<sub>2</sub> (body)`, 0.5, 15, 0.01, 6.42)}
+      ${slider("rho", "Korelace obou měření v populaci", -0.99, 0.99, 0.01, 0.95, html`viz <a href="kapitola_08.html#rozsireni-rozptyl-rozdilu-08">nepovinné rozšíření v kapitole 8</a>`)}
+    </div>
+    <div class="viz-controls viz-pp-row">
+      ${field("muD", html`Populační průměr rozdílů μ<sub><i>D</i></sub> (body)`, "3,5", "číslo od −50 do 50")}
+      ${field("n", html`Počet studentů <i>n</i>`, "12", "celé číslo 3–200")}
+      <div class="viz-buttons"><button type="button" data-new>Vylosovat nový výběr</button></div>
+    </div>
+    <p class="viz-pp-source" data-source-note aria-live="polite"></p>
+    <dl class="viz-stats" data-stats aria-live="polite"></dl>
+    <div class="viz-bay-table-wrap" data-compare tabindex="0" role="region" aria-label="Tabulka obou analýz týchž dat"></div>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-pp-excel-title">
+      <h3 id="viz-pp-excel-title" class="viz-part-title">Výpočet v českém Excelu</h3>
+      <p class="viz-note">Vzorce mají dosazené souhrny zaokrouhlené na čtyři desetinná místa; výsledek se proto může od přesného výpočtu nahoře lišit v posledním místě.</p>
+      <dl class="viz-stats" data-excel></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-pp-sim-title">
+      <h3 id="viz-pp-sim-title" class="viz-part-title">Opakované losování z modelu</h3>
+      <p class="viz-note">Losuje se vždy z modelu podle nastavení výše, i když jsou nahoře zobrazena data varianty A.</p>
+      <div class="viz-buttons viz-pp-sim-buttons" role="group" aria-label="Opakované losování">
+        <button type="button" data-sim="100">Vylosovat 100 výběrů</button>
+        <button type="button" data-sim="1000">Vylosovat 1 000 výběrů</button>
+        <button type="button" data-sim="10000">Vylosovat 10 000 výběrů</button>
+        <button type="button" data-sim-reset>Začít znovu</button>
+      </div>
+      <p class="viz-progress" role="status" hidden></p>
+      <p class="viz-limit" role="status" hidden>Bylo dosaženo maximálního počtu 100&nbsp;000 výběrů. Pro nové losování stiskněte „Začít znovu“, nebo změňte nastavení modelu.</p>
+      <p data-sim-summary aria-live="polite"></p>
+      <div class="viz-bay-table-wrap" data-sim-table tabindex="0" role="region" aria-label="Tabulka opakovaného losování"></div>
+      <div data-sim-plot></div>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  root.querySelector('input[name="viz-pp-source"][value="A"]').checked = true;
+  root.querySelector('input[name="viz-pp-mode"][value="osoby"]').checked = true;
+  const plots = $("[data-plots]"), progress = $(".viz-progress"), limitNote = $(".viz-limit");
+  const SLIDERS = {
+    stable: {min: 0, max: 15, dp: 100, text: v => `${fixed(v, 1)} bodu`},
+    noise: {min: 0.5, max: 15, dp: 100, text: v => `${fixed(v, 1)} bodu`},
+    s1: {min: 0.5, max: 15, dp: 100, text: v => `σ₁ = ${fixed(v, 2)} bodu`},
+    s2: {min: 0.5, max: 15, dp: 100, text: v => `σ₂ = ${fixed(v, 2)} bodu`},
+    rho: {min: -0.99, max: 0.99, dp: 100, text: v => `korelace ${fixed(v, 2)}`}
+  };
+
+  function setBusy(value) {
+    busy = value;
+    progress.hidden = !value;
+    root.querySelectorAll("input, button").forEach(el => { if (!el.closest(".viz-fullscreen-bar")) el.disabled = value; });
+  }
+  // Any change of the model switches to a model sample and clears repeated sampling.
+  function modelChanged() {
+    if (busy) return;
+    S.source = "model";
+    root.querySelector('input[name="viz-pp-source"][value="model"]').checked = true;
+    resetSim();
+    render();
+  }
+  for (const [id, cfg] of Object.entries(SLIDERS)) {
+    const el = $(`#viz-pp-${id}`);
+    // Sliders work in hundredths; rounding avoids values like 0.30000000000000004.
+    el.addEventListener("input", () => { S[id] = Math.round(Number(el.value) * cfg.dp) / cfg.dp; modelChanged(); });
+  }
+  root.querySelectorAll('input[name="viz-pp-mode"]').forEach(el => el.addEventListener("change", () => {
+    S.mode = el.value;
+    root.querySelectorAll("[data-mode-controls]").forEach(box => { box.hidden = box.dataset.modeControls !== S.mode; });
+    modelChanged();
+  }));
+  root.querySelectorAll('input[name="viz-pp-source"]').forEach(el => el.addEventListener("change", () => { S.source = el.value; render(); }));
+  $("[data-new]").addEventListener("click", () => { if (busy) return; newZ(); S.source = "model"; root.querySelector('input[name="viz-pp-source"][value="model"]').checked = true; render(); });
+
+  function showError(id, message) {
+    const input = $(`#viz-pp-${id}`), error = $(`#viz-pp-${id}-error`);
+    error.hidden = !message;
+    error.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+  // Fields: errors show while typing; a valid value is applied on change (Enter or leaving the field).
+  const checks = {
+    muD: v => v === null ? "Zadejte číslo, například 3,5." : Math.abs(v) > MU_MAX ? "Zadejte číslo od −50 do 50." : null,
+    n: v => v === null || !Number.isInteger(v) || v < N_MIN || v > N_MAX ? "Počet studentů musí být celé číslo od 3 do 200." : null
+  };
+  for (const id of Object.keys(checks)) {
+    const input = $(`#viz-pp-${id}`);
+    input.addEventListener("input", () => showError(id, checks[id](parseDecimal(input.value))));
+    input.addEventListener("change", () => {
+      const v = parseDecimal(input.value), message = checks[id](v);
+      showError(id, message);
+      if (message || busy || v === S[id]) return;
+      S[id] = v;
+      modelChanged();
+    });
+  }
+  root.querySelectorAll("[data-sim]").forEach(b => b.addEventListener("click", () => simulate(Number(b.dataset.sim))));
+  $("[data-sim-reset]").addEventListener("click", () => { if (!busy) { resetSim(); renderSim(); } });
+
+  // Results of the current data.
+  function statsRows(A, M) {
+    const rows = [
+      ["Počet studentů s úplnou dvojicí", `<i>n</i> = ${A.n}`],
+      ["Průměrný rozdíl (běžný − krátký spánek)", `<i>m<sub>D</sub></i> = <strong>${fixed(A.mD, 2)}</strong> bodu`],
+      ["Směrodatné odchylky obou měření", `<i>s</i><sub>1</sub> = ${fixed(A.s1, 2)}, <i>s</i><sub>2</sub> = ${fixed(A.s2, 2)} bodu`],
+      ["Směrodatná odchylka rozdílů", `<i>s<sub>D</sub></i> = <strong>${fixed(A.sD, 2)}</strong> bodu`]
+    ];
+    if (S.mode === "korelace") rows.push(["Pearsonův korelační koeficient obou měření", Number.isFinite(A.r) ? `<i>r</i> = ${fixed(A.r, 3)}` : "nelze spočítat"]);
+    if (S.source === "model") rows.push(["V modelu: směrodatná odchylka rozdílů", `${fixed(M.sdD, 2)} bodu; skutečný μ<sub><i>D</i></sub> = ${typed(S.muD)} bodu`]);
+    return rows;
+  }
+  function compareTable(A) {
+    const row = (name, a, cls) => `<tr class="${cls}"><th scope="row">${name}</th><td>${fixed(a.se, 2)}</td><td>${Number.isFinite(a.t) ? fixed(a.t, 2) : "nelze spočítat"}</td><td>${a.df}</td><td>${Number.isFinite(a.p) ? pText(a.p) : "—"}</td><td>${ciText(a.lo, a.hi)}</td></tr>`;
+    return `<table class="viz-bay-table viz-pp-table" aria-label="Obě analýzy týchž dat">
+      <thead><tr><th scope="col">Analýza</th><th scope="col">Odhad směrodatné chyby</th><th scope="col"><i>t</i></th><th scope="col">Stupně volnosti</th><th scope="col"><i>p</i>-hodnota</th><th scope="col">95% interval (body)</th></tr></thead>
+      <tbody>${row("Párová (správně)", A.paired, "viz-pp-paired")}${row("Jako dvě nezávislé skupiny (chybně)", A.independent, "viz-pp-independent")}</tbody></table>
+      <p class="viz-note">Šířka intervalu chybné analýzy je ${A.paired.se > 0 ? `${fixed((A.independent.hi - A.independent.lo) / (A.paired.hi - A.paired.lo), 1)}krát` : "mnohokrát"} větší než šířka intervalu párové analýzy.</p>`;
+  }
+  function excelRows(A) {
+    const P = A.paired, I = A.independent;
+    const rows = [
+      ["Párová: odhad směrodatné chyby", `<code>=${excel(A.sD)}/ODMOCNINA(${A.n})</code>`],
+      ["Párová: <i>t</i> a <i>p</i>-hodnota", `<code>=${excel(A.mD)}/${excel(P.se)}</code><br><code>=T.DIST.2T(ABS(${excel(P.t)});${P.df})</code>`],
+      ["Párová: kvantil a meze", `<code>=T.INV(0,975;${P.df})</code><br><code>=${excel(A.mD)}-${excel(P.q)}*${excel(P.se)}</code>, <code>=${excel(A.mD)}+${excel(P.q)}*${excel(P.se)}</code>`],
+      ["Chybně jako nezávislé skupiny: odhad směrodatné chyby", `<code>=ODMOCNINA(${excel(A.s1)}^2/${A.n}+${excel(A.s2)}^2/${A.n})</code>`],
+      ["Chybně: <i>t</i>, <i>p</i>-hodnota a kvantil", `<code>=${excel(A.mD)}/${excel(I.se)}</code><br><code>=T.DIST.2T(ABS(${excel(I.t)});${I.df})</code><br><code>=T.INV(0,975;${I.df})</code>`]
+    ];
+    if (S.source === "A") rows.push(["Kontrola na listu <code>Parovy_test</code> sešitu kapitoly 8: párová (typ 1) a chybná (typ 2) <i>p</i>-hodnota", `<code>=T.TEST(G2:G14;H2:H14;2;1)</code><br><code>=T.TEST(G2:G14;H2:H14;2;2)</code>`]);
+    if (!Number.isFinite(P.t)) rows.splice(1, 2, ["Párová: <i>t</i> a <i>p</i>-hodnota", "Všechny rozdíly jsou stejné, směrodatná odchylka rozdílů je nulová a <i>t</i> nelze spočítat."]);
+    return rows;
+  }
+
+  function charts(container, data, A, M) {
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const small = width < 520;
+    const base = {width, marginLeft: small ? 56 : 66, marginRight: 18, marginTop: 20, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}};
+    const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52});
+    const tick = t => minus(String(t).replace(".", ","));
+    const n = A.n, isModel = S.source === "model";
+
+    // 1. Scores of both measurements, one line per student.
+    const rows = [];
+    data.x1.forEach((v, i) => { rows.push({i, c: 0, y: v}); rows.push({i, c: 1, y: data.x2[i]}); });
+    const opacity = n <= 30 ? 0.75 : n <= 80 ? 0.45 : 0.25;
+    const spaghetti = Plot.plot({
+      ...base, height: small ? 280 : 320, marginBottom: 40,
+      x: {domain: [-0.35, 1.35], ticks: [0, 1], tickFormat: t => t === 0 ? "po běžném spánku" : "po krátkém spánku", label: null},
+      y: {...yLabel("Skór pozornosti (body)"), nice: true, zero: false, tickFormat: tick},
+      ariaLabel: `Skóry ${n} studentů po běžném a po krátkém spánku, body téhož studenta spojené čarou`,
+      ariaDescription: `Směrodatné odchylky měření ${fixed(A.s1, 2)} a ${fixed(A.s2, 2)} bodu, směrodatná odchylka rozdílů ${fixed(A.sD, 2)} bodu. ${A.sD < Math.min(A.s1, A.s2) / 2 ? "Čáry běží převážně souběžně." : "Čáry se často kříží."}`,
+      marks: [
+        Plot.line(rows, {x: "c", y: "y", z: "i", stroke: line, strokeOpacity: opacity, strokeWidth: 1.4}),
+        Plot.dot(rows, {x: "c", y: "y", r: n <= 30 ? 3.2 : 2.2, fill: ink, fillOpacity: Math.min(1, opacity + 0.2)})
+      ]
+    });
+
+    // Common x domain of the difference plot and the plot of both intervals.
+    const D = data.x1.map((v, i) => v - data.x2[i]);
+    const ext = [...D, A.paired.lo, A.paired.hi, A.independent.lo, A.independent.hi, 0, ...(isModel ? [S.muD] : [])].filter(Number.isFinite);
+    let lo = Math.min(...ext), hi = Math.max(...ext);
+    const pad = Math.max(0.5, 0.06 * (hi - lo)); lo -= pad; hi += pad;
+
+    // 2. Differences of individual students, stacked in narrow bins, with the paired interval below.
+    const binW = (hi - lo) / (small ? 45 : 75), counts = new Map();
+    const dots = D.map(d => { const k = Math.round(d / binW); const c = counts.get(k) || 0; counts.set(k, c + 1); return {x: k * binW, y: c + 1, d}; });
+    const top = Math.max(6, ...dots.map(p => p.y)) + 1;
+    const diffPlot = Plot.plot({
+      ...base, height: small ? 210 : 240, marginBottom: 44,
+      x: {domain: [lo, hi], label: "Rozdíl běžný − krátký spánek (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {domain: [-2.2, top], axis: null},
+      ariaLabel: `Rozdíly ${n} studentů a 95% interval pro průměrný rozdíl`,
+      ariaDescription: `Průměrný rozdíl ${fixed(A.mD, 2)} bodu, 95% interval párové analýzy ${ciText(A.paired.lo, A.paired.hi)}.`,
+      marks: [
+        Plot.ruleX([0], {stroke: ink, strokeDasharray: "5,4", strokeWidth: 1.2}),
+        Plot.dot(dots, {x: "x", y: "y", r: Math.max(1.8, Math.min(4, 60 / top)), fill: blue, fillOpacity: 0.8}),
+        Plot.link([A.paired], {x1: A.paired.lo, x2: A.paired.hi, y1: -1.2, y2: -1.2, stroke: blue, strokeWidth: 3}),
+        Plot.dot([A.paired], {x: A.mD, y: -1.2, r: 4.5, fill: blue}),
+        isModel ? Plot.ruleX([S.muD], {stroke: hiText, strokeDasharray: "2,3", strokeWidth: 1.6}) : null
+      ]
+    });
+
+    // 3. Both intervals for the difference of means on the same axis.
+    const ivs = [{name: "párová", a: A.paired, color: blue, y: 2}, {name: "jako nezávislé skupiny (chybně)", a: A.independent, color: orange, y: 1}];
+    const ivMarks = ivs.flatMap(d => [
+      Plot.link([d], {x1: d.a.lo, x2: d.a.hi, y1: d.y, y2: d.y, stroke: d.color, strokeWidth: 3.2}),
+      Plot.dot([d], {x: A.mD, y: d.y, r: 4.5, fill: d.color}),
+      Plot.text([d], {x: d.a.lo, y: d.y, dy: -12, textAnchor: "start", text: () => d.name, fill: d.color === blue ? blue : hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"})
+    ]);
+    const ivPlot = Plot.plot({
+      ...base, height: small ? 150 : 160, marginBottom: 44, marginLeft: small ? 10 : 20,
+      x: {domain: [lo, hi], label: "Rozdíl průměrů (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {domain: [0.4, 2.8], axis: null},
+      ariaLabel: "95% intervaly rozdílu průměrů z párové analýzy a z chybné analýzy jako dvou nezávislých skupin",
+      ariaDescription: `Párová analýza ${ciText(A.paired.lo, A.paired.hi)}, chybná analýza ${ciText(A.independent.lo, A.independent.hi)}${isModel ? `, skutečný průměr rozdílů ${typed(S.muD)}` : ""}.`,
+      marks: [
+        Plot.ruleX([0], {stroke: ink, strokeDasharray: "5,4", strokeWidth: 1.2}),
+        isModel ? Plot.ruleX([S.muD], {stroke: hiText, strokeDasharray: "2,3", strokeWidth: 1.6}) : null,
+        ...ivMarks
+      ]
+    });
+
+    // 4. Standard error in the model as a function of the strength of the relation between both measurements.
+    const grid = S.mode === "osoby" ? d3.range(0, 1001).map(i => 0.999 * i / 1000) : d3.range(0, 1001).map(i => -0.999 + 1.998 * i / 1000);
+    const total = Math.sqrt(S.stable ** 2 + S.noise ** 2);
+    const curveP = S.mode === "osoby"
+      ? grid.map(sh => ({x: sh, y: total * Math.sqrt(2 * (1 - sh)) / Math.sqrt(S.n)}))
+      : grid.map(r => ({x: r, y: Math.sqrt(Math.max(0, S.s1 ** 2 + S.s2 ** 2 - 2 * r * S.s1 * S.s2)) / Math.sqrt(S.n)}));
+    const indSE = Math.sqrt((M.sd1 ** 2 + M.sd2 ** 2) / S.n);
+    const yMax = Math.max(indSE, ...curveP.map(p => p.y)) * 1.12;
+    const now = {x: M.share, p: M.sdD / Math.sqrt(S.n), i: indSE};
+    const sePlot = Plot.plot({
+      ...base, height: small ? 250 : 280, marginBottom: 44,
+      x: {domain: S.mode === "osoby" ? [0, 1] : [-1, 1], label: S.mode === "osoby" ? "Podíl stabilních rozdílů mezi lidmi na rozptylu jednoho měření" : "Korelace obou měření v populaci", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {...yLabel("Směrodatná chyba (body)"), domain: [0, yMax], tickFormat: tick},
+      ariaLabel: `Směrodatná chyba obou analýz v modelu pro ${S.n} studentů`,
+      ariaDescription: `Aktuálně párová ${fixed(now.p, 2)} a chybná ${fixed(now.i, 2)} bodu. Párová klesá se ${S.mode === "osoby" ? "zvětšujícím se podílem stabilních rozdílů" : "zvětšující se korelací"}, chybná se nemění.`,
+      marks: [
+        Plot.ruleY([indSE], {stroke: orange, strokeWidth: 2.2, strokeDasharray: "7,4"}),
+        Plot.line(curveP, {x: "x", y: "y", stroke: blue, strokeWidth: 2.2}),
+        Plot.ruleX([now.x], {stroke: gray, strokeDasharray: "2,3"}),
+        Plot.dot([now], {x: "x", y: "p", r: 5, fill: blue, stroke: "white"}),
+        Plot.dot([now], {x: "x", y: "i", r: 5, fill: orange, stroke: "white"}),
+        Plot.text([now], {x: "x", y: "p", dx: now.x > (S.mode === "osoby" ? 0.6 : 0.2) ? -9 : 9, dy: -10, textAnchor: now.x > (S.mode === "osoby" ? 0.6 : 0.2) ? "end" : "start", text: d => fixed(d.p, 2), fill: blue, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+        Plot.text([now], {x: "x", y: "i", dx: now.x > (S.mode === "osoby" ? 0.6 : 0.2) ? -9 : 9, dy: -10, textAnchor: now.x > (S.mode === "osoby" ? 0.6 : 0.2) ? "end" : "start", text: d => fixed(d.i, 2), fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    const panel = (title, chart, legendHtml) => { const el = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; if (legendHtml) { const lg = html`<div class="viz-legend"></div>`; lg.innerHTML = legendHtml; el.append(lg); } el.append(chart); return el; };
+    const muLegend = isModel ? `<span>${lineSwatch(hiText, "2,3")}<span>skutečný μ<sub><i>D</i></sub> = ${typed(S.muD)}</span></span>` : "";
+    container.replaceChildren(
+      panel(`Skóry obou měření, ${S.source === "A" ? "data varianty A" : "výběr z modelu"}`, spaghetti),
+      panel("Rozdíly jednotlivých studentů a 95% interval pro průměrný rozdíl", diffPlot, `<span>${boxSwatch(blue)}<span>rozdíl jednoho studenta</span></span><span>${lineSwatch(blue)}<span>95% interval párové analýzy</span></span><span>${lineSwatch(ink, "5,4")}<span>nula</span></span>${muLegend}`),
+      panel("Dvě analýzy týchž dat: 95% interval pro rozdíl průměrů", ivPlot, `<span>${lineSwatch(blue)}<span>párová analýza</span></span><span>${lineSwatch(orange)}<span>jako dvě nezávislé skupiny (chybně)</span></span>${muLegend}`),
+      panel(`Směrodatná chyba v modelu pro ${S.n} studentů`, sePlot, `<span>${lineSwatch(blue)}<span>párová analýza</span></span><span>${lineSwatch(orange, "7,4")}<span>jako dvě nezávislé skupiny (chybně)</span></span>`)
+    );
+  }
+
+  // Repeated sampling: summary, table and overlaid histograms of interval widths.
+  function simResults() {
+    const K = SIM.K;
+    if (!K) return null;
+    let sP = 0, sI = 0;
+    for (let i = 0; i < K; i++) { sP += WP[i]; sI += WI[i]; }
+    return {K, rejP: SIM.rejP / K, rejI: SIM.rejI / K, covP: SIM.covP / K, covI: SIM.covI / K, widthP: sP / K, widthI: sI / K};
+  }
+  function renderSim() {
+    const R = simResults(), box = $("[data-sim-table]"), plotBox = $("[data-sim-plot]"), summary = $("[data-sim-summary]");
+    limitNote.hidden = SIM.K < MAX_REPS;
+    root.querySelectorAll("[data-sim]").forEach(b => { b.disabled = busy || SIM.K >= MAX_REPS; });
+    if (!R) {
+      summary.textContent = "Zatím nebyl vylosován žádný výběr.";
+      box.innerHTML = ""; plotBox.replaceChildren();
+      last.sim = null;
+      return;
+    }
+    const zero = S.muD === 0;
+    summary.innerHTML = `Vylosováno ${R.K.toLocaleString("cs-CZ")} výběrů po ${S.n} studentech z modelu se skutečným μ<sub><i>D</i></sub> = ${typed(S.muD)} bodu. ${zero ? "Nulová hypotéza tedy platí a každé zamítnutí je chybou I. druhu; slibovaný podíl je 5 %." : "Nulová hypotéza tedy neplatí a zamítnutí je správné rozhodnutí."}`;
+    const row = (name, rej, cov, w, cls) => `<tr class="${cls}"><th scope="row">${name}</th><td>${pct(rej)}</td><td>${pct(cov)}</td><td>${fixed(w, 2)}</td></tr>`;
+    box.innerHTML = `<table class="viz-bay-table viz-pp-table" aria-label="Výsledky opakovaného losování">
+      <thead><tr><th scope="col">Analýza</th><th scope="col">Zamítnutí H<sub>0</sub>: μ<sub><i>D</i></sub> = 0</th><th scope="col">Interval zachytil μ<sub><i>D</i></sub></th><th scope="col">Průměrná šířka intervalu (body)</th></tr></thead>
+      <tbody>${row("Párová (správně)", R.rejP, R.covP, R.widthP, "viz-pp-paired")}${row("Jako dvě nezávislé skupiny (chybně)", R.rejI, R.covI, R.widthI, "viz-pp-independent")}</tbody></table>`;
+    // Histograms in common bins.
+    const container = plots;
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const small = width < 520;
+    let wMax = 0;
+    for (let i = 0; i < R.K; i++) wMax = Math.max(wMax, WP[i], WI[i]);
+    const bins = small ? 30 : 50, step = (wMax || 1) / bins;
+    const hist = arr => { const c = new Array(bins).fill(0); for (let i = 0; i < R.K; i++) c[Math.min(bins - 1, Math.floor(arr[i] / step))]++; return c.map((v, j) => ({x1: j * step, x2: (j + 1) * step, p: v / R.K})); };
+    const hP = hist(WP), hI = hist(WI);
+    const chart = Plot.plot({
+      width, height: small ? 220 : 250, marginLeft: small ? 56 : 66, marginRight: 18, marginTop: 20, marginBottom: 44,
+      style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
+      x: {domain: [0, wMax || 1], label: "Šířka 95% intervalu (body)", labelAnchor: "center", labelArrow: "none", tickFormat: t => minus(String(t).replace(".", ","))},
+      y: {label: "Podíl výběrů", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52, tickFormat: t => fixed(t, 2)},
+      ariaLabel: "Rozdělení šířek 95% intervalů obou analýz v opakovaném losování",
+      ariaDescription: `Průměrná šířka: párová ${fixed(R.widthP, 2)} bodu, chybná ${fixed(R.widthI, 2)} bodu.`,
+      marks: [
+        Plot.rect(hI, {x1: "x1", x2: "x2", y1: 0, y2: "p", fill: fillOrange, fillOpacity: 0.85}),
+        Plot.rect(hP, {x1: "x1", x2: "x2", y1: 0, y2: "p", fill: fillBlue, fillOpacity: 0.85, stroke: blue, strokeWidth: 0.4}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+    const legend = html`<div class="viz-legend"></div>`;
+    legend.innerHTML = `<span>${boxSwatch(fillBlue)}<span>párová analýza</span></span><span>${boxSwatch(fillOrange)}<span>jako dvě nezávislé skupiny (chybně)</span></span>`;
+    const panel = html`<div class="viz-panel"><p class="viz-panel-title">Šířky 95% intervalů obou analýz</p></div>`;
+    panel.append(legend, chart);
+    plotBox.replaceChildren(panel);
+    last.sim = R;
+  }
+
+  const statsBox = $("[data-stats]"), sourceNote = $("[data-source-note]");
+  let last = {};
+
+  function render() {
+    for (const [id, cfg] of Object.entries(SLIDERS)) {
+      const el = $(`#viz-pp-${id}`), out = $(`#viz-pp-${id}-value`);
+      out.textContent = cfg.text(S[id]);
+      el.setAttribute("aria-valuetext", cfg.text(S[id]));
+    }
+    const data = currentData(), A = analyze(data.x1, data.x2), M = modelSE();
+    sourceNote.innerHTML = S.source === "A"
+      ? "Zobrazena jsou data varianty A z kapitoly 8. Skutečný průměr rozdílů v populaci u nich neznáme. Posunutím kteréhokoli nastavení modelu přepnete na výběr z modelu."
+      : `Zobrazen je výběr ${S.n} studentů z modelu (${S.mode === "osoby" ? `stabilní rozdíly ${fixed(S.stable, 1)} bodu, kolísání ${fixed(S.noise, 1)} bodu` : `σ₁ = ${fixed(S.s1, 2)}, σ₂ = ${fixed(S.s2, 2)}, korelace ${fixed(S.rho, 2)}`}).`;
+    const rows = statsRows(A, M);
+    statsBox.innerHTML = rows.map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    $("[data-compare]").innerHTML = compareTable(A);
+    const ex = excelRows(A);
+    $("[data-excel]").innerHTML = ex.map(([term, desc]) => `<div class="viz-wide"><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    charts(plots, data, A, M);
+    last = {...JSON.parse(JSON.stringify(S)), data, analysis: A, model: M, excel: ex.map(([a, b]) => b.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()), stats: rows.map(([a]) => a)};
+    renderSim();
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {pt, qt, analyze, modelSE: s => modelSE({...S, ...s}), parseDecimal, state: () => JSON.parse(JSON.stringify({...last, busy, simK: SIM.K}))};
+
+  newZ();
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Obě analýzy dat varianty A porovnává <a href="kapitola_08.html#tbl-k08-04">tabulka 8.4 v kapitole 8</a>; výpočty směrodatných chyb v modelu najdete v oddílu „Odkud se čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-pp-vyzkousejte .unnumbered}
+
+1. U dat varianty A najděte oba intervaly a porovnejte je s [tabulkou 8.4](kapitola_08.qmd#tbl-k08-04). Proč mají obě analýzy stejný odhad, ale tak odlišnou šířku intervalu? Odpověď hledejte ve dvou směrodatných odchylkách: obou měření a rozdílů.
+2. Ve výběru z modelu snižte stabilní rozdíly mezi lidmi na 1 bod a kolísání téhož člověka zvyšte na 7 bodů. Jak se změnily spojnice a jak blízko jsou si nyní obě směrodatné chyby v grafu modelu? Za jakých okolností tedy párování odhad zpřesní jen málo?
+3. Nastavte $\mathrm{μ}_D=0$ a vylosujte 10 000 výběrů. V jaké části výběrů zamítla nulovou hypotézu každá analýza a jak často zachytil interval skutečný $\mathrm{μ}_D$? Přepněte na zadání korelací a pokus zopakujte pro korelaci 0,9 a pro −0,5. Je chybná analýza „jen opatrnější“?
+4. V zadání korelací nastavte $\mathrm{σ}_1=2$, $\mathrm{σ}_2=6$ a korelaci 0,99, podobně jako v kontrastním příkladu oddílu [Proč rozdíly kolísají méně](kapitola_08.qmd#sec-proc-rozdily). Kolísají rozdíly méně než skóry po běžném spánku? Je párový odhad přesto přesnější?
+
+## Čeho si všimnout {#sec-viz-pp-vsimnete .unnumbered}
+
+Obě analýzy odhadují tentýž rozdíl průměrů a dávají stejný bodový odhad; liší se jen tím, jak velkou mu přisuzují nejistotu. Chybná analýza ji počítá ze směrodatných odchylek celých měření, které zahrnují i stabilní rozdíly mezi lidmi. Párová analýza ji počítá ze směrodatné odchylky rozdílů, z nichž se stabilní rozdíly odečetly. Čím větší část variability tvoří stabilní rozdíly, tím víc párová analýza získá. U dat varianty A tvoří převážnou část, a interval chybné analýzy je proto asi čtyřikrát širší. Když naopak výkon téhož člověka kolísá víc, než se lidé mezi sebou stabilně liší, jsou obě směrodatné chyby skoro stejné: při stabilních rozdílech 1 bod a kolísání 7 bodů vychází pro 12 studentů 2,86 a 2,89 bodu. Párová analýza má přitom jen $n-1$ stupňů volnosti místo $2n-2$, a tedy o něco větší kvantil *t*. Její interval proto může být v takové situaci v průměru i o něco širší; párování se vyplatí tam, kde stabilní rozdíly mezi lidmi tvoří podstatnou část variability.
+
+Chybná analýza není opatrnější verzí párové. Při kladné souvislosti obou měření jsou její intervaly zbytečně široké: při výchozím nastavení modelu a $\mathrm{μ}_D=0$ zamítne nulovou hypotézu téměř nikdy, místo slibovaných 5 %, a při skutečném průměrném poklesu 3,5 bodu jen asi v 5 % výběrů, zatímco párová analýza téměř vždy. Při záporné souvislosti je to naopak: při korelaci −0,5 zamítá chybná analýza platnou nulovou hypotézu asi v 11 % výběrů. V obou případech její *p*-hodnoty a intervaly neodpovídají slibované hladině, protože předpokládá nezávislost, která u párových dat neplatí. Párová analýza drží při normálním rozdělení rozdílů 5 % chyb I. druhu a 95% pokrytí v každém nastavení.
+
+Vodorovná čára chybné analýzy v grafu modelu má ještě jeden význam. Stejnou směrodatnou chybu by měla studie, která by porovnala dvě různé skupiny po $n$ lidech se stejnou variabilitou měření; tam by byla spočítána správně. Graf tedy ukazuje i to, o kolik je při daném $n$ párové uspořádání přesnější než nezávislé skupiny. V kontrastním příkladu se směrodatnými odchylkami 2 a 6 bodů a korelací 0,99 kolísají rozdíly víc než skóry prvního měření (asi 4,0 bodu), a přesto je směrodatná chyba párové analýzy menší (1,16 proti 1,83 bodu). O přesnosti rozhoduje směrodatná chyba, ne srovnání směrodatné odchylky rozdílů s jedním z měření.
+
+Model předpokládá normální rozdělení a měří jen náhodnou nejistotu. Neobsahuje efekt pořadí ani jiné vlivy opakovaného měření, které párové uspořádání samo neřeší; ty vykládá oddíl [Co párování neřeší](kapitola_08.qmd#sec-co-parovani-neresi).

@@ -666,7 +666,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Co znamená rozdíl o d směrodatných odchylek']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -1691,6 +1691,142 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:1360,height:1000});
     await page.goto(base + 'quarto/kapitola_08.html', { waitUntil: 'networkidle' });
     assert.equal(await page.locator('#sec-d-nezavisle .callout-tip a[href$="viz_cohenovo_d.html"]').count(), 1, "Chapter 8 links to the Cohen's d visualization");
+    assert.equal(await page.locator('#sec-proc-rozdily .callout-tip a[href$="viz_prinos_parovani.html"]').count(), 1, 'Chapter 8 links to the pairing visualization');
+
+    // Benefit of pairing: both analyses against R (scripts/viz-prinos-parovani.R), model standard errors,
+    // data source and model switches, fields, sliders, repeated sampling, Excel formulas, full screen and phone.
+    await page.goto(base + 'quarto/viz_prinos_parovani.html', { waitUntil: 'networkidle' });
+    const pp = page.locator('#viz-prinos-parovani');
+    const ppPlots = pp.locator('.viz-plots svg[aria-label]');
+    await ppPlots.nth(3).waitFor();
+    assert.equal(await ppPlots.count(), 4, 'Scores, differences, both intervals and the model standard error');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const ppState = () => pp.evaluate(el => el.vizCheck.state());
+    const ppNear = (a, b, msg, tol = 1e-9) => assert(Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    const ppWait = () => page.waitForFunction(() => !document.querySelector('#viz-prinos-parovani').vizCheck.state().busy, null, { timeout: 120000 });
+    const ppSlide = (id, v) => pp.locator(`#viz-pp-${id}`).evaluate((el, x) => { el.value = String(x); el.dispatchEvent(new Event('input', {bubbles: true})); }, v);
+    const ppField = async (id, v) => { await pp.locator(`#viz-pp-${id}`).fill(v); await pp.locator(`#viz-pp-${id}`).dispatchEvent('change'); };
+    // R: qt(0.975, 11) and qt(0.975, 22).
+    ppNear(await pp.evaluate(el => el.vizCheck.qt(0.975, 11)), 2.20098516009, 'qt 11');
+    ppNear(await pp.evaluate(el => el.vizCheck.qt(0.975, 22)), 2.07387306790, 'qt 22');
+    // R: t.test(paired = TRUE) and t.test(var.equal = TRUE) for three data sets [se, t, df, p, lo, hi].
+    const ppR = [
+      {x1: [58, 44, 51, 39, 62, 47, 55, 42, 49, 60, 45, 52], x2: [53, 42, 45, 38, 55, 44, 51, 43, 44, 58, 39, 50],
+        sd: [7.340217154743, 6.422026490324, 2.393172105652, 0.948193730452],
+        paired: [0.690849279708, 5.06622805119, 11, 0.000362722939485, 1.97945098750, 5.02054901250],
+        independent: [2.815451593753, 1.24313982445, 22, 0.226902222635770, -2.33888923427, 9.33888923427]},
+      {x1: [2, 4, 6], x2: [6, 12, 18], sd: [2, 6, 4, 1],
+        paired: [2.30940107676, -3.46410161514, 2, 0.0741799002274, -17.9365508470, 1.93655084700],
+        independent: [3.65148371670, -2.19089023002, 4, 0.0935990209704, -18.1381440919, 2.13814409194]},
+      {x1: [12.5, 9, 14, 7.5, 11, 10, 13.5, 8], x2: [11, 9.5, 10, 8.5, 12, 7, 15, 6.5],
+        sd: [2.477578022413, 2.770217887253, 2.052872551886, 0.699228589097],
+        paired: [0.725800051175, 1.033342445741, 7, 0.335817702254, -0.966244402816, 2.46624440282],
+        independent: [1.313987252602, 0.570781792985, 14, 0.577195095403, -2.068222367474, 3.56822236747]}
+    ];
+    for (const [k, set] of ppR.entries()) {
+      const got = await pp.evaluate((el, s) => el.vizCheck.analyze(s.x1, s.x2), set);
+      [got.s1, got.s2, got.sD, got.r].forEach((g, i) => ppNear(g, set.sd[i], `Data set ${k}, SD ${i}`));
+      for (const a of ['paired', 'independent']) ['se', 't', 'df', 'p', 'lo', 'hi'].forEach((key, i) => ppNear(got[a][key], set[a][i], `Data set ${k}, ${a} ${key}`));
+    }
+    // R: standard errors in the model [paired, independent].
+    const ppSE = [
+      [{mode: 'osoby', stable: 6.7, noise: 1.7, n: 12}, 0.694022093789, 2.82193786844],
+      [{mode: 'osoby', stable: 1, noise: 7, n: 12}, 2.857738033247, 2.88675134595],
+      [{mode: 'osoby', stable: 0, noise: 5, n: 12}, 2.041241452319, 2.041241452319],
+      [{mode: 'korelace', s1: 7.34, s2: 6.42, rho: 0.95, n: 12}, 0.680605122911, 2.81501924209],
+      [{mode: 'korelace', s1: 2, s2: 6, rho: 0.99, n: 12}, 1.163328557774, 1.82574185835],
+      [{mode: 'korelace', s1: 7.34, s2: 6.42, rho: -0.5, n: 12}, 3.442562030426, 2.81501924209]
+    ];
+    for (const [s, p, i] of ppSE) {
+      const got = await pp.evaluate((el, v) => el.vizCheck.modelSE(v), s);
+      ppNear(got.paired, p, `Model SE paired ${JSON.stringify(s)}`); ppNear(got.independent, i, `Model SE independent ${JSON.stringify(s)}`);
+    }
+    // Default: variant A, table 8.4 of chapter 8 and the Excel formulas.
+    let ppS = await ppState();
+    assert.deepEqual([ppS.source, ppS.mode, ppS.n, ppS.muD, ppS.data.x1.length], ['A', 'osoby', 12, 3.5, 12]);
+    const ppTable = await pp.locator('[data-compare]').innerText();
+    for (const s of ['0,69', '2,82', '5,07', '1,24', '0,0004', '0,227', '(1,98; 5,02)', '(−2,34; 9,34)', '3,8krát']) assert(ppTable.includes(s), `Table shows ${s}`);
+    for (const f of ['=2,3932/ODMOCNINA(12)', '=T.DIST.2T(ABS(5,0662);11)', '=T.INV(0,975;11)', '=ODMOCNINA(7,3402^2/12+6,422^2/12)', '=T.DIST.2T(ABS(1,2431);22)', '=T.INV(0,975;22)', '=T.TEST(G2:G14;H2:H14;2;1)', '=T.TEST(G2:G14;H2:H14;2;2)'])
+      assert(ppS.excel.some(x => x.includes(f)), `Excel formula ${f}`);
+    assert(!ppS.stats.some(x => x.includes('korelační')), 'No r in the first way of setting the model');
+    assert.equal(await pp.locator('[data-mode-controls="korelace"]').isVisible(), false, 'Correlation sliders hidden');
+    // Keyboard on a slider switches to a model sample.
+    await pp.locator('#viz-pp-stable').focus();
+    await page.keyboard.press('ArrowRight');
+    ppS = await ppState();
+    assert.deepEqual([ppS.stable, ppS.source, ppS.data.x1.length], [6.8, 'model', 12], 'ArrowRight adds 0,1 and switches to the model');
+    assert(await pp.locator('input[name="viz-pp-source"][value="model"]').isChecked());
+    await page.keyboard.press('Home'); assert.equal((await ppState()).stable, 0, 'Home sets 0');
+    await page.keyboard.press('End'); assert.equal((await ppState()).stable, 15, 'End sets 15');
+    await ppSlide('stable', 6.7);
+    // The same random numbers are reused: changing μD shifts the differences exactly.
+    const d0 = (await ppState()).data; await ppField('muD', '1,5'); const d1 = (await ppState()).data;
+    d0.x1.forEach((v, i) => { ppNear(d1.x1[i], v, 'Same first measurement'); ppNear((d0.x1[i] - d0.x2[i]) - (d1.x1[i] - d1.x2[i]), 2, 'Difference shifted by 2'); });
+    await pp.locator('[data-new]').click();
+    assert.notEqual((await ppState()).data.x1[0], d1.x1[0], 'New sample');
+    // Fields: decimal comma, minus sign and rejected values.
+    await ppField('n', '50'); assert.equal((await ppState()).data.x1.length, 50);
+    for (const bad of ['2', '201', '2,5', 'abc']) {
+      await ppField('n', bad);
+      assert.equal(await pp.locator('#viz-pp-n').getAttribute('aria-invalid'), 'true', `Rejected n ${bad}`);
+      assert(await pp.locator('#viz-pp-n-error').isVisible(), `Message for n ${bad}`);
+      assert.equal((await ppState()).n, 50, `Kept n after ${bad}`);
+    }
+    for (const bad of ['−60', 'x']) { await ppField('muD', bad); assert.equal((await ppState()).muD, 1.5, `Kept μD after ${bad}`); }
+    await ppField('muD', '−2'); assert.equal((await ppState()).muD, -2, 'Minus sign accepted');
+    // Batched repeated sampling locks the controls (n = 200: many batches).
+    await ppField('n', '200');
+    await pp.locator('[data-sim="10000"]').click();
+    // Busy state, progress and locked field are read in one step, because the batches may finish quickly.
+    await page.waitForFunction(() => { const r = document.querySelector('#viz-prinos-parovani'); return r.vizCheck.state().busy && !r.querySelector('.viz-progress').hidden && r.querySelector('#viz-pp-n').disabled; }, null, { timeout: 20000, polling: 5 })
+      .catch(() => assert.fail('Batched drawing locks the controls'));
+    await ppWait();
+    assert.equal((await ppState()).simK, 10000);
+    assert.equal(await pp.locator('[data-sim-plot] svg[aria-label]').count(), 1, 'Histogram of interval widths');
+    // Rejection rates against R: paired exact (noncentral t), incorrect analysis simulated; 10 000 samples, about 4 SE.
+    const ppSim = async (settings, want) => {
+      if (settings.mode) await pp.locator(`input[name="viz-pp-mode"][value="${settings.mode}"]`).check();
+      for (const id of ['stable', 'noise', 's1', 's2', 'rho']) if (id in settings) await ppSlide(id, settings[id]);
+      await ppField('n', String(settings.n)); await ppField('muD', String(settings.muD).replace('.', ','));
+      await pp.locator('[data-sim-reset]').click();
+      await pp.locator('[data-sim="10000"]').click(); await ppWait();
+      const r = (await ppState()).sim;
+      assert.equal(r.K, 10000);
+      for (const [key, value, tol] of want) ppNear(r[key], value, `${key} for ${JSON.stringify(settings)}`, tol);
+    };
+    await ppSim({mode: 'osoby', stable: 6.7, noise: 1.7, n: 12, muD: 0}, [['rejP', 0.05, 0.01], ['covP', 0.95, 0.01], ['rejI', 0, 0.002]]);
+    await ppSim({n: 12, muD: 3.5}, [['rejP', 0.995435, 0.004], ['rejI', 0.04816, 0.009]]);
+    await ppSim({mode: 'korelace', s1: 7.34, s2: 6.42, rho: -0.5, n: 12, muD: 0}, [['rejP', 0.05, 0.01], ['rejI', 0.1069425, 0.0125]]);
+    ppS = await ppState();
+    assert(ppS.stats.some(x => x.includes('korelační')), 'Sample r shown in the correlation mode');
+    assert(await pp.locator('[data-mode-controls="korelace"]').isVisible() && !(await pp.locator('[data-mode-controls="osoby"]').isVisible()), 'Correlation sliders shown');
+    // A change of the model clears repeated sampling; the cap of 100 000 samples.
+    await ppSlide('rho', 0.5); assert.equal((await ppState()).simK, 0, 'Model change clears the simulation');
+    for (let i = 0; i < 10; i++) { await pp.locator('[data-sim="10000"]').click(); await ppWait(); }
+    assert.equal((await ppState()).simK, 100000);
+    assert(await pp.locator('.viz-limit').isVisible() && await pp.locator('[data-sim="100"]').isDisabled(), 'Cap of 100 000 samples');
+    await pp.locator('[data-sim-reset]').click(); assert.equal((await ppState()).simK, 0);
+    // Back to variant A.
+    await pp.locator('input[name="viz-pp-source"][value="A"]').check();
+    ppS = await ppState();
+    ppNear(ppS.analysis.paired.se, 0.690849279708, 'Variant A again');
+    // Full screen widens the charts and Escape closes it.
+    const ppFull = pp.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await ppFull.count(), 1, 'One full-screen button');
+    const ppInline = await ppPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    assert(ppInline <= 781, `Inline chart width ${ppInline}`);
+    await ppFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-prinos-parovani .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, ppInline);
+    await page.screenshot({path:'tmp/verification/viz-prinos-parovani-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await ppPlots.nth(3).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Pairing visualization fits a phone');
+    await pp.screenshot({path:'tmp/verification/viz-prinos-parovani-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

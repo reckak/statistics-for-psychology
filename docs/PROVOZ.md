@@ -620,6 +620,29 @@ U vizualizace Cohenova d kontrola ověřuje:
 - rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
   v menu a odkaz z oddílu kapitoly 8 `sec-d-nezavisle`.
 
+U vizualizace přínosu párování kontrola ověřuje:
+
+- čtyři grafy (spojnice, rozdíly, oba intervaly, směrodatná chyba v modelu)
+  a po losování histogram šířek intervalů; žádný viditelný kód, tlačítko
+  schránky ani chybu OJS;
+- kvantily `qt` a obě analýzy (párový a klasický *t*-test: směrodatná
+  chyba, *t*, stupně volnosti, *p*, meze, *s*₁, *s*₂, *s_D*, *r*) pro data
+  varianty A, kontrastní příklad 2, 4, 6 / 6, 12, 18 a testovací soubor
+  osmi dvojic proti `t.test` z R (`scripts/viz-prinos-parovani.R`);
+- směrodatné chyby v modelu pro šest nastavení obou způsobů zadání;
+- výchozí stav s daty varianty A, tabulku jako tab. 8.4, znění vzorců
+  Excelu včetně `T.TEST` typ 1 a 2, skrytí korelace v prvním způsobu zadání;
+- posuvník klávesnicí s přepnutím na výběr z modelu, opakované použití
+  týchž náhodných čísel (změna μ_D posune rozdíly přesně), nový výběr,
+  pole *n* a μ_D s odmítnutím neplatných hodnot (2, 201, 2,5, text; −60);
+- losování po dávkách se zablokovaným ovládáním a podíly zamítnutí
+  a pokrytí z 10 000 výběrů pro tři nastavení proti R (párová analýza
+  přesně z necentrálního *t*-rozdělení, chybná ze simulace R) s tolerancí
+  asi čtyř směrodatných chyb simulace; vynulování po změně modelu a strop
+  100 000 výběrů;
+- návrat k datům varianty A, rozšíření grafů na celé obrazovce, šířku
+  375 px bez přetékání a odkaz z oddílu kapitoly 8 `sec-proc-rozdily`.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při

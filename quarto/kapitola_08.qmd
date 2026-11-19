@@ -219,6 +219,10 @@ Variabilita rozdílů závisí na tom, **jak spolu obě měření souvisejí**. 
 
 Párová studie může odhadnout průměrný rozdíl velmi přesně, jestliže se hodnoty jednotlivých lidí mezi měřeními mění přibližně o stejný kus a jejich stabilní rozdíly se při odečtení z velké části odstraní. To je u opakovaného měření téhož testu běžné, ale je dobré to ověřit pohledem na data, jako na obrázku [-@fig-parova-data]. Jak přesně závisí variabilita rozdílů na souvislosti obou měření, ukazuje nepovinné rozšíření.
 
+::: {.callout-tip title="Vyzkoušejte si: kdy párování zpřesní odhad"}
+V [interaktivní vizualizaci](viz_prinos_parovani.qmd) porovnáte na týchž datech párovou analýzu s chybnou analýzou jako dvou nezávislých skupin, nejprve na datech varianty A a pak na výběrech z modelu. Nastavíte, jak velké jsou stabilní rozdíly mezi lidmi a jak moc kolísá výkon téhož člověka mezi měřeními, a uvidíte, jak se mění spojnice, rozdíly i oba intervaly. Opakované losování ukáže, jak často obě analýzy zamítají nulovou hypotézu a zachytí skutečný průměrný rozdíl.
+:::
+
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: variabilita rozdílů a korelace obou měření" #rozsireni-rozptyl-rozdilu-08}
 Jak těsně spolu obě měření souvisejí, vyjadřuje **Pearsonův korelační koeficient** $r$ (*Pearson correlation coefficient*), podrobně vyložený v [kapitole 10](kapitola_10.qmd#sec-pearsonovo-r). Pro tuto chvíli stačí vědět, že nabývá hodnot od −1 do 1. Hodnota blízká 1 znamená, že kdo měl v prvním měření vysoký skór, má vysoký skór i ve druhém. Hodnota kolem 0 znamená, že mezi oběma měřeními není žádná přímková souvislost: vysoký skór v prvním měření nenaznačuje vysoký ani nízký skór ve druhém. Záporná hodnota znamená, že kdo měl v prvním měření vysoký skór, má ve druhém spíše nízký.
 

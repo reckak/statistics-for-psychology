@@ -1011,6 +1011,48 @@ vybarvení přibyly při realizaci jako názorné doplnění třetího, resp.
 prvního ukazatele. Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md#vizualizace-cohenovo-d).
 
+<a id="r65-upresneni-2026-11-19-parovani"></a>
+
+### Upřesnění 2026-11-19 — Vizualizace přínosu párování
+
+Jedenáctá vizualizace podle R65, ke kapitole 8: stránka
+`quarto/viz_prinos_parovani.qmd` („Kdy párování zpřesní odhad průměrného
+rozdílu“, `#sec-viz-prinos-parovani`), v menu před vizualizací Cohenova *d*
+podle pořadí oddílů kapitoly. Kapitola 8 na ni odkazuje blokem
+„Vyzkoušejte si“ na konci oddílu `sec-proc-rozdily`, před nepovinným
+rozšířením o korelaci.
+
+- Data: po načtení dvanáct úplných dvojic varianty A (tab. 8.2), výsledky
+  shodné s tab. 8.4; jinak výběr *n* = 3–200 studentů z normálního modelu,
+  přepočítaný při změně nastavení ze stejných náhodných čísel, a tlačítko
+  nového výběru. Populační průměr rozdílů $\mathrm{μ}_D$ (výchozí 3,5).
+- Souvislost obou měření dvěma způsoby přepínačem: (1) výchozí „stabilní
+  rozdíly mezi lidmi“ a „kolísání téhož člověka“ jako dvě směrodatné
+  odchylky v bodech (6,7 a 1,7), slovy výkladu `sec-proc-rozdily`, bez
+  nových symbolů; (2) σ₁, σ₂ a „korelace obou měření v populaci“ bez symbolu
+  pro čtenáře nepovinného rozšíření, výběrové *r* se zobrazí jen zde.
+- Párová analýza a chybná analýza jako dvou nezávislých skupin (klasický
+  *t*-test, 2*n* − 2 st. v.) vedle sebe: tabulka jako tab. 8.4, spojnice
+  jednotlivců, tečkový graf rozdílů s intervalem a oba intervaly na
+  společné ose.
+- Doplňky: křivka směrodatné chyby obou analýz v modelu podle podílu
+  stabilních rozdílů na rozptylu měření (způsob 1) nebo korelace (způsob 2);
+  opakované losování 100 / 1000 / 10 000 výběrů po dávkách se stropem
+  100 000 (podíl zamítnutí H₀, pokrytí μ_D, průměrná šířka a histogram
+  šířek intervalů); vzorce českého Excelu s dosazenými souhrny a u dat
+  varianty A `T.TEST` typ 1 a 2 na listu `Parovy_test`.
+- Studentský text nezavádí nové pojmy; „podíl stabilních rozdílů na rozptylu
+  jednoho měření“ je opis osy grafu, ne nový termín.
+
+**Doklad:** 2026-11-19 se autor zeptal, zda by se ke kapitole 8 hodila další
+vizualizace. Z návrhu (přínos párování, dva intervaly vedle sebe a interval
+rozdílu) vybral „Přínos párování“. Na doplňující otázky zvolil ovládání
+„Obojí přepínačem“ (dvě směrodatné odchylky i korelace), data „Výběr +
+varianta A“, všechny čtyři doplňky („Křivka směrodatné chyby“, „Opakované
+losování“, „Vzorce českého Excelu“, „Graf rozdílů jednotlivců“) a odkaz na
+konci „Proč rozdíly kolísají méně“. Plán téhož dne schválil. Realizaci
+a ověření eviduje [autorská historie](../../quarto/README.md#vizualizace-prinos-parovani).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX
