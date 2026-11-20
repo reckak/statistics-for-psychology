@@ -1,21 +1,21 @@
 # Korelace: souvislost dvou proměnných, její velikost a nejistota {#sec-kapitola-10}
 
-V kapitolách 8 a 9 jsme porovnávali skupiny: průměry dvou skupin a podíly v kontingenční tabulce. Často nás ale zajímá vztah dvou číselných nebo pořadových proměnných měřených u týchž lidí. Doprovází vyšší úzkost před zkouškou horší výkon? Spí hůř studenti, kteří prožívají víc stresu? V této kapitole se naučíme takovou souvislost prohlédnout v grafu, vyjádřit jedním číslem, odhadnout s nejistotou a posoudit, zda by mohla vzniknout jen náhodou. Poznáme tři korelační koeficienty: Pearsonův, Spearmanův a Kendallův.
+V kapitolách 8 a 9 jsme porovnávali skupiny: průměry dvou skupin a podíly v kontingenční tabulce. Často nás ale zajímá vztah dvou číselných nebo pořadových proměnných měřených u týchž lidí. Doprovází vyšší úzkost před zkouškou horší výkon? Spí hůř studenti, kteří prožívají víc stresu? V této kapitole se naučíme takovou souvislost prozkoumat pomocí grafu, vyjádřit jedním číslem, odhadnout s nejistotou a posoudit, zda by mohla vzniknout v důsledku pouhé výběrové variability. Poznáme tři korelační koeficienty: Pearsonův, Spearmanův a Kendallův.
 
 Navazujeme na [souvislost a příčinu](kapitola_01.qmd#sec-souvislost-pricina) a [úrovně měření](kapitola_01.qmd#sec-urovne) z kapitoly 1, na [rozptyl a směrodatnou odchylku](kapitola_03.qmd#sec-odchylky-rozptyl) z kapitoly 3 a na [*z*-skóry](kapitola_04.qmd#sec-standardni-skory) z kapitoly 4. Z dalších kapitol využijeme [nezávislost](kapitola_05.qmd#sec-nezavislost), [testování hypotéz](kapitola_06.qmd#sec-hypotezy), [interval spolehlivosti](kapitola_07.qmd#sec-bodovy-intervalovy), [párová data](kapitola_08.qmd#sec-parova-data) a [koeficient φ](kapitola_09.qmd#sec-phi-v).
 
-**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_10.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění a oblasti buněk. Hotové výpočty jsou na listech `Kovariance`, `Pearson`, `Spearman`, `Kendall`, `Permutace`, `Bootstrap`, `Perm_presna`, `Parova_korelace`, `Rpb` a nepovinně `BCa` a `Dve_korelace`. Výpočty Kendallova koeficientu pro 30 lidí, permutací a bootstrapu používají vzorce dynamického pole; spočítá je **Excel pro Microsoft 365 nebo Excel 2021 a novější**. Ve starší verzi by se tytéž vzorce zadané běžným způsobem spočítaly chybně, aniž by Excel ohlásil chybu.
+**Data k práci:** [excelový sešit ke kapitole](../data/kapitola_10.xlsx) obsahuje vstupy k příkladům a cvičením. Na prvním listu `Prehled` najdete jejich umístění a oblasti buněk. Hotové výpočty jsou na listech `Kovariance`, `Pearson`, `Spearman`, `Kendall`, `Permutace`, `Bootstrap`, `Perm_presna`, `Parova_korelace`, `Rpb` a nepovinně `BCa` a `Dve_korelace`. Výpočty Kendallova korelačního koeficientu pro 30 lidí, permutací a bootstrapu používají vzorce dynamického pole; spočítá je **Excel pro Microsoft 365 nebo Excel 2021 a novější**. Ve starší verzi by se tytéž vzorce zadané běžným způsobem spočítaly chybně, aniž by Excel ohlásil chybu.
 
 ::: {.callout-note title="Co budete po prostudování umět"}
 - Prohlédnete bodový graf dvou proměnných a popíšete směr, tvar a těsnost jejich souvislosti a případná odlehlá pozorování.
 - Vysvětlíte, jak kovariance a Pearsonův korelační koeficient shrnují, zda se odchylky od průměrů obou proměnných shodují, a spočítáte je ručně i v Excelu.
-- Převedete hodnoty na pořadí a spočítáte Spearmanův koeficient; spočítáte Kendallovo τ z konkordantních a diskordantních dvojic, i když data obsahují shodné hodnoty.
+- Převedete hodnoty na pořadí a spočítáte Spearmanův korelační koeficient; spočítáte Kendallovo τ z konkordantních a diskordantních dvojic, i když data obsahují shodné hodnoty.
 - Zvolíte koeficient podle otázky a dat a vysvětlíte, čím se tři koeficienty liší.
 - Provedete test nulové korelace a spočítáte interval spolehlivosti pro Pearsonovo *r*; pro pořadové koeficienty provedete permutační test a spočítáte percentilový bootstrapový interval a řeknete, jakou hypotézu který postup testuje.
-- Posoudíte, jak korelaci mění odlehlá pozorování, omezení rozsahu, sloučení skupin a chyba měření, a rozpoznáte nepodložené, zejména kauzální závěry.
+- Posoudíte, jak korelaci mění odlehlá pozorování, omezení rozsahu, sloučení odlišných skupin a chyba měření, a rozpoznáte nepodložené, zejména kauzální závěry.
 - Výsledek sdělíte ve dvou krocích: rozhodnutí testu a věcná interpretace velikosti a nejistoty.
 
-Nepovinná rozšíření ukazují vztah korelace a rozptylu rozdílů v párových datech, převod Cohenova *d* na bodově biseriální korelaci, interval BCa a porovnání dvou nezávislých korelací; nejsou součástí povinných dovedností ani základních cvičení.
+Nepovinná rozšíření ukazují, proč Pearsonův korelační koeficient nepřekročí ±1, jak korelaci oslabuje chyba měření, převod Cohenova *d* na bodově biseriální korelaci, interval BCa a porovnání dvou nezávislých korelací; nejsou součástí povinných dovedností ani základních cvičení.
 :::
 
 ## Jakou otázku zodpovídá korelace? {#sec-otazka-korelace}
@@ -24,17 +24,21 @@ Tento oddíl vymezuje, na co se korelace ptá a čím se liší od otázek, kter
 
 ### Dvě hodnoty u každého člověka {#sec-dve-hodnoty}
 
-Učitelka psychologie si všimla, že někteří studenti jsou před testy velmi nervózní a v testu pak dopadnou hůř. U 40 studentů proto před testem změřila **úzkost** krátkým dotazníkem (skóre 10 až 40 bodů, vyšší skóre znamená větší úzkost) a po testu zaznamenala **výkon** (0 až 30 bodů). Každý student má tedy dvě hodnoty, které k sobě patří. V datové matici jsou ve stejném řádku a při žádném výpočtu je nesmíme rozdělit, stejně jako u [párových dat](kapitola_08.qmd#sec-parova-data) v kapitole 8.
+Učitelka si všimla, že někteří studenti jsou před testy velmi nervózní a v testu pak podají horší výkon. U 40 studentů proto před testem změřila **úzkost** krátkým dotazníkem (skóre 10 až 40 bodů, vyšší skóre znamená větší úzkost) a po testu zaznamenala **výkon** (0 až 30 bodů). Každý student má tedy dvě hodnoty, které k sobě patří. V datové matici jsou ve stejném řádku a při žádném výpočtu je nesmíme rozdělit, stejně jako u [párových dat](kapitola_08.qmd#sec-parova-data) v kapitole 8.
 
-Otázka zní: **doprovází vyšší úzkost spíš nižší, nebo spíš vyšší výkon, a jak těsně?** Odpověď hledáme ve dvou stránkách vztahu. Směr říká, zda vyšším hodnotám jedné proměnné odpovídají spíš vyšší (kladná souvislost), nebo spíš nižší hodnoty druhé proměnné (záporná souvislost). Síla neboli těsnost říká, jak spolehlivě podle jedné hodnoty uhodneme, zda je druhá nad, nebo pod svým průměrem. **Korelace** (*correlation*) je v této učebnici souhrnné označení pro souvislost dvou proměnných popsanou jedním číslem, **korelačním koeficientem** (*correlation coefficient*). Koeficientů je víc a v této kapitole poznáme tři.
+Otázka zní: **souvisí vyšší úzkost spíš s nižším, nebo vyšším výkonem, a jak těsně?** Odpověď hledáme ve dvou stránkách vztahu. Směr říká, zda vyšším hodnotám jedné proměnné odpovídají spíš vyšší (kladná souvislost), nebo spíš nižší hodnoty druhé proměnné (záporná souvislost). Síla neboli těsnost říká, jak spolehlivě podle jedné hodnoty uhodneme, zda je druhá hodnota nadprůměrná, nebo podprůměrná.
 
-Korelace je symetrická: souvislost úzkosti s výkonem je táž jako souvislost výkonu s úzkostí. Koeficient proto nerozlišuje [vysvětlující a výslednou proměnnou](kapitola_01.qmd#sec-role-promennych). Role proměnných určuje výzkumná otázka a uspořádání studie, ne výpočet. Odlišme také statistický postup od typu studie: **korelační studie** (*correlational design*) je studie, v níž výzkumník proměnné jen měří a nepřiřazuje lidi k podmínkám [@aron, s. 512]. Korelační koeficient lze spočítat i v experimentu a korelační studii lze vyhodnotit i jinými postupy.
+Slovo „směr“ se u vztahu dvou proměnných používá ve dvou významech, které je třeba rozlišovat. V této kapitole označuje **znaménko souvislosti**: kladná, nebo záporná. Ve výkladu o příčinách se ale „směrem vztahu“ myslí **směr působení**: zda úzkost ovlivňuje výkon, nebo naopak špatný výkon v dřívějších testech zvyšuje úzkost. Korelace popisuje jen první význam. O směru působení sama nic neříká, jak jsme viděli u [souvislosti a příčiny](kapitola_01.qmd#sec-souvislost-pricina) a jak připomeneme na [konci kapitoly](#sec-souvislost-pricina-10).
+
+**Korelace** (*correlation*) je v této učebnici souhrnné označení pro souvislost dvou proměnných popsanou jedním číslem, **korelačním koeficientem** (*correlation coefficient*). Koeficientů je víc a v této kapitole představíme tři nejběžněji používané.
+
+Korelace je symetrická: souvislost úzkosti s výkonem je táž jako souvislost výkonu s úzkostí. Koeficient proto nerozlišuje [vysvětlující a výslednou proměnnou](kapitola_01.qmd#sec-role-promennych). Role proměnných určuje výzkumná otázka a uspořádání studie, ne výpočet. Odlišme také statistický postup od typu studie: **korelační studie** (*correlational design*) je studie, v níž výzkumník proměnné jen měří a nepřiřazuje lidi k podmínkám [@aron, s. 512]. Často se jí také říká **observační studie** (*observational study*), protože výzkumník do dění nezasahuje a jen zaznamenává, jak se proměnné u lidí vyskytují. Nejde přitom o pozorování jako metodu sběru dat; data mohou pocházet například z dotazníků. Korelační koeficient lze spočítat i v experimentu a korelační studii lze vyhodnotit i jinými postupy.
 
 ### Relativní postavení, nebo průměrná změna? {#sec-postaveni-zmena}
 
-V [kapitole 8](kapitola_08.qmd#sec-parova-data) jsme u 12 studentů měřili pozornost po běžném a po krátkém spánku a ptali jsme se na **průměrnou změnu**: o kolik bodů je výkon po krátkém spánku v průměru nižší. Průměrný rozdíl byl 3,5 bodu. Na tatáž data můžeme položit jinou otázku: **zachovávají si studenti své relativní postavení?** Mají ti, kdo byli nad průměrem po běžném spánku, nadprůměrný výsledek i po krátkém spánku? Na tuto otázku odpovídá korelace. Pro těchto 12 dvojic vychází Pearsonův koeficient (zavedeme jej v [oddílu o Pearsonově *r*](#sec-pearsonovo-r)) $r = 0{,}95$: pořadí studentů se mezi měřeními téměř nemění.
+V [kapitole 8](kapitola_08.qmd#sec-parova-data) jsme u 12 studentů měřili pozornost po běžném a po krátkém spánku a ptali jsme se na **průměrnou změnu**: o kolik bodů je výkon po krátkém spánku v průměru nižší. Průměrný rozdíl byl 3,5 bodu. Na tatáž data můžeme položit jinou otázku: **zachovávají si studenti své relativní postavení?** Mají ti, kdo byli nad průměrem po běžném spánku, nadprůměrný výsledek i po krátkém spánku? Na tuto otázku odpovídá korelace. Pro těchto 12 dvojic vychází Pearsonův korelační koeficient (zavedeme jej v [oddílu o Pearsonově *r*](#sec-pearsonovo-r)) $r = 0{,}95$: pořadí studentů se mezi měřeními téměř nemění.
 
-Obě otázky jsou nezávislé. Všichni mohou ztratit 3 až 4 body, a přitom si zachovat pořadí; korelace je pak vysoká a průměrná změna nenulová. Naopak průměr se nemusí změnit vůbec, a přesto se pořadí lidí úplně promíchá. Vysoká korelace tedy neříká nic o tom, zda se hodnoty změnily, a nulový průměrný rozdíl neříká nic o tom, zda si lidé zachovali postavení.
+Obě otázky jsou nezávislé. Všichni mohou ztratit 3 až 4 body, a přitom si zachovat pořadí; korelace je pak vysoká a průměrná změna nenulová. Naopak průměr se nemusí změnit vůbec, a přesto se pořadí lidí může výrazně promíchat. Vysoká korelace tedy neříká nic o tom, zda se hodnoty změnily, a nulový průměrný rozdíl neříká nic o tom, zda si lidé zachovali své relativní postavení.
 
 Korelace obou měření vysvětluje, proč párování v kapitole 8 tolik zpřesnilo odhad. Když si lidé zachovávají postavení, jejich stabilní rozdíly se při odečtení odstraní a rozdíly kolísají málo: jejich směrodatná odchylka byla jen 2,39 bodu. Kdyby obě měření spolu nesouvisela ($r = 0$), měly by rozdíly za jinak stejných směrodatných odchylek obou měření směrodatnou odchylku 9,75 bodu. Samotné zachování pořadí ale nestačí. Jak jsme viděli v [kapitole 8](kapitola_08.qmd#sec-kdy-parovani), u hodnot 2, 4, 6 a 6, 12, 18 je pořadí zachováno dokonale ($r = 1$), a přesto rozdíly kolísají víc než hodnoty prvního měření, protože druhé měření má trojnásobný rozptyl.
 
@@ -48,27 +52,29 @@ Než spočítáme jakýkoli koeficient, data si prohlédneme. Tento oddíl ukazu
 
 ### Bod je člověk {#sec-bod-clovek}
 
-**Bodový graf** (*scatterplot*) zobrazuje každého člověka jako bod: vodorovná souřadnice je hodnota jedné proměnné, svislá souřadnice hodnota druhé. Odlišujeme jej od [tečkového grafu jednotlivých pozorování](kapitola_02.qmd#sec-teckovy-graf), který zobrazuje jedinou proměnnou. Pokud má jedna proměnná roli vysvětlující, kreslíme ji obvykle na vodorovnou osu; u čistě symetrické otázky na volbě os nezáleží.
+**Bodový graf** (*scatterplot*) zobrazuje každého člověka jako bod: vodorovná souřadnice je hodnota jedné proměnné, svislá souřadnice hodnota druhé. Odlišujeme jej od [tečkového grafu jednotlivých pozorování](kapitola_02.qmd#sec-teckovy-graf), který zobrazuje jedinou proměnnou. Korelační koeficient na volbě os nezávisí. Často ale máme teoretický důvod považovat jednu proměnnou za vysvětlující a druhou za výslednou. Úzkost jsme měřili před testem a ptáme se, zda souvisí s následným výkonem; v této otázce je úzkost vysvětlující proměnnou. Takovou proměnnou kreslíme na vodorovnou osu. Graf pak odpovídá tomu, jak o vztahu uvažujeme, i když korelace sama role proměnných nerozlišuje. Role proměnné vyjadřuje naši otázku, nedokládá ale směr působení.
 
-![Studenti s vyšší úzkostí mají spíš nižší výkon, ale body jsou široce rozptýlené: u stejné úzkosti se výkon liší i o deset bodů. Přerušované čáry vyznačují průměry obou proměnných; většina bodů leží vlevo nahoře a vpravo dole.](../assets/chapter-10/plots/uzkost-vykon.svg){#fig-uzkost-vykon fig-alt="Bodový graf 40 studentů. Vodorovná osa úzkost před testem od 11 do 37 bodů, svislá osa výkon v testu od 7 do 30 bodů. Body tvoří široký mrak klesající zleva doprava. Svislá přerušovaná čára u průměru úzkosti asi 23,6 a vodorovná u průměru výkonu asi 19,2 rozdělují graf na čtyři části; víc bodů je vlevo nahoře a vpravo dole než v ostatních dvou částech. Nadpis uvádí r = −0,52."}
+![Studenti s vyšší úzkostí mají spíš nižší výkon, ale body jsou široce rozptýlené: u stejné úzkosti se výkon liší i o deset bodů. Přerušované čáry vyznačují průměry obou proměnných; většina bodů leží vlevo nahoře a vpravo dole.](../assets/chapter-10/plots/uzkost-vykon.svg){#fig-uzkost-vykon fig-alt="Bodový graf 40 studentů. Vodorovná osa úzkost před testem od 11 do 37 bodů, svislá osa výkon v testu od 7 do 30 bodů. Body jsou široce rozptýlené a klesají zleva doprava. Svislá přerušovaná čára u průměru úzkosti asi 23,6 a vodorovná u průměru výkonu asi 19,2 rozdělují graf na čtyři části; víc bodů je vlevo nahoře a vpravo dole než v ostatních dvou částech. Nadpis uvádí r = −0,52."}
 
-Obrázek [-@fig-uzkost-vykon] ukazuje 40 studentů. Body tvoří mrak, který klesá zleva doprava: **záporná souvislost**. Souvislost ale není těsná; u studentů se stejnou úzkostí se výkon liší až o deset bodů. Prvním krokem je vždy slovní popis: směr, tvar (zda body sledují přímku, nebo křivku), těsnost a zvláštnosti, jako jsou odlehlá pozorování nebo oddělené skupiny.
+Obrázek [-@fig-uzkost-vykon] ukazuje 40 studentů. Body klesají zleva doprava: jedná se tedy o **zápornou souvislost**. Souvislost ale není těsná; u studentů se stejnou úrovní úzkosti se výkon může lišit až o deset bodů. Prvním krokem je vždy slovní popis: směr, tvar (zda body sledují přímku, nebo křivku), těsnost a zvláštnosti, jako jsou odlehlá pozorování nebo oddělené skupiny.
 
 ### Tvary souvislosti {#sec-tvary-souvislosti}
 
-Souvislost může mít různé tvary. **Lineární vztah** (*linear relationship*) znamená, že body se rozkládají kolem přímky. **Monotónní vztah** (*monotonic relationship*) znamená, že s rostoucí první proměnnou druhá jen roste (nebo jen klesá), ale ne nutně stejně rychle; lineární vztah je jeho zvláštní případ. **Nelineární vztah** je jakýkoli jiný než lineární; může být monotónní (například růst, který se postupně zpomaluje), nebo může směr měnit (vztah ve tvaru obráceného U).
+Souvislost může mít různé tvary. **Lineární vztah** (*linear relationship*) znamená, že body jsou rozptýleny kolem přímky čili že vztah je dobře popsatelný přímkou. **Monotónní vztah** (*monotonic relationship*) znamená, že s rostoucí první proměnnou druhá jen roste (nebo jen klesá), ale ne nutně stejně rychle. Každý lineární vztah je zároveň monotónní, ale ne každý monotónní vztah je nutně lineární. **Nelineární vztah** je jakýkoli jiný než lineární; může být monotónní (například růst, který se postupně zpomaluje), ale nemusí, pokud mění směr (např. vztah ve tvaru obráceného U).
 
 ![Šest modelových souborů. Horní řada: kladný a záporný lineární vztah a monotónní zakřivený vztah mají vysoké hodnoty obou koeficientů. Dolní řada: u obráceného U je vztah silný, ale oba koeficienty jsou blízko nule; jedno odlehlé pozorování vytváří Pearsonovo r = 0,54, ačkoli ostatní body žádnou souvislost neukazují; dvě oddělené skupiny vedou k vysokému r, které vzniká rozdílem mezi skupinami.](../assets/chapter-10/plots/tvary.svg){#fig-tvary fig-alt="Šest bodových grafů ve dvou řadách. 1: kladný lineární vztah, r = 0,85, r s indexem s = 0,87. 2: záporný lineární, r = −0,84, r s = −0,87. 3: monotónní zakřivený vztah, rychlý růst, který se zplošťuje, r = 0,87, r s = 0,88. 4: obrácené U, body nejprve stoupají a pak klesají, r = −0,15, r s = −0,19. 5: mrak bez souvislosti vlevo dole a jeden bod daleko vpravo nahoře, r = 0,54, r s = −0,12. 6: dvě oddělené skupiny, vlevo dole a vpravo nahoře, uvnitř skupin bez souvislosti, r = 0,88, r s = 0,71."}
 
-Obrázek [-@fig-tvary] ukazuje šest modelových situací. Zatím si nevšímejte čísel nad grafy (Pearsonovo $r$ a Spearmanovo $r_s$ zavedeme v oddílech o [Pearsonově *r*](#sec-pearsonovo-r) a [Spearmanově koeficientu](#sec-spearman)) a čtěte jen tvary. Psychologickým příkladem obráceného U je vztah aktivace a výkonu: při velmi nízké i velmi vysoké aktivaci bývá výkon nižší než při střední. Monotónní zakřivený vztah známe z učení: první hodiny tréninku výkon zlepšují hodně, další už méně.
+Obrázek [-@fig-tvary] ukazuje šest modelových situací. Zatím si nevšímejte čísel nad grafy (Pearsonovo $r$ a Spearmanovo $r_s$ zavedeme v oddílech o [Pearsonově *r*](#sec-pearsonovo-r) a [Spearmanově korelačním koeficientu](#sec-spearman)) a čtěte jen tvary. Psychologickým příkladem obráceného U je vztah aktivace a výkonu: při velmi nízké i velmi vysoké aktivaci bývá výkon nižší než při střední. Monotónní zakřivený vztah známe z učení: první hodiny tréninku výkon zlepšují hodně, další už méně, takže nastává plató.
 
 ### Stejné číslo, různá data {#sec-stejne-cislo}
 
-Jedno číslo nemůže zachytit všechny vlastnosti mraku bodů. Čtyři soubory na obrázku [-@fig-stejne-r] mají stejný Pearsonův koeficient 0,60, ale popisují zcela odlišné situace.
+Jedno číslo nemůže zachytit všechny vlastnosti mraku bodů. Statistik Francis Anscombe [-@anscombe1973] to ukázal na čtyřech souborech po 11 dvojicích hodnot, které se dnes označují jako Anscombův kvartet. Všechny čtyři soubory mají stejný průměr proměnné X (9) i Y (7,5), téměř stejné směrodatné odchylky a stejný Pearsonův korelační koeficient 0,82, ale popisují zcela odlišné situace (obrázek [-@fig-stejne-r]; data převzata z Anscombova článku).
 
-![Čtyři modelové soubory po 20 bodech se stejným Pearsonovým koeficientem 0,60. V prvním body přibližně sledují přímku. Ve druhém je vztah zakřivený. Ve třetím vzniká celá souvislost jediným vzdáleným bodem. Ve čtvrtém jsou dva shluky bez souvislosti uvnitř. Stejné číslo tedy může popisovat velmi různé vztahy.](../assets/chapter-10/plots/stejne-r.svg){#fig-stejne-r fig-alt="Čtyři bodové grafy vedle sebe, každý s 20 body a nadpisem r = 0,60. 1: přibližně lineární rozptýlený mrak stoupající zleva doprava. 2: body sledují stoupající křivku, která se zvedá rychleji vpravo. 3: mrak 19 bodů vlevo bez zřetelného směru a jeden bod daleko vpravo nahoře. 4: dva shluky, vlevo dole a vpravo nahoře, uvnitř každého shluku bez souvislosti."}
+![Anscombův kvartet: čtyři soubory po 11 bodech se stejným Pearsonovým korelačním koeficientem 0,82. V souboru I body přibližně sledují přímku. V souboru II leží body téměř přesně na oblouku, vztah je tedy zakřivený. V souboru III leží deset bodů téměř přesně na přímce a jediný bod mimo ni korelaci snižuje. V souboru IV mají všechny body kromě jednoho stejnou hodnotu X; celou souvislost vytváří jediný vzdálený bod. Stejné číslo tedy může popisovat velmi různé vztahy.](../assets/chapter-10/plots/stejne-r.svg){#fig-stejne-r fig-alt="Čtyři bodové grafy vedle sebe, každý s 11 body, vodorovná osa X od 3 do 20, svislá osa Y od 3 do 13, nadpis r = 0,82. I: body rozptýlené kolem stoupající přímky. II: body tvoří hladký oblouk, který stoupá a nad X = 11 začíná klesat. III: deset bodů leží přesně na mírně stoupající přímce, jeden bod u X = 13 leží vysoko nad ní. IV: deset bodů nad sebou při X = 8 s Y od 5 do 9, jeden bod daleko vpravo nahoře při X = 19 a Y = 12,5."}
 
-Pravidlo, které z toho plyne, platí pro celou kapitolu: **bez bodového grafu korelační koeficient nevykládáme** [@cumming, s. 311–313]. U pořadových dat s mnoha shodnými hodnotami se body v grafu překrývají. Pak pomůže, když velikost bodu vyjadřuje počet lidí se stejnou kombinací hodnot (@fig-stres-spanek v [oddílu o Spearmanově koeficientu](#sec-spearman)).
+Soubor I odpovídá tomu, co si pod hodnotou 0,82 obvykle představíme. V souboru II jsou hodnoty Y téměř přesnou funkcí X, ale ne lineární; Pearsonův korelační koeficient tak souvislost, která je ve skutečnosti téměř dokonalá, podceňuje. V souboru III by bez jediného bodu vyšla korelace téměř 1. V souboru IV by bez jediného bodu korelaci nešlo spočítat vůbec, protože X by nemělo žádnou variabilitu.
+
+Pravidlo, které z toho plyne, platí pro celou kapitolu: **bez bodového grafu korelační koeficient nevykládáme** [@cumming, s. 311–313]. U pořadových dat s mnoha shodnými hodnotami se body v grafu překrývají. Pak pomůže, když velikost bodu vyjadřuje počet lidí se stejnou kombinací hodnot (@fig-stres-spanek v [oddílu o Spearmanově korelačním koeficientu](#sec-spearman)).
 
 ## Kovariance: jak spolu souvisejí odchylky od průměrů {#sec-kovariance}
 
@@ -76,11 +82,11 @@ Jak převést mrak bodů na číslo, které vyjadřuje směr souvislosti? Tento 
 
 ### Čtyři části grafu {#sec-ctyri-casti}
 
-Pro ruční výpočet vezmeme šest studentů (tabulka [-@tbl-k10-01]). Průměrná úzkost je 23 bodů, průměrný výkon 19 bodů. Graf rozdělíme svislou čarou v průměru úzkosti a vodorovnou čarou v průměru výkonu na čtyři části (obrázek [-@fig-kvadranty]). Pro každého studenta spočítáme odchylku od průměru v obou proměnných a obě odchylky vynásobíme.
+Pro ruční výpočet vezmeme šest studentů (tabulka [-@tbl-k10-01]). Průměrná úzkost je 23 bodů, průměrný výkon 19 bodů. Do grafu zakreslíme svislou a vodorovnou přerušovanou čáru znázorňující průměry obou proměnných; tyto čáry rozdělí graf na čtyři části (obrázek [-@fig-kvadranty]). Pro každého studenta spočítáme odchylku od průměru v obou proměnných a obě odchylky vynásobíme.
 
 ![Šest studentů a jejich součiny odchylek od průměrů. Modře jsou studenti, kteří mají obě hodnoty na stejné straně průměru (součin kladný), oranžově studenti s opačnými stranami (součin záporný). Záporné součiny převažují a jsou velké, proto vychází záporná kovariance.](../assets/chapter-10/plots/kvadranty.svg){#fig-kvadranty fig-alt="Bodový graf šesti studentů, úzkost na vodorovné ose od 10 do 35 bodů, výkon na svislé ose od 14 do 25 bodů. Svislá přerušovaná čára u průměru úzkosti 23 a vodorovná u průměru výkonu 19 dělí graf na čtyři části s popisky: vpravo nahoře a vlevo dole součin kladný, vlevo nahoře a vpravo dole součin záporný. Body: student 1 (12; 22) součin −33, student 2 (18; 25) součin −30, student 3 (20; 17) součin 6, student 4 (24; 21) součin 2, student 5 (30; 15) součin −28, student 6 (34; 14) součin −55. Studenti 3 a 4 jsou modří, ostatní oranžoví."}
 
-Znaménko součinu ukazuje, do které části bod patří. Je-li student nad průměrem v obou proměnných, jsou obě odchylky kladné a součin je kladný. Je-li pod průměrem v obou, jsou obě odchylky záporné a součin je opět kladný. Je-li v jedné proměnné nad a ve druhé pod průměrem, je součin záporný. Převažují-li kladné součiny, vyšší hodnoty jedné proměnné doprovázejí spíš vyšší hodnoty druhé; převažují-li záporné, spíš nižší. Na velikosti záleží také: bod daleko od obou průměrů má velký součin a výsledkem pohne víc než bod blízko středu [@cumming, s. 317–319].
+Znaménko součinu ukazuje, do které části bod patří. Je-li student nad průměrem v obou proměnných, jsou obě odchylky kladné a součin je kladný. Je-li pod průměrem v obou, jsou obě odchylky záporné a součin je opět kladný. Je-li v jedné proměnné nad a ve druhé pod průměrem, je součin záporný. Převažují-li kladné součiny, vyšší hodnoty jedné proměnné doprovázejí spíš vyšší hodnoty druhé proměnné; převažují-li záporné součiny, vyšší hodnoty jedné proměnné doprovázejí naopak spíš nižší hodnoty druhé proměnné. Na velikosti záleží také: bod daleko od obou průměrů bude vykazovat velký součin odchylek a výsledkem pohne víc než bod blízko středu [@cumming, s. 317–319].
 
 ::: {.table-scroll role="region" aria-label="Šest studentů: odchylky od průměrů a z-skóry" tabindex="0"}
 
@@ -112,11 +118,11 @@ $$
 
 Zde $x_i$ a $y_i$ jsou hodnoty $i$-tého člověka, $m_x$ a $m_y$ průměry obou proměnných a $n$ počet lidí, tedy počet úplných dvojic. Pro šest studentů je $s_{xy} = -138/5 = -27{,}6$. Záporné znaménko říká, že vyšší úzkost doprovází spíš nižší výkon.
 
-Kovariance je příbuzná rozptylu: kdybychom ve vzorci místo $y$ dosadili znovu $x$, dostali bychom $s_x^2$. Rozptyl tedy můžeme chápat jako kovarianci proměnné se sebou samou.
+Kovariance je příbuzná rozptylu: kdybychom ve vzorci místo $y$ dosadili znovu $x$, dostali bychom $s_x^2$. Rozptyl tedy můžeme chápat jako speciální případ kovariance: jako kovarianci proměnné se sebou samou.
 
 ### Proč kovariance nestačí {#sec-kovariance-nestaci}
 
-Kovariance má jednotky obou proměnných: zde „body úzkosti krát body výkonu“. Její velikost proto závisí na zvolených jednotkách. Kdybychom výkon vyjádřili v procentech maximálního počtu bodů (30 bodů = 100 %), vynásobili bychom každou hodnotu výkonu $100/30$. Kovariance by se zvětšila stejným násobkem na −92, ačkoli se vztah mezi úzkostí a výkonem vůbec nezměnil (podobně jako se [změnou jednotek](kapitola_03.qmd#sec-zmena-skaly) mění směrodatná odchylka). Z čísla −27,6 ani −92 proto nepoznáme, zda je souvislost silná, nebo slabá. Znaménko kovariance je užitečné, její velikost sama ne.
+Kovariance má jednotky obou proměnných: zde „body úzkosti krát body výkonu“. Její velikost proto závisí na zvolených jednotkách. Kdybychom výkon vyjádřili v procentech maximálního počtu bodů (30 bodů = 100 %), vynásobili bychom každou hodnotu výkonu $100/30$. Kovariance by se vynásobila stejně a činila by −92, ačkoli se vztah mezi úzkostí a výkonem vůbec nezměnil (podobně jako se [změnou jednotek](kapitola_03.qmd#sec-zmena-skaly) mění směrodatná odchylka). Ze samotných hodnot (−27,6 či −92) kovariance proto přímo nepoznáme, zda je souvislost silná, nebo slabá. Znaménko kovariance je užitečné, její velikost sama ne.
 
 ## Pearsonovo *r*: standardizovaná kovariance {#sec-pearsonovo-r}
 
@@ -136,7 +142,7 @@ $$
 r = \frac{-27{,}6}{8{,}075 \cdot 4{,}336} = -0{,}788 .
 $$
 
-Pearsonovo $r$ je výběrová charakteristika; odpovídající populační parametr, korelaci v celé populaci, označujeme $\mathrm{ρ}$ (čti „ró“). Proč dělení směrodatnými odchylkami pomáhá? Kovariance roste s variabilitou obou proměnných, a když ji podělíme součinem jejich směrodatných odchylek, vliv jednotek i variability se vyruší. Lze dokázat, že kovariance nikdy nepřesáhne v absolutní hodnotě součin $s_x s_y$. Proto $r$ leží vždy mezi −1 a 1 [@howell, s. 260].
+Pearsonovo $r$ je výběrová charakteristika; odpovídající populační parametr, korelaci v celé populaci, označujeme $\mathrm{ρ}$ (čti „ró“). Proč dělení směrodatnými odchylkami pomáhá? Kovariance roste s variabilitou obou proměnných, a když ji podělíme součinem jejich směrodatných odchylek, vliv jednotek i variability se vyruší. Lze dokázat, že kovariance nikdy nepřesáhne v absolutní hodnotě součin $s_x s_y$. Proto $r$ leží vždy mezi −1 a 1 [@howell, s. 260]. Proč tomu tak je, ukazuje nepovinné rozšíření pod vzorcem se *z*-skóry.
 
 Stejné číslo dostaneme z [*z*-skórů](kapitola_04.qmd#sec-standardni-skory). Převedeme-li obě proměnné na *z*-skóry s výběrovými směrodatnými odchylkami, je $r$ součtem součinů *z*-skórů děleným $n - 1$:
 
@@ -146,12 +152,36 @@ $$
 
 kde $z_{x,i} = (x_i - m_x)/s_x$ a $z_{y,i} = (y_i - m_y)/s_y$ jsou *z*-skóry $i$-tého člověka.
 
-V tabulce [-@tbl-k10-01] je součet součinů *z*-skórů −3,942, takže $r = -3{,}942/5 = -0{,}788$. Pearsonovo $r$ je tedy kovariance *z*-skórů: oba výpočty vedou k témuž, protože *z*-skóry už jsou vyjádřeny „v počtech směrodatných odchylek“.
+V tabulce [-@tbl-k10-01] je součet součinů *z*-skórů −3,942, takže $r = -3{,}942/5 = -0{,}788$. Pearsonovo $r$ tedy lze chápat jako kovarianci *z*-skórů: oba výpočty vedou k témuž, protože *z*-skóry už jsou vyjádřeny „v počtech směrodatných odchylek“.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: proč Pearsonovo r nepřekročí ±1" #rozsireni-meze-r}
+Důkaz využívá jedinou jednoduchou vlastnost: druhá mocnina žádného čísla není záporná, a proto ani součet druhých mocnin nemůže být záporný. Pro každého člověka vezmeme rozdíl jeho dvou *z*-skórů, $z_{x,i} - z_{y,i}$, umocníme jej a sečteme přes všechny lidi:
+
+$$
+\sum_{i=1}^{n} (z_{x,i} - z_{y,i})^2 \ge 0 .
+$$
+
+Závorku roznásobíme podle vzorce $(a - b)^2 = a^2 - 2ab + b^2$ a součet rozdělíme na tři části:
+
+$$
+\sum_{i=1}^{n} z_{x,i}^2 \;-\; 2\sum_{i=1}^{n} z_{x,i}\,z_{y,i} \;+\; \sum_{i=1}^{n} z_{y,i}^2 \ge 0 .
+$$
+
+Každou část už známe. *z*-skóry mají průměr 0 a směrodatnou odchylku 1, takže součet jejich druhých mocnin je roven $n - 1$ (podle vzorce výběrového rozptylu je $\sum z_{x,i}^2/(n-1) = 1$). Prostřední součet je podle vzorce se *z*-skóry roven $(n - 1)\,r$. Po dosazení dostaneme
+
+$$
+(n - 1) - 2(n - 1)\,r + (n - 1) = 2(n - 1)(1 - r) \ge 0 .
+$$
+
+Protože $n - 1$ je kladné číslo, musí platit $1 - r \ge 0$, tedy $r \le 1$. Stejný postup se součtem $z_{x,i} + z_{y,i}$ místo rozdílu (prostřední člen má pak znaménko plus) vede k $2(n-1)(1 + r) \ge 0$, tedy $r \ge -1$.
+
+Důkaz zároveň ukazuje, kdy nastane krajní hodnota. $r = 1$ vyjde jen tehdy, když je součet druhých mocnin rozdílů nulový. To se stane, jen když má každý člověk oba *z*-skóry stejné, $z_{x,i} = z_{y,i}$, tedy když všechny body leží na rostoucí přímce. Podobně $r = -1$ znamená $z_{x,i} = -z_{y,i}$ u všech lidí, tedy body na klesající přímce. Čím víc se *z*-skóry lidí v obou proměnných liší, tím je součet druhých mocnin rozdílů větší a $r$ menší.
+:::
 
 ### Jak číst znaménko a velikost {#sec-cist-r}
 
 - **Znaménko** udává směr: kladné $r$ kladnou, záporné zápornou souvislost. Samo o síle nic neříká; $r = -0{,}79$ je stejně těsná souvislost jako $r = 0{,}79$, jen opačného směru.
-- **Absolutní hodnota** udává, jak těsně body sledují přímku. Hodnota 1 nebo −1 znamená dokonalý lineární vztah: všechny body leží přesně na přímce. Neznamená to, že obě proměnné mají stejné hodnoty, ani že měří totéž; stačí, aby jedna byla lineární přeměnou druhé. Hodnota 0 znamená, že body nesledují žádnou rostoucí ani klesající přímku.
+- **Absolutní hodnota** udává, jak těsně body sledují přímku. Hodnota 1 nebo −1 znamená dokonalý lineární vztah: všechny body leží přesně na přímce. Neznamená to, že obě proměnné mají stejné hodnoty, ani že měří totéž; stačí, aby jedna byla lineární transformací druhé. Hodnota 0 znamená, že body nesledují žádnou rostoucí ani klesající přímku.
 - **Posun a kladná změna jednotek** koeficient nemění: přičteme-li ke všem hodnotám konstantu nebo je vynásobíme kladným číslem, $r$ zůstane stejné. V příkladu s výkonem v procentech se kovariance změnila na −92, ale $r$ zůstalo −0,788.
 - **Obrácení škály** obrátí znaménko. Kdybychom místo úzkosti měřili „klid před testem“ jako $50 - x$, vyšlo by $r = 0{,}788$. Znaménko tedy závisí i na tom, kterým směrem je škála orientována [@howell, s. 260].
 - **Bez variability** koeficient nelze spočítat. Kdyby všichni studenti měli stejnou úzkost, byla by $s_x = 0$ a dělili bychom nulou. Nejde o nulovou souvislost: v datech prostě není co porovnávat.
@@ -197,15 +227,15 @@ Kdy je korelace „velká“? Univerzální odpověď neexistuje, proto v této 
 - Úplně jiná měřítka platí pro **reliabilitu**. Když stejný dotazník vyplní titíž lidé dvakrát po sobě, korelace obou měření je jedním z odhadů jeho [reliability](kapitola_01.qmd#sec-reliabilita-validita). Zavedené testy dosahují při opakovaném měření korelací 0,9 i vyšších; korelace 0,6 by zde byla nedostatečná [@cumming, s. 337].
 - Korelace nového dotazníku s jiným, osvědčeným měřením téhož rysu nebo s pozdějším kritériem (například testu pracovních předpokladů s pozdějším pracovním výkonem) je jedním z dokladů jeho [validity](kapitola_01.qmd#sec-reliabilita-validita). I zde se čekají spíš vysoké hodnoty.
 
-Korelace pro reliabilitu a validitu posuzujeme tedy jinak než korelace mezi dvěma různými rysy. Ke stejnému $r$ se navíc vždy ptáme, jak přesně je odhadnuto; k tomu se vrátíme v [oddílu o testu a intervalu pro *r*](#sec-test-interval-r).
+Na korelace sloužící k posouzení reliability a validity máme tedy jiné nároky než na korelace mezi testy, které mají měřit odlišné psychologické vlastnosti. Ke stejnému $r$ se navíc vždy ptáme, jak přesně je odhadnuto; k tomu se vrátíme v [oddílu o testu a intervalu pro *r*](#sec-test-interval-r).
 
-## Spearmanův koeficient: souvislost založená na pořadích {#sec-spearman}
+## Spearmanův korelační koeficient: souvislost založená na pořadích {#sec-spearman}
 
-Co když hodnoty nejsou měřeny na intervalové škále, nebo vztah sice stále roste, ale ne po přímce? Tento oddíl zavádí koeficient, který místo hodnot pracuje s jejich pořadím.
+Co když hodnoty nejsou měřeny na intervalové škále, nebo vztah sice stále roste, ale ne lineárně? Tento oddíl zavádí koeficient, který místo hodnot pracuje s jejich pořadím.
 
 ### Převod na pořadí {#sec-prevod-poradi}
 
-Studenti často odpovídají na škálách, kde hodnoty vyjadřují jen uspořádání. U 30 studentů jsme zjistili **vnímaný stres** dotazníkem (0 až 16 bodů) a **kvalitu spánku** v posledním měsíci na sedmibodové škále (1 = velmi špatná, 7 = velmi dobrá). Rozdíl mezi „3“ a „4“ nemusí znamenat totéž co rozdíl mezi „6“ a „7“; víme jen, která odpověď je lepší ([ordinální úroveň měření](kapitola_01.qmd#sec-ordinalni)). Mnoho studentů má navíc stejnou hodnotu.
+Studenti často odpovídají na škálách, kde hodnoty vyjadřují jen uspořádání. U 30 studentů jsme zjistili **vnímaný stres** dotazníkem (0 až 16 bodů) a **kvalitu spánku** v posledním měsíci na sedmibodové škále (1 = velmi špatná, 7 = velmi dobrá). Rozdíl mezi „3“ a „4“ nemusí znamenat totéž co rozdíl mezi „6“ a „7“; víme jen, která odpověď odráží vyšší úroveň měřeného konstruktu ([ordinální úroveň měření](kapitola_01.qmd#sec-ordinalni)). Mnoho studentů má navíc stejnou hodnotu.
 
 ![Vnímaný stres a kvalita spánku u 30 studentů. Velikost bodu ukazuje počet studentů se stejnou kombinací hodnot. Studenti s vyšším stresem uvádějí spíš horší spánek, ale u stejného stresu se kvalita spánku dost liší.](../assets/chapter-10/plots/stres-spanek.svg){#fig-stres-spanek fig-alt="Bodový graf, vodorovně vnímaný stres od 0 do 16 bodů, svisle kvalita spánku od 1 do 7. Velikost bodu odpovídá počtu studentů, větší body s číslem 2 označují dva studenty se stejnou kombinací. Body klesají zleva doprava: při stresu 0 až 2 je kvalita spánku 4 až 7, při stresu 14 a 16 je 2 a 1. Při stresu 8 je rozpětí kvality spánku od 3 do 7. Nadpis uvádí r s = −0,48 a tau b = −0,38."}
 
@@ -228,30 +258,30 @@ Myšlenka **pořadové korelace** (*rank correlation*) je jednoduchá: hodnoty k
 
 ### Pearsonova korelace pořadí {#sec-pearson-poradi}
 
-**Spearmanův korelační koeficient** (*Spearman rank correlation coefficient*) $r_s$ je Pearsonův koeficient spočítaný z pořadí. Pro šest studentů z tabulky [-@tbl-k10-03] vychází $r_s = -0{,}851$; pro 30 studentů z obrázku [-@fig-stres-spanek] $r_s = -0{,}48$. Populační hodnotu označujeme $\mathrm{ρ}_s$. V literatuře se setkáte i se zjednodušeným vzorcem z rozdílů pořadí; ke stejnému výsledku vede jen tehdy, když data nemají shody, proto jej nepoužíváme [@howell, s. 314].
+**Spearmanův korelační koeficient** (*Spearman rank correlation coefficient*) $r_s$ je Pearsonův korelační koeficient spočítaný z pořadí, tedy po převodu původních hodnot na pořadí (pořadová transformace). Pro šest studentů z tabulky [-@tbl-k10-03] vychází $r_s = -0{,}851$; pro 30 studentů z obrázku [-@fig-stres-spanek] $r_s = -0{,}48$. Populační hodnotu označujeme $\mathrm{ρ}_s$. V literatuře se setkáte i se zjednodušeným vzorcem z rozdílů pořadí; ke stejnému výsledku vede jen tehdy, když data nemají shody, proto jej nepoužíváme [@howell, s. 314].
 
 V Excelu převede hodnoty na pořadí funkce **RANK.AVG** (*RANK.AVG*). Jejími argumenty jsou hodnota, oblast všech hodnot a směr řazení; 1 znamená vzestupně, tedy nejmenší hodnota dostane pořadí 1. Shodným hodnotám přiřadí průměrné pořadí. Na listu `Spearman` jsou pořadí ve sloupcích D a E a $r_s$ v buňce H3:
 
 - D2: `=RANK.AVG(B2;$B$2:$B$41;1)` vrátí pořadí stresu prvního studenta, tedy 3 (zkopírováno do dalších řádků i do sloupce E pro kvalitu spánku; na listu je vzorec obalen funkcí KDYŽ, aby prázdný řádek zůstal prázdný),
 - H3: `=CORREL(D2:D41;E2:E41)` vrátí $r_s = -0{,}480$.
 
-### Co převod na pořadí zachová a co potlačí {#sec-co-zachova}
+### Co převod na pořadí zachová a co nikoli {#sec-co-zachova}
 
-Převod na pořadí zachová uspořádání a zahodí vzdálenosti. Z toho plynou výhody i omezení.
+Převod na pořadí zachová uspořádání, ale vzdálenosti nezachová. Z toho plynou výhody i omezení.
 
-- Spearmanův koeficient měří **monotónní** souvislost: je roven 1, když s rostoucí $x$ vždy roste i $y$, bez ohledu na tvar křivky. Na obrázku [-@fig-poradi] souvisí délka tréninku s reakční dobou zakřiveně: zpočátku reakční doba rychle klesá, později už jen málo. Pearsonovo $r = -0{,}85$ měří, jak dobře body sleduje přímka; Spearmanovo $r_s = -0{,}91$ měří, jak spolehlivě delší trénink doprovází kratší reakční dobu.
-- Jedna velmi vzdálená hodnota nemůže v pořadích „utéct“ daleko: dostane jen nejvyšší pořadí. Spearmanův koeficient proto bývá méně citlivý na odlehlá pozorování. Úplnou ochranou ale není, jak uvidíme v [oddílu o tom, co mění korelaci](#sec-co-meni-korelaci).
+- Spearmanův korelační koeficient měří **monotónní** souvislost: je roven 1, když s rostoucí $x$ vždy roste i $y$, bez ohledu na tvar křivky. Na obrázku [-@fig-poradi] souvisí délka tréninku s reakční dobou zakřiveně: zpočátku reakční doba rychle klesá, později už jen málo. Pearsonovo $r = -0{,}85$ měří, jak dobře body sledují přímku; Spearmanovo $r_s = -0{,}91$ měří, jak spolehlivě delší trénink doprovází kratší reakční dobu.
+- Jedna velmi vzdálená hodnota nemůže v pořadích „utéct“ daleko: dostane jen nejvyšší pořadí. Spearmanův korelační koeficient proto bývá méně citlivý na odlehlá pozorování. Úplnou ochranou ale není, jak uvidíme v [oddílu o tom, co mění korelaci](#sec-co-meni-korelaci).
 - U intervalových dat bez odlehlých pozorování a s lineárním vztahem nese Pearsonovo $r$ víc informace, protože využívá i vzdálenosti mezi hodnotami.
 
 ![Délka tréninku a reakční doba u 25 lidí. Vlevo původní hodnoty: reakční doba nejprve rychle klesá a pak se ustálí, body proto nesledují přímku. Vpravo táž data převedená na pořadí: body leží blíž klesající přímce, protože převod odstranil zakřivení.](../assets/chapter-10/plots/poradi.svg){#fig-poradi fig-alt="Dva bodové grafy. Vlevo vodorovně trénink od 0 do 19 hodin, svisle reakční doba od asi 310 do 560 ms; body rychle klesají v prvních pěti hodinách a pak se zploští kolem 320 až 340 ms; nadpis r = −0,85. Vpravo pořadí tréninku proti pořadí reakční doby, obě od 1 do 25; body sledují klesající přímku těsněji; nadpis r s = −0,91."}
 
 ::: {.callout-warning title="Častý omyl: „data nejsou normální, tak použiji Spearmana“"}
-Volbu koeficientu neurčuje test normality, ale otázka a data. Spearmanův koeficient odpovídá na otázku o **monotónní** souvislosti a hodí se pro pořadová data a pro vztahy, které rostou nebo klesají nestejně rychle. Nehodí se pro vztah, který mění směr: u obráceného U na obrázku [-@fig-tvary] je $r_s = -0{,}19$ stejně zavádějící jako $r$. Správně: „Zajímá nás, zda vyšší stres doprovází horší spánek, a škála spánku je pořadová; proto použijeme pořadový koeficient.“
+Volbu koeficientu neurčuje test normality, ale otázka a data. Spearmanův korelační koeficient odpovídá na otázku o **monotónní** souvislosti a hodí se pro pořadová data a pro vztahy, které rostou nebo klesají, ale ne stejně strmě v celém svém průběhu. Nehodí se pro vztah, který mění směr: u obráceného U na obrázku [-@fig-tvary] je $r_s = -0{,}19$ stejně zavádějící jako $r$. Správně: „Zajímá nás, zda vyšší stres doprovází horší spánek, a škála spánku je pořadová; proto použijeme pořadový koeficient.“
 :::
 
 ## Kendallovo τ: kolik dvojic je seřazeno souhlasně? {#sec-kendall}
 
-Spearmanův koeficient pracuje s pořadími jako s čísly. Kendallův koeficient se ptá jinak: když porovnáme dva lidi, je ten s vyšší hodnotou jedné proměnné vyšší i ve druhé? Tento oddíl ukazuje, jak z takových porovnání vznikne koeficient.
+Spearmanův korelační koeficient pracuje s pořadími jako s čísly. Kendallův korelační koeficient se ptá jinak: když porovnáme dva lidi, má ten s vyšší hodnotou jedné proměnné vyšší hodnotu i ve druhé proměnné? Tento oddíl ukazuje, jak z takových porovnání vznikne koeficient.
 
 ### Konkordantní a diskordantní dvojice {#sec-konkordantni}
 
@@ -273,7 +303,7 @@ $$
 
 Pro šest studentů je $\mathrm{τ}_a = (2 - 13)/15 = -0{,}733$. Koeficient má jednoduchý výklad: **je to rozdíl dvou pravděpodobností**. Když náhodně vybereme dvojici studentů, je pravděpodobnost, že budou seřazeni opačně, o 0,733 vyšší než pravděpodobnost, že budou seřazeni souhlasně (13/15 = 0,867 proti 2/15 = 0,133) [@howell, s. 316]. Hodnota 1 znamená, že všechny dvojice jsou konkordantní, −1 že všechny jsou diskordantní a 0 že je obou stejně.
 
-Kendallovo τ označujeme řeckým písmenem, ačkoli jde o výběrovou charakteristiku. Jde o stejnou výjimku z našeho značení jako u $\mathrm{χ}^2$ a $\mathrm{φ}$ v [kapitole 9](kapitola_09.qmd#sec-phi-v). Abychom se vyhnuli záměně, populační hodnotu Kendallova koeficientu v této učebnici vždy píšeme slovy: **Kendallův koeficient v populaci**.
+Kendallovo τ označujeme řeckým písmenem, ačkoli jde o výběrovou charakteristiku. Jde o stejnou výjimku z našeho značení jako u $\mathrm{χ}^2$ a $\mathrm{φ}$ v [kapitole 9](kapitola_09.qmd#sec-phi-v). Abychom se vyhnuli záměně, populační hodnotu Kendallova korelačního koeficientu v této učebnici vždy píšeme slovy: **Kendallův korelační koeficient v populaci**.
 
 Dvojic je mnoho, ale nejsou to nová pozorování. Z 6 lidí vzniklo 15 dvojic a ze 30 lidí 435, ale informaci stále nese jen 6, nebo 30 lidí; každý se účastní mnoha dvojic. Při zobecňování proto vycházíme z počtu lidí, nikoli z počtu dvojic.
 
@@ -309,11 +339,11 @@ $$
 
 Bez shod je $\mathrm{τ}_b = \mathrm{τ}_a$. Statistický software počítá pod názvem „Kendallovo tau“ obvykle právě $\mathrm{τ}_b$; v této učebnici je to hlavní varianta. Jednoduchý pravděpodobnostní výklad platí přesně jen pro $\mathrm{τ}_a$; pro $\mathrm{τ}_b$ jej bez úpravy nepoužíváme. Pro 30 studentů z obrázku [-@fig-stres-spanek] je $n_c = 93$, $n_d = 239$, $t_x = 27$, $t_y = 80$ a $\mathrm{τ}_b = -146/\sqrt{408 \cdot 355} = -0{,}38$.
 
-Excel nemá funkci pro Kendallův koeficient. List `Kendall` proto vypisuje všech 15 dvojic šesti lidí: ve sloupcích G a H určí funkce **SIGN** (*SIGN*), zda je rozdíl hodnot dvojice kladný (1), záporný (−1), nebo nulový (0), například `=SIGN(INDEX($B$2:$B$7;E2)-INDEX($B$2:$B$7;F2))`. Součin obou znamének je 1 u konkordantní a −1 u diskordantní dvojice; nula znamená shodu. Funkce COUNTIF pak spočítá $n_c$ (N3), $n_d$ (N4) a shody (N5, N6); $\mathrm{τ}_b$ je v N8. Pro 30 lidí počítá $\mathrm{τ}_b$ jediný vzorec na listu `Permutace` (B3 až B6); k tomu se vrátíme v [oddílu o permutačním testu](#sec-permutacni-test).
+Excel nemá funkci pro Kendallův korelační koeficient. List `Kendall` proto vypisuje všech 15 dvojic šesti lidí: ve sloupcích G a H určí funkce **SIGN** (*SIGN*), zda je rozdíl hodnot dvojice kladný (1), záporný (−1), nebo nulový (0), například `=SIGN(INDEX($B$2:$B$7;E2)-INDEX($B$2:$B$7;F2))`. Součin obou znamének je 1 u konkordantní a −1 u diskordantní dvojice; nula znamená shodu. Funkce COUNTIF pak spočítá $n_c$ (N3), $n_d$ (N4) a shody (N5, N6); $\mathrm{τ}_b$ je v N8. Pro 30 lidí počítá $\mathrm{τ}_b$ jediný vzorec na listu `Permutace` (B3 až B6); k tomu se vrátíme v [oddílu o permutačním testu](#sec-permutacni-test).
 
 ### Tři koeficienty vedle sebe {#sec-tri-koeficienty}
 
-Pro 30 studentů s daty o stresu a spánku jsou koeficienty $r = -0{,}56$, $r_s = -0{,}48$ a $\mathrm{τ}_b = -0{,}38$; pro 40 studentů s úzkostí a výkonem $r = -0{,}52$, $r_s = -0{,}55$ a $\mathrm{τ}_b = -0{,}42$. Kendallův koeficient vychází v absolutní hodnotě obvykle menší než Spearmanův. Neznamená to, že je „horší“ nebo že souvislost podceňuje: oba měří různé veličiny na jiné stupnici, podobně jako stejnou vzdálenost vyjádříme v kilometrech a v mílích jiným číslem. Hodnoty různých koeficientů proto mezi sebou přímo nesrovnáváme a ve zprávě vždy uvádíme, který koeficient jsme použili.
+Pro 30 studentů s daty o stresu a spánku jsou koeficienty $r = -0{,}56$, $r_s = -0{,}48$ a $\mathrm{τ}_b = -0{,}38$; pro 40 studentů s úzkostí a výkonem $r = -0{,}52$, $r_s = -0{,}55$ a $\mathrm{τ}_b = -0{,}42$. Kendallův korelační koeficient vychází v absolutní hodnotě obvykle menší než Spearmanův. Neznamená to, že je „horší“ nebo že souvislost podceňuje. Oba koeficienty měří monotónní souvislost, ale každý ji vyjadřuje jinou veličinou: $\mathrm{τ}_b$ převahou souhlasně nebo opačně seřazených dvojic, $r_s$ korelací pořadí. V praxi vychází $\mathrm{τ}_b$ v absolutní hodnotě obvykle menší, v našich dvou příkladech asi na třech čtvrtinách $r_s$. Obecně platný převod jednoho čísla na druhé ale neexistuje, protože jejich vzájemný vztah závisí na tvaru dat. Velikosti různých koeficientů proto mezi sebou přímo nesrovnáváme a ve zprávě vždy uvádíme, který koeficient jsme použili.
 
 ## Co potřebujeme pro zobecnění z výběru na populaci? {#sec-zobecneni}
 
@@ -321,27 +351,27 @@ Dosud jsme koeficienty jen počítali a popisovali jimi data. Než se zeptáme, 
 
 ### Spočítat, popsat, zobecnit {#sec-spocitat-popsat}
 
-Koeficient lze **spočítat** pro jakoukoli dvojici číselných sloupců. To ještě neznamená, že **dobře popisuje data**: o tom rozhoduje graf (lineární, nebo monotónní tvar, odlehlá pozorování, oddělené skupiny). A ani dobrý popis výběru neznamená, že můžeme **zobecňovat** na populaci. Pro zobecnění potřebujeme [výběr, který populaci reprezentuje](kapitola_01.qmd#sec-populace-vyber), a vhodný model.
+Koeficient lze **spočítat** pro jakoukoli dvojici číselných sloupců. To ještě neznamená, že **dobře popisuje data**: o tom rozhoduje podoba vztahu (lineární, nebo monotónní tvar, odlehlá pozorování, oddělené skupiny), kterou zjišťujeme pomocí bodového grafu. A ani dobrý popis výběru neznamená, že stejně dobře bude koeficient popisovat vztah na úrovni populace. Pro zobecnění potřebujeme [výběr, který populaci dobře reprezentuje](kapitola_01.qmd#sec-populace-vyber), a vhodný model.
 
 - **Nezávislé případy.** Lidé ve výběru by měli být navzájem nezávislí; dvojice hodnot téhož člověka k sobě naopak patří. Opakované záznamy téhož člověka (například deset týdnů měření úzkosti a výkonu u každého studenta) nelze počítat jako samostatné případy.
-- **Cílová populace.** Výsledek z příležitostného výběru studentů psychologie se týká především podobných studentů. U korelace na tom záleží zvlášť, protože výběr s omezeným rozsahem hodnot korelaci mění ([co mění korelaci](#sec-co-meni-korelaci)).
-- **Data celé populace.** Pokud máme hodnoty všech lidí, které nás zajímají (například celé malé třídy, o niž jediné nám jde), korelace popisuje přímo populaci a interval spolehlivosti nepotřebujeme [@cumming, s. 327–328].
+- **Cílová populace.** Výsledek z příležitostného výběru studentů psychologie se týká především podobných studentů. U korelace na tom záleží zvlášť, protože výběr s omezeným rozsahem hodnot má dopad na odhad korelace ([co mění korelaci](#sec-co-meni-korelaci)).
+- **Data celé populace.** Pokud máme hodnoty všech lidí, které nás zajímají (například celé malé třídy a jde nám jen o ni), korelace popisuje přímo populaci a interval spolehlivosti nepotřebujeme [@cumming, s. 327–328].
 
-### Model pro Pearsonovu inferenci {#sec-model-pearson}
+### Model pro inferenci o Pearsonově korelačním koeficientu {#sec-model-pearson}
 
 Klasický test a interval pro Pearsonovo $r$ vycházejí z modelu **dvourozměrného normálního rozdělení** (*bivariate normal distribution*), v literatuře též bivariačního normálního rozdělení. Představíme si populaci dvojic hodnot, jejíž mrak má tvar elipsy, nejhustší uprostřed a řídnoucí k okrajům. Každá proměnná má normální rozdělení. Navíc pro každou pevnou hodnotu jedné proměnné má druhá normální rozdělení se stejnou směrodatnou odchylkou [@howell, s. 273–274; @cumming, s. 325–326]. Není to totéž jako normalita každé proměnné zvlášť: obě proměnné mohou být normální, a přesto jejich společný mrak může mít jiný tvar.
 
 ![Vlevo vzorek 400 dvojic z dvourozměrného normálního rozdělení: mrak tvaru elipsy se stejnou svislou variabilitou v celém rozsahu X. Vpravo heteroskedasticita: variabilita Y roste s X, mrak se rozšiřuje doprava.](../assets/chapter-10/plots/dvourozmerne.svg){#fig-dvourozmerne fig-alt="Dva bodové grafy po 400 bodech. Vlevo modrý mrak tvaru šikmé elipsy stoupající zleva doprava, na všech místech osy X přibližně stejně široký. Vpravo oranžový mrak, který je vlevo úzký a doprava se rozšiřuje jako vějíř."}
 
-Dvě vlastnosti modelu lze posoudit z grafu. **Linearita**: zakřivený mrak modelu neodpovídá. **Stejná variabilita** neboli **homoskedasticita** (*homoscedasticity*): mrak je ve svislém směru všude přibližně stejně široký. Rozšiřuje-li se jako vějíř, mluvíme o **heteroskedasticitě** (*heteroscedasticity*; obrázek [-@fig-dvourozmerne] vpravo). Při heteroskedasticitě klasický test stále platí jako test nezávislosti obou proměnných, ale jako test toho, že je nulová právě korelace, už spolehlivý není [@wilcox2017, s. 223–224]. Jako u [*t*-testů](kapitola_07.qmd#sec-t-test) nerozhodujeme podle testu normality, ale podle grafu, velikosti výběru a povahy proměnných.
+Dvě vlastnosti modelu lze posoudit z grafu. **Linearita**: model předpokládá lineární vztah; znatelné zakřivení mraku bodů ukazuje, že tento předpoklad neplatí. **Stejná variabilita** neboli **homoskedasticita** (*homoscedasticity*): mrak bodů je ve svislém směru všude přibližně stejně široký. Mění-li se jeho šířka podél vodorovné osy, mluvíme o **heteroskedasticitě** (*heteroscedasticity*). Mrak se může rozšiřovat jako vějíř (obrázek [-@fig-dvourozmerne] vpravo), ale také zužovat, nebo být širší uprostřed než na okrajích. Při heteroskedasticitě je klasický test stále platný jako obecný test nezávislosti obou proměnných, ale jako specifický test nulové korelace už spolehlivý není [@wilcox2017, s. 223–224]. Rozdíl mezi nezávislostí a nulovou korelací vysvětlíme u [permutačního testu](#sec-hypoteza-permutace). Jako u [*t*-testů](kapitola_07.qmd#sec-t-test) nerozhodujeme podle testu normality, ale podle grafu, velikosti výběru a povahy proměnných.
 
 ## Test a interval pro Pearsonovo *r* {#sec-test-interval-r}
 
-Vypovídá souvislost úzkosti a výkonu u 40 studentů o populaci studentů, nebo by mohla vzniknout náhodou? A jaké hodnoty populační korelace jsou s daty slučitelné? Tento oddíl přenáší postupy z kapitol 6 a 7 na Pearsonovo *r*.
+Vypovídá souvislost úzkosti a výkonu u 40 studentů o populaci studentů, nebo by mohla vzniknout náhodou? A jaké hodnoty populační korelace jsou s daty v souladu? Tento oddíl přenáší postupy z kapitol 6 a 7 na Pearsonovo *r*.
 
 ### Kolísání *r* mezi výběry {#sec-kolisani-r}
 
-Stejně jako [průměr](kapitola_06.qmd#sec-vyberove-rozdeleni-prumeru) kolísá i korelace mezi výběry. Obrázek [-@fig-vyberove-r] ukazuje, jak by vycházelo $r$ v 10 000 výběrech po 20 lidech ze dvou modelových populací. Když je populační korelace $\mathrm{ρ} = 0$, padne prostředních 95 % výběrových korelací mezi −0,45 a 0,43: i v populaci bez jakékoli souvislosti tedy u 20 lidí snadno uvidíme korelaci kolem ±0,3. Když je $\mathrm{ρ} = 0{,}8$, leží prostředních 95 % mezi 0,57 a 0,92 a rozdělení je **šikmé**: nahoře jej omezuje hranice 1, kterou $r$ nemůže překročit, a proto se hodnoty „hromadí“ u ní a dolů se protahují dál.
+Stejně jako [průměr](kapitola_06.qmd#sec-vyberove-rozdeleni-prumeru) kolísá i korelace mezi výběry. Obrázek [-@fig-vyberove-r] ukazuje, jak by se různilo Pearsonovo $r$ v 10 000 výběrech po 20 lidech ze dvou modelových populací. Když je populační korelace $\mathrm{ρ} = 0$, leží prostředních 95 % výběrových korelací mezi −0,45 a 0,43: i v populaci bez jakékoli souvislosti tedy u 20 lidí snadno vznikne korelace kolem ±0,3. Když je $\mathrm{ρ} = 0{,}8$, leží prostředních 95 % mezi 0,57 a 0,92 a rozdělení je **zešikmené doleva**: nahoře jej omezuje hranice 1, kterou $r$ nemůže překročit, hodnoty se proto „hromadí“ u ní a delší chvost se táhne k nižším hodnotám.
 
 ![Výběrové rozdělení Pearsonova r v 10 000 výběrech po 20 lidech. Vlevo populace s nulovou korelací: rozdělení je souměrné kolem nuly a prostředních 95 % hodnot leží mezi −0,45 a 0,43. Vpravo populace s korelací 0,8: rozdělení je užší a šikmé, s delším levým chvostem.](../assets/chapter-10/plots/vyberove-r.svg){#fig-vyberove-r fig-alt="Dva histogramy výběrových korelací. Vlevo pro ρ = 0 a n = 20 souměrný histogram od asi −0,7 do 0,7 s vrcholem u nuly, oranžová čára v nule a přerušované čáry v −0,45 a 0,43. Vpravo pro ρ = 0,8 úzký histogram od asi 0,4 do 0,95 s vrcholem kolem 0,82 a delším levým chvostem, oranžová čára v 0,8, přerušované čáry v 0,57 a 0,92."}
 
@@ -353,7 +383,7 @@ $$
 t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}
 $$
 
-[*t*-rozdělení](kapitola_07.qmd#sec-t-rozdeleni) s $n - 2$ stupni volnosti [@howell, s. 280–281]. Proč $n - 2$? Odhadujeme dva průměry, proto dvě volnosti ubudou. Čitatel roste s velikostí korelace i výběru, jmenovatel se zmenšuje, když se $|r|$ blíží 1.
+[*t*-rozdělení](kapitola_07.qmd#sec-t-rozdeleni) s $n - 2$ stupni volnosti [@howell, s. 280–281]. Proč $n - 2$? Odhadujeme dva průměry, proto ubudou dva stupně volnosti. Čitatel roste s velikostí korelace i výběru, jmenovatel se zmenšuje, když se $|r|$ blíží 1.
 
 Pro 40 studentů je $r = -0{,}523$ a
 
@@ -363,27 +393,31 @@ $$
 
 s 38 stupni volnosti. Oboustranná *p*-hodnota je 0,0005. V Excelu ji vrátí funkce T.DIST.2T, kterou známe z [kapitoly 7](kapitola_07.qmd#sec-t-test): `=T.DIST.2T(ABS(B7);B8)` na listu `Pearson`.
 
-**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu zamítáme. **Věcná interpretace:** v populaci studentů, kterou výběr reprezentuje, nejspíš vyšší úzkost před testem doprovází nižší výkon. Test nic neříká o příčině: úzkost může výkon zhoršovat, ale studenti, kteří se připravovali méně, mohou být zároveň úzkostnější i horší v testu.
+**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu zamítáme. **Věcná interpretace:** v populaci studentů, kterou výběr reprezentuje, nejspíš vyšší úzkost před testem doprovází nižší výkon. Test nic neříká o příčině. Úzkost může výkon zhoršovat, ale obě proměnné mohou souviset také proto, že mají [společnou příčinu](kapitola_01.qmd#sec-souvislost-pricina), například nedostatečnou přípravu na test: kdo se připravoval málo, bývá před testem úzkostnější a zároveň v testu dopadá hůř.
 
-Nezáleží jen na velikosti korelace, ale i na velikosti výběru. Při stejném $r = -0{,}52$ by u 400 studentů vyšlo $t = -12{,}1$ a nepatrně malá *p*-hodnota; naopak při $r = 0{,}15$ vychází u 50 lidí $p = 0{,}30$, ale u 1 000 lidí $p < 0{,}001$. Malá *p*-hodnota tedy neznamená velkou souvislost. Pro porozumění velikosti a nejistotě potřebujeme interval.
+Nezáleží jen na velikosti korelace, ale i na velikosti výběru. Při stejném $r = -0{,}52$ by u 400 studentů vyšlo $t = -12{,}1$ a *p*-hodnota blížící se nule; naopak při $r = 0{,}15$ vychází u 50 lidí $p = 0{,}30$, ale u 1 000 lidí $p < 0{,}001$. Malá *p*-hodnota tedy neznamená velkou souvislost. Pro porozumění velikosti a nejistotě potřebujeme interval.
 
 ### Interval spolehlivosti přes Fisherovu transformaci {#sec-fisher-interval}
 
-Interval „odhad ± kvantil × směrodatná chyba“ z [kapitoly 7](kapitola_07.qmd#sec-bodovy-intervalovy) pro $r$ přímo použít nelze, protože rozdělení $r$ je šikmé a omezené hranicemi −1 a 1 (obrázek [-@fig-vyberove-r]). Fisher ukázal, že po převodu
+Interval „odhad ± kvantil × směrodatná chyba“ z [kapitoly 7](kapitola_07.qmd#sec-bodovy-intervalovy) pro $r$ přímo použít nelze, protože rozdělení $r$ je šikmé a omezené hranicemi −1 a 1 (obrázek [-@fig-vyberove-r]). Fisher ukázal, že po převodu pomocí přirozeného logaritmu (značka ln; logaritmus o základu *e* ≈ 2,718, někdy psaný také $\log_e$, v Excelu funkce LN; poznali jsme jej u [poměru šancí](kapitola_09.qmd#sec-pomer-rizik-sanci) v kapitole 9)
 
 $$
 z_r = \tfrac{1}{2}\ln\frac{1+r}{1-r}
 $$
 
-je rozdělení přibližně normální se směrodatnou chybou $1/\sqrt{n-3}$, a to pro jakoukoli populační korelaci [@howell, s. 284–286]. **Fisherova transformace** (*Fisher transformation*) natahuje stupnici u krajů: hodnotám $r$ blízkým 0 odpovídají téměř stejná čísla, hodnoty blízké ±1 se rozprostřou daleko. Značku $z_r$ nezaměňujte se *z*-skórem ani s testovou statistikou *z*: jde jen o převedenou korelaci. Interval spočítáme ve třech krocích:
+má $z_r$ přibližně normální rozdělení se směrodatnou chybou $1/\sqrt{n-3}$, a to pro jakoukoli populační korelaci [@howell, s. 284–286]. **Fisherova transformace** (*Fisher transformation*) natahuje stupnici u krajů: hodnotám $r$ blízkým 0 odpovídají téměř stejná čísla, hodnoty blízké ±1 se rozprostřou dále od 0. Značku $z_r$ nezaměňujte se *z*-skórem ani s testovou statistikou *z*: jde jen o převedenou korelaci.
+
+![Fisherova transformace. Vlevo převodní křivka: u nuly téměř kopíruje tečkovanou přímku $z_r = r$, u krajů stoupá stále strměji, a proto natahuje hodnoty blízké ±1. Uprostřed 10 000 výběrových korelací pro ρ = 0,8 a *n* = 20: rozdělení je zešikmené doleva. Vpravo tytéž korelace po transformaci: rozdělení je téměř souměrné a dobře odpovídá normálnímu rozdělení se směrodatnou chybou $1/\sqrt{17}$.](../assets/chapter-10/plots/fisher.svg){#fig-fisher-transformace fig-alt="Tři grafy vedle sebe. Vlevo křivka z r v závislosti na r od −1 do 1: kolem nuly téměř splývá s tečkovanou úhlopříčkou, u −1 a 1 prudce klesá a stoupá ke ±3; vyznačené body r = −0,523 se z = −0,581 a r = 0,8 se z = 1,099. Uprostřed histogram 10 000 výběrových korelací pro ρ = 0,8 a n = 20, vrchol kolem 0,82, dlouhý chvost doleva k 0,3, oranžová čára v 0,8. Vpravo histogram týchž hodnot po transformaci od asi 0,3 do 2, souměrný kolem 1,1, s překrytou křivkou normálního rozdělení a oranžovou čarou v 1,099."}
+
+Obrázek [-@fig-fisher-transformace] ukazuje, proč transformace pomáhá. Výběrové korelace pro ρ = 0,8 mají rozdělení zešikmené doleva, protože se nemohou dostat nad 1. Transformace natáhne horní okraj stupnice víc než střed. Hodnoty nahloučené pod 1 se tím rozprostřou a rozdělení se stane přibližně souměrným. Na převedené stupnici proto můžeme použít obvyklý interval „odhad ± kvantil × směrodatná chyba“. Interval spočítáme ve třech krocích:
 
 1. Převedeme $r$ na $z_r$: pro $r = -0{,}523$ je $z_r = -0{,}581$ (v Excelu `=FISHER(B3)`).
 2. Na převedené stupnici sestrojíme interval $z_r \pm 1{,}96 \cdot 1/\sqrt{n-3}$: $-0{,}581 \pm 1{,}96 \cdot 0{,}164$, tedy od −0,903 do −0,259.
 3. Meze převedeme zpět na korelace (v Excelu `=FISHERINV(B14)`): **95% interval spolehlivosti je (−0,72; −0,25)**.
 
-Interval není souměrný kolem −0,52: k nule sahá dál než k −1. To je důsledek šikmosti rozdělení $r$. Fisherův interval je **přibližný**; spoléhá na model dvourozměrného normálního rozdělení a jeho závěr se nemusí ve všech situacích přesně shodovat s výsledkem *t*-testu.
+Interval není souměrný kolem −0,52: směrem k nule sahá dál (o 0,27) než směrem k −1 (o 0,20). To je důsledek šikmosti rozdělení $r$. Fisherův interval je **přibližný**; spoléhá na model dvourozměrného normálního rozdělení a to, zda obsahuje nulu, se nemusí ve všech situacích přesně shodovat s tím, zda *t*-test vyjde na hladině 0,05 statisticky významný.
 
-**Věcná interpretace:** s daty je slučitelná populační korelace od zhruba −0,72 do −0,25. I horní mez znamená zřetelnou zápornou souvislost; data tedy podporují, že souvislost není zanedbatelně malá, ale její přesná velikost zůstává nejistá. Tabulka [-@tbl-k10-05] ukazuje celý výpočet na listu `Pearson`.
+**Věcná interpretace:** s daty je slučitelná populační korelace od zhruba −0,72 do −0,25. I horní mez znamená zřetelnou zápornou souvislost; data tedy podporují závěr, že souvislost není zanedbatelně malá, ale její přesná velikost zůstává nejistá. Tabulka [-@tbl-k10-05] ukazuje celý výpočet na listu `Pearson`.
 
 ::: {.table-scroll .chapter-10-wide role="region" aria-label="Excel: test a interval pro Pearsonovo r na listu Pearson" tabindex="0"}
 
@@ -412,45 +446,77 @@ Interval není souměrný kolem −0,52: k nule sahá dál než k −1. To je d�
 
 ### Kdy je nula špatné srovnání {#sec-nula-srovnani}
 
-*p*-hodnota u korelace se v článcích téměř vždy vztahuje k nulové hypotéze $\mathrm{ρ} = 0$, i když to autoři neuvedou. Taková nulová hypotéza je ale někdy bezcenná. Když výrobce dotazníku úzkosti zjistí, že korelace opakovaného měření u 50 lidí je $r = 0{,}82$ a $p < 0{,}001$, nedozvěděli jsme se nic užitečného: že dotazník souvisí sám se sebou víc než nulově, se čekalo. Důležitá je otázka, zda je reliabilita dostatečná, a na ni odpovídá interval (0,70; 0,89).
+*p*-hodnota u korelace se v článcích téměř vždy vztahuje k nulové hypotéze $\mathrm{ρ} = 0$, i když to autoři neuvedou. Taková nulová hypotéza je ale někdy bezcenná. Když výrobce dotazníku úzkosti zjistí, že korelace opakovaného měření u 50 lidí je $r = 0{,}82$ a $p < 0{,}001$, nedozvěděli jsme se nic užitečného: že dotazník aspoň nějak souvisí sám se sebou, je tak samozřejmé, že test takové hypotézy je zbytečný. Důležitá je otázka, zda je reliabilita dostatečná, a na ni odpovídá interval (0,70; 0,89).
 
-Podobně Cumming a Calin-Jageman [-@cumming, s. 337–338] popisují studii, v níž nová škála vůdcovství korelovala s osvědčenou škálou $r = 0{,}38$ u 92 studentů, $p < 0{,}01$. Autoři z toho vyvodili, že nová škála je validní. Interval (0,19; 0,54) ale ukazuje, že korelace mohla být i jen kolem 0,2, a i horní mez je pro doklad validity spíš nízká. Statisticky významná korelace tedy ještě není dostatečně velká korelace.
+Podobně Cumming a Calin-Jageman [-@cumming, s. 337–338] popisují studii, v níž nová škála vůdcovství korelovala s osvědčenou škálou $r = 0{,}38$ u 92 studentů, $p < 0{,}01$. Autoři z toho vyvodili, že nová škála je validní. Interval (0,19; 0,54) ale ukazuje, že korelace v populaci může být i jen kolem 0,2, což je pro doklad validity velmi málo, a i horní mez je pro tento účel spíš nízká. Statisticky významná korelace tedy ještě není dostatečně velká korelace.
 
 ## Permutační test pro pořadové koeficienty {#sec-permutacni-test}
 
-Pro Spearmanův a Kendallův koeficient nemáme tak jednoduchý model jako pro Pearsonovo *r*. Tento oddíl ukazuje postup, který obstojí bez předpokladu o tvaru rozdělení: otázku „mohla by taková souvislost vzniknout náhodou?“ zodpovíme přeskupováním dat.
+Pro Spearmanův a Kendallův korelační koeficient nemáme tak jednoduchý model jako pro Pearsonovo *r*. Tento oddíl ukazuje postup, který obstojí bez předpokladu o tvaru rozdělení: otázku „mohla by taková souvislost vzniknout náhodou?“ zodpovíme opakovaným přeskupením dat.
 
 ### Myšlenka: co kdyby hodnoty k sobě nepatřily? {#sec-myslenka-permutace}
 
 Kdyby stres a kvalita spánku spolu nijak nesouvisely, bylo by úplně jedno, ke kterému studentovi patří která hodnota kvality spánku. Hodnoty stresu tedy ponecháme na místě a hodnoty kvality spánku mezi studenty náhodně přeskupíme. Takové přeskupení zachová obě rozdělení beze změny: stejné hodnoty stresu, stejné hodnoty spánku, jen přiřazení je náhodné. Pro každé přeskupení spočítáme koeficient. Z mnoha přeskupení získáme rozdělení koeficientu, jaké bychom čekali, kdyby proměnné byly nezávislé. Pozorovaný koeficient s ním porovnáme.
 
-**Permutační test** (*permutation test*) tedy počítá *p*-hodnotu jako podíl přeskupení, v nichž je koeficient alespoň stejně vzdálený od nuly jako ten pozorovaný. Pojem permutace známe z [kapitoly 5](kapitola_05.qmd#sec-kombinace): je to uspořádání všech prvků.
+Tabulka [-@tbl-k10-preskupeni] to ukazuje na šesti studentech z tabulky [-@tbl-k10-03]. Hodnoty stresu zůstávají na svém místě. Sloupec kvality spánku obsahuje stále tytéž hodnoty 6, 6, 4, 5, 3 a 3, jen v každém přeskupení patří jiným studentům.
+
+::: {.table-scroll role="region" aria-label="Šest studentů: pozorované přiřazení a tři přeskupení kvality spánku" tabindex="0"}
+
+| Student | Stres | Pozorováno | A | B | C |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 3 | 6 | 6 | 6 | 6 |
+| 2 | 5 | 6 | 6 | 4 | 3 |
+| 3 | 5 | 4 | 5 | 3 | 3 |
+| 4 | 8 | 5 | 4 | 5 | 4 |
+| 5 | 10 | 3 | 3 | 3 | 5 |
+| 6 | 12 | 3 | 3 | 6 | 6 |
+| $r_s$ | | −0,851 | −0,940 | −0,015 | 0,269 |
+| $\mathrm{τ}_b$ | | −0,741 | −0,889 | 0,000 | 0,371 |
+
+: Pozorované přiřazení kvality spánku a tři z 720 možných přeskupení {#tbl-k10-preskupeni}
+
+:::
+
+::: {.table-note}
+*Poznámka.* Sloupec Pozorováno obsahuje skutečné hodnoty kvality spánku, sloupce A, B a C tři přeskupení týchž hodnot. Každé přeskupení přiřazuje stejných šest hodnot studentům jinak; hodnoty stresu se nemění.
+:::
+
+V přeskupení A vychází souvislost dokonce silnější než pozorovaná: i čistě náhodné přiřazení tedy může vytvořit výraznou souvislost. Přeskupení B a C vedou k hodnotám blízkým nule (B), nebo dokonce kladným (C); obojí při náhodném přiřazení snadno nastane. Rozhoduje proto, **jak často** vede náhodné přiřazení k hodnotě alespoň tak vzdálené od nuly jako pozorovaná.
+
+**Permutační test** (*permutation test*) tedy počítá *p*-hodnotu jako podíl přeskupení, v nichž je koeficient alespoň stejně vzdálený od nuly jako ten pozorovaný. Jeho nulovou hypotézou je nezávislost obou proměnných; co přesně to znamená, rozebereme v [samostatném pododdílu](#sec-hypoteza-permutace). Pojem permutace známe z [kapitoly 5](kapitola_05.qmd#sec-kombinace): je to uspořádání všech prvků.
 
 ### Přesný test pro šest studentů {#sec-presny-permutacni}
 
-Pro šest studentů z tabulky [-@tbl-k10-03] existuje $6! = 720$ možných přiřazení hodnot kvality spánku, a můžeme je projít všechna. Pozorované $\mathrm{τ}_b = -0{,}741$; stejně nebo více vzdálené od nuly (v obou směrech) vyjde v 48 přiřazeních ze 720. Přesná oboustranná *p*-hodnota je $48/720 = 0{,}067$; pro Spearmanův koeficient vychází stejně. Výpočet je na listu `Perm_presna`.
+Pro šest studentů z tabulky [-@tbl-k10-03] existuje $6! = 720$ možných přiřazení hodnot kvality spánku, a můžeme je projít všechna. Pozorované $\mathrm{τ}_b = -0{,}741$; stejně nebo více vzdálené od nuly (v obou směrech) vyjde v 48 přiřazeních ze 720. Přesná oboustranná *p*-hodnota je $48/720 = 0{,}067$ (pro Spearmanův korelační koeficient vychází stejně). Výpočet je na listu `Perm_presna`.
 
-**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** i když je souvislost v šesti datech silná, tak malý výběr nestačí, abychom vyloučili, že vznikla náhodou. Nezamítnutí neznamená, že proměnné nesouvisejí.
+![Přesné permutační rozdělení $\mathrm{τ}_b$ pro šest studentů. Každý sloupec ukazuje, v kolika ze 720 přiřazení vyjde daná hodnota. Rozdělení je souměrné kolem nuly. Oranžové sloupce zahrnují přiřazení, v nichž je $\mathrm{τ}_b$ stejně nebo více vzdálené od nuly než pozorovaná hodnota −0,741: 8 + 16 + 16 + 8 = 48 přiřazení. Jejich podíl 48/720 = 0,067 je *p*-hodnota.](../assets/chapter-10/plots/permutace-presna.svg){#fig-permutace-presna fig-alt="Sloupcový graf počtu přiřazení podle hodnoty tau b od −0,889 do 0,889. Souměrné rozdělení s nejvyšším sloupcem 96 při nule. Oranžově zvýrazněné krajní sloupce: −0,889 (8), −0,741 (16), 0,741 (16) a 0,889 (8). Ostatní sloupce jsou šedé. Legenda: stejně nebo více vzdálené od nuly než pozorované −0,741: 48 ze 720."}
+
+**Rozhodnutí testu:** na hladině 0,05 nulovou hypotézu nezamítáme. **Věcná interpretace:** i když je souvislost u šesti studentů silná, tak malý výběr nestačí, abychom vyloučili, že vznikla náhodou. Nezamítnutí neznamená, že proměnné nesouvisejí.
 
 ### Náhodný výběr přeskupení pro 30 studentů {#sec-nahodny-permutacni}
 
-Pro 30 studentů je přiřazení $30!$, číslo s 33 číslicemi; všechna projít nelze. Vezmeme proto náhodný výběr přeskupení, stejně jako u [simulované *p*-hodnoty](kapitola_09.qmd#sec-monte-carlo) v kapitole 9. Na listu `Permutace` jich je 1 999. Každé přeskupení je řádek listu `Perm_indexy`: říká, kterého studenta hodnota spánku se přiřadí kterému studentovi. List `Perm_Y` obsahuje přeskupené hodnoty a list `Perm_poradi_Y` jejich pořadí. *p*-hodnotu počítáme vzorcem
+Pro 30 studentů existuje $30!$ přiřazení, což je příliš velké číslo (s 33 číslicemi); všechna přiřazení tedy projít nelze. Vezmeme proto náhodný výběr přeskupení, stejně jako u [simulované *p*-hodnoty](kapitola_09.qmd#sec-monte-carlo) v kapitole 9. Na listu `Permutace` jich je 1 999. Každé přeskupení je řádek listu `Perm_indexy`: říká, kterého studenta hodnota spánku se přiřadí kterému studentovi. List `Perm_Y` obsahuje přeskupené hodnoty a list `Perm_poradi_Y` jejich pořadí. *p*-hodnotu počítáme vzorcem
 
 $$
 p = \frac{k + 1}{B + 1},
 $$
 
-kde $B$ je počet přeskupení a $k$ počet přeskupení, v nichž je koeficient v absolutní hodnotě alespoň stejně velký jako pozorovaný. Jednička v čitateli i jmenovateli započítá i pozorované přiřazení, které je také jedním z možných; *p*-hodnota tak nikdy nevyjde nula.
+kde $B$ je počet přeskupení a $k$ počet přeskupení, v nichž je koeficient v absolutní hodnotě alespoň stejně velký jako pozorovaný. Plus 1 v čitateli i jmenovateli je proto, abychom započítali i skutečně pozorované přiřazení, které je také jedním z možných; *p*-hodnota tak nikdy nevyjde přesně nulová, i když se může nule blížit.
 
 ![Hodnoty $\mathrm{τ}_b$ v 1 999 náhodných přeskupeních kvality spánku. Rozdělení je souměrné kolem nuly, jak čekáme za nezávislosti. Pozorovaná hodnota −0,38 leží daleko vlevo; stejně nebo více vzdálených od nuly je jen 9 přeskupení.](../assets/chapter-10/plots/permutace.svg){#fig-permutace fig-alt="Histogram 1 999 hodnot tau b po náhodném přeskupení, souměrný kolem nuly, většina hodnot mezi −0,3 a 0,3. Plná oranžová svislá čára v −0,38 s popiskem pozorováno −0,38 a přerušovaná oranžová čára v 0,38 s popiskem zrcadlově 0,38. Za oběma čarami jsou jen ojedinělé sloupce."}
 
-Pro 30 studentů vychází *p*-hodnota $(9 + 1)/2\,000 = 0{,}005$ pro $\mathrm{τ}_b$ a $0{,}007$ pro $r_s$ (obrázek [-@fig-permutace]). **Rozhodnutí testu:** nulovou hypotézu nezávislosti na hladině 0,05 zamítáme. **Věcná interpretace:** studenti s vyšším vnímaným stresem uvádějí spíš horší spánek, a taková souvislost by při nezávislosti vznikla jen vzácně.
+Pro 30 studentů vychází *p*-hodnota $(9 + 1)/2\,000 = 0{,}005$ pro $\mathrm{τ}_b$ a $0{,}007$ pro $r_s$ (obrázek [-@fig-permutace]). **Rozhodnutí testu:** nulovou hypotézu nezávislosti na hladině 0,05 zamítáme. **Věcná interpretace:** studenti s vyšším vnímaným stresem uvádějí spíš horší spánek; tak silná souvislost, jakou jsme pozorovali, by za předpokladu nezávislosti obou proměnných vznikla jen vzácně.
 
 ### Jakou hypotézu permutační test testuje {#sec-hypoteza-permutace}
 
-Přeskupení je oprávněné, pokud na přiřazení nezáleží, tedy pokud jsou proměnné **nezávislé**. Nulovou hypotézou permutačního testu je proto nezávislost, nikoli jen nulová hodnota korelačního koeficientu v populaci [@wilcox2017, s. 275]. Rozdíl je důležitý: proměnné mohou být závislé, a přitom mít nulovou korelaci (obrácené U na obrázku [-@fig-tvary]). Zamítnutí tedy říká, že proměnné nejsou nezávislé a že jejich souvislost má směr zachycený zvoleným koeficientem. Nezamítnutí nedokazuje nezávislost: test na souvislost jiného tvaru nemusí být citlivý [@wilcox2017, s. 224].
+Přeskupovat hodnoty smíme jen tehdy, když na tom, kdo má kterou hodnotu, nezáleží, tedy když jsou proměnné **nezávislé**. Nulovou hypotézou permutačního testu je proto nezávislost obou proměnných, nikoli jen nulová hodnota korelačního koeficientu v populaci [@wilcox2017, s. 275].
 
-Výsledek s náhodným výběrem přeskupení je mírně jiný při každém novém výběru. Pro 9 999 přeskupení vychází $p = 0{,}0048$ pro $\mathrm{τ}_b$ a $0{,}006$ pro $r_s$; tyto hodnoty jsou na listu `Bootstrap` v hotovém přehledu vedle. Rozdíly se týkají až třetího desetinného místa a na rozhodnutí nemají vliv.
+Proč na tom rozdílu záleží? Nezávislost je přísnější požadavek než nulová korelace. Nezávislé proměnné mají vždy nulovou korelaci, ale proměnné s nulovou korelací ještě nemusí být nezávislé. Příkladem je obrácené U na obrázku [-@fig-tvary]: výkon na aktivaci silně závisí, a přesto jsou oba koeficienty blízko nuly. Výsledek testu proto čteme takto:
+
+- **Zamítnutí nulové hypotézy** znamená, že data svědčí proti nezávislosti: proměnné spolu nejspíš nějak souvisejí. Znaménko pozorovaného koeficientu přitom ukazuje, kterým směrem se souvislost v datech projevuje; u stresu a spánku je záporné.
+- **Nezamítnutí** nedokazuje nezávislost. Test pracuje se zvoleným koeficientem, a je proto citlivý hlavně na ten tvar souvislosti, který koeficient měří; u $r_s$ a $\mathrm{τ}_b$ na monotónní souvislost. Souvislost jiného tvaru, třeba obrácené U, může přehlédnout [@wilcox2017, s. 224].
+
+Výsledek s náhodným výběrem přeskupení je mírně jiný při každém novém výběru. Pro 9 999 přeskupení vychází $p = 0{,}0048$ pro $\mathrm{τ}_b$ a $0{,}006$ pro $r_s$; tyto hodnoty jsou na listu `Bootstrap` v oblasti H2:I8. Rozdíly se týkají až třetího desetinného místa a na rozhodnutí nemají vliv.
 
 ::: {.table-scroll .chapter-10-wide role="region" aria-label="Excel: permutační test na listu Permutace" tabindex="0"}
 
@@ -466,7 +532,7 @@ Výsledek s náhodným výběrem přeskupení je mírně jiný při každém nov
 | B10 | *p*-hodnota pro $\mathrm{τ}_b$ | totéž pro sloupec C a B6 | 0,0050 |
 | B13:C2011 | $r_s$ a $\mathrm{τ}_b$ v jednotlivých přeskupeních | počítá list | — |
 
-: Permutační test pro Spearmanův a Kendallův koeficient v Excelu {#tbl-k10-06}
+: Permutační test pro Spearmanův a Kendallův korelační koeficient v Excelu {#tbl-k10-06}
 
 :::
 
@@ -476,13 +542,15 @@ Výsledek s náhodným výběrem přeskupení je mírně jiný při každém nov
 
 ## Bootstrapový interval pro pořadové koeficienty {#sec-bootstrap}
 
-Permutační test odpovídá na otázku, zda by souvislost mohla vzniknout při nezávislosti. Neříká ale, jak velký koeficient je v populaci a jak přesně jej známe. Tento oddíl ukazuje, jak interval spolehlivosti získat převzorkováním dat.
+Permutační test odpovídá na otázku, zda by souvislost mohla vzniknout při nezávislosti. Neříká ale, jak velký koeficient je v populaci a jak přesně jej známe. Tento oddíl ukazuje, jak interval spolehlivosti získat převzorkováním dat. **Převzorkování** (*resampling*) je souhrnné označení postupů, které z pozorovaných dat opakovaně vytvářejí nové soubory a v každém spočítají koeficient; patří k nim permutační test z předchozího oddílu i bootstrap.
 
 ### Výběr z výběru {#sec-vyber-z-vyberu}
 
-Interval spolehlivosti se opírá o [výběrové rozdělení](kapitola_06.qmd#sec-vyberove-rozdeleni-prumeru): jak by koeficient kolísal, kdybychom výběr opakovali. Novou populaci k dispozici nemáme, ale máme výběr, který o ní nese nejlepší dostupnou informaci. **Bootstrap** (*bootstrap*) proto napodobí opakování výzkumu tak, že z našich 30 studentů znovu a znovu losuje 30 studentů **s vracením**: každý může být vylosován jednou, víckrát, nebo vůbec. Každý takový **bootstrapový výběr** (*bootstrap sample*) vede k jiné hodnotě koeficientu; jejich rozdělení napodobuje kolísání koeficientu mezi výběry [@howell, s. 659–664; @wilcox2017, s. 170].
+Interval spolehlivosti se opírá o [výběrové rozdělení](kapitola_06.qmd#sec-vyberove-rozdeleni-prumeru): jak by koeficient kolísal, kdybychom výběr opakovali. Další výběry z populace k dispozici nemáme, ale máme výběr, který o ní nese nejlepší dostupnou informaci. **Bootstrap** (*bootstrap*) proto zachází s naším výběrem, jako by to byla populace: jaký podíl studentů má ve výběru danou kombinaci hodnot, takový podíl předpokládáme i v populaci. Opakování výzkumu pak napodobí tak, že z našich 30 studentů znovu a znovu losuje 30 studentů **s vracením**: každý může být vylosován jednou, víckrát, nebo vůbec. Každý takový **bootstrapový výběr** (*bootstrap sample*) vede k jiné hodnotě koeficientu; jejich rozdělení napodobuje kolísání koeficientu mezi výběry [@howell, s. 659–664; @wilcox2017, s. 170].
 
-Důležité je, že losujeme **celé dvojice**, tedy studenty i s oběma jejich hodnotami. Tím zachováme souvislost, kterou chceme odhadnout. Kdybychom losovali hodnoty stresu a spánku zvlášť, souvislost bychom zničili, podobně jako při přeskupení. V každém bootstrapovém výběru se pořadí počítají znovu, protože někteří studenti jsou v něm vícekrát a jiní chybějí.
+Proč s vracením? Kdybychom ze 30 studentů losovali 30 bez vracení, dostali bychom pokaždé tytéž studenty, jen v jiném pořadí, a koeficient by vyšel vždy stejně. Kolísání by nevzniklo. Vracení dovoluje, aby se někteří studenti ve výběru opakovali a jiní chyběli, podobně jako by se v novém výběru z populace objevili jiní lidé.
+
+Důležité je, že losujeme **celé dvojice**, tedy studenty i s oběma jejich hodnotami. Tím zachováme souvislost, kterou chceme odhadnout. Kdybychom losovali hodnoty stresu a spánku zvlášť, souvislost bychom zrušili, podobně jako při přeskupení. U pořadových koeficientů se v každém bootstrapovém výběru pořadí počítají znovu, protože někteří studenti jsou v něm vícekrát a jiní chybějí; pořadí z původních dat by už neodpovídala. U Pearsonova *r* nic takového není potřeba, koeficient se počítá přímo z vylosovaných hodnot.
 
 ### Percentilový interval {#sec-percentilovy}
 
@@ -490,13 +558,13 @@ Z bootstrapových hodnot koeficientu získáme **percentilový bootstrapový int
 
 ![Hodnoty $\mathrm{τ}_b$ v 1 999 bootstrapových výběrech po 30 studentech. Rozdělení má vrchol poblíž pozorované hodnoty −0,38 (plná čára). Přerušované čáry vyznačují 2,5. a 97,5. percentil, tedy meze 95% percentilového intervalu −0,61 a −0,10.](../assets/chapter-10/plots/bootstrap.svg){#fig-bootstrap fig-alt="Histogram 1 999 bootstrapových hodnot tau b od asi −0,8 do 0,15 s vrcholem kolem −0,4. Plná oranžová čára v pozorované hodnotě −0,38. Modré přerušované čáry v −0,61 s popiskem 2,5. percentil a v −0,10 s popiskem 97,5. percentil. Nad 0 je jen několik málo výběrů."}
 
-Pro 30 studentů je s 1 999 bootstrapovými výběry 95% percentilový interval pro $r_s$ **(−0,73; −0,13)** a pro $\mathrm{τ}_b$ **(−0,61; −0,10)** (obrázek [-@fig-bootstrap]). **Věcná interpretace:** s daty je slučitelná zřetelná záporná souvislost stresu a kvality spánku, od slabé až po poměrně silnou. Výběr 30 studentů velikost souvislosti určuje jen hrubě.
+Pro 30 studentů je s 1 999 bootstrapovými výběry 95% percentilový interval pro $r_s$ **(−0,73; −0,13)** a pro $\mathrm{τ}_b$ **(−0,61; −0,10)** (obrázek [-@fig-bootstrap]). **Věcná interpretace:** s daty je slučitelná záporná souvislost stresu a kvality spánku, ve velikosti od $r_s$ asi −0,13 až po −0,73. Výběr 30 studentů těsnost souvislosti v populaci odhaduje jen hrubě.
 
 V Excelu je postup rozložen do listů. List `Boot_indexy` obsahuje 1 999 řádků čísel studentů vylosovaných s vracením. Listy `Boot_X` a `Boot_Y` podle nich vyberou hodnoty a listy `Boot_poradi_X` a `Boot_poradi_Y` jejich pořadí v řádku (RANK.AVG). Na listu `Bootstrap` je pro každý výběr $r_s$ (sloupec B) a $\mathrm{τ}_b$ (sloupec F) a meze spočítá funkce **PERCENTIL.INC** (*PERCENTILE.INC*), kterou známe z [kapitoly 3](kapitola_03.qmd#sec-kvantily): `=PERCENTIL.INC(F13:F2011;0,025)` vrátí dolní mez −0,610 a `=PERCENTIL.INC(F13:F2011;0,975)` horní mez −0,096 (B8 a B9; pro $r_s$ B6 a B7).
 
 ### Počet opakování a simulační kolísání {#sec-pocet-opakovani}
 
-Bootstrapový interval závisí i na tom, které výběry náhodně padly. Tabulka [-@tbl-k10-07] porovnává výsledky z 1 999 opakování v sešitu s výsledky 9 999 opakování stejného postupu. Meze se liší až ve druhém desetinném místě; simulační kolísání je tedy malé ve srovnání s šířkou intervalu, ale není nulové. Proto meze uvádíme nejvýše na dvě desetinná místa a s počtem opakování.
+Bootstrapový interval závisí i na tom, které výběry náhodně padly. Tabulka [-@tbl-k10-07] porovnává výsledky z 1 999 opakování v sešitu s výsledky 9 999 opakování stejného postupu. Meze se liší až na druhém desetinném místě; simulační kolísání je tedy malé ve srovnání s šířkou intervalu, ale není nulové. Proto meze uvádíme zpravidla na dvě desetinná místa a vždy reportujeme také počet opakování.
 
 ::: {.table-scroll role="region" aria-label="Výsledky převzorkování pro 1 999 a 9 999 opakování" tabindex="0"}
 
@@ -510,27 +578,41 @@ Bootstrapový interval závisí i na tom, které výběry náhodně padly. Tabul
 :::
 
 ::: {.table-note}
-*Poznámka.* Výsledky 9 999 opakování jsou na listu `Bootstrap` jako pevné hodnoty v oblasti H2:I8; platí jen pro výchozí data. Sešit jich nepočítá vzorci, protože by byl asi pětkrát větší a otevíral se pomaleji.
+*Poznámka.* Výsledky 9 999 opakování jsou na listu `Bootstrap` jako pevné hodnoty v oblasti H2:I8; platí jen pro výchozí data. Sešit je nepočítá vzorci, protože by byl asi pětkrát větší a otevíral se pomaleji.
 :::
 
 ### Omezení bootstrapu {#sec-omezeni-bootstrapu}
 
-Bootstrap **není postup bez předpokladů** ani všelék [@wilcox2017, s. 170]. Předpokládá nezávislé případy a výběr, který populaci dobře zastupuje; nereprezentativní výběr bootstrap neopraví. U velmi malých výběrů je napodobení populace hrubé a u koeficientů blízkých ±1 nebo u proměnných s malou variabilitou mohou bootstrapové výběry obsahovat jen málo různých hodnot. Některý bootstrapový výběr může mít dokonce všechny hodnoty jedné proměnné stejné; koeficient pak spočítat nelze. Sešit takový výběr vynechá a jeho počet ukáže v buňce B10; v našem příkladu se nevyskytl.
+Bootstrap **není postup bez předpokladů** ani všelék [@wilcox2017, s. 170]. Předpokládá nezávislé případy a výběr, který populaci dobře zastupuje; nereprezentativní výběr bootstrap neopraví. U velmi malých výběrů je napodobení populace hrubé a u koeficientů blízkých ±1 nebo u proměnných s malou variabilitou mohou bootstrapové výběry obsahovat jen málo různých hodnot. Některý bootstrapový výběr může mít dokonce všechny hodnoty jedné proměnné stejné; koeficient pak spočítat nelze, protože jedna z proměnných je v něm ve skutečnosti konstantou. Sešit takový výběr vynechá a jeho počet ukáže v buňce B10; v našem příkladu se nevyskytl.
 
-Jak dobře percentilový interval funguje, jsme ověřili simulací. Z modelových populací s dvourozměrným normálním rozdělením a korelací −0,5 nebo −0,8 jsme vylosovali po 1 000 výběrech. Pro 30 lidí obsahoval 95% percentilový interval populační hodnotu Spearmanova i Kendallova koeficientu v 94 až 96 % výběrů, tedy přibližně tak často, jak má. Pro 10 lidí to bylo 96 až 97 %, ale intervaly byly velmi široké, průměrně 0,8 až 1,1 na stupnici od −1 do 1. Takový interval o velikosti souvislosti téměř nic neříká. Pro jiná rozdělení, data s mnoha shodami nebo krajní korelace může být pokrytí jiné; u Pearsonova *r* se pokrytí základního percentilového intervalu může od 95 % zřetelně lišit i u stovek lidí [@wilcox2017, s. 227–228]. Percentilový interval proto není univerzálně nejlepší konstrukce, jen srozumitelný a v našich podmínkách použitelný základ.
+To, jak dobře percentilový interval funguje, jsme ověřili simulací. Z modelových populací s dvourozměrným normálním rozdělením a korelací −0,5 nebo −0,8 jsme vylosovali po 1 000 výběrech. Pro 30 lidí obsahoval 95% percentilový interval populační hodnotu Spearmanova i Kendallova korelačního koeficientu v 94 až 96 % výběrů, tedy přibližně tak často, jak má. Pro 10 lidí to bylo 96 až 97 %, ale intervaly byly velmi široké, průměrně 0,8 až 1,1 na stupnici od −1 do 1. Takový interval o velikosti souvislosti téměř nic neříká. Pro jiná rozdělení, data s mnoha shodnými hodnotami nebo krajní korelace může být pokrytí jiné; u Pearsonova *r* se pokrytí základního percentilového intervalu může od 95 % zřetelně lišit i u stovek lidí [@wilcox2017, s. 227–228]. Percentilový bootstrap proto není univerzálně nejlepší způsob konstrukce intervalu spolehlivosti, jen srozumitelný a v našich podmínkách použitelný základ.
 
 ::: {.callout-warning title="Častý omyl: „interval neobsahuje nulu, takže jsme provedli test nezávislosti“"}
 Interval a test zde odpovídají na různé otázky a vycházejí z různých postupů. Bootstrapový interval odhaduje velikost koeficientu; permutační test zkoumá, zda by souvislost mohla vzniknout při nezávislosti. Jejich závěry se obvykle shodují, ale ne vždy. Správně: „Permutační test nezávislost zamítá (*p* = 0,005); 95% bootstrapový interval pro $\mathrm{τ}_b$ je (−0,61; −0,10).“
 :::
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: interval BCa" #rozsireni-bca}
-Percentilový interval předpokládá, že bootstrapové rozdělení je kolem pozorované hodnoty rozložené „správně“. Interval **BCa** (*bias-corrected and accelerated*) tento předpoklad zmírňuje dvěma opravami. Korekce zkreslení $z_0$ vychází z podílu bootstrapových hodnot menších než pozorovaná hodnota: kdyby jich bylo právě 50 %, byla by nulová. Zrychlení $a$ popisuje, jak se variabilita koeficientu mění s jeho velikostí; počítá se z hodnot koeficientu spočítaných vždy bez jednoho člověka. Obě opravy posunou percentily, které použijeme jako meze: místo 2,5. a 97,5. percentilu bereme percentily
+**Co percentilový interval předpokládá.** Percentilový interval bere za meze přímo 2,5. a 97,5. percentil bootstrapových hodnot. To je oprávněné, když se bootstrapové hodnoty kolem pozorované hodnoty rozkládají stejně, jako se pozorované hodnoty z opakovaných výběrů rozkládají kolem populační hodnoty. Konkrétně jde o dvě vlastnosti. Za prvé, bootstrapové hodnoty nejsou soustavně posunuté: polovina z nich leží pod pozorovanou hodnotou a polovina nad ní. Za druhé, rozptýlenost koeficientu nezávisí na tom, jak velká je jeho populační hodnota. Interval **BCa** (*bias-corrected and accelerated*) obě vlastnosti nevyžaduje a místo toho z dat odhadne, jak moc jsou porušeny; slouží k tomu dvě čísla.
+
+**Korekce zkreslení $z_0$.** Leží-li pod pozorovanou hodnotou víc než polovina bootstrapových hodnot, vycházejí bootstrapové výběry soustavně spíš menší než výběr, ze kterého vznikly. Bootstrap tu napodobuje vztah výběru a populace: bootstrapové hodnoty jsou k pozorované hodnotě v podobném vztahu jako pozorovaná hodnota k populační. Je proto rozumné čekat, že i pozorovaná hodnota je vůči populační hodnotě posunuta podobným směrem; takovému soustavnému posunu říkáme zkreslení odhadu. Číslo $z_0$ tento posun vyjadřuje na stupnici normovaného normálního rozdělení: je to *z*-skór, pod nímž leží stejný podíl normálního rozdělení jako podíl bootstrapových hodnot pod pozorovanou hodnotou. Pro podíl přesně 50 % je $z_0 = 0$ a žádnou opravu nepotřebujeme. U $\mathrm{τ}_b$ pro 30 studentů leží pod pozorovanou hodnotou −0,384 celkem 1 039 z 1 999 hodnot, tedy podíl 0,520, a odpovídá mu $z_0 = 0{,}050$.
+
+**Zrychlení $a$.** U korelace se šířka výběrového rozdělení mění s populační hodnotou: čím blíž je populační korelace k ±1, tím méně výběrový koeficient kolísá (obrázek [-@fig-vyberove-r]). Kdyby populační korelace byla blíž nule než pozorovaná hodnota, kolísaly by výběrové hodnoty víc; kdyby byla dál od nuly, kolísaly by méně. Interval by proto měl na straně k nule sahat dál než na opačné straně, s tím ale percentilový interval nepočítá. Zrychlení $a$ vyjadřuje, jak rychle se rozptýlenost koeficientu s jeho hodnotou mění; odtud název, jde o „rychlost změny“ rozptýlenosti. Teorie intervalu ukazuje, že tuto rychlost lze odhadnout z toho, jak nesouměrně koeficient reaguje na vynechání jednotlivých lidí. Odhaduje se z koeficientů spočítaných vždy bez jednoho člověka: u 30 studentů tak vznikne 30 hodnot $\mathrm{τ}_{b(i)}$, kde $i$ označuje vynechaného studenta. Označíme-li jejich průměr $m_{\mathrm{τ}}$ a rozdíly $u_i = m_{\mathrm{τ}} - \mathrm{τ}_{b(i)}$, je
 
 $$
-\mathrm{α}_{1,2} = \Phi\!\left(z_0 + \frac{z_0 + z_{0,025;\,0,975}}{1 - a\,(z_0 + z_{0,025;\,0,975})}\right),
+a = \frac{\sum_{i=1}^{n} u_i^3}{6\left(\sum_{i=1}^{n} u_i^2\right)^{3/2}} .
 $$
 
-kde $\Phi$ je distribuční funkce normovaného normálního rozdělení. Pro $\mathrm{τ}_b$ u 30 studentů je $z_0 = 0{,}050$ a $a = -0{,}005$, takže se použije 3,0. a 97,9. percentil a interval BCa je (−0,60; −0,09). Pro $r_s$ vychází (−0,72; −0,11). Oba intervaly se od percentilových liší málo, protože bootstrapové rozdělení je téměř souměrné kolem pozorované hodnoty. Výpočet pro $\mathrm{τ}_b$ je na listu `BCa`. Ani interval BCa není zárukou správného pokrytí ve všech situacích; jeho vlastnosti pro malé výběry v této učebnici neověřujeme.
+Čitatel se třetími mocninami měří, zda se hodnoty bez jednoho člověka rozkládají kolem svého průměru nesouměrně, podobně jako míra šikmosti. Pro souměrný rozklad je $a = 0$. Pro $\mathrm{τ}_b$ u 30 studentů vychází $a = -0{,}005$, tedy téměř nula.
+
+**Jak opravy posunou meze.** Místo 2,5. a 97,5. percentilu bootstrapových hodnot vezmeme percentily, jejichž podíly jsou
+
+$$
+\mathrm{α}_1 = \Phi\!\left(z_0 + \frac{z_0 + z_{\mathrm{α}/2}}{1 - a\,(z_0 + z_{\mathrm{α}/2})}\right), \qquad \mathrm{α}_2 = \Phi\!\left(z_0 + \frac{z_0 + z_{1-\mathrm{α}/2}}{1 - a\,(z_0 + z_{1-\mathrm{α}/2})}\right),
+$$
+
+kde $\Phi$ je distribuční funkce normovaného normálního rozdělení a pro 95% interval ($\mathrm{α} = 0{,}05$) jsou $z_{\mathrm{α}/2} = -1{,}96$ a $z_{1-\mathrm{α}/2} = 1{,}96$ příslušné kvantily. Když $z_0 = 0$ i $a = 0$, vzorec vrátí právě 0,025 a 0,975, tedy percentilový interval. Kladné $z_0$ posune obě meze k vyšším percentilům: oprava tak vyrovnává to, že bootstrapové hodnoty vycházejí soustavně spíš nižší. Nenulové $a$ posune každou mez jinak, a interval se tak přizpůsobí nesouměrné rozptýlenosti.
+
+Pro $\mathrm{τ}_b$ u 30 studentů se použije 3,0. a 97,9. percentil a interval BCa je (−0,60; −0,09). Pro $r_s$ vychází (−0,72; −0,11). Oba intervaly se od percentilových liší málo, protože obě opravy jsou malé: pod pozorovanou hodnotou leží jen o málo víc než polovina bootstrapových hodnot ($z_0$ blízko 0) a zrychlení je téměř nulové. Výpočet pro $\mathrm{τ}_b$ je na listu `BCa`. Ani interval BCa není zárukou správného pokrytí ve všech situacích; jeho vlastnosti pro malé výběry v této učebnici neověřujeme.
 :::
 
 ## Co může změnit pozorovanou korelaci? {#sec-co-meni-korelaci}
@@ -539,19 +621,25 @@ Korelace nezávisí jen na tom, jak spolu proměnné souvisejí, ale i na tom, k
 
 ### Odlehlé pozorování {#sec-odlehle-korelace}
 
-Jedno [odlehlé pozorování](kapitola_02.qmd#sec-tvar-rozdeleni) může korelaci zesílit, oslabit i obrátit. Má velké odchylky od obou průměrů, a tedy velký součin; v malém souboru pak součtu dominuje. Cumming a Calin-Jageman [-@cumming, s. 319–320] ukazují, jak jediný přidaný bod snížil korelaci 12 dvojic z 0,89 na 0,26. Na obrázku [-@fig-tvary] naopak jeden vzdálený bod vytvořil $r = 0{,}54$ v datech, která jinak žádnou souvislost neukazují.
+Jedno [odlehlé pozorování](kapitola_02.qmd#sec-tvar-rozdeleni) může korelaci zesílit, oslabit i obrátit. Leží-li daleko od obou průměrů, má velké odchylky v obou proměnných, a tedy velký součin; v malém souboru pak součtu součinů dominuje. Cumming a Calin-Jageman [-@cumming, s. 319–320] ukazují, jak jediný přidaný bod snížil korelaci 12 dvojic z 0,89 na 0,26. Na obrázku [-@fig-tvary] naopak jeden vzdálený bod vytvořil $r = 0{,}54$ v datech, která jinak žádnou souvislost neukazují.
 
-Představme si, že při přepisu dat 40 studentů z obrázku [-@fig-uzkost-vykon] někdo omylem zapíše prvnímu studentovi výkon 300 místo 16 bodů. Pearsonovo $r$ se změní z −0,52 na 0,01, Spearmanův koeficient jen z −0,55 na −0,49. Pořadový koeficient je tu odolnější, protože chybná hodnota dostane jen nejvyšší pořadí.
+Představme si, že při přepisu dat 40 studentů z obrázku [-@fig-uzkost-vykon] někdo omylem zapíše prvnímu studentovi výkon 300 místo 16 bodů. Pearsonovo $r$ se změní z −0,52 na 0,01, Spearmanův korelační koeficient jen z −0,55 na −0,49. Pořadový koeficient je tu odolnější, protože chybná hodnota dostane jen nejvyšší pořadí.
 
-Co s odlehlým pozorováním? Nejprve **zjistit jeho původ**: chyba v datech se opraví. Je-li hodnota skutečná, nemažeme ji jen proto, že nám kazí výsledek. Spočítáme analýzu s ním i bez něj (**analýzu citlivosti**, *sensitivity analysis*) a ve zprávě uvedeme obě. Pořadové koeficienty nejsou úplnou ochranou: u velmi malého souboru může i jedna vzdálená dvojice změnit pořadí mnoha dalších.
+Jak moc odlehlé pozorování korelaci změní, záleží na tom, v čem je neobvyklé. Obrázek [-@fig-odlehle-typy] přidává ke stejným 20 bodům vždy jeden bod a ukazuje tři situace. Bod A má velmi vysokou hodnotu X, ale leží ve směru, kterým vztah pokračuje; souvislost proto ještě zesílí. Bod B má hodnoty X i Y v obvyklém rozsahu, při pohledu na každou proměnnou zvlášť bychom si ho nevšimli. Neobvyklá je až jejich kombinace: vysoké X s nízkým Y jde proti směru vztahu, a korelaci proto oslabí. Bod C je krajní v obou proměnných a zároveň leží proti směru vztahu. Takový bod může Pearsonovu korelaci úplně zrušit, zatímco pořadové koeficienty se změní méně.
+
+![Tři druhy odlehlého pozorování přidaného k týmž 20 bodům (oranžově). A: krajní hodnota X ve směru vztahu korelaci zesílí. B: bod s obvyklými hodnotami X i Y, ale neobvyklou kombinací, korelaci oslabí; v grafu jedné proměnné by nebyl vidět. C: bod krajní v obou proměnných a proti směru vztahu sníží Pearsonovo r z 0,67 téměř na nulu, pořadové koeficienty klesnou méně.](../assets/chapter-10/plots/odlehle-typy.svg){#fig-odlehle-typy fig-alt="Čtyři bodové grafy se stejnými osami, X od 25 do 105, Y od 15 do 85. 1: 20 bodů s kladnou souvislostí, X od 32 do 70, nadpis r = 0,67, r s = 0,66, tau b = 0,52. 2: přidaný oranžový bod daleko vpravo nahoře v (100; 80), r = 0,76, r s = 0,70, tau b = 0,57. 3: přidaný oranžový bod (68; 36) vpravo dole uvnitř rozsahu ostatních bodů, r = 0,50, r s = 0,51, tau b = 0,41. 4: přidaný oranžový bod daleko vpravo dole v (100; 20), r = −0,03, r s = 0,43, tau b = 0,37."}
+
+Bod B ukazuje, proč nestačí prohlížet každou proměnnou zvlášť, například v [krabicovém grafu](kapitola_03.qmd#sec-boxplot). Pozorování, které je neobvyklé jen svou kombinací hodnot, odhalí až bodový graf.
+
+Co s odlehlým pozorováním? Cílem není odlehlá pozorování najít a odstranit, ale porozumět tomu, jak ovlivňují výsledek. Nejprve **zjistíme jejich původ**: chybu v datech lze opravit. Je-li hodnota skutečná, nemažeme ji jen proto, že nám „kazí“ výsledek; může nést důležitou informaci o lidech, které zkoumáme. Spočítáme analýzu s ní i bez ní (**analýzu citlivosti**, *sensitivity analysis*) a ve zprávě uvedeme obě. Shodují-li se závěry, výsledek na jednom pozorování nestojí; liší-li se, je to důležité zjištění, které čtenář musí znát. Pořadové koeficienty nejsou úplnou ochranou: u velmi malého souboru může i jedna vzdálená dvojice změnit pořadí mnoha dalších.
 
 ### Omezení rozsahu a krajní skupiny {#sec-omezeni-rozsahu}
 
-![Vlevo: 200 uchazečů o studium, přijímací test a výsledky v prvním ročníku. Mezi všemi je r = 0,56, mezi 62 přijatými s nejlepším testem (modře) jen 0,37. Uprostřed: výběr jen nejslabších a nejsilnějších uchazečů (oranžově) korelaci zvětší na 0,72. Vpravo: dvě třídy; v každé zvlášť slovní zásoba s rychlostí čtení téměř nesouvisí, po sloučení vychází r = 0,66.](../assets/chapter-10/plots/faktory.svg){#fig-faktory fig-alt="Tři bodové grafy. Vlevo 200 bodů, přijímací test od 50 do 140 bodů vodorovně a výsledky v prvním ročníku od 25 do 90 bodů svisle, stoupající mrak; svislá přerušovaná čára u 106 bodů, body vpravo od ní jsou modré, ostatní šedé; nadpis všichni r = 0,56, přijatí r = 0,37. Uprostřed stejná data, oranžově body z levého a pravého kraje testu; nadpis r = 0,72. Vpravo dvě skupiny: kosočtverce mladší třídy vlevo dole, slovní zásoba 20 až 55 a rychlost čtení 40 až 80, trojúhelníky starší třídy vpravo nahoře, zásoba 45 až 72 a rychlost 55 až 105; nadpis celkem r = 0,66, uvnitř −0,20 a 0,09."}
+![Vlevo: 200 uchazečů o studium, přijímací test a výsledky v prvním ročníku. Mezi všemi je r = 0,56, mezi 62 přijatými s nejlepším testem (modře) jen 0,37. Uprostřed: výběr jen nejslabších a nejsilnějších uchazečů (oranžově) korelaci zvětší na 0,72. Vpravo: dvě třídy; v každé zvlášť slovní zásoba s rychlostí čtení téměř nesouvisí, po sloučení vychází r = 0,66.](../assets/chapter-10/plots/faktory.svg){#fig-faktory fig-alt="Tři bodové grafy. Vlevo 200 bodů, přijímací test od 50 do 140 bodů vodorovně a výsledky v prvním ročníku od 25 do 90 bodů svisle, body stoupají zleva doprava; svislá přerušovaná čára u 106 bodů, body vpravo od ní jsou modré, ostatní šedé; nadpis všichni r = 0,56, přijatí r = 0,37. Uprostřed stejná data, oranžově body z levého a pravého kraje testu; nadpis r = 0,72. Vpravo dvě skupiny: kosočtverce mladší třídy vlevo dole, slovní zásoba 20 až 55 a rychlost čtení 40 až 80, trojúhelníky starší třídy vpravo nahoře, zásoba 45 až 72 a rychlost 55 až 105; nadpis celkem r = 0,66, uvnitř −0,20 a 0,09."}
 
-Fakulta chce vědět, jak dobře přijímací test předpovídá studijní výsledky. Výsledky ale zná jen u přijatých, tedy u uchazečů s vysokým skóre. Na obrázku [-@fig-faktory] vlevo je korelace mezi všemi 200 uchazeči 0,56, mezi 62 přijatými jen 0,37. Nejde o to, že by test u přijatých fungoval hůř: v úzkém rozsahu hodnot je méně „co vysvětlovat“ a náhodné kolísání výsledků v něm převáží [@howell, s. 291–292; @cumming, s. 322]. **Omezení rozsahu** (*range restriction*) korelaci obvykle zmenší. Může ji ale i zvětšit, například když omezení odstraní zakřivenou část vztahu [@wilcox2017, s. 218]. Hlavně se tím mění populace, ke které výsledek patří: korelace mezi přijatými popisuje přijaté, ne všechny uchazeče.
+Fakulta chce vědět, jak dobře přijímací test předpovídá studijní výsledky. Výsledky ale zná jen u přijatých, tedy u uchazečů s vysokým skóre. Na obrázku [-@fig-faktory] vlevo je korelace mezi všemi 200 uchazeči 0,56, mezi 62 přijatými jen 0,37. Nejde o to, že by test u přijatých fungoval hůř: v úzkém rozsahu hodnot je méně „co vysvětlovat“ a náhodné kolísání výsledků v něm převáží [@howell, s. 291–292; @cumming, s. 322]. **Omezení rozsahu** (*range restriction*) korelaci obvykle zmenší. Může ji ale i zvětšit, například když omezení odstraní zakřivenou část vztahu [@wilcox2017, s. 218]. Hlavně se tím mění populace, ke které se výsledek vztahuje: korelace mezi přijatými popisuje přijaté, ne všechny uchazeče.
 
-Opačný účinek má výběr krajních skupin. Když do studie zařadíme jen nejslabší a nejsilnější uchazeče (obrázek [-@fig-faktory] uprostřed), korelace vzroste na 0,72, ačkoli se vztah v populaci nezměnil. Studie s „extrémními skupinami“ proto souvislost v běžné populaci přeceňují.
+Opačný účinek má **výběr krajních skupin**. Když do studie zařadíme jen nejhorší a nejlepší uchazeče (obrázek [-@fig-faktory] uprostřed), korelace vzroste na 0,72, ačkoli se vztah v populaci nezměnil. Studie s „extrémními skupinami“ proto souvislost v běžné populaci přeceňují.
 
 ### Sloučení skupin {#sec-slouceni-skupin}
 
@@ -559,11 +647,42 @@ Na obrázku [-@fig-faktory] vpravo jsou dvě třídy, mladší a starší. Uvnit
 
 ### Chyba měření {#sec-chyba-mereni}
 
-Žádné psychologické měření není přesné. Nahodilá chyba měření (nízká [reliabilita](kapitola_01.qmd#sec-reliabilita-validita)) přidává k hodnotám šum, který s ničím nesouvisí. Za předpokladu, že chyby obou měření jsou nahodilé a navzájem nezávislé, proto pozorovaná korelace bývá menší než korelace mezi přesnými hodnotami, které měříme. Dvě nepřesně měřené proměnné tedy mohou mít nízkou korelaci, i když spolu jejich skutečné hodnoty souvisejí těsně. Výpočet, jak korelaci „opravit“ na chybu měření, do této kapitoly nepatří.
+Žádné psychologické měření není přesné. Nahodilá chyba měření (nízká [reliabilita](kapitola_01.qmd#sec-reliabilita-validita)) přidává k naměřeným hodnotám šum, který s ničím nesouvisí. Představme si hodnotu, kterou by měření u daného člověka ukázalo, kdyby neobsahovalo žádnou nahodilou chybu; nazýváme ji **pravý skór** (*true score*). Jsou-li chyby obou měření nahodilé a navzájem nezávislé, bývá korelace naměřených skórů v absolutní hodnotě nižší (bližší nule) než korelace pravých skórů. Šum totiž zvětšuje rozptýlenost obou proměnných, ale k jejich společnému kolísání nic nepřidává. Tomuto oslabení korelace se říká **atenuace** (*attenuation*) [@aron, s. 514–515].
+
+![Simulace 200 lidí. Vlevo pravé skóry dvou proměnných, mezi nimiž je r = 0,62. Vpravo tytéž lidé změření s nahodilou chybou, reliabilita obou měření je 0,6. Mrak bodů je širší a korelace naměřených skórů klesla na 0,35, ačkoli vztah pravých skórů se nezměnil.](../assets/chapter-10/plots/reliabilita.svg){#fig-reliabilita fig-alt="Dva bodové grafy po 200 bodech se stejnými osami od −4 do 4. Vlevo modrý mrak pravých skórů, zřetelně stoupající a poměrně úzký, nadpis Hodnoty bez chyby měření, r = 0,62. Vpravo oranžový mrak naměřených skórů, širší a méně zřetelně stoupající, nadpis Naměřené hodnoty, reliabilita obou měření 0,6, r = 0,35."}
+
+Obrázek [-@fig-reliabilita] ukazuje, jak velký může tento účinek být. Dvě nepřesně měřené proměnné tedy mohou mít nízkou korelaci, i když spolu jejich pravé skóry souvisejí těsně. Nízká korelace dvou dotazníků proto ještě neznamená, že spolu měřené vlastnosti souvisejí slabě; může odrážet i nízkou reliabilitu měření. Jak lze velikost oslabení odhadnout, ukazuje nepovinné rozšíření.
+
+::: {.callout-note collapse="true" title="Nepovinné rozšíření: korekce na atenuaci" #rozsireni-korekce-reliabilita}
+**Odkud oslabení pochází.** Naměřený skór chápeme jako součet pravého skóru a nahodilé chyby. Reliabilita měření $r_{xx}$ je pak podíl rozptylu pravých skórů na rozptylu naměřených skórů: při reliabilitě 0,6 tvoří rozptyl pravých skórů 60 % rozptylu naměřených hodnot a zbytek přidává chyba. Jsou-li chyby nahodilé a nesouvisejí s ničím jiným, nemění kovarianci obou proměnných, jen zvětšují jejich rozptyly. Protože rozptyl pravých skórů tvoří podíl $r_{xx}$ rozptylu naměřených skórů, je směrodatná odchylka naměřených skórů $1/\sqrt{r_{xx}}$krát větší než směrodatná odchylka pravých skórů. Směrodatné odchylky ve jmenovateli Pearsonova korelačního koeficientu proto vzrostou, kovariance v čitateli zůstane stejná a korelace se přiblíží nule. Vychází jednoduchý vztah: korelace naměřených skórů je rovna korelaci pravých skórů vynásobené $\sqrt{r_{xx}\, r_{yy}}$, kde $r_{xx}$ a $r_{yy}$ jsou reliability obou měření.
+
+**Korekce.** Obrácením tohoto vztahu vznikla **korekce na atenuaci** (*correction for attenuation*), kterou navrhl Charles Spearman již v roce 1904 [@muchinsky1996, s. 64 a 66]:
+
+$$
+r_{\mathrm{opr}} = \frac{r_{xy}}{\sqrt{r_{xx}\, r_{yy}}} .
+$$
+
+Zde $r_{xy}$ je korelace naměřených skórů, $r_{xx}$ a $r_{yy}$ jsou koeficienty reliability obou měření a $r_{\mathrm{opr}}$ je odhad korelace pravých skórů. Protože reliabilita je nejvýše 1, je jmenovatel nejvýše 1 a korekce korelaci v absolutní hodnotě nikdy nezmenší; zvětší ji tím víc, čím je reliabilita nižší. Pro data z obrázku [-@fig-reliabilita] je $r_{xy} = 0{,}35$ a reliabilita obou měření 0,6, takže
+
+$$
+r_{\mathrm{opr}} = \frac{0{,}35}{\sqrt{0{,}6 \cdot 0{,}6}} = \frac{0{,}35}{0{,}6} = 0{,}58 ,
+$$
+
+což je blízko korelaci pravých skórů 0,62 v simulaci.
+
+**Jak opravenou korelaci číst.** Opravená korelace není nová naměřená hodnota, ale odhad toho, jak silná by souvislost byla, kdyby obě proměnné šlo měřit bez chyby [@muchinsky1996, s. 73]. Proto platí několik omezení [@muchinsky1996, s. 67–72]:
+
+- Reliability jsou samy jen odhady a různé druhy reliability (například opakované měření, nebo vnitřní konzistence) vedou k různým korekcím. Korigovat je třeba tou reliabilitou, která zachycuje chybu, o kterou nám jde.
+- Opravená hodnota může vyjít i větší než 1, ačkoli taková korelace nemůže existovat. Například pro $r_{xy} = 0{,}65$, $r_{xx} = 0{,}81$ a $r_{yy} = 0{,}49$ vychází $0{,}65/\sqrt{0{,}81 \cdot 0{,}49} = 0{,}65/(0{,}9 \cdot 0{,}7) = 1{,}03$.
+- Opravenou korelaci nelze testovat obvyklým *t*-testem jako naměřenou korelaci a korekce nezlepší předpovědi, které z naměřených skórů skutečně děláme.
+- Ve zprávě se proto vždy uvádí i neopravená korelace a použité reliability.
+
+Korekce neodstraňuje potřebu měřit dobře: kvalitní měření s vysokou reliabilitou zůstává lepší cestou než dodatečná oprava.
+:::
 
 ### Vysoká korelace není shoda {#sec-korelace-shoda}
 
-Dva hodnotitelé posuzovali osm esejí na škále bodů. Jejich hodnocení korelují $r = 0{,}97$, ale hodnotitel B dává každé eseji o 3 až 5 bodů víc (průměry 13,5 a 17,5 bodu; obrázek [-@fig-shoda-hodnot]). Vysoká korelace říká, že oba seřadili eseje téměř stejně; o tom, zda dávají **stejné** body, neříká nic, protože $r$ se při posunu hodnot nemění. Kdybychom potřebovali, aby se hodnotitelé shodovali v bodech (například kvůli hranici pro splnění), museli bychom porovnat i rozdíly hodnot. Totéž platí pro dvě metody měření: vysoká korelace nedokazuje, že je lze zaměnit.
+Dva hodnotitelé bodovali osm esejí od 0 do 25 bodů. Jejich hodnocení korelují $r = 0{,}97$, ale hodnotitel B dává každé eseji o 3 až 5 bodů víc (průměry 13,5 a 17,5 bodu; obrázek [-@fig-shoda-hodnot]). Vysoká korelace říká, že hodnocení obou leží téměř přesně na přímce, takže oba seřadili eseje téměř stejně; o tom, zda dávají **stejné** body, neříká nic, protože $r$ se při posunu hodnot ani při jejich vynásobení kladným číslem nemění. Korelace tedy informuje o **relativní shodě** (*relative agreement*): zda hodnotitelé vidí eseje ve stejném vzájemném postavení. Neinformuje o **absolutní shodě** (*absolute agreement*): zda přidělují stejné hodnoty. Kdybychom potřebovali, aby se hodnotitelé shodovali v bodech (například kvůli hranici pro splnění), museli bychom porovnat i rozdíly hodnot. Totéž platí pro dvě metody měření: vysoká korelace nedokazuje, že je lze zaměnit.
 
 ![Hodnocení osmi esejí dvěma hodnotiteli. Body leží těsně podél přímky, korelace je 0,97, ale všechny jsou nad přerušovanou čarou shodných hodnot: hodnotitel B dává soustavně o 3 až 5 bodů víc.](../assets/chapter-10/plots/shoda-hodnot.svg){#fig-shoda-hodnot fig-alt="Bodový graf osmi esejí, hodnotitelka A vodorovně od 9 do 18 bodů, hodnotitel B svisle od 12 do 22 bodů. Body tvoří těsnou stoupající řadu. Přerušovaná úhlopříčka s popiskem shodné hodnoty leží pod všemi body, přibližně o 4 body níž. Nadpis: Vysoká korelace, ale ne shoda: r = 0,97."}
 
@@ -579,7 +698,7 @@ Postup volíme podle otázky, úrovně měření a grafu, nikoli podle toho, kte
 
 | Otázka a data | Graf ukazuje | Koeficient | Test | Interval |
 |---|---|---|---|---|
-| Lineární souvislost dvou intervalových proměnných | přibližně lineární mrak, bez odlehlých bodů, variabilita podobná | Pearsonovo $r$ | $t$-test, $n-2$ stupňů volnosti | Fisherův interval |
+| Lineární souvislost dvou intervalových proměnných | přibližně lineární vztah, bez odlehlých bodů, variabilita podobná | Pearsonovo $r$ | $t$-test, $n-2$ stupňů volnosti | Fisherův interval |
 | Monotónní souvislost; pořadová data nebo nestejně rychlý růst | body jen rostou (nebo jen klesají) | Spearmanovo $r_s$ nebo Kendallovo $\mathrm{τ}_b$ | permutační test nezávislosti | percentilový bootstrapový interval |
 | Pořadová data s mnoha shodami, výklad přes dvojice | překrývající se body | Kendallovo $\mathrm{τ}_b$ | permutační test nezávislosti | percentilový bootstrapový interval |
 | Vztah mění směr (obrácené U) | body nejprve rostou, pak klesají | žádný z koeficientů; popsat tvar | — | — |
@@ -591,38 +710,41 @@ Postup volíme podle otázky, úrovně měření a grafu, nikoli podle toho, kte
 
 ### Tři zprávy {#sec-tri-zpravy}
 
-Zpráva o korelaci obsahuje počet úplných dvojic, použitý koeficient a jeho hodnotu, interval spolehlivosti s metodou, výsledek testu s jeho nulovou hypotézou a věcnou interpretaci. Ve zprávách používáme [značky APA](kapitola_03.qmd#sec-reportovani-apa) a stejně jako v [kapitole 8](kapitola_08.qmd#sec-ukazka-sdeleni-08) píšeme desetinná čísla s nulou před desetinnou čárkou.
+Zpráva o korelaci obsahuje počet úplných dvojic, použitý koeficient a jeho hodnotu, interval spolehlivosti s metodou jeho výpočtu, výsledek testu s jeho nulovou hypotézou a věcnou interpretaci. Ve zprávách používáme [značky APA](kapitola_03.qmd#sec-reportovani-apa) a stejně jako v [kapitole 8](kapitola_08.qmd#sec-ukazka-sdeleni-08) píšeme desetinná čísla s nulou před desetinnou čárkou.
 
-> **Pearsonovo *r*.** U 40 studentů souvisela vyšší úzkost před testem s nižším výkonem (Pearsonovo *r*(38) = −0,52; 95% CI [−0,72; −0,25], Fisherova transformace; *p* < 0,001). Souvislost je zřetelně záporná, ale její velikost je odhadnuta jen hrubě; ze studie nelze usuzovat, že úzkost výkon zhoršuje.
+> **Pearsonovo *r*.** U 40 studentů souvisela vyšší úzkost před testem s nižším výkonem (Pearsonovo *r*(38) = −0,52; 95% CI [−0,72; −0,25], *p* < 0,001; interval spolehlivosti byl odhadnut pomocí Fisherovy transformace). Souvislost je zřetelně záporná, ale její velikost je odhadnuta jen hrubě; ze studie nelze usuzovat, že úzkost výkon zhoršuje.
 
-> **Spearmanův koeficient.** U 30 studentů souvisel vyšší vnímaný stres s horší kvalitou spánku (Spearmanovo $r_s$ = −0,48; 95% percentilový bootstrapový interval [−0,73; −0,13], 1 999 výběrů). V permutačním testu nezávislosti (1 999 přeskupení) vyšlo *p* = 0,007.
+> **Spearmanův korelační koeficient.** U 30 studentů souvisel vyšší vnímaný stres s horší kvalitou spánku (Spearmanovo $r_s$ = −0,48; 95% percentilový bootstrapový interval [−0,73; −0,13], 1 999 opakování). Permutační test nezávislosti (1 999 opakování) ukázal, že vztah je statisticky významný (*p* = 0,007).
 
-> **Kendallovo τ.** Pro tatáž data bylo Kendallovo $\mathrm{τ}_b$ = −0,38 (95% percentilový bootstrapový interval [−0,61; −0,10], 1 999 výběrů; permutační test nezávislosti, 1 999 přeskupení: *p* = 0,005). Studenti s vyšším stresem uváděli spíš horší spánek.
+> **Kendallovo τ.** Pro tatáž data činilo Kendallovo $\mathrm{τ}_b$ = −0,38 (95% percentilový bootstrapový interval [−0,61; −0,10], permutační test nezávislosti, *p* = 0,005; při výpočtu intervalu spolehlivosti i permutačního testu bylo použito 1 999 opakování). Studenti s vyšším stresem tedy uváděli spíš horší spánek.
 
-U Pearsonova $r$ se stupně volnosti uvádějí v závorce. Ve zprávě s permutačním testem pojmenujeme testovanou hypotézu (nezávislost) a počet přeskupení.
+U Pearsonova $r$ se stupně volnosti uvádějí v závorce. Ve zprávě s permutačním testem pojmenujeme testovanou hypotézu (nezávislost) a počet opakování (přeskupení).
 
 ### Korelační matice {#sec-korelacni-matice}
 
-Měříme-li víc proměnných, uvádějí se korelace všech dvojic v **korelační matici** (*correlation matrix*): proměnné jsou v řádcích i sloupcích a v buňce je korelace dvojice [@aron, s. 522]. Matice je souměrná, proto se často vyplňuje jen jedna polovina.
+Měříme-li víc proměnných, uvádějí se korelace všech dvojic v **korelační matici** (*correlation matrix*): proměnné jsou v řádcích i sloupcích a v buňce je korelace dvojice [@aron, s. 522]. Matice je souměrná, proto se často vyplňuje jen jedna polovina. Ve volném místě lze uvést další údaje: v tabulce [-@tbl-k10-09] je pod každou korelací její 95% interval spolehlivosti a nad úhlopříčkou počet studentů, z nichž byla spočítána. Hvězdičky za korelací stručně shrnují výsledek testu nulové korelace.
 
 ::: {.table-scroll role="region" aria-label="Korelační matice čtyř proměnných" tabindex="0"}
 
-| | Stres | Kvalita spánku | Úzkost před testem | Výkon |
+| Proměnné | Stres | Kvalita spánku | Úzkost před testem | Výkon |
 |---|---:|---:|---:|---:|
 | Stres | — | 107 | 116 | 103 |
-| Kvalita spánku | −0,62 | — | 111 | 99 |
-| Úzkost před testem | 0,57 | −0,41 | — | 106 |
-| Výkon | −0,34 | 0,34 | −0,33 | — |
+| Kvalita spánku | −0,62\*\*\* | — | 111 | 99 |
+| | [−0,72; −0,49] | | | |
+| Úzkost před testem | 0,57\*\*\* | −0,41\*\*\* | — | 106 |
+| | [0,43; 0,68] | [−0,55; −0,24] | | |
+| Výkon | −0,34\*\*\* | 0,34\*\*\* | −0,33\*\*\* | — |
+| | [−0,50; −0,15] | [0,15; 0,50] | [−0,49; −0,14] | |
 
 : Pearsonovy korelace čtyř proměnných u 120 studentů {#tbl-k10-09}
 
 :::
 
 ::: {.table-note}
-*Poznámka.* Pod úhlopříčkou Pearsonovy korelace, nad ní počet studentů, kteří měli obě hodnoty. Autorský modelový soubor 120 studentů s chybějícími hodnotami.
+*Poznámka.* Pod úhlopříčkou Pearsonovy korelace a pod každou z nich 95% interval spolehlivosti (Fisherova transformace), nad úhlopříčkou počet studentů, kteří měli obě hodnoty. \* *p* < 0,05; \*\* *p* < 0,01; \*\*\* *p* < 0,001 (oboustranný test nulové korelace, bez úpravy na počet testů). Autorský modelový soubor 120 studentů s chybějícími hodnotami.
 :::
 
-Pozor na dvě věci. **Chybějící hodnoty**: každá korelace v tabulce [-@tbl-k10-09] je spočítána z jiného počtu studentů (od 99 do 116), protože se použijí všechny úplné dvojice. Počty proto uvádíme. **Mnoho testů**: šest korelací znamená šest testů. Kdybychom všech šest zkoumali bez předchozí hypotézy a hledali „ty významné“, rostla by pravděpodobnost, že některá vyjde jako statisticky významná jen náhodou.
+Pozor na dvě věci. **Chybějící hodnoty**: každá korelace v tabulce [-@tbl-k10-09] je spočítána z jiného počtu studentů (od 99 do 116), protože se použijí všechny úplné dvojice. Počty proto uvádíme. **Mnoho testů**: šest korelací znamená šest testů. Kdybychom všech šest zkoumali bez předchozí hypotézy a hledali „ty významné“, rostla by pravděpodobnost, že alespoň jedna vyjde jako statisticky významná jen náhodou. Hvězdičky tento problém neřeší, a proto je čteme opatrně. Zde má všech šest korelací *p* < 0,001, a hvězdičky je tedy nijak nerozlišují. O velikosti souvislostí a přesnosti jejich odhadu řeknou víc intervaly: například pro souvislost stresu s kvalitou spánku připouštějí data korelace od −0,72 do −0,49, kdežto pro souvislost úzkosti s výkonem také korelace blízké −0,15.
 
 ### A znovu: souvislost není příčina {#sec-souvislost-pricina-10}
 
@@ -630,11 +752,11 @@ Korelace popisuje souvislost, nikoli její vysvětlení. Pokud úzkost souvisí 
 
 ## Korelace s dichotomickou proměnnou {#sec-dichotomicka}
 
-Pearsonův koeficient lze spočítat i tehdy, když jedna nebo obě proměnné mají jen dvě hodnoty. Tento oddíl ukazuje, že tak dostaneme veličiny, které už známe z kapitol 8 a 9.
+Pearsonův korelační koeficient lze spočítat i tehdy, když jedna nebo obě proměnné mají jen dvě hodnoty. Tento oddíl ukazuje, že tak dostaneme veličiny, které už známe z kapitol 8 a 9.
 
 ### Bodově biseriální korelace a *t*-test {#sec-bodove-biserialni}
 
-V [kapitole 8](kapitola_08.qmd#sec-klasicky-t-test) jsme porovnávali skóre pozornosti 30 studentů po běžném a 12 studentů po krátkém spánku (průměry 50 a 42 bodů). Zakódujme skupinu číslem: 0 pro běžný a 1 pro krátký spánek. Pearsonův koeficient mezi kódem skupiny a skóre se nazývá **bodově biseriální korelace** (*point-biserial correlation*) $r_{pb}$ a vychází $r_{pb} = -0{,}35$ [@howell, s. 305–308]. Znaménko určuje jen kódování: kdybychom kódovali obráceně, vyšlo by $0{,}35$. Záporné znaménko zde říká, že skupina s kódem 1 má nižší průměr.
+V [kapitole 8](kapitola_08.qmd#sec-klasicky-t-test) jsme porovnávali skóre pozornosti 30 studentů po běžném a 12 studentů po krátkém spánku (průměry 50 a 42 bodů). Skupinám přidělíme číselné kódy: 0 pro běžný a 1 pro krátký spánek. Pearsonův korelační koeficient mezi kódem skupiny a skóre se nazývá **bodově biseriální korelace** (*point-biserial correlation*) $r_{pb}$ a vychází $r_{pb} = -0{,}35$ [@howell, s. 305–308]. Znaménko určuje jen kódování: kdybychom kódovali obráceně, vyšlo by $0{,}35$. Záporné znaménko zde říká, že skupina s vyšším číselným kódem má nižší průměr (kladné znaménko by naopak znamenalo, že skupina s vyšším číselným kódem má také vyšší průměr).
 
 Test nulové korelace je přesně klasickým *t*-testem dvou nezávislých skupin:
 
@@ -646,7 +768,7 @@ se 40 stupni volnosti, stejně jako v kapitole 8. Výrok „skupiny se liší pr
 
 ### Koeficient φ jako Pearsonova korelace {#sec-phi-pearson}
 
-Jsou-li dichotomické obě proměnné, je Pearsonova korelace jejich kódů 0 a 1 rovna [koeficientu φ](kapitola_09.qmd#sec-phi-v) z kapitoly 9. Pro tabulku 200 studentů (pohlaví a zvýšený stres) vychází Pearsonův koeficient kódů (žena = 1, zvýšený stres = 1) 0,105, totéž co $\sqrt{\mathrm{χ}^2/n}$. Znaménko opět závisí jen na kódování.
+Jsou-li dichotomické obě proměnné, je Pearsonova korelace jejich kódů 0 a 1 rovna [koeficientu φ](kapitola_09.qmd#sec-phi-v) z kapitoly 9. Pro tabulku 200 studentů (pohlaví a zvýšený stres) vychází Pearsonův korelační koeficient kódů (žena = 1, zvýšený stres = 1) 0,105, přesně jako $\sqrt{\mathrm{χ}^2/n}$. Znaménko opět závisí jen na kódování.
 
 Ve všech třech případech jde o stejný výpočet. Mění se typ vstupů a interpretace: u dvou intervalových proměnných měříme těsnost lineární souvislosti, u jedné dichotomické proměnné rozdíl průměrů skupin, u dvou dichotomických proměnných souvislost v tabulce 2 × 2.
 
@@ -657,7 +779,11 @@ $$
 |r_{pb}| = \frac{d}{\sqrt{d^2 + h}}, \qquad h = (n_1 + n_2 - 2)\left(\frac{1}{n_1} + \frac{1}{n_2}\right).
 $$
 
-Pro skupiny po běžném a krátkém spánku je $d = 0{,}80$, $h = 40 \cdot (1/30 + 1/12) = 4{,}67$ a $|r_{pb}| = 0{,}80/\sqrt{0{,}64 + 4{,}67} = 0{,}35$. Pro velké a stejně velké skupiny je $h \approx 4$. Zjednodušený převod $r = d/2$, s nímž se lze setkat, je nesprávný: pro $d = 3$ by vedl k nemožné korelaci 1,5. Korelace navíc závisí na poměru velikostí skupin, kdežto *d* ne; při převodu proto vždy uvádějte, jak byly skupiny velké.
+Pro skupiny po běžném a krátkém spánku je $d = 0{,}80$, $h = 40 \cdot (1/30 + 1/12) = 4{,}67$ a $|r_{pb}| = 0{,}80/\sqrt{0{,}64 + 4{,}67} = 0{,}35$. Pokud jsou skupiny stejně velké a zároveň dost početné, je $h \approx 4$.
+
+![Vztah Cohenova *d* a bodově biseriální korelace pro 42 lidí rozdělených do dvou skupin třemi způsoby. Při stejném *d* vychází korelace tím menší, čím nerovnoměrněji jsou lidé rozděleni. Vztah není lineární: s rostoucím *d* se korelace zvětšuje stále pomaleji a k 1 se jen blíží. Bod označuje příklad z kapitoly 8.](../assets/chapter-10/plots/rpb-d.svg){#fig-rpb-d fig-alt="Spojnicový graf, vodorovně Cohenovo d od 0 do 3, svisle absolutní hodnota r pb od 0 do 1. Tři rostoucí křivky, které se postupně zplošťují: plná pro skupiny 21 a 21 dosahuje při d = 3 asi 0,84, přerušovaná pro 30 a 12 asi 0,81, čerchovaná pro 38 a 4 jen asi 0,67. Na přerušované křivce je vyznačen bod d = 0,80, r = 0,35 s popiskem příklad z kapitoly 8."}
+
+Obrázek [-@fig-rpb-d] ukazuje, jak vztah závisí na rozdělení lidí do skupin. Pro skupiny 21 a 21 je $h = 3{,}81$, pro 30 a 12 je $h = 4{,}67$ a pro 38 a 4 až $h = 11{,}05$. Čím je $h$ větší, tím menší korelaci dává totéž *d*. Zjednodušený převod $r = d/2$, s nímž se lze setkat, platí jen přibližně pro malá *d* a stejně velké, početné skupiny (pak $|r_{pb}| = d/\sqrt{d^2 + 4} \approx d/2$). Obecně je nesprávný: pro $d = 3$ by vedl k nemožné korelaci 1,5. Korelace navíc závisí na poměru velikostí skupin, kdežto *d* ne; při převodu proto vždy uvádějte, jak byly skupiny velké.
 :::
 
 ## Shrnutí {#sec-shrnuti-10}
@@ -667,11 +793,11 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Korelace popisuje směr a sílu souvislosti dvou proměnných měřených u týchž lidí. Ptá se na zachování relativního postavení, ne na průměrnou změnu ([Jakou otázku zodpovídá korelace?](#sec-otazka-korelace)).
 - Před výpočtem si data prohlédneme v bodovém grafu. Stejný koeficient mohou mít velmi různé mraky bodů a koeficient bez grafu nevykládáme ([Co poznáme z bodového grafu?](#sec-bodovy-graf)).
 - Kovariance shrnuje, zda se odchylky obou proměnných od průměrů shodují; Pearsonovo *r* je kovariance vydělená směrodatnými odchylkami, leží mezi −1 a 1 a měří těsnost lineární souvislosti ([Kovariance](#sec-kovariance); [Pearsonovo *r*](#sec-pearsonovo-r)).
-- Spearmanův koeficient je Pearsonova korelace pořadí a měří monotónní souvislost; Kendallovo τ<sub>b</sub> porovnává počty souhlasně a opačně seřazených dvojic a upravuje se pro shody ([Spearmanův koeficient](#sec-spearman); [Kendallovo τ](#sec-kendall)).
-- Pro Pearsonovo *r* testujeme nulovou korelaci *t*-testem s *n* − 2 stupni volnosti a přibližný interval získáme Fisherovou transformací; ve stejném výzkumu je interval informativnější než *p*-hodnota ([Test a interval pro Pearsonovo *r*](#sec-test-interval-r)).
-- Permutační test zjišťuje, zda by souvislost mohla vzniknout při nezávislosti; percentilový bootstrapový interval z převzorkovaných celých dvojic odhaduje velikost pořadového koeficientu ([Permutační test](#sec-permutacni-test); [Bootstrapový interval](#sec-bootstrap)).
-- Korelaci mění odlehlá pozorování, omezení rozsahu, výběr krajních skupin, sloučení skupin a chyba měření; vysoká korelace navíc neznamená shodu hodnot ([Co může změnit pozorovanou korelaci?](#sec-co-meni-korelaci)).
-- Postup volíme podle otázky, úrovně měření a grafu a ve zprávě uvádíme koeficient, interval s metodou, test s hypotézou a věcnou interpretaci; souvislost sama nedokládá příčinu ([Jak zvolit postup a sdělit výsledek?](#sec-volba-sdeleni-10)).
+- Spearmanův korelační koeficient je Pearsonova korelace pořadí a měří monotónní souvislost; Kendallovo τ<sub>b</sub> porovnává počty souhlasně a opačně seřazených dvojic a upravuje se pro shody ([Spearmanův korelační koeficient](#sec-spearman); [Kendallovo τ](#sec-kendall)).
+- Pro Pearsonovo *r* testujeme nulovou korelaci *t*-testem s *n* − 2 stupni volnosti a přibližný interval získáme Fisherovou transformací; často je interval informativnější než *p*-hodnota ([Test a interval pro Pearsonovo *r*](#sec-test-interval-r)).
+- Permutační test zjišťuje, zda by souvislost mohla vzniknout, i když obě proměnné ve skutečnosti nesouvisejí; percentilový bootstrapový interval z převzorkovaných celých dvojic odhaduje velikost pořadového koeficientu v populaci ([Permutační test](#sec-permutacni-test); [Bootstrapový interval](#sec-bootstrap)).
+- Korelaci mohou ovlivnit odlehlá pozorování, omezení rozsahu, výběr krajních skupin, sloučení skupin a chyba měření; vysoká korelace navíc neznamená absolutní shodu hodnot ([Co může změnit pozorovanou korelaci?](#sec-co-meni-korelaci)).
+- Postup volíme podle otázky, úrovně měření a grafu a ve zprávě uvádíme koeficient, interval spolehlivosti s metodou jeho výpočtu, test s hypotézou a věcnou interpretaci; souvislost sama nedokládá příčinu ([Jak zvolit postup a sdělit výsledek?](#sec-volba-sdeleni-10)).
 
 ## Cvičení {#sec-cviceni-10}
 
@@ -684,7 +810,7 @@ Pro každou situaci popište tvar souvislosti a rozhodněte, zda je vhodné ji s
 a) Bodový graf počtu hodin tréninku a počtu chyb v testu jemné motoriky: chyby s tréninkem stále klesají, zpočátku rychle, později pomalu.
 b) Bodový graf míry aktivace a výkonu v testu pozornosti: výkon je nejvyšší při střední aktivaci a nižší při nízké i vysoké.
 c) Spokojenost se studiem (škála 1–5) a ochota doporučit obor (škála 1–5) u 200 studentů; v grafu se body mnohokrát překrývají.
-d) Doba strávená přípravou a výsledek testu u 15 studentů; body tvoří přibližně lineární mrak, jen jeden student s 60 hodinami přípravy leží daleko vpravo, ostatní se připravovali 2 až 15 hodin.
+d) Doba strávená přípravou a výsledek testu u 15 studentů; body ukazují přibližně lineární vztah, jen jeden student s 60 hodinami přípravy leží daleko vpravo, ostatní se připravovali 2 až 15 hodin.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a) Monotónní, ale nelineární (zakřivený) pokles. Hodí se pořadový koeficient ($r_s$ nebo $\mathrm{τ}_b$), který měří, jak spolehlivě delší trénink doprovází méně chyb, bez ohledu na zakřivení. Pearsonovo *r* by sílu souvislosti mírně podcenilo, protože body nesledují přímku (srov. [co převod na pořadí zachová](#sec-co-zachova)).
@@ -709,7 +835,7 @@ a) Korelace říká, že si studenti mezi zářím a červnem zachovali relativn
 
 b) Ano. Pokud se u jedněch studentů úzkost zvýšila a u jiných stejně snížila, průměr se nezmění. Když se přitom pořadí studentů promíchá (původně nejúzkostnější jsou v červnu průměrní a naopak), body v grafu září × červen tvoří kulatý mrak bez směru a korelace je blízko nuly.
 
-c) Korelace popisuje souvislost, ne příčinu ([souvislost není příčina](#sec-souvislost-pricina-10)). Jiná vysvětlení: (1) studenti s horšími známkami ztrácejí motivaci učit se a tráví víc času hrami (opačný směr), (2) třetí proměnná, například menší podpora doma nebo nedostatek spánku, může zvyšovat hraní i zhoršovat známky. Korelace −0,30 navíc znamená široký mrak: mnoho hráčů má dobré známky. Kauzální závěr by vyžadoval jiné uspořádání studie, například náhodné přiřazení k omezení hraní.
+c) Korelace popisuje souvislost, ne příčinu ([souvislost není příčina](#sec-souvislost-pricina-10)). Jiná vysvětlení: (1) studenti s horšími známkami ztrácejí motivaci učit se a tráví víc času hrami (opačný směr), (2) třetí proměnná, například menší podpora doma nebo nedostatek spánku, může zvyšovat hraní i zhoršovat známky. Korelace −0,30 navíc znamená široce rozptýlené body: mnoho hráčů má dobré známky. Kauzální závěr by vyžadoval jiné uspořádání studie, například náhodné přiřazení k omezení hraní.
 :::
 
 ### 3. Kovariance a Pearsonovo *r* ručně
@@ -775,15 +901,15 @@ Dvě hodnotitelky seřadily sedm esejí od nejlepší (pořadí 1) po nejhorší
 
 : Pořadí sedmi esejí podle dvou hodnotitelek {#tbl-k10-u05}
 
-Spočítejte Spearmanův koeficient a vysvětlete, proč zde nemá smysl počítat Pearsonovo *r* z původních hodnocení.
+Spočítejte Spearmanův korelační koeficient a vysvětlete, proč zde nemá smysl počítat Pearsonovo *r* z původních hodnocení.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-Data jsou už pořadí, takže je nemusíme převádět. Spearmanův koeficient je Pearsonova korelace pořadí: `=CORREL(B2:B8;C2:C8)` na listu `U05` vrátí $r_s = 0{,}821$. Hodnotitelky se v pořadí esejí shodují dobře; vyměnily vždy jen sousední nebo blízké eseje.
+Data jsou už pořadí, takže je nemusíme převádět. Spearmanův korelační koeficient je Pearsonova korelace pořadí: `=CORREL(B2:B8;C2:C8)` na listu `U05` vrátí $r_s = 0{,}821$. Hodnotitelky se v pořadí esejí shodují dobře; vyměnily vždy jen sousední nebo blízké eseje.
 
-Hodnotitelky žádné „hodnoty“ nezaznamenaly, jen pořadí. Pearsonova korelace z pořadí je tu přímo Spearmanovým koeficientem; o jiných, původních hodnotách nic nevíme a vzdálenosti mezi esejemi nemůžeme posoudit.
+Hodnotitelky žádné „hodnoty“ nezaznamenaly, jen pořadí. Pearsonova korelace z pořadí je tu přímo Spearmanovým korelačním koeficientem; o jiných, původních hodnotách nic nevíme a vzdálenosti mezi esejemi nemůžeme posoudit.
 :::
 
-### 6. Spearman se shodnými hodnotami
+### 6. Spearmanův korelační koeficient se shodnými hodnotami
 
 Osm studentů uvedlo zájem o předmět (škála 1–5) a počet hodin přípravy týdně (list `U06`):
 
@@ -803,7 +929,7 @@ a) Zájem: hodnota 1 má pořadí 1, hodnota 2 pořadí 2, hodnota 3 pořadí 3,
 
 b) Pearsonova korelace pořadí je $r_s = 0{,}798$. Na listu `Spearman` vložte data do B2:C9, ostatní řádky nechte prázdné; výsledek je v H3.
 
-c) Pearsonovo *r* = 0,705 je menší. Student 7 se zájmem 4 se připravoval 12 hodin, mnohem víc než ostatní; jeho bod leží daleko od přímky, kterou by sledovali ostatní, a Pearsonovo *r* sníží. V pořadích má 12 hodin jen pořadí 8, tedy o jedno víc než 9 hodin. Spearmanův koeficient se ptá jen, zda vyšší zájem doprovází delší přípravu, a na tu otázku odpovídá silněji. Oba výsledky jsou ze stejných osmi lidí a o populaci vypovídají jen velmi nepřesně.
+c) Pearsonovo *r* = 0,705 je menší. Student 7 se zájmem 4 se připravoval 12 hodin, mnohem víc než ostatní; jeho bod leží daleko od přímky, kterou by sledovali ostatní, a Pearsonovo *r* sníží. V pořadích má 12 hodin jen pořadí 8, tedy o jedno víc než 9 hodin. Spearmanův korelační koeficient se ptá jen, zda vyšší zájem doprovází delší přípravu, a na tu otázku odpovídá silněji. Oba výsledky jsou ze stejných osmi lidí a o populaci vypovídají jen velmi nepřesně.
 :::
 
 ### 7. Kendallovo τ<sub>a</sub> ručně
@@ -883,13 +1009,13 @@ b) Interval je (0,62; 0,88). *p*-hodnota testuje, zda je korelace opakovaného m
 
 ### 11. Permutační test ručně pro čtyři lidi
 
-Čtyři lidé mají hodnoty X = 1, 2, 3, 4 a Y ve stejném pořadí, takže $\mathrm{τ} = 1$. Když hodnoty Y přeskupíme všemi 24 možnými způsoby, vyjde Kendallův koeficient takto:
+Čtyři lidé mají hodnoty X = 1, 2, 3, 4 a Y ve stejném pořadí, takže $\mathrm{τ} = 1$. Když hodnoty Y přeskupíme všemi 24 možnými způsoby, vyjde Kendallův korelační koeficient takto:
 
 | τ | −1 | −2/3 | −1/3 | 0 | 1/3 | 2/3 | 1 |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Počet přeskupení | 1 | 3 | 5 | 6 | 5 | 3 | 1 |
 
-: Rozdělení Kendallova koeficientu ve všech 24 přeskupeních čtyř hodnot {#tbl-k10-u11}
+: Rozdělení Kendallova korelačního koeficientu ve všech 24 přeskupeních čtyř hodnot {#tbl-k10-u11}
 
 a) Jakou nulovou hypotézu permutační test testuje?
 b) Spočítejte přesnou oboustrannou *p*-hodnotu pro pozorované $\mathrm{τ} = 1$. Lze se čtyřmi lidmi vůbec dosáhnout *p* ≤ 0,05?
@@ -944,7 +1070,7 @@ c) Interval od −0,85 do 0,40 zahrnuje silnou zápornou souvislost, žádnou i 
 
 Přečtěte si zprávu z fiktivní studie a najděte v ní alespoň čtyři problémy:
 
-> „U 45 studentů prvního ročníku, přijatých s nejlepšími výsledky přijímacích zkoušek, byla korelace přijímacího testu s prospěchem jen *r* = 0,12. Přijímací test tedy prospěch nepředpovídá. Spočítali jsme Pearsonův, Spearmanův i Kendallův koeficient a uvádíme Spearmanův, protože jako jediný vyšel statisticky významný (*p* = 0,04). Korelace osobnostního dotazníku se sebou samým po dvou týdnech byla *r* = 0,61, *p* < 0,001, takže dotazník je reliabilní. Protože úzkost korelovala s prospěchem *r* = −0,35, snížíme úzkost studentů relaxačním kurzem a prospěch se zlepší.“
+> „U 45 studentů prvního ročníku, přijatých s nejlepšími výsledky přijímacích zkoušek, byla korelace přijímacího testu s prospěchem jen *r* = 0,12. Přijímací test tedy prospěch nepředpovídá. Spočítali jsme Pearsonův, Spearmanův i Kendallův korelační koeficient a uvádíme Spearmanův, protože jako jediný vyšel statisticky významný (*p* = 0,04). Korelace osobnostního dotazníku se sebou samým po dvou týdnech byla *r* = 0,61, *p* < 0,001, takže dotazník je reliabilní. Protože úzkost korelovala s prospěchem *r* = −0,35, snížíme úzkost studentů relaxačním kurzem a prospěch se zlepší.“
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 1. **Omezení rozsahu.** Korelace je spočítaná jen u přijatých s nejlepšími výsledky; v úzkém rozsahu je korelace menší, než by byla mezi všemi uchazeči. Z $r = 0{,}12$ nelze usoudit, že test prospěch nepředpovídá ([omezení rozsahu a krajní skupiny](#sec-omezeni-rozsahu)).
@@ -964,13 +1090,13 @@ b) Zvolte koeficient a postup a zdůvodněte volbu. Spočítejte potřebné výs
 c) Napište krátkou zprávu podle [vzorových zpráv](#sec-tri-zpravy).
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
-a) Většina studentů tráví na sítích 10 až 250 minut a body tvoří mírně stoupající mrak: kdo tráví na sítích víc času, uvádí spíš vyšší osamělost. Student 17 uvádí 900 minut, tedy 15 hodin denně, a osamělost 4 body; leží daleko vpravo, víc než pět směrodatných odchylek nad průměrem.
+a) Většina studentů tráví na sítích 10 až 250 minut a body ukazují mírnou kladnou souvislost: kdo tráví na sítích víc času, uvádí spíš vyšší osamělost. Student 17 uvádí 900 minut, tedy 15 hodin denně, a osamělost 4 body; leží daleko vpravo, víc než pět směrodatných odchylek nad průměrem.
 
-b) Nejprve ověříme, zda údaj studenta 17 není chybou (15 hodin denně je sotva věrohodný průměr). Pokud chybu nelze vyloučit ani opravit, provedeme analýzu citlivosti. Se studentem 17 je Pearsonovo *r* = 0,04 (95% interval (−0,28; 0,34), *p* = 0,82), bez něj *r* = 0,47 (95% interval (0,18; 0,68), *t*(37) = 3,21, *p* = 0,003). Jediný bod tedy rozhoduje o tom, zda souvislost vidíme. Spearmanův koeficient je méně citlivý: se studentem 17 je 0,28, bez něj 0,34. Pro zprávu je vhodné uvést Pearsonovo *r* bez odlehlého pozorování spolu s důvodem a doplnit výsledek se všemi daty.
+b) Nejprve ověříme, zda údaj studenta 17 není chybou (15 hodin denně je sotva věrohodný průměr). Pokud chybu nelze vyloučit ani opravit, provedeme analýzu citlivosti. Se studentem 17 je Pearsonovo *r* = 0,04 (95% interval (−0,28; 0,34), *p* = 0,82), bez něj *r* = 0,47 (95% interval (0,18; 0,68), *t*(37) = 3,21, *p* = 0,003). Jediný bod tedy rozhoduje o tom, zda souvislost vidíme. Spearmanův korelační koeficient je méně citlivý: se studentem 17 je 0,28, bez něj 0,34. Pro zprávu je vhodné uvést Pearsonovo *r* bez odlehlého pozorování spolu s důvodem a doplnit výsledek se všemi daty.
 
 c) Ukázka:
 
-> Čtyřicet studentů uvedlo průměrný denní čas na sociálních sítích a vyplnilo škálu osamělosti. Údaj jednoho studenta (900 minut denně) byl nevěrohodný a nebylo možné jej ověřit; analýzu proto uvádíme bez něj i s ním. Bez tohoto studenta souvisel delší čas na sítích s vyšší osamělostí (Pearsonovo *r*(37) = 0,47; 95% CI [0,18; 0,68], Fisherova transformace; *p* = 0,003). Se všemi daty byla souvislost téměř nulová (*r*(38) = 0,04; *p* = 0,82); Spearmanův koeficient byl 0,34 bez tohoto studenta a 0,28 se všemi. Výsledek proto závisí na jediném údaji a je třeba jej ověřit na dalších datech. Ze studie nelze usuzovat, zda čas na sítích osamělost zvyšuje, nebo osamělí lidé tráví na sítích víc času.
+> Čtyřicet studentů uvedlo průměrný denní čas na sociálních sítích a vyplnilo škálu osamělosti. Údaj jednoho studenta (900 minut denně) byl nevěrohodný a nebylo možné jej ověřit; analýzu proto uvádíme bez něj i s ním. Bez tohoto studenta souvisel delší čas na sítích s vyšší osamělostí (Pearsonovo *r*(37) = 0,47; 95% CI [0,18; 0,68], Fisherova transformace; *p* = 0,003). Se všemi daty byla souvislost téměř nulová (*r*(38) = 0,04; *p* = 0,82); Spearmanův korelační koeficient byl 0,34 bez tohoto studenta a 0,28 se všemi. Výsledek proto závisí na jediném údaji a je třeba jej ověřit na dalších datech. Ze studie nelze usuzovat, zda čas na sítích osamělost zvyšuje, nebo osamělí lidé tráví na sítích víc času.
 :::
 
 ### 17. Nepovinně: interval BCa

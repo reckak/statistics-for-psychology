@@ -198,20 +198,48 @@ ch10_mat_data <- local({ n <- 120; s <- rnorm(n)
 ch10_mat_r <- cor(ch10_mat_data,use='pairwise.complete.obs')
 ch10_mat_n <- crossprod(!is.na(as.matrix(ch10_mat_data)))
 ch10_write_exports()
-# 9. Same r, different shapes: four authored data sets of 20 points tuned to r = 0.60. ------------
-set.seed(8010)
-ch10_same <- local({
-  target <- .6; n <- 20; x <- sort(runif(n,0,10)); e <- rnorm(n)
-  tune <- function(f,lo,hi) f(uniroot(function(s) ch10_r(f(s)$x,f(s)$y)-target,c(lo,hi))$root)
-  lin <- tune(function(s) data.frame(x=x,y=3+.5*x+s*e),.1,10)
-  cur <- tune(function(s) data.frame(x=x,y=.12*(x-2)^2+s*e),.01,10)
-  b <- rnorm(n-1); xo <- runif(n-1,0,4)
-  out <- tune(function(s) data.frame(x=c(xo,12),y=c(5+b,5+s)),.5,30)
-  g <- rnorm(n); xc <- c(runif(10,0,3),runif(10,6,9))
-  clu <- tune(function(s) data.frame(x=xc,y=c(rep(0,10),rep(s,10))+1.4*g),.01,10)
-  list(linearni=lin,zakriveny=cur,odlehly=out,shluky=clu)
-})
+# 9. Same r, different shapes: Anscombe's (1973) quartet, real published data (datasets::anscombe, n = 11 each).
+# Replaces the authored four data sets tuned to r = 0.60 (revision 2026-11-20, R84).
+ch10_same <- lapply(1:4,function(k) data.frame(x=datasets::anscombe[[paste0('x',k)]],y=datasets::anscombe[[paste0('y',k)]]))
+names(ch10_same) <- c('linearni','zakriveny','odlehly_y','odlehly_x')
 ch10_same_r <- sapply(ch10_same,function(d) ch10_r(d$x,d$y))
+# 13. Revision 2026-11-20 (R84): further teaching models and summaries. Each block has its own seed and runs
+# after ch10_write_exports(), so earlier values and the workbook exports stay unchanged.
+# 13a. Fisher transformation of the simulated sampling distribution (rho = 0.8, n = 20) from section 8.
+ch10_fisher_sim <- c(sd_z=sd(atanh(ch10_sim_r[,'rho08'])),prumer_z=mean(atanh(ch10_sim_r[,'rho08'])),se=1/sqrt(17),zrho=atanh(.8))
+ch10_skew <- function(v) mean((v-mean(v))^3)/sd(v)^3
+ch10_fisher_skew <- c(r=ch10_skew(ch10_sim_r[,'rho08']),z=ch10_skew(atanh(ch10_sim_r[,'rho08'])))
+# 13b. Exact permutation test for six students: selected reassignments for the illustration table.
+ch10_t6_ukazka_idx <- rbind(pozorovano=1:6,a=c(1,2,4,3,5,6),b=c(1,3,5,4,6,2),c=c(1,5,6,3,4,2))
+ch10_t6_ukazka <- t(apply(ch10_t6_ukazka_idx,1,function(i) c(ch10_t6$spanek[i],rs=ch10_rs(ch10_t6$stres,ch10_t6$spanek[i]),tb=ch10_taub(ch10_t6$stres,ch10_t6$spanek[i]))))
+ch10_t6_dist <- table(round(ch10_t6_pm[,2],3))
+# 13c. Three kinds of outlying observation added to one base cloud of 20 points.
+set.seed(13010)
+ch10_otypes <- local({ n <- 20; x <- rnorm(n,50,10); y <- 50+.6*(x-50)+rnorm(n,0,8)
+  base <- data.frame(x=round(x),y=round(y))
+  list(zaklad=base,krajni_x=rbind(base,data.frame(x=100,y=80)),kombinace=rbind(base,data.frame(x=68,y=36)),
+       obe=rbind(base,data.frame(x=100,y=20))) })
+ch10_otypes_stat <- sapply(ch10_otypes,function(d) c(r=ch10_r(d$x,d$y),rs=ch10_rs(d$x,d$y),tb=ch10_taub(d$x,d$y)))
+ch10_otypes_z <- sapply(ch10_otypes[-1],function(d) { b <- ch10_otypes$zaklad; k <- nrow(d)
+  c(zx=(d$x[k]-mean(b$x))/sd(b$x),zy=(d$y[k]-mean(b$y))/sd(b$y)) })
+# 13d. Measurement error: true scores (rho = 0.6) and observed scores with reliability 0.6 in both variables.
+set.seed(14010)
+ch10_rel_sim <- local({ n <- 200; tx <- rnorm(n); ty <- .6*tx+.8*rnorm(n); sde <- sqrt(.4/.6)
+  data.frame(tx=tx,ty=ty,x=tx+sde*rnorm(n),y=ty+sde*rnorm(n)) })
+ch10_rel_sim_r <- c(prave=ch10_r(ch10_rel_sim$tx,ch10_rel_sim$ty),namerene=ch10_r(ch10_rel_sim$x,ch10_rel_sim$y),
+  rel_x=ch10_r(ch10_rel_sim$tx,ch10_rel_sim$x)^2,rel_y=ch10_r(ch10_rel_sim$ty,ch10_rel_sim$y)^2)
+ch10_attenuace <- function(r,rxx,ryy) r/sqrt(rxx*ryy)
+ch10_rel_opr <- ch10_attenuace(round(ch10_rel_sim_r[['namerene']],2),.6,.6)
+ch10_rel_vic <- ch10_attenuace(.65,.81,.49)   # Muchinsky (1996, p. 68): corrected value above 1
+# 13e. Point-biserial correlation as a function of d for three splits of 42 people (optional extension).
+ch10_rpb_d <- function(d,n1,n2) { h <- (n1+n2-2)*(1/n1+1/n2); d/sqrt(d^2+h) }
+ch10_rpb_h <- c(stejne=40*(1/21+1/21),k8=40*(1/30+1/12),nerovne=40*(1/38+1/4))
+# 13f. Correlation matrix: Fisher intervals and p-values for every pair (pairwise complete cases).
+ch10_mat_inf <- local({ v <- colnames(ch10_mat_data); out <- NULL
+  for (j in 1:3) for (i in (j+1):4) { n <- ch10_mat_n[i,j]; p <- ch10_pearson(ch10_mat_r[i,j],n)
+    out <- rbind(out,data.frame(radek=v[i],sloupec=v[j],n=n,r=p[['r']],dolni=p[['dolni']],horni=p[['horni']],p=p[['p']])) }
+  out })
+ch10_stars <- function(p) ifelse(p<.001,'***',ifelse(p<.01,'**',ifelse(p<.05,'*','')))
 # Figures -------------------------------------------------------------------------------------------
 # Plotmath labels keep the subscripts of r_s and tau_b (no Unicode subscript b exists).
 ch10_lab_rs <- function(v) bquote(r[s] == .(ch10_num(v)))
@@ -247,11 +275,12 @@ ch10_draw('tvary', {
     title(main=bquote(list(r == .(ch10_num(ch10_forms_r['r',k])), r[s] == .(ch10_num(ch10_forms_r['rs',k])))),line=.8,cex.main=.92,font.main=1) }
 },width=9,height=6.2)
 ch10_draw('stejne-r', {
-  par(mfrow=c(1,4),mar=c(3,3,3.2,.5),mgp=c(1.6,.5,0))
-  tt <- c(linearni='Přibližně lineární',zakriveny='Zakřivený',odlehly='Jeden vzdálený bod',shluky='Dva shluky')
+  par(mfrow=c(1,4),mar=c(3.4,3.2,3.4,.5),mgp=c(1.9,.5,0))
+  tt <- c(linearni='I: přibližně lineární',zakriveny='II: zakřivený',odlehly_y='III: jeden bod mimo přímku',odlehly_x='IV: jeden vzdálený bod')
   for (k in names(ch10_same)) { d <- ch10_same[[k]]
-    plot(d$x,d$y,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.2,xlab='X',ylab='Y',xaxt='n',yaxt='n',bty='l',main=paste0(tt[[k]],'\nr = ',ch10_num(ch10_same_r[[k]])),cex.main=.95,font.main=1) }
-},width=10,height=3.4)
+    plot(d$x,d$y,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.3,xlab='X',ylab='Y',xlim=c(3,20),ylim=c(3,13),bty='l',
+         main=paste0(tt[[k]],'\nr = ',ch10_num(ch10_same_r[[k]])),cex.main=.95,font.main=1) }
+},width=10,height=3.5)
 ch10_draw('stres-spanek', {
   par(mar=c(4.6,4.7,3,.8)); tab <- as.data.frame(table(ch10_ss$stres,ch10_ss$spanek)); tab <- tab[tab$Freq>0,]
   x <- as.numeric(as.character(tab$Var1)); y <- as.numeric(as.character(tab$Var2))
@@ -312,4 +341,62 @@ ch10_draw('shoda-hodnot', {
   plot(d$A,d$B,xlim=c(8,24),ylim=c(8,24),pch=21,bg=ch10_fill,col=ch10_blue,cex=1.4,xlab='Hodnotitelka A (body)',ylab='Hodnotitel B (body)',main=paste0('Vysoká korelace, ale ne shoda: r = ',ch10_num(ch10_rat_r)),bty='l',asp=1,font.main=1)
   abline(0,1,lty=2,col=ch10_gray); text(20.5,19.6,'shodné hodnoty',srt=45,cex=.78,col=ch10_gray)
 },width=6.2,height=5)
+# Revision 2026-11-20 (R84): Fisher transformation, exact permutation distribution, kinds of outliers,
+# measurement error and the point-biserial correlation as a function of d.
+ch10_draw('fisher', {
+  par(mfrow=c(1,3),mar=c(4.4,4.4,3.4,.8))
+  r <- seq(-.995,.995,length.out=400)
+  plot(r,atanh(r),type='l',lwd=2,col=ch10_blue,xlab='Korelace r',ylab=expression('Převedená hodnota ' * z[r]),bty='l',ylim=c(-3,3),
+       main='Fisherova transformace\nnatahuje okraje stupnice',cex.main=.95,font.main=1)
+  abline(0,1,lty=3,col=ch10_gray); abline(h=0,v=0,col=ch10_pale)
+  points(c(ch10_uz_r,.8),atanh(c(ch10_uz_r,.8)),pch=21,bg=ch10_orange,col=ch10_ink,cex=1.3)
+  text(c(ch10_uz_r,.8),atanh(c(ch10_uz_r,.8)),c(paste0('r = ',ch10_num(ch10_uz_r,3),'\nz = ',ch10_num(atanh(ch10_uz_r),3)),paste0('r = 0,8\nz = ',ch10_num(atanh(.8),3))),pos=c(4,2),cex=.75)
+  v <- ch10_sim_r[,'rho08']
+  hist(v,breaks=seq(-.2,1,.02),col=ch10_fill,border='white',xlab='Výběrové r',ylab='Počet výběrů z 10 000',main='ρ = 0,8, n = 20: hodnoty r\nšikmé rozdělení',cex.main=.95,font.main=1)
+  abline(v=.8,col=ch10_orange,lwd=2)
+  zv <- atanh(v); h <- hist(zv,breaks=seq(-.4,2.8,.05),plot=FALSE)
+  plot(h,col=ch10_fill,border='white',xlab=expression('Převedené ' * z[r]),ylab='Počet výběrů z 10 000',main='Tytéž výběry po transformaci\npřibližně normální rozdělení',cex.main=.95,font.main=1)
+  zz <- seq(-.4,2.8,length.out=300); lines(zz,10000*.05*dnorm(zz,atanh(.8),1/sqrt(17)),col=ch10_ink,lwd=1.6)
+  abline(v=atanh(.8),col=ch10_orange,lwd=2)
+},width=10.5,height=4)
+ch10_draw('permutace-presna', {
+  par(mar=c(4.8,4.7,2.8,.8)); tb <- as.numeric(sub(',','.',names(ch10_t6_dist),fixed=TRUE)); f <- as.vector(ch10_t6_dist)
+  ext <- abs(tb)>=round(abs(ch10_t6_tau[['tau_b']]),3)-1e-9
+  plot(tb,f,type='h',lwd=9,lend=1,col=ifelse(ext,ch10_orange,ch10_mute),xlim=c(-1,1),ylim=c(0,max(f)*1.25),bty='l',xaxt='n',
+       xlab=expression(tau[b] ~ 'pro jedno ze 720 přiřazení hodnot kvality spánku'),ylab='Počet přiřazení',main='')
+  axis(1,at=seq(-1,1,.25),labels=ch10_num(seq(-1,1,.25)))
+  title(main=expression('Přesné permutační rozdělení ' * tau[b] * ' pro šest studentů'),font.main=1)
+  text(tb[ext],f[ext],f[ext],pos=3,cex=.78,col=ch10_orange)
+  legend('topright',legend=c('stejně nebo více vzdálené od nuly než pozorované −0,741: 48 ze 720','ostatní přiřazení'),
+         col=c(ch10_orange,ch10_mute),lwd=8,bty='n',cex=.78)
+},width=8.6,height=4.4)
+ch10_draw('odlehle-typy', {
+  par(mfrow=c(1,4),mar=c(4.2,3.8,4.6,.6),mgp=c(2.2,.6,0))
+  tt <- c(zaklad='Bez odlehlého pozorování',krajni_x='A: krajní hodnota X,\nbod ve směru vztahu',
+          kombinace='B: obvyklé X i Y,\nneobvyklá kombinace',obe='C: krajní X i Y,\nbod proti směru vztahu')
+  for (k in names(ch10_otypes)) { d <- ch10_otypes[[k]]; n <- nrow(d); new <- k!='zaklad'&seq_len(n)==n; s <- ch10_otypes_stat[,k]
+    plot(d$x,d$y,xlim=c(25,105),ylim=c(15,85),pch=21,bg=ifelse(new,ch10_orange,ch10_fill),col=ifelse(new,ch10_ink,ch10_blue),cex=ifelse(new,1.7,1.15),
+         xlab='X',ylab='Y',bty='l',main='')
+    title(main=tt[[k]],line=2.3,cex.main=.9,font.main=2)
+    title(main=bquote(list(r == .(ch10_num(s[['r']])), r[s] == .(ch10_num(s[['rs']])), tau[b] == .(ch10_num(s[['tb']])))),line=.6,cex.main=.86,font.main=1) }
+},width=11,height=3.9)
+ch10_draw('reliabilita', {
+  par(mfrow=c(1,2),mar=c(4.4,4.4,3.4,.8)); d <- ch10_rel_sim; lim <- c(-4.2,4.2)
+  plot(d$tx,d$ty,pch=16,col=adjustcolor(ch10_blue,.5),cex=.75,xlim=lim,ylim=lim,xlab='Pravý skór X',ylab='Pravý skór Y',bty='l',
+       main=paste0('Hodnoty bez chyby měření\nr = ',ch10_num(ch10_rel_sim_r[['prave']])),cex.main=.95,font.main=1)
+  plot(d$x,d$y,pch=16,col=adjustcolor(ch10_orange,.5),cex=.75,xlim=lim,ylim=lim,xlab='Naměřený skór X',ylab='Naměřený skór Y',bty='l',
+       main=paste0('Naměřené hodnoty, reliabilita obou měření 0,6\nr = ',ch10_num(ch10_rel_sim_r[['namerene']])),cex.main=.95,font.main=1)
+},width=9,height=4.5)
+ch10_draw('rpb-d', {
+  par(mar=c(4.6,4.7,2.8,.8)); d <- seq(0,3,.01)
+  sp <- list(c(21,21),c(30,12),c(38,4)); cl <- c(ch10_blue,ch10_orange,ch10_green); lt <- c(1,2,4)
+  plot(NA,xlim=c(0,3),ylim=c(0,1),xlab='Cohenovo d',ylab=expression('|' * r[pb] * '|'),bty='l',xaxt='n',yaxt='n',main='')
+  axis(1,at=0:6/2,labels=ch10_num(0:6/2,1)); axis(2,at=0:5/5,labels=ch10_num(0:5/5,1))
+  title(main=expression('Bodově biseriální korelace podle ' * italic(d) * ' a rozdělení 42 lidí do skupin'),font.main=1)
+  for (k in 1:3) lines(d,ch10_rpb_d(d,sp[[k]][1],sp[[k]][2]),col=cl[k],lwd=2,lty=lt[k])
+  points(.8,ch10_rpb_d(.8,30,12),pch=21,bg=ch10_orange,col=ch10_ink,cex=1.4)
+  segments(.45,.6,.78,ch10_rpb_d(.8,30,12)+.02,col=ch10_gray)
+  text(.45,.6,'příklad z kapitoly 8:\nd = 0,80, |r| = 0,35',pos=3,cex=.78)
+  legend('bottomright',legend=c('21 a 21','30 a 12','38 a 4'),title='Velikosti skupin',col=cl,lty=lt,lwd=2,bty='n',cex=.82)
+},width=8,height=4.6)
 options(ch10_old_options)

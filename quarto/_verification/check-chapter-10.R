@@ -21,7 +21,13 @@ rq(ch10_k8_r,.95,2); rq(ch10_k8_r,.948,3); rq(ch10_k8_sd,c(7.34,6.42,2.39),2); e
 rq(mean(ch10_k8$bezny-ch10_k8$kratky),3.5,1); rq(sqrt(4+36-24),4,0)
 # 10.2 figures.
 rq(ch10_uz_r,-.52,2); rq(ch10_forms_r['r',],c(.85,-.84,.87,-.15,.54,.88),2); rq(ch10_forms_r['rs',],c(.87,-.87,.88,-.19,-.12,.71),2)
-rq(ch10_same_r,rep(.6,4),3)
+# Anscombe's quartet (revision 2026-11-20): same means, SDs and r; claims about sets II-IV.
+local({ a <- datasets::anscombe
+  rq(ch10_same_r,rep(.82,4),2); rq(sapply(ch10_same,function(d) mean(d$x)),rep(9,4),2); rq(sapply(ch10_same,function(d) mean(d$y)),rep(7.5,4),2)
+  rq(sapply(ch10_same,function(d) sd(d$x)),rep(3.32,4),2); rq(sapply(ch10_same,function(d) sd(d$y)),rep(2.03,4),2)
+  stopifnot(nrow(a)==11,summary(lm(y2~x2+I(x2^2),a))$r.squared>.9999)
+  i <- a$y3!=max(a$y3); stopifnot(cor(a$x3[i],a$y3[i])>.9999,sum(i)==10)
+  stopifnot(sum(a$x4==8)==10,a$x4[a$x4!=8]==19,abs(a$y4[a$x4==19]-12.5)<1e-9) })
 # 10.3-10.4 hand example.
 stopifnot(mean(ch10_m6$uzkost)==23,mean(ch10_m6$vykon)==19,sum(ch10_m6_dx*ch10_m6_dy)==-138)
 eq(ch10_m6_dx*ch10_m6_dy,c(-33,-30,6,2,-28,-55)); eq(ch10_m6_cov,-27.6); rq(c(sd(ch10_m6$uzkost),sd(ch10_m6$vykon)),c(8.075,4.336),3)
@@ -62,6 +68,43 @@ eq(ch10_mat_n[upper.tri(ch10_mat_n)],c(107,116,111,103,99,106)); stopifnot(nrow(
 # 10.13 dichotomous variables and optional d.
 rq(ch10_rpb,-.35,2); rq(ch10_rpb,-.347,3); rq(ch10_rpb_t,2.34,2); stopifnot(ch10_rpb_df==40); rq(ch10_phi,.105,3)
 rq(ch10_r_to_d(.347355822,30,12),.80,2); rq(40*(1/30+1/12),4.67,2); rq(.8/sqrt(.64+4.6667),.35,2)
+# Revision 2026-11-20 (R84): new figures, tables and optional extensions.
+# Fisher transformation figure: z of the example r, skewness before and after, SD of z_r vs 1/sqrt(n-3).
+rq(atanh(ch10_uz_r),-.581,3); rq(atanh(.8),1.099,3); rq(1/sqrt(17),.243,3); rq(ch10_fisher_sim['sd_z'],.243,3)
+stopifnot(ch10_fisher_skew['r']< -1,abs(ch10_fisher_skew['z'])<.1)
+# Exact permutation distribution and the illustration table of three reassignments.
+stopifnot(sum(ch10_t6_dist)==720,max(ch10_t6_dist)==96,ch10_t6_dist[['0']]==96)
+local({ tb <- round(ch10_t6_pm[,2],3); eq(c(sum(tb==-.889),sum(tb==-.741),sum(tb==.741),sum(tb==.889)),c(8,16,16,8)) })
+eq(ch10_t6_ukazka[,1:6],rbind(c(6,6,4,5,3,3),c(6,6,5,4,3,3),c(6,4,3,5,3,6),c(6,3,3,4,5,6)))
+eq(sort(ch10_t6_ukazka[2,1:6]),sort(ch10_t6$spanek)); eq(sort(ch10_t6_ukazka[4,1:6]),sort(ch10_t6$spanek))
+rq(ch10_t6_ukazka[,'rs'],c(-.851,-.940,-.015,.269),3); rq(ch10_t6_ukazka[,'tb'],c(-.741,-.889,0,.371),3)
+eq(ch10_t6_ukazka[,'rs'],apply(ch10_t6_ukazka[,1:6],1,function(y) cor(ch10_t6$stres,y,method='spearman')))
+eq(ch10_t6_ukazka[,'tb'],apply(ch10_t6_ukazka[,1:6],1,function(y) kt(ch10_t6$stres,y)))
+# Three kinds of outlying observation: values in the caption and alt text; point B within both ranges.
+rq(ch10_otypes_stat['r',],c(.67,.76,.50,-.03),2); rq(ch10_otypes_stat['rs',],c(.66,.70,.51,.43),2); rq(ch10_otypes_stat['tb',],c(.52,.57,.41,.37),2)
+for (k in names(ch10_otypes)) { d <- ch10_otypes[[k]]; eq(ch10_otypes_stat[,k],c(cor(d$x,d$y),cor(d$x,d$y,method='spearman'),kt(d$x,d$y))) }
+local({ b <- ch10_otypes$zaklad; stopifnot(nrow(b)==20,68<=max(b$x),36>=min(b$y),100>max(b$x)+25); eq(range(b$x),c(32,70)); eq(range(b$y),c(33,74)) })
+# Measurement error simulation, correction for attenuation and Muchinsky's example above 1.
+rq(ch10_rel_sim_r[c('prave','namerene')],c(.62,.35),2); rq(ch10_rel_opr,.58,2); rq(.35/.6,.58,2); rq(ch10_rel_vic,1.03,2); rq(.65/(.9*.7),1.03,2)
+stopifnot(abs(ch10_rel_sim_r[['rel_x']]-.6)<.1,abs(ch10_rel_sim_r[['rel_y']]-.6)<.1)
+# Point-biserial correlation and d: h for three splits and values at d = 3.
+rq(ch10_rpb_h,c(3.81,4.67,11.05),2); rq(c(ch10_rpb_d(3,21,21),ch10_rpb_d(3,30,12),ch10_rpb_d(3,38,4)),c(.84,.81,.67),2); rq(ch10_rpb_d(.8,30,12),.35,2)
+# Correlation matrix: Fisher intervals and p-values against cor.test on pairwise complete cases.
+local({ m <- ch10_mat_inf
+  for (k in seq_len(nrow(m))) { ct <- cor.test(ch10_mat_data[[m$radek[k]]],ch10_mat_data[[m$sloupec[k]]])
+    eq(c(m$r[k],m$dolni[k],m$horni[k],m$p[k]),c(ct$estimate,ct$conf.int,ct$p.value)); stopifnot(ct$parameter+2==m$n[k]) }
+  rq(m$r,c(-.62,.57,-.34,-.41,.34,-.33),2); rq(m$dolni,c(-.72,.43,-.50,-.55,.15,-.49),2); rq(m$horni,c(-.49,.68,-.15,-.24,.50,-.14),2)
+  stopifnot(all(m$p<.001),all(ch10_stars(m$p)=='***')) })
+# BCa: z0 and percentile levels by the same formula in package boot (bca.ci), jackknife a close to boot::empinf.
+local({ t <- ch10_ss_1999$bt[,2]; t0 <- ch10_ss_tau[['tau_b']]; n <- nrow(ch10_ss)
+  eq(ch10_bca_tb[['z0']],qnorm(sum(t<t0)/length(t))); rq(ch10_bca_tb['z0'],.050,3)
+  if (requireNamespace('boot',quietly=TRUE)) {
+    d <- data.frame(x=ch10_ss$stres,y=ch10_ss$spanek); st <- function(dd,i) ch10_taub(dd$x[i],dd$y[i])
+    o <- structure(list(t0=t0,t=matrix(t),R=length(t),data=d,statistic=st,sim='ordinary',stype='i',strata=rep(1,n),weights=rep(1/n,n)),class='boot')
+    L <- boot::empinf(o,type='jack'); ab <- sum(L^3)/(6*sum(L^2)^1.5); stopifnot(abs(ab-ch10_bca_tb[['a']])<.001)
+    zq <- qnorm(c(.025,.975)); w <- ch10_bca_tb[['z0']]; al <- pnorm(w+(w+zq)/(1-ch10_bca_tb[['a']]*(w+zq)))
+    eq(al,ch10_bca_tb[c('alfa1','alfa2')]); stopifnot(all(abs(boot:::norm.inter(t,al)[,2]-ch10_bca_tb[c('dolni','horni')])<.005))
+  } else message('Package boot not available; BCa cross-check skipped.') })
 # Exercises.
 eq(ch10_u03_cov,-4.25); rq(ch10_u03_r,-.922,3); rq(c(sd(ch10_u03$spanek),sd(ch10_u03$chyby)),c(1.581,2.915),3)
 eq(ch10_cov(ch10_u03$spanek*60,ch10_u03$chyby),-255); eq(ch10_r(ch10_u03$spanek,10-ch10_u03$chyby),-ch10_u03_r)
