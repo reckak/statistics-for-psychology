@@ -77,7 +77,8 @@ patří před vizualizace, literaturu a přehledy.
 **Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
 výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
-této mapy. Existuje jich deset, v pořadí podle první navazující kapitoly a oddílu:
+této mapy. V postranní nabídce webu je jejich část ve výchozím stavu sbalená.
+Existuje jich čtrnáct, v pořadí podle první navazující kapitoly a oddílu:
 [co s rozdělením udělá posun a změna jednotek](../quarto/viz_posun_a_jednotky.qmd)
 ke kapitole 3 ([karta](kapitoly/03-poloha-variabilita.md#interaktivni-vizualizace-03)),
 [plochy pod normální křivkou](../quarto/viz_normalni_rozdeleni.qmd)
@@ -95,7 +96,10 @@ ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-v
 [kdy párování zpřesní odhad průměrného rozdílu](../quarto/viz_prinos_parovani.qmd),
 [co znamená rozdíl o *d* směrodatných odchylek](../quarto/viz_cohenovo_d.qmd)
 a [co prozradí dva intervaly vedle sebe o rozdílu průměrů](../quarto/viz_dva_intervaly.qmd)
-ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
+ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08))
+a [jak daleko je tabulka četností od nezávislosti](../quarto/viz_chi_kvadrat.qmd)
+(test chí-kvadrát) a [co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../quarto/viz_miry_souvislosti.qmd)
+ke kapitole 9 ([karta](kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
 stabilní identifikátory Quarta.

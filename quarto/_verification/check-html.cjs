@@ -677,10 +677,19 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
+    // The part with visualizations starts collapsed outside its own pages (assets/sidebar-collapse.js) and opens from the keyboard.
+    const vizToggle=groups.nth(1).locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
+    const vizList=groups.nth(1).locator('ul.sidebar-section');
+    assert.equal(await vizToggle.getAttribute('aria-expanded'),'false','Visualizations start collapsed in the sidebar');
+    assert.equal(await vizList.isVisible(),false,'Collapsed visualizations are hidden');
+    for (const i of [0,2]) assert.equal(await groups.nth(i).locator('ul.sidebar-section').isVisible(),true,'Other sidebar groups stay open');
+    await vizToggle.focus();await page.keyboard.press('Enter');await vizList.waitFor({state:'visible'});
+    await page.waitForTimeout(350);
+    assert.equal(await vizToggle.getAttribute('aria-expanded'),'true');
     for (const group of await groups.all()) {
       const toggle=group.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
       const body=group.locator('ul.sidebar-section');
@@ -1948,6 +1957,277 @@ const server = http.createServer((req, res) => {
     await diPlots.nth(4).waitFor();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Two-intervals visualization fits a phone');
     await di.screenshot({path:'tmp/verification/viz-dva-intervaly-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+
+    // From a table of frequencies to the chi-square test: values against R (scripts/viz-chi-kvadrat.R),
+    // editable table, buttons, rejected inputs, warning for small expected frequencies, full screen and phone.
+    await page.goto(base + 'quarto/kapitola_09.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-pearson-upravena .callout-tip a[href$="viz_chi_kvadrat.html"]').count(), 1, 'Chapter 9 links to the chi-square visualization');
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(1).locator('ul.sidebar-section').isVisible(), false, 'Visualizations collapsed on a chapter page');
+    await page.goto(base + 'quarto/viz_chi_kvadrat.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(1).locator('ul.sidebar-section').isVisible(), true, 'Visualizations open on their own page');
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(1).locator('a.sidebar-link.active').count(), 1, 'Current visualization marked in the sidebar');
+    const chi = page.locator('#viz-chi-kvadrat');
+    const chiPlots = chi.locator('.viz-plots svg[aria-label]');
+    await chiPlots.nth(1).waitFor();
+    assert.equal(await chiPlots.count(), 2, 'Row proportions and the chi-square distribution');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const chiState = () => chi.evaluate(el => el.vizCheck.state());
+    const chiNear = (a, b, msg, tol = 1e-8) => assert(Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    const chiCalc = f => chi.evaluate((el, v) => el.vizCheck.compute(v), f);
+    // R: right tail, density and critical value of the chi-square distribution with 4 degrees of freedom.
+    const chiTail = await chi.evaluate(el => [1, 5, 9.49, 11.78, 23.56, 60].map(x => el.vizCheck.chiRt(x, 4)));
+    [9.09795989569e-01, 2.87297495184e-01, 4.99531312233e-02, 1.90644694417e-02, 9.78457253274e-05, 2.90086312034e-12].forEach((w, i) => chiNear(chiTail[i], w, `Chi-square tail ${i}`, 1e-10 * Math.max(1, w * 1e4)));
+    const chiDens = await chi.evaluate(el => [0.5, 2, 6, 12].map(x => el.vizCheck.dchi(x, 4)));
+    [0.0973500978839, 0.1839397205857, 0.0746806025518, 0.0074362565300].forEach((w, i) => chiNear(chiDens[i], w, `Chi-square density ${i}`, 1e-10));
+    chiNear(await chi.evaluate(el => el.vizCheck.chiInvRt(0.05, 4)), 9.4877290368, 'Critical value');
+    // R: table of chapter 9 [chi2, p, V, minE, e11, contribution, Pearson and standardized residual of seniors x problem solving, standardized residual of young x social support].
+    const chiPick = c => [c.chi2, c.p, c.V, c.minE, c.e[0][0], c.contrib[2][0], c.pearson[2][0], c.std[2][0], c.std[0][2]];
+    const chiTables = [
+      [[[25, 18, 12], [30, 22, 28], [10, 20, 25]], [11.7753496503, 0.01910240056, 0.1760334123, 17.3684210526, 18.81578947, 4.1304747884, -2.0323569540, -2.9725673140, -2.2981938338]],
+      [[[50, 36, 24], [60, 44, 56], [20, 40, 50]], [23.5506993007, 9.826603202e-05, 0.1760334123, 34.7368421053, 37.63157895, 8.2609495767, -2.8741867679, -4.203845011, -3.2501368887]],
+      [[[19, 17, 19], [27, 26, 27], [19, 17, 19]], [0.0542540793, 0.9996386487, 0.0119488030, 17.3684210526, 18.81578947, 0.001803459698, 0.04246716023, 0.06211334686, 0.06211334686]],
+      [[[24, 17, 14], [27, 26, 27], [19, 17, 19]], [1.9385551948, 0.7470592171, 0.0714245129, 17.3684210526, 20.26315789, 0.07874231032, -0.2806106027, -0.4188901711, -1.1592076649]],
+      [[[25, 18, 12], [30, 22, 28], [20, 20, 25]], [4.8247265555, 0.3057589651, 0.1098263010, 16.5, 20.625, 0.7852564103, -0.8861469462, -1.364312474, -1.9863874195]],
+      [[[5, 4, 2], [6, 4, 6], [2, 4, 5]], [2.9452214452, 0.5670339177, 0.1968575977, 3.4736842105, 3.763157895, 0.82609495767, -0.9088976607, -1.3293725164, -1.3293725164]]
+    ];
+    for (const [f, want] of chiTables) chiPick(await chiCalc(f)).forEach((g, i) => chiNear(g, want[i], `Table ${f[0]} value ${i}`, 5e-9));
+    // Default state, verdict, statistics, derived tables and the Excel formula.
+    let chiS = await chiState();
+    assert.deepEqual(chiS.f, [[25, 18, 12], [30, 22, 28], [10, 20, 25]]);
+    assert.match(chiS.verdict, /χ² = 11,78 je větší než kritická hodnota 9,49 \(p = 0,019\).*zamítáme nulovou hypotézu/);
+    assert(!/nezamítáme/.test(chiS.verdict) && !chiS.warning, 'Default table rejects and has no warning');
+    assert.equal(chiS.excel, '=CHISQ.DIST.RT(11,7753;4)');
+    const chiStats = await chi.locator('[data-stats]').innerText();
+    for (const s of ['190', '11,78', '(3 − 1) × (3 − 1) = 4', '0,019', '9,49', '0,18', '17,37', '=CHISQ.DIST.RT(11,7753;4)']) assert(chiStats.includes(s), `Statistics show ${s}`);
+    const chiDerived = chi.locator('[data-derived] table');
+    assert.equal(await chiDerived.count(), 4, 'Four derived tables');
+    assert.deepEqual(await chiDerived.evaluateAll(ts => ts.map(t => t.getAttribute('aria-label'))), ['Očekávané četnosti', 'Příspěvky buněk ke statistice χ²', 'Pearsonova rezidua', 'Standardizovaná rezidua']);
+    const chiCells = i => chiDerived.nth(i).locator('tbody tr').evaluateAll(rows => rows.map(r => [...r.querySelectorAll('td')].map(td => td.textContent)));
+    assert.deepEqual(await chiCells(0), [['18,82', '17,37', '18,82'], ['27,37', '25,26', '27,37'], ['18,82', '17,37', '18,82']]);
+    assert.deepEqual(await chiCells(1), [['2,03', '0,02', '2,47'], ['0,25', '0,42', '0,01'], ['4,13', '0,40', '2,03'], ['11,78']]);
+    assert.deepEqual(await chiCells(2), [['1,43', '0,15', '−1,57'], ['0,50', '−0,65', '0,12'], ['−2,03', '0,63', '1,43']]);
+    assert.deepEqual(await chiCells(3), [['2,09', '0,22', '−2,30'], ['0,82', '−1,03', '0,20'], ['−2,97', '0,91', '2,09']]);
+    // Shading of standardized residuals: blue for positive, orange for negative, stronger for larger values.
+    const chiShade = await chiDerived.nth(3).locator('tbody td').evaluateAll(tds => tds.map(td => getComputedStyle(td).backgroundColor));
+    assert.match(chiShade[0], /rgba\(36, 93, 120/); assert.match(chiShade[6], /rgba\(181, 78, 36/);
+    const chiAlpha = c => Number(c.match(/([\d.]+)\)$/)[1]);
+    assert(chiAlpha(chiShade[6]) > chiAlpha(chiShade[2]) && chiAlpha(chiShade[2]) > chiAlpha(chiShade[1]), 'Shading grows with the size of the residual');
+    assert.deepEqual(await chi.locator('[data-input] td[data-row-total], [data-input] td[data-col-total], [data-input] td[data-n]').allTextContents(), ['55', '80', '55', '65', '60', '65', '190']);
+    // Buttons: doubling keeps V and the row proportions; independence; back to the chapter data.
+    const chiInput = (j, l) => chi.locator(`[data-input] input[data-j="${j}"][data-l="${l}"]`);
+    await chi.locator('[data-action="double"]').click();
+    chiS = await chiState();
+    assert.deepEqual(chiS.f, [[50, 36, 24], [60, 44, 56], [20, 40, 50]]);
+    chiNear(chiS.result.chi2, 23.5506993007, 'Doubled chi-square'); chiNear(chiS.result.V, 0.1760334123, 'Doubled V'); chiNear(chiS.result.rowProp[0][0], 25 / 55, 'Doubled row proportion', 1e-12);
+    assert.equal(await chiInput(0, 0).inputValue(), '50');
+    assert((await chi.locator('[data-stats]').innerText()).includes('< 0,001'), 'Small p-value shown as an inequality');
+    assert.match(chiS.verdict, /p < 0,001/);
+    await chi.locator('[data-action="independence"]').click();
+    chiS = await chiState();
+    chiNear(chiS.result.chi2, 0.0542540793, 'Independence chi-square'); assert.match(chiS.verdict, /je menší než kritická hodnota.*nezamítáme/);
+    await chi.locator('[data-action="chapter"]').click();
+    assert.deepEqual((await chiState()).f, [[25, 18, 12], [30, 22, 28], [10, 20, 25]]);
+    // Editing one cell from the keyboard changes the whole table of expected frequencies.
+    await chiInput(2, 0).focus();
+    await chiInput(2, 0).fill('20');
+    chiS = await chiState();
+    chiNear(chiS.result.chi2, 4.8247265555, 'Edited cell'); chiNear(chiS.result.e[0][0], 20.625, 'Expected frequency in another row', 1e-12);
+    assert.equal(await chi.locator('[data-input] td[data-n]').textContent(), '200');
+    await page.keyboard.press('ArrowDown'); assert.equal((await chiState()).f[2][0], 19, 'Arrow key lowers the frequency by one');
+    // Rejected values keep the last valid table.
+    await chi.locator('[data-action="chapter"]').click();
+    for (const bad of ['', '-3', '2.5', '100001']) {
+      await chiInput(0, 1).fill(bad);
+      assert.equal(await chiInput(0, 1).getAttribute('aria-invalid'), 'true', `Rejected frequency "${bad}"`);
+      assert(await chi.locator('#viz-chi-error').isVisible(), `Message for "${bad}"`);
+      assert.match(await chi.locator('#viz-chi-error').textContent(), /celé číslo od 0 do 100 000\. Používá se dál poslední platná hodnota\./);
+      assert.equal((await chiState()).f[0][1], 18, `Kept the frequency after "${bad}"`);
+    }
+    await chiInput(0, 1).fill('18');
+    assert.equal(await chiInput(0, 1).getAttribute('aria-invalid'), 'false'); assert(!(await chi.locator('#viz-chi-error').isVisible()), 'Message hidden after a valid value');
+    // A row or a column without people is rejected.
+    await chiInput(0, 0).fill('0'); await chiInput(0, 1).fill('0'); await chiInput(0, 2).fill('0');
+    assert.equal(await chiInput(0, 2).getAttribute('aria-invalid'), 'true');
+    assert.match(await chi.locator('#viz-chi-error').textContent(), /V každé věkové skupině musí být alespoň jeden člověk/);
+    assert.deepEqual((await chiState()).f[0], [0, 0, 12], 'Empty row not applied');
+    await chi.locator('[data-action="chapter"]').click();
+    await chiInput(0, 1).fill('0'); await chiInput(1, 1).fill('0'); await chiInput(2, 1).fill('0');
+    assert.match(await chi.locator('#viz-chi-error').textContent(), /Každou strategii musí uvést alespoň jeden člověk/);
+    assert.equal((await chiState()).f[2][1], 20, 'Empty column not applied');
+    // Small table: warning with a link to the chapter; the doubling button is disabled at the limit.
+    await chi.locator('[data-action="chapter"]').click();
+    for (const [j, row] of [[5, 4, 2], [6, 4, 6], [2, 4, 5]].entries()) for (const [l, v] of row.entries()) await chiInput(j, l).fill(String(v));
+    chiS = await chiState();
+    chiNear(chiS.result.chi2, 2.9452214452, 'Small table'); assert(chiS.warning, 'Warning for expected frequencies below 5');
+    assert(await chi.locator('[data-warning]').isVisible()); assert.match(await chi.locator('[data-warning]').innerText(), /3,47, tedy menší než 5/);
+    assert.equal(await chi.locator('[data-warning] a[href$="kapitola_09.html#sec-male-cetnosti"]').count(), 1, 'Warning links to the chapter');
+    await chiInput(1, 1).fill('60000');
+    assert(await chi.locator('[data-action="double"]').isDisabled(), 'Doubling disabled above the limit');
+    await chi.locator('[data-action="chapter"]').click();
+    assert(!(await chi.locator('[data-warning]').isVisible()) && !(await chi.locator('[data-action="double"]').isDisabled()));
+    // Full screen widens the charts and Escape closes it.
+    await chiPlots.nth(1).waitFor();
+    const chiFull = chi.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await chiFull.count(), 1, 'One full-screen button');
+    const chiInline = await chiPlots.nth(1).evaluate(el => el.getBoundingClientRect().width);
+    assert(chiInline <= 781, `Inline chart width ${chiInline}`);
+    await chi.screenshot({path:'tmp/verification/viz-chi-kvadrat-desktop.png'});
+    await chiFull.click();
+    await page.waitForFunction(w => document.querySelectorAll('#viz-chi-kvadrat .viz-plots svg[aria-label]')[1].getBoundingClientRect().width > w + 100, chiInline);
+    await page.screenshot({path:'tmp/verification/viz-chi-kvadrat-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await chiPlots.nth(1).waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Chi-square visualization fits a phone');
+    await chi.screenshot({path:'tmp/verification/viz-chi-kvadrat-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+
+    // Difference of proportions, risk ratio and odds ratio: values against R (scripts/viz-miry-souvislosti.R),
+    // both ways of entering the data, both views, the measure held fixed, the retrospective sample, full screen and phone.
+    await page.goto(base + 'quarto/kapitola_09.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-phi-v .callout-tip a[href$="viz_miry_souvislosti.html"]').count(), 1, 'Chapter 9 links to the visualization of effect measures');
+    await page.goto(base + 'quarto/viz_miry_souvislosti.html', { waitUntil: 'networkidle' });
+    const ms = page.locator('#viz-miry-souvislosti');
+    const msPlots = ms.locator('.viz-plots svg[aria-label]');
+    await msPlots.first().waitFor();
+    assert.equal(await msPlots.count(), 1, 'One chart of the three lines');
+    assert.equal(await ms.locator('[data-dots] svg[role="img"]').count(), 2, 'Two fields of persons');
+    assert.equal(await ms.locator('[data-retro-dots] svg[role="img"]').count(), 2, 'Two fields of the retrospective sample');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    assert(await page.locator('a[href*="ref-magnussonOddsRatio"]').count() > 0, 'The page cites the article that inspired it');
+    const msState = () => ms.evaluate(el => el.vizCheck.state());
+    const msNear = (a, b, msg, tol = 1e-9) => assert(a !== null && Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    const msCalc = t => ms.evaluate((el, v) => el.vizCheck.measures(...v), t);
+    // R: [p1, p0, diff, rr, odds1, odds0, or, chi2, phi, colDiff].
+    const msPick = m => [m.p1, m.p0, m.diff, m.rr, m.odds1, m.odds0, m.or, m.chi2, m.phi, m.colDiff];
+    const msTables = [
+      [[56, 84, 20, 97], [0.4, 0.170940170940, 0.229059829060, 2.34, 0.666666666667, 0.206185567010, 3.233333333333, 16.056567825570, 0.249953830955, 0.272753707473]],
+      [[20, 97, 56, 84], [0.170940170940, 0.4, -0.229059829060, 0.427350427350, 0.206185567010, 0.666666666667, 0.309278350515, 16.056567825570, -0.249953830955, -0.272753707473]],
+      [[189, 10845, 104, 10933], [1.71288743883e-02, 9.42285041225e-03, 7.70602397600e-03, 1.81780179445, 1.74273858921e-02, 9.51248513674e-03, 1.83205394191, 25.0138839672, 3.36650729651e-02, 0.147071582086]],
+      [[19, 74, 22, 187], [0.2043010752688, 0.1052631578947, 0.0990379173741, 1.9408602150538, 0.2567567567568, 0.1176470588235, 2.1824324324324, 5.3804030712477, 0.1334762308781, 0.1798897299318]],
+      [[40, 60, 17, 83], [0.4, 0.17, 0.23, 2.352941176471, 0.666666666667, 0.204819277108, 3.254901960784, 12.980002453687, 0.254754808136, 0.282173966384]]
+    ];
+    for (const [t, want] of msTables) msPick(await msCalc(t)).forEach((g, i) => msNear(g, want[i], `Table ${t} value ${i}`, 1e-9 * Math.max(1, Math.abs(want[i]))));
+    // A zero that would be divided by gives no value instead of infinity.
+    const msZero = await msCalc([5, 0, 0, 7]);
+    assert.deepEqual([msZero.rr, msZero.odds1, msZero.or], [null, null, null], 'Measures that cannot be computed are empty');
+    // R: lines of equal difference, equal risk ratio and equal odds ratio through the point of the chapter example.
+    const msSame = x => ms.evaluate((el, v) => el.vizCheck.same(56, 84, 20, 97, v), x);
+    const msLines = [[0.01, [0.2390598291, 0.0234, 0.03162699707]], [0.3, [0.5290598291, 0.702, 0.58083832335]], [0.5, [0.7290598291, null, 0.76377952756]], [0.9, [null, null, 0.96677740864]]];
+    for (const [x, want] of msLines) (await msSame(x)).forEach((g, i) => want[i] === null ? assert.equal(g, null, `Line ${i} impossible at ${x}`) : msNear(g, want[i], `Line ${i} at ${x}`, 1e-9));
+    // R: retrospective sample keeps the odds ratio and changes the ratio of proportions.
+    for (const [k, want] of [[0.5, [0.5714285714, 0.2919708029, 1.957142857]], [0.1, [0.8695652174, 0.6734006734, 1.291304348]]]) {
+      const r = await ms.evaluate((el, v) => el.vizCheck.retro(56, 84, 20, 97, v), k);
+      [r.share1, r.share0, r.ratio].forEach((g, i) => msNear(g, want[i], `Retrospective sample ${k} value ${i}`, 1e-9)); msNear(r.or, 3.233333333333, 'Odds ratio in the sample', 1e-10);
+    }
+    // Default state: frequencies of the chapter example, risk view, sentences and measures with substitution.
+    let msS = await msState();
+    assert.deepEqual([msS.mode, msS.view, msS.t], ['cetnosti', 'riziko', [[56, 84], [20, 97]]]);
+    assert.match(msS.verdict, /2,34násobkem rizika v referenční skupině „sportovní výkon“, šance je 3,23násobkem\. Poměr šancí není poměr rizik/);
+    const msStats = await ms.locator('[data-stats]').innerText();
+    for (const t of ['56/140 = 0,400', '20/117 = 0,171', '22,9 procentního bodu', 'přibližně 40 a 17', '0,400/0,171 = 2,34', '56/84 = 0,667', '20/97 = 0,206', '0,667/0,206 = 3,23']) assert(msStats.includes(t), `Measures show ${t}`);
+    const msPhi = await ms.locator('[data-phi]').innerText();
+    for (const t of ['257', '16,06', '0,25', '0,737 − 0,464 = 0,273', '0,229 × 0,273 = 0,0625']) assert(msPhi.includes(t), `Phi part shows ${t}`);
+    assert.deepEqual(await ms.locator('[data-input] td[data-row-total], [data-input] td[data-col-total], [data-input] td[data-n]').allTextContents(), ['140', '117', '76', '181', '257']);
+    const msLineRows = await ms.locator('table.viz-ms-lines tbody tr').evaluateAll(rows => rows.map(r => [...r.children].map(c => c.textContent)));
+    assert.deepEqual(msLineRows[0], ['0,01', '0,239', '0,023', '0,032']); assert.deepEqual(msLineRows[4], ['0,50', '0,729', 'není možné', '0,764']);
+    assert.match(await ms.locator('[data-dots] .viz-ms-group').first().textContent(), /Sexualizované fotografie: téma přítomno 56, celá skupina 140 osob\. Riziko 56\/140 = 0,400\./);
+    // The odds view splits each field into persons with and without the event.
+    const msBrackets = () => ms.locator('[data-dots] svg').first().locator('g path').count();
+    assert.equal(await msBrackets(), 1, 'Risk view: one bracket over the whole group');
+    await ms.locator('input[name="viz-ms-view"][value="sance"]').check();
+    assert.equal(await msBrackets(), 2, 'Odds view: brackets over both parts');
+    assert.match(await ms.locator('[data-dots] .viz-ms-group').nth(1).textContent(), /Sportovní výkon \(referenční skupina\): téma přítomno 20, téma nepřítomno 97\. Šance 20\/97 = 0,206\./);
+    await ms.locator('input[name="viz-ms-view"][value="riziko"]').check();
+    // Aspirin study: a rare event, both ratios almost equal, a small difference.
+    await ms.locator('[data-preset="aspirin"]').click();
+    msS = await msState();
+    msNear(msS.result.rr, 1.81780179445, 'Aspirin risk ratio', 1e-9); msNear(msS.result.or, 1.83205394191, 'Aspirin odds ratio', 1e-9);
+    assert.match(msS.verdict, /1,82násobkem.*1,83násobkem\. Jev je vzácný/); assert(!msS.dots.scaled && msS.dots.exact, 'Aspirin table drawn person by person');
+    const msAsp = await ms.locator('[data-stats]').innerText();
+    for (const t of ['0,77 procentního bodu', 'Kolik osob z 1 000', 'přibližně 17 a 9', '189/11 034 = 0,0171']) assert(msAsp.includes(t), `Aspirin measures show ${t}`);
+    assert((await ms.locator('[data-phi]').innerText()).includes('0,03'), 'Aspirin phi');
+    // Swapping the reference group inverts the ratios and the sign of phi.
+    await ms.locator('[data-preset="daniels"]').click();
+    await ms.locator('[data-swap]').click();
+    msS = await msState();
+    assert.deepEqual(msS.t, [[20, 97], [56, 84]]); msNear(msS.result.rr, 0.427350427350, 'Swapped risk ratio'); msNear(msS.result.or, 0.309278350515, 'Swapped odds ratio'); msNear(msS.result.phi, -0.249953830955, 'Swapped phi');
+    assert.equal(await ms.locator('[data-input] th[data-row="1"]').textContent(), 'sexualizované fotografie (referenční skupina)');
+    assert((await ms.locator('[data-stats]').innerText()).includes('−22,9 procentního bodu'), 'Negative difference with a true minus');
+    await ms.locator('[data-swap]').click();
+    // Table inputs: rejected values, an empty group, a zero cell and a very large table.
+    const msInput = (j, l) => ms.locator(`[data-input] input[data-j="${j}"][data-l="${l}"]`);
+    assert.equal(await msInput(1, 0).getAttribute('aria-label'), 'sportovní výkon, téma přítomno');
+    for (const bad of ['', '-1', '1.5', '100001']) {
+      await msInput(0, 0).fill(bad);
+      assert.equal(await msInput(0, 0).getAttribute('aria-invalid'), 'true', `Rejected frequency "${bad}"`);
+      assert.match(await ms.locator('#viz-ms-error').textContent(), /celé číslo od 0 do 100 000\. Používá se dál poslední platná hodnota\./);
+      assert.equal((await msState()).t[0][0], 56, `Kept the frequency after "${bad}"`);
+    }
+    await msInput(0, 0).fill('56'); assert(!(await ms.locator('#viz-ms-error').isVisible()), 'Message hidden after a valid value');
+    await msInput(1, 0).fill('0'); await msInput(1, 1).fill('0');
+    assert.match(await ms.locator('#viz-ms-error').textContent(), /V každé skupině musí být alespoň jedna osoba/); assert.deepEqual((await msState()).t[1], [0, 97], 'Empty group not applied');
+    await msInput(1, 1).fill('97');
+    msS = await msState(); assert.equal(msS.result.rr, null); assert((await ms.locator('[data-stats]').innerText()).includes('nelze spočítat'), 'Zero reference risk: ratio cannot be computed');
+    await msInput(1, 0).focus(); await page.keyboard.press('ArrowUp'); assert.equal((await msState()).t[1][0], 1, 'Arrow key raises the frequency by one');
+    await msInput(0, 1).fill('30000');
+    msS = await msState(); assert(msS.dots.scaled, 'Large table drawn per 10 000 persons'); assert.equal(msS.dots.g[0].n, 10000);
+    // Two risks: equal groups, the measure held fixed and its limits.
+    await ms.locator('[data-preset="daniels"]').click();
+    await ms.locator('input[name="viz-ms-mode"][value="rizika"]').check();
+    msS = await msState();
+    assert.deepEqual([msS.mode, msS.size, msS.p1, msS.p0], ['rizika', 100, 0.4, 0.17]); msNear(msS.result.or, 3.254901960784, 'Odds ratio of two risks'); msNear(msS.result.phi, 0.254754808136, 'Phi of two equal groups');
+    assert(!(await ms.locator('[data-input]').isVisible()) && await ms.locator('#viz-ms-p0').isVisible(), 'Sliders replace the table');
+    await ms.locator('input[name="viz-ms-hold"][value="sance"]').check();
+    await ms.locator('#viz-ms-p0').focus();
+    await page.keyboard.press('Home'); msS = await msState();
+    assert.equal(msS.p0, 0.01, 'Home sets the smallest reference risk'); msNear(msS.result.or, 3.254901960784, 'Odds ratio held at the lowest risk', 1e-9); msNear(msS.result.rr, 3.254901960784 / (0.99 + 3.254901960784 * 0.01), 'Risk ratio near the odds ratio', 1e-9);
+    await page.keyboard.press('End'); msS = await msState();
+    assert.equal(msS.p0, 0.99); msNear(msS.result.or, 3.254901960784, 'Odds ratio held at the highest risk', 1e-7); assert(!msS.limit, 'Equal odds ratio is always possible');
+    const msSlide = (id, v) => ms.locator(`#viz-ms-${id}`).evaluate((el, x) => { el.value = String(x); el.dispatchEvent(new Event('input', {bubbles: true})); }, v);
+    await msSlide('p0', 17); msNear((await msState()).p1, 0.4, 'Back on the line', 1e-9);
+    await ms.locator('input[name="viz-ms-hold"][value="rizika"]').check();
+    await msSlide('p0', 20); msS = await msState(); msNear(msS.p1, 0.2 * 0.4 / 0.17, 'Equal risk ratio', 1e-9); assert(!msS.limit);
+    await msSlide('p0', 50); msS = await msState();
+    assert(msS.limit && msS.p1 === 0.999, 'Equal risk ratio impossible above 1'); assert(await ms.locator('[data-limit]').isVisible()); assert.match(await ms.locator('[data-limit]').textContent(), /stejný poměr rizik není možný/);
+    await msSlide('p0', 17); assert(!(await ms.locator('[data-limit]').isVisible()), 'Limit note hidden again');
+    await ms.locator('input[name="viz-ms-hold"][value="rozdil"]').check();
+    await msSlide('p0', 30); msNear((await msState()).p1, 0.53, 'Equal difference', 1e-9);
+    await ms.locator('input[name="viz-ms-hold"][value="nic"]').check();
+    await msSlide('p0', 10); msNear((await msState()).p1, 0.53, 'Nothing held: the compared risk stays', 1e-9);
+    await ms.locator('input[name="viz-ms-size"][value="1000"]').check();
+    assert.equal(await ms.locator('#viz-ms-p0').getAttribute('step'), '0.1', 'Tenths of a per cent for groups of 1 000');
+    await msSlide('p1', 1.7); await msSlide('p0', 0.9); msS = await msState(); msNear(msS.result.rr, 1.88888888889, 'Rare event by sliders', 1e-9); msNear(msS.result.or, 1.90426133152, 'Rare event odds ratio', 1e-9);
+    // Retrospective sample in the page: the slider by keyboard and the comparison table.
+    await ms.locator('[data-preset="daniels"]').click();
+    await ms.locator('#viz-ms-keep').focus(); await page.keyboard.press('Home');
+    msS = await msState(); assert.equal(msS.keep, 0.1); msNear(msS.retro.ratio, 1.291304348, 'Ratio of proportions in the sample', 1e-9);
+    const msRetro = await ms.locator('table.viz-ms-retro').innerText();
+    for (const t of ['0,870', '0,673', '1,29', '2,34', '3,23', '10 % osob bez jevu']) assert(msRetro.includes(t), `Retrospective table shows ${t}`);
+    await page.keyboard.press('End'); assert.equal((await msState()).keep, 1);
+    // Full screen widens the chart and Escape closes it.
+    const msFull = ms.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await msFull.count(), 1, 'One full-screen button');
+    const msInline = await msPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    assert(msInline <= 561, `Inline chart width ${msInline}`);
+    await ms.screenshot({path:'tmp/verification/viz-miry-souvislosti-desktop.png'});
+    await msFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-miry-souvislosti .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, msInline);
+    await page.screenshot({path:'tmp/verification/viz-miry-souvislosti-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await msPlots.first().waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Visualization of effect measures fits a phone');
+    await ms.locator('[data-preset="aspirin"]').click();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Large fields of persons fit a phone');
+    await ms.screenshot({path:'tmp/verification/viz-miry-souvislosti-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });

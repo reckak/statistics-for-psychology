@@ -572,6 +572,10 @@ V tabulce zvládání je $m=9$. Postup ukazuje tabulka [-@tbl-k09-13]:
 Nejmenší *p*-hodnota 0,0030 je menší než $0{,}05/9=0{,}0056$, zamítáme. Druhá, 0,0216, je větší než $0{,}05/8=0{,}0063$, takže se zastavíme. Po korekci tedy jen o jediné buňce můžeme říci, že se od nezávislosti průkazně odchyluje: senioři uvádějí řešení problému méně často, než by odpovídalo nezávislosti. Tři buňky s reziduem za ±1,96, které by bez korekce vypadaly průkazně, korekcí neprojdou. Celkový vzorec popsaný řádkovými podíly tím nezaniká, jen jednotlivé buňky nedoložíme samostatně. Na listu `Tabulka` jsou tyto výpočty v oblasti A36:D50.
 :::
 
+::: {.callout-tip title="Vyzkoušejte si: od tabulky četností k testu chí-kvadrát"}
+V [interaktivní vizualizaci](viz_chi_kvadrat.qmd) měníte četnosti v tabulce věkové skupiny a strategie zvládání. Uvidíte, jak se s nimi mění očekávané četnosti, příspěvky buněk, obě rezidua, graf řádkových podílů, statistika $\mathrm{χ}^2$ a *p*-hodnota jako plocha pod křivkou chí-kvadrát rozdělení. Tlačítkem četnosti zdvojnásobíte a porovnáte, co se při větším výběru se stejnými podíly změní a co ne.
+:::
+
 ### Výpočet v Excelu {#sec-tabulka-excel}
 
 List `Tabulka` má v oblasti B3:D5 žluté vstupy s výchozími četnostmi z listu `Zvladani`; do nich můžete zadat i jinou tabulku 3 × 3. List doplní součty a počítá očekávané četnosti, příspěvky, test, řádkové podíly a obě rezidua. Klíčové vzorce:
@@ -758,6 +762,10 @@ kde $q$ je menší z počtu řádků a sloupců. Úvaha je stejná jako u φ: u 
 Obě míry mají omezení. Jejich velikost závisí i na okrajových součtech tabulky, a u tabulek větších než 2 × 2 nemá Cramérovo V jednoduchý výklad: neříká, které kategorie se liší. Ve studii o aspirinu je $\mathrm{φ}=0{,}034$, číslo blízké nule, ačkoli pro infarkt jde o podstatný rozdíl [@howell, s. 165–166]. Proto φ a V používáme jako souhrn a vedle nich vždy uvádíme podíly, rozdíl podílů a podle otázky i poměry. Slovní pásma „malá, střední, velká souvislost“ v této knize neuvádíme; velikost posuzujeme podle věcného kontextu, jako v [kapitole 6](kapitola_06.qmd#sec-tri-vyznamnosti).
 
 **Věcná interpretace příkladu:** po sexualizovaných fotografiích psalo o vlastním vzhledu o 23 procentních bodů více žen (40 % proti 17 %), s daty jsou slučitelné rozdíly přibližně od 12 do 33 bodů. Riziko tématu bylo 2,3krát vyšší. Každá žena viděla jen jeden typ fotografií. Zda byly ženy do skupin rozděleny náhodně, Field neuvádí; jen při náhodném přiřazení k experimentálním podmínkám by bylo možné rozdíl připsat samotným fotografiím.
+
+::: {.callout-tip title="Vyzkoušejte si: rozdíl podílů, poměr rizik a poměr šancí"}
+V [interaktivní vizualizaci](viz_miry_souvislosti.qmd) zadáte četnosti tabulky 2 × 2 nebo posuvníky obě rizika. Na dvou skupinách osob uvidíte, čím se liší riziko a šance, a vedle sebe rozdíl rizik, poměr rizik, poměr šancí a koeficient φ. Vyzkoušíte, jak se poměr rizik a poměr šancí rozcházejí podle rizika v referenční skupině a proč poměr šancí zůstává stejný i v retrospektivním výběru.
+:::
 
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: intervaly pro poměr rizik a poměr šancí" #rozsireni-intervaly-pomeru}
 Poměry nemají souměrné výběrové rozdělení: nemohou klesnout pod 0, ale nahoru omezeny nejsou. Interval proto počítáme po převodu [přirozeným logaritmem](kapitola_03.qmd#sec-entropie) (funkce **LN**, anglicky také LN), ve kterém je rozdělení přibližně souměrné, a meze vrátíme zpět exponenciální funkcí (**EXP**, anglicky také EXP). Logaritmus převádí násobení na sčítání; $\ln 1=0$ odpovídá nezávislosti.

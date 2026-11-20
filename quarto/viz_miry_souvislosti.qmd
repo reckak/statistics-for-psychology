@@ -1,0 +1,500 @@
+---
+code-copy: false
+---
+
+# Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce {#sec-viz-miry-souvislosti .unnumbered}
+
+O kolik častěji nastává jev v jedné skupině než ve druhé? Na tuto otázku odpovídají tři míry, které z téže tabulky 2 × 2 dávají tři různá čísla: rozdíl podílů, poměr rizik a poměr šancí. Vizualizace je ukazuje vedle sebe na dvou skupinách osob a nechává měnit četnosti nebo obě rizika, takže je vidět, kdy se poměr šancí blíží poměru rizik a kdy se od něj vzdaluje. Navazuje na kapitolu 9, oddíl [Jak velká je souvislost?](kapitola_09.qmd#sec-velikost-souvislosti), tedy na pododdíly [Rozdíl v procentních bodech](kapitola_09.qmd#sec-rozdil-bodech), [Poměr rizik a poměr šancí](kapitola_09.qmd#sec-pomer-rizik-sanci) a [Koeficient φ a Cramérovo V](kapitola_09.qmd#sec-phi-v).
+
+Členění vizualizace na pole osob s pohledem na riziko a na šance, na vliv rizika v referenční skupině a na retrospektivní výběr je inspirováno interaktivním článkem, který vytvořil Magnusson [-@magnussonOddsRatio]; příklady, text i provedení jsou vlastní.
+
+## Model a ovládání {#sec-viz-ms-ovladani .unnumbered}
+
+Pracujeme se dvěma skupinami osob a s jevem, který u každé osoby buď nastal, nebo nenastal. První skupinu srovnáváme s druhou, **referenční skupinou**; ta stojí ve jmenovateli obou poměrů. Po načtení stránky je nastaven příklad kapitoly: po sexualizovaných fotografiích se téma sebeobjektivizace objevilo v textu 56 ze 140 žen, po fotografiích sportovního výkonu (referenční skupina) 20 ze 117 žen.
+
+Data se zadávají dvěma způsoby, mezi nimiž přepínáte nahoře:
+
+- **Četnosti v tabulce.** Čtyři četnosti tabulky 2 × 2 přepisujete přímo (celá čísla od 0 do 100 000); součty se dopočítávají. Neplatnou hodnotu vizualizace odmítne se zprávou a dál používá poslední platnou; stejně odmítne tabulku, ve které by některá skupina neměla žádnou osobu. Když je v tabulce nula na místě, kterým by se dělilo, uvede vizualizace u příslušné míry „nelze spočítat“.
+- **Dvě rizika.** Posuvníky nastavíte riziko ve srovnávané a v referenční skupině. Obě skupiny jsou stejně velké: 100 osob (rizika po celých procentech), nebo 1 000 či 10 000 osob (po desetinách procenta). Volbou **Držet pevně** určíte, zda se má při změně rizika v referenční skupině zachovat rozdíl rizik, poměr rizik, nebo poměr šancí; riziko ve srovnávané skupině se pak dopočítá samo.
+
+Tlačítka nastaví údaje Danielsové z kapitoly a aspirinovou studii (189 infarktů mezi 11 034 muži s placebo, 104 mezi 11 037 muži s aspirinem). Tlačítko **Zaměnit referenční skupinu** prohodí obě skupiny.
+
+Pod ovládáním jsou čtyři části:
+
+- **Dvě skupiny osob.** Každá tečka je jedna osoba, sytě vybarvené jsou osoby, u nichž jev nastal. Přepínačem volíte pohled: *riziko* porovnává osoby s jevem s celou skupinou, *šance* s osobami bez jevu. Tečky jsou v obou pohledech tytéž, mění se jen to, čím dělíme. Pod poli jsou všechny míry s dosazením. Má-li tabulka víc než 25 000 osob, přepočítá se každá skupina na 10 000 osob.
+- **Co se stane při jiném riziku v referenční skupině.** Graf má na vodorovné ose riziko v referenční skupině a na svislé riziko ve srovnávané skupině. Bod je aktuální dvojice rizik; procházejí jím tři čáry, na kterých leží všechny dvojice se stejným rozdílem rizik, se stejným poměrem rizik a se stejným poměrem šancí. Na přerušované úhlopříčce jsou obě rizika stejná. Tabulka pod grafem uvádí hodnoty čar pro několik rizik v referenční skupině.
+- **Retrospektivní výběr.** Posuvník určuje, jaký podíl osob bez jevu se dostane do výběru; osoby s jevem zůstávají všechny. Nezařazené osoby v polích zblednou. Tabulka porovnává, co se ve výběru změní a co ne.
+- **Koeficient φ.** Statistika $\mathrm{χ}^2$, koeficient φ se znaménkem a jeho rozklad na rozdíl řádkových a sloupcových podílů.
+
+### Odkud se čísla berou {#sec-viz-ms-vypocet .unnumbered}
+
+Dosazení platí pro údaje Danielsové. V prvním řádku tabulky je srovnávaná skupina (56 žen s tématem a 84 bez něj), ve druhém referenční (20 a 97).
+
+**Riziko** je podíl osob, u nichž jev nastal, ve skupině: $56/140=0{,}400$ a $20/117=0{,}171$. **Rozdíl rizik** je $0{,}400-0{,}171=0{,}229$, tedy 22,9 procentního bodu ([Rozdíl v procentních bodech](kapitola_09.qmd#sec-rozdil-bodech)). **Poměr rizik** říká, kolikrát je riziko ve srovnávané skupině větší než v referenční:
+
+$$\text{poměr rizik}=\frac{0{,}400}{0{,}171}=2{,}34.$$
+
+**Šance** je počet osob, u nichž jev nastal, dělený počtem osob, u nichž nenastal: $56/84=0{,}667$ a $20/97=0{,}206$. **Poměr šancí** je podíl obou šancí ([Poměr rizik a poměr šancí](kapitola_09.qmd#sec-pomer-rizik-sanci)):
+
+$$\text{poměr šancí}=\frac{56/84}{20/97}=\frac{0{,}667}{0{,}206}=3{,}23.$$
+
+Čáry v grafu vycházejí z těchto definic. Označme riziko v referenční skupině $x$. Při stejném rozdílu rizik je riziko ve srovnávané skupině $x+0{,}229$, při stejném poměru rizik $2{,}34\times x$. Při stejném poměru šancí nejprve vynásobíme šanci v referenční skupině, $x/(1-x)$, poměrem šancí a výslednou šanci převedeme zpět na riziko: šanci dělíme součtem šance a jedničky. Pro $x=0{,}5$ je šance v referenční skupině 1, ve srovnávané skupině $3{,}23\times1=3{,}23$ a riziko $3{,}23/4{,}23=0{,}76$.
+
+V **retrospektivním výběru** zůstávají všechny osoby s jevem a jen část osob bez jevu. Kdyby se do výběru dostala polovina osob bez jevu, bylo by ve výběru srovnávané skupiny 56 osob s jevem a 42 bez něj. Podíl osob s jevem by byl $56/98=0{,}571$, a to už není riziko: o jeho velikosti rozhodl výzkumník tím, koho vybral. Šance by byla $56/42$ a v referenční skupině $20/48{,}5$; obě jsou dvojnásobné, takže jejich poměr zůstává 3,23.
+
+**Koeficient φ** je odmocnina z podílu statistiky $\mathrm{χ}^2$ a počtu osob; se znaménkem jej dává vzorec z četností ([Koeficient φ a Cramérovo V](kapitola_09.qmd#sec-phi-v)):
+
+$$\mathrm{φ}=\sqrt{\frac{\mathrm{χ}^2}{n}}=\sqrt{\frac{16{,}06}{257}}=0{,}25,\qquad \mathrm{φ}=\frac{f_{11}\,f_{22}-f_{12}\,f_{21}}{\sqrt{f_{1+}\,f_{2+}\,f_{+1}\,f_{+2}}}=\frac{56\times97-84\times20}{\sqrt{140\times117\times76\times181}}=0{,}25.$$
+
+Druhá mocnina φ je součin rozdílu řádkových podílů (rozdílu rizik, 0,229) a rozdílu sloupcových podílů ($56/76-84/181=0{,}273$): $0{,}229\times0{,}273=0{,}0625$.
+
+```{ojs}
+//| echo: false
+{
+  // Colours: orange for the compared group, blue for the reference group (as in the chapter figure);
+  // saturated = the event occurred, light = it did not, pale = left out of the retrospective sample.
+  const blue = "#245D78", orange = "#B54E24", green = "#3B7D3A", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17";
+  const FILL = [{ev: orange, non: "#F2C9AB", out: "#F8EFE8"}, {ev: blue, non: "#A9D3E3", out: "#EAF2F5"}];
+  const CELL_MAX = 100000, DOT_LIMIT = 25000, XS = [0.01, 0.05, 0.1, 0.3, 0.5, 0.7, 0.9];
+  const PRESETS = {
+    daniels: {t: [[56, 84], [20, 97]], labels: {g: ["sexualizované fotografie", "sportovní výkon"], ev: "téma přítomno", non: "téma nepřítomno"}},
+    aspirin: {t: [[189, 10845], [104, 10933]], labels: {g: ["placebo", "aspirin"], ev: "infarkt", non: "bez infarktu"}}
+  };
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const S = {mode: "cetnosti", view: "riziko", hold: "nic", size: 100, p1: 0.40, p0: 0.17, t: clone(PRESETS.daniels.t), labels: clone(PRESETS.daniels.labels), keep: 1, held: null, limit: false};
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, k) => { let s = v.toFixed(k); if (Number(s) === 0) s = Math.abs(0).toFixed(k); return minus(s.replace(".", ",")); };
+  const int = v => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const NA = "nelze spočítat";
+  const num = (v, k = 2) => v === null ? NA : fixed(v, k);
+  // Risks and proportions: three decimals, four for values below 0,1 (rare events).
+  const prop = v => v === null ? NA : fixed(v, Math.abs(v) < 0.1 && v !== 0 ? 4 : 3);
+  const points = v => `${fixed(100 * v, Math.abs(v) < 0.1 ? 2 : 1)} procentního bodu`;
+  const pct = v => `${fixed(100 * v, v < 0.1 || v > 0.9 ? 2 : 1).replace(/,0+$/, "")} %`;
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+  // All measures of a 2 x 2 table: first row = compared group, second row = reference group, first column = event.
+  // A measure that would divide by zero is null.
+  function measures(a, b, c, d) {
+    const n1 = a + b, n0 = c + d, n = n1 + n0, e = a + c, f = b + d;
+    const div = (x, y) => y > 0 ? x / y : null;
+    const p1 = a / n1, p0 = c / n0, odds1 = div(a, b), odds0 = div(c, d);
+    const cross = n1 * n0 * e * f;
+    const col1 = div(a, e), col2 = div(b, f);
+    return {a, b, c, d, n1, n0, n, p1, p0, diff: p1 - p0, rr: div(p1, p0), odds1, odds0, or: odds1 !== null && odds0 !== null && odds0 > 0 ? odds1 / odds0 : null,
+      chi2: cross > 0 ? n * (a * d - b * c) ** 2 / cross : null, phi: cross > 0 ? (a * d - b * c) / Math.sqrt(cross) : null,
+      col1, col2, colDiff: col1 !== null && col2 !== null ? col1 - col2 : null};
+  }
+  // Risk in the compared group for the reference risk x when one measure stays the same; null when no such risk exists.
+  const inside = y => y > 0 && y < 1 ? y : null;
+  const same = {
+    rozdil: (m, x) => inside(x + m.diff),
+    rizika: (m, x) => m.rr === null ? null : inside(m.rr * x),
+    sance: (m, x) => m.or === null ? null : inside(m.or * x / (1 - x + m.or * x))
+  };
+  // Retrospective sample: all persons with the event and the share k of the persons without it.
+  function retro(m, k) {
+    const s1 = m.a / (m.a + k * m.b), s0 = m.c / (m.c + k * m.d);
+    return {k, kept1: k * m.b, kept0: k * m.d, share1: s1, share0: s0, ratio: s0 > 0 ? s1 / s0 : null, or: m.or};
+  }
+  // Table in use: the entered frequencies, or two equally large groups with the chosen risks.
+  const table = () => S.mode === "cetnosti" ? S.t : [[S.p1 * S.size, (1 - S.p1) * S.size], [S.p0 * S.size, (1 - S.p0) * S.size]];
+  const current = () => { const t = table(); return measures(t[0][0], t[0][1], t[1][0], t[1][1]); };
+  const tableProblem = t => t.some(r => r[0] + r[1] === 0) ? "V každé skupině musí být alespoň jedna osoba." : null;
+
+  const radio = (name, value, label) => html`<label><input type="radio" name="viz-ms-${name}" value="${value}"><span>${label}</span></label>`;
+  const slider = (id, label) => html`<div class="viz-field viz-t-df">
+    <label for="viz-ms-${id}">${label}</label>
+    <div class="viz-t-slider"><span class="viz-hint" aria-hidden="true" data-min="${id}"></span><input id="viz-ms-${id}" type="range" aria-describedby="viz-ms-${id}-value"><span class="viz-hint" aria-hidden="true" data-max="${id}"></span></div>
+    <output id="viz-ms-${id}-value" for="viz-ms-${id}" class="viz-t-value" aria-live="polite"></output>
+  </div>`;
+  const lineSwatch = (stroke, dash, w = 2.4) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = fill => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}" stroke="${gray}" stroke-width="0.5"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-miry-souvislosti">
+    <div class="viz-controls">
+      <fieldset class="viz-choice">
+        <legend>Zadání dat</legend>
+        ${radio("mode", "cetnosti", "četnosti v tabulce")}
+        ${radio("mode", "rizika", "dvě rizika")}
+      </fieldset>
+    </div>
+    <div data-mode="cetnosti">
+      <p class="viz-hint" id="viz-ms-input-hint">Četnosti jsou celá čísla od 0 do 100 000; součty se dopočítávají.</p>
+      <div class="viz-bay-table-wrap" data-input></div>
+      <p class="viz-error viz-chi-error" id="viz-ms-error" role="alert" hidden></p>
+    </div>
+    <div data-mode="rizika" hidden>
+      <div class="viz-controls">
+        <fieldset class="viz-choice">
+          <legend>Velikost každé skupiny</legend>
+          ${radio("size", "100", "100 osob")}
+          ${radio("size", "1000", "1 000 osob")}
+          ${radio("size", "10000", "10 000 osob")}
+        </fieldset>
+      </div>
+      <div class="viz-controls viz-ms-row">
+        ${slider("p1", html`Riziko ve srovnávané skupině: <span data-name="0"></span>`)}
+        ${slider("p0", html`Riziko v referenční skupině: <span data-name="1"></span>`)}
+      </div>
+      <div class="viz-controls viz-ms-row">
+        <fieldset class="viz-choice">
+          <legend>Držet pevně při změně rizika v referenční skupině</legend>
+          ${radio("hold", "nic", "nic")}
+          ${radio("hold", "rozdil", "rozdíl rizik")}
+          ${radio("hold", "rizika", "poměr rizik")}
+          ${radio("hold", "sance", "poměr šancí")}
+        </fieldset>
+      </div>
+      <p class="viz-limit" data-limit hidden></p>
+    </div>
+    <div class="viz-pj-presets" role="group" aria-label="Příklady a záměna skupin">
+      <button type="button" data-preset="daniels">Údaje Danielsové</button>
+      <button type="button" data-preset="aspirin">Aspirinová studie</button>
+      <button type="button" data-swap>Zaměnit referenční skupinu</button>
+    </div>
+
+    <section class="viz-part" aria-labelledby="viz-ms-part1">
+      <h3 id="viz-ms-part1" class="viz-part-title">Dvě skupiny osob</h3>
+      <div class="viz-controls">
+        <fieldset class="viz-choice">
+          <legend>Pohled</legend>
+          ${radio("view", "riziko", "riziko: osoby s jevem proti celé skupině")}
+          ${radio("view", "sance", "šance: osoby s jevem proti osobám bez jevu")}
+        </fieldset>
+      </div>
+      <div class="viz-legend" data-legend></div>
+      <div data-dots></div>
+      <p class="viz-ss-summary" data-verdict aria-live="polite"></p>
+      <dl class="viz-stats" data-stats></dl>
+    </section>
+
+    <section class="viz-part" aria-labelledby="viz-ms-part2">
+      <h3 id="viz-ms-part2" class="viz-part-title">Co se stane při jiném riziku v referenční skupině</h3>
+      <div class="viz-legend" data-curve-legend></div>
+      <div class="viz-plots" data-plots></div>
+      <div data-lines></div>
+    </section>
+
+    <section class="viz-part" aria-labelledby="viz-ms-part3">
+      <h3 id="viz-ms-part3" class="viz-part-title">Retrospektivní výběr</h3>
+      <div class="viz-controls">
+        ${slider("keep", "Podíl osob bez jevu zařazených do výběru")}
+      </div>
+      <div class="viz-legend" data-retro-legend></div>
+      <div data-retro-dots></div>
+      <div data-retro></div>
+    </section>
+
+    <section class="viz-part" aria-labelledby="viz-ms-part4">
+      <h3 id="viz-ms-part4" class="viz-part-title">Koeficient φ</h3>
+      <dl class="viz-stats" data-phi></dl>
+      <p class="viz-note" data-phi-note></p>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const plots = $("[data-plots]"), errorBox = $("#viz-ms-error");
+
+  // Editable 2 x 2 table with computed totals; row and column headers follow the current labels.
+  $("[data-input]").innerHTML = `<table class="viz-bay-table viz-chi-input viz-ms-input" aria-label="Četnosti tabulky 2 × 2, které lze měnit">
+    <thead><tr><th scope="col">Skupina</th><th scope="col" data-col="ev"></th><th scope="col" data-col="non"></th><th scope="col">Celkem</th></tr></thead>
+    <tbody>${[0, 1].map(j => `<tr><th scope="row" data-row="${j}"></th>${[0, 1].map(l => `<td><input type="number" inputmode="numeric" min="0" max="${CELL_MAX}" step="1" data-j="${j}" data-l="${l}" aria-describedby="viz-ms-input-hint viz-ms-error"></td>`).join("")}<td data-row-total="${j}"></td></tr>`).join("")}
+    <tr class="viz-bay-total"><th scope="row">Celkem</th><td data-col-total="0"></td><td data-col-total="1"></td><td data-n></td></tr></tbody></table>`;
+  const cells = [...root.querySelectorAll("[data-input] input")];
+  function showError(message) {
+    errorBox.hidden = !message;
+    errorBox.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+  }
+  const readCell = input => { const raw = input.value.trim(); if (!/^\d+$/.test(raw)) return null; const v = Number(raw); return v <= CELL_MAX ? v : null; };
+  for (const input of cells) input.addEventListener("input", () => {
+    const j = Number(input.dataset.j), l = Number(input.dataset.l), v = readCell(input);
+    let message = v === null ? "Četnost musí být celé číslo od 0 do 100 000." : null, next = null;
+    if (!message) { next = clone(S.t); next[j][l] = v; message = tableProblem(next); }
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+    if (message) { showError(message); return; }
+    S.t = next;
+    if (!cells.some(c => c.getAttribute("aria-invalid") === "true")) showError(null);
+    render();
+  });
+
+  // Sliders of the two risks: whole per cent for groups of 100 persons, tenths of a per cent otherwise.
+  const step = () => S.size === 100 ? 0.01 : 0.001;
+  const snap = p => { const s = step(); return Math.min(1 - s, Math.max(s, Math.round(p / s) * s)); };
+  // The measure kept when the reference risk moves is stored when the choice or the compared risk changes.
+  function storeHeld() { const m = measures(S.p1, 1 - S.p1, S.p0, 1 - S.p0); S.held = {rozdil: m.diff, rizika: m.rr, sance: m.or}; S.limit = false; }
+  function follow() {
+    if (S.hold === "nic" || !S.held) { S.limit = false; return; }
+    const h = S.held[S.hold], x = S.p0;
+    const y = S.hold === "rozdil" ? x + h : S.hold === "rizika" ? h * x : h * x / (1 - x + h * x);
+    S.limit = !(y >= 0.001 && y <= 0.999);
+    S.p1 = Math.min(0.999, Math.max(0.001, y));
+  }
+  const p1Slider = $("#viz-ms-p1"), p0Slider = $("#viz-ms-p0"), keepSlider = $("#viz-ms-keep");
+  p1Slider.addEventListener("input", () => { S.p1 = Number(p1Slider.value) / 100; storeHeld(); render(); });
+  p0Slider.addEventListener("input", () => { S.p0 = Number(p0Slider.value) / 100; follow(); render(); });
+  keepSlider.min = "10"; keepSlider.max = "100"; keepSlider.step = "10";
+  keepSlider.addEventListener("input", () => { S.keep = Number(keepSlider.value) / 100; render(); });
+  root.querySelectorAll('input[name="viz-ms-mode"]').forEach(el => el.addEventListener("change", () => { S.mode = el.value; render(); }));
+  root.querySelectorAll('input[name="viz-ms-view"]').forEach(el => el.addEventListener("change", () => { S.view = el.value; render(); }));
+  root.querySelectorAll('input[name="viz-ms-hold"]').forEach(el => el.addEventListener("change", () => { S.hold = el.value; storeHeld(); render(); }));
+  root.querySelectorAll('input[name="viz-ms-size"]').forEach(el => el.addEventListener("change", () => { S.size = Number(el.value); S.p1 = snap(S.p1); S.p0 = snap(S.p0); storeHeld(); render(); }));
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const p = PRESETS[b.dataset.preset];
+    S.mode = "cetnosti"; S.t = clone(p.t); S.labels = clone(p.labels);
+    syncInputs(); render();
+  }));
+  $("[data-swap]").addEventListener("click", () => {
+    S.labels.g.reverse(); S.t.reverse();
+    [S.p1, S.p0] = [S.p0, S.p1]; storeHeld();
+    syncInputs(); render();
+  });
+  function syncInputs() {
+    for (const input of cells) { input.value = String(S.t[Number(input.dataset.j)][Number(input.dataset.l)]); input.setAttribute("aria-invalid", "false"); }
+    showError(null);
+  }
+
+  // Field of persons: segments side by side with one empty column between them, each filled column by column
+  // from the top; one path per colour and a bracket above every segment.
+  function dotsSvg(segments, rows, cell, label) {
+    const gap = cell * 0.14, inner = cell - gap, top = 9;
+    const paths = new Map(), spans = [];
+    let col = 0, used = 0;
+    for (const parts of segments) {
+      const total = d3.sum(parts, d => d.n);
+      if (!total) continue;
+      if (spans.length) col += 1;
+      const start = col; let i = 0;
+      for (const {n, fill} of parts) {
+        if (!paths.has(fill)) paths.set(fill, []);
+        const list = paths.get(fill);
+        for (let j = 0; j < n; j++, i++) list.push(`M${((start + Math.floor(i / rows)) * cell).toFixed(2)} ${(top + (i % rows) * cell).toFixed(2)}h${inner.toFixed(2)}v${inner.toFixed(2)}h${(-inner).toFixed(2)}z`);
+      }
+      col = start + Math.ceil(total / rows);
+      used = Math.max(used, Math.min(rows, total));
+      spans.push([start, col]);
+    }
+    const width = Math.max(cell, col * cell - gap), height = top + Math.max(1, used) * cell - gap;
+    const svg = d3.create("svg").attr("width", width).attr("height", height).attr("viewBox", `0 0 ${width} ${height}`).attr("role", "img").attr("aria-label", label);
+    for (const [fill, list] of paths) if (list.length) svg.append("path").attr("d", list.join("")).attr("fill", fill);
+    const g = svg.append("g").attr("stroke", gray).attr("stroke-width", 1.2).attr("fill", "none").attr("aria-hidden", "true");
+    for (const [a, b] of spans) g.append("path").attr("d", `M${a * cell} 7V2H${b * cell - gap}V7`);
+    return svg.node();
+  }
+  // Whole persons to draw: the table itself, or 10 000 persons per group for very large tables.
+  function shown(m) {
+    const scaled = m.n > DOT_LIMIT, group = (ev, n) => { const N = scaled ? 10000 : Math.round(n), e = Math.min(N, Math.round(scaled ? ev / n * 10000 : ev)); return {ev: e, non: N - e, n: N}; };
+    const g = [group(m.a, m.n1), group(m.c, m.n0)];
+    const exact = !scaled && [m.a, m.b, m.c, m.d].every(v => Math.abs(v - Math.round(v)) < 1e-9);
+    return {g, exact, scaled};
+  }
+  const rowsFor = (n, narrow) => n <= 200 ? 10 : n <= 2000 ? (narrow ? 40 : 25) : (narrow ? 100 : 50);
+  function dotLayout(D, W, split) {
+    const nMax = Math.max(D.g[0].n, D.g[1].n), rows = rowsFor(nMax, W < 520);
+    const cols = Math.max(...D.g.map(g => split ? Math.ceil(g.ev / rows) + 1 + Math.ceil(g.non / rows) : Math.ceil(g.n / rows)));
+    return {rows, cell: Math.max(1.5, Math.min(14, Math.floor(W / (cols + 1) * 100) / 100))};
+  }
+
+  function drawDots(m, W) {
+    const D = shown(m), split = S.view === "sance", {rows, cell} = dotLayout(D, W, split);
+    const about = D.exact ? "" : "přibližně ";
+    const box = $("[data-dots]"); box.replaceChildren();
+    D.g.forEach((g, i) => {
+      const name = S.labels.g[i] + (i === 1 ? " (referenční skupina)" : "");
+      const value = i === 0 ? (split ? m.odds1 : m.p1) : (split ? m.odds0 : m.p0);
+      const text = split
+        ? `${cap(name)}: ${S.labels.ev} ${about}${int(g.ev)}, ${S.labels.non} ${about}${int(g.non)}. Šance ${int(g.ev)}/${int(g.non)}${value === null ? `, ${NA}` : ` ${D.exact ? "=" : "≈"} ${prop(value)}`}.`
+        : `${cap(name)}: ${S.labels.ev} ${about}${int(g.ev)}, celá skupina ${int(g.n)} osob. Riziko ${int(g.ev)}/${int(g.n)} ${D.exact ? "=" : "≈"} ${prop(value)}.`;
+      const parts = [{n: g.ev, fill: FILL[i].ev}, {n: g.non, fill: FILL[i].non}];
+      const wrap = html`<div class="viz-ms-dots"><p class="viz-ms-group">${text}</p></div>`;
+      wrap.append(dotsSvg(split ? [[parts[0]], [parts[1]]] : [parts], rows, cell, text));
+      box.append(wrap);
+    });
+    if (D.scaled) box.append(html`<p class="viz-note">Tabulka má víc než 25 000 osob, každá skupina je proto přepočtena na 10 000 osob.</p>`);
+    $("[data-legend]").innerHTML = [0, 1].map(i => `<span>${boxSwatch(FILL[i].ev)}<span>${S.labels.g[i]}: ${S.labels.ev}</span></span><span>${boxSwatch(FILL[i].non)}<span>${S.labels.non}</span></span>`).join("");
+    return D;
+  }
+
+  // Sentences and measures with substitution.
+  const fold = (v, what) => v === null ? `${what} ${NA}` : `${what} je ${num(v)}násobkem`;
+  function verdict(m) {
+    const g1 = `„${S.labels.g[0]}“`, g0 = `„${S.labels.g[1]}“`;
+    if (m.rr === null || m.or === null) return `Ve skupině ${g1} je riziko ${prop(m.p1)}, v referenční skupině ${g0} ${prop(m.p0)}. Některý z poměrů nelze spočítat, protože by se dělilo nulou.`;
+    return `Riziko ve skupině ${g1} je ${num(m.rr)}násobkem rizika v referenční skupině ${g0}, šance je ${num(m.or)}násobkem. ${Math.abs(Math.log(m.or / m.rr)) < 0.05 ? "Jev je vzácný, a oba poměry jsou proto téměř stejné." : "Poměr šancí není poměr rizik: číst jej jako násobek rizika by bylo chybné."}`;
+  }
+  const base = m => Math.min(m.p1, m.p0) >= 0.05 ? [100, "ze 100"] : Math.min(m.p1, m.p0) >= 0.005 ? [1000, "z 1 000"] : [10000, "z 10 000"];
+  function statsRows(m) {
+    const [B, from] = base(m), whole = Number.isInteger(Math.round(m.a * 1e6) / 1e6) && Number.isInteger(Math.round(m.b * 1e6) / 1e6) && Number.isInteger(Math.round(m.c * 1e6) / 1e6) && Number.isInteger(Math.round(m.d * 1e6) / 1e6);
+    const cnt = v => whole ? int(v) : fixed(v, 1);
+    return [
+      [`Riziko: ${S.labels.g[0]}`, `${cnt(m.a)}/${cnt(m.n1)} = <strong>${prop(m.p1)}</strong>`],
+      [`Riziko: ${S.labels.g[1]} (referenční)`, `${cnt(m.c)}/${cnt(m.n0)} = <strong>${prop(m.p0)}</strong>`],
+      ["Rozdíl rizik", `${prop(m.p1)} − ${prop(m.p0)} = ${prop(m.diff)}, tedy <strong>${points(m.diff)}</strong>`],
+      [`Kolik osob ${from}`, `přibližně ${int(m.p1 * B)} a ${int(m.p0 * B)}`],
+      ["Poměr rizik", m.rr === null ? `${NA}: riziko v referenční skupině je 0` : `${prop(m.p1)}/${prop(m.p0)} = <strong>${num(m.rr)}</strong>`],
+      [`Šance: ${S.labels.g[0]}`, m.odds1 === null ? `${cnt(m.a)}/0, ${NA}` : `${cnt(m.a)}/${cnt(m.b)} = ${prop(m.odds1)}`],
+      [`Šance: ${S.labels.g[1]} (referenční)`, m.odds0 === null ? `${cnt(m.c)}/0, ${NA}` : `${cnt(m.c)}/${cnt(m.d)} = ${prop(m.odds0)}`],
+      ["Poměr šancí", m.or === null ? `${NA}: v tabulce je nula, kterou by se dělilo` : `${prop(m.odds1)}/${prop(m.odds0)} = <strong>${num(m.or)}</strong>`]
+    ];
+  }
+
+  const LINES = [
+    {key: "rozdil", label: "stejný rozdíl rizik", stroke: green, dash: null},
+    {key: "rizika", label: "stejný poměr rizik", stroke: hiText, dash: "7,4"},
+    {key: "sance", label: "stejný poměr šancí", stroke: blue, dash: "2,3"}
+  ];
+  function chart(container, m) {
+    const full = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const width = Math.min(full, root.classList.contains("viz-is-fullscreen") ? 760 : 560), small = width < 520;
+    const style = {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"};
+    const grid = d3.range(1, 500).map(i => i / 500);
+    const curve = key => grid.map(x => ({x, y: same[key](m, x)})).filter(d => d.y !== null);
+    const tick = t => fixed(t, 1);
+    const described = LINES.map(L => `${L.label}: při riziku 0,5 v referenční skupině ${(v => v === null ? "není možné" : fixed(v, 2))(same[L.key](m, 0.5))}`).join("; ");
+    const plot = Plot.plot({
+      width, height: Math.round(width * 0.86), marginLeft: small ? 50 : 58, marginRight: 14, marginTop: 14, marginBottom: 46, style,
+      x: {domain: [0, 1], label: `Riziko v referenční skupině (${S.labels.g[1]})`, labelAnchor: "center", labelArrow: "none", tickFormat: tick},
+      y: {domain: [0, 1], label: `Riziko ve srovnávané skupině (${S.labels.g[0]})`, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 46, tickFormat: tick},
+      ariaLabel: "Riziko ve srovnávané skupině podle rizika v referenční skupině při stejném rozdílu rizik, stejném poměru rizik a stejném poměru šancí",
+      ariaDescription: `Aktuální rizika: ${prop(m.p0)} v referenční a ${prop(m.p1)} ve srovnávané skupině. ${cap(described)}.`,
+      marks: [
+        Plot.line([{x: 0, y: 0}, {x: 1, y: 1}], {x: "x", y: "y", stroke: gray, strokeWidth: 1.2, strokeDasharray: "4,4"}),
+        ...LINES.map(L => Plot.line(curve(L.key), {x: "x", y: "y", stroke: L.stroke, strokeWidth: S.mode === "rizika" && S.hold === L.key ? 4 : 2.2, strokeDasharray: L.dash})),
+        Plot.dot([m], {x: "p0", y: "p1", r: 6, fill: ink, stroke: "white", strokeWidth: 1.5}),
+        Plot.ruleY([0], {stroke: ink}), Plot.ruleX([0], {stroke: ink})
+      ]
+    });
+    container.replaceChildren(plot);
+    $("[data-curve-legend]").innerHTML = LINES.map(L => `<span>${lineSwatch(L.stroke, L.dash)}<span>${L.label}</span></span>`).join("") + `<span>${lineSwatch(gray, "4,4", 1.4)}<span>obě rizika stejná</span></span><span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="${ink}"/></svg><span>aktuální rizika</span></span>`;
+  }
+  function linesTable(m) {
+    const cell = v => v === null ? "není možné" : fixed(v, 3);
+    return `<p class="viz-panel-title">Riziko ve srovnávané skupině, kdyby riziko v referenční skupině bylo jiné</p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Hodnoty tří čar: posuvná oblast"><table class="viz-bay-table viz-chi-table viz-ms-lines" aria-label="Riziko ve srovnávané skupině při stejném rozdílu rizik, stejném poměru rizik a stejném poměru šancí">
+      <thead><tr><th scope="col">Riziko v referenční skupině</th><th scope="col">stejný rozdíl rizik (${prop(m.diff)})</th><th scope="col">stejný poměr rizik (${num(m.rr)})</th><th scope="col">stejný poměr šancí (${num(m.or)})</th></tr></thead>
+      <tbody>${XS.map(x => `<tr><th scope="row">${fixed(x, 2)}</th>${LINES.map(L => `<td>${cell(same[L.key](m, x))}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+      <p class="viz-note">„Není možné“ znamená, že by riziko ve srovnávané skupině vyšlo mimo rozsah od 0 do 1.</p>`;
+  }
+
+  function drawRetro(m, W) {
+    const D = shown(m), R = retro(m, S.keep), {rows, cell} = dotLayout(D, W, true);
+    const box = $("[data-retro-dots]"); box.replaceChildren();
+    D.g.forEach((g, i) => {
+      const kept = Math.round(g.non * S.keep), share = i === 0 ? R.share1 : R.share0;
+      const text = `${cap(S.labels.g[i])}${i === 1 ? " (referenční skupina)" : ""}: ve výběru ${int(g.ev)} osob s jevem; z osob bez jevu (celkem ${int(g.non)}) zařazeno ${Math.abs(g.non * S.keep - kept) < 1e-9 ? "" : "přibližně "}${int(kept)}. Podíl osob s jevem ve výběru je ${prop(share)}.`;
+      const wrap = html`<div class="viz-ms-dots"><p class="viz-ms-group">${text}</p></div>`;
+      wrap.append(dotsSvg([[{n: g.ev, fill: FILL[i].ev}], [{n: kept, fill: FILL[i].non}, {n: g.non - kept, fill: FILL[i].out}]], rows, cell, text));
+      box.append(wrap);
+    });
+    $("[data-retro-legend]").innerHTML = `<span>${boxSwatch(FILL[0].ev)}${boxSwatch(FILL[1].ev)}<span>osoby s jevem, všechny ve výběru</span></span><span>${boxSwatch(FILL[0].non)}${boxSwatch(FILL[1].non)}<span>osoby bez jevu zařazené do výběru</span></span><span>${boxSwatch(FILL[0].out)}${boxSwatch(FILL[1].out)}<span>nezařazené</span></span>`;
+    const or = m.or === null ? NA : num(m.or);
+    $("[data-retro]").innerHTML = `<div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Výběr proti celým skupinám: posuvná oblast"><table class="viz-bay-table viz-chi-table viz-ms-retro" aria-label="Retrospektivní výběr proti celým skupinám">
+      <thead><tr><th scope="col">Veličina</th><th scope="col">celé skupiny</th><th scope="col">výběr (${fixed(100 * S.keep, 0)} % osob bez jevu)</th></tr></thead>
+      <tbody><tr><th scope="row">Podíl osob s jevem: ${S.labels.g[0]}</th><td>${prop(m.p1)}</td><td>${prop(R.share1)}</td></tr>
+      <tr><th scope="row">Podíl osob s jevem: ${S.labels.g[1]}</th><td>${prop(m.p0)}</td><td>${prop(R.share0)}</td></tr>
+      <tr><th scope="row">Poměr těchto podílů</th><td>${num(m.rr)}</td><td>${num(R.ratio)}</td></tr>
+      <tr class="viz-bay-total"><th scope="row">Poměr šancí</th><td>${or}</td><td>${or}</td></tr></tbody></table></div>
+      <p class="viz-note">${S.keep === 1 ? "Ve výběru jsou všichni; podíl osob s jevem je riziko." : "Podíl osob s jevem ve výběru není riziko: určil jej výběr, ne skupina. Poměr šancí se nezměnil, protože obě šance vzrostly stejněkrát."}</p>`;
+    return R;
+  }
+
+  function phiRows(m) {
+    if (m.phi === null) return [["Koeficient φ", `${NA}: některý sloupec tabulky je prázdný`]];
+    return [
+      ["Počet osob <i>n</i>", S.mode === "cetnosti" ? int(m.n) : `${int(m.n)} (dvě stejně velké skupiny)`],
+      ["Statistika χ²", fixed(m.chi2, 2)],
+      ["Koeficient φ = √(χ² / <i>n</i>)", `√(${fixed(m.chi2, 2)} / ${int(m.n)}) = ${fixed(Math.abs(m.phi), 2)}`],
+      ["φ se znaménkem (ze vzorce z četností)", `<strong>${fixed(m.phi, 2)}</strong>`],
+      ["Rozdíl řádkových podílů (rozdíl rizik)", prop(m.diff)],
+      ["Rozdíl sloupcových podílů", `${prop(m.col1)} − ${prop(m.col2)} = ${prop(m.colDiff)}`],
+      ["Součin obou rozdílů = φ²", `${prop(m.diff)} × ${prop(m.colDiff)} = ${fixed(m.diff * m.colDiff, 4)}`]
+    ];
+  }
+
+  let last = {};
+  function render() {
+    root.querySelectorAll("[data-mode]").forEach(el => { el.hidden = el.dataset.mode !== S.mode; });
+    for (const name of ["mode", "view", "hold", "size"]) root.querySelectorAll(`input[name="viz-ms-${name}"]`).forEach(el => { el.checked = el.value === String(S[name]); });
+    // Labels of the table and of the sliders.
+    $('[data-col="ev"]').textContent = S.labels.ev; $('[data-col="non"]').textContent = S.labels.non;
+    [0, 1].forEach(j => { $(`[data-row="${j}"]`).textContent = S.labels.g[j] + (j === 1 ? " (referenční skupina)" : ""); root.querySelector(`[data-name="${j}"]`).textContent = S.labels.g[j]; });
+    cells.forEach(c => c.setAttribute("aria-label", `${S.labels.g[Number(c.dataset.j)]}, ${Number(c.dataset.l) === 0 ? S.labels.ev : S.labels.non}`));
+    S.t.forEach((r, j) => { $(`[data-row-total="${j}"]`).textContent = int(r[0] + r[1]); });
+    [0, 1].forEach(l => { $(`[data-col-total="${l}"]`).textContent = int(S.t[0][l] + S.t[1][l]); });
+    $("[data-n]").textContent = int(S.t.flat().reduce((a, b) => a + b, 0));
+    // Sliders.
+    const st = 100 * step(), digits = S.size === 100 ? 0 : 1;
+    for (const [el, id, p] of [[p1Slider, "p1", S.p1], [p0Slider, "p0", S.p0]]) {
+      el.min = String(st); el.max = String(100 - st); el.step = String(st); el.value = String(Math.round(1000 * p) / 10);
+      $(`[data-min="${id}"]`).textContent = `${fixed(st, digits)} %`; $(`[data-max="${id}"]`).textContent = `${fixed(100 - st, digits)} %`;
+      $(`#viz-ms-${id}-value`).textContent = `${fixed(100 * p, Math.abs(100 * p - Math.round(100 * p)) < 1e-9 ? digits : 1)} %, tedy ${fixed(p * S.size, Math.abs(p * S.size - Math.round(p * S.size)) < 1e-6 ? 0 : 1)} ${{100: "ze 100", 1000: "z 1 000", 10000: "z 10 000"}[S.size]} osob`;
+      el.setAttribute("aria-valuetext", `${fixed(100 * p, 1)} procenta`);
+    }
+    keepSlider.value = String(Math.round(100 * S.keep));
+    $('[data-min="keep"]').textContent = "10 %"; $('[data-max="keep"]').textContent = "100 %";
+    $("#viz-ms-keep-value").textContent = `${fixed(100 * S.keep, 0)} % osob bez jevu`;
+    keepSlider.setAttribute("aria-valuetext", `${fixed(100 * S.keep, 0)} procent osob bez jevu`);
+    const limitBox = $("[data-limit]");
+    limitBox.hidden = !(S.mode === "rizika" && S.limit);
+    limitBox.textContent = S.limit ? `Při tomto riziku v referenční skupině už ${S.hold === "rozdil" ? "stejný rozdíl rizik" : "stejný poměr rizik"} není možný: riziko ve srovnávané skupině by vyšlo mimo rozsah od 0 do 1. Je proto nastaveno na krajní hodnotu.` : "";
+
+    const m = current(), W = Math.max(240, Math.min(plots.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const D = drawDots(m, W);
+    $("[data-verdict]").textContent = verdict(m);
+    $("[data-stats]").innerHTML = statsRows(m).map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    chart(plots, m);
+    $("[data-lines]").innerHTML = linesTable(m);
+    const R = drawRetro(m, W);
+    $("[data-phi]").innerHTML = phiRows(m).map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    $("[data-phi-note]").textContent = `Znaménko φ závisí jen na pořadí skupin a sloupců; po záměně referenční skupiny se obrátí. ${S.mode === "rizika" ? "Koeficient φ závisí také na velikostech skupin; zde jsou obě stejně velké." : "Velikost φ závisí také na okrajových součtech tabulky."}`;
+    last = {mode: S.mode, view: S.view, hold: S.hold, size: S.size, p1: S.p1, p0: S.p0, keep: S.keep, limit: S.limit, t: clone(S.t), labels: clone(S.labels),
+      result: clone(m), retro: clone(R), dots: clone(D), verdict: $("[data-verdict]").textContent};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {measures: (a, b, c, d) => clone(measures(a, b, c, d)), same: (a, b, c, d, x) => { const m = measures(a, b, c, d); return [same.rozdil(m, x), same.rizika(m, x), same.sance(m, x)]; },
+    retro: (a, b, c, d, k) => clone(retro(measures(a, b, c, d), k)), state: () => clone(last)};
+
+  storeHeld();
+  syncInputs();
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Rozdíl podílů, poměr rizik, poměr šancí a koeficient φ vykládá <a href="kapitola_09.html#sec-velikost-souvislosti">kapitola 9</a>; výpočty najdete v oddílu „Odkud se čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-ms-vyzkousejte .unnumbered}
+
+1. Po načtení stránky jsou nastaveny údaje Danielsové. Ověřte rozdíl 22,9 procentního bodu, poměr rizik 2,34 a poměr šancí 3,23 a přepněte pohled z rizika na šance: které tečky se porovnávají v jednom a které ve druhém pohledu? Pak stiskněte „Aspirinová studie“. Jak se liší poměr rizik od poměru šancí teď a proč? Co říká o téže studii rozdíl rizik?
+2. Přepněte zadání na „dvě rizika“ se skupinami po 100 osobách (40 % a 17 %) a zvolte „Držet pevně: poměr šancí“. Posouvejte riziko v referenční skupině od 1 % do 90 % a sledujte poměr rizik a rozdíl rizik. Kdy je poměr rizik téměř stejný jako poměr šancí? Kdy je rozdíl rizik největší?
+3. Ve stejném zadání zvolte „Držet pevně: poměr rizik“ a zvyšujte riziko v referenční skupině. Od které hodnoty už stejný poměr rizik není možný a proč? Může se totéž stát u poměru šancí?
+4. Vraťte „Údaje Danielsové“ a stiskněte „Zaměnit referenční skupinu“. Které míry změnily znaménko, které se převrátily a co zůstalo stejné? Pak v části „Retrospektivní výběr“ snižte podíl zařazených osob bez jevu na 10 %. Co se stalo s podíly osob s jevem, s jejich poměrem a s poměrem šancí?
+
+## Čeho si všimnout {#sec-viz-ms-vsimnete .unnumbered}
+
+Riziko a šance počítáme z týchž osob, liší se jen jmenovatel: riziko dělí počtem všech osob ve skupině, šance počtem osob, u nichž jev nenastal. Proto je šance vždy větší než riziko, a tím víc, čím je jev častější. U údajů Danielsové je riziko 0,400 a šance 0,667; poměr rizik je 2,34, ale poměr šancí 3,23. V aspirinové studii prodělalo infarkt méně než 2 % mužů, osob bez jevu je skoro stejně jako všech, a šance se proto od rizika téměř neliší: poměr rizik je 1,82 a poměr šancí 1,83. Číst poměr šancí jako násobek rizika je tedy přijatelné jen u vzácných jevů ([Poměr rizik a poměr šancí](kapitola_09.qmd#sec-pomer-rizik-sanci)).
+
+Tatáž aspirinová studie ukazuje, proč nestačí uvést poměr. Riziko s placebo je 1,8krát vyšší, ale rozdíl rizik je jen 0,77 procentního bodu: z 1 000 mužů by infarkt prodělalo přibližně 17 s placebo a 9 s aspirinem. Poměr a rozdíl popisují tentýž výsledek z různých stran, a proto ve zprávě uvádíme oba podíly ([Rozdíl v procentních bodech](kapitola_09.qmd#sec-rozdil-bodech)).
+
+Žádná ze tří měr neurčuje zbylé dvě; záleží na riziku v referenční skupině. Při poměru šancí 3,23 odpovídá riziku 0,01 v referenční skupině riziko 0,032 ve srovnávané (poměr rizik 3,16, rozdíl 2,2 bodu), riziku 0,5 riziko 0,764 (poměr rizik 1,53, rozdíl 26,4 bodu) a riziku 0,9 riziko 0,967 (poměr rizik 1,07, rozdíl 6,7 bodu). Čára stejného poměru šancí se u nízkých rizik přimyká k čáře stejného poměru rizik a nikdy neopustí rozsah od 0 do 1. Stejný poměr rizik 2,34 naproti tomu není možný, jakmile riziko v referenční skupině přesáhne $1/2{,}34=0{,}43$, a stejný rozdíl 0,229, jakmile přesáhne 0,771. To je jeden z důvodů, proč se s poměrem šancí pracuje v pokročilých modelech.
+
+Po záměně referenční skupiny změní rozdíl rizik a koeficient φ znaménko (−22,9 bodu a −0,25) a oba poměry se převrátí: poměr rizik je $1/2{,}34=0{,}43$ a poměr šancí $1/3{,}23=0{,}31$. Obsah je stejný; proto vždy uvedeme, která skupina je referenční ([Koeficient φ a Cramérovo V](kapitola_09.qmd#sec-phi-v)).
+
+V retrospektivním výběru vybírá výzkumník zvlášť osoby s jevem a osoby bez něj, takže podíl osob s jevem ve výběru o riziku nevypovídá. Zařadíme-li z údajů Danielsové jen desetinu žen bez tématu, vyjdou podíly 0,870 a 0,673 a jejich poměr 1,29 místo 2,34. Poměr šancí zůstává 3,23, protože obě šance vzrostly desetkrát. Proto se poměr šancí používá i tam, kde rizika spočítat nelze.
+
+Všechny míry tu popisují jen data v tabulce. Jak přesně odhadují poměry v populaci, ukazují intervaly spolehlivosti: pro rozdíl rizik [Newcombův interval](kapitola_09.qmd#sec-newcombe), pro oba poměry [nepovinné rozšíření](kapitola_09.qmd#rozsireni-intervaly-pomeru). A ani velký poměr sám nedokládá příčinu; to záleží na tom, zda byly osoby do skupin rozděleny náhodně.

@@ -1,0 +1,356 @@
+---
+code-copy: false
+---
+
+# Jak daleko je tabulka četností od nezávislosti {#sec-viz-chi-kvadrat .unnumbered}
+
+Souvisí preferovaná strategie zvládání stresu s věkem? Test chí-kvadrát na tuto otázku odpovídá tak, že porovná pozorované četnosti s četnostmi, které bychom čekali, kdyby spolu obě proměnné nesouvisely. Ve vizualizaci měníte četnosti v tabulce a sledujete, co se stane s očekávanými četnostmi, rezidui, statistikou $\mathrm{χ}^2$ a *p*-hodnotou. Navazuje na kapitolu 9: na oddíly [Souvisejí spolu dvě kategoriální proměnné?](kapitola_09.qmd#sec-nezavislost) a [Kde se tabulka od nezávislosti odchyluje?](kapitola_09.qmd#sec-rezidua), na [chí-kvadrát rozdělení](kapitola_09.qmd#sec-chi-rozdeleni) a na [Cramérovo V](kapitola_09.qmd#sec-phi-v).
+
+## Model a ovládání {#sec-viz-chi-ovladani .unnumbered}
+
+Pracujeme s příkladem kapitoly 9: 190 dospělých uvedlo, kterou ze tří strategií v zátěži nejčastěji používají. Řádky tabulky tvoří věkové skupiny (mladí 18–30 let, dospělí 31–60 let, senioři nad 60 let), sloupce strategie (řešení problému, vyhýbání, sociální opora). Po načtení stránky obsahuje tabulka četnosti z [oddílu o řádkových podílech](kapitola_09.qmd#sec-radkove-podily).
+
+**Pozorované četnosti** přepisujete přímo v tabulce. Každá četnost je celé číslo od 0 do 100 000; součty řádků, sloupců a celkový počet osob se dopočítávají. Výsledky se přepočítají po každé platné změně. Neplatnou hodnotu vizualizace odmítne se zprávou a dál používá poslední platnou; stejně odmítne tabulku, ve které by některá věková skupina nebo strategie neměla žádného člověka, protože pro ni nelze spočítat očekávané četnosti.
+
+Pod tabulkou jsou tři tlačítka:
+
+- **Zdvojnásobit četnosti** vynásobí každou četnost dvěma. Podíly v tabulce zůstanou stejné, lidí je dvakrát víc.
+- **Původní data** vrátí tabulku kapitoly 9.
+- **Nezávislost** nastaví četnosti co nejbližší očekávaným četnostem původní tabulky (zaokrouhleným na celá čísla), tedy tabulku, ve které jsou řádkové podíly ve všech věkových skupinách téměř stejné.
+
+Pod ovládáním je slovní závěr testu na hladině významnosti 0,05, souhrn výsledků, dva grafy a čtyři odvozené tabulky:
+
+- **Řádkové podíly.** Seskupený sloupcový graf jako v kapitole: pro každou věkovou skupinu tři sloupce s podíly strategií v této skupině. Vodorovné přerušované čáry ukazují podíl strategie v celém výběru. Čím víc se sloupce od čar liší, tím dál je tabulka od nezávislosti.
+- **Chí-kvadrát rozdělení.** Křivka hustoty chí-kvadrát rozdělení se čtyřmi stupni volnosti. Svislá plná čára označuje hodnotu $\mathrm{χ}^2$ spočítanou z tabulky, oranžová plocha napravo od ní je *p*-hodnota. Přerušovaná čára je kritická hodnota pro hladinu 0,05.
+- **Odvozené tabulky** ukazují pro každou buňku očekávanou četnost, příspěvek ke statistice $\mathrm{χ}^2$, Pearsonovo reziduum a standardizované reziduum. Standardizovaná rezidua jsou podbarvená: modře tam, kde je v buňce více lidí, než bychom čekali při nezávislosti, oranžově tam, kde je jich méně; čím větší odchylka, tím sytější barva.
+
+### Odkud se čísla berou {#sec-viz-chi-vypocet .unnumbered}
+
+Značení je stejné jako v kapitole: $f_{jl}$ je pozorovaná četnost v řádku $j$ a sloupci $l$, $f_{j+}$ součet řádku, $f_{+l}$ součet sloupce a $n$ počet všech osob. Dosazení níže platí pro původní tabulku a pro buňku mladí × řešení problému, ve které je $f_{11}=25$ lidí z $f_{1+}=55$ mladých; řešení problému uvedlo celkem $f_{+1}=65$ lidí ze 190.
+
+**Řádkový podíl** je četnost buňky vydělená součtem jejího řádku, $f_{jl}/f_{j+}$; zde $25/55=0{,}45$. Přerušovaná čára v grafu je podíl sloupce v celém výběru, $f_{+l}/n$; zde $65/190=0{,}34$. Oba podíly vysvětluje oddíl [Řádkové podíly](kapitola_09.qmd#sec-radkove-podily).
+
+**Očekávaná četnost** říká, kolik lidí by v buňce bylo, kdyby řádkový podíl ve všech skupinách odpovídal podílu v celém výběru ([Očekávané četnosti v tabulce](kapitola_09.qmd#sec-ocekavane-tabulka)):
+
+$$e_{jl}=\frac{f_{j+}\times f_{+l}}{n},\qquad e_{11}=\frac{55\times65}{190}=18{,}82.$$
+
+**Příspěvek buňky** měří vzdálenost pozorované a očekávané četnosti a **statistika chí-kvadrát** je součet příspěvků všech buněk:
+
+$$\frac{(f_{jl}-e_{jl})^2}{e_{jl}},\qquad \frac{(25-18{,}82)^2}{18{,}82}=2{,}03;\qquad \mathrm{χ}^2=\sum_{j=1}^{R}\sum_{l=1}^{S}\frac{(f_{jl}-e_{jl})^2}{e_{jl}}=11{,}78.$$
+
+**Stupně volnosti** tabulky s $R$ řádky a $S$ sloupci jsou $(R-1)(S-1)$, zde $(3-1)(3-1)=4$. ***p*-hodnota** je plocha pod křivkou chí-kvadrát rozdělení se čtyřmi stupni volnosti napravo od spočítané hodnoty ([*p*-hodnota a rozhodnutí](kapitola_09.qmd#sec-p-chi)). V Excelu ji vrací `=CHISQ.DIST.RT(11,78;4)`, tedy 0,019; kritickou hodnotu 9,49 vrací `=CHISQ.INV.RT(0,05;4)`.
+
+**Pearsonovo reziduum** je rozdíl pozorované a očekávané četnosti vydělený odmocninou z očekávané četnosti; jeho druhá mocnina je příspěvek buňky. **Standardizované reziduum** dělí tentýž rozdíl jeho odhadnutou směrodatnou odchylkou, takže má při platnosti nulové hypotézy přibližně normované normální rozdělení ([Pearsonova a standardizovaná rezidua](kapitola_09.qmd#sec-pearson-upravena)):
+
+$$\frac{f_{jl}-e_{jl}}{\sqrt{e_{jl}}}=\frac{25-18{,}82}{\sqrt{18{,}82}}=1{,}43,\qquad \frac{f_{jl}-e_{jl}}{\sqrt{e_{jl}\left(1-\dfrac{f_{j+}}{n}\right)\left(1-\dfrac{f_{+l}}{n}\right)}}=\frac{25-18{,}82}{\sqrt{18{,}82\times\left(1-\dfrac{55}{190}\right)\times\left(1-\dfrac{65}{190}\right)}}=2{,}09.$$
+
+**Cramérovo V** vyjadřuje velikost souvislosti: statistiku $\mathrm{χ}^2$ dělí počtem osob a číslem $q-1$, kde $q$ je menší z počtu řádků a sloupců, a výsledek odmocní ([Koeficient φ a Cramérovo V](kapitola_09.qmd#sec-phi-v)). Zde je $q=3$:
+
+$$V=\sqrt{\frac{\mathrm{χ}^2}{n(q-1)}}=\sqrt{\frac{11{,}78}{190\times2}}=0{,}18.$$
+
+```{ojs}
+//| echo: false
+{
+  // Colours follow the chapter figure: blue, muted blue-gray and orange for the three strategies.
+  const blue = "#245D78", mute = "#A9BAC3", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17";
+  const ROWS = ["mladí", "dospělí", "senioři"], COLS = ["řešení problému", "vyhýbání", "sociální opora"], COLORS = [blue, mute, orange];
+  const CELL_MAX = 100000, ALPHA = 0.05;
+  const CHAPTER = [[25, 18, 12], [30, 22, 28], [10, 20, 25]];
+  // Expected frequencies of the chapter table rounded to whole numbers with the same totals.
+  const INDEPENDENCE = [[19, 17, 19], [27, 26, 27], [19, 17, 19]];
+
+  // Log-gamma: Lanczos approximation (g = 7, nine coefficients), reflection for x < 0,5.
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1;
+    let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+  // Regularised upper incomplete gamma function Q(a, x): series for x < a + 1, otherwise
+  // a continued fraction (modified Lentz), as in Numerical Recipes (gser, gcf).
+  function gammaQ(a, x) {
+    if (x <= 0) return 1;
+    const front = Math.exp(-x + a * Math.log(x) - lgamma(a));
+    if (x < a + 1) {
+      let ap = a, d = 1 / a, s = d;
+      for (let i = 0; i < 10000; i++) { ap += 1; d *= x / ap; s += d; if (Math.abs(d) < Math.abs(s) * 1e-16) break; }
+      return 1 - s * front;
+    }
+    const TINY = 1e-300;
+    let b = x + 1 - a, c = 1 / TINY, d = 1 / b, h = d;
+    for (let i = 1; i < 10000; i++) {
+      const an = -i * (i - a);
+      b += 2;
+      d = an * d + b; if (Math.abs(d) < TINY) d = TINY;
+      c = b + an / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c;
+      h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return front * h;
+  }
+  // Right tail and density of the chi-square distribution with v degrees of freedom; critical value by bisection.
+  const chiRt = (x, v) => gammaQ(v / 2, x / 2);
+  const dchi = (x, v) => x <= 0 ? 0 : Math.exp((v / 2 - 1) * Math.log(x) - x / 2 - v / 2 * Math.LN2 - lgamma(v / 2));
+  function chiInvRt(p, v) {
+    let lo = 0, hi = 1000;
+    for (let i = 0; i < 200; i++) { const mid = (lo + hi) / 2; if (chiRt(mid, v) > p) lo = mid; else hi = mid; }
+    return (lo + hi) / 2;
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = s => s.replace(/^-/, "−");
+  const fixed = (v, k) => { let s = v.toFixed(k); if (Number(s) === 0) s = Math.abs(0).toFixed(k); return minus(s.replace(".", ",")); };
+  const whole = v => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const excel = (v, k = 4) => String(Number(v.toFixed(k))).replace(".", ",");
+  const pText = p => p < 0.001 ? "< 0,001" : p > 0.999 ? "> 0,999" : fixed(p, 3);
+  const pEq = p => p < 0.001 ? "p < 0,001" : p > 0.999 ? "p > 0,999" : `p = ${fixed(p, 3)}`;
+
+  const S = {f: CHAPTER.map(r => r.slice())};
+
+  // All quantities for one table of observed frequencies.
+  function compute(f = S.f) {
+    const R = f.length, K = f[0].length;
+    const rowTot = f.map(r => r.reduce((a, b) => a + b, 0));
+    const colTot = f[0].map((_, l) => f.reduce((a, r) => a + r[l], 0));
+    const n = rowTot.reduce((a, b) => a + b, 0);
+    const map = fn => f.map((r, j) => r.map((v, l) => fn(v, j, l)));
+    const e = map((v, j, l) => rowTot[j] * colTot[l] / n);
+    const contrib = map((v, j, l) => (v - e[j][l]) ** 2 / e[j][l]);
+    const pearson = map((v, j, l) => (v - e[j][l]) / Math.sqrt(e[j][l]));
+    const std = map((v, j, l) => { const den = Math.sqrt(e[j][l] * (1 - rowTot[j] / n) * (1 - colTot[l] / n)); return den > 0 ? (v - e[j][l]) / den : 0; });
+    const chi2 = contrib.flat().reduce((a, b) => a + b, 0), df = (R - 1) * (K - 1);
+    return {f, n, rowTot, colTot, rowProp: map((v, j) => v / rowTot[j]), overall: colTot.map(v => v / n), e, contrib, pearson, std,
+      chi2, df, p: chiRt(chi2, df), crit: chiInvRt(ALPHA, df), V: Math.sqrt(chi2 / (n * (Math.min(R, K) - 1))), minE: Math.min(...e.flat())};
+  }
+  // A table without people in some row or column has no expected frequencies.
+  function tableProblem(f) {
+    if (f.some(r => r.reduce((a, b) => a + b, 0) === 0)) return "V každé věkové skupině musí být alespoň jeden člověk.";
+    if (f[0].some((_, l) => f.reduce((a, r) => a + r[l], 0) === 0)) return "Každou strategii musí uvést alespoň jeden člověk.";
+    return null;
+  }
+
+  const lineSwatch = (stroke, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="2.4"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const boxSwatch = (fill, opacity = 1) => `<svg width="14" height="14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="${fill}" fill-opacity="${opacity}" stroke="${ink}" stroke-width="0.6"/></svg>`;
+
+  const root = html`<div class="viz" id="viz-chi-kvadrat">
+    <p class="viz-panel-title" id="viz-chi-input-title">Pozorované četnosti: věková skupina a preferovaná strategie zvládání stresu</p>
+    <p class="viz-hint" id="viz-chi-input-hint">Četnosti jsou celá čísla od 0 do 100 000; součty se dopočítávají.</p>
+    <div class="viz-bay-table-wrap" data-input></div>
+    <p class="viz-error viz-chi-error" id="viz-chi-error" role="alert" hidden></p>
+    <div class="viz-pj-presets" role="group" aria-label="Úpravy celé tabulky">
+      <button type="button" data-action="double">Zdvojnásobit četnosti</button>
+      <button type="button" data-action="chapter">Původní data</button>
+      <button type="button" data-action="independence">Nezávislost</button>
+    </div>
+    <p class="viz-ss-summary" data-verdict aria-live="polite"></p>
+    <dl class="viz-stats" data-stats></dl>
+    <p class="viz-limit" data-warning hidden></p>
+    <div class="viz-plots" data-plots></div>
+    <section class="viz-part" aria-labelledby="viz-chi-derived-title">
+      <h3 id="viz-chi-derived-title" class="viz-part-title">Odvozené tabulky</h3>
+      <div class="viz-chi-grid" data-derived></div>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const plots = $("[data-plots]"), errorBox = $("#viz-chi-error");
+
+  // Editable table of observed frequencies with computed totals.
+  $("[data-input]").innerHTML = `<table class="viz-bay-table viz-chi-input" aria-label="Pozorované četnosti, které lze měnit">
+    <thead><tr><th scope="col">Věková skupina</th>${COLS.map(c => `<th scope="col">${c}</th>`).join("")}<th scope="col">Celkem</th></tr></thead>
+    <tbody>${ROWS.map((r, j) => `<tr><th scope="row">${r}</th>${COLS.map((c, l) => `<td><input type="number" inputmode="numeric" min="0" max="${CELL_MAX}" step="1" data-j="${j}" data-l="${l}" aria-label="${r}, ${c}" aria-describedby="viz-chi-input-hint viz-chi-error"></td>`).join("")}<td data-row-total="${j}"></td></tr>`).join("")}
+    <tr class="viz-bay-total"><th scope="row">Celkem</th>${COLS.map((c, l) => `<td data-col-total="${l}"></td>`).join("")}<td data-n></td></tr></tbody></table>`;
+  const cells = [...root.querySelectorAll("[data-input] input")];
+
+  function showError(message) {
+    errorBox.hidden = !message;
+    errorBox.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+  }
+  const readCell = input => { const raw = input.value.trim(); if (!/^\d+$/.test(raw)) return null; const v = Number(raw); return v <= CELL_MAX ? v : null; };
+  // A valid frequency is applied at once; an invalid one is marked and the last valid table stays in use.
+  for (const input of cells) input.addEventListener("input", () => {
+    const j = Number(input.dataset.j), l = Number(input.dataset.l), v = readCell(input);
+    let message = v === null ? "Četnost musí být celé číslo od 0 do 100 000." : null;
+    let next = null;
+    if (!message) { next = S.f.map(r => r.slice()); next[j][l] = v; message = tableProblem(next); }
+    input.setAttribute("aria-invalid", message ? "true" : "false");
+    if (message) { showError(message); return; }
+    S.f = next;
+    if (!cells.some(c => c.getAttribute("aria-invalid") === "true")) showError(null);
+    render();
+  });
+  function syncInputs() {
+    for (const input of cells) { input.value = String(S.f[Number(input.dataset.j)][Number(input.dataset.l)]); input.setAttribute("aria-invalid", "false"); }
+    showError(null);
+  }
+  root.querySelectorAll("[data-action]").forEach(b => b.addEventListener("click", () => {
+    const a = b.dataset.action;
+    S.f = a === "double" ? S.f.map(r => r.map(v => 2 * v)) : (a === "chapter" ? CHAPTER : INDEPENDENCE).map(r => r.slice());
+    syncInputs(); render();
+  }));
+
+  // Results.
+  function verdict(C) {
+    const reject = C.p <= ALPHA;
+    return `Statistika χ² = ${fixed(C.chi2, 2)} je ${reject ? "větší" : "menší"} než kritická hodnota ${fixed(C.crit, 2)} (${pEq(C.p)}): na hladině významnosti 0,05 ${reject ? "zamítáme" : "nezamítáme"} nulovou hypotézu, že preferovaná strategie a věková skupina jsou v populaci nezávislé.`;
+  }
+  const excelFormula = C => `=CHISQ.DIST.RT(${excel(C.chi2)};${C.df})`;
+  function statsRows(C) {
+    return [
+      ["Počet osob <i>n</i>", whole(C.n)],
+      ["Statistika χ²", `<strong>${fixed(C.chi2, 2)}</strong>`],
+      ["Stupně volnosti", `(3 − 1) × (3 − 1) = ${C.df}`],
+      ["<i>p</i>-hodnota", `<strong>${pText(C.p)}</strong>`],
+      ["Kritická hodnota pro hladinu 0,05", fixed(C.crit, 2)],
+      ["Cramérovo V", fixed(C.V, 2)],
+      ["Nejmenší očekávaná četnost", fixed(C.minE, 2)],
+      ["<i>p</i>-hodnota v českém Excelu", `<code>${excelFormula(C)}</code>`]
+    ];
+  }
+  const warning = C => C.minE < 5 ? `Nejmenší očekávaná četnost je ${fixed(C.minE, 2)}, tedy menší než 5. Chí-kvadrát rozdělení tu nemusí rozdělení statistiky dobře vystihovat a <i>p</i>-hodnota je jen orientační; co použít místo ní, popisuje oddíl <a href="kapitola_09.html#sec-male-cetnosti">Malé očekávané četnosti</a>.` : "";
+
+  // Derived tables: one value per cell, same layout as the table of observed frequencies.
+  function matrixTable(title, formula, M, digits, {cell = () => "", foot = "", after = ""} = {}) {
+    const label = title.replace(/<[^>]+>/g, "");
+    return `<div class="viz-chi-derived"><p class="viz-panel-title">${title}</p><p class="viz-hint viz-chi-formula">${formula}</p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="${label}: posuvná oblast"><table class="viz-bay-table viz-chi-table" aria-label="${label}">
+      <thead><tr><th scope="col">Věková skupina</th>${COLS.map(c => `<th scope="col">${c}</th>`).join("")}</tr></thead>
+      <tbody>${ROWS.map((r, j) => `<tr><th scope="row">${r}</th>${M[j].map(v => `<td${cell(v)}>${fixed(v, digits)}</td>`).join("")}</tr>`).join("")}${foot}</tbody></table></div>${after}</div>`;
+  }
+  // Shading of standardized residuals: blue above expectation, orange below; opacity grows with the size up to |4|.
+  const shade = v => { const a = Math.min(Math.abs(v) / 4, 1) * 0.4; return a < 0.005 ? "" : ` data-shade style="--viz-chi-shade: rgba(${v > 0 ? "36, 93, 120" : "181, 78, 36"}, ${a.toFixed(3)})"`; };
+  function derived(C) {
+    const sub = (a, b) => `<i>${a}</i><sub>${b}</sub>`;
+    const f = sub("f", "<i>jl</i>"), e = sub("e", "<i>jl</i>"), fj = sub("f", "<i>j</i>+"), fl = sub("f", "+<i>l</i>");
+    return [
+      matrixTable("Očekávané četnosti", `${e} = ${fj} × ${fl} / <i>n</i>: součet řádku krát součet sloupce, děleno počtem osob`, C.e, 2),
+      matrixTable("Příspěvky buněk ke statistice χ²", `(${f} − ${e})² / ${e}: čtverec rozdílu dělený očekávanou četností`, C.contrib, 2,
+        {foot: `<tr class="viz-bay-total"><th scope="row" colspan="3">Součet všech příspěvků: χ²</th><td>${fixed(C.chi2, 2)}</td></tr>`}),
+      matrixTable("Pearsonova rezidua", `(${f} − ${e}) / √${e}: druhá mocnina rezidua je příspěvek buňky`, C.pearson, 2),
+      matrixTable("Standardizovaná rezidua", `(${f} − ${e}) / √(${e} × (1 − ${fj} / <i>n</i>) × (1 − ${fl} / <i>n</i>))`, C.std, 2,
+        {cell: shade, after: `<div class="viz-legend"><span>${boxSwatch(blue, 0.4)}<span>více lidí, než bychom čekali při nezávislosti</span></span><span>${boxSwatch(orange, 0.4)}<span>méně lidí</span></span></div>
+          <p class="viz-note">Podbarvení popisuje, kde a kterým směrem se tabulka od nezávislosti odchyluje. Devět samostatných testů to není: o jednotlivých buňkách lze rozhodovat jen s korekcí pro více testů.</p>`})
+    ].join("");
+  }
+
+  function charts(container, C) {
+    const width = Math.max(260, Math.min(container.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+    const small = width < 520;
+    const style = {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"};
+    const halo = {stroke: "white", strokeWidth: 3, paintOrder: "stroke"};
+
+    // 1. Row proportions: three bars per age group, dashed lines for the proportions in the whole sample.
+    const bars = ROWS.flatMap((r, j) => COLS.map((c, l) => ({j, l, x: 4 * j + l, p: C.rowProp[j][l]})));
+    const top = Math.max(...bars.map(d => d.p), ...C.overall);
+    const yMax = Math.max(0.6, Math.min(1.1, Math.ceil((top + 0.06) * 10) / 10));
+    const propPlot = Plot.plot({
+      width, height: small ? 300 : 340, marginLeft: small ? 52 : 60, marginRight: 8, marginTop: 20, marginBottom: small ? 48 : 34, style,
+      x: {domain: [-0.9, 10.9], ticks: [1, 5, 9], tickSize: 0, label: null, tickFormat: t => { const j = (t - 1) / 4; return `${ROWS[j]}${small ? "\n" : " "}(n = ${whole(C.rowTot[j])})`; }},
+      y: {domain: [0, yMax], label: small ? "Řádkový podíl" : "Podíl v rámci věkové skupiny (řádkový podíl)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 46, tickFormat: t => fixed(t, 1)},
+      ariaLabel: "Řádkové podíly strategií zvládání podle věkové skupiny",
+      ariaDescription: `${ROWS.map((r, j) => `${r} (n = ${C.rowTot[j]}): ${COLS.map((c, l) => `${c} ${fixed(C.rowProp[j][l], 2)}`).join(", ")}`).join(". ")}. Podíly v celém výběru ${whole(C.n)} osob: ${COLS.map((c, l) => `${c} ${fixed(C.overall[l], 2)}`).join(", ")}.`,
+      marks: [
+        Plot.rect(bars, {x1: d => d.x - 0.46, x2: d => d.x + 0.46, y1: 0, y2: "p", fill: d => COLORS[d.l], stroke: ink, strokeWidth: 0.8}),
+        Plot.link(bars, {x1: d => d.x - 0.5, x2: d => d.x + 0.5, y1: d => C.overall[d.l], y2: d => C.overall[d.l], stroke: ink, strokeWidth: 1.6, strokeDasharray: "5,4"}),
+        Plot.text(bars, {x: "x", y: "p", dy: -9, text: d => fixed(d.p, 2), fill: ink, fontSize: small ? 11 : 12, ...halo}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    // 2. Chi-square distribution with the observed statistic, its right tail and the critical value.
+    const xMax = Math.max(20, C.chi2 * 1.15), yTop = 0.2;
+    const grid = d3.range(0, 401).map(i => xMax * i / 400);
+    const curve = grid.map(x => ({x, y: dchi(x, C.df)}));
+    const tail = [{x: C.chi2, y: dchi(C.chi2, C.df)}, ...curve.filter(d => d.x > C.chi2)];
+    // Labels point away from each other: the critical value to the left when the statistic lies to its right.
+    const critLeft = C.chi2 >= C.crit, chiLeft = C.chi2 >= C.crit ? C.chi2 > 0.62 * xMax : C.chi2 > 0.3 * xMax;
+    const chiPlot = Plot.plot({
+      width, height: small ? 260 : 300, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 14, marginBottom: 44, style,
+      x: {domain: [0, xMax], label: "Hodnota χ²", labelAnchor: "center", labelArrow: "none", tickFormat: t => String(t).replace(".", ",")},
+      y: {domain: [0, yTop], label: "Hustota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 46 : 46, ticks: 4, tickFormat: t => fixed(t, 2)},
+      ariaLabel: `Chí-kvadrát rozdělení se ${C.df} stupni volnosti s vyznačenou hodnotou z tabulky a p-hodnotou`,
+      ariaDescription: `Hodnota z tabulky χ² = ${fixed(C.chi2, 2)}; plocha napravo od ní, p-hodnota, je ${pText(C.p)}. Kritická hodnota pro hladinu 0,05 je ${fixed(C.crit, 2)}.`,
+      marks: [
+        Plot.areaY(tail, {x: "x", y: "y", fill: orange, fillOpacity: 0.45}),
+        Plot.line(curve, {x: "x", y: "y", stroke: blue, strokeWidth: 2}),
+        Plot.ruleX([C.crit], {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
+        Plot.ruleX([C.chi2], {stroke: hiText, strokeWidth: 2.2}),
+        Plot.text([C.crit], {x: d => d, y: yTop, dy: 8, dx: critLeft ? -6 : 6, textAnchor: critLeft ? "end" : "start", text: () => `kritická hodnota ${fixed(C.crit, 2)}`, fill: ink, ...halo}),
+        Plot.text([C.chi2], {x: d => d, y: yTop, dy: 36, dx: chiLeft ? -6 : 6, textAnchor: chiLeft ? "end" : "start", lineAnchor: "top", text: () => `χ² = ${fixed(C.chi2, 2)}\n${pEq(C.p)}`, fill: hiText, fontWeight: 600, ...halo}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+
+    const panel = (title, legendHtml, chart) => { const el = html`<div class="viz-panel"><p class="viz-panel-title">${title}</p></div>`; const lg = html`<div class="viz-legend"></div>`; lg.innerHTML = legendHtml; el.append(lg, chart); return el; };
+    container.replaceChildren(
+      panel("Řádkové podíly: preferovaná strategie podle věkové skupiny", `${COLS.map((c, l) => `<span>${boxSwatch(COLORS[l])}<span>${c}</span></span>`).join("")}<span>${lineSwatch(ink, "5,4")}<span>podíl z celého výběru ${whole(C.n)} osob</span></span>`, propPlot),
+      panel(`Chí-kvadrát rozdělení se ${C.df} stupni volnosti`, `<span>${lineSwatch(hiText)}<span>χ² z tabulky</span></span><span>${boxSwatch(orange, 0.45)}<span><i>p</i>-hodnota: plocha napravo od χ²</span></span><span>${lineSwatch(ink, "5,4")}<span>kritická hodnota pro hladinu 0,05</span></span>`, chiPlot)
+    );
+  }
+
+  const statsBox = $("[data-stats]"), verdictBox = $("[data-verdict]"), warningBox = $("[data-warning]"), derivedBox = $("[data-derived]"), doubleButton = $('[data-action="double"]');
+  let last = {};
+
+  function render() {
+    const C = compute();
+    C.rowTot.forEach((v, j) => { $(`[data-row-total="${j}"]`).textContent = whole(v); });
+    C.colTot.forEach((v, l) => { $(`[data-col-total="${l}"]`).textContent = whole(v); });
+    $("[data-n]").textContent = whole(C.n);
+    doubleButton.disabled = Math.max(...S.f.flat()) * 2 > CELL_MAX;
+    verdictBox.textContent = verdict(C);
+    statsBox.innerHTML = statsRows(C).map(([term, desc]) => `<div><dt>${term}</dt><dd>${desc}</dd></div>`).join("");
+    const warn = warning(C);
+    warningBox.hidden = !warn; warningBox.innerHTML = warn;
+    derivedBox.innerHTML = derived(C);
+    charts(plots, C);
+    last = {f: S.f.map(r => r.slice()), result: JSON.parse(JSON.stringify(C)), verdict: verdictBox.textContent, excel: excelFormula(C), warning: Boolean(warn)};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = plots.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe(plots);
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {chiRt, chiInvRt, dchi, compute: f => JSON.parse(JSON.stringify(compute(f))), state: () => JSON.parse(JSON.stringify(last))};
+
+  syncInputs();
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Příklad věkové skupiny a strategie zvládání stresu vykládá <a href="kapitola_09.html#sec-rezidua">kapitola 9</a>; výpočty najdete v oddílu „Odkud se čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-chi-vyzkousejte .unnumbered}
+
+1. Po načtení stránky je nastavena tabulka kapitoly. Ověřte $\mathrm{χ}^2=11{,}78$, *p*-hodnotu 0,019 a Cramérovo V 0,18. Pak stiskněte „Zdvojnásobit četnosti“. Které výsledky se změnily a které ne? Změnil se graf řádkových podílů? Stiskněte tlačítko ještě jednou a sledujte rezidua.
+2. Stiskněte „Nezávislost“. Jak vypadá graf řádkových podílů, jak velká je statistika $\mathrm{χ}^2$ a kde leží na křivce? Pak přesuňte pět mladých ze sociální opory k řešení problému: nastavte v prvním řádku 24, 17 a 14. Stačí taková odchylka k zamítnutí nulové hypotézy?
+3. Vraťte „Původní data“ a změňte jedinou četnost: u seniorů zvyšte řešení problému z 10 na 20. Které očekávané četnosti se změnily? Proč se změnilo i standardizované reziduum buňky mladí × sociální opora, ve které zůstalo 12 lidí?
+4. Zadejte zhruba pětkrát menší tabulku s podobnými řádkovými podíly: 5, 4, 2 v prvním řádku, 6, 4, 6 ve druhém a 2, 4, 5 ve třetím. Porovnejte graf řádkových podílů, Cramérovo V a *p*-hodnotu s původní tabulkou. Jaké upozornění se objevilo a proč?
+
+## Čeho si všimnout {#sec-viz-chi-vsimnete .unnumbered}
+
+Po zdvojnásobení četností zůstávají řádkové podíly, graf i Cramérovo V (0,18) stejné, ale statistika $\mathrm{χ}^2$ vzroste z 11,78 na 23,56 a *p*-hodnota klesne z 0,019 pod 0,001. Stejně velká odchylka od nezávislosti je při větším počtu lidí přesvědčivějším dokladem, že v populaci nějaká souvislost existuje; těsnější tím není. Proto $\mathrm{χ}^2$ ani *p*-hodnota velikost souvislosti nevyjadřují a k výsledku testu připojujeme [Cramérovo V](kapitola_09.qmd#sec-phi-v). Rostou i rezidua: při dvojnásobném počtu lidí jsou asi 1,4krát větší (odmocnina ze dvou), například standardizované reziduum buňky senioři × řešení problému se změní z −2,97 na −4,20.
+
+V tabulce „Nezávislost“ jsou sloupce grafu téměř přesně na přerušovaných čarách, $\mathrm{χ}^2$ je 0,05 a leží úplně vlevo, takže *p*-hodnota je větší než 0,999. Přesná nula nevyjde, protože očekávané četnosti nejsou celá čísla. Přesun pěti mladých mezi strategiemi zvýší $\mathrm{χ}^2$ jen na 1,94 (*p* = 0,747): tak malé odchylky vznikají při náhodném výběru běžně, i když v populaci žádná souvislost není. Křivka ukazuje, které hodnoty statistiky jsou při platnosti nulové hypotézy obvyklé a které vzácné ([Kdy je hodnota chí-kvadrát neobvykle velká?](kapitola_09.qmd#sec-chi-rozdeleni)).
+
+Změna jediné četnosti změní součet řádku, součet sloupce i celkový počet osob, a tím všechny očekávané četnosti v tabulce. Po zvýšení četnosti u seniorů z 10 na 20 klesne $\mathrm{χ}^2$ na 4,82 (*p* = 0,306) a standardizované reziduum buňky mladí × sociální opora se změní z −2,30 na −1,99, přestože v ní zůstalo 12 lidí. Buňky tabulky tedy nelze posuzovat každou zvlášť: očekávaná četnost i reziduum závisejí na celé tabulce.
+
+Příspěvek buňky je druhá mocnina Pearsonova rezidua a součet příspěvků dává $\mathrm{χ}^2$; tabulka příspěvků tak ukazuje, které buňky se na statistice podílejí nejvíc. Standardizovaná rezidua jsou v absolutní hodnotě vždy větší než Pearsonova a jen ona se dají číst na stupnici normovaného normálního rozdělení. Podbarvení slouží k popisu vzorce odchylek. Kdo chce o jednotlivých buňkách rozhodovat, musí ošetřit vícenásobné testování, například Holmovou korekcí z [nepovinného rozšíření](kapitola_09.qmd#rozsireni-holm).
+
+Pětkrát menší tabulka má podobné řádkové podíly a podobné Cramérovo V (0,20), ale $\mathrm{χ}^2$ je jen 2,95 a *p*-hodnota 0,567: se 38 lidmi nelze stejně velkou souvislost ve výběru odlišit od náhodného kolísání. Nejmenší očekávaná četnost navíc klesla na 3,47, pod doporučenou hranici 5, takže chí-kvadrát rozdělení nemusí rozdělení statistiky dobře vystihovat. Co v takové situaci použít, popisují oddíly [Malé očekávané četnosti](kapitola_09.qmd#sec-male-cetnosti) a [Simulovaná *p*-hodnota](kapitola_09.qmd#sec-monte-carlo).
+
+Všechny výsledky předpokládají, že každý člověk je v tabulce právě jednou a že odpovědi různých lidí jsou nezávislé ([Každý případ v jedné buňce](kapitola_09.qmd#sec-nezavislost-pozorovani)). Ani velmi malá *p*-hodnota neříká, že věk strategii zvládání způsobuje; z jednorázového dotazování různě starých lidí nepoznáme, zda se strategie mění s věkem, nebo zda se generace liší.

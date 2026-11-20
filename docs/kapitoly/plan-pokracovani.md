@@ -135,9 +135,21 @@ autor zadal a schválil 2026-11-19 jako stránku
 [Co prozradí dva intervaly vedle sebe o rozdílu průměrů](../../quarto/viz_dva_intervaly.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-intervaly),
 [karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
+Z návrhu čtyř vizualizací ke kapitole 9 z 2026-11-20 autor téhož dne vybral
+a schválil první, „od tabulky četností k testu chí-kvadrát“, jako stránku
+[Jak daleko je tabulka četností od nezávislosti](../../quarto/viz_chi_kvadrat.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi),
+[karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
+Třetí námět téhož návrhu, „rozdíl podílů, poměr rizik a poměr šancí“, autor zadal
+a schválil téhož dne s inspirací Magnussonovým článkem jako stránku
+[Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../../quarto/viz_miry_souvislosti.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry),
+[karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
-pásmo ekvivalence.
+pásmo ekvivalence. Zbývající náměty z návrhu 2026-11-20 ke kapitole 9, neschválené:
+Waldův a Wilsonův interval pro podíl s přesným pokrytím podle π; simulovaná *p*-hodnota přeskupením
+tabulky (případně společně s přeskupením v kapitole 10).
 
 **Návaznost kapitol 8 a 10 (2026-11-14, [R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)):** nepovinné rozšíření o variabilitě rozdílů a korelaci obou měření se přesunulo z kapitoly 10 do kapitoly 8, která Pearsonovo *r* představuje jen neformálně s odkazem dopředu; kapitola 10 na rozšíření odkazuje připomenutím. Povinný výklad kapitoly 10 korelaci z kapitoly 8 nepředpokládá.
 

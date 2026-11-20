@@ -280,6 +280,82 @@ hodnoty opakuje text slidu. Starší verze Excelu a PowerPointu, Excel pro Mac a
 nebyly zkoušeny. Didaktická revize byla interní, bez ověření na studentech. Studentský web se
 nemění, render knihy nebyl potřeba.
 
+<a id="vizualizace-miry-souvislosti"></a>
+
+## Vizualizace rozdílu podílů, poměru rizik a poměru šancí (2026-11-20, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry)
+přibyla čtrnáctá stránka části „Interaktivní vizualizace“, druhá ke kapitole 9:
+[Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](viz_miry_souvislosti.qmd),
+v menu za vizualizací chí-kvadrát. Kapitola 9 na ni odkazuje blokem „Vyzkoušejte si:
+rozdíl podílů, poměr rizik a poměr šancí“ na konci pododdílu `sec-phi-v`, před
+rozšířením o intervalech poměrů; jinak se výklad kapitoly nemění. Obsahuje:
+
+- **zadání:** přepínač mezi tabulkou četností 2 × 2 (výchozí údaje Danielsové) a dvěma riziky posuvníky ve stejně velkých skupinách (100, 1 000 nebo 10 000 osob) s volbou míry držené pevně; předvolby Danielsová a aspirinová studie; záměna referenční skupiny;
+- **dvě skupiny osob:** pole teček s pohledem na riziko a na šance, slovní čtení a všechny míry s dosazením;
+- **vliv rizika v referenční skupině:** graf a tabulka čar stejného rozdílu rizik, stejného poměru rizik a stejného poměru šancí;
+- **retrospektivní výběr:** posuvník podílu zařazených osob bez jevu, pole osob a srovnávací tabulka;
+- **koeficient φ:** χ², φ se znaménkem a jako součin rozdílu řádkových a sloupcových podílů.
+
+Redakční volby při realizaci:
+
+- **Inspirace, ne převzetí.** Členění vychází z článku Magnussona ([E08](../docs/zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio)), který stránka cituje; kód, text ani příklady převzaty nejsou. Místo logistické křivky na stupnici logaritmu šancí je graf na běžné stupnici rizika 0–1 (riziko ve srovnávané skupině proti riziku v referenční), aby nevznikl nový pojem. Část o adjustaci a počet léčených (NNT) chybějí záměrně.
+- **Slovní čtení jako „násobek“** („riziko je 2,34násobkem“), aby věta platila i pro poměry menší než 1. Věta o vzácném jevu se zobrazí, když se oba poměry liší o méně než asi 5 %.
+- **Počty osob bez předložky** v generovaných popiscích („téma přítomno 56, celá skupina 140 osob“), aby nevznikaly tvary „z 140“; výraz „kolik osob ze 100 / z 1 000 / z 10 000“ volí základ podle menšího rizika. Nenazývá se „přirozené četnosti“, protože slovník je vymezuje jako členění jedné společné skupiny.
+- **Dělení nulou** dává „nelze spočítat“ s důvodem místo nekonečna; prázdnou skupinu vizualizace odmítne.
+- **Pole osob** kreslí tabulku osobu po osobě do 25 000 osob (aspirinová studie má 22 071), větší tabulky přepočítá na 10 000 osob na skupinu s označením „přibližně“.
+- **Držení míry** si pamatuje hodnotu z okamžiku volby nebo poslední změny rizika ve srovnávané skupině; když stejný rozdíl nebo poměr rizik vede mimo rozsah 0–1, riziko se nastaví na krajní hodnotu s upozorněním a po návratu se míra obnoví.
+- **Barvy** skupin podle obrázku kapitoly (oranžová pro srovnávanou, modrá pro referenční skupinu); čáry se liší barvou i typem čáry.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-miry-souvislosti.R`, v repozitáři): Danielsová, zaměněné skupiny, aspirin, úloha 10 a dvě zadání riziky; χ² porovnáno uvnitř skriptu s `chisq.test` a φ² se součinem obou rozdílů; čáry stejné míry a retrospektivní výběr. Shoda s kapitolou: 0,400 a 0,171, 22,9 bodu, 2,34 (0,43), 0,667 a 0,206, 3,23, χ² 16,06, φ 0,25, 0,229 × 0,273; aspirin 1,82, 1,83, 0,77 bodu, φ 0,034. Čísla v textu stránky pocházejí z tohoto výstupu.
+- **Excel:** stránka vzorce Excelu nenabízí; výpočty jsou na listu `Mira_souvislosti` sešitu kapitoly 9.
+- **Prohlížeč:** výchozí stav prohlédnut na snímcích z Chromia (desktop, celá obrazovka a 375 px z `check-html.cjs`). Panel prohlížeče aplikace při této práci přestal buňky OJS spouštět (i u starších vizualizací), proto v něm druhá vizualizace prohlédnuta nebyla.
+- **Citace:** vykreslený odkaz „Magnusson (2026)“ a položka v seznamu literatury zkontrolovány; titul, verze a datum jsou převzaty ze stránky článku (viz kartu E08), licence kódu článku zjišťována nebyla, protože se kód nepřebírá.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s oběma novými bloky a novým pořadím menu prošel celý bez chyb; prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Interaktivní obrázky inspiračního článku nebyly vyzkoušeny v prohlížeči, jen přečten jeho text. Didaktická revize je interní, ne ověření na studentech.
+
+<a id="vizualizace-chi-kvadrat"></a>
+
+## Vizualizace tabulky četností a testu chí-kvadrát; sbalená část nabídky (2026-11-20, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi)
+přibyla třináctá stránka části „Interaktivní vizualizace“, první ke kapitole 9:
+[Jak daleko je tabulka četností od nezávislosti](viz_chi_kvadrat.qmd), v menu za
+vizualizací dvou intervalů. Kapitola 9 na ni odkazuje blokem „Vyzkoušejte si: od
+tabulky četností k testu chí-kvadrát“ v pododdílu `sec-pearson-upravena`, za
+rozšířením o Holmově korekci; jinak se výklad kapitoly nemění. Obsahuje:
+
+- **ovládání:** editovatelnou tabulku věk × strategie zvládání (celá čísla 0–100 000) s dopočítanými součty a tlačítka „Zdvojnásobit četnosti“, „Původní data“ a „Nezávislost“;
+- **grafy:** řádkové podíly s podíly celého výběru a chí-kvadrát rozdělení se čtyřmi stupni volnosti, kritickou hodnotou a *p*-hodnotou jako plochou;
+- **výsledky:** slovní závěr testu na hladině 0,05, souhrn (χ², stupně volnosti, *p*, kritická hodnota, Cramérovo V, nejmenší očekávaná četnost, vzorec `CHISQ.DIST.RT`), upozornění při očekávané četnosti pod 5 a čtyři odvozené tabulky (očekávané četnosti, příspěvky, Pearsonova a standardizovaná rezidua);
+- **text:** oddíl „Odkud se čísla berou“ se všemi vzorci kapitoly a dosazením pro buňku mladí × řešení problému, čtyři úkoly a „Čeho si všimnout“.
+
+Redakční volby při realizaci:
+
+- **Pevná tabulka 3 × 3** s popisky příkladu; stupně volnosti jsou proto vždy 4 a kritická hodnota 9,49.
+- **Okamžité použití platné hodnoty** (událost `input`), aby fungovaly i šipky číselného pole; neplatná hodnota nebo prázdný řádek či sloupec se odmítne a platí poslední platná tabulka.
+- **Podbarvení standardizovaných reziduí** roste plynule do |4| (nejvýše 40 % sytosti kvůli kontrastu textu), bez hranice ±1,96; pod tabulkou je výhrada o více testech. Společné pravidlo webu ruší pozadí buněk tabulek, proto má podbarvení vlastní pravidlo s proměnnou `--viz-chi-shade` (výjimka podle R54: barva vyjadřuje hodnotu buňky).
+- **Předvolba „Nezávislost“** používá zaokrouhlené očekávané četnosti původní tabulky (19, 17, 19 / 27, 26, 27 / 19, 17, 19), protože přesné nejsou celá čísla; χ² je 0,05.
+- ***p*-hodnota** pod 0,001 se uvádí jako „< 0,001“ a nad 0,999 jako „> 0,999“.
+- **Osa grafu rozdělení** sahá do 20, nebo do 1,15násobku χ²; při velmi velkém χ² je plocha neviditelná a hodnotu nese popisek.
+- **Numerika:** `lgamma` převzato z vizualizace *t*-rozdělení; neúplná funkce gama (řada a řetězový zlomek) přepsána z `quarto/_verification/check-chapter-09-excel-expected.py`.
+
+**Sbalená část nabídky** ([upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-nabidka)): část „Interaktivní vizualizace“ je v postranní nabídce ve výchozím stavu sbalená, na stránkách vizualizací rozbalená. Quarto to pro jedinou část neumí nastavením, proto ji sbaluje `assets/sidebar-collapse.js` připojený bez `defer` (popis v [provozním návodu](../docs/PROVOZ.md#interaktivni-vizualizace)).
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-chi-kvadrat.R`, v repozitáři): tabulka kapitoly, zdvojená a dvakrát zdvojená, „Nezávislost“ a tři tabulky z úkolů; vlastní výpočet porovnán uvnitř skriptu s `chisq.test` (statistika, *p*, obě rezidua). Shoda s kapitolou: χ² 11,78, *p* 0,0191, V 0,176, rezidua 1,43 / 2,09 a −2,03 / −2,97. Čísla v textu stránky pocházejí z tohoto výstupu.
+- **Excel:** vzorec `CHISQ.DIST.RT` stránka jen vypisuje; funkce je spuštěna a ověřena v sešitu kapitoly 9 (list `Tabulka`), nově v Excelu spouštěna nebyla.
+- **Prohlížeč:** výchozí stav, „Nezávislost“ a mobilní šířka prohlédnuty v prohlížeči aplikace a na snímcích z Chromia; při prohlídce opraveno nefunkční podbarvení, rozvržení odvozených tabulek (dva sloupce jen při dostatečné šířce), směr popisků kritické hodnoty a χ² a okraj svislé osy na mobilu.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem, s testem sbalené nabídky a s novým pořadím menu prošel celý bez chyb; prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Na šířce 375 px se vstupní tabulka o několik pixelů posouvá ve vlastní oblasti; stránka nepřetéká. Didaktická revize je interní, ne ověření na studentech.
+
 <a id="revize-kapitoly-10"></a>
 
 ## Revize kapitoly 10 podle autorových připomínek (2026-11-20, R84)

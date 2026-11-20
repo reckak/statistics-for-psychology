@@ -257,6 +257,37 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 @media (max-width: 519px) {
   .viz-di-pair { flex-direction: column; }
 }
+/* From a table of frequencies to the chi-square test (viz_chi_kvadrat.qmd): editable table, derived tables in two columns. */
+.viz-chi-input input { width: 5.6rem; font: inherit; padding: .25rem .4rem; border: 1px solid #80969e; border-radius: .25rem; color: var(--ink); background: white; text-align: right; font-variant-numeric: tabular-nums; }
+.viz-chi-input input[aria-invalid="true"] { border-color: #B54E24; box-shadow: 0 0 0 1px #B54E24; }
+.viz-chi-input td, .viz-chi-input tbody th { vertical-align: middle; }
+.viz .viz-chi-error { max-width: none; margin: .3rem 0 0; }
+.viz-chi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: .4rem 2rem; }
+.viz-chi-derived { min-width: 0; }
+.viz-chi-derived .viz-panel-title { margin-top: .4rem; }
+.viz .viz-chi-formula { margin: 0 0 .2rem; }
+.viz-chi-table { width: 100%; }
+.viz-chi-table :is(th, td) { padding: .3rem .5rem; }
+/* Shading that carries the value of the cell (R54) overrides the transparent table background. */
+.viz .viz-chi-table td[data-shade] { background-color: var(--viz-chi-shade) !important; }
+.viz-chi-derived .viz-note { margin: .3rem 0 .4rem; }
+@media (max-width: 575px) {
+  .viz-chi-input input { width: 3.6rem; padding: .2rem .25rem; }
+  .viz-chi-input :is(th, td) { padding: .3rem .2rem; }
+}
+/* Difference of proportions, risk ratio and odds ratio (viz_miry_souvislosti.qmd): fields of persons and comparison tables. */
+.viz-ms-row { margin-top: .8rem; }
+/* Two columns of inputs leave room for six digits also on a phone. */
+.viz-chi-input.viz-ms-input input { width: 5.6rem; }
+@media (max-width: 575px) {
+  .viz-chi-input.viz-ms-input input { width: 4.4rem; }
+}
+.viz-ms-dots { margin: .5rem 0 .9rem; }
+.viz-ms-dots svg { display: block; max-width: 100%; height: auto; }
+.viz-ms-group { margin: 0 0 .25rem; font-variant-numeric: tabular-nums; }
+.viz-ms-lines, .viz-ms-retro { width: auto; }
+.viz-ms-lines thead th:first-child, .viz-ms-retro thead th:first-child { text-align: left; }
+.viz-ms-lines td, .viz-ms-retro td { white-space: nowrap; }
 /* Coverage of confidence intervals (viz_pokryti_intervalu.qmd). */
 .viz-pi-row { margin-top: .8rem; }
 .viz-pi-column { flex-direction: column; margin-bottom: 0; }

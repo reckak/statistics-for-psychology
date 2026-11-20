@@ -104,7 +104,31 @@ zdroje: Daniels (podle Fielda, s. 638), aspirinová studie, Prozac a anorexie
 | [Simulovaná *p*-hodnota](../../quarto/kapitola_09.qmd#fig-monte-carlo) | Rozdělení χ² z 10 000 přeskupení proti hladké aproximaci. |
 | [Shody dvou posuzovatelů](../../quarto/kapitola_09.qmd#fig-kappa) | Nepovinně: shody a neshody v tabulce 3 × 3 s očekávanými četnostmi. |
 
-Interaktivní vizualizace ke kapitole 9 nejsou; každou by bylo nutné schválit podle R65.
+<a id="interaktivni-vizualizace-09"></a>
+
+**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi)):**
+v pododdílu [Pearsonova a standardizovaná rezidua](../../quarto/kapitola_09.qmd#sec-pearson-upravena),
+za rozšířením o Holmově korekci, odkazuje blok „Vyzkoušejte si: od tabulky
+četností k testu chí-kvadrát“ na stránku
+[Jak daleko je tabulka četností od nezávislosti](../../quarto/viz_chi_kvadrat.qmd).
+
+- **Ovládání:** editovatelná tabulka věk × strategie zvládání (celá čísla 0–100 000, výchozí data kapitoly); tlačítka zdvojnásobení četností, původních dat a „Nezávislost“ (19, 17, 19 / 27, 26, 27 / 19, 17, 19).
+- **Grafy a výsledky:** řádkové podíly s podíly celého výběru; chí-kvadrát rozdělení se čtyřmi stupni volnosti, kritickou hodnotou 9,49 a *p*-hodnotou jako plochou; tabulky očekávaných četností, příspěvků, Pearsonových a standardizovaných reziduí (podbarvených podle hodnoty); slovní závěr na hladině 0,05, Cramérovo V, nejmenší očekávaná četnost s upozorněním pod 5, vzorec `CHISQ.DIST.RT`.
+- **Vztah k výkladu:** nové pojmy nezavádí; oddíl „Odkud se čísla berou“ opakuje vzorce řádkového podílu, očekávané četnosti, příspěvku, χ², stupňů volnosti, obou reziduí a Cramérova V s dosazením pro buňku mladí × řešení problému. „Čeho si všimnout“ doplňuje oproti kapitole čtyři zjištění z modelu: po zdvojnásobení četností χ² 23,56 a *p* pod 0,001 při stejném V 0,18 a rezidua větší asi 1,4krát; téměř nezávislá tabulka má χ² 0,05; změna jedné četnosti (senioři × řešení problému na 20) změní všechny očekávané četnosti i reziduum nezměněné buňky (−2,30 na −1,99; χ² 4,82); pětkrát menší tabulka má V 0,20, ale *p* 0,567 a nejmenší očekávanou četnost 3,47.
+- **Rozsah:** opakuje oddíly o očekávaných četnostech, řádkových podílech, reziduích, *p*-hodnotě z chí-kvadrát rozdělení, malých očekávaných četnostech a Cramérově V. Tabulka je pevně 3 × 3; test dobré shody, Fisherův test, simulovanou *p*-hodnotu ani Holmovu korekci nepočítá. Není samostatným cvičením; doplňuje úlohu 7.
+
+**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry)):**
+na konci pododdílu [Koeficient φ a Cramérovo V](../../quarto/kapitola_09.qmd#sec-phi-v),
+před rozšířením o intervalech poměrů, odkazuje blok „Vyzkoušejte si: rozdíl podílů,
+poměr rizik a poměr šancí“ na stránku
+[Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../../quarto/viz_miry_souvislosti.qmd).
+
+- **Ovládání:** četnosti tabulky 2 × 2 (výchozí Danielsová 56, 84 / 20, 97), nebo dvě rizika posuvníky ve skupinách po 100, 1 000 či 10 000 osobách s volbou míry držené pevně; předvolby Danielsová a aspirin (189 z 11 034 a 104 z 11 037); záměna referenční skupiny.
+- **Grafy a výsledky:** pole osob s pohledem na riziko a na šance; rizika, rozdíl v procentních bodech, „kolik osob ze 100“, poměr rizik, šance, poměr šancí s dosazením a slovním čtením; graf a tabulka čar stejného rozdílu, stejného poměru rizik a stejného poměru šancí; retrospektivní výběr (10–100 % osob bez jevu); χ², φ se znaménkem a jako součin dvou rozdílů.
+- **Vztah k výkladu:** nové pojmy nezavádí. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění z modelu: při poměru šancí 3,23 je poměr rizik 3,16 u rizika 0,01 v referenční skupině, 1,53 u 0,5 a 1,07 u 0,9; stejný poměr rizik 2,34 není možný nad rizikem 0,43 a stejný rozdíl nad 0,771; ve výběru s desetinou žen bez tématu je poměr podílů 1,29 při nezměněném poměru šancí. Po záměně referenční skupiny uvádí poměr šancí 0,31, který kapitola nepočítá.
+- **Rozsah:** opakuje pododdíly Rozdíl v procentních bodech, Poměr rizik a poměr šancí a část o φ. Nepočítá intervaly spolehlivosti (Newcombe, intervaly poměrů), Cramérovo V pro větší tabulky ani test. Členění je inspirováno článkem [E08](../zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio). Není samostatným cvičením; doplňuje úlohy 9e a 10.
+
+Kontrola souladu obou vizualizací s textem uvedených oddílů: 2026-11-20. Další náměty vizualizací ke kapitole 9 jsou otevřeným návrhem v [plánu pokračování](plan-pokracovani.md#plan-vizualizace).
 
 <a id="cviceni-09"></a>
 
@@ -163,4 +187,5 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [U14](../zdroje/U14-field.md#priprava-09-20261109) — kap. 16.
 - [U15](../zdroje/U15-wilcox.md#priprava-09-20261109) — §15.1–15.4.
 - [P12](../zdroje/P12-kategorialni-data.md#priprava-09-20261109), [P13](../zdroje/P13-chikvadrat-neparametricke.md#priprava-09-20261109), [C09](../zdroje/C09-ulohy-tyden-12.md#priprava-09-20261109) — priority a náměty.
+- [E08](../zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio) — inspirace členěním vizualizace měr souvislosti (2026-11-20).
 - [Čtení pro návrh](../zdroje/HISTORIE.md#priprava-09-20261109) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-09).
