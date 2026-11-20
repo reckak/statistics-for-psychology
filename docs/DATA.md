@@ -388,7 +388,10 @@ a `Dve_korelace`. Pomocné listy `Perm_*` a `Boot_*` obsahují pevné indexy ze 
 20261109 a z nich odvozené hodnoty a pořadí. Vzorce s TRANSPOZICE uvnitř
 SOUČIN.SKALÁRNÍ jsou vzorce dynamického pole (Excel pro Microsoft 365, Excel 2021
 a novější). Simulace k obrázkům (výběrové rozdělení *r*, tvary, faktory) a simulace
-pokrytí (`scripts/kapitola_10-pokryti.R`) do sešitu nepatří.
+pokrytí (`scripts/kapitola_10-pokryti.R`) do sešitu nepatří. Totéž platí pro obrázky
+a tabulku z revize 2026-11-20 (Anscombův kvartet, Fisherova transformace, druhy odlehlého
+pozorování, atenuace, *r*<sub>pb</sub> a *d*, korelační matice s intervaly); tabulka tří
+přeskupení používá data listu `Male_poradi` a přiřazení z listu `Perm_presna`.
 
 | Cvičení | List a oblast / povaha zadání |
 |---|---|

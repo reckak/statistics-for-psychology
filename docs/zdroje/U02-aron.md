@@ -40,6 +40,10 @@ Odkazy na originály v `sources/` jsou místní a vyžadují neveřejné podklad
 
 **Čtení pro návrh kapitoly 10 (2026-11-09):** kap. 11 „Correlation“ (od s. 487, PDF 492) v textové extrakci jen výběrově: osnova a úvodní příklad vzrušujících společných aktivit a spokojenosti v manželství (s. 487–488), oddíl o dvojím významu slova korelace (statistický postup vs. korelační uspořádání studie) s úlohou o náhodně přidělených sušenkách, oddíl o interpretaci (*r*², omezení rozsahu) a oddíl o korelacích ve výzkumných článcích (bodový graf Gump et al., 2007; korelační matice). Čísla stran za s. 488 nebyla v extrakci určena; výpočetní postup, test, síla a cvičení nečteny. **Nález:** text označuje *r* = 0,60 za „čtyřikrát“ větší než 0,30 podle *r*²; takové srovnání nepřebírat bez výkladu, proč se *r* a *r*² čtou odlišně (srov. Howell s. 311–312, [U01](U01-howell.md#priprava-10-20261109)). [Společný záznam](HISTORIE.md#priprava-10-20261109).
 
+<a id="revize-10-20261120"></a>
+
+**Revize kapitoly 10 (2026-11-20):** v textové extrakci přečtena pasáž o nespolehlivém měření (s. 514–515): nepřesné měření snižuje korelaci, toto snížení se nazývá *attenuation* a pokročilejší texty uvádějí vzorce korekce, které se v psychologii používají zřídka. Vzorec v knize není. Použito k výkladu atenuace v [oddílu o chybě měření](../../quarto/kapitola_10.qmd#sec-chyba-mereni); vzorec korekce dokládá [D15](D15-muchinsky.md#d15). [Společný záznam](HISTORIE.md#muchinsky-2026-11-20).
+
 
 ## Související karty kapitol
 

@@ -269,16 +269,22 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_10.html') {
         assert.equal(await solutions.count(),18,'Chapter 10 has sixteen core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 10 mathematics parses');
-        assert.equal(await page.locator('main img').count(),12);
+        assert.equal(await page.locator('main img').count(),17,'Chapter 10 has sixteen figures in the text and one in an optional extension');
         for(const img of await page.locator('main img').all()) {
-          await img.scrollIntoViewIfNeeded();
-          assert(await img.evaluate(el=>el.complete && el.naturalWidth>0));
+          if(await img.isVisible()) await img.scrollIntoViewIfNeeded();
+          assert(await img.evaluate(async el=>{ if(!el.complete) await el.decode().catch(()=>{}); return el.complete && el.naturalWidth>0; }));
           assert((await img.getAttribute('alt')).length>30);
         }
+        for(const id of ['fig-stejne-r','fig-fisher-transformace','fig-permutace-presna','fig-odlehle-typy','fig-reliabilita','fig-rpb-d','tbl-k10-preskupeni','tbl-k10-09','rozsireni-meze-r','rozsireni-korekce-reliabilita']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 10 revision element: ${id}`);
+        const text10=await page.locator('main').innerText();
+        assert(!/(Pearsonů?v|Spearmanů?v|Kendallů?v|Pearsonov[aěuy]m?|Spearmanov[aěuy]m?|Kendallov[aěuy]m?) koeficient/.test(text10),'Chapter 10 uses the full names of the correlation coefficients');
+        assert(!/(lineární|zakřivený|stoupající|klesající) mrak/.test(text10),'Chapter 10 does not describe relationships as clouds');
+        assert(/observační studie/.test(text10) && /Anscomb/.test(text10) && /\[−0,72; −0,49\]/.test(text10),'Chapter 10 revision content is rendered');
+        assert(await page.locator('#ref-anscombe1973').count()===1 && await page.locator('#ref-muchinsky1996').count()===1,'Anscombe and Muchinsky in the bibliography');
         const greek10=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[ρτφχΦ]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek10.filter(e=>e.text.includes('τ')).length>5,'Kendall tau rendered');
         assert(greek10.filter(e=>/[ρτφχ]/.test(e.text)).every(e=>e.variant==='normal'),'Greek symbols of chapter 10 must be upright');
-        for(const id of ['rozsireni-bca','rozsireni-d-r']) {
+        for(const id of ['rozsireni-meze-r','rozsireni-bca','rozsireni-korekce-reliabilita','rozsireni-d-r']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
         const main10=await page.locator('main').innerText();
@@ -286,6 +292,11 @@ const server = http.createServer((req, res) => {
         assert(/dynamickými poli/.test(main10),'The Excel version requirement is stated');
         for(const fig of await page.locator('main figure.quarto-float-fig').all()) {
           const id=await fig.evaluate(el=>el.closest('[id]').id);
+          if(!await fig.isVisible()) {
+            const ext=fig.locator('xpath=ancestor::div[contains(concat(" ",@class," ")," callout ")][1]');
+            await ext.locator('[data-bs-toggle="collapse"]').first().click();
+            await fig.waitFor({state:'visible'});
+          }
           await fig.screenshot({path:`tmp/verification/ch10-${id}.png`});
         }
         for(const id of ['sec-ctyri-casti','sec-cist-r','sec-tau-b','sec-fisher-interval','sec-nahodny-permutacni','sec-pocet-opakovani','sec-rozhodovaci-tabulka','sec-korelacni-matice']) {
