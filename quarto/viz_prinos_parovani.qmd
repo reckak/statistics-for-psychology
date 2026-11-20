@@ -459,7 +459,7 @@ $$\frac{2{,}393}{\sqrt{12}}\approx0{,}69\qquad\text{a}\qquad\sqrt{\frac{7{,}340^
     data.x1.forEach((v, i) => { rows.push({i, c: 0, y: v}); rows.push({i, c: 1, y: data.x2[i]}); });
     const opacity = n <= 30 ? 0.75 : n <= 80 ? 0.45 : 0.25;
     const spaghetti = Plot.plot({
-      ...base, height: small ? 280 : 320, marginBottom: 40,
+      ...base, height: small ? 340 : 440, marginBottom: 40,
       x: {domain: [-0.35, 1.35], ticks: [0, 1], tickFormat: t => t === 0 ? "po běžném spánku" : "po krátkém spánku", label: null},
       y: {...yLabel("Skór pozornosti (body)"), nice: true, zero: false, tickFormat: tick},
       ariaLabel: `Skóry ${n} studentů po běžném a po krátkém spánku, body téhož studenta spojené čarou`,
@@ -525,7 +525,7 @@ $$\frac{2{,}393}{\sqrt{12}}\approx0{,}69\qquad\text{a}\qquad\sqrt{\frac{7{,}340^
     const yMax = Math.max(indSE, ...curveP.map(p => p.y)) * 1.12;
     const now = {x: M.share, p: M.sdD / Math.sqrt(S.n), i: indSE};
     const sePlot = Plot.plot({
-      ...base, height: small ? 250 : 280, marginBottom: 44,
+      ...base, height: small ? 300 : 360, marginBottom: 44,
       x: {domain: S.mode === "osoby" ? [0, 1] : [-1, 1], label: S.mode === "osoby" ? "Podíl stabilních rozdílů mezi lidmi na rozptylu jednoho měření" : "Korelace obou měření v populaci", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
       y: {...yLabel("Směrodatná chyba (body)"), domain: [0, yMax], tickFormat: tick},
       ariaLabel: `Směrodatná chyba obou analýz v modelu pro ${S.n} studentů`,

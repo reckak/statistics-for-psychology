@@ -39,7 +39,7 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
 //| echo: false
 {
   // Colours: blue for the condition after normal sleep and the difference, orange for short sleep.
-  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17", band = "#F6DCCB", bandSig = "#B8DDE8", overlapFill = "#D5DADD";
+  const blue = "#245D78", orange = "#B54E24", green = "#3B7D3A", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17", band = "#F6DCCB", bandSig = "#B8DDE8", overlapFill = "#D5DADD";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
 
   // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
@@ -440,7 +440,7 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
     const bars = [
       {row: "součet mezních chyb obou intervalů", x1: 0, x2: g1.me, fill: orange},
       {row: "součet mezních chyb obou intervalů", x1: g1.me, x2: g1.me + g2.me, fill: blue},
-      {row: "mezní chyba intervalu rozdílu", x1: 0, x2: diff.me, fill: ink}
+      {row: "mezní chyba intervalu rozdílu", x1: 0, x2: diff.me, fill: green}
     ];
     const barPlot = Plot.plot({
       width, height: small ? 190 : 140, marginLeft: small ? 10 : 230, marginRight: 30, marginTop: 10, marginBottom: 40, style,
@@ -460,6 +460,11 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
     if (S.design === "nezavisle") {
       const a = g1.se, b = g2.se, c = Math.sqrt(a * a + b * b), m = Math.max(a, b) * 1.18;
       const side = Math.min(small ? width : 360, 360);
+      // Screen angle of the hypotenuse (clockwise, degrees) from the pixel sizes of both axes.
+      const px = (side - 46 - 20) / m, py = (side - 20 - 40) / m;
+      const hypAngle = Math.atan2(b * py, a * px) * 180 / Math.PI;
+      // Plot applies dx and dy on screen, before the rotation: shift the hypotenuse label along its outward normal.
+      const hypLen = Math.hypot(a * px, b * py), hypDx = 11 * b * py / hypLen, hypDy = -11 * a * px / hypLen;
       triangle = Plot.plot({
         width: side, height: side, marginLeft: 46, marginRight: 20, marginTop: 20, marginBottom: 40, style,
         x: {domain: [0, m], label: "Směrodatná chyba průměru po krátkém spánku (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick, ticks: 4},
@@ -467,12 +472,14 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
         ariaLabel: "Pravoúhlý trojúhelník ze směrodatných chyb obou průměrů",
         ariaDescription: `Odvěsny ${fixed(a, 3)} a ${fixed(b, 3)} bodu, přepona ${fixed(c, 3)} bodu, součet odvěsen ${fixed(a + b, 3)} bodu.`,
         marks: [
+          // Right angle at the origin: legs along the axes, hypotenuse from (a, 0) to (0, b).
           Plot.link([0], {x1: 0, y1: 0, x2: a, y2: 0, stroke: orange, strokeWidth: 3}),
-          Plot.link([0], {x1: a, y1: 0, x2: a, y2: b, stroke: blue, strokeWidth: 3}),
-          Plot.link([0], {x1: 0, y1: 0, x2: a, y2: b, stroke: ink, strokeWidth: 3}),
-          Plot.text([0], {x: a / 2, y: 0, dy: -8, text: () => fixed(a, 2), fill: orange, fontWeight: 600}),
-          Plot.text([0], {x: a, y: b / 2, dx: 6, textAnchor: "start", text: () => fixed(b, 2), fill: blue, fontWeight: 600}),
-          Plot.text([0], {x: a / 2, y: b / 2, dx: -8, dy: -6, textAnchor: "end", text: () => `√(${fixed(a, 2)}² + ${fixed(b, 2)}²) = ${fixed(c, 2)}`, fill: ink, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"})
+          Plot.link([0], {x1: 0, y1: 0, x2: 0, y2: b, stroke: blue, strokeWidth: 3}),
+          Plot.link([0], {x1: a, y1: 0, x2: 0, y2: b, stroke: green, strokeWidth: 3}),
+          // Labels run along their sides: the legs inside the triangle, the hypotenuse outside it.
+          Plot.text([0], {x: a / 2, y: 0, dy: -9, text: () => fixed(a, 2), fill: orange, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+          Plot.text([0], {x: 0, y: b / 2, rotate: -90, dx: 11, text: () => fixed(b, 2), fill: blue, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}),
+          Plot.text([0], {x: a / 2, y: b / 2, rotate: hypAngle, dx: hypDx, dy: hypDy, text: () => `√(${fixed(a, 2)}² + ${fixed(b, 2)}²) = ${fixed(c, 2)}`, fill: green, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke"})
         ]
       });
     }
@@ -487,7 +494,7 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
     container.replaceChildren(
       panel(`${lvl} intervaly obou průměrů a interval rozdílu`, `<span>${boxSwatch(overlapFill)}<span>společná část obou intervalů</span></span><span>${lineSwatch(ink, "5,4")}<span>nula</span></span>`, pair),
       panel("Kdy se intervaly překrývají a kdy je rozdíl významný", bandLegend, bandPlot),
-      panel("Mezní chyby", `<span>${boxSwatch(orange)}<span>po krátkém spánku</span></span><span>${boxSwatch(blue)}<span>po běžném spánku</span></span><span>${boxSwatch(ink)}<span>rozdíl</span></span>`, barPlot, triangle, triNote)
+      panel("Mezní chyby", `<span>${boxSwatch(orange)}<span>po krátkém spánku</span></span><span>${boxSwatch(blue)}<span>po běžném spánku</span></span><span>${boxSwatch(green)}<span>rozdíl</span></span>`, barPlot, triangle, triNote)
     );
   }
 
