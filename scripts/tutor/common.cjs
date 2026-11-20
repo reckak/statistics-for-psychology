@@ -109,14 +109,79 @@ function geminiSkill(claudeText) {
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
 const link = (label, target) => ({t: 'Link', c: [['', [], []], [str(label)], [target, '']]});
+// Every expository chapter of the book is bundled, in book order; the export
+// asserts this list against the parsed _quarto.yml.
+const chapterSources = [...read(path.join(root, '_quarto.yml'))
+  .matchAll(/^\s*-\s*(quarto\/kapitola_\d+\.qmd)\s*$/gm)].map(m => m[1]);
+if (!chapterSources.length) throw new Error('_quarto.yml lists no expository chapters');
 const documents = [
   {id: 'index', source: 'index.qmd', output: 'uvod.md', kind: 'introduction'},
-  ...Array.from({length: 6}, (_, i) => {
-    const nn = String(i + 1).padStart(2, '0');
-    return {id: `kapitola_${nn}`, source: `quarto/kapitola_${nn}.qmd`, output: `kapitoly/kapitola_${nn}.md`, kind: 'chapter', number: i + 1};
+  ...chapterSources.map((source, i) => {
+    const id = path.basename(source, '.qmd');
+    return {id, source, output: `kapitoly/${id}.md`, kind: 'chapter', number: i + 1};
   }),
   ...['slovnicek', 'znaceni', 'excel'].map(id => ({id, source: `quarto/${id}.qmd`, output: `prehledy/${id}.md`, kind: 'overview'}))
 ];
+// Line numbers of Markdown headings outside fenced code, in document order.
+function headingLines(markdown) {
+  const out = [];
+  let fence = null;
+  markdown.split('\n').forEach((line, i) => {
+    const f = line.match(/^(`{3,}|~{3,})/);
+    if (f) {
+      if (!fence) fence = f[1][0];
+      else if (f[1][0] === fence) fence = null;
+      return;
+    }
+    const h = !fence && line.match(/^(#{1,6}) \S/);
+    if (h) out.push({line: i + 1, level: h[1].length, text: line});
+  });
+  return out;
+}
+// A fenced Div ends at the next line made of exactly as many colons as its opener.
+function divEnd(lines, start) {
+  const fence = lines[start - 1].match(/^(:{3,})/)?.[1];
+  if (!fence) throw new Error(`Line ${start} does not open a fenced div`);
+  for (let i = start; i < lines.length; i++) if (lines[i] === fence) return i + 1;
+  throw new Error(`Unclosed fenced div at line ${start}`);
+}
+const solutionOpen = (lines, i) => /^:{3,} callout-note$/.test(lines[i]) && lines[i + 1] === '**Ukázat řešení**';
+// One register of all textbook figures; the Gemini variant has no image files.
+function figureRegister(chapters, figures, withFiles) {
+  const out = ['# Rejstřík obrázků učebnice', '',
+    withFiles
+      ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor a odkaz na obrázek ve webové učebnici.'
+      : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a odkaz na obrázek ve webové učebnici.', ''];
+  for (const d of chapters) {
+    out.push(`## ${d.number}. ${d.title} {#obrazky-${d.id}}`, '');
+    for (const f of figures.filter(f => f.chapter === d.id)) {
+      out.push(`### Obrázek ${f.number} {#${f.anchor}}`, '',
+        `Popisek: ${f.caption}`, '',
+        `Textový popis: ${mdEscape(f.alt)}`, '',
+        `[V kapitole](${d.output}#${f.id})${withFiles ? ` · [Soubor obrázku](${f.file})` : ''} · [Ve webové učebnici](${f.web})`, '');
+    }
+  }
+  return out.join('\n');
+}
+// Plain text written into generated Markdown must not be read as markup.
+const mdEscape = s => s.replace(/[\`*_[]<>$~^|]/g, '\$&');
+// Inline Markdown of a caption: keeps math delimiters, emphasis and code.
+function inlineMd(value) {
+  if (Array.isArray(value)) return value.map(inlineMd).join('');
+  if (!value || typeof value !== 'object') return '';
+  if (value.t === 'Str') return mdEscape(value.c);
+  if (['Space', 'SoftBreak', 'LineBreak'].includes(value.t)) return ' ';
+  if (value.t === 'Math') return `$${value.c[1]}$`;
+  if (value.t === 'Code') return '`' + value.c[1] + '`';
+  if (value.t === 'Strong') return `**${inlineMd(value.c)}**`;
+  if (value.t === 'Emph') return `*${inlineMd(value.c)}*`;
+  if (['Link', 'Span', 'Image'].includes(value.t)) return inlineMd(value.c[1]);
+  return inlineMd(value.c);
+}
+const figuresLine = withFiles => withFiles
+  ? '[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis, přibalený soubor a webový odkaz ke každému obrázku.'
+  : '[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis a webový odkaz ke každému obrázku; soubory obrázků nejsou přibalené.';
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
-  skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote};
+  skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote,
+  headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd};

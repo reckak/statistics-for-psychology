@@ -73,10 +73,82 @@ function cardSection(raw, prefix) {
   return section.slice(section.indexOf('\n') + 1).split(/^## /m)[0].replace(/<a id="[^"]+"><\/a>/g, '').trim();
 }
 
-function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision}) {
+// Line ranges in the exported chapter: navigation for reading one step at a time.
+// Sections run to the line before the next heading of the same or a higher level;
+// exercise statements and solutions, and optional blocks, get ranges of their own.
+function locate(d, chapterScope, figures) {
+  // Pandoc on Windows writes CRLF; line numbers are the same either way.
+  const markdown = d.markdown.replace(/\r\n/g, '\n');
+  const lines = markdown.split('\n');
+  const marks = c.headingLines(markdown);
+  assert.equal(marks.length, chapterScope.headings.length, `${d.id}: heading lines in the exported chapter`);
+  const lastContent = n => { while (n > 1 && lines[n - 1].trim() === '') n--; return n; };
+  const trimmed = (a, b) => {
+    while (a <= b && lines[a - 1].trim() === '') a++;
+    while (b >= a && lines[b - 1].trim() === '') b--;
+    return a <= b ? [a, b] : null;
+  };
+  const sections = chapterScope.headings.map((h, i) => {
+    assert.equal(marks[i].level, h.level, `${d.id}: heading level at line ${marks[i].line}`);
+    return {...h, start: marks[i].line, figures: [], viz: []};
+  });
+  sections.forEach((h, i) => {
+    const next = sections.slice(i + 1).find(x => x.level <= h.level);
+    h.end = lastContent((next ? next.start : lines.length + 1) - 1);
+  });
+  const innermost = line => sections.filter(h => h.start <= line).at(-1);
+  const opener = id => {
+    const pattern = new RegExp(`^:{3,} \\{#${id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[ }]`);
+    const hits = lines.flatMap((l, i) => pattern.test(l) ? [i + 1] : []);
+    assert.equal(hits.length, 1, `${d.id}: one block opener for ${id}`);
+    return hits[0];
+  };
+  for (const f of figures) innermost(opener(f.id)).figures.push(f);
+  const vizLink = new RegExp(`${c.web.replace(/[.]/g, '\\.')}quarto/(viz_[a-z0-9_]+)\\.html`, 'g');
+  lines.forEach((l, i) => {
+    for (const m of l.matchAll(vizLink)) {
+      const h = innermost(i + 1);
+      if (!h.viz.includes(m[1])) h.viz.push(m[1]);
+    }
+  });
+  const exercises = sections.filter(h => h.exercise && h.level === 3).map(h => {
+    const solutions = [];
+    for (let n = h.start; n <= h.end; n++) {
+      if (c.solutionOpen(lines, n - 1)) { solutions.push([n, c.divEnd(lines, n)]); n = solutions.at(-1)[1]; }
+    }
+    assert(solutions.length, `${d.id}: exercise without a solution block: ${h.title}`);
+    const statement = [];
+    let from = h.start;
+    for (const [a, b] of [...solutions, [h.end + 1, h.end + 1]]) {
+      const part = trimmed(from, a - 1);
+      if (part) statement.push(part);
+      from = b + 1;
+    }
+    return {id: h.id, title: h.title, optional: h.optional, statement, solutions, figures: h.figures};
+  });
+  const optional = chapterScope.optionalBlocks.map(o => {
+    const start = opener(o.id);
+    return {...o, start, end: c.divEnd(lines, start)};
+  });
+  return {sections, exercises, optional};
+}
+const span = ([a, b]) => a === b ? `${a}` : `${a}–${b}`;
+const spans = list => list.map(span).join(' a ');
+const vizTitles = new Map();
+function vizTitle(page) {
+  if (!vizTitles.has(page)) {
+    const title = c.read(path.join(c.root, 'quarto', `${page}.qmd`)).match(/^# (.+?)\s*\{#/m)?.[1];
+    assert(title, `Missing title of ${page}`);
+    vizTitles.set(page, title);
+  }
+  return vizTitles.get(page);
+}
+
+function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision, figures = [], registerRange}) {
   const card = cardFor(d.number);
   const raw = c.read(path.join(c.root, card));
   const chapterScope = scopes(d.out);
+  const located = locate(d, chapterScope, figures);
   const chapterUrl = `${c.web}quarto/${d.id}.html`;
   const local = id => `../${d.output}${id ? '#' + id : ''}`;
   const s = [
@@ -84,6 +156,7 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
     `Výukový plán · balíček ${version} · sestaveno ${stamp} · zdrojová revize ${sourceRevision}.`, '',
     `[Výklad](${local()}) · [Index](../INDEX.md) · [Zdrojová karta](https://github.com/reckak/statistics-for-psychology/blob/${sourceRevision}/${card})`, '',
     'Plán je odvozená navigace pro tutora. Rozsah a hloubku určuje kapitolová karta, cíle a přesné lokátory text kapitoly. U každé úlohy načti zadání i řešení. Označení „povinné“ se týká učiva, nikoli zvládnutí studentem; zmínky a alternativní názvy nejsou samostatné požadované znalosti.', '',
+    `Rozsahy řádků se vztahují k souboru [výkladu](${local()}) v tomto balíčku. Pro aktuální krok načti jen uvedený rozsah, nikoli celou kapitolu; zadání a řešení cvičení i nepovinné bloky mají vlastní rozsahy.`, '',
     '## Vstupní znalosti', ''
   ];
   let prereq = raw.match(/\*\*Vstup:\*\*\s*([\s\S]*?)(?=\n\s*\n)/)?.[1];
@@ -135,8 +208,14 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
   assert(bullets, `${d.id}: missing learning goals`);
   s.push(render([bullets]), '', '## Doporučená posloupnost a lokátory', '',
     'Postupuj po níže uvedených úsecích. Před další otázkou ověř pojmy a předpoklady proti jejich hloubce v následující tabulce. Při volbě bez rozšíření používej povinné části; rozšíření připojuj k souvisejícímu úseku po jejich zvolení.', '');
-  for (const h of chapterScope.headings.filter(h => h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id))) {
-    s.push(`${'  '.repeat(Math.max(0, h.level - 2))}- [${h.title}](${local(h.id)})${h.optional ? ' — nepovinné' : ''}`);
+  s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. Obrázky vedou do rejstříku s textovým popisem; interaktivní stránka je webová stránka učebnice.', '');
+  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../obrazky.md#${f.anchor})`; }).join(', ')}`;
+  const listedFigures = new Set();
+  for (const h of located.sections.filter(h => h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id))) {
+    const extras = [];
+    if (h.figures.length) extras.push(figureLinks(h.figures));
+    if (h.viz.length) extras.push(`interaktivní stránka: ${h.viz.map(p => `[${vizTitle(p)}](${c.web}quarto/${p}.html)`).join(', ')}`);
+    s.push(`${'  '.repeat(Math.max(0, h.level - 2))}- [${h.title}](${local(h.id)}) — řádky ${span([h.start, h.end])}${h.optional ? ' — nepovinné' : ''}${extras.map(x => ' · ' + x).join('')}`);
   }
   s.push('', '## Hloubka výkladu, příklady a procvičení', '',
     renderCard(cardSection(raw, 'Skutečný obsah')), '', '## Pojmy, značení a funkce', '',
@@ -164,20 +243,41 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
     s.push('');
   }
   s.push('## Nepovinné části', '');
-  for (const o of chapterScope.optionalBlocks) s.push(`- [${o.title}](${local(o.id)})`);
+  for (const o of located.optional) s.push(`- [${o.title}](${local(o.id)}) — řádky ${span([o.start, o.end])}`);
   s.push('', '## Cvičení a cílové dovednosti', '', renderCard(cardSection(raw, 'Cvičení a očekávané')), '',
-    '### Přesné lokátory zadání a řešení', '');
-  for (const h of chapterScope.headings.filter(h => h.exercise && h.level === 3)) {
-    s.push(`- [${h.title}](${local(h.id)}) — ${h.optional ? 'nepovinné' : 'základní'}`);
+    '### Přesné lokátory zadání a řešení', '',
+    'Při pomoci bez prozrazení výsledku načti zadání; řešení načti jako kontrolní klíč.', '');
+  for (const h of located.exercises) {
+    s.push(`- [${h.title}](${local(h.id)}) — ${h.optional ? 'nepovinné' : 'základní'} — zadání řádky ${spans(h.statement)}; řešení řádky ${spans(h.solutions)}${h.figures.length ? ' · ' + figureLinks(h.figures) : ''}`);
   }
   const boundary = cardSection(raw, 'Pojmy').split(/\n\s*\n/).filter(p =>
     !/^(?:Hlavní|\*\*Odchylky)/.test(p));
   s.push('', '## Hranice a návaznosti', '', renderCard(boundary.join('\n\n')), '',
     '## Použití vizualizací', '',
     'Vycházej z příkladů a grafů u odkazovaných oddílů a z aktuální úlohy. Zvolené zobrazení využij opakovaně u stejného principu. Rozsah plánu platí i pro grafy a ovladače; další modely přidávej podle [metodiky](../VIZUALIZACE.md) na výslovný dotaz jako označený doplněk.', '',
-    '## Kontrola dalšího kroku', '',
-    'Při pokračování drž stav: zvolený úsek a rozšíření, vysvětlené pojmy, vyřešené úlohy, obtíže a využité vizualizace. Další otázku spoj s konkrétní dovedností výše. Potřebný předpoklad připomeň z dřívější kapitoly nebo nejprve vysvětli. Na konci ověř dovednosti pomocí [shrnutí](' + local(`sec-shrnuti-${String(d.number).padStart(2, '0')}`) + ').', '');
-  return {markdown: s.join('\n'), card, concepts, scope: chapterScope};
+    `Obrázky kapitoly (${figures.length}) s popisky a textovými popisy jsou v [rejstříku obrázků](../obrazky.md#obrazky-${d.id})${registerRange ? ` (řádky ${span(registerRange)})` : ''}; u oddílů a cvičení výše je uvedeno, které k nim patří.`, '');
+  const otherFigures = figures.filter(f => !listedFigures.has(f.id));
+  if (otherFigures.length) s.push(`Mimo uvedené oddíly a cvičení: ${figureLinks(otherFigures)}.`, '');
+  const vizPages = [...new Set(located.sections.flatMap(h => h.viz))];
+  if (vizPages.length) {
+    s.push('Interaktivní stránky učebnice navazující na tuto kapitolu:', '');
+    for (const p of vizPages) {
+      const at = located.sections.filter(h => h.viz.includes(p)).map(h => `[${h.title}](${local(h.id)})`).join(', ');
+      s.push(`- [${vizTitle(p)}](${c.web}quarto/${p}.html) — odkazuje na ni oddíl ${at}`);
+    }
+    s.push('');
+  } else s.push('Na tuto kapitolu nenavazuje žádná interaktivní stránka učebnice.', '');
+  const summary = located.sections.find(h => h.id === `sec-shrnuti-${String(d.number).padStart(2, '0')}`);
+  assert(summary, `${d.id}: missing summary section`);
+  s.push('## Kontrola dalšího kroku', '',
+    'Při pokračování drž stav: zvolený úsek a rozšíření, vysvětlené pojmy, vyřešené úlohy, obtíže a využité vizualizace. Další otázku spoj s konkrétní dovedností výše. Potřebný předpoklad připomeň z dřívější kapitoly nebo nejprve vysvětli. Na konci ověř dovednosti pomocí [shrnutí](' + local(summary.id) + `) (řádky ${span([summary.start, summary.end])}).`, '');
+  const ranges = {
+    sections: located.sections.map(h => ({id: h.id, level: h.level, start: h.start, end: h.end,
+      figures: h.figures.map(f => f.id), viz: h.viz})),
+    exercises: located.exercises.map(({id, statement, solutions}) => ({id, statement, solutions})),
+    optional: located.optional.map(({id, start, end}) => ({id, start, end}))
+  };
+  return {markdown: s.join('\n'), card, concepts, scope: chapterScope, ranges};
 }
 
 module.exports = {bookChapters, cardFor, scopes, createPlan};
