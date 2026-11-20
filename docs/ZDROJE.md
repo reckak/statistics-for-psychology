@@ -408,6 +408,10 @@ Do inventáře místních souborů se nezapočítávají. Další tři externí 
 
 - [E07 — Anscombe: grafy ve statistické analýze](zdroje/E07-anscombe-1973.md#e07-anscombe-1973)
 
+<a id="e08-magnusson-odds-ratio"></a>
+
+- [E08 — Magnusson: interaktivní článek o poměru šancí a poměru rizik](zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio)
+
 <a id="externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12"></a>
 
 - [Externí doplněk kapitoly 1: Griffith et al. (2020) — 2026-10-12](zdroje/externi-griffith-2020.md#externí-doplněk-kapitoly-1-griffith-et-al-2020--2026-10-12)

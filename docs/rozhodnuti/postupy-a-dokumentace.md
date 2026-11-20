@@ -1088,6 +1088,105 @@ mezních chyb“, „Vzorce českého Excelu“, „Předvolby příkladů“) a
 „Volitelná (90/95/99 %)“. Plán téhož dne schválil. Realizaci a ověření
 eviduje [autorská historie](../../quarto/README.md#vizualizace-dva-intervaly).
 
+<a id="r65-upresneni-2026-11-20-chi"></a>
+
+### Upřesnění 2026-11-20 — Vizualizace tabulky četností a testu chí-kvadrát
+
+Třináctá vizualizace podle R65, první ke kapitole 9: stránka
+`quarto/viz_chi_kvadrat.qmd` („Jak daleko je tabulka četností od
+nezávislosti“, `#sec-viz-chi-kvadrat`), v menu za vizualizací dvou
+intervalů. Kapitola 9 na ni odkazuje blokem „Vyzkoušejte si“ v pododdílu
+`sec-pearson-upravena`, za nepovinným rozšířením o Holmově korekci.
+
+- Východiskem je příklad kapitoly věk × strategie zvládání stresu
+  (3 × 3, *n* = 190). Student přepisuje pozorované četnosti přímo
+  v tabulce (celá čísla 0–100 000); součty se dopočítávají.
+- Tlačítka „Zdvojnásobit četnosti“, „Původní data“ a „Nezávislost“
+  (zaokrouhlené očekávané četnosti původní tabulky).
+- Odvozené tabulky: očekávané četnosti, příspěvky buněk ke χ², Pearsonova
+  rezidua a standardizovaná rezidua. Standardizovaná rezidua jsou
+  podbarvená podle hodnoty (modře více, oranžově méně, než odpovídá
+  nezávislosti), bez pevné hranice ±1,96 a s výhradou o více testech.
+- Grafy: řádkové podíly jako na obrázku kapitoly, překreslované podle
+  tabulky (bez tažení sloupců), a chí-kvadrát rozdělení se čtyřmi stupni
+  volnosti s vybarvenou *p*-hodnotou a kritickou hodnotou pro hladinu 0,05.
+- Doplňky: Cramérovo V, upozornění při očekávané četnosti pod 5 s odkazem
+  na oddíl o předpokladech, slovní závěr testu, vzorec českého Excelu.
+- Oddíl „Odkud se čísla berou“ opakuje všechny použité vzorce ve znění
+  kapitoly s dosazením.
+- Bez nových pojmů a symbolů; velikost tabulky je pevná.
+
+**Doklad:** 2026-11-20 autor na nabídku čtyř námětů ke kapitole 9 odpověděl:
+„zapracoval bych tedy nejprve vizualizaci 1. Od tabulky četností k testu
+chí-kvadrát. Vyšel bych z příkladu věk × strategie zvládání stresu. Nechal
+bych studenty upravovat pozorované četnosti a také bych tam dal tlačítko
+pro jejich zdvojnásobení. V odvozených tabulkách bych ukázal např. očekávané
+četnosti, Personova rezidua i standardizovaná rezidua. Výsledky bych
+znázornil i graficky tak, jak to ukazuje kapitole s tím, že graf by byl
+interaktivní […] Doplnil bych i chi-square rozdělení s odpovídajícím
+vybarveným podílem reprezentujícím p-hodnotu.“ Na doplňující otázky zvolil
+graf „Reaguje na tabulku“, rezidua „Podbarvení podle hodnoty“ a všechny
+čtyři doplňky („Cramérovo V“, „Příspěvky buněk ke χ²“, „Upozornění na malé
+očekávané četnosti“, „Tlačítko ‚Nezávislost‘“). K plánu doplnil: „Taky bych
+zopakoval všechny relevantní vzorce.“ Plán téhož dne schválil. Realizaci
+a ověření eviduje [autorská historie](../../quarto/README.md#vizualizace-chi-kvadrat).
+Zbylé tři náměty ke kapitole 9 zůstávají otevřeným návrhem v
+[plánu pokračování](../kapitoly/plan-pokracovani.md#plan-vizualizace).
+
+<a id="r65-upresneni-2026-11-20-miry"></a>
+
+### Upřesnění 2026-11-20 — Vizualizace rozdílu podílů, poměru rizik a poměru šancí
+
+Čtrnáctá vizualizace podle R65, druhá ke kapitole 9: stránka
+`quarto/viz_miry_souvislosti.qmd` („Co říkají rozdíl podílů, poměr rizik
+a poměr šancí o téže tabulce“, `#sec-viz-miry-souvislosti`), v menu za
+vizualizací chí-kvadrát. Kapitola 9 na ni odkazuje blokem „Vyzkoušejte si“
+na konci pododdílu `sec-phi-v`, před nepovinným rozšířením o intervalech
+poměrů.
+
+- Zadání přepínačem: četnosti tabulky 2 × 2 (výchozí údaje Danielsové),
+  nebo dvě rizika posuvníky ve stejně velkých skupinách po 100, 1 000
+  nebo 10 000 osobách. Předvolby Danielsová a aspirinová studie, tlačítko
+  záměny referenční skupiny.
+- Dvě skupiny osob jako pole teček s pohledem na riziko a na šance;
+  všechny míry s dosazením a větami o správném čtení.
+- Vliv rizika v referenční skupině: graf tří čar (stejný rozdíl rizik,
+  stejný poměr rizik, stejný poměr šancí) na běžné stupnici rizika 0–1,
+  tabulka jejich hodnot a v zadání posuvníky volba míry držené pevně.
+- Retrospektivní výběr: posuvník podílu zařazených osob bez jevu; poměr
+  šancí se nemění, poměr podílů ano.
+- Koeficient φ se znaménkem a jako součin rozdílu řádkových a sloupcových
+  podílů.
+- Bez nových pojmů a symbolů: bez počtu léčených (NNT), logaritmu šancí,
+  intervalů poměrů a adjustace; poměr rizik a poměr šancí slovy (R69).
+- Stránka uvádí citací článek, kterým je její členění inspirováno
+  ([E08](../zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio));
+  text, příklady a kód jsou vlastní.
+
+**Doklad:** 2026-11-20 autor zadal: „Nyní bych chtěl implementovat
+vizualizaci k bodu 3. Rozdíl podílů, poměr rizik a poměr šancí. Myslím, že
+se lze hodně inspirovat: https://rpsychologist.com/odds-ratio“. Na
+doplňující otázky zvolil všechny čtyři části („Dvě skupiny osob“, „Vliv
+výchozího rizika“, „Retrospektivní výběr“, „Koeficient φ“), zadání „Obojí
+přepínačem“, nové pojmy „Žádné“ a citaci „Ano, citací“. Plán téhož dne
+schválil. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md#vizualizace-miry-souvislosti).
+
+<a id="r65-upresneni-2026-11-20-nabidka"></a>
+
+### Upřesnění 2026-11-20 — Část s vizualizacemi je v nabídce sbalená
+
+V postranní nabídce webu je část „Interaktivní vizualizace“ ve výchozím
+stavu sbalená; na stránce vizualizace zůstává rozbalená a šipkou ji lze
+rozbalit kdekoli. Části „Výkladové kapitoly“ a „Literatura a přehledy“
+zůstávají rozbalené. Pořadí částí ani stránek se nemění. Provedení
+(`assets/sidebar-collapse.js`) popisuje
+[provozní návod](../PROVOZ.md#interaktivni-vizualizace).
+
+**Doklad:** 2026-11-20 autor při schvalování plánu vizualizace chí-kvadrát
+uvedl: „protože vizualizací je už celkem dost, chtěl bych, ať je oddíl
+s nimi (v osnově html verze) defaultně folded“.
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

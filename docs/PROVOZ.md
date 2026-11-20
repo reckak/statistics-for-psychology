@@ -664,6 +664,63 @@ U vizualizace dvou intervalů a intervalu rozdílu kontrola ověřuje:
 - rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
   v menu a odkaz z oddílu kapitoly 8 `sec-dva-intervaly`.
 
+U vizualizace tabulky četností a testu chí-kvadrát kontrola ověřuje:
+
+- dva grafy (řádkové podíly, chí-kvadrát rozdělení); žádný viditelný kód,
+  tlačítko schránky ani chybu OJS;
+- pravý chvost, hustotu a kritickou hodnotu chí-kvadrát rozdělení se
+  čtyřmi stupni volnosti a pro šest tabulek (kapitola, zdvojená,
+  „Nezávislost“ a tři tabulky z úkolů) χ², *p*, Cramérovo V, nejmenší
+  očekávanou četnost, očekávanou četnost, příspěvek a obě rezidua proti R
+  (`scripts/viz-chi-kvadrat.R`);
+- výchozí stav, slovní závěr, souhrny, vzorec `CHISQ.DIST.RT`, obsah čtyř
+  odvozených tabulek a podbarvení standardizovaných reziduí (barva podle
+  znaménka, sytost podle velikosti);
+- tlačítka zdvojnásobení (stejné V a řádkové podíly, *p* jako „< 0,001“),
+  „Nezávislost“ a „Původní data“; změnu buňky z klávesnice včetně šipek;
+- odmítnutí neplatných četností (prázdná, záporná, necelá, nad 100 000)
+  a tabulky s prázdným řádkem nebo sloupcem se zprávou a ponecháním
+  poslední platné tabulky;
+- upozornění při očekávané četnosti pod 5 s odkazem na `sec-male-cetnosti`
+  a vypnutí zdvojnásobení nad mezí;
+- rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
+  v menu a odkaz z pododdílu kapitoly 9 `sec-pearson-upravena`.
+
+U vizualizace rozdílu podílů, poměru rizik a poměru šancí kontrola ověřuje:
+
+- jeden graf tří čar, dvě pole osob a dvě pole retrospektivního výběru;
+  žádný viditelný kód, tlačítko schránky ani chybu OJS; odkaz na citovaný
+  článek;
+- rizika, rozdíl, poměr rizik, šance, poměr šancí, χ², φ a rozdíl
+  sloupcových podílů pro pět tabulek (Danielsová, se zaměněnými skupinami,
+  aspirin, úloha 10, dvě rizika 40 % a 17 %), hodnoty tří čar a podíly
+  v retrospektivním výběru proti R (`scripts/viz-miry-souvislosti.R`);
+  prázdnou hodnotu místo dělení nulou;
+- výchozí stav, slovní čtení, míry s dosazením, část o φ, tabulku čar,
+  popisek pole osob a rozdělení pole v pohledu na šance;
+- předvolbu aspirinové studie (téměř shodné poměry, pole osoba po osobě)
+  a záměnu referenční skupiny (převrácené poměry, záporné φ a rozdíl);
+- odmítnutí neplatných četností a prázdné skupiny, nulovou buňku
+  („nelze spočítat“), šipky v poli a přepočet polí na 10 000 osob u tabulky
+  nad 25 000 osob;
+- zadání dvěma riziky: posuvníky klávesnicí, držení poměru šancí,
+  poměru rizik (včetně upozornění, když už není možný) a rozdílu rizik,
+  krok 0,1 % u skupin po 1 000 osobách;
+- posuvník retrospektivního výběru klávesnicí a srovnávací tabulku;
+- rozšíření grafu na celé obrazovce, šířku 375 px bez přetékání i s poli
+  aspirinové studie, pořadí v menu a odkaz z pododdílu kapitoly 9
+  `sec-phi-v`.
+
+**Sbalená část v postranní nabídce.** Quarto umí sbalit části nabídky jen
+všechny najednou (`sidebar: collapse-level`). Samotnou část „Interaktivní
+vizualizace“ proto sbaluje skript `assets/sidebar-collapse.js`, připojený
+v `assets/after-body.html` bez `defer`, aby proběhl před prvním vykreslením.
+Část najde podle názvu; při jejím přejmenování v `_quarto.yml` je třeba
+upravit i konstantu `TITLE` ve skriptu. Na stránkách vizualizací zůstává
+část rozbalená a bez JavaScriptu je rozbalená všude. `check-html.cjs`
+ověřuje sbalený stav na stránce kapitoly, rozbalení klávesou Enter
+a rozbalený stav na stránce vizualizace.
+
 Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
