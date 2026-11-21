@@ -1,21 +1,25 @@
 # Statistika pro psychology – AI tutor
 
-Zdroj instrukcí a metadat pluginu, verze 0.3.5. Autor: Karel Rečka.
+Zdroj instrukcí a metadat pluginu; verzi uvádějí oba manifesty. Autor: Karel Rečka.
 
 Tato složka je **vstup exportu**, nikoli hotový instalační balíček.
 Kapitoly, výukové plány, nabídka kapitol, přehledy, obrázky, index, registr a literatura se sestavují z hlavních
 zdrojů učebnice. Nevytvářej zde druhou ručně udržovanou kopii výkladu.
 
 Instalační archiv vytváří node scripts/export-tutor.cjs spuštěný z repozitáře.
-Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-tutor-chatGPT-0.3.5.zip,
-claude/statistika-tutor-claude-0.3.5.zip a gemini/statistika-tutor-gemini-0.3.5.zip.
+Výsledkem jsou archivy v ai-tutor/: chatgpt/statistika-tutor-chatGPT-<verze>.zip,
+claude/statistika-tutor-claude-<verze>.zip a gemini/statistika-tutor-gemini-<verze>.zip.
 Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jsou
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
-Hotový plugin obsahuje úplné kapitoly 1–6, úvod, literaturu a celé aktuální
-přehledy (slovníček, značení a vzorce, Excel). Hesla z kapitol 7–10 mají
-k dispozici přehledový výklad; jejich celé kapitoly přibalené nejsou.
-Šest výukových plánů vzniká z kapitolových karet a struktury textu. Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné názvy a odkazy na plány. Registr schématu 2 eviduje všech deset kapitol s dostupností; texty a plány přibaluje pro 1–6.
+Hotový plugin obsahuje všechny výkladové kapitoly učebnice (nyní 1–10) včetně
+cvičení a řešení, úvod, literaturu, rejstřík obrázků a celé aktuální přehledy
+(slovníček, značení a vzorce, Excel). Ke každé kapitole vzniká z kapitolové
+karty a struktury textu výukový plán s rozsahy řádků oddílů, zadání a řešení.
+Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné
+názvy a odkazy na plány. Katalogem pro nabídku kapitol je INDEX.md; malý registr
+KAPITOLY.json (schéma 3) uvádí verzi, revizi a seznam kapitol. Údaje pro kontrolu
+exportu zůstávají mimo balíček.
 
 Student používá nainstalovaný plugin ve vlastním chatu bez nahrávání kapitol.
 

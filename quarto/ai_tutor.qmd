@@ -4,22 +4,22 @@ Tato stránka popisuje, jak si stáhnout AI tutora k učebnici, nainstalovat jej
 
 ## Co vám AI tutor nabízí {#sec-ai-tutor-nabidka}
 
-AI tutor je doplněk k učebnici. Nainstalujete si jej do chatovacího asistenta, kterého používáte (ChatGPT, Claude nebo Gemini), a potom s ním můžete probírat učivo podobně jako s lektorem. Tutor má k dispozici úplný text kapitol 1–6 včetně cvičení a řešení, slovníček pojmů, přehled značení a vzorců a přehled funkcí Excelu. Kapitoly ani přehledy do chatu nenahráváte, jsou součástí tutora.
+AI tutor je doplněk k učebnici. Nainstalujete si jej do chatovacího asistenta, kterého používáte (ChatGPT, Claude nebo Gemini), a potom s ním můžete probírat učivo podobně jako s lektorem. Tutor má k dispozici úplný text všech deseti kapitol včetně cvičení a řešení, slovníček pojmů, přehled značení a vzorců a přehled funkcí Excelu. Kapitoly ani přehledy do chatu nenahráváte, jsou součástí tutora.
 
 Tutor umí pracovat čtyřmi způsoby:
 
-- **Vysvětlování:** vyloží pojem nebo postup a průběžně ověří, zda mu rozumíte.
+- **Vysvětlování:** vykládá látku po malých krocích a po každém kroku krátkou otázkou ověří, zda mu rozumíte. Když chcete jiný způsob, například souvislý výklad bez otázek, stačí to tutorovi napsat.
 - **Sokratovské vedení:** nedá vám hotovou odpověď, ale otázkami vás navádí, abyste na řešení přišli sami.
 - **Procvičování:** zadá úlohu, počká na váš pokus a potom jej okomentuje.
 - **Zkoušení:** položí několik otázek, ohodnotí odpovědi a ukáže, co si zopakovat.
 
 Tutor využívá jazykový model, a proto může udělat chybu. Učebnici nenahrazuje. Důležité definice, vzorce a výsledky si ověřte v učebnici; tutor u odpovědí uvádí kapitolu a oddíl, ze kterých čerpá. Pokud se odpověď s učebnicí rozchází, platí učebnice.
 
-Kapitoly 7–10 tutor zatím nemá celé. Zná k nim jen hesla ze slovníčku a přehledů a sám vás na tuto hranici upozorní.
+K výkladu tutor ukazuje obrázky z učebnice a u vhodných témat nabídne odkaz na [interaktivní vizualizaci](viz_posun_a_jednotky.qmd) z této učebnice. Způsob zobrazení obrázků závisí na platformě: někde se obrázek objeví přímo v odpovědi, jinde jako přiložený soubor a u kapitoly 10 jej tutor umí nakreslit znovu z dat učebnice.
 
 ## Který soubor stáhnout {#sec-ai-tutor-stazeni}
 
-Tutor existuje ve třech variantách, pro každou platformu jedna. Všechny mají stejný obsah; varianta pro Gemini jen místo obrázků z učebnice odkazuje na jejich verzi ve webové učebnici. Platformy se ale liší spolehlivostí, rychlostí, limity i stylem odpovědí. Klidně si tutora nainstalujte na více z nich a porovnejte je. Každá služba má vlastní limit zpráv: když jej na jedné vyčerpáte, nechte si od tutora vytvořit shrnutí dosavadního studia a pokračujte s ním v novém chatu na jiné platformě.
+Tutor existuje ve třech variantách, pro každou platformu jedna. Všechny mají stejný text; varianta pro Gemini jen neobsahuje soubory obrázků, protože je Gemini v dovednosti nepřijímá. Platformy se ale liší spolehlivostí, rychlostí, limity i stylem odpovědí. Klidně si tutora nainstalujte na více z nich a porovnejte je. Každá služba má vlastní limit zpráv: když jej na jedné vyčerpáte, nechte si od tutora vytvořit shrnutí dosavadního studia a pokračujte s ním v novém chatu na jiné platformě.
 
 Odkazy v tabulce [-@tbl-ai-tutor-soubory] vedou vždy na nejnovější verzi tutora.
 
@@ -86,14 +86,14 @@ Nahrání dovednosti:
 2. Otevřete **Přizpůsobit → Dovednosti**. Na stejné místo se dostanete také přes **Nastavení → Dovednosti**.
 3. Zvolte **Vytvořit** a potom **Nahrát**.
 4. Vyberte stažený soubor `statistika-tutor-gemini.zip`.
-5. Zkontrolujte, že se dovednost **statistika-tutor** objevila mezi vašimi dovednostmi.
+5. Zkontrolujte, že se dovednost **statistika-tutor** objevila mezi vašimi dovednostmi. Gemini někdy při nahrání ohlásí chybu, přestože se dovednost uložila; než budete soubor nahrávat znovu, podívejte se do seznamu dovedností.
 
 Spuštění tutora:
 
 1. Založte **nový chat**.
 2. Napište lomítko **/** a z nabídky vyberte dovednost **statistika-tutor**. Za ni napište, co chcete studovat. Můžete také psát běžně, například „Chci studovat statistiku pro psychology.“
 
-Varianta pro Gemini neobsahuje obrázky z učebnice, protože Gemini nepřijme dovednost s tolika soubory. Tutor vám obrázek popíše slovy a nabídne odkaz na tentýž obrázek ve webové učebnici.
+Varianta pro Gemini neobsahuje soubory obrázků z učebnice. U kapitoly 10 má tutor data, ze kterých obrázek nakreslí znovu; u ostatních kapitol obrázek popíše slovy a uvede adresu téhož obrázku ve webové učebnici.
 
 ## Jak začít studovat {#sec-ai-tutor-studium}
 
@@ -130,6 +130,8 @@ Kterou verzi právě používáte, zjistíte dotazem „Jakou verzi tutora použ
 | Nenajdu volbu pro nahrání. | Použijte webový prohlížeč na počítači a zkontrolujte, že jste přihlášeni. Nabídky se liší podle tarifu, země a verze rozhraní; pokud volba chybí, zvolte jinou platformu. |
 | Nahrání selže nebo soubor nejde vybrat. | Ověřte, že nahráváte nerozbalený soubor ZIP určený právě pro tuto platformu (tabulka [-@tbl-ai-tutor-soubory]). |
 | Gemini hlásí „Složka dovednosti obsahuje příliš mnoho souborů“. | Nahráváte soubor pro Claude nebo ChatGPT. Použijte `statistika-tutor-gemini.zip`. |
+| Gemini hlásí „Při nahrávání dovednosti došlo k chybě“. | Podívejte se do seznamu dovedností a zeptejte se tutora na verzi. Dovednost se mohla uložit i přes toto hlášení; teprve když v seznamu chybí, nahrajte soubor znovu. |
+| Odkaz od tutora nevede na učebnici, ale do vyhledávání. | Požádejte tutora, ať adresu vypíše celou jako prostý text; adresy učebnice začínají `https://reckak.github.io/statistics-for-psychology/`. |
 | V Claude nefunguje dovednost nebo chybí nabídka Skills. | Zapněte spouštění kódu: Settings → Capabilities → Code execution and file creation. |
 | Tutor odpovídá obecně a nezná kapitoly učebnice. | Založte nový chat. V ChatGPT vyberte plugin přes \@, v Claude a Gemini oslovte dovednost statistika-tutor výslovně. Zkontrolujte, že je tutor zapnutý. |
 | Odpověď se liší od učebnice. | Platí učebnice. Upozorněte tutora na rozpor a požádejte jej, ať uvede kapitolu a oddíl, ze kterého vychází. |

@@ -10,7 +10,9 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 
 | Typ informace | Hlavní místo |
 |---|---|
-| Pedagogické chování tutora: zahájení, režimy, cvičení, vizualizace, značení | [Instrukce tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md) a jejich reference; dohody [R62](rozhodnuti/ai-tutor.md#r62-ai-tutor) a [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora). |
+| Pedagogické chování tutora: zahájení, režimy, tempo výkladu, cvičení, obrázky a vizualizace, značení | [Instrukce tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md) a jejich reference; dohody [R62](rozhodnuti/ai-tutor.md#r62-ai-tutor), [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora) a [R85](rozhodnuti/ai-tutor.md#r85-tutor-kapitoly-obrazky-tempo). |
+| Rady k interaktivním stránkám učebnice a pravidla kreslení grafů | [VIZUALIZACE.md](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/references/VIZUALIZACE.md); kontrola exportu vyžaduje záznam každé stránky `viz_*` z `_quarto.yml`. |
+| Data a popis obrázku pro překreslení tutorem | Skript kapitoly `scripts/kapitola_NN.R` (volání `tf_figure()`); rejstřík v balíčku je odvozený. Postup v [provozním návodu](PROVOZ.md#data-ke-grafum-tutora). |
 | Pravidla tvorby, vydání a ověřování pro všechny platformy | Tento dokument. |
 | Příkazy exportu, kontroly, cesty výstupů a postupy nahrání | [Provozní návod](PROVOZ.md#export-ai-tutora). |
 | Studentský návod ke stažení a instalaci na všech třech platformách | Stránka učebnice [AI tutor: stažení a instalace](../quarto/ai_tutor.qmd) (od 2026-11-14, [R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu); nahradila `ai-tutor/navod.docx`). Aktualizuj ji při změně postupu nahrání, názvů souborů ve vydání nebo rozsahu tutora; na verzi nezávisí. |
@@ -35,6 +37,12 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
   nebo schopnost jejího klienta.
 - Podrobnější popis obrázku doplňuj do `fig-alt` ve zdrojové kapitole.
   Prospěje webu i všem tutorům; samostatný ručně psaný popisný soubor nevytvářej.
+- Obrázky jdou do balíčků jako PNG vykreslené z týchž SVG, která používá web;
+  SVG se nepřibalují. Hodnoty pro překreslení obrázku zapisuje skript kapitoly
+  z týchž objektů, ze kterých kreslí; ručně je do balíčku nedoplňuj. Data mají
+  zatím jen kapitoly uvedené ve `figureDataChapters` (pilot: kapitola 10).
+- Adresy na web učebnice vznikají při exportu a tutor je má opisovat doslova;
+  do instrukcí nepiš adresy, které kontrola exportu neověřuje.
 
 ### Verze a vydání
 
@@ -83,6 +91,28 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
   v [smoke-prompts.md](../scripts/tutor/smoke-prompts.md). Interní test
   nevydávej za ověření na studentech.
 
+<a id="podminky-vydani"></a>
+
+### Podmínky vydání
+
+Každá platforma se posuzuje zvlášť; bez splnění všech bodů se pro ni nová
+verze nevydává ([R85](rozhodnuti/ai-tutor.md#r85-tutor-kapitoly-obrazky-tempo)).
+
+1. Klient archiv přijme. Stav ověř v seznamu dovedností či pluginů a dotazem
+   na verzi, nikoli podle hlášení při nahrání.
+2. Tutor se aktivuje v novém chatu bez příloh v běžném konverzačním režimu.
+3. Doložené použití nově přibalené kapitoly: název souboru, existující ID
+   oddílu a shoda se zdrojem.
+4. Vícekolový test tempa ve vedeném vysvětlování: cesta, jeden krok, jedna
+   otázka, čekání; chybná odpověď vede k jinému podání téhož kroku.
+5. Obrázek ukázaný bez vyžádání přímo v odpovědi a věcně shodný s učebnicí;
+   zaznamenej, zda šlo o přibalený soubor, nebo překreslení z dat.
+6. U oddílu s interaktivní stránkou tutor sám nabídne její funkční adresu,
+   opsanou doslova.
+
+Schopnost vytvořit vlastní funkční interaktivní výstup eviduj zvlášť podle
+klienta; vydání nepodmiňuje.
+
 ## ChatGPT
 
 - Balíček je plugin `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip`
@@ -108,7 +138,12 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 - Student nahrává archiv sám (Customize → Skills); vyžaduje zapnuté
   spouštění kódu. Sdílet skill lze jen v plánech Team a Enterprise.
   Každou novou verzi je třeba nahrát znovu. Číselné limity nahrání
-  Anthropic nezveřejňuje; prošel archiv se 125 soubory a 3 MB.
+  Anthropic nezveřejňuje; dne 2026-11-21 klient přijal archiv se 183 soubory
+  a 4,7 MB (se SVG). Archiv s PNG má 192 souborů a 8,4 MB; jeho přijetí je
+  třeba ověřit.
+- Přibalený obrázek klient ukázal jako kartu souboru v postranním panelu,
+  nikoli v textu odpovědi (pozorování autora 2026-11-21). V textu odpovědi
+  lze zobrazit graf, který tutor nakreslí; proto se přibalují data ke grafům.
 - Testuj v režimu **Chat**, nikoli v Code ani v agentních úlohách, a mimo
   projekt. Aktivaci zkoušej běžným dotazem a v rozhraní ověř, že byl skill
   použit a které soubory přečetl.
@@ -116,14 +151,23 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 ## Gemini
 
 - Balíček `ai-tutor/gemini/statistika-tutor-gemini-<verze>.zip` vzniká
-  z Claude složky bez souborů obrázků, protože Gemini odmítá skill s příliš
-  mnoha soubory. Přesný limit Google nezveřejňuje; kontrola exportu proto
-  drží nejvýše 100 souborů podle komunitně uváděného limitu.
+  z Claude složky bez souborů obrázků. Má `SKILL.md` a `references/` přímo
+  v kořeni archivu a jen soubory `.md` a `.txt`: dialog nahrání uvádí typy
+  CSV, PY, TXT a MD, proto se registr přibaluje jako `KAPITOLY.txt` a licence
+  kódu jako `LICENSE.txt`. Zda by Gemini přijal i jiné uspořádání, doloženo
+  není; jde o pojistku podle pokynu autora z 2026-11-21.
+- Gemini dříve odmítl skill se 125 soubory. Přesný limit Google
+  nezveřejňuje; kontrola exportu drží nejvýše 100 souborů jako projektovou
+  pojistku. Dne 2026-11-21 klient přijal archiv s 36 soubory. Pokud by počet
+  souborů narazil na limit, řeš to v exportu, nikoli vynecháním učiva.
+- Při nahrání může Gemini ohlásit „Při nahrávání dovednosti došlo k chybě“,
+  přestože se dovednost uložila a aktualizovala (pozorování autora
+  2026-11-21). Stav ověřuj v seznamu dovedností a dotazem na verzi.
 - Místo obrázku kapitola obsahuje číslovaný popisek, textový popis a odkaz
-  na tentýž obrázek ve webové učebnici. Generovaný rejstřík `obrazky.md`
-  a jedna věta v SKILL.md jsou jen v této variantě.
-- Pokud by počet souborů znovu narazil na limit, řeš to v exportu,
-  nikoli vynecháním učiva.
-- Nahrání do Gemini a chování tutora tam zatím ověřeny nejsou. Po prvním
-  ověřeném nahrání doplň sem postup, tarif, režim pro testy a zjištěná omezení.
-  Test zahrne i dotaz na konkrétní obrázek.
+  na tentýž obrázek ve webové učebnici; rejstříky neuvádějí soubor obrázku
+  a v SKILL.md je seznam možností zobrazení nahrazen zněním bez souborů. Obrázek
+  s daty tutor překresluje, ostatní popisuje a uvádí adresu obrázku na webu.
+- Gemini v testech posílal vymyšlené adresy učebnice obalené vyhledáváním
+  Google (pozorování autora 2026-11-21). Instrukce proto ukládají opisovat
+  adresy doslova jako prostý text; účinek je třeba ověřit testem.
+- Tarif, model a režim testů doplň po prvním úplném testu vydání.
