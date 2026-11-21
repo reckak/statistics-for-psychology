@@ -234,3 +234,16 @@ místo PNG použil SVG, ty by měl model být schopen přečíst.“ Plán schv�
   kategorie, skupiny sloupců a tabulky. Schémata bez dat se nepřekreslují.
 - Verze 0.4.0 zůstává v otestované podobě; změny vycházejí jako 0.4.1
   s vlastním testem v klientech.
+
+<a id="r85-doplneni-2026-11-21b"></a>
+
+**Druhé doplnění 2026-11-21 (po prvním testu kandidáta 0.4.1):** autor poslal
+snímky a sdělil: „gemini odkazy spíš matou“ a „ChatGPT je také neumí vkládat
+do chatu“. Na otázku, zda z balíčku pro ChatGPT odstranit soubory SVG,
+odpověděl: „Odstranit SVG“.
+
+- Bod 5 se mění podruhé: **Claude PNG, ChatGPT a Gemini bez souborů
+  obrázků**. V obou variantách bez souborů tutor obrázek s daty překresluje
+  a schéma popisuje s adresou stránky učebnice.
+- Adresu samotného obrázku varianty bez souborů neuvádějí; adresa stránky se
+  uvádí jednou, celá a v běžné větě.

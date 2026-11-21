@@ -19,7 +19,7 @@ K výkladu tutor ukazuje obrázky z učebnice a u vhodných témat nabídne odka
 
 ## Který soubor stáhnout {#sec-ai-tutor-stazeni}
 
-Tutor existuje ve třech variantách, pro každou platformu jedna. Všechny mají stejný text; varianta pro Gemini jen neobsahuje soubory obrázků, protože je Gemini v dovednosti nepřijímá. Platformy se ale liší spolehlivostí, rychlostí, limity i stylem odpovědí. Klidně si tutora nainstalujte na více z nich a porovnejte je. Každá služba má vlastní limit zpráv: když jej na jedné vyčerpáte, nechte si od tutora vytvořit shrnutí dosavadního studia a pokračujte s ním v novém chatu na jiné platformě.
+Tutor existuje ve třech variantách, pro každou platformu jedna. Všechny mají stejný text; varianty pro ChatGPT a Gemini jen neobsahují soubory obrázků, protože je tyto platformy v odpovědi nezobrazí. Platformy se ale liší spolehlivostí, rychlostí, limity i stylem odpovědí. Klidně si tutora nainstalujte na více z nich a porovnejte je. Každá služba má vlastní limit zpráv: když jej na jedné vyčerpáte, nechte si od tutora vytvořit shrnutí dosavadního studia a pokračujte s ním v novém chatu na jiné platformě.
 
 Odkazy v tabulce [-@tbl-ai-tutor-soubory] vedou vždy na nejnovější verzi tutora.
 
@@ -93,7 +93,7 @@ Spuštění tutora:
 1. Založte **nový chat**.
 2. Napište lomítko **/** a z nabídky vyberte dovednost **statistika-tutor**. Za ni napište, co chcete studovat. Můžete také psát běžně, například „Chci studovat statistiku pro psychology.“
 
-Varianta pro Gemini neobsahuje soubory obrázků z učebnice. Ke grafům má tutor data, ze kterých obrázek nakreslí znovu; schéma bez dat popíše slovy a uvede adresu téhož obrázku ve webové učebnici.
+Varianty pro ChatGPT a Gemini neobsahují soubory obrázků z učebnice. Ke grafům má tutor data, ze kterých obrázek nakreslí znovu; schéma bez dat popíše slovy a uvede adresu téhož obrázku ve webové učebnici.
 
 ## Jak začít studovat {#sec-ai-tutor-studium}
 

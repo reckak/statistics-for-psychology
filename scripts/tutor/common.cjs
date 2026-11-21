@@ -80,8 +80,9 @@ function claudeSkill(skill) {
   // A JSON string is a valid YAML double-quoted scalar.
   return `---\nname: ${meta.name}\ndescription: ${JSON.stringify(meta.description)}\n---\n${body}`;
 }
-// Figure files differ by variant: the plugin (ChatGPT) ships the SVG sources, Claude PNG
-// renderings and Gemini no image files. In the Gemini variant each figure keeps its numbered
+// Figure files differ by variant: the staged plugin holds the SVG sources, Claude gets PNG
+// renderings, ChatGPT and Gemini no image files (neither shows a bundled image in a reply;
+// tests of 0.4.0 and 0.4.1). In the text-only variants each figure keeps its numbered
 // caption and text description; the image line becomes a pointer to the figure's register entry
 // (web links in chapters made Gemini print addresses instead of drawing, test of 0.4.1).
 const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.(?:svg|png)\)(\{.*\})?$/;
@@ -118,11 +119,13 @@ const geminiNote = [
 const geminiRenames = {'KAPITOLY.json': 'KAPITOLY.txt', LICENSE: 'LICENSE.txt'};
 const geminiAllowed = /\.(csv|py|txt|md)$/i;
 const geminiNames = s => s.split('KAPITOLY.json').join('KAPITOLY.txt').split('](LICENSE)').join('](LICENSE.txt)');
-function geminiSkill(claudeText) {
-  const from = claudeText.indexOf(geminiStart), to = claudeText.indexOf(geminiEnd);
-  if (from < 0 || to < from || claudeText.indexOf(geminiStart, from + 1) >= 0) throw new Error('Figure options not found exactly once in SKILL.md');
-  return geminiNames(claudeText.slice(0, from) + geminiNote + claudeText.slice(to));
+// SKILL.md of a variant without image files (ChatGPT, Gemini).
+function textSkill(fullText) {
+  const from = fullText.indexOf(geminiStart), to = fullText.indexOf(geminiEnd);
+  if (from < 0 || to < from || fullText.indexOf(geminiStart, from + 1) >= 0) throw new Error('Figure options not found exactly once in SKILL.md');
+  return fullText.slice(0, from) + geminiNote + fullText.slice(to);
 }
+const geminiSkill = claudeText => geminiNames(textSkill(claudeText));
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
 const link = (label, target) => ({t: 'Link', c: [['', [], []], [str(label)], [target, '']]});
@@ -266,6 +269,6 @@ const figuresLine = withFiles => withFiles
   : 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis, webové adresy a data pro překreslení. Soubory obrázků nejsou přibalené.';
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
-  skillName, splitSkill, claudeSkill, imageLine, pngName, withoutImages, geminiSkill, geminiNote,
+  skillName, splitSkill, claudeSkill, imageLine, pngName, withoutImages, textSkill, geminiSkill, geminiNote,
   geminiRenames, geminiAllowed, geminiNames, headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd,
   figureDataChapters, figureDataBlock, markColumns, hasData, dataLabel, registerPath, registerRanges, registerDataStarts};

@@ -85,7 +85,7 @@ Před dalším krokem ověř v plánu, že pojmy patří do zvoleného rozsahu a
 
 Cílem je obrázek **přímo v textu odpovědi**. Použij první možnost, kterou klient skutečně nabízí:
 
-1. Zobraz přibalený soubor obrázku přímo v odpovědi, pokud to klient umí; ChatGPT to neumí, tam začni možností 2. Odkaz na soubor zobrazením není; při nejistotě nebo neúspěchu přejdi bez omluvy na další možnost. Soubor obrázku nečti ani nevkládej jako text: popisky v něm nejsou.
+1. Zobraz přibalený soubor obrázku přímo v odpovědi,, pokud to klient umí. Odkaz na soubor zobrazením není; při nejistotě nebo neúspěchu přejdi bez omluvy na další možnost. Soubor obrázku nečti ani nevkládej jako text: popisky v něm nejsou.
 2. Má-li záznam data, **překresli graf v odpovědi z bloku „Data pro překreslení“** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem. Graf z přibalených dat je ověřený obrázek učebnice, ne náhražka; adresu k němu nepřidávej.
 3. Pošli přibalený obrázek jako soubor; je-li obrázek už v odpovědi, jen jako doplněk nebo na žádost.
 4. Nelze-li obrázek zobrazit ani překreslit (typicky schéma bez dat): popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku.

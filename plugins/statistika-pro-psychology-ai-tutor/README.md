@@ -13,7 +13,7 @@ Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jso
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
 Hotový plugin obsahuje všechny výkladové kapitoly učebnice (nyní 1–10) včetně
-cvičení a řešení, úvod, literaturu, obrázky jako SVG, rejstříky obrázků s daty pro
+cvičení a řešení, úvod, literaturu, bez souborů obrázků (ty má jen varianta pro Claude), rejstříky obrázků s daty pro
 překreslení a celé aktuální přehledy
 (slovníček, značení a vzorce, Excel). Ke každé kapitole vzniká z kapitolové
 karty a struktury textu výukový plán s rozsahy řádků oddílů, zadání a řešení.

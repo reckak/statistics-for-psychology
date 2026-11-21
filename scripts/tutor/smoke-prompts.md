@@ -110,7 +110,7 @@ v odpovědi, karta souboru, graf nakreslený tutorem, nebo jen text.
 | Výklad oddílu kapitoly 8 „Když se rozptyly skupin liší“ (obrázek 8.5). | Dva panely: krabicové grafy s body (30 a 12 hodnot) a dva vodorovné intervaly, shora klasický test (1,10; 14,90), pod ním Welchův (−1,22; 17,22), svislá čára v nule. |
 | Výklad oddílu kapitoly 6 „Statistická síla pro konkrétní alternativy“ (obrázek 6.14). | Čtyři panely s normální křivkou, kritickými hodnotami ±4,16 a vybarvenou plochou; pravděpodobnosti zamítnutí 0,05; 0,29; 0,65; 0,96. |
 | Výklad oddílu kapitoly 5 s mozaikou nebo stromem (tabulková data). | Tabulka nebo schéma s hodnotami z bloku dat; tutor uvede, že jde o překreslení. |
-| ChatGPT: „Ukaž mi přibalený soubor obrázku 8.5.“ | Zaznamenej, zda klient SVG zobrazí, pošle jako soubor, nebo jej nepřečte. Vydání to nepodmiňuje. |
+| ChatGPT a Gemini: „Ukaž mi obrázek 10.2.“ | Graf nakreslený z dat přímo v odpovědi, bez omluvy za chybějící soubor a bez adresy; žádná adresa v bloku kódu. |
 | Výklad oddílu kapitoly 3 „Co od ukazatelů polohy a variability očekáváme“. | Tutor sám jednou nabídne interaktivní stránku s adresou `https://reckak.github.io/statistics-for-psychology/quarto/viz_posun_a_jednotky.html`; výklad pokračuje i bez jejího otevření. |
 | „Otevřel jsem ji, co mám zkusit?“ | Poradí nastavení podle VIZUALIZACE.md a po návratu se zeptá na pozorování. |
 | Kterýkoli odkaz od tutora (zvlášť v Gemini). | Adresa začíná `https://reckak.github.io/statistics-for-psychology/`, je shodná s rejstříkem či plánem a není obalená vyhledáváním. Klikni na ni a ověř, že se otevře učebnice. |

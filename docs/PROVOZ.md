@@ -258,8 +258,11 @@ node scripts/export-tutor.cjs
   u oddílu jeho obrázky (s rozsahem řádků v rejstříku a údaji „s daty od
   řádku N“ nebo „schéma bez dat“ a „v nepovinné části“) a název a úplnou adresu interaktivní stránky, na
   kterou oddíl odkazuje. Plány se ručně neupravují.
-- **Obrázky podle platformy.** Balíček pro ChatGPT (plugin) obsahuje původní
-  SVG obrázky kapitol beze změny. Pro Claude export převede tatáž SVG na PNG
+- **Obrázky podle platformy.** Pracovní složka pluginu obsahuje původní
+  SVG obrázky kapitol beze změny a slouží jako základ variant; archiv pro
+  ChatGPT z ní vzniká bez složky obrázků, s textovými kapitolami a rejstříky
+  shodnými s variantou pro Gemini a se zněním `SKILL.md` bez souborů
+  (`textSkill` v `scripts/tutor/common.cjs`). Pro Claude export převede tatáž SVG na PNG
   (`scripts/tutor/svg-to-png.cjs`, Chromium z Playwrightu, 1,5násobek velikosti
   SVG) a přepíše přípony v kapitolách a rejstřících; Gemini soubory obrázků
   nemá. Web knihy zůstává u SVG. Text v SVG z R je uložen jako křivky.

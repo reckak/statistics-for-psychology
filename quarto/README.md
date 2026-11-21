@@ -102,7 +102,16 @@ nevkládá, stejně jako dříve PNG. Upraveno, verze kandidáta zůstává 0.4.
   rejstříku se nezměnil, rozsahy v plánech platí dál. `check-tutor.cjs`
   ověřuje nové znění a že rejstřík pro Gemini neobsahuje adresu obrázku.
 
-Soubory SVG v balíčku pro ChatGPT zůstaly; zda je ponechat, rozhodne autor.
+Autor poté rozhodl SVG z balíčku pro ChatGPT odstranit
+([doplnění R85](../docs/rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21b)).
+Export nově staví archiv pro ChatGPT z pracovní složky pluginu bez obrázků:
+kapitoly a rejstříky jsou shodné s variantou pro Gemini, `SKILL.md` má znění
+bez souborů (15 211 bajtů); 49 souborů, 1,6 MB. Z hlavního `SKILL.md` zmizela
+zmínka o ChatGPT. `check-tutor.cjs` má novou část `--chatgpt` (seznam
+souborů, shoda s Gemini a s pracovní složkou, místní odkazy)
+a `release-tutor.cjs` ji předává. Při jednom běhu exportu se znovu projevil
+občasný výpadek převodu, tentokrát v kapitole 7 (chybějící blok obrázku
+`fig-ctyri-kombinace`); opakovaný běh prošel.
 Neověřeno: účinek úprav v klientech; snímky byly z kapitoly 10, obrázky
 ostatních kapitol (8.5, 6.14, 2.6, schéma 1.5) v klientech doloženy nejsou.
 Příčinu, proč Gemini nekreslil, neznám (mohlo jít i o režim bez kreslení).

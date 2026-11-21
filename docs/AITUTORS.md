@@ -39,9 +39,11 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
   Prospěje webu i všem tutorům; samostatný ručně psaný popisný soubor nevytvářej.
 - Formát obrázků se řídí platformou (doplnění
   [R85](rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21) z 2026-11-21): balíček
-  pro ChatGPT obsahuje původní SVG učebnice, balíček pro Claude PNG vykreslené
-  z týchž SVG a balíček pro Gemini žádné soubory obrázků. Instrukce proto mluví
-  o „souboru obrázku“ bez přípony. Hodnoty pro překreslení obrázku zapisuje
+  pro Claude obsahuje PNG vykreslené ze SVG učebnice, balíčky pro ChatGPT
+  a Gemini žádné soubory obrázků ([druhé doplnění](rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21b)
+  téhož dne: ChatGPT přibalené PNG ani SVG do odpovědi nevloží). Varianty bez
+  souborů mají v SKILL.md vlastní znění možností zobrazení, v kapitole odkaz
+  na záznam v rejstříku a v rejstříku řádek „Zobrazení“. Hodnoty pro překreslení obrázku zapisuje
   skript kapitoly z týchž objektů, ze kterých kreslí; ručně je do balíčku
   nedoplňuj. Data mají kapitoly uvedené ve `figureDataChapters` (od 0.4.1
   všechny); schéma bez dat má jen textový popis.
@@ -128,6 +130,9 @@ klienta; vydání nepodmiňuje.
   obrázkem“, a dal jen odkaz, přestože záznam data má. Instrukce proto
   ChatGPT výslovně posílají rovnou k překreslení z dat a říkají, že graf
   z přibalených dat je ověřený obrázek učebnice; účinek je třeba ověřit testem.
+  Autor poté rozhodl SVG z balíčku odstranit: plugin má stejné textové
+  kapitoly, rejstříky a pokyny k obrázkům jako varianta pro Gemini a archiv
+  má 49 souborů a 1,6 MB.
 
 - Balíček je plugin `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip`
   s manifesty `plugin.json` a `.codex-plugin/plugin.json`, logem a SKILL.md

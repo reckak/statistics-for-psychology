@@ -4,7 +4,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
-  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill,
+  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, textSkill, geminiSkill,
   figureRegister, figuresLine, inlineMd, imageLine, pngName, geminiRenames, geminiNames, figureDataChapters, hasData, registerPath, registerRanges, registerDataStarts} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
@@ -415,6 +415,17 @@ fs.writeFileSync(path.join(geminiRefs, 'INDEX.md'), geminiNames(geminiIndex.repl
 const geminiCatalog = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
 geminiCatalog.images = 'web_only';
 fs.writeFileSync(path.join(geminiRefs, 'KAPITOLY.json'), JSON.stringify(geminiCatalog, null, 2) + '\n', 'utf8');
+// ChatGPT plugin: the staged plugin without figure files, with the same text-only chapters,
+// registers and figure instructions as Gemini (ChatGPT cannot show a bundled SVG or PNG in a reply).
+const chatgptDir = path.join(work, 'chatgpt', name);
+const chatgptSkill = path.join(chatgptDir, 'skills', skillName);
+const chatgptRefs = path.join(chatgptSkill, 'references');
+fs.cpSync(stage, chatgptDir, {recursive: true});
+fs.rmSync(path.join(chatgptRefs, 'assets'), {recursive: true});
+fs.writeFileSync(path.join(chatgptSkill, 'SKILL.md'), textSkill(read(skillPath)), 'utf8');
+for (const d of exportedChapters) for (const f of [d.output, registerPath(d.id)]) fs.copyFileSync(path.join(geminiRefs, f), path.join(chatgptRefs, f));
+fs.writeFileSync(path.join(chatgptRefs, 'INDEX.md'), read(path.join(refs, 'INDEX.md')).replace(figuresLine(true), figuresLine(false)), 'utf8');
+fs.copyFileSync(path.join(geminiRefs, 'KAPITOLY.json'), path.join(chatgptRefs, 'KAPITOLY.json'));
 // Only CSV, PY, TXT and MD files are accepted: rename the rest and follow the links.
 for (const [from, to] of Object.entries(geminiRenames)) fs.renameSync(path.join(geminiRefs, from), path.join(geminiRefs, to));
 fs.writeFileSync(path.join(geminiRefs, 'LICENCE.md'), geminiNames(read(path.join(geminiRefs, 'LICENCE.md'))), 'utf8');
@@ -426,7 +437,7 @@ const checkDataPath = path.join(work, 'kontrola.json');
 fs.writeFileSync(checkDataPath, JSON.stringify(checkData, null, 2) + '\n', 'utf8');
 
 // Validate the complete staged packages before replacing a previous release artifact.
-const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--data', checkDataPath, '--quarto', q]));
+const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--chatgpt', chatgptDir, '--data', checkDataPath, '--quarto', q]));
 console.log(JSON.stringify(validation));
 for (const [file, digest] of Object.entries(inputs)) assert.equal(hash(path.join(root, file)), digest, `Input changed during export: ${file}`);
 
@@ -451,7 +462,8 @@ function zipDirectory(base, zipPath) {
 // the plugin name inside the manifests stays unchanged.
 const chatgptArchiveName = `${skillName}-chatGPT-${version}.zip`;
 const stageArchive = path.join(work, chatgptArchiveName);
-const inventory = zipDirectory(stage, stageArchive);
+const inventory = zipDirectory(chatgptDir, stageArchive);
+assert(!inventory.some(f => /\.svg$/i.test(f.path)), 'ChatGPT archive ships no figure files');
 const claudeArchiveName = `${skillName}-claude-${version}.zip`;
 const claudeStageArchive = path.join(work, claudeArchiveName);
 const claudeInventory = zipDirectory(claudeStage, claudeStageArchive);
@@ -466,7 +478,7 @@ const report = {version, source_revision: sourceRevision, source_dirty: sourceDi
   files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
   check_data: checkDataPath,
   overview_entries: checkData.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
-  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive),
+  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive), chatgpt_directory: chatgptDir,
   claude: {skill_directory: claudeDir, files: claudeInventory, archive_sha256: hash(claudeStageArchive)},
   gemini: {skill_directory: geminiDir, files: geminiInventory, figures: figures.length, archive_sha256: hash(geminiStageArchive)}};
 fs.writeFileSync(path.join(work, 'inventory.json'), JSON.stringify(report, null, 2) + '\n');

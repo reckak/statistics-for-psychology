@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents, skillName, splitSkill, imageLine, pngName, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
+  nodes, attr, text, documents, skillName, splitSkill, imageLine, pngName, textSkill, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
   headingLines, divEnd, solutionOpen, figuresLine, figureDataChapters, figureDataBlock, markColumns, hasData, dataLabel, registerPath} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
@@ -12,6 +12,7 @@ const lastExport = option('--package') ? null : JSON.parse(read(path.join(root, 
 const packageRoot = option('--package') || lastExport.package_directory;
 const claudeRoot = option('--claude') || lastExport?.claude?.skill_directory;
 const geminiRoot = option('--gemini') || lastExport?.gemini?.skill_directory;
+const chatgptRoot = option('--chatgpt') || lastExport?.chatgpt_directory;
 const q = quarto(option('--quarto'));
 const skillDir = path.join(packageRoot, 'skills', skillName);
 const refs = path.join(skillDir, 'references');
@@ -654,6 +655,37 @@ if (geminiRoot) {
   }
   gemini = {files: geminiFiles.length, figures: figureCount, localLinks: geminiLinks};
 }
-console.log(JSON.stringify({checks: 'passed', claude, gemini, chapters: bundled.length, catalogChapters: registry.chapters.length, plans: data.plans.length, overviewEntries: rows,
+// ChatGPT plugin: the staged plugin without figure files; chapters and registers are the
+// text-only ones checked above for Gemini, SKILL.md has the same figure instructions.
+let chatgpt = 'not checked (no ChatGPT plugin directory given)';
+if (chatgptRoot) {
+  assert(geminiRoot, 'The ChatGPT check compares against the Gemini skill');
+  const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
+  const prefix = `skills/${skillName}/`;
+  const own = files(chatgptRoot).map(f => rel(chatgptRoot, f)).sort();
+  const staged = files(packageRoot).map(f => rel(packageRoot, f)).filter(f => !f.startsWith(`${prefix}references/assets/`)).sort();
+  assert.deepEqual(own, staged, 'ChatGPT plugin file list');
+  assert(!own.some(f => f.startsWith(prefix) && /\.(svg|png)$/i.test(f)), 'ChatGPT plugin ships no figure files');
+  const fromGemini = new Set(bundled.flatMap(d => [`${prefix}references/${d.path}`, `${prefix}references/${registerPath(d.id)}`]));
+  const rewritten = new Set([`${prefix}SKILL.md`, `${prefix}references/INDEX.md`, `${prefix}references/KAPITOLY.json`]);
+  for (const f of own) {
+    const file = path.join(chatgptRoot, f);
+    if (fromGemini.has(f)) assert.equal(hash(file), hash(path.join(geminiRoot, f.slice(prefix.length))), `ChatGPT text-only file differs from Gemini: ${f}`);
+    else if (!rewritten.has(f)) assert.equal(hash(file), hash(path.join(packageRoot, f)), `ChatGPT plugin file differs: ${f}`);
+  }
+  assert.equal(read(path.join(chatgptRoot, prefix, 'SKILL.md')), textSkill(skill), 'ChatGPT SKILL.md');
+  assert(Buffer.byteLength(textSkill(skill)) <= 16000, 'ChatGPT SKILL.md size');
+  assert.equal(read(path.join(chatgptRoot, prefix, 'references/INDEX.md')), index.replace(figuresLine(true), figuresLine(false)), 'ChatGPT INDEX.md');
+  assert.deepEqual(JSON.parse(read(path.join(chatgptRoot, prefix, 'references/KAPITOLY.json'))), {...registry, images: 'web_only'}, 'ChatGPT registry');
+  for (const f of own.filter(f => f.endsWith('.md'))) {
+    const file = path.join(chatgptRoot, f);
+    for (const m of read(file).matchAll(/\]\(([^)\s]+)\)/g)) {
+      if (/^[a-z][a-z0-9+.-]*:|^\/\/|^#/i.test(m[1])) continue;
+      assert(fs.existsSync(path.resolve(path.dirname(file), decodeURIComponent(m[1].split('#')[0]))), `${f}: missing file ${m[1]}`);
+    }
+  }
+  chatgpt = {files: own.length, skillBytes: Buffer.byteLength(textSkill(skill))};
+}
+console.log(JSON.stringify({checks: 'passed', chatgpt, claude, gemini, chapters: bundled.length, catalogChapters: registry.chapters.length, plans: data.plans.length, overviewEntries: rows,
   math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, maxFigureRows, maxRegisterBytes, interactivePages: bookViz.length, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
   citations: data.bibliography.citation_keys.length}));
