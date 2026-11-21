@@ -45,7 +45,7 @@ for (const a of assets) {
 }
 if (!args.includes('--skip-check')) {
   run('node', ['scripts/check-tutor.cjs', '--package', report.package_directory,
-    '--claude', report.claude.skill_directory, '--gemini', report.gemini.skill_directory, '--chatgpt', report.chatgpt_directory]);
+    '--claude', report.claude.skill_directory, '--gemini', report.gemini.skill_directory, '--chatgpt', report.chatgpt_directory, '--data', report.check_data]);
 }
 
 const out = path.join(root, 'tmp', `tutor-release-${version}`);
