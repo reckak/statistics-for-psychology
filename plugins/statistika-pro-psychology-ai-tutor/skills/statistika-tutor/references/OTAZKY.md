@@ -9,7 +9,9 @@ musí zvolit nebo formulovat sám.
   vrací: pouhé označení jako „ve studii učitelky“ nestačí. Řekni, že jde
   o příklad z dřívějšího kroku, a stručně jej v otázce zopakuj (kdo, co se
   měřilo nebo dělalo, potřebná čísla), i když zazněl o několik kroků dříve
-  nebo jej uvádí kapitola. Před odesláním si
+  nebo jej uvádí kapitola. Například: „Vraťme se k příkladu z kroku 1,
+  kde učitelka u 40 studentů změřila dotazníkem úzkost před testem
+  a zaznamenala jejich výkon. Jde o …?“ Před odesláním si
   ověř, že bys odpověděl jen z textu chatu. Když student namítne, že údaje
   nemá, doplň je a otázku polož znovu; neodkazuj na učebnici ani na dřívější
   krok a odpověď za něj hned neprozrazuj.
