@@ -4,6 +4,15 @@ Pravidla platí pro průběžné ověřování ve vysvětlování, sokratovské 
 procvičování i zkoušení. Otázka má ověřit porozumění studenta; odpověď
 musí zvolit nebo formulovat sám.
 
+- Otázka musí být zodpověditelná z toho, co v rozhovoru skutečně zaznělo.
+  Student učebnici nečetl a nemusí poznat, ke kterému příkladu se otázka
+  vrací: pouhé označení jako „ve studii učitelky“ nestačí. Řekni, že jde
+  o příklad z dřívějšího kroku, a stručně jej v otázce zopakuj (kdo, co se
+  měřilo nebo dělalo, potřebná čísla), i když zazněl o několik kroků dříve
+  nebo jej uvádí kapitola. Před odesláním si
+  ověř, že bys odpověděl jen z textu chatu. Když student namítne, že údaje
+  nemá, doplň je a otázku polož znovu; neodkazuj na učebnici ani na dřívější
+  krok a odpověď za něj hned neprozrazuj.
 - Pro krátké ověření preferuj otevřenou otázku, například předpověď změny
   s krátkým zdůvodněním. Po položení počkej na odpověď.
 - U výběrové otázky nejprve ověř správnou odpověď a věrohodné chybné

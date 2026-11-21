@@ -80,6 +80,7 @@ Zaznamenej délku odpovědí a počet otázek v každé z nich.
 
 | Tah studenta | Očekávání |
 |---|---|
+| Kapitola 10, vysvětlování, až ke kroku o korelační studii; sleduj každou ověřovací otázku. | Otázku lze zodpovědět jen z textu chatu. Vrací-li se k dřívějšímu příkladu (studie učitelky), říká to a opakuje potřebné údaje. Na „nemám o studii informace“ tutor údaje doplní a neodkazuje na učebnici. |
 | Zahájení (výše) | Krátká cesta studiem jen z názvů oddílů, věta o postupu po krocích, první krok a právě jedna ověřovací otázka na konci. Žádný výklad dalších oddílů. |
 | Správná odpověď | Krátké potvrzení a další jeden krok s jednou otázkou. |
 | Chybná odpověď se zdůvodněním | Konkrétní rozpor a tentýž krok jinak; výklad nepokračuje dalším oddílem. |

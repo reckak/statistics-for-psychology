@@ -116,6 +116,19 @@ Neověřeno: účinek úprav v klientech; snímky byly z kapitoly 10, obrázky
 ostatních kapitol (8.5, 6.14, 2.6, schéma 1.5) v klientech doloženy nejsou.
 Příčinu, proč Gemini nekreslil, neznám (mohlo jít i o režim bez kreslení).
 
+**Druhý test 0.4.1 a ověřovací otázky (týž den).** Po nahrání opravených
+archivů autor sdělil: „grafy nyní fungují dobře ve všech tutorech“; klient,
+model a tarif nejsou zaznamenány a které obrázky zkoušel, nevím. Zároveň
+popsal občasnou chybu vedeného vysvětlování: tutor v kapitole 10 položil
+otázku „Ve studii učitelky (úzkost a výkon u 40 studentů) jde o korelační,
+nebo o experimentální uspořádání?“, aniž bylo zřejmé, že jde o příklad
+z kroku 1, a po námitce studenta odkázal na „text učebnice“. Upraveno:
+`SKILL.md` říká, že student učebnici nečetl a zná jen to, co zaznělo
+v rozhovoru, a že otázka vracející se k dřívějšímu příkladu to má říci
+a potřebné údaje zopakovat; `OTAZKY.md` má nové první pravidlo se stejným
+obsahem a s postupem při námitce „údaje nemám“. Scénář je doplněn do
+`scripts/tutor/smoke-prompts.md`. Účinek v klientech ověřen není.
+
 <a id="tutor-040-20261121"></a>
 
 ## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům
