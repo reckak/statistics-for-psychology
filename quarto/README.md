@@ -129,6 +129,15 @@ a potřebné údaje zopakovat; `OTAZKY.md` má nové první pravidlo se stejným
 obsahem a s postupem při námitce „údaje nemám“. Scénář je doplněn do
 `scripts/tutor/smoke-prompts.md`. Účinek v klientech ověřen není.
 
+**Koncept vydání 0.4.1 (týž den).** Autor sloučil PR #225 a dal pokyn
+připravit vydání. Archivy jsou z čisté revize `d1b6d31` (obsahově shodné
+s `main` po sloučení). `release-tutor.cjs` při suchém běhu selhal, protože
+kontrole nepředával cestu ke kontrolním datům (`--data`); opraveno. Koncept
+`tutor-v0.4.1` se třemi archivy je na GitHubu vytvořen, nezveřejněn;
+zveřejnění a ověření odkazů `releases/latest/download/` je na autorovi.
+Vydání `tutor-v0.4.0` nevzniklo. Dokončená větev `codex/infrastructure`
+byla po ověření sloučení odstraněna a pro opravu skriptu založena znovu.
+
 <a id="tutor-040-20261121"></a>
 
 ## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům
