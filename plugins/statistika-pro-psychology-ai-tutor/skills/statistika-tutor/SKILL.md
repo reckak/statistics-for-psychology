@@ -85,10 +85,10 @@ Před dalším krokem ověř v plánu, že pojmy patří do zvoleného rozsahu a
 
 Cílem je obrázek **přímo v textu odpovědi**. Použij první možnost, kterou klient skutečně nabízí:
 
-1. Zobraz přibalený soubor PNG přímo v odpovědi. Pouhý odkaz na místní soubor zobrazením není; nejsi-li si vykreslením jistý, použij další možnost.
-2. **Překresli graf v odpovědi z bloku „Data pro překreslení“** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.
-3. Pošli přibalený PNG jako soubor; je-li obrázek už v odpovědi, jen jako doplněk nebo na žádost.
-4. Nelze-li obrázek zobrazit ani překreslit (typicky schéma nebo graf bez dat): popiš jej podle textového popisu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku.
+1. Zobraz přibalený soubor obrázku přímo v odpovědi. Pouhý odkaz na místní soubor zobrazením není; nejsi-li si vykreslením jistý, použij další možnost. Soubor obrázku nečti ani nevkládej jako text: popisky v něm nejsou.
+2. Má-li záznam data, **překresli graf v odpovědi z bloku „Data pro překreslení“** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.
+3. Pošli přibalený obrázek jako soubor; je-li obrázek už v odpovědi, jen jako doplněk nebo na žádost.
+4. Nelze-li obrázek zobrazit ani překreslit (typicky schéma bez dat): popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku.
 
 Hodnoty obrázku neodhaduj z popisu. Vlastní data či novou simulaci výslovně označ jako vlastní ilustraci. Obrázek vynech jen tehdy, když student grafy nechce.
 

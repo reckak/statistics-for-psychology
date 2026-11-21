@@ -10,6 +10,9 @@ ch7_draw <- function(name,code,width=8,height=4.5) {
   par(mar=c(4.5,4.5,2.6,.8),mgp=c(2.7,.7,0),las=1,col.axis=ch7_ink,col.lab=ch7_ink,fg=ch7_ink,cex=.9)
   force(code); dev.off()
 }
+# Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_07/); see scripts/tutor/figure-data.R.
+source('scripts/tutor/figure-data.R',encoding='UTF-8')
+ch7_fig <- function(...) tf_figure('kapitola_07',...)
 # Interval and tests for one mean from summaries ------------------------------------
 # Known sigma uses the normal quantile; unknown sigma the t quantile with n - 1 degrees of freedom.
 ch7_ci_z <- function(m,sigma,n,level=.95) m+c(-1,1)*qnorm(1-(1-level)/2)*sigma/sqrt(n)
@@ -78,6 +81,12 @@ ch7_draw('opakovane-intervaly', {
     mtext('výběr 1 až 100',side=2,line=.8,las=0,cex=.8,col=ch7_gray)
   }
 },width=10,height=6.4)
+ch7_fig('opakovane-intervaly','simulace',note='Dva panely vedle sebe pro týchž sto simulovaných výběrů po 25 studentech z populace s průměrem 47 a směrodatnou odchylkou 10; výběr 1 je dole, výběr 100 nahoře. Každý interval je vodorovná úsečka s tečkou ve výběrovém průměru. Intervaly, které μ zachytily, jsou modré; intervaly, které μ minuly, jsou oranžové a silnější (zvyrazneno = ano).',panels=lapply(1:2,function(k) {
+  ci <- if(k==1) ch7_sim_z else ch7_sim_t; hit <- if(k==1) ch7_hit_z else ch7_hit_t
+  tf_panel(if(k==1) 'Známá σ = 10: stejná šířka' else 'Výběrová s: šířka kolísá','intervalový graf','Skór v testu pozornosti (body)','Výběr 1 až 100',xlim=c(36,58),ylim=c(.5,ch7_reps+.5),
+    guides=list(tf_guide('x',ch7_mu_sim,'populační průměr μ = 47')),note=paste0('μ zachytilo ',sum(hit),' ze 100 intervalů.'),
+    series=list(tf_series(if(k==1) '95% intervaly se známou σ = 10 (kvantil normovaného normálního rozdělení)' else '95% intervaly s výběrovou s (kvantil t-rozdělení s 24 stupni volnosti)',
+      data.frame(poloha=1:ch7_reps,od=ci[,1],do=ci[,2],stred=ch7_sim_m,zvyrazneno=ifelse(hit,'ne','ano')),'interval',direction='vodorovně'))) }))
 ch7_draw('sirka-intervalu', {
   par(mar=c(4.6,4.7,2.7,.8))
   n <- 4:200; lev <- c(.90,.95,.99); cols <- c(ch7_mute,ch7_blue,ch7_orange)
@@ -87,6 +96,11 @@ ch7_draw('sirka-intervalu', {
   text(k,2*qnorm(.975)*10/sqrt(k),paste0('n = ',k,': ',ch7_num(2*qnorm(.975)*10/sqrt(k)),' bodu'),pos=c(1,3),offset=2.1,cex=.84,col=ch7_blue)
   legend('topright',c('99% interval','95% interval','90% interval'),lwd=2.2,col=rev(cols),bty='n',cex=.86)
 },width=8.6,height=4.4)
+ch7_fig('sirka-intervalu','krivka',note='Tři klesající křivky šířky intervalu 2 · z · σ/√n pro σ = 10: 99% interval oranžově (nejvýše), 95% modře, 90% šedě (nejníže). Na křivce 95% intervalu jsou dva modré body s popisky. Křivky jsou nakresleny pro n od 4 do 200; v datech je výběr hodnot n, hustší u malých výběrů.',panels=list(local({
+  n <- c(4:20,seq(22,50,by=2),seq(55,200,by=5)); lev <- c(.99,.95,.90); k <- c(25,100); w <- function(n,l) 2*qnorm(1-(1-l)/2)*10/sqrt(n)
+  tf_panel('Šířka intervalu při známé σ = 10','čárový graf','Velikost výběru n','Šířka intervalu (body)',xlim=c(0,200),ylim=c(0,26),
+    series=c(lapply(1:3,function(j) tf_series(c('99% interval','95% interval','90% interval')[j],data.frame(x=n,y=w(n,lev[j])),'cara',note=paste0('šířka = 2 · ',ch7_num(qnorm(1-(1-lev[j])/2),3),' · 10/√n'))),
+      list(tf_series('Vyznačené body na křivce 95% intervalu',data.frame(x=k,y=w(k,.95),popisek=paste0('n = ',k,': ',ch7_num(w(k,.95)),' bodu')))))) })))
 ch7_draw('t-rozdeleni', {
   par(mfrow=c(1,2),mar=c(4.6,4.5,3,.6))
   br <- seq(-12,12,by=.25)
@@ -102,6 +116,14 @@ ch7_draw('t-rozdeleni', {
   curve(dnorm(x),-4,4,add=TRUE,lwd=1.8,lty=2,col=ch7_ink,n=400)
   legend('topright',c('2 stupně volnosti','5 stupňů volnosti','24 stupňů volnosti','normované normální'),lty=c(1,1,1,2),lwd=2,col=c(cols,ch7_ink),bty='n',cex=.74)
 },width=10,height=4.4)
+ch7_fig('t-rozdeleni','simulace',note='Dva panely vedle sebe. Vlevo světle modrý histogram 10 000 simulovaných hodnot statistiky (m − μ)/(s/√5) z výběrů pěti lidí z normální populace, plná modrá křivka t-rozdělení se 4 stupni volnosti a přerušovaná oranžová křivka normovaného normálního rozdělení. Vpravo křivky t-rozdělení se 2 (oranžově), 5 (šedě) a 24 (modře) stupni volnosti a přerušovaná tmavá křivka normovaného normálního rozdělení.',panels=local({
+  br <- seq(-12,12,by=.25); h <- tf_bins(pmax(pmin(ch7_tstat5,11.99),-11.99),br,'hustota'); h <- h[h$od>=-5-1e-9 & h$do<=5+1e-9,]
+  df <- c(2,5,24); lab <- c('2 stupně volnosti','5 stupňů volnosti','24 stupňů volnosti')
+  list(tf_panel('Dosazení s místo σ: těžší chvosty','histogram','Standardizovaný průměr výběru pěti lidí','Hustota',xlim=c(-5,5),ylim=c(0,.56),
+      note=paste0('Intervaly histogramu mají šířku 0,25. Intervaly mimo rozsah −5 až 5 nejsou uvedeny; leží v nich ',ch7_num(100*mean(abs(ch7_tstat5)>5),1),' % hodnot.'),
+      series=list(tf_series('10 000 hodnot (m − μ)/(s/√5)',h,'histogram',digits=4),tf_curve('normované normální rozdělení',dnorm,-5,5,51),tf_curve('t-rozdělení, 4 stupně volnosti',function(x) dt(x,4),-5,5,51))),
+    tf_panel('Více stupňů volnosti: blíže normálnímu','čárový graf','Hodnota statistiky','Hustota',xlim=c(-4,4),ylim=c(0,.56),
+      series=c(lapply(1:3,function(j) tf_curve(paste0('t-rozdělení, ',lab[j]),function(x) dt(x,df[j]),-4,4,41)),list(tf_curve('normované normální rozdělení',dnorm,-4,4,41))))) }))
 ch7_draw('p-funkce', {
   par(mar=c(4.6,4.7,2.7,.8))
   mu <- seq(38,54,by=.02); p <- ch7_p2(46,11,25,mu)
@@ -116,6 +138,13 @@ ch7_draw('p-funkce', {
   text(48.3,ch7_p2(46,11,25,48)+.05,bquote(mu[0]*' = 48: '*.(ch7_num(ch7_p2(46,11,25,48),2))),adj=0,cex=.82)
   text(53.8,.08,'hladina 0,05',adj=1,cex=.8,col=ch7_gray)
 },width=8.6,height=4.6)
+ch7_fig('p-funkce','krivka',note='Modrá křivka je oboustranná p-hodnota t-testu pro m = 46, s = 11 a n = 25 podle testované hodnoty μ0; vrchol 1 má v μ0 = 46. Pod přerušovanou čarou hladiny 0,05 leží mezi mezemi 95% intervalu světle modrý pruh s popiskem „Vnitřek 95% intervalu: nezamítnuté hodnoty“. Dva oranžové body s popisky vyznačují testované hodnoty 50 a 48.',panels=list(local({
+  f <- function(mu) ch7_p2(46,11,25,mu); k <- c(50,48)
+  tf_panel('p-hodnota t-testu pro různé testované hodnoty','čárový graf','Testovaná hodnota μ0 (body)','Oboustranná p-hodnota',xlim=c(38,54),ylim=c(0,1.04),
+    guides=list(tf_guide('y',.05,'hladina 0,05')),
+    series=list(tf_curve('Oboustranná p-hodnota',f,38,54,81,note='p = 2 · P(T ≥ |46 − μ0|/(11/√25)) pro t-rozdělení s 24 stupni volnosti'),
+      tf_series(paste0('Vnitřek 95% intervalu (',ch7_num(ch7_ci_att_t[1]),' až ',ch7_num(ch7_ci_att_t[2]),'): nezamítnuté hodnoty'),data.frame(x=ch7_ci_att_t,y=.05),'plocha',note='pruh mezi vodorovnou osou a hladinou 0,05'),
+      tf_series('Vyznačené testované hodnoty',data.frame(x=k,y=f(k),popisek=paste0('μ0 = ',k,': ',c(ch7_num(f(50),3),ch7_num(f(48),2)))),digits=4))) })))
 ch7_draw('pasmo-pouziti', {
   par(mar=c(4.6,4.7,2.7,.8))
   x <- seq(10,90,length.out=600); mus <- c(47,50,53); cols <- c(ch7_orange,ch7_ink,ch7_blue)
@@ -126,6 +155,12 @@ ch7_draw('pasmo-pouziti', {
   text(39.3,.043,'hranice 40:\ndoporučení další diagnostiky',adj=c(1,1),cex=.8,col=ch7_gray)
   legend(64,.0505,paste0('průměr ',mus,': pod 40 je ',ch7_num(100*ch7_share,1),' %'),lty=c(2,1,2),lwd=c(1.8,2.4,1.8),col=cols,bty='n',cex=.82)
 },width=8.6,height=4.4)
+ch7_fig('pasmo-pouziti','krivka',note='Tři normální křivky hustoty se směrodatnou odchylkou 10: průměr 50 plnou tmavou čarou, průměr 47 přerušovanou oranžovou a průměr 53 přerušovanou modrou. Oranžově je vybarvena plocha pod křivkou s průměrem 47 nalevo od hranice 40. Legenda uvádí pro každý průměr podíl lidí pod hranicí 40.',panels=list(local({
+  mus <- c(47,50,53)
+  tf_panel('Posun průměru o 3 body a podíl lidí pod hranicí 40','čárový graf','Skór pozornosti (body)','Hustota',xlim=c(15,85),ylim=c(0,.05),
+    guides=list(tf_guide('x',ch7_cut,'hranice 40: doporučení další diagnostiky')),
+    series=c(lapply(1:3,function(j) tf_curve(paste0('průměr ',mus[j],': pod 40 je ',ch7_num(100*ch7_share[j],1),' %'),function(x) dnorm(x,mus[j],10),15,85,71,note=paste0('normální rozdělení, μ = ',mus[j],', σ = 10'))),
+      list(tf_curve(paste0('Plocha pod křivkou s průměrem 47 nalevo od 40 (',ch7_num(100*ch7_share[1],1),' %)'),function(x) dnorm(x,47,10),15,ch7_cut,26,mark='plocha',note='plocha pokračuje i vlevo od okraje grafu')))) })))
 ch7_draw('hypotezy-ekvivalence', {
   par(mar=c(3.2,.8,2.6,.8))
   plot(NA,xlim=c(40,60),ylim=c(0,3),axes=FALSE,xlab='',ylab='',main='Hypotézy testu ekvivalence pro populační průměr μ')
@@ -137,6 +172,7 @@ ch7_draw('hypotezy-ekvivalence', {
   text(47,2.5,expression(mu[0]-Delta*' = 47'),cex=.9); text(53,2.5,expression(mu[0]+Delta*' = 53'),cex=.9)
   text(c(43.5,56.5),2.0,c('první jednostranný test','druhý jednostranný test'),cex=.8,col=ch7_gray)
 },width=8.6,height=3.4)
+ch7_fig('hypotezy-ekvivalence','schema',note='Číselná osa populačního průměru μ od 40 do 60 bodů. Obě části nulové hypotézy (μ ≤ 47 a μ ≥ 53) jsou podbarveny pískově a popsány oranžově, pásmo alternativní hypotézy 47 < μ < 53 je světle modré s modrým popiskem. Hranice 47 a 53 jsou svislé čáry, norma 50 je vyznačena krátkou přerušovanou čárkou.')
 ch7_draw('ctyri-kombinace', {
   par(mar=c(4.6,10.5,2.7,.8))
   e <- ch7_eq; k <- nrow(e); y <- k:1
@@ -151,6 +187,12 @@ ch7_draw('ctyri-kombinace', {
   points(e$m,y,pch=21,bg='white',col=ch7_ink,cex=1.2)
   legend('top',c('95% interval: test rozdílu od 50','90% interval: test ekvivalence','pásmo ekvivalence','norma 50'),lwd=c(1.4,6,NA,1.5),lty=c(1,1,NA,3),col=c(ch7_ink,ch7_blue,NA,ch7_gray),fill=c(NA,NA,adjustcolor(ch7_fill,.55),NA),border=NA,bty='n',cex=.78,ncol=2)
 },width=9.4,height=6.4)
+ch7_fig('ctyri-kombinace','data',note='Devět studií pod sebou v uvedeném pořadí shora dolů (studie A nahoře). U každé studie je tenká tmavá úsečka se zarážkami na koncích (95% interval), přes ni tlustá modrá úsečka (90% interval) a bílý bod ve výběrovém průměru. Pásmo ekvivalence 47–53 je vybarveno světle modře a ohraničeno přerušovanými čarami; tečkovaná čára leží u normy 50.',panels=list(local({
+  e <- ch7_eq; lab <- paste0('Studie ',e$studie,' (n = ',e$n,')')
+  tf_panel('Intervaly devíti studií vůči pásmu ekvivalence 47–53','intervalový graf','Skór v testu pozornosti, online verze (body)','Studie',xlim=c(40,60),
+    guides=list(tf_band('x',ch7_mu0-ch7_delta,ch7_mu0+ch7_delta,'pásmo ekvivalence 47–53'),tf_guide('x',ch7_mu0,'norma 50')),
+    series=list(tf_series('95% interval: test rozdílu od 50',data.frame(kategorie=lab,od=e$ci95_d,do=e$ci95_h,stred=e$m),'interval',direction='vodorovně',note='stred je výběrový průměr studie'),
+      tf_series('90% interval: test ekvivalence',data.frame(kategorie=lab,od=e$ci90_d,do=e$ci90_h),'interval',direction='vodorovně'))) })))
 # One-sided interval with an upper bound versus two-sided intervals for the one-sided test of the running example.
 ch7_draw('jednostranne-intervaly', {
   par(mar=c(4.6,13.5,2.7,.8))
@@ -170,6 +212,12 @@ ch7_draw('jednostranne-intervaly', {
   text(ch7_ci_att_t90[2]-.15,2.22,ch7_num(ch7_ci_att_t90[2]),adj=c(1,0),cex=.8,col=ch7_blue)
   text(up1-.15,1.27,ch7_num(up1),adj=c(1,0),cex=.8,col=ch7_orange); text(37,1.27,'bez dolní meze',adj=c(0,0),cex=.8,col=ch7_orange)
 },width=9,height=3.6)
+ch7_fig('jednostranne-intervaly','data',note='Tři intervaly pod sebou v uvedeném pořadí shora dolů: 95% oboustranný tmavou úsečkou, 90% oboustranný tlustou modrou úsečkou a 95% jednostranný oranžově jako šipka doleva od horní meze s popiskem „bez dolní meze“ (prázdná hodnota od je otevřený konec). Bílé body u obou oboustranných intervalů leží ve výběrovém průměru 46; u mezí jsou popisky jejich hodnot. Tečkovaná svislá čára leží u normy 50.',panels=list(
+  tf_panel('Jednostranný test „menší“ a odpovídající intervaly','intervalový graf','Skór v testu pozornosti (body)','Typ intervalu',xlim=c(36,56),
+    guides=list(tf_guide('x',50,'norma 50')),
+    series=list(tf_series('Oboustranné intervaly pro populační průměr (m = 46, s = 11, n = 25)',data.frame(kategorie=c('95% oboustranný interval','90% oboustranný interval'),
+        od=c(ch7_ci_att_t[1],ch7_ci_att_t90[1]),do=c(ch7_ci_att_t[2],ch7_ci_att_t90[2]),stred=c(46,46)),'interval',direction='vodorovně',note='stred je výběrový průměr'),
+      tf_series('Jednostranný interval',data.frame(kategorie='95% jednostranný interval s horní mezí',od=NA_real_,do=ch7_ci_att_t90[2]),'interval',direction='vodorovně',note='bez dolní meze: šipka doleva až k okraji grafu')))))
 # Mirror: the sample mean lies in the acceptance region around mu0 exactly when mu0 lies in the interval around m.
 ch7_draw('zrcadlo-intervalu', {
   par(mar=c(4.6,15,2.7,.8))
@@ -185,6 +233,14 @@ ch7_draw('zrcadlo-intervalu', {
   text(55.6,1.5,paste0('mezní chyba ',ch7_num(me),'\nna každou stranu'),adj=0,cex=.78,col=ch7_gray)
   legend('topleft',legend=c(expression('výběrový průměr '*italic(m)),expression('testovaná hodnota '*mu[0])),pch=c(21,23),pt.bg=c('white',ch7_orange),col=ch7_ink,bty='n',cex=.8,horiz=TRUE)
 },width=9,height=3.4)
+ch7_fig('zrcadlo-intervalu','data',note='Dva řádky nad společnou osou. Nahoře (poloha 2) je oblast nezamítnutí kolem μ0 = 50 jako pískový obdélník s oranžovým okrajem, dole (poloha 1) 95% interval kolem m = 46 jako tlustá modrá úsečka; u mezí jsou popisky jejich hodnot. V obou řádcích je výběrový průměr 46 bílým kolečkem a testovaná hodnota 50 oranžovým kosočtvercem. Mezi řádky vede oboustranná šipka od 46 k 50 s popiskem „|m − μ0| = 4“; vpravo je popisek mezní chyby.',panels=list(local({
+  me <- ch7_q24*11/5
+  tf_panel('Stejná vzdálenost, dva pohledy','intervalový graf','Skór v testu pozornosti (body)','Řádek (2 = oblast nezamítnutí kolem μ0, 1 = 95% interval kolem m)',xlim=c(38,60),ylim=c(.4,2.9),
+    note=paste0('Mezní chyba ',ch7_num(me),' bodu na každou stranu.'),
+    series=list(tf_series('Oblast nezamítnutí a 95% interval',data.frame(poloha=c(2,1),od=c(ch7_accept[1],ch7_ci_att_t[1]),do=c(ch7_accept[2],ch7_ci_att_t[2]),popisek=c('Oblast nezamítnutí kolem μ0 = 50','95% interval kolem m = 46')),'interval',direction='vodorovně'),
+      tf_series('výběrový průměr m',data.frame(x=c(46,46),y=c(2,1))),
+      tf_series('testovaná hodnota μ0',data.frame(x=c(50,50),y=c(2,1))),
+      tf_series('Vzdálenost |m − μ0| = 4 (oboustranná šipka)',data.frame(x0=46,y0=1.55,x1=50,y1=1.55),'usecky'))) })))
 # Exercise 7: the same plotting positions and reference line as chapter 4.
 ch7_qq_y <- sort(ch7_u07)
 ch7_qq_p <- (seq_along(ch7_qq_y)-.5)/length(ch7_qq_y)
@@ -196,4 +252,8 @@ ch7_draw('qq-uzkost', {
   abline(a=mean(ch7_u07),b=sd(ch7_u07),col=ch7_orange,lwd=1.8)
   legend('topleft','Referenční přímka: m + s × z',col=ch7_orange,lwd=1.8,bty='n',cex=.85)
 },width=8.6,height=4.6)
+ch7_fig('qq-uzkost','data',note='Modré body jsou seřazené skóry 20 studentů proti teoretickým kvantilům pro podíly (i − 0,5)/20. Oranžová referenční přímka má úsek rovný výběrovému průměru m a směrnici rovnou výběrové směrodatné odchylce s.',panels=list(
+  tf_panel('Q–Q graf skórů zkouškové úzkosti','bodový graf','Teoretický kvantil normovaného normálního rozdělení','Seřazený skór úzkosti (body)',
+    guides=list(tf_guide('primka',c(mean(ch7_u07),sd(ch7_u07)),paste0('Referenční přímka: m + s × z (m = ',ch7_num(mean(ch7_u07),1),', s = ',ch7_num(sd(ch7_u07),3),')'))),
+    series=list(tf_series('Seřazené skóry',data.frame(x=ch7_qq_z,y=ch7_qq_y),digits=3)))))
 options(ch7_old_options)

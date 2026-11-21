@@ -3,8 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents, skillName, splitSkill, imageLine, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
-  headingLines, divEnd, solutionOpen, figuresLine, figureDataChapters, figureDataBlock, registerPath} = require('./tutor/common.cjs');
+  nodes, attr, text, documents, skillName, splitSkill, imageLine, pngName, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
+  headingLines, divEnd, solutionOpen, figuresLine, figureDataChapters, figureDataBlock, markColumns, hasData, dataLabel, registerPath} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -178,8 +178,8 @@ for (const d of documents.filter(d => d.kind !== 'overview')) {
   assert.equal(nodes(after, 'Image').length, nodes(before, 'Image').length, `${d.id}: image count`);
   for (const image of nodes(before, 'Image')) {
     const input = path.resolve(root, path.dirname(d.source), image.c[2][0]);
-    // The package holds a PNG rendering; its checksum and size are verified with the figure registers.
-    const output = nodes(after, 'Image').find(n => path.basename(n.c[2][0]) === path.basename(input).replace(/\.svg$/, '.png'));
+    // The plugin holds the SVG source; its checksum is verified with the figure registers.
+    const output = nodes(after, 'Image').find(n => path.basename(n.c[2][0]) === path.basename(input));
     assert(output && fs.existsSync(path.resolve(refs, path.dirname(d.output), output.c[2][0])), `Missing image ${input}`);
     const alt = image.c[0][2].find(([k]) => k === 'fig-alt')?.[1];
     assert(alt && nodes(after, 'Para').some(p => text(p).includes(alt)), `Missing visible text description: ${input}`);
@@ -375,7 +375,7 @@ for (const entry of data.plans) {
     // A figure inside an optional block (or an optional section) is marked as such in the plan.
     const isOptional = optional.some(o => at >= o.start && at <= o.end) || entry.headings[sections.indexOf(s)].optional;
     assert.equal(s.optionalFigures.includes(id), isOptional, `${entry.chapter}/${id}: optional figure flag`);
-    assert(planText.includes(`[${f.number}](../${registerPath(entry.chapter)}#${f.id}) (řádky ${span(...f.range)}${f.data ? ', s daty' : ''}${isOptional ? ', v nepovinné části' : ''})`), `${entry.chapter}/${id}: figure link in the plan`);
+    assert(planText.includes(`[${f.number}](../${registerPath(entry.chapter)}#${f.id}) (řádky ${span(...f.range)}${dataLabel(f)}${isOptional ? ', v nepovinné části' : ''})`), `${entry.chapter}/${id}: figure link in the plan`);
   }
   // Every interactive page the chapter links to is named in the plan.
   const vizPages = [...new Set([...markdown.matchAll(/quarto\/(viz_[a-z0-9_]+)\.html/g)].map(m => m[1]))];
@@ -397,7 +397,7 @@ assert.equal((vizGuide.match(/quarto\/viz_[a-z0-9_]+\.html/g) || []).length, boo
 assert(index.includes(figuresLine(true)), 'Figure registers in the index');
 assert.equal(registry.figures.count, data.figures.entries.length);
 assert.deepEqual(registry.figures.registers, bundled.map(d => registerPath(d.id)));
-assert.equal(registry.figures.with_data, data.figures.entries.filter(f => f.data).length);
+assert.equal(registry.figures.with_data, data.figures.entries.filter(hasData).length);
 // Descriptions are plain text, so they are compared after parsing, not as raw
 // Markdown: the writer escapes characters such as "<".
 const squeeze = s => s.replace(/\s+/g, ' ').trim();
@@ -408,7 +408,9 @@ const pngSize = file => {
   assert.equal(b.subarray(12, 16).toString('latin1'), 'IHDR', `PNG header: ${file}`);
   return {width: b.readUInt32BE(16), height: b.readUInt32BE(20)};
 };
-let registerFigures = 0, figuresWithData = 0, dataRows = 0;
+let registerFigures = 0, figuresWithData = 0, dataRows = 0, maxFigureRows = 0, maxRegisterBytes = 0;
+// Authoring guards: a tutor must be able to read one figure entry and one register.
+const figureRowLimit = 800, registerByteLimit = 300000;
 for (const entry of bundled) {
   const source = parseSource(q, entry.source, false);
   const figs = nodes(source, 'Figure').filter(f => nodes(f, 'Image').length);
@@ -416,6 +418,8 @@ for (const entry of bundled) {
   const registerFile = path.join(refs, registerPath(entry.id));
   const register = read(registerFile);
   const registerLines = register.split('\n');
+  maxRegisterBytes = Math.max(maxRegisterBytes, Buffer.byteLength(register));
+  assert(Buffer.byteLength(register) <= registerByteLimit, `${entry.id}: figure register has ${Buffer.byteLength(register)} bytes`);
   assert(index.includes(`](${registerPath(entry.id)})`), `${entry.id}: register in the index`);
   assert.equal(registerLines[0], `# Obrázky kapitoly ${entry.number}: ${entry.title}`);
   const registerParagraphs = paragraphs(parsed.get(path.resolve(registerFile)));
@@ -430,13 +434,11 @@ for (const entry of bundled) {
     const alt = image.c[0][2].find(([k]) => k === 'fig-alt')?.[1];
     const record = records[i];
     assert(record && alt, `${label}: register record and text description`);
-    // The package holds a PNG rendering of the SVG source, and no SVG.
+    // The plugin holds the SVG source of the book unchanged; PNG renderings belong to the Claude variant.
     const sourceSvg = path.relative(root, path.resolve(root, path.dirname(entry.source), image.c[2][0])).split(path.sep).join('/');
-    assert.equal(record.file, sourceSvg.replace(/\.svg$/, '.png'), `${label}: PNG beside the source path`);
-    const png = path.join(refs, record.file);
-    assert.equal(hash(png), record.sha256, `${label}: PNG written by this export`);
-    assert.deepEqual(pngSize(png), {width: record.width, height: record.height}, `${label}: PNG size`);
-    assert(record.width >= 500 && record.height >= 250, `${label}: PNG too small to read`);
+    assert.equal(record.file, sourceSvg, `${label}: figure file follows the source path`);
+    assert.equal(hash(path.join(refs, record.file)), record.sha256, `${label}: figure written by this export`);
+    assert.equal(record.sha256, hash(path.join(root, sourceSvg)), `${label}: SVG identical to the book source`);
     assert.equal(record.image, `${web}${sourceSvg}`, `${label}: web address of the image`);
     assert(fs.existsSync(path.join(root, sourceSvg)), `${label}: source figure`);
     // Register entry: heading, range, description, links and web addresses.
@@ -456,32 +458,52 @@ for (const entry of bundled) {
     else {
       assert.equal(record.data.figure, path.basename(sourceSvg, '.svg'), `${label}: data belong to this figure`);
       assert(['data', 'simulace', 'krivka', 'sloupce', 'schema'].includes(record.data.kind), `${label}: data kind`);
-      if (record.data.kind === 'schema') assert.equal(open, -1, `${label}: a diagram has no data block`);
-      else {
+      if (record.data.kind === 'schema') {
+        assert.equal(open, -1, `${label}: a diagram has no data block`);
+        assert(!record.data.panels && own.includes('Data pro překreslení: obrázek je schéma bez dat.'), `${label}: a diagram is marked in the register`);
+      } else {
+        let figureRows = 0;
+        assert.equal(registerLines[record.dataStart - 1], 'Data pro překreslení:', `${label}: data start in the plan`);
+        assert(record.dataStart > start && record.dataStart < end, `${label}: data start inside the entry`);
         assert(record.data.panels.length > 0 && open > 0 && own[open - 2] === 'Data pro překreslení:' && own.at(-1) === '```', `${label}: data block`);
         assert.deepEqual(own.slice(open + 1, -1), figureDataBlock(record.data), `${label}: data block matches the exported data`);
         for (const [k, p] of record.data.panels.entries()) {
-          assert(p.title && p.type && p.x.label && p.y.label && p.series.length > 0, `${label}: panel ${k + 1} is described`);
-          for (const axis of [p.x, p.y]) if (axis.range) assert(axis.range.length === 2 && axis.range[0] < axis.range[1], `${label}: axis range`);
+          const noAxes = ['tabulka', 'výsečový graf'].includes(p.type);
+          assert(p.title && p.type && p.series.length > 0 && (noAxes || (p.x?.label && p.y?.label)), `${label}: panel ${k + 1} is described`);
+          for (const axis of [p.x, p.y]) if (axis?.range) assert(axis.range.length === 2 && axis.range[0] < axis.range[1], `${label}: axis range`);
+          for (const g of p.guides || []) assert([g.value].flat().every(Number.isFinite) && [g.value].flat().length === (/^(x|y)$/.test(g.axis) ? 1 : 2), `${label}: guide values`);
           for (const series of p.series) {
-            const need = {histogram: ['od', 'do', 'cetnost']}[series.mark] || ['x', 'y'];
-            assert(need.every(c => series.data.columns.includes(c)), `${label}: columns of ${series.name}`);
+            const need = markColumns[series.mark];
+            assert(need, `${label}: mark of ${series.name}`);
+            assert.equal(['interval', 'krabice'].includes(series.mark), Boolean(series.direction), `${label}: direction of ${series.name}`);
+            // 'a|b' is one of the alternatives; a trailing '?' allows an open (empty) value.
+            const columns = need.map(spec => {
+              const open = spec.endsWith('?'), found = spec.replace('?', '').split('|').filter(c => series.data.columns.includes(c));
+              assert.equal(found.length, 1, `${label}: column ${spec} of ${series.name}`);
+              return {index: series.data.columns.indexOf(found[0]), open, text: found[0] === 'kategorie'};
+            });
             assert(series.data.rows.length > 0, `${label}: ${series.name} has rows`);
             for (const row of series.data.rows) {
               assert.equal(row.length, series.data.columns.length, `${label}: row width in ${series.name}`);
-              for (const c of need) assert(Number.isFinite(row[series.data.columns.indexOf(c)]), `${label}: finite numbers in ${series.name}`);
+              for (const c of columns) {
+                if (c.text) assert(typeof row[c.index] === 'string' && row[c.index], `${label}: category in ${series.name}`);
+                else assert(Number.isFinite(row[c.index]) || (c.open && row[c.index] === null), `${label}: finite numbers in ${series.name}`);
+              }
+              if (series.mark === 'interval') assert(columns.filter(c => c.open).some(c => row[c.index] !== null), `${label}: an interval needs one bound`);
             }
-            dataRows += series.data.rows.length;
+            dataRows += series.data.rows.length; figureRows += series.data.rows.length;
           }
         }
+        maxFigureRows = Math.max(maxFigureRows, figureRows);
+        assert(figureRows <= figureRowLimit, `${label}: ${figureRows} data rows; bin or thin the series`);
+        figuresWithData++;
       }
-      figuresWithData++;
     }
     registerFigures++;
   });
 }
 assert.equal(registerFigures, data.figures.entries.length, 'Every figure of the book is in a register');
-assert(!files(packageRoot).some(f => /\.svg$/i.test(f)), 'The packages ship PNG figures, no SVG');
+assert(!files(refs).some(f => /\.png$/i.test(f)), 'The plugin ships SVG figures, no PNG');
 assert(!fs.existsSync(path.join(refs, 'obrazky.md')), 'Figure registers are per chapter');
 
 const bibliography = parsed.get(path.resolve(refs, 'literatura.md'));
@@ -490,7 +512,7 @@ for (const f of files(packageRoot)) assert(!/(?:^|[\\/])(?:sources|node_modules|
 assert(!files(refs).some(f => /\.xlsx$/.test(f)));
 assert(!fs.existsSync(path.join(refs, 'PRIPOJENI-KAPITOL.md')), 'The authoring guide is not packaged');
 
-// Claude skill: same files as the plugin skill, only the frontmatter differs.
+// Claude skill: the plugin skill with YAML frontmatter and PNG renderings instead of SVG files.
 let claude = 'not checked (no Claude skill directory given)';
 if (claudeRoot) {
   assert.equal(path.basename(claudeRoot), skillName, 'Claude skill folder must match the skill name');
@@ -506,16 +528,40 @@ if (claudeRoot) {
   assert.equal(yamlDescription, frontmatter.description);
   assert(yamlDescription.length <= 1024 && !/[<>]/.test(yamlDescription), 'Claude skill description rules');
   const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
-  const expected = files(skillDir).map(f => rel(skillDir, f)).sort();
+  const pluginFiles = files(skillDir).map(f => rel(skillDir, f)).sort();
   const actual = files(claudeRoot).map(f => rel(claudeRoot, f)).sort();
-  assert.deepEqual(actual, expected, 'Claude skill file list');
-  for (const f of expected.filter(f => f !== 'SKILL.md')) {
+  assert.deepEqual(actual, pluginFiles.map(pngName).sort(), 'Claude skill file list');
+  assert(!actual.some(f => /\.svg$/i.test(f)), 'The Claude skill ships PNG figures, no SVG');
+  const differs = new Set(['SKILL.md', ...bundled.flatMap(d => [`references/${d.path}`, `references/${registerPath(d.id)}`])]);
+  for (const f of pluginFiles.filter(f => !differs.has(f) && !f.startsWith('references/assets/'))) {
     assert.equal(hash(path.join(claudeRoot, f)), hash(path.join(skillDir, f)), `Claude skill file differs: ${f}`);
+  }
+  // Chapters and registers differ only by the extension of the figure file.
+  for (const entry of bundled) {
+    for (const [f, sums] of [[entry.path, data.claude.chapters], [registerPath(entry.id), data.claude.registers]]) {
+      const own = read(path.join(claudeRoot, 'references', f)).split('\n');
+      const base = read(path.join(refs, f)).split('\n');
+      assert.equal(own.length, base.length, `${f}: Claude line count`);
+      base.forEach((line, i) => {
+        if (line === own[i]) return;
+        assert((imageLine.test(line) || line.includes('[Soubor obrázku](')) && own[i] === pngName(line), `${f}: unexpected Claude change on line ${i + 1}`);
+      });
+      assert(!own.some(line => /assets\/[^)\s]+\.svg\)/.test(line)), `${f}: leftover SVG link`);
+      assert.equal(sums[entry.id], hash(path.join(claudeRoot, 'references', f)), `${f}: Claude checksum`);
+    }
+  }
+  for (const record of data.figures.entries) {
+    const label = `${record.chapter}/${record.id}`, png = data.claude.figures[label];
+    assert(png && png.file === pngName(record.file), `${label}: PNG beside the source path`);
+    const file = path.join(claudeRoot, 'references', png.file);
+    assert.equal(hash(file), png.sha256, `${label}: PNG written by this export`);
+    assert.deepEqual(pngSize(file), {width: png.width, height: png.height}, `${label}: PNG size`);
+    assert(png.width >= 500 && png.height >= 250, `${label}: PNG too small to read`);
   }
   claude = {skill: yamlName, files: actual.length, descriptionChars: yamlDescription.length};
 }
 
-// Gemini skill: the Claude skill without SVG files. Chapters swap image lines
+// Gemini skill: the Claude skill without image files. Chapters swap image lines
 // for web links; a generated register keeps every caption and description.
 let gemini = 'not checked (no Gemini skill directory given)';
 if (geminiRoot) {
@@ -605,5 +651,5 @@ if (geminiRoot) {
   gemini = {files: geminiFiles.length, figures: figureCount, localLinks: geminiLinks};
 }
 console.log(JSON.stringify({checks: 'passed', claude, gemini, chapters: bundled.length, catalogChapters: registry.chapters.length, plans: data.plans.length, overviewEntries: rows,
-  math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, interactivePages: bookViz.length, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
+  math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, maxFigureRows, maxRegisterBytes, interactivePages: bookViz.length, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
   citations: data.bibliography.citation_keys.length}));

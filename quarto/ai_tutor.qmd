@@ -15,7 +15,7 @@ Tutor umí pracovat čtyřmi způsoby:
 
 Tutor využívá jazykový model, a proto může udělat chybu. Učebnici nenahrazuje. Důležité definice, vzorce a výsledky si ověřte v učebnici; tutor u odpovědí uvádí kapitolu a oddíl, ze kterých čerpá. Pokud se odpověď s učebnicí rozchází, platí učebnice.
 
-K výkladu tutor ukazuje obrázky z učebnice a u vhodných témat nabídne odkaz na [interaktivní vizualizaci](viz_posun_a_jednotky.qmd) z této učebnice. Způsob zobrazení obrázků závisí na platformě: někde se obrázek objeví přímo v odpovědi, jinde jako přiložený soubor a u kapitoly 10 jej tutor umí nakreslit znovu z dat učebnice.
+K výkladu tutor ukazuje obrázky z učebnice a u vhodných témat nabídne odkaz na [interaktivní vizualizaci](viz_posun_a_jednotky.qmd) z této učebnice. Způsob zobrazení obrázků závisí na platformě: někde se obrázek objeví přímo v odpovědi, jinde jako přiložený soubor. Grafy umí tutor nakreslit znovu z dat učebnice; schémata bez dat popíše slovy.
 
 ## Který soubor stáhnout {#sec-ai-tutor-stazeni}
 
@@ -93,7 +93,7 @@ Spuštění tutora:
 1. Založte **nový chat**.
 2. Napište lomítko **/** a z nabídky vyberte dovednost **statistika-tutor**. Za ni napište, co chcete studovat. Můžete také psát běžně, například „Chci studovat statistiku pro psychology.“
 
-Varianta pro Gemini neobsahuje soubory obrázků z učebnice. U kapitoly 10 má tutor data, ze kterých obrázek nakreslí znovu; u ostatních kapitol obrázek popíše slovy a uvede adresu téhož obrázku ve webové učebnici.
+Varianta pro Gemini neobsahuje soubory obrázků z učebnice. Ke grafům má tutor data, ze kterých obrázek nakreslí znovu; schéma bez dat popíše slovy a uvede adresu téhož obrázku ve webové učebnici.
 
 ## Jak začít studovat {#sec-ai-tutor-studium}
 

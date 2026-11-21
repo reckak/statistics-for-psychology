@@ -37,10 +37,14 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
   nebo schopnost jejího klienta.
 - Podrobnější popis obrázku doplňuj do `fig-alt` ve zdrojové kapitole.
   Prospěje webu i všem tutorům; samostatný ručně psaný popisný soubor nevytvářej.
-- Obrázky jdou do balíčků jako PNG vykreslené z týchž SVG, která používá web;
-  SVG se nepřibalují. Hodnoty pro překreslení obrázku zapisuje skript kapitoly
-  z týchž objektů, ze kterých kreslí; ručně je do balíčku nedoplňuj. Data mají
-  zatím jen kapitoly uvedené ve `figureDataChapters` (pilot: kapitola 10).
+- Formát obrázků se řídí platformou (doplnění
+  [R85](rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21) z 2026-11-21): balíček
+  pro ChatGPT obsahuje původní SVG učebnice, balíček pro Claude PNG vykreslené
+  z týchž SVG a balíček pro Gemini žádné soubory obrázků. Instrukce proto mluví
+  o „souboru obrázku“ bez přípony. Hodnoty pro překreslení obrázku zapisuje
+  skript kapitoly z týchž objektů, ze kterých kreslí; ručně je do balíčku
+  nedoplňuj. Data mají kapitoly uvedené ve `figureDataChapters` (od 0.4.1
+  všechny); schéma bez dat má jen textový popis.
 - Adresy na web učebnice vznikají při exportu a tutor je má opisovat doslova;
   do instrukcí nepiš adresy, které kontrola exportu neověřuje.
 
@@ -115,6 +119,12 @@ klienta; vydání nepodmiňuje.
 
 ## ChatGPT
 
+- Přibalené PNG klient při testu verze 0.4.0 nepřečetl (pozorování autora
+  2026-11-21); tutor pracoval s textem kapitol, rejstříkem obrázků a daty.
+  Od 0.4.1 proto balíček obsahuje původní SVG. Jejich popisky jsou uloženy
+  jako křivky, nikoli jako text; zda je klient zobrazí nebo přečte, je třeba
+  ověřit testem. Hlavní cestou k obrázku v odpovědi zůstává překreslení z dat.
+
 - Balíček je plugin `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip`
   s manifesty `plugin.json` a `.codex-plugin/plugin.json`, logem a SKILL.md
   s hlavičkou zapsanou v JSON. Oba manifesty udržuj shodné.
@@ -139,8 +149,7 @@ klienta; vydání nepodmiňuje.
   spouštění kódu. Sdílet skill lze jen v plánech Team a Enterprise.
   Každou novou verzi je třeba nahrát znovu. Číselné limity nahrání
   Anthropic nezveřejňuje; dne 2026-11-21 klient přijal archiv se 183 soubory
-  a 4,7 MB (se SVG). Archiv s PNG má 192 souborů a 8,4 MB; jeho přijetí je
-  třeba ověřit.
+  a 4,7 MB (se SVG) a archiv 0.4.0 se 192 soubory a 8,4 MB (s PNG).
 - Přibalený obrázek klient ukázal jako kartu souboru v postranním panelu,
   nikoli v textu odpovědi (pozorování autora 2026-11-21). V textu odpovědi
   lze zobrazit graf, který tutor nakreslí; proto se přibalují data ke grafům.

@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
   parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill,
-  figureRegister, figuresLine, inlineMd, geminiRenames, geminiNames, figureDataChapters, registerPath, registerRanges} = c;
+  figureRegister, figuresLine, inlineMd, imageLine, pngName, geminiRenames, geminiNames, figureDataChapters, hasData, registerPath, registerRanges, registerDataStarts} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -179,7 +179,7 @@ function finish(value, d) {
     const relative = posix(path.relative(path.join(root, 'assets'), sourceFile));
     assert(relative && !relative.startsWith('../') && !path.isAbsolute(relative), `Image outside assets/: ${sourceFile}`);
     assert(/\.svg$/i.test(relative), `Chapter figures are SVG sources: ${sourceFile}`);
-    const output = `assets/${relative.replace(/\.svg$/i, '.png')}`;
+    const output = `assets/${relative}`;
     assetFiles.set(output, sourceFile);
     copy.c[2][0] = posix(path.relative(path.dirname(d.output), output));
   }
@@ -220,13 +220,11 @@ write(literature.output, pandoc(q, writer, JSON.stringify({
   'pandoc-api-version': cited['pandoc-api-version'], meta: {},
   blocks: [{t: 'Header', c: [1, ['literatura-tutora', [], []], [str(literature.title)]]}, finish(bibliography, literature)]
 })));
-// A tutor cannot view an SVG, and the R figures store text as outlines; PNG it can inspect and send.
-const pngJobs = path.join(work, 'png-jobs.json');
-fs.writeFileSync(pngJobs, JSON.stringify([...assetFiles].map(([output, input]) => ({input, output: path.join(refs, output)}))), 'utf8');
-const pngSizes = new Map(JSON.parse(run(process.execPath, ['scripts/tutor/svg-to-png.cjs', pngJobs]))
-  .map(r => [posix(path.relative(refs, r.output)), {width: r.width, height: r.height}]));
-fs.rmSync(pngJobs);
-for (const output of assetFiles.keys()) assert(pngSizes.has(output) && fs.statSync(path.join(refs, output)).size > 1000, `PNG not rendered: ${output}`);
+// The plugin (ChatGPT) ships the SVG sources of the book; the Claude variant gets PNG renderings below.
+for (const [output, input] of assetFiles) {
+  fs.mkdirSync(path.dirname(path.join(refs, output)), {recursive: true});
+  fs.copyFileSync(input, path.join(refs, output));
+}
 fs.copyFileSync(path.join(root, 'LICENSE-TEXT.md'), path.join(refs, 'LICENCE.md'));
 fs.copyFileSync(path.join(root, 'LICENSE'), path.join(refs, 'LICENSE'));
 fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology – AI tutor\n\n` +
@@ -259,7 +257,7 @@ for (const d of exportedChapters) {
     const data = figureDataChapters.includes(d.id) ? JSON.parse(read(dataFile)) : null;
     assert(figureDataChapters.includes(d.id) || !fs.existsSync(dataFile), `Unexpected figure data: ${dataFile}`);
     figures.push({chapter: d.id, id: div.c[0][0], number: record.number,
-      caption: inlineMd(images[0].c[1]), alt, file, ...pngSizes.get(file), data,
+      caption: inlineMd(images[0].c[1]), alt, file, data,
       web: `${web}quarto/${d.id}.html#${div.c[0][0]}`, image: `${web}${sourceSvg}`});
   }
 }
@@ -272,7 +270,11 @@ for (const d of exportedChapters) {
   write(registerPath(d.id), registerText);
   // The text-only variant keeps the same lines, so the ranges hold in every package.
   const ranges = registerRanges(registerText);
-  for (const f of own) { f.register = registerPath(d.id); f.range = ranges.get(f.id); assert(f.range, `${d.id}/${f.id}: register range`); }
+  const dataStarts = registerDataStarts(registerText);
+  for (const f of own) {
+    f.register = registerPath(d.id); f.range = ranges.get(f.id); f.dataStart = dataStarts.get(f.id);
+    assert(f.range && Boolean(f.dataStart) === hasData(f), `${d.id}/${f.id}: register range and data block`);
+  }
 }
 
 const plans = [];
@@ -315,7 +317,7 @@ const catalog = {
   introduction: slim(exported.find(d => d.kind === 'introduction')),
   bibliography: {path: literature.output},
   figures: {count: figures.length, registers: exportedChapters.map(d => registerPath(d.id)),
-    with_data: figures.filter(f => f.data).length}
+    with_data: figures.filter(hasData).length}
 };
 write('KAPITOLY.json', JSON.stringify(catalog, null, 2) + '\n');
 const checkData = {
@@ -326,7 +328,7 @@ const checkData = {
   bibliography: {path: literature.output, citation_keys: citedKeys, sha256: hash(path.join(refs, literature.output))},
   figures: {count: figures.length,
     registers: exportedChapters.map(d => ({chapter: d.id, path: registerPath(d.id), sha256: hash(path.join(refs, registerPath(d.id)))})),
-    entries: figures.map(({chapter, id, number, file, width, height, range, image, data}) => ({chapter, id, number, file, width, height, range, image,
+    entries: figures.map(({chapter, id, number, file, range, dataStart, image, data}) => ({chapter, id, number, file, range, dataStart, image,
       sha256: hash(path.join(refs, file)), data}))},
   source_hashes: inputs
 };
@@ -353,7 +355,7 @@ for (const d of exported.filter(d => d.kind === 'overview')) {
 index.push('', '## Obrázky', '', figuresLine(true), '');
 for (const d of exportedChapters) {
   const own = figures.filter(f => f.chapter === d.id);
-  index.push(`- [Obrázky kapitoly ${d.number}](${registerPath(d.id)}) — ${own.length} obrázků${own.some(f => f.data) ? `, ${own.filter(f => f.data).length} s daty pro překreslení` : ''}`);
+  index.push(`- [Obrázky kapitoly ${d.number}](${registerPath(d.id)}) — ${own.length} obrázků${own.some(hasData) ? `, ${own.filter(hasData).length} s daty pro překreslení` : ''}`);
 }
 index.push('',
   'Katalogem pro nabídku kapitol je tento index. Registr KAPITOLY.json slouží ke zjištění verze a zdrojové revize vydání.', '');
@@ -365,9 +367,33 @@ const claudeStage = path.join(work, 'claude');
 const claudeDir = path.join(claudeStage, skillName);
 fs.cpSync(path.join(stage, 'skills', skillName), claudeDir, {recursive: true});
 fs.writeFileSync(path.join(claudeDir, 'SKILL.md'), claudeSkill(read(path.join(claudeDir, 'SKILL.md'))), 'utf8');
+// Claude shows a PNG as a file card but not an SVG, so its variant swaps every figure
+// for a PNG rendering; chapters and registers follow the new file names line by line.
+const claudeRefs = path.join(claudeDir, 'references');
+const pngJobs = path.join(work, 'png-jobs.json');
+fs.writeFileSync(pngJobs, JSON.stringify([...assetFiles].map(([output, input]) => ({input, output: path.join(claudeRefs, pngName(output))}))), 'utf8');
+const pngSizes = new Map(JSON.parse(run(process.execPath, ['scripts/tutor/svg-to-png.cjs', pngJobs]))
+  .map(r => [posix(path.relative(claudeRefs, r.output)), {width: r.width, height: r.height}]));
+fs.rmSync(pngJobs);
+for (const output of assetFiles.keys()) {
+  assert(pngSizes.has(pngName(output)) && fs.statSync(path.join(claudeRefs, pngName(output))).size > 1000, `PNG not rendered: ${output}`);
+  fs.rmSync(path.join(claudeRefs, output));
+}
+for (const d of exportedChapters) {
+  const file = path.join(claudeRefs, d.output);
+  fs.writeFileSync(file, read(file).split('\n').map(line => imageLine.test(line) ? pngName(line) : line).join('\n'), 'utf8');
+  fs.writeFileSync(path.join(claudeRefs, registerPath(d.id)),
+    figureRegister(d, figures.filter(f => f.chapter === d.id).map(f => ({...f, file: pngName(f.file)})), true), 'utf8');
+}
+checkData.claude = {
+  figures: Object.fromEntries(figures.map(f => [`${f.chapter}/${f.id}`, {file: pngName(f.file), ...pngSizes.get(pngName(f.file)),
+    sha256: hash(path.join(claudeRefs, pngName(f.file)))}])),
+  chapters: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(claudeRefs, d.output))])),
+  registers: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(claudeRefs, registerPath(d.id)))]))
+};
 
-// Gemini skill upload: the Claude folder without SVG files (Gemini limits the
-// file count), web links instead of images and a generated figure register.
+// Gemini skill upload: the Claude folder without image files (only CSV, PY, TXT and MD
+// are accepted), web links instead of images and registers without file links.
 const geminiStage = path.join(work, 'gemini');
 const geminiDir = path.join(geminiStage, skillName);
 const geminiRefs = path.join(geminiDir, 'references');

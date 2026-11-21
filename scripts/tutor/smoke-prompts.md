@@ -105,8 +105,12 @@ v odpovědi, karta souboru, graf nakreslený tutorem, nebo jen text.
 | Vedené vysvětlování kapitoly 10 až k oddílu „Bod je člověk“. | Obrázek 10.1 se objeví bez vyžádání přímo v odpovědi. Při překreslení z dat: 40 bodů, titulek s r = −0,52, obě přerušované čáry (23,575 a 19,15), označení „překresleno podle obrázku 10.1“. |
 | Pokračování k oddílu „Tvary souvislosti“. | Šest panelů obrázku 10.2 se správnými titulky; hodnoty nejsou nově losované. |
 | „Ukaž mi obrázek 10.10.“ | Sloupce přesného permutačního rozdělení; oranžově 8, 16, 16 a 8 přiřazení, dohromady 48 ze 720. |
-| Výklad oddílu kapitoly 1 se schématem (např. obrázek výběru a přiřazení). | Schéma se zobrazí jako přibalený soubor, nebo je popsáno podle textového popisu s adresou obrázku; tutor nevymýšlí hodnoty ani nový diagram nevydává za originál. |
-| Výklad oddílu kapitoly 3 s obrázkem (kapitola bez dat). | Přibalený obrázek nebo popis s adresou; žádné odhadnuté hodnoty. |
+| Výklad oddílu kapitoly 1 se schématem (obrázek 1.5, výběr a přiřazení). | Schéma se zobrazí jako přibalený soubor, nebo je popsáno podle textového popisu a poznámky ke schématu (48 teček, 12 vybraných, 6 + 6) s adresou stránky; tutor nevymýšlí hodnoty ani nový diagram nevydává za originál. |
+| Výklad oddílu kapitoly 2 s histogramem (obrázek 2.6). | Histogram nakreslený z dat: četnosti 3, 5, 8, 10, 5 a 2 v intervalech šířky 1; hodnoty nejsou odhadnuté. |
+| Výklad oddílu kapitoly 8 „Když se rozptyly skupin liší“ (obrázek 8.5). | Dva panely: krabicové grafy s body (30 a 12 hodnot) a dva vodorovné intervaly, shora klasický test (1,10; 14,90), pod ním Welchův (−1,22; 17,22), svislá čára v nule. |
+| Výklad oddílu kapitoly 6 „Statistická síla pro konkrétní alternativy“ (obrázek 6.14). | Čtyři panely s normální křivkou, kritickými hodnotami ±4,16 a vybarvenou plochou; pravděpodobnosti zamítnutí 0,05; 0,29; 0,65; 0,96. |
+| Výklad oddílu kapitoly 5 s mozaikou nebo stromem (tabulková data). | Tabulka nebo schéma s hodnotami z bloku dat; tutor uvede, že jde o překreslení. |
+| ChatGPT: „Ukaž mi přibalený soubor obrázku 8.5.“ | Zaznamenej, zda klient SVG zobrazí, pošle jako soubor, nebo jej nepřečte. Vydání to nepodmiňuje. |
 | Výklad oddílu kapitoly 3 „Co od ukazatelů polohy a variability očekáváme“. | Tutor sám jednou nabídne interaktivní stránku s adresou `https://reckak.github.io/statistics-for-psychology/quarto/viz_posun_a_jednotky.html`; výklad pokračuje i bez jejího otevření. |
 | „Otevřel jsem ji, co mám zkusit?“ | Poradí nastavení podle VIZUALIZACE.md a po návratu se zeptá na pozorování. |
 | Kterýkoli odkaz od tutora (zvlášť v Gemini). | Adresa začíná `https://reckak.github.io/statistics-for-psychology/`, je shodná s rejstříkem či plánem a není obalená vyhledáváním. Klikni na ni a ověř, že se otevře učebnice. |

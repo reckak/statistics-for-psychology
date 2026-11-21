@@ -35,30 +35,57 @@ tf_json <- function(x) {
   if (length(x) == 1) tf_str(x) else paste0('[', paste(tf_str(x), collapse = ','), ']')
 }
 
-# One plotted series. `data` is a data frame of the values as drawn; `mark` is one of
-# 'body' (points), 'sloupce' (bars at x with height y), 'histogram' (bins od–do with cetnost),
-# 'cara' (a line through the listed points).
-tf_series <- function(name, data, mark = 'body', digits = 2, note = NULL) {
-  stopifnot(is.data.frame(data), nrow(data) > 0, mark %in% c('body', 'sloupce', 'histogram', 'cara'))
-  data[] <- lapply(data, function(col) if (is.numeric(col)) round(col, digits) else as.character(col))
-  list(name = name, mark = mark, note = note, data = data)
+# One plotted series. `data` is a data frame of the values as drawn; `mark` says how to draw it.
+# A text column `kategorie` may stand for the numeric position (x or poloha): rows are then
+# categories in axis order.
+#   'body'      points: x, y
+#   'sloupce'   bars at x with height y; optional `skupina` with arrangement 'skládané' / 'vedle sebe'
+#   'histogram' bins od–do with cetnost, hustota or podil
+#   'cara'      a line through the listed points: x, y
+#   'plocha'    a filled area between y0 (zero if absent) and y over x
+#   'interval'  a segment od–do at poloha with an optional point stred; `direction` gives its
+#               orientation ('vodorovně' / 'svisle'); a missing bound is an open end
+#   'usecky'    separate segments x0, y0, x1, y1
+#   'krabice'   a box plot: dolni_vous, q1, median, q3, horni_vous at poloha; `direction` as above
+#   'tabulka'   cells of a table or mosaic; columns are free
+tf_marks <- c('body', 'sloupce', 'histogram', 'cara', 'plocha', 'interval', 'usecky', 'krabice', 'tabulka')
+tf_series <- function(name, data, mark = 'body', digits = 2, note = NULL, direction = NULL, arrangement = NULL) {
+  stopifnot(is.data.frame(data), nrow(data) > 0, mark %in% tf_marks,
+            is.null(direction) || direction %in% c('vodorovně', 'svisle'),
+            is.null(arrangement) || arrangement %in% c('skládané', 'vedle sebe'),
+            !(mark %in% c('interval', 'krabice')) || !is.null(direction))
+  data[] <- lapply(data, function(col) if (is.numeric(col)) round(col, digits) else { col <- as.character(col); col[is.na(col)] <- ''; col })
+  rownames(data) <- NULL
+  list(name = name, mark = mark, direction = direction, arrangement = arrangement, note = note, data = data)
 }
-# Reference line: axis 'x' (vertical at value), 'y' (horizontal at value) or 'primka'
-# (value = c(intercept, slope)).
+# A curve f sampled at n points as a 'cara' (or 'plocha') series.
+tf_curve <- function(name, f, from, to, n = 61, digits = 4, note = NULL, mark = 'cara') {
+  x <- seq(from, to, length.out = n)
+  tf_series(name, data.frame(x = x, y = f(x)), mark, digits, note)
+}
+# Reference line: axis 'x' (vertical at value), 'y' (horizontal at value), 'primka'
+# (value = c(intercept, slope)), or a shaded band 'pasmo x' / 'pasmo y' (value = c(from, to)).
 tf_guide <- function(axis, value, label = NULL) {
-  stopifnot(axis %in% c('x', 'y', 'primka'))
-  list(axis = axis, value = value, label = label)
+  stopifnot(axis %in% c('x', 'y', 'primka', 'pasmo x', 'pasmo y'))
+  list(axis = axis, value = signif(value, 6), label = label)
 }
-tf_panel <- function(title, type, xlab, ylab, series, xlim = NULL, ylim = NULL, guides = NULL, note = NULL) {
-  stopifnot(type %in% c('bodový graf', 'histogram', 'sloupcový graf', 'čárový graf'), length(series) > 0)
-  list(title = title, type = type, x = list(label = xlab, range = xlim), y = list(label = ylab, range = ylim),
+tf_band <- function(axis, from, to, label = NULL) tf_guide(paste('pasmo', axis), c(from, to), label)
+tf_types <- c('bodový graf', 'histogram', 'sloupcový graf', 'čárový graf', 'intervalový graf', 'krabicový graf',
+              'výsečový graf', 'tabulka')
+# Axis labels may be NULL only where the panel has no axes (a table, a pie chart).
+tf_panel <- function(title, type, xlab = NULL, ylab = NULL, series, xlim = NULL, ylim = NULL, guides = NULL, note = NULL) {
+  stopifnot(type %in% tf_types, length(series) > 0, type %in% c('výsečový graf', 'tabulka') || (!is.null(xlab) && !is.null(ylab)))
+  rng <- function(r) if (!is.null(r)) signif(r, 6)
+  list(title = title, type = type, x = if (!is.null(xlab)) list(label = xlab, range = rng(xlim)), y = if (!is.null(ylab)) list(label = ylab, range = rng(ylim)),
        guides = guides, note = note, series = series)
 }
-# Histogram counts exactly as drawn by hist(v, breaks); empty bins are left out.
-tf_bins <- function(v, breaks) {
+# Histogram bins exactly as drawn by hist(v, breaks); empty bins are left out.
+# `scale`: 'cetnost' (counts), 'hustota' (density) or 'podil' (proportion of values).
+tf_bins <- function(v, breaks, scale = 'cetnost') {
   h <- hist(v, breaks = breaks, plot = FALSE)
-  out <- data.frame(od = head(h$breaks, -1), do = h$breaks[-1], cetnost = h$counts)
-  out[out$cetnost > 0, ]
+  out <- data.frame(od = head(h$breaks, -1), do = h$breaks[-1])
+  out[[scale]] <- switch(scale, cetnost = h$counts, hustota = h$density, podil = h$counts / sum(h$counts))
+  out[h$counts > 0, ]
 }
 # `kind`: 'data' (observed or authored teaching data), 'simulace' (fixed-seed simulation; the
 # listed values are those in the figure), 'krivka' (a curve from stated parameters),
@@ -73,3 +100,4 @@ tf_figure <- function(chapter, name, kind, title = NULL, note = NULL, panels = N
   writeBin(charToRaw(enc2utf8(json)), con)
   invisible(NULL)
 }
+tf_schema <- function(chapter, name) tf_figure(chapter, name, 'schema')

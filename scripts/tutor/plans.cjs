@@ -237,8 +237,8 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
   assert(bullets, `${d.id}: missing learning goals`);
   s.push(render([bullets]), '', '## Doporučená posloupnost a lokátory', '',
     'Postupuj po níže uvedených úsecích. Před další otázkou ověř pojmy a předpoklady proti jejich hloubce v následující tabulce. Při volbě bez rozšíření používej povinné části; rozšíření připojuj k souvisejícímu úseku po jejich zvolení.', '');
-  s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. U oddílů s uvedenými obrázky je při výkladu ukaž: odkaz vede do rejstříku obrázků kapitoly, rozsah řádků vymezuje záznam obrázku a „s daty“ znamená, že záznam obsahuje data pro překreslení. Interaktivní stránku učebnice nabídni při výkladu oddílu, u něhož je uvedena: jednou větou s jejím názvem a úplnou adresou opsanou odtud.', '');
-  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../${f.register}#${f.id}) (řádky ${span(f.range)}${f.data ? ', s daty' : ''}${f.optional ? ', v nepovinné části' : ''})`; }).join(', ')}`;
+  s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. U oddílů s uvedenými obrázky je při výkladu ukaž: odkaz vede do rejstříku obrázků kapitoly, rozsah řádků vymezuje záznam obrázku; „s daty od řádku N“ znamená, že od řádku N do konce záznamu je blok dat pro překreslení (popisek a textový popis jsou před ním; data čti, až když kreslíš), a „schéma bez dat“ označuje diagram, který se z hodnot nepřekresluje: ukaž jeho soubor, nebo jej popiš. Interaktivní stránku učebnice nabídni při výkladu oddílu, u něhož je uvedena: jednou větou s jejím názvem a úplnou adresou opsanou odtud.', '');
+  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../${f.register}#${f.id}) (řádky ${span(f.range)}${c.dataLabel(f)}${f.optional ? ', v nepovinné části' : ''})`; }).join(', ')}`;
   const vizOffer = p => `${vizTitle(p)} — <${c.web}quarto/${p}.html>`;
   const listedFigures = new Set();
   for (const h of located.sections.filter(h => h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id))) {
@@ -289,7 +289,7 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
     !/^(?:Hlavní|\*\*Odchylky)/.test(p));
   s.push('', '## Hranice a návaznosti', '', renderCard(boundary.join('\n\n')), '',
     '## Použití vizualizací', '',
-    `U oddílů s uvedenými obrázky je při výkladu ukaž. Obrázky kapitoly (${figures.length}) jsou v [rejstříku obrázků kapitoly](../${registerPath(d.id)})${figures.some(f => f.data) ? `; ${figures.filter(f => f.data).length} z nich má data pro překreslení` : '; data pro překreslení zatím nemají'}. U oddílů a cvičení výše je uvedeno, které k nim patří. Nový graf nad rámec obrázků učebnice se řídí [metodikou](../VIZUALIZACE.md); rozsah plánu platí i pro něj.`, '');
+    `U oddílů s uvedenými obrázky je při výkladu ukaž. Obrázky kapitoly (${figures.length}) jsou v [rejstříku obrázků kapitoly](../${registerPath(d.id)})${figures.some(c.hasData) ? `; ${figures.filter(c.hasData).length} z nich má data pro překreslení` : '; data pro překreslení zatím nemají'}. U oddílů a cvičení výše je uvedeno, které k nim patří. Nový graf nad rámec obrázků učebnice se řídí [metodikou](../VIZUALIZACE.md); rozsah plánu platí i pro něj.`, '');
   const otherFigures = figures.filter(f => !listedFigures.has(f.id));
   if (otherFigures.length) s.push(`Mimo uvedené oddíly a cvičení: ${figureLinks(otherFigures)}.`, '');
   const vizPages = [...new Set(located.sections.flatMap(h => h.viz))];

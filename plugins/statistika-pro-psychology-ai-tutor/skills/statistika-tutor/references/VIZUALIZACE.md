@@ -4,15 +4,28 @@ Kdy obrázek ukázat a kdy nabídnout interaktivní stránku, určuje hlavní SK
 
 ## Překreslení obrázku učebnice z dat
 
-Blok „Data pro překreslení“ v rejstříku obrázků kapitoly obsahuje druh obrázku, panely, typ grafu, popisky a rozsahy os, vodicí čáry, poznámky ke zvýraznění a řady hodnot. Barvy a legendu, které blok neuvádí, vezmi z textového popisu obrázku.
+Blok „Data pro překreslení“ v rejstříku obrázků kapitoly obsahuje druh obrázku, panely, typ grafu, popisky a rozsahy os, vodicí čáry a vybarvená pásma, poznámky ke zvýraznění a řady hodnot. Barvy a legendu, které blok neuvádí, vezmi z textového popisu obrázku; učebnice používá modrou #245D78, oranžovou #B54E24, světle modrou výplň #B8DDE8, zelenou #3E7B4F a šedou #4D5A63.
+
+Obrázek označený „schéma bez dat“ z hodnot nepřekresluj: ukaž jeho přibalený soubor, má-li jej balíček a klient jej zobrazí; jinak jej popiš podle textového popisu a řádku „Poznámka ke schématu“ (počty a rozmístění prvků) a připoj adresu stránky učebnice.
 
 Druh říká, odkud hodnoty pocházejí: `data` jsou data příkladu, `simulace` hodnoty vylosované pro obrázek, `sloupce` zadané nebo přesně spočtené četnosti a `krivka` obrázek, jehož hlavní částí je křivka daná vzorcem. Ve všech případech kresli z uvedených řádků; nic nelosuj znovu.
 
-- Nakresli všechny panely ve stejném pořadí a se stejnými titulky, popisky os a vodicími čarami. Rozsah osy je jen údaj za slovem „rozsah“; závorka v popisku osy, například „(body, 0–30)“, patří k popisku. Není-li rozsah uveden, zvol jej podle hodnot s malou rezervou.
-- Použij všechny řádky každé řady. První řádek řady jsou názvy polí, další řádky hodnoty oddělené čárkou; text s čárkou je v uvozovkách. Údaj „značka“ určuje podobu: **body** (bodový graf), **sloupce** (svislý sloupec v x o výšce y), **histogram** (sloupec od `od` do `do` o výšce `cetnost`; chybějící interval má četnost nula), **cara** (lomená čára spojující body v uvedeném pořadí).
-- Další datové pole čti podle názvu: `popisek` je text u bodu, `zvyrazneno` odliš barvou, `pocet_studentu` vyjádři velikostí bodu a číslem. Ostatní pole (například `student`) jsou doplňující údaje k bodu.
+- Nakresli všechny panely se stejnými titulky, popisky os a vodicími čarami. Panely jsou uvedeny po řádcích zleva doprava, pokud poznámka neříká jinak. Titulek nebo popisek osy, o kterém poznámka říká, že v obrázku není (pomocný název panelu, osa „bez měřítka“), nekresli. Rozsah osy je jen údaj za slovem „rozsah“; závorka v popisku osy, například „(body, 0–30)“, patří k popisku. Není-li rozsah uveden, zvol jej podle hodnot s malou rezervou.
+- Použij všechny řádky každé řady. První řádek řady jsou názvy polí, další řádky hodnoty oddělené čárkou; text s čárkou je v uvozovkách, prázdná hodnota znamená „neuvedeno“. Údaj „značka“ určuje podobu:
+  - **body**: bod v (x, y);
+  - **sloupce**: svislý sloupec v x o výšce y (vodorovné sloupce jen tehdy, říká-li to poznámka); pole `skupina` s údajem „uspořádání“ říká, zda sloupce téže polohy stojí vedle sebe, nebo jsou skládané na sebe, a to zdola nahoru v pořadí řádků;
+  - **histogram**: sloupec od `od` do `do` o výšce `cetnost`, `hustota` nebo `podil` (popisek svislé osy říká, o které měřítko jde); chybějící interval má výšku nula;
+  - **cara**: lomená čára spojující body v uvedeném pořadí;
+  - **plocha**: vybarvená plocha mezi křivkou y a osou, případně mezi y a `y0`;
+  - **interval**: úsečka od `od` do `do` v poloze `poloha`, bod ve `stred`; údaj „směr“ říká, zda leží vodorovně, nebo svisle; prázdná mez je otevřený konec;
+  - **usecky**: samostatné úsečky z (x0, y0) do (x1, y1);
+  - **krabice**: krabicový graf z hodnot `dolni_vous`, `q1`, `median`, `q3`, `horni_vous` v poloze `poloha`; „směr“ jako u intervalu;
+  - **tabulka**: buňky tabulky nebo jiný přehled hodnot. Popisuje-li poznámka tvar (mozaika, strom, mřížka, výseče), nakresli ten; prostou tabulku použij jako náhradu.
+- Pole `kategorie` nahrazuje číselnou polohu: řádky jsou kategorie v pořadí na ose a jejich text je popisek osy. Na vodorovné ose jdou zleva doprava, na svislé ose (vodorovné intervaly a sloupce) shora dolů. Má-li řada vedle číselného `x` i pole `kategorie`, je kategorie popiskem osy v poloze x.
+- Řádek „vybarvené pásmo“ je podbarvený pruh mezi dvěma hodnotami osy. Řádek „vodicí čára“ je pomocná čára přes celý panel: svislá, vodorovná, nebo šikmá „přímka y = a + b·x“; kresli ji přerušovaně, pokud poznámka neuvádí jiný styl.
+- Další datové pole čti podle názvu: `popisek` je text u bodu, `zvyrazneno` odliš barvou (hodnota „ne“ znamená běžnou barvu, jiné hodnoty jsou úrovně zvýraznění popsané v poznámce), `pocet_studentu` vyjádři velikostí bodu a číslem. Ostatní pole (například `student`) jsou doplňující údaje.
 - Řadu se značkou `cara` smíš podle vzorce z poznámky dopočítat hustěji, aby křivka nebyla hranatá.
-- Blok se stovkami řádků zpracuj nástrojem pro spuštění kódu, máš-li jej. Bez něj dej u tak velkého obrázku přednost přibalenému souboru, případně popisu s adresou; hodnoty ručně neopisuj po částech.
+- Blok se stovkami řádků zpracuj nástrojem pro spuštění kódu, máš-li jej: načti v něm soubor rejstříku a řádky bloku rozděl programem, neopisuj je. Některé rozsáhlé řady jsou proředěné; říká to jejich poznámka. Bez něj dej u tak velkého obrázku přednost přibalenému souboru, případně popisu s adresou; hodnoty ručně neopisuj po částech.
 - Čísla v bloku mají desetinnou tečku. V grafu i ve výkladu piš desetinnou čárku a znaménko minus −.
 - U grafu uveď „Překresleno podle obrázku N.M učebnice“. Graf má říkat totéž co originál: po nakreslení porovnej s popiskem a textovým popisem, zda je vidět to, na co výklad upozorňuje.
 - Když klient graf vykreslit neumí, použij další dostupnou možnost ze SKILL.md, nakonec popis s adresou; kód ani slib grafu nevydávej za hotový obrázek.

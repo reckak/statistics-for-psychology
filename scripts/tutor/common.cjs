@@ -80,10 +80,12 @@ function claudeSkill(skill) {
   // A JSON string is a valid YAML double-quoted scalar.
   return `---\nname: ${meta.name}\ndescription: ${JSON.stringify(meta.description)}\n---\n${body}`;
 }
-// Gemini rejects skill folders with too many files, so its variant ships no SVG.
-// Each figure keeps its numbered caption and text description; the image line
-// becomes a link to the same figure in the web book.
-const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.png\)(\{.*\})?$/;
+// Figure files differ by variant: the plugin (ChatGPT) ships the SVG sources, Claude PNG
+// renderings and Gemini no image files. In the Gemini variant each figure keeps its numbered
+// caption and text description; the image line becomes a link to the same figure in the web book.
+const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.(?:svg|png)\)(\{.*\})?$/;
+// File name or image line of the PNG rendering of an SVG figure.
+const pngName = s => s.replace(/\.svg(?=\)|$)/i, '.png');
 const figureOpen = /^:{3,} \{#(fig-[^\s}]+)/;
 function withoutImages(markdown, webPage) {
   const ids = [];
@@ -107,7 +109,7 @@ const geminiNote = [
   'Cílem je obrázek **přímo v textu odpovědi**. Soubory obrázků v této verzi přibalené nejsou:',
   '',
   '1. Má-li záznam obrázku blok „Data pro překreslení“, **překresli graf v odpovědi** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.',
-  '2. Nemá-li obrázek data nebo graf vykreslit nelze: popiš jej podle textového popisu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku. U takového obrázku je popis s adresou úplným splněním pravidla o obrázku.',
+  '2. Je-li obrázek schéma bez dat nebo graf vykreslit nelze: popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku. U takového obrázku je popis s adresou úplným splněním pravidla o obrázku.',
   ''
 ].join('\n');
 // Gemini accepts only CSV, PY, TXT and MD files in a skill, so its variant
@@ -161,8 +163,12 @@ function divEnd(lines, start) {
 }
 const solutionOpen = (lines, i) => /^:{3,} callout-note$/.test(lines[i]) && lines[i + 1] === '**Ukázat řešení**';
 // Chapters whose figures ship with data for redrawing (scripts/tutor/figure-data.R).
-const figureDataChapters = ['kapitola_10'];
-const dataNumber = v => String(v);
+const figureDataChapters = documents.filter(d => d.kind === 'chapter').map(d => d.id);
+const dataNumber = v => v === null ? '' : String(v);
+// Columns every row of a mark must have; `kategorie` may stand for the position column.
+const markColumns = {body: ['x|kategorie', 'y'], sloupce: ['x|kategorie', 'y'], histogram: ['od', 'do', 'cetnost|hustota|podil'], cara: ['x', 'y'],
+  plocha: ['x', 'y'], interval: ['poloha|kategorie', 'od?', 'do?'], usecky: ['x0', 'y0', 'x1', 'y1'],
+  krabice: ['poloha|kategorie', 'dolni_vous', 'q1', 'median', 'q3', 'horni_vous'], tabulka: []};
 // Text fields follow CSV quoting, so that a comma inside a label does not split the row.
 const dataText = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
 // The data of one figure as one plain-text block: no Markdown escaping, decimal points.
@@ -173,32 +179,37 @@ function figureDataBlock(fig) {
   (fig.panels || []).forEach((p, i) => {
     out.push('', `panel ${i + 1} z ${fig.panels.length}: ${p.title}`, `typ: ${p.type}`);
     for (const axis of ['x', 'y']) {
-      out.push(`osa ${axis}: ${p[axis].label}${p[axis].range ? `; rozsah ${dataNumber(p[axis].range[0])} až ${dataNumber(p[axis].range[1])}` : ''}`);
+      if (p[axis]) out.push(`osa ${axis}: ${p[axis].label}${p[axis].range ? `; rozsah ${dataNumber(p[axis].range[0])} až ${dataNumber(p[axis].range[1])}` : ''}`);
     }
     for (const g of p.guides || []) {
+      const band = g.axis.match(/^pasmo ([xy])$/);
+      if (band) { out.push(`vybarvené pásmo: ${band[1]} od ${dataNumber(g.value[0])} do ${dataNumber(g.value[1])}${g.label ? ` (${g.label})` : ''}`); continue; }
       const where = g.axis === 'x' ? `svislá v x = ${dataNumber(g.value)}` : g.axis === 'y' ? `vodorovná v y = ${dataNumber(g.value)}`
         : `přímka y = ${dataNumber(g.value[0])} + ${dataNumber(g.value[1])}·x`;
       out.push(`vodicí čára: ${where}${g.label ? ` (${g.label})` : ''}`);
     }
     if (p.note) out.push(`poznámka k panelu: ${p.note}`);
     for (const s of p.series) {
-      out.push(`řada: ${s.name}; značka: ${s.mark}; řádků: ${s.data.rows.length}${s.note ? `; ${s.note}` : ''}`,
-        s.data.columns.join(','), ...s.data.rows.map(r => r.map(v => typeof v === 'number' ? dataNumber(v) : dataText(v)).join(',')));
+      out.push(`řada: ${s.name}; značka: ${s.mark}${s.direction ? `; směr: ${s.direction}` : ''}${s.arrangement ? `; uspořádání: ${s.arrangement}` : ''}; řádků: ${s.data.rows.length}${s.note ? `; ${s.note}` : ''}`,
+        s.data.columns.join(','), ...s.data.rows.map(r => r.map(v => v === null ? '' : typeof v === 'number' ? dataNumber(v) : dataText(v)).join(',')));
     }
   });
   if (out.some(line => line.includes('```'))) throw new Error(`Fence inside figure data: ${fig.figure}`);
   return out;
 }
 const registerPath = id => `obrazky/${id}.md`;
+// A diagram has a record but no values to redraw; the plan labels it 'schéma bez dat'.
+const hasData = f => Boolean(f.data) && f.data.kind !== 'schema';
+const dataLabel = f => hasData(f) ? `, s daty od řádku ${f.dataStart}` : f.data ? ', schéma bez dat' : '';
 // One figure register per chapter; the Gemini variant has no image files.
 function figureRegister(d, figures, withFiles) {
-  const withData = figures.some(f => f.data);
+  const withData = figures.some(hasData);
   const out = [`# Obrázky kapitoly ${d.number}: ${d.title}`, '',
     withFiles
-      ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor PNG a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.'
+      ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor obrázku a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.'
       : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.', '',
     withData
-      ? 'Blok „Data pro překreslení“ obsahuje hodnoty, ze kterých je obrázek nakreslen, a popis os, vodicích čar a zvýraznění. Čísla v bloku mají desetinnou tečku; v grafu i ve výkladu piš desetinnou čárku.'
+      ? 'Blok „Data pro překreslení“ obsahuje hodnoty, ze kterých je obrázek nakreslen (u rozsáhlých řad jejich výběr podle poznámky), a popis os, vodicích čar a zvýraznění. Čísla v bloku mají desetinnou tečku; v grafu i ve výkladu piš desetinnou čárku. Schéma bez dat má místo bloku nejvýše řádek „Poznámka ke schématu“ s počty a rozmístěním prvků.'
       : 'K obrázkům této kapitoly zatím nejsou přibalena data pro překreslení.', ''];
   for (const f of figures) {
     out.push(`## Obrázek ${f.number} {#${f.id}}`, '',
@@ -207,8 +218,11 @@ function figureRegister(d, figures, withFiles) {
       `[V kapitole](../${d.output}#${f.id})${withFiles ? ` · [Soubor obrázku](../${f.file})` : ''}`, '',
       `Stránka učebnice s obrázkem: ${f.web}`, '',
       `Samotný obrázek na webu: ${f.image}`, '');
-    if (f.data) out.push('Data pro překreslení:', '', '```text', ...figureDataBlock(f.data), '```', '');
-    else if (withData) out.push('Data pro překreslení: obrázek je schéma bez dat.', '');
+    if (hasData(f)) out.push('Data pro překreslení:', '', '```text', ...figureDataBlock(f.data), '```', '');
+    else if (f.data || withData) {
+      out.push('Data pro překreslení: obrázek je schéma bez dat.', '');
+      if (f.data?.note) out.push(`Poznámka ke schématu: ${mdEscape(f.data.note)}`, '');
+    }
   }
   return out.join('\n');
 }
@@ -220,6 +234,14 @@ function registerRanges(markdown) {
     let end = (marks[i + 1] ? marks[i + 1].line : lines.length + 1) - 1;
     while (lines[end - 1].trim() === '') end--;
     return [h.text.match(/\{#([^}]+)\}/)[1], [h.line, end]];
+  }));
+}
+// Line of 'Data pro překreslení:' in every figure entry that has a data block.
+function registerDataStarts(markdown) {
+  const lines = markdown.split('\n');
+  return new Map([...registerRanges(markdown)].map(([id, [start, end]]) => {
+    const at = lines.slice(start - 1, end).indexOf('Data pro překreslení:');
+    return [id, at < 0 ? null : start + at];
   }));
 }
 // Plain text written into generated Markdown must not be read as markup.
@@ -238,10 +260,10 @@ function inlineMd(value) {
   return inlineMd(value.c);
 }
 const figuresLine = withFiles => withFiles
-  ? 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis, přibalený soubor PNG a webové adresy; u vybraných kapitol také data pro překreslení.'
-  : 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis a webové adresy; u vybraných kapitol také data pro překreslení. Soubory obrázků nejsou přibalené.';
+  ? 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis, přibalený soubor obrázku, webové adresy a data pro překreslení.'
+  : 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis, webové adresy a data pro překreslení. Soubory obrázků nejsou přibalené.';
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
-  skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote,
+  skillName, splitSkill, claudeSkill, imageLine, pngName, withoutImages, geminiSkill, geminiNote,
   geminiRenames, geminiAllowed, geminiNames, headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd,
-  figureDataChapters, figureDataBlock, registerPath, registerRanges};
+  figureDataChapters, figureDataBlock, markColumns, hasData, dataLabel, registerPath, registerRanges, registerDataStarts};

@@ -215,3 +215,22 @@ a [podmínky vydání](../AITUTORS.md#podminky-vydani)),
 [provozní návod](../PROVOZ.md#export-ai-tutora) (postupy). Schválení nedokládá
 dokončení vydání ani účinnost instrukcí v klientech; výsledky testů patří do
 autorské historie.
+
+<a id="r85-doplneni-2026-11-21"></a>
+
+**Doplnění 2026-11-21 (po testu kandidáta 0.4.0):** autor sdělil, že archiv
+přijaly všechny tři klienty a že „všechno je v pořádku“, a dodal: „ChatGPT
+nedokáže přečíst png, takže jsou u něj zbytečné; využívá hlavně
+references/kapitoly/kapitola_10.md, references/obrazky/kapitola_10.md nebo
+CSV. Takže teď bych asi png soubory u ChatGPT odstranil a doplnil postup C.
+Přibalit data a popis grafu i pro ostatní kapitoly.“ V dotazníku zvolil vydání
+změn „až 0.4.1“ a „ponechat [PNG] v Claude“; k plánu připsal: „Pro ChatGPT bych
+místo PNG použil SVG, ty by měl model být schopen přečíst.“ Plán schválil.
+
+- Bod 5 se mění: formát obrázků se řídí platformou – **ChatGPT původní SVG,
+  Claude PNG, Gemini bez souborů obrázků**. Web zůstává u SVG.
+- Bod 6 se naplňuje: data ke grafům mají od 0.4.1 všechny přibalené kapitoly;
+  zápis dat byl rozšířen o intervaly, úsečky, krabicový graf, plochy,
+  kategorie, skupiny sloupců a tabulky. Schémata bez dat se nepřekreslují.
+- Verze 0.4.0 zůstává v otestované podobě; změny vycházejí jako 0.4.1
+  s vlastním testem v klientech.

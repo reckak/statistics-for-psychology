@@ -1,5 +1,88 @@
 # Autorská dokumentace
 
+<a id="tutor-041-20261121"></a>
+
+## 2026-11-21 — AI tutor: výsledek testu 0.4.0 a kandidát 0.4.1 (SVG pro ChatGPT, data ke grafům všech kapitol)
+
+**Test kandidáta 0.4.0.** Autor nahrál tři archivy 0.4.0 a sdělil, že je
+přijaly všechny tři klienty a že kroky testu (`ai-tutor/test-0.4.0.md`,
+[podmínky vydání](../docs/AITUTORS.md#podminky-vydani)) dopadly „v pořádku“.
+Klient, model a tarif jednotlivých platforem sděleny nebyly a zůstávají
+neupřesněné; podrobné záznamy kroků nejsou k dispozici. Zjištění z testu:
+ChatGPT přibalené PNG nepřečetl a pracoval s texty kapitol, rejstříkem obrázků
+a daty. Vydání `tutor-v0.4.0` zveřejněno není; čeká na pokyn autora.
+
+**Archivy 0.4.0.** Při práci na 0.4.1 jsem zkušebním exportem omylem přepsal
+místní archivy `…-0.4.0.zip` sestavením z rozpracovaného stavu. Odstraněny
+a znovu sestaveny úplným exportem z čistého commitu `9e995a1` v oddělené
+pracovní kopii (poté zrušené); zpráva exportu je v `ai-tutor/overeni-0.4.0.json`.
+Obsah odpovídá otestovanému stavu zdrojů, soubory ZIP ale nejsou bajtově
+tytéž, které autor nahrál (jiný čas sestavení a vykreslení PNG).
+
+**Kandidát 0.4.1** podle [doplnění R85](../docs/rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21):
+
+- *Formát obrázků podle platformy.* Plugin pro ChatGPT obsahuje původní SVG
+  učebnice, varianta pro Claude PNG vykreslená z týchž SVG, Gemini žádné
+  soubory obrázků. Instrukce mluví o „souboru obrázku“ bez přípony, takže
+  tělo `SKILL.md` zůstává pro ChatGPT a Claude shodné.
+- *Data ke grafům všech kapitol.* Skripty kapitol 1–9 nově zapisují ke každému
+  obrázku záznam; zápis (`scripts/tutor/figure-data.R`) byl rozšířen o značky
+  `plocha`, `interval`, `usecky`, `krabice` a `tabulka`, textový sloupec
+  `kategorie`, skupiny sloupců, histogram v hustotě či podílech, vybarvená
+  pásma a `tf_curve()`. Ze 147 obrázků má 121 data pro překreslení (16 092
+  řádků) a 26 je schéma bez dat (u části s poznámkou o počtech prvků).
+  Záznamy kapitol 1–8 zapsali pomocní agenti podle společného zadání, každý
+  jednu kapitolu; kapitolu 9 jsem zapsal sám jako vzor.
+- *Výukové plány* rozlišují u obrázku „s daty“ a „schéma bez dat“.
+- Nový kontrolní skript `scripts/tutor/check-figure-data.cjs` (záznam ke
+  každému obrázku kapitoly, sloupce podle značky, nejvýše 800 řádků na
+  obrázek); tytéž kontroly opakuje `check-tutor.cjs` nad balíčkem.
+
+**Kontroly.** Kreslicí kód se neměnil: všech 143 SVG z R je po úpravě skriptů
+bajtově shodných se stavem před ní (otisky SHA-256 uložené před úpravou;
+porovnáno po úplném exportu). `node scripts/export-tutor.cjs` včetně
+`check-tutor.cjs` prošel: 10 kapitol, 147 obrázků, 121 s daty, největší
+rejstřík 93,5 kB, `SKILL.md` 15 166 bajtů; ChatGPT 5,6 MB, Claude 8,5 MB,
+Gemini 0,8 MB (45 souborů). `scripts/tutor/render-figure-data.cjs` vykreslil
+všechny záznamy vedle originálů. Dvojice kapitol 1–8 prohlédli agenti, kteří
+je zapisovali (podle jejich hlášení všechny); sám jsem prohlédl kapitolu 9
+(tři dvojice) a po jedné až dvou dvojicích z kapitol 4, 6, 7 a 8: data
+k překreslení stačí. U kapitol 3 a 8 agenti doložili shodu znovu spočteného
+náhodného posunu bodů se souřadnicemi v SVG.
+
+**Nezávislé čtení balíčku.** Agent v roli tutora prošel nad hotovým balíčkem
+pro ChatGPT pět scénářů (krabicový graf s intervaly 8.5, plochy a skládané
+sloupce 4.7, histogramy 6.4 a 6.8, schéma 1.5, mozaika a strom 5.4 a 5.6)
+a skriptem zkontroloval všech 121 bloků dat: počty řádků, sloupce, pořadí
+hodnot krabic, středy intervalů uvnitř mezí, součty podílů a plochy pod
+histogramy; číselnou chybu nenašel. Podle jeho nálezů opraveno v pokynech:
+soubor obrázku se nečte jako text; jednotné zacházení se schématem (soubor,
+jinak popis a „Poznámka ke schématu“); vodicí čára nemusí být přerušovaná
+a může být šikmá; pořadí panelů, skládání sloupců odspodu, směr u krabic,
+tvar u značky `tabulka`, pomocné titulky a osy „bez měřítka“, barvy učebnice,
+načítání velkých bloků kódem. Plány nově uvádějí, od kterého řádku záznamu
+začínají data. Rozsahy os a polohy vodicích čar se zaokrouhlují na šest
+platných číslic. U obrázku 8.5 doplněna poznámka, že okraje krabic jsou
+panty, nikoli kvartily podle kapitoly 3. Neopraveno a předáno autorovi
+k rozhodnutí, protože jde o obsah knihy, ne tutora: v převzatém obrázku 3.3
+(`mode-median-mean.svg`) jsou popisky ve větvích podle jazyka prohlížeče
+a čeština je jen výchozí; v obrázku 6.16 stojí „směrodatná chyba 2 bodu“;
+textový popis obrázku 4.15 mluví o „červené“ křivce, která je oranžová;
+krabicový graf 8.5 kreslí panty. Ponecháno: různé zařazení diagramů (část
+jako schéma bez dat, v kapitole 5 jako tabulková data), vodorovné sloupce
+obrázku 5.7 zapsané svisle s poznámkou a opakování téže křivky ve více řadách.
+
+Při druhém úplném exportu kontrola věrnosti znovu zastavila běh na kapitole 8
+(„Math: lost 10/\sqrt{25}=2“); opakovaný export se stejnými vstupy prošel.
+Jde o tutéž nevysvětlenou občasnou chybu převodu jako 2026-11-20.
+
+**Neověřeno.** Chování 0.4.1 v klientech: zda ChatGPT přibalené SVG zobrazí
+nebo přečte (popisky jsou v SVG uloženy jako křivky), jak věrně klienti kreslí
+z nových značek (intervaly, plochy, krabicový graf, tabulky) a zda rozsáhlejší
+rejstříky (kapitola 4 má 4 400 řádků) nezhoršují čtení po rozsazích řádků.
+Zbývajících deset dvojic kapitoly 10 jsem neprohlédl. Hlášení agentů
+o prohlídce dvojic jsem přijal bez opakování celé prohlídky.
+
 <a id="tutor-040-20261121"></a>
 
 ## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům

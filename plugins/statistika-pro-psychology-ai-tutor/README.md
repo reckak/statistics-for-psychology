@@ -13,7 +13,8 @@ Příkazy, závislosti, kontroly a aktualizace stejného cloudového pluginu jso
 v [provozním návodu](../../docs/PROVOZ.md#export-ai-tutora).
 
 Hotový plugin obsahuje všechny výkladové kapitoly učebnice (nyní 1–10) včetně
-cvičení a řešení, úvod, literaturu, rejstřík obrázků a celé aktuální přehledy
+cvičení a řešení, úvod, literaturu, obrázky jako SVG, rejstříky obrázků s daty pro
+překreslení a celé aktuální přehledy
 (slovníček, značení a vzorce, Excel). Ke každé kapitole vzniká z kapitolové
 karty a struktury textu výukový plán s rozsahy řádků oddílů, zadání a řešení.
 Zdrojový SKILL.md je šablona: export do značky tutor:chapter-menu vloží přesné

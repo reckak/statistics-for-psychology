@@ -255,18 +255,19 @@ node scripts/export-tutor.cjs
   návaznosti a procvičení přebírá z kapitolové karty, cíle a strukturu z textu,
   rejstřík pojmů z přehledů. Uvádí **rozsahy řádků** oddílů a jejich úvodů,
   zvlášť zadání a řešení každého cvičení, nepovinných bloků a hesel přehledů,
-  u oddílu jeho obrázky (s rozsahem řádků v rejstříku a údaji „s daty“
-  a „v nepovinné části“) a název a úplnou adresu interaktivní stránky, na
+  u oddílu jeho obrázky (s rozsahem řádků v rejstříku a údaji „s daty od
+  řádku N“ nebo „schéma bez dat“ a „v nepovinné části“) a název a úplnou adresu interaktivní stránky, na
   kterou oddíl odkazuje. Plány se ručně neupravují.
-- **Obrázky jako PNG.** Export převede SVG obrázky kapitol na PNG
+- **Obrázky podle platformy.** Balíček pro ChatGPT (plugin) obsahuje původní
+  SVG obrázky kapitol beze změny. Pro Claude export převede tatáž SVG na PNG
   (`scripts/tutor/svg-to-png.cjs`, Chromium z Playwrightu, 1,5násobek velikosti
-  SVG). Do balíčků jde jen PNG; web knihy zůstává u SVG. Důvod: SVG tutor
-  neotevře jako obrázek a text v něm je uložen jako křivky.
+  SVG) a přepíše přípony v kapitolách a rejstřících; Gemini soubory obrázků
+  nemá. Web knihy zůstává u SVG. Text v SVG z R je uložen jako křivky.
 - **Rejstřík obrázků každé kapitoly** `references/obrazky/kapitola_NN.md`:
   číslo, popisek, textový popis (`fig-alt` kapitoly), místo v kapitole, soubor
-  PNG a dvě webové adresy jako prostý text (stránka s kotvou a samotný obrázek).
+  obrázku a dvě webové adresy jako prostý text (stránka s kotvou a samotný obrázek).
 - **Data pro překreslení** u kapitol uvedených ve `figureDataChapters`
-  (`scripts/tutor/common.cjs`, nyní jen kapitola 10): viz [níže](#data-ke-grafum-tutora).
+  (`scripts/tutor/common.cjs`, od 0.4.1 všechny kapitoly): viz [níže](#data-ke-grafum-tutora).
 - **Malý registr `KAPITOLY.json`** (schéma 3) s verzí, revizí a seznamem
   kapitol. Katalogem pro nabídku kapitol je `INDEX.md`. Nadpisy, pojmy, rozsahy
   a otisky pro kontrolu jsou v `kontrola.json` vedle rozbalených balíčků, mimo
@@ -302,12 +303,15 @@ node scripts/check-tutor.cjs
 ```
 
 Kontrola mimo jiné ověřuje věrnost převodu každého odstavce, vzorce a tabulky,
-začátek i konec každého rozsahu řádků, oddělení zadání od řešení, jedno platné
-PNG ke každému obrázku a žádné SVG v balíčku, shodu rejstříků a bloků dat
-s exportovanými daty, přítomnost každé interaktivní stránky knihy ve
+začátek i konec každého rozsahu řádků, oddělení zadání od řešení, shodu SVG
+v pluginu se zdrojem, jedno platné PNG ke každému obrázku ve variantě pro
+Claude, shodu rejstříků a bloků dat s exportovanými daty, strukturu dat podle
+značek a jejich rozsah (nejvýše 800 řádků na obrázek, 300 kB na rejstřík), přítomnost každé interaktivní stránky knihy ve
 `VIZUALIZACE.md` a rozdíly variant proti společnému zdroji. Dne 2026-11-20 se
 při jednom z běhů v exportované kapitole 8 tiše ztratila část odstavce; kontrola
-věrnosti běh zastavila a chyba se v dalších bězích neopakovala. Příčina známa
+věrnosti běh zastavila a chyba se v dalších bězích neopakovala. Dne 2026-11-21
+se totéž stalo znovu, opět v kapitole 8 (ztracený vzorec); opakovaný export
+prošel. Příčina známa
 není: při hlášení „paragraph/cell lost or changed“ nejprve spusťte export znovu.
 
 ### Výstupy
@@ -350,22 +354,33 @@ těchto dat je skript kapitoly; rejstřík v balíčku je odvozený výstup.
 - Pomocník `scripts/tutor/figure-data.R` (jen base R): `tf_figure()` zapíše
   `tmp/tutor-figures/<kapitola>/<obrázek>.json` s druhem obrázku (`data`,
   `simulace`, `krivka`, `sloupce`, `schema`), panely (`tf_panel()`: titulek, typ
-  grafu, osy, vodicí čáry `tf_guide()`) a řadami (`tf_series()`: hodnoty tak,
-  jak jsou vykresleny; `tf_bins()` pro četnosti histogramu).
+  grafu, osy, vodicí čáry `tf_guide()` a vybarvená pásma `tf_band()`) a řadami
+  (`tf_series()`: hodnoty tak, jak jsou vykresleny; `tf_bins()` pro histogram
+  v četnostech, hustotě nebo podílech; `tf_curve()` pro křivku danou funkcí).
+  Značky řad: `body`, `sloupce` (i skupinové a skládané), `histogram`, `cara`,
+  `plocha`, `interval`, `usecky`, `krabice` a `tabulka`; místo číselné polohy
+  lze uvést textový sloupec `kategorie`. Schéma bez dat zapíše `tf_schema()`.
+  Význam značek pro tutora popisuje `references/VIZUALIZACE.md` v balíčku;
+  při změně slovníku upravte obojí a kontrolu (`markColumns` v `common.cjs`).
+- Rozsah: křivky zhruba 41–81 bodů, simulace jako intervaly histogramu, husté
+  čáry a velká mračna bodů proředit a uvést to v poznámce.
 - Volání patří hned za kreslicí blok obrázku a používá tytéž objekty. Hodnoty
   vznikající až při kreslení (jitter, losování uvnitř bloku) nejprve uložte do
   pojmenovaného objektu, aby data i obrázek vycházely z téhož.
 - Po úpravě skriptu ověřte, že se obrázky nezměnily, a spusťte
 
   ```powershell
+  node scripts/tutor/check-figure-data.cjs kapitola_10
   node scripts/tutor/render-figure-data.cjs kapitola_10
   ```
 
-  Skript vykreslí každý záznam obecným kreslítkem vedle originálu do
+  První skript ověří, že každý obrázek kapitoly má záznam a že záznamy
+  odpovídají slovníku značek a limitu řádků. Druhý vykreslí každý záznam obecným kreslítkem vedle originálu do
   `tmp/tutor-figures-check/`. Dokládá, že data k překreslení stačí; nedokládá,
   jak věrně kreslí tutor v klientu.
-- Další kapitolu přidáte doplněním volání do jejího skriptu a jejího ID do
-  `figureDataChapters`; kontrola pak vyžaduje data u každého jejího obrázku.
+- Novou kapitolu přidáte doplněním volání do jejího skriptu a jejího ID do
+  `figureDataChapters`; kontrola pak vyžaduje záznam u každého jejího obrázku,
+  i u statického SVG, které R nekreslí (`tf_schema()`).
 
 Generované kapitoly a archivy se necommitují. Při změně zdrojů proveďte nový
 export; nahraný tutor je verzovaný snímek a s webem se nesynchronizuje. Běžné
