@@ -235,121 +235,142 @@ dostane na veřejný web, jinak by vedl na chybu 404.
 
 ## Export kapitol a přehledů pro AI tutora
 
-Hlavní vstupní nabídka vede k volbě kapitoly, režimu a rozsahu; přímý dotaz
-průvodce obchází. Metodika interaktivních vizualizací a podrobné bodování
-jsou reference načítané podle potřeby. Interaktivita závisí na klientu,
-nikoli na samotném balíčku instrukcí. Při vydání ji skutečně vyzkoušejte
-v cílovém prostředí, včetně náhrady bez podpory interaktivity. Volbu režimu
-Chat a evidenci prostředí určuje [pravidlo ověřování tutora](AITUTORS.md#overovani).
-
-Zdroj pluginu je v `plugins/statistika-pro-psychology-ai-tutor/`; tato složka
-obsahuje instrukce, metadata a logo, nikoli ručně udržované kopie kapitol.
-Úplný instalační balíček sestavíte z kořene projektu:
+Pravidla tvorby, vydání a ověřování určuje [AITUTORS.md](AITUTORS.md); zde jsou
+příkazy, závislosti a popis výstupů. Zdroj pluginu je v
+`plugins/statistika-pro-psychology-ai-tutor/`: obsahuje instrukce, metadata
+a logo, nikoli ručně udržované kopie kapitol. Úplné balíčky sestavíte z kořene
+projektu:
 
 ```powershell
 node scripts/export-tutor.cjs
 ```
 
-Export obsahuje úvod, úplné kapitoly 1–6 včetně nepovinných částí,
-zadání a řešení, celé aktuální přehledy (slovníček, značení a vzorce, Excel),
-literaturu citovanou v těchto materiálech a obrázky s textovými popisy.
-Od revize 0.3.0 přidává šest výukových plánů a katalog všech kapitol knihy (nyní deseti)
-s výslovnou dostupností. Přesné názvy v nabídce hlavního skillu, indexu
-a registru vznikají ze stejného katalogu podle `_quarto.yml` a nadpisů kapitol.
-Zdrojový skill obsahuje značku `tutor:chapter-menu`, kterou export nahradí;
-instalujte hotový archiv, nikoli samotnou zdrojovou složku.
+### Co export přibaluje
 
-Plány vznikají pomocí `scripts/tutor/plans.cjs`: hloubku výkladu, návaznosti
-a procvičení přebírají z existujících kapitolových karet, cíle a strukturu
-z kapitol a rejstřík pojmů, značek i funkcí z přehledů. Zachovávají rozdíl
-mezi povinným učivem, nepovinnými částmi a pouhými zmínkami. Při obsahové
-změně aktualizujte hlavní kapitolovou kartu a text a proveďte nový export;
-generované plány se ručně nesynchronizují. Export kontroluje existenci
-a návaznost odkazů, redakční kontrola posuzuje skutečnou hloubku učiva.
-Přehledy se na rozdíl od souhrnného PDF **neomezují na kapitoly 1–6**;
-obsahují i hesla z kapitol 7–10, jejichž úplný výklad v pluginu není.
-Odkazy na přibalené materiály jsou místní, na kapitoly 7–10 a sešity vedou
-na web knihy. Původ a licence zůstávají přibalené.
+- **Všechny výkladové kapitoly knihy** podle `_quarto.yml` (nyní 1–10) včetně
+  nepovinných částí, zadání a řešení, úvod, citovanou literaturu a celé tři
+  přehledy. Další kapitola se přibalí sama; potřebuje kapitolovou kartu,
+  skript `scripts/kapitola_NN.R` a údaj o počtu řešení v `check-tutor.cjs`.
+- **Výukový plán každé kapitoly** (`scripts/tutor/plans.cjs`): hloubku výkladu,
+  návaznosti a procvičení přebírá z kapitolové karty, cíle a strukturu z textu,
+  rejstřík pojmů z přehledů. Uvádí **rozsahy řádků** oddílů a jejich úvodů,
+  zvlášť zadání a řešení každého cvičení, nepovinných bloků a hesel přehledů,
+  u oddílu jeho obrázky (s rozsahem řádků v rejstříku a údaji „s daty“
+  a „v nepovinné části“) a název a úplnou adresu interaktivní stránky, na
+  kterou oddíl odkazuje. Plány se ručně neupravují.
+- **Obrázky jako PNG.** Export převede SVG obrázky kapitol na PNG
+  (`scripts/tutor/svg-to-png.cjs`, Chromium z Playwrightu, 1,5násobek velikosti
+  SVG). Do balíčků jde jen PNG; web knihy zůstává u SVG. Důvod: SVG tutor
+  neotevře jako obrázek a text v něm je uložen jako křivky.
+- **Rejstřík obrázků každé kapitoly** `references/obrazky/kapitola_NN.md`:
+  číslo, popisek, textový popis (`fig-alt` kapitoly), místo v kapitole, soubor
+  PNG a dvě webové adresy jako prostý text (stránka s kotvou a samotný obrázek).
+- **Data pro překreslení** u kapitol uvedených ve `figureDataChapters`
+  (`scripts/tutor/common.cjs`, nyní jen kapitola 10): viz [níže](#data-ke-grafum-tutora).
+- **Malý registr `KAPITOLY.json`** (schéma 3) s verzí, revizí a seznamem
+  kapitol. Katalogem pro nabídku kapitol je `INDEX.md`. Nadpisy, pojmy, rozsahy
+  a otisky pro kontrolu jsou v `kontrola.json` vedle rozbalených balíčků, mimo
+  archivy.
 
-Potřebujete Node.js 18 nebo novější, Quarto s Pandocem 3.x, R se závislostmi
+Zdrojový `SKILL.md` obsahuje značku `tutor:chapter-menu`, kterou export nahradí
+nabídkou kapitol; instalujte hotový archiv, nikoli zdrojovou složku. Odkazy na
+přibalené materiály jsou místní, na sešity a interaktivní stránky vedou na web.
+
+### Závislosti a průběh
+
+Potřebujete Node.js 18 nebo novější s balíčkem Playwright a jeho Chromiem
+(tytéž jako pro kontroly webu), Quarto s Pandocem 3.x, R se závislostmi
 generátorů obrázků a Windows PowerShell s .NET kompresí. Ověřené místní verze:
-Node.js 24.21.0, Quarto 1.9.38 / Pandoc 3.8.3 a R 4.5.1. Skript má výchozí
-cesty k programům používaným také při exportu PDF; jiné cesty lze předat
-parametry `--quarto` a `--rscript`. Žádné balíčky se během exportu neinstalují.
-Znovu se vytvoří obrázky kapitol 1–6; přepínač `--skip-figures` použijte jen
-při opakovaném sestavení se stejnými, již vytvořenými obrázky.
+Node.js 24.21.0, Quarto 1.9.38 / Pandoc 3.8.3 a R 4.5.1. Jiné cesty k programům
+předáte parametry `--quarto` a `--rscript`. Žádné balíčky se během exportu
+neinstalují. Export znovu vytvoří obrázky všech přibalených kapitol a data ke
+grafům; přepínač `--skip-figures` použijte jen při opakovaném sestavení se
+stejnými, již vytvořenými obrázky a daty.
 
 Převod pracuje s dokumentovou strukturou Pandocu, zachovává vzorce v LaTeXu,
 ID oddílů a údaje tabulek. HTML řádky přehledů převádí na samostatná hesla
-s pojmenovanými poli. Křížové odkazy se vyhodnocují s ohledem na zdrojovou
-kapitolu. Citace vznikají jedním společným průchodem citeproc s APA stylem
-a celou bibliografií kvůli shodě rozlišujících přípon roků; přibalený seznam
-literatury pak ponechá pouze skutečně citované položky.
+s pojmenovanými poli. Citace vznikají jedním společným průchodem citeproc
+s APA stylem; přibalený seznam literatury ponechá jen citované položky.
 
-Sestavení vzniká v nové pomocné složce `tmp/tutor-export-*`. Po úspěšném
-exportu skript smaže starší složky `tmp/tutor-export-*` a ponechá jen tu,
-na kterou odkazuje `ai-tutor/overeni.json` (používá ji `check-tutor.cjs`);
-po neúspěšném exportu se nic nemaže. Před nahrazením cílového
-archivu proběhne `scripts/check-tutor.cjs` a nezávislé načtení všech souborů
-ZIPu pomocí .NET, včetně skrytého kompatibilního manifestu. Výsledky:
-
-- `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip` — plugin pro ChatGPT;
-- `ai-tutor/claude/statistika-tutor-claude-<verze>.zip` — týž skill pro Claude;
-- `ai-tutor/gemini/statistika-tutor-gemini-<verze>.zip` — skill pro Gemini bez souborů obrázků;
-- `ai-tutor/overeni.json` — verze zdroje, otisky vstupů a všech členů tří
-  archivů, počty obsahu a cesty k ověřeným rozbaleným podobám.
-
-Složka `ai-tutor/` je ignorovaná Gitem; podsložky platforem uchovávají také
-starší archivy a místní záznamy testů. Do 2026-11-04 byly tyto výstupy
-v `output/tutor/`; starší záznamy historie uvádějí původní cesty.
-
-Archiv pro Claude má v kořeni jedinou složku `statistika-tutor/` (název musí
-odpovídat poli `name`) se stejnými soubory jako skill pluginu. Liší se jen
-hlavička SKILL.md, převedená z JSON na prosté YAML (`name`, `description`);
-manifesty, logo a zahajovací prompty pluginu vynechává. Kontrola ověřuje
-název složky, pravidla pro `name` a `description`, shodu těla SKILL.md
-a otisků všech referencí s pluginem a to, že žádný odkaz ze skillu nevede
-mimo jeho složku. Nahrání: claude.ai → Customize → Skills → + → Upload a skill;
-vyžaduje zapnuté spouštění kódu. Novou verzi skillu je třeba nahrát znovu;
-mimo plány Team a Enterprise nahrává archiv každý student sám. Číselný limit
-velikosti nápověda Claude neuvádí, ověřte jej skutečným nahráním.
-
-Gemini odmítl skill se 125 soubory („Složka dovednosti obsahuje příliš mnoho
-souborů“); přesný limit Google nezveřejňuje, komunitní zdroj uvádí 100.
-Archiv pro Gemini proto vzniká z Claude složky bez `references/assets/`
-(97 SVG, z nichž model nevyčte ani popisky, protože písmena jsou křivky).
-V kapitolách nahradí řádek obrázku odkazem na tentýž obrázek ve webové
-učebnici; číslovaný popisek a „Textový popis obrázku“ zůstávají. Navíc
-obsahuje generovaný `references/obrazky.md` s číslem, popiskem, textovým
-popisem a odkazy ke každému obrázku, odkaz z `INDEX.md`, upravené otisky
-v `KAPITOLY.json` (`images: "web_only"`) a jednu větu v SKILL.md o práci
-bez přibalených obrázků. Podrobnější popis obrázku patří do `fig-alt`
-ve zdrojové kapitole, nikoli do ručně psaného souboru. Kontrola hlídá
-nejvýše 100 souborů, žádné SVG, změny kapitol jen na řádcích obrázků,
-zachování všech textových popisů, úplnost rejstříku a místní odkazy.
-Nahrání do Gemini a jeho omezení zatím nejsou ověřeny.
-
-Samostatné opakování kontroly posledního exportu:
+Sestavení vzniká v nové složce `tmp/tutor-export-*`. Po úspěšném exportu skript
+smaže starší složky a ponechá tu, na kterou odkazuje `ai-tutor/overeni.json`.
+Před nahrazením archivů proběhne `scripts/check-tutor.cjs` a nezávislé načtení
+všech souborů ZIPu pomocí .NET. Samostatné opakování kontroly posledního exportu:
 
 ```powershell
 node scripts/check-tutor.cjs
 ```
 
-Generované kapitoly a archivy se necommitují. Při změně zdrojů proveďte nový
-export; uložený cloudový plugin je verzovaný snímek a s webem se nesynchronizuje
-automaticky. Běžné sestavení webu export pluginu ani jeho nahrání nespouští.
+Kontrola mimo jiné ověřuje věrnost převodu každého odstavce, vzorce a tabulky,
+začátek i konec každého rozsahu řádků, oddělení zadání od řešení, jedno platné
+PNG ke každému obrázku a žádné SVG v balíčku, shodu rejstříků a bloků dat
+s exportovanými daty, přítomnost každé interaktivní stránky knihy ve
+`VIZUALIZACE.md` a rozdíly variant proti společnému zdroji. Dne 2026-11-20 se
+při jednom z běhů v exportované kapitole 8 tiše ztratila část odstavce; kontrola
+věrnosti běh zastavila a chyba se v dalších bězích neopakovala. Příčina známa
+není: při hlášení „paragraph/cell lost or changed“ nejprve spusťte export znovu.
 
-Při vydání zvyšte verzi v obou manifestech zdroje pluginu. U existujícího
-vlastního cloudového pluginu použijte **Další akce → Nahrát novou verzi**,
-nikoli přidání dalšího pluginu. Zachovejte jeho identitu, vazby a přístup.
-Je-li dostupný nástroj Plugin Creatoru `update_plugin`, nejprve načtěte
-aktuální zdroje a použijte ověřené ID i `expected_release_id`.
-Po uložení ověřte verzi a čtení materiálů v novém chatu bez příloh.
-Kontrola archivu sama nepotvrzuje, že konkrétní klient ChatGPT soubory načte.
-[Testovací sada](../scripts/tutor/smoke-prompts.md) odděluje načítání podkladů,
-chování tutora a skutečné ovládání vizualizací. Test kandidátního archivu
-jako přílohy nezaměňujte za test instalovaného vydání; do autorizovaného
-publikování může cloudový plugin dál obsahovat předchozí verzi.
+### Výstupy
+
+- `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip` – plugin pro ChatGPT;
+- `ai-tutor/claude/statistika-tutor-claude-<verze>.zip` – týž skill pro Claude,
+  v kořeni jediná složka `statistika-tutor/`;
+- `ai-tutor/gemini/statistika-tutor-gemini-<verze>.zip` – skill pro Gemini:
+  `SKILL.md` a `references/` přímo v kořeni archivu, jen soubory `.md` a `.txt`,
+  bez souborů obrázků;
+- `ai-tutor/overeni.json` – verze zdroje, otisky vstupů a všech členů tří
+  archivů, počty obsahu a cesty k rozbaleným podobám.
+
+Složka `ai-tutor/` je ignorovaná Gitem. Archiv pro Claude se od pluginu liší jen
+hlavičkou `SKILL.md` (YAML místo JSON) a chybějícími manifesty a logem. Varianta
+pro Gemini vzniká z varianty pro Claude: odstraní `references/assets/`, v kapitolách
+nahradí řádek obrázku odkazem na obrázek ve webové učebnici, v rejstřících vynechá
+odkaz na soubor, přejmenuje `KAPITOLY.json` na `KAPITOLY.txt` a `LICENSE` na
+`LICENSE.txt` (dialog nahrání uvádí jen typy CSV, PY, TXT a MD) a v `SKILL.md`
+nahradí seznam možností zobrazení obrázku zněním bez přibalených souborů
+(`geminiNote` v `scripts/tutor/common.cjs`). Kontrola hlídá nejvýše 100
+souborů jako projektovou pojistku; doložený limit počtu souborů neznáme.
+
+Nahrání: Claude – Customize → Skills → + → Upload a skill (vyžaduje zapnuté
+spouštění kódu); Gemini – Přizpůsobit → Dovednosti → Vytvořit → Nahrát;
+ChatGPT – u existujícího pluginu **Další akce → Nahrát novou verzi**, nikoli
+přidání dalšího pluginu. Po nahrání ověřte verzi a čtení materiálů v novém chatu
+bez příloh podle [testovací sady](../scripts/tutor/smoke-prompts.md). Gemini
+může při nahrání ohlásit chybu, i když se dovednost uložila: ověřte stav
+v seznamu dovedností. Kontrola archivu nepotvrzuje, že klient soubory načte.
+
+<a id="data-ke-grafum-tutora"></a>
+
+### Data ke grafům pro tutora
+
+Aby tutor mohl obrázek učebnice nakreslit znovu přímo v odpovědi, zapisuje
+skript kapitoly ke každému obrázku popis a vykreslené hodnoty. Hlavním místem
+těchto dat je skript kapitoly; rejstřík v balíčku je odvozený výstup.
+
+- Pomocník `scripts/tutor/figure-data.R` (jen base R): `tf_figure()` zapíše
+  `tmp/tutor-figures/<kapitola>/<obrázek>.json` s druhem obrázku (`data`,
+  `simulace`, `krivka`, `sloupce`, `schema`), panely (`tf_panel()`: titulek, typ
+  grafu, osy, vodicí čáry `tf_guide()`) a řadami (`tf_series()`: hodnoty tak,
+  jak jsou vykresleny; `tf_bins()` pro četnosti histogramu).
+- Volání patří hned za kreslicí blok obrázku a používá tytéž objekty. Hodnoty
+  vznikající až při kreslení (jitter, losování uvnitř bloku) nejprve uložte do
+  pojmenovaného objektu, aby data i obrázek vycházely z téhož.
+- Po úpravě skriptu ověřte, že se obrázky nezměnily, a spusťte
+
+  ```powershell
+  node scripts/tutor/render-figure-data.cjs kapitola_10
+  ```
+
+  Skript vykreslí každý záznam obecným kreslítkem vedle originálu do
+  `tmp/tutor-figures-check/`. Dokládá, že data k překreslení stačí; nedokládá,
+  jak věrně kreslí tutor v klientu.
+- Další kapitolu přidáte doplněním volání do jejího skriptu a jejího ID do
+  `figureDataChapters`; kontrola pak vyžaduje data u každého jejího obrázku.
+
+Generované kapitoly a archivy se necommitují. Při změně zdrojů proveďte nový
+export; nahraný tutor je verzovaný snímek a s webem se nesynchronizuje. Běžné
+sestavení webu export ani nahrání nespouští. Při vydání zvyšte verzi v obou
+manifestech zdroje pluginu.
 
 <a id="vydani-ai-tutora-na-githubu"></a>
 

@@ -156,3 +156,62 @@ není součástí PDF ani balíčku tutora. Upřesňuje [R64](#r64-pravidla-ai-t
 (umístění výstupů a verze zůstávají). Hlavní místo pravidel je
 [AITUTORS.md](../AITUTORS.md#verze-a-vydání), postup v
 [provozním návodu](../PROVOZ.md#vydani-ai-tutora-na-githubu).
+
+<a id="r85-tutor-kapitoly-obrazky-tempo"></a>
+
+## R85 — Tutor 0.4.0: všechny kapitoly, tempo výkladu, obrázky v odpovědi a data ke grafům
+
+**Schváleno 2026-11-20 a 2026-11-21:** autor požádal o doplnění nových
+kapitol do tutorů, o podrobnější vedení k vizualizacím a o to, aby tutor při
+vysvětlování postupoval „po menších krocích a ověřovat porozumění po každém
+kroku, pokud si samozřejmě uživatel tutora nepožádá výslovně o jiný způsob
+práce“. V dotaznících zvolil čtení kapitol po „Rozsazích řádků“, „Celkové
+přepsání“ instrukcí a u dat ke grafům „Pilot, pak zbytek“. Plán zpřesnil
+čtyřmi připomínkami (brzké ověření čtení v klientu a kontrakt INDEX.md /
+KAPITOLY.json; krokové pravidlo jen pro vedené vysvětlování a rozlišení
+jednorázové a trvalejší volby; předem dané podmínky vydání) a pokynem:
+„Vedený výklad musí být srozumitelný přímo v chatu. Statický obrázek učebnice
+zobraz přímo, pokud to klient umožňuje, a upozorni na jeho podstatný rys;
+pokud to není možné, snaž se o jeho věrnou reprodukci. Na interaktivní stránku
+odkaž ve chvíli, kdy student potřebuje změnit vstup nebo porovnat výsledky.“
+Po testech v klientech 2026-11-21 rozhodl: „provedl bych tedy možnosti A, B
+i C: vhodně upravit instrukce, pro tutory místo svg používat png, a přibalit
+data a popis grafu“ a doplnil, že adresy interaktivních vizualizací má tutor
+dávat „rovnou v rámci kapitol … jako návrhy“ u příslušné části. Pro Gemini
+určil: „potřebuji zip obsahující jen povolené typy“ a „SKILL.md. Musí být
+v první úrovni složky“. Plán s těmito body schválil.
+
+Rozsah: AI tutor a jeho export; výklad ani rozsah učebnice se nemění.
+Upřesňuje [R62](#r62-ai-tutor) a [R63](#r63-plany-a-konvence-tutora), jejichž
+znění zůstává dokladem tehdejší dohody; kde se liší, platí toto rozhodnutí.
+
+1. **Všechny výkladové kapitoly** knihy jsou v balíčku s plným textem
+   a výukovým plánem (nyní 1–10); dřívější omezení na kapitoly 1–6 z R63 neplatí.
+2. **Čtení po částech:** plány uvádějí rozsahy řádků oddílů, zadání, řešení
+   a záznamů obrázků jako navigaci. Katalogem pro nabídku kapitol je
+   `INDEX.md`; malý registr `KAPITOLY.json` slouží ke zjištění verze a revize.
+3. **Tempo vedeného vysvětlování:** jedna uchopitelná myšlenka, jedna
+   ověřovací otázka, čekání na odpověď; chybná odpověď vede k jinému podání
+   téhož kroku. Pravidlo se nepřenáší na přímý dotaz, sokratovské vedení,
+   procvičování ani zkoušení. Jednorázová žádost platí pro jednu odpověď,
+   trvalejší volba do odvolání.
+4. **Obrázky:** obrázek učebnice je výchozí součástí kroku a cílem je obrázek
+   přímo v textu odpovědi: přibalený soubor, jinak překreslení z dat, jinak
+   soubor či popis s adresou. Hodnoty se neodhadují z popisu.
+5. **PNG místo SVG** v balíčcích tutora; web zůstává u SVG.
+6. **Data ke grafům** zapisuje skript kapitoly a přibalují se v rejstříku
+   obrázků kapitoly. Pilot ve vydání 0.4.0 je kapitola 10; ostatní kapitoly
+   mají následovat po ověření v klientech (zamýšleno pro 0.4.1), což je
+   dohodnutý směr, nikoli hotový stav.
+7. **Interaktivní stránky učebnice** tutor nabízí jednou větou s úplnou
+   adresou u oddílu, u něhož je plán uvádí; výklad na nich nestojí.
+   Adresy opisuje doslova jako prostý text.
+8. **Gemini:** archiv jen se soubory `.md` a `.txt` a se `SKILL.md` v kořeni.
+9. **Podmínky vydání** pro každou platformu zvlášť.
+
+Hlavní místa: [instrukce tutora](../../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md)
+a jejich reference (body 3, 4 a 7), [AITUTORS.md](../AITUTORS.md) (body 5, 6, 8
+a [podmínky vydání](../AITUTORS.md#podminky-vydani)),
+[provozní návod](../PROVOZ.md#export-ai-tutora) (postupy). Schválení nedokládá
+dokončení vydání ani účinnost instrukcí v klientech; výsledky testů patří do
+autorské historie.

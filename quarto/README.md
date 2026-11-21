@@ -1,5 +1,72 @@
 # Autorská dokumentace
 
+<a id="tutor-040-20261121"></a>
+
+## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům
+
+Podle [R85](../docs/rozhodnuti/ai-tutor.md#r85-tutor-kapitoly-obrazky-tempo)
+připraven kandidát tutora 0.4.0 pro ChatGPT, Claude a Gemini. Vydání zveřejněno
+není; stránka [AI tutor: stažení a instalace](ai_tutor.qmd) už popisuje stav
+0.4.0, proto se tato větev slučuje až po zveřejnění vydání.
+
+**Export.** Přibaluje všechny výkladové kapitoly podle `_quarto.yml` (1–10)
+a deset výukových plánů s rozsahy řádků oddílů, zvlášť zadání a řešení cvičení
+a nepovinných bloků. Obrázky jdou do balíčků jako PNG vykreslené z týchž SVG
+(`scripts/tutor/svg-to-png.cjs`); rejstřík obrázků je po kapitolách
+(`references/obrazky/`) a uvádí i přímou adresu obrázku na webu. Skript
+kapitoly 10 zapisuje ke všem 17 obrázkům popis a vykreslené hodnoty
+(`scripts/tutor/figure-data.R`), které rejstřík přibaluje jako blok „Data pro
+překreslení“. `KAPITOLY.json` je malý katalog s verzí a revizí; údaje pro
+kontrolu jsou mimo balíček. Archiv pro Gemini má jen soubory `.md` a `.txt`
+a `SKILL.md` v kořeni. Z balíčku vyřazen autorský návod
+`PRIPOJENI-KAPITOL.md`; jeho obsah je v [provozním návodu](../docs/PROVOZ.md#export-ai-tutora).
+
+**Instrukce.** `SKILL.md` přepsán celý: blok „Vždy“, tabulka „Co kdy číst“,
+vedené vysvětlování po krocích (jedna myšlenka, jedna otázka, čekání),
+oddělená pravidla ostatních způsobů práce, obrázek učebnice jako součást
+kroku přímo v odpovědi, doslovné opisování adres a nabídka interaktivní
+stránky u příslušného oddílu. `VIZUALIZACE.md` nově obsahuje pravidla
+překreslení z dat, rady ke všem 14 interaktivním stránkám a zkrácená pravidla
+vlastního grafu; autorské testování grafů zůstává v testovacích scénářích.
+
+**Kontroly.** `node scripts/export-tutor.cjs` a `node scripts/check-tutor.cjs`
+prošly; počty jsou v `ai-tutor/overeni.json`. Kontrola nově ověřuje začátek
+i konec každého rozsahu řádků, oddělení zadání od řešení, jedno platné PNG ke
+každému obrázku a žádné SVG v balíčku, shodu rejstříků a bloků dat
+s exportovanými daty a přítomnost všech interaktivních stránek ve
+`VIZUALIZACE.md`. Obrázky kapitoly 10 se úpravou skriptu nezměnily (shoda
+souborů před a po). `scripts/tutor/render-figure-data.cjs` vykreslil všech
+17 záznamů; prohlédnuto sedm dvojic originál × překreslení (10.1, 10.2,
+kvadranty, přesné permutační rozdělení, faktory, Fisherova transformace,
+bodově biseriální korelace): data k překreslení stačí, zbylých deset dvojic
+prohlédnuto nebylo. Instrukce přečetl nezávislý agent v roli tutora nad hotovým balíčkem (pět
+scénářů, obě varianty). Podle jeho nálezů opraveno: odkaz na pravidla
+překreslení a rady ke stránkám přímo v `SKILL.md`; označení obrázků
+z nepovinných částí a nepovinných bloků uvnitř oddílů v plánech; rozsahy
+řádků úvodů oddílů a hesel přehledů; spouštěč vlastního grafu; pravidlo
+o adresách (adresu oddílu lze složit jen z kotvy v plánu); seznam možností
+zobrazení pro variantu bez souborů obrázků; velikost kroku, pořadí obrázku
+a otázky, tempo bez ověřování a návrat po přímém dotazu; uvozovky u textových
+polí s čárkou v blocích dat; chybný údaj „kosočtverce“ v textovém popisu
+obrázku 10.14 (zdroj `kapitola_10.qmd`, v obrázku jsou kolečka). Neopraveno
+a ponecháno jako známé: zbytky značek `<sub>` z převodu v plánech a kapitolách
+a autorské poznámky v tabulkách plánů převzaté z kapitolových karet.
+
+**Zjištění z klientů (pozorování autora, ne systematický test).** Claude
+i ChatGPT přijaly archiv se 183 a 187 soubory (se SVG). Gemini ohlásil chybu
+nahrání, přestože se dovednost uložila. Claude ukázal přibalený obrázek jen
+jako kartu souboru v postranním panelu a bez vyžádání jej nenabídl. Gemini
+posílal vymyšlené adresy učebnice obalené vyhledáváním.
+
+**Neověřeno.** Chování nových instrukcí v klientech: tempo, zobrazení
+a překreslení obrázků, nabídka interaktivních stránek, adresy v Gemini,
+využití rozsahů řádků; přijetí archivů s PNG (Claude 8,4 MB místo 4,7 MB);
+[podmínky vydání](../docs/AITUTORS.md#podminky-vydani) zatím nesplnila žádná
+platforma. Při jednom z běhů exportu 2026-11-20 se v kapitole 8 tiše ztratila
+část odstavce; kontrola věrnosti běh zastavila, chyba se v dalších bězích ani
+v 74 opakováních převodu neobjevila a příčina známa není. Data ke grafům
+kapitol 1–9 nejsou hotová.
+
 <a id="rozsireni-n-minus-1-20261117"></a>
 
 ## 2026-11-17 — Nepovinné rozšíření o dělení n − 1 v kapitole 3

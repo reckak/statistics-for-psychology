@@ -100,16 +100,25 @@ function withoutImages(markdown, webPage) {
   });
   return {markdown: lines.join('\n'), ids};
 }
-const geminiNote = 'Soubory obrázků učebnice v této verzi přibalené nejsou: obrázek dohledej v rejstříku obrázků kapitoly (odkazy jsou v indexu a ve výukovém plánu), vycházej z jeho textového popisu a studentovi nabídni odkaz na obrázek ve webové učebnici.';
-const geminiAnchor = 'Stručná odpověď může zůstat slovní, případně využít obrázek učebnice.';
+// The text-only variant has no image files, so its SKILL.md replaces the list of ways to show a figure.
+const geminiStart = 'Cílem je obrázek **přímo v textu odpovědi**. Použij první možnost, kterou klient skutečně nabízí:\n';
+const geminiEnd = '\nHodnoty obrázku neodhaduj z popisu.';
+const geminiNote = [
+  'Cílem je obrázek **přímo v textu odpovědi**. Soubory obrázků v této verzi přibalené nejsou:',
+  '',
+  '1. Má-li záznam obrázku blok „Data pro překreslení“, **překresli graf v odpovědi** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.',
+  '2. Nemá-li obrázek data nebo graf vykreslit nelze: popiš jej podle textového popisu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku. U takového obrázku je popis s adresou úplným splněním pravidla o obrázku.',
+  ''
+].join('\n');
 // Gemini accepts only CSV, PY, TXT and MD files in a skill, so its variant
 // ships the registry and the code licence under a .txt name.
 const geminiRenames = {'KAPITOLY.json': 'KAPITOLY.txt', LICENSE: 'LICENSE.txt'};
 const geminiAllowed = /\.(csv|py|txt|md)$/i;
 const geminiNames = s => s.split('KAPITOLY.json').join('KAPITOLY.txt').split('](LICENSE)').join('](LICENSE.txt)');
 function geminiSkill(claudeText) {
-  if (claudeText.split(geminiAnchor).length !== 2) throw new Error('Gemini note anchor not found exactly once in SKILL.md');
-  return geminiNames(claudeText.replace(geminiAnchor, `${geminiAnchor} ${geminiNote}`));
+  const from = claudeText.indexOf(geminiStart), to = claudeText.indexOf(geminiEnd);
+  if (from < 0 || to < from || claudeText.indexOf(geminiStart, from + 1) >= 0) throw new Error('Figure options not found exactly once in SKILL.md');
+  return geminiNames(claudeText.slice(0, from) + geminiNote + claudeText.slice(to));
 }
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
@@ -154,6 +163,8 @@ const solutionOpen = (lines, i) => /^:{3,} callout-note$/.test(lines[i]) && line
 // Chapters whose figures ship with data for redrawing (scripts/tutor/figure-data.R).
 const figureDataChapters = ['kapitola_10'];
 const dataNumber = v => String(v);
+// Text fields follow CSV quoting, so that a comma inside a label does not split the row.
+const dataText = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
 // The data of one figure as one plain-text block: no Markdown escaping, decimal points.
 function figureDataBlock(fig) {
   const out = [`druh: ${fig.kind}`];
@@ -172,7 +183,7 @@ function figureDataBlock(fig) {
     if (p.note) out.push(`poznámka k panelu: ${p.note}`);
     for (const s of p.series) {
       out.push(`řada: ${s.name}; značka: ${s.mark}; řádků: ${s.data.rows.length}${s.note ? `; ${s.note}` : ''}`,
-        s.data.columns.join(','), ...s.data.rows.map(r => r.map(v => typeof v === 'number' ? dataNumber(v) : v).join(',')));
+        s.data.columns.join(','), ...s.data.rows.map(r => r.map(v => typeof v === 'number' ? dataNumber(v) : dataText(v)).join(',')));
     }
   });
   if (out.some(line => line.includes('```'))) throw new Error(`Fence inside figure data: ${fig.figure}`);

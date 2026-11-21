@@ -103,7 +103,24 @@ function locate(d, chapterScope, figures) {
     assert.equal(hits.length, 1, `${d.id}: one block opener for ${id}`);
     return hits[0];
   };
-  for (const f of figures) innermost(opener(f.id)).figures.push(f);
+  const optional = chapterScope.optionalBlocks.map(o => {
+    const start = opener(o.id);
+    return {...o, start, end: c.divEnd(lines, start)};
+  });
+  const inOptional = line => optional.some(o => line >= o.start && line <= o.end);
+  for (const f of figures) {
+    const line = opener(f.id);
+    // A figure inside an optional block is shown only when the student chose the optional parts.
+    innermost(line).figures.push({...f, optional: inOptional(line) || innermost(line).optional});
+  }
+  // Text between a section heading and its first subsection has no plan item of its own.
+  sections.forEach((h, i) => {
+    const child = sections[i + 1];
+    if (!child || child.level <= h.level) return;
+    const intro = trimmed(h.start + 1, child.start - 1);
+    if (intro) h.intro = [h.start, intro[1]];
+  });
+  for (const o of optional) { const h = innermost(o.start); if (!h.optional) (h.optionalBlocks ||= []).push([o.start, o.end]); }
   const vizLink = new RegExp(`${c.web.replace(/[.]/g, '\\.')}quarto/(viz_[a-z0-9_]+)\\.html`, 'g');
   lines.forEach((l, i) => {
     for (const m of l.matchAll(vizLink)) {
@@ -126,15 +143,26 @@ function locate(d, chapterScope, figures) {
     }
     return {id: h.id, title: h.title, optional: h.optional, statement, solutions, figures: h.figures};
   });
-  const optional = chapterScope.optionalBlocks.map(o => {
-    const start = opener(o.id);
-    return {...o, start, end: c.divEnd(lines, start)};
-  });
   return {sections, exercises, optional};
 }
 const {registerPath} = c;
 const span = ([a, b]) => a === b ? `${a}` : `${a}–${b}`;
 const spans = list => list.map(span).join(' a ');
+// Line range of every entry of an overview (level-2 headings with explicit identifiers).
+const entryCache = new Map();
+function entryLines(overview) {
+  if (!entryCache.has(overview.id)) {
+    const markdown = overview.markdown.replace(/\r\n/g, '\n');
+    const lines = markdown.split('\n');
+    const marks = c.headingLines(markdown).filter(h => h.level === 2);
+    entryCache.set(overview.id, new Map(marks.map((h, i) => {
+      let end = (marks[i + 1] ? marks[i + 1].line : lines.length + 1) - 1;
+      while (end > h.line && !/\S/.test(lines[end - 1].replace(/^:+$/, ''))) end--;
+      return [h.text.match(/\{#([^ }]+)/)?.[1], [h.line, end]];
+    })));
+  }
+  return entryCache.get(overview.id);
+}
 const vizTitles = new Map();
 function vizTitle(page) {
   if (!vizTitles.has(page)) {
@@ -210,21 +238,24 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
   s.push(render([bullets]), '', '## Doporučená posloupnost a lokátory', '',
     'Postupuj po níže uvedených úsecích. Před další otázkou ověř pojmy a předpoklady proti jejich hloubce v následující tabulce. Při volbě bez rozšíření používej povinné části; rozšíření připojuj k souvisejícímu úseku po jejich zvolení.', '');
   s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. U oddílů s uvedenými obrázky je při výkladu ukaž: odkaz vede do rejstříku obrázků kapitoly, rozsah řádků vymezuje záznam obrázku a „s daty“ znamená, že záznam obsahuje data pro překreslení. Interaktivní stránku učebnice nabídni při výkladu oddílu, u něhož je uvedena: jednou větou s jejím názvem a úplnou adresou opsanou odtud.', '');
-  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../${f.register}#${f.id}) (řádky ${span(f.range)}${f.data ? ', s daty' : ''})`; }).join(', ')}`;
+  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../${f.register}#${f.id}) (řádky ${span(f.range)}${f.data ? ', s daty' : ''}${f.optional ? ', v nepovinné části' : ''})`; }).join(', ')}`;
   const vizOffer = p => `${vizTitle(p)} — <${c.web}quarto/${p}.html>`;
   const listedFigures = new Set();
   for (const h of located.sections.filter(h => h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id))) {
     const extras = [];
+    if (h.intro) extras.push(`úvod oddílu řádky ${span(h.intro)}`);
+    if (h.optionalBlocks) extras.push(`uvnitř nepovinný blok na řádcích ${spans(h.optionalBlocks)}`);
     if (h.figures.length) extras.push(figureLinks(h.figures));
     if (h.viz.length) extras.push(`interaktivní stránka k nabídnutí: ${h.viz.map(vizOffer).join('; ')}`);
     s.push(`${'  '.repeat(Math.max(0, h.level - 2))}- [${h.title}](${local(h.id)}) — řádky ${span([h.start, h.end])}${h.optional ? ' — nepovinné' : ''}${extras.map(x => ' · ' + x).join('')}`);
   }
   s.push('', '## Hloubka výkladu, příklady a procvičení', '',
     renderCard(cardSection(raw, 'Skutečný obsah')), '', '## Pojmy, značení a funkce', '',
-    'Následují odkazy na všechna hesla přehledů, která odkazují na tuto kapitolu. Jde o rejstřík k ověření názvů a symbolů, nikoli automaticky seznam nových povinných pojmů. Požadovanou hloubku určuje výklad a tabulka výše; alternativy vysvětluj jen podle potřeby.', '');
+    'Následují odkazy na všechna hesla přehledů, která odkazují na tuto kapitolu, s rozsahem řádků hesla v přehledu. Jde o rejstřík k ověření názvů a symbolů, nikoli automaticky seznam nových povinných pojmů. Požadovanou hloubku určuje výklad a tabulka výše; alternativy vysvětluj jen podle potřeby.', '');
   const concepts = [];
   for (const overview of exported.filter(x => x.kind === 'overview')) {
     s.push(`### ${overview.title}`, '');
+    const entryRanges = entryLines(overview);
     const div = c.nodes(overview.out.blocks, 'Div').find(x => /^(glossary|notation|excel)-table$/.test(x.c[0][0]));
     const blocks = div.c[1];
     for (let i = 0; i < blocks.length; i++) {
@@ -239,8 +270,10 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
       assert(states.every(Boolean), `Unknown concept target in ${d.id}`);
       const optional = states.every(x => x.optional);
       const title = inline(h.c[2]);
-      s.push(`- [${title}](../${overview.output}#${h.c[1][0]})${optional ? ' — odkazuje do nepovinné části' : ''}`);
-      concepts.push({overview: overview.id, id: h.c[1][0], optional});
+      const lines = entryRanges.get(h.c[1][0]);
+      assert(lines, `Overview entry lines: ${overview.id}/${h.c[1][0]}`);
+      s.push(`- [${title}](../${overview.output}#${h.c[1][0]}) — řádky ${span(lines)}${optional ? ' — odkazuje do nepovinné části' : ''}`);
+      concepts.push({overview: overview.id, id: h.c[1][0], optional, lines});
     }
     s.push('');
   }
@@ -273,8 +306,8 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
   s.push('## Kontrola dalšího kroku', '',
     'Při pokračování drž stav: zvolený úsek a rozšíření, vysvětlené pojmy, vyřešené úlohy, obtíže a využité vizualizace. Další otázku spoj s konkrétní dovedností výše. Potřebný předpoklad připomeň z dřívější kapitoly nebo nejprve vysvětli. Na konci ověř dovednosti pomocí [shrnutí](' + local(summary.id) + `) (řádky ${span([summary.start, summary.end])}).`, '');
   const ranges = {
-    sections: located.sections.map(h => ({id: h.id, level: h.level, start: h.start, end: h.end,
-      figures: h.figures.map(f => f.id), viz: h.viz})),
+    sections: located.sections.map(h => ({id: h.id, level: h.level, start: h.start, end: h.end, intro: h.intro || null,
+      figures: h.figures.map(f => f.id), optionalFigures: h.figures.filter(f => f.optional).map(f => f.id), viz: h.viz})),
     exercises: located.exercises.map(({id, statement, solutions}) => ({id, statement, solutions})),
     optional: located.optional.map(({id, start, end}) => ({id, start, end}))
   };

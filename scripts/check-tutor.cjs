@@ -283,6 +283,7 @@ assert(!scope3.find(x => x.title.startsWith('13.')).optional, 'Required exercise
 const span = (a, b) => a === b ? `${a}` : `${a}–${b}`;
 const blank = (lines, from, to) => lines.slice(from - 1, to).every(l => l.trim() === '');
 let checkedRanges = 0;
+const overviewText = {};
 for (const entry of data.plans) {
   const chapter = bundled.find(x => x.id === entry.chapter);
   const markdown = read(path.join(refs, chapter.path));
@@ -309,6 +310,23 @@ for (const entry of data.plans) {
     }
     checkedRanges++;
   });
+  // Section intro: from the heading to the last line before the first subsection.
+  sections.forEach((s, i) => {
+    if (!s.intro) return;
+    const child = sections[i + 1];
+    assert(child && child.level > s.level && s.intro[0] === s.start && s.intro[1] > s.start && s.intro[1] < child.start, `${entry.chapter}/${s.id}: section intro range`);
+    assert(lines[s.intro[1] - 1].trim() !== '' && blank(lines, s.intro[1] + 1, child.start - 1), `${entry.chapter}/${s.id}: section intro ends before the subsection`);
+    checkedRanges++;
+  });
+  // Overview entries listed in the plan carry the line range of the entry.
+  for (const concept of entry.concepts) {
+    const overview = data.overviews.find(o => o.id === concept.overview);
+    const overviewLines = (overviewText[overview.id] ||= read(path.join(refs, overview.path)).split('\n'));
+    assert(overviewLines[concept.lines[0] - 1].startsWith('## ') && overviewLines[concept.lines[0] - 1].includes(`{#${concept.id}`), `${entry.chapter}: overview entry ${concept.id} starts at its heading`);
+    assert(!overviewLines.slice(concept.lines[0], concept.lines[1]).some(l => /^## /.test(l)), `${entry.chapter}: overview entry ${concept.id} holds one entry`);
+    assert(planText.includes(`](../${overview.path}#${concept.id}) — řádky ${span(...concept.lines)}`), `${entry.chapter}: overview entry ${concept.id} range in the plan`);
+    checkedRanges++;
+  }
   const located = entry.headings.map((h, i) => ({...h, ...sections[i]}));
   const exerciseHeadings = located.filter(h => h.exercise && h.level === 3);
   assert.deepEqual(exercises.map(e => e.id), exerciseHeadings.map(h => h.id), `${entry.chapter}: exercise ranges`);
@@ -354,7 +372,10 @@ for (const entry of data.plans) {
     assert(at >= s.start && at <= s.end, `${entry.chapter}/${id}: figure inside its section`);
     assert(!sections.some(x => x.start > s.start && x.start <= at), `${entry.chapter}/${id}: innermost section`);
     const f = chapterFigures.find(x => x.id === id);
-    assert(planText.includes(`[${f.number}](../${registerPath(entry.chapter)}#${f.id}) (řádky ${span(...f.range)}${f.data ? ', s daty' : ''})`), `${entry.chapter}/${id}: figure link in the plan`);
+    // A figure inside an optional block (or an optional section) is marked as such in the plan.
+    const isOptional = optional.some(o => at >= o.start && at <= o.end) || entry.headings[sections.indexOf(s)].optional;
+    assert.equal(s.optionalFigures.includes(id), isOptional, `${entry.chapter}/${id}: optional figure flag`);
+    assert(planText.includes(`[${f.number}](../${registerPath(entry.chapter)}#${f.id}) (řádky ${span(...f.range)}${f.data ? ', s daty' : ''}${isOptional ? ', v nepovinné části' : ''})`), `${entry.chapter}/${id}: figure link in the plan`);
   }
   // Every interactive page the chapter links to is named in the plan.
   const vizPages = [...new Set([...markdown.matchAll(/quarto\/(viz_[a-z0-9_]+)\.html/g)].map(m => m[1]))];
@@ -366,6 +387,12 @@ for (const entry of data.plans) {
   }
 }
 
+// Every interactive page of the book has its address and advice in the visualization guide.
+const vizGuide = read(path.join(refs, 'VIZUALIZACE.md'));
+const bookViz = [...read(path.join(root, '_quarto.yml')).matchAll(/^\s*-\s*quarto\/(viz_[a-z0-9_]+)\.qmd\s*$/gm)].map(m => m[1]);
+assert(bookViz.length > 0, 'Interactive pages in _quarto.yml');
+for (const page of bookViz) assert(vizGuide.includes(`${web}quarto/${page}.html |`), `Interactive page missing in VIZUALIZACE.md: ${page}`);
+assert.equal((vizGuide.match(/quarto\/viz_[a-z0-9_]+\.html/g) || []).length, bookViz.length, 'VIZUALIZACE.md lists exactly the interactive pages of the book');
 // One figure register per chapter ships in every variant.
 assert(index.includes(figuresLine(true)), 'Figure registers in the index');
 assert.equal(registry.figures.count, data.figures.entries.length);
@@ -578,5 +605,5 @@ if (geminiRoot) {
   gemini = {files: geminiFiles.length, figures: figureCount, localLinks: geminiLinks};
 }
 console.log(JSON.stringify({checks: 'passed', claude, gemini, chapters: bundled.length, catalogChapters: registry.chapters.length, plans: data.plans.length, overviewEntries: rows,
-  math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
+  math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, interactivePages: bookViz.length, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
   citations: data.bibliography.citation_keys.length}));
