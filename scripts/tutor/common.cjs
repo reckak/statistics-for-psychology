@@ -83,7 +83,7 @@ function claudeSkill(skill) {
 // Gemini rejects skill folders with too many files, so its variant ships no SVG.
 // Each figure keeps its numbered caption and text description; the image line
 // becomes a link to the same figure in the web book.
-const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.svg\)(\{.*\})?$/;
+const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.png\)(\{.*\})?$/;
 const figureOpen = /^:{3,} \{#(fig-[^\s}]+)/;
 function withoutImages(markdown, webPage) {
   const ids = [];
@@ -100,7 +100,7 @@ function withoutImages(markdown, webPage) {
   });
   return {markdown: lines.join('\n'), ids};
 }
-const geminiNote = 'Soubory obrázků učebnice v této verzi přibalené nejsou: obrázek dohledej v [rejstříku obrázků](references/obrazky.md), vycházej z jeho textového popisu a studentovi nabídni odkaz na obrázek ve webové učebnici.';
+const geminiNote = 'Soubory obrázků učebnice v této verzi přibalené nejsou: obrázek dohledej v rejstříku obrázků kapitoly (odkazy jsou v indexu a ve výukovém plánu), vycházej z jeho textového popisu a studentovi nabídni odkaz na obrázek ve webové učebnici.';
 const geminiAnchor = 'Stručná odpověď může zůstat slovní, případně využít obrázek učebnice.';
 // Gemini accepts only CSV, PY, TXT and MD files in a skill, so its variant
 // ships the registry and the code licence under a .txt name.
@@ -151,22 +151,65 @@ function divEnd(lines, start) {
   throw new Error(`Unclosed fenced div at line ${start}`);
 }
 const solutionOpen = (lines, i) => /^:{3,} callout-note$/.test(lines[i]) && lines[i + 1] === '**Ukázat řešení**';
-// One register of all textbook figures; the Gemini variant has no image files.
-function figureRegister(chapters, figures, withFiles) {
-  const out = ['# Rejstřík obrázků učebnice', '',
-    withFiles
-      ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor a odkaz na obrázek ve webové učebnici.'
-      : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a odkaz na obrázek ve webové učebnici.', ''];
-  for (const d of chapters) {
-    out.push(`## ${d.number}. ${d.title} {#obrazky-${d.id}}`, '');
-    for (const f of figures.filter(f => f.chapter === d.id)) {
-      out.push(`### Obrázek ${f.number} {#${f.anchor}}`, '',
-        `Popisek: ${f.caption}`, '',
-        `Textový popis: ${mdEscape(f.alt)}`, '',
-        `[V kapitole](${d.output}#${f.id})${withFiles ? ` · [Soubor obrázku](${f.file})` : ''} · [Ve webové učebnici](${f.web})`, '');
+// Chapters whose figures ship with data for redrawing (scripts/tutor/figure-data.R).
+const figureDataChapters = ['kapitola_10'];
+const dataNumber = v => String(v);
+// The data of one figure as one plain-text block: no Markdown escaping, decimal points.
+function figureDataBlock(fig) {
+  const out = [`druh: ${fig.kind}`];
+  if (fig.title) out.push(`titulek obrázku: ${fig.title}`);
+  if (fig.note) out.push(`poznámka: ${fig.note}`);
+  (fig.panels || []).forEach((p, i) => {
+    out.push('', `panel ${i + 1} z ${fig.panels.length}: ${p.title}`, `typ: ${p.type}`);
+    for (const axis of ['x', 'y']) {
+      out.push(`osa ${axis}: ${p[axis].label}${p[axis].range ? `; rozsah ${dataNumber(p[axis].range[0])} až ${dataNumber(p[axis].range[1])}` : ''}`);
     }
+    for (const g of p.guides || []) {
+      const where = g.axis === 'x' ? `svislá v x = ${dataNumber(g.value)}` : g.axis === 'y' ? `vodorovná v y = ${dataNumber(g.value)}`
+        : `přímka y = ${dataNumber(g.value[0])} + ${dataNumber(g.value[1])}·x`;
+      out.push(`vodicí čára: ${where}${g.label ? ` (${g.label})` : ''}`);
+    }
+    if (p.note) out.push(`poznámka k panelu: ${p.note}`);
+    for (const s of p.series) {
+      out.push(`řada: ${s.name}; značka: ${s.mark}; řádků: ${s.data.rows.length}${s.note ? `; ${s.note}` : ''}`,
+        s.data.columns.join(','), ...s.data.rows.map(r => r.map(v => typeof v === 'number' ? dataNumber(v) : v).join(',')));
+    }
+  });
+  if (out.some(line => line.includes('```'))) throw new Error(`Fence inside figure data: ${fig.figure}`);
+  return out;
+}
+const registerPath = id => `obrazky/${id}.md`;
+// One figure register per chapter; the Gemini variant has no image files.
+function figureRegister(d, figures, withFiles) {
+  const withData = figures.some(f => f.data);
+  const out = [`# Obrázky kapitoly ${d.number}: ${d.title}`, '',
+    withFiles
+      ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor PNG a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.'
+      : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.', '',
+    withData
+      ? 'Blok „Data pro překreslení“ obsahuje hodnoty, ze kterých je obrázek nakreslen, a popis os, vodicích čar a zvýraznění. Čísla v bloku mají desetinnou tečku; v grafu i ve výkladu piš desetinnou čárku.'
+      : 'K obrázkům této kapitoly zatím nejsou přibalena data pro překreslení.', ''];
+  for (const f of figures) {
+    out.push(`## Obrázek ${f.number} {#${f.id}}`, '',
+      `Popisek: ${f.caption}`, '',
+      `Textový popis: ${mdEscape(f.alt)}`, '',
+      `[V kapitole](../${d.output}#${f.id})${withFiles ? ` · [Soubor obrázku](../${f.file})` : ''}`, '',
+      `Stránka učebnice s obrázkem: ${f.web}`, '',
+      `Samotný obrázek na webu: ${f.image}`, '');
+    if (f.data) out.push('Data pro překreslení:', '', '```text', ...figureDataBlock(f.data), '```', '');
+    else if (withData) out.push('Data pro překreslení: obrázek je schéma bez dat.', '');
   }
   return out.join('\n');
+}
+// Line range of every figure entry in a chapter register (heading to the line before the next entry).
+function registerRanges(markdown) {
+  const lines = markdown.split('\n');
+  const marks = headingLines(markdown).filter(h => h.level === 2);
+  return new Map(marks.map((h, i) => {
+    let end = (marks[i + 1] ? marks[i + 1].line : lines.length + 1) - 1;
+    while (lines[end - 1].trim() === '') end--;
+    return [h.text.match(/\{#([^}]+)\}/)[1], [h.line, end]];
+  }));
 }
 // Plain text written into generated Markdown must not be read as markup.
 const mdEscape = s => s.replace(/[\`*_[]<>$~^|]/g, '\$&');
@@ -184,9 +227,10 @@ function inlineMd(value) {
   return inlineMd(value.c);
 }
 const figuresLine = withFiles => withFiles
-  ? '[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis, přibalený soubor a webový odkaz ke každému obrázku.'
-  : '[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis a webový odkaz ke každému obrázku; soubory obrázků nejsou přibalené.';
+  ? 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis, přibalený soubor PNG a webové adresy; u vybraných kapitol také data pro překreslení.'
+  : 'Rejstřík obrázků každé kapitoly uvádí číslo, popisek, textový popis a webové adresy; u vybraných kapitol také data pro překreslení. Soubory obrázků nejsou přibalené.';
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
   skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote,
-  geminiRenames, geminiAllowed, geminiNames, headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd};
+  geminiRenames, geminiAllowed, geminiNames, headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd,
+  figureDataChapters, figureDataBlock, registerPath, registerRanges};

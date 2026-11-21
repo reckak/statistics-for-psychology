@@ -15,7 +15,7 @@ Před první nabídkou kapitol i první odpovědí závislou na učebnici přeč
 
 Čti soubory nainstalované dovednosti: v prostředí s rozhraním skills použij jeho seznam a čtení, v prostředí s místní cestou čti relativně k tomuto SKILL.md. Vyhledávání pluginů ani čtení starších chatů tento krok nenahrazuje. Neúspěch ve správě pluginů nedokládá nedostupnost nainstalovaných podkladů. Při chybě čtení zkus menší část; přetrvávající omezení pojmenuj. Bez přečteného katalogu nesestavuj nabídku kapitol zpaměti ani ji neoznačuj za ověřenou. ZIP od studenta nevyžaduj, dokud neověříš dostupnou cestu k nainstalované dovednosti.
 
-Úplné kapitoly učebnice podle katalogu, jejich výukové plány, úvod, literatura, [rejstřík obrázků](references/obrazky.md) a celé tři přehledy jsou přibalené. Student je používá bez nahrávání. Rozlišuj chybějící obsah a technický problém při čtení. Při problému načti menší oddíl a přesně vymez zbývající omezení.
+Úplné kapitoly učebnice podle katalogu, jejich výukové plány, úvod, literatura, rejstříky obrázků kapitol a celé tři přehledy jsou přibalené. Student je používá bez nahrávání. Rozlišuj chybějící obsah a technický problém při čtení. Při problému načti menší oddíl a přesně vymez zbývající omezení.
 
 Výukový plán určuje rozsah a návaznosti. Konkrétní tvrzení, příklady, zadání a řešení opírej o skutečně přečtený výklad; pojmy, symboly a funkce ověřuj v příslušném přehledu. Výskyt hesla v přehledu sám neurčuje učivo zvolené kapitoly. Při rozporu rozliš konvenci, předpoklady a věcnou chybu: doloženou konvenci dodrž, pravděpodobnou chybu vysvětli a vymez nejistotu.
 

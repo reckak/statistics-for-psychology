@@ -132,6 +132,7 @@ function locate(d, chapterScope, figures) {
   });
   return {sections, exercises, optional};
 }
+const {registerPath} = c;
 const span = ([a, b]) => a === b ? `${a}` : `${a}–${b}`;
 const spans = list => list.map(span).join(' a ');
 const vizTitles = new Map();
@@ -144,7 +145,7 @@ function vizTitle(page) {
   return vizTitles.get(page);
 }
 
-function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision, figures = [], registerRange}) {
+function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision, figures = []}) {
   const card = cardFor(d.number);
   const raw = c.read(path.join(c.root, card));
   const chapterScope = scopes(d.out);
@@ -208,13 +209,14 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
   assert(bullets, `${d.id}: missing learning goals`);
   s.push(render([bullets]), '', '## Doporučená posloupnost a lokátory', '',
     'Postupuj po níže uvedených úsecích. Před další otázkou ověř pojmy a předpoklady proti jejich hloubce v následující tabulce. Při volbě bez rozšíření používej povinné části; rozšíření připojuj k souvisejícímu úseku po jejich zvolení.', '');
-  s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. Obrázky vedou do rejstříku s textovým popisem; interaktivní stránka je webová stránka učebnice.', '');
-  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../obrazky.md#${f.anchor})`; }).join(', ')}`;
+  s.push('U oddílu s pododdíly platí rozsah pro celý oddíl včetně pododdílů. U oddílů s uvedenými obrázky je při výkladu ukaž: odkaz vede do rejstříku obrázků kapitoly, rozsah řádků vymezuje záznam obrázku a „s daty“ znamená, že záznam obsahuje data pro překreslení. Interaktivní stránku učebnice nabídni při výkladu oddílu, u něhož je uvedena: jednou větou s jejím názvem a úplnou adresou opsanou odtud.', '');
+  const figureLinks = list => `obrázky: ${list.map(f => { listedFigures.add(f.id); return `[${f.number}](../${f.register}#${f.id}) (řádky ${span(f.range)}${f.data ? ', s daty' : ''})`; }).join(', ')}`;
+  const vizOffer = p => `${vizTitle(p)} — <${c.web}quarto/${p}.html>`;
   const listedFigures = new Set();
   for (const h of located.sections.filter(h => h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id))) {
     const extras = [];
     if (h.figures.length) extras.push(figureLinks(h.figures));
-    if (h.viz.length) extras.push(`interaktivní stránka: ${h.viz.map(p => `[${vizTitle(p)}](${c.web}quarto/${p}.html)`).join(', ')}`);
+    if (h.viz.length) extras.push(`interaktivní stránka k nabídnutí: ${h.viz.map(vizOffer).join('; ')}`);
     s.push(`${'  '.repeat(Math.max(0, h.level - 2))}- [${h.title}](${local(h.id)}) — řádky ${span([h.start, h.end])}${h.optional ? ' — nepovinné' : ''}${extras.map(x => ' · ' + x).join('')}`);
   }
   s.push('', '## Hloubka výkladu, příklady a procvičení', '',
@@ -254,16 +256,15 @@ function createPlan({d, exported, pages, q, writer, version, stamp, sourceRevisi
     !/^(?:Hlavní|\*\*Odchylky)/.test(p));
   s.push('', '## Hranice a návaznosti', '', renderCard(boundary.join('\n\n')), '',
     '## Použití vizualizací', '',
-    'Vycházej z příkladů a grafů u odkazovaných oddílů a z aktuální úlohy. Zvolené zobrazení využij opakovaně u stejného principu. Rozsah plánu platí i pro grafy a ovladače; další modely přidávej podle [metodiky](../VIZUALIZACE.md) na výslovný dotaz jako označený doplněk.', '',
-    `Obrázky kapitoly (${figures.length}) s popisky a textovými popisy jsou v [rejstříku obrázků](../obrazky.md#obrazky-${d.id})${registerRange ? ` (řádky ${span(registerRange)})` : ''}; u oddílů a cvičení výše je uvedeno, které k nim patří.`, '');
+    `U oddílů s uvedenými obrázky je při výkladu ukaž. Obrázky kapitoly (${figures.length}) jsou v [rejstříku obrázků kapitoly](../${registerPath(d.id)})${figures.some(f => f.data) ? `; ${figures.filter(f => f.data).length} z nich má data pro překreslení` : '; data pro překreslení zatím nemají'}. U oddílů a cvičení výše je uvedeno, které k nim patří. Nový graf nad rámec obrázků učebnice se řídí [metodikou](../VIZUALIZACE.md); rozsah plánu platí i pro něj.`, '');
   const otherFigures = figures.filter(f => !listedFigures.has(f.id));
   if (otherFigures.length) s.push(`Mimo uvedené oddíly a cvičení: ${figureLinks(otherFigures)}.`, '');
   const vizPages = [...new Set(located.sections.flatMap(h => h.viz))];
   if (vizPages.length) {
-    s.push('Interaktivní stránky učebnice navazující na tuto kapitolu:', '');
+    s.push('Interaktivní stránky učebnice navazující na tuto kapitolu. Každou nabídni jednou, při výkladu uvedeného oddílu; adresu opiš doslova:', '');
     for (const p of vizPages) {
       const at = located.sections.filter(h => h.viz.includes(p)).map(h => `[${h.title}](${local(h.id)})`).join(', ');
-      s.push(`- [${vizTitle(p)}](${c.web}quarto/${p}.html) — odkazuje na ni oddíl ${at}`);
+      s.push(`- ${vizOffer(p)} — při oddílu ${at}`);
     }
     s.push('');
   } else s.push('Na tuto kapitolu nenavazuje žádná interaktivní stránka učebnice.', '');

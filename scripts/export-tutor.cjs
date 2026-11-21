@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
   parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill,
-  figureRegister, figuresLine, inlineMd, geminiRenames, geminiNames} = c;
+  figureRegister, figuresLine, inlineMd, geminiRenames, geminiNames, figureDataChapters, registerPath, registerRanges} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -38,6 +38,7 @@ if (!args.includes('--skip-figures')) {
     'C:/Program Files/R/R-4.5.1/bin/Rscript.exe' : 'Rscript');
   for (const d of bundled) {
     console.log(`Obrázky kapitoly ${d.number}/${bundled.length}`);
+    if (figureDataChapters.includes(d.id)) fs.rmSync(path.join(root, 'tmp/tutor-figures', d.id), {recursive: true, force: true});
     run(r, ['--vanilla', '-e', `Sys.setlocale('LC_CTYPE', '.UTF-8'); source('scripts/${d.id}.R', encoding='UTF-8')`]);
   }
 }
@@ -53,6 +54,7 @@ const inputPaths = [...new Set([...documents.map(d => d.source), ...book.map(d =
   ...bundled.map(d => `scripts/${d.id}.R`),
   'references.bib', 'styles/apa.csl', 'LICENSE-TEXT.md',
   'LICENSE', 'scripts/export-tutor.cjs', 'scripts/check-tutor.cjs', 'scripts/tutor/common.cjs', 'scripts/tutor/prepare.lua', 'scripts/tutor/plans.cjs',
+  'scripts/tutor/svg-to-png.cjs', 'scripts/tutor/figure-data.R',
   ...files(source).map(f => posix(path.relative(root, f)))])];
 const inputs = Object.fromEntries(inputPaths.map(f => [f, hash(path.join(root, f))]));
 const sourceDirty = run('git', ['status', '--porcelain', '--', ...inputPaths]).trim() !== '';
@@ -176,7 +178,8 @@ function finish(value, d) {
     const sourceFile = path.resolve(root, path.dirname(d.source), copy.c[2][0]);
     const relative = posix(path.relative(path.join(root, 'assets'), sourceFile));
     assert(relative && !relative.startsWith('../') && !path.isAbsolute(relative), `Image outside assets/: ${sourceFile}`);
-    const output = `assets/${relative}`;
+    assert(/\.svg$/i.test(relative), `Chapter figures are SVG sources: ${sourceFile}`);
+    const output = `assets/${relative.replace(/\.svg$/i, '.png')}`;
     assetFiles.set(output, sourceFile);
     copy.c[2][0] = posix(path.relative(path.dirname(d.output), output));
   }
@@ -217,11 +220,13 @@ write(literature.output, pandoc(q, writer, JSON.stringify({
   'pandoc-api-version': cited['pandoc-api-version'], meta: {},
   blocks: [{t: 'Header', c: [1, ['literatura-tutora', [], []], [str(literature.title)]]}, finish(bibliography, literature)]
 })));
-for (const [output, input] of assetFiles) {
-  const dest = path.join(refs, output);
-  fs.mkdirSync(path.dirname(dest), {recursive: true});
-  fs.copyFileSync(input, dest);
-}
+// A tutor cannot view an SVG, and the R figures store text as outlines; PNG it can inspect and send.
+const pngJobs = path.join(work, 'png-jobs.json');
+fs.writeFileSync(pngJobs, JSON.stringify([...assetFiles].map(([output, input]) => ({input, output: path.join(refs, output)}))), 'utf8');
+const pngSizes = new Map(JSON.parse(run(process.execPath, ['scripts/tutor/svg-to-png.cjs', pngJobs]))
+  .map(r => [posix(path.relative(refs, r.output)), {width: r.width, height: r.height}]));
+fs.rmSync(pngJobs);
+for (const output of assetFiles.keys()) assert(pngSizes.has(output) && fs.statSync(path.join(refs, output)).size > 1000, `PNG not rendered: ${output}`);
 fs.copyFileSync(path.join(root, 'LICENSE-TEXT.md'), path.join(refs, 'LICENCE.md'));
 fs.copyFileSync(path.join(root, 'LICENSE'), path.join(refs, 'LICENSE'));
 fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology – AI tutor\n\n` +
@@ -236,8 +241,7 @@ fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology –
 const entry = d => ({id: d.id, title: d.title, path: d.output, source: d.source,
   sha256: hash(path.join(refs, d.output)), bytes: Buffer.byteLength(d.markdown),
   headings: nodes(d.out.blocks, 'Header').map(h => ({id: h.c[1][0], title: text(h.c[2]), level: h.c[0]}))});
-// One register of every chapter figure, shipped in all variants. The same ID may
-// occur in two chapters, so register anchors carry the chapter.
+// One figure register per chapter, shipped in all variants.
 const exportedChapters = exported.filter(d => d.kind === 'chapter');
 const figures = [];
 for (const d of exportedChapters) {
@@ -248,39 +252,39 @@ for (const d of exportedChapters) {
     const record = idMap.get(div.c[0][0]).find(r => r.doc.id === d.id);
     const alt = images[0].c[0][2].find(([key]) => key === 'fig-alt')?.[1];
     assert(record?.number && alt, `${d.id}/${div.c[0][0]}: number and text description`);
-    figures.push({chapter: d.id, id: div.c[0][0], anchor: `${d.id}-${div.c[0][0]}`, number: record.number,
-      caption: inlineMd(images[0].c[1]), alt, file: posix(path.join(path.dirname(d.output), images[0].c[2][0])),
-      web: `${web}quarto/${d.id}.html#${div.c[0][0]}`});
+    const file = posix(path.join(path.dirname(d.output), images[0].c[2][0]));
+    const sourceSvg = posix(path.relative(root, assetFiles.get(file)));
+    // Data for redrawing come from the chapter's R script (scripts/tutor/figure-data.R).
+    const dataFile = path.join(root, 'tmp/tutor-figures', d.id, `${path.basename(sourceSvg, '.svg')}.json`);
+    const data = figureDataChapters.includes(d.id) ? JSON.parse(read(dataFile)) : null;
+    assert(figureDataChapters.includes(d.id) || !fs.existsSync(dataFile), `Unexpected figure data: ${dataFile}`);
+    figures.push({chapter: d.id, id: div.c[0][0], number: record.number,
+      caption: inlineMd(images[0].c[1]), alt, file, ...pngSizes.get(file), data,
+      web: `${web}quarto/${d.id}.html#${div.c[0][0]}`, image: `${web}${sourceSvg}`});
   }
 }
 assert.equal(figures.length, nodes(exportedChapters.map(d => d.out.blocks), 'Image').length,
   'Every chapter image has a register entry');
-assert.equal(new Set(figures.map(f => f.anchor)).size, figures.length, 'Unique figure register anchors');
-const registerText = figureRegister(exportedChapters, figures, true);
-write('obrazky.md', registerText);
-// Line range of each chapter's part of the register; the text-only variant keeps the same lines.
-const registerRanges = new Map();
-{
-  const lines = registerText.split('\n');
-  const starts = exportedChapters.map(d => lines.indexOf(`## ${d.number}. ${d.title} {#obrazky-${d.id}}`) + 1);
-  assert(starts.every(Boolean), 'Chapter sections of the figure register');
-  exportedChapters.forEach((d, i) => {
-    let end = (starts[i + 1] || lines.length + 1) - 1;
-    while (lines[end - 1].trim() === '') end--;
-    registerRanges.set(d.id, [starts[i], end]);
-  });
+for (const d of exportedChapters) {
+  const own = figures.filter(f => f.chapter === d.id);
+  assert.equal(new Set(own.map(f => f.id)).size, own.length, `${d.id}: unique figure identifiers`);
+  const registerText = figureRegister(d, own, true);
+  write(registerPath(d.id), registerText);
+  // The text-only variant keeps the same lines, so the ranges hold in every package.
+  const ranges = registerRanges(registerText);
+  for (const f of own) { f.register = registerPath(d.id); f.range = ranges.get(f.id); assert(f.range, `${d.id}/${f.id}: register range`); }
 }
 
 const plans = [];
 for (const d of exportedChapters) {
   const plan = createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision,
-    figures: figures.filter(f => f.chapter === d.id), registerRange: registerRanges.get(d.id)});
+    figures: figures.filter(f => f.chapter === d.id)});
   const output = `plany/${d.id}.md`;
   write(output, plan.markdown);
   plans.push({chapter: d.id, path: output, card: plan.card, sha256: hash(path.join(refs, output)),
     concepts: plan.concepts,
     optional_blocks: plan.scope.optionalBlocks.map(x => x.id),
-    headings: plan.scope.headings, ranges: {...plan.ranges, register: registerRanges.get(d.id)}});
+    headings: plan.scope.headings, ranges: plan.ranges});
 }
 const chapterEntries = book.map(b => {
   const d = exported.find(d => d.id === b.id);
@@ -310,7 +314,8 @@ const catalog = {
   overviews: exported.filter(d => d.kind === 'overview').map(slim),
   introduction: slim(exported.find(d => d.kind === 'introduction')),
   bibliography: {path: literature.output},
-  figures: {path: 'obrazky.md', count: figures.length}
+  figures: {count: figures.length, registers: exportedChapters.map(d => registerPath(d.id)),
+    with_data: figures.filter(f => f.data).length}
 };
 write('KAPITOLY.json', JSON.stringify(catalog, null, 2) + '\n');
 const checkData = {
@@ -319,8 +324,10 @@ const checkData = {
   overviews: exported.filter(d => d.kind === 'overview').map(entry),
   introduction: entry(exported.find(d => d.kind === 'introduction')),
   bibliography: {path: literature.output, citation_keys: citedKeys, sha256: hash(path.join(refs, literature.output))},
-  figures: {path: 'obrazky.md', count: figures.length, sha256: hash(path.join(refs, 'obrazky.md')),
-    entries: figures.map(({chapter, id, anchor, number, file}) => ({chapter, id, anchor, number, file}))},
+  figures: {count: figures.length,
+    registers: exportedChapters.map(d => ({chapter: d.id, path: registerPath(d.id), sha256: hash(path.join(refs, registerPath(d.id)))})),
+    entries: figures.map(({chapter, id, number, file, width, height, range, image, data}) => ({chapter, id, number, file, width, height, range, image,
+      sha256: hash(path.join(refs, file)), data}))},
   source_hashes: inputs
 };
 const index = [`# Obsah podkladů AI tutora`, '', `Verze ${version}; snímek učebnice z ${stamp}.`, '',
@@ -343,7 +350,12 @@ for (const d of exported.filter(d => d.kind === 'overview')) {
   const count = nodes(d.out.blocks, 'Header').filter(h => h.c[0] === 2).length;
   index.push(`- [${d.title}](${d.output}) — ${count} hesel; vyhledej název, značku nebo funkci a načti konkrétní heslo.`);
 }
-index.push('', '## Obrázky', '', figuresLine(true), '',
+index.push('', '## Obrázky', '', figuresLine(true), '');
+for (const d of exportedChapters) {
+  const own = figures.filter(f => f.chapter === d.id);
+  index.push(`- [Obrázky kapitoly ${d.number}](${registerPath(d.id)}) — ${own.length} obrázků${own.some(f => f.data) ? `, ${own.filter(f => f.data).length} s daty pro překreslení` : ''}`);
+}
+index.push('',
   'Katalogem pro nabídku kapitol je tento index. Registr KAPITOLY.json slouží ke zjištění verze a zdrojové revize vydání.', '');
 write('INDEX.md', index.join('\n'));
 
@@ -368,7 +380,9 @@ for (const d of exportedChapters) {
   fs.writeFileSync(file, markdown, 'utf8');
   assert.deepEqual(ids, figures.filter(f => f.chapter === d.id).map(f => f.id), `${d.id}: figure blocks and replaced images`);
 }
-fs.writeFileSync(path.join(geminiRefs, 'obrazky.md'), figureRegister(exportedChapters, figures, false), 'utf8');
+for (const d of exportedChapters) {
+  fs.writeFileSync(path.join(geminiRefs, registerPath(d.id)), figureRegister(d, figures.filter(f => f.chapter === d.id), false), 'utf8');
+}
 const geminiIndex = read(path.join(geminiRefs, 'INDEX.md'));
 assert.equal(geminiIndex.split(figuresLine(true)).length, 2, 'One figure-register line in INDEX.md');
 fs.writeFileSync(path.join(geminiRefs, 'INDEX.md'), geminiNames(geminiIndex.replace(figuresLine(true), figuresLine(false))), 'utf8');
@@ -380,7 +394,7 @@ for (const [from, to] of Object.entries(geminiRenames)) fs.renameSync(path.join(
 fs.writeFileSync(path.join(geminiRefs, 'LICENCE.md'), geminiNames(read(path.join(geminiRefs, 'LICENCE.md'))), 'utf8');
 checkData.gemini = {
   chapters: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(geminiRefs, d.output))])),
-  figures_sha256: hash(path.join(geminiRefs, 'obrazky.md'))
+  registers: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(geminiRefs, registerPath(d.id)))]))
 };
 const checkDataPath = path.join(work, 'kontrola.json');
 fs.writeFileSync(checkDataPath, JSON.stringify(checkData, null, 2) + '\n', 'utf8');
@@ -389,7 +403,6 @@ fs.writeFileSync(checkDataPath, JSON.stringify(checkData, null, 2) + '\n', 'utf8
 const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--data', checkDataPath, '--quarto', q]));
 console.log(JSON.stringify(validation));
 for (const [file, digest] of Object.entries(inputs)) assert.equal(hash(path.join(root, file)), digest, `Input changed during export: ${file}`);
-for (const [output, input] of assetFiles) assert.equal(hash(path.join(refs, output)), hash(input));
 
 const psQuote = s => `'${s.replace(/'/g, "''")}'`;
 const inventoryOf = base => files(base).map(f => ({path: posix(path.relative(base, f)), bytes: fs.statSync(f).size, sha256: hash(f)}));
