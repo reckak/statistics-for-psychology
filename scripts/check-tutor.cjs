@@ -3,7 +3,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents, skillName, splitSkill, imageLine, geminiSkill, geminiNote} = require('./tutor/common.cjs');
+  nodes, attr, text, documents, skillName, splitSkill, imageLine, pngName, textSkill, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
+  headingLines, divEnd, solutionOpen, figuresLine, figureDataChapters, figureDataBlock, markColumns, hasData, dataLabel, registerPath} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -11,6 +12,7 @@ const lastExport = option('--package') ? null : JSON.parse(read(path.join(root, 
 const packageRoot = option('--package') || lastExport.package_directory;
 const claudeRoot = option('--claude') || lastExport?.claude?.skill_directory;
 const geminiRoot = option('--gemini') || lastExport?.gemini?.skill_directory;
+const chatgptRoot = option('--chatgpt') || lastExport?.chatgpt_directory;
 const q = quarto(option('--quarto'));
 const skillDir = path.join(packageRoot, 'skills', skillName);
 const refs = path.join(skillDir, 'references');
@@ -52,15 +54,30 @@ for (const ref of ['VIZUALIZACE.md', 'ZKOUSENI.md', 'OTAZKY.md']) {
   assert(fs.statSync(path.join(refs, ref)).size > 0);
 }
 assert(!/Registr verze 0\.1\.0|seznam kapitol je prázdný/.test(skill));
-const registry = JSON.parse(read(path.join(refs, 'KAPITOLY.json')));
+// The packaged registry is a small catalog (version, revision, chapter list);
+// headings, concept inventories, line ranges and checksums are verification
+// data written next to the staged packages, outside every archive.
+const registryText = read(path.join(refs, 'KAPITOLY.json'));
+const registry = JSON.parse(registryText);
+const dataPath = option('--data') || lastExport.check_data;
+assert(path.relative(packageRoot, dataPath).startsWith('..'), 'Verification data stays outside the package');
+const data = JSON.parse(read(dataPath));
 assert.equal(registry.status, 'chapters_available');
-assert.equal(registry.schema_version, 2);
+assert.equal(registry.schema_version, 3);
 assert.equal(registry.package_version, manifest.version);
+assert.equal(data.package_version, manifest.version);
+assert.equal(data.source_revision, registry.source_revision);
+assert(Buffer.byteLength(registryText) <= 8000, 'Keep the packaged registry a small catalog');
+for (const key of ['plans', 'source_hashes']) assert(!(key in registry), `Verification data in the packaged registry: ${key}`);
+assert(!/"(?:sha256|headings|concepts)"/.test(registryText), 'Verification data in the packaged registry');
 assert.equal(registry.chapters.length, bookChapters(q).length);
-assert.equal(registry.plans.length, 6);
 assert.equal(registry.overviews.length, 3);
-const bundled = registry.chapters.filter(d => d.availability === 'bundled');
-assert.equal(bundled.length, 6);
+assert.deepEqual(registry.chapters, data.chapters.map(d => ({id: d.id, number: d.number, title: d.title, path: d.path,
+  plan: d.plan, source: d.source, availability: d.availability, web_url: d.web_url})), 'Registry catalog and verification data');
+const bundled = data.chapters.filter(d => d.availability === 'bundled');
+const packagedChapters = documents.filter(d => d.kind === 'chapter');
+assert.deepEqual(bundled.map(d => d.id), packagedChapters.map(d => d.id), 'Every chapter of the book is bundled');
+assert.equal(data.plans.length, bundled.length);
 const book = bookChapters(q);
 assert.deepEqual(registry.chapters.map(d => d.source), book.map(d => d.source));
 const index = read(path.join(refs, 'INDEX.md'));
@@ -84,7 +101,7 @@ for (const [i, entry] of registry.chapters.entries()) {
     assert(!fs.existsSync(path.join(refs, `kapitoly/${entry.id}.md`)));
   }
 }
-for (const entry of [...bundled, ...registry.plans, ...registry.overviews, registry.introduction, registry.bibliography]) {
+for (const entry of [...bundled, ...data.plans, ...data.overviews, data.introduction, data.bibliography, ...data.figures.registers]) {
   assert.equal(hash(path.join(refs, entry.path)), entry.sha256, `Registry checksum: ${entry.path}`);
 }
 const parse = p => JSON.parse(pandoc(q, [p, '--from=markdown-smart', '--to=json']));
@@ -133,7 +150,9 @@ function subsequence(needle, haystack) {
   return p === needle.length;
 }
 const expectedSolutions = {kapitola_01: 9, kapitola_02: 10, kapitola_03: 16,
-  kapitola_04: 10, kapitola_05: 12, kapitola_06: 16};
+  kapitola_04: 10, kapitola_05: 12, kapitola_06: 16, kapitola_07: 14,
+  kapitola_08: 14, kapitola_09: 15, kapitola_10: 18};
+for (const d of packagedChapters) assert(Number.isInteger(expectedSolutions[d.id]), `${d.id}: expected number of exercise solutions`);
 for (const d of documents.filter(d => d.kind !== 'overview')) {
   const before = parseSource(q, d.source, false);
   const after = parsed.get(path.resolve(refs, d.output));
@@ -160,9 +179,9 @@ for (const d of documents.filter(d => d.kind !== 'overview')) {
   assert.equal(nodes(after, 'Image').length, nodes(before, 'Image').length, `${d.id}: image count`);
   for (const image of nodes(before, 'Image')) {
     const input = path.resolve(root, path.dirname(d.source), image.c[2][0]);
+    // The plugin holds the SVG source; its checksum is verified with the figure registers.
     const output = nodes(after, 'Image').find(n => path.basename(n.c[2][0]) === path.basename(input));
-    assert(output, `Missing image ${input}`);
-    assert.equal(hash(path.resolve(refs, path.dirname(d.output), output.c[2][0])), hash(input));
+    assert(output && fs.existsSync(path.resolve(refs, path.dirname(d.output), output.c[2][0])), `Missing image ${input}`);
     const alt = image.c[0][2].find(([k]) => k === 'fig-alt')?.[1];
     assert(alt && nodes(after, 'Para').some(p => text(p).includes(alt)), `Missing visible text description: ${input}`);
   }
@@ -209,13 +228,13 @@ for (const d of documents.filter(d => d.kind === 'overview')) {
 }
 // Check plans against source goals, all section scopes, every overview row
 // referring to this chapter, and the original chapter-card skill table.
-for (const entry of registry.plans) {
+for (const entry of data.plans) {
   const chapter = bundled.find(x => x.id === entry.chapter);
   const before = parseSource(q, chapter.source);
   const plan = parsed.get(path.resolve(refs, entry.path));
   const planText = read(path.join(refs, entry.path));
   assert(planText.startsWith(`# ${chapter.number}. ${chapter.title}\n`));
-  assert.equal(registry.source_hashes[entry.card], hash(path.join(root, entry.card)));
+  assert.equal(data.source_hashes[entry.card], hash(path.join(root, entry.card)));
   const goals = nodes(before.blocks, 'Div').find(x => text(x.c[1][0]) === 'Co budete po prostudování umět');
   const goalBullets = nodes(goals, 'BulletList')[0];
   const planBullets = nodes(plan, 'BulletList').flatMap(x => x.c.map(item => text(item)));
@@ -237,7 +256,7 @@ for (const entry of registry.plans) {
     }
   }
   for (const id of optional) assert(links.includes(`../${chapter.path}#${id}`));
-  for (const overview of registry.overviews) {
+  for (const overview of data.overviews) {
     const original = read(path.join(root, overview.source));
     const expected = [...original.matchAll(/<tr id="([^"]+)">([\s\S]*?)<\/tr>/g)]
       .filter(m => m[2].includes(`${entry.chapter}.html`)).map(m => m[1]);
@@ -254,17 +273,247 @@ for (const entry of registry.plans) {
     assert(planTables.some(p => subsequence(words(t), words(p))), `Plan lost exercise skills: ${entry.chapter}`);
   }
 }
-const scope3 = registry.plans.find(p => p.chapter === 'kapitola_03').headings;
+const scope3 = data.plans.find(p => p.chapter === 'kapitola_03').headings;
 assert(scope3.find(x => x.id === 'sec-momenty').optional, 'Nested optional heading');
 assert(!scope3.find(x => x.id === 'sec-excel-poloha').optional, 'Optional scope must end');
 assert(scope3.find(x => x.title.startsWith('14.')).optional, 'Optional exercise');
 assert(!scope3.find(x => x.title.startsWith('13.')).optional, 'Required exercise');
-const bibliography = parsed.get(path.resolve(refs, 'literatura.md'));
-for (const key of registry.bibliography.citation_keys) assert(ids(bibliography).has(`ref-${key}`));
-for (const f of files(packageRoot)) assert(!/(?:^|[\\/])(?:sources|node_modules|\.git)(?:[\\/]|$)/.test(f), `Unexpected package file ${f}`);
-assert(!files(refs).some(f => /kapitola_0[78]\.md$|\.xlsx$/.test(f)));
 
-// Claude skill: same files as the plugin skill, only the frontmatter differs.
+// Line ranges are navigation for reading one step at a time. This verifies them
+// against the exported Markdown only; what a client actually loads is a client test.
+const span = (a, b) => a === b ? `${a}` : `${a}–${b}`;
+const blank = (lines, from, to) => lines.slice(from - 1, to).every(l => l.trim() === '');
+let checkedRanges = 0;
+const overviewText = {};
+for (const entry of data.plans) {
+  const chapter = bundled.find(x => x.id === entry.chapter);
+  const markdown = read(path.join(refs, chapter.path));
+  const lines = markdown.split('\n');
+  const planText = read(path.join(refs, entry.path));
+  const marks = headingLines(markdown);
+  const {sections, exercises, optional} = entry.ranges;
+  assert.equal(sections.length, marks.length, `${entry.chapter}: one range per heading`);
+  assert.equal(sections.length, entry.headings.length);
+  sections.forEach((s, i) => {
+    const label = `${entry.chapter}/${s.id}`;
+    assert.equal(s.id, entry.headings[i].id, `${label}: heading order`);
+    assert.equal(s.start, marks[i].line, `${label}: range starts at its heading`);
+    assert.equal(s.level, marks[i].level, `${label}: heading level`);
+    // Explicit identifiers are written on the heading line itself.
+    if (lines[s.start - 1].includes('{#')) assert(lines[s.start - 1].includes(`{#${s.id}`), `${label}: identifier on the first line`);
+    const next = marks.slice(i + 1).find(m => m.level <= s.level);
+    const limit = next ? next.line : lines.length + 1;
+    assert(s.end >= s.start && s.end < limit, `${label}: range ends before the next heading of the same or a higher level`);
+    assert(lines[s.end - 1].trim() !== '' && blank(lines, s.end + 1, limit - 1), `${label}: range ends on the last line of the section`);
+    const h = entry.headings[i];
+    if (h.level > 1 && !h.exercise && !/^sec-shrnuti/.test(h.id)) {
+      assert(planText.includes(`](../${chapter.path}#${s.id}) — řádky ${span(s.start, s.end)}`), `${label}: range in the plan`);
+    }
+    checkedRanges++;
+  });
+  // Section intro: from the heading to the last line before the first subsection.
+  sections.forEach((s, i) => {
+    if (!s.intro) return;
+    const child = sections[i + 1];
+    assert(child && child.level > s.level && s.intro[0] === s.start && s.intro[1] > s.start && s.intro[1] < child.start, `${entry.chapter}/${s.id}: section intro range`);
+    assert(lines[s.intro[1] - 1].trim() !== '' && blank(lines, s.intro[1] + 1, child.start - 1), `${entry.chapter}/${s.id}: section intro ends before the subsection`);
+    checkedRanges++;
+  });
+  // Overview entries listed in the plan carry the line range of the entry.
+  for (const concept of entry.concepts) {
+    const overview = data.overviews.find(o => o.id === concept.overview);
+    const overviewLines = (overviewText[overview.id] ||= read(path.join(refs, overview.path)).split('\n'));
+    assert(overviewLines[concept.lines[0] - 1].startsWith('## ') && overviewLines[concept.lines[0] - 1].includes(`{#${concept.id}`), `${entry.chapter}: overview entry ${concept.id} starts at its heading`);
+    assert(!overviewLines.slice(concept.lines[0], concept.lines[1]).some(l => /^## /.test(l)), `${entry.chapter}: overview entry ${concept.id} holds one entry`);
+    assert(planText.includes(`](../${overview.path}#${concept.id}) — řádky ${span(...concept.lines)}`), `${entry.chapter}: overview entry ${concept.id} range in the plan`);
+    checkedRanges++;
+  }
+  const located = entry.headings.map((h, i) => ({...h, ...sections[i]}));
+  const exerciseHeadings = located.filter(h => h.exercise && h.level === 3);
+  assert.deepEqual(exercises.map(e => e.id), exerciseHeadings.map(h => h.id), `${entry.chapter}: exercise ranges`);
+  let solutionBlocks = 0;
+  exercises.forEach((e, k) => {
+    const h = exerciseHeadings[k];
+    const label = `${entry.chapter}/${h.title}`;
+    const parts = [...e.statement.map(r => ['statement', ...r]), ...e.solutions.map(r => ['solution', ...r])].sort((a, b) => a[1] - b[1]);
+    assert(e.statement.length && e.solutions.length, `${label}: statement and solution`);
+    assert.deepEqual([parts[0][0], parts[0][1]], ['statement', h.start], `${label}: statement starts at the exercise heading`);
+    assert.equal(parts.at(-1)[2], h.end, `${label}: ranges cover the exercise`);
+    parts.forEach(([kind, a, b], j) => {
+      assert(a <= b, `${label}: ordered range`);
+      if (j) assert(a > parts[j - 1][2] && blank(lines, parts[j - 1][2] + 1, a - 1), `${label}: ranges neither overlap nor skip text`);
+      if (kind === 'statement') {
+        for (let n = a; n <= b; n++) {
+          assert(lines[n - 1] !== '**Ukázat řešení**' && !solutionOpen(lines, n - 1), `${label}: statement range contains a solution`);
+        }
+      } else {
+        assert(solutionOpen(lines, a - 1), `${label}: solution range starts with the solution block`);
+        assert.equal(divEnd(lines, a), b, `${label}: solution range ends with the solution block`);
+        solutionBlocks++;
+      }
+      checkedRanges++;
+    });
+    assert(planText.includes(`zadání řádky ${e.statement.map(r => span(...r)).join(' a ')}; řešení řádky ${e.solutions.map(r => span(...r)).join(' a ')}`),
+      `${label}: exercise ranges in the plan`);
+  });
+  assert.equal(solutionBlocks, expectedSolutions[entry.chapter], `${entry.chapter}: every solution has a range`);
+  assert.deepEqual(optional.map(o => o.id), entry.optional_blocks, `${entry.chapter}: optional block ranges`);
+  for (const o of optional) {
+    const label = `${entry.chapter}/${o.id}`;
+    assert(new RegExp(`^:{3,} \\{#${o.id}[ }]`).test(lines[o.start - 1]), `${label}: range starts with the optional block`);
+    assert.equal(divEnd(lines, o.start), o.end, `${label}: range ends with the optional block`);
+    assert(planText.includes(`](../${chapter.path}#${o.id}) — řádky ${span(o.start, o.end)}`), `${label}: range in the plan`);
+    checkedRanges++;
+  }
+  // Each figure belongs to the innermost section that contains its block.
+  const chapterFigures = data.figures.entries.filter(f => f.chapter === entry.chapter);
+  assert.deepEqual(sections.flatMap(s => s.figures).sort(), chapterFigures.map(f => f.id).sort(), `${entry.chapter}: figures in the plan`);
+  for (const s of sections) for (const id of s.figures) {
+    const at = lines.findIndex(l => new RegExp(`^:{3,} \\{#${id}[ }]`).test(l)) + 1;
+    assert(at >= s.start && at <= s.end, `${entry.chapter}/${id}: figure inside its section`);
+    assert(!sections.some(x => x.start > s.start && x.start <= at), `${entry.chapter}/${id}: innermost section`);
+    const f = chapterFigures.find(x => x.id === id);
+    // A figure inside an optional block (or an optional section) is marked as such in the plan.
+    const isOptional = optional.some(o => at >= o.start && at <= o.end) || entry.headings[sections.indexOf(s)].optional;
+    assert.equal(s.optionalFigures.includes(id), isOptional, `${entry.chapter}/${id}: optional figure flag`);
+    assert(planText.includes(`[${f.number}](../${registerPath(entry.chapter)}#${f.id}) (řádky ${span(...f.range)}${dataLabel(f)}${isOptional ? ', v nepovinné části' : ''})`), `${entry.chapter}/${id}: figure link in the plan`);
+  }
+  // Every interactive page the chapter links to is named in the plan.
+  const vizPages = [...new Set([...markdown.matchAll(/quarto\/(viz_[a-z0-9_]+)\.html/g)].map(m => m[1]))];
+  assert.deepEqual([...new Set(sections.flatMap(s => s.viz))].sort(), [...vizPages].sort(), `${entry.chapter}: interactive pages`);
+  for (const page of vizPages) {
+    assert(fs.existsSync(path.join(root, 'quarto', `${page}.qmd`)), `Missing interactive page ${page}`);
+    // The offer carries the full address as plain text, so that a tutor copies it instead of composing one.
+    assert(planText.includes(` — <${web}quarto/${page}.html>`), `${entry.chapter}: ${page} in the plan`);
+  }
+}
+
+// Every interactive page of the book has its address and advice in the visualization guide.
+const vizGuide = read(path.join(refs, 'VIZUALIZACE.md'));
+const bookViz = [...read(path.join(root, '_quarto.yml')).matchAll(/^\s*-\s*quarto\/(viz_[a-z0-9_]+)\.qmd\s*$/gm)].map(m => m[1]);
+assert(bookViz.length > 0, 'Interactive pages in _quarto.yml');
+for (const page of bookViz) assert(vizGuide.includes(`${web}quarto/${page}.html |`), `Interactive page missing in VIZUALIZACE.md: ${page}`);
+assert.equal((vizGuide.match(/quarto\/viz_[a-z0-9_]+\.html/g) || []).length, bookViz.length, 'VIZUALIZACE.md lists exactly the interactive pages of the book');
+// One figure register per chapter ships in every variant.
+assert(index.includes(figuresLine(true)), 'Figure registers in the index');
+assert.equal(registry.figures.count, data.figures.entries.length);
+assert.deepEqual(registry.figures.registers, bundled.map(d => registerPath(d.id)));
+assert.equal(registry.figures.with_data, data.figures.entries.filter(hasData).length);
+// Descriptions are plain text, so they are compared after parsing, not as raw
+// Markdown: the writer escapes characters such as "<".
+const squeeze = s => s.replace(/\s+/g, ' ').trim();
+const paragraphs = ast => new Set(nodes(ast, 'Para').map(p => squeeze(text(p))));
+const pngSize = file => {
+  const b = fs.readFileSync(file);
+  assert.equal(b.subarray(0, 8).toString('hex'), '89504e470d0a1a0a', `Not a PNG file: ${file}`);
+  assert.equal(b.subarray(12, 16).toString('latin1'), 'IHDR', `PNG header: ${file}`);
+  return {width: b.readUInt32BE(16), height: b.readUInt32BE(20)};
+};
+let registerFigures = 0, figuresWithData = 0, dataRows = 0, maxFigureRows = 0, maxRegisterBytes = 0;
+// Authoring guards: a tutor must be able to read one figure entry and one register.
+const figureRowLimit = 800, registerByteLimit = 300000;
+for (const entry of bundled) {
+  const source = parseSource(q, entry.source, false);
+  const figs = nodes(source, 'Figure').filter(f => nodes(f, 'Image').length);
+  assert.equal(figs.length, nodes(source, 'Image').length, `${entry.id}: every image is a figure`);
+  const registerFile = path.join(refs, registerPath(entry.id));
+  const register = read(registerFile);
+  const registerLines = register.split('\n');
+  maxRegisterBytes = Math.max(maxRegisterBytes, Buffer.byteLength(register));
+  assert(Buffer.byteLength(register) <= registerByteLimit, `${entry.id}: figure register has ${Buffer.byteLength(register)} bytes`);
+  assert(index.includes(`](${registerPath(entry.id)})`), `${entry.id}: register in the index`);
+  assert.equal(registerLines[0], `# Obrázky kapitoly ${entry.number}: ${entry.title}`);
+  const registerParagraphs = paragraphs(parsed.get(path.resolve(registerFile)));
+  const marks = headingLines(register).filter(h => h.level === 2);
+  assert.equal(marks.length, figs.length, `${entry.id}: one register entry per figure`);
+  const records = data.figures.entries.filter(f => f.chapter === entry.id);
+  assert.deepEqual(records.map(r => r.id), figs.map(fig => fig.c[0][0]), `${entry.id}: register order follows the chapter`);
+  const wantsData = figureDataChapters.includes(entry.id);
+  figs.forEach((fig, i) => {
+    const id = fig.c[0][0], label = `${entry.id}/${id}`;
+    const image = nodes(fig, 'Image')[0];
+    const alt = image.c[0][2].find(([k]) => k === 'fig-alt')?.[1];
+    const record = records[i];
+    assert(record && alt, `${label}: register record and text description`);
+    // The plugin holds the SVG source of the book unchanged; PNG renderings belong to the Claude variant.
+    const sourceSvg = path.relative(root, path.resolve(root, path.dirname(entry.source), image.c[2][0])).split(path.sep).join('/');
+    assert.equal(record.file, sourceSvg, `${label}: figure file follows the source path`);
+    assert.equal(hash(path.join(refs, record.file)), record.sha256, `${label}: figure written by this export`);
+    assert.equal(record.sha256, hash(path.join(root, sourceSvg)), `${label}: SVG identical to the book source`);
+    assert.equal(record.image, `${web}${sourceSvg}`, `${label}: web address of the image`);
+    assert(fs.existsSync(path.join(root, sourceSvg)), `${label}: source figure`);
+    // Register entry: heading, range, description, links and web addresses.
+    const [start, end] = record.range;
+    assert.equal(registerLines[start - 1], `## Obrázek ${record.number} {#${id}}`, `${label}: register range starts at the entry`);
+    assert.equal(marks[i].line, start, `${label}: register entry order`);
+    const limit = marks[i + 1] ? marks[i + 1].line : registerLines.length + 1;
+    assert(end >= start && end < limit && registerLines[end - 1].trim() !== '' && blank(registerLines, end + 1, limit - 1), `${label}: register range ends with the entry`);
+    const own = registerLines.slice(start - 1, end);
+    assert(registerParagraphs.has(squeeze(`Textový popis: ${alt}`)), `${label}: text description`);
+    assert(own.includes(`[V kapitole](../${entry.path}#${id}) · [Soubor obrázku](../${record.file})`), `${label}: register links`);
+    assert(own.includes(`Stránka učebnice s obrázkem: ${web}quarto/${entry.id}.html#${id}`) && own.includes(`Samotný obrázek na webu: ${record.image}`), `${label}: web addresses`);
+    // Data for redrawing: present for every figure of the chapters that export them.
+    assert.equal(Boolean(record.data), wantsData, `${label}: figure data`);
+    const open = own.indexOf('```text');
+    if (!record.data) assert.equal(open, -1, `${label}: no data block`);
+    else {
+      assert.equal(record.data.figure, path.basename(sourceSvg, '.svg'), `${label}: data belong to this figure`);
+      assert(['data', 'simulace', 'krivka', 'sloupce', 'schema'].includes(record.data.kind), `${label}: data kind`);
+      if (record.data.kind === 'schema') {
+        assert.equal(open, -1, `${label}: a diagram has no data block`);
+        assert(!record.data.panels && own.includes('Data pro překreslení: obrázek je schéma bez dat.'), `${label}: a diagram is marked in the register`);
+      } else {
+        let figureRows = 0;
+        assert.equal(registerLines[record.dataStart - 1], 'Data pro překreslení:', `${label}: data start in the plan`);
+        assert(record.dataStart > start && record.dataStart < end, `${label}: data start inside the entry`);
+        assert(record.data.panels.length > 0 && open > 0 && own[open - 2] === 'Data pro překreslení:' && own.at(-1) === '```', `${label}: data block`);
+        assert.deepEqual(own.slice(open + 1, -1), figureDataBlock(record.data), `${label}: data block matches the exported data`);
+        for (const [k, p] of record.data.panels.entries()) {
+          const noAxes = ['tabulka', 'výsečový graf'].includes(p.type);
+          assert(p.title && p.type && p.series.length > 0 && (noAxes || (p.x?.label && p.y?.label)), `${label}: panel ${k + 1} is described`);
+          for (const axis of [p.x, p.y]) if (axis?.range) assert(axis.range.length === 2 && axis.range[0] < axis.range[1], `${label}: axis range`);
+          for (const g of p.guides || []) assert([g.value].flat().every(Number.isFinite) && [g.value].flat().length === (/^(x|y)$/.test(g.axis) ? 1 : 2), `${label}: guide values`);
+          for (const series of p.series) {
+            const need = markColumns[series.mark];
+            assert(need, `${label}: mark of ${series.name}`);
+            assert.equal(['interval', 'krabice'].includes(series.mark), Boolean(series.direction), `${label}: direction of ${series.name}`);
+            // 'a|b' is one of the alternatives; a trailing '?' allows an open (empty) value.
+            const columns = need.map(spec => {
+              const open = spec.endsWith('?'), found = spec.replace('?', '').split('|').filter(c => series.data.columns.includes(c));
+              assert.equal(found.length, 1, `${label}: column ${spec} of ${series.name}`);
+              return {index: series.data.columns.indexOf(found[0]), open, text: found[0] === 'kategorie'};
+            });
+            assert(series.data.rows.length > 0, `${label}: ${series.name} has rows`);
+            for (const row of series.data.rows) {
+              assert.equal(row.length, series.data.columns.length, `${label}: row width in ${series.name}`);
+              for (const c of columns) {
+                if (c.text) assert(typeof row[c.index] === 'string' && row[c.index], `${label}: category in ${series.name}`);
+                else assert(Number.isFinite(row[c.index]) || (c.open && row[c.index] === null), `${label}: finite numbers in ${series.name}`);
+              }
+              if (series.mark === 'interval') assert(columns.filter(c => c.open).some(c => row[c.index] !== null), `${label}: an interval needs one bound`);
+            }
+            dataRows += series.data.rows.length; figureRows += series.data.rows.length;
+          }
+        }
+        maxFigureRows = Math.max(maxFigureRows, figureRows);
+        assert(figureRows <= figureRowLimit, `${label}: ${figureRows} data rows; bin or thin the series`);
+        figuresWithData++;
+      }
+    }
+    registerFigures++;
+  });
+}
+assert.equal(registerFigures, data.figures.entries.length, 'Every figure of the book is in a register');
+assert(!files(refs).some(f => /\.png$/i.test(f)), 'The plugin ships SVG figures, no PNG');
+assert(!fs.existsSync(path.join(refs, 'obrazky.md')), 'Figure registers are per chapter');
+
+const bibliography = parsed.get(path.resolve(refs, 'literatura.md'));
+for (const key of data.bibliography.citation_keys) assert(ids(bibliography).has(`ref-${key}`));
+for (const f of files(packageRoot)) assert(!/(?:^|[\\/])(?:sources|node_modules|\.git)(?:[\\/]|$)/.test(f), `Unexpected package file ${f}`);
+assert(!files(refs).some(f => /\.xlsx$/.test(f)));
+assert(!fs.existsSync(path.join(refs, 'PRIPOJENI-KAPITOL.md')), 'The authoring guide is not packaged');
+
+// Claude skill: the plugin skill with YAML frontmatter and PNG renderings instead of SVG files.
 let claude = 'not checked (no Claude skill directory given)';
 if (claudeRoot) {
   assert.equal(path.basename(claudeRoot), skillName, 'Claude skill folder must match the skill name');
@@ -280,16 +529,40 @@ if (claudeRoot) {
   assert.equal(yamlDescription, frontmatter.description);
   assert(yamlDescription.length <= 1024 && !/[<>]/.test(yamlDescription), 'Claude skill description rules');
   const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
-  const expected = files(skillDir).map(f => rel(skillDir, f)).sort();
+  const pluginFiles = files(skillDir).map(f => rel(skillDir, f)).sort();
   const actual = files(claudeRoot).map(f => rel(claudeRoot, f)).sort();
-  assert.deepEqual(actual, expected, 'Claude skill file list');
-  for (const f of expected.filter(f => f !== 'SKILL.md')) {
+  assert.deepEqual(actual, pluginFiles.map(pngName).sort(), 'Claude skill file list');
+  assert(!actual.some(f => /\.svg$/i.test(f)), 'The Claude skill ships PNG figures, no SVG');
+  const differs = new Set(['SKILL.md', ...bundled.flatMap(d => [`references/${d.path}`, `references/${registerPath(d.id)}`])]);
+  for (const f of pluginFiles.filter(f => !differs.has(f) && !f.startsWith('references/assets/'))) {
     assert.equal(hash(path.join(claudeRoot, f)), hash(path.join(skillDir, f)), `Claude skill file differs: ${f}`);
+  }
+  // Chapters and registers differ only by the extension of the figure file.
+  for (const entry of bundled) {
+    for (const [f, sums] of [[entry.path, data.claude.chapters], [registerPath(entry.id), data.claude.registers]]) {
+      const own = read(path.join(claudeRoot, 'references', f)).split('\n');
+      const base = read(path.join(refs, f)).split('\n');
+      assert.equal(own.length, base.length, `${f}: Claude line count`);
+      base.forEach((line, i) => {
+        if (line === own[i]) return;
+        assert((imageLine.test(line) || line.includes('[Soubor obrázku](')) && own[i] === pngName(line), `${f}: unexpected Claude change on line ${i + 1}`);
+      });
+      assert(!own.some(line => /assets\/[^)\s]+\.svg\)/.test(line)), `${f}: leftover SVG link`);
+      assert.equal(sums[entry.id], hash(path.join(claudeRoot, 'references', f)), `${f}: Claude checksum`);
+    }
+  }
+  for (const record of data.figures.entries) {
+    const label = `${record.chapter}/${record.id}`, png = data.claude.figures[label];
+    assert(png && png.file === pngName(record.file), `${label}: PNG beside the source path`);
+    const file = path.join(claudeRoot, 'references', png.file);
+    assert.equal(hash(file), png.sha256, `${label}: PNG written by this export`);
+    assert.deepEqual(pngSize(file), {width: png.width, height: png.height}, `${label}: PNG size`);
+    assert(png.width >= 500 && png.height >= 250, `${label}: PNG too small to read`);
   }
   claude = {skill: yamlName, files: actual.length, descriptionChars: yamlDescription.length};
 }
 
-// Gemini skill: the Claude skill without SVG files. Chapters swap image lines
+// Gemini skill: the Claude skill without image files. Chapters swap image lines
 // for web links; a generated register keeps every caption and description.
 let gemini = 'not checked (no Gemini skill directory given)';
 if (geminiRoot) {
@@ -300,32 +573,54 @@ if (geminiRoot) {
   // Authoring guard from the observed upload error; Google documents no exact limit.
   assert(geminiFiles.length <= 100, `Gemini skill has ${geminiFiles.length} files (limit 100)`);
   assert(Math.max(...geminiFiles.map(f => f.split('/').length)) <= 10, 'Gemini skill nesting depth');
-  assert(!geminiFiles.some(f => /\.svg$/i.test(f) || f.includes('/assets/')), 'Gemini skill must not contain image files');
+  assert(!geminiFiles.some(f => /\.(svg|png)$/i.test(f) || f.includes('/assets/')), 'Gemini skill must not contain image files');
   assert.equal(read(path.join(geminiRoot, 'SKILL.md')), geminiSkill(read(path.join(claudeRoot, 'SKILL.md'))), 'Gemini SKILL.md');
   assert(read(path.join(geminiRoot, 'SKILL.md')).includes(geminiNote));
-  const changed = new Set(['SKILL.md', 'references/KAPITOLY.json', 'references/INDEX.md', 'references/obrazky.md',
-    ...bundled.map(d => `references/${d.path}`)]);
+  // The upload dialog accepts only CSV, PY, TXT and MD files.
+  for (const f of geminiFiles) assert(geminiAllowed.test(f), `Gemini skill file type: ${f}`);
+  const renamed = f => f.replace(/[^/]+$/, n => geminiRenames[n] || n);
+  const changed = new Set(['SKILL.md', 'references/KAPITOLY.json', 'references/INDEX.md', 'references/LICENCE.md',
+    ...bundled.flatMap(d => [`references/${d.path}`, `references/${registerPath(d.id)}`])]);
   const claudeFiles = files(claudeRoot).map(f => rel(claudeRoot, f)).filter(f => !f.startsWith('references/assets/')).sort();
-  assert.deepEqual(geminiFiles.filter(f => f !== 'references/obrazky.md'), claudeFiles, 'Gemini file list');
+  assert.deepEqual(geminiFiles, claudeFiles.map(renamed).sort(), 'Gemini file list');
   for (const f of claudeFiles.filter(f => !changed.has(f))) {
-    assert.equal(hash(path.join(geminiRoot, f)), hash(path.join(claudeRoot, f)), `Gemini skill file differs: ${f}`);
+    assert.equal(hash(path.join(geminiRoot, renamed(f))), hash(path.join(claudeRoot, f)), `Gemini skill file differs: ${f}`);
   }
   const geminiRefs = path.join(geminiRoot, 'references');
-  const register = read(path.join(geminiRefs, 'obrazky.md'));
+  // Same registers without the links to image files; the intro says so.
+  for (const entry of bundled) {
+    const fullRegister = read(path.join(claudeRoot, 'references', registerPath(entry.id))).split('\n');
+    const textRegister = read(path.join(geminiRefs, registerPath(entry.id))).split('\n');
+    assert.equal(textRegister.length, fullRegister.length, `${entry.id}: Gemini figure register line count`);
+    fullRegister.forEach((line, i) => {
+      if (line === textRegister[i]) return;
+      assert(i === 2 || textRegister[i] === line.replace(/ · \[Soubor obrázku\]\([^)]+\)/, '')
+        || (line.startsWith('Samotný obrázek na webu: ') && /^Zobrazení: (překresli graf z bloku dat níže; adresu nepřidávej|popiš obrázek a připoj adresu stránky učebnice)\.$/.test(textRegister[i])),
+        `${entry.id}: Gemini figure register line ${i + 1}`);
+    });
+    const shown = textRegister.filter(l => l.startsWith('Zobrazení: '));
+    assert.equal(shown.filter(l => l.includes('překresli')).length, textRegister.filter(l => l === 'Data pro překreslení:').length, `${entry.id}: Gemini redraw lines match data blocks`);
+    assert(!textRegister.some(l => /\.(svg|png)\b/i.test(l) && l.includes('https://')), `${entry.id}: Gemini register has no image address`);
+    assert(textRegister[2].startsWith('Soubory obrázků nejsou v této verzi přibalené.'));
+    assert(!textRegister.some(l => l.includes('Soubor obrázku') || l.includes('../assets/')), `${entry.id}: Gemini figure register links no image file`);
+    assert.equal(data.gemini.registers[entry.id], hash(path.join(geminiRefs, registerPath(entry.id))), `${entry.id}: Gemini register checksum`);
+  }
+  assert.equal(read(path.join(geminiRefs, 'INDEX.md')), geminiNames(read(path.join(claudeRoot, 'references/INDEX.md')).replace(figuresLine(true), figuresLine(false))), 'Gemini INDEX.md');
+  assert.equal(read(path.join(geminiRefs, 'LICENCE.md')), geminiNames(read(path.join(claudeRoot, 'references/LICENCE.md'))), 'Gemini LICENCE.md');
   let figureCount = 0;
   for (const entry of bundled) {
-    const webPage = `${web}quarto/${entry.id}.html`;
     const source = parseSource(q, entry.source, false);
     const figs = nodes(source, 'Figure').filter(f => nodes(f, 'Image').length);
     assert.equal(figs.length, nodes(source, 'Image').length, `${entry.id}: every image is a figure`);
     const original = read(path.join(claudeRoot, 'references', entry.path)).split('\n');
     const rewritten = read(path.join(geminiRefs, entry.path)).split('\n');
+    const rewrittenParagraphs = paragraphs(parse(path.join(geminiRefs, entry.path)));
     assert.equal(rewritten.length, original.length, `${entry.id}: line count`);
     let replaced = 0;
     for (let i = 0; i < original.length; i++) {
       if (original[i] === rewritten[i]) continue;
       assert(imageLine.test(original[i]), `${entry.id}: unexpected change on line ${i + 1}`);
-      assert.match(rewritten[i], new RegExp(`^\\[Obrázek ve webové učebnici\\]\\(${webPage.replace(/[.]/g, '\\.')}#fig-[^)]+\\)$`));
+      assert.match(rewritten[i], /^Obrázek: záznam fig-\S+ v rejstříku obrázků kapitoly\.$/);
       replaced++;
     }
     assert.equal(replaced, figs.length, `${entry.id}: replaced images`);
@@ -334,21 +629,17 @@ if (geminiRoot) {
       const id = fig.c[0][0];
       const alt = nodes(fig, 'Image')[0].c[0][2].find(([k]) => k === 'fig-alt')?.[1];
       assert(alt, `${entry.id}/${id}: text description`);
-      assert(rewritten.includes(`[Obrázek ve webové učebnici](${webPage}#${id})`), `${entry.id}/${id}: web link`);
-      assert(rewritten.includes(`Textový popis obrázku: ${alt}`), `${entry.id}/${id}: description in chapter`);
-      assert(register.includes(`{#${id}}`) && register.includes(`Textový popis: ${alt}`), `${entry.id}/${id}: register entry`);
-      assert(register.includes(`[V kapitole](${entry.path}#${id})`) && register.includes(`(${webPage}#${id})`), `${entry.id}/${id}: register links`);
+      assert(rewritten.includes(`Obrázek: záznam ${id} v rejstříku obrázků kapitoly.`), `${entry.id}/${id}: register pointer`);
+      assert(rewrittenParagraphs.has(squeeze(`Textový popis obrázku: ${alt}`)), `${entry.id}/${id}: description in chapter`);
       figureCount++;
     }
   }
-  assert.equal((register.match(/^### Obrázek \d+\.\d+: /gm) || []).length, figureCount, 'Register entry count');
-  const geminiRegistry = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
-  assert.equal(geminiRegistry.images, 'web_only');
+  const {images: geminiImages, ...geminiRegistry} = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.txt')));
+  assert.equal(geminiImages, 'web_only');
+  assert.deepEqual(geminiRegistry, registry, 'Gemini registry differs only by the image note');
   assert.equal(geminiRegistry.figures.count, figureCount);
-  assert.equal(geminiRegistry.figures.sha256, hash(path.join(geminiRefs, 'obrazky.md')));
-  for (const entry of geminiRegistry.chapters.filter(c => c.availability === 'bundled')) {
-    assert.equal(geminiRegistry.chapters.length, registry.chapters.length);
-    assert.equal(entry.sha256, hash(path.join(geminiRefs, entry.path)), `Gemini registry checksum: ${entry.path}`);
+  for (const entry of bundled) {
+    assert.equal(data.gemini.chapters[entry.id], hash(path.join(geminiRefs, entry.path)), `Gemini chapter checksum: ${entry.path}`);
   }
   // Every local Markdown link stays inside the skill and reaches an existing file.
   let geminiLinks = 0;
@@ -364,5 +655,37 @@ if (geminiRoot) {
   }
   gemini = {files: geminiFiles.length, figures: figureCount, localLinks: geminiLinks};
 }
-console.log(JSON.stringify({checks: 'passed', claude, gemini, chapters: 6, catalogChapters: registry.chapters.length, plans: registry.plans.length, overviewEntries: rows,
-  math, images, solutions, checkedLinks, citations: registry.bibliography.citation_keys.length}));
+// ChatGPT plugin: the staged plugin without figure files; chapters and registers are the
+// text-only ones checked above for Gemini, SKILL.md has the same figure instructions.
+let chatgpt = 'not checked (no ChatGPT plugin directory given)';
+if (chatgptRoot) {
+  assert(geminiRoot, 'The ChatGPT check compares against the Gemini skill');
+  const rel = (base, f) => path.relative(base, f).split(path.sep).join('/');
+  const prefix = `skills/${skillName}/`;
+  const own = files(chatgptRoot).map(f => rel(chatgptRoot, f)).sort();
+  const staged = files(packageRoot).map(f => rel(packageRoot, f)).filter(f => !f.startsWith(`${prefix}references/assets/`)).sort();
+  assert.deepEqual(own, staged, 'ChatGPT plugin file list');
+  assert(!own.some(f => f.startsWith(prefix) && /\.(svg|png)$/i.test(f)), 'ChatGPT plugin ships no figure files');
+  const fromGemini = new Set(bundled.flatMap(d => [`${prefix}references/${d.path}`, `${prefix}references/${registerPath(d.id)}`]));
+  const rewritten = new Set([`${prefix}SKILL.md`, `${prefix}references/INDEX.md`, `${prefix}references/KAPITOLY.json`]);
+  for (const f of own) {
+    const file = path.join(chatgptRoot, f);
+    if (fromGemini.has(f)) assert.equal(hash(file), hash(path.join(geminiRoot, f.slice(prefix.length))), `ChatGPT text-only file differs from Gemini: ${f}`);
+    else if (!rewritten.has(f)) assert.equal(hash(file), hash(path.join(packageRoot, f)), `ChatGPT plugin file differs: ${f}`);
+  }
+  assert.equal(read(path.join(chatgptRoot, prefix, 'SKILL.md')), textSkill(skill), 'ChatGPT SKILL.md');
+  assert(Buffer.byteLength(textSkill(skill)) <= 16000, 'ChatGPT SKILL.md size');
+  assert.equal(read(path.join(chatgptRoot, prefix, 'references/INDEX.md')), index.replace(figuresLine(true), figuresLine(false)), 'ChatGPT INDEX.md');
+  assert.deepEqual(JSON.parse(read(path.join(chatgptRoot, prefix, 'references/KAPITOLY.json'))), {...registry, images: 'web_only'}, 'ChatGPT registry');
+  for (const f of own.filter(f => f.endsWith('.md'))) {
+    const file = path.join(chatgptRoot, f);
+    for (const m of read(file).matchAll(/\]\(([^)\s]+)\)/g)) {
+      if (/^[a-z][a-z0-9+.-]*:|^\/\/|^#/i.test(m[1])) continue;
+      assert(fs.existsSync(path.resolve(path.dirname(file), decodeURIComponent(m[1].split('#')[0]))), `${f}: missing file ${m[1]}`);
+    }
+  }
+  chatgpt = {files: own.length, skillBytes: Buffer.byteLength(textSkill(skill))};
+}
+console.log(JSON.stringify({checks: 'passed', chatgpt, claude, gemini, chapters: bundled.length, catalogChapters: registry.chapters.length, plans: data.plans.length, overviewEntries: rows,
+  math, images, solutions, checkedLinks, checkedRanges, registerFigures, figuresWithData, dataRows, maxFigureRows, maxRegisterBytes, interactivePages: bookViz.length, skillBytes: Buffer.byteLength(skill), registryBytes: Buffer.byteLength(registryText),
+  citations: data.bibliography.citation_keys.length}));

@@ -63,6 +63,15 @@ ch3_dots <- function(x,col='#267888',...) {
   yy <- ave(x,x,FUN=seq_along)
   plot(x,yy,pch=21,bg=col,col='white',cex=1.6,yaxt='n',ylab='',bty='n',...)
 }
+# Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_03/); see scripts/tutor/figure-data.R.
+source('scripts/tutor/figure-data.R',encoding='UTF-8')
+ch3_fig <- function(...) tf_figure('kapitola_03',...)
+# Numbers inside texts for the tutor: decimal comma and a true minus sign.
+ch3_num <- function(x,digits=2) sub('^-','−',formatC(x,format='f',digits=digits,decimal.mark=','))
+# Plotted positions of a dot plot, stacked exactly as in ch3_dots().
+ch3_dots_data <- function(x) data.frame(x=x,y=ave(x,x,FUN=seq_along))
+# Static diagram that no R code draws: assets/chapter-03/plots/mode-median-mean.svg (after Cmglee, Czech labels).
+tf_schema('kapitola_03','mode-median-mean')
 ch3_draw('percentil-a-poradi',{
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
   for(k in 1:2) {
@@ -76,6 +85,7 @@ ch3_draw('percentil-a-poradi',{
   }
   text(.5,.3,'Stejných pět časů: 4, 5, 5, 6 a 10 minut. Každý kruh je jeden čas.',adj=0,cex=.85)
 },width=8,height=5.3)
+tf_schema('kapitola_03','percentil-a-poradi')
 ch3_draw('orezani-winsorizace',{
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,12),ylim=c(0,8),xaxs='i',yaxs='i')
   ys<-c(6.6,4.2,1.8);xs<-seq(1,11,length.out=10)
@@ -98,6 +108,7 @@ ch3_draw('orezani-winsorizace',{
   }
   text(.5,.2,'Upravujeme 10 % na každém konci. Původní záznamy uchováme.',adj=0,cex=.85)
 },width=8.5,height=5.8)
+tf_schema('kapitola_03','orezani-winsorizace')
 ch3_draw('vazeny-prumer',{
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
   rect(.5,4.8,4.4,6.6,col='#E5F1F3',border='#267888')
@@ -112,6 +123,7 @@ ch3_draw('vazeny-prumer',{
   text(c(1.5,6.75,8.5),1.05,c('4 min','7 min\nSpolečný průměr','8 min'),cex=.9)
   text(5,.25,'Větší skupina má při průměrování všech lidí větší váhu.',cex=.9)
 },width=8,height=5)
+tf_schema('kapitola_03','vazeny-prumer')
 ch3_draw('stejny-prumer',{
   par(mfrow=c(2,1),mar=c(3.5,4,2,.8))
   for(x in list(c(5,6,6,6,7),c(2,4,6,8,10))) {
@@ -120,6 +132,9 @@ ch3_draw('stejny-prumer',{
     abline(v=6,col='#B16A26',lty=2)
   }
 },height=5.4)
+ch3_fig('stejny-prumer','data',note='Dva bodové grafy nad sebou se stejnou vodorovnou osou; každý bod je jedna doba a shodné hodnoty leží nad sebou. Oranžová přerušovaná svislá čára označuje společný průměr 6 minut. Svislá osa není vykreslena.',panels=lapply(list(c(5,6,6,6,7),c(2,4,6,8,10)),function(x)
+  tf_panel(paste0('Průměr 6 min; směrodatná odchylka ',format(round(sd(x),2),decimal.mark=','),' min'),'bodový graf','Doba dokončení úlohy (minuty)','Pořadí bodu mezi shodnými hodnotami (body nad sebou)',xlim=c(1,11),ylim=c(.5,3.8),
+    guides=list(tf_guide('x',6,'průměr 6 min')),series=list(tf_series('Doby dokončení',ch3_dots_data(x))))))
 ch3_draw('odlehle-a-stred',{
   par(mfrow=c(2,1),mar=c(3.5,4,2,.8))
   for(x in list(ch3_x,c(4,5,5,6,30))) {
@@ -128,6 +143,9 @@ ch3_draw('odlehle-a-stred',{
     abline(v=mean(x),col='#B16A26',lwd=2);abline(v=median(x),col='#267888',lty=2,lwd=2)
   }
 },height=5.4)
+ch3_fig('odlehle-a-stred','data',note='Dva bodové grafy nad sebou se stejnou vodorovnou osou; shodné hodnoty leží nad sebou. Oranžová plná svislá čára označuje průměr, modrozelená přerušovaná medián. Dolní soubor se od horního liší jedinou hodnotou: 30 místo 10 minut. Svislá osa není vykreslena.',panels=lapply(list(ch3_x,c(4,5,5,6,30)),function(x)
+  tf_panel(paste0('Průměr ',mean(x),' min; medián ',median(x),' min'),'bodový graf','Doba dokončení úlohy (minuty)','Pořadí bodu mezi shodnými hodnotami (body nad sebou)',xlim=c(0,32),ylim=c(.5,2.8),
+    guides=list(tf_guide('x',mean(x),paste0('průměr ',mean(x),' min')),tf_guide('x',median(x),paste0('medián ',median(x),' min'))),series=list(tf_series('Doby dokončení',ch3_dots_data(x))))))
 # Exact continuous models on a 0-100 scale: symmetric beta and mirrored betas.
 ch3_centre_models <- data.frame(a=c(5,5,2),b=c(5,2,5))
 ch3_centre_models$mean <- with(ch3_centre_models,100*a/(a+b))
@@ -168,6 +186,14 @@ ch3_draw('stred-a-tvar',{
     text(50,-.025,'Skór (body)',xpd=NA,cex=.95)
   }
 },width=5.5,height=10.5)
+ch3_fig('stred-a-tvar','krivka',note='Tři panely nad sebou se stejnou vodorovnou osou 0–100 bodů; svislá osa hustoty není vykreslena. Plocha pod každou křivkou je světle vybarvena. Svislé úsečky vedou od osy ke křivce: průměr oranžově plnou čarou, medián modrozeleně přerušovanou, modus fialově tečkovanou; pod osou jsou jejich popisky s hodnotami. V souměrném rozdělení všechny tři splývají v jedné tmavé úsečce.',panels=lapply(1:3,function(j) {
+  model <- ch3_centre_models[j,]; f <- function(x) dbeta(x/100,model$a,model$b)/100
+  at <- if(j==1) 50 else as.numeric(model[c('mean','median','mode')])
+  lab <- if(j==1) 'Průměr = medián = modus = 50' else paste0(c('Průměr','Medián','Modus'),' ',vapply(at,function(v) format(round(v,1),decimal.mark=',',trim=TRUE),''))
+  tf_panel(c('Souměrné rozdělení','Zešikmené doleva','Zešikmené doprava')[j],'čárový graf','Skór (body)','Hustota',xlim=c(0,100),ylim=c(0,.03),
+    series=list(tf_curve(paste0('Hustota: beta rozdělení s parametry ',model$a,' a ',model$b,' převedené na škálu 0–100'),f,0,100,61,digits=5),
+      tf_curve('Plocha pod křivkou',f,0,100,41,digits=5,mark='plocha'),
+      tf_series('Ukazatele středu (svislé úsečky od osy ke křivce)',data.frame(popisek=lab,x0=at,y0=0,x1=at,y1=f(at)),'usecky',digits=5))) }))
 # Own discrete counterexamples after von Hippel (2005, sections 2-3); both are
 # unimodal with a longer right tail. Frequencies are printed in the chapter.
 ch3_exceptions <- list(
@@ -206,6 +232,13 @@ ch3_draw('stred-vyjimky',{
     mtext(label,side=1,line=4.6,cex=.9,font=2)
   }
 },width=7,height=7.4)
+ch3_fig('stred-vyjimky','sloupce',note='Dva sloupcové grafy četností nad sebou. Svislé čáry téměř přes celou výšku grafu: průměr oranžově plnou čarou, medián modrozeleně přerušovanou, modus fialově tečkovanou (legenda vpravo nahoře). Shodné ukazatele jsou kresleny těsně vedle sebe, aby byly vidět všechny čáry. Pod každým grafem je tučný popisek uvedený v poznámce panelu.',panels=lapply(1:2,function(j) {
+  e <- ch3_exceptions[[j]]; s <- ch3_exception_stats[j,]; fmt <- function(v) format(round(v,2),decimal.mark=',',trim=TRUE)
+  tf_panel(c('A: Počet pokusů do splnění úlohy (100 lidí)','B: Počet chyb v krátkém testu pozornosti (20 lidí)')[j],'sloupcový graf',c('Počet pokusů','Počet chyb')[j],'Četnost',ylim=c(0,max(e$freq)*1.15),
+    guides=list(tf_guide('x',s$mean,paste0('průměr ',fmt(s$mean))),tf_guide('x',s$median,paste0('medián ',fmt(s$median))),tf_guide('x',s$mode,paste0('modus ',fmt(s$mode)))),
+    note=if(j==1) paste0('Průměr ',fmt(s$mean),' < medián ',fmt(s$median),' = modus ',fmt(s$mode),'; delší chvost vpravo.') else
+      paste0('Modus ',fmt(s$mode),' < průměr ',fmt(s$mean),' = medián ',fmt(s$median),'; rozdělení není souměrné.'),
+    series=list(tf_series('Četnosti',data.frame(x=e$values,y=e$freq),'sloupce'))) }))
 # Same observations as the chapter table. Squares are geometric areas, not
 # distances on the observation-number axis. Direction avoids overlapping areas.
 ch3_deviations <- ch3_x-mean(ch3_x)
@@ -243,6 +276,17 @@ ch3_draw('odchylky-a-ctverce',{
     }
   }
 },width=6.5,height=11)
+ch3_fig('odchylky-a-ctverce','data',note='Dva panely nad sebou se stejnými osami; obě osy mají stejné měřítko (jedno pozorování na vodorovné ose je stejně dlouhé jako jedna minuta na svislé), takže čtverce jsou skutečně čtvercové. Každé pozorování má vlastní barvu, stejnou v obou panelech (oranžovohnědá, modrá, zelená, šedá, fialová). Přerušovaná vodorovná čára je průměr 6 minut.',panels=lapply(1:2,function(panel) {
+  m <- mean(ch3_x); i <- seq_along(ch3_x)
+  pts <- data.frame(x=i,y=ch3_x,odchylka=ch3_deviations)
+  if(panel==1) pts$popisek <- c('−2','−1','−1','0','+4')
+  sq <- data.frame(pozorovani=i,x_od=ch3_square_left,x_do=ch3_square_left+ch3_square_width,y_od=pmin(ch3_x,m),y_do=pmax(ch3_x,m),plocha_min2=ch3_deviations^2)
+  tf_panel(if(panel==1) 'A. Odchylky od průměru. Délka úsečky = absolutní odchylka' else 'B. Čtverce odchylek. Plocha čtverce = druhá mocnina odchylky','bodový graf','Číslo pozorování','Doba dokončení (minuty)',xlim=c(-1.5,9.5),ylim=c(2.5,10.8),
+    guides=list(tf_guide('y',m,'Průměr = 6 min')),
+    note=if(panel==1) 'U každé úsečky je popisek odchylky v minutách; vpravo dole je text „Součet délek 8 min“. Značky vodorovné osy jsou jen u pozorování 1 až 5.' else
+      'Na každé úsečce odchylky stojí poloprůhledný čtverec v barvě pozorování s popiskem plochy (4, 1, 1 a 16 min²; u čtvrtého pozorování jen popisek „0 min²“); vpravo dole je text „Součet ploch 22 min²“. Čtverce nakresli jako obdélníky podle řady „Čtverce odchylek“.',
+    series=c(list(tf_series('Odchylky od průměru (svislé úsečky od průměru k bodu)',data.frame(x0=i,y0=m,x1=i,y1=ch3_x),'usecky'),tf_series('Doby dokončení',pts)),
+      if(panel==2) list(tf_series('Čtverce odchylek',sq[ch3_square_width>0,],'tabulka')))) }))
 ch3_draw('kvantil-interpolace',{
   par(mfrow=c(2,1),mar=c(4.7,4.4,3.6,.6),cex=1)
   plot(100*ch3_interpolation_levels,ch3_interpolation,type='o',pch=21,
@@ -265,6 +309,18 @@ ch3_draw('kvantil-interpolace',{
   text(10,5,'Druhý čas',pos=4,offset=.6,cex=.95)
   text(20,7,'Třetí čas',pos=2,offset=.7,cex=.95)
 },width=5.5,height=7.8)
+ch3_fig('kvantil-interpolace','data',note='Dva panely nad sebou. Nahoře je jedenáct seřazených časů spojených lomenou čarou; oranžový obdélník ohraničuje úsek mezi druhým a třetím časem a ukazuje na něj šipka s popiskem „Detail dole“. Dole je tento úsek zvětšený: oranžové přerušované úsečky vedou od úrovně 17 % na vodorovné ose ke spojnici a od ní k hodnotě 6,4 na svislé ose; průsečík je oranžový bod.',panels=list(
+  tf_panel('Jedenáct hodnot, deset kroků po 10 procentních bodech','čárový graf','Přiřazená úroveň kvantilu (%)','Doba úlohy (minuty)',xlim=c(0,100),ylim=c(3,23),
+    note='Značky vodorovné osy jsou po 10 %, značky svislé osy v hodnotách 4, 8, 12, 16, 20 a 22.',
+    series=list(tf_series('Spojnice časů',data.frame(x=100*ch3_interpolation_levels,y=ch3_interpolation),'cara'),
+      tf_series('Časy',data.frame(x=100*ch3_interpolation_levels,y=ch3_interpolation)),
+      tf_series('Zvětšený úsek (strany oranžového obdélníku)',data.frame(x0=c(10,20,20,10),y0=c(5,5,7,7),x1=c(20,20,10,10),y1=c(5,7,7,5)),'usecky'))),
+  tf_panel('17. percentil: sedm desetin cesty od 5 k 7 minutám','čárový graf','Přiřazená úroveň kvantilu (%)','Doba úlohy (minuty)',xlim=c(9,21),ylim=c(4.75,7.35),
+    note='Značky vodorovné osy jsou jen v 10, 17 a 20 %, značky svislé osy v 5, 6,4 a 7 minutách.',
+    series=list(tf_series('Spojnice druhého a třetího času',data.frame(x=c(10,20),y=c(5,7)),'cara'),
+      tf_series('Časy',data.frame(x=c(10,20),y=c(5,7),popisek=c('Druhý čas','Třetí čas'))),
+      tf_series('Odečtení 17. percentilu (oranžové přerušované úsečky)',data.frame(x0=c(17,9),y0=c(4.75,6.4),x1=c(17,17),y1=c(6.4,6.4)),'usecky'),
+      tf_series('17. percentil',data.frame(x=17,y=6.4,popisek='6,4 min'))))))
 # Explicit type-7 box: never rely on R's default Tukey hinges.
 ch3_box_x <- c(2,5,15,25,30,32,34,36,38,40,40,42,44,44,46,46,48,48,49,50,50,
   50,51,52,52,54,54,56,56,58,60,60,62,64,66,68,70,75,85,95,98)
@@ -310,6 +366,14 @@ ch3_draw('boxplot',{
   label(1,'Podezřelá odlehlá\npozorování: 2 a 5',col='#B16A26',from=1.75,to=2)
   arrows(2.48,1,1.75,5,length=.07,col='#B16A26')
 },width=6.8,height=9)
+ch3_fig('boxplot','data',note='Svislý krabicový graf 41 testových skórů bez vodorovné osy. Vlevo (nadpis „Pozorování“) jsou světle modře všechna pozorování, shodné hodnoty vedle sebe; uprostřed (nadpis „Krabicový graf“) je krabice s tlustou čarou mediánu, vousy se zarážkami a oranžové body podezřelých odlehlých pozorování. Vpravo jsou popisky se šipkami: „3. kvartil = 60“, „Medián = 50“, „1. kvartil = 40“, „Horní vous: konec 85“, „Dolní vous: konec 15“, šedě „Horní mez = 90“ a „Dolní mez = 10“, oranžově „Podezřelá odlehlá pozorování: 95 a 98“ a „Podezřelá odlehlá pozorování: 2 a 5“.',panels=list(local({
+  x <- ch3_box_x; offset <- ave(x,x,FUN=function(z) (seq_along(z)-(length(z)+1)/2)*.13)
+  tf_panel('Pozorování a krabicový graf','krabicový graf','Poloha v obrázku (bez osy)','Testový skór (body)',xlim=c(0,5.8),ylim=c(-3,105),
+    note='Modrozelená svorka vlevo od krabice vyznačuje vzdálenost kvartilů „IQR = 20 bodů“; fialové svorky vpravo od krabice vyznačují vzdálenosti „1,5 × IQR = 30 bodů“ od 1. kvartilu k dolní mezi a od 3. kvartilu k horní mezi. Pravou část obrázku (polohy 2,5 až 5,8) zabírají popisky.',
+    series=list(tf_series('Pozorování',data.frame(x=.4+offset,y=x)),
+      tf_series('Krabicový graf',data.frame(poloha=1.65,dolni_vous=min(ch3_box_inside),q1=ch3_box_q[1],median=ch3_box_q[2],q3=ch3_box_q[3],horni_vous=max(ch3_box_inside)),'krabice',direction='svisle',note='Krabice sahá vodorovně od polohy 1,3 do 2.'),
+      tf_series('Podezřelá odlehlá pozorování',data.frame(x=1.65,y=ch3_box_out)),
+      tf_series('Meze pro odlehlá pozorování (šedé tečkované úsečky)',data.frame(popisek=c('Dolní mez = 10','Horní mez = 90'),x0=1.15,y0=ch3_box_fences,x1=2.35,y1=ch3_box_fences),'usecky'))) })))
 ch3_draw('korekce-rozptylu',{
   # Points: the first 400 replications of each size (jittered); crosses: means of all 20 000.
   z<-ch3_simulation_summary;cols<-c('#B16A26','#267888');xc<-c(1,4,7);off<-c(-.45,.45)
@@ -336,6 +400,23 @@ ch3_draw('korekce-rozptylu',{
     col=c(cols,'#223744','#223744'),pch=c(16,16,4,NA),pt.cex=c(1,1,1.3,NA),
     lty=c(NA,NA,NA,2),lwd=c(NA,NA,2.5,2),bty='n',cex=.85,ncol=2)
 },height=5.2)
+ch3_fig('korekce-rozptylu','simulace',note='Každý poloprůhledný bod je rozptyl jednoho simulovaného výběru (losování s vracením z populace 2, 4, 6, 8 a 10 minut): oranžově při dělení n, modrozeleně při dělení n − 1. Obrázek ukazuje prvních 400 z 20 000 výběrů každé velikosti; data kvůli rozsahu uvádějí každý osmý vykreslený bod (50 na skupinu) a rozpětí všech 400 shrnuje tabulka. Tmavé křížky s popisky hodnot jsou průměry všech 20 000 výběrů; legenda vpravo nahoře: Dělení n, Dělení n − 1, Průměr, Populační rozptyl 8.',panels=list(local({
+  z <- ch3_simulation_summary; xc <- c(1,4,7); off <- c(-.45,.45); keep <- seq(1,400,by=8)
+  # Same seed and the same order of random calls as in the drawing code above (k outer, j inner).
+  set.seed(20261016)
+  cloud <- do.call(rbind,lapply(seq_along(ch3_simulations),function(k) do.call(rbind,lapply(1:2,function(j) {
+    v <- head(ch3_simulations[[k]][[c('variance_n','variance_n1')[j]]],400)
+    data.frame(j=j,n=z$n[k],x=xc[k]+off[j]+runif(length(v),-.28,.28),y=v,stringsAsFactors=FALSE) }))))
+  spread <- do.call(rbind,lapply(split(cloud,list(cloud$j,cloud$n)),function(d) data.frame(n=d$n[1],deleni=c('n','n − 1')[d$j[1]],
+    minimum=min(d$y),dolni_kvartil=ch3_quantile(d$y,.25),median=median(d$y),horni_kvartil=ch3_quantile(d$y,.75),maximum=max(d$y))))
+  thin <- function(j) do.call(rbind,lapply(split(cloud[cloud$j==j,c('n','x','y')],cloud$n[cloud$j==j]),function(d) d[keep,]))
+  tf_panel('Rozptyly simulovaných výběrů a jejich průměry','bodový graf','Velikost výběru','Rozptyl jednoho výběru (min²)',xlim=c(-.4,8.4),ylim=c(0,23),
+    guides=list(tf_guide('y',8,'Populační rozptyl 8')),
+    note='Vodorovná osa má jen tři popisky: n = 5 v poloze 1, n = 20 v poloze 4 a n = 100 v poloze 7. Body dělení n leží o 0,45 vlevo od popisku, body dělení n − 1 o 0,45 vpravo; v obou případech jsou vodorovně náhodně rozptýleny v pásu širokém 0,56.',
+    series=list(tf_series('Dělení n: rozptyly jednotlivých výběrů (každý osmý vykreslený bod)',thin(1)),
+      tf_series('Dělení n − 1: rozptyly jednotlivých výběrů (každý osmý vykreslený bod)',thin(2)),
+      tf_series('Průměry všech 20 000 výběrů (křížky)',data.frame(n=rep(z$n,2),deleni=rep(c('n','n − 1'),each=3),x=c(xc+off[1],xc+off[2]),y=c(z$variance_n,z$variance_n1),popisek=ch3_num(c(z$variance_n,z$variance_n1)))),
+      tf_series('Rozpětí 400 vykreslených bodů každé skupiny',spread,'tabulka'))) })))
 # Optional extension: every equally likely sample of two (with replacement)
 # from a two-value population; exact long-run averages, no simulation.
 ch3_all_samples <- function(pop, n=2L) {
@@ -377,6 +458,11 @@ ch3_draw('rozklad-souctu-ctvercu',{
   legend('top',inset=c(0,-.14),xpd=NA,horiz=TRUE,bty='n',fill=rev(cols),border='white',cex=.9,
     legend=c('Úbytek n (m − μ)²','Součet čtverců kolem výběrového průměru m'))
 },width=7.5,height=4.8)
+ch3_fig('rozklad-souctu-ctvercu','sloupce',note='Pět skládaných sloupců: čtyři stejně pravděpodobné výběry dvou hodnot z populace 4 a 8 minut a vpravo, za mezerou a tečkovanou svislou čarou, jejich průměr. Dolní modrozelená část je součet čtverců kolem výběrového průměru m, horní světle oranžová úbytek n (m − μ)²; v každé nenulové části je napsána její hodnota. Legenda je nad grafem.',panels=list(local({
+  z <- ch3_decomposition; lab <- c(z$label,'Průměr')
+  tf_panel('Rozklad součtu čtverců kolem populačního průměru','sloupcový graf','Výběr dvou hodnot (min)','Součet čtverců kolem populačního průměru (min²)',ylim=c(0,8.6),
+    series=list(tf_series('Části součtu čtverců',data.frame(kategorie=rep(lab,each=2),skupina=rep(c('Součet čtverců kolem výběrového průměru m','Úbytek n (m − μ)²'),length(lab)),
+      y=as.vector(rbind(c(z$ss_m,mean(z$ss_m)),c(z$loss,mean(z$loss))))),'sloupce',arrangement='skládané'))) })))
 ch3_draw('entropie',{
   par(mfrow=c(1,3),mar=c(4,4.6,3,.4),cex=.9)
   entropies <- list(c(1,0,0,0),c(.5,.25,.25,0),rep(.25,4))
@@ -390,6 +476,10 @@ ch3_draw('entropie',{
     if(i==1) title(ylab='Relativní četnost',line=3.1)
   }
 },width=8,height=3.7)
+ch3_fig('entropie','sloupce',note='Tři sloupcové grafy vedle sebe se stejnou svislou osou od 0 do 1; sloupce jsou modrozelené. Popisek svislé osy je jen u levého panelu.',panels=local({
+  p <- list(c(1,0,0,0),c(.5,.25,.25,0),rep(.25,4))
+  lapply(seq_along(p),function(i) tf_panel(c('Entropie 0 bitů','Entropie 1,5 bitu','Entropie 2 bity')[i],'sloupcový graf','Strategie učení','Relativní četnost',ylim=c(0,1),
+    series=list(tf_series('Relativní četnosti strategií',data.frame(kategorie=c('A','B','C','D'),y=p[[i]]),'sloupce')))) }))
 ch3_draw('spicatost',{
   par(mfrow=c(1,2),mar=c(4.3,4.3,3,.7))
   for(x in list(ch3_peak_a,ch3_peak_b)) {
@@ -400,6 +490,9 @@ ch3_draw('spicatost',{
     text(4,84,'80 pozorování',cex=.85)
   }
 },width=8,height=4.2)
+ch3_fig('spicatost','sloupce',note='Dva sloupcové grafy vedle sebe se stejnými osami; sloupce jsou modrozelené. Nad prostředním sloupcem každého panelu je popisek „80 pozorování“.',panels=lapply(list(ch3_peak_a,ch3_peak_b),function(x)
+  tf_panel(paste0('Stejný vrchol; exces ',format(round(ch3_moments(x)[2],2),decimal.mark=',')),'sloupcový graf','Odchylka skóru od středu (body)','Počet pozorování',ylim=c(0,90),
+    series=list(tf_series('Počty pozorování',data.frame(x=-3:3,y=as.numeric(table(factor(x,levels=-3:3)))),'sloupce')))))
 # Shape models standardised to mean 0 and SD 1: gamma (skewness 2/sqrt(k)), t (excess 6/(df-4)).
 ch3_skew_models <- list(
   list(skew=0,density=dnorm),
@@ -442,6 +535,28 @@ ch3_draw('ukazatele-tvaru',{
       text(-5.15,.47,lab,adj=0,cex=.9,col='#8A4E14') }
   }
 },width=9,height=8.6)
+ch3_fig('ukazatele-tvaru','krivka',note='Devět panelů ve třech řadách po třech; všechny modely mají průměr 0 a směrodatnou odchylku 1. Horní řada: rostoucí šikmost, plocha pod křivkou je světle modrá. Prostřední řada: rostoucí exces; plochy za tečkovanými hranicemi ±3 jsou světle oranžové a vlevo nahoře je popisek jejich podílu. Dolní řada zvětšuje pravé chvosty modelů z prostřední řady. Modelová křivka je modrozelená plná, normální model pro srovnání šedý přerušovaný (jen ve druhém a třetím sloupci). Křivky jsou uvedeny v 31 až 41 bodech.',panels=local({
+  xl <- 'Směrodatné odchylky od průměru'
+  normal <- function(from,to,n=41,digits=4) tf_curve('Normální model pro srovnání (přerušovaně)',dnorm,from,to,n,digits=digits)
+  skew_names <- c('Normované normální rozdělení','Gama rozdělení s tvarem 4 převedené na průměr 0 a směrodatnou odchylku 1','Exponenciální rozdělení posunuté na průměr 0')
+  excess_names <- c('Normované normální rozdělení','t-rozdělení s 10 stupni volnosti převedené na směrodatnou odchylku 1','t-rozdělení s 5 stupni volnosti převedené na směrodatnou odchylku 1')
+  c(lapply(1:3,function(i) { m <- ch3_skew_models[[i]]
+      # The exponential model jumps from 0 to 1 at -1: keep both sides of the jump.
+      x <- if(i==3) c(-4,-1.01,seq(-1,5,length.out=39)) else seq(-4,5,length.out=41)
+      tf_panel(paste0('Šikmost ',m$skew,c(' (souměrné)',' (střední)',' (vysoká)')[i]),'čárový graf',xl,'Hustota',xlim=c(-4,5),ylim=c(0,1.02),
+        series=c(list(tf_series(skew_names[i],data.frame(x=x,y=m$density(x)),'cara',digits=4,
+          note=paste0('Plocha pod křivkou je světle modře vybarvena.',if(i==3) ' Hustota je nalevo od −1 nulová a v bodě −1 skokem roste na 1.' else ''))),
+          if(i>1) list(normal(-4,5)))) }),
+    lapply(1:3,function(i) { m <- ch3_excess_models[[i]]
+      tf_panel(paste0('Exces ',m$excess,c(' (normální model)',' (střední)',' (vysoký)')[i]),'čárový graf',xl,'Hustota',xlim=c(-5,5),ylim=c(0,.52),
+        guides=list(tf_guide('x',-3,'hranice −3'),tf_guide('x',3,'hranice 3')),note=paste0('Popisek vlevo nahoře: „Mimo ±3: ',ch3_num(100*m$tail),' %“.'),
+        series=c(list(tf_curve(excess_names[i],m$density,-5,5,41)),if(i>1) list(normal(-5,5)),
+          list(tf_curve('Plocha nalevo od −3',m$density,-5,-3,5,digits=5,mark='plocha'),tf_curve('Plocha napravo od 3',m$density,3,5,5,digits=5,mark='plocha')))) }),
+    lapply(1:3,function(i) { m <- ch3_excess_models[[i]]
+      tf_panel('Pravý chvost, zvětšeno','čárový graf',xl,'Hustota',xlim=c(2,5),ylim=c(0,.03),guides=list(tf_guide('x',3,'hranice 3')),
+        note=paste0('Zvětšený pravý chvost modelu s excesem ',m$excess,'. Křivky u levého okraje přesahují horní okraj grafu; světle oranžová plocha leží napravo od hranice 3.'),
+        series=c(list(tf_curve(excess_names[i],m$density,2,5,31,digits=5)),if(i>1) list(normal(2,5,31,5)),
+          list(tf_curve('Plocha napravo od 3',m$density,3,5,21,digits=5,mark='plocha')))) })) }))
 ch3_draw('stejne-dve-statistiky',{
   par(mfrow=c(3,1),mar=c(3.5,5.2,3,.7),cex=1)
   for(i in 1:3) {
@@ -458,6 +573,12 @@ ch3_draw('stejne-dve-statistiky',{
     text(5.8,ymax*.83,'Průměr = 0\nSměrodatná odchylka = 1',adj=1,cex=.9)
   }
 },width=6.5,height=9)
+ch3_fig('stejne-dve-statistiky','sloupce',note='Tři panely nad sebou se shodnou vodorovnou osou a různými svislými měřítky. Světle modré sloupce jsou přesně spočtené pravděpodobnosti v intervalech šířky 0,2; intervaly s pravděpodobností menší než 0,00005 nejsou uvedeny. Oranžová přerušovaná svislá čára označuje společný průměr 0 a v každém panelu je vpravo nahoře text „Průměr = 0, Směrodatná odchylka = 1“.',panels=lapply(1:3,function(i) {
+  bins <- data.frame(od=head(ch3_shape_breaks,-1),do=tail(ch3_shape_breaks,-1),podil=ch3_shape_prob[[i]])
+  tf_panel(c('Dvě stejně pravděpodobné hodnoty','Souměrné zvonovité rozdělení','Rozdělení zešikmené doprava')[i],'histogram','Hodnota proměnné','Pravděpodobnost v intervalu',xlim=c(-4,6),ylim=c(0,c(.53,.11,.12)[i]),
+    guides=list(tf_guide('x',0,'průměr 0')),
+    note=c('Hodnoty −1 a 1, každá s pravděpodobností 0,5.','Normované normální rozdělení.','Gama rozdělení s tvarem 4 a průměrem 2 posunuté o 2 doleva.')[i],
+    series=list(tf_series('Pravděpodobnosti v intervalech',bins[round(bins$podil,4)>0,],'histogram',digits=4))) }))
 ch3_draw('transformace',{
   par(mfrow=c(2,1),mar=c(4,4.5,3,.8))
   for(i in 1:2) {
@@ -472,3 +593,10 @@ ch3_draw('transformace',{
       if(i==1) c('+3','+3') else c('+5','+17'),pos=4,cex=.9)
   }
 },width=6,height=8)
+ch3_fig('transformace','krivka',note='Dva panely nad sebou se stejnou vodorovnou osou. Modrozelená čára je převod skóru, oranžové body leží v původních skórech 2, 3, 8 a 9. U každé dvojice sousedních bodů vede tečkovaná vodorovná úsečka o jeden bod doprava a svislá úsečka se zarážkami ukazuje přírůstek nového skóru; vpravo od ní je jeho popisek.',panels=lapply(1:2,function(i) {
+  f <- if(i==1) function(x) 2+3*x else function(x) x^2; x <- c(2,3,8,9)
+  tf_panel(if(i==1) 'Lineární: y = 2 + 3x' else 'Nelineární: y = x²','čárový graf','Původní skór x','Nový skór y',
+    series=list(tf_curve(if(i==1) 'Převod y = 2 + 3x' else 'Převod y = x²',f,0,10,41),
+      tf_series('Vyznačené skóry',data.frame(x=x,y=f(x))),
+      tf_series('Krok o jeden bod původního skóru (tečkované vodorovné úsečky)',data.frame(x0=c(2,8),y0=f(c(2,8)),x1=c(3,9),y1=f(c(2,8))),'usecky'),
+      tf_series('Přírůstek nového skóru (svislé úsečky se zarážkami)',data.frame(popisek=if(i==1) c('+3','+3') else c('+5','+17'),x0=c(3,9),y0=f(c(2,8)),x1=c(3,9),y1=f(c(3,9))),'usecky'))) }))

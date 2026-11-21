@@ -4,7 +4,8 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
-  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill} = c;
+  parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, textSkill, geminiSkill,
+  figureRegister, figuresLine, inlineMd, imageLine, pngName, geminiRenames, geminiNames, figureDataChapters, hasData, registerPath, registerRanges, registerDataStarts} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -35,19 +36,25 @@ const write = (relative, body) => {
 if (!args.includes('--skip-figures')) {
   const r = option('--rscript') || (fs.existsSync('C:/Program Files/R/R-4.5.1/bin/Rscript.exe') ?
     'C:/Program Files/R/R-4.5.1/bin/Rscript.exe' : 'Rscript');
-  for (let n = 1; n <= 6; n++) {
-    const nn = String(n).padStart(2, '0');
-    console.log(`Obrázky kapitoly ${n}/6`);
-    run(r, ['--vanilla', '-e', `Sys.setlocale('LC_CTYPE', '.UTF-8'); source('scripts/kapitola_${nn}.R', encoding='UTF-8')`]);
+  for (const d of bundled) {
+    console.log(`Obrázky kapitoly ${d.number}/${bundled.length}`);
+    if (figureDataChapters.includes(d.id)) fs.rmSync(path.join(root, 'tmp/tutor-figures', d.id), {recursive: true, force: true});
+    run(r, ['--vanilla', '-e', `Sys.setlocale('LC_CTYPE', '.UTF-8'); source('scripts/${d.id}.R', encoding='UTF-8')`]);
   }
 }
+// Czech wording of the bundled range, e.g. "1–10"; chapters outside it stay web-only.
+const webOnly = book.filter(d => !bundled.some(b => b.id === d.id));
+assert.deepEqual(bundled.map(d => d.number), bundled.map((_, i) => i + 1), 'Bundled chapters form the range 1–n');
+const bundledRange = `1–${bundled.length}`;
+const webOnlyRange = webOnly.length ? `${webOnly[0].number}–${webOnly.at(-1).number}` : '';
 
 const sourceRevision = run('git', ['rev-parse', 'HEAD']).trim();
 const inputPaths = [...new Set([...documents.map(d => d.source), ...book.map(d => d.source),
   '_quarto.yml', ...bundled.map(d => cardFor(d.number)),
-  ...Array.from({length: 6}, (_, i) => `scripts/kapitola_0${i + 1}.R`),
+  ...bundled.map(d => `scripts/${d.id}.R`),
   'references.bib', 'styles/apa.csl', 'LICENSE-TEXT.md',
   'LICENSE', 'scripts/export-tutor.cjs', 'scripts/check-tutor.cjs', 'scripts/tutor/common.cjs', 'scripts/tutor/prepare.lua', 'scripts/tutor/plans.cjs',
+  'scripts/tutor/svg-to-png.cjs', 'scripts/tutor/figure-data.R',
   ...files(source).map(f => posix(path.relative(root, f)))])];
 const inputs = Object.fromEntries(inputPaths.map(f => [f, hash(path.join(root, f))]));
 const sourceDirty = run('git', ['status', '--porcelain', '--', ...inputPaths]).trim() !== '';
@@ -171,6 +178,7 @@ function finish(value, d) {
     const sourceFile = path.resolve(root, path.dirname(d.source), copy.c[2][0]);
     const relative = posix(path.relative(path.join(root, 'assets'), sourceFile));
     assert(relative && !relative.startsWith('../') && !path.isAbsolute(relative), `Image outside assets/: ${sourceFile}`);
+    assert(/\.svg$/i.test(relative), `Chapter figures are SVG sources: ${sourceFile}`);
     const output = `assets/${relative}`;
     assetFiles.set(output, sourceFile);
     copy.c[2][0] = posix(path.relative(path.dirname(d.output), output));
@@ -212,34 +220,73 @@ write(literature.output, pandoc(q, writer, JSON.stringify({
   'pandoc-api-version': cited['pandoc-api-version'], meta: {},
   blocks: [{t: 'Header', c: [1, ['literatura-tutora', [], []], [str(literature.title)]]}, finish(bibliography, literature)]
 })));
+// The plugin (ChatGPT) ships the SVG sources of the book; the Claude variant gets PNG renderings below.
 for (const [output, input] of assetFiles) {
-  const dest = path.join(refs, output);
-  fs.mkdirSync(path.dirname(dest), {recursive: true});
-  fs.copyFileSync(input, dest);
+  fs.mkdirSync(path.dirname(path.join(refs, output)), {recursive: true});
+  fs.copyFileSync(input, path.join(refs, output));
 }
 fs.copyFileSync(path.join(root, 'LICENSE-TEXT.md'), path.join(refs, 'LICENCE.md'));
 fs.copyFileSync(path.join(root, 'LICENSE'), path.join(refs, 'LICENSE'));
 fs.writeFileSync(path.join(stage, 'README.md'), `# Statistika pro psychology – AI tutor\n\n` +
   `Verze ${version}; autor Karel Rečka.\n\n` +
   'Vyber plugin v ChatGPT a uveď téma a režim: vysvětlení, sokratovské vedení, procvičování nebo zkoušení.\n\n' +
-  'Kapitoly 1–6 a tři celé aktuální přehledy jsou přibalené; nemusíš je nahrávat. Úplné kapitoly 7–10 nejsou součástí této verze.\n\n' +
+  `Kapitoly ${bundledRange} a tři celé aktuální přehledy jsou přibalené; nemusíš je nahrávat.` +
+  (webOnly.length ? ` Úplné kapitoly ${webOnlyRange} nejsou součástí této verze.` : '') + '\n\n' +
   '[Obsah podkladů](skills/statistika-tutor/references/INDEX.md) · ' +
-  '[Údržba a distribuce](skills/statistika-tutor/references/PRIPOJENI-KAPITOL.md) · ' +
   '[Původ a licence](skills/statistika-tutor/references/LICENCE.md)\n\n' +
   'Instrukce usměrňují jazykový model, nezaručují bezchybnost odpovědí. Zkoušení je formativní nácvik.\n', 'utf8');
 
 const entry = d => ({id: d.id, title: d.title, path: d.output, source: d.source,
   sha256: hash(path.join(refs, d.output)), bytes: Buffer.byteLength(d.markdown),
   headings: nodes(d.out.blocks, 'Header').map(h => ({id: h.c[1][0], title: text(h.c[2]), level: h.c[0]}))});
+// One figure register per chapter, shipped in all variants.
+const exportedChapters = exported.filter(d => d.kind === 'chapter');
+const figures = [];
+for (const d of exportedChapters) {
+  const blocks = nodes(d.out.blocks, 'Div').filter(div => div.c[0][0].startsWith('fig-') && nodes(div.c[1], 'Image').length);
+  for (const div of blocks) {
+    const images = nodes(div.c[1], 'Image');
+    assert.equal(images.length, 1, `${d.id}/${div.c[0][0]}: one image per figure`);
+    const record = idMap.get(div.c[0][0]).find(r => r.doc.id === d.id);
+    const alt = images[0].c[0][2].find(([key]) => key === 'fig-alt')?.[1];
+    assert(record?.number && alt, `${d.id}/${div.c[0][0]}: number and text description`);
+    const file = posix(path.join(path.dirname(d.output), images[0].c[2][0]));
+    const sourceSvg = posix(path.relative(root, assetFiles.get(file)));
+    // Data for redrawing come from the chapter's R script (scripts/tutor/figure-data.R).
+    const dataFile = path.join(root, 'tmp/tutor-figures', d.id, `${path.basename(sourceSvg, '.svg')}.json`);
+    const data = figureDataChapters.includes(d.id) ? JSON.parse(read(dataFile)) : null;
+    assert(figureDataChapters.includes(d.id) || !fs.existsSync(dataFile), `Unexpected figure data: ${dataFile}`);
+    figures.push({chapter: d.id, id: div.c[0][0], number: record.number,
+      caption: inlineMd(images[0].c[1]), alt, file, data,
+      web: `${web}quarto/${d.id}.html#${div.c[0][0]}`, image: `${web}${sourceSvg}`});
+  }
+}
+assert.equal(figures.length, nodes(exportedChapters.map(d => d.out.blocks), 'Image').length,
+  'Every chapter image has a register entry');
+for (const d of exportedChapters) {
+  const own = figures.filter(f => f.chapter === d.id);
+  assert.equal(new Set(own.map(f => f.id)).size, own.length, `${d.id}: unique figure identifiers`);
+  const registerText = figureRegister(d, own, true);
+  write(registerPath(d.id), registerText);
+  // The text-only variant keeps the same lines, so the ranges hold in every package.
+  const ranges = registerRanges(registerText);
+  const dataStarts = registerDataStarts(registerText);
+  for (const f of own) {
+    f.register = registerPath(d.id); f.range = ranges.get(f.id); f.dataStart = dataStarts.get(f.id);
+    assert(f.range && Boolean(f.dataStart) === hasData(f), `${d.id}/${f.id}: register range and data block`);
+  }
+}
+
 const plans = [];
-for (const d of exported.filter(d => d.kind === 'chapter')) {
-  const plan = createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision});
+for (const d of exportedChapters) {
+  const plan = createPlan({d, exported, pages, q, writer, version, stamp, sourceRevision,
+    figures: figures.filter(f => f.chapter === d.id)});
   const output = `plany/${d.id}.md`;
   write(output, plan.markdown);
   plans.push({chapter: d.id, path: output, card: plan.card, sha256: hash(path.join(refs, output)),
     concepts: plan.concepts,
     optional_blocks: plan.scope.optionalBlocks.map(x => x.id),
-    headings: plan.scope.headings});
+    headings: plan.scope.headings, ranges: plan.ranges});
 }
 const chapterEntries = book.map(b => {
   const d = exported.find(d => d.id === b.id);
@@ -254,20 +301,40 @@ const skillPath = path.join(stage, 'skills/statistika-tutor/SKILL.md');
 const template = read(skillPath);
 assert.equal(template.split('<!-- tutor:chapter-menu -->').length, 2, 'One generated chapter-menu slot required');
 fs.writeFileSync(skillPath, template.replace('<!-- tutor:chapter-menu -->', chapterMenu), 'utf8');
+// The packaged registry is a small catalog with the release version and revision;
+// the tutor chooses chapters from INDEX.md. Headings, concept inventories, line
+// ranges and checksums are verification data and stay outside the package.
+const slim = ({id, title, path: file, source}) => ({id, title, path: file, source});
 const catalog = {
-  schema_version: 2, package_version: version, updated: stamp, status: 'chapters_available',
+  schema_version: 3, package_version: version, updated: stamp, status: 'chapters_available',
   source_revision: sourceRevision, source_dirty: sourceDirty, reference_package: 'REFERENCE.md', index: 'INDEX.md',
-  notice: 'Úplný výklad kapitol 1–6; celé aktuální přehledy obsahují i hesla kapitol 7–10. Úplné kapitoly 7–10 nejsou přibalené.',
+  notice: `Úplný výklad kapitol ${bundledRange} a celé aktuální přehledy.` +
+    (webOnly.length ? ` Úplné kapitoly ${webOnlyRange} nejsou přibalené; přehledy obsahují i jejich hesla.` : '') +
+    ' Kapitolu a oddíl vybírej podle INDEX.md a výukových plánů; tento registr uvádí verzi a revizi vydání.',
+  chapters: chapterEntries.map(d => ({id: d.id, number: d.number, title: d.title, path: d.path, plan: d.plan,
+    source: d.source, availability: d.availability, web_url: d.web_url})),
+  overviews: exported.filter(d => d.kind === 'overview').map(slim),
+  introduction: slim(exported.find(d => d.kind === 'introduction')),
+  bibliography: {path: literature.output},
+  figures: {count: figures.length, registers: exportedChapters.map(d => registerPath(d.id)),
+    with_data: figures.filter(hasData).length}
+};
+write('KAPITOLY.json', JSON.stringify(catalog, null, 2) + '\n');
+const checkData = {
+  package_version: version, source_revision: sourceRevision,
   chapters: chapterEntries, plans,
   overviews: exported.filter(d => d.kind === 'overview').map(entry),
   introduction: entry(exported.find(d => d.kind === 'introduction')),
   bibliography: {path: literature.output, citation_keys: citedKeys, sha256: hash(path.join(refs, literature.output))},
+  figures: {count: figures.length,
+    registers: exportedChapters.map(d => ({chapter: d.id, path: registerPath(d.id), sha256: hash(path.join(refs, registerPath(d.id)))})),
+    entries: figures.map(({chapter, id, number, file, range, dataStart, image, data}) => ({chapter, id, number, file, range, dataStart, image,
+      sha256: hash(path.join(refs, file)), data}))},
   source_hashes: inputs
 };
-write('KAPITOLY.json', JSON.stringify(catalog, null, 2) + '\n');
 const index = [`# Obsah podkladů AI tutora`, '', `Verze ${version}; snímek učebnice z ${stamp}.`, '',
-  'Student nemusí nahrávat kapitoly 1–6 ani tři přehledy. Načítej potřebný oddíl, nikoli všechny soubory najednou.', '',
-  'Úplné kapitoly 7–10 nejsou přibalené. Hesla z těchto kapitol jsou dostupná ve třech přehledech; jejich odkazy na výklad vedou na web.', '',
+  `Student nemusí nahrávat kapitoly ${bundledRange} ani tři přehledy. Načítej potřebný oddíl, nikoli všechny soubory najednou; rozsahy řádků oddílů, zadání a řešení uvádí výukový plán kapitoly.`, '',
+  ...(webOnly.length ? [`Úplné kapitoly ${webOnlyRange} nejsou přibalené. Hesla z těchto kapitol jsou dostupná ve třech přehledech; jejich odkazy na výklad vedou na web.`, ''] : []),
   '[O učebnici a původu dat](uvod.md) · [Krátká reference](REFERENCE.md) · [Literatura](literatura.md) · [Licence](LICENCE.md)', '',
   '## Výkladové kapitoly', ''];
 index.push('### Katalog celé učebnice', '', '| Kapitola | Dostupnost |', '|---|---|');
@@ -285,7 +352,13 @@ for (const d of exported.filter(d => d.kind === 'overview')) {
   const count = nodes(d.out.blocks, 'Header').filter(h => h.c[0] === 2).length;
   index.push(`- [${d.title}](${d.output}) — ${count} hesel; vyhledej název, značku nebo funkci a načti konkrétní heslo.`);
 }
-index.push('', 'Registr KAPITOLY.json rozlišuje katalog celé knihy, přibalené kapitoly a šest výukových plánů. Obsahuje přesná ID, zdrojovou verzi a otisky souborů; načítej potřebný záznam.', '');
+index.push('', '## Obrázky', '', figuresLine(true), '');
+for (const d of exportedChapters) {
+  const own = figures.filter(f => f.chapter === d.id);
+  index.push(`- [Obrázky kapitoly ${d.number}](${registerPath(d.id)}) — ${own.length} obrázků${own.some(hasData) ? `, ${own.filter(hasData).length} s daty pro překreslení` : ''}`);
+}
+index.push('',
+  'Katalogem pro nabídku kapitol je tento index. Registr KAPITOLY.json slouží ke zjištění verze a zdrojové revize vydání.', '');
 write('INDEX.md', index.join('\n'));
 
 // Claude skill upload: one folder named after the skill, the same references,
@@ -294,60 +367,79 @@ const claudeStage = path.join(work, 'claude');
 const claudeDir = path.join(claudeStage, skillName);
 fs.cpSync(path.join(stage, 'skills', skillName), claudeDir, {recursive: true});
 fs.writeFileSync(path.join(claudeDir, 'SKILL.md'), claudeSkill(read(path.join(claudeDir, 'SKILL.md'))), 'utf8');
+// Claude shows a PNG as a file card but not an SVG, so its variant swaps every figure
+// for a PNG rendering; chapters and registers follow the new file names line by line.
+const claudeRefs = path.join(claudeDir, 'references');
+const pngJobs = path.join(work, 'png-jobs.json');
+fs.writeFileSync(pngJobs, JSON.stringify([...assetFiles].map(([output, input]) => ({input, output: path.join(claudeRefs, pngName(output))}))), 'utf8');
+const pngSizes = new Map(JSON.parse(run(process.execPath, ['scripts/tutor/svg-to-png.cjs', pngJobs]))
+  .map(r => [posix(path.relative(claudeRefs, r.output)), {width: r.width, height: r.height}]));
+fs.rmSync(pngJobs);
+for (const output of assetFiles.keys()) {
+  assert(pngSizes.has(pngName(output)) && fs.statSync(path.join(claudeRefs, pngName(output))).size > 1000, `PNG not rendered: ${output}`);
+  fs.rmSync(path.join(claudeRefs, output));
+}
+for (const d of exportedChapters) {
+  const file = path.join(claudeRefs, d.output);
+  fs.writeFileSync(file, read(file).split('\n').map(line => imageLine.test(line) ? pngName(line) : line).join('\n'), 'utf8');
+  fs.writeFileSync(path.join(claudeRefs, registerPath(d.id)),
+    figureRegister(d, figures.filter(f => f.chapter === d.id).map(f => ({...f, file: pngName(f.file)})), true), 'utf8');
+}
+checkData.claude = {
+  figures: Object.fromEntries(figures.map(f => [`${f.chapter}/${f.id}`, {file: pngName(f.file), ...pngSizes.get(pngName(f.file)),
+    sha256: hash(path.join(claudeRefs, pngName(f.file)))}])),
+  chapters: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(claudeRefs, d.output))])),
+  registers: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(claudeRefs, registerPath(d.id)))]))
+};
 
-// Gemini skill upload: the Claude folder without SVG files (Gemini limits the
-// file count), web links instead of images and a generated figure register.
+// Gemini skill upload: the Claude folder without image files (only CSV, PY, TXT and MD
+// are accepted), web links instead of images and registers without file links.
 const geminiStage = path.join(work, 'gemini');
 const geminiDir = path.join(geminiStage, skillName);
 const geminiRefs = path.join(geminiDir, 'references');
 fs.cpSync(claudeDir, geminiDir, {recursive: true});
 fs.rmSync(path.join(geminiRefs, 'assets'), {recursive: true});
 fs.writeFileSync(path.join(geminiDir, 'SKILL.md'), geminiSkill(read(path.join(geminiDir, 'SKILL.md'))), 'utf8');
-const figures = [];
-for (const d of exported.filter(d => d.kind === 'chapter')) {
-  const webPage = `${web}quarto/${d.id}.html`;
+for (const d of exportedChapters) {
   const file = path.join(geminiRefs, d.output);
-  const {markdown, ids} = withoutImages(read(file), webPage);
+  const {markdown, ids} = withoutImages(read(file));
   fs.writeFileSync(file, markdown, 'utf8');
-  const blocks = nodes(d.out.blocks, 'Div').filter(div => div.c[0][0].startsWith('fig-') && nodes(div.c[1], 'Image').length);
-  assert.deepEqual(ids, blocks.map(div => div.c[0][0]), `${d.id}: figure blocks and replaced images`);
-  for (const div of blocks) {
-    const images = nodes(div.c[1], 'Image');
-    assert.equal(images.length, 1, `${d.id}/${div.c[0][0]}: one image per figure`);
-    const record = idMap.get(div.c[0][0]).find(r => r.doc.id === d.id);
-    const alt = images[0].c[0][2].find(([key]) => key === 'fig-alt')?.[1];
-    assert(record?.number && alt, `${d.id}/${div.c[0][0]}: number and text description`);
-    figures.push({chapter: d, id: div.c[0][0], number: record.number, caption: text(images[0].c[1]), alt, web: `${webPage}#${div.c[0][0]}`});
-  }
+  assert.deepEqual(ids, figures.filter(f => f.chapter === d.id).map(f => f.id), `${d.id}: figure blocks and replaced images`);
 }
-assert.equal(figures.length, nodes(exported.filter(d => d.kind === 'chapter').map(d => d.out.blocks), 'Image').length,
-  'Every chapter image has a register entry');
-const register = ['# Rejstřík obrázků učebnice', '',
-  'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a odkaz na obrázek ve webové učebnici.', ''];
-for (const d of exported.filter(d => d.kind === 'chapter')) {
-  register.push(`## ${d.number}. ${d.title} {#obrazky-${d.id}}`, '');
-  for (const f of figures.filter(f => f.chapter === d)) {
-    register.push(`### Obrázek ${f.number}: ${f.caption} {#${f.id}}`, '',
-      `Textový popis: ${f.alt}`, '',
-      `[V kapitole](${d.output}#${f.id}) · [Ve webové učebnici](${f.web})`, '');
-  }
+for (const d of exportedChapters) {
+  fs.writeFileSync(path.join(geminiRefs, registerPath(d.id)), figureRegister(d, figures.filter(f => f.chapter === d.id), false), 'utf8');
 }
-fs.writeFileSync(path.join(geminiRefs, 'obrazky.md'), register.join('\n'), 'utf8');
-fs.appendFileSync(path.join(geminiRefs, 'INDEX.md'),
-  '\n## Obrázky\n\n[Rejstřík obrázků](obrazky.md) — číslo, popisek, textový popis a webový odkaz ke každému obrázku; soubory obrázků nejsou přibalené.\n', 'utf8');
+const geminiIndex = read(path.join(geminiRefs, 'INDEX.md'));
+assert.equal(geminiIndex.split(figuresLine(true)).length, 2, 'One figure-register line in INDEX.md');
+fs.writeFileSync(path.join(geminiRefs, 'INDEX.md'), geminiNames(geminiIndex.replace(figuresLine(true), figuresLine(false))), 'utf8');
 const geminiCatalog = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
 geminiCatalog.images = 'web_only';
-for (const chapter of geminiCatalog.chapters.filter(c => c.availability === 'bundled')) {
-  chapter.sha256 = hash(path.join(geminiRefs, chapter.path));
-}
-geminiCatalog.figures = {path: 'obrazky.md', count: figures.length, sha256: hash(path.join(geminiRefs, 'obrazky.md'))};
 fs.writeFileSync(path.join(geminiRefs, 'KAPITOLY.json'), JSON.stringify(geminiCatalog, null, 2) + '\n', 'utf8');
+// ChatGPT plugin: the staged plugin without figure files, with the same text-only chapters,
+// registers and figure instructions as Gemini (ChatGPT cannot show a bundled SVG or PNG in a reply).
+const chatgptDir = path.join(work, 'chatgpt', name);
+const chatgptSkill = path.join(chatgptDir, 'skills', skillName);
+const chatgptRefs = path.join(chatgptSkill, 'references');
+fs.cpSync(stage, chatgptDir, {recursive: true});
+fs.rmSync(path.join(chatgptRefs, 'assets'), {recursive: true});
+fs.writeFileSync(path.join(chatgptSkill, 'SKILL.md'), textSkill(read(skillPath)), 'utf8');
+for (const d of exportedChapters) for (const f of [d.output, registerPath(d.id)]) fs.copyFileSync(path.join(geminiRefs, f), path.join(chatgptRefs, f));
+fs.writeFileSync(path.join(chatgptRefs, 'INDEX.md'), read(path.join(refs, 'INDEX.md')).replace(figuresLine(true), figuresLine(false)), 'utf8');
+fs.copyFileSync(path.join(geminiRefs, 'KAPITOLY.json'), path.join(chatgptRefs, 'KAPITOLY.json'));
+// Only CSV, PY, TXT and MD files are accepted: rename the rest and follow the links.
+for (const [from, to] of Object.entries(geminiRenames)) fs.renameSync(path.join(geminiRefs, from), path.join(geminiRefs, to));
+fs.writeFileSync(path.join(geminiRefs, 'LICENCE.md'), geminiNames(read(path.join(geminiRefs, 'LICENCE.md'))), 'utf8');
+checkData.gemini = {
+  chapters: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(geminiRefs, d.output))])),
+  registers: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(geminiRefs, registerPath(d.id)))]))
+};
+const checkDataPath = path.join(work, 'kontrola.json');
+fs.writeFileSync(checkDataPath, JSON.stringify(checkData, null, 2) + '\n', 'utf8');
 
 // Validate the complete staged packages before replacing a previous release artifact.
-const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--quarto', q]));
+const validation = JSON.parse(run(process.execPath, ['scripts/check-tutor.cjs', '--package', stage, '--claude', claudeDir, '--gemini', geminiDir, '--chatgpt', chatgptDir, '--data', checkDataPath, '--quarto', q]));
 console.log(JSON.stringify(validation));
 for (const [file, digest] of Object.entries(inputs)) assert.equal(hash(path.join(root, file)), digest, `Input changed during export: ${file}`);
-for (const [output, input] of assetFiles) assert.equal(hash(path.join(refs, output)), hash(input));
 
 const psQuote = s => `'${s.replace(/'/g, "''")}'`;
 const inventoryOf = base => files(base).map(f => ({path: posix(path.relative(base, f)), bytes: fs.statSync(f).size, sha256: hash(f)}));
@@ -370,19 +462,23 @@ function zipDirectory(base, zipPath) {
 // the plugin name inside the manifests stays unchanged.
 const chatgptArchiveName = `${skillName}-chatGPT-${version}.zip`;
 const stageArchive = path.join(work, chatgptArchiveName);
-const inventory = zipDirectory(stage, stageArchive);
+const inventory = zipDirectory(chatgptDir, stageArchive);
+assert(!inventory.some(f => /\.svg$/i.test(f.path)), 'ChatGPT archive ships no figure files');
 const claudeArchiveName = `${skillName}-claude-${version}.zip`;
 const claudeStageArchive = path.join(work, claudeArchiveName);
 const claudeInventory = zipDirectory(claudeStage, claudeStageArchive);
 assert(claudeInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Claude archive must have one skill folder at its root');
 const geminiArchiveName = `${skillName}-gemini-${version}.zip`;
 const geminiStageArchive = path.join(work, geminiArchiveName);
-const geminiInventory = zipDirectory(geminiStage, geminiStageArchive);
-assert(geminiInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Gemini archive must have one skill folder at its root');
+// Gemini expects SKILL.md at the first level of the archive, without a wrapping folder.
+const geminiInventory = zipDirectory(geminiDir, geminiStageArchive);
+assert(geminiInventory.some(f => f.path === 'SKILL.md') && geminiInventory.every(f => f.path === 'SKILL.md' || f.path.startsWith('references/')),
+  'Gemini archive must have SKILL.md and references/ at its root');
 const report = {version, source_revision: sourceRevision, source_dirty: sourceDirty, date: stamp, package_directory: stage,
   files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
-  overview_entries: catalog.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
-  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive),
+  check_data: checkDataPath,
+  overview_entries: checkData.overviews.map(d => ({id: d.id, entries: d.headings.filter(h => h.level === 2).length})),
+  images: assetFiles.size, citations: citedKeys.length, validation, archive_sha256: hash(stageArchive), chatgpt_directory: chatgptDir,
   claude: {skill_directory: claudeDir, files: claudeInventory, archive_sha256: hash(claudeStageArchive)},
   gemini: {skill_directory: geminiDir, files: geminiInventory, figures: figures.length, archive_sha256: hash(geminiStageArchive)}};
 fs.writeFileSync(path.join(work, 'inventory.json'), JSON.stringify(report, null, 2) + '\n');

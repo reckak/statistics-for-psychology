@@ -9,24 +9,37 @@ draw <- function(name, code, width = 7, height = 4.5) {
   force(code)
   dev.off()
 }
+# Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_02/); see scripts/tutor/figure-data.R.
+source('scripts/tutor/figure-data.R',encoding='UTF-8')
+ch2_fig <- function(...) tf_figure('kapitola_02',...)
 freq <- as.numeric(table(factor(d$odpocatost, levels = 1:4)))
 draw('sloupce', {
   pos <- barplot(freq, names.arg = c('Vůbec', 'Trochu', 'Dost', 'Zcela'), col = blue,
     border = NA, ylim = c(0, 16), ylab = 'Počet účastníků', xlab = 'Odpočatost před úlohou')
   text(pos, freq + .65, freq)
 })
+ch2_fig('sloupce','sloupce',note='Čtyři modré sloupce oddělené mezerami; nad každým je jeho absolutní četnost. Graf je bez nadpisu.',panels=list(
+  tf_panel('Odpočatost před úlohou: absolutní četnosti','sloupcový graf','Odpočatost před úlohou','Počet účastníků',ylim=c(0,16),
+    series=list(tf_series('Absolutní četnosti',data.frame(kategorie=c('Vůbec','Trochu','Dost','Zcela'),y=freq),'sloupce')))))
 draw('tecky', {
   v <- sort(d$slova); yy <- ave(v, v, FUN = seq_along)
   plot(v, yy, pch = 21, bg = blue, col = 'white', cex = 1.6, xlim = c(-.5, 12.5), ylim = c(0, 7),
     xaxt = 'n', yaxt = 'n', bty = 'n', xlab = 'Počet správně vybavených slov', ylab = '')
   axis(1, at = 0:12); mtext('Jedna tečka = jeden účastník', side = 3, adj = 0)
 })
+ch2_fig('tecky','data',note='Skládaný bodový graf: nad každou hodnotou stojí nad sebou tolik modrých teček, kolik účastníků ji dosáhlo. Svislá osa není vykreslena, vodorovná má značky 0 až 12; text „Jedna tečka = jeden účastník“ je vlevo nad grafem.',panels=list(local({
+  v <- sort(d$slova)
+  tf_panel('Jedna tečka = jeden účastník','bodový graf','Počet správně vybavených slov','Pořadí tečky nad hodnotou (výška sloupku teček = četnost)',xlim=c(-.5,12.5),ylim=c(0,7),
+    series=list(tf_series('Účastníci',data.frame(x=v,y=ave(v,v,FUN=seq_along))))) })))
 s <- d$spanek_h[!is.na(d$spanek_h)]
 draw('histogram', {
   hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, col = blue, border = 'white', main = '',
     xlab = 'Uvedená doba spánku (hodiny)', ylab = 'Počet účastníků', xaxt = 'n', ylim = c(0, 12))
   axis(1, at = 4:10)
 })
+ch2_fig('histogram','data',note=paste0('Modré sloupce s bílými okraji, bez mezer. Horní mez každého intervalu do něj patří, dolní nikoli. Platných údajů: ',length(s),'; chybějících údajů, které v grafu nejsou: ',sum(is.na(d$spanek_h)),'. Graf je bez nadpisu.'),panels=list(
+  tf_panel('Uvedená doba spánku: intervaly šířky 1 h','histogram','Uvedená doba spánku (hodiny)','Počet účastníků',xlim=c(4,10),ylim=c(0,12),
+    series=list(tf_series('Absolutní četnosti',tf_bins(s,4:10),'histogram')))))
 draw('intervaly', {
   par(mfrow = c(2, 2), mar = c(4.4, 4.2, 2.5, .8))
   breaks_list <- list(seq(4,10,.5),seq(4,10,2),4:10,seq(3.5,10.5,1))
@@ -38,6 +51,12 @@ draw('intervaly', {
       xlab = 'Doba spánku (h)', ylab = 'Počet účastníků', xlim = c(3.5, 10.5), ylim = c(0, 20))
   }
 }, width = 8.2, height = 7.5)
+ch2_fig('intervaly','data',note=paste0('Čtyři histogramy týchž ',length(s),' dob spánku ve dvou řadách po dvou, se shodnými rozsahy os. Nahoře se liší šířka intervalu (0,5 h a 2 h), dole je šířka vždy 1 h a liší se poloha mezí. Horní mez každého intervalu do něj patří; modré sloupce s bílými okraji.'),panels=local({
+  breaks_list <- list(seq(4,10,.5),seq(4,10,2),4:10,seq(3.5,10.5,1))
+  titles <- c('Šířka 0,5 h','Šířka 2 h','Šířka 1 h; meze na celých hodinách','Šířka 1 h; meze posunuté o 0,5 h')
+  lapply(seq_along(breaks_list),function(i)
+    tf_panel(titles[i],'histogram','Doba spánku (h)','Počet účastníků',xlim=c(3.5,10.5),ylim=c(0,20),
+      series=list(tf_series('Absolutní četnosti',tf_bins(s,breaks_list[[i]]),'histogram')))) }))
 draw('kumulativni', {
   plot(ecdf(d$slova), verticals = FALSE, do.points = FALSE, xlim = c(-.5, 12.5),
     ylim = c(0, 1), main = '', xlab = 'Mez: počet vybavených slov', ylab = 'Kumulativní podíl',
@@ -47,6 +66,14 @@ draw('kumulativni', {
   points(0:12, cum, pch = 16, col = blue)
   points((0:12)[f>0], c(0,head(cum,-1))[f>0], pch = 21, bg = 'white', col = blue)
 })
+ch2_fig('kumulativni','data',note='Schodovitý graf z modrých vodorovných úseků bez svislých spojnic. Plný bod leží ve výšce kumulativního podílu až po mez včetně; prázdný bod na konci předchozího úseku ukazuje, že tato výška pro mez už neplatí. Svislá osa je popsána v procentech (0 %, 25 %, 50 %, 75 %, 100 %), hodnoty v datech jsou podíly od 0 do 1; graf je bez nadpisu.',panels=list(local({
+  kn <- sort(unique(d$slova)); lo <- c(-.5,kn); hi <- c(kn,12.5); y <- ecdf(d$slova)((lo+hi)/2)
+  f <- table(factor(d$slova, levels = 0:12)); cum <- as.numeric(cumsum(f))/nrow(d); is <- as.vector(f>0)
+  tf_panel('Kumulativní podíl výsledků paměťové úlohy','čárový graf','Mez: počet vybavených slov','Kumulativní podíl',xlim=c(-.5,12.5),ylim=c(0,1),
+    guides=list(tf_guide('y',0,'0 %'),tf_guide('y',1,'100 %')),
+    series=list(tf_series('Vodorovné úseky schodů',data.frame(x0=lo,y0=y,x1=hi,y1=y),'usecky',digits=4,note='první a poslední úsek pokračují až k okraji grafu'),
+      tf_series('Plné body: kumulativní podíl až po mez včetně',data.frame(x=0:12,y=cum,kumulativni_cetnost=as.numeric(cumsum(f))),'body',digits=4,note='u meze, které nikdo nedosáhl, leží plný bod uvnitř úseku'),
+      tf_series('Prázdné body: podíl těsně pod mezí',data.frame(x=(0:12)[is],y=c(0,head(cum,-1))[is]),'body',digits=4))) })))
 draw('kumulativni-seskupene', {
   h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
   boundaries <- h$breaks
@@ -64,6 +91,12 @@ draw('kumulativni-seskupene', {
   legend('topleft', legend = c('Body: známé podíly až po mez včetně', 'Spojnice: uvnitř intervalu průběh neznáme'),
     col = blue, pch = c(16, NA), lty = c(NA, 2), lwd = c(NA, 2), bty = 'n', cex = .83)
 }, width = 7.4, height = 4.6)
+ch2_fig('kumulativni-seskupene','data',note='Modré plné body na mezích intervalů spojené přerušovanou modrou čárou; světle šedé vodorovné čáry mřížky ve výškách 25, 50, 75 a 100 %. Legenda vlevo nahoře: „Body: známé podíly až po mez včetně“ a „Spojnice: uvnitř intervalu průběh neznáme“. Svislá osa je popsána v procentech, hodnoty v datech jsou podíly od 0 do 1; graf je bez nadpisu.',panels=list(local({
+  h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
+  pts <- data.frame(x=h$breaks,y=c(0, cumsum(h$counts))/length(s),kumulativni_cetnost=c(0,cumsum(h$counts)),popisek=ifelse(h$breaks==7,'16 z 33 (48,5 %)',''))
+  tf_panel('Kumulativní relativní četnosti doby spánku z jednohodinových intervalů','čárový graf','Mez doby spánku (h)','Kumulativní relativní četnost',xlim=c(4,10),ylim=c(0,1),
+    series=list(tf_series('Spojnice: uvnitř intervalu průběh neznáme',pts[c('x','y')],'cara',digits=4,note='přerušovaná čára'),
+      tf_series('Body: známé podíly až po mez včetně',pts,'body',digits=4))) })))
 
 draw('polygon', {
   h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
@@ -71,6 +104,11 @@ draw('polygon', {
     xlab = 'Střed třídního intervalu spánku (h)', ylab = 'Počet účastníků', bty = 'l', xaxt = 'n')
   axis(1, at = h$mids, labels = sub('.', ',', as.character(h$mids), fixed = TRUE))
 })
+ch2_fig('polygon','data',note='Modrá lomená čára s plným bodem nad středem každého jednohodinového intervalu; vodorovná osa má značky ve středech intervalů (4,5 až 9,5). Čára začíná u prvního a končí u posledního středu, k nule se nevrací. Graf je bez nadpisu.',panels=list(local({
+  h <- hist(s, breaks = 4:10, right = TRUE, include.lowest = FALSE, plot = FALSE)
+  pts <- data.frame(x=h$mids,y=h$counts)
+  tf_panel('Polygon četností doby spánku','čárový graf','Střed třídního intervalu spánku (h)','Počet účastníků',ylim=c(0,12),
+    series=list(tf_series('Spojnice četností',pts,'cara'),tf_series('Body nad středy intervalů',pts,'body'))) })))
 draw('vysecovy', {
   par(mfrow = c(1, 2), mar = c(5.5, 1, 2, 1))
   vals <- c(14, 12, 10); labs <- c('Procvičování', 'Čtení', 'Vysvětlování')
@@ -81,6 +119,13 @@ draw('vysecovy', {
     ylim = c(0, 16), border = NA, ylab = 'Počet účastníků', main = 'Sloupcový graf')
   text(bp, vals+.65, vals)
 }, width = 8.2, height = 4.8)
+ch2_fig('vysecovy','sloupce',note='Dva panely vedle sebe se stejnými četnostmi: vlevo výsečový, vpravo sloupcový graf.',panels=local({
+  vals <- c(14, 12, 10); labs <- c('Procvičování', 'Čtení', 'Vysvětlování')
+  list(tf_panel('Výsečový graf','výsečový graf',
+      note='Výseče následují v uvedeném pořadí proti směru hodinových ručiček od polohy „tři hodiny“. U každé výseče je popisek s procentem; legenda s názvy kategorií je pod grafem.',
+      series=list(tf_series('Výseče',data.frame(kategorie=labs,cetnost=vals,podil=vals/sum(vals),popisek=c('38,9 %', '33,3 %', '27,8 %'),barva=c('modrá','oranžová','šedomodrá')),'tabulka',digits=4))),
+    tf_panel('Sloupcový graf','sloupcový graf','Hlavní způsob přípravy','Počet účastníků',ylim=c(0,16),note='Modré sloupce, nad každým je jeho četnost.',
+      series=list(tf_series('Absolutní četnosti',data.frame(kategorie=labs,y=vals),'sloupce')))) }))
 draw('tvary', {
   par(mfrow = c(2, 3), mar = c(3.2, 3, 2.5, .4), cex = .9)
   sets <- list(c(1,2,4,7,10,7,4,2,1), c(1,3,10,8,5,3,2,1,1), c(1,1,2,3,5,8,10,3,1),
@@ -92,6 +137,13 @@ draw('tvary', {
     axis(1, at=c(1,5,9))
   }
 }, width=9, height=5.8)
+ch2_fig('tvary','sloupce',note='Šest panelů ve dvou řadách po třech se stejnými osami; záměrně sestavené četnosti hodnot 1 až 9 jako modré svislé sloupce. Vodorovná osa má značky jen u hodnot 1, 5 a 9.',panels=local({
+  sets <- list(c(1,2,4,7,10,7,4,2,1), c(1,3,10,8,5,3,2,1,1), c(1,1,2,3,5,8,10,3,1),
+    c(1,6,10,4,1,4,10,6,1), c(4,4,4,4,4,4,4,4,4), c(1,3,8,9,4,1,0,0,1))
+  titles <- c('Přibližná souměrnost', 'Zešikmení doprava', 'Zešikmení doleva', 'Dva výrazné vrcholy', 'Rovnoměrné rozdělení', 'Odlehlé pozorování')
+  lapply(seq_along(sets),function(i)
+    tf_panel(titles[i],'sloupcový graf','Hodnota','Četnost',xlim=c(.5,9.5),ylim=c(0,11),
+      series=list(tf_series('Četnosti',data.frame(x=1:9,y=sets[[i]]),'sloupce')))) }))
 draw('podlaha-strop', {
   par(mfrow=c(1,2), mar=c(4.3,4,2.2,.5))
   for (i in 1:2) {
@@ -101,6 +153,10 @@ draw('podlaha-strop', {
       main=if(i==1) 'Možný efekt podlahy' else 'Možný efekt stropu')
   }
 }, width=8.2, height=4)
+ch2_fig('podlaha-strop','sloupce',note='Dva panely vedle sebe se stejnými osami; četnosti jako modré svislé sloupce nad hodnotami 0 až 12. Pravý panel je zrcadlovým obrazem levého.',panels=lapply(1:2,function(i) {
+  vals <- if(i==1) c(15,7,4,3,2,1,1,1,1,1,0,0,0) else rev(c(15,7,4,3,2,1,1,1,1,1,0,0,0))
+  tf_panel(if(i==1) 'Možný efekt podlahy' else 'Možný efekt stropu','sloupcový graf','Počet správných odpovědí (0–12)','Počet účastníků',ylim=c(0,16),
+    series=list(tf_series('Četnosti',data.frame(x=0:12,y=vals),'sloupce'))) }))
 draw('osa', {
   par(mfrow=c(1,2), mar=c(4,4,2.2,.5))
   for(i in 1:2) {
@@ -114,6 +170,10 @@ draw('osa', {
     text(1:2, c(30,32), c(30,32), pos = 3, offset = .4)
   }
 }, width=8.2,height=4)
+ch2_fig('osa','sloupce',note='Dva panely vedle sebe se stejnými četnostmi 30 a 32; modré sloupce, nad každým je jeho hodnota. Panely se liší jen začátkem a rozsahem svislé osy.',panels=lapply(1:2,function(i)
+  tf_panel(if(i==1) 'Osa od nuly' else 'Osa začíná na 27','sloupcový graf','Soubor','Počet odpovědí ano',ylim=if(i==1) c(0,35) else c(27,33),
+    note=if(i==1) 'Svislá osa začíná nulou; sloupce jsou vidět v celé výšce.' else 'Svislá osa je zkrácená: začíná na 27 a sloupce vyrůstají od této hodnoty, takže je z nich vidět jen horní část (3 a 5 jednotek).',
+    series=list(tf_series('Četnosti',data.frame(kategorie=c('A','B'),y=c(30,32)),'sloupce')))))
 draw('zaklad-procent', {
   par(mar=c(0,0,0,0))
   plot.new();plot.window(xlim=c(0,10),ylim=c(0,7),xaxs='i',yaxs='i')
@@ -129,6 +189,7 @@ draw('zaklad-procent', {
   }
   text(.5,.6,'Plný kruh: alespoň 7 h     Prázdný kruh: méně než 7 h\nČtverec s otazníkem: údaj chybí',adj=0,cex=.85)
 },width=7.5,height=5.2)
+tf_schema('kapitola_02','zaklad-procent')
 draw('princip-kumulace', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,6),xaxs='i',yaxs='i')
   categories <- c(1,2,2,3,3,4)
@@ -142,6 +203,7 @@ draw('princip-kumulace', {
   }
   text(.5,.3,'Jedna značka = jedna odpověď; plné značky započítáváme.',adj=0,cex=.85)
 },width=7.5,height=4.5)
+tf_schema('kapitola_02','princip-kumulace')
 draw('meze-intervalu', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(5.7,8.9),ylim=c(0,6),xaxs='i',yaxs='i')
   for(k in 1:2) {
@@ -159,4 +221,7 @@ draw('meze-intervalu', {
   }
   text(5.8,.2,'Plný krajní bod patří do intervalu; prázdný nepatří.',adj=0,cex=.85)
 },width=8,height=4.8)
+tf_schema('kapitola_02','meze-intervalu')
+# Static illustrations of Excel sheets (assets/chapter-02/excel-*.svg) are not drawn by this script.
+invisible(lapply(c('excel-absolutni','excel-kumulativni','excel-intervaly'),function(name) tf_schema('kapitola_02',name)))
 cat('Chapter 2: generated 14 figures from fixed data.\n')

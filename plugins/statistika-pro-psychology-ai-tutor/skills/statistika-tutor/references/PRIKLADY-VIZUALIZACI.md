@@ -34,9 +34,9 @@ dosazením pozorovaného účinku jako důkazu kvality hotové studie.
 Numerický výpočet ověř nezávislým nástrojem; aproximaci Φ neprezentuj
 s větší přesností, než jakou skutečně poskytuje.
 
-## Doplněk mimo přibalené učivo: populační korelace a bodový graf
+## Populační korelace a bodový graf
 
-Tento příklad použij na výslovný dotaz na korelaci, nikoli jako další krok studia kapitol 1–6.
+Tento příklad patří ke kapitole o korelaci; v jiných kapitolách jej použij jen na výslovný dotaz.
 
 Modeluj dvojice X = U a Y = ρU + √(1−ρ²)V, kde U a V jsou nezávislé
 standardní normální proměnné. Je to model standardizovaných skórů bez

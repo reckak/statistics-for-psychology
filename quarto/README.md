@@ -1,5 +1,201 @@
 # Autorská dokumentace
 
+<a id="tutor-041-20261121"></a>
+
+## 2026-11-21 — AI tutor: výsledek testu 0.4.0 a kandidát 0.4.1 (SVG pro ChatGPT, data ke grafům všech kapitol)
+
+**Test kandidáta 0.4.0.** Autor nahrál tři archivy 0.4.0 a sdělil, že je
+přijaly všechny tři klienty a že kroky testu (`ai-tutor/test-0.4.0.md`,
+[podmínky vydání](../docs/AITUTORS.md#podminky-vydani)) dopadly „v pořádku“.
+Klient, model a tarif jednotlivých platforem sděleny nebyly a zůstávají
+neupřesněné; podrobné záznamy kroků nejsou k dispozici. Zjištění z testu:
+ChatGPT přibalené PNG nepřečetl a pracoval s texty kapitol, rejstříkem obrázků
+a daty. Vydání `tutor-v0.4.0` zveřejněno není; čeká na pokyn autora.
+
+**Archivy 0.4.0.** Při práci na 0.4.1 jsem zkušebním exportem omylem přepsal
+místní archivy `…-0.4.0.zip` sestavením z rozpracovaného stavu. Odstraněny
+a znovu sestaveny úplným exportem z čistého commitu `9e995a1` v oddělené
+pracovní kopii (poté zrušené); zpráva exportu je v `ai-tutor/overeni-0.4.0.json`.
+Obsah odpovídá otestovanému stavu zdrojů, soubory ZIP ale nejsou bajtově
+tytéž, které autor nahrál (jiný čas sestavení a vykreslení PNG).
+
+**Kandidát 0.4.1** podle [doplnění R85](../docs/rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21):
+
+- *Formát obrázků podle platformy.* Plugin pro ChatGPT obsahuje původní SVG
+  učebnice, varianta pro Claude PNG vykreslená z týchž SVG, Gemini žádné
+  soubory obrázků. Instrukce mluví o „souboru obrázku“ bez přípony, takže
+  tělo `SKILL.md` zůstává pro ChatGPT a Claude shodné.
+- *Data ke grafům všech kapitol.* Skripty kapitol 1–9 nově zapisují ke každému
+  obrázku záznam; zápis (`scripts/tutor/figure-data.R`) byl rozšířen o značky
+  `plocha`, `interval`, `usecky`, `krabice` a `tabulka`, textový sloupec
+  `kategorie`, skupiny sloupců, histogram v hustotě či podílech, vybarvená
+  pásma a `tf_curve()`. Ze 147 obrázků má 121 data pro překreslení (16 092
+  řádků) a 26 je schéma bez dat (u části s poznámkou o počtech prvků).
+  Záznamy kapitol 1–8 zapsali pomocní agenti podle společného zadání, každý
+  jednu kapitolu; kapitolu 9 jsem zapsal sám jako vzor.
+- *Výukové plány* rozlišují u obrázku „s daty“ a „schéma bez dat“.
+- Nový kontrolní skript `scripts/tutor/check-figure-data.cjs` (záznam ke
+  každému obrázku kapitoly, sloupce podle značky, nejvýše 800 řádků na
+  obrázek); tytéž kontroly opakuje `check-tutor.cjs` nad balíčkem.
+
+**Kontroly.** Kreslicí kód se neměnil: všech 143 SVG z R je po úpravě skriptů
+bajtově shodných se stavem před ní (otisky SHA-256 uložené před úpravou;
+porovnáno po úplném exportu). `node scripts/export-tutor.cjs` včetně
+`check-tutor.cjs` prošel: 10 kapitol, 147 obrázků, 121 s daty, největší
+rejstřík 93,5 kB, `SKILL.md` 15 166 bajtů; ChatGPT 5,6 MB, Claude 8,5 MB,
+Gemini 0,8 MB (45 souborů). `scripts/tutor/render-figure-data.cjs` vykreslil
+všechny záznamy vedle originálů. Dvojice kapitol 1–8 prohlédli agenti, kteří
+je zapisovali (podle jejich hlášení všechny); sám jsem prohlédl kapitolu 9
+(tři dvojice) a po jedné až dvou dvojicích z kapitol 4, 6, 7 a 8: data
+k překreslení stačí. U kapitol 3 a 8 agenti doložili shodu znovu spočteného
+náhodného posunu bodů se souřadnicemi v SVG.
+
+**Nezávislé čtení balíčku.** Agent v roli tutora prošel nad hotovým balíčkem
+pro ChatGPT pět scénářů (krabicový graf s intervaly 8.5, plochy a skládané
+sloupce 4.7, histogramy 6.4 a 6.8, schéma 1.5, mozaika a strom 5.4 a 5.6)
+a skriptem zkontroloval všech 121 bloků dat: počty řádků, sloupce, pořadí
+hodnot krabic, středy intervalů uvnitř mezí, součty podílů a plochy pod
+histogramy; číselnou chybu nenašel. Podle jeho nálezů opraveno v pokynech:
+soubor obrázku se nečte jako text; jednotné zacházení se schématem (soubor,
+jinak popis a „Poznámka ke schématu“); vodicí čára nemusí být přerušovaná
+a může být šikmá; pořadí panelů, skládání sloupců odspodu, směr u krabic,
+tvar u značky `tabulka`, pomocné titulky a osy „bez měřítka“, barvy učebnice,
+načítání velkých bloků kódem. Plány nově uvádějí, od kterého řádku záznamu
+začínají data. Rozsahy os a polohy vodicích čar se zaokrouhlují na šest
+platných číslic. U obrázku 8.5 doplněna poznámka, že okraje krabic jsou
+panty, nikoli kvartily podle kapitoly 3. Neopraveno a předáno autorovi
+k rozhodnutí, protože jde o obsah knihy, ne tutora: v převzatém obrázku 3.3
+(`mode-median-mean.svg`) jsou popisky ve větvích podle jazyka prohlížeče
+a čeština je jen výchozí; v obrázku 6.16 stojí „směrodatná chyba 2 bodu“;
+textový popis obrázku 4.15 mluví o „červené“ křivce, která je oranžová;
+krabicový graf 8.5 kreslí panty. Ponecháno: různé zařazení diagramů (část
+jako schéma bez dat, v kapitole 5 jako tabulková data), vodorovné sloupce
+obrázku 5.7 zapsané svisle s poznámkou a opakování téže křivky ve více řadách.
+
+Při druhém úplném exportu kontrola věrnosti znovu zastavila běh na kapitole 8
+(„Math: lost 10/\sqrt{25}=2“); opakovaný export se stejnými vstupy prošel.
+Jde o tutéž nevysvětlenou občasnou chybu převodu jako 2026-11-20.
+
+**Neověřeno.** Chování 0.4.1 v klientech: zda ChatGPT přibalené SVG zobrazí
+nebo přečte (popisky jsou v SVG uloženy jako křivky), jak věrně klienti kreslí
+z nových značek (intervaly, plochy, krabicový graf, tabulky) a zda rozsáhlejší
+rejstříky (kapitola 4 má 4 400 řádků) nezhoršují čtení po rozsazích řádků.
+Zbývajících deset dvojic kapitoly 10 jsem neprohlédl. Hlášení agentů
+o prohlídce dvojic jsem přijal bez opakování celé prohlídky.
+
+**První test 0.4.1 a oprava pokynů (týž den).** Autor poslal dva snímky.
+Gemini u obrázku 10.1, který data má, graf nenakreslil: popsal jej a vypsal
+adresu stránky i adresu samotného obrázku v blocích kódu jako zdvojený zápis
+odkazu; podle autora jej odkazy „spíš matou“. ChatGPT u obrázku 10.2 napsal,
+že původní soubor do chatu vložit nedokázal a že jej nenahradí „neověřeným
+obrázkem“, a dal jen odkaz; z dat nekreslil. SVG tedy ChatGPT do odpovědi
+nevkládá, stejně jako dříve PNG. Upraveno, verze kandidáta zůstává 0.4.1:
+
+- `SKILL.md`: první možnost (přibalený soubor) platí jen tam, kde ji klient
+  umí, a ChatGPT je výslovně poslán k překreslení z dat; při neúspěchu se
+  přechází dál bez omluvy; graf z přibalených dat je označen za ověřený
+  obrázek učebnice a adresa se k němu nepřidává; adresa se uvádí jednou, celá,
+  v běžné větě, mimo blok kódu a závorky (dříve „jako prostý text“).
+- Gemini: kapitola místo odkazu na web odkazuje na záznam v rejstříku;
+  rejstřík místo adresy samotného obrázku nese řádek „Zobrazení“ (překreslit
+  z dat bez adresy, nebo popsat a připojit adresu stránky). Počet řádků
+  rejstříku se nezměnil, rozsahy v plánech platí dál. `check-tutor.cjs`
+  ověřuje nové znění a že rejstřík pro Gemini neobsahuje adresu obrázku.
+
+Autor poté rozhodl SVG z balíčku pro ChatGPT odstranit
+([doplnění R85](../docs/rozhodnuti/ai-tutor.md#r85-doplneni-2026-11-21b)).
+Export nově staví archiv pro ChatGPT z pracovní složky pluginu bez obrázků:
+kapitoly a rejstříky jsou shodné s variantou pro Gemini, `SKILL.md` má znění
+bez souborů (15 211 bajtů); 49 souborů, 1,6 MB. Z hlavního `SKILL.md` zmizela
+zmínka o ChatGPT. `check-tutor.cjs` má novou část `--chatgpt` (seznam
+souborů, shoda s Gemini a s pracovní složkou, místní odkazy)
+a `release-tutor.cjs` ji předává. Při jednom běhu exportu se znovu projevil
+občasný výpadek převodu, tentokrát v kapitole 7 (chybějící blok obrázku
+`fig-ctyri-kombinace`); opakovaný běh prošel.
+Neověřeno: účinek úprav v klientech; snímky byly z kapitoly 10, obrázky
+ostatních kapitol (8.5, 6.14, 2.6, schéma 1.5) v klientech doloženy nejsou.
+Příčinu, proč Gemini nekreslil, neznám (mohlo jít i o režim bez kreslení).
+
+**Druhý test 0.4.1 a ověřovací otázky (týž den).** Po nahrání opravených
+archivů autor sdělil: „grafy nyní fungují dobře ve všech tutorech“; klient,
+model a tarif nejsou zaznamenány a které obrázky zkoušel, nevím. Zároveň
+popsal občasnou chybu vedeného vysvětlování: tutor v kapitole 10 položil
+otázku „Ve studii učitelky (úzkost a výkon u 40 studentů) jde o korelační,
+nebo o experimentální uspořádání?“, aniž bylo zřejmé, že jde o příklad
+z kroku 1, a po námitce studenta odkázal na „text učebnice“. Upraveno:
+`SKILL.md` říká, že student učebnici nečetl a zná jen to, co zaznělo
+v rozhovoru, a že otázka vracející se k dřívějšímu příkladu to má říci
+a potřebné údaje zopakovat; `OTAZKY.md` má nové první pravidlo se stejným
+obsahem a s postupem při námitce „údaje nemám“. Scénář je doplněn do
+`scripts/tutor/smoke-prompts.md`. Účinek v klientech ověřen není.
+
+<a id="tutor-040-20261121"></a>
+
+## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům
+
+Podle [R85](../docs/rozhodnuti/ai-tutor.md#r85-tutor-kapitoly-obrazky-tempo)
+připraven kandidát tutora 0.4.0 pro ChatGPT, Claude a Gemini. Vydání zveřejněno
+není; stránka [AI tutor: stažení a instalace](ai_tutor.qmd) už popisuje stav
+0.4.0, proto se tato větev slučuje až po zveřejnění vydání.
+
+**Export.** Přibaluje všechny výkladové kapitoly podle `_quarto.yml` (1–10)
+a deset výukových plánů s rozsahy řádků oddílů, zvlášť zadání a řešení cvičení
+a nepovinných bloků. Obrázky jdou do balíčků jako PNG vykreslené z týchž SVG
+(`scripts/tutor/svg-to-png.cjs`); rejstřík obrázků je po kapitolách
+(`references/obrazky/`) a uvádí i přímou adresu obrázku na webu. Skript
+kapitoly 10 zapisuje ke všem 17 obrázkům popis a vykreslené hodnoty
+(`scripts/tutor/figure-data.R`), které rejstřík přibaluje jako blok „Data pro
+překreslení“. `KAPITOLY.json` je malý katalog s verzí a revizí; údaje pro
+kontrolu jsou mimo balíček. Archiv pro Gemini má jen soubory `.md` a `.txt`
+a `SKILL.md` v kořeni. Z balíčku vyřazen autorský návod
+`PRIPOJENI-KAPITOL.md`; jeho obsah je v [provozním návodu](../docs/PROVOZ.md#export-ai-tutora).
+
+**Instrukce.** `SKILL.md` přepsán celý: blok „Vždy“, tabulka „Co kdy číst“,
+vedené vysvětlování po krocích (jedna myšlenka, jedna otázka, čekání),
+oddělená pravidla ostatních způsobů práce, obrázek učebnice jako součást
+kroku přímo v odpovědi, doslovné opisování adres a nabídka interaktivní
+stránky u příslušného oddílu. `VIZUALIZACE.md` nově obsahuje pravidla
+překreslení z dat, rady ke všem 14 interaktivním stránkám a zkrácená pravidla
+vlastního grafu; autorské testování grafů zůstává v testovacích scénářích.
+
+**Kontroly.** `node scripts/export-tutor.cjs` a `node scripts/check-tutor.cjs`
+prošly; počty jsou v `ai-tutor/overeni.json`. Kontrola nově ověřuje začátek
+i konec každého rozsahu řádků, oddělení zadání od řešení, jedno platné PNG ke
+každému obrázku a žádné SVG v balíčku, shodu rejstříků a bloků dat
+s exportovanými daty a přítomnost všech interaktivních stránek ve
+`VIZUALIZACE.md`. Obrázky kapitoly 10 se úpravou skriptu nezměnily (shoda
+souborů před a po). `scripts/tutor/render-figure-data.cjs` vykreslil všech
+17 záznamů; prohlédnuto sedm dvojic originál × překreslení (10.1, 10.2,
+kvadranty, přesné permutační rozdělení, faktory, Fisherova transformace,
+bodově biseriální korelace): data k překreslení stačí, zbylých deset dvojic
+prohlédnuto nebylo. Instrukce přečetl nezávislý agent v roli tutora nad hotovým balíčkem (pět
+scénářů, obě varianty). Podle jeho nálezů opraveno: odkaz na pravidla
+překreslení a rady ke stránkám přímo v `SKILL.md`; označení obrázků
+z nepovinných částí a nepovinných bloků uvnitř oddílů v plánech; rozsahy
+řádků úvodů oddílů a hesel přehledů; spouštěč vlastního grafu; pravidlo
+o adresách (adresu oddílu lze složit jen z kotvy v plánu); seznam možností
+zobrazení pro variantu bez souborů obrázků; velikost kroku, pořadí obrázku
+a otázky, tempo bez ověřování a návrat po přímém dotazu; uvozovky u textových
+polí s čárkou v blocích dat; chybný údaj „kosočtverce“ v textovém popisu
+obrázku 10.14 (zdroj `kapitola_10.qmd`, v obrázku jsou kolečka). Neopraveno
+a ponecháno jako známé: zbytky značek `<sub>` z převodu v plánech a kapitolách
+a autorské poznámky v tabulkách plánů převzaté z kapitolových karet.
+
+**Zjištění z klientů (pozorování autora, ne systematický test).** Claude
+i ChatGPT přijaly archiv se 183 a 187 soubory (se SVG). Gemini ohlásil chybu
+nahrání, přestože se dovednost uložila. Claude ukázal přibalený obrázek jen
+jako kartu souboru v postranním panelu a bez vyžádání jej nenabídl. Gemini
+posílal vymyšlené adresy učebnice obalené vyhledáváním.
+
+**Neověřeno.** Chování nových instrukcí v klientech: tempo, zobrazení
+a překreslení obrázků, nabídka interaktivních stránek, adresy v Gemini,
+využití rozsahů řádků; přijetí archivů s PNG (Claude 8,4 MB místo 4,7 MB);
+[podmínky vydání](../docs/AITUTORS.md#podminky-vydani) zatím nesplnila žádná
+platforma. Při jednom z běhů exportu 2026-11-20 se v kapitole 8 tiše ztratila
+část odstavce; kontrola věrnosti běh zastavila, chyba se v dalších bězích ani
+v 74 opakováních převodu neobjevila a příčina známa není. Data ke grafům
+kapitol 1–9 nejsou hotová.
+
 <a id="rozsireni-n-minus-1-20261117"></a>
 
 ## 2026-11-17 — Nepovinné rozšíření o dělení n − 1 v kapitole 3

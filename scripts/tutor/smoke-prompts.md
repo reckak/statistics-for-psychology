@@ -11,9 +11,15 @@ a test zaznamenej odděleně od ChatGPT. Zahajovací volby z manifestu Claude
 nezobrazuje; aktivaci zkoušej běžným dotazem, např. „Chci studovat statistiku“.
 
 V Gemini (archiv `statistika-tutor-gemini-<verze>.zip`) nejsou soubory obrázků.
-Navíc ověř dotaz na konkrétní obrázek, např. „Co ukazuje obrázek 6.1?“:
-tutor má vyjít z rejstříku `obrazky.md` a textového popisu, nevymýšlet
-podrobnosti nad popis a nabídnout odkaz na obrázek ve webové učebnici.
+Po nahrání ověř stav v seznamu dovedností a dotazem na verzi: Gemini může
+ohlásit chybu, i když se dovednost uložila. Navíc ověř dotaz na konkrétní
+obrázek bez dat, např. „Co ukazuje obrázek 6.1?“: tutor má vyjít z rejstříku
+obrázků kapitoly a textového popisu, nevymýšlet podrobnosti nad popis a uvést
+adresu obrázku opsanou doslova.
+
+Před vydáním musí každá platforma splnit
+[podmínky vydání](../../docs/AITUTORS.md#podminky-vydani); scénáře k nim jsou
+v oddílech [Tempo vedeného vysvětlování](#tempo) a [Obrázky a odkazy](#obrazky-a-odkazy).
 
 ## Začátek, střed a konec každé kapitoly
 
@@ -41,17 +47,76 @@ vodítkem, nikoli náhradou kontroly celého smyslu odpovědi.
 | 6 A | Jak se liší tři vrstvy průběžného parkovacího příkladu? | Skutečná studie 32,15 a 39,03 s; výukový model μ = 35, σ = 15 s; vlastní simulace. |
 | 6 B | Jaké směrodatné chyby odpovídají výběrům po 25, 100 a 400 řidičích? | 3,0; 1,5; 0,75 s; odmocninový vztah. |
 | 6 C | Jaké pravděpodobnosti požaduje část a) úlohy 16? | Za H0 u spojitého testu: p ≤ 0,05 má 0,05; p ≤ 0,04 má 0,04; mezi nimi 0,01. |
+| 7 A | Jaký *z*-test připomíná úvod kapitoly 7? | 25 studentů, m = 46, norma 50 a σ = 10; σₘ = 2, z = −2, jednostranná p-hodnota 0,023. |
+| 7 B | Kterou funkcí Excelu získám kvantil t pro 95% interval při 24 stupních volnosti? | `=T.INV(0,975;24)`, přibližně 2,064. |
+| 7 C | Jaké údaje zadává nepovinná úloha 14 o noninferioritě? | Referenční hodnota 55 bodů, hranice 3 body, 200 studentů, průměr 53,2 a s = 10. |
+| 8 A | Proč kapitola 8 přechází od normy ke kontrolní podmínce? | Norma vznikla na jiných lidech a v jiné době; přesvědčivější je srovnání se studenty po běžném spánku. |
+| 8 B | Proč se dva 95% intervaly mohou překrývat, i když je rozdíl významný? | Rozdíl je významný od 5,69 bodu, intervaly se přestanou překrývat až od 8,26 bodu; interval rozdílu (0,31; 11,69). |
+| 8 C | Které listy sešitu používá nepovinná úloha 14? | `U05_hrozba` B2:C4 a `U07_standardizace` B2:B6; Hedgesova korekce a varianty standardizace. |
+| 9 A | Na jaký soubor z kapitoly 5 navazuje začátek kapitoly 9? | 200 studentů, pohlaví a zvýšený nebo nízký stres. |
+| 9 B | Jak vyšel test chí-kvadrát u věku a strategie zvládání? | χ² = 11,78, 4 stupně volnosti, p-hodnota 0,019, kritická hodnota 9,49; nulovou hypotézu zamítáme. |
+| 9 C | Na co navazuje nepovinná úloha 15? | Na úlohu 10 a nepovinné rozšíření o intervalech pro poměr rizik a poměr šancí; list `U10_add` B2:C3. |
+| 10 A | Co ukazuje obrázek 10.1? | 40 studentů, úzkost a výkon, r = −0,52; přerušované čáry v průměrech obou proměnných. |
+| 10 B | Co mají společného čtyři soubory na obrázku 10.3? | Anscombův kvartet: stejné r = 0,82, zcela odlišné tvary. |
+| 10 C | Ukaž zadání a řešení úlohy 18. | 0,41 u 59 žen a 0,53 u 47 mužů; z_r 0,436 a 0,590; směrodatná chyba 0,201; z = −0,77; p-hodnota 0,44. |
 
-## Přehledy a hranice přibaleného rozsahu
+## Přehledy
 
 - Slovníček: vyhledej heslo „Směrodatná chyba“, jeho anglický ekvivalent
   a alternativní české názvy; vysvětli odlišení od výběrové chyby.
 - Značení: vyhledej t-kvantil, uveď jeho značení a příklad pro 24 stupňů
-  volnosti; přiznej, že úplná kapitola 7 není přibalená.
+  volnosti s odkazem na oddíl kapitoly 7.
 - Excel: vyhledej konkrétní příklad COUNTIFS z přehledu a zachovej přesné
   absolutní odkazy, operátory, středníky i očekávaný výsledek.
-- Požaduj přesný obsah konkrétního cvičení kapitoly 8. Tutor nesmí předstírat
-  přístup k celé kapitole; může citovat dostupné heslo a nabídnout webový odkaz.
+- Požaduj cvičení, které neexistuje (úloha 999 kapitoly 8): tutor je přizná
+  a nevymyslí náhradu.
+
+<a id="tempo"></a>
+
+## Tempo vedeného vysvětlování
+
+V novém chatu zadej „Kapitola 8, vysvětlování, celá kapitola, bez rozšíření.“
+Zaznamenej délku odpovědí a počet otázek v každé z nich.
+
+| Tah studenta | Očekávání |
+|---|---|
+| Kapitola 10, vysvětlování, až ke kroku o korelační studii; sleduj každou ověřovací otázku. | Otázku lze zodpovědět jen z textu chatu. Vrací-li se k dřívějšímu příkladu (studie učitelky), říká to a opakuje potřebné údaje. Na „nemám o studii informace“ tutor údaje doplní a neodkazuje na učebnici. |
+| Zahájení (výše) | Krátká cesta studiem jen z názvů oddílů, věta o postupu po krocích, první krok a právě jedna ověřovací otázka na konci. Žádný výklad dalších oddílů. |
+| Správná odpověď | Krátké potvrzení a další jeden krok s jednou otázkou. |
+| Chybná odpověď se zdůvodněním | Konkrétní rozpor a tentýž krok jinak; výklad nepokračuje dalším oddílem. |
+| „pokračuj“ | Pokračuje, ale neoznačí krok za pochopený. |
+| „Jen mi to shrň.“ | Jedno shrnutí; v dalším tahu opět krok s otázkou. |
+| „Dnes bez ověřování.“ | Dál vykládá bez otázek, stále po krocích; volbu drží i v dalších tazích. |
+| „Vysvětli mi celou kapitolu 8 najednou.“ | Vyhoví a řekne, že jde o jiný způsob, než je výchozí. |
+| Nesouvisející přímá otázka („Co je medián?“) | Stručná přímá odpověď bez průvodce; odpověď nemusí končit otázkou. |
+
+Totéž zopakuj v sokratovském vedení (jedna otázka, stupňovaná nápověda)
+a ve zkoušení se třemi otázkami: po chybné odpovědi tutor jen potvrdí
+zaznamenání a správné řešení sdělí až v závěrečném hodnocení.
+
+<a id="obrazky-a-odkazy"></a>
+
+## Obrázky a odkazy
+
+U každého scénáře zaznamenej, co se skutečně zobrazilo: přibalený obrázek
+v odpovědi, karta souboru, graf nakreslený tutorem, nebo jen text.
+
+| Dotaz / postup | Přijetí |
+|---|---|
+| Vedené vysvětlování kapitoly 10 až k oddílu „Bod je člověk“. | Obrázek 10.1 se objeví bez vyžádání přímo v odpovědi. Při překreslení z dat: 40 bodů, titulek s r = −0,52, obě přerušované čáry (23,575 a 19,15), označení „překresleno podle obrázku 10.1“. |
+| Pokračování k oddílu „Tvary souvislosti“. | Šest panelů obrázku 10.2 se správnými titulky; hodnoty nejsou nově losované. |
+| „Ukaž mi obrázek 10.10.“ | Sloupce přesného permutačního rozdělení; oranžově 8, 16, 16 a 8 přiřazení, dohromady 48 ze 720. |
+| Výklad oddílu kapitoly 1 se schématem (obrázek 1.5, výběr a přiřazení). | Schéma se zobrazí jako přibalený soubor, nebo je popsáno podle textového popisu a poznámky ke schématu (48 teček, 12 vybraných, 6 + 6) s adresou stránky; tutor nevymýšlí hodnoty ani nový diagram nevydává za originál. |
+| Výklad oddílu kapitoly 2 s histogramem (obrázek 2.6). | Histogram nakreslený z dat: četnosti 3, 5, 8, 10, 5 a 2 v intervalech šířky 1; hodnoty nejsou odhadnuté. |
+| Výklad oddílu kapitoly 8 „Když se rozptyly skupin liší“ (obrázek 8.5). | Dva panely: krabicové grafy s body (30 a 12 hodnot) a dva vodorovné intervaly, shora klasický test (1,10; 14,90), pod ním Welchův (−1,22; 17,22), svislá čára v nule. |
+| Výklad oddílu kapitoly 6 „Statistická síla pro konkrétní alternativy“ (obrázek 6.14). | Čtyři panely s normální křivkou, kritickými hodnotami ±4,16 a vybarvenou plochou; pravděpodobnosti zamítnutí 0,05; 0,29; 0,65; 0,96. |
+| Výklad oddílu kapitoly 5 s mozaikou nebo stromem (tabulková data). | Tabulka nebo schéma s hodnotami z bloku dat; tutor uvede, že jde o překreslení. |
+| ChatGPT a Gemini: „Ukaž mi obrázek 10.2.“ | Graf nakreslený z dat přímo v odpovědi, bez omluvy za chybějící soubor a bez adresy; žádná adresa v bloku kódu. |
+| Výklad oddílu kapitoly 3 „Co od ukazatelů polohy a variability očekáváme“. | Tutor sám jednou nabídne interaktivní stránku s adresou `https://reckak.github.io/statistics-for-psychology/quarto/viz_posun_a_jednotky.html`; výklad pokračuje i bez jejího otevření. |
+| „Otevřel jsem ji, co mám zkusit?“ | Poradí nastavení podle VIZUALIZACE.md a po návratu se zeptá na pozorování. |
+| Kterýkoli odkaz od tutora (zvlášť v Gemini). | Adresa začíná `https://reckak.github.io/statistics-for-psychology/`, je shodná s rejstříkem či plánem a není obalená vyhledáváním. Klikni na ni a ověř, že se otevře učebnice. |
+| Zkoušení z kapitoly 10. | Tutor neukáže obrázek, který prozrazuje odpověď. |
+| „Bez grafů, prosím.“ | Dál vykládá slovně. |
 
 ## Čtyři pedagogické režimy
 
@@ -102,7 +167,7 @@ znění, verzi, klienta, model a pozorované čtení souborů. Správný název
 kapitoly ani tvrzení modelu „načetl jsem“ samo aktivaci nedokládá.
 
 - Zahájení studia: nejprve SKILL.md, REFERENCE.md a INDEX.md; nabídka
-  zachová úplné názvy kapitol 4 a 6 a hranici přibalených kapitol 1–6.
+  zachová úplné názvy všech deseti kapitol.
 - Sokratovské vedení: stejné úvodní načtení, potom jen otázka na chybějící
   zadání; po zadání konkrétního cvičení načte plán, výklad a kontrolní
   řešení, studentovi položí jednu otázku bez zveřejnění řešení.
@@ -173,8 +238,9 @@ Před vydáním spusť celý export a kontroly archivu. Potom ověř kandidáta 
 
 | Dotaz / postup | Přijetí |
 |---|---|
-| Chci začít studovat. | Přesné názvy kapitol 1–6 v pořadí, stručně hranice balíčku. Další volby postupně. |
-| Vypiš všechny kapitoly učebnice a dostupnost. | Všech deset skutečných názvů; 7–10 web/přehledy, nikoli přibalený úplný text. |
+| Chci začít studovat. | Přesné názvy kapitol 1–10 v pořadí. Další volby postupně. |
+| Vypiš všechny kapitoly učebnice a dostupnost. | Všech deset skutečných názvů, všechny s úplným textem. |
+| Jakou verzi tutora používáš? | Verze a revize z registru, nikoli odhad. |
 | Chci studovat popisné statistiky. | Přiřazení zejména ke 2 a 3 pod jejich skutečnými názvy. |
 | Začněme kapitolou 2 – Popisné statistiky. | Oprava názvu, převzetí záměru, žádná vymyšlená kapitola. |
 | Kapitola 3, vysvětlování, celá kapitola, bez rozšíření. | Krátký plán a první úsek, bez opakovaného průvodce a bez výkladu celé kapitoly naráz. |
@@ -192,6 +258,12 @@ Pro každou kapitolu ověř načtení plánu, jednu povinnou dovednost, její vs
 | 4 | Q–Q graf povinně, P–P nepovinně; formální test normality není předpoklad. |
 | 5 | Binomický model a aproximace povinně; variace a obecný výpočet střední hodnoty nepovinně. |
 | 6 | Důsledky více testů povinně; Bonferroniho korekce mimo výklad. Výpočet síly a rozdělení p-hodnot nepovinně. |
+| 7 | Interval s kvantilem t a test ekvivalence povinně; noninferiorita a superiorita, odolnost t-testu a výpočet obou p-hodnot dvou jednostranných testů nepovinně. |
+| 8 | Párová data a nezávislé skupiny povinně; Hedgesova korekce a varianty standardizace nepovinně. |
+| 9 | Intervaly a testy pro podíly a míry souvislosti povinně; intervaly pro poměr rizik a poměr šancí nepovinně. |
+| 10 | Tři koeficienty, test a interval povinně; důkaz mezí r, interval BCa, korekce na atenuaci a převod d na bodově biseriální korelaci nepovinně. |
+
+Hranice kapitol 7–10 ověř proti nepovinným blokům ve výukovém plánu; řádky výše jsou vodítko, nikoli náhrada plánu.
 
 V kapitole 6 pokračuj nejméně deset obsahových tahů: výběrové rozdělení → směrodatná chyba → hypotézy → p-hodnota → rozhodnutí → síla → více testů. Střídej správné odpovědi, chybu a žádost „pokračuj“. Ověř zachování rozsahu, značení a přiměřeného dalšího kroku. Tutor sám nezařadí Bonferroniho korekci ani ji nevyžaduje ve zkoušení. Potom se na ni výslovně zeptej: odpoví jako na doplněk a při návratu pokračuje v původním plánu.
 

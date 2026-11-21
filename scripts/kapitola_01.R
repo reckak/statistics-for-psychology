@@ -13,6 +13,9 @@ scatter_device <- function(name, x, y, xlab, ylab, title) {
   grid(col = '#E6ECEF')
   title(main = title, col.main = ink, line = 2.6, cex.main = 1.05)
 }
+# Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_01/); see scripts/tutor/figure-data.R.
+source('scripts/tutor/figure-data.R',encoding='UTF-8')
+ch1_fig <- function(...) tf_figure('kapitola_01',...)
 d <- sim$support
 scatter_device('podpora-motivace.svg', d$motivace, d$uspesnost,
   'Studijní motivace (body)', 'Školní úspěšnost (body)', 'Stejná podpora, slabá souvislost uvnitř skupin')
@@ -25,6 +28,12 @@ for (j in 1:3) {
 legend('topleft', legend = c('Nízká podpora', 'Střední podpora', 'Vysoká podpora'),
   pch = shapes, col = cols, bty = 'n', cex = .87)
 dev.off()
+ch1_fig('podpora-motivace','simulace',note='Simulovaná data 300 studentů ve třech skupinách po 100 podle podpory vyučujícího. Legenda vlevo nahoře: nízká podpora modrá kolečka, střední podpora oranžové trojúhelníky, vysoká podpora fialové čtverečky; body jsou poloprůhledné. Skupiny tvoří tři shluky posunuté postupně doprava a nahoru.',panels=list(local({
+  s <- sim$support
+  one <- function(level,name,look) { take <- s$podpora == level
+    tf_series(name,data.frame(x=s$motivace[take],y=s$uspesnost[take]),note=look) }
+  tf_panel('Stejná podpora, slabá souvislost uvnitř skupin','bodový graf','Studijní motivace (body)','Školní úspěšnost (body)',
+    series=list(one('nízká','Nízká podpora','modrá kolečka'),one('střední','Střední podpora','oranžové trojúhelníky'),one('vysoká','Vysoká podpora','fialové čtverečky'))) })))
 d <- sim$selection
 scatter_device('jednickari-motivace.svg', d$inteligence, d$motivace,
   'Inteligence (ilustrační skór)', 'Studijní motivace (body)', 'Celý soubor a výběr jedničkářů')
@@ -36,6 +45,11 @@ points(d$inteligence[take], d$motivace[take], pch = 17,
 legend('topleft', legend = c('Jedničkáři', 'Ostatní'), pch = c(17,16),
   col = c(orange, '#7C8C98'), bty = 'n', cex = .9)
 dev.off()
+ch1_fig('jednickari-motivace','simulace',note='Simulovaný soubor 600 studentů. Legenda vlevo nahoře: jedničkáři jako větší sytě oranžové trojúhelníky, ostatní jako menší poloprůhledná šedá kolečka; jedničkáři jsou vykresleni přes ostatní. Oranžové a šedé body se zčásti překrývají, výběr nemá ostrou hranici.',panels=list(local({
+  s <- sim$selection; take <- s$skupina == 'jedničkáři'
+  tf_panel('Celý soubor a výběr jedničkářů','bodový graf','Inteligence (ilustrační skór)','Studijní motivace (body)',
+    series=list(tf_series('Ostatní',data.frame(x=s$inteligence[!take],y=s$motivace[!take]),note='šedá kolečka'),
+      tf_series('Jedničkáři',data.frame(x=s$inteligence[take],y=s$motivace[take]),note='oranžové trojúhelníky'))) })))
 svg(file.path(out, 'vyber-prideleni.svg'), width = 7.6, height = 4.6, family = 'sans', bg = 'white')
 par(mar = c(0, 0, 0, 0), xaxs = 'i', yaxs = 'i', fg = ink)
 plot.new(); plot.window(xlim = c(0, 100), ylim = c(0, 62))
@@ -76,6 +90,7 @@ text(50.4, 5.6, 'Lze rozdíl připsat podmínce?', adj = 0, col = ink)
 text(2.4, 1.6, '(externí validita)', adj = 0, col = ink)
 text(50.4, 1.6, '(interní validita)', adj = 0, col = ink)
 dev.off()
+ch1_fig('vyber-prideleni','schema',note='Populaci tvoří 48 teček, z nichž je 12 tmavých; výběr obsahuje těchto 12 teček. V podmínce Ticho je 6 modrých teček, v podmínce Rušivé zvuky 6 oranžových.')
 
 # Conceptual diagrams: fixed illustrative positions, not empirical observations.
 diagram <- function(name, height, code) {
@@ -114,6 +129,7 @@ diagram('populace-vyber-inference', 6.4, {
   label(50,23,'Inferenční statistika',TRUE,.95)
   label(50,7,'Z dat výběru usuzujeme na populaci:\ns předpoklady a nejistotou.',cex=.9)
 })
+ch1_fig('populace-vyber-inference','schema',note='Populaci znázorňuje 20 teček, z nichž jsou 4 modré; výběr tvoří tyto 4 modré tečky. Modrá šipka vede od populace k výběru (vybírání případů), oranžová zpět od výběru k populaci (inferenční statistika).')
 
 diagram('souvislost-pricina', 5.5, {
   label(50,95,'Dvě uvažovaná vysvětlení stejné souvislosti',TRUE,1.1)
@@ -127,6 +143,7 @@ diagram('souvislost-pricina', 5.5, {
   link(35,32,17,25); link(50,32,50,25); link(64,16.5,70,16.5)
   label(50,3,'Šipky vyjadřují hypotézy. Oba mechanismy mohou působit současně.',cex=.85)
 })
+ch1_fig('souvislost-pricina','schema')
 
 diagram('od-konstruktu-k-zaznamu', 6, {
   label(50,95,'Co chceme poznat a co skutečně zaznamenáme',TRUE,1.1)
@@ -143,6 +160,7 @@ diagram('od-konstruktu-k-zaznamu', 6, {
   }
   label(50,3,'Šipky ukazují postup vymezení a záznamu, nikoli příčinné účinky.',cex=.85)
 })
+ch1_fig('od-konstruktu-k-zaznamu','schema')
 
 diagram('zmena-zapisu', 7, {
   label(50,96,'Změna zápisu: co zůstává stejné?',TRUE,1.15)
@@ -161,6 +179,7 @@ diagram('zmena-zapisu', 7, {
   label(65,14,'Stejný poměr 2 : 1; nula zůstává nulou.',cex=.95,col=blue)
   label(50,4,'U teploty se poměr hodnot mění: 20 / 10 = 2, ale 68 / 50 = 1,36.',cex=.9)
 })
+ch1_fig('zmena-zapisu','schema')
 
 diagram('diskretnost-a-zaznam', 6, {
   label(50,95,'Možné hodnoty a přesnost záznamu',TRUE,1.15)
@@ -179,6 +198,7 @@ diagram('diskretnost-a-zaznam', 6, {
   label(50,9,'Záznam na celé hodiny: 7 h',TRUE)
   label(50,2,'Také 0; 0,5; 1 bod jsou diskrétní možnosti. Desetinná čárka nerozhoduje.',cex=.82)
 })
+ch1_fig('diskretnost-a-zaznam','schema')
 
 diagram('variabilita-a-neucast', 6.2, {
   label(50,95,'Kolísání výběrů a mechanismus neúčasti',TRUE,1.1)
@@ -202,6 +222,7 @@ diagram('variabilita-a-neucast', 6.2, {
   label(77,14,'Častěji odpovídají',cex=.95)
   label(50,4,'Mezi odpovídajícími pak může být podpora strany podhodnocena.',cex=.9)
 })
+ch1_fig('variabilita-a-neucast','schema',note='V části A má každý ze tří výběrů 6 značek: modrá kolečka jsou podporovatelé, oranžové trojúhelníky ostatní. Výběr 1 obsahuje 2 podporovatele, výběr 2 tři a výběr 3 čtyři; jde o schematické složení, ne o simulaci.')
 
 diagram('ucastnik-navsteva-radek', 5, {
   label(50,94,'Dva účastníci, čtyři záznamy',TRUE,1.15)
@@ -217,6 +238,7 @@ diagram('ucastnik-navsteva-radek', 5, {
   }
   label(50,4,'ID člověka se opakuje; konkrétní záznam určuje ID spolu s návštěvou.',cex=.9)
 })
+ch1_fig('ucastnik-navsteva-radek','schema')
 
 # Ellipse outline in diagram coordinates (0-100 on both axes).
 ellipse_xy <- function(cx, cy, rx, ry, t = seq(-pi, pi, length.out = 241)) {
@@ -249,6 +271,7 @@ diagram('rozsah-konstruktu', 6.4, {
   link(89,52,84,38,orange)
   label(50,3,'Schéma: velikost ploch neodpovídá žádným změřeným podílům.',cex=.85)
 })
+ch1_fig('rozsah-konstruktu','schema')
 
 diagram('terc-reliabilita-validita', 7.2, {
   set.seed(20261031)
@@ -273,3 +296,4 @@ diagram('terc-reliabilita-validita', 7.2, {
   }
   label(50,3,'Body: opakovaná měření jednoho člověka. Oranžový střed: hodnota, kterou má postup zachytit.',cex=.82)
 })
+ch1_fig('terc-reliabilita-validita','schema',note='V každém ze čtyř terčů je 12 modrých bodů a oranžový střed. Polohy bodů jsou ilustrační (náhodně rozmístěné s pevným seedem), nejde o data: vlevo leží těsně u sebe, vpravo jsou rozptýlené; v dolní řadě je celá skupina posunuta vpravo nahoru od středu.')

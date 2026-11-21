@@ -1,7 +1,7 @@
 # Stručný referenční balíček
 
 Původní výběr připraven 2. 11. 2026; vybrané konvence a instrukční formulace zpřesněny 3. 11. 2026. Jde o krátký výběr konvencí a připomenutí,
-nikoli o kapitoly nebo úplný slovníček. Přibalené kapitoly 1–6 a celé aktuální přehledy jsou uvedeny v INDEX.md.
+nikoli o kapitoly nebo úplný slovníček. Přibalené kapitoly a celé aktuální přehledy jsou uvedeny v INDEX.md.
 Při použití v chatu uváděj tento soubor jako zdroj. Citaci kapitoly opírej o její skutečně přečtený obsah. Konkrétní výklad a potřebné předpoklady doplňuje dostupná kapitola.
 
 ## Terminologie
