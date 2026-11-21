@@ -266,6 +266,9 @@ node scripts/export-tutor.cjs
 - **Rejstřík obrázků každé kapitoly** `references/obrazky/kapitola_NN.md`:
   číslo, popisek, textový popis (`fig-alt` kapitoly), místo v kapitole, soubor
   obrázku a dvě webové adresy jako prostý text (stránka s kotvou a samotný obrázek).
+  Ve variantě pro Gemini je místo adresy samotného obrázku řádek „Zobrazení“
+  a kapitola místo odkazu na web odkazuje na záznam v rejstříku; počet řádků
+  rejstříku se neliší, takže rozsahy v plánech platí pro všechny varianty.
 - **Data pro překreslení** u kapitol uvedených ve `figureDataChapters`
   (`scripts/tutor/common.cjs`, od 0.4.1 všechny kapitoly): viz [níže](#data-ke-grafum-tutora).
 - **Malý registr `KAPITOLY.json`** (schéma 3) s verzí, revizí a seznamem

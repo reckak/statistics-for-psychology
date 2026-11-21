@@ -402,7 +402,7 @@ fs.rmSync(path.join(geminiRefs, 'assets'), {recursive: true});
 fs.writeFileSync(path.join(geminiDir, 'SKILL.md'), geminiSkill(read(path.join(geminiDir, 'SKILL.md'))), 'utf8');
 for (const d of exportedChapters) {
   const file = path.join(geminiRefs, d.output);
-  const {markdown, ids} = withoutImages(read(file), `${web}quarto/${d.id}.html`);
+  const {markdown, ids} = withoutImages(read(file));
   fs.writeFileSync(file, markdown, 'utf8');
   assert.deepEqual(ids, figures.filter(f => f.chapter === d.id).map(f => f.id), `${d.id}: figure blocks and replaced images`);
 }

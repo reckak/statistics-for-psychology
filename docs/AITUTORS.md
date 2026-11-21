@@ -122,8 +122,12 @@ klienta; vydání nepodmiňuje.
 - Přibalené PNG klient při testu verze 0.4.0 nepřečetl (pozorování autora
   2026-11-21); tutor pracoval s textem kapitol, rejstříkem obrázků a daty.
   Od 0.4.1 proto balíček obsahuje původní SVG. Jejich popisky jsou uloženy
-  jako křivky, nikoli jako text; zda je klient zobrazí nebo přečte, je třeba
-  ověřit testem. Hlavní cestou k obrázku v odpovědi zůstává překreslení z dat.
+  jako křivky, nikoli jako text. Při testu první podoby 0.4.1 klient SVG do
+  odpovědi vložit nedokázal (pozorování autora 2026-11-21): u obrázku 10.2
+  napsal, že původní soubor vložit nelze a že jej nenahradí „neověřeným
+  obrázkem“, a dal jen odkaz, přestože záznam data má. Instrukce proto
+  ChatGPT výslovně posílají rovnou k překreslení z dat a říkají, že graf
+  z přibalených dat je ověřený obrázek učebnice; účinek je třeba ověřit testem.
 
 - Balíček je plugin `ai-tutor/chatgpt/statistika-tutor-chatGPT-<verze>.zip`
   s manifesty `plugin.json` a `.codex-plugin/plugin.json`, logem a SKILL.md
@@ -172,11 +176,17 @@ klienta; vydání nepodmiňuje.
 - Při nahrání může Gemini ohlásit „Při nahrávání dovednosti došlo k chybě“,
   přestože se dovednost uložila a aktualizovala (pozorování autora
   2026-11-21). Stav ověřuj v seznamu dovedností a dotazem na verzi.
-- Místo obrázku kapitola obsahuje číslovaný popisek, textový popis a odkaz
-  na tentýž obrázek ve webové učebnici; rejstříky neuvádějí soubor obrázku
-  a v SKILL.md je seznam možností zobrazení nahrazen zněním bez souborů. Obrázek
-  s daty tutor překresluje, ostatní popisuje a uvádí adresu obrázku na webu.
+- Místo obrázku kapitola obsahuje číslovaný popisek, textový popis a řádek
+  odkazující na záznam v rejstříku obrázků, bez webové adresy; rejstříky
+  neuvádějí soubor obrázku ani adresu samotného obrázku a místo ní mají řádek
+  „Zobrazení“ (překreslit z dat, nebo popsat a připojit adresu stránky).
+  V SKILL.md je seznam možností zobrazení nahrazen zněním bez souborů. Obrázek
+  s daty tutor překresluje a adresu nepřidává, schéma popisuje a uvádí jednou
+  adresu stránky učebnice.
 - Gemini v testech posílal vymyšlené adresy učebnice obalené vyhledáváním
-  Google (pozorování autora 2026-11-21). Instrukce proto ukládají opisovat
-  adresy doslova jako prostý text; účinek je třeba ověřit testem.
+  Google (pozorování autora 2026-11-21). Při testu první podoby 0.4.1 naopak
+  u obrázku 10.1 s daty graf nenakreslil a vypsal obě adresy v blocích kódu
+  jako zdvojený zápis odkazu; odkazy jej podle autora spíše matou. Instrukce
+  proto ukládají uvést adresu jednou, celou a v běžné větě, mimo blok kódu
+  a závorky; účinek je třeba ověřit testem.
 - Tarif, model a režim testů doplň po prvním úplném testu vydání.

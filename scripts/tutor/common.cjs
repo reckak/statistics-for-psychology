@@ -82,12 +82,13 @@ function claudeSkill(skill) {
 }
 // Figure files differ by variant: the plugin (ChatGPT) ships the SVG sources, Claude PNG
 // renderings and Gemini no image files. In the Gemini variant each figure keeps its numbered
-// caption and text description; the image line becomes a link to the same figure in the web book.
+// caption and text description; the image line becomes a pointer to the figure's register entry
+// (web links in chapters made Gemini print addresses instead of drawing, test of 0.4.1).
 const imageLine = /^!\[.*\]\(\.\.\/assets\/[^)\s]+\.(?:svg|png)\)(\{.*\})?$/;
 // File name or image line of the PNG rendering of an SVG figure.
 const pngName = s => s.replace(/\.svg(?=\)|$)/i, '.png');
 const figureOpen = /^:{3,} \{#(fig-[^\s}]+)/;
-function withoutImages(markdown, webPage) {
+function withoutImages(markdown) {
   const ids = [];
   let current = null;
   const lines = markdown.split('\n').map(line => {
@@ -96,7 +97,7 @@ function withoutImages(markdown, webPage) {
     if (!imageLine.test(line)) return line;
     if (!current) throw new Error(`Image outside a figure block: ${line.slice(0, 120)}`);
     ids.push(current);
-    const replaced = `[Obrázek ve webové učebnici](${webPage}#${current})`;
+    const replaced = `Obrázek: záznam ${current} v rejstříku obrázků kapitoly.`;
     current = null;
     return replaced;
   });
@@ -108,8 +109,8 @@ const geminiEnd = '\nHodnoty obrázku neodhaduj z popisu.';
 const geminiNote = [
   'Cílem je obrázek **přímo v textu odpovědi**. Soubory obrázků v této verzi přibalené nejsou:',
   '',
-  '1. Má-li záznam obrázku blok „Data pro překreslení“, **překresli graf v odpovědi** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.',
-  '2. Je-li obrázek schéma bez dat nebo graf vykreslit nelze: popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku. U takového obrázku je popis s adresou úplným splněním pravidla o obrázku.',
+  '1. Má-li záznam obrázku blok „Data pro překreslení“, **překresli graf v odpovědi** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem. Graf z přibalených dat je ověřený obrázek učebnice, ne náhražka; popis ani adresa jej nenahrazují a adresu k němu nepřidávej.',
+  '2. Je-li obrázek schéma bez dat nebo graf vykreslit nelze: popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a jednou připoj adresu „Stránka učebnice s obrázkem“ z rejstříku. U takového obrázku je popis s adresou úplným splněním pravidla o obrázku.',
   ''
 ].join('\n');
 // Gemini accepts only CSV, PY, TXT and MD files in a skill, so its variant
@@ -207,7 +208,7 @@ function figureRegister(d, figures, withFiles) {
   const out = [`# Obrázky kapitoly ${d.number}: ${d.title}`, '',
     withFiles
       ? 'U každého obrázku je číslo, popisek, textový popis, místo v kapitole, přibalený soubor obrázku a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.'
-      : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole a dvě webové adresy: stránka učebnice s obrázkem a samotný obrázek.', '',
+      : 'Soubory obrázků nejsou v této verzi přibalené. U každého obrázku je číslo, popisek, textový popis, místo v kapitole, adresa stránky učebnice s obrázkem a řádek „Zobrazení“, který říká, jak obrázek ukázat.', '',
     withData
       ? 'Blok „Data pro překreslení“ obsahuje hodnoty, ze kterých je obrázek nakreslen (u rozsáhlých řad jejich výběr podle poznámky), a popis os, vodicích čar a zvýraznění. Čísla v bloku mají desetinnou tečku; v grafu i ve výkladu piš desetinnou čárku. Schéma bez dat má místo bloku nejvýše řádek „Poznámka ke schématu“ s počty a rozmístěním prvků.'
       : 'K obrázkům této kapitoly zatím nejsou přibalena data pro překreslení.', ''];
@@ -217,7 +218,8 @@ function figureRegister(d, figures, withFiles) {
       `Textový popis: ${mdEscape(f.alt)}`, '',
       `[V kapitole](../${d.output}#${f.id})${withFiles ? ` · [Soubor obrázku](../${f.file})` : ''}`, '',
       `Stránka učebnice s obrázkem: ${f.web}`, '',
-      `Samotný obrázek na webu: ${f.image}`, '');
+      withFiles ? `Samotný obrázek na webu: ${f.image}`
+        : hasData(f) ? 'Zobrazení: překresli graf z bloku dat níže; adresu nepřidávej.' : 'Zobrazení: popiš obrázek a připoj adresu stránky učebnice.', '');
     if (hasData(f)) out.push('Data pro překreslení:', '', '```text', ...figureDataBlock(f.data), '```', '');
     else if (f.data || withData) {
       out.push('Data pro překreslení: obrázek je schéma bez dat.', '');

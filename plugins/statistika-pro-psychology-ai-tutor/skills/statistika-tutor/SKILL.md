@@ -85,14 +85,14 @@ Před dalším krokem ověř v plánu, že pojmy patří do zvoleného rozsahu a
 
 Cílem je obrázek **přímo v textu odpovědi**. Použij první možnost, kterou klient skutečně nabízí:
 
-1. Zobraz přibalený soubor obrázku přímo v odpovědi. Pouhý odkaz na místní soubor zobrazením není; nejsi-li si vykreslením jistý, použij další možnost. Soubor obrázku nečti ani nevkládej jako text: popisky v něm nejsou.
-2. Má-li záznam data, **překresli graf v odpovědi z bloku „Data pro překreslení“** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem.
+1. Zobraz přibalený soubor obrázku přímo v odpovědi, pokud to klient umí; ChatGPT to neumí, tam začni možností 2. Odkaz na soubor zobrazením není; při nejistotě nebo neúspěchu přejdi bez omluvy na další možnost. Soubor obrázku nečti ani nevkládej jako text: popisky v něm nejsou.
+2. Má-li záznam data, **překresli graf v odpovědi z bloku „Data pro překreslení“** podle oddílu o překreslení ve [VIZUALIZACE.md](references/VIZUALIZACE.md): stejné hodnoty, osy, popisky, vodicí čáry a značení. Uveď, že jde o překreslení obrázku učebnice s daným číslem. Graf z přibalených dat je ověřený obrázek učebnice, ne náhražka; adresu k němu nepřidávej.
 3. Pošli přibalený obrázek jako soubor; je-li obrázek už v odpovědi, jen jako doplněk nebo na žádost.
 4. Nelze-li obrázek zobrazit ani překreslit (typicky schéma bez dat): popiš jej podle textového popisu a poznámky ke schématu, řekni, čeho si všimnout, a připoj adresu „Stránka učebnice s obrázkem“ z rejstříku.
 
 Hodnoty obrázku neodhaduj z popisu. Vlastní data či novou simulaci výslovně označ jako vlastní ilustraci. Obrázek vynech jen tehdy, když student grafy nechce.
 
-**Adresy obrázků a interaktivních stránek opisuj doslova** z rejstříku nebo plánu a piš je celé jako prostý text; všechny začínají https://reckak.github.io/statistics-for-psychology/. Adresu neskládej z názvu kapitoly, neodhaduj a nevkládej ji do odkazu na vyhledávač. Adresu oddílu smíš složit jen jako https://reckak.github.io/statistics-for-psychology/quarto/kapitola_NN.html#ID, kde NN je dvoumístné číslo kapitoly a ID kotva oddílu z plánu.
+**Adresy obrázků a interaktivních stránek opisuj doslova** z rejstříku nebo plánu. Každou uveď jednou, celou a v běžné větě; nedávej ji do bloku kódu ani do hranatých a kulatých závorek. Všechny začínají https://reckak.github.io/statistics-for-psychology/. Adresu neskládej z názvu kapitoly, neodhaduj a nevkládej ji do odkazu na vyhledávač. Adresu oddílu smíš složit jen jako https://reckak.github.io/statistics-for-psychology/quarto/kapitola_NN.html#ID, kde NN je dvoumístné číslo kapitoly a ID kotva oddílu z plánu.
 
 **Interaktivní stránku učebnice nabídni**, když student probírá oddíl, u něhož ji plán uvádí: jednou větou s názvem a úplnou adresou, například „Na této interaktivní stránce učebnice si můžete vyzkoušet, co s rozdělením udělá posun a změna jednotek (adresa).“ Nabídni ji u oddílu jednou a pokračuj; krok musí být úplný i bez ní. Když ji student otevře, poraď podle tabulky ve [VIZUALIZACE.md](references/VIZUALIZACE.md), co nastavit a čeho si všimnout, a po návratu navaž na jeho pozorování.
 

@@ -83,6 +83,30 @@ rejstříky (kapitola 4 má 4 400 řádků) nezhoršují čtení po rozsazích �
 Zbývajících deset dvojic kapitoly 10 jsem neprohlédl. Hlášení agentů
 o prohlídce dvojic jsem přijal bez opakování celé prohlídky.
 
+**První test 0.4.1 a oprava pokynů (týž den).** Autor poslal dva snímky.
+Gemini u obrázku 10.1, který data má, graf nenakreslil: popsal jej a vypsal
+adresu stránky i adresu samotného obrázku v blocích kódu jako zdvojený zápis
+odkazu; podle autora jej odkazy „spíš matou“. ChatGPT u obrázku 10.2 napsal,
+že původní soubor do chatu vložit nedokázal a že jej nenahradí „neověřeným
+obrázkem“, a dal jen odkaz; z dat nekreslil. SVG tedy ChatGPT do odpovědi
+nevkládá, stejně jako dříve PNG. Upraveno, verze kandidáta zůstává 0.4.1:
+
+- `SKILL.md`: první možnost (přibalený soubor) platí jen tam, kde ji klient
+  umí, a ChatGPT je výslovně poslán k překreslení z dat; při neúspěchu se
+  přechází dál bez omluvy; graf z přibalených dat je označen za ověřený
+  obrázek učebnice a adresa se k němu nepřidává; adresa se uvádí jednou, celá,
+  v běžné větě, mimo blok kódu a závorky (dříve „jako prostý text“).
+- Gemini: kapitola místo odkazu na web odkazuje na záznam v rejstříku;
+  rejstřík místo adresy samotného obrázku nese řádek „Zobrazení“ (překreslit
+  z dat bez adresy, nebo popsat a připojit adresu stránky). Počet řádků
+  rejstříku se nezměnil, rozsahy v plánech platí dál. `check-tutor.cjs`
+  ověřuje nové znění a že rejstřík pro Gemini neobsahuje adresu obrázku.
+
+Soubory SVG v balíčku pro ChatGPT zůstaly; zda je ponechat, rozhodne autor.
+Neověřeno: účinek úprav v klientech; snímky byly z kapitoly 10, obrázky
+ostatních kapitol (8.5, 6.14, 2.6, schéma 1.5) v klientech doloženy nejsou.
+Příčinu, proč Gemini nekreslil, neznám (mohlo jít i o režim bez kreslení).
+
 <a id="tutor-040-20261121"></a>
 
 ## 2026-11-21 — AI tutor 0.4.0 (kandidát): kapitoly 1–10, nové instrukce, PNG a data ke grafům

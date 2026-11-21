@@ -593,8 +593,13 @@ if (geminiRoot) {
     assert.equal(textRegister.length, fullRegister.length, `${entry.id}: Gemini figure register line count`);
     fullRegister.forEach((line, i) => {
       if (line === textRegister[i]) return;
-      assert(i === 2 || textRegister[i] === line.replace(/ · \[Soubor obrázku\]\([^)]+\)/, ''), `${entry.id}: Gemini figure register line ${i + 1}`);
+      assert(i === 2 || textRegister[i] === line.replace(/ · \[Soubor obrázku\]\([^)]+\)/, '')
+        || (line.startsWith('Samotný obrázek na webu: ') && /^Zobrazení: (překresli graf z bloku dat níže; adresu nepřidávej|popiš obrázek a připoj adresu stránky učebnice)\.$/.test(textRegister[i])),
+        `${entry.id}: Gemini figure register line ${i + 1}`);
     });
+    const shown = textRegister.filter(l => l.startsWith('Zobrazení: '));
+    assert.equal(shown.filter(l => l.includes('překresli')).length, textRegister.filter(l => l === 'Data pro překreslení:').length, `${entry.id}: Gemini redraw lines match data blocks`);
+    assert(!textRegister.some(l => /\.(svg|png)\b/i.test(l) && l.includes('https://')), `${entry.id}: Gemini register has no image address`);
     assert(textRegister[2].startsWith('Soubory obrázků nejsou v této verzi přibalené.'));
     assert(!textRegister.some(l => l.includes('Soubor obrázku') || l.includes('../assets/')), `${entry.id}: Gemini figure register links no image file`);
     assert.equal(data.gemini.registers[entry.id], hash(path.join(geminiRefs, registerPath(entry.id))), `${entry.id}: Gemini register checksum`);
@@ -603,7 +608,6 @@ if (geminiRoot) {
   assert.equal(read(path.join(geminiRefs, 'LICENCE.md')), geminiNames(read(path.join(claudeRoot, 'references/LICENCE.md'))), 'Gemini LICENCE.md');
   let figureCount = 0;
   for (const entry of bundled) {
-    const webPage = `${web}quarto/${entry.id}.html`;
     const source = parseSource(q, entry.source, false);
     const figs = nodes(source, 'Figure').filter(f => nodes(f, 'Image').length);
     assert.equal(figs.length, nodes(source, 'Image').length, `${entry.id}: every image is a figure`);
@@ -615,7 +619,7 @@ if (geminiRoot) {
     for (let i = 0; i < original.length; i++) {
       if (original[i] === rewritten[i]) continue;
       assert(imageLine.test(original[i]), `${entry.id}: unexpected change on line ${i + 1}`);
-      assert.match(rewritten[i], new RegExp(`^\\[Obrázek ve webové učebnici\\]\\(${webPage.replace(/[.]/g, '\\.')}#fig-[^)]+\\)$`));
+      assert.match(rewritten[i], /^Obrázek: záznam fig-\S+ v rejstříku obrázků kapitoly\.$/);
       replaced++;
     }
     assert.equal(replaced, figs.length, `${entry.id}: replaced images`);
@@ -624,7 +628,7 @@ if (geminiRoot) {
       const id = fig.c[0][0];
       const alt = nodes(fig, 'Image')[0].c[0][2].find(([k]) => k === 'fig-alt')?.[1];
       assert(alt, `${entry.id}/${id}: text description`);
-      assert(rewritten.includes(`[Obrázek ve webové učebnici](${webPage}#${id})`), `${entry.id}/${id}: web link`);
+      assert(rewritten.includes(`Obrázek: záznam ${id} v rejstříku obrázků kapitoly.`), `${entry.id}/${id}: register pointer`);
       assert(rewrittenParagraphs.has(squeeze(`Textový popis obrázku: ${alt}`)), `${entry.id}/${id}: description in chapter`);
       figureCount++;
     }
