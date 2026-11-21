@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const {root, name, source, web, read, files, hash, quarto, pandoc, parseSource,
-  nodes, attr, text, documents, skillName, splitSkill, imageLine, geminiSkill, geminiNote,
+  nodes, attr, text, documents, skillName, splitSkill, imageLine, geminiSkill, geminiNote, geminiRenames, geminiAllowed, geminiNames,
   headingLines, divEnd, solutionOpen, figuresLine} = require('./tutor/common.cjs');
 const {bookChapters, scopes} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
@@ -451,12 +451,15 @@ if (geminiRoot) {
   assert(!geminiFiles.some(f => /\.svg$/i.test(f) || f.includes('/assets/')), 'Gemini skill must not contain image files');
   assert.equal(read(path.join(geminiRoot, 'SKILL.md')), geminiSkill(read(path.join(claudeRoot, 'SKILL.md'))), 'Gemini SKILL.md');
   assert(read(path.join(geminiRoot, 'SKILL.md')).includes(geminiNote));
-  const changed = new Set(['SKILL.md', 'references/KAPITOLY.json', 'references/INDEX.md', 'references/obrazky.md',
+  // The upload dialog accepts only CSV, PY, TXT and MD files.
+  for (const f of geminiFiles) assert(geminiAllowed.test(f), `Gemini skill file type: ${f}`);
+  const renamed = f => f.replace(/[^/]+$/, n => geminiRenames[n] || n);
+  const changed = new Set(['SKILL.md', 'references/KAPITOLY.json', 'references/INDEX.md', 'references/obrazky.md', 'references/LICENCE.md',
     ...bundled.map(d => `references/${d.path}`)]);
   const claudeFiles = files(claudeRoot).map(f => rel(claudeRoot, f)).filter(f => !f.startsWith('references/assets/')).sort();
-  assert.deepEqual(geminiFiles, claudeFiles, 'Gemini file list');
+  assert.deepEqual(geminiFiles, claudeFiles.map(renamed).sort(), 'Gemini file list');
   for (const f of claudeFiles.filter(f => !changed.has(f))) {
-    assert.equal(hash(path.join(geminiRoot, f)), hash(path.join(claudeRoot, f)), `Gemini skill file differs: ${f}`);
+    assert.equal(hash(path.join(geminiRoot, renamed(f))), hash(path.join(claudeRoot, f)), `Gemini skill file differs: ${f}`);
   }
   const geminiRefs = path.join(geminiRoot, 'references');
   const geminiRegister = read(path.join(geminiRefs, 'obrazky.md'));
@@ -470,7 +473,8 @@ if (geminiRoot) {
   });
   assert(textRegister[2].startsWith('Soubory obrázků nejsou v této verzi přibalené.'));
   assert(!geminiRegister.includes('Soubor obrázku') && !geminiRegister.includes('assets/'), 'Gemini figure register links no image file');
-  assert.equal(read(path.join(geminiRefs, 'INDEX.md')), read(path.join(claudeRoot, 'references/INDEX.md')).replace(figuresLine(true), figuresLine(false)), 'Gemini INDEX.md');
+  assert.equal(read(path.join(geminiRefs, 'INDEX.md')), geminiNames(read(path.join(claudeRoot, 'references/INDEX.md')).replace(figuresLine(true), figuresLine(false))), 'Gemini INDEX.md');
+  assert.equal(read(path.join(geminiRefs, 'LICENCE.md')), geminiNames(read(path.join(claudeRoot, 'references/LICENCE.md'))), 'Gemini LICENCE.md');
   let figureCount = 0;
   for (const entry of bundled) {
     const webPage = `${web}quarto/${entry.id}.html`;
@@ -502,7 +506,7 @@ if (geminiRoot) {
     }
   }
   assert.equal((geminiRegister.match(/^### Obrázek \d+\.\d+ \{#/gm) || []).length, figureCount, 'Register entry count');
-  const {images: geminiImages, ...geminiRegistry} = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
+  const {images: geminiImages, ...geminiRegistry} = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.txt')));
   assert.equal(geminiImages, 'web_only');
   assert.deepEqual(geminiRegistry, registry, 'Gemini registry differs only by the image note');
   assert.equal(geminiRegistry.figures.count, figureCount);

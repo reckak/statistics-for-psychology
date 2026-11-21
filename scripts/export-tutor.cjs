@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const c = require('./tutor/common.cjs');
 const {root, name, source, web, posix, read, hash, files, run, quarto, pandoc,
   parseSource, nodes, attr, text, str, para, link, documents, skillName, claudeSkill, withoutImages, geminiSkill,
-  figureRegister, figuresLine, inlineMd} = c;
+  figureRegister, figuresLine, inlineMd, geminiRenames, geminiNames} = c;
 const {bookChapters, cardFor, createPlan} = require('./tutor/plans.cjs');
 const args = process.argv.slice(2);
 const option = flag => args.includes(flag) ? args[args.indexOf(flag) + 1] : undefined;
@@ -371,10 +371,13 @@ for (const d of exportedChapters) {
 fs.writeFileSync(path.join(geminiRefs, 'obrazky.md'), figureRegister(exportedChapters, figures, false), 'utf8');
 const geminiIndex = read(path.join(geminiRefs, 'INDEX.md'));
 assert.equal(geminiIndex.split(figuresLine(true)).length, 2, 'One figure-register line in INDEX.md');
-fs.writeFileSync(path.join(geminiRefs, 'INDEX.md'), geminiIndex.replace(figuresLine(true), figuresLine(false)), 'utf8');
+fs.writeFileSync(path.join(geminiRefs, 'INDEX.md'), geminiNames(geminiIndex.replace(figuresLine(true), figuresLine(false))), 'utf8');
 const geminiCatalog = JSON.parse(read(path.join(geminiRefs, 'KAPITOLY.json')));
 geminiCatalog.images = 'web_only';
 fs.writeFileSync(path.join(geminiRefs, 'KAPITOLY.json'), JSON.stringify(geminiCatalog, null, 2) + '\n', 'utf8');
+// Only CSV, PY, TXT and MD files are accepted: rename the rest and follow the links.
+for (const [from, to] of Object.entries(geminiRenames)) fs.renameSync(path.join(geminiRefs, from), path.join(geminiRefs, to));
+fs.writeFileSync(path.join(geminiRefs, 'LICENCE.md'), geminiNames(read(path.join(geminiRefs, 'LICENCE.md'))), 'utf8');
 checkData.gemini = {
   chapters: Object.fromEntries(exportedChapters.map(d => [d.id, hash(path.join(geminiRefs, d.output))])),
   figures_sha256: hash(path.join(geminiRefs, 'obrazky.md'))
@@ -416,8 +419,10 @@ const claudeInventory = zipDirectory(claudeStage, claudeStageArchive);
 assert(claudeInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Claude archive must have one skill folder at its root');
 const geminiArchiveName = `${skillName}-gemini-${version}.zip`;
 const geminiStageArchive = path.join(work, geminiArchiveName);
-const geminiInventory = zipDirectory(geminiStage, geminiStageArchive);
-assert(geminiInventory.every(f => f.path.startsWith(`${skillName}/`)), 'Gemini archive must have one skill folder at its root');
+// Gemini expects SKILL.md at the first level of the archive, without a wrapping folder.
+const geminiInventory = zipDirectory(geminiDir, geminiStageArchive);
+assert(geminiInventory.some(f => f.path === 'SKILL.md') && geminiInventory.every(f => f.path === 'SKILL.md' || f.path.startsWith('references/')),
+  'Gemini archive must have SKILL.md and references/ at its root');
 const report = {version, source_revision: sourceRevision, source_dirty: sourceDirty, date: stamp, package_directory: stage,
   files: inventory, chapters: bundled.length, catalog_chapters: catalog.chapters.length, plans: plans.length, overviews: catalog.overviews.length,
   check_data: checkDataPath,

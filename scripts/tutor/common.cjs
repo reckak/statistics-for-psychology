@@ -102,9 +102,14 @@ function withoutImages(markdown, webPage) {
 }
 const geminiNote = 'Soubory obrázků učebnice v této verzi přibalené nejsou: obrázek dohledej v [rejstříku obrázků](references/obrazky.md), vycházej z jeho textového popisu a studentovi nabídni odkaz na obrázek ve webové učebnici.';
 const geminiAnchor = 'Stručná odpověď může zůstat slovní, případně využít obrázek učebnice.';
+// Gemini accepts only CSV, PY, TXT and MD files in a skill, so its variant
+// ships the registry and the code licence under a .txt name.
+const geminiRenames = {'KAPITOLY.json': 'KAPITOLY.txt', LICENSE: 'LICENSE.txt'};
+const geminiAllowed = /\.(csv|py|txt|md)$/i;
+const geminiNames = s => s.split('KAPITOLY.json').join('KAPITOLY.txt').split('](LICENSE)').join('](LICENSE.txt)');
 function geminiSkill(claudeText) {
   if (claudeText.split(geminiAnchor).length !== 2) throw new Error('Gemini note anchor not found exactly once in SKILL.md');
-  return claudeText.replace(geminiAnchor, `${geminiAnchor} ${geminiNote}`);
+  return geminiNames(claudeText.replace(geminiAnchor, `${geminiAnchor} ${geminiNote}`));
 }
 const str = s => ({t: 'Str', c: s});
 const para = s => ({t: 'Para', c: [str(s)]});
@@ -184,4 +189,4 @@ const figuresLine = withFiles => withFiles
 
 module.exports = {root, name, source, web, posix, read, hash, files, run, quarto, pandoc, parseSource, nodes, attr, text, str, para, link, documents,
   skillName, splitSkill, claudeSkill, imageLine, withoutImages, geminiSkill, geminiNote,
-  headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd};
+  geminiRenames, geminiAllowed, geminiNames, headingLines, divEnd, solutionOpen, figureRegister, figuresLine, inlineMd};
