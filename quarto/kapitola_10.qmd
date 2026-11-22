@@ -154,6 +154,10 @@ kde $z_{x,i} = (x_i - m_x)/s_x$ a $z_{y,i} = (y_i - m_y)/s_y$ jsou *z*-skóry $i
 
 V tabulce [-@tbl-k10-01] je součet součinů *z*-skórů −3,942, takže $r = -3{,}942/5 = -0{,}788$. Pearsonovo $r$ tedy lze chápat jako kovarianci *z*-skórů: oba výpočty vedou k témuž, protože *z*-skóry už jsou vyjádřeny „v počtech směrodatných odchylek“.
 
+::: {.callout-tip title="Vyzkoušejte si: jak tvar mraku bodů souvisí s korelačním koeficientem"}
+V [interaktivní vizualizaci](viz_korelace.qmd) nastavíte posuvníkem Pearsonovo *r* pro data 40 studentů nebo pro nový náhodný výběr a uvidíte, jak se mění tvar mraku bodů. Po zapnutí kvadrantů jsou body obarvené podle znaménka součinu odchylek a přehled pod grafem ukazuje kovarianci, Pearsonovo *r* i Spearmanův korelační koeficient s dosazením.
+:::
+
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: proč Pearsonovo r nepřekročí ±1" #rozsireni-meze-r}
 Důkaz využívá jedinou jednoduchou vlastnost: druhá mocnina žádného čísla není záporná, a proto ani součet druhých mocnin nemůže být záporný. Pro každého člověka vezmeme rozdíl jeho dvou *z*-skórů, $z_{x,i} - z_{y,i}$, umocníme jej a sečteme přes všechny lidi:
 
@@ -632,6 +636,10 @@ Jak moc odlehlé pozorování korelaci změní, záleží na tom, v čem je neob
 Bod B ukazuje, proč nestačí prohlížet každou proměnnou zvlášť, například v [krabicovém grafu](kapitola_03.qmd#sec-boxplot). Pozorování, které je neobvyklé jen svou kombinací hodnot, odhalí až bodový graf.
 
 Co s odlehlým pozorováním? Cílem není odlehlá pozorování najít a odstranit, ale porozumět tomu, jak ovlivňují výsledek. Nejprve **zjistíme jejich původ**: chybu v datech lze opravit. Je-li hodnota skutečná, nemažeme ji jen proto, že nám „kazí“ výsledek; může nést důležitou informaci o lidech, které zkoumáme. Spočítáme analýzu s ní i bez ní (**analýzu citlivosti**, *sensitivity analysis*) a ve zprávě uvedeme obě. Shodují-li se závěry, výsledek na jednom pozorování nestojí; liší-li se, je to důležité zjištění, které čtenář musí znát. Pořadové koeficienty nejsou úplnou ochranou: u velmi malého souboru může i jedna vzdálená dvojice změnit pořadí mnoha dalších.
+
+::: {.callout-tip title="Vyzkoušejte si: vliv jednoho bodu na korelaci"}
+V [interaktivní vizualizaci](viz_korelace.qmd) můžete body v grafu přesouvat, přidávat a mazat. Sledujte, jak se při tom mění Pearsonovo *r* a Spearmanův korelační koeficient a jak se odlehlý bod projeví v bodovém grafu pořadí.
+:::
 
 ### Omezení rozsahu a krajní skupiny {#sec-omezeni-rozsahu}
 

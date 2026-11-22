@@ -96,10 +96,12 @@ ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-v
 [kdy párování zpřesní odhad průměrného rozdílu](../quarto/viz_prinos_parovani.qmd),
 [co znamená rozdíl o *d* směrodatných odchylek](../quarto/viz_cohenovo_d.qmd)
 a [co prozradí dva intervaly vedle sebe o rozdílu průměrů](../quarto/viz_dva_intervaly.qmd)
-ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08))
-a [jak daleko je tabulka četností od nezávislosti](../quarto/viz_chi_kvadrat.qmd)
+ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)),
+[jak daleko je tabulka četností od nezávislosti](../quarto/viz_chi_kvadrat.qmd)
 (test chí-kvadrát) a [co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../quarto/viz_miry_souvislosti.qmd)
-ke kapitole 9 ([karta](kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
+ke kapitole 9 ([karta](kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09))
+a [jak tvar mraku bodů souvisí s korelačním koeficientem](../quarto/viz_korelace.qmd)
+ke kapitole 10 ([karta](kapitoly/10-korelace.md#interaktivni-vizualizace-10); regrese a *r*² jen ve vizualizaci).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
 stabilní identifikátory Quarta.
@@ -115,7 +117,7 @@ stabilní identifikátory Quarta.
 | [7. Interval spolehlivosti, t-test a test ekvivalence](kapitoly/07-interval-t-test-ekvivalence.md#mapa-kapitola-07) | Odhad populačního průměru s nejistotou při známé i neznámé σ, t-rozdělení, jednovýběrový t-test, vztah intervalu a p-hodnoty, test ekvivalence pomocí 90% intervalu a čtyři kombinace výsledků. | 12 základních a 2 nepovinné úlohy; pět základních vyžaduje Excel. |
 | [8. Porovnání dvou průměrů: párová data a nezávislé skupiny](kapitoly/08-porovnani-dvou-prumeru.md#mapa-kapitola-08) | Párová data a neúplné dvojice, párový t-test, podmíněný přínos párování; rozdíl dvou nezávislých průměrů, klasický a Welchův t-test (doporučení podle velikostí skupin, robustnost); Cohenovo *d*; intervaly vedle sebe; změna ve dvou skupinách s aktivní kontrolou; ekvivalence dvou skupin. Nepovinně korelace obou měření a variabilita rozdílů (přesunuto z kap. 10) a interval pro *d*. | 12 základních a 2 nepovinné úlohy; tři základní vyžadují Excel. |
 | [9. Podíly a kategoriální data](kapitoly/09-podily-kategorialni-data.md#mapa-kapitola-09) | Interval pro podíl (Wilson) a pro rozdíl podílů (Newcombe), dobrá shoda, nezávislost a homogenita, řádkové podíly a rezidua, předpoklady, Fisherův test a simulovaná *p*-hodnota, rozdíl podílů, poměr rizik a šancí, φ a V, McNemarův a znaménkový test. | 13 základních a 2 nepovinné úlohy; šest základních vyžaduje Excel. |
-| [10. Korelace](kapitoly/10-korelace.md#mapa-kapitola-10) | Bodový graf, kovariance, Pearsonovo *r*, Spearmanův koeficient, Kendallovo τ<sub>a</sub> a τ<sub>b</sub>; test a Fisherův interval pro *r*; permutační test a percentilový bootstrapový interval pro pořadové koeficienty; vlivy na korelaci, volba a zpráva; *r*<sub>pb</sub> a φ. | 16 základních a 2 nepovinné úlohy; osm vyžaduje Excel, dvě s dynamickými poli. |
+| [10. Korelace](kapitoly/10-korelace.md#mapa-kapitola-10) | Bodový graf, kovariance, Pearsonovo *r*, Spearmanův koeficient, Kendallovo τ<sub>a</sub> a τ<sub>b</sub>; test a Fisherův interval pro *r*; permutační test a percentilový bootstrapový interval pro pořadové koeficienty; vlivy na korelaci, volba a zpráva; *r*<sub>pb</sub> a φ. Vizualizace korelace v bodovém grafu (od 2026-11-23). | 16 základních a 2 nepovinné úlohy; osm vyžaduje Excel, dvě s dynamickými poli. |
 | [Plán pokračování](kapitoly/plan-pokracovani.md#plan-dalsi-kapitoly) | Po kapitole 10 není schválen směr, rozsah ani pořadí dalších kapitol. | — |
 
 <a id="tematicky-rozcestnik"></a>

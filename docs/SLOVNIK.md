@@ -550,6 +550,22 @@ a první výklad vznikly s kapitolou 2026-11-11 pod zde uvedenými stabilními I
 | <a id="pojem-korekce-atenuace"></a>**Korekce na atenuaci** | correction for attenuation | korekce na nespolehlivost | Jen v nepovinném rozšíření; $r_{\mathrm{opr}} = r_{xy}/\sqrt{r_{xx}r_{yy}}$ (R84). Výsledek je odhad, uvádí se spolu s neopravenou korelací a použitými reliabilitami. | S — [R84](rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-korekce-atenuace); [výklad](../quarto/kapitola_10.qmd#rozsireni-korekce-reliabilita) |
 | <a id="pojem-relativni-absolutni-shoda"></a>**Relativní a absolutní shoda** | relative and absolute agreement | — | Relativní shoda: stejné vzájemné postavení (pořadí) hodnocených; absolutní shoda: stejné hodnoty. Korelace informuje jen o relativní shodě. | S — [R84](rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) | [Heslo](../quarto/slovnicek.qmd#pojem-relativni-absolutni-shoda); [výklad](../quarto/kapitola_10.qmd#sec-korelace-shoda) |
 
+<a id="vizualizace-korelace"></a>
+
+### Jen ve vizualizaci korelace
+
+Hesla schválená 2026-11-23 s vizualizací [Jak tvar mraku bodů souvisí s korelačním koeficientem](../quarto/viz_korelace.qmd)
+([upřesnění R65](rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace)). Výklad kapitol je
+nezahrnuje a další kapitoly je nesmějí předpokládat; vysvětluje je oddíl stránky „Pojmy, které kapitola 10
+nevykládá“. Při budoucí kapitole o regresi je třeba volbu termínů a značení znovu posoudit.
+
+| Preferovaný český termín | Anglický termín / varianty | České alternativy k rozpoznání | Pravidlo použití a významové hranice | Stav a doklad | Studentské heslo a první výklad |
+|---|---|---|---|---|---|
+| <a id="pojem-regresni-primka"></a>**Regresní přímka** | regression line | — | Jen ve vizualizaci; přímka Y podle X, $\hat{y}=b_0+b_1x$ (značky $\hat{y}$, $b_0$, $b_1$ jen tamtéž). Není symetrická jako korelace. | S — [upřesnění R65](rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace) | [Heslo](../quarto/slovnicek.qmd#pojem-regresni-primka); [vysvětlení](../quarto/viz_korelace.qmd#sec-viz-kor-pojmy) |
+| <a id="pojem-reziduum"></a>**Reziduum** | residual | — | Jen ve vizualizaci; $y_i-\hat{y}_i$, svislá vzdálenost bodu od regresní přímky. Odlišit od [Pearsonova rezidua](#pojem-pearsonovo-reziduum) v tabulce četností. | S — [upřesnění R65](rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace) | [Heslo](../quarto/slovnicek.qmd#pojem-reziduum); [vysvětlení](../quarto/viz_korelace.qmd#sec-viz-kor-pojmy) |
+| <a id="pojem-koeficient-determinace"></a>**Koeficient determinace** | coefficient of determination | podíl sdíleného rozptylu (jen popisně) | Jen ve vizualizaci; $r^2$. Vysvětlovat jako zmenšení součtu čtverců odchylek předpovědí z přímky; „vysvětlený“ rozptyl nečíst kauzálně. | S — [upřesnění R65](rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace) | [Heslo](../quarto/slovnicek.qmd#pojem-koeficient-determinace); [vysvětlení](../quarto/viz_korelace.qmd#sec-viz-kor-pojmy) |
+| <a id="pojem-pravdepodobnostni-elipsa"></a>**Pravděpodobnostní elipsa** | probability ellipse | — | Jen ve vizualizaci; oblast obsahující daný podíl dvojic v dvourozměrném normálním modelu s výběrovými průměry, směrodatnými odchylkami a korelací. Kreslí model, ne data. | S — [upřesnění R65](rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace) | [Heslo](../quarto/slovnicek.qmd#pojem-pravdepodobnostni-elipsa); [vysvětlení](../quarto/viz_korelace.qmd#sec-viz-kor-pojmy) |
+
 <a id="navrhy"></a>
 
 ## Návrhy a nejasně doložené volby — mimo platný registr

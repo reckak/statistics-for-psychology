@@ -753,6 +753,32 @@ U vizualizace rozdílu podílů, poměru rizik a poměru šancí kontrola ověř
   aspirinové studie, pořadí v menu a odkaz z pododdílu kapitoly 9
   `sec-phi-v`.
 
+U vizualizace korelace v bodovém grafu kontrola ověřuje:
+
+- 40 bodů výchozích dat, Vennův diagram, bodový graf pořadí a graf spojnic;
+  žádný viditelný kód, tlačítko schránky ani chybu OJS; odkaz na citovanou
+  aplikaci; odkazy z pododdílů kapitoly 10 `sec-vydelime` (v oddílu
+  `sec-pearsonovo-r`) a `sec-odlehle-korelace`;
+- průměry, SD, kovarianci, *r*, $r_s$, *r*², přímku, součet čtverců reziduí,
+  *t*, *p* a Fisherův interval pro pět souborů (úzkost a výkon, spánek,
+  pevné body, Anscombe IV, překlep 300), poloměry elips, vzdálenost kruhů
+  Vennova diagramu a transformaci na *r* = 0,3 a −0,8 proti R
+  (`scripts/viz-korelace.R`); průměrná pořadí při shodách a „nelze spočítat“
+  bez variability nebo při *r* = 1;
+- výchozí přehled s dosazením, kvadranty (25 záporných součinů), přímku
+  a rezidua, počty bodů uvnitř elips (24, 33, 39, 40; Anscombe I 4, 9, 11,
+  11) a rozšíření os pro elipsu 99 %;
+- předvolby Anscombe I a spánek (poznámka grafu spojnic s rozdílem
+  průměrů −3,50);
+- posuvník (přesné *r*, nezměněné X a SD Y, klávesnice), pole *r* s čárkou
+  a odmítnutí 1,5, pole průměru a SD s odmítnutím záporné SD, nový výběr
+  o 1 000 bodech (odmítnutí *n* = 2) s podíly uvnitř elips blízko modelu;
+- přidání bodu formulářem (R: *r* −0,3076, $r_s$ −0,4461), smazání
+  a přidání myší, smazání, přidání a posun klávesnicí, nejméně 3 body,
+  tažení bodu myší a posuvník sledující nové *r*;
+- rozšíření grafu na celé obrazovce a šířku 375 px bez přetékání se
+  zapnutými přepínači.
+
 **Sbalená část v postranní nabídce.** Quarto umí sbalit části nabídky jen
 všechny najednou (`sidebar: collapse-level`). Samotnou část „Interaktivní
 vizualizace“ proto sbaluje skript `assets/sidebar-collapse.js`, připojený

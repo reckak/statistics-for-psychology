@@ -12,7 +12,7 @@ sestavena podle výkladu, zadání a řešení 2026-11-11. Dohodu dokládají
 [R73](../rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-10). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-10).
-Soulad karty s textem zkontrolován 2026-11-11 a po revizi podle [R84](../rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) znovu 2026-11-20. Terminologické návrhy K10-N1 až K10-N4
+Soulad karty s textem zkontrolován 2026-11-11 a po revizi podle [R84](../rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) znovu 2026-11-20; oddíl o vizualizaci a dva bloky „Vyzkoušejte si“ zkontrolovány 2026-11-23. Terminologické návrhy K10-N1 až K10-N4
 autor schválil 2026-11-11 ([doplnění R73](../rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)). Revize 2026-11-20 vychází z autorových připomínek ke konkrétním místům textu; průběh a kontroly eviduje [záznam o revizi](../../quarto/README.md#revize-kapitoly-10).
 
 **Vstup:** souvislost a příčina, role proměnných, ordinální úroveň, reliabilita a validita
@@ -99,7 +99,20 @@ o omezení rozsahu a odlehlém bodu. Data kapitoly 8 a tabulka kapitoly 9 se př
 | [Shoda hodnot](../../quarto/kapitola_10.qmd#fig-shoda-hodnot) | Vysoké *r* bez absolutní shody hodnot. |
 | [*d* a *r*<sub>pb</sub>](../../quarto/kapitola_10.qmd#fig-rpb-d) | Nepovinně: vztah podle rozdělení do skupin. |
 
-Interaktivní vizualizace ke kapitole 10 nejsou (R71).
+Interaktivní vizualizace ke kapitole 10 původně nebyly (R71); od 2026-11-23 je jedna, viz níže.
+
+<a id="interaktivni-vizualizace-10"></a>
+
+**Interaktivní vizualizace (2026-11-23, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace), [doplnění R71](../rozhodnuti/kapitola-10.md#r71-doplneni-2026-11-23)):**
+na stránku [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd)
+odkazují dva bloky „Vyzkoušejte si“: na konci pododdílu
+[Vydělíme směrodatnými odchylkami](../../quarto/kapitola_10.qmd#sec-vydelime) (před rozšířením o mezích *r*)
+a na konci pododdílu [Odlehlé pozorování](../../quarto/kapitola_10.qmd#sec-odlehle-korelace).
+
+- **Ovládání:** data úzkosti a výkonu 40 studentů (výchozí), spánku z kapitoly 8 (12 dvojic) a Anscombův kvartet I–IV; posuvník a pole přesného výběrového *r* (mění Y, zachová X, průměr a SD Y); nový náhodný výběr 4–1 000 bodů; pole $m_x$, $s_x$, $m_y$, $s_y$; přesun, přidání a smazání bodů myší, dotykem, klávesnicí i formulářem (3–1 000 bodů); přizpůsobení os.
+- **Grafy a výsledky:** bodový graf s přepínači kvadrantů, pravděpodobnostních elips 50–99 % (s počty bodů uvnitř), regresní přímky a reziduí (vše ve výchozím stavu vypnuto) a Vennův diagram *r*² (zapnut); přehled průměrů, SD, kovariance, *r*, $r_s$, testu, Fisherova intervalu a *r*² s dosazením; pod grafem trvale bodový graf pořadí a graf spojnic.
+- **Vztah k výkladu:** oddíl „Odkud se čísla berou“ opakuje pro výchozí data $s_{xy}=-14{,}24$, *r* = −0,523, $r_s$ = −0,555, *t* = −3,79, *p* 0,0005 a interval (−0,72; −0,25). Oddíl „Pojmy, které kapitola 10 nevykládá“ krátce zavádí **jen pro vizualizaci** regresní přímku ($\hat{y}$, $b_0$, $b_1$), reziduum, koeficient determinace *r*² a pravděpodobnostní elipsu (výchozí data: $b_1=-0{,}450$, $b_0=29{,}76$, *r*² = 0,274, uvnitř elips 24, 33, 39 a 40 studentů). „Čeho si všimnout“ doplňuje oproti kapitole: přidaný student (40; 30) mění *r* na −0,308 a $r_s$ na −0,446, při X = 60 je *r* −0,105 a $r_s$ beze změny; Anscombovy soubory mají $r_s$ 0,818, 0,691, 0,991 a 0,500; u dat spánku zůstává při *r* = 0 průměrná změna 3,5 bodu.
+- **Rozsah:** není samostatným cvičením; podporuje úlohy 1, 2, 15 a 16. Kendallovo τ, permutační test, bootstrap ani omezení rozsahu nepočítá. Ovládání je inspirováno aplikací [E09](../zdroje/E09-magnusson-correlation.md#e09-magnusson-correlation).
 
 <a id="cviceni-10"></a>
 
@@ -146,7 +159,7 @@ porovnání dvou nezávislých korelací (jen cvičení 18). Další kapitola je
 
 **Vysvětleno omezeně:** chyba měření a atenuace v povinné části slovně a simulací (vzorec jen nepovinně); korelační matice
 a mnoho testů jen krátce; bodově biseriální korelace a φ bez samostatného cvičení;
-*r*² jen jako mimo kapitolu. **Nevyloženo:** regrese, *r*², parciální korelace, latentní
+*r*² jen jako mimo kapitolu. **Jen ve vizualizaci** (od 2026-11-23, kapitola je nevykládá a další kapitoly je nepředpokládají): regresní přímka, reziduum, koeficient determinace *r*², pravděpodobnostní elipsa a značky $\hat{y}$, $b_0$, $b_1$ ([slovník](../SLOVNIK.md#vizualizace-korelace)). **Nevyloženo:** regrese, *r*², parciální korelace, latentní
 korelace, závislé korelace, síla a plánování *n*, Kendallovo W,
 intervaly pro *r*<sub>s</sub> a τ ze vzorců směrodatných chyb, test ekvivalence pro *r*.
 
@@ -158,6 +171,7 @@ Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z t
 - [U03](../zdroje/U03-cumming.md#priprava-10-20261109) — kap. 11 (s. 311–339).
 - [U02](../zdroje/U02-aron.md#priprava-10-20261109) — kap. 11 (s. 512, 514–515, 522; [revize](../zdroje/U02-aron.md#revize-10-20261120)).
 - [D15](../zdroje/D15-muchinsky.md#d15) — korekce na atenuaci (s. 63–73); [E07](../zdroje/E07-anscombe-1973.md#e07-anscombe-1973) — data Anscombova kvartetu.
+- [E09](../zdroje/E09-magnusson-correlation.md#e09-magnusson-correlation) — inspirace ovládáním vizualizace korelace (2026-11-23).
 - [U15](../zdroje/U15-wilcox.md#priprava-10-20261109) — §5.9, §5.11, §6.5–6.6, §6.9, §7.7.
 - [P10](../zdroje/P10-korelace-stps.md#priprava-10-20261109), [P11](../zdroje/P11-korelace-psyb1170.md#priprava-10-20261109), [C06](../zdroje/C06-ulohy-tyden-5.md#c06) — priority a náměty.
 - [Čtení pro návrh](../zdroje/HISTORIE.md#priprava-10-20261109) a [použití při tvorbě](../zdroje/HISTORIE.md#pouziti-kapitola-10); [revize 2026-11-20](../zdroje/HISTORIE.md#muchinsky-2026-11-20).
