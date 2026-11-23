@@ -1,0 +1,660 @@
+---
+code-copy: false
+---
+
+# Jak tvar mraku bodů souvisí s korelačním koeficientem {#sec-viz-korelace .unnumbered}
+
+Jak vypadá bodový graf, když má Pearsonův korelační koeficient hodnotu 0,3, 0,6 nebo 0,9? A jak se koeficient změní, když jediný bod přesuneme, přidáme nebo smažeme? Vizualizace nechává měnit korelaci posuvníkem a body přímo v grafu a vedle Pearsonova *r* ukazuje Spearmanův korelační koeficient, test a interval spolehlivosti. Pod hlavním grafem jsou dva odvozené grafy týchž dat: bodový graf pořadí a graf spojnic. Navazuje na kapitolu 10, zejména na oddíly [Co poznáme z bodového grafu?](kapitola_10.qmd#sec-bodovy-graf), [Kovariance](kapitola_10.qmd#sec-kovariance), [Pearsonovo *r*](kapitola_10.qmd#sec-pearsonovo-r), [Spearmanův korelační koeficient](kapitola_10.qmd#sec-spearman) a [Co mění korelaci](kapitola_10.qmd#sec-co-meni-korelaci).
+
+Ovládání vizualizace (posuvník korelace, přesouvání, přidávání a mazání bodů, pravděpodobnostní elipsy, Vennův diagram a graf spojnic) je inspirováno interaktivní stránkou, kterou vytvořil Magnusson [-@magnussonCorrelation]; příklady, text i provedení jsou vlastní.
+
+## Model a ovládání {#sec-viz-kor-ovladani .unnumbered}
+
+Každý bod je jeden člověk: vodorovná souřadnice je jeho hodnota proměnné X, svislá hodnota proměnné Y. Po načtení stránky jsou nastavena data kapitoly 10: úzkost před testem a výkon v testu 40 studentů ([Dvě hodnoty u každého člověka](kapitola_10.qmd#sec-dve-hodnoty)). Tlačítky nahoře přepnete na data spánku z kapitoly 8 (pozornost 12 studentů po běžném a po krátkém spánku, [Relativní postavení, nebo průměrná změna?](kapitola_10.qmd#sec-postaveni-zmena)) nebo na čtyři soubory Anscombova kvartetu ([Stejné číslo, různá data](kapitola_10.qmd#sec-stejne-cislo); převzatá data, Anscombe, 1973).
+
+Nastavit můžete:
+
+- **Korelaci v datech** posuvníkem od −1 do 1, nebo číslem v poli. Vizualizace přepočítá hodnoty Y tak, aby Pearsonův korelační koeficient bodů v grafu vyšel přesně na zvolenou hodnotu; hodnoty X, průměr i směrodatná odchylka Y se přitom nemění. Jde o korelaci zobrazených dat, tedy o výběrové *r*, ne o populační ρ.
+- **Nový náhodný výběr** zadané velikosti *n* (4 až 1 000 bodů). Body se vylosují z [dvourozměrného normálního rozdělení](kapitola_10.qmd#sec-model-pearson) a upraví tak, aby měly přesně nastavenou korelaci, průměry a směrodatné odchylky.
+- **Průměry a směrodatné odchylky** obou proměnných, $m_x$, $s_x$, $m_y$ a $s_y$. Pole ukazují aktuální hodnoty; zadané hodnoty vizualizace nastaví posunem a změnou jednotek, takže korelace zůstane stejná ([změna škály](kapitola_03.qmd#sec-zmena-skaly)). Směrodatná odchylka musí být kladná. Desetinná čísla můžete psát s čárkou i s tečkou; neplatnou hodnotu vizualizace odmítne se zprávou a ponechá poslední platnou.
+- **Co dělá myš v grafu.** Přepínač nad grafem určuje, zda myš (nebo prst) **přesune** bod tažením, **přidá** bod kliknutím na prázdné místo, nebo **odstraní** bod, na který kliknete; bod, který by se odstranil, se při najetí zvýrazní. Pod grafem se ukazují souřadnice ukazatele, při tažení souřadnice taženého bodu. V grafu zůstávají nejméně 3 a nejvýše 1 000 bodů.
+- **Ovládání klávesnicí.** Když je graf zaměřený klávesou Tab, mezerníkem vyberete další bod (Shift + mezerník předchozí), šipkami jej posunete (se Shift o větší krok), klávesou Delete jej smažete a v režimu přidávání přidáte klávesou Enter bod doprostřed grafu. Souřadnice vybraného bodu a nové hodnoty koeficientů se přečtou pod grafem.
+- **Osy.** Graf je čtvercový a obě osy sahají od průměru na obě strany o stejný počet směrodatných odchylek své proměnné, takže mrak bodů vypadá stejně v jakýchkoli jednotkách. Při úpravě bodů se osy nemění, aby se graf pod rukou nepřekresloval; tlačítko *Přizpůsobit osy* je nastaví znovu podle dat, případně i podle největší elipsy.
+
+Zaškrtávacími poli zapnete **kvadranty** (přerušované čáry průměrů a obarvení bodů podle znaménka součinu odchylek jako na [obrázku kvadrantů](kapitola_10.qmd#fig-kvadranty)), **pravděpodobnostní elipsy**, **délku a šířku elipsy**, **regresní přímku**, **rezidua** a **Vennův diagram**; ve výchozím stavu je zapnutý jen Vennův diagram. Všechny prvky kromě kvadrantů kapitola 10 nevykládá; vysvětluje je následující oddíl.
+
+Pod grafem je přehled výpočtů s dosazením: průměry a směrodatné odchylky, kovariance, Pearsonovo *r*, Spearmanův korelační koeficient, test nulové korelace s oboustrannou *p*-hodnotou a 95% interval spolehlivosti pro ρ pomocí Fisherovy transformace ([Test a interval pro *r*](kapitola_10.qmd#sec-test-interval-r)). Pod přehledem jsou dva odvozené grafy, které se překreslují s každou změnou:
+
+- **Bodový graf pořadí.** Místo hodnot jsou na osách pořadí obou proměnných (shodné hodnoty dostanou průměrné pořadí). Pearsonův korelační koeficient těchto pořadí je Spearmanův korelační koeficient $r_s$ ([Spearmanův korelační koeficient](kapitola_10.qmd#sec-spearman)).
+- **Graf spojnic.** Hodnoty X jsou na levé svislé ose, hodnoty Y na pravé a dvě hodnoty téhož člověka spojuje úsečka; tmavá spojnice spojuje průměry. Graf má smysl, jen když obě proměnné měříme na stejné stupnici, například dvakrát týmž testem jako u dat spánku. U úzkosti a výkonu, které mají jiné jednotky, polohy na obou osách přímo porovnávat nelze.
+
+### Pojmy, které kapitola 10 nevykládá {#sec-viz-kor-pojmy .unnumbered}
+
+Několik prvků vizualizace patří k tématům, která výklad kapitoly 10 nezahrnuje. Zde slouží jen k orientaci v grafu; další kapitoly je zatím nepředpokládají.
+
+**Regresní přímka** (*regression line*) je přímka, podle které z hodnoty X předpovídáme hodnotu Y. Předpověď značíme $\hat{y}$ („y se stříškou“):
+
+$$\hat{y}=b_0+b_1x,\qquad b_1=r\,\frac{s_y}{s_x},\qquad b_0=m_y-b_1\,m_x.$$
+
+Směrnice $b_1$ říká, o kolik se liší předpověď Y u dvou lidí, jejichž hodnoty X se liší o jednu jednotku; úsek $b_0$ je předpověď pro $x=0$. Ze vzorce pro $b_0$ plyne, že přímka vždy prochází bodem průměrů $(m_x;\,m_y)$. Na rozdíl od korelace není přímka symetrická: přímka, která by předpovídala X z hodnoty Y, je jiná (kromě případu $r=\pm1$).
+
+**Reziduum** (*residual*) je rozdíl $y_i-\hat{y}_i$ mezi skutečnou a předpovězenou hodnotou, tedy svislá vzdálenost bodu od přímky. Regresní přímka je ze všech přímek ta, pro kterou je součet čtverců reziduí nejmenší. Nezaměňujte jej s [Pearsonovým reziduem](kapitola_09.qmd#sec-pearson-upravena) v tabulce četností z kapitoly 9.
+
+**Koeficient determinace** (*coefficient of determination*) je druhá mocnina Pearsonova korelačního koeficientu, $r^2$. Říká, o jakou část se zmenší součet čtverců odchylek Y, když místo průměru $m_y$ použijeme předpověď z přímky:
+
+$$\sum_{i=1}^{n}(y_i-\hat{y}_i)^2=(1-r^2)\sum_{i=1}^{n}(y_i-m_y)^2.$$
+
+Proto se $r^2$ popisuje jako podíl rozptylu Y, který lze lineárně předpovědět z X, a Vennův diagram jej kreslí jako překryv dvou kruhů. Diagram neukazuje znaménko korelace ani tvar vztahu, a „vysvětlený“ rozptyl je míněn jen ve smyslu předpovědi, ne příčiny ([souvislost a příčina](kapitola_10.qmd#sec-souvislost-pricina-10)).
+
+**Pravděpodobnostní elipsa** (*probability ellipse*) ohraničuje oblast, do níž by padl daný podíl dvojic (50, 80, 95 nebo 99 %), kdyby data pocházela z [dvourozměrného normálního rozdělení](kapitola_10.qmd#sec-model-pearson) se stejnými průměry, směrodatnými odchylkami a korelací, jaké mají body v grafu. Elipsy tedy kreslí model, ne data; tabulka pod grafem porovnává modelový podíl se skutečným počtem bodů uvnitř. Čím je korelace v absolutní hodnotě silnější, tím jsou elipsy užší a protáhlejší ve směru vztahu.
+
+Přepínač **délka a šířka elipsy** nakreslí dvě úsečky přes střed elipsy, bod průměrů. Zelená úsečka vede směrem, kudy je mrak bodů nejdelší: leží na ní místa, kde má člověk v obou proměnných stejný *z*-skór (při záporné korelaci stejně velký s opačným znaménkem). Oranžová úsečka je k ní kolmá a ukazuje, kudy je mrak nejužší. Obě končí na elipse 99 %. Měřeno v *z*-skórech jsou jejich poloviny dlouhé $c\sqrt{1+|r|}$ a $c\sqrt{1-|r|}$, kde $c=3{,}03$ je „poloměr“ elipsy 99 %, takže poměr délky a šířky je
+$$\sqrt{\frac{1+|r|}{1-|r|}}.$$
+Při $r=0$ jsou obě úsečky stejně dlouhé a elipsa je kruh; čím je korelace silnější, tím je zelená úsečka delší a oranžová kratší, až při $r=\pm1$ oranžová zmizí a všechny body leží na zelené přímce.
+
+### Odkud se čísla berou {#sec-viz-kor-vypocet .unnumbered}
+
+Dosazení platí pro výchozí data 40 studentů. Průměrná úzkost je $m_x=23{,}58$ bodu se směrodatnou odchylkou $s_x=5{,}62$, průměrný výkon $m_y=19{,}15$ bodu se směrodatnou odchylkou $s_y=4{,}84$. Součet součinů odchylek od průměrů je −555,45 (15 kladných a 25 záporných součinů), takže [kovariance](kapitola_10.qmd#sec-kovariance) a [Pearsonův korelační koeficient](kapitola_10.qmd#sec-pearsonovo-r) vycházejí
+
+$$s_{xy}=\frac{-555{,}45}{39}=-14{,}24,\qquad r=\frac{s_{xy}}{s_x\,s_y}=\frac{-14{,}24}{5{,}62\cdot4{,}84}=-0{,}523.$$
+
+Pearsonův korelační koeficient pořadí, tedy Spearmanův korelační koeficient, je $r_s=-0{,}555$. Test nulové korelace má statistiku $t=-0{,}523\cdot\sqrt{38}/\sqrt{1-0{,}523^2}=-3{,}79$ s 38 stupni volnosti a oboustrannou *p*-hodnotu 0,0005. Fisherova transformace dává $z_r=-0{,}581$ se směrodatnou chybou $1/\sqrt{n-3}=1/\sqrt{37}=0{,}164$. Na stupnici $z_r$ je interval $-0{,}581\pm1{,}96\cdot0{,}164$, tedy od −0,903 do −0,259; po převodu obou mezí zpět na korelace činí (−0,72; −0,25), stejně jako v [kapitole 10](kapitola_10.qmd#sec-fisher-interval).
+
+Regresní přímka má směrnici $b_1=-0{,}523\cdot4{,}84/5{,}62=-0{,}450$ a úsek $b_0=19{,}15-(-0{,}450)\cdot23{,}58=29{,}76$; u studenta s úzkostí 30 bodů tedy předpovídá výkon $29{,}76-0{,}450\cdot30=16{,}26$ bodu. Koeficient determinace je $r^2=0{,}274$: součet čtverců odchylek výkonu od průměru je 913,10, součet čtverců reziduí $(1-0{,}274)\cdot913{,}10=663{,}03$. Uvnitř elipsy 50 % leží 24 ze 40 studentů, uvnitř elips 80, 95 a 99 % 33, 39 a 40 studentů. Délka elipsy 99 % je v *z*-skórech $2\cdot3{,}03\cdot\sqrt{1+0{,}523}=7{,}49$, šířka $2\cdot3{,}03\cdot\sqrt{1-0{,}523}=4{,}19$ a jejich poměr 1,79.
+
+```{ojs}
+//| echo: false
+{
+  // Colours of the book: blue points, orange for negative products and residuals, ink for lines.
+  const blue = "#245D78", orange = "#B54E24", green = "#3E7B4F", ink = "#223744", gray = "#4D5A63", pale = "#8A9AA3";
+  const MAX_N = 1000, MIN_N = 3, Z975 = 1.959963984540054, LEVELS = [0.5, 0.8, 0.95, 0.99];
+  const ANSCOMBE_X = [[10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5], [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5], [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5], [8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8]];
+  const ANSCOMBE_Y = [[8.04, 6.95, 7.58, 8.81, 8.33, 9.96, 7.24, 4.26, 10.84, 4.82, 5.68], [9.14, 8.14, 8.74, 8.77, 9.26, 8.10, 6.13, 3.10, 9.13, 7.26, 4.74],
+    [7.46, 6.77, 12.74, 7.11, 7.81, 8.84, 6.08, 5.39, 8.15, 6.42, 5.73], [6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.50, 5.56, 7.91, 6.89]];
+  const PRESETS = {
+    uzkost: {label: "Úzkost a výkon (40 studentů)", x: [26, 20, 33, 28, 23, 33, 37, 11, 21, 22, 24, 20, 16, 25, 29, 20, 20, 26, 19, 19, 26, 29, 19, 28, 21, 29, 23, 19, 23, 14, 19, 37, 24, 27, 19, 27, 23, 23, 22, 19],
+      y: [16, 22, 14, 20, 16, 15, 15, 21, 21, 25, 26, 17, 17, 17, 16, 19, 24, 24, 20, 27, 25, 19, 24, 15, 22, 8, 21, 19, 15, 23, 23, 12, 15, 22, 19, 7, 18, 18, 19, 30],
+      names: {x: "Úzkost před testem (body)", y: "Výkon v testu (body)", sx: "úzkost", sy: "výkon"}},
+    spanek: {label: "Spánek a pozornost (kapitola 8)", x: [58, 44, 51, 39, 62, 47, 55, 42, 49, 60, 45, 52], y: [53, 42, 45, 38, 55, 44, 51, 43, 44, 58, 39, 50],
+      names: {x: "Pozornost po běžném spánku (body)", y: "Pozornost po krátkém spánku (body)", sx: "běžný spánek", sy: "krátký spánek"}},
+    ...Object.fromEntries(["I", "II", "III", "IV"].map((k, i) => [`anscombe${i + 1}`, {label: `Anscombe ${k}`, x: ANSCOMBE_X[i], y: ANSCOMBE_Y[i],
+      names: {x: `X (Anscombe ${k})`, y: `Y (Anscombe ${k})`, sx: "X", sy: "Y"}}]))
+  };
+  const RANDOM_NAMES = {x: "Proměnná X", y: "Proměnná Y", sx: "X", sy: "Y"};
+
+  // Czech number formatting with a true minus sign; rounding half away from zero also for binary fractions.
+  const minus = s => s.replace(/^-/, "−");
+  const roundTo = (v, k) => { const f = 10 ** k; return Math.sign(v) * Math.round(Math.abs(v) * f * (1 + 1e-12)) / f; };
+  const fixed = (v, k) => { let s = roundTo(v, k).toFixed(k); if (Number(s) === 0) s = (0).toFixed(k); return minus(s.replace(".", ",")); };
+  const trim = (v, k) => fixed(v, k).replace(/(,\d*?)0+$/, "$1").replace(/,$/, "");
+  const NA = "nelze spočítat";
+  const f2 = v => v === null ? NA : fixed(v, 2), f3 = v => v === null ? NA : fixed(v, 3);
+  const pFmt = p => p === null ? NA : p < 0.0001 ? "< 0,0001" : p < 0.001 ? fixed(p, 4) : fixed(p, 3);
+  const pct = v => `${trim(100 * v, 1)} %`;
+  const parseNum = raw => { const t = raw.trim().replace(/\s/g, "").replace(/^−/, "-").replace(",", "."); return /^-?(\d+\.?\d*|\.\d+)$/.test(t) ? Number(t) : null; };
+  const sub = (a, b) => `<i>${a}</i><sub><i>${b}</i></sub>`;
+
+  // Distribution functions: incomplete beta for the t distribution (as on the other pages).
+  const LANCZOS = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059, 12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(x) {
+    if (x < 0.5) return Math.log(Math.PI / Math.abs(Math.sin(Math.PI * x))) - lgamma(1 - x);
+    x -= 1; let s = LANCZOS[0];
+    for (let i = 1; i < 9; i++) s += LANCZOS[i] / (x + i);
+    const t = x + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (x + 0.5) * Math.log(t) - t + Math.log(s);
+  }
+  function betacf(a, b, x) {
+    const TINY = 1e-300;
+    let c = 1, d = 1 - (a + b) * x / (a + 1);
+    if (Math.abs(d) < TINY) d = TINY;
+    d = 1 / d; let h = d;
+    for (let m = 1; m <= 1000; m++) {
+      const m2 = 2 * m;
+      let aa = m * (b - m) * x / ((a + m2 - 1) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d; h *= d * c;
+      aa = -(a + m) * (a + b + m) * x / ((a + m2) * (a + m2 + 1));
+      d = 1 + aa * d; if (Math.abs(d) < TINY) d = TINY;
+      c = 1 + aa / c; if (Math.abs(c) < TINY) c = TINY;
+      d = 1 / d;
+      const del = d * c; h *= del;
+      if (Math.abs(del - 1) < 1e-16) break;
+    }
+    return h;
+  }
+  function ibeta(x, a, b) {
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    const lbt = lgamma(a + b) - lgamma(a) - lgamma(b) + a * Math.log(x) + b * Math.log1p(-x);
+    if (x < (a + 1) / (a + b + 2)) return Math.exp(lbt) * betacf(a, b, x) / a;
+    return 1 - Math.exp(lbt) * betacf(b, a, 1 - x) / b;
+  }
+  // Share of the t distribution beyond |x| in one tail.
+  const tTail = (x, v) => 0.5 * ibeta(v / (v + x * x), v / 2, 0.5);
+
+  // Average ranks; tied values get the mean of their positions (as RANK.AVG).
+  function ranks(v) {
+    const idx = v.map((_, i) => i).sort((a, b) => v[a] - v[b]), out = new Array(v.length);
+    for (let i = 0; i < idx.length;) {
+      let j = i;
+      while (j + 1 < idx.length && v[idx[j + 1]] === v[idx[i]]) j++;
+      for (let k = i; k <= j; k++) out[idx[k]] = (i + j) / 2 + 1;
+      i = j + 1;
+    }
+    return out;
+  }
+  // All statistics of the page; a value that cannot be computed is null.
+  function stats(xs, ys) {
+    const n = xs.length;
+    const o = {n, mx: null, my: null, sx: null, sy: null, sxy: null, sumprod: null, pos: 0, neg: 0, r: null, rs: null, r2: null,
+      b0: null, b1: null, ssres: null, sstot: null, t: null, df: null, p: null, zr: null, se: null, zlo: null, zhi: null, lo: null, hi: null};
+    if (n < 2) return o;
+    const mx = d3.mean(xs), my = d3.mean(ys);
+    let sxx = 0, syy = 0, sp = 0;
+    for (let i = 0; i < n; i++) {
+      const dx = xs[i] - mx, dy = ys[i] - my, pr = dx * dy;
+      sxx += dx * dx; syy += dy * dy; sp += pr;
+      if (pr > 0) o.pos++; else if (pr < 0) o.neg++;
+    }
+    Object.assign(o, {mx, my, sx: Math.sqrt(sxx / (n - 1)), sy: Math.sqrt(syy / (n - 1)), sumprod: sp, sxy: sp / (n - 1), sstot: syy});
+    if (!(sxx > 0 && syy > 0)) return o;
+    const r = Math.max(-1, Math.min(1, sp / Math.sqrt(sxx * syy))), b1 = sp / sxx, b0 = my - b1 * mx;
+    let ssres = 0;
+    for (let i = 0; i < n; i++) ssres += (ys[i] - b0 - b1 * xs[i]) ** 2;
+    Object.assign(o, {r, r2: r * r, b0, b1, ssres});
+    const rx = ranks(xs), ry = ranks(ys), mr = (n + 1) / 2;
+    let a = 0, bx = 0, by = 0;
+    for (let i = 0; i < n; i++) { a += (rx[i] - mr) * (ry[i] - mr); bx += (rx[i] - mr) ** 2; by += (ry[i] - mr) ** 2; }
+    o.rs = bx > 0 && by > 0 ? a / Math.sqrt(bx * by) : null;
+    const perfect = Math.abs(r) > 1 - 1e-12;
+    if (n >= 3 && !perfect) { o.df = n - 2; o.t = r * Math.sqrt(n - 2) / Math.sqrt(1 - r * r); o.p = Math.min(1, 2 * tTail(Math.abs(o.t), o.df)); }
+    if (n >= 4 && !perfect) {
+      o.zr = Math.atanh(r); o.se = 1 / Math.sqrt(n - 3); o.zlo = o.zr - Z975 * o.se; o.zhi = o.zr + Z975 * o.se;
+      o.lo = Math.tanh(o.zlo); o.hi = Math.tanh(o.zhi);
+    }
+    return o;
+  }
+
+  // Reproducible random numbers for new samples (mulberry32 and Box-Muller).
+  let seed = 20261123;
+  const unif = () => { seed = (seed + 0x6D2B79F5) | 0; let t = seed; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const normals = n => Array.from({length: n}, () => Math.sqrt(-2 * Math.log(1 - unif())) * Math.cos(2 * Math.PI * unif()));
+  const standardize = v => { const m = d3.mean(v), s = d3.deviation(v); return v.map(x => (x - m) / s); };
+
+  // New values of Y with exactly the sample correlation `target`; X, the mean and the SD of Y stay.
+  // zy' = target * zx + sqrt(1 - target^2) * e, where e is the standardized residual of zy on zx.
+  function toR(xs, ys, target) {
+    const s = stats(xs, ys), n = xs.length;
+    if (n < MIN_N || !(s.sx > 0)) return null;
+    const zx = xs.map(x => (x - s.mx) / s.sx);
+    let e = null;
+    if (s.r !== null && Math.abs(s.r) < 1 - 1e-9) e = ys.map((y, i) => (y - s.my) / s.sy - s.r * zx[i]);
+    else {
+      // All points lie on a line (or Y does not vary): a new random direction independent of X.
+      const g = normals(n), gm = d3.mean(g), c = g.map(v => v - gm);
+      const b = d3.sum(c, (v, i) => v * zx[i]) / d3.sum(zx, v => v * v);
+      e = c.map((v, i) => v - b * zx[i]);
+    }
+    const se = Math.sqrt(d3.sum(e, v => v * v) / (n - 1));
+    if (!(se > 1e-12)) return null;
+    const sy = s.sy > 0 ? s.sy : 1, a = Math.sqrt(Math.max(0, 1 - target * target));
+    return zx.map((z, i) => s.my + sy * (target * z + a * e[i] / se));
+  }
+  // Radius of the probability ellipse in standardized, decorrelated units: sqrt(-2 ln(1 - p)) = sqrt(qchisq(p, 2)).
+  const radius = p => Math.sqrt(-2 * Math.log(1 - p));
+  // Squared Mahalanobis distance of one point from the centre of the model with the sample values.
+  const mahal = (s, x, y) => { const zx = (x - s.mx) / s.sx, zy = (y - s.my) / s.sy; return (zx * zx - 2 * s.r * zx * zy + zy * zy) / (1 - s.r * s.r); };
+  // Venn diagram: distance of the centres of two unit circles whose overlap is the share f of one circle.
+  function vennDistance(f) {
+    if (f <= 0) return 2;
+    if (f >= 1) return 0;
+    const lens = d => (2 * Math.acos(d / 2) - d / 2 * Math.sqrt(4 - d * d)) / Math.PI;
+    let lo = 0, hi = 2;
+    for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (lens(mid) > f) lo = mid; else hi = mid; }
+    return (lo + hi) / 2;
+  }
+
+  const S = {preset: "uzkost", names: PRESETS.uzkost.names, xs: [], ys: [], mode: "move", active: 0, focused: false, drag: null, hover: -1,
+    show: {quad: false, ell: false, axes: false, reg: false, res: false, venn: true}, dom: {x: [0, 1], y: [0, 1]}};
+
+  const field = (id, label) => {
+    const el = html`<div class="viz-field"><label for="viz-kor-${id}"></label><input id="viz-kor-${id}" type="text" inputmode="decimal" autocomplete="off" aria-describedby="viz-kor-error"></div>`;
+    el.querySelector("label").innerHTML = label;
+    return el;
+  };
+  const check = (key, label) => html`<label><input type="checkbox" data-show="${key}"><span>${label}</span></label>`;
+  const radio = (value, label) => html`<label><input type="radio" name="viz-kor-mode" value="${value}"><span>${label}</span></label>`;
+
+  const root = html`<div class="viz" id="viz-korelace">
+    <div class="viz-pj-presets" role="group" aria-label="Data">
+      ${Object.entries(PRESETS).map(([k, p]) => html`<button type="button" data-preset="${k}">${p.label}</button>`)}
+    </div>
+    <div class="viz-controls viz-ms-row">
+      <div class="viz-field viz-t-df">
+        <label for="viz-kor-slider">Pearsonovo <i>r</i> v datech</label>
+        <div class="viz-t-slider"><span class="viz-hint" aria-hidden="true">−1</span><input id="viz-kor-slider" type="range" min="-1" max="1" step="0.01" aria-describedby="viz-kor-slider-note"><span class="viz-hint" aria-hidden="true">1</span></div>
+        <span class="viz-hint" id="viz-kor-slider-note">Posuvník změní hodnoty Y; X, průměr a směrodatná odchylka Y zůstanou.</span>
+      </div>
+      ${field("r", "Pearsonovo <i>r</i> číslem")}
+    </div>
+    <div class="viz-controls viz-ms-row">
+      ${field("n", "Počet bodů <i>n</i> (4 až 1 000)")}
+      <div class="viz-buttons"><button type="button" data-new>Nový náhodný výběr</button></div>
+    </div>
+    <div class="viz-controls viz-ms-row">
+      ${field("mx", `Průměr X, ${sub("m", "x")}`)}
+      ${field("sx", `Směrodatná odchylka X, ${sub("s", "x")}`)}
+      ${field("my", `Průměr Y, ${sub("m", "y")}`)}
+      ${field("sy", `Směrodatná odchylka Y, ${sub("s", "y")}`)}
+    </div>
+    <p class="viz-error viz-kor-error" id="viz-kor-error" role="alert" hidden></p>
+    <div class="viz-controls viz-ms-row">
+      <fieldset class="viz-choice">
+        <legend>Zobrazit</legend>
+        ${check("quad", "kvadranty")}${check("ell", "pravděpodobnostní elipsy")}${check("axes", "délku a šířku elipsy")}${check("reg", "regresní přímku")}${check("res", "rezidua")}${check("venn", "Vennův diagram")}
+      </fieldset>
+    </div>
+
+    <section class="viz-part" aria-labelledby="viz-kor-part1">
+      <h3 id="viz-kor-part1" class="viz-part-title">Bodový graf</h3>
+      <div class="viz-controls viz-kor-mouse">
+        <fieldset class="viz-choice">
+          <legend>Co dělá myš v grafu</legend>
+          ${radio("move", "přesune bod (tažením)")}${radio("add", "přidá bod (kliknutím)")}${radio("delete", "odstraní bod (kliknutím)")}
+        </fieldset>
+        <div class="viz-buttons"><button type="button" data-rescale>Přizpůsobit osy</button></div>
+      </div>
+      <p class="viz-ss-summary" data-summary aria-live="polite"></p>
+      <div class="viz-legend" data-legend></div>
+      <div class="viz-kor-main">
+        <div class="viz-plots viz-kor-plot" data-plot></div>
+        <p class="viz-kor-pointer" data-pointer aria-hidden="true"></p>
+        <div class="viz-kor-venn" data-venn></div>
+      </div>
+      <p class="viz-hint" id="viz-kor-keys">Klávesnice: mezerník vybere další bod (Shift + mezerník předchozí), šipky jej posunou (se Shift o větší krok), Delete jej smaže, v režimu „přidá bod“ přidá Enter bod doprostřed grafu.</p>
+      <p class="viz-kor-live" data-live aria-live="polite"></p>
+      <dl class="viz-stats" data-stats></dl>
+      <div data-ellipses></div>
+    </section>
+
+    <section class="viz-part" aria-labelledby="viz-kor-part2">
+      <h3 id="viz-kor-part2" class="viz-part-title">Odvozené grafy: pořadí a spojnice</h3>
+      <div class="viz-kor-derived">
+        <div><p class="viz-panel-title" data-rank-title></p><div class="viz-plots" data-ranks></div></div>
+        <div><p class="viz-panel-title">Graf spojnic</p><div class="viz-plots" data-slope></div><p class="viz-note" data-slope-note></p></div>
+      </div>
+    </section>
+  </div>`;
+
+  const $ = s => root.querySelector(s);
+  const plotBox = $("[data-plot]"), errorBox = $("#viz-kor-error"), slider = $("#viz-kor-slider");
+  const inputs = Object.fromEntries(["r", "n", "mx", "sx", "my", "sy"].map(k => [k, $(`#viz-kor-${k}`)]));
+  function showError(message, input) {
+    for (const el of Object.values(inputs)) el.setAttribute("aria-invalid", el === input && message ? "true" : "false");
+    errorBox.hidden = !message;
+    errorBox.textContent = message ? `${message} Používá se dál poslední platná hodnota.` : "";
+  }
+
+  // Persistent main chart: the SVG element keeps focus and pointer capture while its content is redrawn.
+  const svg = d3.create("svg").attr("class", "viz-kor-svg").attr("tabindex", 0).attr("role", "application")
+    .attr("aria-roledescription", "bodový graf s upravitelnými body").attr("aria-describedby", "viz-kor-keys").node();
+  plotBox.append(svg);
+  let geo = null;   // scales and size of the last drawing
+
+  function setData(xs, ys, names, preset) {
+    S.xs = xs.slice(); S.ys = ys.slice(); S.names = names; S.preset = preset; S.active = Math.min(S.active, xs.length - 1);
+    rescale(); syncFields(true); render();
+  }
+  // Axis ranges: symmetric around both means with the same number K of standard deviations on both axes,
+  // so that the square chart is drawn in equal units of z-scores (ellipses undistorted, their length and
+  // width perpendicular). K covers the farthest z-score of both variables, with ellipses or their length
+  // and width shown also the 99% ellipse, plus 8 %. Without variability the range comes from the values.
+  function rescale() {
+    const s = stats(S.xs, S.ys);
+    if (!(s.sx > 0 && s.sy > 0)) {
+      const pad = v => { const [a, b] = d3.extent(v), w = b - a || Math.max(1, Math.abs(a) * 0.1); return [a - 0.08 * w, b + 0.08 * w]; };
+      S.dom = {x: pad(S.xs), y: pad(S.ys)}; return;
+    }
+    let k = d3.max(S.xs, v => Math.abs(v - s.mx) / s.sx);
+    k = Math.max(k, d3.max(S.ys, v => Math.abs(v - s.my) / s.sy));
+    if ((S.show.ell || S.show.axes) && s.r !== null && Math.abs(s.r) < 1 - 1e-9) k = Math.max(k, radius(0.99));
+    k *= 1.08;
+    S.dom = {x: [s.mx - k * s.sx, s.mx + k * s.sx], y: [s.my - k * s.sy, s.my + k * s.sy]};
+  }
+  const outside = () => S.xs.some(x => x < S.dom.x[0] || x > S.dom.x[1]) || S.ys.some(y => y < S.dom.y[0] || y > S.dom.y[1]);
+  // Fields show the current values; a field being edited is left alone unless forced.
+  function syncFields(force = false) {
+    const s = stats(S.xs, S.ys);
+    const put = (k, v) => { if (force || document.activeElement !== inputs[k]) inputs[k].value = v; };
+    put("r", s.r === null ? "" : fixed(s.r, 3)); put("n", String(S.xs.length));
+    put("mx", s.mx === null ? "" : trim(s.mx, 2)); put("sx", s.sx === null ? "" : trim(s.sx, 2));
+    put("my", s.my === null ? "" : trim(s.my, 2)); put("sy", s.sy === null ? "" : trim(s.sy, 2));
+    if (document.activeElement !== slider) slider.value = s.r === null ? "0" : String(Math.round(s.r * 100) / 100);
+    slider.disabled = !(s.sx > 0);
+    slider.setAttribute("aria-valuetext", s.r === null ? NA : `r = ${fixed(s.r, 2)}`);
+  }
+
+  function setR(target) {
+    const ys = toR(S.xs, S.ys, target);
+    if (ys === null) { showError("Korelaci nelze nastavit, protože X nemá žádnou variabilitu.", null); return; }
+    S.ys = ys; S.preset = null;
+    if (outside()) rescale();
+    syncFields(); render();
+  }
+  slider.addEventListener("input", () => setR(Number(slider.value)));
+  inputs.r.addEventListener("change", () => {
+    const v = parseNum(inputs.r.value);
+    if (v === null || v < -1 || v > 1) { showError("Korelace musí být číslo od −1 do 1.", inputs.r); return; }
+    showError(null); setR(v); syncFields(true);
+  });
+  // Means and standard deviations: shift and change of units of one variable.
+  for (const k of ["mx", "sx", "my", "sy"]) inputs[k].addEventListener("change", () => {
+    const v = parseNum(inputs[k].value), s = stats(S.xs, S.ys), isSd = k[0] === "s", axis = k[1];
+    if (v === null || (isSd && !(v > 0)) || Math.abs(v) > 1e6) { showError(isSd ? "Směrodatná odchylka musí být kladné číslo (nejvýše 1 000 000)." : "Průměr musí být číslo od −1 000 000 do 1 000 000.", inputs[k]); return; }
+    const vals = axis === "x" ? S.xs : S.ys, m = axis === "x" ? s.mx : s.my, sd = axis === "x" ? s.sx : s.sy;
+    if (isSd && !(sd > 0)) { showError(`Proměnná ${axis.toUpperCase()} nemá žádnou variabilitu, směrodatnou odchylku proto nelze změnit.`, inputs[k]); return; }
+    const next = vals.map(x => isSd ? m + v * (x - m) / sd : x - m + v);
+    if (axis === "x") S.xs = next; else S.ys = next;
+    S.preset = null; showError(null); rescale(); syncFields(true); render();
+  });
+  $("[data-new]").addEventListener("click", () => {
+    const n = parseNum(inputs.n.value), s = stats(S.xs, S.ys);
+    if (n === null || !Number.isInteger(n) || n < 4 || n > MAX_N) { showError("Počet bodů musí být celé číslo od 4 do 1 000.", inputs.n); return; }
+    showError(null);
+    const target = s.r === null ? 0 : Math.round(s.r * 100) / 100;
+    const mx = s.mx ?? 0, sx = s.sx > 0 ? s.sx : 1, my = s.my ?? 0, sy = s.sy > 0 ? s.sy : 1;
+    const xs = standardize(normals(n)).map(z => mx + sx * z), ys0 = standardize(normals(n)).map(z => my + sy * z);
+    setData(xs, toR(xs, ys0, target), RANDOM_NAMES, null);
+  });
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => { const p = PRESETS[b.dataset.preset]; showError(null); S.active = 0; setData(p.x, p.y, p.names, b.dataset.preset); }));
+  root.querySelectorAll('input[name="viz-kor-mode"]').forEach(el => el.addEventListener("change", () => { S.mode = el.value; S.hover = -1; render(); }));
+  // Showing the ellipses or their length and width widens the axes so that the 99% ellipse fits.
+  root.querySelectorAll("[data-show]").forEach(el => el.addEventListener("change", () => { S.show[el.dataset.show] = el.checked; if ((el.dataset.show === "ell" || el.dataset.show === "axes") && el.checked) rescale(); render(); }));
+  $("[data-rescale]").addEventListener("click", () => { rescale(); render(); });
+
+  // Adding and deleting points; the number of points stays between 3 and 1 000.
+  function addPoint(x, y) {
+    if (S.xs.length >= MAX_N) { showError("V grafu může být nejvýše 1 000 bodů.", null); return false; }
+    S.xs.push(x); S.ys.push(y); S.active = S.xs.length - 1; S.preset = null; showError(null);
+    return true;
+  }
+  function deletePoint(i) {
+    if (S.xs.length <= MIN_N) { showError("V grafu musí zůstat alespoň 3 body.", null); return false; }
+    S.xs.splice(i, 1); S.ys.splice(i, 1); S.active = Math.min(S.active, S.xs.length - 1); S.preset = null; showError(null);
+    return true;
+  }
+  // Pointer: the nearest point within reach is moved or deleted; an empty place gets a new point.
+  // Under the chart a line shows the coordinates of the pointer, or of the point being dragged.
+  const toLocal = e => { const b = svg.getBoundingClientRect(); return [(e.clientX - b.left) * geo.W / b.width, (e.clientY - b.top) * geo.H / b.height]; };
+  function nearest(px, py) {
+    let best = -1, bd = Infinity;
+    for (let i = 0; i < S.xs.length; i++) { const d = Math.hypot(geo.x(S.xs[i]) - px, geo.y(S.ys[i]) - py); if (d < bd) { bd = d; best = i; } }
+    return bd <= Math.max(10, geo.dot + 5) ? best : -1;
+  }
+  const clampX = v => Math.min(S.dom.x[1], Math.max(S.dom.x[0], v)), clampY = v => Math.min(S.dom.y[1], Math.max(S.dom.y[0], v));
+  let frame = 0;
+  const schedule = () => { if (!frame) frame = requestAnimationFrame(() => { frame = 0; syncFields(); render(); }); };
+  const inPlot = (px, py) => px >= geo.left && px <= geo.right && py >= geo.top && py <= geo.bottom;
+  const pointerBox = $("[data-pointer]");
+  const showPointer = (x, y, what) => { pointerBox.textContent = `${what}: X = ${fixed(x, 1)}; Y = ${fixed(y, 1)}`; };
+  function setCursor(i) {
+    svg.style.cursor = S.drag !== null ? "grabbing" : S.mode === "add" ? "crosshair" : i < 0 ? "default" : S.mode === "move" ? "grab" : "pointer";
+  }
+  svg.addEventListener("pointerdown", e => {
+    if (!geo || e.button !== 0) return;
+    const [px, py] = toLocal(e), i = nearest(px, py);
+    if (S.mode === "move" && i >= 0) { S.drag = i; S.active = i; svg.setPointerCapture(e.pointerId); e.preventDefault(); setCursor(i); render(); }
+    else if (S.mode === "add" && inPlot(px, py)) { if (addPoint(geo.x.invert(px), geo.y.invert(py))) { syncFields(); render(); announce(); } e.preventDefault(); }
+    else if (S.mode === "delete" && i >= 0) { S.hover = -1; if (deletePoint(i)) { syncFields(); render(); announce(); } e.preventDefault(); }
+  });
+  svg.addEventListener("pointermove", e => {
+    if (!geo) return;
+    const [px, py] = toLocal(e);
+    if (S.drag !== null) {
+      S.xs[S.drag] = clampX(geo.x.invert(px)); S.ys[S.drag] = clampY(geo.y.invert(py)); S.preset = null;
+      showPointer(S.xs[S.drag], S.ys[S.drag], "Tažený bod"); schedule(); return;
+    }
+    const i = S.mode === "add" ? -1 : nearest(px, py);
+    setCursor(i);
+    if (inPlot(px, py)) showPointer(geo.x.invert(px), geo.y.invert(py), "Ukazatel"); else pointerBox.textContent = "";
+    // In the delete mode the point that a click would remove is marked.
+    const hover = S.mode === "delete" ? i : -1;
+    if (hover !== S.hover) { S.hover = hover; render(); }
+  });
+  svg.addEventListener("pointerleave", () => { if (S.drag !== null) return; pointerBox.textContent = ""; if (S.hover !== -1) { S.hover = -1; render(); } });
+  const endDrag = e => { if (S.drag === null) return; S.drag = null; if (svg.hasPointerCapture(e.pointerId)) svg.releasePointerCapture(e.pointerId); setCursor(-1); syncFields(); render(); announce(); };
+  svg.addEventListener("pointerup", endDrag);
+  svg.addEventListener("pointercancel", endDrag);
+  svg.addEventListener("focus", () => { S.focused = true; render(); announce(); });
+  svg.addEventListener("blur", () => { S.focused = false; render(); });
+  svg.addEventListener("keydown", e => {
+    const n = S.xs.length, sx = (S.dom.x[1] - S.dom.x[0]) / (e.shiftKey ? 10 : 50), sy = (S.dom.y[1] - S.dom.y[0]) / (e.shiftKey ? 10 : 50);
+    const moves = {ArrowLeft: [-sx, 0], ArrowRight: [sx, 0], ArrowUp: [0, sy], ArrowDown: [0, -sy]};
+    if (e.key === " ") S.active = (S.active + (e.shiftKey ? n - 1 : 1)) % n;
+    else if (moves[e.key]) { const [dx, dy] = moves[e.key]; S.xs[S.active] = clampX(S.xs[S.active] + dx); S.ys[S.active] = clampY(S.ys[S.active] + dy); S.preset = null; }
+    else if (e.key === "Delete" || e.key === "Backspace") deletePoint(S.active);
+    else if (e.key === "Enter" && S.mode === "add") addPoint((S.dom.x[0] + S.dom.x[1]) / 2, (S.dom.y[0] + S.dom.y[1]) / 2);
+    else return;
+    e.preventDefault(); syncFields(); render(); announce();
+  });
+  function announce() {
+    const s = stats(S.xs, S.ys), i = S.active;
+    $("[data-live]").textContent = `Vybraný bod č. ${i + 1} (bodů celkem ${S.xs.length}): X = ${trim(S.xs[i], 2)}, Y = ${trim(S.ys[i], 2)}. Pearsonovo r = ${f3(s.r)}, Spearmanův korelační koeficient ${f3(s.rs)}.`;
+  }
+
+  const tickFmt = sc => { const f = sc.tickFormat(6); return d => f(d).replace(/,/g, " ").replace(".", ",").replace("-", "−"); };
+  // Width of a chart: the width of its box, at most 780 px on the page; in full screen at most 1200 px.
+  const fsWidth = el => Math.max(260, Math.min(el.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+  // Side of a square scatterplot: in full screen also no taller than the window.
+  const squareSide = el => { const w = fsWidth(el); return root.classList.contains("viz-is-fullscreen") ? Math.max(260, Math.min(w, window.innerHeight - 140)) : w; };
+
+  // Length and width of the ellipse in z-scores: the length runs through the centre where both z-scores are
+  // equal (opposite for negative r), the width perpendicular to it; both end on the 99% ellipse, so their
+  // halves are c * sqrt(1 + |r|) and c * sqrt(1 - |r|). Returned in the units of the data.
+  function ellipseAxes(s) {
+    if (s.r === null) return null;
+    const c = radius(0.99), ar = Math.abs(s.r), sg = s.r < 0 ? -1 : 1;
+    const hl = c * Math.sqrt(1 + ar), hw = c * Math.sqrt(Math.max(0, 1 - ar)), a = hl / Math.SQRT2, b = hw / Math.SQRT2;
+    const P = (u, v) => [s.mx + s.sx * u, s.my + s.sy * v];
+    return {length: [P(-a, -sg * a), P(a, sg * a)], width: hw > 1e-9 ? [P(-b, sg * b), P(b, -sg * b)] : null,
+      halfLength: hl, halfWidth: hw, ratio: ar < 1 - 1e-12 ? Math.sqrt((1 + ar) / (1 - ar)) : null};
+  }
+
+  function drawMain(s) {
+    const W = squareSide(plotBox), small = W < 480;
+    const m = {l: small ? 46 : 56, r: 12, t: 12, b: 44}, inner = W - m.l - m.r, H = inner + m.t + m.b;
+    const x = d3.scaleLinear(S.dom.x, [m.l, W - m.r]), y = d3.scaleLinear(S.dom.y, [H - m.b, m.t]);
+    const dot = S.xs.length > 300 ? 2.6 : S.xs.length > 100 ? 3.6 : 5.5;
+    geo = {W, H, x, y, dot, left: m.l, right: W - m.r, top: m.t, bottom: H - m.b};
+    const g = d3.select(svg).attr("width", W).attr("height", H).attr("viewBox", `0 0 ${W} ${H}`);
+    g.selectAll("*").remove();
+    g.append("defs").append("clipPath").attr("id", "viz-kor-clip").append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b);
+    g.append("g").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(small ? 5 : 8).tickFormat(tickFmt(x))).call(a => a.selectAll("text").attr("font-size", small ? 11 : 12));
+    g.append("g").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(6).tickFormat(tickFmt(y))).call(a => a.selectAll("text").attr("font-size", small ? 11 : 12));
+    g.append("text").attr("x", (m.l + W - m.r) / 2).attr("y", H - 6).attr("text-anchor", "middle").attr("fill", ink).attr("font-size", 13).text(S.names.x);
+    g.append("text").attr("transform", `translate(13,${(m.t + H - m.b) / 2}) rotate(-90)`).attr("text-anchor", "middle").attr("fill", ink).attr("font-size", 13).text(S.names.y);
+    const c = g.append("g").attr("clip-path", "url(#viz-kor-clip)").attr("aria-hidden", "true");
+    const valid = s.r !== null, thin = valid && Math.abs(s.r) < 1 - 1e-9;
+    if (S.show.ell && thin) {
+      const a = Math.sqrt(1 - s.r * s.r);
+      LEVELS.forEach((p, k) => {
+        const rad = radius(p), pts = d3.range(0, 361, 3).map(t => { const u = rad * Math.cos(t * Math.PI / 180), v = rad * Math.sin(t * Math.PI / 180); return [x(s.mx + s.sx * u), y(s.my + s.sy * (s.r * u + a * v))]; });
+        c.append("path").attr("d", d3.line()(pts)).attr("fill", k === 0 ? "#B8DDE8" : "none").attr("fill-opacity", 0.35).attr("stroke", blue).attr("stroke-width", 1.4).attr("stroke-opacity", [0.9, 0.7, 0.55, 0.4][k]);
+        const th = Math.atan2(a, s.r), lx = s.mx + s.sx * rad * Math.cos(th), ly = s.my + s.sy * (s.r * rad * Math.cos(th) + a * rad * Math.sin(th));
+        c.append("text").attr("x", x(lx)).attr("y", y(ly) - 4).attr("text-anchor", "middle").attr("font-size", 11).attr("fill", blue).text(`${Math.round(100 * p)} %`);
+      });
+    }
+    if (S.show.quad && valid) {
+      c.append("line").attr("x1", x(s.mx)).attr("x2", x(s.mx)).attr("y1", m.t).attr("y2", H - m.b).attr("stroke", gray).attr("stroke-dasharray", "5,4");
+      c.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(s.my)).attr("y2", y(s.my)).attr("stroke", gray).attr("stroke-dasharray", "5,4");
+    }
+    const yhat = v => s.b0 + s.b1 * v;
+    if (S.show.res && valid) c.append("path").attr("d", S.xs.map((v, i) => `M${x(v)},${y(S.ys[i])}V${y(yhat(v))}`).join("")).attr("stroke", orange).attr("stroke-opacity", 0.7).attr("stroke-width", 1.3).attr("fill", "none");
+    if (S.show.reg && valid) c.append("line").attr("x1", x(S.dom.x[0])).attr("x2", x(S.dom.x[1])).attr("y1", y(yhat(S.dom.x[0]))).attr("y2", y(yhat(S.dom.x[1]))).attr("stroke", ink).attr("stroke-width", 2.2);
+    const ax = S.show.axes ? ellipseAxes(s) : null;
+    if (ax) for (const [seg, stroke, cls] of [[ax.length, green, "viz-kor-length"], [ax.width, orange, "viz-kor-width"]]) if (seg)
+      c.append("line").attr("class", cls).attr("x1", x(seg[0][0])).attr("y1", y(seg[0][1])).attr("x2", x(seg[1][0])).attr("y2", y(seg[1][1])).attr("stroke", stroke).attr("stroke-width", 2.6);
+    const color = i => !S.show.quad || !valid ? blue : (S.xs[i] - s.mx) * (S.ys[i] - s.my) > 0 ? blue : (S.xs[i] - s.mx) * (S.ys[i] - s.my) < 0 ? orange : gray;
+    const pg = c.append("g");
+    for (let i = 0; i < S.xs.length; i++) pg.append("circle").attr("cx", x(S.xs[i])).attr("cy", y(S.ys[i])).attr("r", dot).attr("fill", color(i)).attr("fill-opacity", 0.8).attr("stroke", "white").attr("stroke-width", dot > 3 ? 1 : 0.5);
+    if ((S.focused || S.drag !== null) && S.active >= 0 && S.active < S.xs.length)
+      c.append("circle").attr("cx", x(S.xs[S.active])).attr("cy", y(S.ys[S.active])).attr("r", dot + 4).attr("fill", "none").attr("stroke", ink).attr("stroke-width", 2);
+    if (S.mode === "delete" && S.hover >= 0 && S.hover < S.xs.length)
+      c.append("circle").attr("class", "viz-kor-hover").attr("cx", x(S.xs[S.hover])).attr("cy", y(S.ys[S.hover])).attr("r", dot + 4).attr("fill", "none").attr("stroke", orange).attr("stroke-width", 2.4);
+    svg.setAttribute("aria-label", `Bodový graf ${S.xs.length} bodů: ${S.names.x} na vodorovné ose (${trim(S.dom.x[0], 2)} až ${trim(S.dom.x[1], 2)}), ${S.names.y} na svislé ose (${trim(S.dom.y[0], 2)} až ${trim(S.dom.y[1], 2)}). Pearsonovo r = ${f3(s.r)}, Spearmanův korelační koeficient ${f3(s.rs)}.${S.show.reg && valid ? ` Regresní přímka ŷ = ${f2(s.b0)} ${s.b1 < 0 ? "−" : "+"} ${fixed(Math.abs(s.b1), 3)}x.` : ""}`);
+    const sw = (stroke, dash, w = 2) => `<svg width="26" height="12" aria-hidden="true"><line x1="2" y1="6" x2="24" y2="6" stroke="${stroke}" stroke-width="${w}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+    const dotSw = fill => `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="${fill}" fill-opacity="0.8"/></svg>`;
+    const leg = [S.show.quad && valid ? `<span>${dotSw(blue)}<span>součin odchylek kladný</span></span><span>${dotSw(orange)}<span>součin odchylek záporný</span></span><span>${sw(gray, "5,4", 1.4)}<span>průměry</span></span>` : `<span>${dotSw(blue)}<span>jeden člověk</span></span>`];
+    if (S.show.ell && thin) leg.push(`<span><svg width="26" height="14" aria-hidden="true"><ellipse cx="13" cy="7" rx="11" ry="5" fill="#B8DDE8" fill-opacity="0.35" stroke="${blue}"/></svg><span>pravděpodobnostní elipsy 50, 80, 95 a 99 %</span></span>`);
+    if (ax) leg.push(`<span>${sw(green, null, 2.6)}<span>délka elipsy (kudy je mrak bodů nejdelší)</span></span>`, ...(ax.width ? [`<span>${sw(orange, null, 2.6)}<span>šířka elipsy (kudy je nejširší)</span></span>`] : []));
+    if (S.show.reg && valid) leg.push(`<span>${sw(ink, null, 2.2)}<span>regresní přímka</span></span>`);
+    if (S.show.res && valid) leg.push(`<span>${sw(orange, null, 1.3)}<span>rezidua</span></span>`);
+    $("[data-legend]").innerHTML = leg.join("");
+  }
+
+  function drawVenn(s) {
+    const box = $("[data-venn]");
+    box.hidden = !S.show.venn;
+    if (!S.show.venn) { box.replaceChildren(); return; }
+    if (s.r === null) { box.innerHTML = `<p class="viz-note">Vennův diagram: ${NA}, některá proměnná nemá žádnou variabilitu.</p>`; return; }
+    const w = 230, R = 52, d = vennDistance(s.r2) * R, cx = w / 2, h = 2 * R + 34;
+    const v = d3.create("svg").attr("width", w).attr("height", h).attr("viewBox", `0 0 ${w} ${h}`).attr("role", "img")
+      .attr("aria-label", `Vennův diagram: dva kruhy pro rozptyl X a Y, jejich překryv je r² = ${fixed(s.r2, 3)}, tedy ${pct(s.r2)} plochy každého kruhu.`);
+    v.append("circle").attr("cx", cx - d / 2).attr("cy", R + 4).attr("r", R).attr("fill", blue).attr("fill-opacity", 0.4).attr("stroke", blue);
+    v.append("circle").attr("cx", cx + d / 2).attr("cy", R + 4).attr("r", R).attr("fill", green).attr("fill-opacity", 0.4).attr("stroke", green);
+    v.append("text").attr("x", cx - d / 2 - R / 2).attr("y", R + 8).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text("X");
+    v.append("text").attr("x", cx + d / 2 + R / 2).attr("y", R + 8).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text("Y");
+    v.append("text").attr("x", cx).attr("y", 2 * R + 28).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text(`překryv r² = ${pct(s.r2)}`);
+    box.replaceChildren(v.node(), html`<p class="viz-note">Překryv kruhů je podíl rozptylu Y, který lze lineárně předpovědět z X (a naopak). Znaménko korelace diagram neukazuje.</p>`);
+  }
+
+  function statsRows(s) {
+    const rows = [["Počet bodů <i>n</i>", String(s.n)]];
+    rows.push(["Průměry", `${sub("m", "x")} = ${f2(s.mx)}; ${sub("m", "y")} = ${f2(s.my)}`]);
+    rows.push(["Směrodatné odchylky", `${sub("s", "x")} = ${f2(s.sx)}; ${sub("s", "y")} = ${f2(s.sy)}`]);
+    rows.push([`Kovariance ${sub("s", "xy")}`, s.sxy === null ? NA : `${f2(s.sumprod)} / ${s.n - 1} = ${f2(s.sxy)}`]);
+    if (S.show.quad) rows.push(["Součiny odchylek od průměrů", `kladných ${s.pos}, záporných ${s.neg}; součet ${f2(s.sumprod)}`]);
+    rows.push([`Pearsonovo <i>r</i> = ${sub("s", "xy")} / (${sub("s", "x")} ${sub("s", "y")})`, s.r === null ? `${NA}: některá proměnná nemá žádnou variabilitu` : `${f2(s.sxy)} / (${f2(s.sx)} · ${f2(s.sy)}) = <strong>${f3(s.r)}</strong>`]);
+    rows.push(["Spearmanův <i>r</i><sub>s</sub> (Pearsonovo <i>r</i> pořadí)", s.rs === null ? NA : `<strong>${f3(s.rs)}</strong>`]);
+    rows.push(["Test nulové korelace", s.t === null ? `${NA}${s.r !== null ? " (body leží přesně na přímce)" : ""}` : `<i>t</i> = ${f2(s.t)} s ${s.df} stupni volnosti; oboustranná <i>p</i>-hodnota ${pFmt(s.p)}`]);
+    const zr = `<i>z</i><sub><i>r</i></sub>`;
+    rows.push(["95% interval spolehlivosti pro ρ (Fisherova transformace)", s.lo === null ? NA
+      : `${zr} = ${f3(s.zr)}; směrodatná chyba 1/√(<i>n</i> − 3) = 1/√${s.n - 3} = ${f3(s.se)}; na stupnici ${zr}: ${f3(s.zr)} ± 1,96 · ${f3(s.se)} = (${f3(s.zlo)}; ${f3(s.zhi)}); po převodu zpět na korelace <strong>(${f2(s.lo)}; ${f2(s.hi)})</strong>`]);
+    rows.push(["Koeficient determinace <i>r</i>²", s.r2 === null ? NA : `${f3(s.r2)} (${pct(s.r2)})`]);
+    const ax = S.show.axes ? ellipseAxes(s) : null;
+    if (ax) rows.push(["Délka a šířka elipsy 99 % (v <i>z</i>-skórech)", `délka 2 · ${fixed(radius(0.99), 2)} · √(1 + ${f3(Math.abs(s.r))}) = ${f2(2 * ax.halfLength)}; šířka 2 · ${fixed(radius(0.99), 2)} · √(1 − ${f3(Math.abs(s.r))}) = ${f2(2 * ax.halfWidth)}; poměr délky a šířky ${ax.ratio === null ? "nelze spočítat (šířka je nulová)" : fixed(ax.ratio, 2)}`]);
+    if (S.show.reg && s.r !== null) rows.push(["Regresní přímka", `<i>ŷ</i> = ${f2(s.b0)} ${s.b1 < 0 ? "−" : "+"} ${fixed(Math.abs(s.b1), 3)} <i>x</i>; <i>b</i><sub>1</sub> = ${f3(s.r)} · ${f2(s.sy)} / ${f2(s.sx)} = ${f3(s.b1)}; <i>b</i><sub>0</sub> = ${f2(s.my)} − (${f3(s.b1)}) · ${f2(s.mx)} = ${f2(s.b0)}`]);
+    if (S.show.res && s.r !== null) rows.push(["Součet čtverců reziduí", `${f2(s.ssres)} = (1 − ${f3(s.r2)}) · ${f2(s.sstot)}, kde ${f2(s.sstot)} je součet čtverců odchylek Y od průměru`]);
+    return rows;
+  }
+  function ellipseTable(s) {
+    const box = $("[data-ellipses]");
+    if (!S.show.ell) { box.replaceChildren(); return null; }
+    if (s.r === null || Math.abs(s.r) >= 1 - 1e-9) { box.innerHTML = `<p class="viz-note">Elipsy nelze nakreslit: ${s.r === null ? "některá proměnná nemá žádnou variabilitu" : "body leží přesně na přímce"}.</p>`; return null; }
+    const counts = LEVELS.map(p => S.xs.reduce((a, x, i) => a + (mahal(s, x, S.ys[i]) <= radius(p) ** 2 ? 1 : 0), 0));
+    box.innerHTML = `<div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Body uvnitř elips: posuvná oblast"><table class="viz-bay-table viz-kor-ell" aria-label="Počet bodů uvnitř pravděpodobnostních elips">
+      <thead><tr><th scope="col">Elipsa</th><th scope="col">podíl v modelu</th><th scope="col">počet bodů uvnitř</th><th scope="col">podíl bodů uvnitř</th></tr></thead>
+      <tbody>${LEVELS.map((p, k) => `<tr><th scope="row">${Math.round(100 * p)} %</th><td>${Math.round(100 * p)} %</td><td>${counts[k]}</td><td>${pct(counts[k] / S.xs.length)}</td></tr>`).join("")}</tbody></table></div>
+      <p class="viz-note">Elipsy kreslí dvourozměrné normální rozdělení s průměry, směrodatnými odchylkami a korelací bodů v grafu. Při malém počtu bodů se skutečné podíly od modelových liší i u dat z tohoto modelu.</p>`;
+    return counts;
+  }
+
+  // Derived charts: ranks of both variables and the slope chart of the two values of each person.
+  function drawDerived(s) {
+    const box = $("[data-ranks]"), sbox = $("[data-slope]");
+    // The chart of ranks is square (equal inner width and height); the slope chart below it has the full width.
+    const full = root.classList.contains("viz-is-fullscreen"), side = squareSide(box), SW = fsWidth(sbox), SH = full ? 520 : 420;
+    const mg = {marginLeft: 46, marginRight: 14, marginTop: 14, marginBottom: 42};
+    const style = {fontSize: "12px", color: ink, background: "transparent", overflow: "visible"};
+    const n = S.xs.length, rx = ranks(S.xs), ry = ranks(S.ys), mr = (n + 1) / 2;
+    const rows = rx.map((v, i) => ({rx: v, ry: ry[i], c: !S.show.quad ? blue : (v - mr) * (ry[i] - mr) > 0 ? blue : (v - mr) * (ry[i] - mr) < 0 ? orange : gray}));
+    $("[data-rank-title]").innerHTML = `Bodový graf pořadí: <i>r</i><sub>s</sub> = ${f3(s.rs)}`;
+    const rankTicks = d3.ticks(1, n, 6).filter(Number.isInteger);
+    box.replaceChildren(Plot.plot({
+      width: side, height: side - mg.marginLeft - mg.marginRight + mg.marginTop + mg.marginBottom, ...mg, style,
+      x: {domain: [0.5, n + 0.5], label: `Pořadí: ${S.names.sx}`, labelAnchor: "center", labelArrow: "none", ticks: rankTicks, tickFormat: d => String(d)},
+      y: {domain: [0.5, n + 0.5], label: `Pořadí: ${S.names.sy}`, labelAnchor: "center", labelArrow: "none", ticks: rankTicks, tickFormat: d => String(d)},
+      ariaLabel: `Bodový graf pořadí ${n} bodů. Spearmanův korelační koeficient ${f3(s.rs)}.`,
+      marks: [
+        ...(S.show.quad ? [Plot.ruleX([mr], {stroke: gray, strokeDasharray: "5,4"}), Plot.ruleY([mr], {stroke: gray, strokeDasharray: "5,4"})] : []),
+        Plot.dot(rows, {x: "rx", y: "ry", r: n > 300 ? 2.2 : n > 100 ? 3 : 4.5, fill: "c", fillOpacity: 0.8, stroke: "white", strokeWidth: 0.6}),
+        Plot.frame({anchor: "left", stroke: ink}), Plot.frame({anchor: "bottom", stroke: ink})
+      ]
+    }));
+    const long = S.xs.flatMap((x, i) => [{who: i, side: "X", v: x}, {who: i, side: "Y", v: S.ys[i]}]);
+    const ext = d3.extent([...S.xs, ...S.ys]), w = ext[1] - ext[0] || 1;
+    const sides = {X: S.names.sx, Y: S.names.sy};
+    sbox.replaceChildren(Plot.plot({
+      width: SW, height: SH, marginLeft: 46, marginRight: 20, marginBottom: 42, style,
+      x: {domain: ["X", "Y"], type: "point", padding: 0.35, label: null, tickFormat: k => sides[k]},
+      y: {domain: d3.scaleLinear().domain([ext[0] - 0.05 * w, ext[1] + 0.05 * w]).nice().domain(), label: "Hodnota (společná stupnice)", labelAnchor: "center", labelArrow: "none", tickFormat: tickFmt(d3.scaleLinear().domain(ext))},
+      ariaLabel: `Graf spojnic: ${n} úseček spojuje hodnotu X (${S.names.sx}) a Y (${S.names.sy}) téhož člověka. Průměry ${f2(s.mx)} a ${f2(s.my)}.`,
+      marks: [
+        Plot.line(long, {x: "side", y: "v", z: "who", stroke: pale, strokeOpacity: n > 200 ? 0.25 : 0.6, strokeWidth: 1}),
+        Plot.dot(long, {x: "side", y: "v", r: n > 300 ? 2 : 3.5, fill: blue, fillOpacity: 0.75}),
+        ...(s.mx === null ? [] : [Plot.line([{side: "X", v: s.mx}, {side: "Y", v: s.my}], {x: "side", y: "v", stroke: ink, strokeWidth: 3})]),
+        Plot.frame({anchor: "left", stroke: ink})
+      ]
+    }));
+    $("[data-slope-note]").textContent = `Tmavá spojnice spojuje průměry ${f2(s.mx)} a ${f2(s.my)} (rozdíl průměrů Y − X je ${s.mx === null ? NA : fixed(s.my - s.mx, 2)}). Polohy na obou osách lze porovnávat, jen když obě proměnné mají stejnou stupnici.`;
+  }
+
+  let last = {};
+  function render() {
+    const s = stats(S.xs, S.ys);
+    root.querySelectorAll('input[name="viz-kor-mode"]').forEach(el => { el.checked = el.value === S.mode; });
+    root.querySelectorAll("[data-show]").forEach(el => { el.checked = S.show[el.dataset.show]; });
+    root.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.preset === S.preset)));
+    $("[data-summary]").innerHTML = `Pearsonovo <i>r</i> = ${f3(s.r)}, Spearmanův <i>r</i><sub>s</sub> = ${f3(s.rs)}, <i>n</i> = ${s.n}`;
+    drawMain(s);
+    drawVenn(s);
+    $("[data-stats]").innerHTML = statsRows(s).map(([t, d]) => `<div><dt>${t}</dt><dd>${d}</dd></div>`).join("");
+    const counts = ellipseTable(s);
+    drawDerived(s);
+    last = {stats: s, counts};
+  }
+
+  // Redraw at a new width without changing the data.
+  let lastWidth = 0, rframe = 0;
+  const observer = new ResizeObserver(() => {
+    const w = root.clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w; cancelAnimationFrame(rframe); rframe = requestAnimationFrame(render);
+  });
+  observer.observe(root);
+  invalidation.then(() => { observer.disconnect(); cancelAnimationFrame(frame); });
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  const clone = o => JSON.parse(JSON.stringify(o));
+  root.vizCheck = {stats: (xs, ys) => clone(stats(xs, ys)), ranks: v => ranks(v), toR: (xs, ys, r) => toR(xs, ys, r), radius, vennDistance,
+    axes: () => clone(ellipseAxes(stats(S.xs, S.ys))),
+    // Client coordinates of a point of the main chart (for clicks in the check).
+    pixel: (vx, vy) => { const b = svg.getBoundingClientRect(); return [b.left + geo.x(vx) * b.width / geo.W, b.top + geo.y(vy) * b.height / geo.H]; },
+    state: () => clone({preset: S.preset, mode: S.mode, show: S.show, active: S.active, dom: S.dom, xs: S.xs, ys: S.ys, names: S.names, stats: stats(S.xs, S.ys), counts: last.counts})};
+
+  setData(PRESETS.uzkost.x, PRESETS.uzkost.y, PRESETS.uzkost.names, "uzkost");
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Bodový graf, kovarianci, Pearsonův a Spearmanův korelační koeficient vykládá <a href="kapitola_10.html#sec-bodovy-graf">kapitola 10</a>; výpočty pro výchozí data najdete v oddílu „Odkud se čísla berou“ výše.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-kor-vyzkousejte .unnumbered}
+
+1. U výchozích dat zapněte kvadranty. Kolik studentů má záporný a kolik kladný součin odchylek a jak to souvisí se znaménkem *r*? Potom zapněte délku a šířku elipsy a nastavte posuvníkem *r* postupně na 0, 0,5, 0,9 a −0,9. Jak se mění tvar mraku bodů a poměr obou úseček a které hodnoty zůstávají stejné?
+2. Ve výchozích datech přepněte myš na „přidá bod“ a podle souřadnic ukazatele pod grafem klikněte na místo s úzkostí asi 38 a výkonem asi 31, tedy vpravo nahoru proti směru vztahu. Jak se změnilo Pearsonovo *r* a jak Spearmanův korelační koeficient? Pak přepněte myš na „přesune bod“ a táhněte tohoto studenta ještě dál do pravého horního rohu. Který koeficient se mění a proč druhý ne? Pomůže vám bodový graf pořadí.
+3. Stiskněte „Spánek a pozornost (kapitola 8)“ a prohlédněte graf spojnic. Co znamenají téměř rovnoběžné klesající spojnice? Nastavte posuvníkem *r* = 0. Co se stalo se spojnicemi a co s průměrnou změnou?
+4. Projděte soubory Anscombe I až IV se zapnutou regresní přímkou a rezidui. Co mají čtyři soubory společné (Pearsonovo *r*, *r*², přímka) a čím se liší (rezidua, Spearmanův korelační koeficient, bodový graf pořadí)? U souboru I zapněte i pravděpodobnostní elipsy a porovnejte podíly bodů uvnitř s modelem; pak vylosujte nový náhodný výběr o 1 000 bodech.
+
+## Čeho si všimnout {#sec-viz-kor-vsimnete .unnumbered}
+
+Korelační koeficient popisuje, jak těsně se body drží přímky, a jeho znaménko určuje, které součiny odchylek převažují. Ve výchozích datech má 25 studentů záporný a 15 kladný součin a součet součinů je −555,45; proto je *r* = −0,523 záporné ([Kovariance](kapitola_10.qmd#sec-kovariance)). Při *r* = 0,5 je mrak bodů stále široký a teprve kolem 0,9 se zužuje do úzkého pásu. Délka a šířka elipsy to vyjadřují číslem: při *r* = 0,5 je elipsa jen 1,73krát delší než širší, při *r* = 0,9 už 4,36krát; o síle souvislosti tedy rozhoduje šířka mraku napříč směrem vztahu, ne jeho sklon. Posuvník mění jen hodnoty Y; průměry, směrodatné odchylky a hodnoty X zůstávají, takže tentýž soubor lidí může mít s jinak uspořádanými hodnotami Y zcela jinou korelaci ([Pearsonovo *r*](kapitola_10.qmd#sec-pearsonovo-r)).
+
+Jediný bod může korelaci výrazně změnit. Student s úzkostí 38 a výkonem 31 leží daleko od ostatních proti směru vztahu: Pearsonovo *r* se změní z −0,523 na −0,316, Spearmanův korelační koeficient jen z −0,555 na −0,443. Posuneme-li tohoto studenta do rohu grafu (úzkost 38,5, výkon 32), klesne *r* na −0,295, ale Spearmanův korelační koeficient zůstane −0,443: student má nadále nejvyšší úzkost i nejvyšší výkon, jeho pořadí se tedy nezmění. Kdyby měl úzkost dokonce 60 bodů, mimo osy grafu, bylo by *r* jen −0,082 a Spearmanův korelační koeficient stále −0,443. Proto je pořadový koeficient vůči odlehlým hodnotám odolnější; to však neznamená, že odlehlý bod můžeme pominout ([Co mění korelaci](kapitola_10.qmd#sec-co-meni-korelaci)).
+
+U dat spánku ukazuje graf spojnic obě otázky z [kapitoly 10](kapitola_10.qmd#sec-postaveni-zmena) najednou. Spojnice jsou téměř rovnoběžné, protože si studenti zachovávají relativní postavení (*r* = 0,948), a mírně klesají, protože po krátkém spánku je pozornost v průměru o 3,5 bodu nižší. Nastavíme-li *r* = 0, spojnice se začnou křížit, ale průměrná změna zůstane 3,5 bodu: korelace a průměrná změna jsou dvě různé otázky.
+
+Anscombovy soubory mají téměř stejné Pearsonovo *r* (0,816), *r*² (0,67) i regresní přímku $\hat{y}=3{,}00+0{,}500x$, a přesto popisují odlišné situace ([Stejné číslo, různá data](kapitola_10.qmd#sec-stejne-cislo)). Rezidua to prozradí: v souboru II tvoří oblouk, v souboru III je jedno reziduum velké a ostatní leží pravidelně v řadě a v souboru IV určuje přímku jediný bod. Spearmanův korelační koeficient činí 0,818, 0,691, 0,991 a 0,500. Shodná čísla tedy nenahrazují pohled na graf.
+
+Regresní přímka prochází bodem průměrů a její směrnice $b_1=r\,s_y/s_x$ má vždy stejné znaménko jako *r*. Koeficient determinace říká, o kolik předpověď z přímky zmenší součet čtverců odchylek: ve výchozích datech o 27,4 %. Ani vysoké *r*² neříká, že X způsobuje Y. Pravděpodobnostní elipsy kreslí model dvourozměrného normálního rozdělení; u 1 000 bodů z tohoto modelu leží uvnitř elips přibližně 50, 80, 95 a 99 % bodů, u malých souborů se podíly liší víc. Neodpovídá-li mrak bodů elipse, například když se rozšiřuje jako vějíř, data modelu neodpovídají ([Model pro inferenci o Pearsonově korelačním koeficientu](kapitola_10.qmd#sec-model-pearson)).

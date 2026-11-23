@@ -1187,6 +1187,93 @@ zůstávají rozbalené. Pořadí částí ani stránek se nemění. Provedení
 uvedl: „protože vizualizací je už celkem dost, chtěl bych, ať je oddíl
 s nimi (v osnově html verze) defaultně folded“.
 
+<a id="r65-upresneni-2026-11-23-korelace"></a>
+
+### Upřesnění 2026-11-23 — Vizualizace korelace v bodovém grafu
+
+Patnáctá vizualizace podle R65, první ke kapitole 10: stránka
+`quarto/viz_korelace.qmd` („Jak tvar mraku bodů souvisí s korelačním
+koeficientem“, `#sec-viz-korelace`), v menu za vizualizací měr souvislosti.
+Kapitola 10 na ni odkazuje dvěma bloky „Vyzkoušejte si“: na konci pododdílu
+`sec-vydelime` (před rozšířením `#rozsireni-meze-r`) a na konci pododdílu
+`sec-odlehle-korelace`. Částečně nahrazuje bod R71 o vizualizacích
+([doplnění R71](kapitola-10.md#r71-doplneni-2026-11-23)).
+
+- Data: úzkost a výkon 40 studentů z kapitoly 10 (výchozí), spánek
+  a pozornost z kapitoly 8, Anscombův kvartet I–IV a nový náhodný výběr
+  (4–1 000 bodů) z dvourozměrného normálního rozdělení.
+- Posuvník a pole nastaví přesně výběrové *r* (Y se přepočítá, X, průměr
+  a směrodatná odchylka Y zůstanou); pole pro $m_x$, $s_x$, $m_y$, $s_y$
+  mění data posunem a změnou jednotek.
+- Body lze v grafu přesouvat, přidávat a mazat myší, dotykem i klávesnicí
+  (3–1 000 bodů); osy se mění jen tlačítkem nebo při změně dat.
+- Přepínače: kvadranty se součiny odchylek, pravděpodobnostní elipsy 50, 80,
+  95 a 99 % se skutečnými počty bodů uvnitř (výchozí vypnuto), regresní
+  přímka a rezidua (výchozí vypnuto), Vennův diagram *r*² (výchozí zapnuto).
+- Přehled s dosazením: průměry, směrodatné odchylky, kovariance, Pearsonovo
+  *r*, Spearmanův korelační koeficient, test nulové korelace, Fisherův 95%
+  interval, *r*², při zapnutí rovnice přímky a součet čtverců reziduí.
+- Pod hlavním grafem trvale bodový graf pořadí a graf spojnic (bez
+  přepínačů, jen ke čtení).
+- Nové termíny jen ve vizualizaci: regresní přímka, reziduum, koeficient
+  determinace, pravděpodobnostní elipsa; značky $\hat{y}$, $b_0$, $b_1$
+  a $r^2$ ([slovník](../SLOVNIK.md#vizualizace-korelace)). Stránka je
+  vysvětluje v oddílu „Pojmy, které kapitola 10 nevykládá“; kapitoly je
+  nepředpokládají.
+- Stránka cituje aplikaci, kterou je inspirována (Magnusson, 2026, verze 0.8.0,
+  [E09](../zdroje/E09-magnusson-correlation.md#e09-magnusson-correlation));
+  text, příklady a kód jsou vlastní.
+
+**Doklad:** 2026-11-23 autor zadal: „Bylo by možné replikovat tuto
+interaktivní vizualizaci korelací […] https://rpsychologist.com/correlation
+Se sliderem pro hodnotu korelace, nastavením počtu bodů, možností interaktivně
+přidat bod, vymazat bod nebo pohnout bodem. Také by mohl být jednoduchý
+numerický input pro průměry a směrodatné odchylky obou proměnných. S možností
+zapnout/vypnout zobrazení regresní přímky, reziduí a pravděpodobnostních elips
+(50%, 80%, 95%, 99%)“. Na doplňující otázky zvolil u regrese „Zahrnout,
+výchozí vypnuto“, u Vennova diagramu „Zařadit s vysvětlením“ a doplňky
+„Spearmanův r_s vedle r“, „Kvadranty a součiny“, „Předvolby z kapitoly“
+a „Fisherův interval pro r“. Během přípravy plánu doplnil: „Jako odvozené
+grafy bych přidal i slope chart“ a „A bodový graf po pořadové transformaci“.
+K plánu připomněl: „Bodový graf pořadí a Graf spojnic (slope chart) bych
+nebral jako přepínače, ale zobrazil bych je někde pod hlavním bodovým.
+Pravděpodobnostní elipsy bych defaultně vypnul.“ a určil citaci „Magnusson,
+K. (2026). Interpreting correlations: An interactive visualization (Version
+0.8.0) [Web App]. R Psychologist. https://rpsychologist.com/correlation/“.
+Upravený plán včetně uvedených termínů a značení schválil téhož dne.
+Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md#vizualizace-korelace).
+
+<a id="r65-upresneni-2026-11-23-korelace-upravy"></a>
+
+**Úpravy před sloučením (2026-11-23):** před sloučením PR autor požádal:
+„grafy by měly být na celou šířku stránky, nikoli vedle sebe, takže vennův
+diagram bych umístil až pod samotný bodový graf; podobně graf spojnic bych
+umístil až pod bodový graf pořadí. Ideální by bylo, kdyby u bodových grafů
+rozpětí osy X odpovídalo rozpětí osy Y (1 : 1). […] přidat bod a odebrat bod
+by bylo nejlepší dělat jen kliknutím do grafu; nejlepší by byl přepínač toho,
+co bude v grafu dělat myš […] U 95% CI bych nejprve ukázal i směrodatnou
+chybu z_r a interval před transformací.“ Na doplňující otázky zvolil
+„Čtvercový graf“ (rozsah každé osy podle jejích dat) a „Odstranit formulář“.
+K plánu doplnil: „Ještě bych doplnil přepínač (stačí jeden společný) pro
+zobrazení čar délky (zeleně) + šířky (oranžově) elipsy, které by odpovídaly
+první a druhé hlavní komponentě; zatím není třeba ale tyto pojmy zavádět, ale
+jen to nějak srozumitelně popsat opisem.“ Upravený plán schválil téhož dne.
+Rozsah po úpravách:
+
+- hlavní graf a graf pořadí jsou čtvercové a jdou přes celou šířku obsahu;
+  Vennův diagram je pod hlavním grafem, graf spojnic pod grafem pořadí;
+- osy hlavního grafu sahají od průměrů na obě strany o stejný počet
+  směrodatných odchylek své proměnné, takže graf je čtvercový i v *z*-skórech;
+- přepínač „Co dělá myš v grafu“ (přesune bod tažením / přidá bod kliknutím /
+  odstraní bod kliknutím) přímo nad grafem; formulář pro nový bod odstraněn,
+  pod grafem řádek se souřadnicemi ukazatele;
+- přepínač „délka a šířka elipsy“ (výchozí vypnuto): zelená a oranžová úsečka
+  podél hlavních os elipsy v *z*-skórech, konce na elipse 99 %, popsané opisem
+  bez termínu hlavní komponenta;
+- interval pro ρ uvádí $z_r$, směrodatnou chybu $1/\sqrt{n-3}$ a meze na
+  stupnici $z_r$ před převodem zpět.
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

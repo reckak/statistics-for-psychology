@@ -54,6 +54,10 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Upřesnění 2026-11-09 (počet opakování v sešitu):** po [prototypu převzorkování](../../quarto/README.md#prototyp-prevzorkovani-10) autor rozhodl, že studentský sešit `data/kapitola_10.xlsx` počítá bootstrap i permutace vzorci pro **1 999 opakování**. Vedle nich uvede pevné výsledky téhož postupu pro **9 999 opakování** (meze intervalů a *p*-hodnoty), zřetelně označené jako hotové hodnoty a ověřené proti R. Výchozí cíl 9 999 opakování ve vzorcích sešitu se tím nahrazuje. Důvodem je velikost souboru: prototyp s 9 999 opakováními měl asi 22 MB a otevíral se asi 21 s, s 1 999 opakováními 4,4 MB a asi 4 s; výpočet byl v obou případech rychlý. Rozdíl výsledků obou počtů opakování může výklad využít k ukázce simulačního kolísání. **Doklad:** na otázku „Kolik opakování má mít studentský sešit?“ autor odpověděl „1 999 + výsledky 9 999“.
 
+<a id="r71-doplneni-2026-11-23"></a>
+
+**Doplnění 2026-11-23 (vizualizace korelace):** bod „Mimo kapitolu“ vylučoval mimo jiné regresi a *r*² a další samostatnou interaktivní vizualizaci. Autor 2026-11-23 zadal a schválil vizualizaci [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd), která na ni navazuje; tím je R71 v bodě o vizualizaci částečně nahrazeno. Regresní přímka, rezidua, koeficient determinace a pravděpodobnostní elipsy jsou jen součástí vizualizace s krátkým vysvětlením na její stránce; výklad kapitoly 10 regresi a *r*² dál nezahrnuje. Rozsah a doklad eviduje [upřesnění R65](postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace).
+
 <a id="r72-znaceni-kapitoly-10"></a>
 
 ## R72 — Značení kapitoly 10

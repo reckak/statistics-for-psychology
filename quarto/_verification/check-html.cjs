@@ -677,7 +677,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -2229,6 +2229,212 @@ const server = http.createServer((req, res) => {
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Large fields of persons fit a phone');
     await ms.screenshot({path:'tmp/verification/viz-miry-souvislosti-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
+
+    // Correlation in a scatterplot: values against R (scripts/viz-korelace.R), data sets, slider and fields with invalid input,
+    // dragging, adding and deleting points with the mouse and the keyboard, display options, derived charts, full screen and phone.
+    await page.goto(base + 'quarto/kapitola_10.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-pearsonovo-r .callout-tip a[href$="viz_korelace.html"]').count(), 1, 'Chapter 10 links to the correlation visualization from the Pearson section');
+    assert.equal(await page.locator('#sec-odlehle-korelace .callout-tip a[href$="viz_korelace.html"]').count(), 1, 'Chapter 10 links to the correlation visualization from the outlier section');
+    await page.goto(base + 'quarto/viz_korelace.html', { waitUntil: 'networkidle' });
+    const kor = page.locator('#viz-korelace');
+    const korPoints = kor.locator('.viz-kor-svg circle');
+    await korPoints.first().waitFor();
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    assert(await page.locator('a[href*="ref-magnussonCorrelation"]').count() > 0, 'The page cites the web app that inspired it');
+    const korState = () => kor.evaluate(el => el.vizCheck.state());
+    const korNear = (a, b, msg, tol = 1e-9) => assert(a !== null && a !== undefined && Math.abs(a - b) <= tol * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    const korStats = (xs, ys) => kor.evaluate((el, v) => el.vizCheck.stats(v[0], v[1]), [xs, ys]);
+    const uzX = [26,20,33,28,23,33,37,11,21,22,24,20,16,25,29,20,20,26,19,19,26,29,19,28,21,29,23,19,23,14,19,37,24,27,19,27,23,23,22,19];
+    const uzY = [16,22,14,20,16,15,15,21,21,25,26,17,17,17,16,19,24,24,20,27,25,19,24,15,22,8,21,19,15,23,23,12,15,22,19,7,18,18,19,30];
+    const k8X = [58,44,51,39,62,47,55,42,49,60,45,52], k8Y = [53,42,45,38,55,44,51,43,44,58,39,50];
+    const uzOut = uzY.slice(); uzOut[0] = 300;
+    // R: stats() in scripts/viz-korelace.R (lm, cor.test and Spearman checked there independently).
+    const korWant = [
+      ['anxiety', uzX, uzY, {mx: 23.575, my: 19.15, sx: 5.62452277178, sy: 4.83867962494, sxy: -14.2423076923, r: -0.523320583278, rs: -0.554952396894, r2: 0.273864432883,
+        b0: 29.7635508906, b1: -0.45020364329, ssres: 663.034386335, sstot: 913.1, t: -3.78573979459, p: 5.30289231186e-4, zr: -0.580901821376, se: 0.164398987305, zlo: -0.903117915589, zhi: -0.258685727162, lo: -0.717812649479, hi: -0.25306583857, pos: 15, neg: 25}],
+      ['sleep', k8X, k8Y, {r: 0.948193730452, rs: 0.963223893965, b0: 5.07761529809, b1: 0.829583802025, t: 9.43821460967, p: 2.69332796258e-06, lo: 0.821122005495, hi: 0.985704573398}],
+      ['fixed points', [1, 2, 3, 4, 5, 6], [2, 1, 4, 3, 7, 5], {sxy: 3.2, r: 0.7917946548886, rs: 0.8285714285714, b0: 0.4666666666667, b1: 0.9142857142857, ssres: 8.7047619047619, t: 2.5927014206142, p: 0.0605114033628, lo: -0.0553051596733, hi: 0.9761145801153}],
+      ['Anscombe IV', [8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8], [6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.5, 5.56, 7.91, 6.89], {r: 0.8165214368885, rs: 0.5, b0: 3.0017272727273, b1: 0.4999090909091, p: 0.0021646023472}],
+      ['typing error 300', uzX, uzOut, {r: 0.0136038343546, rs: -0.489555653204}]
+    ];
+    for (const [name, xs, ys, want] of korWant) { const got = await korStats(xs, ys); for (const [k, v] of Object.entries(want)) korNear(got[k], v, `${name}: ${k}`, ['pos', 'neg'].includes(k) ? 0 : 1e-9); }
+    // Values that cannot be computed: no variability in X, three points on a line.
+    const korFlat = await korStats([5, 5, 5, 5], [1, 2, 3, 4]);
+    assert.deepEqual([korFlat.r, korFlat.rs, korFlat.t, korFlat.lo], [null, null, null, null], 'No variability in X gives no correlation');
+    const korLine = await korStats([1, 2, 3, 4], [2, 4, 6, 8]);
+    korNear(korLine.r, 1, 'Points on a line'); assert.deepEqual([korLine.t, korLine.lo], [null, null], 'No test or interval for r = 1');
+    assert.deepEqual(await kor.evaluate(el => el.vizCheck.ranks([3, 1, 3, 2])), [3.5, 1, 3.5, 2], 'Average ranks for ties');
+    // R: exact sample r with X, the mean and the SD of Y unchanged.
+    for (const [target, first, rs] of [[0.3, [17.4717029142, 19.6160719648, 20.5672810527], 0.2930700707], [-0.8, [16.0318065333, 22.4838762318, 12.0249571511], -0.7941831283]]) {
+      const ys = await kor.evaluate((el, v) => el.vizCheck.toR(v[0], v[1], v[2]), [uzX, uzY, target]);
+      const s = await korStats(uzX, ys);
+      korNear(s.r, target, `Transformed r ${target}`, 1e-12); korNear(s.my, 19.15, 'Mean of Y kept', 1e-12); korNear(s.sy, 4.83867962494, 'SD of Y kept', 1e-10);
+      first.forEach((v, i) => korNear(ys[i], v, `Transformed y${i + 1} for r ${target}`, 1e-9)); korNear(s.rs, rs, `Spearman after transformation to ${target}`, 1e-9);
+    }
+    // R: radii sqrt(qchisq(p, 2)) of the ellipses and the distance of the circles of the Venn diagram.
+    const korRad = await kor.evaluate(el => [0.5, 0.8, 0.95, 0.99].map(el.vizCheck.radius));
+    [1.17741002252, 1.79412257799, 2.44774683068, 3.03485425877].forEach((v, i) => korNear(korRad[i], v, `Ellipse radius ${i}`, 1e-10));
+    const korVenn = await kor.evaluate(el => [0.1, 0.2738645, 0.5, 0.9].map(el.vizCheck.vennDistance));
+    [1.61076727304, 1.22149665863, 0.807945506599, 0.157241774836].forEach((v, i) => korNear(korVenn[i], v, `Venn distance ${i}`, 1e-9));
+
+    // Default state: data of the chapter, nothing extra shown except the Venn diagram, substitution in the overview.
+    let korS = await korState();
+    assert.deepEqual([korS.preset, korS.mode, korS.show, korS.xs.length], ['uzkost', 'move', {quad: false, ell: false, axes: false, reg: false, res: false, venn: true}, 40]);
+    assert.equal(await korPoints.count(), 40, 'Forty points');
+    const korText = () => kor.locator('[data-stats]').innerText();
+    for (const t of ['mx = 23,58; my = 19,15', 'sx = 5,62; sy = 4,84', '−555,45 / 39 = −14,24', '−14,24 / (5,62 · 4,84) = −0,523', '−0,555', 't = −3,79 s 38 stupni volnosti; oboustranná p-hodnota 0,0005', 'zr = −0,581; směrodatná chyba 1/√(n − 3) = 1/√37 = 0,164; na stupnici zr: −0,581 ± 1,96 · 0,164 = (−0,903; −0,259); po převodu zpět na korelace (−0,72; −0,25)', '0,274 (27,4 %)'])
+      assert((await korText()).includes(t), `Overview shows ${t}`);
+    assert.match(await kor.locator('[data-summary]').innerText(), /Pearsonovo r = −0,523, Spearmanův rs = −0,555, n = 40/);
+    assert.equal(await kor.locator('[data-venn] svg[role="img"]').count(), 1, 'Venn diagram shown');
+    assert.match(await kor.locator('[data-venn] svg').getAttribute('aria-label'), /r² = 0,274, tedy 27,4 %/);
+    assert.equal(await kor.locator('[data-ranks] svg').count(), 1, 'Chart of ranks');
+    assert.equal(await kor.locator('[data-slope] svg').count(), 1, 'Slope chart');
+    assert.match(await kor.locator('[data-rank-title]').innerText(), /rs = −0,555/);
+    assert.match(await kor.locator('[data-slope-note]').innerText(), /průměry 23,58 a 19,15 \(rozdíl průměrů Y − X je −4,43\)/);
+    assert.equal(await kor.locator('.viz-kor-svg path[stroke="#B54E24"], .viz-kor-svg line[stroke="#223744"]').count(), 0, 'No residuals or regression line by default');
+    // Layout: square drawing areas, the Venn diagram under the main chart, the slope chart under the chart of ranks;
+    // the main chart takes the full width of the content; both axes span the same number of SDs (R: K = 2,711897).
+    const korRect = sel => kor.locator(sel).first().evaluate(el => { const b = el.getBoundingClientRect(); return {w: b.width, h: b.height, top: b.top, bottom: b.bottom}; });
+    const korMain = await korRect('.viz-kor-svg'), korBoxW = await kor.locator('[data-plot]').evaluate(el => el.clientWidth);
+    assert(Math.abs((korMain.w - 68) - (korMain.h - 56)) < 1.5, `Square drawing area of the main chart: ${korMain.w} × ${korMain.h}`);
+    assert(Math.abs(korMain.w - Math.min(korBoxW, 780)) < 2, `Main chart over the full width: ${korMain.w} of ${korBoxW}`);
+    assert((await korRect('[data-venn] svg')).top >= korMain.bottom, 'Venn diagram under the main chart');
+    const korRanks = await korRect('[data-ranks] svg'), korSlope = await korRect('[data-slope] svg');
+    assert(Math.abs((korRanks.w - 60) - (korRanks.h - 56)) < 1.5, `Square drawing area of the chart of ranks: ${korRanks.w} × ${korRanks.h}`);
+    assert(korSlope.top >= korRanks.bottom, 'Slope chart under the chart of ranks');
+    korS = await korState();
+    korNear((korS.dom.x[1] - 23.575) / 5.62452277178, 2.711897, 'Axis X in SDs', 1e-6); korNear((korS.dom.y[1] - 19.15) / 4.83867962494, 2.711897, 'Axis Y in SDs', 1e-6);
+    // Display options: quadrants, regression line, residuals, ellipses with counts from R, Venn diagram off.
+    await kor.locator('[data-show="quad"]').check();
+    assert((await korText()).includes('kladných 15, záporných 25; součet −555,45'), 'Products of deviations');
+    assert.equal(await kor.locator('.viz-kor-svg circle[fill="#B54E24"]').count(), 25, 'Twenty-five orange points with a negative product');
+    await kor.locator('[data-show="reg"]').check(); await kor.locator('[data-show="res"]').check();
+    for (const t of ['ŷ = 29,76 − 0,450 x', 'b1 = −0,523 · 4,84 / 5,62 = −0,450', 'b0 = 19,15 − (−0,450) · 23,58 = 29,76', '663,03 = (1 − 0,274) · 913,10']) assert((await korText()).includes(t), `Regression overview shows ${t}`);
+    assert.equal(await kor.locator('.viz-kor-svg line[stroke="#223744"]').count(), 1, 'Regression line drawn');
+    await kor.locator('[data-show="ell"]').check();
+    korS = await korState(); assert.deepEqual(korS.counts, [24, 33, 39, 40], 'Points inside the ellipses as in R');
+    assert.equal(await kor.locator('.viz-kor-svg path[stroke="#245D78"]').count(), 4, 'Four ellipses');
+    assert(korS.dom.x[0] <= 23.575 - 3.03485425877 * 5.62452277178 && korS.dom.y[1] >= 19.15 + 3.03485425877 * 4.83867962494, 'Axes widened for the 99% ellipse');
+    // Length (green) and width (orange) of the ellipse: end points on the 99% ellipse as in R (eigen of the correlation matrix).
+    await kor.locator('[data-show="axes"]').check();
+    assert.equal(await kor.locator('.viz-kor-svg line.viz-kor-length[stroke="#3E7B4F"]').count(), 1, 'Green length of the ellipse');
+    assert.equal(await kor.locator('.viz-kor-svg line.viz-kor-width[stroke="#B54E24"]').count(), 1, 'Orange width of the ellipse');
+    const korAx = await kor.evaluate(el => el.vizCheck.axes());
+    korNear(korAx.halfLength, 3.74570434867, 'Half length'); korNear(korAx.halfWidth, 2.09532328683, 'Half width'); korNear(korAx.ratio, 1.78764984488, 'Ratio of length and width');
+    const korEnds = [[korAx.length, [[8.67781617574, 31.9657894926], [38.47218382426, 6.3342105074]]], [korAx.width, [[15.2416097296, 11.9809285349], [31.9083902704, 26.3190714651]]]];
+    for (const [got, want] of korEnds) { const g = [...got].sort((a, b) => a[0] - b[0]); g.forEach((p, i) => p.forEach((v, j) => korNear(v, want[i][j], `Ellipse end point ${i}${j}`, 1e-9))); }
+    for (const t of ['délka 2 · 3,03 · √(1 + 0,523) = 7,49', 'šířka 2 · 3,03 · √(1 − 0,523) = 4,19', 'poměr délky a šířky 1,79']) assert((await korText()).includes(t), `Overview shows ${t}`);
+    await kor.locator('[data-show="axes"]').uncheck();
+    await kor.locator('[data-show="venn"]').uncheck();
+    assert(await kor.locator('[data-venn]').isHidden(), 'Venn diagram hidden');
+    // Data sets: Anscombe I (ellipse counts from R) and the sleep data with their slope chart.
+    await kor.locator('[data-preset="anscombe1"]').click();
+    korS = await korState(); korNear(korS.stats.r, 0.81642051634484, 'Anscombe I r'); assert.deepEqual(korS.counts, [4, 9, 11, 11], 'Anscombe I inside the ellipses');
+    assert.equal(await kor.locator('[data-preset="anscombe1"]').getAttribute('aria-pressed'), 'true');
+    await kor.locator('[data-preset="spanek"]').click();
+    korS = await korState(); korNear(korS.stats.r, 0.948193730452, 'Sleep r'); assert.equal(korS.xs.length, 12);
+    assert.match(await kor.locator('[data-slope-note]').innerText(), /rozdíl průměrů Y − X je −3,50/);
+    for (const k of ['quad', 'reg', 'res', 'ell']) await kor.locator(`[data-show="${k}"]`).uncheck();
+    await kor.locator('[data-show="venn"]').check();
+
+    // Slider and the number field: exact r, X and the mean and SD of Y unchanged; invalid values rejected.
+    await kor.locator('[data-preset="uzkost"]').click();
+    await kor.locator('#viz-kor-slider').evaluate(el => { el.value = '-0.8'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    korS = await korState(); korNear(korS.stats.r, -0.8, 'Slider r', 1e-12); assert.deepEqual(korS.xs, uzX, 'Slider keeps X');
+    [16.0318065333, 22.4838762318, 12.0249571511].forEach((v, i) => korNear(korS.ys[i], v, `Slider y${i + 1}`, 1e-9));
+    korNear(korS.stats.sy, 4.83867962494, 'Slider keeps SD of Y', 1e-10); assert.equal(korS.preset, null, 'Changed data are no longer the preset');
+    await kor.locator('#viz-kor-slider').focus(); await page.keyboard.press('ArrowRight');
+    korNear((await korState()).stats.r, -0.79, 'Slider by keyboard', 1e-12);
+    await kor.locator('#viz-kor-r').fill('0,3'); await kor.locator('#viz-kor-r').press('Tab');
+    korNear((await korState()).stats.r, 0.3, 'Correlation typed with a comma', 1e-12);
+    await kor.locator('#viz-kor-r').fill('1,5'); await kor.locator('#viz-kor-r').press('Tab');
+    assert.match(await kor.locator('#viz-kor-error').innerText(), /Korelace musí být číslo od −1 do 1\. Používá se dál poslední platná hodnota\./);
+    assert.equal(await kor.locator('#viz-kor-r').getAttribute('aria-invalid'), 'true'); korNear((await korState()).stats.r, 0.3, 'Invalid correlation ignored', 1e-12);
+    // Means and SDs: shift and change of units keep r.
+    await kor.locator('#viz-kor-mx').fill('50'); await kor.locator('#viz-kor-mx').press('Tab');
+    korS = await korState(); korNear(korS.stats.mx, 50, 'Mean of X set', 1e-12); korNear(korS.stats.r, 0.3, 'Shift keeps r', 1e-12);
+    assert(!(await kor.locator('#viz-kor-error').isVisible()), 'Message hidden after a valid value');
+    await kor.locator('#viz-kor-sy').fill('-2'); await kor.locator('#viz-kor-sy').press('Tab');
+    assert.match(await kor.locator('#viz-kor-error').innerText(), /Směrodatná odchylka musí být kladné číslo/);
+    await kor.locator('#viz-kor-sy').fill('10'); await kor.locator('#viz-kor-sy').press('Tab');
+    korS = await korState(); korNear(korS.stats.sy, 10, 'SD of Y set', 1e-12); korNear(korS.stats.r, 0.3, 'Change of units keeps r', 1e-12);
+    // New random sample: size checked, exact r, means and SDs.
+    await kor.locator('#viz-kor-n').fill('2'); await kor.locator('[data-new]').click();
+    assert.match(await kor.locator('#viz-kor-error').innerText(), /Počet bodů musí být celé číslo od 4 do 1 000/);
+    await kor.locator('#viz-kor-n').fill('1000'); await kor.locator('[data-new]').click();
+    korS = await korState(); assert.equal(korS.xs.length, 1000); korNear(korS.stats.r, 0.3, 'New sample r', 1e-12);
+    korNear(korS.stats.mx, 50, 'New sample mean of X', 1e-10); korNear(korS.stats.sy, 10, 'New sample SD of Y', 1e-10); assert.equal(korS.names.x, 'Proměnná X');
+    await kor.locator('[data-show="ell"]').check();
+    korS = await korState(); [500, 800, 950, 990].forEach((v, i) => assert(Math.abs(korS.counts[i] - v) < 60, `Share inside the ellipse ${i} near the model: ${korS.counts[i]}`));
+    await kor.locator('[data-show="ell"]').uncheck();
+
+    // Points by mouse only (no form): the pointer line, adding at (38; 31) as in exercise 2 (R: r −0,316436, rs −0,443080),
+    // deleting with the marked point, adding by keyboard, moving by keyboard, dragging.
+    await kor.locator('[data-preset="uzkost"]').click();
+    assert.equal(await kor.locator('#viz-kor-ax, #viz-kor-ay, [data-add]').count(), 0, 'No form for new points');
+    const korAdd = await korStats([...uzX, 38], [...uzY, 31]);
+    korNear(korAdd.r, -0.316435666812, 'R: point (38; 31) added'); korNear(korAdd.rs, -0.443080206407, 'R: Spearman with the added point');
+    await kor.locator('.viz-kor-svg').scrollIntoViewIfNeeded();
+    const korPx = (vx, vy) => kor.evaluate((el, v) => el.vizCheck.pixel(v[0], v[1]), [vx, vy]);
+    await page.mouse.move(...await korPx(30, 20));
+    const korPointer = (await kor.locator('[data-pointer]').innerText()).match(/^Ukazatel: X = (\S+); Y = (\S+)$/);
+    assert(korPointer && Math.abs(Number(korPointer[1].replace(',', '.')) - 30) <= 0.15 && Math.abs(Number(korPointer[2].replace(',', '.')) - 20) <= 0.15, `Pointer line: ${korPointer}`);
+    await kor.locator('input[name="viz-kor-mode"][value="add"]').check();
+    await page.mouse.click(...await korPx(38, 31));
+    korS = await korState(); assert.equal(korS.xs.length, 41, 'Point added by a click');
+    assert(Math.abs(korS.xs[40] - 38) < 0.15 && Math.abs(korS.ys[40] - 31) < 0.15, `Added point at the click: ${korS.xs[40]}, ${korS.ys[40]}`);
+    korNear(korS.stats.r, -0.316435666812, 'r with the clicked point', 0.01); korNear(korS.stats.rs, -0.443080206407, 'Spearman with the clicked point', 1e-9);
+    assert.match(await kor.locator('[data-live]').innerText(), /Vybraný bod č\. 41 \(bodů celkem 41\)/);
+    const korCenter = async i => { await korPoints.nth(i).scrollIntoViewIfNeeded(); const b = await korPoints.nth(i).boundingBox(); return [b.x + b.width / 2, b.y + b.height / 2]; };
+    await kor.locator('input[name="viz-kor-mode"][value="delete"]').check();
+    await page.mouse.move(...await korCenter(40));
+    assert.equal(await kor.locator('.viz-kor-svg circle.viz-kor-hover').count(), 1, 'Point to be deleted is marked');
+    await page.mouse.click(...await korCenter(40));
+    korS = await korState(); assert.equal(korS.xs.length, 40); korNear(korS.stats.r, -0.523320583278, 'Added point deleted by mouse');
+    await kor.locator('input[name="viz-kor-mode"][value="add"]').check();
+    await kor.locator('.viz-kor-svg').scrollIntoViewIfNeeded(); const korBox = await kor.locator('.viz-kor-svg').boundingBox();
+    await page.mouse.click(korBox.x + korBox.width / 2, korBox.y + korBox.height / 2);
+    assert.equal((await korState()).xs.length, 41, 'Point added by mouse');
+    await kor.locator('.viz-kor-svg').focus(); await page.keyboard.press('Delete');
+    assert.equal((await korState()).xs.length, 40, 'Point deleted by keyboard');
+    await page.keyboard.press('Enter'); assert.equal((await korState()).xs.length, 41, 'Point added by Enter in the add mode');
+    await page.keyboard.press('Delete');
+    await kor.locator('input[name="viz-kor-mode"][value="move"]').check();
+    await kor.locator('.viz-kor-svg').focus(); await page.keyboard.press('Space');
+    korS = await korState(); assert.equal(korS.active, 0, 'Space selects the next point');
+    await page.keyboard.press('ArrowUp');
+    let korS2 = await korState(); korNear(korS2.ys[0], 16 + (korS.dom.y[1] - korS.dom.y[0]) / 50, 'Arrow moves the point up'); assert.equal(korS2.xs[0], 26);
+    await page.keyboard.press('Shift+ArrowRight'); korNear((await korState()).xs[0], 26 + (korS.dom.x[1] - korS.dom.x[0]) / 10, 'Shift and arrow move further');
+    assert.match(await kor.locator('[data-live]').innerText(), /Vybraný bod č\. 1 \(bodů celkem 40\)/);
+    for (let i = 0; i < 3 * 40; i++) await page.keyboard.press('Delete');
+    assert.equal((await korState()).xs.length, 3, 'At least three points stay');
+    assert.match(await kor.locator('#viz-kor-error').innerText(), /V grafu musí zůstat alespoň 3 body/);
+    await kor.locator('[data-preset="uzkost"]').click();
+    const [dx, dy] = await korCenter(7);
+    await page.mouse.move(dx, dy); await page.mouse.down(); await page.mouse.move(dx + 120, dy - 60, {steps: 6}); await page.mouse.up();
+    korS = await korState(); assert(korS.xs[7] > 11 + 3 && korS.ys[7] > 21 + 1, `Point dragged: ${korS.xs[7]}, ${korS.ys[7]}`);
+    assert.match(await kor.locator('[data-pointer]').innerText(), /^Tažený bod: X = /);
+    assert(Math.abs(korS.stats.r + 0.523320583278) > 0.01, 'Dragging changes r'); assert.equal(korS.preset, null);
+    korNear(Number((await kor.locator('#viz-kor-slider').inputValue())), Math.round(korS.stats.r * 100) / 100, 'Slider follows the dragged data', 1e-12);
+    // Full screen widens the chart and Escape closes it.
+    await kor.locator('[data-preset="uzkost"]').click();
+    const korFull = kor.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await korFull.count(), 1, 'One full-screen button');
+    const korInline = await kor.locator('.viz-kor-svg').evaluate(el => el.getBoundingClientRect().width);
+    await kor.screenshot({path: 'tmp/verification/viz-korelace-desktop.png'});
+    await korFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-korelace .viz-kor-svg').getBoundingClientRect().width > w + 100, korInline);
+    await page.screenshot({path: 'tmp/verification/viz-korelace-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width: 375, height: 812});
+    await page.reload({waitUntil: 'networkidle'});
+    await korPoints.first().waitFor();
+    for (const k of ['quad', 'ell', 'axes', 'reg', 'res']) await kor.locator(`[data-show="${k}"]`).check();
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Correlation visualization fits a phone');
+    await kor.screenshot({path: 'tmp/verification/viz-korelace-mobile.png'});
+    await page.setViewportSize({width: 1360, height: 1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
     const total = await page.locator('#glossary-table tbody tr').count();

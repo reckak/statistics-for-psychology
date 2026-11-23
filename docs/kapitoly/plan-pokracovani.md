@@ -145,6 +145,13 @@ a schválil téhož dne s inspirací Magnussonovým článkem jako stránku
 [Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../../quarto/viz_miry_souvislosti.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry),
 [karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
+Vizualizaci korelace ke kapitole 10, která v žádném návrhu nebyla (R71 další
+vizualizaci vylučoval), autor zadal 2026-11-23 podle aplikace R Psychologist a téhož dne
+schválil jako stránku
+[Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace),
+[karta kapitoly 10](10-korelace.md#interaktivni-vizualizace-10)); regresní přímka a *r*²
+jsou jen v ní a o kapitole o regresi se tím nerozhoduje.
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
 pásmo ekvivalence. Zbývající náměty z návrhu 2026-11-20 ke kapitole 9, neschválené:

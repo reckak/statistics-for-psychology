@@ -60,6 +60,7 @@ book:
         - quarto/viz_dva_intervaly.qmd
         - quarto/viz_chi_kvadrat.qmd
         - quarto/viz_miry_souvislosti.qmd
+        - quarto/viz_korelace.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

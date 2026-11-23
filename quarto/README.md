@@ -1,5 +1,59 @@
 # Autorská dokumentace
 
+<a id="vizualizace-korelace"></a>
+
+## 2026-11-23 — Vizualizace korelace v bodovém grafu (upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace)
+přibyla patnáctá stránka části „Interaktivní vizualizace“, první ke kapitole 10:
+[Jak tvar mraku bodů souvisí s korelačním koeficientem](viz_korelace.qmd), v menu za
+vizualizací měr souvislosti. Kapitola 10 na ni odkazuje dvěma bloky „Vyzkoušejte si“: na konci
+pododdílu `sec-vydelime` (před rozšířením `#rozsireni-meze-r`) a na konci pododdílu
+`sec-odlehle-korelace`; jinak se výklad kapitoly nemění. R71 je tím v bodě o vizualizacích
+částečně nahrazeno ([doplnění R71](../docs/rozhodnuti/kapitola-10.md#r71-doplneni-2026-11-23)).
+Obsahuje:
+
+- **data:** úzkost a výkon 40 studentů (výchozí), spánek a pozornost z kapitoly 8, Anscombův kvartet I–IV, nový náhodný výběr 4–1 000 bodů;
+- **ovládání:** posuvník a pole přesného výběrového *r*, pole $m_x$, $s_x$, $m_y$, $s_y$, přesun, přidání a smazání bodů myší, dotykem, klávesnicí a formulářem, přizpůsobení os;
+- **zobrazení:** kvadranty, pravděpodobnostní elipsy s počty bodů uvnitř, regresní přímka a rezidua (vše ve výchozím stavu vypnuto), Vennův diagram *r*² (zapnut); přehled výpočtů s dosazením;
+- **odvozené grafy** trvale pod hlavním grafem: bodový graf pořadí a graf spojnic;
+- **oddíl „Pojmy, které kapitola 10 nevykládá“** se čtyřmi termíny jen pro vizualizaci (regresní přímka, reziduum, koeficient determinace, pravděpodobnostní elipsa) a značkami $\hat{y}$, $b_0$, $b_1$, $r^2$; doplněny do slovníku ([oddíl](../docs/SLOVNIK.md#vizualizace-korelace)), studentského slovníčku a přehledu značení s označením „Jen ve vizualizaci“.
+
+Redakční volby při realizaci:
+
+- **Přesná výběrová korelace.** Posuvník přepočítá Y vztahem $z_y'=r\,z_x+\sqrt{1-r^2}\,e$, kde *e* je normované reziduum $z_y$ vůči $z_x$; X, průměr a SD Y se nemění a opakovaný posun nehromadí chyby. Leží-li body na přímce, *e* se dolosuje (seed stránky). Text výslovně říká, že jde o výběrové *r*, ne o ρ.
+- **Osy** se při úpravě bodů nemění (tažení je omezeno na osy); rozšíří se při zapnutí elips (elipsa 99 %), při změně průměrů a SD, při posuvníku, jen když body vyjdou mimo, a tlačítkem „Přizpůsobit osy“. Bod z formuláře smí ležet mimo osy.
+- **Klávesnice:** graf je jedna zastávka klávesy Tab (`role="application"`); mezerník vybírá bod, šipky posouvají, Delete maže, Enter v režimu přidání přidá bod doprostřed; výsledek se čte z oblasti `aria-live`. Počty bodů v generovaném textu bez předložky („Vybraný bod č. 1 (bodů celkem 40)“), aby nevznikaly tvary „z 40“.
+- **Graf spojnic** má poznámku, že polohy na obou osách lze porovnávat jen při stejné stupnici; uvádí „rozdíl průměrů Y − X“ místo „průměrné změny“, protože u nezávislých veličin nejde o změnu.
+- **Elipsy** se počítají z výběrových průměrů, SD a *r* (poloměr $\sqrt{-2\ln(1-p)}$); u bodů na přímce se nekreslí.
+- **Inspirace, ne převzetí** ([E09](../docs/zdroje/E09-magnusson-correlation.md#e09-magnusson-correlation)): kód, text ani data převzaty nejsou. Nepřevzato: načtení CSV, uložení stavu, „Anscombosaurus“. Vlastní doplňky: kvadranty, Spearmanův korelační koeficient, test, Fisherův interval, bodový graf pořadí, počty bodů uvnitř elips.
+- **Balíček tutora:** do `VIZUALIZACE.md` přibyl řádek nové stránky (kontrola exportu vyžaduje záznam každé stránky `viz_*`). Verze tutora se nezvyšuje a nový export ani vydání neproběhly.
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-korelace.R`, v repozitáři): data stránky porovnána se `scripts/kapitola_10.R`; pro úzkost a výkon, spánek, Anscombův kvartet, překlep 300 a pevné body průměry, SD, kovariance, *r*, $r_s$, *r*², přímka (`lm`), součet čtverců reziduí, test (`cor.test`), Fisherův interval a počty bodů uvnitř elips (`qchisq`); transformace na *r* = 0,3 a −0,8 a vzdálenost kruhů Vennova diagramu (`uniroot`). Čísla v textu stránky pocházejí z tohoto výstupu; shoda s kapitolou (−0,523, −0,555, −3,79, 0,0005, (−0,72; −0,25), překlep 300: 0,01 a −0,49). Vliv přidaného bodu (40; 30) a (60; 30) spočítán v R zvlášť.
+- **Excel:** stránka vzorce Excelu nenabízí; výpočty korelací jsou na listech sešitu kapitoly 10.
+- **Prohlížeč:** stránka prohlédnuta v panelu prohlížeče aplikace (desktop se všemi přepínači, odvozené grafy, 375 px bez přetékání) a na snímcích z `check-html.cjs`. Tažení bodu v panelu ověřeno událostmi ukazatele; skutečné tažení myší ověřuje `check-html.cjs`.
+- **Citace:** podle znění zadaného autorem a doporučení stránky (verze 0.8.0, datum 2026-10-24 ze záznamu BibTeX stránky).
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1). `check-html.cjs` s novým blokem a novým pořadím menu prošel celý bez chyb (první běhy odhalily jen chybějící stránku v očekávaném pořadí menu a bod mimo viditelnou část okna při tažení v samotné kontrole). Prošly `check-doc-maps.cjs`, `check-table-layout.cjs` a `check-chapter-10.R`. `check-tutor.cjs` hlásí změněný odstavec kapitoly 10 proti dříve exportovanému balíčku tutora; balíček se přegeneruje až při příštím exportu tutora.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon, dotykové tažení a čtečka obrazovky nebyly vyzkoušeny. Inspirační aplikace nebyla vyzkoušena v prohlížeči, jen přečten její text a prohlédnuty autorovy snímky. Didaktická revize je interní, ne ověření na studentech.
+
+<a id="vizualizace-korelace-upravy"></a>
+
+### Úpravy před sloučením (2026-11-23)
+
+Podle [autorových připomínek k PR](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace-upravy):
+
+- **Rozvržení:** grafy pod sebou přes celou šířku: bodový graf, Vennův diagram, přehled, bodový graf pořadí, graf spojnic. Hlavní graf i graf pořadí mají čtvercovou kreslicí plochu; na celé obrazovce se strana čtverce omezí i výškou okna.
+- **Osy:** symetricky kolem průměrů s týmž počtem směrodatných odchylek *K* na obou osách (nejvzdálenější *z*-skór obou proměnných, případně elipsa 99 %, krát 1,08). Čtvercový graf je tak čtvercový i v *z*-skórech; elipsy nejsou zkreslené a jejich délka a šířka jsou na obrazovce kolmé. Výchozí data: *K* = 2,712, osa X 8,32–38,83, osa Y 6,03–32,27 (shoda s R).
+- **Myš:** přepínač „Co dělá myš v grafu“ přímo nad grafem; formulář pro nový bod odstraněn, pod grafem řádek „Ukazatel“ / „Tažený bod“ se souřadnicemi (bez `aria-live`). Kurzor podle režimu, v režimu odstranění se bod pod ukazatelem zvýrazní oranžovým kroužkem.
+- **Délka a šířka elipsy:** nový přepínač (výchozí vypnuto); zelená a oranžová úsečka středem ve směrech stejných a opačných *z*-skórů, konce na elipse 99 %, poloviční délky $c\sqrt{1\pm|r|}$. Stránka je popisuje opisem bez termínu hlavní komponenta; přehled uvádí délky v *z*-skórech a poměr.
+- **Interval:** přehled i text uvádějí $z_r$, směrodatnou chybu $1/\sqrt{n-3}$ a meze na stupnici $z_r$ před převodem zpět (výchozí data 0,164; −0,903 a −0,259).
+- **Text:** úloha 2 a odstavec o odlehlém bodu pracují s kliknutím na (38; 31) a tažením do rohu (R: *r* −0,316, $r_s$ −0,443; (38,5; 32) *r* −0,295; (60; 31) *r* −0,082, $r_s$ beze změny); první odstavec „Čeho si všimnout“ doplňuje poměr délky a šířky 1,73 a 4,36.
+- **Kontroly:** `scripts/viz-korelace.R` doplněn o meze na stupnici $z_r$, přidané body, rozsah os a délku a šířku elipsy přes `eigen(cor(x, y))` s ověřením, že konce leží na elipse 99 %. Blok v `check-html.cjs` ověřuje rozvržení, osy, délku a šířku elipsy, řádek ukazatele, přidání kliknutím a zvýraznění mazaného bodu. Celá kniha znovu vykreslena; `check-html.cjs` a `check-doc-maps.cjs` prošly bez chyb, snímky desktopu, celé obrazovky a 375 px prohlédnuty. Omezení jako výše (jen Chromium, bez skutečného dotykového zařízení a čtečky obrazovky).
+
 <a id="tutor-041-20261121"></a>
 
 ## 2026-11-21 — AI tutor: výsledek testu 0.4.0 a kandidát 0.4.1 (SVG pro ChatGPT, data ke grafům všech kapitol)
