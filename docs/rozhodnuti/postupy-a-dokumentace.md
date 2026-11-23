@@ -1244,6 +1244,36 @@ Upravený plán včetně uvedených termínů a značení schválil téhož dne.
 Realizaci a ověření eviduje
 [autorská historie](../../quarto/README.md#vizualizace-korelace).
 
+<a id="r65-upresneni-2026-11-23-korelace-upravy"></a>
+
+**Úpravy před sloučením (2026-11-23):** před sloučením PR autor požádal:
+„grafy by měly být na celou šířku stránky, nikoli vedle sebe, takže vennův
+diagram bych umístil až pod samotný bodový graf; podobně graf spojnic bych
+umístil až pod bodový graf pořadí. Ideální by bylo, kdyby u bodových grafů
+rozpětí osy X odpovídalo rozpětí osy Y (1 : 1). […] přidat bod a odebrat bod
+by bylo nejlepší dělat jen kliknutím do grafu; nejlepší by byl přepínač toho,
+co bude v grafu dělat myš […] U 95% CI bych nejprve ukázal i směrodatnou
+chybu z_r a interval před transformací.“ Na doplňující otázky zvolil
+„Čtvercový graf“ (rozsah každé osy podle jejích dat) a „Odstranit formulář“.
+K plánu doplnil: „Ještě bych doplnil přepínač (stačí jeden společný) pro
+zobrazení čar délky (zeleně) + šířky (oranžově) elipsy, které by odpovídaly
+první a druhé hlavní komponentě; zatím není třeba ale tyto pojmy zavádět, ale
+jen to nějak srozumitelně popsat opisem.“ Upravený plán schválil téhož dne.
+Rozsah po úpravách:
+
+- hlavní graf a graf pořadí jsou čtvercové a jdou přes celou šířku obsahu;
+  Vennův diagram je pod hlavním grafem, graf spojnic pod grafem pořadí;
+- osy hlavního grafu sahají od průměrů na obě strany o stejný počet
+  směrodatných odchylek své proměnné, takže graf je čtvercový i v *z*-skórech;
+- přepínač „Co dělá myš v grafu“ (přesune bod tažením / přidá bod kliknutím /
+  odstraní bod kliknutím) přímo nad grafem; formulář pro nový bod odstraněn,
+  pod grafem řádek se souřadnicemi ukazatele;
+- přepínač „délka a šířka elipsy“ (výchozí vypnuto): zelená a oranžová úsečka
+  podél hlavních os elipsy v *z*-skórech, konce na elipse 99 %, popsané opisem
+  bez termínu hlavní komponenta;
+- interval pro ρ uvádí $z_r$, směrodatnou chybu $1/\sqrt{n-3}$ a meze na
+  stupnici $z_r$ před převodem zpět.
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

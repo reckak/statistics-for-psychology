@@ -298,24 +298,20 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-pi-table td { white-space: nowrap; }
 .viz-pi-table td:last-child { white-space: normal; text-align: left; min-width: 9rem; }
 .viz-pi-hist > div + div { margin-top: .8rem; }
-/* Correlation in a scatterplot (viz_korelace.qmd): editable chart with a Venn diagram beside it and two derived charts below. */
-.viz-kor-main { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: .5rem 1.25rem; align-items: start; }
-.viz-kor-main.viz-kor-novenn { grid-template-columns: minmax(0, 1fr); }
+/* Correlation in a scatterplot (viz_korelace.qmd): square editable chart over the full width with the Venn
+   diagram below it; below them the square chart of ranks and the slope chart, one under the other. */
+.viz-kor-plot svg, .viz-kor-derived .viz-plots svg { margin: 0 auto; }
+.viz-kor-venn { margin-top: .6rem; }
 .viz-kor-venn svg { display: block; max-width: 100%; height: auto; }
 .viz-kor-venn .viz-note { font-size: .85em; margin-top: .3rem; }
 .viz-kor-svg { touch-action: none; user-select: none; -webkit-user-select: none; }
 .viz-kor-svg:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.viz-kor-pointer { min-height: 1.4em; margin: .2rem 0 0; font-size: .9em; color: #4D5A63; font-variant-numeric: tabular-nums; }
 .viz-kor-live { min-height: 1.4em; margin: .2rem 0 .4rem; font-size: .9em; font-variant-numeric: tabular-nums; }
-.viz-kor-add { margin-top: .2rem; }
-.viz-kor-add .viz-buttons { padding-top: 1.45rem; }
+.viz-kor-mouse { margin-top: .2rem; }
+.viz-kor-mouse .viz-buttons { padding-top: 1.45rem; }
 .viz .viz-kor-error { max-width: none; margin: .5rem 0 0; }
-.viz-kor-derived { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem 1.5rem; }
+.viz-kor-derived > div + div { margin-top: 1.2rem; }
 .viz-kor-ell { width: auto; }
 .viz-kor-ell thead th:first-child { text-align: left; }
 .viz-pj-presets button[aria-pressed="true"] { background: var(--accent); color: white; }
-@media (max-width: 759px) {
-  .viz-kor-main { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 699px) {
-  .viz-kor-derived { grid-template-columns: minmax(0, 1fr); }
-}

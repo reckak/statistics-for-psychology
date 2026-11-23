@@ -2251,7 +2251,7 @@ const server = http.createServer((req, res) => {
     // R: stats() in scripts/viz-korelace.R (lm, cor.test and Spearman checked there independently).
     const korWant = [
       ['anxiety', uzX, uzY, {mx: 23.575, my: 19.15, sx: 5.62452277178, sy: 4.83867962494, sxy: -14.2423076923, r: -0.523320583278, rs: -0.554952396894, r2: 0.273864432883,
-        b0: 29.7635508906, b1: -0.45020364329, ssres: 663.034386335, sstot: 913.1, t: -3.78573979459, p: 5.30289231186e-4, zr: -0.580901821376, lo: -0.717812649479, hi: -0.25306583857, pos: 15, neg: 25}],
+        b0: 29.7635508906, b1: -0.45020364329, ssres: 663.034386335, sstot: 913.1, t: -3.78573979459, p: 5.30289231186e-4, zr: -0.580901821376, se: 0.164398987305, zlo: -0.903117915589, zhi: -0.258685727162, lo: -0.717812649479, hi: -0.25306583857, pos: 15, neg: 25}],
       ['sleep', k8X, k8Y, {r: 0.948193730452, rs: 0.963223893965, b0: 5.07761529809, b1: 0.829583802025, t: 9.43821460967, p: 2.69332796258e-06, lo: 0.821122005495, hi: 0.985704573398}],
       ['fixed points', [1, 2, 3, 4, 5, 6], [2, 1, 4, 3, 7, 5], {sxy: 3.2, r: 0.7917946548886, rs: 0.8285714285714, b0: 0.4666666666667, b1: 0.9142857142857, ssres: 8.7047619047619, t: 2.5927014206142, p: 0.0605114033628, lo: -0.0553051596733, hi: 0.9761145801153}],
       ['Anscombe IV', [8, 8, 8, 8, 8, 8, 8, 19, 8, 8, 8], [6.58, 5.76, 7.71, 8.84, 8.47, 7.04, 5.25, 12.5, 5.56, 7.91, 6.89], {r: 0.8165214368885, rs: 0.5, b0: 3.0017272727273, b1: 0.4999090909091, p: 0.0021646023472}],
@@ -2279,10 +2279,10 @@ const server = http.createServer((req, res) => {
 
     // Default state: data of the chapter, nothing extra shown except the Venn diagram, substitution in the overview.
     let korS = await korState();
-    assert.deepEqual([korS.preset, korS.mode, korS.show, korS.xs.length], ['uzkost', 'move', {quad: false, ell: false, reg: false, res: false, venn: true}, 40]);
+    assert.deepEqual([korS.preset, korS.mode, korS.show, korS.xs.length], ['uzkost', 'move', {quad: false, ell: false, axes: false, reg: false, res: false, venn: true}, 40]);
     assert.equal(await korPoints.count(), 40, 'Forty points');
     const korText = () => kor.locator('[data-stats]').innerText();
-    for (const t of ['mx = 23,58; my = 19,15', 'sx = 5,62; sy = 4,84', '−555,45 / 39 = −14,24', '−14,24 / (5,62 · 4,84) = −0,523', '−0,555', 't = −3,79 s 38 stupni volnosti; oboustranná p-hodnota 0,0005', 'zr = −0,581; (−0,72; −0,25)', '0,274 (27,4 %)'])
+    for (const t of ['mx = 23,58; my = 19,15', 'sx = 5,62; sy = 4,84', '−555,45 / 39 = −14,24', '−14,24 / (5,62 · 4,84) = −0,523', '−0,555', 't = −3,79 s 38 stupni volnosti; oboustranná p-hodnota 0,0005', 'zr = −0,581; směrodatná chyba 1/√(n − 3) = 1/√37 = 0,164; na stupnici zr: −0,581 ± 1,96 · 0,164 = (−0,903; −0,259); po převodu zpět na korelace (−0,72; −0,25)', '0,274 (27,4 %)'])
       assert((await korText()).includes(t), `Overview shows ${t}`);
     assert.match(await kor.locator('[data-summary]').innerText(), /Pearsonovo r = −0,523, Spearmanův rs = −0,555, n = 40/);
     assert.equal(await kor.locator('[data-venn] svg[role="img"]').count(), 1, 'Venn diagram shown');
@@ -2292,6 +2292,18 @@ const server = http.createServer((req, res) => {
     assert.match(await kor.locator('[data-rank-title]').innerText(), /rs = −0,555/);
     assert.match(await kor.locator('[data-slope-note]').innerText(), /průměry 23,58 a 19,15 \(rozdíl průměrů Y − X je −4,43\)/);
     assert.equal(await kor.locator('.viz-kor-svg path[stroke="#B54E24"], .viz-kor-svg line[stroke="#223744"]').count(), 0, 'No residuals or regression line by default');
+    // Layout: square drawing areas, the Venn diagram under the main chart, the slope chart under the chart of ranks;
+    // the main chart takes the full width of the content; both axes span the same number of SDs (R: K = 2,711897).
+    const korRect = sel => kor.locator(sel).first().evaluate(el => { const b = el.getBoundingClientRect(); return {w: b.width, h: b.height, top: b.top, bottom: b.bottom}; });
+    const korMain = await korRect('.viz-kor-svg'), korBoxW = await kor.locator('[data-plot]').evaluate(el => el.clientWidth);
+    assert(Math.abs((korMain.w - 68) - (korMain.h - 56)) < 1.5, `Square drawing area of the main chart: ${korMain.w} × ${korMain.h}`);
+    assert(Math.abs(korMain.w - Math.min(korBoxW, 780)) < 2, `Main chart over the full width: ${korMain.w} of ${korBoxW}`);
+    assert((await korRect('[data-venn] svg')).top >= korMain.bottom, 'Venn diagram under the main chart');
+    const korRanks = await korRect('[data-ranks] svg'), korSlope = await korRect('[data-slope] svg');
+    assert(Math.abs((korRanks.w - 60) - (korRanks.h - 56)) < 1.5, `Square drawing area of the chart of ranks: ${korRanks.w} × ${korRanks.h}`);
+    assert(korSlope.top >= korRanks.bottom, 'Slope chart under the chart of ranks');
+    korS = await korState();
+    korNear((korS.dom.x[1] - 23.575) / 5.62452277178, 2.711897, 'Axis X in SDs', 1e-6); korNear((korS.dom.y[1] - 19.15) / 4.83867962494, 2.711897, 'Axis Y in SDs', 1e-6);
     // Display options: quadrants, regression line, residuals, ellipses with counts from R, Venn diagram off.
     await kor.locator('[data-show="quad"]').check();
     assert((await korText()).includes('kladných 15, záporných 25; součet −555,45'), 'Products of deviations');
@@ -2303,6 +2315,16 @@ const server = http.createServer((req, res) => {
     korS = await korState(); assert.deepEqual(korS.counts, [24, 33, 39, 40], 'Points inside the ellipses as in R');
     assert.equal(await kor.locator('.viz-kor-svg path[stroke="#245D78"]').count(), 4, 'Four ellipses');
     assert(korS.dom.x[0] <= 23.575 - 3.03485425877 * 5.62452277178 && korS.dom.y[1] >= 19.15 + 3.03485425877 * 4.83867962494, 'Axes widened for the 99% ellipse');
+    // Length (green) and width (orange) of the ellipse: end points on the 99% ellipse as in R (eigen of the correlation matrix).
+    await kor.locator('[data-show="axes"]').check();
+    assert.equal(await kor.locator('.viz-kor-svg line.viz-kor-length[stroke="#3E7B4F"]').count(), 1, 'Green length of the ellipse');
+    assert.equal(await kor.locator('.viz-kor-svg line.viz-kor-width[stroke="#B54E24"]').count(), 1, 'Orange width of the ellipse');
+    const korAx = await kor.evaluate(el => el.vizCheck.axes());
+    korNear(korAx.halfLength, 3.74570434867, 'Half length'); korNear(korAx.halfWidth, 2.09532328683, 'Half width'); korNear(korAx.ratio, 1.78764984488, 'Ratio of length and width');
+    const korEnds = [[korAx.length, [[8.67781617574, 31.9657894926], [38.47218382426, 6.3342105074]]], [korAx.width, [[15.2416097296, 11.9809285349], [31.9083902704, 26.3190714651]]]];
+    for (const [got, want] of korEnds) { const g = [...got].sort((a, b) => a[0] - b[0]); g.forEach((p, i) => p.forEach((v, j) => korNear(v, want[i][j], `Ellipse end point ${i}${j}`, 1e-9))); }
+    for (const t of ['délka 2 · 3,03 · √(1 + 0,523) = 7,49', 'šířka 2 · 3,03 · √(1 − 0,523) = 4,19', 'poměr délky a šířky 1,79']) assert((await korText()).includes(t), `Overview shows ${t}`);
+    await kor.locator('[data-show="axes"]').uncheck();
     await kor.locator('[data-show="venn"]').uncheck();
     assert(await kor.locator('[data-venn]').isHidden(), 'Venn diagram hidden');
     // Data sets: Anscombe I (ellipse counts from R) and the sleep data with their slope chart.
@@ -2346,13 +2368,27 @@ const server = http.createServer((req, res) => {
     korS = await korState(); [500, 800, 950, 990].forEach((v, i) => assert(Math.abs(korS.counts[i] - v) < 60, `Share inside the ellipse ${i} near the model: ${korS.counts[i]}`));
     await kor.locator('[data-show="ell"]').uncheck();
 
-    // Points: add by the form (R: r −0,3076083, rs −0,4460829), delete by mouse, add by mouse, keyboard, dragging.
+    // Points by mouse only (no form): the pointer line, adding at (38; 31) as in exercise 2 (R: r −0,316436, rs −0,443080),
+    // deleting with the marked point, adding by keyboard, moving by keyboard, dragging.
     await kor.locator('[data-preset="uzkost"]').click();
-    await kor.locator('#viz-kor-ax').fill('40'); await kor.locator('#viz-kor-ay').fill('30'); await kor.locator('[data-add]').click();
-    korS = await korState(); assert.equal(korS.xs.length, 41); korNear(korS.stats.r, -0.3076083, 'Point (40; 30) added', 1e-6); korNear(korS.stats.rs, -0.4460829, 'Spearman with the added point', 1e-6);
-    assert.match(await kor.locator('[data-live]').innerText(), /Vybraný bod č\. 41 \(bodů celkem 41\): X = 40, Y = 30\./);
+    assert.equal(await kor.locator('#viz-kor-ax, #viz-kor-ay, [data-add]').count(), 0, 'No form for new points');
+    const korAdd = await korStats([...uzX, 38], [...uzY, 31]);
+    korNear(korAdd.r, -0.316435666812, 'R: point (38; 31) added'); korNear(korAdd.rs, -0.443080206407, 'R: Spearman with the added point');
+    await kor.locator('.viz-kor-svg').scrollIntoViewIfNeeded();
+    const korPx = (vx, vy) => kor.evaluate((el, v) => el.vizCheck.pixel(v[0], v[1]), [vx, vy]);
+    await page.mouse.move(...await korPx(30, 20));
+    const korPointer = (await kor.locator('[data-pointer]').innerText()).match(/^Ukazatel: X = (\S+); Y = (\S+)$/);
+    assert(korPointer && Math.abs(Number(korPointer[1].replace(',', '.')) - 30) <= 0.15 && Math.abs(Number(korPointer[2].replace(',', '.')) - 20) <= 0.15, `Pointer line: ${korPointer}`);
+    await kor.locator('input[name="viz-kor-mode"][value="add"]').check();
+    await page.mouse.click(...await korPx(38, 31));
+    korS = await korState(); assert.equal(korS.xs.length, 41, 'Point added by a click');
+    assert(Math.abs(korS.xs[40] - 38) < 0.15 && Math.abs(korS.ys[40] - 31) < 0.15, `Added point at the click: ${korS.xs[40]}, ${korS.ys[40]}`);
+    korNear(korS.stats.r, -0.316435666812, 'r with the clicked point', 0.01); korNear(korS.stats.rs, -0.443080206407, 'Spearman with the clicked point', 1e-9);
+    assert.match(await kor.locator('[data-live]').innerText(), /Vybraný bod č\. 41 \(bodů celkem 41\)/);
     const korCenter = async i => { await korPoints.nth(i).scrollIntoViewIfNeeded(); const b = await korPoints.nth(i).boundingBox(); return [b.x + b.width / 2, b.y + b.height / 2]; };
     await kor.locator('input[name="viz-kor-mode"][value="delete"]').check();
+    await page.mouse.move(...await korCenter(40));
+    assert.equal(await kor.locator('.viz-kor-svg circle.viz-kor-hover').count(), 1, 'Point to be deleted is marked');
     await page.mouse.click(...await korCenter(40));
     korS = await korState(); assert.equal(korS.xs.length, 40); korNear(korS.stats.r, -0.523320583278, 'Added point deleted by mouse');
     await kor.locator('input[name="viz-kor-mode"][value="add"]').check();
@@ -2377,6 +2413,7 @@ const server = http.createServer((req, res) => {
     const [dx, dy] = await korCenter(7);
     await page.mouse.move(dx, dy); await page.mouse.down(); await page.mouse.move(dx + 120, dy - 60, {steps: 6}); await page.mouse.up();
     korS = await korState(); assert(korS.xs[7] > 11 + 3 && korS.ys[7] > 21 + 1, `Point dragged: ${korS.xs[7]}, ${korS.ys[7]}`);
+    assert.match(await kor.locator('[data-pointer]').innerText(), /^Tažený bod: X = /);
     assert(Math.abs(korS.stats.r + 0.523320583278) > 0.01, 'Dragging changes r'); assert.equal(korS.preset, null);
     korNear(Number((await kor.locator('#viz-kor-slider').inputValue())), Math.round(korS.stats.r * 100) / 100, 'Slider follows the dragged data', 1e-12);
     // Full screen widens the chart and Escape closes it.
@@ -2394,7 +2431,7 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width: 375, height: 812});
     await page.reload({waitUntil: 'networkidle'});
     await korPoints.first().waitFor();
-    for (const k of ['quad', 'ell', 'reg', 'res']) await kor.locator(`[data-show="${k}"]`).check();
+    for (const k of ['quad', 'ell', 'axes', 'reg', 'res']) await kor.locator(`[data-show="${k}"]`).check();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Correlation visualization fits a phone');
     await kor.screenshot({path: 'tmp/verification/viz-korelace-mobile.png'});
     await page.setViewportSize({width: 1360, height: 1000});

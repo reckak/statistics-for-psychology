@@ -40,6 +40,20 @@ Nezávislá kontrola:
 
 **Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon, dotykové tažení a čtečka obrazovky nebyly vyzkoušeny. Inspirační aplikace nebyla vyzkoušena v prohlížeči, jen přečten její text a prohlédnuty autorovy snímky. Didaktická revize je interní, ne ověření na studentech.
 
+<a id="vizualizace-korelace-upravy"></a>
+
+### Úpravy před sloučením (2026-11-23)
+
+Podle [autorových připomínek k PR](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace-upravy):
+
+- **Rozvržení:** grafy pod sebou přes celou šířku: bodový graf, Vennův diagram, přehled, bodový graf pořadí, graf spojnic. Hlavní graf i graf pořadí mají čtvercovou kreslicí plochu; na celé obrazovce se strana čtverce omezí i výškou okna.
+- **Osy:** symetricky kolem průměrů s týmž počtem směrodatných odchylek *K* na obou osách (nejvzdálenější *z*-skór obou proměnných, případně elipsa 99 %, krát 1,08). Čtvercový graf je tak čtvercový i v *z*-skórech; elipsy nejsou zkreslené a jejich délka a šířka jsou na obrazovce kolmé. Výchozí data: *K* = 2,712, osa X 8,32–38,83, osa Y 6,03–32,27 (shoda s R).
+- **Myš:** přepínač „Co dělá myš v grafu“ přímo nad grafem; formulář pro nový bod odstraněn, pod grafem řádek „Ukazatel“ / „Tažený bod“ se souřadnicemi (bez `aria-live`). Kurzor podle režimu, v režimu odstranění se bod pod ukazatelem zvýrazní oranžovým kroužkem.
+- **Délka a šířka elipsy:** nový přepínač (výchozí vypnuto); zelená a oranžová úsečka středem ve směrech stejných a opačných *z*-skórů, konce na elipse 99 %, poloviční délky $c\sqrt{1\pm|r|}$. Stránka je popisuje opisem bez termínu hlavní komponenta; přehled uvádí délky v *z*-skórech a poměr.
+- **Interval:** přehled i text uvádějí $z_r$, směrodatnou chybu $1/\sqrt{n-3}$ a meze na stupnici $z_r$ před převodem zpět (výchozí data 0,164; −0,903 a −0,259).
+- **Text:** úloha 2 a odstavec o odlehlém bodu pracují s kliknutím na (38; 31) a tažením do rohu (R: *r* −0,316, $r_s$ −0,443; (38,5; 32) *r* −0,295; (60; 31) *r* −0,082, $r_s$ beze změny); první odstavec „Čeho si všimnout“ doplňuje poměr délky a šířky 1,73 a 4,36.
+- **Kontroly:** `scripts/viz-korelace.R` doplněn o meze na stupnici $z_r$, přidané body, rozsah os a délku a šířku elipsy přes `eigen(cor(x, y))` s ověřením, že konce leží na elipse 99 %. Blok v `check-html.cjs` ověřuje rozvržení, osy, délku a šířku elipsy, řádek ukazatele, přidání kliknutím a zvýraznění mazaného bodu. Celá kniha znovu vykreslena; `check-html.cjs` a `check-doc-maps.cjs` prošly bez chyb, snímky desktopu, celé obrazovky a 375 px prohlédnuty. Omezení jako výše (jen Chromium, bez skutečného dotykového zařízení a čtečky obrazovky).
+
 <a id="tutor-041-20261121"></a>
 
 ## 2026-11-21 — AI tutor: výsledek testu 0.4.0 a kandidát 0.4.1 (SVG pro ChatGPT, data ke grafům všech kapitol)

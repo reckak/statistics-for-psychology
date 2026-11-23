@@ -41,7 +41,7 @@ stats <- function(x, y) {
   inside <- sapply(c(0.5, 0.8, 0.95, 0.99), function(p) sum(d2 <= qchisq(p, 2)))
   c(n = n, mx = mx, my = my, sx = sx, sy = sy, sxy = sxy, sumprod = sxy * (n - 1), pos = sum((x - mx) * (y - my) > 0),
     neg = sum((x - mx) * (y - my) < 0), r = r, rs = rs, r2 = r^2, b0 = b0, b1 = b1, ssres = ssres, sstot = sstot,
-    t = tt, df = n - 2, p = ct$p.value, zr = z, se = se, lo = tanh(z - q * se), hi = tanh(z + q * se),
+    t = tt, df = n - 2, p = ct$p.value, zr = z, se = se, zlo = z - q * se, zhi = z + q * se, lo = tanh(z - q * se), hi = tanh(z + q * se),
     in50 = inside[1], in80 = inside[2], in95 = inside[3], in99 = inside[4])
 }
 show <- function(title, x, y) { cat(sprintf('\n=== %s ===\n', title)); s <- stats(x, y); print(s); invisible(s) }
@@ -53,6 +53,26 @@ cat('\nAnscombe x1..x4 and y1..y4:\n'); print(anscombe)
 # Chapter 10, section on outliers: one typing error 300 in the performance of the first student.
 o <- uz_y; o[1] <- 300; show('Anxiety and performance with performance 300 for the first student', uz_x, o)
 show('Fixed test points', c(1, 2, 3, 4, 5, 6), c(2, 1, 4, 3, 7, 5))
+# Exercise 2 of the page: one student added against the direction of the relationship, then moved further.
+for (p in list(c(38, 31), c(38.5, 32), c(60, 31))) show(sprintf('Anxiety data with an added student (%g; %g)', p[1], p[2]), c(uz_x, p[1]), c(uz_y, p[2]))
+
+# Axis ranges of the page: m +- K s with the same K on both axes (farthest z-score of both variables, times 1.08).
+k_axes <- max(abs(scale(uz_x)), abs(scale(uz_y))) * 1.08
+cat(sprintf('\nAxis ranges of the default data: K = %.6f, X %.6f to %.6f, Y %.6f to %.6f\n', k_axes,
+  mean(uz_x) - k_axes * sd(uz_x), mean(uz_x) + k_axes * sd(uz_x), mean(uz_y) - k_axes * sd(uz_y), mean(uz_y) + k_axes * sd(uz_y)))
+
+# Length and width of the ellipse: eigenvectors of the correlation matrix (directions in z-scores),
+# half-lengths c * sqrt(eigenvalue) with the radius c of the 99% ellipse; end points in data units.
+ellipse_axes <- function(x, y) {
+  e <- eigen(cor(cbind(x, y)), symmetric = TRUE); c99 <- ellipse_c(0.99)
+  ends <- lapply(1:2, function(j) { u <- e$vectors[, j] * c99 * sqrt(e$values[j])
+    rbind(c(mean(x), mean(y)) - u * c(sd(x), sd(y)), c(mean(x), mean(y)) + u * c(sd(x), sd(y))) })
+  # Every end point lies on the 99% ellipse (squared Mahalanobis distance = qchisq(0.99, 2)).
+  for (m in ends) stopifnot(isTRUE(all.equal(unname(mahalanobis(m, c(mean(x), mean(y)), cov(cbind(x, y)))), rep(qchisq(0.99, 2), 2))))
+  list(half = c99 * sqrt(e$values), ratio = sqrt(e$values[1] / e$values[2]), length = ends[[1]], width = ends[[2]])
+}
+cat('\n=== Length (first row pair) and width of the ellipse for the default data ===\n')
+print(ellipse_axes(uz_x, uz_y), digits = 12)
 
 cat('\n=== Radii of the probability ellipses sqrt(qchisq(p, 2)) = sqrt(-2 ln(1 - p)) ===\n')
 print(sapply(c(0.5, 0.8, 0.95, 0.99), ellipse_c))
