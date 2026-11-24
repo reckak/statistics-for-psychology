@@ -1,5 +1,79 @@
 # Autorská dokumentace
 
+<a id="prezentace-kapitoly-9"></a>
+
+## 2026-11-24 — Prezentace ke kapitole 9 a scénář zvukového doprovodu
+
+Vytvořeny soubory v `presentations/kapitola_09/`: `kapitola_09_podily_a_kategorialni_data.pptx`
+(38 slidů), `kapitola_09_poznamky.docx`, `kapitola_09_podily_a_kategorialni_data_cviceni.xlsx`,
+`kapitola_09_podily_a_kategorialni_data_cviceni_grafy.pdf` a scénář pro syntézu řeči
+(`_scenar.txt`, `_scenar_manifest.json`, `_scenar_podklady.md`). Rozsah dohodnut s autorem
+2026-11-24: jedna výuka za celou kapitolu (45 minut výkladu, 45 minut procvičování), nepovinná
+rozšíření vynechána; výstupy jako u kapitoly 8 a navíc scénář, **bez spuštění syntézy**.
+Kapitola 9, slovník, osnova ani `data/kapitola_09.xlsx` se neměnily; věcný rozpor mezi kapitolou
+a prezentací nebyl zjištěn.
+
+Výklad má 23 obsahových slidů v pěti oddílech podle
+[R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci): od tabulky k otázce
+o populaci; odhad a porovnání podílů; testy chí-kvadrát; předpoklady a velikost souvislosti;
+párová data, volba postupu a sdělení výsledků. Rozhodnutí o rozsahu této výuky: Waldův interval
+jen jako mezikrok; vzorec Wilsonova intervalu na slidu není (počítá jej sešit); Newcombův interval
+s obrázkem konstrukce, bez vzorce mezí; Fisherův test a simulovaná *p*-hodnota na jednom slidu jako
+princip; Pearsonovo reziduum, Yatesova korekce, znaménko φ a přibližná verze McNemarova testu jen
+v poznámkách; Holm, intervaly pro poměry, Simpson, kappa, telepatie a odvození vynechány.
+Poznámky mají dvě podoby podle
+[R74](../docs/rozhodnuti/postupy-a-dokumentace.md#r74-heslovite-poznamky): heslovité v PPTX
+a podrobné v DOCX (asi 8 000 slov, 18 stran), bez času a odkazu na oddíl
+([R82](../docs/rozhodnuti/postupy-a-dokumentace.md#r82-poznamky-bez-casu-a-odkazu)).
+
+Šest úloh bez Excelu (vlastní, řešení jen v poznámkách): volba postupu, test dobré shody ručně,
+pět chybných postupů, míry souvislosti v tabulce 2 × 2, výstup programu u malé studie, McNemarův
+test. Doprovodný sešit podle
+[R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci) má pět listů
+s vlastními modelovými četnostmi (zadané hodnoty, bez simulace): U1_podil (16/36 a 64/144 proti
+1/3), U2_dva_podily (45/60 a 33/60), U3_dobra_shoda (150 studentů proti podílům 35/30/20/15 %),
+U4_tabulka (3 × 3, 200 studentů) a U5_parova_data (80 dvojic, neshodné 15 a 4). Řešení po
+krocích, 5 kontrol funkcemi (CHISQ.DIST.RT, CHISQ.TEST, BINOM.DIST) a 18 nativních rovnic;
+pomocná označení (*l*, *u* pro meze Wilsonových intervalů, *b*, *c* pro neshodné dvojice) jsou
+na listech výslovně vysvětlena a nejsou novým značením učebnice. Pomocné grafy (5 stran, 16 : 9)
+vytváří `scripts/kapitola_09-prezentace-cviceni-grafy.R` ze vstupů sešitu (balíček readxl).
+Úlohy ze zdrojů převzaty nebyly; karty zdrojů se nemění. Devět obrázků kapitoly 9 (vlastní
+tvorba) je převzato z `assets/chapter-09/plots/` v místním stavu, znovu se nevykreslovaly.
+Na slidech jsou z kapitoly převzaté příklady se zdrojem: letní čas, vyhledání pomoci a aspirin
+(Howell), studie Danielsové (podle Fielda et al.).
+
+Postup: generátor v ignorovaném `tmp/chapter09-presentation/` navazuje na generátor kapitoly 8
+(stejná předloha a vzhled); nové jsou vzorce kapitoly 9, čtyři vstupní sloupce v sešitu
+a `notes-docx.cjs` bez řádků o čase a oddílu. Sešit sestavuje desktopový Excel přes
+`scripts/excel-workbook.mjs`; sdílené skripty se neměnily. Do `.gitattributes` přidán scénář
+kapitoly 9 (konce řádků LF kvůli SHA-256 v manifestu).
+
+Scénář (4 860 slov, odhad 39–46 minut) pokrývá snímky 1–30; procvičování, otázky k zamyšlení
+a organizační pokyny vynechává podle [TEXT2SPEECH.md](../docs/TEXT2SPEECH.md). Slovník výslovnosti,
+kontroly a omezení jsou v
+[průvodním dokumentu](../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_podklady.md).
+
+**Ověření:** všech 38 slidů vykresleno v PowerPointu a prohlédnuto v náhledech; každý slide má
+poznámky, všech 24 výkladových slidů (včetně titulního) otázku v PPTX i DOCX; jazyk všech
+textových polí a poznámek je čeština (objektový model PowerPointu); v textu PPTX ani DOCX
+nezůstala značka formátování (kontrola odhalila a opravila čtyři místa); přehled obsahu se
+shoduje s oddělovacími slidy; všech 24 odkazovaných oddílů v kapitole existuje. 43 skupin čísel
+ze slidů, poznámek, úloh a sešitu přepočítáno nezávisle v R (`check.R` v tmp), bez rozdílu.
+Sešit přepočítán v českém Excelu 16: 0 chybových buněk, všech 5 kontrol „Shoda s kroky“ = ano,
+18 rovnic, prázdné pracovní buňky; listy prohlédnuty z exportu do PDF (dva listy ve zvětšení).
+DOCX otevřen ve Wordu: 38 nadpisů „Slide N: titulek“, 18 stran, čeština. Všech 5 stran grafů
+prohlédnuto. Scénář: 30 oznámení snímků v pořadí, žádné číslice, značky ani původní rizikové
+podoby slov (strojová kontrola v `scenar-manifest.cjs`).
+
+**Omezení:** 23 obsahových slidů za 45 minut je hodně a skutečná délka nebyla vyzkoušena.
+Popisky uvnitř převzatých grafů, zejména konstrukce Newcombova intervalu a pokrytí, jsou při
+projekci drobné; hlavní hodnoty opakuje text slidu a poznámky. Didaktická revize byla jen
+vlastním čtením autora generátoru, bez samostatného čtenáře v roli studenta a bez ověření na
+studentech. Heslovité poznámky v PPTX nebyly samostatně exportovány jako stránky s poznámkami.
+Starší verze Excelu a PowerPointu, Excel pro Mac ani webový Excel nebyly zkoušeny. Zvuk
+nevznikl; výslovnost přepisů (nejisté jsou Newcombe a Danielsová) není ověřena poslechem.
+Studentský web se nemění, render knihy nebyl potřeba.
+
 <a id="vizualizace-korelace"></a>
 
 ## 2026-11-23 — Vizualizace korelace v bodovém grafu (upřesnění R65)
