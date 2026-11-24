@@ -362,6 +362,23 @@ zobecnění na další doprovodné sešity schválil autor s plánem úpravy té
 dne. Původní znění výše zůstává dokladem první dohody; aktuální pravidla
 jsou v [PREZENTACE.md](../PREZENTACE.md#excelova-cviceni).
 
+<a id="r33-doplneni-2026-11-24"></a>
+
+**Upřesnění 2026-11-24 (pracovní oblast po malých krocích):** při úpravě
+sešitu k prezentaci kapitoly 9 autor požádal: „bych u některých úloh více
+rozdělil ty pracovní oblasti, např. aby nejprve studenti vypočetli
+směrodatné chyby podílů, pak směrodatné chyby rozdílu podílů atd., aby byl
+každý ‚krok‘ výpočtu co nejmenší, a tedy méně náchylný na chybu výpočtu.
+Zavedl bych pak pravidlo do instrukcí.“ Podobu schválil s plánem úpravy
+téhož dne: žluté řádky pracovní oblasti kopírují kroky řešení (číslo,
+popisek, řádek), výpočty po kategoriích či buňkách mají prázdné žluté
+tabulky stejného tvaru a hotové pomocné tabulky stojí v bloku řešení
+(volba autora z nabídnutých možností: „Žluté tabulky, řešení dál“).
+Současná volba Waldova intervalu místo Wilsonova a Newcombova v tomto
+sešitu je realizací pro jednu úlohu, nikoli obecnou konvencí; popisuje ji
+[historie práce](../../quarto/README.md#sesit-kapitoly-9-kroky). Aktuální
+pravidlo je v [PREZENTACE.md](../PREZENTACE.md#excelova-cviceni).
+
 **Upřesnění 2026-10-14 (obecné rovnice u úloh):** autor požádal: „Pro
 ještě větší didaktickou přehlednost bych do toho Excelu se cvičeními vložil
 ke každé úloze relevantní rovnice (v obecné formě), které je nutné znát

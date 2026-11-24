@@ -161,6 +161,15 @@ vyučujícího ani odkaz na příslušný oddíl kapitoly v nich neuváděj
   výpočty a označený blok řešení. Řešení ponech na témže listu, ale mimo
   pracovní oblast, aby hotové výpočty nenahrazovaly vlastní práci studenta.
   Úkoly a jejich řešení jednoznačně očísluj a popiš proměnné i jednotky.
+- Pracovní oblast rozděl na stejně malé kroky jako řešení, aby byl každý
+  krok co nejjednodušší a méně náchylný k chybě: například nejprve
+  směrodatné chyby jednotlivých podílů, potom směrodatnou chybu rozdílu,
+  potom meze intervalu. Každý mezivýsledek má vlastní žlutý řádek se stejným
+  číslem, popiskem a řádkem jako odpovídající krok řešení; výpočty po
+  kategoriích či buňkách mají prázdnou žlutou tabulku stejného tvaru jako
+  hotová pomocná tabulka. Hotové pomocné tabulky patří do bloku řešení,
+  ne vedle pracovní oblasti (upřesnění
+  [R33](rozhodnuti/postupy-a-dokumentace.md#r33-excelova-cviceni-prezentaci)).
 - V závěru prezentace uveď odkaz na sešit a názvy příslušných listů.
   Sešit musí být použitelný i samostatně, bez dohledávání zadání v PPTX
   nebo přístupu k neveřejným podkladům.
@@ -209,7 +218,8 @@ vyučujícího ani odkaz na příslušný oddíl kapitoly v nich neuváděj
   odpovídá skutečnému pořadí témat a názvům oddělovacích slidů.
 - U doprovodného sešitu ověř úplnost zadání a dat, přiřazení úkolů
   k datasetům či listům, úplnost, značení a vykreslení rovnic u úloh,
-  shodu krokového řešení s kontrolní funkcí,
+  shodu krokového řešení s kontrolní funkcí, shodu řádků pracovní oblasti
+  s kroky řešení, prázdné žluté buňky a tabulky,
   správnost vzorců a výsledků po přepočtu v Excelu,
   čitelnost listů a oddělení pracovní oblasti od řešení. Zkontroluj
   také odkaz z prezentace a shodu uvedených názvů listů.

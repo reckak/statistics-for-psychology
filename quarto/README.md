@@ -1,5 +1,54 @@
 # Autorská dokumentace
 
+<a id="sesit-kapitoly-9-kroky"></a>
+
+## 2026-11-24 — Sešit cvičení k prezentaci kapitoly 9: Waldův interval a pracovní oblast po krocích
+
+Na pokyn autora upraven `presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_cviceni.xlsx`
+(generátor v ignorovaném `tmp/chapter09-presentation/`, soubory `wb-head.mjs`, `wb-body.mjs`,
+`equations-spec.cjs`, `check.R`):
+
+- **Waldův interval místo Wilsonova a Newcombova.** Wilsonův a Newcombův interval jsou na ruční
+  výpočet náročné, proto studenti v U1 a U2 počítají 95% Waldovy intervaly: U1 (0,282; 0,607)
+  a (0,363; 0,526), U2 (0,033; 0,367). Wilsonovy intervaly (0,295; 0,604) a (0,366; 0,526)
+  a Newcombův interval (0,029; 0,355) jsou uvedeny jako hotové vstupy pro srovnání (U1 D7:E8,
+  U2 D7:D8). Rovnice na listech nově ukazují Waldův interval; v U2 jde o značení učebnice
+  $s_{p_1-p_2}$. Interpretace připomíná, že ve zprávě se podle kapitoly 9 uvádí Wilsonův,
+  resp. Newcombův interval. Jde o volbu pro tento sešit, ne o obecnou konvenci.
+- **Pracovní oblast po malých krocích** (nové pravidlo, upřesnění
+  [R33](../docs/rozhodnuti/postupy-a-dokumentace.md#r33-doplneni-2026-11-24) v
+  [PREZENTACE.md](../docs/PREZENTACE.md#excelova-cviceni)). Žluté řádky se generují z kroků řešení,
+  mají stejné číslo, popisek i řádek. Kroky jsou jemnější, například rozptyl a směrodatná chyba
+  každého podílu, potom rozptyl a směrodatná chyba rozdílu, polovina šířky a meze.
+  U3 a U4 mají prázdné žluté pracovní tabulky v K–O. Hotové pomocné tabulky se přesunuly
+  do bloku řešení za sloupec „Shoda s kroky“ (V–Z). U5 má žlutou binomickou tabulku pro
+  k = 0–4 a hotovou pro 0–19.
+- **U5:** kategorie v pořadí ne, ano (tabulka 37, 15; 4, 24). Studenti nejprve vypíšou četnosti
+  čtyř typů dvojic. Pomocné označení *b* = ne → ano, *c* = ano → ne odpovídá poloze v tabulce
+  a rovnice jsou (b − c)/n a (b − c)²/(b + c). Výsledky U3–U5 se číselně nemění.
+- Navazující soubory: přehled `Prehled`, slide 38 PPTX (texty U1 a U2 a heslovité poznámky, upraveno
+  na místě v PowerPointu, ostatní autorovy úpravy prezentace zachovány), podrobné poznámky DOCX
+  (slide 38, přegenerováno z `notes-detail.cjs`; obsah DOCX před změnou byl shodný s generátorem),
+  `scripts/kapitola_09-prezentace-cviceni-grafy.R` a PDF grafů (U1 a U2 porovnávají Waldův
+  interval s Wilsonovým, resp. Newcombovým; U5 čte nové pořadí kategorií). Generátor prezentace
+  `content.cjs` srovnán se slidem 38.
+
+Současně se commitují drobné úpravy prezentace kapitoly 9, které autor provedl ručně (rozvržení
+obrázků a textů na slidech 7, 8, 10, 13, 15, 16, 18, 22 a 23 a doplnění textu na slidu 8).
+Scénář a jeho manifest se neměnily. Manifest proto dál uvádí otisky PPTX a DOCX z doby vzniku
+scénáře; slide 8 ze scénáře má nyní na slidu delší formulaci otázky.
+
+**Ověření:** sešit sestaven a přepočten v českém Excelu 16: 0 chybových buněk, 5 kontrol „Shoda
+s kroky“ = ano, 19 nativních rovnic, žádná vyplněná žlutá buňka. Hodnoty všech kroků vypsány
+a porovnány s nezávislým přepočtem v R (`check.R`: 48 shod, 0 rozdílů, včetně Waldových mezí
+a zaokrouhlených Wilsonových a Newcombových hodnot v zadání). Listy U1, U2, U4 a U5 prohlédnuty
+z exportu do PDF ve zvětšení, U3 v náhledu. Všech 5 stran grafů prohlédnuto. Slide 38 vykreslen
+v PowerPointu; text U5 se po rozšíření zalomil k popisku pod ním, proto zůstal beze změny
+a čtyři typy dvojic uvádějí jen poznámky. DOCX otevřen ve Wordu: 18 stran, 38 nadpisů, čeština.
+
+**Omezení:** sešit nebyl vyzkoušen se studenty ani ve starších verzích Excelu. Popisky dlouhých
+kontrolních kroků mohou být při výšce řádku 18 bodů ve sloupci Q oříznuté jako dříve.
+
 <a id="prezentace-kapitoly-9"></a>
 
 ## 2026-11-24 — Prezentace ke kapitole 9 a scénář zvukového doprovodu

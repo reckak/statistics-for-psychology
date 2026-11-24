@@ -16,7 +16,7 @@ u1 <- matrix(cells('U1_podil','D4:E6'),ncol=2,byrow=TRUE,dimnames=list(c('x','n'
 u2 <- matrix(cells('U2_dva_podily','D4:E5'),ncol=2,byrow=TRUE,dimnames=list(c('s','bez'),c('x','n')))
 u3 <- matrix(cells('U3_dobra_shoda','D4:E7'),ncol=2,byrow=TRUE,dimnames=list(paste0(1:4,'. ročník'),c('f','pi0')))
 u4 <- matrix(cells('U4_tabulka','D4:F6'),ncol=3,byrow=TRUE,dimnames=list(c('1. ročník','3. ročník','5. ročník'),c('studium','finance','vztahy')))
-u5 <- matrix(cells('U5_parova_data','D4:E5'),ncol=2,byrow=TRUE,dimnames=list(c('pred_ano','pred_ne'),c('po_ano','po_ne')))
+u5 <- matrix(cells('U5_parova_data','D4:E5'),ncol=2,byrow=TRUE,dimnames=list(c('pred_ne','pred_ano'),c('po_ne','po_ano')))
 stopifnot(!anyNA(c(u1,u2,u3,u4,u5)),abs(sum(u3[,'pi0'])-1)<1e-9,sum(u4)==200,sum(u5)==80)
 
 # Chapter palette (scripts/kapitola_09.R) ------------------------------------------
@@ -26,7 +26,9 @@ num <- function(x,digits=2) sub('^-','−',formatC(x+sign(x)*1e-9,format='f',dig
 pval <- function(p) if(p<.001) '< 0,001' else num(p,3)
 ci_txt <- function(ci,digits=3) paste0('(',num(ci[1],digits),'; ',num(ci[2],digits),')')
 
-# Wilson interval, Newcombe interval and the pooled test of two proportions.
+# Wald interval (computed by students), Wilson and Newcombe intervals (given for comparison) and the pooled test.
+wald <- function(x,n,z=qnorm(.975)) { p <- x/n; h <- z*sqrt(p*(1-p)/n); c(p=p,lo=p-h,hi=p+h) }
+wald2 <- function(x1,n1,x2,n2,z=qnorm(.975)) { p1 <- x1/n1; p2 <- x2/n2; s <- sqrt(p1*(1-p1)/n1+p2*(1-p2)/n2); d <- p1-p2; c(d=d,se=s,lo=d-z*s,hi=d+z*s) }
 wilson <- function(x,n,z=qnorm(.975)) {
   p <- x/n; mid <- (p+z^2/(2*n))/(1+z^2/n); half <- z/(1+z^2/n)*sqrt(p*(1-p)/n+z^2/(4*n^2))
   c(p=p,lo=mid-half,hi=mid+half)
@@ -60,43 +62,47 @@ ci_bar <- function(y,ci,m,col,lwd=4) { segments(ci[1],y,ci[2],y,col=col,lwd=lwd,
 ci_col <- function(x,ci,m,col,lwd=4) { segments(x,ci[1],x,ci[2],col=col,lwd=lwd,lend=1); points(x,m,pch=21,bg='white',col=col,cex=1.5,lwd=2) }
 
 page_u1 <- function() {
-  w <- lapply(1:2,function(j) wilson(u1['x',j],u1['n',j])); pi0 <- u1['pi0',1]
+  w <- lapply(1:2,function(j) wilson(u1['x',j],u1['n',j])); wa <- lapply(1:2,function(j) wald(u1['x',j],u1['n',j])); pi0 <- u1['pi0',1]
   z <- sapply(1:2,function(j) (u1['x',j]/u1['n',j]-pi0)/sqrt(pi0*(1-pi0)/u1['n',j])); pv <- 2*pnorm(-abs(z))
   lab <- paste0(u1['x',],' z ',u1['n',],' pokusů')
   frame(c(2.6,1.3))
   par(mar=c(4.6,9.5,4.6,1))
-  plot(NA,xlim=c(.2,.7),ylim=c(.4,2.6),yaxt='n',bty='l',xlab='Podíl správných odpovědí',ylab='')
+  plot(NA,xlim=c(.2,.75),ylim=c(.4,2.7),yaxt='n',bty='l',xlab='Podíl správných odpovědí',ylab='')
   axis(2,at=2:1,labels=lab,tick=FALSE)
-  abline(v=pi0,lty=2,col=c_gray); text(pi0,2.55,'hádání: 1/3',pos=4,cex=.85,col=c_gray)
-  ci_bar(2,w[[1]][c('lo','hi')],w[[1]]['p'],c_orange); ci_bar(1,w[[2]][c('lo','hi')],w[[2]]['p'],c_blue)
-  text(w[[1]]['hi'],2,ci_txt(w[[1]][c('lo','hi')]),pos=4,cex=.9,col=c_orange); text(w[[2]]['hi'],1,ci_txt(w[[2]][c('lo','hi')]),pos=4,cex=.9,col=c_blue)
-  heading('U1: stejný podíl, různě velký pokus','bod = podíl ve výběru; úsečka = 95% Wilsonův interval')
-  panel(list(H(lab[1]),T(paste0('podíl ',num(w[[1]]['p'],3),'; interval ',ci_txt(w[[1]][c('lo','hi')]))),T(paste0('skórový test: z = ',num(z[1]),'; p = ',pval(pv[1]))),T('interval obsahuje 1/3:\nH0 nezamítáme'),G,
-    H(lab[2]),T(paste0('podíl ',num(w[[2]]['p'],3),'; interval ',ci_txt(w[[2]][c('lo','hi')]))),T(paste0('skórový test: z = ',num(z[2]),'; p = ',pval(pv[2]))),T('interval neobsahuje 1/3:\nH0 zamítáme'),G,
-    H('Čeho si všimnout'),T('Čtyřnásobný počet pokusů\nzmenší šířku intervalu\npřibližně na polovinu.',c_gray),
-    T('Interval a skórový test\nse shodují.',c_gray)))
+  abline(v=pi0,lty=2,col=c_gray); text(pi0,2.65,'hádání: 1/3',pos=4,cex=.85,col=c_gray)
+  for(j in 1:2) { y <- 3-j
+    ci_bar(y+.15,wa[[j]][c('lo','hi')],wa[[j]]['p'],c_orange); ci_bar(y-.15,w[[j]][c('lo','hi')],w[[j]]['p'],c_blue)
+    text(wa[[j]]['hi'],y+.15,ci_txt(wa[[j]][c('lo','hi')]),pos=4,cex=.85,col=c_orange); text(w[[j]]['hi'],y-.15,ci_txt(w[[j]][c('lo','hi')]),pos=4,cex=.85,col=c_blue) }
+  legend('bottomright',c('Waldův interval (počítáte)','Wilsonův interval (uveden pro srovnání)'),col=c(c_orange,c_blue),lwd=4,bty='n',cex=.85)
+  heading('U1: stejný podíl, různě velký pokus','bod = podíl ve výběru; úsečky = 95% intervaly')
+  panel(list(H(lab[1]),T(paste0('Waldův ',ci_txt(wa[[1]][c('lo','hi')]),'\nWilsonův ',ci_txt(w[[1]][c('lo','hi')]))),T(paste0('skórový test: z = ',num(z[1]),'; p = ',pval(pv[1]),'\n1/3 uvnitř obou intervalů: H0 nezamítáme')),G,
+    H(lab[2]),T(paste0('Waldův ',ci_txt(wa[[2]][c('lo','hi')]),'\nWilsonův ',ci_txt(w[[2]][c('lo','hi')]))),T(paste0('skórový test: z = ',num(z[2]),'; p = ',pval(pv[2]),'\n1/3 mimo oba intervaly: H0 zamítáme')),G,
+    H('Čeho si všimnout'),T('Čtyřnásobný počet pokusů zmenší\nšířku intervalu na polovinu.',c_gray),
+    T('Wilsonův interval je mírně užší\na posunutý k 0,5.',c_gray)))
 }
 
 page_u2 <- function() {
-  a <- wilson(u2['s','x'],u2['s','n']); b <- wilson(u2['bez','x'],u2['bez','n'])
+  a <- wald(u2['s','x'],u2['s','n']); b <- wald(u2['bez','x'],u2['bez','n'])
+  wd <- wald2(u2['s','x'],u2['s','n'],u2['bez','x'],u2['bez','n'])
   nc <- newcombe(u2['s','x'],u2['s','n'],u2['bez','x'],u2['bez','n']); te <- pooled(u2['s','x'],u2['s','n'],u2['bez','x'],u2['bez','n'])
   rr <- a['p']/b['p']; or <- (u2['s','x']/(u2['s','n']-u2['s','x']))/(u2['bez','x']/(u2['bez','n']-u2['bez','x']))
   frame(c(1.5,1.1,1.3))
   par(mar=c(4.6,4.8,4.6,1))
   plot(NA,xlim=c(.5,2.5),ylim=c(.3,.95),xaxt='n',bty='l',xlab='',ylab='Podíl klientů, kteří přišli')
   axis(1,at=1:2,labels=c('s připomínkou','bez připomínky'))
-  ci_col(1,a[c('lo','hi')],a['p'],c_orange); ci_col(2,b[c('lo','hi')],b['p'],c_blue)
+  ci_col(1,a[c('lo','hi')],a['p'],c_orange); ci_col(2,b[c('lo','hi')],b['p'],c_orange)
   text(1,a['p'],num(a['p'],3),pos=4,cex=.9); text(2,b['p'],num(b['p'],3),pos=4,cex=.9)
-  heading('U2: dva podíly','95% Wilsonovy intervaly')
+  heading('U2: dva podíly','podíl ± 1,96 × směrodatná chyba podílu')
   par(mar=c(4.6,4.8,4.6,1))
-  plot(NA,xlim=c(.5,1.5),ylim=c(-.1,.45),xaxt='n',bty='l',xlab='',ylab='Rozdíl podílů')
-  axis(1,at=1,labels='s − bez')
-  abline(h=0,lty=2,col=c_gray); ci_col(1,nc[c('lo','hi')],nc['d'],c_ink); text(1,nc['d'],num(nc['d'],3),pos=4,cex=.9)
-  heading('Rozdíl','95% Newcombův interval')
-  panel(list(H('Odhad'),T(paste0('rozdíl ',num(nc['d'],3),'\ninterval ',ci_txt(nc[c('lo','hi')]))),G,
+  plot(NA,xlim=c(.5,2.5),ylim=c(-.1,.45),xaxt='n',bty='l',xlab='',ylab='Rozdíl podílů (s − bez)')
+  axis(1,at=1:2,labels=c('Waldův','Newcombův'))
+  abline(h=0,lty=2,col=c_gray); ci_col(1,wd[c('lo','hi')],wd['d'],c_orange); ci_col(2,nc[c('lo','hi')],nc['d'],c_blue)
+  text(1,wd['hi'],ci_txt(wd[c('lo','hi')]),pos=3,cex=.8,col=c_orange); text(2,nc['hi'],ci_txt(nc[c('lo','hi')]),pos=3,cex=.8,col=c_blue)
+  heading('Rozdíl','95% intervaly; Newcombův uveden pro srovnání')
+  panel(list(H('Odhad'),T(paste0('rozdíl ',num(wd['d'],3),'; směrodatná chyba ',num(wd['se'],4))),T(paste0('Waldův interval ',ci_txt(wd[c('lo','hi')]),'\nNewcombův interval ',ci_txt(nc[c('lo','hi')]))),G,
     H('Test se společným podílem'),T(paste0('společný podíl ',num(te$p,3))),T(paste0('z = ',num(te$z),'; p = ',pval(te$pv))),T(paste0('chí-kvadrát = z² = ',num(te$z^2))),G,
     H('Poměry (referenční: bez připomínky)'),T(paste0('poměr rizik ',num(rr),'; poměr šancí ',num(or))),G,
-    H('Čeho si všimnout'),T('Interval rozdílu leží nad nulou,\nje ale široký.',c_gray),T('Poměr šancí není poměr rizik.',c_gray)))
+    H('Čeho si všimnout'),T('Oba intervaly leží nad nulou\na liší se jen o setiny.',c_gray),T('Poměr šancí není poměr rizik.',c_gray)))
 }
 
 page_u3 <- function() {
@@ -131,7 +137,7 @@ page_u4 <- function() {
 }
 
 page_u5 <- function() {
-  n <- sum(u5); p1 <- sum(u5[1,])/n; p2 <- sum(u5[,1])/n; up <- u5[2,1]; down <- u5[1,2]; nd <- up+down
+  n <- sum(u5); p1 <- sum(u5['pred_ano',])/n; p2 <- sum(u5[,'po_ano'])/n; up <- u5['pred_ne','po_ano']; down <- u5['pred_ano','po_ne']; nd <- up+down
   pv <- 2*pbinom(min(up,down),nd,.5); chi <- (up-down)^2/nd
   frame(c(1.3,1.3,1.3))
   par(mar=c(4.6,4.8,4.6,1))
