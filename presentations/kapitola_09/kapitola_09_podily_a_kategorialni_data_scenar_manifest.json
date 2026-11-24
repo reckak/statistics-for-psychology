@@ -1,0 +1,664 @@
+{
+  "date": "2026-11-24",
+  "script": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar.txt",
+  "script_sha256": "b33e39d9505f39fa8480ec12665c2e55e382ad15edcfe30fafc3a48376b9488a",
+  "encoding": "UTF-8",
+  "word_count": 4860,
+  "character_count": 32397,
+  "offset_convention": "Zero-based Unicode BMP character offsets, end exclusive; offsets include separating whitespace.",
+  "scope": {
+    "included_slides": [
+      1,
+      30
+    ],
+    "excluded_slides": [
+      31,
+      38
+    ],
+    "exclusions": "Závěrečné procvičování, jeho řešení, otázky k zamyšlení, organizační a bibliografické pokyny."
+  },
+  "estimated_duration_minutes_at_105_to_125_wpm": [
+    39,
+    46
+  ],
+  "sources": [
+    {
+      "path": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data.pptx",
+      "sha256": "dabca4a87ad78350c847fc0301ded0f47c767b6d7d7f338b0e46ec66aad4a390"
+    },
+    {
+      "path": "presentations/kapitola_09/kapitola_09_poznamky.docx",
+      "sha256": "e52fc46b62f4ca9cd8c309e673f68977d1bfc15a905cbd02b6b19d82a80ddc73"
+    },
+    {
+      "path": "quarto/kapitola_09.qmd",
+      "sha256": "89b32e2d3c2ee0ce7dcb2db89e0fd36d92fdeb0faf063b57419c4485947dc4db"
+    },
+    {
+      "path": "scripts/kapitola_09.R",
+      "sha256": "e14e3d3f80680a404ed1b66c36d774073169301b661d9d1804659f80a594f432"
+    },
+    {
+      "path": "docs/TEXT2SPEECH.md",
+      "sha256": "818f640300f786979983228fc9e0402706e0d6689ffae259e03d330cfec210f5"
+    },
+    {
+      "path": "docs/PREZENTACE.md",
+      "sha256": "97a92ec85526c33e97008f464730decaf5cbf0e0ff098331c9a07bed3b297812"
+    },
+    {
+      "path": "docs/SLOVNIK.md",
+      "sha256": "822d65ff890d43eba2dcaad919fa2a3977b15e0d1635e486a659a9426f5b6dfa"
+    },
+    {
+      "path": "docs/rozhodnuti/kapitola-09.md",
+      "sha256": "6e9108e987583eaa93e9111c93c4eaef1a7814e9cfcf8bdcfedb237ba4afd136"
+    }
+  ],
+  "slides": [
+    {
+      "number": 1,
+      "title": "Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost souvislosti",
+      "announcement": "Snímek jedna.",
+      "start_character": 0,
+      "end_character": 959,
+      "word_count": 133
+    },
+    {
+      "number": 2,
+      "title": "Obsah přednášky",
+      "announcement": "Snímek dva.",
+      "start_character": 959,
+      "end_character": 1641,
+      "word_count": 102
+    },
+    {
+      "number": 3,
+      "title": "Od tabulky k otázce o populaci",
+      "announcement": "Snímek tři.",
+      "start_character": 1641,
+      "end_character": 1820,
+      "word_count": 28
+    },
+    {
+      "number": 4,
+      "title": "Kategoriální data shrnujeme četnostmi a podíly",
+      "announcement": "Snímek čtyři.",
+      "start_character": 1820,
+      "end_character": 3045,
+      "word_count": 195
+    },
+    {
+      "number": 5,
+      "title": "Tři typy otázek o kategoriálních datech",
+      "announcement": "Snímek pět.",
+      "start_character": 3045,
+      "end_character": 3834,
+      "word_count": 124
+    },
+    {
+      "number": 6,
+      "title": "Odhad a porovnání podílů",
+      "announcement": "Snímek šest.",
+      "start_character": 3834,
+      "end_character": 3997,
+      "word_count": 27
+    },
+    {
+      "number": 7,
+      "title": "Známý postup u podílů selhává",
+      "announcement": "Snímek sedm.",
+      "start_character": 3997,
+      "end_character": 5567,
+      "word_count": 240
+    },
+    {
+      "number": 8,
+      "title": "Wilsonův interval",
+      "announcement": "Snímek osm.",
+      "start_character": 5567,
+      "end_character": 7201,
+      "word_count": 242
+    },
+    {
+      "number": 9,
+      "title": "Interval a test jednoho podílu",
+      "announcement": "Snímek devět.",
+      "start_character": 7201,
+      "end_character": 8438,
+      "word_count": 181
+    },
+    {
+      "number": 10,
+      "title": "Rozdíl dvou podílů a jeho interval",
+      "announcement": "Snímek deset.",
+      "start_character": 8438,
+      "end_character": 10134,
+      "word_count": 262
+    },
+    {
+      "number": 11,
+      "title": "Test se společným podílem",
+      "announcement": "Snímek jedenáct.",
+      "start_character": 10134,
+      "end_character": 11451,
+      "word_count": 194
+    },
+    {
+      "number": 12,
+      "title": "Testy chí-kvadrát",
+      "announcement": "Snímek dvanáct.",
+      "start_character": 11451,
+      "end_character": 11686,
+      "word_count": 34
+    },
+    {
+      "number": 13,
+      "title": "Pozorované a očekávané četnosti",
+      "announcement": "Snímek třináct.",
+      "start_character": 11686,
+      "end_character": 12808,
+      "word_count": 163
+    },
+    {
+      "number": 14,
+      "title": "Statistika chí-kvadrát",
+      "announcement": "Snímek čtrnáct.",
+      "start_character": 12808,
+      "end_character": 13827,
+      "word_count": 146
+    },
+    {
+      "number": 15,
+      "title": "Kdy je hodnota chí-kvadrát neobvykle velká?",
+      "announcement": "Snímek patnáct.",
+      "start_character": 13827,
+      "end_character": 15276,
+      "word_count": 209
+    },
+    {
+      "number": 16,
+      "title": "Pravý chvost, a přesto nesměrový test",
+      "announcement": "Snímek šestnáct.",
+      "start_character": 15276,
+      "end_character": 16495,
+      "word_count": 183
+    },
+    {
+      "number": 17,
+      "title": "Souvisejí spolu dvě kategoriální proměnné?",
+      "announcement": "Snímek sedmnáct.",
+      "start_character": 16495,
+      "end_character": 17867,
+      "word_count": 218
+    },
+    {
+      "number": 18,
+      "title": "Kde se tabulka od nezávislosti odchyluje?",
+      "announcement": "Snímek osmnáct.",
+      "start_character": 17867,
+      "end_character": 19242,
+      "word_count": 197
+    },
+    {
+      "number": 19,
+      "title": "Standardizovaná rezidua popisují vzorec odchylek",
+      "announcement": "Snímek devatenáct.",
+      "start_character": 19242,
+      "end_character": 20585,
+      "word_count": 199
+    },
+    {
+      "number": 20,
+      "title": "Předpoklady a velikost souvislosti",
+      "announcement": "Snímek dvacet.",
+      "start_character": 20585,
+      "end_character": 20748,
+      "word_count": 25
+    },
+    {
+      "number": 21,
+      "title": "Na čem test chí-kvadrát stojí",
+      "announcement": "Snímek dvacet jedna.",
+      "start_character": 20748,
+      "end_character": 21936,
+      "word_count": 171
+    },
+    {
+      "number": 22,
+      "title": "Malé očekávané četnosti: Fisherův exaktní test",
+      "announcement": "Snímek dvacet dva.",
+      "start_character": 21936,
+      "end_character": 23634,
+      "word_count": 248
+    },
+    {
+      "number": 23,
+      "title": "Jak velká je souvislost? Rozdíl podílů",
+      "announcement": "Snímek dvacet tři.",
+      "start_character": 23634,
+      "end_character": 25025,
+      "word_count": 208
+    },
+    {
+      "number": 24,
+      "title": "Poměr rizik a poměr šancí",
+      "announcement": "Snímek dvacet čtyři.",
+      "start_character": 25025,
+      "end_character": 26444,
+      "word_count": 225
+    },
+    {
+      "number": 25,
+      "title": "Koeficient φ a Cramérovo V",
+      "announcement": "Snímek dvacet pět.",
+      "start_character": 26444,
+      "end_character": 27564,
+      "word_count": 174
+    },
+    {
+      "number": 26,
+      "title": "Párová data, volba postupu a sdělení výsledků",
+      "announcement": "Snímek dvacet šest.",
+      "start_character": 27564,
+      "end_character": 27722,
+      "word_count": 26
+    },
+    {
+      "number": 27,
+      "title": "Tíž lidé dvakrát: McNemarův test",
+      "announcement": "Snímek dvacet sedm.",
+      "start_character": 27722,
+      "end_character": 29341,
+      "word_count": 243
+    },
+    {
+      "number": 28,
+      "title": "Znaménkový test: stejná úvaha pro párové rozdíly",
+      "announcement": "Snímek dvacet osm.",
+      "start_character": 29341,
+      "end_character": 30357,
+      "word_count": 154
+    },
+    {
+      "number": 29,
+      "title": "Který postup?",
+      "announcement": "Snímek dvacet devět.",
+      "start_character": 30357,
+      "end_character": 31342,
+      "word_count": 147
+    },
+    {
+      "number": 30,
+      "title": "Ukázka sdělení výsledků",
+      "announcement": "Snímek třicet.",
+      "start_character": 31342,
+      "end_character": 32397,
+      "word_count": 162
+    }
+  ],
+  "intended_synthesis": {
+    "status": "not_requested",
+    "note": "Scénář byl připraven bez syntézy; nahrávka vznikne jen na výslovnou žádost. Projektová volba pro pokračování nahrávek je v docs/TEXT2SPEECH.md; dostupnost služby nebyla ověřována."
+  },
+  "pronunciation_dictionary": [
+    {
+      "term": "kvantil",
+      "spoken": "kvantyl",
+      "origin": "Závazný požadavek autora podle R53.",
+      "text_check": "applied"
+    },
+    {
+      "term": "statistika, statisticky",
+      "spoken": "statystyka, statystycky a tvary",
+      "origin": "Tvrdé ti podle R53.",
+      "text_check": "applied"
+    },
+    {
+      "term": "studie",
+      "spoken": "studyje, studyji",
+      "origin": "Tvrdé di; návaznost na předchozí scénáře.",
+      "text_check": "applied"
+    },
+    {
+      "term": "standardizované",
+      "spoken": "standardyzované",
+      "origin": "Tvrdé di.",
+      "text_check": "applied"
+    },
+    {
+      "term": "alternativní",
+      "spoken": "alternatyvní",
+      "origin": "Tvrdé ti; návaznost na předchozí scénáře.",
+      "text_check": "applied"
+    },
+    {
+      "term": "kritická",
+      "spoken": "kritycká a tvary",
+      "origin": "Tvrdé ti.",
+      "text_check": "applied"
+    },
+    {
+      "term": "dramatičtěji",
+      "spoken": "dramatyčtěji",
+      "origin": "Tvrdé ti; jazykové posouzení.",
+      "text_check": "applied"
+    },
+    {
+      "term": "homogenita",
+      "spoken": "homogenyta a tvary",
+      "origin": "Tvrdé ni; jazykové posouzení.",
+      "text_check": "applied"
+    },
+    {
+      "term": "senioři",
+      "spoken": "senyjoři, senyjorů a tvary",
+      "origin": "Tvrdé ni a přechod mezi samohláskami; jazykové posouzení.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Waldův",
+      "spoken": "Valdův a tvary",
+      "origin": "Český výslovnostní přepis příjmení; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Wilsonův",
+      "spoken": "Vilsonův a tvary",
+      "origin": "Český výslovnostní přepis příjmení; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Newcombův",
+      "spoken": "Ňúkomův a tvary",
+      "origin": "Výslovnostní přepis příjmení; bez poslechového ověření, nejistý.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Fisherův",
+      "spoken": "Fišerův a tvary",
+      "origin": "Český výslovnostní přepis příjmení; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "McNemarův",
+      "spoken": "Meknemarův a tvary",
+      "origin": "Výslovnostní přepis příjmení; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Cramérovo V",
+      "spoken": "Kramérovo vé",
+      "origin": "Výslovnostní přepis příjmení a názvu písmene; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Howell",
+      "spoken": "Hauel a tvary",
+      "origin": "Návaznost na předchozí scénáře; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Field",
+      "spoken": "Fíld a tvary",
+      "origin": "Výslovnostní přepis příjmení; bez poslechového ověření.",
+      "text_check": "applied"
+    },
+    {
+      "term": "Danielsová",
+      "spoken": "Denjelsová a tvary",
+      "origin": "Výslovnostní přepis příjmení; bez poslechového ověření, nejistý.",
+      "text_check": "applied"
+    },
+    {
+      "term": "p-hodnota, z-test, t-test",
+      "spoken": "pé-hodnota, zed-test, té-test",
+      "origin": "Mluvené názvy se spojovníky podle R53.",
+      "text_check": "applied"
+    },
+    {
+      "term": "p, π, π₀, z, n, N, f, e, q, V, φ, χ²",
+      "spoken": "pé, pí, pí nula, zed, en, velké en, ef, é, kvé, vé, fí, chí-kvadrát",
+      "origin": "Názvy písmen a mluvené značky.",
+      "text_check": "applied"
+    },
+    {
+      "term": "indexy j+, +l",
+      "spoken": "indexem jé plus, plus el",
+      "origin": "Mluvené indexy.",
+      "text_check": "applied"
+    },
+    {
+      "term": "APA",
+      "spoken": "á-pé-á",
+      "origin": "Mluvená zkratka; návaznost na předchozí scénáře.",
+      "text_check": "applied"
+    }
+  ],
+  "remaining_di_ti_ni_words_reviewed": [
+    "absolutní",
+    "alternatyvní",
+    "ani",
+    "celoroční",
+    "části",
+    "částí",
+    "četnosti",
+    "četností",
+    "činí",
+    "čtrnácti",
+    "čtvrtina",
+    "čtvrtiny",
+    "čtyřiceti",
+    "deseti",
+    "desetin",
+    "desetinách",
+    "desetitisícin",
+    "desettisíckrát",
+    "děti",
+    "dětí",
+    "devadesáti",
+    "devadesátipětiprocentní",
+    "devíti",
+    "díky",
+    "dítě",
+    "dolní",
+    "dotazníku",
+    "dvaceti",
+    "dvanácti",
+    "exaktní",
+    "hádání",
+    "hladině",
+    "hlavní",
+    "hledání",
+    "hodí",
+    "hodnocení",
+    "horní",
+    "jediného",
+    "jediný",
+    "jedniček",
+    "jedničkou",
+    "jedničku",
+    "jedním",
+    "kategoriální",
+    "kategoriálních",
+    "konkrétních",
+    "kontrolní",
+    "kontrolních",
+    "krajní",
+    "krajních",
+    "letní",
+    "lidi",
+    "lidí",
+    "mění",
+    "měření",
+    "měřeními",
+    "mladí",
+    "mocnina",
+    "mocniny",
+    "nehodí",
+    "není",
+    "neprozradí",
+    "nepříznivý",
+    "nezamítnutí",
+    "nezávislosti",
+    "nezměnil",
+    "ní",
+    "nic",
+    "nich",
+    "nichž",
+    "nikdy",
+    "nikoli",
+    "nízkému",
+    "nízký",
+    "nižší",
+    "normální",
+    "obrácením",
+    "obtížné",
+    "odečítání",
+    "odmocnina",
+    "odmocninou",
+    "odmocninu",
+    "odpovědi",
+    "odpovědí",
+    "omezení",
+    "osmdesáti",
+    "padesáti",
+    "patnácti",
+    "pětině",
+    "pilotní",
+    "platí",
+    "platila",
+    "platnosti",
+    "podíl",
+    "podílech",
+    "podílem",
+    "podílu",
+    "podílů",
+    "podílům",
+    "podíly",
+    "podívejte",
+    "pokrytí",
+    "poloviční",
+    "populační",
+    "populačního",
+    "porovnání",
+    "poslední",
+    "posledním",
+    "posoudili",
+    "posoudíme",
+    "pozorování",
+    "pravděpodobnosti",
+    "pravděpodobností",
+    "procentní",
+    "procentních",
+    "procentními",
+    "procvičování",
+    "prostřední",
+    "proti",
+    "první",
+    "prvním",
+    "přehrávání",
+    "přeskupení",
+    "přiřadit",
+    "přiřazení",
+    "referenční",
+    "rozdělení",
+    "rozdíl",
+    "rozdílu",
+    "rozdílů",
+    "rozdíly",
+    "rozhodnutí",
+    "rozhodování",
+    "rozšířením",
+    "řešení",
+    "sčítání",
+    "sedmdesáti",
+    "sedmnácti",
+    "setin",
+    "schopnosti",
+    "skutečnosti",
+    "snímek",
+    "snímku",
+    "snímků",
+    "sociální",
+    "souvislosti",
+    "spolehlivosti",
+    "sportovním",
+    "srovnání",
+    "stupni",
+    "šesti",
+    "šestnácti",
+    "tím",
+    "tisíc",
+    "tisíce",
+    "tisícin",
+    "tisícina",
+    "totiž",
+    "třetí",
+    "třetím",
+    "třetímu",
+    "třiceti",
+    "tvrdí",
+    "tvrdil",
+    "účastníků",
+    "účastníky",
+    "učebnice",
+    "učebnici",
+    "umístění",
+    "umocnění",
+    "umocněním",
+    "umocníme",
+    "upozornění",
+    "uspořádání",
+    "uvádí",
+    "uvádíme",
+    "uvnitř",
+    "velikosti",
+    "velikostí",
+    "vidí",
+    "vidíte",
+    "vlastního",
+    "vlastním",
+    "vlastnosti",
+    "vodítko",
+    "volnosti",
+    "vrátíme",
+    "vyhýbání",
+    "vyjádření",
+    "vynásobení",
+    "výzkumnice",
+    "vzdálenosti",
+    "vznikaly",
+    "vznikl",
+    "vznikla",
+    "zařazení",
+    "zatím",
+    "zavádí",
+    "zjistit",
+    "zlepšení",
+    "změnil",
+    "zní",
+    "ztratí",
+    "zvládání"
+  ],
+  "pronunciation_review": "Zbývající di/ti/ni a dí/tí/ní posouzeny slovně; ponechány české měkké skupiny a koncovky. Přepisy jsou textově ověřeny, přednes hlasu nikoli.",
+  "numeric_verification": {
+    "engine": "Base R 4.5.1",
+    "script": "tmp/chapter09-presentation/check.R (ignorovaná pracovní složka)",
+    "result": "Všechny hodnoty prezentace a poznámek, ze kterých scénář vychází, souhlasí s nezávislým přepočtem v uvedeném zaokrouhlení (43 skupin kontrol, 0 rozdílů)."
+  },
+  "checks": {
+    "announcements_present_once_in_order": true,
+    "slide_count": 30,
+    "digits_found": 0,
+    "math_or_markup_symbols_found": 0,
+    "urls_found": 0,
+    "risky_original_forms_found": 0,
+    "line_endings": "LF"
+  },
+  "limitations": [
+    "Zvuk nebyl vytvořen; skutečná výslovnost přepisů ani délka nahrávky nejsou ověřeny.",
+    "Odhad délky vychází jen z počtu slov.",
+    "Poslechová kontrola neproběhla."
+  ]
+}

@@ -176,6 +176,19 @@ Fisherova testu jen zmínkou; simulovaná *p*-hodnota jen jako princip na tabulc
 poměr, Mantelův–Haenszelův test, loglineární modely, logistická regrese, analýza síly pro χ²,
 Cohenovo w a slovní pásma, testy trendu, pořadové testy (Wilcoxonův test).
 
+### Prezentace a doprovodný scénář
+
+Prezentace ke kapitole (2026-11-24) je v [presentations/kapitola_09/](../../presentations/kapitola_09/):
+jedna výuka, 23 obsahových slidů v pěti oddílech, šest úloh bez Excelu a doprovodný sešit s pěti listy.
+Vykládá povinnou část; Wilsonův a Newcombův interval bez vzorce a odvození, Fisherův test a simulovanou
+*p*-hodnotu jako princip, nepovinná rozšíření vynechává. Úlohy a data sešitu jsou nová modelová, nejsou
+součástí kapitoly ani `data/kapitola_09.xlsx`. Na výslovnou žádost autora připraven také
+[scénář pro syntézu řeči](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar.txt)
+ke snímkům 1–30 s [průvodním dokumentem](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_podklady.md)
+a [manifestem](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_manifest.json); nahrávka nevznikla.
+Rozsah kapitoly se nemění; postup a kontroly jsou v [autorské historii](../../quarto/README.md#prezentace-kapitoly-9).
+Soulad tohoto doplnění s prezentací zkontrolován 2026-11-24; datum kontroly výkladu kapitoly výše se tím nemění.
+
 ## Vazby na podklady
 
 Výběr karet pro dohledání podkladů k tématům této kapitoly vychází z tematického rozcestníku a záznamů čtení a použití. Samotný odkaz neznamená převzetí příkladu ani nové prostudování; přesné lokátory, použití, nálezy a rozsah ověření jsou v cílových kartách.
