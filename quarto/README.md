@@ -13,6 +13,16 @@ rozšíření vynechána; výstupy jako u kapitoly 8 a navíc scénář, **bez s
 Kapitola 9, slovník, osnova ani `data/kapitola_09.xlsx` se neměnily; věcný rozpor mezi kapitolou
 a prezentací nebyl zjištěn.
 
+Oprava téhož dne po připomínce autora: číslice a znaménka v dolních a horních indexech rovnic
+(slidy 7, 9, 10, 11, 14, 17, 19 a 25; 18 rovnic sešitu cvičení) byly zapsány jako „normální
+text“ uvnitř indexu, a proto se nezmenšovaly. Nově jsou to stojaté znaky v matematickém režimu
+a index *s* s rozdílem podílů má vnořené indexy. Ověřeno vykreslením slidů v PowerPointu
+(prohlédnuty slidy 9, 10, 14, 17 a 19), přepočtem sešitu v Excelu (0 chyb vzorců, 5 kontrol
+„ano“) a kontrolou, že žádný index rovnic sešitu neobsahuje normální text; manifest scénáře má
+nový otisk prezentace. Obsah, čísla, poznámky DOCX ani scénář se nezměnily. Pracovní generátor
+prezentace kapitoly 8 má tutéž vadu; její soubory se neupravovaly, protože je autor právě
+ručně rediguje.
+
 Výklad má 23 obsahových slidů v pěti oddílech podle
 [R50](../docs/rozhodnuti/postupy-a-dokumentace.md#r50-struktura-prezentaci): od tabulky k otázce
 o populaci; odhad a porovnání podílů; testy chí-kvadrát; předpoklady a velikost souvislosti;
