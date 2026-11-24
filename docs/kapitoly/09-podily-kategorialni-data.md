@@ -182,7 +182,11 @@ Prezentace ke kapitole (2026-11-24) je v [presentations/kapitola_09/](../../pres
 jedna výuka, 23 obsahových slidů v pěti oddílech, šest úloh bez Excelu a doprovodný sešit s pěti listy.
 Vykládá povinnou část; Wilsonův a Newcombův interval bez vzorce a odvození, Fisherův test a simulovanou
 *p*-hodnotu jako princip, nepovinná rozšíření vynechává. Úlohy a data sešitu jsou nová modelová, nejsou
-součástí kapitoly ani `data/kapitola_09.xlsx`. Na výslovnou žádost autora připraven také
+součástí kapitoly ani `data/kapitola_09.xlsx`. Druhý sešit
+[s daty a výpočty z výkladu](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_vyklad.xlsx)
+má list pro každou studii ze slidů 3–30. Jeho data se shodují s výkladem kapitoly a s `data/kapitola_09.xlsx`;
+obsahuje hotové výpočty po krocích se sloupcem „Na slidu“, bez pracovní oblasti
+([historie](../../quarto/README.md#sesit-kapitoly-9-vyklad)). Na výslovnou žádost autora připraven také
 [scénář pro syntézu řeči](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar.txt)
 ke snímkům 1–30 s [průvodním dokumentem](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_podklady.md)
 a [manifestem](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_manifest.json); nahrávka nevznikla.
