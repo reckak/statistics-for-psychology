@@ -1,5 +1,36 @@
 # Autorská dokumentace
 
+<a id="tutor-vizualizace-interval-podilu"></a>
+
+## AI tutor: rada k vizualizaci intervalu pro podíl (2026-11-25)
+
+Při sloučení [vizualizace Waldova a Wilsonova intervalu](#vizualizace-interval-podilu)
+chyběl v `VIZUALIZACE.md` balíčku tutora řádek nové stránky, takže
+`export-tutor.cjs` i `check-tutor.cjs` padaly na „Interactive page missing in
+VIZUALIZACE.md: viz_interval_podilu“. Doplněno:
+
+- **řádek tabulky interaktivních stránek** s plnou adresou
+  `viz_interval_podilu.html`, za vizualizací dvou intervalů jako v menu knihy.
+  Rada k nastavení vychází z úkolů „Vyzkoušejte si“ stránky; „Čeho si všimnout“
+  z jejího stejnojmenného oddílu a z [karty kapitoly 9](../docs/kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09)
+  (64 % proti 92,5 % při *n* = 20 a π = 0,05, pokrytí jako součet sloupců,
+  průměr 95,3 %, propady jen u 0 a 1). Graf nerovnice je označen jako součást
+  nepovinného odvození;
+- **oprava zastaralé věty** „Kapitoly 1, 2 a 10 interaktivní stránku nemají“
+  na „Kapitoly 1 a 2“; kapitola 10 má od 2026-11-23 [vizualizaci korelace](#vizualizace-korelace).
+
+**Verze tutora** se nezvyšuje (zůstává 0.4.1), stejně jako při doplnění
+vizualizace korelace: verze označuje obsah balíčků při vydání a nic se
+nevydává. Protože vydání `tutor-v0.4.1` je zveřejněné a obsah balíčků se od něj
+změnil (vizualizace korelace a intervalu pro podíl), musí mít příští vydání
+novou verzi.
+
+**Kontroly:** `node scripts/export-tutor.cjs` (zahrnuje `check-tutor.cjs`)
+prošel (16 interaktivních stránek, archivy 0.4.1) a prošel i samostatný
+`node scripts/check-tutor.cjs`; výstup v ignorované složce `ai-tutor/` nebyl
+nahrán ani vydán.
+Chování tutora v klientech se neověřovalo.
+
 <a id="aplikace-jeden-podil"></a>
 
 ## Statistické aplikace: pilotní test jednoho podílu (2026-11-25, R87)
