@@ -39,6 +39,41 @@ Nezávislá kontrola:
 
 **Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Didaktická revize je interní, ne ověření na studentech.
 
+<a id="sesit-kapitoly-9-vyklad"></a>
+
+## 2026-11-24 — Sešit s daty a výpočty z výkladu prezentace kapitoly 9
+
+Na pokyn autora vytvořen nový doprovodný sešit
+`presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_vyklad.xlsx` se všemi daty
+z výkladové části prezentace (slidy 3–30) a s výpočty, které výklad uvádí na slidech nebo
+v poznámkách. Podle autorovy volby jde o sešit jen pro prezentaci 9, ne o nové pravidlo
+pro ostatní prezentace. Sešit cvičení `_cviceni.xlsx` se nemění.
+
+- **Uspořádání:** list `Prehled` a deset listů, každý pro jednu studii či datový soubor: `Stres`,
+  `Test_20`, `Pozice`, `Zvladani`, `Letni_cas`, `Pilot`, `Daniels`, `Aspirin`, `Pomoc`, `Spanek`.
+  Sloupec A obsahuje otázku, čísla slidů, popis a původ dat a blok „Potřebné vztahy“ (51 nativních
+  rovnic, převzatých z definic sešitu cvičení, nově jen φ, interval pro poměr rizik a pravděpodobnost
+  tabulky ve Fisherově testu). V C–H jsou data a odvozené tabulky, od sloupce J výpočty po krocích
+  základními operacemi s textovým vzorcem, sloupcem „Na slidu“ a kontrolami funkcemi Excelu.
+  Sešit nemá pracovní oblast.
+- **Data:** shodná s listy výkladu ve studentském sešitu `data/kapitola_09.xlsx`
+  (`scripts/sesity-data.mjs`); příklad letního času podle textu kapitoly (Howell, 2013, s. 154).
+  Simulovaná *p*-hodnota pilotní studie (6,8 %) je jen uvedena, v Excelu se nepočítá.
+- **Navazující soubory:** heslovité poznámky ke slidu 38 v PPTX (jedna nová odrážka, doplněno
+  na místě v PowerPointu; slidy beze změny, PowerPoint při uložení jen jinak zapsal deklaraci
+  jmenného prostoru ve slidu 11) a podrobné poznámky v DOCX (nový odstavec u slidu 38,
+  přegenerováno z `notes-detail.cjs`, jinak textově shodné s předchozí verzí).
+- Generátor v ignorovaném `tmp/chapter09-presentation/`: `vyklad.mjs`, `equations-vyklad-spec.cjs`,
+  `make-vyklad.sh`, `check-vyklad.ps1`, `check-vyklad.R`; `equations.cjs` nově přijímá cestu
+  ke specifikaci rovnic a `equations-spec.cjs` exportuje své definice.
+
+**Ověření:** sestaveno a přepočteno v českém Excelu 16: 0 chybových buněk, 17 kontrol „Shoda
+s kroky“ = ano (jediné „ne“ je věcná odpověď kroku „Leží π₀ = 0,25 uvnitř Wilsonova intervalu?“),
+51 rovnic. `check-vyklad.R`: 26 skupin nezávislého přepočtu v R bez rozdílu a 205 hodnot
+zaokrouhlených jako ve výkladu se shoduje s čísly na slidech a v poznámkách. Listy prohlédnuty
+v PDF exportu (rovnice, záhlaví tabulek, šířky sloupců). DOCX otevřen ve Wordu: 18 stran,
+38 nadpisů slidů. Neověřeno: vzhled sešitu v jiné než české verzi Excelu.
+
 <a id="sesit-kapitoly-9-kroky"></a>
 
 ## 2026-11-24 — Sešit cvičení k prezentaci kapitoly 9: Waldův interval a pracovní oblast po krocích
