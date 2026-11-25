@@ -1033,6 +1033,10 @@ Tomuto postupu se říká **binomický test (*binomial test*)**. Je na listu `Bi
 
 Vzorec v B7 je [doplněk](kapitola_05.qmd#sec-binom-kumulace) z minulé kapitoly: „alespoň 10“ je opakem „nejvýše 9“. Funkce [BINOM.INV](kapitola_05.qmd#sec-binom-kumulace) v B8 vrátí nejmenší počet, pro který kumulativní pravděpodobnost dosáhne alespoň 0,95, zde 8. Počty větší než tento, tedy od 9 výše, mají dohromady pravděpodobnost nejvýše 0,05; proto přičítáme jedničku. Ve sloupcích D a E je pravděpodobnost $P(X\ge k)$ pro všechny počty od 0 do 20. List počítá test s alternativou „více“ pro nejvýše 20 pokusů a vyžaduje pozorovaný počet alespoň 1.
 
+::: {.callout-tip title="Spočítejte si: test jednoho podílu"}
+V [aplikaci Test jednoho podílu](app_jeden_podil.qmd) zadáte četnosti dvou kategorií, testovanou hodnotu, alternativní hypotézu a hladinu významnosti. Aplikace spočítá binomický test i pro jiná data a ukáže sloupce rozdělení při nulové hypotéze, které tvoří *p*-hodnotu. Navíc uvádí skórový test a interval pro podíl z kapitoly 9.
+:::
+
 ### *z*-test: průměr proti známé normě {#sec-z-test}
 
 Druhý příklad se týká průměru. Test pozornosti má podle norem v populaci studentů průměr 50 bodů a směrodatnou odchylku 10 bodů; je to ilustrační [model z kapitoly o normálním rozdělení](kapitola_04.qmd#sec-normalni-model), ne norma skutečného testu. Výzkumnice chce vědět, zda studenti po noci s méně než pěti hodinami spánku dosahují v testu nižších skórů. Otestuje 25 takových studentů a jejich průměr je 46 bodů.

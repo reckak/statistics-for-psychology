@@ -141,6 +141,21 @@ poměr rizik a poměr šancí“ na stránku
 
 Kontrola souladu vizualizací chí-kvadrát a měr souvislosti s textem uvedených oddílů: 2026-11-20; vizualizace intervalu pro podíl: 2026-11-25. Zbývající námět vizualizace ke kapitole 9 je otevřeným návrhem v [plánu pokračování](plan-pokracovani.md#plan-vizualizace).
 
+<a id="aplikace-09"></a>
+
+**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):**
+na konci pododdílu [Interval a test jednoho podílu](../../quarto/kapitola_09.qmd#sec-interval-a-test-podilu),
+před rozšířením o studiích telepatie, odkazuje blok „Spočítejte si: test jednoho
+podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd)
+(odkaz má i [kapitola 6](06-vyberove-rozdeleni-testovani.md#aplikace-06)).
+
+- **Vstupy:** název proměnné, názvy a četnosti dvou kategorií (0–100 000, součet alespoň 1), kategorie počítaná jako úspěch, π₀ (desetinné číslo nebo zlomek), alternativní hypotéza (≠, >, <) a α (0 až 0,5); u jednostranné alternativy volba oboustranného intervalu 1 − 2α (výchozí) nebo jednostranného intervalu 1 − α. Stránka se otevírá s daty 7 z 8 (kap. 6, cvičení 8) při π₀ = 0,50 a oboustranné alternativě. Předvolby: tipující student (kap. 6), rozpoznávání číslic (kap. 6, cvičení 8), studie o telepatii (rozšíření kap. 9), každá se svou π₀ a alternativou.
+- **Výsledky:** tabulka s dosazením (data, rozdíl *p* − π₀ v procentních bodech, skórový test se směrodatnou chybou z π₀, u oboustranné alternativy χ² = *z*², přesný binomický test, Wilsonův interval a rozdíl od π₀ s intervalem), slovní interpretace, očekávané četnosti s pravidlem alespoň 5 a upozorněním, grafy pozorovaných a očekávaných četností, rozdělení Bin(*n*; π₀) se sloupci *p*-hodnoty, pozorovaným *k* a normální aproximací a osa podílu s intervalem a π₀. Tabulka výsledků má tmavé záhlaví a šedé řádky skupin; výpočet v Excelu aplikace neuvádí ([upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-25)).
+- **Vztah k výkladu:** opakuje pododdíly Wilsonův interval, Výpočet v Excelu, Interval a test jednoho podílu, Dvě kategorie: chí-kvadrát a *z*-test a Malé očekávané četnosti a binomický test kapitoly 6. Oboustrannou přesnou *p*-hodnotu počítá pravidlem Fisherova testu z této kapitoly (součet pravděpodobností výsledků stejně nebo méně pravděpodobných než pozorovaný, jako `binom.test` v R) a porovnává ji se zdvojením z McNemarova a znaménkového testu; to a jednostranný Wilsonův interval podle R75 jdou nad rámec výkladu jednoho podílu a schválil je R87. Nové termíny nezavádí.
+- **Rozsah:** jen dvě kategorie; nepočítá jiné intervaly pro podíl, Cohenovo *h* ani sílu testu. Není samostatným cvičením.
+
+Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-25.
+
 <a id="cviceni-09"></a>
 
 ### Cvičení a očekávané dovednosti

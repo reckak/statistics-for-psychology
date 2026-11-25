@@ -315,6 +315,9 @@ konkrétního místa.
   - odkaz na interaktivní vizualizaci: krátký `.callout-tip` s titulkem
     „Vyzkoušejte si: …“ a odkazem na její stránku (viz
     [Interaktivní vizualizace](#interaktivni-vizualizace));
+  - odkaz na statistickou aplikaci: krátký `.callout-tip` s titulkem
+    „Spočítejte si: …“ a odkazem na její stránku (viz
+    [Statistické aplikace](#statisticke-aplikace));
   - řešení cvičení podle oddílu „Cvičení a řešení“.
 - Popisek obrázku či tabulky sdělí hlavní zjištění nebo to, čeho si má
   student všimnout, nejen co je zobrazeno.
@@ -484,9 +487,9 @@ konkrétního místa.
 
 ## Tři závěrečné přehledové kapitoly
 
-Za všemi výkladovými kapitolami a částí s interaktivními vizualizacemi udržuj
-vždy tyto tři kapitoly v uvedeném pořadí; nové výkladové kapitoly zařazuj
-před obě. Přehledy doplňuj současně
+Za všemi výkladovými kapitolami a částmi s interaktivními vizualizacemi
+a statistickými aplikacemi udržuj vždy tyto tři kapitoly v uvedeném pořadí;
+nové výkladové kapitoly zařazuj před obě části. Přehledy doplňuj současně
 s každou kapitolou, ne až při dokončení knihy.
 
 1. **Slovníček pojmů:** preferovaný český termín, anglický ekvivalent,
@@ -536,6 +539,35 @@ Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
   [provozním návodu](docs/PROVOZ.md#interaktivni-vizualizace)).
 - Simulace a výpočty ověř nezávislým výpočtem a vizualizaci zahrň do
   kontroly webu podle [provozního návodu](docs/PROVOZ.md#interaktivni-vizualizace).
+
+<a id="statisticke-aplikace"></a>
+
+## Statistické aplikace
+
+Část „Statistické aplikace“ stojí za interaktivními vizualizacemi a před
+přehledy; v postranní nabídce je ve výchozím stavu sbalená. Uspořádání, pilot
+a doklad eviduje [R87](docs/rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace).
+Každou novou aplikaci předem dohodni stejně jako obsah kapitoly.
+
+- Aplikace počítá probrané postupy pro data zadaná studentem: jedna
+  nečíslovaná stránka `quarto/app_<tema>.qmd` se stabilním ID `#sec-app-<tema>`.
+  Používá jen metody, pojmy a značení vysvětlené v kapitolách; postup nad
+  rámec výkladu jen po dohodě a se stručným vysvětlením na stránce.
+- Stránka uvádí otázku a navazující oddíly, návod k ovládání, aplikaci,
+  oddíl „Co aplikace počítá“ (princip, předpoklady a vzorce s odkazy do
+  kapitol, ne nový výklad), 2–4 úkoly „Vyzkoušejte si“ a „Čeho si všimnout“.
+  Aplikace má ověřované vstupy, popisky převzaté ze vstupů, tabulku výsledků
+  s dosazením, slovní interpretaci, kontrolu předpokladů a grafy s textovým
+  popisem; výpočet v Excelu neuvádí. Tabulka výsledků má tmavé záhlaví
+  s bílým písmem a slabě šedé řádky nadpisů skupin (výjimka ze
+  [sazby tabulek](#sazba-tabulek) podle upřesnění R87).
+- Výpočty patří do sdíleného modulu v `assets/stat/`, ověřeného proti R.
+  Text zadaný uživatelem vkládej do stránky vždy escapovaný; data neopouštějí
+  prohlížeč.
+- Výklad kapitoly obstojí bez aplikace a odkazuje na ni blokem
+  „Spočítejte si: …“. Aplikace nejsou součástí PDF ani balíčku tutora.
+  Technika, ovládání klávesnicí, mobilní zobrazení a kontrola webu se řídí
+  oddílem o vizualizacích a [provozním návodem](docs/PROVOZ.md#statisticke-aplikace).
 
 ## Studentský text a autorská dokumentace
 

@@ -69,10 +69,10 @@ PDF celé učebnice (od 2026-11-14, [R80](rozhodnuti/postupy-a-dokumentace.md#r8
 Za [úvodem](../index.qmd) je
 nečíslovaná stránka [AI tutor: stažení a instalace](../quarto/ai_tutor.qmd)
 (od 2026-11-14, [R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu));
-nejde o výklad učiva. Následuje deset výkladových kapitol; za nimi je část „Interaktivní vizualizace“,
-potom [literatura](../quarto/literatura.qmd) a tři výše uvedené přehledy
+nejde o výklad učiva. Následuje deset výkladových kapitol; za nimi jsou části „Interaktivní vizualizace“
+a „Statistické aplikace“, potom [literatura](../quarto/literatura.qmd) a tři výše uvedené přehledy
 v pořadí slovníček → značení a vzorce → Excel. Nové výkladové kapitoly
-patří před vizualizace, literaturu a přehledy.
+patří před vizualizace, aplikace, literaturu a přehledy.
 
 **Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
@@ -104,7 +104,19 @@ ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizual
 ke kapitole 9 ([karta](kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09))
 a [jak tvar mraku bodů souvisí s korelačním koeficientem](../quarto/viz_korelace.qmd)
 ke kapitole 10 ([karta](kapitoly/10-korelace.md#interaktivni-vizualizace-10); regrese a *r*² jen ve vizualizaci).
-Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace). Čísla v této mapě
+Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace).
+
+**Statistické aplikace od 2026-11-25** ([R87](rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):
+jedna stránka na aplikaci, která počítá probraný postup pro data zadaná
+studentem a shrnuje jeho princip, předpoklady a vzorce s odkazy do kapitol.
+Aplikace nezavádějí nové pojmy (s výjimkou schváleného pravidla oboustranné
+přesné *p*-hodnoty) a nejsou samostatným procvičením ve smyslu této mapy.
+V postranní nabídce je část ve výchozím stavu sbalená. Existuje pilotní
+[test jednoho podílu](../quarto/app_jeden_podil.qmd) ke kapitolám 6 a 9
+([karta 6](kapitoly/06-vyberove-rozdeleni-testovani.md#aplikace-06),
+[karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09)); další aplikace
+se schvalují samostatně ([plán](kapitoly/plan-pokracovani.md#plan-aplikace)).
+Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají
 stabilní identifikátory Quarta.
 
