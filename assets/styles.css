@@ -315,3 +315,13 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-kor-ell { width: auto; }
 .viz-kor-ell thead th:first-child { text-align: left; }
 .viz-pj-presets button[aria-pressed="true"] { background: var(--accent); color: white; }
+/* Wald and Wilson interval for a proportion (viz_interval_podilu.qmd). */
+.viz .viz-ip-check { padding-top: 0; margin: 0 0 .5rem; }
+.viz-ip-pick { cursor: crosshair; touch-action: pan-y; }
+.viz-ip-bars + .viz-ip-bars { margin-top: .6rem; }
+.viz-ip-sum { margin: .1rem 0 .4rem; font-variant-numeric: tabular-nums; }
+.viz-ip-excel thead th:nth-child(-n+3), .viz-ip-excel td:nth-child(2), .viz-ip-excel td:nth-child(3) { text-align: left; }
+.viz-ip-excel code { overflow-wrap: anywhere; white-space: normal; }
+.viz-ip-excel td:nth-child(3) { min-width: 13rem; }
+.viz-ip-excel td:nth-child(2) { min-width: 9rem; }
+.viz-ip-excel td:last-child { white-space: nowrap; }

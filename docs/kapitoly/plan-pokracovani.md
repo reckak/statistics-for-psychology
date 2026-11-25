@@ -145,6 +145,11 @@ a schválil téhož dne s inspirací Magnussonovým článkem jako stránku
 [Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../../quarto/viz_miry_souvislosti.qmd)
 ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry),
 [karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
+Druhý námět téhož návrhu, „Waldův a Wilsonův interval pro podíl s přesným pokrytím
+podle π“, autor zadal a schválil 2026-11-25 s interaktivní obdobou obrázku odvození
+jako stránku [Proč odhadujeme podíl Wilsonovým intervalem](../../quarto/viz_interval_podilu.qmd)
+([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-25-interval-podilu),
+[karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Vizualizaci korelace ke kapitole 10, která v žádném návrhu nebyla (R71 další
 vizualizaci vylučoval), autor zadal 2026-11-23 podle aplikace R Psychologist a téhož dne
 schválil jako stránku
@@ -154,9 +159,8 @@ schválil jako stránku
 jsou jen v ní a o kapitole o regresi se tím nerozhoduje.
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé
 hodnoty na průměr, medián a směrodatnou odchylku; kap. 6 centrální limitní věta zvlášť; kap. 7
-pásmo ekvivalence. Zbývající náměty z návrhu 2026-11-20 ke kapitole 9, neschválené:
-Waldův a Wilsonův interval pro podíl s přesným pokrytím podle π; simulovaná *p*-hodnota přeskupením
-tabulky (případně společně s přeskupením v kapitole 10).
+pásmo ekvivalence. Zbývající námět z návrhu 2026-11-20 ke kapitole 9, neschválený:
+simulovaná *p*-hodnota přeskupením tabulky (případně společně s přeskupením v kapitole 10).
 
 **Návaznost kapitol 8 a 10 (2026-11-14, [R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8)):** nepovinné rozšíření o variabilitě rozdílů a korelaci obou měření se přesunulo z kapitoly 10 do kapitoly 8, která Pearsonovo *r* představuje jen neformálně s odkazem dopředu; kapitola 10 na rozšíření odkazuje připomenutím. Povinný výklad kapitoly 10 korelaci z kapitoly 8 nepředpokládá.
 

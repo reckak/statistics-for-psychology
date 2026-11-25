@@ -677,7 +677,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
     assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
-    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
+    assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Proč odhadujeme podíl Wilsonovým intervalem','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
     assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -2228,6 +2228,152 @@ const server = http.createServer((req, res) => {
     await ms.locator('[data-preset="aspirin"]').click();
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Large fields of persons fit a phone');
     await ms.screenshot({path:'tmp/verification/viz-miry-souvislosti-mobile.png'});
+    await page.setViewportSize({width:1360,height:1000});
+
+    // Wald and Wilson interval for a proportion: limits, exact coverage and its summary against R (scripts/viz-interval-podilu.R),
+    // inputs and presets, the level slider, the selected π by keyboard and by clicking, the Wald bound, full screen and phone.
+    await page.goto(base + 'quarto/kapitola_09.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-wilson .callout-tip a[href$="viz_interval_podilu.html"]').count(), 1, 'Chapter 9 links to the visualization of the interval for a proportion');
+    await page.goto(base + 'quarto/viz_interval_podilu.html', { waitUntil: 'networkidle' });
+    const ip = page.locator('#viz-interval-podilu');
+    const ipPlots = ip.locator('.viz-plots svg[aria-label]');
+    await ipPlots.first().waitFor();
+    assert.equal(await ipPlots.count(), 6, 'Six charts: intervals, derivation, coverage, Wald outside 0–1 and two bar charts');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
+    const ipState = () => ip.evaluate(el => el.vizCheck.state());
+    const ipNear = (a, b, msg, tol = 1e-9) => assert(a !== null && Math.abs(a - b) <= tol, `${msg}: ${a} vs ${b}`);
+    // R: [z, Wald se, lo, hi, Wilson midpoint, half-width, lo, hi]; the roots of the quadratic equal the Wilson limits.
+    const ipLimits = [
+      [[10, 20, .95], [1.959963984540, 0.111803398875, 0.280869364856, 0.719130635144, 0.5, 0.200701991802, 0.299298008198, 0.700701991802]],
+      [[0, 15, .95], [1.959963984540, 0, 0, 0, 0.101941650518, 0.101941650518, 0, 0.203883301036]],
+      [[1, 25, .95], [1.959963984540, 0.039191835885, -0.036814586822, 0.116814586822, 0.101268435432, 0.094172201930, 0.007096233502, 0.195440637362]],
+      [[20, 20, .95], [1.959963984540, 0, 1, 1, 0.919437420974, 0.080562579026, 0.838874841947, 1]],
+      [[0, 1, .95], [1.959963984540, 0, 0, 0, 0.396725342811, 0.396725342811, 0, 0.793450685623]],
+      [[10, 20, .5], [0.674489750196, 0.111803398875, 0.424589753422, 0.575410246578, 0.5, 0.074566934911, 0.425433065089, 0.574566934911]],
+      [[10, 20, .99], [2.575829303549, 0.111803398875, 0.212013528941, 0.787986471059, 0.5, 0.249552299678, 0.250447700322, 0.749552299678]],
+      [[3, 200, .9], [1.644853626951, 0.008595056719, 0.000862389782, 0.029137610218, 0.021473372918, 0.015463145075, 0.006010227843, 0.036936517992]],
+      [[199, 200, .99], [2.575829303549, 0.004987484336, 0.982153091697, 1.007846908303, 0.979105909159, 0.020306791079, 0.958799118080, 0.999412700238]]
+    ];
+    for (const [v, want] of ipLimits) {
+      const g = await ip.evaluate((el, a) => { const c = el.vizCheck, W = c.wald(...a), S = c.wilson(...a), R = c.roots(...a); return [c.zq(a[2]), W.se, W.lo, W.hi, S.mid, S.half, S.lo, S.hi, R.lo, R.hi]; }, v);
+      want.forEach((w, i) => ipNear(g[i], w, `${v[0]} z ${v[1]} at ${v[2]}: value ${i}`, 1e-10));
+      ipNear(g[8], want[6], `${v[0]} z ${v[1]}: smaller root is the Wilson lower limit`, 1e-10); ipNear(g[9], want[7], `${v[0]} z ${v[1]}: larger root is the Wilson upper limit`, 1e-10);
+    }
+    // R: exact coverage of the Wald and Wilson intervals and the probability that the Wald interval leaves 0–1 or has zero width.
+    const ipCover = [
+      [[20, .95, .05], [0.638940137257, 0.924516326212, 0.984098473980]], [[20, .95, .10], [0.876037256000, 0.956825504716, 0.867046676566]],
+      [[20, .95, .25], [0.894875150591, 0.934762207428, 0.225156077269]], [[20, .95, .5], [0.958610534668, 0.958610534668, 0.002576828003]],
+      [[10, .95, .2], [0.886256435200, 0.967206502400, 0.677877452800]], [[50, .95, .02], [0.635352102699, 0.921572251649, 0.982241919302]],
+      [[200, .95, .01], [0.865007767992, 0.948253736369, 0.858034034445]], [[15, .95, .1], [0.791859197820, 0.944444369992, 0.944444370333]],
+      [[20, .8, .3], [0.779581732619, 0.779581732619, 0.007637261436]], [[20, .99, .3], [0.959378706166, 0.994063915802, 0.237513329131]],
+      [[1, .95, .5], [0, 1, 1]], [[10, .5, .37], [0.485501553368, 0.485501553368, 0.009897388763]]
+    ];
+    for (const [v, want] of ipCover) {
+      const g = await ip.evaluate((el, a) => el.vizCheck.coverage(...a), v);
+      [g.wald, g.wilson, g.outside].forEach((x, i) => ipNear(x, want[i], `Coverage n = ${v[0]}, level ${v[1]}, π = ${v[2]}: value ${i}`, 1e-10));
+    }
+    // R: mean and share below the level over π = 0,001 … 0,999 and the lowest coverage including the points next to the limits.
+    const ipSummary = [
+      [[10, .95], [0.7698579134, 0.9542317222, 1, 0.4424424424, 0.009955000419, 0.8349535233]],
+      [[20, .95], [0.8466783079, 0.9531739825, 0.9949949950, 0.4044044044, 0.019811130387, 0.8365889243]],
+      [[200, .95], [0.9353491208, 0.9510079723, 0.7997997998, 0.4394394394, 0.112632740415, 0.8380214455]],
+      [[20, .8], [0.7250935838, 0.8084449357, 0.7037037037, 0.4114114114, 0.019623400697, 0.7160879679]]
+    ];
+    for (const [v, want] of ipSummary) {
+      const g = await ip.evaluate((el, a) => el.vizCheck.summary(...a), v);
+      [g.meanWald, g.meanWilson, g.belowWald, g.belowWilson, g.infWald, g.infWilson].forEach((x, i) => ipNear(x, want[i], `Summary n = ${v[0]}, level ${v[1]}: value ${i}`, 1e-9));
+    }
+    // Default state: 10 z 20 at 95 % and π = 0,05; texts with substitution, bars and the Excel table.
+    let ipS = await ipState();
+    assert.deepEqual([ipS.k, ipS.n, ipS.level, ipS.pi, ipS.runs.wald, ipS.runs.wilson, ipS.inequality], [10, 20, 95, 0.05, [[1, 4]], [[0, 2]], false]);
+    const ipText = sel => ip.locator(sel).innerText();
+    for (const t of ['10/20 = 0,500', '1,9600', '0,1118', '(0,281; 0,719)', '(0,299; 0,701)', 'posun nenastal']) assert((await ipText('[data-stats=intervals]')).includes(t), `Intervals show ${t}`);
+    for (const t of ['(0,500 − π)² ≤ 1,9600² · π(1 − π)/20', 'od 0,299 do 0,701', 'neplatí']) assert((await ipText('[data-stats=derivation]')).includes(t), `Derivation shows ${t}`);
+    for (const t of ['63,9 %', '92,5 %', '98,4 %', '84,7 %', '95,3 %', '83,7 %', '99,5 %', '40,4 %']) assert((await ipText('[data-stats=coverage]')).includes(t), `Coverage shows ${t}`);
+    const ipBars = await ipText('[data-bars]');
+    for (const t of ['0,377 + 0,189 + 0,060 + 0,013 = 0,639', '0,358 + 0,377 + 0,189 = 0,925', 'k = 1 až 4', 'k = 0 až 2']) assert(ipBars.includes(t), `Bars show ${t}`);
+    const ipExcel = await ip.locator('[data-excel] tbody tr').evaluateAll(rows => rows.map(r => [...r.children].map(c => c.textContent)));
+    assert.deepEqual(ipExcel[4], ['B8', 'Kvantil z', '=NORM.S.INV(1-(1-B4)/2)', '1,9600']);
+    assert.deepEqual(ipExcel[9], ['B14', 'Wilsonův interval: polovina šířky', '=B8/(1+B8^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B8^2/(4*B3^2))', '0,201']);
+    assert(!(await ip.locator('[data-warning]').isVisible()), 'No warning for 10 z 20');
+    // Presets: zero width at 0 z 15 and a negative lower limit at 1 z 25; π stays and now lies inside the Wilson interval.
+    await ip.locator('[data-preset="0,15"]').click();
+    ipS = await ipState(); assert.deepEqual([ipS.k, ipS.n, ipS.level, ipS.inequality], [0, 15, 95, true]);
+    assert.match(await ip.locator('[data-warning]').textContent(), /nulovou šířku.*přesně 0.*jen 15 pokusů/);
+    await ip.locator('#viz-ip-waldbound').check();
+    assert.match(await ipText('[data-stats=derivation]'), /Waldův interval v grafu nerovnice[\s\S]*= 0 a nezávisí na π[\s\S]*dotkne jen v bodě 0/);
+    await ip.locator('[data-preset="1,25"]').click();
+    assert.match(await ip.locator('[data-warning]').textContent(), /Dolní mez Waldova intervalu −0,037 leží pod nulou/);
+    assert((await ipText('[data-stats=intervals]')).includes('pod p sahá o 0,033, nad p o 0,155'), 'Asymmetric Wilson interval around p');
+    await ip.locator('#viz-ip-waldbound').uncheck();
+    // Whole-number fields: rejected values keep the last valid one; lowering n lowers k.
+    await ip.locator('[data-preset="10,20"]').click();
+    for (const bad of ['0', '201', '2.5', '-1']) {
+      await ip.locator('#viz-ip-n').fill(bad);
+      assert.equal(await ip.locator('#viz-ip-n').getAttribute('aria-invalid'), 'true', `Rejected n "${bad}"`);
+      assert.match(await ip.locator('#viz-ip-n-error').textContent(), /celé číslo od 1 do 200\. Používá se dál poslední platná hodnota\./);
+      assert.equal((await ipState()).n, 20, `Kept n after "${bad}"`);
+    }
+    await ip.locator('#viz-ip-n').fill('20');
+    await ip.locator('#viz-ip-k').fill('21');
+    assert.match(await ip.locator('#viz-ip-k-error').textContent(), /od 0 do 20/); assert.equal((await ipState()).k, 10, 'Kept k above n');
+    await ip.locator('#viz-ip-k').fill('10');
+    await ip.locator('#viz-ip-n').fill('8');
+    ipS = await ipState(); assert.deepEqual([ipS.k, ipS.n], [8, 8], 'k lowered to n');
+    assert.match(await ip.locator('[data-clamp]').textContent(), /snížen na n = 8/);
+    assert.equal(await ip.locator('#viz-ip-k').getAttribute('max'), '8');
+    // Level slider by keyboard and by value; the coverage depends on n and the level only.
+    await ip.locator('[data-preset="10,20"]').click();
+    const ipCov0 = (await ipState()).summary;
+    await ip.locator('#viz-ip-k').fill('3');
+    assert.deepEqual((await ipState()).summary, ipCov0, 'Coverage does not depend on the observed count');
+    await ip.locator('#viz-ip-level').focus();
+    await page.keyboard.press('End'); assert.equal((await ipState()).level, 99);
+    await page.keyboard.press('Home'); assert.equal((await ipState()).level, 50);
+    await ip.locator('#viz-ip-level').evaluate(el => { el.value = '80'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    ipS = await ipState(); assert.equal(ipS.level, 80); ipNear(ipS.summary.meanWilson, 0.8084449357, 'Mean Wilson coverage at 80 %');
+    assert.equal(await ip.locator('#viz-ip-cov-title').textContent(), 'Pokrytí obou postupů pro n = 20 a hladinu 80 %');
+    assert.equal(await ip.locator('#viz-ip-level-value').textContent(), '80 %');
+    // Selected π: arrows by 0,01, with Shift by 0,001, Page Up by 0,1, Home and End; clicking in the coverage chart.
+    await ip.locator('[data-preset="10,20"]').click();
+    await ip.locator('#viz-ip-pi').focus();
+    await page.keyboard.press('ArrowRight'); ipNear((await ipState()).pi, 0.06, 'Arrow moves π by 0,01', 1e-12);
+    await page.keyboard.press('Shift+ArrowRight'); ipNear((await ipState()).pi, 0.061, 'Shift+Arrow moves π by 0,001', 1e-12);
+    await page.keyboard.press('PageUp'); ipNear((await ipState()).pi, 0.161, 'Page Up moves π by 0,1', 1e-12);
+    await page.keyboard.press('Home'); ipNear((await ipState()).pi, 0.001, 'Home sets the smallest π', 1e-12);
+    await page.keyboard.press('End'); ipNear((await ipState()).pi, 0.999, 'End sets the largest π', 1e-12);
+    const ipBox = await ip.locator('[data-chart=coverage] svg').boundingBox();
+    await page.mouse.click(ipBox.x + ipBox.width / 2, ipBox.y + ipBox.height / 2);
+    ipS = await ipState(); assert(ipS.pi > 0.4 && ipS.pi < 0.6, `Click selects π near the middle: ${ipS.pi}`);
+    ipNear(ipS.cover.wald, (await ip.evaluate((el, p) => el.vizCheck.coverage(20, 0.95, p), ipS.pi)).wald, 'Marker coverage', 1e-15);
+    await ip.locator('#viz-ip-zoom').check(); assert((await ipState()).zoom, 'Zoom on');
+    await ip.locator('#viz-ip-zoom').uncheck();
+    // Large n: the bar charts show a window around the most probable counts.
+    await ip.locator('#viz-ip-n').fill('200'); await ip.locator('#viz-ip-k').fill('3');
+    await ip.locator('#viz-ip-pi').evaluate(el => { el.value = '0.01'; el.dispatchEvent(new Event('input', {bubbles: true})); });
+    ipS = await ipState(); assert(ipS.window[0] === 0 && ipS.window[1] < 200, `Window of counts ${ipS.window}`);
+    ipNear(ipS.cover.wald, 0.865007767992, 'Wald coverage at n = 200, π = 0,01', 1e-10);
+    assert.match(await ipText('[data-bars]'), /Grafy ukazují počty od 0 do \d+\. Všechny ostatní počty od 0 do 200/);
+    // Full screen widens the charts and Escape closes it.
+    await ip.locator('[data-preset="10,20"]').click();
+    const ipFull = ip.locator(':scope > .viz-fullscreen-bar > button.viz-fullscreen');
+    assert.equal(await ipFull.count(), 1, 'One full-screen button');
+    const ipInline = await ipPlots.first().evaluate(el => el.getBoundingClientRect().width);
+    assert(ipInline <= 781, `Inline chart width ${ipInline}`);
+    await ip.screenshot({path:'tmp/verification/viz-interval-podilu-desktop.png'});
+    await ipFull.click();
+    await page.waitForFunction(w => document.querySelector('#viz-interval-podilu .viz-plots svg[aria-label]').getBoundingClientRect().width > w + 100, ipInline);
+    await page.screenshot({path:'tmp/verification/viz-interval-podilu-fullscreen.png'});
+    await page.keyboard.press('Escape');
+    if (await page.evaluate(() => !!document.fullscreenElement)) await page.evaluate(() => document.exitFullscreen());
+    await page.waitForFunction(() => !document.fullscreenElement);
+    await page.setViewportSize({width:375,height:812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await ipPlots.first().waitFor();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Visualization of the interval for a proportion fits a phone');
+    await ip.locator('[data-preset="1,25"]').click();
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1), 'Wald interval below 0 fits a phone');
+    await ip.screenshot({path:'tmp/verification/viz-interval-podilu-mobile.png'});
     await page.setViewportSize({width:1360,height:1000});
 
     // Correlation in a scatterplot: values against R (scripts/viz-korelace.R), data sets, slider and fields with invalid input,

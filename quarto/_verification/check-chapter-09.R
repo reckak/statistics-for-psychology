@@ -99,7 +99,12 @@ cov_ind <- function(n,p) { x <- 0:n; pr <- dbinom(x,n,p); ph <- x/n; se <- sqrt(
   wl <- suppressWarnings(t(sapply(x,function(k) prop.test(k,n,correct=FALSE)$conf.int)))
   c(sum(pr[ph-z*se<=p & p<=ph+z*se]),sum(pr[wl[,1]-1e-12<=p & p<=wl[,2]+1e-12]),sum(pr[ph-z*se< -1e-12 | ph+z*se>1+1e-12 | x==0 | x==n])) }
 for (n in c(10,20,50,100)) for (p in c(.05,.1,.25,.5)) eq(ch9_cover_at(n,p),cov_ind(n,p),1e-9)
-rq(ch9_cover_at(20,.05)['wald'],.64,2); rq(ch9_cover_at(20,.10)['mimo'],.87,2); rq(min(ch9_cover_res[['10']][,'wilson']),.85,2)
+rq(ch9_cover_at(20,.05)['wald'],.64,2); rq(ch9_cover_at(20,.10)['mimo'],.87,2)
+# Narrow dips of the Wilson coverage near 0 (text: 83 to 84 %, at n = 10 near 0.018, closer to the edge for larger n):
+# just below the lower limit for one success only the count 0 covers pi, so the coverage equals (1 - pi)^n.
+for (n in c(10,20,50,100)) { l1 <- prop.test(1,n,correct=FALSE)$conf.int[1]; v <- ch9_cover(n,pi=l1-1e-9)[1,'wilson']
+  eq(unname(v),(1-l1+1e-9)^n,1e-9); stopifnot(v>.83, v<.84, n==10 || l1<.01) }
+rq(prop.test(1,10,correct=FALSE)$conf.int[1],.018,3)
 rq(ch9_cover_at(10,.5)['mimo'],.11,2)
 stopifnot(all(sapply(ch9_cover_res,function(m) abs(mean(m[,'wilson'])-.95)<.005)), all(sapply(ch9_cover_res,function(m) mean(m[,'wald'])<.94)))
 # Holm table (text table 9.13): order, residuals, p-values, thresholds, decisions; p.adjust agrees.

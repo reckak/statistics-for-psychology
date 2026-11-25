@@ -1291,6 +1291,50 @@ Rozsah po úpravách:
 - interval pro ρ uvádí $z_r$, směrodatnou chybu $1/\sqrt{n-3}$ a meze na
   stupnici $z_r$ před převodem zpět.
 
+<a id="r65-upresneni-2026-11-25-interval-podilu"></a>
+
+### Upřesnění 2026-11-25 — Vizualizace Waldova a Wilsonova intervalu pro podíl
+
+Šestnáctá vizualizace podle R65, třetí ke kapitole 9: stránka
+`quarto/viz_interval_podilu.qmd` („Proč odhadujeme podíl Wilsonovým
+intervalem“, `#sec-viz-interval-podilu`), v menu za vizualizací dvou
+intervalů a před vizualizací chí-kvadrát (pořadí podle výkladu kapitoly 9).
+Kapitola 9 na ni odkazuje blokem „Vyzkoušejte si“ na konci pododdílu
+`sec-wilson`, za věcnou interpretací a před rozšířením
+`#rozsireni-wilson-odvozeni`. Realizuje námět z návrhu 2026-11-20, který byl
+do té doby v [plánu pokračování](../kapitoly/plan-pokracovani.md#plan-vizualizace)
+veden jako neschválený.
+
+- Ovládání: počet úspěchů *k* (0 až *n*), počet pokusů *n* (1–200), posuvník
+  hladiny spolehlivosti 50–99 % po 1 %; předvolby 10 z 20, 0 z 15, 1 z 25
+  a 40 z 80.
+- Oba intervaly nad sebou na ose π s výpočtem a upozorněním na nulovou šířku
+  a meze mimo 0–1.
+- Interaktivní obdoba obrázku `fig-wilson-odvozeni`: obě strany nerovnice
+  s průsečíky v mezích Wilsonova intervalu; přepínač vodorovné meze Waldova
+  intervalu $z^2p(1-p)/n$.
+- Přesné pokrytí obou intervalů jako funkce π (binomické součty, bez
+  simulace) se slibovanou hladinou, přiblížením, průměrným a nejnižším
+  pokrytím a podílem hodnot π pod hladinou; pravděpodobnost, že Waldův
+  interval zasáhne mimo 0–1 nebo má nulovou šířku.
+- Rozbor „Proč pokrytí kolísá“: pro vybrané π sloupce *P*(*X* = *k*) se
+  zvýrazněnými počty, jejichž interval π obsahuje, a pokrytí jako jejich součet.
+- Vzorce listu `Interval_podilu` s výsledky.
+- Bez nových pojmů a symbolů; *k* a *P*(*X* = *k*) podle kapitoly 5.
+
+**Doklad:** 2026-11-25 autor zadal: „Myslím, že ke kapitole 9 bych přidal
+ještě jednu vizualizaci: Waldův a Wilsonův interval pro podíl
+(`viz_interval_podilu`) […] Ovládání: počet úspěchů, n a hladina
+spolehlivosti. Zobrazení: oba intervaly nad sebou a pod nimi přesně spočítané
+pokrytí jako funkce π pro zvolené n.“ Na doplňující otázky odpověděl u hladiny
+„Myslím, že by nejlepší byl slider s kroky po 1 % a rozmezím 50–99%“, zvolil
+všechny čtyři doplňky („Proč pokrytí kmitá“, „Wald mimo 0–1 / nulová šířka“,
+„Vzorce českého Excelu“, „Předvolby příkladů“) a rozsah *n* „1–200“.
+K plánu doplnil: „Do vizualizace bych zahrnul i graf podobný Obrázek 9.3,
+akorát interaktivní samozřejmě.“ Upravený plán včetně přepínače meze Waldova
+intervalu schválil téhož dne. Realizaci a ověření eviduje
+[autorská historie](../../quarto/README.md#vizualizace-interval-podilu).
+
 <a id="r74-heslovite-poznamky"></a>
 
 ## R74 — Heslovité poznámky v PPTX, podrobné v DOCX

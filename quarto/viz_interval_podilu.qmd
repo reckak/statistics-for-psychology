@@ -1,0 +1,588 @@
+---
+code-copy: false
+---
+
+# Proč odhadujeme podíl Wilsonovým intervalem {#sec-viz-interval-podilu .unnumbered}
+
+Proč kapitola 9 odhaduje populační podíl Wilsonovým intervalem, a ne známou konstrukcí „odhad ± kvantil × směrodatná chyba“? Vizualizace spočítá pro zadaný počet úspěchů, počet pokusů a hladinu spolehlivosti oba intervaly a ukáže, odkud se berou meze Wilsonova intervalu. Pod nimi je pro zvolený počet pokusů přesně spočítané pokrytí obou postupů pro všechny hodnoty populačního podílu $\mathrm{π}$ a rozbor, proč pokrytí kolísá. Navazuje na pododdíly [Známá konstrukce a kde selhává](kapitola_09.qmd#sec-wald), [Wilsonův interval](kapitola_09.qmd#sec-wilson) včetně [nepovinného odvození](kapitola_09.qmd#rozsireni-wilson-odvozeni) a [Výpočet v Excelu](kapitola_09.qmd#sec-interval-podilu-excel), na význam [pokrytí](kapitola_07.qmd#sec-co-znamena-95) z kapitoly 7 a na [binomické rozdělení](kapitola_05.qmd#sec-binomicky-vzorec) z kapitoly 5.
+
+## Model a ovládání {#sec-viz-ip-ovladani .unnumbered}
+
+Nahoře zadejte výsledek ve výběru: počet úspěchů $k$ (celé číslo od 0 do $n$) a počet pokusů $n$ (celé číslo od 1 do 200). Posuvníkem zvolíte hladinu spolehlivosti od 50 do 99 % po jednom procentu. Po načtení stránky je nastaven příklad z kapitoly: student odpověděl správně na 10 z 20 otázek a počítáme 95% interval. Čtyři tlačítka nastaví příklady z kapitoly a ze cvičení: 10 z 20, 0 z 15, 1 z 25 a 40 z 80, vždy s hladinou 95 %. Když počet pokusů snížíte pod počet úspěchů, počet úspěchů se sníží na $n$. Při neplatné hodnotě se zobrazí upozornění a vizualizace dál používá poslední platnou hodnotu.
+
+Stránka má pět částí:
+
+- **Waldův a Wilsonův interval.** Dvě vodorovné úsečky na ose populačního podílu $\mathrm{π}$: nahoře Waldův interval oranžově, dole Wilsonův modře. Plná tečka je výběrový podíl $p=k/n$, kosočtverec střed Wilsonova intervalu. Zasáhne-li Waldův interval pod 0 nebo nad 1, osa se rozšíří a oblast nemožných hodnot podílu je podbarvená. Interval s nulovou šířkou je zakreslen jako kroužek. Pod grafem je výpočet obou intervalů s dosazením.
+- **Odkud se berou meze Wilsonova intervalu.** Obdoba obrázku [-@fig-wilson-odvozeni] z [nepovinného rozšíření](kapitola_09.qmd#rozsireni-wilson-odvozeni) kapitoly, překreslovaná podle zadání. Slovy: hodnota $\mathrm{π}$ patří do Wilsonova intervalu, když je výběrový podíl $p$ od $\mathrm{π}$ vzdálen nejvýše $z$ směrodatných chyb spočítaných z tohoto $\mathrm{π}$. Po umocnění na druhou to zapisujeme nerovnicí $(p-\mathrm{π})^2\le z^2\mathrm{π}(1-\mathrm{π})/n$. Oranžová křivka je její levá strana, čtverec vzdálenosti. Modrá křivka je pravá strana, odvozená ze směrodatné chyby spočítané z $\mathrm{π}$. Kde oranžová křivka leží pod modrou, nerovnice platí; vybarvený úsek mezi průsečíky je Wilsonův interval. Přepínač **Ukázat Waldův interval v grafu nerovnice** přidá čárkovanou vodorovnou čáru $z^2p(1-p)/n$. Je to pravá strana téže nerovnice, jen se směrodatnou chybou spočítanou z výběrového podílu $p$, jak to dělá Waldův interval. Průsečíky této čáry s oranžovou křivkou jsou meze Waldova intervalu. Svislá osa se přizpůsobuje výšce modré křivky; oranžová křivka nad horním okrajem grafu je oříznutá. Svislá tečkovaná čára je hodnota $\mathrm{π}$ vybraná v následující části.
+- **Pokrytí obou postupů.** Zde je na vodorovné ose skutečný populační podíl $\mathrm{π}$, který si v modelu sami zvolíme, podobně jako populační průměr ve [vizualizaci pokrytí](viz_pokryti_intervalu.qmd) ke kapitole 7. Pro zvolené $n$ a hladinu ukazuje graf pro každou hodnotu $\mathrm{π}$ od 0,001 do 0,999, jaká část intervalů by obsahovala $\mathrm{π}$, kdybychom výběry po $n$ pokusech opakovali stále znovu. Waldův interval je oranžově, Wilsonův modře, čárkovaná vodorovná čára je slibovaná hladina. Přepínač **Přiblížit okolí hladiny** zvětší svislou osu kolem hladiny, aby bylo vidět kolísání Wilsonova intervalu. Druhý graf ukazuje, s jakou pravděpodobností má Waldův interval mez pod 0 nebo nad 1, nebo nulovou šířku; u Wilsonova intervalu to nenastane nikdy. Pod grafy je **průměrné pokrytí**, tedy průměrná výška křivky přes všechny hodnoty $\mathrm{π}$ od 0,001 do 0,999 (po 0,001), **nejnižší pokrytí** a podíl hodnot $\mathrm{π}$, u nichž je pokrytí nižší než slibovaná hladina. Nejnižší pokrytí hledáme i v bodech těsně u mezí intervalů, kde křivka skáče.
+- **Proč pokrytí kolísá.** Pro vybranou hodnotu $\mathrm{π}$ jsou sloupce pravděpodobnosti všech možných počtů úspěchů $k=0,\dots,n$ podle [binomického rozdělení](kapitola_05.qmd#sec-binomicky-vzorec), zvlášť pro Waldův a pro Wilsonův interval. Sloupce ukazují všechny možné výsledky výběru, nejen ten zadaný nahoře. Zvýrazněné jsou sloupce těch $k$, jejichž interval vybrané $\mathrm{π}$ obsahuje. Pokrytí je součet zvýrazněných sloupců. Hodnotu $\mathrm{π}$ vyberete posuvníkem nad grafy pokrytí, nebo klepnutím či tažením v grafech pokrytí. V posuvníku posouvají $\mathrm{π}$ šipky o 0,01, šipky se Shiftem o 0,001 a klávesy Page Up a Page Down o 0,1. Výchozí $\mathrm{π}=0{,}05$ odpovídá číslu z kapitoly: při $n=20$ obsahuje populační podíl jen 64 % Waldových intervalů. Při větším počtu pokusů graf ukazuje jen výřez kolem nejpravděpodobnějších počtů; pravděpodobnost počtů mimo výřez je uvedena pod grafem.
+- **Výpočet v českém Excelu.** Vzorce listu `Interval_podilu` z [tabulky v kapitole](kapitola_09.qmd#tbl-k09-02) s výsledky pro zadaný výběr.
+
+Pokrytí počítáme přesně, bez simulace. Pro dané $\mathrm{π}$ známe z binomického rozdělení pravděpodobnost každého počtu úspěchů. Pro každý počet úspěchů víme, jaký interval by z něj vyšel a zda $\mathrm{π}$ obsahuje. Pokrytí je součet pravděpodobností těch počtů, jejichž interval $\mathrm{π}$ obsahuje. Meze intervalů zobrazujeme zaokrouhlené na tři desetinná místa, odhad směrodatné chyby a kvantil na čtyři a pokrytí na desetinu procenta; počítáme s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Colours as in the chapter 9 figures (scripts/kapitola_09.R): Wald orange, Wilson blue.
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", sand = "#FAECDD", lightBlue = "#B8DDE8", lightOrange = "#F0B08C";
+  const N_MAX = 200, SQRT2PI = Math.sqrt(2 * Math.PI);
+
+  // Standard normal distribution function: Hart's algorithm 5666 as given by West (2005), double precision.
+  function pnorm(x) {
+    const a = Math.abs(x);
+    let c;
+    if (a > 37) c = 0;
+    else {
+      const e = Math.exp(-a * a / 2);
+      if (a < 7.07106781186547) {
+        let n = 3.52624965998911e-02 * a + 0.700383064443688;
+        n = n * a + 6.37396220353165; n = n * a + 33.912866078383; n = n * a + 112.079291497871;
+        n = n * a + 221.213596169931; n = n * a + 220.206867912376;
+        let d = 8.83883476483184e-02 * a + 1.75566716318264;
+        d = d * a + 16.064177579207; d = d * a + 86.7807322029461; d = d * a + 296.564248779674;
+        d = d * a + 637.333633378831; d = d * a + 793.826512519948; d = d * a + 440.413735824752;
+        c = e * n / d;
+      } else {
+        let b = a + 0.65;
+        b = a + 4 / b; b = a + 3 / b; b = a + 2 / b; b = a + 1 / b;
+        c = e / b / 2.506628274631;
+      }
+    }
+    return x > 0 ? 1 - c : c;
+  }
+  // Standard normal quantile: Acklam's approximation refined by one Halley step; the upper half by symmetry.
+  function qnorm(p) {
+    if (p > 0.5) return -qnorm(1 - p);
+    const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.3577518672690, -30.66479806614716, 2.506628277459239];
+    const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+    const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+    const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+    const lim = 0.02425;
+    let x;
+    if (p < lim) { const q = Math.sqrt(-2 * Math.log(p)); x = (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5]) / ((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+    else { const q = p - 0.5, r = q * q; x = (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q / (((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+    const u = (pnorm(x) - p) * SQRT2PI * Math.exp(x * x / 2);
+    return x - u / (1 + x * u / 2);
+  }
+
+  // log(k!) for k = 0, …, 200 and all binomial probabilities P(X = k) for 0 < π < 1.
+  const logFact = new Float64Array(N_MAX + 1);
+  for (let i = 1; i <= N_MAX; i++) logFact[i] = logFact[i - 1] + Math.log(i);
+  function pmfAll(n, pi) {
+    const out = new Float64Array(n + 1), lp = Math.log(pi), lq = Math.log1p(-pi);
+    for (let k = 0; k <= n; k++) out[k] = Math.exp(logFact[n] - logFact[k] - logFact[n - k] + k * lp + (n - k) * lq);
+    return out;
+  }
+
+  // The two intervals as in chapter 9 and the roots of the quadratic from the optional derivation.
+  const zq = level => qnorm(1 - (1 - level) / 2);
+  function wald(k, n, z) { const p = k / n, se = Math.sqrt(p * (1 - p) / n); return {p, se, lo: p - z * se, hi: p + z * se}; }
+  function wilson(k, n, z) {
+    const p = k / n, a = z * z / n, mid = (p + a / 2) / (1 + a), half = z / (1 + a) * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n));
+    return {p, mid, half, lo: mid - half, hi: mid + half};
+  }
+  function roots(k, n, z) {
+    const p = k / n, A = 1 + z * z / n, B = -(2 * p + z * z / n), C = p * p, D = B * B - 4 * A * C;
+    return {A, B, C, D, lo: (-B - Math.sqrt(D)) / (2 * A), hi: (-B + Math.sqrt(D)) / (2 * A)};
+  }
+
+  // Exact coverage: for every possible count k the interval is known; the coverage at π is the sum of P(X = k)
+  // over the counts whose interval contains π (the same definitions as ch9_cover in scripts/kapitola_09.R).
+  function table(n, z) {
+    const W = [], S = [], bad = new Uint8Array(n + 1);
+    for (let k = 0; k <= n; k++) {
+      W.push(wald(k, n, z)); S.push(wilson(k, n, z));
+      bad[k] = W[k].lo < -1e-12 || W[k].hi > 1 + 1e-12 || k === 0 || k === n ? 1 : 0;
+    }
+    return {n, z, W, S, bad};
+  }
+  const inWald = (T, k, pi) => T.W[k].lo <= pi && pi <= T.W[k].hi;
+  const inWilson = (T, k, pi) => T.S[k].lo - 1e-12 <= pi && pi <= T.S[k].hi + 1e-12;
+  function coverAt(T, pi) {
+    const pmf = pmfAll(T.n, pi);
+    let wa = 0, wi = 0, out = 0;
+    for (let k = 0; k <= T.n; k++) { if (inWald(T, k, pi)) wa += pmf[k]; if (inWilson(T, k, pi)) wi += pmf[k]; if (T.bad[k]) out += pmf[k]; }
+    return {wald: wa, wilson: wi, outside: out};
+  }
+  // Grid of π from 0,001 to 0,999; the coverage jumps at the limits, so it is also evaluated just below and above each limit.
+  const GRID = Array.from({length: 999}, (_, i) => (i + 1) / 1000);
+  function curves(n, level) {
+    const T = table(n, zq(level));
+    const lims = [];
+    for (let k = 0; k <= n; k++) for (const v of [T.W[k].lo, T.W[k].hi, T.S[k].lo, T.S[k].hi]) if (v > 1e-9 && v < 1 - 1e-9) lims.push(v - 1e-9, v + 1e-9);
+    const extra = lims.map(pi => ({pi, grid: false}));
+    const pts = [...GRID.map(pi => ({pi, grid: true})), ...extra].sort((a, b) => a.pi - b.pi);
+    const rows = pts.map(d => ({...d, ...coverAt(T, d.pi)}));
+    const g = rows.filter(r => r.grid);
+    const lowest = key => rows.reduce((m, r) => r[key] < m[key] ? r : m, rows[0]);
+    const lw = lowest("wald"), li = lowest("wilson");
+    const summary = {
+      meanWald: d3.mean(g, r => r.wald), meanWilson: d3.mean(g, r => r.wilson),
+      infWald: lw.wald, atWald: lw.pi, infWilson: li.wilson, atWilson: li.pi,
+      belowWald: d3.mean(g, r => r.wald < level - 1e-12 ? 1 : 0), belowWilson: d3.mean(g, r => r.wilson < level - 1e-12 ? 1 : 0)
+    };
+    return {T, rows, summary};
+  }
+
+  // Czech number formatting with a true minus sign.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const int = v => v.toLocaleString("cs-CZ");
+  const lim3 = v => fixed(Math.abs(v) < 1e-12 ? 0 : v, 3);
+  const ci = (lo, hi) => `(${lim3(lo)}; ${lim3(hi)})`;
+  const pct = v => { const q = 100 * v, r = Number(q.toFixed(1)); return (r === 0 && q > 0 ? "< 0,1" : r === 100 && q < 100 ? "> 99,9" : fixed(q, 1)) + " %"; };
+  const pi3 = v => fixed(v, 3);
+  const prob3 = v => { const r = Number(v.toFixed(3)); return r === 0 && v > 0 ? "< 0,001" : r === 1 && v < 1 ? "> 0,999" : fixed(v, 3); };
+
+  const PRESETS = [[10, 20], [0, 15], [1, 25], [40, 80]];
+  const s = {k: 10, n: 20, level: 95, pi: 0.05, zoom: false, waldBound: false};
+
+  const wholeField = (id, label, value, min, max) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-ip-${id}">${label}</label>
+    <input id="viz-ip-${id}" type="number" min="${min}" max="${max}" step="1" inputmode="numeric" value="${value}" aria-describedby="viz-ip-${id}-hint viz-ip-${id}-error">
+    <span id="viz-ip-${id}-hint" class="viz-hint">celé číslo od ${min} do ${int(max)}</span>
+    <span id="viz-ip-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const slider = (id, label, min, max, step, value, minText, maxText) => html`<div class="viz-field viz-t-df">
+    <label for="viz-ip-${id}">${label}</label>
+    <div class="viz-t-slider"><span class="viz-hint" aria-hidden="true">${minText}</span><input id="viz-ip-${id}" type="range" min="${min}" max="${max}" step="${step}" value="${value}" aria-describedby="viz-ip-${id}-value"><span class="viz-hint" aria-hidden="true">${maxText}</span></div>
+    <output id="viz-ip-${id}-value" for="viz-ip-${id}" class="viz-t-value" aria-live="polite"></output>
+  </div>`;
+
+  const root = html`<div class="viz" id="viz-interval-podilu">
+    <fieldset class="viz-model">
+      <legend>Výsledek ve výběru a hladina spolehlivosti</legend>
+      <div class="viz-controls">
+        ${wholeField("k", html`Počet úspěchů <i>k</i>`, s.k, 0, s.n)}
+        ${wholeField("n", html`Počet pokusů <i>n</i>`, s.n, 1, N_MAX)}
+        ${slider("level", "Hladina spolehlivosti", 50, 99, 1, s.level, "50 %", "99 %")}
+      </div>
+      <p class="viz-note" data-clamp role="status" hidden></p>
+      <div class="viz-pj-presets" role="group" aria-label="Předvolby příkladů">
+        ${PRESETS.map(([k, n]) => html`<button type="button" data-preset="${k},${n}">${k} z ${n}</button>`)}
+      </div>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-ip-int-title">
+      <h3 id="viz-ip-int-title" class="viz-part-title">Waldův a Wilsonův interval</h3>
+      <div data-legend="intervals"></div>
+      <div class="viz-plots" data-chart="intervals"></div>
+      <p class="viz-limit" data-warning hidden></p>
+      <dl class="viz-stats" data-stats="intervals" aria-live="polite"></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ip-der-title">
+      <h3 id="viz-ip-der-title" class="viz-part-title">Odkud se berou meze Wilsonova intervalu</h3>
+      <p class="viz-note">Navazuje na nepovinné odvození v kapitole 9. Hodnota π patří do Wilsonova intervalu, když je výběrový podíl <i>p</i> od π vzdálen nejvýše <i>z</i> směrodatných chyb spočítaných z tohoto π.</p>
+      <label class="viz-check viz-ip-check"><input type="checkbox" id="viz-ip-waldbound"><span>Ukázat Waldův interval v grafu nerovnice</span></label>
+      <div data-legend="derivation"></div>
+      <div class="viz-plots" data-chart="derivation"></div>
+      <dl class="viz-stats" data-stats="derivation" aria-live="polite"></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ip-cov-title">
+      <h3 id="viz-ip-cov-title" class="viz-part-title"></h3>
+      <p class="viz-note">Pokrytí je vlastnost postupu: závisí na počtu pokusů, hladině spolehlivosti a skutečné hodnotě π, ne na počtu úspěchů pozorovaném v jednom výběru. Na vodorovné ose je zde skutečný populační podíl π zvolený v modelu.</p>
+      <div class="viz-controls">
+        ${slider("pi", html`Vybraná hodnota populačního podílu π`, 0.001, 0.999, 0.001, s.pi, "0", "1")}
+        <label class="viz-check"><input type="checkbox" id="viz-ip-zoom"><span>Přiblížit okolí hladiny</span></label>
+      </div>
+      <div data-legend="coverage"></div>
+      <div class="viz-plots viz-ip-pick" data-chart="coverage"></div>
+      <p class="viz-panel-title">Waldův interval s mezí pod 0 nebo nad 1, nebo s nulovou šířkou</p>
+      <div class="viz-plots viz-ip-pick" data-chart="outside"></div>
+      <dl class="viz-stats" data-stats="coverage" aria-live="polite"></dl>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ip-bars-title">
+      <h3 id="viz-ip-bars-title" class="viz-part-title">Proč pokrytí kolísá: součet sloupců</h3>
+      <div data-legend="bars"></div>
+      <div data-bars></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-ip-excel-title">
+      <h3 id="viz-ip-excel-title" class="viz-part-title">Výpočet v českém Excelu</h3>
+      <p class="viz-note">Na listu <code>Interval_podilu</code> sešitu kapitoly 9 přepište žluté buňky B2:B4; ostatní buňky se přepočítají.</p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Výpočet intervalů v Excelu: posuvná oblast" data-excel></div>
+    </section>
+  </div>`;
+
+  const $ = q => root.querySelector(q);
+
+  // Whole-number fields: the upper limit of k depends on n; a valid value applies as soon as it is typed.
+  const whole = {};
+  function wholeNumberField(id, min, maxOf, apply) {
+    const input = $(`#viz-ip-${id}`), error = $(`#viz-ip-${id}-error`);
+    const check = () => {
+      const raw = input.value.trim(), max = maxOf();
+      const v = !input.validity.badInput && /^\d+$/.test(raw) ? Number(raw) : null;
+      const ok = v !== null && v >= min && v <= max;
+      error.hidden = ok;
+      error.textContent = ok ? "" : `Zadejte celé číslo od ${min} do ${int(max)}. Používá se dál poslední platná hodnota.`;
+      input.setAttribute("aria-invalid", ok ? "false" : "true");
+      return ok ? v : null;
+    };
+    const update = () => { const v = check(); if (v !== null) apply(v); };
+    input.addEventListener("input", update);
+    input.addEventListener("change", update);
+    whole[id] = {input, check, hint: $(`#viz-ip-${id}-hint`), error};
+  }
+  const clampNote = $("[data-clamp]");
+  function setKLimit() {
+    const f = whole.k;
+    f.input.max = String(s.n);
+    f.hint.textContent = `celé číslo od 0 do ${int(s.n)}`;
+  }
+  wholeNumberField("n", 1, () => N_MAX, v => {
+    if (v === s.n) return;
+    s.n = v; setKLimit();
+    let lowered = false;
+    if (s.k > s.n) { s.k = s.n; whole.k.input.value = String(s.n); lowered = true; }
+    const kv = whole.k.check(); if (kv !== null) s.k = kv;
+    clampNote.hidden = !lowered;
+    clampNote.innerHTML = lowered ? `Počet úspěchů byl snížen na <i>n</i> = ${int(s.n)}, protože nemůže převýšit počet pokusů.` : "";
+    render();
+  });
+  wholeNumberField("k", 0, () => s.n, v => { if (v !== s.k) { s.k = v; clampNote.hidden = true; render(); } });
+
+  const levelInput = $("#viz-ip-level"), levelOut = $("#viz-ip-level-value");
+  levelInput.addEventListener("input", () => { s.level = Number(levelInput.value); render(); });
+  const piInput = $("#viz-ip-pi"), piOut = $("#viz-ip-pi-value");
+  const setPi = v => { s.pi = Math.min(0.999, Math.max(0.001, Math.round(v * 1000) / 1000)); piInput.value = String(s.pi); render(); };
+  piInput.addEventListener("input", () => setPi(Number(piInput.value)));
+  // Arrows move π by 0,01 (with Shift by 0,001), Page Up and Page Down by 0,1; Home and End keep the native behaviour.
+  piInput.addEventListener("keydown", e => {
+    const step = {ArrowRight: 1, ArrowUp: 1, ArrowLeft: -1, ArrowDown: -1}[e.key], page = {PageUp: 1, PageDown: -1}[e.key];
+    if (step === undefined && page === undefined) return;
+    e.preventDefault();
+    setPi(s.pi + (page !== undefined ? 0.1 * page : step * (e.shiftKey ? 0.001 : 0.01)));
+  });
+  $("#viz-ip-zoom").addEventListener("change", e => { s.zoom = e.target.checked; render(); });
+  $("#viz-ip-waldbound").addEventListener("change", e => { s.waldBound = e.target.checked; render(); });
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const [k, n] = b.dataset.preset.split(",").map(Number);
+    Object.assign(s, {k, n, level: 95});
+    whole.n.input.value = String(n); whole.k.input.value = String(k); setKLimit();
+    for (const f of Object.values(whole)) f.check();
+    levelInput.value = "95"; clampNote.hidden = true;
+    render();
+  }));
+  setKLimit();
+
+  // Picking π by clicking or dragging in the coverage charts.
+  const scales = {};
+  for (const el of root.querySelectorAll(".viz-ip-pick")) {
+    const pick = e => {
+      const svg = el.querySelector("svg"), sx = scales[el.dataset.chart];
+      if (!svg || !sx) return;
+      const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) * Number(svg.getAttribute("width")) / r.width;
+      setPi(sx.invert(x));
+    };
+    el.addEventListener("pointerdown", e => { if (e.button !== 0) return; pick(e); });
+    el.addEventListener("pointermove", e => { if (e.buttons & 1) pick(e); });
+  }
+
+  const legend = items => { const d = html`<div class="viz-legend"></div>`; d.innerHTML = items.map(([svg, label]) => `<span>${svg}<span>${label}</span></span>`).join(""); return d; };
+  const swLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swBox = (fill, opacity = 1) => `<svg width="20" height="14" aria-hidden="true"><rect x="1" y="1" width="18" height="12" fill="${fill}" fill-opacity="${opacity}"/></svg>`;
+  const swDot = (fill, stroke = fill) => `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="${fill}" stroke="${stroke}" stroke-width="1.6"/></svg>`;
+  const swDiamond = `<svg width="14" height="14" aria-hidden="true"><path d="M7 1.5 L12.5 7 L7 12.5 L1.5 7 Z" fill="white" stroke="${blue}" stroke-width="1.6"/></svg>`;
+  const dl = (el, rows) => { el.innerHTML = rows.map(([dt, dd, wide]) => `<div${wide ? ' class="viz-wide"' : ""}><dt>${dt}</dt><dd>${dd}</dd></div>`).join(""); };
+  const chartWidth = () => Math.max(260, Math.min($('[data-chart="intervals"]').clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+  const base = (width, small) => ({width, marginLeft: small ? 48 : 56, marginRight: 16, marginTop: 14, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
+  const xAxisPi = (small, label = "populační podíl π") => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, tickFormat: v => trim(v, 2), ticks: small ? 5 : 10});
+
+  // 1. The two intervals on the axis of π.
+  function intervalsChart(width, W, S) {
+    const small = width < 520;
+    const lo = Math.min(0, W.lo), hi = Math.max(1, W.hi), pad = 0.03 * (hi - lo), domain = [lo - pad, hi + pad];
+    const zeroW = W.hi - W.lo < 1e-12;
+    const rows = [
+      {y: 2, lo: W.lo, hi: W.hi, color: orange, label: `Waldův interval ${ci(W.lo, W.hi)}${zeroW ? ": nulová šířka" : ""}`},
+      {y: 1, lo: S.lo, hi: S.hi, color: blue, label: `Wilsonův interval ${ci(S.lo, S.hi)}`}
+    ];
+    const shade = [...(W.lo < -1e-12 ? [{x1: domain[0], x2: 0}] : []), ...(W.hi > 1 + 1e-12 ? [{x1: 1, x2: domain[1]}] : [])];
+    const chart = Plot.plot({
+      ...base(width, small), height: 190, marginBottom: 44,
+      x: {domain, ...xAxisPi(small)}, y: {domain: [0.35, 2.75], axis: null},
+      ariaLabel: `Waldův a Wilsonův interval pro ${s.k} z ${s.n} na hladině ${s.level} %`,
+      ariaDescription: `Výběrový podíl ${lim3(W.p)}. ${rows.map(r => r.label).join(". ")}.${shade.length ? " Waldův interval zasahuje mimo rozmezí 0 až 1." : ""}`,
+      marks: [
+        Plot.rect(shade, {x1: "x1", x2: "x2", y1: 0.35, y2: 2.75, fill: sand}),
+        Plot.ruleX([0, 1], {stroke: gray, strokeOpacity: 0.6}),
+        Plot.link(rows.filter(r => r.hi - r.lo > 1e-12), {x1: "lo", x2: "hi", y1: "y", y2: "y", stroke: "color", strokeWidth: 5}),
+        Plot.link(rows.flatMap(r => r.hi - r.lo > 1e-12 ? [{x: r.lo, y: r.y, c: r.color}, {x: r.hi, y: r.y, c: r.color}] : []), {x1: "x", x2: "x", y1: d => d.y - 0.16, y2: d => d.y + 0.16, stroke: "c", strokeWidth: 2}),
+        Plot.dot(rows.filter(r => r.hi - r.lo <= 1e-12), {x: "lo", y: "y", r: 6, fill: "white", stroke: "color", strokeWidth: 2.2}),
+        Plot.dot(rows, {x: () => W.p, y: "y", r: 4, fill: ink}),
+        Plot.dot([S], {x: "mid", y: 1, r: 5.5, symbol: "diamond", fill: "white", stroke: blue, strokeWidth: 1.8}),
+        Plot.text(rows, {x: domain[0], y: d => d.y + 0.42, text: "label", textAnchor: "start", dx: 2, fill: "color", fontWeight: 600}),
+        Plot.ruleY([0.35], {stroke: ink})
+      ]
+    });
+    return chart;
+  }
+
+  // 1b. Both sides of the inequality (p − π)² ≤ z²π(1 − π)/n, optionally with the horizontal Wald bound z²p(1 − p)/n.
+  function derivationChart(width, z, W, S) {
+    const small = width < 520, {n} = s, p = W.p;
+    const L = x => (p - x) ** 2, R = x => z * z * x * (1 - x) / n, wb = z * z * p * (1 - p) / n;
+    const top = 1.6 * z * z / (4 * n), bottom = s.waldBound ? -0.07 * top : 0;
+    const extra = [S.lo, S.hi, ...(s.waldBound ? [W.lo, W.hi] : [])].filter(v => v >= 0 && v <= 1);
+    const G = [...new Set([...d3.range(0, 1001).map(i => i / 1000), ...extra])].sort((a, b) => a - b);
+    const inside = G.filter(x => x >= S.lo - 1e-12 && x <= S.hi + 1e-12);
+    const okPi = L(s.pi) <= R(s.pi);
+    const marks = [
+      Plot.areaY(inside, {x: d => d, y1: L, y2: R, fill: blue, fillOpacity: 0.16}),
+      Plot.lineY(G, {x: d => d, y: R, stroke: blue, strokeWidth: 2.2, clip: true}),
+      Plot.lineY(G, {x: d => d, y: L, stroke: orange, strokeWidth: 2.2, clip: true}),
+      Plot.ruleX([s.pi], {stroke: gray, strokeWidth: 1.4, strokeDasharray: "2,3"}),
+      Plot.dot([{x: s.pi, y: L(s.pi)}, {x: s.pi, y: R(s.pi)}].filter(d => d.y <= top), {x: "x", y: "y", r: 3.5, fill: "white", stroke: gray, strokeWidth: 1.6}),
+      Plot.link([{x1: S.lo, x2: S.hi}], {x1: "x1", x2: "x2", y1: 0, y2: 0, stroke: blue, strokeWidth: 5}),
+      Plot.dot([S.lo, S.hi], {x: d => d, y: R, r: 4, fill: ink}),
+      Plot.text(S.lo > 1e-9 ? [S.lo] : [], {x: d => d, y: R, dx: -6, dy: -8, textAnchor: "end", text: d => lim3(d), fill: ink, fontWeight: 600}),
+      Plot.text([S.hi], {x: d => d, y: R, dx: 6, dy: -8, textAnchor: "start", text: d => lim3(d), fill: ink, fontWeight: 600})
+    ];
+    if (s.waldBound) {
+      const wl = [W.lo, W.hi].filter(v => v >= 0 && v <= 1);
+      marks.push(
+        Plot.ruleY([wb], {stroke: orange, strokeWidth: 1.6, strokeDasharray: "6,4"}),
+        Plot.link([{x1: Math.max(0, W.lo), x2: Math.min(1, W.hi)}].filter(d => d.x2 - d.x1 > 1e-12), {x1: "x1", x2: "x2", y1: bottom / 2, y2: bottom / 2, stroke: orange, strokeWidth: 5}),
+        Plot.dot(W.hi - W.lo <= 1e-12 ? [W.lo] : [], {x: d => d, y: bottom / 2, r: 5, fill: "white", stroke: orange, strokeWidth: 2}),
+        Plot.dot(wl, {x: d => d, y: wb, r: 4.5, fill: "white", stroke: orange, strokeWidth: 2})
+      );
+    }
+    marks.push(Plot.ruleY([0], {stroke: ink}));
+    return Plot.plot({
+      ...base(width, small), height: small ? 250 : 290, marginBottom: 44,
+      x: {domain: [0, 1], ...xAxisPi(small)},
+      y: {domain: [bottom, top], label: null, ticks: 4, tickFormat: v => v < 0 ? "" : trim(v, 4)},
+      ariaLabel: `Obě strany nerovnice Wilsonova intervalu pro ${s.k} z ${s.n} na hladině ${s.level} %`,
+      ariaDescription: `Oranžová křivka čtverce vzdálenosti má nulu v bodě ${lim3(p)}, modrá křivka pravé strany má vrchol v bodě 0,5. Křivky se protínají v bodech ${lim3(S.lo)} a ${lim3(S.hi)}, mezích Wilsonova intervalu.${s.waldBound ? ` Vodorovná čára pravé strany pro Waldův interval ve výšce ${trim(wb, 4)} protíná oranžovou křivku v mezích Waldova intervalu ${lim3(W.lo)} a ${lim3(W.hi)}.` : ""} Pro vybrané π = ${pi3(s.pi)} nerovnice ${okPi ? "platí" : "neplatí"}.`,
+      marks
+    });
+  }
+
+  // 2. Coverage as a function of π and 3. the probability that the Wald interval leaves 0–1 or has zero width.
+  function coverageChart(width, C, level) {
+    const small = width < 520, at = coverAt(C.T, s.pi);
+    const yLo = s.zoom ? Math.max(0, Math.floor(20 * (level - 0.15)) / 20) : 0;
+    const chart = Plot.plot({
+      ...base(width, small), height: small ? 260 : 300, marginBottom: 44,
+      x: {domain: [0, 1], ...xAxisPi(small, "skutečný populační podíl π")},
+      y: {domain: [yLo, 1], label: "pokrytí", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 44, ticks: 5, tickFormat: v => trim(v, 2)},
+      ariaLabel: `Pokrytí Waldova a Wilsonova intervalu pro n = ${s.n} a hladinu ${s.level} %`,
+      ariaDescription: `Průměrné pokrytí přes všechny hodnoty π: Waldův interval ${pct(C.summary.meanWald)}, Wilsonův ${pct(C.summary.meanWilson)}. Při π = ${pi3(s.pi)} je pokrytí Waldova intervalu ${pct(at.wald)} a Wilsonova ${pct(at.wilson)}.`,
+      marks: [
+        Plot.ruleY([level], {stroke: ink, strokeWidth: 1.4, strokeDasharray: "6,4"}),
+        Plot.line(C.rows, {x: "pi", y: "wald", stroke: orange, strokeWidth: 1.6, clip: true}),
+        Plot.line(C.rows, {x: "pi", y: "wilson", stroke: blue, strokeWidth: 1.8, clip: true}),
+        Plot.ruleX([s.pi], {stroke: gray, strokeWidth: 1.4, strokeDasharray: "2,3"}),
+        Plot.dot([{y: at.wald, c: orange}, {y: at.wilson, c: blue}].filter(d => d.y >= yLo), {x: () => s.pi, y: "y", r: 4.5, fill: "white", stroke: "c", strokeWidth: 2}),
+        Plot.ruleY([yLo], {stroke: ink})
+      ]
+    });
+    scales.coverage = chart.scale("x");
+    return chart;
+  }
+  function outsideChart(width, C) {
+    const small = width < 520, at = coverAt(C.T, s.pi);
+    const chart = Plot.plot({
+      ...base(width, small), height: small ? 190 : 210, marginBottom: 44,
+      x: {domain: [0, 1], ...xAxisPi(small, "skutečný populační podíl π")},
+      y: {domain: [0, 1], label: "pravděpodobnost", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 44, ticks: 4, tickFormat: v => trim(v, 2)},
+      ariaLabel: `Pravděpodobnost, že Waldův interval zasáhne mimo rozmezí 0 až 1 nebo má nulovou šířku, pro n = ${s.n}`,
+      ariaDescription: `Při π = ${pi3(s.pi)} nastane u Waldova intervalu s pravděpodobností ${pct(at.outside)}; u Wilsonova intervalu nikdy.`,
+      marks: [
+        Plot.ruleY([0], {stroke: blue, strokeWidth: 2.2}),
+        Plot.line(C.rows, {x: "pi", y: "outside", stroke: orange, strokeWidth: 1.8}),
+        Plot.ruleX([s.pi], {stroke: gray, strokeWidth: 1.4, strokeDasharray: "2,3"}),
+        Plot.dot([at.outside], {x: () => s.pi, y: d => d, r: 4.5, fill: "white", stroke: orange, strokeWidth: 2}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+    scales.outside = chart.scale("x");
+    return chart;
+  }
+
+  // 4. Bars P(X = k) for the selected π; the counts whose interval contains π are highlighted.
+  function runsOf(flags) {
+    const out = []; let start = null;
+    flags.forEach((f, k) => { if (f && start === null) start = k; if (!f && start !== null) { out.push([start, k - 1]); start = null; } });
+    if (start !== null) out.push([start, flags.length - 1]);
+    return out;
+  }
+  const runWords = runs => runs.length ? runs.map(([a, b]) => a === b ? `<i>k</i> = ${int(a)}` : `<i>k</i> = ${int(a)} až ${int(b)}`).join(" a ") : "žádné <i>k</i>";
+  function sumWords(pmf, runs, total) {
+    if (!runs.length) return "nic, pokrytí je 0";
+    const terms = runs.flatMap(([a, b]) => d3.range(a, b + 1));
+    const sym = runs.map(([a, b]) => a === b ? `<i>P</i>(<i>X</i> = ${int(a)})` : b === a + 1 ? `<i>P</i>(<i>X</i> = ${int(a)}) + <i>P</i>(<i>X</i> = ${int(b)})` : `<i>P</i>(<i>X</i> = ${int(a)}) + … + <i>P</i>(<i>X</i> = ${int(b)})`).join(" + ");
+    if (terms.length === 1) return `${sym} = ${prob3(total)}`;
+    if (terms.length > 6) return `${sym} (${int(terms.length)} sloupců) = ${prob3(total)}`;
+    return `${sym} = ${terms.map(k => prob3(pmf[k])).join(" + ")} = ${prob3(total)}`;
+  }
+  function windowFor(n, pi) {
+    if (n <= 60) return [0, n];
+    const mu = n * pi, sd = Math.sqrt(n * pi * (1 - pi));
+    let lo = Math.max(0, Math.floor(mu - 5 * sd)), hi = Math.min(n, Math.ceil(mu + 5 * sd));
+    while (hi - lo < 20) { if (lo > 0) lo--; if (hi < n) hi++; }
+    return [lo, hi];
+  }
+  function barsPart(width, T) {
+    const small = width < 520, {n} = s, pi = s.pi, pmf = pmfAll(n, pi);
+    const [lo, hi] = windowFor(n, pi), ks = d3.range(lo, hi + 1);
+    const step = [1, 2, 5, 10, 20, 25, 50].find(st => (hi - lo) / st <= (small ? 7 : 12)) ?? 50;
+    const top = 1.12 * d3.max(ks, k => pmf[k]);
+    const w = ks.length > 100 ? 1 : 0.8;
+    const make = (name, inside, color, light) => {
+      const flags = Array.from({length: n + 1}, (_, k) => inside(T, k, pi));
+      const runs = runsOf(flags), total = d3.sum(d3.range(n + 1).filter(k => flags[k]), k => pmf[k]);
+      const chart = Plot.plot({
+        ...base(width, small), height: small ? 170 : 190, marginBottom: 40,
+        x: {domain: [lo - 0.6, hi + 0.6], label: "počet úspěchů k", labelAnchor: "center", labelArrow: "none", labelOffset: 30, ticks: ks.filter(k => k % step === 0), tickFormat: v => int(v)},
+        y: {domain: [0, top], label: "P(X = k)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 44, ticks: 3, tickFormat: v => trim(v, 3)},
+        ariaLabel: `${name}: pravděpodobnosti počtů úspěchů pro n = ${n} a π = ${pi3(pi)}`,
+        ariaDescription: `Zvýrazněné jsou sloupce počtů, jejichž ${name.toLowerCase()} obsahuje π: ${runWords(runs).replace(/<[^>]+>/g, "")}. Jejich součet, pokrytí, je ${prob3(total)}.`,
+        marks: [
+          Plot.rect(ks, {x1: k => k - w / 2, x2: k => k + w / 2, y1: 0, y2: k => pmf[k], fill: k => flags[k] ? color : pale, title: k => `P(X = ${int(k)}) = ${prob3(pmf[k])}${flags[k] ? "; interval obsahuje π" : ""}`}),
+          Plot.ruleY([0], {stroke: ink})
+        ]
+      });
+      const box = html`<div class="viz-ip-bars"><p class="viz-panel-title"></p><div class="viz-plots" data-chart="bars-${name === "Waldův interval" ? "wald" : "wilson"}"></div><p class="viz-ip-sum"></p></div>`;
+      box.querySelector(".viz-panel-title").innerHTML = `${name}: π = ${pi3(pi)} obsahují intervaly pro ${runWords(runs)}`;
+      box.querySelector(".viz-plots").append(chart);
+      box.querySelector(".viz-ip-sum").innerHTML = `Pokrytí = ${sumWords(pmf, runs, total)} (${pct(total)}).`;
+      return {box, runs, total};
+    };
+    const a = make("Waldův interval", inWald, orange, lightOrange), b = make("Wilsonův interval", inWilson, blue, lightBlue);
+    const nodes = [a.box, b.box];
+    if (lo > 0 || hi < n) {
+      const rest = d3.sum([...d3.range(0, lo), ...d3.range(hi + 1, n + 1)], k => pmf[k]);
+      nodes.push(html`<p class="viz-note">Grafy ukazují počty od ${int(lo)} do ${int(hi)}. Všechny ostatní počty od 0 do ${int(n)} mají dohromady pravděpodobnost ${rest < 0.0005 ? (rest > 0 ? "< 0,001" : "0") : prob3(rest)}.</p>`);
+    }
+    $("[data-bars]").replaceChildren(...nodes);
+    return {wald: a.runs, wilson: b.runs, window: [lo, hi]};
+  }
+
+  // 5. Formulas of the sheet Interval_podilu with the results for the current input.
+  function excelTable(z, W, S) {
+    const rows = [
+      ["B2", "Počet úspěchů", String(s.k), String(s.k)],
+      ["B3", "Počet pokusů <i>n</i>", String(s.n), String(s.n)],
+      ["B4", "Hladina spolehlivosti", fixed(s.level / 100, 2), fixed(s.level / 100, 2)],
+      ["B7", "Výběrový podíl <i>p</i>", "=B2/B3", lim3(W.p)],
+      ["B8", "Kvantil <i>z</i>", "=NORM.S.INV(1-(1-B4)/2)", fixed(z, 4)],
+      ["B9", "Waldův interval: odhad směrodatné chyby", "=ODMOCNINA(B7*(1-B7)/B3)", fixed(W.se, 4)],
+      ["B10", "Waldův interval: dolní mez", "=B7-B8*B9", lim3(W.lo)],
+      ["B11", "Waldův interval: horní mez", "=B7+B8*B9", lim3(W.hi)],
+      ["B13", "Wilsonův interval: střed", "=(B7+B8^2/(2*B3))/(1+B8^2/B3)", lim3(S.mid)],
+      ["B14", "Wilsonův interval: polovina šířky", "=B8/(1+B8^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B8^2/(4*B3^2))", lim3(S.half)],
+      ["B15", "Wilsonův interval: dolní mez", "=B13-B14", lim3(S.lo)],
+      ["B16", "Wilsonův interval: horní mez", "=B13+B14", lim3(S.hi)]
+    ];
+    $("[data-excel]").innerHTML = `<table class="viz-bay-table viz-ip-excel" aria-label="Vzorce listu Interval_podilu s výsledky"><thead><tr><th scope="col">Buňka</th><th scope="col">Význam</th><th scope="col">Český vzorec</th><th scope="col">Výsledek</th></tr></thead><tbody>${rows.map(([c, m, f, v]) => `<tr><th scope="row">${c}</th><td>${m}</td><td><code>${f}</code></td><td>${v}</td></tr>`).join("")}</tbody></table>`;
+  }
+
+  // Coverage curves depend only on n and the level; they are cached between changes of k and π.
+  let cache = {key: null, C: null}, last = {};
+  function render() {
+    const {k, n} = s, level = s.level / 100, z = zq(level);
+    const W = wald(k, n, z), S = wilson(k, n, z), Rt = roots(k, n, z);
+    const key = `${n}|${s.level}`;
+    if (cache.key !== key) cache = {key, C: curves(n, level)};
+    const C = cache.C, at = coverAt(C.T, s.pi);
+    const width = chartWidth();
+    levelOut.textContent = `${s.level} %`;
+    piOut.innerHTML = `π = ${pi3(s.pi)}`;
+    $("#viz-ip-cov-title").textContent = `Pokrytí obou postupů pro n = ${int(n)} a hladinu ${s.level} %`;
+
+    // Intervals and their calculation.
+    $("[data-legend=intervals]").replaceChildren(legend([[swLine(orange, 5), "Waldův interval"], [swLine(blue, 5), "Wilsonův interval"], [swDot(ink), "výběrový podíl <i>p</i>"], [swDiamond, "střed Wilsonova intervalu"], ...(W.lo < 0 || W.hi > 1 ? [[swBox(sand), "hodnoty, kterých podíl nabýt nemůže"]] : [])]));
+    $("[data-chart=intervals]").replaceChildren(intervalsChart(width, W, S));
+    const warn = [];
+    if (k === 0 || k === n) warn.push(`Waldův interval má nulovou šířku: z výběrového podílu ${k === 0 ? "0" : "1"} vychází odhad směrodatné chyby 0. Tvrdil by, že populační podíl je přesně ${k === 0 ? "0" : "1"}, ačkoli jsme pozorovali jen ${int(n)} ${n === 1 ? "pokus" : n <= 4 ? "pokusy" : "pokusů"}.`);
+    if (W.lo < -1e-12) warn.push(`Dolní mez Waldova intervalu ${lim3(W.lo)} leží pod nulou, podíl ale záporný být nemůže.`);
+    if (W.hi > 1 + 1e-12) warn.push(`Horní mez Waldova intervalu ${lim3(W.hi)} leží nad jedničkou, podíl ale nemůže být větší než 1.`);
+    const warning = $("[data-warning]"); warning.hidden = !warn.length; warning.innerHTML = warn.join(" ");
+    const shift = S.mid - W.p;
+    dl($("[data-stats=intervals]"), [
+      ["Výběrový podíl a kvantil", `<i>p</i> = ${int(k)}/${int(n)} = ${lim3(W.p)}; <i>z</i> = ${fixed(z, 4)} pro hladinu ${s.level} %`],
+      ["Waldův interval", `odhad směrodatné chyby √(<i>p</i>(1 − <i>p</i>)/<i>n</i>) = √(${lim3(W.p)} · ${lim3(1 - W.p)}/${int(n)}) = ${fixed(W.se, 4)}<br><i>p</i> ± <i>z</i> · ${fixed(W.se, 4)} = <strong>${ci(W.lo, W.hi)}</strong>, šířka ${lim3(W.hi - W.lo)}`],
+      ["Wilsonův interval", `střed ${lim3(S.mid)}, polovina šířky ${lim3(S.half)}<br>střed ± polovina šířky = <strong>${ci(S.lo, S.hi)}</strong>, šířka ${lim3(S.hi - S.lo)}`],
+      ["Střed Wilsonova intervalu ve srovnání s <i>p</i>", Math.abs(shift) < 5e-4 ? "posun nenastal: střed leží v <i>p</i>" + (Math.abs(W.p - 0.5) < 1e-12 ? " = 0,5" : " (posun je menší než 0,0005)") : `posunut o ${lim3(Math.abs(shift))} ${shift > 0 ? "doprava" : "doleva"}, směrem k 0,5; interval je kolem <i>p</i> nesouměrný: pod <i>p</i> sahá o ${lim3(W.p - S.lo)}, nad <i>p</i> o ${lim3(S.hi - W.p)}`]
+    ]);
+
+    // Derivation of the Wilson limits.
+    $("[data-legend=derivation]").replaceChildren(legend([[swLine(orange, 2.4), "levá strana: čtverec vzdálenosti (<i>p</i> − π)²"], [swLine(blue, 2.4), "pravá strana <i>z</i>²π(1 − π)/<i>n</i>"], [swBox(blue, 0.16), "nerovnice platí: Wilsonův interval"], ...(s.waldBound ? [[swLine(orange, 1.6, "6,4"), "pravá strana pro Waldův interval <i>z</i>²<i>p</i>(1 − <i>p</i>)/<i>n</i>"]] : []), [swLine(gray, 1.4, "2,3"), "vybrané π"]]));
+    $("[data-chart=derivation]").replaceChildren(derivationChart(width, z, W, S));
+    const Lp = (W.p - s.pi) ** 2, Rp = z * z * s.pi * (1 - s.pi) / n, okPi = Lp <= Rp, wb = z * z * W.p * (1 - W.p) / n;
+    const fmt4 = v => v === 0 ? "0" : v < 0.00005 ? "< 0,0001" : fixed(v, 4);
+    const derRows = [
+      ["Nerovnice s dosazením", `(${lim3(W.p)} − π)² ≤ ${fixed(z, 4)}² · π(1 − π)/${int(n)}`],
+      ["Kde platí", `pro π od ${lim3(S.lo)} do ${lim3(S.hi)}: to jsou meze Wilsonova intervalu (kořeny kvadratické rovnice ${lim3(Rt.lo)} a ${lim3(Rt.hi)})`],
+      [`Vybrané π = ${pi3(s.pi)}`, `(${lim3(W.p)} − ${pi3(s.pi)})² = ${fmt4(Lp)} a ${fixed(z, 4)}² · ${pi3(s.pi)} · ${pi3(1 - s.pi)}/${int(n)} = ${fmt4(Rp)}: nerovnice ${okPi ? "<strong>platí</strong>, π leží ve Wilsonově intervalu" : "<strong>neplatí</strong>, π leží mimo Wilsonův interval"}`, true]
+    ];
+    if (s.waldBound) derRows.push(["Waldův interval v grafu nerovnice", `pravá strana pro Waldův interval je vodorovná čára ${fixed(z, 4)}² · ${lim3(W.p)} · ${lim3(1 - W.p)}/${int(n)} = ${fmt4(wb)} a nezávisí na π. Protíná oranžovou křivku v mezích Waldova intervalu ${lim3(W.lo)} a ${lim3(W.hi)}${W.lo < -1e-12 || W.hi > 1 + 1e-12 ? "; mez mimo rozmezí 0 až 1 v grafu není" : ""}${k === 0 || k === n ? `; čára leží na ose a oranžové křivky se dotkne jen v bodě ${k === 0 ? "0" : "1"}, interval má proto nulovou šířku` : ""}.`, true]);
+    dl($("[data-stats=derivation]"), derRows);
+
+    // Coverage.
+    $("[data-legend=coverage]").replaceChildren(legend([[swLine(orange, 2), "Waldův interval"], [swLine(blue, 2), "Wilsonův interval"], [swLine(ink, 1.4, "6,4"), `slibovaná hladina ${s.level} %`], [swLine(gray, 1.4, "2,3"), "vybrané π"]]));
+    $("[data-chart=coverage]").replaceChildren(coverageChart(width, C, level));
+    $("[data-chart=outside]").replaceChildren(outsideChart(width, C));
+    const Sm = C.summary;
+    dl($("[data-stats=coverage]"), [
+      [`Pokrytí při π = ${pi3(s.pi)}`, `Waldův interval <strong>${pct(at.wald)}</strong>, Wilsonův <strong>${pct(at.wilson)}</strong>`],
+      [`Waldův interval mimo 0–1 nebo s nulovou šířkou při π = ${pi3(s.pi)}`, `${pct(at.outside)}; u Wilsonova intervalu nikdy`],
+      ["Průměrné pokrytí přes všechna π", `Waldův interval ${pct(Sm.meanWald)}, Wilsonův ${pct(Sm.meanWilson)}`],
+      ["Nejnižší pokrytí", `Waldův interval ${pct(Sm.infWald)} (při π = ${pi3(Sm.atWald)}), Wilsonův ${pct(Sm.infWilson)} (při π = ${pi3(Sm.atWilson)})`],
+      [`Podíl hodnot π s pokrytím pod ${s.level} %`, `Waldův interval ${pct(Sm.belowWald)}, Wilsonův ${pct(Sm.belowWilson)}`]
+    ]);
+
+    // Bars.
+    $("[data-legend=bars]").replaceChildren(legend([[swBox(orange), "Waldův interval obsahuje π"], [swBox(blue), "Wilsonův interval obsahuje π"], [swBox(pale), "interval π neobsahuje"]]));
+    const B = barsPart(width, C.T);
+
+    excelTable(z, W, S);
+    last = {k, n, level: s.level, pi: s.pi, zoom: s.zoom, waldBound: s.waldBound, z, wald: W, wilson: S, roots: {lo: Rt.lo, hi: Rt.hi},
+      cover: at, summary: Sm, runs: {wald: B.wald, wilson: B.wilson}, window: B.window, inequality: okPi};
+  }
+
+  // Redraw at a new width without changing the inputs.
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = $('[data-chart="intervals"]').clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(render);
+  });
+  observer.observe($('[data-chart="intervals"]'));
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs); the level is a proportion here.
+  root.vizCheck = {
+    zq, wald: (k, n, level) => wald(k, n, zq(level)), wilson: (k, n, level) => wilson(k, n, zq(level)), roots: (k, n, level) => roots(k, n, zq(level)),
+    coverage: (n, level, pi) => coverAt(table(n, zq(level)), pi), summary: (n, level) => curves(n, level).summary,
+    state: () => JSON.parse(JSON.stringify(last))
+  };
+
+  render();
+  return root;
+}
+```
+
+<noscript><p>Interaktivní vizualizace potřebuje JavaScript. Oba intervaly a jejich pokrytí ukazují statické obrázky v kapitole 9: <a href="kapitola_09.html#fig-wald-wilson">Waldův a Wilsonův interval pro dva příklady</a>, <a href="kapitola_09.html#fig-pokryti">pokrytí obou intervalů pro čtyři velikosti výběru</a> a <a href="kapitola_09.html#fig-wilson-odvozeni">odvození Wilsonova intervalu</a>.</p></noscript>
+
+## Vyzkoušejte si {#sec-viz-ip-vyzkousejte .unnumbered}
+
+1. Zvolte předvolbu 0 z 15 a zapněte Waldův interval v grafu nerovnice. Proč má Waldův interval nulovou šířku a kde to vidíte v grafu nerovnice? Jak daleko sahá Wilsonův interval? Potom zvolte 1 z 25 a porovnejte, kam sahá dolní mez Waldova intervalu a jak daleko pod a nad výběrový podíl 0,04 sahá Wilsonův interval.
+2. Nastavte $n=20$, hladinu 95 % a vybrané $\mathrm{π}=0{,}05$. Při kterých počtech úspěchů obsahuje hodnotu 0,05 Waldův interval a při kterých Wilsonův? Waldův interval hodnotu 0,05 nezachytí při výsledku $k=0$. Proč, a proč to pokrytí tolik sníží, když výsledek $k=0$ nastane s pravděpodobností asi 0,36? Potom posouvejte $\mathrm{π}$ šipkami po 0,01 nahoru a sledujte, kdy sloupec přibude nebo ubude a co se přitom stane s pokrytím.
+3. Při hladině 95 % zvyšujte počet pokusů z 20 na 50 a na 200. Jak se mění průměrné pokrytí obou postupů a jak propad Waldova intervalu u okrajů? Potom se vraťte k $n=20$, zapněte přiblížení a najděte úzký propad pokrytí Wilsonova intervalu u $\mathrm{π}$ kolem 0,009. Které sloupce v něm chybějí?
+4. Při $n=20$ změňte hladinu na 80 % a na 99 % a sledujte, zda Waldův interval slib hladiny dodrží. Než potom změníte počet úspěchů, odhadněte, které grafy se změní a které ne, a odhad ověřte.
+
+## Čeho si všimnout {#sec-viz-ip-vsimnete .unnumbered}
+
+Pokrytí je vlastnost postupu, ne jednoho intervalu, jak vysvětluje oddíl [Co znamená „95 %“](kapitola_07.qmd#sec-co-znamena-95). Závisí na počtu pokusů, hladině spolehlivosti a skutečné hodnotě $\mathrm{π}$, ne na tom, kolik úspěchů jsme pozorovali v jednom výběru. Při změně počtu úspěchů se proto mění oba intervaly a graf nerovnice, ale grafy pokrytí zůstávají stejné. Skutečné $\mathrm{π}$ v praxi neznáme. Potřebujeme proto postup, jehož pokrytí je blízko slibované hladiny pro všechna $\mathrm{π}$. Wilsonův interval tento požadavek splňuje, Waldův ne.
+
+Pokrytí je součet sloupců binomického rozdělení. Pro každé $\mathrm{π}$ sečteme pravděpodobnosti těch počtů úspěchů, jejichž interval $\mathrm{π}$ obsahuje. Když $\mathrm{π}$ překročí mez intervalu pro některý počet, sloupec tohoto počtu přibude nebo ubude a pokrytí skočí. Mezi skoky se pokrytí mění plynule. Proto se ani pokrytí Wilsonova intervalu nedrží na 95 %, ale kolísá nad touto hodnotou i pod ní: počet úspěchů nabývá jen celých hodnot. Při $n=20$ a 95% hladině klesá pod 95 % u 40 % hodnot $\mathrm{π}$, většinou ale jen mírně. Průměrné pokrytí přes všechny hodnoty $\mathrm{π}$ je 95,3 %, slib hladiny tedy Wilsonův interval v průměru dodrží.
+
+Těsně u 0 a 1 má i Wilsonův interval úzké propady, kde pokrytí klesá na 83 až 84 %. Při $n=20$ leží propad těsně pod hodnotou 0,0089, dolní mezí intervalu pro $k=1$. Interval pro $k=1$ tam hodnotu $\mathrm{π}$ neobsahuje, ačkoli výsledek $k=1$ nastane asi s pravděpodobností 0,15. Hodnotu $\mathrm{π}$ tam obsahuje jen interval pro $k=0$ a pokrytí je jen pravděpodobnost, že nenastane žádný úspěch. U jedničky je propad souměrný: pokrytí je tam pravděpodobnost, že nenastane žádný neúspěch.
+
+Waldův interval počítá směrodatnou chybu z výběrového podílu $p$. V grafu nerovnice je proto pravá strana pro Waldův interval vodorovná čára: povolená vzdálenost od $p$ je stejná pro všechna zkoumaná $\mathrm{π}$. Při $p=0$ nebo $p=1$ leží tato čára na ose a interval má nulovou šířku. Pro malé $\mathrm{π}$ je přitom výsledek $k=0$ velmi pravděpodobný a Waldův interval z něj $\mathrm{π}$ nikdy nezachytí. Při $n=20$ a $\mathrm{π}=0{,}05$ nenastane žádný úspěch s pravděpodobností 0,358, a populační podíl proto obsahuje jen 63,9 % Waldových intervalů, kdežto 92,5 % Wilsonových. U krajních hodnot $\mathrm{π}$ klesá pokrytí Waldova intervalu téměř k nule a interval často zasahuje mimo rozmezí 0 až 1 nebo má nulovou šířku. S rostoucím počtem pokusů se oba intervaly sbližují: při $n=200$ je průměrné pokrytí Waldova intervalu 93,5 % a Wilsonova 95,1 %. U podílů blízko 0 a 1 však Waldův interval selhává i tehdy.
+
+Wilsonův interval počítá směrodatnou chybu z každého zkoumaného $\mathrm{π}$. Pravá strana nerovnice je proto křivka, která se k okrajům snižuje. Interval leží vždy v rozmezí od 0 do 1, nemá nulovou šířku a u krajních podílů je nesouměrný, stejně jako [výběrové rozdělení podílu](kapitola_06.qmd#sec-rozdeleni-podilu). Všechna pokrytí platí za předpokladů [binomického modelu](kapitola_05.qmd#sec-binomicke-predpoklady): nezávislé pokusy se stejnou pravděpodobností úspěchu. Pokrytí je dlouhodobá vlastnost postupu. O 95% Wilsonově intervalu z jednoho výběru proto víme, že vznikl postupem, který při opakování zachytí $\mathrm{π}$ přibližně v 95 % případů; nevíme, zda právě tento interval $\mathrm{π}$ obsahuje.

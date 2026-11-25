@@ -106,6 +106,17 @@ zdroje: Daniels (podle Fielda, s. 638), aspirinová studie, Prozac a anorexie
 
 <a id="interaktivni-vizualizace-09"></a>
 
+**Interaktivní vizualizace (2026-11-25, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-25-interval-podilu)):**
+na konci pododdílu [Wilsonův interval](../../quarto/kapitola_09.qmd#sec-wilson),
+za věcnou interpretací a před rozšířením o odvození, odkazuje blok „Vyzkoušejte si:
+Waldův a Wilsonův interval“ na stránku
+[Proč odhadujeme podíl Wilsonovým intervalem](../../quarto/viz_interval_podilu.qmd).
+
+- **Ovládání:** počet úspěchů *k* a počet pokusů *n* (1–200; výchozí 10 z 20), posuvník hladiny spolehlivosti 50–99 %; předvolby 10 z 20, 0 z 15, 1 z 25 (cvičení 3) a 40 z 80; vybrané π posuvníkem nebo klepnutím do grafu pokrytí (výchozí 0,05); přepínače meze Waldova intervalu a přiblížení okolí hladiny.
+- **Grafy a výsledky:** oba intervaly nad sebou s *p* a středem Wilsonova intervalu, oblast nemožných hodnot a upozornění na nulovou šířku či meze mimo 0–1; interaktivní obdoba obrázku `fig-wilson-odvozeni` (obě strany nerovnice, průsečíky v mezích, volitelně vodorovná mez Waldova intervalu $z^2p(1-p)/n$); přesné pokrytí obou intervalů podle π s průměrem, nejnižší hodnotou a podílem hodnot π pod hladinou; pravděpodobnost Waldova intervalu mimo 0–1 nebo s nulovou šířkou; sloupce *P*(*X* = *k*) se zvýrazněnými počty, jejichž interval π obsahuje, a pokrytí jako jejich součet; vzorce listu `Interval_podilu`.
+- **Vztah k výkladu:** nové pojmy nezavádí; *k* a *P*(*X* = *k*) jsou značení kapitoly 5. Výchozí stav navazuje na čísla kapitoly (64 % Waldových intervalů při *n* = 20 a π = 0,05). „Čeho si všimnout“ doplňuje oproti kapitole tato zjištění z modelu: pokrytí nezávisí na pozorovaném *k*; při *n* = 20 a π = 0,05 je pokrytí Wilsonova intervalu 92,5 % a výsledek *k* = 0 má pravděpodobnost 0,358; průměrné pokrytí Wilsonova intervalu při *n* = 20 je 95,3 %, při *n* = 200 je 95,1 % a Waldova 93,5 %; těsně pod dolní mezí intervalu pro *k* = 1 (a souměrně u 1) klesá pokrytí Wilsonova intervalu v úzkém pásmu na 83 až 84 % (pro *n* od 10 do 200), při *n* = 20 u π ≈ 0,0089 s vysvětlením, které sloupce chybějí. Kapitola v oddílu `sec-wilson` od 2026-11-25 uvádí totéž obecně (83 až 84 %, při *n* = 10 u π = 0,018, u větších výběrů mimo rozsah obrázku `fig-pokryti`); dříve uváděla „u *n* = 10 nejníže na 85 %“, což platilo jen pro mřížku π od 0,01 do 0,99 obrázku.
+- **Rozsah:** opakuje pododdíly Známá konstrukce a kde selhává, Wilsonův interval (včetně nepovinného odvození) a Výpočet v Excelu. Nepočítá skórový ani binomický test, Newcombův interval ani jiné intervaly pro podíl. Není samostatným cvičením; doplňuje úlohy 2 a 3.
+
 **Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi)):**
 v pododdílu [Pearsonova a standardizovaná rezidua](../../quarto/kapitola_09.qmd#sec-pearson-upravena),
 za rozšířením o Holmově korekci, odkazuje blok „Vyzkoušejte si: od tabulky
@@ -128,7 +139,7 @@ poměr rizik a poměr šancí“ na stránku
 - **Vztah k výkladu:** nové pojmy nezavádí. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění z modelu: při poměru šancí 3,23 je poměr rizik 3,16 u rizika 0,01 v referenční skupině, 1,53 u 0,5 a 1,07 u 0,9; stejný poměr rizik 2,34 není možný nad rizikem 0,43 a stejný rozdíl nad 0,771; ve výběru s desetinou žen bez tématu je poměr podílů 1,29 při nezměněném poměru šancí. Po záměně referenční skupiny uvádí poměr šancí 0,31, který kapitola nepočítá.
 - **Rozsah:** opakuje pododdíly Rozdíl v procentních bodech, Poměr rizik a poměr šancí a část o φ. Nepočítá intervaly spolehlivosti (Newcombe, intervaly poměrů), Cramérovo V pro větší tabulky ani test. Členění je inspirováno článkem [E08](../zdroje/E08-magnusson-odds-ratio.md#e08-magnusson-odds-ratio). Není samostatným cvičením; doplňuje úlohy 9e a 10.
 
-Kontrola souladu obou vizualizací s textem uvedených oddílů: 2026-11-20. Další náměty vizualizací ke kapitole 9 jsou otevřeným návrhem v [plánu pokračování](plan-pokracovani.md#plan-vizualizace).
+Kontrola souladu vizualizací chí-kvadrát a měr souvislosti s textem uvedených oddílů: 2026-11-20; vizualizace intervalu pro podíl: 2026-11-25. Zbývající námět vizualizace ke kapitole 9 je otevřeným návrhem v [plánu pokračování](plan-pokracovani.md#plan-vizualizace).
 
 <a id="cviceni-09"></a>
 
