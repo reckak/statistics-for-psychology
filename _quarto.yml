@@ -62,6 +62,9 @@ book:
         - quarto/viz_chi_kvadrat.qmd
         - quarto/viz_miry_souvislosti.qmd
         - quarto/viz_korelace.qmd
+    - part: "Statistické aplikace"
+      chapters:
+        - quarto/app_jeden_podil.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

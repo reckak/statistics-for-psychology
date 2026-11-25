@@ -1,0 +1,471 @@
+---
+code-copy: false
+---
+
+# Test jednoho podílu {#sec-app-jeden-podil .unnumbered}
+
+Odpovídá podíl jedné kategorie ve výběru hodnotě, kterou předpokládá nulová hypotéza? Aplikace pro proměnnou se dvěma kategoriemi spočítá výběrový podíl, [skórový test](kapitola_09.qmd#sec-interval-a-test-podilu) i přesný [binomický test](kapitola_06.qmd#sec-binomicky-test) a odhadne populační podíl [Wilsonovým intervalem](kapitola_09.qmd#sec-wilson). Ukáže také očekávané četnosti a rozdělení počtu případů zvolené kategorie při platnosti nulové hypotézy. Postupy vysvětlují kapitoly 6 a 9; tato stránka je shrnuje a počítá je pro vaše data.
+
+## Jak aplikaci použít {#sec-app-podil-ovladani .unnumbered}
+
+Zadejte název proměnné, názvy obou kategorií a jejich četnosti ve výběru (celá čísla od 0 do 100 000, součet alespoň 1). Velikost výběru $n$ je součet obou četností a $k$ je četnost kategorie, kterou zvolíte jako „úspěch“. Podíl $\mathrm{π}$ v hypotézách je vždy populační podíl této kategorie. U opakovaných pokusů jednoho člověka, jako je student odpovídající na otázky, je to jeho dlouhodobá úspěšnost: pravděpodobnost, že jeden pokus skončí v této kategorii. Testovanou hodnotu $\mathrm{π}_0$ zadejte jako desetinné číslo mezi 0 a 1 (s desetinnou čárkou, nebo tečkou), případně zlomkem, například 1/3. Zvolte alternativní hypotézu. Nulová hypotéza zahrnuje všechny ostatní možnosti, jak vysvětluje [kapitola 6](kapitola_06.qmd#sec-smer-testu), a aplikace ji vypíše. Hladinu významnosti $\mathrm{α}$ zadejte jako číslo větší než 0 a menší než 0,5.
+
+U oboustranné alternativy aplikace počítá oboustranný Wilsonův interval se spolehlivostí $1-\mathrm{α}$. U jednostranné alternativy si vyberete, zda chcete oboustranný interval se spolehlivostí $1-2\mathrm{α}$ (výchozí volba), nebo [jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval) se spolehlivostí $1-\mathrm{α}$. Oba mají na straně, o které rozhoduje jednostranný test, stejnou mez. Proto musí být α menší než 0,5: jinak by spolehlivost $1-2\mathrm{α}$ nebyla kladná.
+
+Názvy proměnné a kategorií se objeví v grafech, tabulkách i ve slovní interpretaci. Po načtení stránky jsou nastavena data z cvičení 8 kapitoly 6 (7 správných a 1 špatná odpověď) s nejčastěji používanou testovanou hodnotou 0,50 a oboustrannou alternativou. Tlačítka nastaví příklady z kapitol s jejich vlastní testovanou hodnotou a alternativou. Při neplatné hodnotě se zobrazí upozornění a aplikace dál používá poslední platnou hodnotu. Výpočty běží jen ve vašem prohlížeči, zadaná data se nikam neodesílají.
+
+Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kontrolu očekávaných četností a tři grafy. První graf porovnává pozorované a očekávané četnosti obou kategorií. Druhý ukazuje rozdělení počtu případů zvolené kategorie při platnosti nulové hypotézy: zvýrazněné sloupce tvoří *p*-hodnotu přesného testu, svislá čára je pozorovaný počet a čárkovaná křivka normální aproximace, ze které vychází skórový test. U velkých výběrů graf ukazuje jen výřez kolem očekávaného počtu. Třetí graf ukazuje na ose populačního podílu Wilsonův interval, výběrový podíl a testovanou hodnotu. Podíly, meze a *z* zaokrouhlujeme na tři desetinná místa, směrodatnou chybu a kvantil na čtyři. *p*-hodnoty mají tři desetinná místa, hodnoty pod 0,001 dvě platné číslice; *p*-hodnota 0,0098 z kapitoly 9 se proto zobrazí jako 0,010. Počítáme s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Calculations live in a shared module checked against R (scripts/check-stat-lib.mjs, scripts/app-jeden-podil.R).
+  const L = await import(new URL("../assets/stat/podil.js", document.baseURI).href);
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", lightBlue = "#B8DDE8";
+
+  // Czech number formatting with a true minus sign; user text is always escaped before it enters HTML.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const int = v => v.toLocaleString("cs-CZ");
+  const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 1 - Math.floor(Math.log10(Math.abs(v)))));
+  const pfmt = p => p >= 0.001 || p === 0 ? fixed(p, 3) : fixed(p, sigDigits(p));
+  const lim3 = v => fixed(Math.abs(v) < 1e-12 ? 0 : v, 3);
+  const pct1 = v => fixed(100 * v, 1);
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+  const q = t => `„${t}“`;
+  const short = (t, m) => t.length > m ? t.slice(0, m - 1) + "…" : t;
+  const levelText = c => `${trim(100 * c, 4)} %`;
+
+  function parseDecimal(raw) {
+    const t = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(t)) return null;
+    const v = Number(t); return Number.isFinite(v) ? v : null;
+  }
+  // π₀ also as a fraction a/b, e.g. 1/3; the label keeps the fraction.
+  function parsePi0(raw) {
+    const f = raw.trim().replace(/\s+/g, "").match(/^(\d+)\/(\d+)$/);
+    if (f) { const v = Number(f[1]) / Number(f[2]); return Number.isFinite(v) ? {v, label: `${f[1]}/${f[2]}`} : null; }
+    const v = parseDecimal(raw);
+    return v === null ? null : {v, label: trim(v, 10)};
+  }
+
+  const PRESETS = [
+    {id: "tipovani", label: "Tipující student (kap. 6)", varName: "Odpověď na otázku", names: ["správně", "špatně"], counts: [10, 10], success: 0, pi0: "0,25", alt: "greater", alpha: "0,05", kind: "two"},
+    {id: "cislice", label: "Rozpoznávání číslic (kap. 6, cvičení 8)", varName: "Odpověď v pokusu", names: ["správně", "špatně"], counts: [7, 1], success: 0, pi0: "0,5", alt: "greater", alpha: "0,05", kind: "two"},
+    {id: "telepatie", label: "Studie o telepatii (kap. 9)", varName: "Výsledek pokusu", names: ["zásah", "nezásah"], counts: [106, 223], success: 0, pi0: "0,25", alt: "greater", alpha: "0,05", kind: "two"}
+  ];
+  // Default on load: the data of chapter 6, exercise 8, with the most common π₀ = 0,50 and a two-sided H₁.
+  const DEFAULT = {id: "", varName: "Odpověď v pokusu", names: ["správně", "špatně"], counts: [7, 1], success: 0, pi0: "0,50", alt: "two", alpha: "0,05", kind: "two"};
+  const s = {varName: "", names: ["", ""], counts: [0, 0], success: 0, pi0: 0.5, pi0Label: "0,5", alt: "two", alpha: 0.05, alphaLabel: "0,05", kind: "two"};
+  const varName = () => s.varName.trim() || "Proměnná";
+  const catName = i => s.names[i].trim() || `Kategorie ${i + 1}`;
+
+  const textField = (id, label, max, cls = "") => html`<div class="viz-field viz-app-text ${cls}">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" maxlength="${max}" autocomplete="off" aria-describedby="viz-app-${id}-hint">
+    <span id="viz-app-${id}-hint" class="viz-hint">nejvýše ${max} znaků</span>
+  </div>`;
+  const countField = i => html`<div class="viz-field">
+    <label for="viz-app-c${i}" data-count-label="${i}"></label>
+    <input id="viz-app-c${i}" type="number" min="0" max="${L.N_MAX}" step="1" inputmode="numeric" aria-describedby="viz-app-c${i}-hint viz-app-c${i}-error">
+    <span id="viz-app-c${i}-hint" class="viz-hint">celé číslo od 0 do ${int(L.N_MAX)}</span>
+    <span id="viz-app-c${i}-error" class="viz-error" hidden></span>
+  </div>`;
+  const decimalField = (id, label, hint) => html`<div class="viz-field">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" inputmode="decimal" autocomplete="off" aria-describedby="viz-app-${id}-hint viz-app-${id}-error">
+    <span id="viz-app-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-app-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+
+  const root = html`<div class="viz viz-app" id="app-jeden-podil">
+    <fieldset class="viz-model">
+      <legend>Data</legend>
+      <div class="viz-controls">${textField("var", "Název proměnné", 60, "viz-app-wide")}</div>
+      <div class="viz-controls viz-app-cats">
+        ${textField("n0", "Název 1. kategorie", 40)}${countField(0)}
+      </div>
+      <div class="viz-controls viz-app-cats">
+        ${textField("n1", "Název 2. kategorie", 40)}${countField(1)}
+      </div>
+      <p class="viz-error" data-sum-error role="alert" hidden>Součet četností musí být alespoň 1. Používají se dál poslední platné četnosti.</p>
+      <fieldset class="viz-choice viz-app-success">
+        <legend>Která kategorie se počítá jako úspěch</legend>
+        <label><input type="radio" name="viz-app-success" value="0"><span data-success-label="0"></span></label>
+        <label><input type="radio" name="viz-app-success" value="1"><span data-success-label="1"></span></label>
+      </fieldset>
+    </fieldset>
+    <fieldset class="viz-model">
+      <legend>Hypotézy a hladina významnosti</legend>
+      <div class="viz-controls">
+        ${decimalField("pi0", html`Testovaná hodnota π<sub>0</sub>`, "číslo mezi 0 a 1, např. 0,25 nebo 1/3")}
+        ${decimalField("alpha", "Hladina významnosti α", "větší než 0 a menší než 0,5, obvykle 0,05")}
+      </div>
+      <fieldset class="viz-choice viz-app-alt">
+        <legend>Alternativní hypotéza</legend>
+        <label><input type="radio" name="viz-app-alt" value="two"><span>oboustranná, <i>H</i><sub>1</sub>: π ≠ π<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-app-alt" value="greater"><span>jednostranná, <i>H</i><sub>1</sub>: π &gt; π<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-app-alt" value="less"><span>jednostranná, <i>H</i><sub>1</sub>: π &lt; π<sub>0</sub></span></label>
+      </fieldset>
+      <p class="viz-app-hyp" data-hyp aria-live="polite"></p>
+      <fieldset class="viz-choice viz-app-kind" hidden>
+        <legend>Interval spolehlivosti u jednostranné alternativy</legend>
+        <label><input type="radio" name="viz-app-kind" value="two"><span data-kind-label="two"></span></label>
+        <label><input type="radio" name="viz-app-kind" value="one"><span data-kind-label="one"></span></label>
+      </fieldset>
+      <div class="viz-pj-presets" role="group" aria-label="Příklady z kapitol">
+        ${PRESETS.map(p => html`<button type="button" data-preset="${p.id}" aria-pressed="false">${p.label}</button>`)}
+      </div>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-app-res-title">
+      <h3 id="viz-app-res-title" class="viz-part-title">Výsledky</h3>
+      <p class="viz-app-summary" data-summary aria-live="polite"></p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Tabulka výsledků: posuvná oblast" data-results></div>
+      <p class="viz-note" data-exact-note hidden></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-int-title">
+      <h3 id="viz-app-int-title" class="viz-part-title">Slovní interpretace</h3>
+      <div class="viz-app-report" data-report></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-cond-title">
+      <h3 id="viz-app-cond-title" class="viz-part-title">Očekávané četnosti a předpoklady</h3>
+      <p class="viz-limit" data-cond-warning hidden></p>
+      <div data-legend="counts"></div>
+      <div class="viz-plots" data-chart="counts"></div>
+      <p class="viz-note" data-cond></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-null-title">
+      <h3 id="viz-app-null-title" class="viz-part-title"></h3>
+      <div data-legend="null"></div>
+      <div class="viz-plots" data-chart="null"></div>
+      <p class="viz-note" data-null-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-ci-title">
+      <h3 id="viz-app-ci-title" class="viz-part-title"></h3>
+      <div data-legend="interval"></div>
+      <div class="viz-plots" data-chart="interval"></div>
+    </section>
+  </div>`;
+
+  const $ = sel => root.querySelector(sel);
+  const inputs = {var: $("#viz-app-var"), n0: $("#viz-app-n0"), n1: $("#viz-app-n1"), c0: $("#viz-app-c0"), c1: $("#viz-app-c1"), pi0: $("#viz-app-pi0"), alpha: $("#viz-app-alpha")};
+
+  // Validation as in the visualizations: an invalid value shows a message and the last valid value stays in use.
+  function setError(id, msg) {
+    const input = $(`#viz-app-${id}`), error = $(`#viz-app-${id}-error`);
+    error.hidden = !msg; error.textContent = msg || ""; input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+  const sumError = $("[data-sum-error]");
+  function readCounts() {
+    const vals = [0, 1].map(i => {
+      const inp = inputs[`c${i}`], raw = inp.value.trim();
+      const v = !inp.validity.badInput && /^\d+$/.test(raw) ? Number(raw) : null;
+      const ok = v !== null && v <= L.N_MAX;
+      setError(`c${i}`, ok ? "" : `Zadejte celé číslo od 0 do ${int(L.N_MAX)}. Používá se dál poslední platná hodnota.`);
+      return ok ? v : null;
+    });
+    if (vals.includes(null)) { sumError.hidden = true; return; }
+    if (vals[0] + vals[1] < 1) { sumError.hidden = false; return; }
+    sumError.hidden = true; s.counts = vals; render();
+  }
+  inputs.c0.addEventListener("input", readCounts); inputs.c1.addEventListener("input", readCounts);
+  inputs.var.addEventListener("input", () => { s.varName = inputs.var.value; render(); });
+  inputs.n0.addEventListener("input", () => { s.names[0] = inputs.n0.value; render(); });
+  inputs.n1.addEventListener("input", () => { s.names[1] = inputs.n1.value; render(); });
+  inputs.pi0.addEventListener("input", () => {
+    const r = parsePi0(inputs.pi0.value), ok = r !== null && r.v > 0 && r.v < 1;
+    setError("pi0", ok ? "" : "Zadejte číslo větší než 0 a menší než 1, například 0,25 nebo 1/3. Používá se dál poslední platná hodnota.");
+    if (ok) { s.pi0 = r.v; s.pi0Label = r.label; render(); }
+  });
+  inputs.alpha.addEventListener("input", () => {
+    const v = parseDecimal(inputs.alpha.value), ok = v !== null && v > 0 && v < 0.5;
+    setError("alpha", ok ? "" : "Zadejte číslo větší než 0 a menší než 0,5, například 0,05. Používá se dál poslední platná hodnota.");
+    if (ok) { s.alpha = v; s.alphaLabel = trim(v, 10); render(); }
+  });
+  root.querySelectorAll('input[name="viz-app-success"]').forEach(r => r.addEventListener("change", () => { s.success = Number(r.value); render(); }));
+  root.querySelectorAll('input[name="viz-app-alt"]').forEach(r => r.addEventListener("change", () => { s.alt = r.value; render(); }));
+  root.querySelectorAll('input[name="viz-app-kind"]').forEach(r => r.addEventListener("change", () => { s.kind = r.value; render(); }));
+  function applyPreset(p) {
+    Object.assign(s, {varName: p.varName, names: [...p.names], counts: [...p.counts], success: p.success, alt: p.alt, kind: p.kind});
+    const r = parsePi0(p.pi0); Object.assign(s, {pi0: r.v, pi0Label: r.label, alpha: parseDecimal(p.alpha), alphaLabel: p.alpha});
+    inputs.var.value = p.varName; inputs.n0.value = p.names[0]; inputs.n1.value = p.names[1];
+    inputs.c0.value = String(p.counts[0]); inputs.c1.value = String(p.counts[1]); inputs.pi0.value = p.pi0; inputs.alpha.value = p.alpha;
+    for (const id of ["c0", "c1", "pi0", "alpha"]) setError(id, "");
+    sumError.hidden = true;
+    root.querySelector(`input[name="viz-app-success"][value="${p.success}"]`).checked = true;
+    root.querySelector(`input[name="viz-app-alt"][value="${p.alt}"]`).checked = true;
+    root.querySelector(`input[name="viz-app-kind"][value="${p.kind}"]`).checked = true;
+    root.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.preset === p.id)));
+    render();
+  }
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => applyPreset(PRESETS.find(p => p.id === b.dataset.preset))));
+  // Any manual change ends the "pressed" state of a preset button.
+  root.querySelectorAll(".viz-model input").forEach(i => i.addEventListener("input", () => root.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", "false"))));
+
+  const legend = items => { const d = html`<div class="viz-legend"></div>`; d.innerHTML = items.map(([svg, label]) => `<span>${svg}<span>${label}</span></span>`).join(""); return d; };
+  const swLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swBox = (fill, stroke) => `<svg width="20" height="14" aria-hidden="true"><rect x="1" y="1" width="18" height="12" fill="${fill}"${stroke ? ` stroke="${stroke}" stroke-width="1.5"` : ""}/></svg>`;
+  const swDot = fill => `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="${fill}"/></svg>`;
+  const chartWidth = () => Math.max(260, Math.min($('[data-chart="null"]').clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+  const base = (width, small) => ({width, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 18, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
+  const axis = (label, extra = {}) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, ...extra});
+
+  const altSign = {two: "≠", greater: "&gt;", less: "&lt;"}, nullSign = {two: "=", greater: "≤", less: "≥"};
+  const nullWords = {two: "je", greater: "je nejvýše", less: "je nejméně"};
+  const altWords = {two: "se liší od", greater: "je větší než", less: "je menší než"};
+  const ivText = (ci) => ci.side === "two" ? `(${lim3(ci.lo)}; ${lim3(ci.hi)})` : ci.side === "lower" ? `[${lim3(ci.lo)}; 1]` : `[0; ${lim3(ci.hi)}]`;
+  // Adjectival form without a space ("95% interval"), as in the chapters.
+  const levelAdj = c => `${trim(100 * c, 4)}%`;
+  const ivName = ci => ci.side === "two" ? `${levelAdj(ci.conf)} oboustranný Wilsonův interval` : `${levelAdj(ci.conf)} jednostranný Wilsonův interval s ${ci.side === "lower" ? "dolní" : "horní"} mezí`;
+  const decision = rej => rej ? "zamítáme nulovou hypotézu" : "nulovou hypotézu nezamítáme";
+  const pp = v => `${v > 0 ? "+" : ""}${pct1(v)}`;
+
+  // Results table: indicator, result, calculation with substitution.
+  function resultsTable(R) {
+    const n = R.n, k = R.k, pi0 = s.pi0Label, sc = R.score, ci = R.ci, c = esc(catName(s.success)), o = esc(catName(1 - s.success));
+    const zSub = `(${lim3(R.p)} − ${pi0})/${fixed(sc.se0, 4)} = ${fixed(sc.z, 3)}`;
+    const scoreP = s.alt === "two" ? `2 · <i>P</i>(<i>Z</i> ≥ |${fixed(sc.z, 3)}|)` : s.alt === "greater" ? `<i>P</i>(<i>Z</i> ≥ ${fixed(sc.z, 3)})` : `<i>P</i>(<i>Z</i> ≤ ${fixed(sc.z, 3)})`;
+    const exactP = s.alt === "two" ? `součet <i>P</i>(<i>X</i> = <i>i</i>) přes všechny počty <i>i</i>, pro něž <i>P</i>(<i>X</i> = <i>i</i>) ≤ <i>P</i>(<i>X</i> = ${int(k)})` : s.alt === "greater" ? `<i>P</i>(<i>X</i> ≥ ${int(k)})` : `<i>P</i>(<i>X</i> ≤ ${int(k)})`;
+    const zq = ci.side === "two" ? `<i>z</i><sub>${trim(1 - (1 - ci.conf) / 2, 6)}</sub>` : `<i>z</i><sub>${trim(ci.conf, 6)}</sub>`;
+    const group = t => `<tr class="viz-app-group"><th scope="rowgroup" colspan="3">${t}</th></tr>`;
+    // Numbers align right; words (decisions, ranges) align left and may wrap.
+    const row = (m, v, f = "") => `<tr><th scope="row">${m}</th><td${/[a-zá-ž]{4}/i.test(v.replace(/<[^>]+>/g, "")) ? "" : ' class="viz-app-num"'}>${v}</td><td>${f}</td></tr>`;
+    const rows = [
+      group("Data"),
+      row(`Četnost ${q(c)} (<i>k</i>)`, int(k)),
+      row(`Četnost ${q(o)}`, int(n - k)),
+      row("Velikost výběru <i>n</i>", int(n), `${int(k)} + ${int(n - k)}`),
+      row(`Výběrový podíl ${q(c)} <i>p</i>`, lim3(R.p), `<i>k</i>/<i>n</i> = ${int(k)}/${int(n)}`),
+      row("Rozdíl <i>p</i> − π<sub>0</sub>", `${pp(R.diff)} procentního bodu`, `${lim3(R.p)} − ${pi0} = ${fixed(R.diff, 3)}`),
+      group("Skórový test"),
+      row("Směrodatná chyba při <i>H</i><sub>0</sub>", fixed(sc.se0, 4), `√(π<sub>0</sub>(1 − π<sub>0</sub>)/<i>n</i>) = √(${pi0} · ${trim(1 - s.pi0, 6)}/${int(n)})`),
+      row("Testová statistika <i>z</i>", fixed(sc.z, 3), `(<i>p</i> − π<sub>0</sub>)/směrodatná chyba = ${zSub}`),
+      ...(s.alt === "two" ? [row("Statistika chí-kvadrát", fixed(sc.chi2, 3), `<i>z</i><sup>2</sup> = ${fixed(sc.z, 3)}<sup>2</sup>; v testu dobré shody se dvěma kategoriemi vychází stejná <i>p</i>-hodnota`)] : []),
+      row("<i>p</i>-hodnota", `<strong>${pfmt(sc.pValue)}</strong>`, `${scoreP}, <i>Z</i> má normované normální rozdělení`),
+      row(`Rozhodnutí při α = ${s.alphaLabel}`, decision(sc.reject), `<i>p</i>-hodnota ${sc.reject ? "≤" : "&gt;"} α`),
+      group("Přesný binomický test"),
+      row("Rozdělení počtu <i>X</i> při <i>H</i><sub>0</sub>", `binomické, <i>n</i> = ${int(n)}, π = ${pi0}`, `${int(n)} nezávislých případů, každý s pravděpodobností ${pi0}, že patří do kategorie ${q(c)}`),
+      row("<i>p</i>-hodnota", `<strong>${pfmt(R.exact.p)}</strong>`, exactP),
+      row(`Rozhodnutí při α = ${s.alphaLabel}`, decision(R.exact.reject), `<i>p</i>-hodnota ${R.exact.reject ? "≤" : "&gt;"} α`),
+      group("Odhad populačního podílu"),
+      row("Hladina spolehlivosti", levelText(ci.conf), s.alt === "two" ? `1 − α = 1 − ${s.alphaLabel}` : ci.side === "two" ? `1 − 2α = 1 − 2 · ${s.alphaLabel}` : `1 − α = 1 − ${s.alphaLabel}`),
+      row(`Kvantil ${zq}`, fixed(ci.z, 4), ci.side === "two" ? "oboustranný interval: polovina zbytku do každého chvostu" : "jednostranný interval: celý zbytek do jednoho chvostu"),
+      row("Střed a polovina šířky", `${lim3(ci.mid)}; ${lim3(ci.half)}`, `(<i>p</i> + <i>z</i><sup>2</sup>/(2<i>n</i>))/(1 + <i>z</i><sup>2</sup>/<i>n</i>); <i>z</i>/(1 + <i>z</i><sup>2</sup>/<i>n</i>) · √(<i>p</i>(1 − <i>p</i>)/<i>n</i> + <i>z</i><sup>2</sup>/(4<i>n</i><sup>2</sup>))`),
+      row(ivName(ci).replace(/^./, ch => ch.toUpperCase()), `<strong>${ivText(ci)}</strong>`, ci.side === "two" ? "střed ± polovina šířky" : ci.side === "lower" ? "dolní mez = střed − polovina šířky; horní mez je 1" : "horní mez = střed + polovina šířky; dolní mez je 0"),
+      row("Rozdíl od π<sub>0</sub> v procentních bodech", ci.side === "two" ? `${pp(R.diffLo)} až ${pp(R.diffHi)}` : ci.side === "lower" ? `nejméně ${pp(R.diffLo)}` : `nejvýše ${pp(R.diffHi)}`, "meze intervalu − π<sub>0</sub>"),
+      row(s.alt === "two" ? "Leží π<sub>0</sub> mimo interval?" : s.alt === "greater" ? "Leží π<sub>0</sub> pod dolní mezí?" : "Leží π<sub>0</sub> nad horní mezí?", R.ciRejects ? "ano" : "ne", `souhlasí s rozhodnutím skórového testu${s.alt === "two" ? "" : "; rozhoduje jen mez na straně alternativy"}`)
+    ];
+    $("[data-results]").innerHTML = `<table class="viz-bay-table viz-app-table" aria-label="Výsledky testu jednoho podílu"><thead><tr><th scope="col">Ukazatel</th><th scope="col">Výsledek</th><th scope="col">Výpočet s dosazením</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
+  }
+
+
+  // Slovní interpretace following the chapters: decision, size, uncertainty, assumptions.
+  function report(R) {
+    const c = esc(catName(s.success)), v = esc(varName()), n = R.n, k = R.k, pi0 = s.pi0Label, ci = R.ci;
+    const hyp = `že podíl kategorie ${q(c)} v populaci ${nullWords[s.alt]} ${pi0}`;
+    const both = R.score.reject === R.exact.reject;
+    const dec = both
+      ? `Na hladině významnosti ${s.alphaLabel} ${R.score.reject ? "oba testy zamítají" : "ani jeden test nezamítá"} nulovou hypotézu, ${hyp} (skórový test: <i>z</i> = ${fixed(R.score.z, 3)}, <i>p</i>-hodnota ${pfmt(R.score.pValue)}; přesný binomický test: <i>p</i>-hodnota ${pfmt(R.exact.p)}).${R.score.reject ? " Výsledek je statisticky významný." : ""}`
+      : `Na hladině významnosti ${s.alphaLabel} se testy liší: skórový test nulovou hypotézu, ${hyp}, ${R.score.reject ? "zamítá" : "nezamítá"} (<i>p</i>-hodnota ${pfmt(R.score.pValue)}), přesný binomický test ji ${R.exact.reject ? "zamítá" : "nezamítá"} (<i>p</i>-hodnota ${pfmt(R.exact.p)}). Skórový test používá normální aproximaci, přesný test binomické pravděpodobnosti; u výsledků blízko hranice rozhodnutí proto mohou rozhodnout různě.${R.expectedOk ? "" : " Protože některá očekávaná četnost je menší než 5, opírejte se o přesný test."}`;
+    const est = ci.side === "two"
+      ? `S daty je slučitelný populační podíl kategorie ${q(c)} přibližně od ${lim3(ci.lo)} do ${lim3(ci.hi)} (${ivName(ci)}).`
+      : ci.side === "lower"
+        ? `S daty je slučitelný populační podíl kategorie ${q(c)} nejméně ${lim3(ci.lo)} (${ivName(ci)} ${ivText(ci)}).`
+        : `S daty je slučitelný populační podíl kategorie ${q(c)} nejvýše ${lim3(ci.hi)} (${ivName(ci)} ${ivText(ci)}).`;
+    const where = s.alt === "two" ? (R.ciRejects ? "v intervalu neleží" : "v intervalu leží") : s.alt === "greater" ? (R.ciRejects ? "leží pod jeho dolní mezí" : "pod jeho dolní mezí neleží") : (R.ciRejects ? "leží nad jeho horní mezí" : "nad jeho horní mezí neleží");
+    const kept = R.score.reject || R.exact.reject ? "" : s.alt === "two"
+      ? ` Nezamítnutí neznamená, že podíl je přesně ${pi0}: s daty jsou slučitelné všechny hodnoty v intervalu.`
+      : ` Nezamítnutí neznamená, že nulová hypotéza platí; data jen neposkytla dostatečný doklad pro alternativu.`;
+    const dir = Math.abs(R.diff) < 5e-4 ? "se od této hodnoty prakticky neliší" : `je o ${pct1(Math.abs(R.diff))} procentního bodu ${R.diff > 0 ? "vyšší" : "nižší"}`;
+    $("[data-report]").innerHTML = `<p>Proměnná ${q(v)}: ze všech ${int(n)} případů patří do kategorie ${q(c)} ${int(k)}, tedy podíl ${lim3(R.p)}. ${s.alt === "two" ? "Nulová hypotéza předpokládá" : "Hraniční hodnota nulové hypotézy je"} podíl ${pi0}; výběrový podíl ${dir}.</p>
+      <p>${dec}</p>
+      <p>${est} Hodnota ${pi0} ${where}.${kept}</p>
+      <p>Závěr platí za předpokladů binomického modelu: jednotlivé případy jsou nezávislé a mají stejnou pravděpodobnost patřit do kategorie ${q(c)}. Zda je rozdíl od ${pi0} prakticky důležitý, posuďte podle jeho velikosti a šířky intervalu v kontextu výzkumné otázky, nikoli jen podle <i>p</i>-hodnoty.</p>`;
+  }
+
+  // Chart 1: observed and expected counts of both categories.
+  function countsChart(width, R) {
+    const small = width < 520, names = [0, 1].map(i => short(catName(i), small ? 18 : 30));
+    const obs = [R.k, R.n - R.k], expd = [R.expected[0], R.expected[1]];
+    const order = [s.success, 1 - s.success];
+    const rows = order.flatMap((i, j) => [
+      {x1: j - 0.38, x2: j - 0.02, y: i === s.success ? obs[0] : obs[1], kind: "obs"},
+      {x1: j + 0.02, x2: j + 0.38, y: i === s.success ? expd[0] : expd[1], kind: "exp"}
+    ]);
+    const top = 1.18 * Math.max(...rows.map(r => r.y), 1);
+    return Plot.plot({
+      ...base(width, small), height: small ? 220 : 250, marginBottom: 46,
+      x: {domain: [-0.6, 1.6], ...axis(short(varName(), 50)), ticks: [0, 1], tickFormat: j => names[order[j]]},
+      y: {domain: [0, top], ...axis("četnost", {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 1)},
+      ariaLabel: `Pozorované a očekávané četnosti proměnné ${varName()}`,
+      ariaDescription: `${catName(s.success)}: pozorováno ${int(R.k)}, při nulové hypotéze očekáváno ${trim(R.expected[0], 2)}. ${catName(1 - s.success)}: pozorováno ${int(R.n - R.k)}, očekáváno ${trim(R.expected[1], 2)}.`,
+      marks: [
+        Plot.rect(rows, {x1: "x1", x2: "x2", y1: 0, y2: "y", fill: d => d.kind === "obs" ? blue : "white", stroke: d => d.kind === "obs" ? blue : gray, strokeWidth: 1.5}),
+        Plot.text(rows, {x: d => (d.x1 + d.x2) / 2, y: "y", dy: -7, text: d => d.kind === "obs" ? int(d.y) : trim(d.y, 2), fill: ink}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+  }
+
+  // Chart 2: distribution of X under H₀ with the counts that make up the exact p-value.
+  function nullWindow(n, pi0, k) {
+    if (n <= 60) return {lo: 0, hi: n, kOut: false};
+    const mu = n * pi0, sd = Math.sqrt(n * pi0 * (1 - pi0));
+    let lo = Math.max(0, Math.floor(mu - 5 * sd)), hi = Math.min(n, Math.ceil(mu + 5 * sd));
+    while (hi - lo < 30) { if (lo > 0) lo--; if (hi < n) hi++; if (lo === 0 && hi === n) break; }
+    let kOut = false;
+    if (k < lo || k > hi) { const lo2 = Math.min(lo, k), hi2 = Math.max(hi, k); if (hi2 - lo2 <= 400) { lo = lo2; hi = hi2; } else kOut = true; }
+    return {lo, hi, kOut};
+  }
+  function nullChart(width, R) {
+    const small = width < 520, n = R.n, pmf = R.pmf, W = nullWindow(n, s.pi0, R.k);
+    const ks = d3.range(W.lo, W.hi + 1);
+    const inP = i => R.exact.regions.some(([a, b]) => i >= a && i <= b);
+    const mu = n * s.pi0, sd = Math.sqrt(n * s.pi0 * (1 - s.pi0));
+    const top = 1.15 * d3.max(ks, i => pmf[i]);
+    const dens = d3.range(0, 241).map(j => { const x = W.lo - 0.5 + (W.hi - W.lo + 1) * j / 240; return {x, y: Math.exp(-((x - mu) ** 2) / (2 * sd * sd)) / (sd * Math.sqrt(2 * Math.PI))}; });
+    const step = [1, 2, 5, 10, 20, 25, 50, 100, 200, 500, 1000].find(st => (W.hi - W.lo) / st <= (small ? 6 : 12)) ?? 1000;
+    const w = ks.length > 120 ? 1 : 0.8;
+    const c = catName(s.success);
+    return {W, chart: Plot.plot({
+      ...base(width, small), height: small ? 230 : 270, marginBottom: 46,
+      x: {domain: [W.lo - 0.6, W.hi + 0.6], ...axis(`počet případů v kategorii ${q(short(c, 30))} (X)`), ticks: ks.filter(i => i % step === 0), tickFormat: v => int(v)},
+      y: {domain: [0, top], ...axis("pravděpodobnost při H₀", {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 3)},
+      ariaLabel: `Rozdělení počtu případů v kategorii ${q(c)} při nulové hypotéze: binomické, n = ${n}, π = ${s.pi0Label}`,
+      ariaDescription: `Očekávaný počet je ${trim(mu, 2)}. Pozorovaný počet ${int(R.k)}${W.kOut ? " leží mimo zobrazený výřez" : ""}. Zvýrazněné sloupce tvoří p-hodnotu přesného testu ${pfmt(R.exact.p)}.`,
+      marks: [
+        Plot.rect(ks, {x1: i => i - w / 2, x2: i => i + w / 2, y1: 0, y2: i => pmf[i], fill: i => inP(i) ? orange : pale, title: i => `P(X = ${int(i)}) = ${pfmt(pmf[i])}${inP(i) ? "; patří do p-hodnoty přesného testu" : ""}`}),
+        Plot.line(dens, {x: "x", y: "y", stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4", clip: true}),
+        ...(W.kOut ? [] : [Plot.ruleX([R.k], {stroke: blue, strokeWidth: 2.2}), Plot.text([R.k], {x: d => d, y: top, dy: 2, text: d => `k = ${int(d)}`, fill: blue, fontWeight: 600, textAnchor: R.k > mu ? "end" : "start", dx: R.k > mu ? -5 : 5, lineAnchor: "top"})]),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    })};
+  }
+
+  // Chart 3: the Wilson interval, the sample proportion and π₀ on the axis of the population proportion.
+  function intervalChart(width, R) {
+    const small = width < 520, ci = R.ci, c = catName(s.success);
+    return Plot.plot({
+      ...base(width, small), height: 150, marginBottom: 46,
+      x: {domain: [-0.02, 1.02], ...axis(`populační podíl ${q(short(c, 30))} π`), ticks: small ? 5 : 10, tickFormat: v => trim(v, 2)},
+      y: {domain: [0, 2], axis: null},
+      ariaLabel: `${ivName(ci)} pro podíl ${q(c)}`,
+      ariaDescription: `Výběrový podíl ${lim3(R.p)}, interval ${ivText(ci)}, testovaná hodnota ${s.pi0Label} ${R.pi0Inside ? "v intervalu leží" : "leží mimo interval"}.`,
+      marks: [
+        Plot.ruleX([0, 1], {stroke: gray, strokeOpacity: 0.5}),
+        Plot.link([ci], {x1: "lo", x2: "hi", y1: 0.9, y2: 0.9, stroke: blue, strokeWidth: 6}),
+        Plot.link([...(ci.side !== "upper" ? [ci.lo] : []), ...(ci.side !== "lower" ? [ci.hi] : [])], {x1: d => d, x2: d => d, y1: 0.65, y2: 1.15, stroke: blue, strokeWidth: 2}),
+        Plot.ruleX([s.pi0], {stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
+        Plot.text([s.pi0], {x: d => d, y: 1.85, text: () => `π₀ = ${s.pi0Label}`, fill: orange, fontWeight: 600, textAnchor: s.pi0 > 0.8 ? "end" : "start", dx: s.pi0 > 0.8 ? -5 : 5}),
+        Plot.dot([R.p], {x: d => d, y: 0.9, r: 5, fill: ink}),
+        Plot.text([ci], {x: ci.side === "upper" ? "hi" : "lo", y: 0.35, text: () => ivText(ci), fill: blue, fontWeight: 600, textAnchor: ci.side === "upper" ? "end" : "start"}),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+  }
+
+  let last = {};
+  function render() {
+    const R = L.proportionTest({counts: s.counts, success: s.success, pi0: s.pi0, alt: s.alt, alpha: s.alpha, intervalKind: s.kind});
+    const c = esc(catName(s.success)), width = chartWidth();
+    // Labels taken from the inputs.
+    [0, 1].forEach(i => {
+      $(`[data-success-label="${i}"]`).textContent = catName(i);
+      $(`[data-count-label="${i}"]`).textContent = `Četnost ${q(catName(i))}`;
+    });
+    $("[data-hyp]").innerHTML = `<i>H</i><sub>0</sub>: π ${nullSign[s.alt]} ${s.pi0Label}, <i>H</i><sub>1</sub>: π ${altSign[s.alt]} ${s.pi0Label}, kde π je populační podíl kategorie ${q(c)} proměnné ${q(esc(varName()))}.`;
+    const kindBox = $(".viz-app-kind");
+    kindBox.hidden = s.alt === "two";
+    $('[data-kind-label="two"]').textContent = `oboustranný, spolehlivost 1 − 2α = ${levelText(1 - 2 * s.alpha)}`;
+    $('[data-kind-label="one"]').textContent = `jednostranný s ${s.alt === "less" ? "horní" : "dolní"} mezí, spolehlivost 1 − α = ${levelText(1 - s.alpha)}`;
+
+    $("[data-summary]").innerHTML = `<i>p</i> = ${int(R.k)}/${int(R.n)} = ${lim3(R.p)}; skórový test <i>z</i> = ${fixed(R.score.z, 3)}, <i>p</i>-hodnota ${pfmt(R.score.pValue)}; přesný test <i>p</i>-hodnota ${pfmt(R.exact.p)}; ${ivName(R.ci)} ${ivText(R.ci)}.`;
+    resultsTable(R);
+    const exactNote = $("[data-exact-note]");
+    if (s.alt === "two") {
+      const one = Math.min(L.binomTest(R.k, R.n, s.pi0, "greater", R.pmf).p, L.binomTest(R.k, R.n, s.pi0, "less", R.pmf).p), dbl = Math.min(1, 2 * one);
+      exactNote.hidden = false;
+      exactNote.innerHTML = `Oboustranná <i>p</i>-hodnota přesného testu sčítá pravděpodobnosti všech počtů, které jsou při <i>H</i><sub>0</sub> nejvýše stejně pravděpodobné jako pozorovaný počet ${int(R.k)}. Dvojnásobek menší jednostranné <i>p</i>-hodnoty by činil ${pfmt(dbl)}${Math.abs(dbl - R.exact.p) < 1e-12 ? ", tedy totéž" : ""}.`;
+    } else exactNote.hidden = true;
+    report(R);
+
+    // Conditions.
+    const w = $("[data-cond-warning]"), o = q(esc(catName(1 - s.success)));
+    const low = [...(R.expected[0] < 5 ? [q(c)] : []), ...(R.expected[1] < 5 ? [o] : [])];
+    w.hidden = R.expectedOk;
+    w.innerHTML = R.expectedOk ? "" : `Očekávaná četnost ${low.length === 2 ? `obou kategorií, ${low.join(" i ")}, je` : `kategorie ${low[0]} je`} menší než 5. Skórový test se opírá o normální aproximaci a může být nepřesný; opírejte se o přesný binomický test.`;
+    $("[data-cond]").innerHTML = `Očekávané četnosti při <i>H</i><sub>0</sub>: ${q(c)} <i>n</i>π<sub>0</sub> = ${int(R.n)} · ${s.pi0Label} = ${trim(R.expected[0], 2)}; ${o} <i>n</i>(1 − π<sub>0</sub>) = ${int(R.n)} · ${trim(1 - s.pi0, 4)} = ${trim(R.expected[1], 2)}. Orientačně by obě měly být alespoň 5; podle kapitoly 9 jde o konzervativní vodítko pro skórový test i test chí-kvadrát. Oba testy i interval dále předpokládají, že případy jsou nezávislé a mají stejnou pravděpodobnost patřit do kategorie ${q(c)}. Data musí být četnosti případů, ne procenta z jednoho měření.`;
+    $("[data-legend=counts]").replaceChildren(legend([[swBox(blue), "pozorovaná četnost"], [swBox("white", gray), "očekávaná četnost při <i>H</i><sub>0</sub>"]]));
+    $("[data-chart=counts]").replaceChildren(countsChart(width, R));
+
+    // Distribution under H₀.
+    $("#viz-app-null-title").innerHTML = `Rozdělení počtu případů v kategorii ${q(c)} při platnosti <i>H</i><sub>0</sub>: binomické, <i>n</i> = ${int(R.n)}, π = ${s.pi0Label}`;
+    $("[data-legend=null]").replaceChildren(legend([[swBox(orange), "počty tvořící <i>p</i>-hodnotu přesného testu"], [swBox(pale), "ostatní počty"], [swLine(blue, 2.2), "pozorovaný počet <i>k</i>"], [swLine(ink, 1.4, "5,4"), "normální aproximace"]]));
+    const N = nullChart(width, R);
+    $("[data-chart=null]").replaceChildren(N.chart);
+    const outside = d3.sum([...d3.range(0, N.W.lo), ...d3.range(N.W.hi + 1, R.n + 1)], i => R.pmf[i]);
+    $("[data-null-note]").innerHTML = `${N.W.lo > 0 || N.W.hi < R.n ? `Graf ukazuje počty od ${int(N.W.lo)} do ${int(N.W.hi)}; ostatní mají dohromady pravděpodobnost ${outside < 0.001 ? (outside > 0 ? "&lt; 0,001" : "0") : pfmt(outside)}. ` : ""}${N.W.kOut ? `Pozorovaný počet ${int(R.k)} leží daleko mimo výřez: při <i>H</i><sub>0</sub> by byl velmi nepravděpodobný. ` : ""}Součet zvýrazněných sloupců je <i>p</i>-hodnota přesného testu ${pfmt(R.exact.p)}.`;
+
+    // Interval.
+    $("#viz-app-ci-title").textContent = `${ivName(R.ci).replace(/^./, ch => ch.toUpperCase())}`;
+    $("[data-legend=interval]").replaceChildren(legend([[swLine(blue, 6), "Wilsonův interval"], [swDot(ink), "výběrový podíl <i>p</i>"], [swLine(orange, 2, "6,4"), "testovaná hodnota π<sub>0</sub>"]]));
+    $("[data-chart=interval]").replaceChildren(intervalChart(width, R));
+
+    const {pmf, ...rest} = R;
+    last = {...rest, varName: varName(), names: [catName(0), catName(1)], pi0Label: s.pi0Label};
+  }
+
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = $('[data-chart="null"]').clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w; cancelAnimationFrame(frame); frame = requestAnimationFrame(render);
+  });
+  observer.observe($('[data-chart="null"]'));
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {compute: L.proportionTest, binomTest: L.binomTest, wilson: L.wilson, parsePi0, state: () => JSON.parse(JSON.stringify(last))};
+
+  applyPreset(DEFAULT);
+  return root;
+}
+```
+
+<noscript><p>Aplikace potřebuje JavaScript. Postupy s řešenými příklady najdete v kapitole 6 v oddílu <a href="kapitola_06.html#sec-binomicky-test">Binomický test</a> a v kapitole 9 v oddílech <a href="kapitola_09.html#sec-wilson">Wilsonův interval</a> a <a href="kapitola_09.html#sec-interval-a-test-podilu">Interval a test jednoho podílu</a>.</p></noscript>
+
+## Co aplikace počítá {#sec-app-podil-princip .unnumbered}
+
+Data mají podobu četností dvou kategorií. Kategorie zvolená jako úspěch má ve výběru četnost $k$ z celkových $n$ případů a **výběrový podíl** je $p=k/n$. Nulová hypotéza tvrdí, že populační podíl této kategorie je $\mathrm{π}_0$, u jednostranné alternativy nejvýše, nebo nejméně $\mathrm{π}_0$. Počítáme pak s hraniční hodnotou $\mathrm{π}_0$, jak vysvětluje oddíl [o směru testu](kapitola_06.qmd#sec-smer-testu). Oba testy se ptají, jak neobvyklý by byl pozorovaný počet, kdyby nulová hypotéza platila. Liší se tím, jak tuto neobvyklost spočítají.
+
+**Skórový test** vychází z [výběrového rozdělení podílu](kapitola_06.qmd#sec-chyba-podilu). Při platnosti nulové hypotézy má výběrový podíl směrodatnou chybu $\sqrt{\mathrm{π}_0(1-\mathrm{π}_0)/n}$, spočítanou z testované hodnoty, ne z výběrového podílu. Vzdálenost $p$ od $\mathrm{π}_0$ vyjádřená v těchto směrodatných chybách je testová statistika
+
+$$z=\frac{p-\mathrm{π}_0}{\sqrt{\mathrm{π}_0(1-\mathrm{π}_0)/n}}.$$
+
+*p*-hodnotu určíme z normovaného normálního rozdělení: u alternativy „větší“ je to plocha napravo od $z$, u alternativy „menší“ nalevo od $z$ a u oboustranné alternativy dvojnásobek plochy za $|z|$. U oboustranné alternativy je $z^2$ rovno statistice chí-kvadrát [testu dobré shody](kapitola_09.qmd#sec-chi-a-z) se dvěma kategoriemi a oba testy mají stejnou *p*-hodnotu. Normální rozdělení je jen aproximací. Orientačně stačí, když jsou obě očekávané četnosti $n\mathrm{π}_0$ a $n(1-\mathrm{π}_0)$ alespoň 5; [kapitola 9](kapitola_09.qmd#sec-male-cetnosti) toto vodítko označuje za konzervativní.
+
+**Přesný binomický test** aproximaci nepotřebuje. Za platnosti nulové hypotézy má počet $X$ případů zvolené kategorie [binomické rozdělení](kapitola_05.qmd#sec-binomicky-vzorec) s parametry $n$ a $\mathrm{π}_0$ a *p*-hodnota je součet jeho pravděpodobností. U alternativy „větší“ je to $P(X\ge k)$, u alternativy „menší“ $P(X\le k)$. U oboustranné alternativy aplikace sečte pravděpodobnosti všech počtů $i$, pro které $P(X=i)\le P(X=k)$, tedy všech výsledků, které jsou při nulové hypotéze stejně nebo méně pravděpodobné než ten pozorovaný. Stejně počítá oboustrannou *p*-hodnotu [Fisherův exaktní test](kapitola_09.qmd#sec-fisher) i statistický software, například funkce `binom.test` v R.
+
+McNemarův a znaménkový test v kapitole 9 počítaly oboustrannou binomickou *p*-hodnotu jinak, jako dvojnásobek menší jednostranné *p*-hodnoty. Tam byla testovaná hodnota 0,5 a binomické rozdělení souměrné, takže oba způsoby vedou ke stejnému výsledku. Pro jiné hodnoty $\mathrm{π}_0$ je rozdělení nesouměrné a výsledky se mohou lišit; aplikace proto pod tabulkou uvádí i dvojnásobek pro srovnání. Protože počet nabývá jen celých hodnot, pravděpodobnost chyby I. druhu u přesného testu zvolenou hladinu nepřekročí, ale obvykle jí přesně nedosáhne, jak ukázal [příklad v kapitole 6](kapitola_06.qmd#sec-binomicky-test).
+
+**Wilsonův interval** obsahuje právě ty hodnoty $\mathrm{π}_0$, které by skórový test nezamítl. Oboustranný interval se spolehlivostí $1-\mathrm{α}$ používá kvantil $z_{1-\mathrm{α}/2}$ a odpovídá oboustrannému skórovému testu na hladině $\mathrm{α}$. Jednostranný interval se spolehlivostí $1-\mathrm{α}$ používá kvantil $z_{1-\mathrm{α}}$ a má jen jednu vypočtenou mez, dolní, nebo horní. Druhou mezí je 0 nebo 1, protože podíl nemůže klesnout pod 0 ani přesáhnout 1. Stejnou dolní, nebo horní mez má oboustranný interval se spolehlivostí $1-2\mathrm{α}$, stejně jako u průměru v [kapitole 7](kapitola_07.qmd#sec-jednostranny-a-interval). U jednostranné alternativy proto rozhoduje jen mez na její straně: jednostranný skórový test zamítá právě tehdy, když $\mathrm{π}_0$ leží pod dolní mezí (alternativa „větší“), nebo nad horní mezí (alternativa „menší“). Druhá mez oboustranného intervalu o rozhodnutí neříká nic. S přesným binomickým testem se interval shoduje většinou, ale ne vždy: [interval a test poskytují související informace](kapitola_09.qmd#sec-interval-a-test-podilu); přesná shoda rozhodnutí závisí na použitých postupech.
+
+**Velikost účinku** vyjadřuje aplikace v původních jednotkách: jako odchylku výběrového podílu od testované hodnoty v procentních bodech, s intervalem, který vznikne odečtením $\mathrm{π}_0$ od mezí Wilsonova intervalu. Tento rozdíl je odhad. Zda je prakticky důležitý, posoudíme podle věcné otázky, nikoli podle *p*-hodnoty.
+
+Všechny tři postupy předpokládají [binomický model](kapitola_05.qmd#sec-binomicke-predpoklady): případy jsou nezávislé a každý má stejnou pravděpodobnost patřit do zvolené kategorie. Podíl musí vzniknout z četností případů. Do aplikace proto nezadávejte procenta z jednoho měření, například podíl času stráveného nějakou činností.
+
+## Vyzkoušejte si {#sec-app-podil-vyzkousejte .unnumbered}
+
+1. Na výchozím příkladu tipujícího studenta přepněte alternativu na oboustrannou. Jak se změní *p*-hodnoty obou testů? Proč u přesného testu nejde o dvojnásobek jednostranné *p*-hodnoty? Najděte pod tabulkou dvojnásobek menší jednostranné *p*-hodnoty. V grafu rozdělení při $H_0$ přibyl do oboustranné *p*-hodnoty jediný sloupec, velmi nízký sloupec u nuly; proč právě ten?
+2. Zvolte příklad rozpoznávání číslic (7 z 8 při $\mathrm{π}_0=0{,}5$). Proč aplikace upozorňuje na očekávané četnosti? Porovnejte *p*-hodnotu přesného testu s výsledkem cvičení 8 v kapitole 6 a s *p*-hodnotou skórového testu. Potom změňte četnosti na 6 a 2. Změní se rozhodnutí obou testů? Porovnejte výsledek s variantou ve cvičení 8.
+3. U příkladu tipujícího studenta přepínejte druh intervalu mezi oboustranným 90% a jednostranným 95% intervalem. Která mez zůstává stejná a proč? Leží 0,25 pod dolní mezí a souhlasí to s rozhodnutím testů?
+4. Zvolte příklad studií o telepatii a zjistěte, o kolik procentních bodů je podíl zásahů vyšší než 0,25 při hádání. Potom zvolte jako úspěch kategorii „nezásah“, testovanou hodnotu 0,75 a alternativu „menší“. Co se ve výsledcích změní a co zůstane stejné?
+
+## Čeho si všimnout {#sec-app-podil-vsimnete .unnumbered}
+
+Skórový a přesný test odpovídají na stejnou otázku. U větších výběrů s dostatečnými očekávanými četnostmi se jejich *p*-hodnoty liší jen málo: u příkladu se 106 zásahy z 329 pokusů vycházejí oba testy podobně. U malých výběrů, jako je 7 z 8, se mohou lišit výrazněji. Skórový test tam stojí na aproximaci, která dobře nefunguje, a spolehlivější je přesný test. V grafu rozdělení při nulové hypotéze je vidět, proč: u malého $n$ má rozdělení jen několik sloupců a hladká normální křivka je popisuje jen přibližně.
+
+Výběr kategorie, která se počítá jako úspěch, je jen otázkou pojmenování. Podíl jedné kategorie je doplňkem podílu druhé. Test podílu „zásahů“ proti 0,25 s alternativou „větší“ je proto totéž co test podílu „nezásahů“ proti 0,75 s alternativou „menší“. Změní se popisky a směr alternativy a 90% interval se zrcadlově převrátí: z mezí 0,281 a 0,366 se stanou 0,634 a 0,719. *p*-hodnoty i rozhodnutí zůstanou stejné.
+
+Test vede jen k rozhodnutí; interval navíc ukazuje, které hodnoty populačního podílu jsou s daty slučitelné, a jeho šířka ukazuje, jak přesný je odhad. U tipujícího studenta interval vylučuje čisté hádání, ale připouští velmi různou úspěšnost. Z jednoho testu o dvaceti otázkách proto nevíme, kolik toho student umí. Statisticky významný výsledek ještě neznamená velký nebo důležitý rozdíl; o tom rozhoduje velikost rozdílu a kontext výzkumné otázky.

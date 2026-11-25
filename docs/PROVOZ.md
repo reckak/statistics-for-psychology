@@ -14,6 +14,7 @@ kontrol podle změny určuje [AGENTS.md](../AGENTS.md).
 - [PDF celé učebnice a jeho vydání](#pdf-cele-ucebnice)
 - [Export podkladů AI tutora](#export-ai-tutora)
 - [Interaktivní vizualizace](#interaktivni-vizualizace)
+- [Statistické aplikace](#statisticke-aplikace)
 - [Kontroly dokumentace, HTML a výpočtů](#kontroly-a-github)
 - [Obnova sešitů v Excelu](#obnova-sešitů-a-podkladů-kapitol-17)
 - [Publikování na GitHub Pages](#publikování-na-github-pages)
@@ -810,11 +811,11 @@ U vizualizace korelace v bodovém grafu kontrola ověřuje:
   zapnutými přepínači.
 
 **Sbalená část v postranní nabídce.** Quarto umí sbalit části nabídky jen
-všechny najednou (`sidebar: collapse-level`). Samotnou část „Interaktivní
-vizualizace“ proto sbaluje skript `assets/sidebar-collapse.js`, připojený
+všechny najednou (`sidebar: collapse-level`). Části „Interaktivní
+vizualizace“ a „Statistické aplikace“ proto sbaluje skript `assets/sidebar-collapse.js`, připojený
 v `assets/after-body.html` bez `defer`, aby proběhl před prvním vykreslením.
-Část najde podle názvu; při jejím přejmenování v `_quarto.yml` je třeba
-upravit i konstantu `TITLE` ve skriptu. Na stránkách vizualizací zůstává
+Části najde podle názvu; při přejmenování v `_quarto.yml` je třeba
+upravit i seznam `TITLES` ve skriptu. Na vlastních stránkách zůstává
 část rozbalená a bez JavaScriptu je rozbalená všude. `check-html.cjs`
 ověřuje sbalený stav na stránce kapitoly, rozbalení klávesou Enter
 a rozbalený stav na stránce vizualizace.
@@ -823,6 +824,44 @@ Referenční hodnoty z R jsou zapsané přímo v testu. Snímky mobilního
 zobrazení se ukládají do `tmp/verification/`. Vzorce Excelu nabízené
 stránkou kontrola porovnává jen jako text; jejich výsledky byly při
 zavedení ověřeny v českém Excelu (viz [autorská historie](../quarto/README.md)).
+
+<a id="statisticke-aplikace"></a>
+
+## Statistické aplikace
+
+Stránky `quarto/app_<tema>.qmd` jsou technicky stejné jako vizualizace:
+jedna buňka Quarto OJS s `//| echo: false`, kořen s třídami `viz viz-app`
+(tlačítko celé obrazovky, sdílené styly), vlastní `ResizeObserver`
+a háček `root.vizCheck` pro automatickou kontrolu. Styly s předponou
+`.viz-app-` jsou v `assets/styles.css`. Platí pro ně také pravidla
+předchozího oddílu o renderu, náhledu a sbalené části v postranní nabídce.
+
+Výpočty nejsou ve stránce, ale ve sdíleném ES modulu `assets/stat/<tema>.js`
+bez závislostí. Stránka jej načítá dynamickým importem relativně k adrese
+stránky (`import(new URL("../assets/stat/podil.js", document.baseURI).href)`);
+Quarto jej kopíruje do `_book/assets/` jako součást `/assets/`. Týž modul
+ověřuje Node bez prohlížeče. Pro test jednoho podílu:
+
+```sh
+Rscript --vanilla scripts/app-jeden-podil.R
+node scripts/check-stat-lib.mjs
+```
+
+R skript vypíše pole referenčních hodnot (`prop.test` bez korekce na spojitost,
+`binom.test`, Wilsonovy intervaly) pro mřížku případů; pole je vložené
+do `scripts/check-stat-lib.mjs` a jeho výběr do `check-html.cjs`. Po změně
+modulu nebo mřížky skript spusťte znovu a obě místa aktualizujte. Aplikace
+výpočet v Excelu neuvádějí (upřesnění R87).
+
+U aplikace testu jednoho podílu kontrola webu ověřuje: odkazy z kapitol 6
+a 9, sbalenou a otevřenou část v nabídce, tři grafy bez kódu a chyb OJS,
+výsledky výpočtů proti R, výchozí stav (7 z 8, π₀ = 0,50, oboustranně)
+bez oddílu Excelu, barvy záhlaví a řádků skupin tabulky výsledků, příklad
+kapitoly 6 včetně textů tabulky a interpretace, volbu intervalu u jednostranné alternativy,
+oboustrannou přesnou *p*-hodnotu podle pravidla R s poznámkou o zdvojení,
+ovládání klávesnicí, popisky ze vstupů a escapování zadaného textu, odmítnutí
+neplatných vstupů s ponecháním poslední platné hodnoty, předvolby, výřez
+grafu při *n* = 100 000 a zobrazení na telefonu bez přetékání stránky.
 
 ## Kontroly a GitHub
 
