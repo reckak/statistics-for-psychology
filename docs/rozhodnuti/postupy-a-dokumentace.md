@@ -1432,3 +1432,70 @@ https://…‘.“ Po odstranění z existujících poznámek (DOCX kapitol 2–
 kapitol 2–6) odpověděl na otázku, zda upravit i pravidlo v PREZENTACE.md,
 aby je budoucí poznámky neobsahovaly: „Ano, upravit pravidlo“. Odstranění
 eviduje [autorská historie](../../quarto/README.md) v záznamu z téhož dne.
+
+<a id="r87-statisticke-aplikace"></a>
+
+## R87 — Část „Statistické aplikace“ a pilotní test jednoho podílu
+
+*[Aktuální platnost a hlavní místo pravidla](../ROZHODNUTI.md#r87-statisticke-aplikace). Původní záznam dohody:*
+
+**Stav:** schváleno 2026-11-25. **Rozsah:** webová učebnice; nová část knihy,
+stránka `quarto/app_jeden_podil.qmd` a odkazy na ni z kapitol 6 a 9. Netýká se
+PDF ani balíčku tutora; odkazy na aplikace tam vedou na web.
+
+**Volba:**
+
+- Kniha má část „Statistické aplikace“ mezi „Interaktivními vizualizacemi“
+  a „Literaturou a přehledy“. V postranní nabídce webu je ve výchozím stavu
+  sbalená stejně jako vizualizace a otevřená na vlastních stránkách.
+- Aplikace je samostatná nečíslovaná stránka `quarto/app_<tema>.qmd` s ID
+  `#sec-app-<tema>`. Počítá probrané postupy pro data zadaná studentem
+  a stručně shrnuje jejich princip, předpoklady a vzorce s odkazy do kapitol.
+  Výstupem jsou tabulky s dosazením, grafy, interval spolehlivosti, velikost
+  účinku v původních jednotkách, kontrola předpokladů, slovní interpretace
+  a vzorce českého Excelu. Výklad kapitol obstojí bez ní; kapitola na ni
+  odkazuje blokem „Spočítejte si: …“.
+- Výpočty jsou ve sdíleném modulu v `assets/stat/`, ověřeném proti R;
+  technika, ovládání a kontroly jako u vizualizací ([R65](#r65-interaktivni-vizualizace)).
+  Každá další aplikace se schvaluje samostatně.
+- **Pilot: test jednoho podílu.** Vstupy jsou jen: název proměnné, názvy
+  a četnosti dvou kategorií, volba kategorie počítané jako úspěch,
+  testovaná hodnota π₀, typ alternativní hypotézy a hladina významnosti α.
+  *n* a *k* aplikace odvozuje; nulovou hypotézu vypíše jako negaci zvolené
+  alternativy. Popisky proměnné a obou kategorií se propisují do tabulek,
+  grafů, hypotéz i interpretace.
+- Aplikace počítá vedle sebe skórový test a přesný binomický test. Oboustranná
+  přesná *p*-hodnota se počítá pravidlem funkce `binom.test` v R (součet
+  pravděpodobností výsledků nejvýše tak pravděpodobných jako pozorovaný);
+  stránka vysvětlí rozdíl od zdvojení menší jednostranné *p*-hodnoty, kterým
+  kapitola 9 počítá McNemarův a znaménkový test při 0,5.
+- Interval je Wilsonův. U oboustranné alternativy oboustranný se spolehlivostí
+  1 − α; u jednostranné si student vybere oboustranný interval se spolehlivostí
+  1 − 2α (výchozí), nebo jednostranný interval se spolehlivostí 1 − α
+  ([R75](kapitola-07.md#r75-oboustranny-jednostranny-interval)).
+- Mimo rozsah pilotu: více než dvě kategorie, jiné intervaly pro podíl,
+  Cohenovo *h* a vkládání hrubých dat po řádcích.
+
+**Důvod:** studenti mají mít možnost spočítat probrané testy pro vlastní data
+včetně postupů, které Excel nezvládne jednoduše, a vidět u výsledku jeho
+výpočet, předpoklady a interpretaci. Pilot na jednom testu ověří podobu
+stránky před dalšími aplikacemi.
+
+**Doklad:** autor 2026-11-18 navrhl doplnit „základní statistické testy, které
+by se chovaly jako aplikace“, se vstupem z hrubých dat nebo deskriptivních
+statistik a výstupy s tabulkami, grafy, velikostí účinku s intervalem
+a diagnostickými grafy. 2026-11-25 zadal: „Ok, nejprve by jako zkoušku vytvořil
+stránku s testem jednoho podílu.“ Ke vstupům postupně uvedl: „Asi bych po
+zvážení dal jako input počty jednotlivých kategorií a to, která z nich se má
+považovat za "úspěch"“; „Smysluplnější bude vybírat typ alternativní hypotézy,
+protože H0 je jednoduše jejich negací.“; „Dal bych jako input i název (popisek)
+proměnné, aby se zobrazovalo ve výstupech včetně grafů“; „Taky popisky úrovní
+bych přebíral ze vstupů“. Na otázky zvolil „Vždy přesně 2“ kategorie, pro
+oboustranný přesný test „Pravidlo jako v R“, k intervalu odpověděl „Při
+jednostranné bych dal na výběr i druh intervalu, buďto jednostranný a úrovní
+spolehlivosti 1 - alfa, nebo oboustranný s úrovní spolehlivosti 1 - 2alfa
+(defaultně)“ a k umístění „Do nové části "Statistické aplikace", která bude
+defaultně folded“. Plán s hladinou významnosti α jako vstupem (místo původně
+zmíněné hladiny spolehlivosti) a s odkazem „Spočítejte si: …“ schválil
+téhož dne. Realizaci eviduje
+[autorská historie](../../quarto/README.md#aplikace-jeden-podil).

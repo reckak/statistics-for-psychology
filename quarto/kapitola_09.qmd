@@ -202,6 +202,10 @@ Oboustranná *p*-hodnota je přibližně 0,0098. Test nulovou hypotézu $\mathrm
 
 V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a vyšla v něm *p*-hodnota 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí.
 
+::: {.callout-tip title="Spočítejte si: test jednoho podílu"}
+V [aplikaci Test jednoho podílu](app_jeden_podil.qmd) zadáte četnosti dvou kategorií, testovanou hodnotu, alternativní hypotézu a hladinu významnosti. Aplikace spočítá skórový i přesný binomický test a Wilsonův interval s dosazením, ukáže očekávané četnosti a vzorce českého Excelu. Uvidíte také, kdy se oba testy rozcházejí.
+:::
+
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: souhrn několika studií o telepatii" #rozsireni-ganzfeld}
 Cumming a Calin-Jageman [-@cumming, s. 390–398] uvádějí výsledky deseti studií, v nichž se „příjemce“ pokoušel poznat, který ze čtyř obrázků mu „odesílatel“ v jiné místnosti posílal telepaticky; studie shrnuli Bem a Honorton. Při hádání by úspěšnost byla 0,25. Ve všech studiích dohromady bylo 106 zásahů z 329 pokusů, podíl 0,322 s 95% Wilsonovým intervalem (0,274; 0,374). V jednostranném binomickém testu nulové hypotézy $\mathrm{π}\le0{,}25$ vychází *p*-hodnota 0,002.
 

@@ -1,5 +1,30 @@
 # Autorská dokumentace
 
+<a id="aplikace-jeden-podil"></a>
+
+## Statistické aplikace: pilotní test jednoho podílu (2026-11-25, R87)
+
+Podle [R87](../docs/rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)
+vznikla v knize nová část „Statistické aplikace“ (za vizualizacemi, v nabídce
+ve výchozím stavu sbalená) se stránkou [Test jednoho podílu](app_jeden_podil.qmd).
+Kapitoly 6 (konec pododdílu o binomickém testu) a 9 (konec pododdílu Interval
+a test jednoho podílu) na ni odkazují blokem „Spočítejte si: test jednoho podílu“.
+
+- **Stránka:** vstupy (název proměnné, názvy a četnosti dvou kategorií, kategorie úspěchu, π₀ i zlomkem, alternativa, α, u jednostranné alternativy druh intervalu), tabulka výsledků s dosazením, slovní interpretace, očekávané četnosti s upozorněním, tři grafy s textovým popisem, vzorce českého Excelu v rozvržení buněk B2:B18, předvolby z kapitol 6 a 9; oddíly „Co aplikace počítá“, „Vyzkoušejte si“ a „Čeho si všimnout“.
+- **Technika:** výpočty ve sdíleném modulu `assets/stat/podil.js`, načítaném dynamickým importem; `assets/sidebar-collapse.js` sbaluje obě části; styly `.viz-app-`; PDF celé knihy a export tutora převádějí odkazy `app_…` na web.
+- **Redakční volby při realizaci:** α na intervalu (0; 0,5), protože u jednostranné alternativy musí být 1 − 2α kladné; četnosti do 100 000; text uživatele se vkládá escapovaný; graf rozdělení při *H*₀ ukazuje u velkých *n* výřez a upozorní, leží-li pozorovaný počet daleko mimo; u jednostranné alternativy tabulka a interpretace hodnotí jen mez na straně alternativy (shoda se skórovým testem); pravidlo očekávaných četností alespoň 5 převzato z kapitoly 9 jako orientační.
+- **Didaktická revize** samostatným agentem v roli studenta po kapitolách 1–9. Opraveno: chybné tvrzení o oboustranné přesné *p*-hodnotě v kapitolách (nově odkaz na stejné pravidlo Fisherova testu), nezavedená značka Bin(*n*; π), hodnocení „leží π₀ v intervalu“ u jednostranné alternativy, text při rozdílném rozhodnutí testů, popis zaokrouhlení, nedopočítané očekávané četnosti, výklad π u opakovaných pokusů, kalky „dává“, zadání úkolů 1, 2 a 4 a další formulace.
+
+**Nezávislá kontrola:**
+
+- `scripts/app-jeden-podil.R` (R 4.5.1, `prop.test` bez korekce, `binom.test`) a `node scripts/check-stat-lib.mjs`: 975 kontrol modulu na mřížce 20 případů × 3 alternativy včetně krajních *k* = 0, *k* = *n*, *n* = 1 a *n* = 10 000, shoda na relativní toleranci 10⁻⁹, včetně shody rozhodnutí intervalu se skórovým testem.
+- `scripts/check-app-jeden-podil-excel.ps1`: vzorce stránky spuštěné v českém desktopovém Excelu pro čtyři případy (všechny alternativy, oba druhy intervalu, π₀ = 1/3), největší relativní odchylka od modulu 1,8 × 10⁻¹⁵.
+- Hodnoty stránky souhlasí s kapitolami: přesná jednostranná *p*-hodnota 0,014 (kap. 6), 9/256 ≈ 0,035 (kap. 6, cvičení 8), *z* = 2,582 a oboustranná *p*-hodnota 0,0098 (kap. 9), 95% Wilsonův interval (0,299; 0,701).
+
+**Kontroly:** `quarto render` celé knihy (Quarto 1.9.38) bez varování; `node quarto/_verification/check-html.cjs` s novým blokem aplikace a se čtyřmi skupinami nabídky prošel (33 stránek); `node scripts/check-doc-maps.cjs` a `node scripts/check-table-layout.cjs` prošly (druhá odhalila tmavou vnitřní linku pod skupinovými řádky tabulky výsledků, opraveno na světle šedé linky podle pravidel sazby). Snímek telefonu `tmp/verification/app-jeden-podil-mobile.png` prohlédnut.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Export tutora (`node scripts/export-tutor.cjs`) nelze dokončit kvůli dřívější chybě mimo tuto úpravu: v `VIZUALIZACE.md` chybí řádek stránky `viz_interval_podilu`; převod odkazů `app_…` v exportu proto nebyl ověřen během exportu. PDF celé knihy nebylo sestaveno. Didaktická revize je interní, ne ověření na studentech.
+
 <a id="prekryvani-bodu-10"></a>
 
 ## Kapitola 10: překrývání bodů a rozvržení tří obrázků (2026-11-25, R86)

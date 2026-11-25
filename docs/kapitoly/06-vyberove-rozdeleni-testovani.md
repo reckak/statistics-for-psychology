@@ -204,6 +204,21 @@ samostatným cvičením. Kontrola souladu s textem oddílů o směru testu,
 kritickém oboru, dvou chybách, síle a nezamítnutí: 2026-11-06; ostatní
 části karty se nemění.
 
+<a id="aplikace-06"></a>
+
+**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):**
+na konci pododdílu [binomický test](../../quarto/kapitola_06.qmd#sec-binomicky-test),
+za komentářem k listu `Binom_test`, odkazuje blok „Spočítejte si: test jednoho
+podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd).
+Výchozí příklad aplikace je tipující student (10 z 20, π₀ = 0,25, alternativa
+„větší“, přesná *p*-hodnota 0,014 jako v kapitole); předvolbou je i cvičení 8
+(7 z 8 při 0,5, přesná *p*-hodnota 0,035). Oproti kapitole aplikace počítá
+binomický test i oboustranně, pravidlem funkce `binom.test` v R, a uvádí
+skórový test a Wilsonův interval z kapitoly 9. Podrobnosti jsou v
+[kartě kapitoly 9](09-podily-kategorialni-data.md#aplikace-09). Kontrola
+souladu s textem pododdílu o binomickém testu: 2026-11-25; ostatní části
+karty se nemění.
+
 <a id="cvičení-a-očekávané-dovednosti-5"></a>
 
 ### Cvičení a očekávané dovednosti

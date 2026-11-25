@@ -672,24 +672,33 @@ const server = http.createServer((req, res) => {
     await page.goto(base+'quarto/kapitola_02.html',{waitUntil:'networkidle'});
     const sidebar=page.locator('#quarto-sidebar');
     const groups=sidebar.locator('.sidebar-item-section');
-    assert.equal(await groups.count(),3,'Three sidebar groups');
+    assert.equal(await groups.count(),4,'Four sidebar groups');
     assert.match(await groups.nth(0).innerText(),/Výkladové kapitoly/);
     assert.match(await groups.nth(1).innerText(),/Interaktivní vizualizace/);
-    assert.match(await groups.nth(2).innerText(),/Literatura a přehledy/);
+    assert.match(await groups.nth(2).innerText(),/Statistické aplikace/);
+    assert.match(await groups.nth(3).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Proč odhadujeme podíl Wilsonovým intervalem','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
-    assert.equal(await groups.nth(2).locator('a.sidebar-item-text[href]').count(),4);
+    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Test jednoho podílu']);
+    assert.equal(await groups.nth(3).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
-    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
+    assert.deepEqual((await groups.nth(3).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
     // The part with visualizations starts collapsed outside its own pages (assets/sidebar-collapse.js) and opens from the keyboard.
     const vizToggle=groups.nth(1).locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
     const vizList=groups.nth(1).locator('ul.sidebar-section');
     assert.equal(await vizToggle.getAttribute('aria-expanded'),'false','Visualizations start collapsed in the sidebar');
     assert.equal(await vizList.isVisible(),false,'Collapsed visualizations are hidden');
-    for (const i of [0,2]) assert.equal(await groups.nth(i).locator('ul.sidebar-section').isVisible(),true,'Other sidebar groups stay open');
+    // The part with statistical apps also starts collapsed outside its own pages.
+    assert.equal(await groups.nth(2).locator('.sidebar-item-text[data-bs-toggle="collapse"]').first().getAttribute('aria-expanded'),'false','Statistical apps start collapsed in the sidebar');
+    assert.equal(await groups.nth(2).locator('ul.sidebar-section').isVisible(),false,'Collapsed statistical apps are hidden');
+    for (const i of [0,3]) assert.equal(await groups.nth(i).locator('ul.sidebar-section').isVisible(),true,'Other sidebar groups stay open');
     await vizToggle.focus();await page.keyboard.press('Enter');await vizList.waitFor({state:'visible'});
     await page.waitForTimeout(350);
     assert.equal(await vizToggle.getAttribute('aria-expanded'),'true');
+    const appToggle=groups.nth(2).locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
+    await appToggle.focus();await page.keyboard.press('Enter');await groups.nth(2).locator('ul.sidebar-section').waitFor({state:'visible'});
+    await page.waitForTimeout(350);
+    assert.equal(await appToggle.getAttribute('aria-expanded'),'true');
     for (const group of await groups.all()) {
       const toggle=group.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
       const body=group.locator('ul.sidebar-section');
@@ -705,7 +714,7 @@ const server = http.createServer((req, res) => {
     await page.setViewportSize({width:390,height:844});
     await page.locator('header .quarto-btn-toggle').click();
     await sidebar.waitFor({state:'visible'});
-    const mobileGroup=groups.nth(2);
+    const mobileGroup=groups.nth(3);
     const mobileToggle=mobileGroup.locator('.sidebar-item-text[data-bs-toggle="collapse"]').first();
     await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'hidden'});
     await mobileToggle.click();await mobileGroup.locator('ul').waitFor({state:'visible'});
@@ -2580,6 +2589,140 @@ const server = http.createServer((req, res) => {
     for (const k of ['quad', 'ell', 'axes', 'reg', 'res']) await kor.locator(`[data-show="${k}"]`).check();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Correlation visualization fits a phone');
     await kor.screenshot({path: 'tmp/verification/viz-korelace-mobile.png'});
+    await page.setViewportSize({width: 1360, height: 1000});
+
+    // Statistical app: test of one proportion (part "Statistické aplikace"). Calculations against R
+    // (scripts/app-jeden-podil.R; the full grid is checked by node scripts/check-stat-lib.mjs), labels taken from the inputs,
+    // escaping of user text, presets, rejected inputs, the interval choice for one-sided alternatives, large n and phone.
+    await page.goto(base + 'quarto/kapitola_06.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-binomicky-test .callout-tip a[href$="app_jeden_podil.html"]').count(), 1, 'Chapter 6 links to the one-proportion app');
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(2).locator('ul.sidebar-section').isVisible(), false, 'Statistical apps collapsed on a chapter page');
+    await page.goto(base + 'quarto/kapitola_09.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-interval-a-test-podilu .callout-tip a[href$="app_jeden_podil.html"]').count(), 1, 'Chapter 9 links to the one-proportion app');
+    await page.goto(base + 'quarto/app_jeden_podil.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(2).locator('ul.sidebar-section').isVisible(), true, 'Statistical apps open on their own page');
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(2).locator('a.sidebar-link.active').count(), 1, 'Current app marked in the sidebar');
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(1).locator('ul.sidebar-section').isVisible(), false, 'Visualizations stay collapsed on an app page');
+    const app = page.locator('#app-jeden-podil');
+    const appPlots = app.locator('.viz-plots svg[aria-label]');
+    await appPlots.first().waitFor();
+    assert.equal(await appPlots.count(), 3, 'Three charts: counts, distribution under H0, interval');
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'App code, copy button or OJS error visible');
+    assert.equal(await app.locator('.viz-fullscreen').count(), 1, 'App has the full-screen button');
+    const appNear = (a, b, msg, tol = 1e-9) => assert(Number.isFinite(a) && Math.abs(a - b) <= tol * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
+    // R: [k, n, pi0, alt] -> [z, score p-value, exact p-value, Wilson 95 % lo, hi, Wilson 90 % lo, hi, one-sided 95 % lower, upper limit].
+    const APP_REF = [
+    [[10, 20, 0.25, "two"], [2.58198889747161, 0.00982327450751926, 0.0170356288826952, 0.299298008198212, 0.700701991801788, 0.327403767885156, 0.672596232114844, 0.327403767885156, 0.672596232114844]],
+    [[10, 20, 0.25, "greater"], [2.58198889747161, 0.00491163725375962, 0.0138644169437612, 0.299298008198212, 0.700701991801788, 0.327403767885156, 0.672596232114844, 0.327403767885156, 0.672596232114844]],
+    [[10, 20, 0.25, "less"], [2.58198889747161, 0.99508836274624, 0.996057858335917, 0.299298008198212, 0.700701991801788, 0.327403767885156, 0.672596232114844, 0.327403767885156, 0.672596232114844]],
+    [[106, 329, 0.25, "greater"], [3.02388331687634, 0.00124776333716122, 0.00193221542288028, 0.273994657958207, 0.374486632760359, 0.281409195731402, 0.365868330047447, 0.281409195731402, 0.365868330047447]],
+    [[3, 10, 0.333333333333333, "greater"], [-0.223606797749979, 0.588468363120939, 0.700858608951887, 0.107791267406301, 0.603221852538855, 0.126876583903198, 0.558300204130165, 0.126876583903198, 0.558300204130165]],
+    [[0, 15, 0.1, "less"], [-1.29099444873581, 0.0983528012294734, 0.205891132094649, 0, 0.203883301035849, 0, 0.15280770461014, 0, 0.15280770461014]],
+    [[25, 25, 0.9, "two"], [1.66666666666667, 0.0955807045456296, 0.16978341996465, 0.866807749060952, 1, 0.902346493993949, 1, 0.902346493993949, 1]],
+    [[500, 1000, 0.52, "two"], [-1.26592420885458, 0.205540218222619, 0.20573578942774, 0.469069600368104, 0.530930399631896, 0.47402769147842, 0.52597230852158, 0.47402769147842, 0.52597230852158]],
+    [[2, 40, 0.2, "two"], [-2.37170824512628, 0.0177060658073666, 0.0158579911483344, 0.0138206673861484, 0.16503877369141, 0.0166862822149395, 0.140331821565973, 0.0166862822149395, 0.140331821565973]]
+    ];
+    for (const [[k, n, pi0, alt], v] of APP_REF) {
+      const g = await app.evaluate((el, a) => {
+        const c = el.vizCheck, r = c.compute({counts: [a[0], a[1] - a[0]], success: 0, pi0: a[2], alt: a[3], alpha: 0.05});
+        const w = c.wilson(a[0], a[1], 0.95), lo = c.wilson(a[0], a[1], 0.95, 'lower'), hi = c.wilson(a[0], a[1], 0.95, 'upper');
+        return [r.score.z, r.score.pValue, r.exact.p, w.lo, w.hi, lo.lo, hi.hi];
+      }, [k, n, pi0, alt]);
+      [v[0], v[1], v[2], v[3], v[4], v[7], v[8]].forEach((w, i) => appNear(g[i], w, `${k} z ${n}, π0 = ${pi0}, ${alt}: value ${i}`));
+    }
+    // Default state: the guessing student of chapter 6 (10 correct of 20, π0 = 0,25, H1: π > π0, α = 0,05).
+    const appState = () => app.evaluate(el => el.vizCheck.state());
+    const appText = sel => app.locator(sel).innerText();
+    let aS = await appState();
+    assert.deepEqual([aS.n, aS.k, aS.alt, aS.ci.side, aS.ci.conf, aS.score.reject, aS.exact.reject, aS.pi0Inside, aS.ciRejects, aS.expectedOk], [20, 10, 'greater', 'two', 0.9, true, true, false, true, true]);
+    appNear(aS.exact.p, 0.0138644169437612, 'Default exact p-value (chapter 6: 0,014)');
+    for (const t of ['H0: π ≤ 0,25', 'H1: π > 0,25', '„správně“', '„Odpověď na otázku“']) assert((await appText('[data-hyp]')).includes(t), `Hypotheses show ${t}`);
+    const appRes = await appText('[data-results]');
+    for (const t of ['Četnost „správně“ (k)', '10/20', '0,0968', '2,582', '0,005', '0,014', 'binomické, n = 20, π = 0,25', 'Leží π0 pod dolní mezí?', 'zamítáme nulovou hypotézu', '90 %', '(0,327; 0,673)', '+25,0 procentního bodu']) assert(appRes.includes(t), `Results show ${t}`);
+    const appRep = await appText('[data-report]');
+    for (const t of ['Proměnná „Odpověď na otázku“', 'oba testy zamítají', 'statisticky významný', 'od 0,327 do 0,673', '90% oboustranný Wilsonův interval']) assert(appRep.includes(t), `Report shows ${t}`);
+    const appExcel = await app.locator('[data-excel] tbody tr').evaluateAll(rows => rows.map(r => [...r.children].map(c => c.textContent)));
+    assert.deepEqual(appExcel[8], ['B11', 'p-hodnota přesného testu', '=1-BINOM.DIST(B2-1;B3;B4;PRAVDA)', '0,014']);
+    assert.deepEqual(appExcel[12], ['B16', 'Wilsonův interval: polovina šířky', '=B14/(1+B14^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B14^2/(4*B3^2))', '0,173']);
+    assert((await app.locator('[data-chart=null] svg').getAttribute('aria-label')).includes('„správně“'), 'Chart label uses the category name');
+    assert(!(await app.locator('[data-cond-warning]').isVisible()), 'No expected-count warning for 10 z 20 at 0,25');
+    // One-sided alternative: the one-sided 95 % interval has the same lower limit as the two-sided 90 % interval.
+    const appKind = app.locator('.viz-app-kind');
+    assert(await appKind.isVisible(), 'Interval choice shown for a one-sided alternative');
+    await app.locator('input[name="viz-app-kind"][value="one"]').check();
+    aS = await appState();
+    assert.deepEqual([aS.ci.side, aS.ci.conf, aS.ci.hi], ['lower', 0.95, 1]);
+    appNear(aS.ci.lo, 0.327403767885156, 'One-sided lower limit');
+    assert((await appText('[data-results]')).includes('[0,327; 1]'), 'One-sided interval written with its bound 1');
+    // Two-sided alternative: no interval choice, the two-sided 95 % interval and the exact p-value by the rule of R.
+    await app.locator('input[name="viz-app-alt"][value="two"]').check();
+    assert(!(await appKind.isVisible()), 'No interval choice for a two-sided alternative');
+    aS = await appState();
+    appNear(aS.exact.p, 0.0170356288826952, 'Two-sided exact p-value as R binom.test');
+    assert.deepEqual([aS.exact.regions, aS.ci.side, aS.ci.conf], [[[0, 0], [10, 20]], 'two', 0.95]);
+    assert((await appText('[data-exact-note]')).includes('0,028'), 'Note shows the doubled one-sided p-value');
+    assert((await appText('[data-results]')).includes('Statistika chí-kvadrát'), 'Chi-square row for a two-sided alternative');
+    // Radios work from the keyboard.
+    await app.locator('input[name="viz-app-alt"][value="two"]').focus();
+    await page.keyboard.press('ArrowDown');
+    assert.equal((await appState()).alt, 'greater', 'Alternative changes from the keyboard');
+    // Labels come from the inputs and user text is escaped; an empty name falls back.
+    await app.locator('#viz-app-n0').fill('<b>ano</b>');
+    await app.locator('#viz-app-var').fill('Souhlas');
+    assert.equal(await app.locator('[data-report] b, [data-results] b, [data-hyp] b').count(), 0, 'User text is escaped');
+    assert((await appText('[data-report]')).includes('„<b>ano</b>“') && (await appText('[data-report]')).includes('„Souhlas“'), 'Labels shown as text in the report');
+    assert.equal(await app.locator('[data-success-label="0"]').innerText(), '<b>ano</b>');
+    await app.locator('#viz-app-n0').fill('');
+    assert.equal(await app.locator('[data-success-label="0"]').innerText(), 'Kategorie 1', 'Empty name falls back');
+    await app.locator('#viz-app-c1').fill('15');
+    await app.locator('input[name="viz-app-success"][value="1"]').check();
+    aS = await appState();
+    assert.deepEqual([aS.n, aS.k, aS.names[1]], [25, 15, 'špatně'], 'Second category as success');
+    assert.equal(await app.locator('[data-count-label="1"]').innerText(), 'Četnost „špatně“');
+    // Rejected inputs keep the last valid value.
+    await app.locator('#viz-app-pi0').fill('1,2');
+    assert.equal(await app.locator('#viz-app-pi0').getAttribute('aria-invalid'), 'true');
+    assert(await app.locator('#viz-app-pi0-error').isVisible(), 'Error for π0 outside 0–1');
+    assert.equal((await appState()).pi0, 0.25, 'Invalid π0 keeps the last valid value');
+    await app.locator('#viz-app-pi0').fill('1/3');
+    aS = await appState();
+    appNear(aS.pi0, 1 / 3, 'π0 as a fraction'); assert.equal(aS.pi0Label, '1/3');
+    await app.locator('#viz-app-alpha').fill('0,5');
+    assert.equal(await app.locator('#viz-app-alpha').getAttribute('aria-invalid'), 'true');
+    await app.locator('#viz-app-alpha').fill('0.01');
+    assert.equal((await appState()).alpha, 0.01, 'α with a decimal point');
+    await app.locator('#viz-app-c0').fill('-1');
+    assert.equal(await app.locator('#viz-app-c0').getAttribute('aria-invalid'), 'true');
+    await app.locator('#viz-app-c0').fill('0'); await app.locator('#viz-app-c1').fill('0');
+    assert(await app.locator('[data-sum-error]').isVisible(), 'Total of zero rejected');
+    // The valid 0 in the first field applied (0 + 15); the total of zero is rejected and 15 stays.
+    assert.equal((await appState()).n, 15, 'Zero total keeps the last valid counts');
+    // Presets from the chapters.
+    await app.locator('[data-preset="cislice"]').click();
+    aS = await appState();
+    assert.deepEqual([aS.n, aS.k, aS.expectedOk, aS.alt], [8, 7, false, 'greater']);
+    appNear(aS.exact.p, 0.03515625, 'Digits: exact p-value 9/256 (chapter 6, exercise 8)');
+    assert(await app.locator('[data-cond-warning]').isVisible(), 'Warning for expected counts below 5');
+    assert.equal(await app.locator('[data-preset="cislice"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await app.locator('#viz-app-c0').inputValue(), '7');
+    assert(!(await app.locator('[data-sum-error]').isVisible()), 'Preset clears the total error');
+    await app.locator('[data-preset="telepatie"]').click();
+    aS = await appState();
+    assert.deepEqual([aS.n, aS.k, aS.names], [329, 106, ['zásah', 'nezásah']]);
+    appNear(aS.exact.p, 0.00193221542288028, 'Telepathy: exact p-value (chapter 9: 0,002)');
+    // Large n: the chart shows a window and explains a count far outside it.
+    await app.locator('#viz-app-c0').fill('0'); await app.locator('#viz-app-c1').fill('100000');
+    await app.locator('#viz-app-pi0').fill('0,5');
+    aS = await appState();
+    assert.deepEqual([aS.n, aS.k], [100000, 0]);
+    assert((await appText('[data-null-note]')).includes('daleko mimo výřez'), 'Count far outside the window explained');
+    assert.equal(await page.locator('.observablehq--error').count(), 0, 'No OJS error at n = 100 000');
+    // Phone.
+    await page.setViewportSize({width: 375, height: 812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await appPlots.nth(2).waitFor();
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'One-proportion app fits a phone');
+    await app.screenshot({path: 'tmp/verification/app-jeden-podil-mobile.png'});
     await page.setViewportSize({width: 1360, height: 1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });
