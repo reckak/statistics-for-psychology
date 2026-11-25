@@ -12,7 +12,7 @@ sestavena podle výkladu, zadání a řešení 2026-11-11. Dohodu dokládají
 [R73](../rozhodnuti/kapitola-10.md#r73-terminologie-kapitoly-10) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-10). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-10).
-Soulad karty s textem zkontrolován 2026-11-11 a po revizi podle [R84](../rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) znovu 2026-11-20; oddíl o vizualizaci a dva bloky „Vyzkoušejte si“ zkontrolovány 2026-11-23. Terminologické návrhy K10-N1 až K10-N4
+Soulad karty s textem zkontrolován 2026-11-11 a po revizi podle [R84](../rozhodnuti/kapitola-10.md#r84-revize-kapitoly-10) znovu 2026-11-20; oddíl o vizualizaci a dva bloky „Vyzkoušejte si“ zkontrolovány 2026-11-23; pododdíl o překrývání bodů, řešení cvičení 1c a nové rozvržení tří obrázků podle [R86](../rozhodnuti/kapitola-10.md#r86-prekryvani-bodu) zkontrolovány 2026-11-25. Terminologické návrhy K10-N1 až K10-N4
 autor schválil 2026-11-11 ([doplnění R73](../rozhodnuti/kapitola-10.md#r73-schvaleni-navrhu-2026-11-11)). Revize 2026-11-20 vychází z autorových připomínek ke konkrétním místům textu; průběh a kontroly eviduje [záznam o revizi](../../quarto/README.md#revize-kapitoly-10).
 
 **Vstup:** souvislost a příčina, role proměnných, ordinální úroveň, reliabilita a validita
@@ -22,7 +22,7 @@ nezávislost a permutace jako uspořádání (kap. 5); výběrové rozdělení, 
 dva kroky závěru a mnoho testů (kap. 6); interval spolehlivosti, *t*-rozdělení, T.DIST.2T
 (kap. 7); párová data a klasický *t*-test (kap. 8); koeficient φ a tabulka stresu (kap. 9).
 
-**Cíle:** podle „Co budete po prostudování umět“: bodový graf a slovní popis souvislosti;
+**Cíle:** podle „Co budete po prostudování umět“: bodový graf a slovní popis souvislosti, úprava grafu při překrývání bodů;
 kovariance a Pearsonovo *r* ručně i v Excelu; pořadí, Spearmanův korelační koeficient, Kendallovo
 τ<sub>a</sub> a τ<sub>b</sub>; volba koeficientu; test a Fisherův interval pro *r*; permutační
 test a percentilový bootstrapový interval pro pořadové koeficienty včetně testované hypotézy;
@@ -46,7 +46,7 @@ určuje konkrétní **procvičení**. Třináct hlavních oddílů odpovídá č
 |---|---|---|
 | [Jakou otázku zodpovídá korelace](../../quarto/kapitola_10.qmd#sec-otazka-korelace) | Úzkost a výkon 40 studentů; směr a síla; dva významy „směru“ (znaménko vs. směr působení); symetrie; korelační studie, též observační (Aron s. 512); spánková data kap. 8: relativní postavení (*r* = 0,95) vs. průměrná změna 3,5 bodu; SD rozdílů 2,39 vs. 9,75 při *r* = 0; 2, 4, 6 a 6, 12, 18. | 2. |
 | [Připomenutí: variabilita rozdílů](../../quarto/kapitola_10.qmd#rozsireni-rozptyl-rozdilu) | Od 2026-11-14 jen připomenutí ($s_D^2=s_1^2+s_2^2-2rs_1s_2$, r = 0,948, $s_D$ = 2,39) s odkazem na [nepovinné rozšíření kapitoly 8](../../quarto/kapitola_08.qmd#rozsireni-rozptyl-rozdilu-08), kam bylo rozšíření přesunuto podle [R77](../rozhodnuti/kapitola-08.md#r77-revize-kapitoly-8); ID zachováno; list `Parova_korelace` beze změny. Soulad řádku s textem zkontrolován 2026-11-14. | Bez cvičení. |
-| [Bodový graf](../../quarto/kapitola_10.qmd#sec-bodovy-graf) | Bod je člověk; osa podle teoretické role proměnných; lineární, monotónní a nelineární vztah; šest tvarů s *r* a *r*<sub>s</sub>; Anscombův kvartet (*r* = 0,82, převzatá data, [E07](../zdroje/E07-anscombe-1973.md#e07-anscombe-1973)); graf s velikostí bodu u pořadových dat. | 1, 16a. |
+| [Bodový graf](../../quarto/kapitola_10.qmd#sec-bodovy-graf) | Bod je člověk; osa podle teoretické role proměnných; lineární, monotónní a nelineární vztah; šest tvarů s *r* a *r*<sub>s</sub>; Anscombův kvartet (*r* = 0,82, převzatá data, [E07](../zdroje/E07-anscombe-1973.md#e07-anscombe-1973)); pravidlo „bez grafu nevykládáme“; od 2026-11-25 ([R86](../rozhodnuti/kapitola-10.md#r86-prekryvani-bodu)) pododdíl [Když se body překrývají](../../quarto/kapitola_10.qmd#sec-prekryvani-bodu): 500 smyšlených studentů, kvalita spánku a únava 1–7 (*r* = −0,43; 45 viditelných bodů ze 49 kombinací, až 36 studentů v jednom bodě), velikost bodu podle počtu (odkaz na obrázek stresu a spánku), jitter výrazně menší než polovina kroku škály (±0,2) s průhledností, příliš velký jitter (±0,45) a jitter v obrázku úzkosti a výkonu; výpočty z původních hodnot. Bez Excelu a bez listu v sešitu. | 1 (včetně 1c), 16a. |
 | [Kovariance](../../quarto/kapitola_10.qmd#sec-kovariance) | Šest studentů (tab. 10.1), kvadranty a součiny odchylek (Cumming s. 317–319); $s_{xy}=-27{,}6$; vztah k rozptylu; závislost na jednotkách (−92 v procentech). | 3, 4. |
 | [Pearsonovo *r*](../../quarto/kapitola_10.qmd#sec-pearsonovo-r) | $r=s_{xy}/(s_xs_y)=-0{,}788$ a součet součinů *z*-skórů; ρ; vlastnosti (znaménko, ±1, posun, obrácení škály, bez variability); „Častý omyl“ *r* = 0; CORREL, COVARIANCE.S (tab. 10.2); velikost v kontextu bez slovních pásem: Cohen, kvartily podle Cumminga (s. 336–337), reliabilita a validita (částečné rozšíření R55). Nepovinné rozšíření `#rozsireni-meze-r`: důkaz −1 ≤ *r* ≤ 1 přes součet druhých mocnin rozdílů *z*-skórů. | 3, 4, 15. |
 | [Spearmanův korelační koeficient](../../quarto/kapitola_10.qmd#sec-spearman) | Stres a kvalita spánku 30 studentů; průměrná pořadí (tab. 10.3, Howell s. 314); $r_s=-0{,}851$ (6) a −0,48 (30); RANK.AVG; co převod zachová; trénink a reakční doba (*r* −0,85, *r*<sub>s</sub> −0,91); „Častý omyl“ o volbě podle normality. | 1, 5, 6. |
@@ -84,17 +84,18 @@ o omezení rozsahu a odlehlém bodu. Data kapitoly 8 a tabulka kapitoly 9 se př
 | [Úzkost a výkon](../../quarto/kapitola_10.qmd#fig-uzkost-vykon) | Široce rozptýlená záporná souvislost s průměry. |
 | [Tvary souvislosti](../../quarto/kapitola_10.qmd#fig-tvary) | Šest tvarů s *r* a *r*<sub>s</sub>. |
 | [Stejné *r*](../../quarto/kapitola_10.qmd#fig-stejne-r) | Anscombův kvartet, *r* = 0,82 (od 2026-11-20 místo čtyř modelových souborů s *r* = 0,60). |
+| [Překrývání bodů](../../quarto/kapitola_10.qmd#fig-prekryvani) | Mřížka 2 × 2: bez úpravy, jitter ±0,2, jitter s průhledností, jitter ±0,45 s průhledností; 500 smyšlených studentů (R86). |
 | [Kvadranty](../../quarto/kapitola_10.qmd#fig-kvadranty) | Znaménka a velikost součinů odchylek. |
 | [Stres a spánek](../../quarto/kapitola_10.qmd#fig-stres-spanek) | Pořadová data, velikost bodu podle počtu. |
 | [Pořadí](../../quarto/kapitola_10.qmd#fig-poradi) | Převod na pořadí odstraní zakřivení. |
 | [Dvourozměrné rozdělení](../../quarto/kapitola_10.qmd#fig-dvourozmerne) | Elipsa vs. heteroskedasticita. |
 | [Výběrové *r*](../../quarto/kapitola_10.qmd#fig-vyberove-r) | Kolísání a šikmost *r*. |
-| [Fisherova transformace](../../quarto/kapitola_10.qmd#fig-fisher-transformace) | Převodní křivka; rozdělení *r* pro ρ = 0,8 před a po převodu. |
+| [Fisherova transformace](../../quarto/kapitola_10.qmd#fig-fisher-transformace) | Převodní křivka; rozdělení *r* pro ρ = 0,8 před a po převodu. Od 2026-11-25 (R86) ve dvou řadách: křivka nahoře uprostřed, histogramy dole. |
 | [Přesná permutace](../../quarto/kapitola_10.qmd#fig-permutace-presna) | 720 přiřazení šesti studentů, 48 krajních (*p*-hodnota). |
 | [Permutace](../../quarto/kapitola_10.qmd#fig-permutace) | Rozdělení τ<sub>b</sub> za nezávislosti. |
 | [Bootstrap](../../quarto/kapitola_10.qmd#fig-bootstrap) | Bootstrapové rozdělení a percentilové meze. |
-| [Faktory](../../quarto/kapitola_10.qmd#fig-faktory) | Omezení rozsahu, krajní skupiny, sloučení skupin. |
-| [Druhy odlehlého pozorování](../../quarto/kapitola_10.qmd#fig-odlehle-typy) | Krajní X ve směru vztahu, neobvyklá kombinace, krajní X i Y proti směru. |
+| [Faktory](../../quarto/kapitola_10.qmd#fig-faktory) | Omezení rozsahu, krajní skupiny, sloučení skupin. Od 2026-11-25 (R86) ve dvou řadách: oba grafy uchazečů nahoře, sloučené třídy dole uprostřed. |
+| [Druhy odlehlého pozorování](../../quarto/kapitola_10.qmd#fig-odlehle-typy) | Krajní X ve směru vztahu, neobvyklá kombinace, krajní X i Y proti směru. Od 2026-11-25 (R86) v mřížce 2 × 2. |
 | [Chyba měření](../../quarto/kapitola_10.qmd#fig-reliabilita) | Pravé a naměřené skóry, reliabilita 0,6. |
 | [Shoda hodnot](../../quarto/kapitola_10.qmd#fig-shoda-hodnot) | Vysoké *r* bez absolutní shody hodnot. |
 | [*d* a *r*<sub>pb</sub>](../../quarto/kapitola_10.qmd#fig-rpb-d) | Nepovinně: vztah podle rozdělení do skupin. |
@@ -124,7 +125,7 @@ slovní: 1, 2, 4, 14, 15.
 
 | Úloha | Co student samostatně dělá |
 |---|---|
-| 1. Graf a koeficient | Rozliší monotónní, obrácené U, pořadová data a odlehlý bod; zvolí koeficient nebo popis. |
+| 1. Graf a koeficient | Rozliší monotónní, obrácené U, pořadová data a odlehlý bod; zvolí koeficient nebo popis; v 1c zvolí úpravu grafu při překrývání bodů (jitter s průhledností nebo velikost bodu). |
 | 2. Co korelace říká | Postavení vs. změna; vysoké *r* při poklesu všech; kauzální titulek a alternativní vysvětlení. |
 | 3. Kovariance a *r* ručně | 5 dvojic: −4,25 a −0,922; list `Kovariance`. |
 | 4. Jednotky a škála | Minuty, obrácení, posun, nulová variabilita. |
@@ -147,7 +148,7 @@ slovní: 1, 2, 4, 14, 15.
 
 ### Pojmy, konvence a hranice návaznosti
 
-Nově vysvětleno 28 hesel [registru](../SLOVNIK.md#kapitola-10), z toho čtyři schválená doplněním R73 a pět revizí R84 (převzorkování, pravý skór, atenuace, nepovinně korekce na atenuaci, relativní a absolutní shoda; observační studie jako alternativa). Plné názvy „… korelační koeficient“ ve výkladu podle R84. Značení podle R72:
+Nově vysvětleno 30 hesel [registru](../SLOVNIK.md#kapitola-10), z toho čtyři schválená doplněním R73, pět revizí R84 (převzorkování, pravý skór, atenuace, nepovinně korekce na atenuaci, relativní a absolutní shoda; observační studie jako alternativa) a dvě podle R86 (překrývání bodů; jitter a průhlednost bodů). Plné názvy „… korelační koeficient“ ve výkladu podle R84. Značení podle R72:
 $s_{xy}$, *r* a ρ, $r_s$ a ρ<sub>s</sub>, τ<sub>a</sub> a τ<sub>b</sub> (výběrově, populační hodnota
 slovy), $n_c$, $n_d$, $t_x$, $t_y$, $n_0$, $z_r$, $r_{pb}$, *B*; podle R84 nepovinně $r_{xx}$, $r_{yy}$, $r_{\mathrm{opr}}$ a pomocné značky rozšíření BCa. Nové funkce Excelu: CORREL,
 COVARIANCE.S, RANK.AVG, SIGN, SOUČIN.SKALÁRNÍ, TRANSPOZICE, FISHER, FISHERINV.

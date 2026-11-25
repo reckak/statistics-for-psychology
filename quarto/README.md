@@ -1,5 +1,40 @@
 # Autorská dokumentace
 
+<a id="prekryvani-bodu-10"></a>
+
+## Kapitola 10: překrývání bodů a rozvržení tří obrázků (2026-11-25, R86)
+
+Na pokyn autora a podle [R86](../docs/rozhodnuti/kapitola-10.md#r86-prekryvani-bodu):
+
+- **Nový pododdíl** [Když se body překrývají](kapitola_10.qmd#sec-prekryvani-bodu) na konci oddílu o bodovém grafu. Dosavadní věta o velikosti bodu podle počtu se přesunula do něj. Obsah:
+  - příklad 500 smyšlených studentů, kvalita spánku a únava během dne na škále 1–7 (*r* = −0,43; 45 viditelných bodů ze 49 kombinací, 36 studentů v bodě 3/5);
+  - velikost bodu podle počtu, jitter s průhledností a mez příliš velkého jitteru;
+  - doplnění, že obrázek 10.1 je také nepatrně posunutý (dvě dvojice shodných hodnot).
+- **Navazující změny v kapitole:** obrázek `fig-prekryvani` (2 × 2) a úpravy cílů učení, shrnutí a řešení cvičení 1c. Data vytváří `scripts/kapitola_10.R` (seed 15010); sešit beze změny.
+- **Rozvržení obrázků:** `fisher` ve dvou řadách (křivka nahoře uprostřed), `odlehle-typy` v mřížce 2 × 2, `faktory` ve dvou řadách (sloučené třídy dole uprostřed). Data a výpočty beze změny.
+  - Kvůli `layout()` je písmo nastaveno na `cex = 0,75`; jinak by ho R zmenšil na 0,66.
+  - Popisek bodu *r* = −0,523 u Fisherovy křivky je přesunut pod křivku s odkazovou čarou.
+  - Upraveny popisky, `fig-alt`, odkazy na polohu panelů v textu a poznámky dat pro tutora.
+- **Dokumentace:** hesla `pojem-prekryvani-bodu` a `pojem-jitter` v registru i studentském slovníčku. Aktualizovány také karta kapitoly, mapa obsahu, `docs/DATA.md` a registr rozhodnutí.
+
+**Didaktická revize:** samostatný agent v roli studenta po kapitolách 1–9. Na jeho podnět byl opraven rozpor mezi pravidlem „menší než polovina vzdálenosti“ a panelem D (±0,45): nově „výrazně menší než polovina, zde nejvýš 0,2“. Upraveny byly také formulace k souvislosti v grafu A, zavedení termínu jitter a místa s jedním studentem.
+
+**Kontroly:**
+
+- `check-chapter-10.R` prošel, s novými kontrolami čísel pododdílu, šířek jitteru a duplicit obrázku 10.1.
+- `check-figure-data.cjs` a `render-figure-data.cjs kapitola_10` prošly (18 obrázků).
+- Celá kniha je vykreslená (Quarto 1.9.38, R 4.5.1); kapitola 10 a slovníček byly po revizi vykresleny znovu.
+- `check-html.cjs` prošel; počet obrázků kapitoly 10 je zvýšen na 18 a přibyly nové ID.
+- Prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+- Všechny čtyři obrázky jsou vizuálně prohlédnuté jako PNG. Stránka je zkontrolovaná v panelu prohlížeče na desktopu a při šířce 375 px bez přetékání.
+
+**Omezení:**
+
+- SVG `prekryvani` má asi 600 kB (2 000 bodů v panelech B–D).
+- Citace zdroje k překrývání bodů nebyla doplněna; výklad je vlastní.
+- PDF kapitoly, export tutora, Firefox, Safari a skutečný telefon nebyly ověřeny.
+- Didaktická revize je interní, ne ověření na studentech.
+
 <a id="vizualizace-interval-podilu"></a>
 
 ## Vizualizace Waldova a Wilsonova intervalu pro podíl (2026-11-25, upřesnění R65)

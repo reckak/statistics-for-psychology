@@ -391,7 +391,9 @@ a novější). Simulace k obrázkům (výběrové rozdělení *r*, tvary, faktor
 pokrytí (`scripts/kapitola_10-pokryti.R`) do sešitu nepatří. Totéž platí pro obrázky
 a tabulku z revize 2026-11-20 (Anscombův kvartet, Fisherova transformace, druhy odlehlého
 pozorování, atenuace, *r*<sub>pb</sub> a *d*, korelační matice s intervaly); tabulka tří
-přeskupení používá data listu `Male_poradi` a přiřazení z listu `Perm_presna`.
+přeskupení používá data listu `Male_poradi` a přiřazení z listu `Perm_presna`. Ani smyšlená data 500 studentů k obrázku překrývání bodů (kvalita spánku a únava,
+2026-11-25, [R86](rozhodnuti/kapitola-10.md#r86-prekryvani-bodu)) nemají list: obrázek jen ilustruje
+zobrazení a nic se z něj nepočítá.
 
 | Cvičení | List a oblast / povaha zadání |
 |---|---|
