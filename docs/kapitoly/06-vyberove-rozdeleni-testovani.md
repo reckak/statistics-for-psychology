@@ -210,9 +210,10 @@ kritickém oboru, dvou chybách, síle a nezamítnutí: 2026-11-06; ostatní
 na konci pododdílu [binomický test](../../quarto/kapitola_06.qmd#sec-binomicky-test),
 za komentářem k listu `Binom_test`, odkazuje blok „Spočítejte si: test jednoho
 podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd).
-Výchozí příklad aplikace je tipující student (10 z 20, π₀ = 0,25, alternativa
-„větší“, přesná *p*-hodnota 0,014 jako v kapitole); předvolbou je i cvičení 8
-(7 z 8 při 0,5, přesná *p*-hodnota 0,035). Oproti kapitole aplikace počítá
+Stránka se otevírá s daty cvičení 8 (7 z 8) při π₀ = 0,50 a oboustranné
+alternativě; předvolby nastaví tipujícího studenta (10 z 20, π₀ = 0,25,
+alternativa „větší“, přesná *p*-hodnota 0,014 jako v kapitole) a cvičení 8
+s alternativou „větší“ (přesná *p*-hodnota 0,035). Oproti kapitole aplikace počítá
 binomický test i oboustranně, pravidlem funkce `binom.test` v R, a uvádí
 skórový test a Wilsonův interval z kapitoly 9. Podrobnosti jsou v
 [kartě kapitoly 9](09-podily-kategorialni-data.md#aplikace-09). Kontrola

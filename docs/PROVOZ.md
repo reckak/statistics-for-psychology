@@ -850,18 +850,14 @@ node scripts/check-stat-lib.mjs
 R skript vypíše pole referenčních hodnot (`prop.test` bez korekce na spojitost,
 `binom.test`, Wilsonovy intervaly) pro mřížku případů; pole je vložené
 do `scripts/check-stat-lib.mjs` a jeho výběr do `check-html.cjs`. Po změně
-modulu nebo mřížky skript spusťte znovu a obě místa aktualizujte. Vzorce
-českého Excelu, které stránka nabízí, ověří ve skryté instanci desktopového
-Excelu (bez ukládání) příkaz Windows PowerShellu:
-
-```powershell
-.\scripts\check-app-jeden-podil-excel.ps1
-```
+modulu nebo mřížky skript spusťte znovu a obě místa aktualizujte. Aplikace
+výpočet v Excelu neuvádějí (upřesnění R87).
 
 U aplikace testu jednoho podílu kontrola webu ověřuje: odkazy z kapitol 6
 a 9, sbalenou a otevřenou část v nabídce, tři grafy bez kódu a chyb OJS,
-výsledky výpočtů proti R, výchozí stav podle kapitoly 6 včetně textů tabulky,
-interpretace a vzorců Excelu, volbu intervalu u jednostranné alternativy,
+výsledky výpočtů proti R, výchozí stav (7 z 8, π₀ = 0,50, oboustranně)
+bez oddílu Excelu, barvy záhlaví a řádků skupin tabulky výsledků, příklad
+kapitoly 6 včetně textů tabulky a interpretace, volbu intervalu u jednostranné alternativy,
 oboustrannou přesnou *p*-hodnotu podle pravidla R s poznámkou o zdvojení,
 ovládání klávesnicí, popisky ze vstupů a escapování zadaného textu, odmítnutí
 neplatných vstupů s ponecháním poslední platné hodnoty, předvolby, výřez

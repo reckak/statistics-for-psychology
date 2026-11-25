@@ -337,12 +337,12 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-app-summary { margin: .2rem 0 .6rem; }
 .viz-app-table td { text-align: left; }
 .viz-app-table td.viz-app-num { text-align: right; white-space: nowrap; }
-.viz-app-table thead th { text-align: left; }
-.viz-app-table tr.viz-app-group th { padding-top: .8rem; font-weight: 700; }
+/* Results table of an app (R87 amendment 2026-11-25): dark header with white text and lightly shaded group rows. */
+/* Like the R54 shading, these override the transparent table background (rule near the top of this file). */
+.viz .viz-app-table thead th { text-align: left; background-color: var(--ink) !important; color: white; }
+.viz .viz-app-table tr.viz-app-group th { padding-top: .5rem; font-weight: 700; background-color: #f0f0f0 !important; }
 .viz-app-table tbody th { min-width: 11rem; }
 .viz-app-table td:nth-child(3) { min-width: 16rem; }
-.viz-app-excel td:nth-child(2) { min-width: 18rem; }
-.viz-app-excel code { overflow-wrap: anywhere; white-space: normal; }
 .viz-app-report { border-left: 4px solid var(--accent); padding: .1rem 0 .1rem .9rem; }
 .viz-app-report p:last-child { margin-bottom: 0; }
 @media (max-width: 575px) {

@@ -4,7 +4,7 @@ code-copy: false
 
 # Test jednoho podílu {#sec-app-jeden-podil .unnumbered}
 
-Odpovídá podíl jedné kategorie ve výběru hodnotě, kterou předpokládá nulová hypotéza? Aplikace pro proměnnou se dvěma kategoriemi spočítá výběrový podíl, [skórový test](kapitola_09.qmd#sec-interval-a-test-podilu) i přesný [binomický test](kapitola_06.qmd#sec-binomicky-test) a odhadne populační podíl [Wilsonovým intervalem](kapitola_09.qmd#sec-wilson). Ukáže také očekávané četnosti a rozdělení počtu případů zvolené kategorie při platnosti nulové hypotézy a výpočty v českém Excelu. Postupy vysvětlují kapitoly 6 a 9; tato stránka je shrnuje a počítá je pro vaše data.
+Odpovídá podíl jedné kategorie ve výběru hodnotě, kterou předpokládá nulová hypotéza? Aplikace pro proměnnou se dvěma kategoriemi spočítá výběrový podíl, [skórový test](kapitola_09.qmd#sec-interval-a-test-podilu) i přesný [binomický test](kapitola_06.qmd#sec-binomicky-test) a odhadne populační podíl [Wilsonovým intervalem](kapitola_09.qmd#sec-wilson). Ukáže také očekávané četnosti a rozdělení počtu případů zvolené kategorie při platnosti nulové hypotézy. Postupy vysvětlují kapitoly 6 a 9; tato stránka je shrnuje a počítá je pro vaše data.
 
 ## Jak aplikaci použít {#sec-app-podil-ovladani .unnumbered}
 
@@ -12,7 +12,7 @@ Zadejte název proměnné, názvy obou kategorií a jejich četnosti ve výběru
 
 U oboustranné alternativy aplikace počítá oboustranný Wilsonův interval se spolehlivostí $1-\mathrm{α}$. U jednostranné alternativy si vyberete, zda chcete oboustranný interval se spolehlivostí $1-2\mathrm{α}$ (výchozí volba), nebo [jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval) se spolehlivostí $1-\mathrm{α}$. Oba mají na straně, o které rozhoduje jednostranný test, stejnou mez. Proto musí být α menší než 0,5: jinak by spolehlivost $1-2\mathrm{α}$ nebyla kladná.
 
-Názvy proměnné a kategorií se objeví v grafech, tabulkách i ve slovní interpretaci. Po načtení stránky je nastaven příklad tipujícího studenta z kapitoly 6: 10 správných a 10 špatných odpovědí, testovaná hodnota 0,25 a alternativa „větší“. Tlačítka nastaví i další příklady z kapitol. Při neplatné hodnotě se zobrazí upozornění a aplikace dál používá poslední platnou hodnotu. Výpočty běží jen ve vašem prohlížeči, zadaná data se nikam neodesílají.
+Názvy proměnné a kategorií se objeví v grafech, tabulkách i ve slovní interpretaci. Po načtení stránky jsou nastavena data z cvičení 8 kapitoly 6 (7 správných a 1 špatná odpověď) s nejčastěji používanou testovanou hodnotou 0,50 a oboustrannou alternativou. Tlačítka nastaví příklady z kapitol s jejich vlastní testovanou hodnotou a alternativou. Při neplatné hodnotě se zobrazí upozornění a aplikace dál používá poslední platnou hodnotu. Výpočty běží jen ve vašem prohlížeči, zadaná data se nikam neodesílají.
 
 Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kontrolu očekávaných četností a tři grafy. První graf porovnává pozorované a očekávané četnosti obou kategorií. Druhý ukazuje rozdělení počtu případů zvolené kategorie při platnosti nulové hypotézy: zvýrazněné sloupce tvoří *p*-hodnotu přesného testu, svislá čára je pozorovaný počet a čárkovaná křivka normální aproximace, ze které vychází skórový test. U velkých výběrů graf ukazuje jen výřez kolem očekávaného počtu. Třetí graf ukazuje na ose populačního podílu Wilsonův interval, výběrový podíl a testovanou hodnotu. Podíly, meze a *z* zaokrouhlujeme na tři desetinná místa, směrodatnou chybu a kvantil na čtyři. *p*-hodnoty mají tři desetinná místa, hodnoty pod 0,001 dvě platné číslice; *p*-hodnota 0,0098 z kapitoly 9 se proto zobrazí jako 0,010. Počítáme s plnou přesností.
 
@@ -28,7 +28,6 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
   const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
   const int = v => v.toLocaleString("cs-CZ");
-  const excel = v => v.toLocaleString("en-US", {useGrouping: false, maximumFractionDigits: 15}).replace(".", ",");
   const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 1 - Math.floor(Math.log10(Math.abs(v)))));
   const pfmt = p => p >= 0.001 || p === 0 ? fixed(p, 3) : fixed(p, sigDigits(p));
   const lim3 = v => fixed(Math.abs(v) < 1e-12 ? 0 : v, 3);
@@ -46,9 +45,9 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   // π₀ also as a fraction a/b, e.g. 1/3; the label keeps the fraction.
   function parsePi0(raw) {
     const f = raw.trim().replace(/\s+/g, "").match(/^(\d+)\/(\d+)$/);
-    if (f) { const v = Number(f[1]) / Number(f[2]); return Number.isFinite(v) ? {v, label: `${f[1]}/${f[2]}`, excel: `(${f[1]}/${f[2]})`} : null; }
+    if (f) { const v = Number(f[1]) / Number(f[2]); return Number.isFinite(v) ? {v, label: `${f[1]}/${f[2]}`} : null; }
     const v = parseDecimal(raw);
-    return v === null ? null : {v, label: trim(v, 10), excel: excel(v)};
+    return v === null ? null : {v, label: trim(v, 10)};
   }
 
   const PRESETS = [
@@ -56,7 +55,9 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
     {id: "cislice", label: "Rozpoznávání číslic (kap. 6, cvičení 8)", varName: "Odpověď v pokusu", names: ["správně", "špatně"], counts: [7, 1], success: 0, pi0: "0,5", alt: "greater", alpha: "0,05", kind: "two"},
     {id: "telepatie", label: "Studie o telepatii (kap. 9)", varName: "Výsledek pokusu", names: ["zásah", "nezásah"], counts: [106, 223], success: 0, pi0: "0,25", alt: "greater", alpha: "0,05", kind: "two"}
   ];
-  const s = {varName: "", names: ["", ""], counts: [0, 0], success: 0, pi0: 0.25, pi0Label: "0,25", pi0Excel: "0,25", alt: "greater", alpha: 0.05, alphaLabel: "0,05", kind: "two"};
+  // Default on load: the data of chapter 6, exercise 8, with the most common π₀ = 0,50 and a two-sided H₁.
+  const DEFAULT = {id: "", varName: "Odpověď v pokusu", names: ["správně", "špatně"], counts: [7, 1], success: 0, pi0: "0,50", alt: "two", alpha: "0,05", kind: "two"};
+  const s = {varName: "", names: ["", ""], counts: [0, 0], success: 0, pi0: 0.5, pi0Label: "0,5", alt: "two", alpha: 0.05, alphaLabel: "0,05", kind: "two"};
   const varName = () => s.varName.trim() || "Proměnná";
   const catName = i => s.names[i].trim() || `Kategorie ${i + 1}`;
 
@@ -145,11 +146,6 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
       <div data-legend="interval"></div>
       <div class="viz-plots" data-chart="interval"></div>
     </section>
-    <section class="viz-part" aria-labelledby="viz-app-excel-title">
-      <h3 id="viz-app-excel-title" class="viz-part-title">Výpočet v českém Excelu</h3>
-      <p class="viz-note">Na prázdném listu zapište vstupy do buněk B2:B5 a vzorce do dalších buněk sloupce B, podobně jako na listu <code>Interval_podilu</code> sešitu kapitoly 9 (rozmístění buněk se liší); popisky do sloupce A jsou nepovinné.</p>
-      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Výpočet v Excelu: posuvná oblast" data-excel></div>
-    </section>
   </div>`;
 
   const $ = sel => root.querySelector(sel);
@@ -180,7 +176,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   inputs.pi0.addEventListener("input", () => {
     const r = parsePi0(inputs.pi0.value), ok = r !== null && r.v > 0 && r.v < 1;
     setError("pi0", ok ? "" : "Zadejte číslo větší než 0 a menší než 1, například 0,25 nebo 1/3. Používá se dál poslední platná hodnota.");
-    if (ok) { s.pi0 = r.v; s.pi0Label = r.label; s.pi0Excel = r.excel; render(); }
+    if (ok) { s.pi0 = r.v; s.pi0Label = r.label; render(); }
   });
   inputs.alpha.addEventListener("input", () => {
     const v = parseDecimal(inputs.alpha.value), ok = v !== null && v > 0 && v < 0.5;
@@ -192,7 +188,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   root.querySelectorAll('input[name="viz-app-kind"]').forEach(r => r.addEventListener("change", () => { s.kind = r.value; render(); }));
   function applyPreset(p) {
     Object.assign(s, {varName: p.varName, names: [...p.names], counts: [...p.counts], success: p.success, alt: p.alt, kind: p.kind});
-    const r = parsePi0(p.pi0); Object.assign(s, {pi0: r.v, pi0Label: r.label, pi0Excel: r.excel, alpha: parseDecimal(p.alpha), alphaLabel: p.alpha});
+    const r = parsePi0(p.pi0); Object.assign(s, {pi0: r.v, pi0Label: r.label, alpha: parseDecimal(p.alpha), alphaLabel: p.alpha});
     inputs.var.value = p.varName; inputs.n0.value = p.names[0]; inputs.n1.value = p.names[1];
     inputs.c0.value = String(p.counts[0]); inputs.c1.value = String(p.counts[1]); inputs.pi0.value = p.pi0; inputs.alpha.value = p.alpha;
     for (const id of ["c0", "c1", "pi0", "alpha"]) setError(id, "");
@@ -263,33 +259,6 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
     $("[data-results]").innerHTML = `<table class="viz-bay-table viz-app-table" aria-label="Výsledky testu jednoho podílu"><thead><tr><th scope="col">Ukazatel</th><th scope="col">Výsledek</th><th scope="col">Výpočet s dosazením</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
   }
 
-  // Excel: a cell layout like the sheet Interval_podilu of chapter 9 (inputs in B2:B5, formulas refer to cells).
-  function excelTable(R) {
-    const n = R.n, k = R.k, ci = R.ci;
-    const scoreF = s.alt === "two" ? "=2*(1-NORM.S.DIST(ABS(B9);PRAVDA))" : s.alt === "greater" ? "=1-NORM.S.DIST(B9;PRAVDA)" : "=NORM.S.DIST(B9;PRAVDA)";
-    // For k = 0 is P(X ≥ 0) = 1; BINOM.DIST would return an error for −1.
-    const exactF = s.alt === "greater" ? (k === 0 ? "=1" : "=1-BINOM.DIST(B2-1;B3;B4;PRAVDA)") : s.alt === "less" ? "=BINOM.DIST(B2;B3;B4;PRAVDA)" : null;
-    const confF = s.alt === "two" ? "=1-B5" : ci.side === "two" ? "=1-2*B5" : "=1-B5";
-    const zF = ci.side === "two" ? "=NORM.S.INV(1-(1-B13)/2)" : "=NORM.S.INV(B13)";
-    const rows = [
-      ["B2", `Četnost ${q(esc(catName(s.success)))} <i>k</i>`, String(k), int(k)],
-      ["B3", "Velikost výběru <i>n</i>", String(n), int(n)],
-      ["B4", "Testovaná hodnota π<sub>0</sub>", s.pi0Excel.startsWith("(") ? `=${s.pi0Excel.slice(1, -1)}` : s.pi0Excel, trim(s.pi0, 4)],
-      ["B5", "Hladina významnosti α", excel(s.alpha), s.alphaLabel],
-      ["B7", "Výběrový podíl <i>p</i>", "=B2/B3", lim3(R.p)],
-      ["B8", "Směrodatná chyba při <i>H</i><sub>0</sub>", "=ODMOCNINA(B4*(1-B4)/B3)", fixed(R.score.se0, 4)],
-      ["B9", "Testová statistika <i>z</i>", "=(B7-B4)/B8", fixed(R.score.z, 3)],
-      ["B10", "<i>p</i>-hodnota skórového testu", scoreF, pfmt(R.score.pValue)],
-      ["B11", "<i>p</i>-hodnota přesného testu", exactF ?? "Oboustrannou přesnou p-hodnotu jedna funkce Excelu nespočítá; uvádí ji tabulka výsledků výše.", exactF ? pfmt(R.exact.p) : "—"],
-      ["B13", "Hladina spolehlivosti", confF, levelText(ci.conf)],
-      ["B14", "Kvantil <i>z</i>", zF, fixed(ci.z, 4)],
-      ["B15", "Wilsonův interval: střed", "=(B7+B14^2/(2*B3))/(1+B14^2/B3)", lim3(ci.mid)],
-      ["B16", "Wilsonův interval: polovina šířky", "=B14/(1+B14^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B14^2/(4*B3^2))", lim3(ci.half)],
-      ...(ci.side !== "upper" ? [["B17", "Wilsonův interval: dolní mez", "=B15-B16", lim3(ci.lo)]] : []),
-      ...(ci.side !== "lower" ? [["B18", "Wilsonův interval: horní mez", "=B15+B16", lim3(ci.hi)]] : [])
-    ];
-    $("[data-excel]").innerHTML = `<table class="viz-bay-table viz-app-table viz-app-excel" aria-label="Vzorce českého Excelu s výsledky"><thead><tr><th scope="col">Buňka</th><th scope="col">Význam</th><th scope="col">Obsah buňky</th><th scope="col">Výsledek</th></tr></thead><tbody>${rows.map(([cell, m, f, v]) => `<tr><th scope="row">${cell}</th><td>${m}</td><td>${f.startsWith("=") || /^[\d,]+$/.test(f) ? `<code>${f}</code>` : f}</td><td class="viz-app-num">${v}</td></tr>`).join("")}</tbody></table>`;
-  }
 
   // Slovní interpretace following the chapters: decision, size, uncertainty, assumptions.
   function report(R) {
@@ -443,7 +412,6 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
     $("[data-legend=interval]").replaceChildren(legend([[swLine(blue, 6), "Wilsonův interval"], [swDot(ink), "výběrový podíl <i>p</i>"], [swLine(orange, 2, "6,4"), "testovaná hodnota π<sub>0</sub>"]]));
     $("[data-chart=interval]").replaceChildren(intervalChart(width, R));
 
-    excelTable(R);
     const {pmf, ...rest} = R;
     last = {...rest, varName: varName(), names: [catName(0), catName(1)], pi0Label: s.pi0Label};
   }
@@ -460,7 +428,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   // Hooks for the automated page check (quarto/_verification/check-html.cjs).
   root.vizCheck = {compute: L.proportionTest, binomTest: L.binomTest, wilson: L.wilson, parsePi0, state: () => JSON.parse(JSON.stringify(last))};
 
-  applyPreset(PRESETS[0]);
+  applyPreset(DEFAULT);
   return root;
 }
 ```

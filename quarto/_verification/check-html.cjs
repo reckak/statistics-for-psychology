@@ -2630,10 +2630,26 @@ const server = http.createServer((req, res) => {
       }, [k, n, pi0, alt]);
       [v[0], v[1], v[2], v[3], v[4], v[7], v[8]].forEach((w, i) => appNear(g[i], w, `${k} z ${n}, π0 = ${pi0}, ${alt}: value ${i}`));
     }
-    // Default state: the guessing student of chapter 6 (10 correct of 20, π0 = 0,25, H1: π > π0, α = 0,05).
+    // Default state on load: data of chapter 6, exercise 8 (7 of 8) with π0 = 0,50 and a two-sided H1; no preset pressed.
     const appState = () => app.evaluate(el => el.vizCheck.state());
     const appText = sel => app.locator(sel).innerText();
     let aS = await appState();
+    assert.deepEqual([aS.n, aS.k, aS.pi0, aS.alt, aS.ci.side, aS.ci.conf, aS.score.reject, aS.exact.reject, aS.ciRejects, aS.expectedOk], [8, 7, 0.5, 'two', 'two', 0.95, true, false, true, false]);
+    appNear(aS.exact.p, 0.0703125, 'Default two-sided exact p-value (2 · 9/256)');
+    appNear(aS.score.pValue, 0.0338948535246893, 'Default two-sided score p-value');
+    assert.equal(await app.locator('#viz-app-pi0').inputValue(), '0,50');
+    assert.equal(await app.locator('[data-preset][aria-pressed="true"]').count(), 0, 'No preset pressed on load');
+    assert(!(await app.locator('.viz-app-kind').isVisible()), 'No interval choice for the default two-sided alternative');
+    for (const t of ['H0: π = 0,5', 'H1: π ≠ 0,5']) assert((await appText('[data-hyp]')).includes(t), `Default hypotheses show ${t}`);
+    assert((await appText('[data-report]')).includes('se testy liší'), 'Default report explains that the tests disagree');
+    assert(await app.locator('[data-cond-warning]').isVisible(), 'Default shows the expected-count warning');
+    assert.equal(await app.locator('[data-excel], #viz-app-excel-title').count(), 0, 'Apps show no Excel section');
+    // Results table: dark header with white text, lightly shaded group rows (R87 amendment).
+    const appColors = await app.locator('[data-results] table').evaluate(t => ({head: getComputedStyle(t.querySelector('thead th')).backgroundColor, headText: getComputedStyle(t.querySelector('thead th')).color, group: getComputedStyle(t.querySelector('tr.viz-app-group th')).backgroundColor, body: getComputedStyle(t.querySelector('tbody td')).backgroundColor}));
+    assert.deepEqual(appColors, {head: 'rgb(34, 55, 68)', headText: 'rgb(255, 255, 255)', group: 'rgb(240, 240, 240)', body: 'rgba(0, 0, 0, 0)'});
+    // The guessing student of chapter 6 (10 correct of 20, π0 = 0,25, H1: π > π0, α = 0,05).
+    await app.locator('[data-preset="tipovani"]').click();
+    aS = await appState();
     assert.deepEqual([aS.n, aS.k, aS.alt, aS.ci.side, aS.ci.conf, aS.score.reject, aS.exact.reject, aS.pi0Inside, aS.ciRejects, aS.expectedOk], [20, 10, 'greater', 'two', 0.9, true, true, false, true, true]);
     appNear(aS.exact.p, 0.0138644169437612, 'Default exact p-value (chapter 6: 0,014)');
     for (const t of ['H0: π ≤ 0,25', 'H1: π > 0,25', '„správně“', '„Odpověď na otázku“']) assert((await appText('[data-hyp]')).includes(t), `Hypotheses show ${t}`);
@@ -2641,9 +2657,6 @@ const server = http.createServer((req, res) => {
     for (const t of ['Četnost „správně“ (k)', '10/20', '0,0968', '2,582', '0,005', '0,014', 'binomické, n = 20, π = 0,25', 'Leží π0 pod dolní mezí?', 'zamítáme nulovou hypotézu', '90 %', '(0,327; 0,673)', '+25,0 procentního bodu']) assert(appRes.includes(t), `Results show ${t}`);
     const appRep = await appText('[data-report]');
     for (const t of ['Proměnná „Odpověď na otázku“', 'oba testy zamítají', 'statisticky významný', 'od 0,327 do 0,673', '90% oboustranný Wilsonův interval']) assert(appRep.includes(t), `Report shows ${t}`);
-    const appExcel = await app.locator('[data-excel] tbody tr').evaluateAll(rows => rows.map(r => [...r.children].map(c => c.textContent)));
-    assert.deepEqual(appExcel[8], ['B11', 'p-hodnota přesného testu', '=1-BINOM.DIST(B2-1;B3;B4;PRAVDA)', '0,014']);
-    assert.deepEqual(appExcel[12], ['B16', 'Wilsonův interval: polovina šířky', '=B14/(1+B14^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B14^2/(4*B3^2))', '0,173']);
     assert((await app.locator('[data-chart=null] svg').getAttribute('aria-label')).includes('„správně“'), 'Chart label uses the category name');
     assert(!(await app.locator('[data-cond-warning]').isVisible()), 'No expected-count warning for 10 z 20 at 0,25');
     // One-sided alternative: the one-sided 95 % interval has the same lower limit as the two-sided 90 % interval.

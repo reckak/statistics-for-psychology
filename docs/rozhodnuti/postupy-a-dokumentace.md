@@ -1499,3 +1499,34 @@ defaultně folded“. Plán s hladinou významnosti α jako vstupem (místo pův
 zmíněné hladiny spolehlivosti) a s odkazem „Spočítejte si: …“ schválil
 téhož dne. Realizaci eviduje
 [autorská historie](../../quarto/README.md#aplikace-jeden-podil).
+
+<a id="r87-upresneni-2026-11-25"></a>
+
+### Upřesnění 2026-11-25: bez Excelu, výchozí stav a barvy tabulky výsledků
+
+**Stav:** schváleno 2026-11-25 po prohlídce pilotu. **Rozsah:** všechny
+statistické aplikace; výchozí stav se týká testu jednoho podílu.
+
+- Statistické aplikace **neuvádějí výpočet v českém Excelu**; nahrazuje
+  odpovídající část původní volby (výstupy a pilot). Excel zůstává
+  v kapitolách a vizualizacích podle dosavadních pravidel.
+- Test jednoho podílu se otevírá s testovanou hodnotou **π₀ = 0,50**
+  a **oboustrannou alternativou** *H*₁: π ≠ π₀, s daty z cvičení 8 kapitoly 6
+  (7 správných a 1 špatná odpověď), hladinou 0,05 a bez stisknuté předvolby.
+  Předvolby z kapitol nastavují své vlastní hodnoty.
+- V tabulce výsledků aplikace mají řádky s nadpisy skupin (například Data,
+  Skórový test) slabě šedé podbarvení a záhlaví tabulky tmavé pozadí v barvě
+  textu s bílým písmem. Jde o výjimku z pravidla tabulek bez podbarvení
+  ([sazba tabulek](../../AGENTS.md#sazba-tabulek)) jen pro tabulky výsledků
+  aplikací; linky se nemění.
+
+**Doklad:** autor po prohlídce stránky napsal: „Myslím, že sekce "Výpočet
+v českém Excelu" není u Statistických aplikací nutná. Defaultní testovaná
+hodnota pí0 by měla být 0,50, protože ta je nejčastěji používaná. Podobně by
+defaultní alternativní hypotéza měla být oboustranná, H1: π ≠ π0. Pro lepší
+orientaci v tabulce s výsledky bych podsekce tabulky, tedy řádky s nadpisem
+Data, Skórový test, Přesný binomický test a Odhad populačního podílu
+vybarvil (dal bych jim slabě šedý background). U samotného záhlaví tabulky
+(Ukazatel Výsledek Výpočet s dosazením) bych nastavil backgroud stejnou
+barvou, jako je nyní text, a barvu textu bych dal bílou.“ Na otázku
+po výchozích datech zvolil „Rozpoznávání číslic 7 z 8“.

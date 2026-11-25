@@ -557,11 +557,13 @@ Každou novou aplikaci předem dohodni stejně jako obsah kapitoly.
   oddíl „Co aplikace počítá“ (princip, předpoklady a vzorce s odkazy do
   kapitol, ne nový výklad), 2–4 úkoly „Vyzkoušejte si“ a „Čeho si všimnout“.
   Aplikace má ověřované vstupy, popisky převzaté ze vstupů, tabulku výsledků
-  s dosazením, slovní interpretaci, kontrolu předpokladů, grafy s textovým
-  popisem a vzorce českého Excelu.
-- Výpočty patří do sdíleného modulu v `assets/stat/`, ověřeného proti R
-  a u excelových vzorců v českém Excelu. Text zadaný uživatelem vkládej do
-  stránky vždy escapovaný; data neopouštějí prohlížeč.
+  s dosazením, slovní interpretaci, kontrolu předpokladů a grafy s textovým
+  popisem; výpočet v Excelu neuvádí. Tabulka výsledků má tmavé záhlaví
+  s bílým písmem a slabě šedé řádky nadpisů skupin (výjimka ze
+  [sazby tabulek](#sazba-tabulek) podle upřesnění R87).
+- Výpočty patří do sdíleného modulu v `assets/stat/`, ověřeného proti R.
+  Text zadaný uživatelem vkládej do stránky vždy escapovaný; data neopouštějí
+  prohlížeč.
 - Výklad kapitoly obstojí bez aplikace a odkazuje na ni blokem
   „Spočítejte si: …“. Aplikace nejsou součástí PDF ani balíčku tutora.
   Technika, ovládání klávesnicí, mobilní zobrazení a kontrola webu se řídí
