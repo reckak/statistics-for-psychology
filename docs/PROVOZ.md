@@ -706,6 +706,28 @@ U vizualizace dvou intervalů a intervalu rozdílu kontrola ověřuje:
 - rozšíření grafů na celé obrazovce, šířku 375 px bez přetékání, pořadí
   v menu a odkaz z oddílu kapitoly 8 `sec-dva-intervaly`.
 
+U vizualizace Waldova a Wilsonova intervalu pro podíl kontrola ověřuje:
+
+- šest grafů (intervaly, nerovnice, pokrytí, Wald mimo 0–1, dva sloupcové
+  grafy) a žádný viditelný kód, tlačítko schránky ani chybu OJS;
+- kvantil, meze obou intervalů a kořeny kvadratické rovnice (shodné
+  s mezemi Wilsonova intervalu) pro devět zadání včetně 0 z 15, 1 z 25,
+  *k* = *n*, *n* = 1 a hladin 50, 90 a 99 %; přesné pokrytí obou intervalů
+  a pravděpodobnost Waldova intervalu mimo 0–1 nebo s nulovou šířkou ve
+  dvanácti bodech; průměrné a nejnižší pokrytí a podíl hodnot π pod
+  hladinou pro čtyři kombinace *n* a hladiny proti R
+  (`scripts/viz-interval-podilu.R`);
+- výchozí stav, texty s dosazením, součty sloupců a znění vzorců Excelu,
+  předvolby s upozorněním na nulovou šířku a zápornou mez a přepínač meze
+  Waldova intervalu;
+- odmítnutí neplatných vstupů (*n* 0, 201, 2,5, −1; *k* nad *n*) se zprávou
+  a ponecháním poslední platné hodnoty, snížení *k* při snížení *n*,
+  nezávislost pokrytí na *k*;
+- posuvník hladiny a vybrané π klávesnicí (šipky, Shift, Page Up, Home,
+  End), výběr π klepnutím do grafu, výřez sloupců při *n* = 200, rozšíření
+  grafů na celé obrazovce, šířku 375 px bez přetékání a odkaz z pododdílu
+  kapitoly 9 `sec-wilson`.
+
 U vizualizace tabulky četností a testu chí-kvadrát kontrola ověřuje:
 
 - dva grafy (řádkové podíly, chí-kvadrát rozdělení); žádný viditelný kód,

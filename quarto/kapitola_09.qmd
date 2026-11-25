@@ -106,6 +106,10 @@ Wilsonův interval má stejné předpoklady jako [binomický model](kapitola_05.
 
 **Věcná interpretace příkladu:** student odpověděl správně na polovinu otázek. S daty je slučitelná dlouhodobá úspěšnost přibližně od 0,30 do 0,70. Interval neobsahuje hodnotu 0,25, kterou bychom čekali při pouhém hádání. Je ale široký: dvacet otázek o schopnosti studenta mnoho neprozradí.
 
+::: {.callout-tip title="Vyzkoušejte si: Waldův a Wilsonův interval"}
+V [interaktivní vizualizaci](viz_interval_podilu.qmd) zadáte počet úspěchů, počet pokusů a hladinu spolehlivosti a uvidíte oba intervaly i graf nerovnice, ze které vychází Wilsonův interval. Pod nimi je pro zvolený počet pokusů přesné pokrytí obou postupů pro všechny hodnoty $\mathrm{π}$. Sami najdete nulovou šířku Waldova intervalu u 0 z 15, jeho meze mimo rozmezí 0 až 1 i propady pokrytí u okrajů a na sloupcích binomického rozdělení uvidíte, proč pokrytí kolísá.
+:::
+
 ::: {.callout-note collapse="true" title="Nepovinné rozšíření: odvození Wilsonova intervalu" #rozsireni-wilson-odvozeni}
 Toto rozšíření ukazuje krok za krokem, jak z úlohy formulované na začátku pododdílu vznikne vzorec pro střed a polovinu šířky. Vystačíme s úpravami výrazů a s jedním středoškolským vzorcem, který připomeneme.
 

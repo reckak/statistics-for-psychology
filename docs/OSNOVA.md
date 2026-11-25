@@ -97,6 +97,8 @@ ke kapitole 7 ([karta](kapitoly/07-interval-t-test-ekvivalence.md#interaktivni-v
 [co znamená rozdíl o *d* směrodatných odchylek](../quarto/viz_cohenovo_d.qmd)
 a [co prozradí dva intervaly vedle sebe o rozdílu průměrů](../quarto/viz_dva_intervaly.qmd)
 ke kapitole 8 ([karta](kapitoly/08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)),
+[proč odhadujeme podíl Wilsonovým intervalem](../quarto/viz_interval_podilu.qmd)
+(Waldův a Wilsonův interval a jejich přesné pokrytí),
 [jak daleko je tabulka četností od nezávislosti](../quarto/viz_chi_kvadrat.qmd)
 (test chí-kvadrát) a [co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../quarto/viz_miry_souvislosti.qmd)
 ke kapitole 9 ([karta](kapitoly/09-podily-kategorialni-data.md#interaktivni-vizualizace-09))

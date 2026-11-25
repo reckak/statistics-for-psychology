@@ -1,5 +1,43 @@
 # Autorská dokumentace
 
+<a id="vizualizace-interval-podilu"></a>
+
+## Vizualizace Waldova a Wilsonova intervalu pro podíl (2026-11-25, upřesnění R65)
+
+Podle [upřesnění R65](../docs/rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-25-interval-podilu)
+přibyla šestnáctá stránka části „Interaktivní vizualizace“, třetí ke kapitole 9:
+[Proč odhadujeme podíl Wilsonovým intervalem](viz_interval_podilu.qmd), v menu za
+vizualizací dvou intervalů a před vizualizací chí-kvadrát. Kapitola 9 na ni odkazuje
+blokem „Vyzkoušejte si: Waldův a Wilsonův interval“ na konci pododdílu `sec-wilson`,
+před rozšířením o odvození; jinak se výklad kapitoly nemění. Obsahuje:
+
+- **zadání:** počet úspěchů *k*, počet pokusů *n* (1–200), posuvník hladiny 50–99 % a předvolby 10 z 20, 0 z 15, 1 z 25, 40 z 80;
+- **oba intervaly** nad sebou s výpočtem, oblastí nemožných hodnot a upozorněním na nulovou šířku nebo meze mimo 0–1;
+- **graf nerovnice** jako interaktivní obdobu obrázku `fig-wilson-odvozeni` s přepínačem pravé strany pro Waldův interval (vodorovná čára $z^2p(1-p)/n$);
+- **přesné pokrytí** obou intervalů podle π s přiblížením okolí hladiny, souhrny (průměr, nejnižší hodnota, podíl hodnot π pod hladinou) a pravděpodobnost Waldova intervalu mimo 0–1 nebo s nulovou šířkou;
+- **rozbor „Proč pokrytí kolísá“:** sloupce *P*(*X* = *k*) pro vybrané π se zvýrazněnými počty, jejichž interval π obsahuje, a součet;
+- **vzorce listu `Interval_podilu`** s výsledky.
+
+Redakční volby při realizaci:
+
+- **Značení *k* a *P*(*X* = *k*)** podle kapitoly 5; v kapitole 9 znamená *k* počet kategorií, na stránce se ale tento význam nevyskytuje. Nový pojem ani symbol nevznikl.
+- **Křivka a meze:** na popud didaktické revize se křivky grafu nerovnice jmenují „levá strana“ a „pravá strana“ (obrázek kapitoly mluví o „mezi“), aby se nepletly s mezemi intervalu; terminologie kapitoly se nemění.
+- **Osa π:** u intervalů a grafu nerovnice „populační podíl π“ (zvažované hodnoty), u pokrytí „skutečný populační podíl π“ (hodnota zvolená v modelu).
+- **Nejnižší pokrytí** se hledá na mřížce po 0,001 a navíc těsně pod a nad každou mezí intervalu uvnitř (0; 1), kde křivka skáče; průměr a podíl pod hladinou jen na mřížce.
+- **Barvy** podle obrázku `fig-pokryti` (Wald oranžově, Wilson modře).
+
+Nezávislá kontrola:
+
+- **R** (`scripts/viz-interval-podilu.R`, v repozitáři): meze obou intervalů, kořeny kvadratické rovnice (uvnitř skriptu porovnány s mezemi Wilsonova intervalu), přesné pokrytí podle stejné definice jako `ch9_cover` ve `scripts/kapitola_09.R`, souhrny a nejnižší pokrytí. Shoda s kapitolou: 64 % Waldových intervalů při *n* = 20 a π = 0,05, 87 % mimo 0–1 při π = 0,10, Wilson (0,30; 0,70), (0; 0,20), 1 z 25 (−0,037; 0,117) a (0,007; 0,195). Čísla v textu stránky pocházejí z tohoto výstupu; kontrola stránky porovnává hodnoty `vizCheck` s výstupem s tolerancí 1e−9 až 1e−10.
+- **Zjištění k textu kapitoly:** přesné nejnižší pokrytí 95% Wilsonova intervalu je při každém zkoušeném *n* (10–200) asi 83,5–83,8 %, v úzkém pásmu těsně pod dolní mezí intervalu pro *k* = 1 (u *n* = 10 při π ≈ 0,018, u *n* = 20 při 0,0089) a souměrně u 1. Věta kapitoly „u *n* = 10 nejníže na 85 %“ platí pro mřížku π od 0,01 do 0,99 obrázku `fig-pokryti`, ne pro všechna π. Kapitola nebyla změněna; zjištění je předloženo autorovi.
+- **Excel:** vzorce na stránce jsou znění tabulky `tbl-k09-02` a listu `Interval_podilu`; v Excelu znovu spuštěny nebyly, list se nezměnil.
+- **Prohlížeč:** stránka prohlédnuta v panelu prohlížeče aplikace (desktop a 375 px, předvolby 10 z 20, 0 z 15 a 1 z 25 s přepínačem Waldova intervalu) a na snímcích z Chromia z `check-html.cjs`.
+- **Didaktická revize:** samostatný agent v roli studenta po kapitole 9. Zapracováno: rozlišení zvažovaného a skutečného π, pojmenování stran nerovnice, upozornění na návaznost na nepovinné odvození, oprava věty o pokrytí „nikdy přesně 95 %“ (pokrytí se mezi skoky mění plynule), vysvětlení souhrnů, zdůvodnění propadu Wilsonova pokrytí u okraje, formulace úkolů a jazykové drobnosti.
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1), stránka po revizi znovu samostatně. `check-html.cjs` s novým blokem a novým pořadím menu prošel celý bez chyb; prošly také `check-table-layout.cjs` a `check-doc-maps.cjs`.
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Didaktická revize je interní, ne ověření na studentech.
+
 <a id="sesit-kapitoly-9-kroky"></a>
 
 ## 2026-11-24 — Sešit cvičení k prezentaci kapitoly 9: Waldův interval a pracovní oblast po krocích
