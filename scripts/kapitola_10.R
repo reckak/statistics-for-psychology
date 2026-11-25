@@ -234,6 +234,16 @@ ch10_rel_sim_r <- c(prave=ch10_r(ch10_rel_sim$tx,ch10_rel_sim$ty),namerene=ch10_
 ch10_attenuace <- function(r,rxx,ryy) r/sqrt(rxx*ryy)
 ch10_rel_opr <- ch10_attenuace(round(ch10_rel_sim_r[['namerene']],2),.6,.6)
 ch10_rel_vic <- ch10_attenuace(.65,.81,.49)   # Muchinsky (1996, p. 68): corrected value above 1
+# 13g. Overplotting (R86): 500 students, sleep quality and daytime fatigue, both on a 1-7 scale.
+# The jitter (uniform, half-widths 0.2 and 0.45) is drawn here with its own seed so that the figure
+# and the tutor data use identical positions; the coefficient is computed from the original values.
+set.seed(15010)
+ch10_ov <- local({ n <- 500; z <- rnorm(n)
+  data.frame(spanek=pmin(7,pmax(1,round(4.3+1.2*z+rnorm(n,0,1)))),unava=pmin(7,pmax(1,round(3.9-.9*z+rnorm(n,0,1.3))))) })
+ch10_ov_r <- ch10_r(ch10_ov$spanek,ch10_ov$unava)
+ch10_ov_cells <- nrow(unique(ch10_ov))
+ch10_ov_jit <- local({ n <- nrow(ch10_ov); ux <- runif(n,-1,1); uy <- runif(n,-1,1)
+  list(maly=data.frame(x=ch10_ov$spanek+.2*ux,y=ch10_ov$unava+.2*uy),velky=data.frame(x=ch10_ov$spanek+.45*ux,y=ch10_ov$unava+.45*uy)) })
 # 13e. Point-biserial correlation as a function of d for three splits of 42 people (optional extension).
 ch10_rpb_d <- function(d,n1,n2) { h <- (n1+n2-2)*(1/n1+1/n2); d/sqrt(d^2+h) }
 ch10_rpb_h <- c(stejne=40*(1/21+1/21),k8=40*(1/30+1/12),nerovne=40*(1/38+1/4))
@@ -278,6 +288,34 @@ ch10_fig('uzkost-vykon','data',note='Body jsou v obrázku nepatrně náhodně po
   tf_panel(paste0('40 studentů: r = ',ch10_num(ch10_uz_r,2)),'bodový graf','Úzkost před testem (body, 10–40)','Výkon v testu (body, 0–30)',
     guides=list(tf_guide('x',mean(ch10_uz$uzkost),'průměr úzkosti'),tf_guide('y',mean(ch10_uz$vykon),'průměr výkonu')),
     series=list(tf_series('Studenti (vykreslené polohy)',data.frame(x=ch10_uz_jit$x,y=ch10_uz_jit$y),note='Původní celé hodnoty dostaneš zaokrouhlením.')))))
+ch10_ov_titles <- c(puvodni=paste0('A: bez úpravy, r = ',ch10_num(ch10_ov_r),'\n500 studentů, ale jen ',ch10_ov_cells,' viditelných bodů'),
+  jitter='B: jitter ±0,2\nhusté buňky splývají v plné skvrny',pruhlednost='C: jitter ±0,2 a průhlednost\nsytější barva = víc studentů',
+  velky='D: jitter ±0,45 a průhlednost\nsousední hodnoty splývají')
+ch10_draw('prekryvani', {
+  par(mfrow=c(2,2),mar=c(4.2,4.4,3.6,.8),mgp=c(2.4,.6,0))
+  pan <- function(x,y,k,...) { plot(x,y,xlim=c(.4,7.6),ylim=c(.4,7.6),xaxt='n',yaxt='n',bty='l',xlab='Kvalita spánku (1–7)',ylab='Únava během dne (1–7)',
+    main=ch10_ov_titles[[k]],cex.main=.92,font.main=1,...); axis(1,at=1:7); axis(2,at=1:7) }
+  u <- unique(ch10_ov)   # opaque identical points look the same once drawn; keeps the SVG smaller
+  pan(u$spanek,u$unava,'puvodni',pch=21,bg=ch10_fill,col=ch10_blue,cex=1.1)
+  pan(ch10_ov_jit$maly$x,ch10_ov_jit$maly$y,'jitter',pch=21,bg=ch10_fill,col=ch10_blue,cex=1.1)
+  pan(ch10_ov_jit$maly$x,ch10_ov_jit$maly$y,'pruhlednost',pch=16,col=adjustcolor(ch10_blue,.25),cex=1.1)
+  pan(ch10_ov_jit$velky$x,ch10_ov_jit$velky$y,'velky',pch=16,col=adjustcolor(ch10_blue,.25),cex=1.1)
+},width=8.6,height=8)
+ch10_fig('prekryvani','simulace',note=paste0('Mřížka 2 × 2 se stejnými osami: A vlevo nahoře, B vpravo nahoře, C vlevo dole, D vpravo dole. V A jsou původní celé hodnoty (',ch10_ov_cells,' různých dvojic z 49 možných), v B až D tytéž hodnoty náhodně posunuté; C a D mají poloprůhledné body.'),panels=local({
+  tab <- as.data.frame(table(ch10_ov$spanek,ch10_ov$unava)); tab <- tab[tab$Freq>0,]
+  list(
+    tf_panel(sub('\n',', ',ch10_ov_titles[['puvodni']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
+      series=list(tf_series('Dvojice hodnot',data.frame(x=as.numeric(as.character(tab$Var1)),y=as.numeric(as.character(tab$Var2)),pocet_studentu=tab$Freq),
+        note='V grafu je každá dvojice jedním bodem; počet studentů v grafu vidět není.'))),
+    tf_panel(sub('\n',', ',ch10_ov_titles[['jitter']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
+      note='Stejné hodnoty jako v panelu A, každý bod posunut nejvýš o 0,2 v obou směrech; počty studentů v jednotlivých dvojicích jsou v panelu A.',
+      series=list(tf_series('Vykreslené polohy (prvních 60 z 500)',head(ch10_ov_jit$maly,60)))),
+    tf_panel(sub('\n',', ',ch10_ov_titles[['pruhlednost']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
+      note='Stejné polohy jako v panelu B, body poloprůhledné (krytí 25 %); nejsytější jsou buňky s nejvíce studenty.',
+      series=list(tf_series('Vykreslené polohy (prvních 60 z 500)',head(ch10_ov_jit$maly,60)))),
+    tf_panel(sub('\n',', ',ch10_ov_titles[['velky']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
+      note='Posunutí nejvýš o 0,45, takže body sousedních hodnot na sebe téměř navazují a mřížka celých hodnot mizí.',
+      series=list(tf_series('Vykreslené polohy (prvních 60 z 500)',head(ch10_ov_jit$velky,60))))) }))
 ch10_form_titles <- c(kladny='Kladný lineární',zaporny='Záporný lineární',monotonni='Monotónní, zakřivený',obraceneU='Obrácené U',odlehly='Jedno odlehlé pozorování',skupiny='Dvě oddělené skupiny')
 ch10_draw('tvary', {
   par(mfrow=c(2,3),mar=c(3,3,3.6,.6),mgp=c(1.6,.5,0))
@@ -364,20 +402,21 @@ ch10_fig('bootstrap','simulace',panels=list(
                 tf_guide('x',ch10_ss_tau[['tau_b']],'pozorované τ_b')),
     series=list(tf_series('Četnosti',tf_bins(ch10_ss_1999$bt[,2],seq(-.9,.2,.025)),'histogram',digits=3)))))
 ch10_draw('faktory', {
-  par(mfrow=c(1,3),mar=c(4.4,4.2,3.6,.6),mgp=c(2.4,.6,0))
+  # Two rows (R86): both panels with the same applicants on top, the merged classes centred below.
+  layout(matrix(c(1,1,2,2,0,3,3,0),2,byrow=TRUE)); par(mar=c(4.4,4.2,3.6,.8),mgp=c(2.4,.6,0),cex=.75)
   d <- ch10_rr; adm <- d$test>=ch10_rr_cut
   plot(d$test,d$prospech,pch=16,col=ifelse(adm,ch10_blue,adjustcolor(ch10_mute,.8)),cex=.8,xlab='Přijímací test (body)',ylab='Výsledky v 1. ročníku (body)',bty='l',
        main=paste0('Omezení rozsahu\nvšichni r = ',ch10_num(ch10_rr_r[['vse']]),', přijatí r = ',ch10_num(ch10_rr_r[['prijati']])),cex.main=.92,font.main=1)
   abline(v=ch10_rr_cut,lty=2,col=ch10_gray)
   ext <- d$test<=quantile(d$test,.15)|d$test>=quantile(d$test,.85)
-  plot(d$test,d$prospech,pch=16,col=ifelse(ext,ch10_orange,adjustcolor(ch10_mute,.8)),cex=.8,xlab='Přijímací test (body)',ylab='',bty='l',
+  plot(d$test,d$prospech,pch=16,col=ifelse(ext,ch10_orange,adjustcolor(ch10_mute,.8)),cex=.8,xlab='Přijímací test (body)',ylab='Výsledky v 1. ročníku (body)',bty='l',
        main=paste0('Jen krajní skupiny\nr = ',ch10_num(ch10_rr_r[['extremy']])),cex.main=.92,font.main=1)
   g <- ch10_cg; m <- g$trida=='mladší'
   plot(g$slova,g$rychlost,pch=ifelse(m,21,24),bg=ifelse(m,ch10_fill,ch10_sand),col=ifelse(m,ch10_blue,ch10_orange),cex=1.05,xlab='Slovní zásoba (body)',ylab='Rychlost čtení (slov za minutu)',bty='l',
        main=paste0('Dvě sloučené třídy\ncelkem r = ',ch10_num(ch10_cg_r[['vse']]),'; uvnitř ',ch10_num(ch10_cg_r[['mladsi']]),' a ',ch10_num(ch10_cg_r[['starsi']])),cex.main=.92,font.main=1)
   legend('bottomright',legend=c('mladší třída','starší třída'),pch=c(21,24),pt.bg=c(ch10_fill,ch10_sand),col=c(ch10_blue,ch10_orange),bty='n',cex=.85)
-},width=10,height=4.3)
-ch10_fig('faktory','simulace',note='Tři panely vedle sebe. První dva ukazují tytéž uchazeče s různým zvýrazněním, třetí jiná data.',panels=local({
+},width=9,height=8)
+ch10_fig('faktory','simulace',note='Dva řádky: nahoře dva panely s týmiž uchazeči a různým zvýrazněním (vlevo omezení rozsahu, vpravo krajní skupiny), dole uprostřed třetí panel s jinými daty (dvě sloučené třídy).',panels=local({
   d <- ch10_rr; adm <- d$test>=ch10_rr_cut; ext <- d$test<=quantile(d$test,.15)|d$test>=quantile(d$test,.85); g <- ch10_cg; m <- g$trida=='mladší'
   xy <- function(x,y,keep) data.frame(x=x[keep],y=y[keep])
   list(
@@ -399,13 +438,17 @@ ch10_fig('shoda-hodnot','data',note='Obě osy mají stejné měřítko; přeruš
 # Revision 2026-11-20 (R84): Fisher transformation, exact permutation distribution, kinds of outliers,
 # measurement error and the point-biserial correlation as a function of d.
 ch10_draw('fisher', {
-  par(mfrow=c(1,3),mar=c(4.4,4.4,3.4,.8))
+  # Two rows (R86): the transformation curve centred on top, both histograms below.
+  layout(matrix(c(0,1,1,0,2,2,3,3),2,byrow=TRUE)); par(mar=c(4.4,4.4,3.4,.8),cex=.75)   # layout() would shrink text to 0.66
   r <- seq(-.995,.995,length.out=400)
   plot(r,atanh(r),type='l',lwd=2,col=ch10_blue,xlab='Korelace r',ylab=expression('Převedená hodnota ' * z[r]),bty='l',ylim=c(-3,3),
        main='Fisherova transformace\nnatahuje okraje stupnice',cex.main=.95,font.main=1)
   abline(0,1,lty=3,col=ch10_gray); abline(h=0,v=0,col=ch10_pale)
   points(c(ch10_uz_r,.8),atanh(c(ch10_uz_r,.8)),pch=21,bg=ch10_orange,col=ch10_ink,cex=1.3)
-  text(c(ch10_uz_r,.8),atanh(c(ch10_uz_r,.8)),c(paste0('r = ',ch10_num(ch10_uz_r,3),'\nz = ',ch10_num(atanh(ch10_uz_r),3)),paste0('r = 0,8\nz = ',ch10_num(atanh(.8),3))),pos=c(4,2),cex=.75)
+  # The label of r = -0.523 sits below-right of the curve and the dotted line, joined by a short segment.
+  segments(ch10_uz_r+.03,atanh(ch10_uz_r)-.08,-.36,-.92,col=ch10_gray)
+  text(-.35,-1.08,paste0('r = ',ch10_num(ch10_uz_r,3),'\nz = ',ch10_num(atanh(ch10_uz_r),3)),adj=c(0,.5),cex=.85)
+  text(.8,atanh(.8),paste0('r = 0,8\nz = ',ch10_num(atanh(.8),3)),pos=2,offset=.8,cex=.85)
   v <- ch10_sim_r[,'rho08']
   hist(v,breaks=seq(-.2,1,.02),col=ch10_fill,border='white',xlab='Výběrové r',ylab='Počet výběrů z 10 000',main='ρ = 0,8, n = 20: hodnoty r\nšikmé rozdělení',cex.main=.95,font.main=1)
   abline(v=.8,col=ch10_orange,lwd=2)
@@ -413,8 +456,8 @@ ch10_draw('fisher', {
   plot(h,col=ch10_fill,border='white',xlab=expression('Převedené ' * z[r]),ylab='Počet výběrů z 10 000',main='Tytéž výběry po transformaci\npřibližně normální rozdělení',cex.main=.95,font.main=1)
   zz <- seq(-.4,2.8,length.out=300); lines(zz,10000*.05*dnorm(zz,atanh(.8),1/sqrt(17)),col=ch10_ink,lwd=1.6)
   abline(v=atanh(.8),col=ch10_orange,lwd=2)
-},width=10.5,height=4)
-ch10_fig('fisher','krivka',note='Tři panely vedle sebe: transformační křivka, histogram výběrových r a histogram týchž výběrů po transformaci.',panels=local({
+},width=9,height=7.6)
+ch10_fig('fisher','krivka',note='Dva řádky: nahoře uprostřed transformační křivka, dole vlevo histogram výběrových r a vpravo histogram týchž výběrů po transformaci.',panels=local({
   r <- seq(-.99,.99,by=.03); v <- ch10_sim_r[,'rho08']; zz <- seq(-.4,2.8,by=.1)
   list(
     tf_panel('Fisherova transformace natahuje okraje stupnice','čárový graf','Korelace r','Převedená hodnota z_r',xlim=c(-1,1),ylim=c(-3,3),
@@ -443,7 +486,7 @@ ch10_fig('permutace-presna','sloupce',note='Úzké svislé sloupce; oranžové j
   tf_panel('Přesné permutační rozdělení τ_b pro šest studentů','sloupcový graf','τ_b pro jedno ze 720 přiřazení hodnot kvality spánku','Počet přiřazení',xlim=c(-1,1),ylim=c(0,max(f)*1.25),
     series=list(tf_series('Počty přiřazení',data.frame(x=tb,y=f,zvyrazneno=ifelse(ext,'ano','ne')),'sloupce',digits=3))) })))
 ch10_draw('odlehle-typy', {
-  par(mfrow=c(1,4),mar=c(4.2,3.8,4.6,.6),mgp=c(2.2,.6,0))
+  par(mfrow=c(2,2),mar=c(4.2,3.8,4.6,.8),mgp=c(2.2,.6,0))   # 2 x 2 grid (R86)
   tt <- c(zaklad='Bez odlehlého pozorování',krajni_x='A: krajní hodnota X,\nbod ve směru vztahu',
           kombinace='B: obvyklé X i Y,\nneobvyklá kombinace',obe='C: krajní X i Y,\nbod proti směru vztahu')
   for (k in names(ch10_otypes)) { d <- ch10_otypes[[k]]; n <- nrow(d); new <- k!='zaklad'&seq_len(n)==n; s <- ch10_otypes_stat[,k]
@@ -451,8 +494,8 @@ ch10_draw('odlehle-typy', {
          xlab='X',ylab='Y',bty='l',main='')
     title(main=tt[[k]],line=2.3,cex.main=.9,font.main=2)
     title(main=bquote(list(r == .(ch10_num(s[['r']])), r[s] == .(ch10_num(s[['rs']])), tau[b] == .(ch10_num(s[['tb']])))),line=.6,cex.main=.86,font.main=1) }
-},width=11,height=3.9)
-ch10_fig('odlehle-typy','simulace',note='Čtyři panely vedle sebe se stejnými osami; přidaný bod je větší a oranžový.',panels=lapply(names(ch10_otypes),function(k) {
+},width=8.6,height=7.6)
+ch10_fig('odlehle-typy','simulace',note='Mřížka 2 × 2 se stejnými osami: vlevo nahoře bez odlehlého pozorování, vpravo nahoře bod A, vlevo dole bod B, vpravo dole bod C; přidaný bod je větší a oranžový.',panels=lapply(names(ch10_otypes),function(k) {
   d <- ch10_otypes[[k]]; n <- nrow(d); s <- ch10_otypes_stat[,k]; base <- if (k=='zaklad') seq_len(n) else seq_len(n-1)
   tt <- c(zaklad='Bez odlehlého pozorování',krajni_x='A: krajní hodnota X, bod ve směru vztahu',kombinace='B: obvyklé X i Y, neobvyklá kombinace',obe='C: krajní X i Y, bod proti směru vztahu')
   tf_panel(paste0(tt[[k]],' (r = ',ch10_num(s[['r']]),', r_s = ',ch10_num(s[['rs']]),', τ_b = ',ch10_num(s[['tb']]),')'),'bodový graf','X','Y',xlim=c(25,105),ylim=c(15,85),

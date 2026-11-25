@@ -269,13 +269,13 @@ const server = http.createServer((req, res) => {
       if (file === 'quarto/kapitola_10.html') {
         assert.equal(await solutions.count(),18,'Chapter 10 has sixteen core and two optional exercise solutions');
         assert.equal(await page.locator('merror').count(),0,'Chapter 10 mathematics parses');
-        assert.equal(await page.locator('main img').count(),17,'Chapter 10 has sixteen figures in the text and one in an optional extension');
+        assert.equal(await page.locator('main img').count(),18,'Chapter 10 has seventeen figures in the text and one in an optional extension');
         for(const img of await page.locator('main img').all()) {
           if(await img.isVisible()) await img.scrollIntoViewIfNeeded();
           assert(await img.evaluate(async el=>{ if(!el.complete) await el.decode().catch(()=>{}); return el.complete && el.naturalWidth>0; }));
           assert((await img.getAttribute('alt')).length>30);
         }
-        for(const id of ['fig-stejne-r','fig-fisher-transformace','fig-permutace-presna','fig-odlehle-typy','fig-reliabilita','fig-rpb-d','tbl-k10-preskupeni','tbl-k10-09','rozsireni-meze-r','rozsireni-korekce-reliabilita']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 10 revision element: ${id}`);
+        for(const id of ['fig-stejne-r','fig-prekryvani','sec-prekryvani-bodu','fig-fisher-transformace','fig-permutace-presna','fig-odlehle-typy','fig-reliabilita','fig-rpb-d','tbl-k10-preskupeni','tbl-k10-09','rozsireni-meze-r','rozsireni-korekce-reliabilita']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 10 revision element: ${id}`);
         const text10=await page.locator('main').innerText();
         assert(!/(Pearsonů?v|Spearmanů?v|Kendallů?v|Pearsonov[aěuy]m?|Spearmanov[aěuy]m?|Kendallov[aěuy]m?) koeficient/.test(text10),'Chapter 10 uses the full names of the correlation coefficients');
         assert(!/(lineární|zakřivený|stoupající|klesající) mrak/.test(text10),'Chapter 10 does not describe relationships as clouds');

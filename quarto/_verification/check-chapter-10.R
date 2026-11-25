@@ -87,6 +87,12 @@ local({ b <- ch10_otypes$zaklad; stopifnot(nrow(b)==20,68<=max(b$x),36>=min(b$y)
 # Measurement error simulation, correction for attenuation and Muchinsky's example above 1.
 rq(ch10_rel_sim_r[c('prave','namerene')],c(.62,.35),2); rq(ch10_rel_opr,.58,2); rq(.35/.6,.58,2); rq(ch10_rel_vic,1.03,2); rq(.65/(.9*.7),1.03,2)
 stopifnot(abs(ch10_rel_sim_r[['rel_x']]-.6)<.1,abs(ch10_rel_sim_r[['rel_y']]-.6)<.1)
+# Overplotting (R86): 500 students on two 1-7 scales, r, visible points, largest cell; jitter widths;
+# two duplicated pairs in the 40-student figure (text: "ve dvou případech").
+local({ d <- ch10_ov; tab <- table(d$spanek,d$unava); stopifnot(nrow(d)==500,all(d$spanek %in% 1:7),all(d$unava %in% 1:7))
+  eq(ch10_ov_r,cor(d$spanek,d$unava)); rq(ch10_ov_r,-.43,2); stopifnot(ch10_ov_cells==45,sum(tab>0)==45,max(tab)==36,tab['3','5']==36,sum(tab==1)==4)
+  stopifnot(max(abs(ch10_ov_jit$maly$x-d$spanek))<=.2,max(abs(ch10_ov_jit$maly$y-d$unava))<=.2,max(abs(ch10_ov_jit$velky$x-d$spanek))<=.45,
+    max(abs(ch10_ov_jit$velky$x-d$spanek))>.4,sum(duplicated(ch10_uz[,c('uzkost','vykon')]))==2) })
 # Point-biserial correlation and d: h for three splits and values at d = 3.
 rq(ch10_rpb_h,c(3.81,4.67,11.05),2); rq(c(ch10_rpb_d(3,21,21),ch10_rpb_d(3,30,12),ch10_rpb_d(3,38,4)),c(.84,.81,.67),2); rq(ch10_rpb_d(.8,30,12),.35,2)
 # Correlation matrix: Fisher intervals and p-values against cor.test on pairwise complete cases.
