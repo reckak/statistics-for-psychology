@@ -211,6 +211,28 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   const base = (width, small) => ({width, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 18, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
   const axis = (label, extra = {}) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, ...extra});
 
+  // Two-line label under an interval line, centred on the point estimate: the estimate and below it the limits.
+  // A semi-transparent white box keeps it readable over reference lines without hiding them; the box stays inside
+  // the plot area. Rendered as a function mark (index, scales, values, dimensions).
+  const measureCtx = document.createElement("canvas").getContext("2d");
+  const estimateLabels = (items, small) => (index, scales, values, dims) => {
+    const ns = "http://www.w3.org/2000/svg", fs = small ? 12 : 13, lh = fs + 3, g = document.createElementNS(ns, "g");
+    measureCtx.font = `600 ${fs}px ${getComputedStyle(root).fontFamily}`;
+    for (const it of items) {
+      const w = Math.max(...it.lines.map(t => measureCtx.measureText(t).width)) + 10, h = it.lines.length * lh + 4;
+      const cx = Math.max(dims.marginLeft + w / 2, Math.min(dims.width - dims.marginRight - w / 2, scales.x(it.x))), y0 = scales.y(it.y) + 7;
+      const box = document.createElementNS(ns, "rect");
+      Object.entries({x: cx - w / 2, y: y0, width: w, height: h, rx: 3, fill: "white", "fill-opacity": 0.8}).forEach(([k, v]) => box.setAttribute(k, v));
+      g.append(box);
+      it.lines.forEach((t, i) => {
+        const tx = document.createElementNS(ns, "text");
+        Object.entries({x: cx, y: y0 + 2 + (i + 1) * lh - 4, "text-anchor": "middle", fill: it.color, "font-weight": 600, "font-size": fs}).forEach(([k, v]) => tx.setAttribute(k, v));
+        tx.textContent = t; g.append(tx);
+      });
+    }
+    return g;
+  };
+
   const altSign = {two: "≠", greater: "&gt;", less: "&lt;"}, nullSign = {two: "=", greater: "≤", less: "≥"};
   const nullWords = {two: "je", greater: "je nejvýše", less: "je nejméně"};
   const altWords = {two: "se liší od", greater: "je větší než", less: "je menší než"};
@@ -347,19 +369,19 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
   function intervalChart(width, R) {
     const small = width < 520, ci = R.ci, c = catName(s.success);
     return Plot.plot({
-      ...base(width, small), height: 150, marginBottom: 46,
+      ...base(width, small), height: 170, marginBottom: 46,
       x: {domain: [-0.02, 1.02], ...axis(`populační podíl ${q(short(c, 30))} π`), ticks: small ? 5 : 10, tickFormat: v => trim(v, 2)},
-      y: {domain: [0, 2], axis: null},
+      y: {domain: [0, 2.2], axis: null},
       ariaLabel: `${ivName(ci)} pro podíl ${q(c)}`,
       ariaDescription: `Výběrový podíl ${lim3(R.p)}, interval ${ivText(ci)}, testovaná hodnota ${s.pi0Label} ${R.pi0Inside ? "v intervalu leží" : "leží mimo interval"}.`,
       marks: [
         Plot.ruleX([0, 1], {stroke: gray, strokeOpacity: 0.5}),
-        Plot.link([ci], {x1: "lo", x2: "hi", y1: 0.9, y2: 0.9, stroke: blue, strokeWidth: 6}),
-        Plot.link([...(ci.side !== "upper" ? [ci.lo] : []), ...(ci.side !== "lower" ? [ci.hi] : [])], {x1: d => d, x2: d => d, y1: 0.65, y2: 1.15, stroke: blue, strokeWidth: 2}),
+        Plot.link([ci], {x1: "lo", x2: "hi", y1: 1.3, y2: 1.3, stroke: blue, strokeWidth: 6}),
+        Plot.link([...(ci.side !== "upper" ? [ci.lo] : []), ...(ci.side !== "lower" ? [ci.hi] : [])], {x1: d => d, x2: d => d, y1: 1.1, y2: 1.5, stroke: blue, strokeWidth: 2}),
         Plot.ruleX([s.pi0], {stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
-        Plot.text([s.pi0], {x: d => d, y: 1.85, text: () => `π₀ = ${s.pi0Label}`, fill: orange, fontWeight: 600, textAnchor: s.pi0 > 0.8 ? "end" : "start", dx: s.pi0 > 0.8 ? -5 : 5}),
-        Plot.dot([R.p], {x: d => d, y: 0.9, r: 5, fill: ink}),
-        Plot.text([ci], {x: ci.side === "upper" ? "hi" : "lo", y: 0.35, text: () => ivText(ci), fill: blue, fontWeight: 600, textAnchor: ci.side === "upper" ? "end" : "start"}),
+        Plot.text([s.pi0], {x: d => d, y: 2.05, text: () => `π₀ = ${s.pi0Label}`, fill: orange, fontWeight: 600, textAnchor: s.pi0 > 0.8 ? "end" : "start", dx: s.pi0 > 0.8 ? -5 : 5}),
+        Plot.dot([R.p], {x: d => d, y: 1.3, r: 5, fill: ink}),
+        estimateLabels([{x: R.p, y: 1.3, lines: [lim3(R.p), ivText(ci)], color: blue}], small),
         Plot.ruleY([0], {stroke: ink})
       ]
     });

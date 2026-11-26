@@ -1530,3 +1530,40 @@ vybarvil (dal bych jim slabě šedý background). U samotného záhlaví tabulky
 (Ukazatel Výsledek Výpočet s dosazením) bych nastavil backgroud stejnou
 barvou, jako je nyní text, a barvu textu bych dal bílou.“ Na otázku
 po výchozích datech zvolil „Rozpoznávání číslic 7 z 8“.
+
+<a id="r87-upresneni-2026-11-26"></a>
+
+### Upřesnění 2026-11-26: aplikace Test dvou podílů
+
+**Stav:** schváleno 2026-11-26 (plán aplikace). **Rozsah:** stránka
+`quarto/app_dva_podily.qmd`, modul `assets/stat/dva-podily.js` a odkaz
+z kapitoly 9; obecná pravidla R87 a jeho upřesnění z 2026-11-25 platí beze změny.
+
+- **Vstup:** tabulka 2 × 2 s popisky (název proměnné skupiny a výsledku, názvy
+  dvou skupin a dvou kategorií, čtyři četnosti), volba sledované kategorie,
+  prohození skupin (druhá skupina je referenční skupinou poměrů), alternativa
+  ≠ / > / < a α; u jednostranné alternativy volba intervalu jako u pilotu.
+- **Testovaný rozdíl δ₀ v nulové hypotéze** (*H*₀: π₁ − π₂ = δ₀, výchozí 0),
+  se symbolem δ₀ ve stojatém řezu (nový řádek přehledu značení). Pro δ₀ ≠ 0
+  aplikace počítá skórový test se směrodatnou chybou z podílů odhadnutých
+  za platnosti *H*₀ (maximální věrohodnost), který pro δ₀ = 0 splývá s testem
+  se společným podílem z kapitoly 9; jde o postup nad rámec výkladu se stručným
+  vysvětlením na stránce. Fisherův test se počítá jen pro δ₀ = 0. Součástí je
+  předvolba noninferiority s odkazem na rozšíření kapitoly 7.
+- **Míry:** rozdíl podílů s Newcombovým intervalem, poměr rizik a poměr šancí
+  s logaritmickými intervaly (nepovinné rozšíření kapitoly 9) a φ.
+- **Přesný test a interval podle Agrestiho a Mina (2001)** jako nepovinný
+  doplněk pro malé výběry: přesný nepodmíněný test se skórovou statistikou
+  a interval z jeho obrácení (u jednostranné alternativy obrácením jednostranného testu), počítané, pokud má každá skupina nejvýše 200 případů. Hlavními
+  výsledky zůstávají postupy kapitoly 9.
+
+**Doklad:** autor 2026-11-25 zadal „Teď udělej aplikaci pro test dvou podílů“
+a na otázky zvolil „Tabulka 2 × 2 s popisky“, jednostranné alternativy „Ano,
+jako u pilotu“ a míry „Rozdíl, poměry s intervaly, φ“. 2026-11-26 se zeptal:
+„Co kdybychom přidali i test rozdílu mezi podíly?“ a upřesnil volbou
+„Nenulový rozdíl δ₀ v H₀“; pro značení zvolil „δ₀“ a k předvolbě „Ano,
+noninferiorita“. K plánu doplnil: „Ve zdrojích je i agresti_min_2001.pdf,
+který ukazuje asi nejpřesnější CI pro rozdíl mezi dvěma podíly při malých
+výběrech.“ a na otázku po roli intervalu zvolil „Doplněk pro malé výběry“.
+Upravený plán schválil téhož dne. Realizaci eviduje
+[autorská historie](../../quarto/README.md#aplikace-dva-podily).

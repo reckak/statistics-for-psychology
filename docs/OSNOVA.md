@@ -109,12 +109,16 @@ Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapit
 **Statistické aplikace od 2026-11-25** ([R87](rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):
 jedna stránka na aplikaci, která počítá probraný postup pro data zadaná
 studentem a shrnuje jeho princip, předpoklady a vzorce s odkazy do kapitol.
-Aplikace nezavádějí nové pojmy (s výjimkou schváleného pravidla oboustranné
-přesné *p*-hodnoty) a nejsou samostatným procvičením ve smyslu této mapy.
-V postranní nabídce je část ve výchozím stavu sbalená. Existuje pilotní
+Aplikace nezavádějí nové pojmy (s výjimkou schválených postupů: pravidla oboustranné
+přesné *p*-hodnoty, skórového testu nenulového rozdílu δ₀ a přesného nepodmíněného
+testu s intervalem) a nejsou samostatným procvičením ve smyslu této mapy.
+V postranní nabídce je část ve výchozím stavu sbalená. Existují pilotní
 [test jednoho podílu](../quarto/app_jeden_podil.qmd) ke kapitolám 6 a 9
 ([karta 6](kapitoly/06-vyberove-rozdeleni-testovani.md#aplikace-06),
-[karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09)); další aplikace
+[karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09)) a
+[test dvou podílů](../quarto/app_dva_podily.qmd) ke kapitole 9 s testovaným rozdílem δ₀
+a doplňkovým přesným intervalem podle Agrestiho a Mina
+([karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09-dva-podily)); další aplikace
 se schvalují samostatně ([plán](kapitoly/plan-pokracovani.md#plan-aplikace)).
 Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají

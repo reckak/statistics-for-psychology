@@ -1,5 +1,33 @@
 # Autorská dokumentace
 
+<a id="aplikace-dva-podily"></a>
+
+## Statistické aplikace: test dvou podílů (2026-11-26, upřesnění R87)
+
+Podle [upřesnění R87](../docs/rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)
+vznikla druhá aplikace [Test dvou podílů](app_dva_podily.qmd) za testem jednoho
+podílu. Kapitola 9 na ni odkazuje blokem „Spočítejte si: test dvou podílů“
+na konci pododdílu Test se společným podílem.
+
+- **Stránka:** editovatelná tabulka 2 × 2 s popisky a okraji, sledovaná kategorie, „Prohodit skupiny“ (mění i znaménko δ₀ a směr jednostranné alternativy), testovaný rozdíl δ₀ (desetinně nebo zlomkem), alternativa, α, u jednostranné alternativy volba intervalů; tabulka výsledků s dosazením ve skupinách Data, Rozdíl podílů, Test se společným podílem (pro δ₀ ≠ 0 Skórový test rozdílu), Fisherův exaktní test, Přesný test a interval podle Agrestiho a Mina, Další míry souvislosti; slovní interpretace, očekávané četnosti při *H*₀ a tři grafy (podíly s Wilsonovými intervaly, osa rozdílu s Newcombovým a přesným intervalem, nulou a δ₀, všechny tabulky Fisherova testu jen pro δ₀ = 0). Výchozí stav: stres 40/100 a 30/100, δ₀ = 0, oboustranně. Předvolby stres, Danielsová, pilotní studie, aspirin a noninferiorita online kurzu (vlastní data 66/100 a 70/100, δ₀ = −0,10).
+- **Výpočty** v modulu `assets/stat/dva-podily.js` (importuje `podil.js`, kam přibyl export `logFactorials`): skórový test s podíly odhadnutými za platnosti *H*₀ (uzavřený vzorec, při δ₀ = 0 společný podíl), Fisherův test pravidlem R, Newcombův interval oboustranný i jednostranný, poměry s logaritmickými intervaly stejné spolehlivosti jako interval rozdílu, φ se znaménkem. Přesný nepodmíněný test podle Agrestiho a Mina (2001): výčet všech tabulek, maximum přes π₂ na mřížce 200 bodů se zjemněním zlatým řezem, interval bisekcí s hledáním vzdálenějších nezamítnutých úseků; běží se zpožděním 0,3 s jen pro skupiny nejvýše po 200 případech (200 a 200 v Node asi 0,35 s).
+- **Redakční volby při realizaci:** očekávané četnosti při *H*₀ z podílů odhadnutých za platnosti *H*₀ (při δ₀ = 0 totožné s kapitolou 9); u jednostranné alternativy je přesný interval vždy jednostranný 1 − α (obrácení jednostranného testu podle oddílu 7 článku), protože oboustranný přesný interval 1 − 2α nemá tutéž mez jako jednostranný test; *s*<sub>*p*₁−*p*₂</sub> v tabulce jen pro představu o přesnosti; symbol δ₀ zapsán do [přehledu značení](znaceni.qmd) (řádek `znak-delta0-rozdil`).
+- **Zdroj:** nová karta [E10](../docs/zdroje/E10-agresti-min-2001.md#e10-agresti-min-2001) a položka `agresti2001` v `references.bib` (údaje ověřeny v Crossref). Uzavřený vzorec omezených odhadů pochází z Farringtona a Manninga (1990), práce nebyla čtena ani citována; ověřen numericky.
+- **Didaktická revize** samostatným agentem v roli studenta po kapitolách 1–9. Opraveno: nesprávná věta o shodné mezi i u přesného intervalu (vedla ke změně výpočtu výše), π ve vzorci pro odhady za platnosti *H*₀ a nezavedený pojem věrohodnost, chybějící zdůvodnění směrodatné chyby z *H*₀ a maxima přes dvojice podílů, „buňka vlevo nahoře“ po změně sledované kategorie, nejasné „pro skupiny do 200“, most od Δ z kapitoly 7 k δ₀ = −0,10, konzervativnost Fisherova testu s odkazem na pojem z kapitoly 7 a vysvětlení, proč se dva přesné testy v pilotní studii liší (0,070 a 0,041), rozdělení dlouhých vět.
+
+- **Úprava grafů intervalů podle připomínek autora** (týž den, obě aplikace): pod každým intervalem dvouřádkový popisek vystředěný na bodový odhad (odhad, pod ním meze), na bílém poloprůhledném podkladu (neprůhlednost 0,8), aby čáry nulové hypotézy pod ním zůstaly vidět; popisek se drží uvnitř plochy grafu. Mezi Newcombovým a přesným intervalem je větší svislá mezera. Ověřeno na snímcích Playwright (desktop a 375 px) a opakovaným `check-html.cjs` a `check-table-layout.cjs`.
+- **Další připomínky autora** (týž den): přesný interval v grafu rozdílu zeleně (`#3B7D3A` jako ve vizualizacích), aby se odlišil od Newcombova; v oddílu Očekávané četnosti a předpoklady tabulka pozorovaných četností s očekávanými v závorkách (hodnoty pod 5 tučně) místo výčtu ve větě.
+
+**Nezávislá kontrola:**
+
+- `Rscript --vanilla scripts/app-dva-podily.R` (R 4.5.1; `prop.test` bez korekce, `fisher.test`, `DescTools::BinomDiffCI(method = "score")`, omezené odhady řešením věrohodnostní rovnice `uniroot`, poměry podle vzorců kapitoly 9 s kontrolou `OddsRatio`, φ jako korelace kódů 0/1, balíček `Exact` 3.3) zapisuje `scripts/reference/app-dva-podily.json`; `node scripts/check-stat-lib.mjs`: 2 557 kontrol (oba moduly; nově 14 tabulek × 5 hodnot δ₀ × 3 alternativy, nulové buňky, *n* = 1, velké *n*, shoda jednostranného přesného intervalu s přesným testem), 0 chyb.
+- Hodnoty kapitoly 9 souhlasí: stres *z* = 1,48, *p* = 0,138, Newcombe (−0,032; 0,227), Fisher 0,18; dvojnásobek 0,036 a (0,007; 0,191); pilot Fisher 0,070; Danielsová poměr rizik 2,34 (1,50; 3,66), poměr šancí 3,23 (1,80; 5,82), φ 0,25, Newcombe (0,119; 0,330). `DescTools::RelRisk(method = "wald")` dává jiný interval (1,50; 3,64), stránka drží vzorec kapitoly.
+- Přesné intervaly: všech 11 řádků tabulky 3 Agrestiho a Mina na tři desetinná místa. *p*-hodnoty `Exact` (mřížka 1 000 bodů) jsou rovny nebo nepatrně nižší než v modulu (nejvýše o 10⁻³ u maxima na kraji rozsahu π₂, které mřížka balíčku nezachytí); shody *t*₀ = 0 vynechány. U dat stresu dává `Exact` dolní mez −0,0332, modul −0,0382: *p*-hodnota má u −0,0381 úzký úsek nad 0,05 (potvrzeno balíčkem) a modul jako článek bere nejnižší nezamítnutou hodnotu.
+
+**Kontroly:** `quarto render` celé knihy (Quarto 1.9.38) bez varování; `node quarto/_verification/check-html.cjs` s novým blokem aplikace prošel (34 stránek); `node scripts/check-table-layout.cjs`, `node scripts/check-doc-maps.cjs` a `node scripts/export-tutor.cjs` (s `check-tutor.cjs`; odkazy na `app_dva_podily.html` v kapitole 9 a přehledu značení převedeny na web) prošly. Stránka prohlédnuta na snímcích Playwright (desktop, telefon 375 px: tabulka zadání se vejde, dlouhé názvy kategorií se v poli zkracují).
+
+**Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Rychlost přesného výpočtu měřena jen v Node a v Chromiu tohoto počítače. Didaktická revize je interní, ne ověření na studentech.
+
 <a id="tutor-vizualizace-interval-podilu"></a>
 
 ## AI tutor: rada k vizualizaci intervalu pro podíl (2026-11-25)

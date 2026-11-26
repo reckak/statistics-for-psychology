@@ -863,6 +863,27 @@ ovládání klávesnicí, popisky ze vstupů a escapování zadaného textu, odm
 neplatných vstupů s ponecháním poslední platné hodnoty, předvolby, výřez
 grafu při *n* = 100 000 a zobrazení na telefonu bez přetékání stránky.
 
+Test dvou podílů má modul `assets/stat/dva-podily.js` (importuje `podil.js`).
+Referenční hodnoty zapisuje R skript do `scripts/reference/app-dva-podily.json`,
+který čte `scripts/check-stat-lib.mjs` i `check-html.cjs`; potřebuje balíčky
+`jsonlite`, `DescTools` (Newcombův interval) a `Exact` (přesný nepodmíněný test
+podle Agrestiho a Mina; jeho hlášení o doplňkovém balíčku `ExactData` lze pominout, není
+potřeba). Běh trvá asi 20 s:
+
+```sh
+Rscript --vanilla scripts/app-dva-podily.R
+node scripts/check-stat-lib.mjs
+```
+
+Kontrola modulu porovnává test se společným podílem a skórový test pro
+δ₀ ≠ 0, Fisherův test, Newcombovy intervaly, poměry s intervaly a φ s R
+(tolerance 10⁻⁹), přesné *p*-hodnoty s balíčkem `Exact` (modul smí vyjít
+nejvýše o 10⁻³ výš, protože maximum přes rušivý parametr hledá i na krajích
+rozsahu; shody statistiky *t*₀ = 0 se přeskakují) a přesné intervaly s tabulkou 3
+článku. Přesný výpočet běží v prohlížeči jen pro skupiny do 200 případů
+(`EXACT_MAX`; 200 a 200 trvá v Node asi 0,35 s) se zpožděním 0,3 s po poslední změně.
+
+
 ## Kontroly a GitHub
 
 Odkazy autorských map, registru rozhodnutí i tematických dokladů, kořenového

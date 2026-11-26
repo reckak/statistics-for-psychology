@@ -1,0 +1,17 @@
+<a id="e10-agresti-min-2001"></a>
+
+# E10 — Agresti a Min: přesné intervaly pro diskrétní rozdělení
+
+[Rozcestník zdrojů](../ZDROJE.md) · [Kapitola 9](../kapitoly/09-podily-kategorialni-data.md#aplikace-09-dva-podily)
+
+**Identita:** Agresti, A., & Min, Y. (2001). On small-sample confidence intervals for parameters in discrete distributions. *Biometrics, 57*(3), 963–971. [DOI](https://doi.org/10.1111/j.0006-341X.2001.00963.x). Klíč `agresti2001`. Místní soubor `sources/ostatní zdroje/agresti_min_2001.pdf` (1 621 105 B, změněn 2026-11-25): sken z JSTOR (stable URL 3068439) s titulní stranou JSTOR, 10 stran PDF; tištěné strany 963–970 odpovídají stranám 2–9 souboru, strana 971 se seznamem literatury v souboru chybí. Název, autoři, časopis, ročník, číslo, strany a DOI ověřeny v Crossref 2026-11-26.
+
+**Obsah (mapa):** oddíl 1 (s. 963) úvod: konzervativnost přesných intervalů z obrácení testů; oddíl 2 (s. 964) obrácení dvou jednostranných testů („tail method“) proti obrácení jednoho oboustranného testu a tři způsoby uspořádání výběrového prostoru; oddíl 3 (s. 964–965) interval pro binomický parametr (Clopper–Pearson, Blyth–Still, Blaker, tabulka 1, obr. 1); oddíl 4 (s. 965–966) poměr šancí, podmíněný přístup (tabulka 2, obr. 2); oddíl 5 (s. 966–968) rozdíl dvou nezávislých binomických podílů: nepodmíněný přístup s maximem *p*-hodnoty přes rušivý parametr, skórová statistika s podíly odhadnutými za platnosti *H*₀ (s. 967), tabulka 3 intervalů pro *n*₁ = *n*₂ = 10, obr. 3–4 pokrytí; oddíl 6 (s. 968–969) poměr podílů a další parametry; oddíl 7 (s. 969) omezení oboustranného přístupu: pro jednostranné otázky a noninferioritu interval z obrácení dvou jednostranných testů; oddíl 8 (s. 969–970) doporučení včetně skórového intervalu pro běžnou praxi.
+
+**Prostudováno 2026-11-26:** strany 963–970 celé (text, tabulky 1–3, obrázky 1–5) pro [aplikaci Test dvou podílů](../../quarto/app_dva_podily.qmd).
+
+**Použití 2026-11-26:** aplikace podle oddílu 5 počítá přesný nepodmíněný test se skórovou statistikou (s. 967, vzorec *T*), *p*-hodnotu jako maximum přes rušivý parametr π₂ a interval z obrácení jednoho oboustranného testu; při více oddělených úsecích přijatých hodnot bere jako v článku interval od nejnižší dolní k nejvyšší horní mezi (s. 967–968). U jednostranné alternativy obrací vždy jednostranný test podle oddílu 7, takže přesný interval rozhoduje stejně jako přesný test (oboustranný přesný interval 1 − 2α by tutéž mez neměl). Stránka cituje s. 967 (statistika) a s. 966–968 (vlastnosti intervalu). Učebnice sama článek necituje.
+
+**Nezávislé ověření:** intervaly tabulky 3 (všech 11 řádků, „Invert two-sided Score test“) reprodukuje modul `assets/stat/dva-podily.js` na tři desetinná místa (`node scripts/check-stat-lib.mjs`). Statistika a *p*-hodnoty testu souhlasí s balíčkem R `Exact` 3.3 (`exact.test(method = "z-pooled", model = "Binomial")`, skript `scripts/app-dva-podily.R`); balíček tabulku 3 rovněž reprodukuje (ověřeno pro řádky 5–0, 5–3, 2–1). Rozdíl: pro data 40/100 a 30/100 vrací `Exact` dolní mez −0,0332, modul −0,0382, protože *p*-hodnota má u −0,0381 úzký úsek nad 0,05 (potvrzeno *p*-hodnotami balíčku) a modul podle článku bere nejnižší přijatou hodnotu.
+
+**Meze ověření:** oddíly 3, 4 a 6 jen přečteny, nepoužity; tvrzení o pokrytí (obrázky 1–5) převzata bez vlastní simulace. Odkazované práce (Chan a Zhang, 1999; Miettinen a Nurminen, 1985; Farrington a Manning, 1990) nebyly čteny; uzavřený vzorec omezených odhadů v modulu je ověřen numerickým řešením věrohodnostní rovnice v R, ne podle originálu.

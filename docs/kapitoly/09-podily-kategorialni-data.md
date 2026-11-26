@@ -156,6 +156,20 @@ podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd)
 
 Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-25.
 
+<a id="aplikace-09-dva-podily"></a>
+
+**Statistická aplikace Test dvou podílů (2026-11-26, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)):**
+na konci pododdílu [Test se společným podílem](../../quarto/kapitola_09.qmd#sec-test-dvou-podilu),
+před výpočtem v Excelu, odkazuje blok „Spočítejte si: test dvou podílů“ na
+stránku [Test dvou podílů](../../quarto/app_dva_podily.qmd).
+
+- **Vstupy:** názvy proměnné skupiny a výsledku, editovatelná tabulka 2 × 2 (názvy skupin a kategorií, četnosti 0–100 000, každá skupina alespoň 1, okraje se dopočítají), sledovaná kategorie, „Prohodit skupiny“ (změní i znaménko δ₀ a směr jednostranné alternativy), testovaný rozdíl δ₀ (−1 až 1, výchozí 0), alternativa a α, u jednostranné alternativy volba intervalů. Stránka se otevírá příkladem stresu (40/100 a 30/100). Předvolby: stres, sebeobjektivizace (Danielsová), pilotní studie, aspirin a noninferiorita online kurzu (66/100 a 70/100, δ₀ = −0,10, *H*₁: π₁ − π₂ > −0,10; vlastní data).
+- **Výsledky:** tabulka s dosazením (data, rozdíl v procentních bodech, *s*<sub>*p*₁−*p*₂</sub> pro představu o přesnosti, Wilsonovy intervaly skupin, Newcombův interval a jeho rozhodnutí; test se společným podílem, pro δ₀ ≠ 0 skórový test s podíly odhadnutými za platnosti *H*₀; Fisherův test pro δ₀ = 0; přesný test a interval podle Agrestiho a Mina, pokud má každá skupina nejvýše 200 případů, u jednostranné alternativy vždy s jednostranným přesným intervalem 1 − α; poměr rizik a šancí s intervaly stejné spolehlivosti, φ se směrem slovy), slovní interpretace, tabulka pozorovaných a v závorkách očekávaných četností při *H*₀ s pravidlem alespoň 5 a grafy podílů s Wilsonovými intervaly, osy rozdílu s nulou a δ₀ a všech tabulek Fisherova testu.
+- **Vztah k výkladu:** opakuje pododdíly Rozdíl podílů a jeho interval, Test se společným podílem, Fisherův exaktní test a Jak velká je souvislost? (včetně rozšíření o intervalech poměrů). Nad rámec výkladu jdou testovaný rozdíl δ₀ se skórovým testem, jednostranné Newcombovy intervaly a přesný nepodmíněný test s intervalem ([Agresti a Min, 2001](../zdroje/E10-agresti-min-2001.md#e10-agresti-min-2001)); stránka je stručně vysvětluje. Nové termíny nezavádí; nový symbol δ₀ je v přehledu značení.
+- **Rozsah:** jen tabulka 2 × 2 nezávislých skupin; nepočítá Yatesovu korekci, Cohenovo *h*, sílu testu ani párová data. Není samostatným cvičením.
+
+Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-26.
+
 <a id="cviceni-09"></a>
 
 ### Cvičení a očekávané dovednosti

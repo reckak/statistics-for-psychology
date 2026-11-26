@@ -343,9 +343,30 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz .viz-app-table tr.viz-app-group th { padding-top: .5rem; font-weight: 700; background-color: #f0f0f0 !important; }
 .viz-app-table tbody th { min-width: 11rem; }
 .viz-app-table td:nth-child(3) { min-width: 16rem; }
+/* Editable 2 × 2 table of app_dva_podily.qmd: names in the header row and column, counts in the cells;
+   the total row is separated by a strong rule like a summary row of other tables. */
+.viz-app-input-wrap { margin-top: .7rem; }
+.viz-app-input { width: auto; }
+.viz-app-input th, .viz-app-input td { padding: .3rem .4rem; vertical-align: middle; }
+.viz-app-input input { font: inherit; padding: .25rem .4rem; border: 1px solid #80969e; border-radius: .25rem; color: var(--ink); background: white; }
+.viz-app-input input[type="text"] { width: 9.5rem; }
+.viz-app-input input[type="number"] { width: 6rem; text-align: right; }
+.viz-app-input input[aria-invalid="true"] { border-color: #B54E24; box-shadow: 0 0 0 1px #B54E24; }
+.viz-app-input thead th:last-child, .viz-app-input tbody th { text-align: left; }
+.viz-app-input td.viz-app-num { text-align: right; font-variant-numeric: tabular-nums; min-width: 3.5rem; }
+.viz-app-input tr.viz-app-total > *, .viz-app-expected tr.viz-app-total > * { border-top: 2px solid var(--ink); }
+.viz-app-expected { width: auto; }
+.viz .viz-app-expected th { text-align: left; }
+.viz .viz-app-expected thead th:not(:first-child) { text-align: right; }
+.viz-app-expected td.viz-app-num { text-align: right; white-space: nowrap; }
+.viz-app .viz-error#viz-app-cells-error { max-width: none; margin: .3rem 0 0; }
 .viz-app-report { border-left: 4px solid var(--accent); padding: .1rem 0 .1rem .9rem; }
 .viz-app-report p:last-child { margin-bottom: 0; }
 @media (max-width: 575px) {
   .viz-app-wide input { width: 100%; }
   .viz-app-table tbody th { min-width: 8rem; }
+  .viz-app-input input[type="text"] { width: 4.8rem; }
+  .viz-app-input input[type="number"] { width: 3.9rem; }
+  .viz-app-input th, .viz-app-input td { padding: .25rem .15rem; }
+  .viz-app-input td.viz-app-num { min-width: 0; }
 }
