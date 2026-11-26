@@ -56,6 +56,8 @@ function ensureLogFact(n) {
   for (let i = logFact.length; i <= n; i++) next[i] = next[i - 1] + Math.log(i);
   logFact = next;
 }
+// The table log(0!), …, log(n!) (shared with assets/stat/dva-podily.js for the hypergeometric distribution).
+export function logFactorials(n) { ensureLogFact(n); return logFact; }
 export function pmfAll(n, pi) {
   ensureLogFact(n);
   const out = new Float64Array(n + 1), lp = Math.log(pi), lq = Math.log1p(-pi);

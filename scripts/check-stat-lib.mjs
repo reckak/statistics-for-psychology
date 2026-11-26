@@ -1,7 +1,12 @@
-// Checks the calculations of the app page quarto/app_jeden_podil.qmd (module assets/stat/podil.js)
-// against reference values from R. Run from the project root: node scripts/check-stat-lib.mjs
-// The array REFERENCE is the output of Rscript --vanilla scripts/app-jeden-podil.R; update it from there.
+// Checks the calculations of the app pages against reference values from R. Run from the project root:
+// node scripts/check-stat-lib.mjs
+// - quarto/app_jeden_podil.qmd (module assets/stat/podil.js): the array REFERENCE is the output of
+//   Rscript --vanilla scripts/app-jeden-podil.R; update it from there.
+// - quarto/app_dva_podily.qmd (module assets/stat/dva-podily.js): scripts/reference/app-dva-podily.json is written
+//   by Rscript --vanilla scripts/app-dva-podily.R.
+import { readFileSync } from 'node:fs';
 import { scoreTest, binomTest, wilson, intervalFor, proportionTest, pmfAll } from '../assets/stat/podil.js';
+import * as D from '../assets/stat/dva-podily.js';
 
 // R (scripts/app-jeden-podil.R): [k, n, pi0, alt] -> [z, score p-value, exact p-value,
 //   Wilson 95 % lo, hi, Wilson 90 % lo, hi, one-sided 95 % lower limit, one-sided 95 % upper limit]
@@ -125,6 +130,94 @@ near(s9.chi2, 6.66666666666667, "chi-square equals z²");
 // Large n stays finite.
 const big = proportionTest({counts: [50000, 50000], success: 0, pi0: 0.5, alt: "two", alpha: 0.05});
 near(big.exact.p, 1, "n = 100 000, k = n·π₀: exact p-value 1");
+
+// ---- Two independent proportions (assets/stat/dva-podily.js) ----
+const REF2 = JSON.parse(readFileSync(new URL('./reference/app-dva-podily.json', import.meta.url), 'utf8'));
+const nearOrNull = (got, want, msg, tol = 1e-9) => want === null ? eq(got === null || !Number.isFinite(got) ? null : got, null, msg) : near(got, want, msg, tol);
+for (const [name, c] of Object.entries(REF2.cases)) {
+  const [[a, b], [cc, d]] = c.cells, n1 = a + b, n2 = cc + d;
+  for (const sc of c.score) {
+    const tag = `${name}, δ₀ = ${sc.delta}, ${sc.alt}`;
+    const t = D.scoreDiffTest(a, n1, cc, n2, sc.delta, sc.alt);
+    near(t.p1t, sc.p1t, `${tag}: restricted p₁`); near(t.p2t, sc.p2t, `${tag}: restricted p₂`);
+    near(t.se0, sc.se0, `${tag}: SE₀`);
+    nearOrNull(t.z, sc.z, `${tag}: z`); nearOrNull(t.pValue, sc.p, `${tag}: p-value`);
+  }
+  if (c.fisher) for (const [alt, p] of Object.entries(c.fisher)) near(D.fisherTest(a, n1, cc, n2, alt).p, p, `${name}, ${alt}: Fisher p-value`);
+  const nc = (conf, side) => D.newcombe(a, n1, cc, n2, conf, side);
+  // DescTools does not clip the Wilson limits to [0, 1]; at a proportion of 1 its limits exceed 1 by ~1e-8.
+  const nearN = (got, want, msg) => near(got, want, msg, 1e-7);
+  const w = c.newcombe;
+  nearN(nc(0.95).lo, w.two95[0], `${name}: Newcombe 95 % lo`); nearN(nc(0.95).hi, w.two95[1], `${name}: Newcombe 95 % hi`);
+  nearN(nc(0.90).lo, w.two90[0], `${name}: Newcombe 90 % lo`); nearN(nc(0.90).hi, w.two90[1], `${name}: Newcombe 90 % hi`);
+  nearN(nc(0.95, "lower").lo, w.lower95[0], `${name}: one-sided lower limit`); eq(nc(0.95, "lower").hi, w.lower95[1], `${name}: one-sided lower interval ends at 1`);
+  nearN(nc(0.95, "upper").hi, w.upper95[1], `${name}: one-sided upper limit`); eq(nc(0.95, "upper").lo, w.upper95[0], `${name}: one-sided upper interval starts at −1`);
+  const r = D.ratios(a, b, cc, d, 0.95);
+  nearOrNull(r.rr, c.rr, `${name}: risk ratio`); nearOrNull(r.or, c.or, `${name}: odds ratio`);
+  nearOrNull(r.rrCi ? r.rrCi.lo : null, c.rrCi[0], `${name}: RR lo`); nearOrNull(r.rrCi ? r.rrCi.hi : null, c.rrCi[1], `${name}: RR hi`);
+  nearOrNull(r.orCi ? r.orCi.lo : null, c.orCi[0], `${name}: OR lo`); nearOrNull(r.orCi ? r.orCi.hi : null, c.orCi[1], `${name}: OR hi`);
+  nearOrNull(D.phi(a, b, cc, d), c.phi, `${name}: φ`);
+}
+// For δ₀ = 0 the module's test is the test with the pooled proportion (checked against prop.test in R) and χ² = z².
+const st = REF2.cases.stres;
+const R0 = D.twoProportions({cells: st.cells});
+near(R0.score.chi2, st.score[0].z ** 2, "stres: χ² = z²");
+// Chapter 9 numbers (rounded as printed there).
+const r3 = (v, dg = 3) => Number(v.toFixed(dg));
+eq([r3(R0.score.z, 2), r3(R0.score.pValue), r3(R0.ci.lo), r3(R0.ci.hi), r3(R0.fisher.p, 2)], [1.48, 0.138, -0.032, 0.227, 0.18], "chapter 9: stress example");
+eq(r3(D.fisherTest(8, 10, 3, 10, "two").p), 0.07, "chapter 9: pilot study Fisher 0,070");
+const Dn = D.twoProportions({cells: REF2.cases.daniels.cells});
+eq([r3(Dn.ratios.rr, 2), r3(Dn.ratios.rrCi.lo, 2), r3(Dn.ratios.rrCi.hi, 2), r3(Dn.ratios.or, 2), r3(Dn.ratios.orCi.lo, 2), r3(Dn.ratios.orCi.hi, 2), r3(Dn.phi, 2), r3(Dn.ci.lo), r3(Dn.ci.hi)],
+  [2.34, 1.5, 3.66, 3.23, 1.8, 5.82, 0.25, 0.119, 0.33], "chapter 9: Daniels example");
+const R2x = D.twoProportions({cells: REF2.cases.dvojnasobek.cells});
+eq([r3(R2x.score.pValue), r3(R2x.ci.lo), r3(R2x.ci.hi)], [0.036, 0.007, 0.191], "chapter 9: twice the sample");
+// Fisher regions sum to the p-value; Fisher only for δ₀ = 0.
+for (const alt of ["two", "greater", "less"]) { const f = D.fisherTest(8, 10, 3, 10, alt); near(Math.min(1, f.d.reduce((s, v, j) => s + (f.inP[j] ? v : 0), 0)), f.p, `pilot ${alt}: Fisher regions`, 1e-12); }
+eq(D.twoProportions({cells: st.cells, delta0: 0.1}).fisher, null, "no Fisher test for δ₀ ≠ 0");
+// All cases in one category with δ₀ = 0: the score test is undefined.
+const allZero = D.twoProportions({cells: [[0, 15], [0, 20]]});
+eq([Number.isNaN(allZero.score.z), allZero.score.reject, allZero.phi], [true, false, null], "zero column: test undefined");
+
+// Exact unconditional test: p-values against the package Exact (fine nuisance grid).
+for (const e of REF2.exact) {
+  const [[a, b], [cc, d]] = REF2.cases[e.case].cells;
+  const r = D.exactUncondP(a, a + b, cc, cc + d, e.delta, e.alt);
+  const tag = `exact ${e.case}, δ = ${e.delta}, ${e.alt}`;
+  near(r.t0, e.t, `${tag}: statistic`, 1e-6);
+  // The module includes the ends of the nuisance range and refines the maximum, so its supremum is equal to or
+  // slightly above the package's grid maximum (never below). Skipped: ties t₀ = 0 (observed difference = δ),
+  // where the package's result depends on rounding of tied statistics.
+  if (Math.abs(r.t0) < 1e-9) continue;
+  checks++;
+  if (!(r.p >= e.p - 1e-7 && r.p <= e.p + 1e-3)) { failures++; console.error(`FAIL ${tag}: p-value ${r.p} vs ${e.p}`); }
+}
+// Intervals: Agresti & Min (2001), table 3, n₁ = n₂ = 10, inverted two-sided score test (3 decimals).
+const TABLE3 = [[5, 0, 0.132, 0.778], [5, 1, -0.001, 0.700], [5, 2, -0.142, 0.646], [5, 3, -0.249, 0.560], [5, 4, -0.349, 0.507], [5, 5, -0.419, 0.419],
+  [2, 0, -0.132, 0.525], [2, 1, -0.265, 0.441], [2, 2, -0.377, 0.377], [2, 3, -0.455, 0.296], [2, 4, -0.551, 0.224]];
+for (const [x1, x2, lo, hi] of TABLE3) {
+  const iv = D.exactInterval(x1, 10, x2, 10, 0.05);
+  near(r3(iv.lo), lo, `Agresti & Min table 3, ${x1} and ${x2}: lower limit`, 1.01e-3); near(r3(iv.hi), hi, `Agresti & Min table 3, ${x1} and ${x2}: upper limit`, 1.01e-3);
+}
+// Against the package Exact: same limits where p(δ) has no narrow peak above α. For the stress data the module's
+// lower limit lies further out: p(−0,0381) > 0,05 (checked above against Exact) and, as in Agresti & Min, the
+// interval runs to the outermost accepted values.
+for (const [name, ci] of Object.entries(REF2.exactCi)) {
+  const [[a, b], [cc, d]] = REF2.cases[name].cells, iv = D.exactInterval(a, a + b, cc, cc + d, 0.05);
+  near(iv.hi, ci[1], `exact interval ${name}: upper limit vs Exact`, 1e-4);
+  if (name === "stres") { checks++; if (!(iv.lo < ci[0] && iv.lo < -0.038 && iv.lo > -0.0383)) { failures++; console.error(`FAIL stres exact lower limit ${iv.lo}`); } }
+  else near(iv.lo, ci[0], `exact interval ${name}: lower limit vs Exact`, 1e-4);
+}
+// The exact procedure for the page: one-sided H₁ with the noninferiority preset and the size limit.
+const ni = D.exactProcedure({x1: 66, n1: 100, x2: 70, n2: 100, delta0: -0.1, alt: "greater", alpha: 0.05, intervalKind: "one"});
+eq([ni.reject, ni.ciRejects, ni.ci.hi], [false, false, 1], "noninferiority preset: exact test and one-sided 95 % interval");
+// With a one-sided H₁ the exact interval is always one-sided (it then decides exactly as the exact test).
+const ni2 = D.exactProcedure({x1: 66, n1: 100, x2: 70, n2: 100, delta0: -0.1, alt: "greater", alpha: 0.05});
+eq([ni2.ci.side, ni2.ci.conf.toFixed(2), ni2.ci.lo < -0.1], ["lower", "0.95", true], "noninferiority preset: one-sided 95 % exact interval reaches below δ₀");
+for (const [x1, x2] of [[6, 1], [8, 3], [60, 45], [66, 70], [0, 4], [10, 10]]) for (const alt of ["greater", "less"]) for (const delta0 of [-0.2, 0, 0.1]) {
+  const e = D.exactProcedure({x1, n1: x1 > 10 ? 100 : 10, x2, n2: x2 > 10 ? 100 : 10, delta0, alt, alpha: 0.05});
+  eq(e.ciRejects, e.reject, `exact ${x1}, ${x2}, ${alt}, δ₀ = ${delta0}: one-sided interval agrees with the exact test`);
+}
+eq(D.exactProcedure({x1: 189, n1: 11034, x2: 104, n2: 11037, delta0: 0, alt: "two", alpha: 0.05}), null, "exact procedure only up to EXACT_MAX");
 
 console.log(`${checks} checks, ${failures} failures`);
 if (failures) process.exit(1);

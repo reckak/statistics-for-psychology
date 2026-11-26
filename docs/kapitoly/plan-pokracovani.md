@@ -77,10 +77,13 @@ mezi tématy bez schváleného umístění.
 
 <a id="plan-aplikace"></a>
 
-**Statistické aplikace — schválená část a pilot, další aplikace neschváleny.**
+**Statistické aplikace — schválená část, pilot a test dvou podílů; další aplikace neschváleny.**
 Část „Statistické aplikace“ a pilotní [test jednoho podílu](../../quarto/app_jeden_podil.qmd)
 zavádí [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)
 (2026-11-25; skutečný obsah v [kartě kapitoly 9](09-podily-kategorialni-data.md#aplikace-09)).
+Druhou aplikaci, [test dvou podílů](../../quarto/app_dva_podily.qmd), schválilo
+[upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)
+(2026-11-26; [karta kapitoly 9](09-podily-kategorialni-data.md#aplikace-09-dva-podily)).
 Autor 2026-11-18 zmínil jako směr základní testy se vstupem z hrubých dat nebo
 z deskriptivních statistik a s výstupy včetně velikosti účinku s intervalem
 a diagnostických grafů. Které testy a v jakém pořadí, není rozhodnuto;

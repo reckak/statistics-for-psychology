@@ -1,0 +1,593 @@
+---
+code-copy: false
+---
+
+# Test dvou podílů {#sec-app-dva-podily .unnumbered}
+
+Liší se podíl jedné kategorie mezi dvěma nezávislými skupinami? A je rozdíl populačních podílů větší, nebo menší než předem zvolená hodnota? Aplikace pro tabulku 2 × 2 spočítá podíly obou skupin a odhadne rozdíl populačních podílů [Newcombovým intervalem](kapitola_09.qmd#sec-newcombe). Provede [test se společným podílem](kapitola_09.qmd#sec-test-dvou-podilu) a [Fisherův exaktní test](kapitola_09.qmd#sec-fisher) a doplní [poměr rizik, poměr šancí a koeficient φ](kapitola_09.qmd#sec-velikost-souvislosti). Nulová hypotéza může tvrdit i nenulový rozdíl, například v otázce noninferiority. Pokud má každá skupina nejvýše 200 případů, aplikace navíc počítá přesný test a interval podle Agrestiho a Mina [-@agresti2001]. Postupy vysvětluje kapitola 9; tato stránka je shrnuje a počítá je pro vaše data.
+
+## Jak aplikaci použít {#sec-app-dva-podily-ovladani .unnumbered}
+
+Zadejte název proměnné, která určuje skupiny (řádky tabulky), a název proměnné výsledku (sloupce). V tabulce přepište názvy obou skupin a obou kategorií výsledku a četnosti $f_{jl}$ ve čtyřech buňkách: celá čísla od 0 do 100 000, v každé skupině alespoň jeden případ. Okrajové součty se dopočítají. Potom zvolte **sledovanou kategorii** výsledku. Podíly $p_1$ a $p_2$ a populační podíly $\mathrm{π}_1$ a $\mathrm{π}_2$ jsou vždy podíly této kategorie v první a ve druhé skupině. Druhá skupina je **referenční skupinou** poměru rizik a poměru šancí. Tlačítko „Prohodit skupiny“ vymění řádky tabulky. Aby hypotézy vyjadřovaly stále totéž, změní zároveň znaménko testované hodnoty a směr jednostranné alternativy.
+
+**Testovaný rozdíl** $\mathrm{δ}_0$ je hodnota rozdílu populačních podílů $\mathrm{π}_1-\mathrm{π}_2$, kterou předpokládá nulová hypotéza. Obvykle je to 0: nulová hypotéza pak tvrdí, že se podíly neliší. Zadejte ho jako desetinné číslo větší než −1 a menší než 1 (s desetinnou čárkou, nebo tečkou), případně zlomkem, například −1/10. Nenulovou hodnotu volte předem a z věcných důvodů, stejně jako hranici v [testu noninferiority](kapitola_07.qmd#rozsireni-noninferiorita) v kapitole 7. Mezi Δ = 0,10 z kapitoly 7 tu odpovídá hodnota $\mathrm{δ}_0=-0{,}10$: hranice leží pod nulou, protože první skupina nemá být o více než 10 procentních bodů horší než druhá. Zvolte alternativní hypotézu; nulová hypotéza zahrnuje všechny ostatní možnosti, jak vysvětluje [kapitola 6](kapitola_06.qmd#sec-smer-testu), a aplikace ji vypíše. Hladinu významnosti $\mathrm{α}$ zadejte jako číslo větší než 0 a menší než 0,5.
+
+U oboustranné alternativy aplikace počítá oboustranné intervaly se spolehlivostí $1-\mathrm{α}$. U jednostranné alternativy si vyberete oboustranný interval se spolehlivostí $1-2\mathrm{α}$ (výchozí volba), nebo [jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval) se spolehlivostí $1-\mathrm{α}$. U Newcombova intervalu mají oba na straně, o které rozhoduje jednostranný test, stejnou mez. U přesného intervalu podle Agrestiho a Mina tato shoda neplatí, a proto je u jednostranné alternativy vždy jednostranný se spolehlivostí $1-\mathrm{α}$.
+
+Po načtení stránky jsou nastavena data o stresu studentek a studentů z kapitoly 9 s testovaným rozdílem 0 a oboustrannou alternativou. Tlačítka nastaví další příklady z kapitoly 9 a příklad noninferiority. Názvy proměnných, skupin a kategorií se objeví v tabulkách, grafech i ve slovní interpretaci. Při neplatné hodnotě se zobrazí upozornění a aplikace dál používá poslední platnou hodnotu. Výpočty běží jen ve vašem prohlížeči, zadaná data se nikam neodesílají.
+
+Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, očekávané četnosti a tři grafy. První graf ukazuje podíly obou skupin s Wilsonovými intervaly, druhý interval pro rozdíl podílů na ose $\mathrm{π}_1-\mathrm{π}_2$ s nulou a testovaným rozdílem. Třetí graf ukazuje pro $\mathrm{δ}_0=0$ všechny možné tabulky Fisherova testu a jejich pravděpodobnosti, stejně jako obrázek v kapitole 9. Přesný test a interval podle Agrestiho a Mina se počítají, jen pokud má každá skupina nejvýše 200 případů; výpočet může trvat okamžik. Podíly, rozdíly a meze zaokrouhlujeme na tři desetinná místa, poměry na dvě, směrodatné chyby a kvantily na čtyři. *p*-hodnoty mají tři desetinná místa, hodnoty pod 0,001 dvě platné číslice. Počítáme s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Calculations live in a shared module checked against R (scripts/check-stat-lib.mjs, scripts/app-dva-podily.R).
+  const L = await import(new URL("../assets/stat/dva-podily.js", document.baseURI).href);
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1";
+
+  // Czech number formatting with a true minus sign; user text is always escaped before it enters HTML.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const int = v => v.toLocaleString("cs-CZ");
+  const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 1 - Math.floor(Math.log10(Math.abs(v)))));
+  const pfmt = p => p >= 0.001 || p === 0 ? fixed(p, 3) : fixed(p, sigDigits(p));
+  const lim3 = v => fixed(Math.abs(v) < 1e-12 ? 0 : v, 3);
+  const pct1 = v => fixed(100 * v, 1);
+  const pp = v => `${v > 5e-13 ? "+" : ""}${pct1(Math.abs(v) < 5e-13 ? 0 : v)}`;
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+  const q = t => `„${t}“`;
+  const short = (t, m) => t.length > m ? t.slice(0, m - 1) + "…" : t;
+  const levelText = c => `${trim(100 * c, 4)} %`;
+  const levelAdj = c => `${trim(100 * c, 4)}%`;
+
+  function parseDecimal(raw) {
+    const t = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)$/.test(t)) return null;
+    const v = Number(t); return Number.isFinite(v) ? v : null;
+  }
+  // δ₀ as a signed decimal number or a fraction such as −1/10; the label keeps the fraction.
+  function parseDelta(raw) {
+    const f = raw.trim().replace(/\s+/g, "").replace(/^−/, "-").match(/^([-+]?)(\d+)\/(\d+)$/);
+    if (f) { const v = (f[1] === "-" ? -1 : 1) * Number(f[2]) / Number(f[3]); return Number.isFinite(v) ? {v: v === 0 ? 0 : v, label: v === 0 ? "0" : `${v < 0 ? "−" : ""}${f[2]}/${f[3]}`} : null; }
+    const v = parseDecimal(raw);
+    // The label keeps the digits as typed ("−0,10"), with a true minus sign and a decimal comma.
+    const typed = raw.trim().replace(/\s+/g, "").replace(/^\+/, "").replace(/^[-−]/, "−").replace(".", ",");
+    return v === null ? null : {v: v === 0 ? 0 : v, label: v === 0 ? "0" : typed};
+  }
+  const negLabel = l => l === "0" ? "0" : l.startsWith("−") ? l.slice(1) : `−${l}`;
+
+  const PRESETS = [
+    {id: "stres", label: "Stres podle pohlaví (kap. 9)", groupVar: "Pohlaví", outVar: "Úroveň stresu", groups: ["Ženy", "Muži"], outs: ["Zvýšený stres", "Nízký stres"], cells: [[40, 60], [30, 70]], success: 0, delta0: "0", alt: "two", alpha: "0,05", kind: "two"},
+    {id: "daniels", label: "Sebeobjektivizace (kap. 9)", groupVar: "Typ fotografií", outVar: "Téma sebeobjektivizace", groups: ["sexualizované", "sportovní"], outs: ["přítomno", "nepřítomno"], cells: [[56, 84], [20, 97]], success: 0, delta0: "0", alt: "two", alpha: "0,05", kind: "two"},
+    {id: "pilot", label: "Pilotní studie (kap. 9)", groupVar: "Skupina", outVar: "Výsledek", groups: ["intervence", "kontrola"], outs: ["zlepšení", "bez zlepšení"], cells: [[8, 2], [3, 7]], success: 0, delta0: "0", alt: "two", alpha: "0,05", kind: "two"},
+    {id: "aspirin", label: "Aspirin a infarkt (kap. 9)", groupVar: "Léčba", outVar: "Infarkt", groups: ["placebo", "aspirin"], outs: ["infarkt", "bez infarktu"], cells: [[189, 10845], [104, 10933]], success: 0, delta0: "0", alt: "two", alpha: "0,05", kind: "two"},
+    {id: "noninf", label: "Noninferiorita online kurzu", groupVar: "Forma kurzu", outVar: "Výsledek zkoušky", groups: ["online", "prezenční"], outs: ["úspěch", "neúspěch"], cells: [[66, 34], [70, 30]], success: 0, delta0: "−0,10", alt: "greater", alpha: "0,05", kind: "two"}
+  ];
+  const s = {groupVar: "", outVar: "", groups: ["", ""], outs: ["", ""], cells: [[0, 0], [0, 0]], success: 0, delta0: 0, delta0Label: "0", alt: "two", alpha: 0.05, alphaLabel: "0,05", kind: "two"};
+  const groupVar = () => s.groupVar.trim() || "Skupina";
+  const outVar = () => s.outVar.trim() || "Výsledek";
+  const gName = j => s.groups[j].trim() || `Skupina ${j + 1}`;
+  const oName = l => s.outs[l].trim() || `Kategorie ${l + 1}`;
+  // Cells for the module: column 0 is the chosen outcome category.
+  const cellsM = () => s.success === 0 ? s.cells.map(r => [...r]) : s.cells.map(r => [r[1], r[0]]);
+
+  const textField = (id, label, max, cls = "") => html`<div class="viz-field viz-app-text ${cls}">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" maxlength="${max}" autocomplete="off" aria-describedby="viz-app-${id}-hint">
+    <span id="viz-app-${id}-hint" class="viz-hint">nejvýše ${max} znaků</span>
+  </div>`;
+  const decimalField = (id, label, hint) => html`<div class="viz-field">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" inputmode="decimal" autocomplete="off" aria-describedby="viz-app-${id}-hint viz-app-${id}-error">
+    <span id="viz-app-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-app-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const nameInput = (id, label) => html`<input id="viz-app-${id}" type="text" maxlength="40" autocomplete="off" aria-label="${label}">`;
+  const cellInput = (j, l) => html`<input id="viz-app-c${j}${l}" type="number" min="0" max="${L.N_MAX}" step="1" inputmode="numeric" aria-describedby="viz-app-cells-hint viz-app-cells-error">`;
+
+  const root = html`<div class="viz viz-app" id="app-dva-podily">
+    <fieldset class="viz-model">
+      <legend>Data: tabulka 2 × 2</legend>
+      <div class="viz-controls">${textField("gvar", "Proměnná skupiny (řádky)", 60, "viz-app-wide")}${textField("ovar", "Proměnná výsledku (sloupce)", 60, "viz-app-wide")}</div>
+      <div class="viz-bay-table-wrap viz-app-input-wrap" tabindex="0" role="region" aria-label="Tabulka četností k zadání: posuvná oblast">
+        <table class="viz-bay-table viz-app-input" aria-label="Tabulka četností: názvy skupin a kategorií a četnosti v buňkách">
+          <thead><tr><td></td>
+            <th scope="col">${nameInput("o0", "Název 1. kategorie výsledku")}</th>
+            <th scope="col">${nameInput("o1", "Název 2. kategorie výsledku")}</th>
+            <th scope="col">Celkem</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">${nameInput("g0", "Název 1. skupiny")}</th><td>${cellInput(0, 0)}</td><td>${cellInput(0, 1)}</td><td class="viz-app-num" data-rowsum="0"></td></tr>
+            <tr><th scope="row">${nameInput("g1", "Název 2. skupiny")}</th><td>${cellInput(1, 0)}</td><td>${cellInput(1, 1)}</td><td class="viz-app-num" data-rowsum="1"></td></tr>
+            <tr class="viz-app-total"><th scope="row">Celkem</th><td class="viz-app-num" data-colsum="0"></td><td class="viz-app-num" data-colsum="1"></td><td class="viz-app-num" data-total></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="viz-app-cells-hint" class="viz-hint">Četnosti: celá čísla od 0 do ${int(L.N_MAX)}, v každé skupině alespoň jeden případ.</p>
+      <p id="viz-app-cells-error" class="viz-error" role="alert" hidden></p>
+      <div class="viz-buttons"><button type="button" data-swap>Prohodit skupiny</button></div>
+      <fieldset class="viz-choice viz-app-success">
+        <legend>Sledovaná kategorie výsledku</legend>
+        <label><input type="radio" name="viz-app-success" value="0"><span data-success-label="0"></span></label>
+        <label><input type="radio" name="viz-app-success" value="1"><span data-success-label="1"></span></label>
+      </fieldset>
+    </fieldset>
+    <fieldset class="viz-model">
+      <legend>Hypotézy a hladina významnosti</legend>
+      <div class="viz-controls">
+        ${decimalField("delta", html`Testovaný rozdíl δ<sub>0</sub>`, "číslo mezi −1 a 1, obvykle 0; např. −0,10")}
+        ${decimalField("alpha", "Hladina významnosti α", "větší než 0 a menší než 0,5, obvykle 0,05")}
+      </div>
+      <fieldset class="viz-choice viz-app-alt">
+        <legend>Alternativní hypotéza</legend>
+        <label><input type="radio" name="viz-app-alt" value="two"><span>oboustranná, <i>H</i><sub>1</sub>: π<sub>1</sub> − π<sub>2</sub> ≠ δ<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-app-alt" value="greater"><span>jednostranná, <i>H</i><sub>1</sub>: π<sub>1</sub> − π<sub>2</sub> &gt; δ<sub>0</sub></span></label>
+        <label><input type="radio" name="viz-app-alt" value="less"><span>jednostranná, <i>H</i><sub>1</sub>: π<sub>1</sub> − π<sub>2</sub> &lt; δ<sub>0</sub></span></label>
+      </fieldset>
+      <p class="viz-app-hyp" data-hyp aria-live="polite"></p>
+      <fieldset class="viz-choice viz-app-kind" hidden>
+        <legend>Intervaly spolehlivosti u jednostranné alternativy</legend>
+        <label><input type="radio" name="viz-app-kind" value="two"><span data-kind-label="two"></span></label>
+        <label><input type="radio" name="viz-app-kind" value="one"><span data-kind-label="one"></span></label>
+      </fieldset>
+      <div class="viz-pj-presets" role="group" aria-label="Příklady">
+        ${PRESETS.map(p => html`<button type="button" data-preset="${p.id}" aria-pressed="false">${p.label}</button>`)}
+      </div>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-app-res-title">
+      <h3 id="viz-app-res-title" class="viz-part-title">Výsledky</h3>
+      <p class="viz-app-summary" data-summary aria-live="polite"></p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Tabulka výsledků: posuvná oblast" data-results></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-int-title">
+      <h3 id="viz-app-int-title" class="viz-part-title">Slovní interpretace</h3>
+      <div class="viz-app-report" data-report></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-cond-title">
+      <h3 id="viz-app-cond-title" class="viz-part-title">Očekávané četnosti a předpoklady</h3>
+      <p class="viz-limit" data-cond-warning hidden></p>
+      <p class="viz-note" data-cond></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-groups-title">
+      <h3 id="viz-app-groups-title" class="viz-part-title"></h3>
+      <div data-legend="groups"></div>
+      <div class="viz-plots" data-chart="groups"></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-ci-title">
+      <h3 id="viz-app-ci-title" class="viz-part-title">Interval pro rozdíl populačních podílů</h3>
+      <div data-legend="diff"></div>
+      <div class="viz-plots" data-chart="diff"></div>
+      <p class="viz-note" data-diff-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-fisher-title">
+      <h3 id="viz-app-fisher-title" class="viz-part-title"></h3>
+      <div data-legend="fisher"></div>
+      <div class="viz-plots" data-chart="fisher"></div>
+      <p class="viz-note" data-fisher-note></p>
+    </section>
+  </div>`;
+
+  const $ = sel => root.querySelector(sel);
+  const inputs = {gvar: $("#viz-app-gvar"), ovar: $("#viz-app-ovar"), g0: $("#viz-app-g0"), g1: $("#viz-app-g1"), o0: $("#viz-app-o0"), o1: $("#viz-app-o1"), delta: $("#viz-app-delta"), alpha: $("#viz-app-alpha")};
+  const cellIn = (j, l) => $(`#viz-app-c${j}${l}`);
+
+  // Validation as in the visualizations: an invalid value shows a message and the last valid value stays in use.
+  function setError(id, msg) {
+    const input = $(`#viz-app-${id}`), error = $(`#viz-app-${id}-error`);
+    error.hidden = !msg; error.textContent = msg || ""; input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+  const cellsError = $("#viz-app-cells-error");
+  function readCells() {
+    let bad = false;
+    const vals = [0, 1].map(j => [0, 1].map(l => {
+      const inp = cellIn(j, l), raw = inp.value.trim();
+      const v = !inp.validity.badInput && /^\d+$/.test(raw) ? Number(raw) : null;
+      const ok = v !== null && v <= L.N_MAX;
+      inp.setAttribute("aria-invalid", ok ? "false" : "true");
+      if (!ok) bad = true;
+      return ok ? v : null;
+    }));
+    if (bad) { cellsError.hidden = false; cellsError.textContent = `Četnost musí být celé číslo od 0 do ${int(L.N_MAX)}. Používají se dál poslední platné četnosti.`; return; }
+    const empty = [0, 1].filter(j => vals[j][0] + vals[j][1] < 1);
+    if (empty.length) {
+      empty.forEach(j => [0, 1].forEach(l => cellIn(j, l).setAttribute("aria-invalid", "true")));
+      cellsError.hidden = false; cellsError.textContent = "Každá skupina musí mít alespoň jeden případ. Používají se dál poslední platné četnosti."; return;
+    }
+    cellsError.hidden = true; s.cells = vals; render();
+  }
+  [0, 1].forEach(j => [0, 1].forEach(l => cellIn(j, l).addEventListener("input", readCells)));
+  inputs.gvar.addEventListener("input", () => { s.groupVar = inputs.gvar.value; render(); });
+  inputs.ovar.addEventListener("input", () => { s.outVar = inputs.ovar.value; render(); });
+  [0, 1].forEach(i => {
+    inputs[`g${i}`].addEventListener("input", () => { s.groups[i] = inputs[`g${i}`].value; render(); });
+    inputs[`o${i}`].addEventListener("input", () => { s.outs[i] = inputs[`o${i}`].value; render(); });
+  });
+  inputs.delta.addEventListener("input", () => {
+    const r = parseDelta(inputs.delta.value), ok = r !== null && r.v > -1 && r.v < 1;
+    setError("delta", ok ? "" : "Zadejte číslo větší než −1 a menší než 1, například 0 nebo −0,10. Používá se dál poslední platná hodnota.");
+    if (ok) { s.delta0 = r.v; s.delta0Label = r.label; render(); }
+  });
+  inputs.alpha.addEventListener("input", () => {
+    const v = parseDecimal(inputs.alpha.value), ok = v !== null && v > 0 && v < 0.5;
+    setError("alpha", ok ? "" : "Zadejte číslo větší než 0 a menší než 0,5, například 0,05. Používá se dál poslední platná hodnota.");
+    if (ok) { s.alpha = v; s.alphaLabel = trim(v, 10); render(); }
+  });
+  root.querySelectorAll('input[name="viz-app-success"]').forEach(r => r.addEventListener("change", () => { s.success = Number(r.value); render(); }));
+  root.querySelectorAll('input[name="viz-app-alt"]').forEach(r => r.addEventListener("change", () => { s.alt = r.value; render(); }));
+  root.querySelectorAll('input[name="viz-app-kind"]').forEach(r => r.addEventListener("change", () => { s.kind = r.value; render(); }));
+  const unpress = () => root.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", "false"));
+
+  function syncInputs() {
+    inputs.gvar.value = s.groupVar; inputs.ovar.value = s.outVar;
+    [0, 1].forEach(i => { inputs[`g${i}`].value = s.groups[i]; inputs[`o${i}`].value = s.outs[i]; });
+    [0, 1].forEach(j => [0, 1].forEach(l => { cellIn(j, l).value = String(s.cells[j][l]); cellIn(j, l).setAttribute("aria-invalid", "false"); }));
+    cellsError.hidden = true;
+    inputs.delta.value = s.delta0Label; inputs.alpha.value = s.alphaLabel;
+    setError("delta", ""); setError("alpha", "");
+    root.querySelector(`input[name="viz-app-success"][value="${s.success}"]`).checked = true;
+    root.querySelector(`input[name="viz-app-alt"][value="${s.alt}"]`).checked = true;
+    root.querySelector(`input[name="viz-app-kind"][value="${s.kind}"]`).checked = true;
+  }
+  function applyPreset(p) {
+    const d = parseDelta(p.delta0);
+    Object.assign(s, {groupVar: p.groupVar, outVar: p.outVar, groups: [...p.groups], outs: [...p.outs], cells: p.cells.map(r => [...r]), success: p.success,
+      delta0: d.v, delta0Label: d.label, alt: p.alt, alpha: parseDecimal(p.alpha), alphaLabel: p.alpha, kind: p.kind});
+    syncInputs();
+    root.querySelectorAll("[data-preset]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.preset === p.id)));
+    render();
+  }
+  root.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => applyPreset(PRESETS.find(p => p.id === b.dataset.preset))));
+  // Swapping the groups keeps the meaning of the hypotheses: δ₀ changes sign and a one-sided alternative its direction.
+  $("[data-swap]").addEventListener("click", () => {
+    s.groups.reverse(); s.cells.reverse();
+    if (s.delta0 !== 0) { s.delta0 = -s.delta0; s.delta0Label = negLabel(s.delta0Label); }
+    s.alt = {two: "two", greater: "less", less: "greater"}[s.alt];
+    syncInputs(); unpress(); render();
+  });
+  // Any manual change ends the "pressed" state of a preset button.
+  root.querySelectorAll(".viz-model input").forEach(i => i.addEventListener("input", unpress));
+
+  const legend = items => { const d = html`<div class="viz-legend"></div>`; d.innerHTML = items.map(([svg, label]) => `<span>${svg}<span>${label}</span></span>`).join(""); return d; };
+  const swLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swBox = (fill, stroke) => `<svg width="20" height="14" aria-hidden="true"><rect x="1" y="1" width="18" height="12" fill="${fill}"${stroke ? ` stroke="${stroke}" stroke-width="1.5"` : ""}/></svg>`;
+  const swDot = fill => `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="${fill}"/></svg>`;
+  const chartWidth = () => Math.max(260, Math.min($('[data-chart="diff"]').clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+  const base = (width, small) => ({width, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 18, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
+  const axis = (label, extra = {}) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, ...extra});
+
+  const D = "π<sub>1</sub> − π<sub>2</sub>", d0 = "δ<sub>0</sub>";
+  const altSign = {two: "≠", greater: "&gt;", less: "&lt;"}, nullSign = {two: "=", greater: "≤", less: "≥"};
+  const decision = rej => rej ? "zamítáme nulovou hypotézu" : "nulovou hypotézu nezamítáme";
+  const ivText = ci => ci.side === "two" ? `(${lim3(ci.lo)}; ${lim3(ci.hi)})` : ci.side === "lower" ? `[${lim3(ci.lo)}; 1]` : `[−1; ${lim3(ci.hi)}]`;
+  const ivName = (ci, what = "Newcombův interval") => ci.side === "two" ? `${levelAdj(ci.conf)} oboustranný ${what}` : `${levelAdj(ci.conf)} jednostranný ${what} s ${ci.side === "lower" ? "dolní" : "horní"} mezí`;
+  const ratio2 = v => v === Infinity ? "∞" : fixed(v, 2);
+  const ratioIv = (iv, side) => side === "two" ? `(${ratio2(iv.lo)}; ${ratio2(iv.hi)})` : side === "lower" ? `[${ratio2(iv.lo)}; ∞)` : `(0; ${ratio2(iv.hi)}]`;
+  const ciWhere = (rej, alt) => alt === "two" ? (rej ? "ano: leží mimo interval" : "ne: leží v intervalu") : alt === "greater" ? (rej ? "ano: leží pod dolní mezí" : "ne") : (rej ? "ano: leží nad horní mezí" : "ne");
+
+  // Exact unconditional procedure: computed after a short pause (it enumerates all tables) and cached.
+  const exCache = new Map();
+  let ex = {key: "", status: "idle", res: null}, exTimer = 0;
+  function scheduleExact(R) {
+    const key = JSON.stringify([R.cells, s.delta0, s.alt, s.alpha, s.kind]);
+    if (!R.exactAvailable) { ex = {key, status: "unavailable", res: null}; return; }
+    if (ex.key === key && ex.status !== "idle") return;
+    if (exCache.has(key)) { ex = {key, status: "done", res: exCache.get(key)}; return; }
+    ex = {key, status: "pending", res: null};
+    clearTimeout(exTimer);
+    exTimer = setTimeout(() => {
+      const [[a, b], [c, d]] = R.cells;
+      const res = L.exactProcedure({x1: a, n1: a + b, x2: c, n2: c + d, delta0: s.delta0, alt: s.alt, alpha: s.alpha});
+      exCache.set(key, res);
+      if (ex.key === key) { ex = {key, status: "done", res}; render(); }
+    }, 300);
+  }
+
+  // Results table: indicator, result, calculation with substitution.
+  function resultsTable(R) {
+    const [[a, b], [c, dd]] = R.cells, n1 = R.n1, n2 = R.n2, ci = R.ci, sc = R.score, zero = s.delta0 === 0;
+    const k = esc(oName(s.success)), g1 = esc(gName(0)), g2 = esc(gName(1)), dl = s.delta0Label;
+    const group = t => `<tr class="viz-app-group"><th scope="rowgroup" colspan="3">${t}</th></tr>`;
+    // Numbers align right; words (decisions, ranges) align left and may wrap.
+    const row = (m, v, f = "") => `<tr><th scope="row">${m}</th><td${/[a-zá-ž]{4}/i.test(v.replace(/<[^>]+>/g, "")) ? "" : ' class="viz-app-num"'}>${v}</td><td>${f}</td></tr>`;
+    const zq = ci.side === "two" ? `<i>z</i><sub>${trim(1 - (1 - ci.conf) / 2, 6)}</sub>` : `<i>z</i><sub>${trim(ci.conf, 6)}</sub>`;
+    const pTxt = z => s.alt === "two" ? `2 · <i>P</i>(<i>Z</i> ≥ |${fixed(z, 3)}|)` : s.alt === "greater" ? `<i>P</i>(<i>Z</i> ≥ ${fixed(z, 3)})` : `<i>P</i>(<i>Z</i> ≤ ${fixed(z, 3)})`;
+    const wl = ci.w1, w2 = ci.w2, wLevel = ci.side === "two" ? ci.conf : 2 * ci.conf - 1;
+    const sDiff = Math.sqrt(R.p1 * (1 - R.p1) / n1 + R.p2 * (1 - R.p2) / n2);
+    const ciRow = ci.side === "two"
+      ? `${lim3(R.diff)} − √((${lim3(R.p1)} − ${lim3(wl.lo)})<sup>2</sup> + (${lim3(w2.hi)} − ${lim3(R.p2)})<sup>2</sup>) = ${lim3(ci.lo)}; ${lim3(R.diff)} + √((${lim3(wl.hi)} − ${lim3(R.p1)})<sup>2</sup> + (${lim3(R.p2)} − ${lim3(w2.lo)})<sup>2</sup>) = ${lim3(ci.hi)}`
+      : ci.side === "lower"
+        ? `dolní mez ${lim3(R.diff)} − √((${lim3(R.p1)} − ${lim3(wl.lo)})<sup>2</sup> + (${lim3(w2.hi)} − ${lim3(R.p2)})<sup>2</sup>) = ${lim3(ci.lo)}; horní mez je 1`
+        : `horní mez ${lim3(R.diff)} + √((${lim3(wl.hi)} − ${lim3(R.p1)})<sup>2</sup> + (${lim3(R.p2)} − ${lim3(w2.lo)})<sup>2</sup>) = ${lim3(ci.hi)}; dolní mez je −1`;
+    const rows = [
+      group("Data"),
+      row(`Skupina ${q(g1)}: četnost ${q(k)} z <i>n</i><sub>1</sub>`, `${int(a)} z ${int(n1)}`, `<i>n</i><sub>1</sub> = ${int(a)} + ${int(b)}`),
+      row(`Skupina ${q(g2)}: četnost ${q(k)} z <i>n</i><sub>2</sub>`, `${int(c)} z ${int(n2)}`, `<i>n</i><sub>2</sub> = ${int(c)} + ${int(dd)}`),
+      row("Podíl <i>p</i><sub>1</sub>", lim3(R.p1), `${int(a)}/${int(n1)}`),
+      row("Podíl <i>p</i><sub>2</sub>", lim3(R.p2), `${int(c)}/${int(n2)}`),
+      group("Rozdíl podílů"),
+      row("Rozdíl <i>p</i><sub>1</sub> − <i>p</i><sub>2</sub>", `${pp(R.diff)} procentního bodu`, `${lim3(R.p1)} − ${lim3(R.p2)} = ${fixed(R.diff, 3)}`),
+      row("Odhad směrodatné chyby rozdílu <i>s</i><sub><i>p</i><sub>1</sub>−<i>p</i><sub>2</sub></sub>", fixed(sDiff, 4), `√(<i>p</i><sub>1</sub>(1 − <i>p</i><sub>1</sub>)/<i>n</i><sub>1</sub> + <i>p</i><sub>2</sub>(1 − <i>p</i><sub>2</sub>)/<i>n</i><sub>2</sub>); jen pro představu o přesnosti, interval ji nepoužívá`),
+      row("Hladina spolehlivosti", levelText(ci.conf), s.alt === "two" ? `1 − α = 1 − ${s.alphaLabel}` : ci.side === "two" ? `1 − 2α = 1 − 2 · ${s.alphaLabel}` : `1 − α = 1 − ${s.alphaLabel}`),
+      row(`Kvantil ${zq}`, fixed(ci.z, 4), ci.side === "two" ? "oboustranný interval: polovina zbytku do každého chvostu" : "jednostranný interval: celý zbytek do jednoho chvostu"),
+      row(`Wilsonovy intervaly skupin (${levelAdj(wLevel)}, <i>l</i>; <i>u</i>)`, `${q(g1)}: (${lim3(wl.lo)}; ${lim3(wl.hi)}), ${q(g2)}: (${lim3(w2.lo)}; ${lim3(w2.hi)})`, "vzorec jako v aplikaci Test jednoho podílu, s kvantilem v předchozím řádku"),
+      row(ivName(ci).replace(/^./, ch => ch.toUpperCase()), `<strong>${ivText(ci)}</strong>`, ciRow),
+      row("Rozdíl v procentních bodech", ci.side === "two" ? `${pp(ci.lo)} až ${pp(ci.hi)}` : ci.side === "lower" ? `nejméně ${pp(ci.lo)}` : `nejvýše ${pp(ci.hi)}`, "meze intervalu krát 100"),
+      row(s.alt === "two" ? `Leží ${d0} = ${dl} mimo interval?` : s.alt === "greater" ? `Leží ${d0} = ${dl} pod dolní mezí?` : `Leží ${d0} = ${dl} nad horní mezí?`, ciWhere(R.ciRejects, s.alt), `interval a skórový test jsou různé postupy; jejich rozhodnutí se zpravidla shodují, ale ne vždy${s.alt === "two" ? "" : "; rozhoduje jen mez na straně alternativy"}`),
+      group(zero ? "Test se společným podílem" : `Skórový test rozdílu ${d0} = ${dl}`)
+    ];
+    if (!(sc.se0 > 0)) rows.push(row("Test", "nelze spočítat", "všechny případy patří do jedné kategorie výsledku, směrodatná chyba při <i>H</i><sub>0</sub> je 0"));
+    else {
+      if (zero) {
+        rows.push(row("Společný podíl <i>p</i>", lim3(sc.p1t), `(${int(a)} + ${int(c)})/(${int(n1)} + ${int(n2)})`));
+        rows.push(row("Směrodatná chyba při <i>H</i><sub>0</sub>", fixed(sc.se0, 4), `√(<i>p</i>(1 − <i>p</i>)(1/<i>n</i><sub>1</sub> + 1/<i>n</i><sub>2</sub>)) = √(${lim3(sc.p1t)} · ${lim3(1 - sc.p1t)} · (1/${int(n1)} + 1/${int(n2)}))`));
+      } else {
+        rows.push(row("Podíly odhadnuté za platnosti <i>H</i><sub>0</sub>", `${lim3(sc.p1t)} a ${lim3(sc.p2t)}`, `nejlépe odpovídají datům mezi dvojicemi podílů s rozdílem ${dl}: ${lim3(sc.p1t)} − ${lim3(sc.p2t)} = ${dl}`));
+        rows.push(row("Směrodatná chyba při <i>H</i><sub>0</sub>", fixed(sc.se0, 4), `√(${lim3(sc.p1t)} · ${lim3(1 - sc.p1t)}/${int(n1)} + ${lim3(sc.p2t)} · ${lim3(1 - sc.p2t)}/${int(n2)})`));
+      }
+      rows.push(row("Testová statistika <i>z</i>", fixed(sc.z, 3), zero ? `(<i>p</i><sub>1</sub> − <i>p</i><sub>2</sub>)/směrodatná chyba = ${fixed(R.diff, 3)}/${fixed(sc.se0, 4)}` : `(<i>p</i><sub>1</sub> − <i>p</i><sub>2</sub> − ${d0})/směrodatná chyba = (${fixed(R.diff, 3)} − (${dl}))/${fixed(sc.se0, 4)}`));
+      if (zero && s.alt === "two") rows.push(row("Statistika chí-kvadrát", fixed(sc.chi2, 3), `<i>z</i><sup>2</sup> = ${fixed(sc.z, 3)}<sup>2</sup>; test nezávislosti v tabulce 2 × 2 má stejnou <i>p</i>-hodnotu`));
+      rows.push(row("<i>p</i>-hodnota", `<strong>${pfmt(sc.pValue)}</strong>`, `${pTxt(sc.z)}, <i>Z</i> má normované normální rozdělení`));
+      rows.push(row(`Rozhodnutí při α = ${s.alphaLabel}`, decision(sc.reject), `<i>p</i>-hodnota ${sc.reject ? "≤" : "&gt;"} α`));
+    }
+    rows.push(group("Fisherův exaktní test"));
+    if (R.fisher) {
+      const f = R.fisher, m = a + c;
+      rows.push(row("Rozdělení četnosti <i>X</i> sledované kategorie v první skupině při <i>H</i><sub>0</sub>", `hypergeometrické, <i>X</i> = ${int(f.lo)} až ${int(f.hi)}`, `okrajové součty pevné: ${int(n1)} a ${int(n2)} v řádcích, ${int(m)} a ${int(n1 + n2 - m)} ve sloupcích`));
+      rows.push(row("<i>p</i>-hodnota", `<strong>${pfmt(f.p)}</strong>`, s.alt === "two" ? `součet pravděpodobností tabulek, které jsou při <i>H</i><sub>0</sub> nejvýše stejně pravděpodobné jako pozorovaná (${pfmt(f.obs)})` : s.alt === "greater" ? `<i>P</i>(<i>X</i> ≥ ${int(a)})` : `<i>P</i>(<i>X</i> ≤ ${int(a)})`));
+      rows.push(row(`Rozhodnutí při α = ${s.alphaLabel}`, decision(f.reject), `<i>p</i>-hodnota ${f.reject ? "≤" : "&gt;"} α`));
+    } else rows.push(row("Test", "nepoužije se", `Fisherův test posuzuje jen shodu podílů, tedy ${d0} = 0`));
+    rows.push(group("Přesný test a interval podle Agrestiho a Mina"));
+    if (ex.status === "unavailable") rows.push(row("Výpočet", "jen pokud má každá skupina nejvýše 200 případů", "u větších skupin se výsledky blíží skórovému testu a Newcombovu intervalu"));
+    else if (ex.status !== "done") rows.push(row("Výpočet", "počítám…", "prochází všechny možné tabulky se stejnými velikostmi skupin"));
+    else {
+      const e = ex.res;
+      rows.push(row("<i>p</i>-hodnota", `<strong>${pfmt(e.p)}</strong>`, `největší součet pravděpodobností tabulek se statistikou <i>z</i> ${s.alt === "two" ? `aspoň |${fixed(e.t0, 3)}|` : s.alt === "greater" ? `aspoň ${fixed(e.t0, 3)}` : `nejvýše ${fixed(e.t0, 3)}`} přes všechny dvojice podílů s rozdílem ${dl}`));
+      rows.push(row(`Rozhodnutí při α = ${s.alphaLabel}`, decision(e.reject), `<i>p</i>-hodnota ${e.reject ? "≤" : "&gt;"} α`));
+      rows.push(row(ivName(e.ci, "přesný interval").replace(/^./, ch => ch.toUpperCase()), `<strong>${ivText(e.ci)}</strong>`, "hodnoty testovaného rozdílu δ<sub>0</sub>, které by přesný test nezamítl"));
+      rows.push(row(s.alt === "two" ? `Leží ${d0} mimo přesný interval?` : s.alt === "greater" ? `Leží ${d0} pod dolní mezí?` : `Leží ${d0} nad horní mezí?`, ciWhere(e.ciRejects, s.alt), ""));
+    }
+    const r = R.ratios, side = ci.side, lev = levelAdj(ci.conf);
+    rows.push(group("Další míry souvislosti"));
+    rows.push(row(`Poměr rizik (referenční skupina ${q(g2)})`, r.rr === null ? "nelze spočítat" : fixed(r.rr, 2), r.rr === null ? `v referenční skupině je četnost ${q(k)} nulová` : `<i>p</i><sub>1</sub>/<i>p</i><sub>2</sub> = ${lim3(R.p1)}/${lim3(R.p2)}`));
+    rows.push(row(`${lev} interval poměru rizik (nepovinné rozšíření)`, r.rrCi ? ratioIv(r.rrCi, side) : "nelze spočítat", r.rrCi ? `exp(ln ${fixed(r.rr, 2)} ${side === "two" ? "±" : side === "lower" ? "−" : "+"} ${fixed(ci.z, 4)} · ${fixed(r.seRR, 4)}), kde ${fixed(r.seRR, 4)} = √(1/${int(a)} − 1/${int(n1)} + 1/${int(c)} − 1/${int(n2)})` : "interval vyžaduje nenulové četnosti sledované kategorie v obou skupinách"));
+    rows.push(row("Poměr šancí", r.or === null ? "nelze spočítat" : fixed(r.or, 2), r.or === null ? "šance ve jmenovateli je 0 nebo nedefinovaná" : `(${int(a)}/${int(b)})/(${int(c)}/${int(dd)})`));
+    rows.push(row(`${lev} interval poměru šancí (nepovinné rozšíření)`, r.orCi ? ratioIv(r.orCi, side) : "nelze spočítat", r.orCi ? `exp(ln ${fixed(r.or, 2)} ${side === "two" ? "±" : side === "lower" ? "−" : "+"} ${fixed(ci.z, 4)} · ${fixed(r.seOR, 4)}), kde ${fixed(r.seOR, 4)} = √(1/${int(a)} + 1/${int(b)} + 1/${int(c)} + 1/${int(dd)})` : "interval vyžaduje nenulové četnosti ve všech buňkách"));
+    rows.push(row("Koeficient φ", R.phi === null ? "nelze spočítat" : fixed(Math.abs(R.phi), 3), R.phi === null ? "některý okrajový součet je 0" : `|${int(a)} · ${int(dd)} − ${int(b)} · ${int(c)}|/√(${int(n1)} · ${int(n2)} · ${int(a + c)} · ${int(b + dd)}); ${Math.abs(R.phi) < 5e-4 ? "bez souvislosti" : `kategorie ${q(k)} je častější ve skupině ${q(R.phi > 0 ? g1 : g2)}`}`));
+    $("[data-results]").innerHTML = `<table class="viz-bay-table viz-app-table" aria-label="Výsledky testu dvou podílů"><thead><tr><th scope="col">Ukazatel</th><th scope="col">Výsledek</th><th scope="col">Výpočet s dosazením</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
+  }
+
+  // Slovní interpretace following chapter 9: proportions, difference, decisions, interval, ratios, assumptions.
+  function report(R) {
+    const k = esc(oName(s.success)), g1 = esc(gName(0)), g2 = esc(gName(1)), dl = s.delta0Label, zero = s.delta0 === 0, ci = R.ci;
+    const nullText = zero
+      ? {two: `že se populační podíly kategorie ${q(k)} ve skupinách ${q(g1)} a ${q(g2)} neliší`, greater: `že podíl kategorie ${q(k)} ve skupině ${q(g1)} není v populaci vyšší než ve skupině ${q(g2)}`, less: `že podíl kategorie ${q(k)} ve skupině ${q(g1)} není v populaci nižší než ve skupině ${q(g2)}`}[s.alt]
+      : `že rozdíl populačních podílů π<sub>1</sub> − π<sub>2</sub> ${{two: "je", greater: "je nejvýše", less: "je nejméně"}[s.alt]} ${dl}`;
+    const tests = [];
+    if (R.score.se0 > 0) tests.push({name: zero ? "test se společným podílem" : "skórový test", p: R.score.pValue, rej: R.score.reject, extra: `<i>z</i> = ${fixed(R.score.z, 3)}, `});
+    if (R.fisher) tests.push({name: "Fisherův exaktní test", p: R.fisher.p, rej: R.fisher.reject, extra: ""});
+    if (ex.status === "done") tests.push({name: "přesný test podle Agrestiho a Mina", p: ex.res.p, rej: ex.res.reject, extra: ""});
+    const list = tests.map(t => `${t.name}: ${t.extra}<i>p</i>-hodnota ${pfmt(t.p)}`).join("; ");
+    const allRej = tests.every(t => t.rej), noneRej = tests.every(t => !t.rej);
+    let dec;
+    if (!tests.length) dec = "Test nelze spočítat: všechny případy patří do jedné kategorie výsledku.";
+    else if (allRej || noneRej) dec = `Na hladině významnosti ${s.alphaLabel} ${allRej ? (tests.length > 1 ? "všechny testy zamítají" : "test zamítá") : (tests.length > 1 ? "žádný test nezamítá" : "test nezamítá")} nulovou hypotézu, ${nullText} (${list}).${allRej ? " Výsledek je statisticky významný." : ""}`;
+    else dec = `Na hladině významnosti ${s.alphaLabel} se testy liší (${list}). Nulovou hypotézu, ${nullText}, zamítá ${tests.filter(t => t.rej).map(t => t.name).join(" a ")}. Test se společným podílem a skórový test používají normální aproximaci, Fisherův a přesný test přesné pravděpodobnosti; u výsledků blízko hranice rozhodnutí proto mohou rozhodnout různě.${R.expectedOk ? "" : " Protože některá očekávaná četnost je menší než 5, opírejte se o přesný výpočet."}`;
+    const est = ci.side === "two"
+      ? `S daty jsou slučitelné rozdíly populačních podílů přibližně od ${lim3(ci.lo)} do ${lim3(ci.hi)}, tedy od ${pp(ci.lo)} do ${pp(ci.hi)} procentního bodu (${ivName(ci)}).`
+      : ci.side === "lower"
+        ? `S daty jsou slučitelné rozdíly populačních podílů nejméně ${lim3(ci.lo)}, tedy ${pp(ci.lo)} procentního bodu (${ivName(ci)} ${ivText(ci)}).`
+        : `S daty jsou slučitelné rozdíly populačních podílů nejvýše ${lim3(ci.hi)}, tedy ${pp(ci.hi)} procentního bodu (${ivName(ci)} ${ivText(ci)}).`;
+    const where = s.alt === "two" ? (R.ciRejects ? "v intervalu neleží" : "v intervalu leží") : s.alt === "greater" ? (R.ciRejects ? "leží pod jeho dolní mezí" : "pod jeho dolní mezí neleží") : (R.ciRejects ? "leží nad jeho horní mezí" : "nad jeho horní mezí neleží");
+    const exTxt = ex.status === "done" ? ` Přesný interval podle Agrestiho a Mina je ${ivText(ex.res.ci)}.` : "";
+    const kept = tests.some(t => t.rej) || !tests.length ? "" : s.alt === "two"
+      ? ` Nezamítnutí neznamená, že rozdíl je přesně ${dl}: s daty jsou slučitelné všechny hodnoty v intervalu.`
+      : " Nezamítnutí neznamená, že nulová hypotéza platí; data jen neposkytla dostatečný doklad pro alternativu.";
+    const dir = Math.abs(R.diff) < 5e-4 ? "se podíly prakticky neliší" : `je podíl ve skupině ${q(g1)} o ${pct1(Math.abs(R.diff))} procentního bodu ${R.diff > 0 ? "vyšší" : "nižší"} než ve skupině ${q(g2)}`;
+    const r = R.ratios;
+    const rr = r.rr !== null && r.rr > 0 ? ` Poměr rizik je ${fixed(r.rr, 2)}: podíl kategorie ${q(k)} je ve skupině ${q(g1)} ${fixed(r.rr, 2)}násobkem podílu v referenční skupině ${q(g2)}${r.or !== null ? `; poměr šancí je ${fixed(r.or, 2)}` : ""}.` : "";
+    $("[data-report]").innerHTML = `<p>Proměnná ${q(esc(outVar()))} podle proměnné ${q(esc(groupVar()))}: ve skupině ${q(g1)} patří do kategorie ${q(k)} ${int(R.cells[0][0])} z ${int(R.n1)} případů (podíl ${lim3(R.p1)}), ve skupině ${q(g2)} ${int(R.cells[1][0])} z ${int(R.n2)} (podíl ${lim3(R.p2)}). Ve výběru ${dir}.${rr}</p>
+      <p>${dec}</p>
+      <p>${est} Hodnota ${dl} ${where}.${exTxt}${kept}</p>
+      ${zero ? "" : `<p>Testovaný rozdíl ${dl} musí být zvolen předem z věcných důvodů, například jako hranice prakticky zanedbatelného zhoršení v otázce noninferiority. Volba podle výsledku by závěr znehodnotila.</p>`}
+      <p>Závěr platí za předpokladů z kapitoly 9: obě skupiny jsou nezávislé, každý případ je v tabulce jednou a případy na sobě nezávisejí. O příčině rozdílu vypovídá jen pokus s náhodným přiřazením ke skupinám. Zda je rozdíl prakticky důležitý, posuďte podle jeho velikosti a šířky intervalu v kontextu výzkumné otázky, nikoli jen podle <i>p</i>-hodnoty.</p>`;
+  }
+
+  // Chart 1: proportions of both groups with their Wilson intervals.
+  function groupsChart(width, R) {
+    const small = width < 520, ci = R.ci, names = [0, 1].map(j => short(gName(j), small ? 14 : 26));
+    const rows = [{y: names[0], p: R.p1, lo: ci.w1.lo, hi: ci.w1.hi}, {y: names[1], p: R.p2, lo: ci.w2.lo, hi: ci.w2.hi}];
+    const k = oName(s.success), wLevel = ci.side === "two" ? ci.conf : 2 * ci.conf - 1;
+    return Plot.plot({
+      ...base(width, small), height: 160, marginLeft: small ? 92 : 150, marginBottom: 46,
+      x: {domain: [-0.02, 1.02], ...axis(`podíl kategorie ${q(short(k, 30))}`), ticks: small ? 5 : 10, tickFormat: v => trim(v, 2)},
+      y: {domain: names, label: null, padding: 0.5},
+      ariaLabel: `Podíly kategorie ${q(k)} ve skupinách ${q(gName(0))} a ${q(gName(1))} s ${levelAdj(wLevel)} Wilsonovými intervaly`,
+      ariaDescription: `${gName(0)}: podíl ${lim3(R.p1)}, interval ${lim3(ci.w1.lo)} až ${lim3(ci.w1.hi)}. ${gName(1)}: podíl ${lim3(R.p2)}, interval ${lim3(ci.w2.lo)} až ${lim3(ci.w2.hi)}.`,
+      marks: [
+        Plot.ruleX([0, 1], {stroke: gray, strokeOpacity: 0.5}),
+        Plot.link(rows, {x1: "lo", x2: "hi", y1: "y", y2: "y", stroke: blue, strokeWidth: 5}),
+        Plot.dot(rows, {x: "p", y: "y", r: 5, fill: ink}),
+        Plot.text(rows, {x: "p", y: "y", dy: -12, text: d => lim3(d.p), fill: ink, fontWeight: 600})
+      ]
+    });
+  }
+
+  // Chart 2: interval for the difference on the axis π₁ − π₂ with zero and δ₀.
+  function diffChart(width, R) {
+    const small = width < 520, ci = R.ci, e = ex.status === "done" ? ex.res.ci : null;
+    const lo = Math.max(-1, Math.min(0, s.delta0, ci.side === "upper" ? R.diff : ci.lo, e && e.side !== "upper" ? e.lo : 0)), hi = Math.min(1, Math.max(0, s.delta0, ci.side === "lower" ? R.diff : ci.hi, e && e.side !== "lower" ? e.hi : 0));
+    const pad = Math.max(0.03, 0.12 * (hi - lo)), dom = [Math.max(-1.02, lo - pad), Math.min(1.02, hi + pad)];
+    const clip = v => Math.max(dom[0], Math.min(dom[1], v));
+    const ivs = [{lo: clip(ci.lo), hi: clip(ci.hi), y: 1.3, color: blue, w: 6}, ...(e ? [{lo: clip(e.lo), hi: clip(e.hi), y: 0.7, color: gray, w: 4}] : [])];
+    const refs = s.delta0 === 0 ? [{x: 0, label: "δ₀ = 0", color: orange, dash: "6,4"}] : [{x: 0, label: "0", color: gray, dash: "2,3"}, {x: s.delta0, label: `δ₀ = ${s.delta0Label}`, color: orange, dash: "6,4"}];
+    return Plot.plot({
+      ...base(width, small), height: 170, marginBottom: 46,
+      x: {domain: dom, ...axis("rozdíl populačních podílů π₁ − π₂"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 2)},
+      y: {domain: [0, 2.2], axis: null},
+      ariaLabel: `${ivName(ci)} pro rozdíl podílů${e ? " a přesný interval" : ""}`,
+      ariaDescription: `Rozdíl výběrových podílů ${lim3(R.diff)}, Newcombův interval ${ivText(ci)}${e ? `, přesný interval ${ivText(e)}` : ""}, testovaný rozdíl ${s.delta0Label} ${R.ciRejects ? "leží mimo interval na straně alternativy" : "interval nevylučuje"}.`,
+      marks: [
+        ...refs.map(r => Plot.ruleX([r.x], {stroke: r.color, strokeWidth: 2, strokeDasharray: r.dash})),
+        ...refs.map((r, i) => Plot.text([r.x], {x: d => d, y: 2.1 - 0.0 * i, dy: i * 14, text: () => r.label, fill: r.color, fontWeight: 600, textAnchor: r.x > (dom[0] + dom[1]) / 2 ? "end" : "start", dx: r.x > (dom[0] + dom[1]) / 2 ? -5 : 5})),
+        ...ivs.map(v => Plot.link([v], {x1: "lo", x2: "hi", y1: v.y, y2: v.y, stroke: v.color, strokeWidth: v.w})),
+        Plot.dot([R.diff], {x: d => d, y: 1.3, r: 5, fill: ink}),
+        Plot.text([ci], {x: ci.side === "upper" ? clip(ci.hi) : clip(ci.lo), y: 1.3, dy: 15, text: () => ivText(ci), fill: blue, fontWeight: 600, textAnchor: ci.side === "upper" ? "end" : "start"}),
+        ...(e ? [Plot.text([e], {x: e.side === "upper" ? clip(e.hi) : clip(e.lo), y: 0.7, dy: 13, text: () => ivText(e), fill: gray, fontWeight: 600, textAnchor: e.side === "upper" ? "end" : "start"})] : []),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+  }
+
+  // Chart 3: Fisher's test, all tables with the observed margins and their probabilities (window for large n).
+  function fisherWindow(f, x) {
+    const k = f.hi - f.lo;
+    if (k <= 60) return {lo: f.lo, hi: f.hi, xOut: false};
+    let best = 0; f.d.forEach((v, j) => { if (v > f.d[best]) best = j; });
+    let lo = f.lo + best, hi = f.lo + best;
+    while (hi - lo < 60 && (lo > f.lo || hi < f.hi)) { if (lo > f.lo && f.d[lo - 1 - f.lo] >= 1e-12) lo--; else if (hi < f.hi && f.d[hi + 1 - f.lo] >= 1e-12) hi++; else { if (lo > f.lo) lo--; if (hi < f.hi) hi++; } }
+    let xOut = false;
+    if (x < lo || x > hi) { const lo2 = Math.min(lo, x), hi2 = Math.max(hi, x); if (hi2 - lo2 <= 300) { lo = lo2; hi = hi2; } else xOut = true; }
+    return {lo, hi, xOut};
+  }
+  function fisherChart(width, R) {
+    const small = width < 520, f = R.fisher, x = R.cells[0][0], W = fisherWindow(f, x);
+    const ks = d3.range(W.lo, W.hi + 1), pr = i => f.d[i - f.lo], inP = i => f.inP[i - f.lo];
+    const top = 1.15 * d3.max(ks, pr), step = [1, 2, 5, 10, 20, 25, 50, 100].find(st => (W.hi - W.lo) / st <= (small ? 6 : 12)) ?? 100;
+    const w = ks.length > 120 ? 1 : 0.8, k = oName(s.success), g1 = gName(0);
+    return {W, chart: Plot.plot({
+      ...base(width, small), height: small ? 230 : 270, marginBottom: 46,
+      x: {domain: [W.lo - 0.6, W.hi + 0.6], ...axis(`četnost ${q(short(k, 24))} ve skupině ${q(short(g1, 24))}`), ticks: ks.filter(i => i % step === 0), tickFormat: v => int(v)},
+      y: {domain: [0, top], ...axis("pravděpodobnost při H₀", {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 3)},
+      ariaLabel: `Pravděpodobnosti všech tabulek se stejnými okrajovými součty: hypergeometrické rozdělení četnosti ${q(k)} ve skupině ${q(g1)}`,
+      ariaDescription: `Pozorovaná četnost ${int(x)}${W.xOut ? " leží mimo zobrazený výřez" : ""} má pravděpodobnost ${pfmt(f.obs)}. Zvýrazněné sloupce tvoří p-hodnotu Fisherova testu ${pfmt(f.p)}.`,
+      marks: [
+        Plot.rect(ks, {x1: i => i - w / 2, x2: i => i + w / 2, y1: 0, y2: pr, fill: i => inP(i) ? orange : pale, title: i => `P(X = ${int(i)}) = ${pfmt(pr(i))}${inP(i) ? "; patří do p-hodnoty" : ""}`}),
+        ...(s.alt === "two" ? [Plot.ruleY([f.obs], {stroke: ink, strokeDasharray: "5,4", strokeWidth: 1.2})] : []),
+        ...(W.xOut ? [] : [Plot.ruleX([x], {stroke: blue, strokeWidth: 2.2}), Plot.text([x], {x: d => d, y: top, dy: 2, text: d => `pozorováno ${int(d)}`, fill: blue, fontWeight: 600, textAnchor: x > (W.lo + W.hi) / 2 ? "end" : "start", dx: x > (W.lo + W.hi) / 2 ? -5 : 5, lineAnchor: "top"})]),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    })};
+  }
+
+  let last = {};
+  function render() {
+    const R = L.twoProportions({cells: cellsM(), delta0: s.delta0, alt: s.alt, alpha: s.alpha, intervalKind: s.kind});
+    scheduleExact(R);
+    const width = chartWidth(), k = esc(oName(s.success)), g1 = esc(gName(0)), g2 = esc(gName(1)), dl = s.delta0Label;
+    // Margins of the input table and labels taken from the inputs.
+    [0, 1].forEach(j => { $(`[data-rowsum="${j}"]`).textContent = int(s.cells[j][0] + s.cells[j][1]); $(`[data-colsum="${j}"]`).textContent = int(s.cells[0][j] + s.cells[1][j]); });
+    $("[data-total]").textContent = int(s.cells[0][0] + s.cells[0][1] + s.cells[1][0] + s.cells[1][1]);
+    [0, 1].forEach(l => { $(`[data-success-label="${l}"]`).textContent = oName(l); });
+    [0, 1].forEach(j => [0, 1].forEach(l => cellIn(j, l).setAttribute("aria-label", `Četnost: ${gName(j)}, ${oName(l)}`)));
+    $("[data-hyp]").innerHTML = `<i>H</i><sub>0</sub>: ${D} ${nullSign[s.alt]} ${dl}, <i>H</i><sub>1</sub>: ${D} ${altSign[s.alt]} ${dl}, kde π<sub>1</sub> a π<sub>2</sub> jsou populační podíly kategorie ${q(k)} proměnné ${q(esc(outVar()))} ve skupinách ${q(g1)} a ${q(g2)}.`;
+    $(".viz-app-kind").hidden = s.alt === "two";
+    $('[data-kind-label="two"]').textContent = `oboustranné, spolehlivost 1 − 2α = ${levelText(1 - 2 * s.alpha)}`;
+    $('[data-kind-label="one"]').textContent = `jednostranné s ${s.alt === "less" ? "horní" : "dolní"} mezí, spolehlivost 1 − α = ${levelText(1 - s.alpha)}`;
+
+    const scoreTxt = R.score.se0 > 0 ? `${s.delta0 === 0 ? "test se společným podílem" : "skórový test"} <i>z</i> = ${fixed(R.score.z, 3)}, <i>p</i>-hodnota ${pfmt(R.score.pValue)}` : "test nelze spočítat";
+    $("[data-summary]").innerHTML = `<i>p</i><sub>1</sub> = ${lim3(R.p1)}, <i>p</i><sub>2</sub> = ${lim3(R.p2)}, rozdíl ${pp(R.diff)} procentního bodu; ${ivName(R.ci)} ${ivText(R.ci)}; ${scoreTxt}${R.fisher ? `; Fisherův test <i>p</i>-hodnota ${pfmt(R.fisher.p)}` : ""}${ex.status === "done" ? `; přesný test <i>p</i>-hodnota ${pfmt(ex.res.p)}` : ""}.`;
+    resultsTable(R);
+    report(R);
+
+    // Expected counts under H₀ and conditions.
+    const e = R.expected, low = e.flat().some(v => v < 5), wEl = $("[data-cond-warning]");
+    wEl.hidden = !low;
+    wEl.innerHTML = !low ? "" : `Některá očekávaná četnost při <i>H</i><sub>0</sub> je menší než 5. ${s.delta0 === 0 ? "Test se společným podílem se opírá o normální aproximaci a může být nepřesný; opírejte se o Fisherův exaktní test" : "Skórový test se opírá o normální aproximaci a může být nepřesný; opírejte se o přesný test podle Agrestiho a Mina"}${R.exactAvailable ? (s.delta0 === 0 ? " nebo o přesný test podle Agrestiho a Mina" : "") : (s.delta0 === 0 ? "" : ", který se ale pro tak velké skupiny nepočítá")}.`;
+    $("[data-cond]").innerHTML = `Očekávané četnosti při <i>H</i><sub>0</sub>${s.delta0 === 0 ? " (stejné jako v testu nezávislosti: součin řádkového a sloupcového součtu dělený <i>n</i>)" : ", spočítané z podílů odhadnutých za platnosti <i>H</i><sub>0</sub>"}: ${q(g1)} ${trim(e[0][0], 2)} a ${trim(e[0][1], 2)}, ${q(g2)} ${trim(e[1][0], 2)} a ${trim(e[1][1], 2)} (kategorie ${q(k)} a ostatní). Orientačně by všechny měly být alespoň 5; podle kapitoly 9 jde o konzervativní vodítko. Všechny postupy předpokládají dvě nezávislé skupiny a nezávislé případy, z nichž každý je v tabulce právě jednou. Data musí být četnosti případů. Tytéž lidi měřené dvakrát porovnává McNemarův test.`;
+
+    // Charts.
+    const wLevel = R.ci.side === "two" ? R.ci.conf : 2 * R.ci.conf - 1;
+    $("#viz-app-groups-title").innerHTML = `Podíly kategorie ${q(k)} v obou skupinách s ${levelAdj(wLevel)} Wilsonovými intervaly`;
+    $("[data-legend=groups]").replaceChildren(legend([[swDot(ink), "výběrový podíl"], [swLine(blue, 5), "Wilsonův interval"]]));
+    $("[data-chart=groups]").replaceChildren(groupsChart(width, R));
+    $("[data-legend=diff]").replaceChildren(legend([[swDot(ink), "rozdíl <i>p</i><sub>1</sub> − <i>p</i><sub>2</sub>"], [swLine(blue, 6), "Newcombův interval"], ...(ex.status === "done" ? [[swLine(gray, 4), "přesný interval (Agresti a Min)"]] : []), [swLine(orange, 2, "6,4"), "testovaný rozdíl δ<sub>0</sub>"], ...(s.delta0 === 0 ? [] : [[swLine(gray, 2, "2,3"), "nulový rozdíl"]])]));
+    $("[data-chart=diff]").replaceChildren(diffChart(width, R));
+    $("[data-diff-note]").innerHTML = R.ci.side === "two" ? "" : `Jednostranný interval sahá na druhé straně až k ${R.ci.side === "lower" ? "1" : "−1"}; graf ukazuje jen výřez osy.`;
+    const fSec = $('[aria-labelledby="viz-app-fisher-title"]');
+    if (R.fisher) {
+      $("#viz-app-fisher-title").innerHTML = `Fisherův test: všechny tabulky se stejnými okrajovými součty`;
+      $("[data-legend=fisher]").replaceChildren(legend([[swBox(orange), "tabulky tvořící <i>p</i>-hodnotu"], [swBox(pale), "ostatní tabulky"], [swLine(blue, 2.2), "pozorovaná tabulka"], ...(s.alt === "two" ? [[swLine(ink, 1.2, "5,4"), "pravděpodobnost pozorované tabulky"]] : [])]));
+      const F = fisherChart(width, R);
+      $("[data-chart=fisher]").replaceChildren(F.chart);
+      const f = R.fisher, outside = d3.sum([...d3.range(f.lo, F.W.lo), ...d3.range(F.W.hi + 1, f.hi + 1)], i => f.d[i - f.lo]);
+      $("[data-fisher-note]").innerHTML = `Každý sloupec je jedna tabulka; stačí znát četnost ${q(k)} ve skupině ${q(g1)}, ostatní buňky dopočítají okrajové součty. ${F.W.lo > f.lo || F.W.hi < f.hi ? `Graf ukazuje četnosti od ${int(F.W.lo)} do ${int(F.W.hi)}; ostatní mají dohromady pravděpodobnost ${outside < 0.001 ? (outside > 0 ? "&lt; 0,001" : "0") : pfmt(outside)}. ` : ""}${F.W.xOut ? "Pozorovaná tabulka leží daleko mimo výřez: při <i>H</i><sub>0</sub> by byla velmi nepravděpodobná. " : ""}Součet zvýrazněných sloupců je <i>p</i>-hodnota ${pfmt(f.p)}.`;
+    } else {
+      $("#viz-app-fisher-title").innerHTML = "Fisherův test";
+      $("[data-legend=fisher]").replaceChildren();
+      $("[data-chart=fisher]").replaceChildren();
+      $("[data-fisher-note]").innerHTML = `Fisherův test i jeho graf se týkají jen nulové hypotézy, že se podíly neliší (δ<sub>0</sub> = 0). Pro testovaný rozdíl ${dl} použijte skórový test, interval a přesný test podle Agrestiho a Mina.`;
+    }
+    fSec.dataset.fisher = R.fisher ? "on" : "off";
+
+    last = {...R, fisher: R.fisher && {p: R.fisher.p, lo: R.fisher.lo, hi: R.fisher.hi, reject: R.fisher.reject},
+      groupVar: groupVar(), outVar: outVar(), groups: [gName(0), gName(1)], outs: [oName(0), oName(1)], success: s.success,
+      delta0Label: s.delta0Label, exactStatus: ex.status, exact: ex.res};
+  }
+
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = $('[data-chart="diff"]').clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w; cancelAnimationFrame(frame); frame = requestAnimationFrame(render);
+  });
+  observer.observe($('[data-chart="diff"]'));
+  invalidation.then(() => { observer.disconnect(); clearTimeout(exTimer); });
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {compute: L.twoProportions, exact: L.exactProcedure, exactInterval: L.exactInterval, parseDelta, state: () => JSON.parse(JSON.stringify(last))};
+
+  applyPreset(PRESETS[0]);
+  return root;
+}
+```
+
+<noscript><p>Aplikace potřebuje JavaScript. Postupy s řešenými příklady najdete v kapitole 9 v oddílech <a href="kapitola_09.html#sec-dva-podily">Jak porovnat podíly ve dvou nezávislých skupinách?</a>, <a href="kapitola_09.html#sec-fisher">Fisherův exaktní test</a> a <a href="kapitola_09.html#sec-velikost-souvislosti">Jak velká je souvislost?</a>.</p></noscript>
+
+## Co aplikace počítá {#sec-app-dva-podily-princip .unnumbered}
+
+Data tvoří tabulka 2 × 2: řádky jsou dvě nezávislé skupiny, sloupce dvě kategorie výsledku. Ve skupině $j$ je $n_j$ případů a **výběrový podíl** $p_j$ je četnost sledované kategorie ve skupině $j$ dělená $n_j$. Odhadem rozdílu populačních podílů je rozdíl $p_1-p_2$, který uvádíme i v procentních bodech. Nulová hypotéza tvrdí, že rozdíl populačních podílů je $\mathrm{δ}_0$; u alternativy „větší“ tvrdí, že je nejvýše $\mathrm{δ}_0$, u alternativy „menší“, že je nejméně $\mathrm{δ}_0$. Počítáme pak s hraniční hodnotou $\mathrm{δ}_0$, jak vysvětluje oddíl [o směru testu](kapitola_06.qmd#sec-smer-testu).
+
+**Newcombův interval** sestavíme z Wilsonových intervalů obou skupin $(l_1;\,u_1)$ a $(l_2;\,u_2)$, jak ukazuje [kapitola 9](kapitola_09.qmd#sec-newcombe):
+
+$$\text{dolní}=(p_1-p_2)-\sqrt{(p_1-l_1)^2+(u_2-p_2)^2},\qquad\text{horní}=(p_1-p_2)+\sqrt{(u_1-p_1)^2+(p_2-l_2)^2}.$$
+
+Jednostranný interval se spolehlivostí $1-\mathrm{α}$ má jen jednu vypočtenou mez. Wilsonovy intervaly skupin pro ni počítáme s kvantilem $z_{1-\mathrm{α}}$, stejně jako u oboustranného intervalu se spolehlivostí $1-2\mathrm{α}$. Druhou mezí je −1, nebo 1, protože rozdíl dvou podílů nemůže být menší ani větší. U jednostranné alternativy rozhoduje jen mez na její straně, stejně jako v [kapitole 7](kapitola_07.qmd#sec-jednostranny-a-interval).
+
+**Test se společným podílem** je postup z [kapitoly 9](kapitola_09.qmd#sec-test-dvou-podilu) pro $\mathrm{δ}_0=0$. Za platnosti nulové hypotézy mají obě skupiny stejný populační podíl, který odhadneme společným podílem $p$ z obou skupin dohromady. Testová statistika je
+
+$$z=\frac{p_1-p_2}{\sqrt{p(1-p)\left(\dfrac{1}{n_1}+\dfrac{1}{n_2}\right)}}.$$
+
+*p*-hodnotu určíme z normovaného normálního rozdělení podle alternativy. U oboustranné alternativy je $z^2$ rovno statistice chí-kvadrát [testu nezávislosti](kapitola_09.qmd#sec-chi-a-z) v tabulce 2 × 2 a oba testy mají stejnou *p*-hodnotu.
+
+**Skórový test rozdílu** rozšiřuje tutéž úvahu na nenulové $\mathrm{δ}_0$; v kapitolách není, aplikace ho používá jako jednoduché zobecnění. Test se ptá, jak neobvyklý by byl výsledek, kdyby platila nulová hypotéza. Proto počítá směrodatnou chybu z podílů, které nulová hypotéza připouští, ne z výběrových podílů, stejně jako test se společným podílem v [kapitole 9](kapitola_09.qmd#sec-test-dvou-podilu). Tentokrát ale tyto podíly nejsou stejné, liší se právě o $\mathrm{δ}_0$. Aplikace proto mezi dvojicemi podílů s rozdílem $\mathrm{δ}_0$ najde tu, při které by pozorované četnosti byly nejpravděpodobnější. Tyto **podíly odhadnuté za platnosti $H_0$** dosadí za $\mathrm{π}_1$ a $\mathrm{π}_2$ do vzorce $\sqrt{\mathrm{π}_1(1-\mathrm{π}_1)/n_1+\mathrm{π}_2(1-\mathrm{π}_2)/n_2}$ pro směrodatnou chybu rozdílu [@agresti2001, s. 967]. Testová statistika je
+
+$$z=\frac{(p_1-p_2)-\mathrm{δ}_0}{\text{směrodatná chyba při }H_0}.$$
+
+Pro $\mathrm{δ}_0=0$ je nejlepší dvojicí právě společný podíl v obou skupinách, takže skórový test splývá s testem se společným podílem. Newcombův interval ale nevzniká jako množina hodnot $\mathrm{δ}_0$, které skórový test nezamítá. Nejde tedy o [odpovídající test a interval](kapitola_07.qmd#sec-mnozina-nezamitnutych) ve smyslu kapitoly 7. Jejich rozhodnutí se proto u výsledků blízko hranice mohou výjimečně lišit, stejně jako Wilsonův interval a přesný binomický test v [aplikaci pro jeden podíl](app_jeden_podil.qmd).
+
+**Fisherův exaktní test** odpovídá pro $\mathrm{δ}_0=0$ na stejnou otázku bez normální aproximace. Bere okrajové součty tabulky jako dané a spočítá přesné pravděpodobnosti všech tabulek s těmito součty ([kapitola 9](kapitola_09.qmd#sec-fisher)); každou tabulku určuje četnost sledované kategorie v první skupině. U oboustranné alternativy test sečte pravděpodobnosti tabulek, které jsou stejně nebo méně pravděpodobné než pozorovaná. U alternativy „větší“ sečte tabulky, v nichž je tato četnost alespoň tak velká jako pozorovaná, u alternativy „menší“ tabulky, v nichž je nejvýše tak velká. Pravděpodobnosti tabulek počítá za předpokladu, že se podíly shodují; pro nenulové $\mathrm{δ}_0$ ho proto použít nelze.
+
+**Přesný test a interval podle Agrestiho a Mina** jsou nepovinným doplňkem pro malé skupiny. Test používá tutéž statistiku $z$ jako skórový test, ale její rozdělení nepřibližuje normálním rozdělením. Pravděpodobnost každé možné tabulky spočítá jako součin [binomických pravděpodobností](kapitola_05.qmd#sec-binomicky-vzorec) obou skupin, protože skupiny jsou nezávislé. Výsledek ale závisí na samotných populačních podílech a nulová hypotéza určuje jen jejich rozdíl: pro $\mathrm{δ}_0=0{,}10$ jí vyhovuje dvojice 0,40 a 0,30 stejně jako 0,70 a 0,60. Test proto pro každou takovou dvojici sečte pravděpodobnosti tabulek se stejně nebo více extrémní statistikou $z$ a za *p*-hodnotu vezme největší z těchto součtů. Pravděpodobnost chyby I. druhu tak nepřekročí α, ať jsou podíly jakékoli. Na rozdíl od Fisherova testu neurčuje okrajové součty předem a funguje pro libovolné $\mathrm{δ}_0$.
+
+Oboustranný přesný interval obsahuje všechny hodnoty testovaného rozdílu, které by oboustranný přesný test nezamítl. Agresti a Min [-@agresti2001, s. 966–968] ukázali, že je u malých výběrů zpravidla kratší než přesné intervaly složené ze dvou jednostranných testů. Pravděpodobnost, že zachytí skutečný rozdíl, přitom nikdy neklesne pod zvolenou spolehlivost. U jednostranné alternativy aplikace obrací jednostranný test, jak pro jednostranné otázky a noninferioritu doporučují Agresti a Min [-@agresti2001, s. 969]; interval pak rozhoduje stejně jako přesný test. Protože se *p*-hodnota s testovaným rozdílem mění skokem, mohou výjimečně vzniknout oddělené úseky nezamítnutých hodnot. Interval pak sahá od nejnižší do nejvyšší z nich, jak postupují Agresti a Min. Výpočet prochází všechny tabulky, a proto ho aplikace provádí, jen pokud má každá skupina nejvýše 200 případů. U větších skupin se výsledky blíží skórovému testu a Newcombovu intervalu.
+
+**Míry souvislosti** popisuje [kapitola 9](kapitola_09.qmd#sec-velikost-souvislosti). Poměr rizik je $p_1/p_2$, poměr šancí podíl šancí obou skupin; referenční skupinou ve jmenovateli je druhá skupina. Jejich intervaly z [nepovinného rozšíření](kapitola_09.qmd#rozsireni-intervaly-pomeru) se počítají na logaritmické škále a mají stejnou spolehlivost jako interval pro rozdíl; při nulové četnosti v příslušné buňce je spočítat nelze. Koeficient φ aplikace uvádí jako kladné číslo a směr souvislosti popisuje slovy. Yatesovu korekci na spojitost aplikace nepoužívá, stejně jako kapitola 9.
+
+Všechny postupy předpokládají dvě nezávislé skupiny a nezávislé případy, z nichž každý je v tabulce právě jednou ([kapitola 9](kapitola_09.qmd#sec-predpoklady-09)). Podíly musí vzniknout z četností případů. O příčině rozdílu vypovídá jen pokus, v němž byli lidé do skupin přiřazeni náhodně.
+
+## Vyzkoušejte si {#sec-app-dva-podily-vyzkousejte .unnumbered}
+
+1. Na výchozím příkladu stresu najděte v tabulce výsledků Newcombův interval, *z* a *p*-hodnotu a porovnejte je s kapitolou 9. Potom zdvojnásobte všechny četnosti (80, 120, 60, 140). Které výsledky se změní a které zůstanou stejné? Proč se interval zúží?
+2. Zvolte pilotní studii. Proč aplikace upozorňuje na očekávané četnosti? Porovnejte *p*-hodnotu testu se společným podílem, Fisherova testu a přesného testu podle Agrestiho a Mina. Ke kterému rozhodnutí dojdou? Najděte v grafu Fisherova testu tabulky, které tvoří *p*-hodnotu.
+3. Zvolte příklad noninferiority. Jakou otázku vyjadřují hypotézy a proč je testovaný rozdíl záporný? Rozhodněte, zda data prokazují, že online kurz není horší o více než 10 procentních bodů. Leží −0,10 pod dolní mezí intervalu? Potom vynásobte všechny četnosti čtyřmi. Změní se závěr? Přesný test se u tak velkých skupin nepočítá; rozhodněte podle skórového testu a Newcombova intervalu.
+4. Zvolte příklad o aspirinu a porovnejte rozdíl rizik v procentních bodech s poměrem rizik. Potom stiskněte „Prohodit skupiny“. Jak se změní rozdíl, poměr rizik a interval? Co zůstane stejné?
+
+## Čeho si všimnout {#sec-app-dva-podily-vsimnete .unnumbered}
+
+Interval říká víc než test: nejen zda je rozdíl slučitelný s $\mathrm{δ}_0$, ale také které rozdíly jsou s daty slučitelné. U stresu test nulovou hypotézu nezamítá (*p*-hodnota 0,138), a interval přitom ukazuje, že data připouštějí jak nulový rozdíl, tak rozdíl kolem 20 procentních bodů. Při dvojnásobné velikosti výběru se stejnými podíly se interval zúží na (0,007; 0,191) a test zamítá (*p*-hodnota 0,036). Rozdíl ve výběru je přitom stejný.
+
+U malých skupin se testy mohou rozcházet. V pilotní studii má test se společným podílem *p*-hodnotu 0,025, Fisherův test 0,070 a přesný test podle Agrestiho a Mina 0,041. Test se společným podílem se tu opírá o aproximaci, která při očekávaných četnostech pod 5 nemusí platit. U obou přesných testů pravděpodobnost chyby I. druhu nepřekročí α, a přesto se liší: přesný výpočet není jediný, protože každý test srovnává pozorovanou tabulku s jinou množinou tabulek. Fisherův test bere jen tabulky se stejnými okrajovými součty. Možných *p*-hodnot je proto málo a jeho [skutečná hladina významnosti](kapitola_07.qmd#sec-t-predpoklady) bývá znatelně pod α: je konzervativní. Přesný test podle Agrestiho a Mina má toto omezení v menší míře. Který test použijeme, je třeba rozhodnout předem, nikoli podle toho, který vyjde významný. Kapitola 9 se u malých tabulek drží Fisherova testu, nejběžnějšího přesného postupu.
+
+V otázce noninferiority je nulová hypotéza „online kurz je horší o 10 procentních bodů nebo víc“. Nezamítnutí proto neznamená, že kurz je horší; data jen nestačí k průkazu, že není podstatně horší. K průkazu je potřeba, aby dolní mez intervalu ležela nad −0,10; to obvykle vyžaduje dostatečně velký výběr. Volba hranice $\mathrm{δ}_0$ je věcné rozhodnutí, které musí padnout před sběrem dat.
+
+Prohození skupin změní znaménko rozdílu a převrátí poměry, ale nezmění *p*-hodnoty ani rozhodnutí: jde jen o to, kterou skupinu označíme jako první. Poměr rizik 1,82 u aspirinu a rozdíl 0,77 procentního bodu popisují tentýž výsledek; pro rozhodování potřebujeme obojí, jak zdůrazňuje [kapitola 9](kapitola_09.qmd#sec-pomer-rizik-sanci).

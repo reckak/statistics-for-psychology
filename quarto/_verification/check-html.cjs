@@ -679,7 +679,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(3).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Proč odhadujeme podíl Wilsonovým intervalem','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
-    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Test jednoho podílu']);
+    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Test jednoho podílu','Test dvou podílů']);
     assert.equal(await groups.nth(3).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(3).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -2736,6 +2736,126 @@ const server = http.createServer((req, res) => {
     await appPlots.nth(2).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'One-proportion app fits a phone');
     await app.screenshot({path: 'tmp/verification/app-jeden-podil-mobile.png'});
+    await page.setViewportSize({width: 1360, height: 1000});
+
+    // Statistical app: test of two proportions (R87 amendment 2026-11-26). Calculations against R
+    // (scripts/reference/app-dva-podily.json from scripts/app-dva-podily.R; the full grid is checked by
+    // node scripts/check-stat-lib.mjs), the chapter 9 link, default state, tested difference δ0, Fisher only for δ0 = 0,
+    // the exact procedure of Agresti and Min, labels and escaping, swapping groups, rejected inputs, presets and phone.
+    await page.goto(base + 'quarto/kapitola_09.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#sec-test-dvou-podilu .callout-tip a[href$="app_dva_podily.html"]').count(), 1, 'Chapter 9 links to the two-proportion app');
+    await page.goto(base + 'quarto/app_dva_podily.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(2).locator('a.sidebar-link.active').count(), 1, 'Two-proportion app marked in the sidebar');
+    const app2 = page.locator('#app-dva-podily');
+    const app2Plots = app2.locator('.viz-plots svg[aria-label]');
+    await app2Plots.first().waitFor();
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Two-proportion app: no code, copy button or OJS error');
+    assert.equal(await app2.locator('.viz-fullscreen').count(), 1, 'Two-proportion app has the full-screen button');
+    const s2 = () => app2.evaluate(el => el.vizCheck.state());
+    const t2 = sel => app2.locator(sel).innerText();
+    const exactDone = () => page.waitForFunction(() => ['done', 'unavailable'].includes(document.querySelector('#app-dva-podily').vizCheck.state().exactStatus), null, {timeout: 30000});
+    const REF2 = JSON.parse(fs.readFileSync('scripts/reference/app-dva-podily.json', 'utf8'));
+    for (const name of ['stres', 'daniels', 'pilot', 'noninf', 'nula1', 'male']) {
+      const c = REF2.cases[name];
+      for (const sc of c.score.filter(x => [0, -0.1, 0.25].includes(x.delta))) {
+        const g = await app2.evaluate((el, a) => { const r = el.vizCheck.compute({cells: a.cells, delta0: a.delta, alt: a.alt, alpha: 0.05}); return [r.score.z, r.score.pValue, r.fisher ? r.fisher.p : null]; }, {cells: c.cells, delta: sc.delta, alt: sc.alt});
+        if (sc.z !== null) { appNear(g[0], sc.z, `${name}, δ0 = ${sc.delta}, ${sc.alt}: z`); appNear(g[1], sc.p, `${name}, δ0 = ${sc.delta}, ${sc.alt}: p-value`); }
+        if (sc.delta === 0 && c.fisher) appNear(g[2], c.fisher[sc.alt], `${name}, ${sc.alt}: Fisher p-value`);
+        if (sc.delta !== 0) assert.equal(g[2], null, 'No Fisher test for δ0 ≠ 0');
+      }
+      const nc = await app2.evaluate((el, cells) => { const r = el.vizCheck.compute({cells, alpha: 0.05}); return [r.ci.lo, r.ci.hi, r.phi]; }, c.cells);
+      appNear(nc[0], c.newcombe.two95[0], `${name}: Newcombe lo`, 1e-7); appNear(nc[1], c.newcombe.two95[1], `${name}: Newcombe hi`, 1e-7);
+      if (c.phi !== null) appNear(nc[2], c.phi, `${name}: φ`);
+    }
+    // Agresti & Min (2001), table 3: 5 and 0 of 10 → (0,132; 0,778).
+    const am = await app2.evaluate(el => el.vizCheck.exactInterval(5, 10, 0, 10, 0.05));
+    assert.deepEqual([am.lo.toFixed(3), am.hi.toFixed(3)], ['0.132', '0.778'], 'Exact interval as in Agresti & Min, table 3');
+    // Default state: stress data of chapter 9, δ0 = 0, two-sided H1, the stress preset pressed.
+    await exactDone();
+    let b2 = await s2();
+    assert.deepEqual([b2.n1, b2.n2, b2.delta0, b2.alt, b2.ci.side, b2.ci.conf, b2.score.reject, b2.fisher.reject, b2.ciRejects, b2.expectedOk, b2.exactStatus, b2.exact.reject], [100, 100, 0, 'two', 'two', 0.95, false, false, false, true, 'done', false]);
+    assert.equal(await app2.locator('[data-preset="stres"]').getAttribute('aria-pressed'), 'true');
+    assert(!(await app2.locator('.viz-app-kind').isVisible()), 'No interval choice for the default two-sided alternative');
+    for (const t of ['H0: π1 − π2 = 0', 'H1: π1 − π2 ≠ 0', '„Zvýšený stres“', '„Ženy“']) assert((await t2('[data-hyp]')).includes(t), `Default hypotheses show ${t}`);
+    const res2 = await t2('[data-results]');
+    for (const t of ['40 z 100', '+10,0 procentního bodu', '(−0,032; 0,227)', 'Společný podíl p', '0,350', '0,0675', '1,482', '0,138', '0,182', 'hypergeometrické', '(−0,038; 0,230)', '0,147', 'referenční skupina „Muži“', '1,33', '1,56', '0,105']) assert(res2.includes(t), `Two-proportion results show ${t}`);
+    assert((await t2('[data-report]')).includes('žádný test nezamítá'), 'Default report: no test rejects');
+    assert.equal(await app2Plots.count(), 3, 'Three charts with δ0 = 0: proportions, difference, Fisher');
+    const app2Colors = await app2.locator('[data-results] table').evaluate(t => ({head: getComputedStyle(t.querySelector('thead th')).backgroundColor, group: getComputedStyle(t.querySelector('tr.viz-app-group th')).backgroundColor}));
+    assert.deepEqual(app2Colors, {head: 'rgb(34, 55, 68)', group: 'rgb(240, 240, 240)'});
+    assert.deepEqual(await app2.locator('[data-rowsum], [data-colsum], [data-total]').allInnerTexts(), ['100', '100', '70', '130', '200'], 'Margins of the input table');
+    // Tested difference δ0 ≠ 0: score test with restricted estimates, no Fisher test and no Fisher chart.
+    await app2.locator('#viz-app-delta').fill('0,1');
+    b2 = await s2();
+    appNear(b2.score.z, REF2.cases.stres.score.find(x => x.delta === 0.1 && x.alt === 'two').z, 'Stress, δ0 = 0,1: z');
+    assert.equal(b2.fisher, null, 'No Fisher result for δ0 ≠ 0');
+    assert.equal(await app2Plots.count(), 2, 'No Fisher chart for δ0 ≠ 0');
+    assert((await t2('[data-results]')).includes('Podíly odhadnuté za platnosti H0'), 'Restricted estimates shown for δ0 ≠ 0');
+    assert((await t2('[data-fisher-note]')).includes('δ0 = 0'), 'Fisher note for δ0 ≠ 0');
+    await app2.locator('#viz-app-delta').fill('1');
+    assert.equal(await app2.locator('#viz-app-delta').getAttribute('aria-invalid'), 'true', 'δ0 = 1 rejected');
+    assert.equal((await s2()).delta0, 0.1, 'Invalid δ0 keeps the last valid value');
+    await app2.locator('#viz-app-delta').fill('-1/10');
+    b2 = await s2();
+    assert.deepEqual([b2.delta0, b2.delta0Label], [-0.1, '−1/10'], 'δ0 as a negative fraction');
+    // Noninferiority preset: one-sided H1 with the interval choice; the exact procedure runs too.
+    await app2.locator('[data-preset="noninf"]').click();
+    await exactDone();
+    b2 = await s2();
+    assert.deepEqual([b2.delta0, b2.delta0Label, b2.alt, b2.ci.side, b2.ci.conf, b2.score.reject, b2.ciRejects, b2.exact.reject], [-0.1, '−0,10', 'greater', 'two', 0.9, false, false, false]);
+    appNear(b2.score.pValue, REF2.cases.noninf.score.find(x => x.delta === -0.1 && x.alt === 'greater').p, 'Noninferiority p-value');
+    for (const t of ['H0: π1 − π2 ≤ −0,10', 'H1: π1 − π2 > −0,10']) assert((await t2('[data-hyp]')).includes(t), `Noninferiority hypotheses show ${t}`);
+    assert(await app2.locator('.viz-app-kind').isVisible(), 'Interval choice shown for a one-sided alternative');
+    await app2.locator('input[name="viz-app-kind"][value="one"]').check();
+    await exactDone();
+    b2 = await s2();
+    assert.deepEqual([b2.ci.side, b2.ci.conf, b2.ci.hi, b2.exact.ci.side, b2.exact.ci.hi], ['lower', 0.95, 1, 'lower', 1]);
+    assert((await t2('[data-results]')).includes('[−0,147; 1]'), 'One-sided Newcombe interval written with its bound 1');
+    // Swapping groups keeps the hypotheses: δ0 changes sign, the alternative its direction, the p-value stays.
+    const pBefore = b2.score.pValue;
+    await app2.locator('[data-swap]').click();
+    b2 = await s2();
+    assert.deepEqual([b2.groups, b2.delta0, b2.delta0Label, b2.alt], [['prezenční', 'online'], 0.1, '0,10', 'less']);
+    appNear(b2.score.pValue, pBefore, 'Swapping groups keeps the p-value');
+    assert.equal(await app2.locator('[data-preset][aria-pressed="true"]').count(), 0, 'Swap ends the pressed preset');
+    // Pilot study: small counts, warning, Fisher 0,070 (chapter 9) and the exact test between the two.
+    await app2.locator('[data-preset="pilot"]').click();
+    await exactDone();
+    b2 = await s2();
+    appNear(b2.fisher.p, REF2.cases.pilot.fisher.two, 'Pilot: Fisher p-value (chapter 9: 0,070)');
+    assert.deepEqual([b2.expectedOk, b2.score.reject, b2.fisher.reject], [false, true, false]);
+    assert(await app2.locator('[data-cond-warning]').isVisible(), 'Expected-count warning for the pilot study');
+    assert((await t2('[data-report]')).includes('se testy liší'), 'Pilot report explains that the tests disagree');
+    // Daniels: ratios and φ of chapter 9; aspirin: no exact procedure for groups over 200.
+    await app2.locator('[data-preset="daniels"]').click();
+    const resD = await t2('[data-results]');
+    for (const t of ['2,34', '(1,50; 3,66)', '3,23', '(1,80; 5,82)', '0,250', '(0,119; 0,330)']) assert(resD.includes(t), `Daniels results show ${t}`);
+    await app2.locator('[data-preset="aspirin"]').click();
+    await exactDone();
+    assert.equal((await s2()).exactStatus, 'unavailable', 'No exact procedure for groups over 200');
+    assert((await t2('[data-results]')).includes('nejvýše 200 případů'), 'Exact procedure limit explained');
+    assert.equal(await page.locator('.observablehq--error').count(), 0, 'No OJS error for the aspirin data');
+    // Labels from the inputs, escaping, the outcome category and rejected cells.
+    await app2.locator('#viz-app-g0').fill('<b>A</b>');
+    await app2.locator('#viz-app-ovar').fill('Infarkt myokardu');
+    assert.equal(await app2.locator('[data-report] b, [data-results] b, [data-hyp] b').count(), 0, 'User text is escaped');
+    assert((await t2('[data-report]')).includes('„<b>A</b>“') && (await t2('[data-report]')).includes('„Infarkt myokardu“'), 'Labels shown as text in the report');
+    await app2.locator('#viz-app-g0').fill('');
+    assert((await t2('[data-hyp]')).includes('„Skupina 1“'), 'Empty group name falls back');
+    await app2.locator('input[name="viz-app-success"][value="1"]').check();
+    b2 = await s2();
+    assert.deepEqual([b2.cells[0][0], b2.success], [10845, 1], 'Second outcome category as the chosen one');
+    await app2.locator('#viz-app-c00').fill('0'); await app2.locator('#viz-app-c01').fill('0');
+    assert(await app2.locator('#viz-app-cells-error').isVisible(), 'Empty group rejected');
+    assert.equal((await s2()).n1, 10845, 'Empty group keeps the last valid counts');
+    await app2.locator('#viz-app-c00').fill('-3');
+    assert.equal(await app2.locator('#viz-app-c00').getAttribute('aria-invalid'), 'true');
+    // Phone.
+    await page.setViewportSize({width: 375, height: 812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await app2Plots.nth(2).waitFor();
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Two-proportion app fits a phone');
+    await app2.screenshot({path: 'tmp/verification/app-dva-podily-mobile.png'});
     await page.setViewportSize({width: 1360, height: 1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });

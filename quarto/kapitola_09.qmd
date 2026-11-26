@@ -259,6 +259,10 @@ Proč test používá společný podíl a interval ne? Test se ptá, jak neobvyk
 
 Na velikosti výběru záleží. Kdybychom měli dvakrát víc studentů se stejnými podíly, 80 z 200 žen a 60 z 200 mužů, vyšla by *p*-hodnota 0,036 a interval (0,007; 0,191). Rozdíl ve výběru by byl stejný, jen by byl odhadnut přesněji [@howell, s. 169, cv. 6.9].
 
+::: {.callout-tip title="Spočítejte si: test dvou podílů"}
+V [aplikaci Test dvou podílů](app_dva_podily.qmd) zadáte tabulku 2 × 2 s názvy skupin a kategorií, testovaný rozdíl, alternativní hypotézu a hladinu významnosti. Aplikace spočítá Newcombův interval, test se společným podílem, Fisherův exaktní test, poměr rizik, poměr šancí a koeficient φ s dosazením. Vyzkoušíte si i nenulový testovaný rozdíl, například v otázce noninferiority.
+:::
+
 ### Výpočet v Excelu {#sec-dva-podily-excel}
 
 List `Dva_podily` počítá Wilsonovy intervaly obou skupin, Newcombův interval a test se společným podílem; vstupy jsou žluté buňky B2:B6.

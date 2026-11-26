@@ -65,6 +65,7 @@ book:
     - part: "Statistické aplikace"
       chapters:
         - quarto/app_jeden_podil.qmd
+        - quarto/app_dva_podily.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd
