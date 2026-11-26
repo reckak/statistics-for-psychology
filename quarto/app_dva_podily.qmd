@@ -255,6 +255,28 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
   const base = (width, small) => ({width, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 18, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
   const axis = (label, extra = {}) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, ...extra});
 
+  // Two-line label under an interval line, centred on the point estimate: the estimate and below it the limits.
+  // A semi-transparent white box keeps it readable over reference lines without hiding them; the box stays inside
+  // the plot area. Rendered as a function mark (index, scales, values, dimensions).
+  const measureCtx = document.createElement("canvas").getContext("2d");
+  const estimateLabels = (items, small) => (index, scales, values, dims) => {
+    const ns = "http://www.w3.org/2000/svg", fs = small ? 12 : 13, lh = fs + 3, g = document.createElementNS(ns, "g");
+    measureCtx.font = `600 ${fs}px ${getComputedStyle(root).fontFamily}`;
+    for (const it of items) {
+      const w = Math.max(...it.lines.map(t => measureCtx.measureText(t).width)) + 10, h = it.lines.length * lh + 4;
+      const cx = Math.max(dims.marginLeft + w / 2, Math.min(dims.width - dims.marginRight - w / 2, scales.x(it.x))), y0 = scales.y(it.y) + 7;
+      const box = document.createElementNS(ns, "rect");
+      Object.entries({x: cx - w / 2, y: y0, width: w, height: h, rx: 3, fill: "white", "fill-opacity": 0.8}).forEach(([k, v]) => box.setAttribute(k, v));
+      g.append(box);
+      it.lines.forEach((t, i) => {
+        const tx = document.createElementNS(ns, "text");
+        Object.entries({x: cx, y: y0 + 2 + (i + 1) * lh - 4, "text-anchor": "middle", fill: it.color, "font-weight": 600, "font-size": fs}).forEach(([k, v]) => tx.setAttribute(k, v));
+        tx.textContent = t; g.append(tx);
+      });
+    }
+    return g;
+  };
+
   const D = "π<sub>1</sub> − π<sub>2</sub>", d0 = "δ<sub>0</sub>";
   const altSign = {two: "≠", greater: "&gt;", less: "&lt;"}, nullSign = {two: "=", greater: "≤", less: "≥"};
   const decision = rej => rej ? "zamítáme nulovou hypotézu" : "nulovou hypotézu nezamítáme";
@@ -395,44 +417,44 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
   // Chart 1: proportions of both groups with their Wilson intervals.
   function groupsChart(width, R) {
     const small = width < 520, ci = R.ci, names = [0, 1].map(j => short(gName(j), small ? 14 : 26));
-    const rows = [{y: names[0], p: R.p1, lo: ci.w1.lo, hi: ci.w1.hi}, {y: names[1], p: R.p2, lo: ci.w2.lo, hi: ci.w2.hi}];
+    const rows = [{y: 1.75, p: R.p1, lo: ci.w1.lo, hi: ci.w1.hi}, {y: 0.75, p: R.p2, lo: ci.w2.lo, hi: ci.w2.hi}];
     const k = oName(s.success), wLevel = ci.side === "two" ? ci.conf : 2 * ci.conf - 1;
     return Plot.plot({
-      ...base(width, small), height: 160, marginLeft: small ? 92 : 150, marginBottom: 46,
+      ...base(width, small), height: 210, marginLeft: small ? 92 : 150, marginBottom: 46,
       x: {domain: [-0.02, 1.02], ...axis(`podíl kategorie ${q(short(k, 30))}`), ticks: small ? 5 : 10, tickFormat: v => trim(v, 2)},
-      y: {domain: names, label: null, padding: 0.5},
+      y: {domain: [0, 2.2], label: null, ticks: [1.75, 0.75], tickFormat: v => v > 1 ? names[0] : names[1]},
       ariaLabel: `Podíly kategorie ${q(k)} ve skupinách ${q(gName(0))} a ${q(gName(1))} s ${levelAdj(wLevel)} Wilsonovými intervaly`,
       ariaDescription: `${gName(0)}: podíl ${lim3(R.p1)}, interval ${lim3(ci.w1.lo)} až ${lim3(ci.w1.hi)}. ${gName(1)}: podíl ${lim3(R.p2)}, interval ${lim3(ci.w2.lo)} až ${lim3(ci.w2.hi)}.`,
       marks: [
         Plot.ruleX([0, 1], {stroke: gray, strokeOpacity: 0.5}),
         Plot.link(rows, {x1: "lo", x2: "hi", y1: "y", y2: "y", stroke: blue, strokeWidth: 5}),
         Plot.dot(rows, {x: "p", y: "y", r: 5, fill: ink}),
-        Plot.text(rows, {x: "p", y: "y", dy: -12, text: d => lim3(d.p), fill: ink, fontWeight: 600})
+        estimateLabels(rows.map(r => ({x: r.p, y: r.y, lines: [lim3(r.p), `(${lim3(r.lo)}; ${lim3(r.hi)})`], color: ink})), small)
       ]
     });
   }
 
-  // Chart 2: interval for the difference on the axis π₁ − π₂ with zero and δ₀.
+  // Chart 2: interval for the difference on the axis π₁ − π₂ with zero and δ₀; the exact interval below the Newcombe one.
   function diffChart(width, R) {
     const small = width < 520, ci = R.ci, e = ex.status === "done" ? ex.res.ci : null;
     const lo = Math.max(-1, Math.min(0, s.delta0, ci.side === "upper" ? R.diff : ci.lo, e && e.side !== "upper" ? e.lo : 0)), hi = Math.min(1, Math.max(0, s.delta0, ci.side === "lower" ? R.diff : ci.hi, e && e.side !== "lower" ? e.hi : 0));
     const pad = Math.max(0.03, 0.12 * (hi - lo)), dom = [Math.max(-1.02, lo - pad), Math.min(1.02, hi + pad)];
     const clip = v => Math.max(dom[0], Math.min(dom[1], v));
-    const ivs = [{lo: clip(ci.lo), hi: clip(ci.hi), y: 1.3, color: blue, w: 6}, ...(e ? [{lo: clip(e.lo), hi: clip(e.hi), y: 0.7, color: gray, w: 4}] : [])];
+    const top = e ? 4.4 : 2.6;
+    const ivs = [{iv: ci, y: top - 1.1, color: blue, w: 6}, ...(e ? [{iv: e, y: top - 3.1, color: gray, w: 5}] : [])];
     const refs = s.delta0 === 0 ? [{x: 0, label: "δ₀ = 0", color: orange, dash: "6,4"}] : [{x: 0, label: "0", color: gray, dash: "2,3"}, {x: s.delta0, label: `δ₀ = ${s.delta0Label}`, color: orange, dash: "6,4"}];
     return Plot.plot({
-      ...base(width, small), height: 170, marginBottom: 46,
+      ...base(width, small), height: e ? 250 : 170, marginBottom: 46,
       x: {domain: dom, ...axis("rozdíl populačních podílů π₁ − π₂"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 2)},
-      y: {domain: [0, 2.2], axis: null},
+      y: {domain: [0, top], axis: null},
       ariaLabel: `${ivName(ci)} pro rozdíl podílů${e ? " a přesný interval" : ""}`,
       ariaDescription: `Rozdíl výběrových podílů ${lim3(R.diff)}, Newcombův interval ${ivText(ci)}${e ? `, přesný interval ${ivText(e)}` : ""}, testovaný rozdíl ${s.delta0Label} ${R.ciRejects ? "leží mimo interval na straně alternativy" : "interval nevylučuje"}.`,
       marks: [
         ...refs.map(r => Plot.ruleX([r.x], {stroke: r.color, strokeWidth: 2, strokeDasharray: r.dash})),
-        ...refs.map((r, i) => Plot.text([r.x], {x: d => d, y: 2.1 - 0.0 * i, dy: i * 14, text: () => r.label, fill: r.color, fontWeight: 600, textAnchor: r.x > (dom[0] + dom[1]) / 2 ? "end" : "start", dx: r.x > (dom[0] + dom[1]) / 2 ? -5 : 5})),
-        ...ivs.map(v => Plot.link([v], {x1: "lo", x2: "hi", y1: v.y, y2: v.y, stroke: v.color, strokeWidth: v.w})),
-        Plot.dot([R.diff], {x: d => d, y: 1.3, r: 5, fill: ink}),
-        Plot.text([ci], {x: ci.side === "upper" ? clip(ci.hi) : clip(ci.lo), y: 1.3, dy: 15, text: () => ivText(ci), fill: blue, fontWeight: 600, textAnchor: ci.side === "upper" ? "end" : "start"}),
-        ...(e ? [Plot.text([e], {x: e.side === "upper" ? clip(e.hi) : clip(e.lo), y: 0.7, dy: 13, text: () => ivText(e), fill: gray, fontWeight: 600, textAnchor: e.side === "upper" ? "end" : "start"})] : []),
+        ...refs.map((r, i) => Plot.text([r.x], {x: d => d, y: top - 0.15, dy: i * 14, text: () => r.label, fill: r.color, fontWeight: 600, textAnchor: r.x > (dom[0] + dom[1]) / 2 ? "end" : "start", dx: r.x > (dom[0] + dom[1]) / 2 ? -5 : 5})),
+        ...ivs.map(v => Plot.link([v], {x1: () => clip(v.iv.lo), x2: () => clip(v.iv.hi), y1: v.y, y2: v.y, stroke: v.color, strokeWidth: v.w})),
+        Plot.dot(ivs, {x: () => R.diff, y: "y", r: 5, fill: ink}),
+        estimateLabels(ivs.map(v => ({x: R.diff, y: v.y, lines: [lim3(R.diff), ivText(v.iv)], color: v.color === blue ? blue : ink})), small),
         Plot.ruleY([0], {stroke: ink})
       ]
     });
