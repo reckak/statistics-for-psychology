@@ -1,5 +1,18 @@
 # Autorská dokumentace
 
+<a id="obrazek-3-3-popisky-50"></a>
+
+## Kapitola 3: popisky „50 %“ v obrázku 3.3 (2026-11-26)
+
+Na připomínku autora, že levý popisek „50 %“ v obrázku 3.3
+(`assets/chapter-03/plots/mode-median-mean.svg`) přetéká přes levý okraj
+tvaru: v prostředním panelu zmenšeno písmo obou popisků z 10 na 8 jednotek
+a výchozí české popisky posunuty z x = 15 a 45 na 19 a 43. Mezera v „50 %“
+zůstává; jazykové větve ostatních jazyků mají jen menší písmo. Ověřeno na
+snímku samotného SVG a obrázku ve vykreslené kapitole 3 (po vynucení nového
+načtení, prohlížeč držel starou verzi v mezipaměti): oba popisky jsou celé
+uvnitř tvaru a nedotýkají se čáry mediánu.
+
 <a id="aplikace-dva-podily"></a>
 
 ## Statistické aplikace: test dvou podílů (2026-11-26, upřesnění R87)
