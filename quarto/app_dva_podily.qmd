@@ -23,7 +23,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
 {
   // Calculations live in a shared module checked against R (scripts/check-stat-lib.mjs, scripts/app-dva-podily.R).
   const L = await import(new URL("../assets/stat/dva-podily.js", document.baseURI).href);
-  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1";
+  const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", green = "#3B7D3A";
 
   // Czech number formatting with a true minus sign; user text is always escaped before it enters HTML.
   const minus = t => t.replace(/^-/, "−");
@@ -146,6 +146,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
     <section class="viz-part" aria-labelledby="viz-app-cond-title">
       <h3 id="viz-app-cond-title" class="viz-part-title">Očekávané četnosti a předpoklady</h3>
       <p class="viz-limit" data-cond-warning hidden></p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Pozorované a očekávané četnosti: posuvná oblast" data-expected></div>
       <p class="viz-note" data-cond></p>
     </section>
     <section class="viz-part" aria-labelledby="viz-app-groups-title">
@@ -441,7 +442,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
     const pad = Math.max(0.03, 0.12 * (hi - lo)), dom = [Math.max(-1.02, lo - pad), Math.min(1.02, hi + pad)];
     const clip = v => Math.max(dom[0], Math.min(dom[1], v));
     const top = e ? 4.4 : 2.6;
-    const ivs = [{iv: ci, y: top - 1.1, color: blue, w: 6}, ...(e ? [{iv: e, y: top - 3.1, color: gray, w: 5}] : [])];
+    const ivs = [{iv: ci, y: top - 1.1, color: blue, w: 6}, ...(e ? [{iv: e, y: top - 3.1, color: green, w: 5}] : [])];
     const refs = s.delta0 === 0 ? [{x: 0, label: "δ₀ = 0", color: orange, dash: "6,4"}] : [{x: 0, label: "0", color: gray, dash: "2,3"}, {x: s.delta0, label: `δ₀ = ${s.delta0Label}`, color: orange, dash: "6,4"}];
     return Plot.plot({
       ...base(width, small), height: e ? 250 : 170, marginBottom: 46,
@@ -454,7 +455,7 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
         ...refs.map((r, i) => Plot.text([r.x], {x: d => d, y: top - 0.15, dy: i * 14, text: () => r.label, fill: r.color, fontWeight: 600, textAnchor: r.x > (dom[0] + dom[1]) / 2 ? "end" : "start", dx: r.x > (dom[0] + dom[1]) / 2 ? -5 : 5})),
         ...ivs.map(v => Plot.link([v], {x1: () => clip(v.iv.lo), x2: () => clip(v.iv.hi), y1: v.y, y2: v.y, stroke: v.color, strokeWidth: v.w})),
         Plot.dot(ivs, {x: () => R.diff, y: "y", r: 5, fill: ink}),
-        estimateLabels(ivs.map(v => ({x: R.diff, y: v.y, lines: [lim3(R.diff), ivText(v.iv)], color: v.color === blue ? blue : ink})), small),
+        estimateLabels(ivs.map(v => ({x: R.diff, y: v.y, lines: [lim3(R.diff), ivText(v.iv)], color: v.color})), small),
         Plot.ruleY([0], {stroke: ink})
       ]
     });
@@ -515,14 +516,18 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, oče
     const e = R.expected, low = e.flat().some(v => v < 5), wEl = $("[data-cond-warning]");
     wEl.hidden = !low;
     wEl.innerHTML = !low ? "" : `Některá očekávaná četnost při <i>H</i><sub>0</sub> je menší než 5. ${s.delta0 === 0 ? "Test se společným podílem se opírá o normální aproximaci a může být nepřesný; opírejte se o Fisherův exaktní test" : "Skórový test se opírá o normální aproximaci a může být nepřesný; opírejte se o přesný test podle Agrestiho a Mina"}${R.exactAvailable ? (s.delta0 === 0 ? " nebo o přesný test podle Agrestiho a Mina" : "") : (s.delta0 === 0 ? "" : ", který se ale pro tak velké skupiny nepočítá")}.`;
-    $("[data-cond]").innerHTML = `Očekávané četnosti při <i>H</i><sub>0</sub>${s.delta0 === 0 ? " (stejné jako v testu nezávislosti: součin řádkového a sloupcového součtu dělený <i>n</i>)" : ", spočítané z podílů odhadnutých za platnosti <i>H</i><sub>0</sub>"}: ${q(g1)} ${trim(e[0][0], 2)} a ${trim(e[0][1], 2)}, ${q(g2)} ${trim(e[1][0], 2)} a ${trim(e[1][1], 2)} (kategorie ${q(k)} a ostatní). Orientačně by všechny měly být alespoň 5; podle kapitoly 9 jde o konzervativní vodítko. Všechny postupy předpokládají dvě nezávislé skupiny a nezávislé případy, z nichž každý je v tabulce právě jednou. Data musí být četnosti případů. Tytéž lidi měřené dvakrát porovnává McNemarův test.`;
+    // Table: observed counts with expected counts under H₀ in parentheses, in the layout of the input table.
+    const ex2 = j => s.success === 0 ? e[j] : [e[j][1], e[j][0]];
+    const cell = (j, l) => { const v = ex2(j)[l]; return `<td class="viz-app-num">${int(s.cells[j][l])} (${v < 5 ? `<strong>${trim(v, 2)}</strong>` : trim(v, 2)})</td>`; };
+    $("[data-expected]").innerHTML = `<table class="viz-bay-table viz-app-expected" aria-label="Pozorované četnosti a v závorkách očekávané četnosti při H0"><thead><tr><th scope="col">${esc(groupVar())}</th>${[0, 1].map(l => `<th scope="col">${esc(oName(l))}</th>`).join("")}<th scope="col">Celkem</th></tr></thead><tbody>${[0, 1].map(j => `<tr><th scope="row">${esc(gName(j))}</th>${cell(j, 0)}${cell(j, 1)}<td class="viz-app-num">${int(s.cells[j][0] + s.cells[j][1])}</td></tr>`).join("")}<tr class="viz-app-total"><th scope="row">Celkem</th><td class="viz-app-num">${int(s.cells[0][0] + s.cells[1][0])}</td><td class="viz-app-num">${int(s.cells[0][1] + s.cells[1][1])}</td><td class="viz-app-num">${int(R.N)}</td></tr></tbody></table>`;
+    $("[data-cond]").innerHTML = `V tabulce jsou pozorované četnosti a v závorkách očekávané četnosti při <i>H</i><sub>0</sub>${s.delta0 === 0 ? " (stejné jako v testu nezávislosti: součin řádkového a sloupcového součtu dělený <i>n</i>)" : ", spočítané z podílů odhadnutých za platnosti <i>H</i><sub>0</sub>"}; očekávané četnosti menší než 5 jsou tučně. Orientačně by všechny měly být alespoň 5; podle kapitoly 9 jde o konzervativní vodítko. Všechny postupy předpokládají dvě nezávislé skupiny a nezávislé případy, z nichž každý je v tabulce právě jednou. Data musí být četnosti případů. Tytéž lidi měřené dvakrát porovnává McNemarův test.`;
 
     // Charts.
     const wLevel = R.ci.side === "two" ? R.ci.conf : 2 * R.ci.conf - 1;
     $("#viz-app-groups-title").innerHTML = `Podíly kategorie ${q(k)} v obou skupinách s ${levelAdj(wLevel)} Wilsonovými intervaly`;
     $("[data-legend=groups]").replaceChildren(legend([[swDot(ink), "výběrový podíl"], [swLine(blue, 5), "Wilsonův interval"]]));
     $("[data-chart=groups]").replaceChildren(groupsChart(width, R));
-    $("[data-legend=diff]").replaceChildren(legend([[swDot(ink), "rozdíl <i>p</i><sub>1</sub> − <i>p</i><sub>2</sub>"], [swLine(blue, 6), "Newcombův interval"], ...(ex.status === "done" ? [[swLine(gray, 4), "přesný interval (Agresti a Min)"]] : []), [swLine(orange, 2, "6,4"), "testovaný rozdíl δ<sub>0</sub>"], ...(s.delta0 === 0 ? [] : [[swLine(gray, 2, "2,3"), "nulový rozdíl"]])]));
+    $("[data-legend=diff]").replaceChildren(legend([[swDot(ink), "rozdíl <i>p</i><sub>1</sub> − <i>p</i><sub>2</sub>"], [swLine(blue, 6), "Newcombův interval"], ...(ex.status === "done" ? [[swLine(green, 4), "přesný interval (Agresti a Min)"]] : []), [swLine(orange, 2, "6,4"), "testovaný rozdíl δ<sub>0</sub>"], ...(s.delta0 === 0 ? [] : [[swLine(gray, 2, "2,3"), "nulový rozdíl"]])]));
     $("[data-chart=diff]").replaceChildren(diffChart(width, R));
     $("[data-diff-note]").innerHTML = R.ci.side === "two" ? "" : `Jednostranný interval sahá na druhé straně až k ${R.ci.side === "lower" ? "1" : "−1"}; graf ukazuje jen výřez osy.`;
     const fSec = $('[aria-labelledby="viz-app-fisher-title"]');

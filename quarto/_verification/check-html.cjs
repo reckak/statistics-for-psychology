@@ -2784,6 +2784,8 @@ const server = http.createServer((req, res) => {
     const app2Colors = await app2.locator('[data-results] table').evaluate(t => ({head: getComputedStyle(t.querySelector('thead th')).backgroundColor, group: getComputedStyle(t.querySelector('tr.viz-app-group th')).backgroundColor}));
     assert.deepEqual(app2Colors, {head: 'rgb(34, 55, 68)', group: 'rgb(240, 240, 240)'});
     assert.deepEqual(await app2.locator('[data-rowsum], [data-colsum], [data-total]').allInnerTexts(), ['100', '100', '70', '130', '200'], 'Margins of the input table');
+    assert.deepEqual(await app2.locator('[data-expected] tbody td').allInnerTexts(), ['40 (35)', '60 (65)', '100', '30 (35)', '70 (65)', '100', '70', '130', '200'], 'Observed and expected counts table');
+    assert.equal(await app2.locator('[data-chart=diff] svg [stroke]').evaluateAll(els => els.some(e => e.getAttribute('stroke').toUpperCase() === '#3B7D3A')), true, 'Exact interval drawn in green');
     // Tested difference δ0 ≠ 0: score test with restricted estimates, no Fisher test and no Fisher chart.
     await app2.locator('#viz-app-delta').fill('0,1');
     b2 = await s2();

@@ -16,6 +16,7 @@ na konci pododdílu Test se společným podílem.
 - **Didaktická revize** samostatným agentem v roli studenta po kapitolách 1–9. Opraveno: nesprávná věta o shodné mezi i u přesného intervalu (vedla ke změně výpočtu výše), π ve vzorci pro odhady za platnosti *H*₀ a nezavedený pojem věrohodnost, chybějící zdůvodnění směrodatné chyby z *H*₀ a maxima přes dvojice podílů, „buňka vlevo nahoře“ po změně sledované kategorie, nejasné „pro skupiny do 200“, most od Δ z kapitoly 7 k δ₀ = −0,10, konzervativnost Fisherova testu s odkazem na pojem z kapitoly 7 a vysvětlení, proč se dva přesné testy v pilotní studii liší (0,070 a 0,041), rozdělení dlouhých vět.
 
 - **Úprava grafů intervalů podle připomínek autora** (týž den, obě aplikace): pod každým intervalem dvouřádkový popisek vystředěný na bodový odhad (odhad, pod ním meze), na bílém poloprůhledném podkladu (neprůhlednost 0,8), aby čáry nulové hypotézy pod ním zůstaly vidět; popisek se drží uvnitř plochy grafu. Mezi Newcombovým a přesným intervalem je větší svislá mezera. Ověřeno na snímcích Playwright (desktop a 375 px) a opakovaným `check-html.cjs` a `check-table-layout.cjs`.
+- **Další připomínky autora** (týž den): přesný interval v grafu rozdílu zeleně (`#3B7D3A` jako ve vizualizacích), aby se odlišil od Newcombova; v oddílu Očekávané četnosti a předpoklady tabulka pozorovaných četností s očekávanými v závorkách (hodnoty pod 5 tučně) místo výčtu ve větě.
 
 **Nezávislá kontrola:**
 

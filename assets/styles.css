@@ -354,7 +354,11 @@ p:has(> math[display="block"]) { max-width: 100%; overflow-x: auto; overflow-y: 
 .viz-app-input input[aria-invalid="true"] { border-color: #B54E24; box-shadow: 0 0 0 1px #B54E24; }
 .viz-app-input thead th:last-child, .viz-app-input tbody th { text-align: left; }
 .viz-app-input td.viz-app-num { text-align: right; font-variant-numeric: tabular-nums; min-width: 3.5rem; }
-.viz-app-input tr.viz-app-total > * { border-top: 2px solid var(--ink); }
+.viz-app-input tr.viz-app-total > *, .viz-app-expected tr.viz-app-total > * { border-top: 2px solid var(--ink); }
+.viz-app-expected { width: auto; }
+.viz .viz-app-expected th { text-align: left; }
+.viz .viz-app-expected thead th:not(:first-child) { text-align: right; }
+.viz-app-expected td.viz-app-num { text-align: right; white-space: nowrap; }
 .viz-app .viz-error#viz-app-cells-error { max-width: none; margin: .3rem 0 0; }
 .viz-app-report { border-left: 4px solid var(--accent); padding: .1rem 0 .1rem .9rem; }
 .viz-app-report p:last-child { margin-bottom: 0; }
