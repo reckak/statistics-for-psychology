@@ -11,7 +11,7 @@ sestavena podle výkladu, zadání a řešení 2026-11-09. Dohodu dokládají
 [R70](../rozhodnuti/kapitola-09.md#r70-terminologie-kapitoly-9) s
 [historií dohody](../../quarto/README.md#dohoda-kapitola-09). Vznik textu
 a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-9).
-Autor kapitolu prošel a připomínkoval 2026-11-16; revizi podle jeho připomínek dokládá [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9) a [záznam o revizi](../../quarto/README.md#revize-kapitoly-9-2026-11-16). Nepovinné odvození Wilsonova intervalu přidáno 2026-11-17 ([doplnění R68](../rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-17), [záznam](../../quarto/README.md#odvozeni-wilsonova-intervalu-20261117)). Soulad karty s textem zkontrolován 2026-11-16; 2026-11-17 jen pro pododdíl o Wilsonově intervalu a nové rozšíření.
+Autor kapitolu prošel a připomínkoval 2026-11-16; revizi podle jeho připomínek dokládá [R81](../rozhodnuti/kapitola-09.md#r81-revize-kapitoly-9) a [záznam o revizi](../../quarto/README.md#revize-kapitoly-9-2026-11-16). Nepovinné odvození Wilsonova intervalu přidáno 2026-11-17 ([doplnění R68](../rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-17), [záznam](../../quarto/README.md#odvozeni-wilsonova-intervalu-20261117)). Pododdíl „Jeden podíl třemi způsoby“ s obrázkem, řádky listu `Interval_podilu` a částí e) cvičení 5 přidán 2026-11-27 ([doplnění R68](../rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-27), [záznam](../../quarto/README.md#jeden-podil-tri-rozdeleni)). Soulad karty s textem zkontrolován 2026-11-16; 2026-11-17 jen pro pododdíl o Wilsonově intervalu a nové rozšíření; 2026-11-27 jen pro nový pododdíl, odkazy na něj a cvičení 5.
 
 **Vstup:** nominální a ordinální úroveň měření, souvislost a příčina (kap. 1);
 absolutní a relativní četnost, značka $f_j$ a sumace (kap. 2); stupně volnosti
@@ -26,7 +26,8 @@ a vysvětlují znovu; logaritmus jen v nepovinném rozšíření.
 **Cíle:** podle „Co budete po prostudování umět“: kategoriální data a průměr 0/1;
 Wilsonův interval a jeho vztah k testu; rozdíl dvou nezávislých podílů
 s Newcombovým intervalem a testem se společným podílem; test dobré shody a test
-nezávislosti ručně i v Excelu; řádkové podíly a rezidua bez nadměrného výkladu
+nezávislosti ručně i v Excelu; přesný a přibližný výpočet testu jednoho podílu;
+řádkové podíly a rezidua bez nadměrného výkladu
 buněk; předpoklady, Fisherův exaktní test a simulovaná *p*-hodnota; rozdíl podílů, poměr rizik, poměr
 šancí, φ a Cramérovo V; McNemarův a znaménkový test a sdělení ve dvou krocích.
 
@@ -53,7 +54,8 @@ sloupec určuje konkrétní **procvičení**. Jedenáct hlavních oddílů odpov
 | [Nepovinné: souhrn studií o telepatii](../../quarto/kapitola_09.qmd#rozsireni-ganzfeld) | 106 z 329 (Cumming, Bem a Honorton), Wilson (0,274; 0,374), *p* 0,002; proč výpočet sám neprokazuje telepatii. | Bez cvičení. |
 | [Dva nezávislé podíly](../../quarto/kapitola_09.qmd#sec-dva-podily) | Směrodatná chyba rozdílu podílů a její odhad $s_{p_1-p_2}=0{,}067$ sčítáním rozptylů (Wald −0,03; 0,23 jako princip); Newcombův interval z Wilsonových intervalů (−0,032; 0,227) s vysvětlením mezí a obrázkem konstrukce (poloviny intervalů, čtverce vzdáleností, Pythagorova věta); test se společným podílem 0,35, $z=1{,}48$, *p* 0,138; proč test používá společný podíl a interval ne; dvojnásobný výběr *p* 0,036. List `Dva_podily`. | 4, 12. |
 | [Dobrá shoda](../../quarto/kapitola_09.qmd#sec-dobra-shoda) | Volba jednoho ze čtyř stejných vzorků čaje (80 lidí; 12, 16, 21, 31); $e_j=n\mathrm{π}_{0j}$; nerovnoměrné π₀ (poradna); „Častý omyl“ o profilu z jiného výběru; statistika $\mathrm{χ}^2=10{,}10$ s tabulkou příspěvků; dvě kategorie $\mathrm{χ}^2=z^2$ (6,667). | 5, 6. |
-| [Chí-kvadrát rozdělení](../../quarto/kapitola_09.qmd#sec-chi-rozdeleni) | Simulace 10 000 výběrů (průměr 2,99; 1,6 % ≥ 10,10; 5,0 % nad 7,81); rozdělení a stupně volnosti $k-1$; aproximace diskrétní statistiky, opora v rozšíření CLT (Wilcox); *p*-hodnota 0,018 z pravého chvostu; závěr testu jako výrok o populaci; test nesměrový a nezávislý na pořadí (Howell, s. 156); proč pravý chvost zachytí oba směry ($z^2$ a chí-kvadrát s jedním stupněm volnosti, obrázek) a co by znamenal levý chvost; CHISQ.DIST.RT, CHISQ.INV.RT, CHISQ.TEST na listu `Dobra_shoda`; co test neříká (intervaly kategorií, více srovnání). | 5, 6. |
+| [Chí-kvadrát rozdělení](../../quarto/kapitola_09.qmd#sec-chi-rozdeleni) | Simulace 10 000 výběrů (průměr 2,99; 1,6 % ≥ 10,10; 5,0 % nad 7,81); rozdělení a stupně volnosti $k-1$; aproximace diskrétní statistiky, opora v rozšíření CLT (Wilcox); *p*-hodnota 0,018 z pravého chvostu; závěr testu jako výrok o populaci; test nesměrový a nezávislý na pořadí (Howell, s. 156); proč pravý chvost zachytí oba směry (dvě věty s odkazem na závěr oddílu) a co by znamenal levý chvost; CHISQ.DIST.RT, CHISQ.INV.RT, CHISQ.TEST na listu `Dobra_shoda`; co test neříká (intervaly kategorií, více srovnání). | 5, 6. |
+| [Jeden podíl třemi způsoby](../../quarto/kapitola_09.qmd#sec-tri-rozdeleni) | Poslední pododdíl oddílu o chí-kvadrát rozdělení (od 2026-11-27). 10 z 20 proti 0,25 oboustranně: přesný binomický test pravidlem „stejně nebo méně pravděpodobné počty“ (10 až 20 a 0; 0,017; dvojnásobek menší jednostranné *p*-hodnoty 0,028 jen zmínkou; upozornění, že podmínka na *z*² vybere tytéž počty jen v tomto příkladu), vodorovná osa ve třech jednotkách (počet, podíl, *z*), skórový test jako plocha obou chvostů (2 × 0,0049 = 0,0098), $\mathrm{χ}^2=z^2=6{,}667$ a překlopení obou chvostů do pravého (±1,96 → 3,84), proč se přesná a přibližná hodnota liší (nespojitost s polovinou sloupce a zešikmení podle kap. 5; sloupce 0,0139 a 0,0032 proti ploše 0,0049), kontrast 30 z 80 (stejné *z*, přesně 0,0136) a smysl aproximace pro více kategorií a tabulky. SUMIF zavedena zde; list `Interval_podilu` B21:B27 a F:G. | 5e. |
 | [Nepovinné: proč chí-kvadrát](../../quarto/kapitola_09.qmd#rozsireni-proc-chi) | Součet normovaných čtverců, normální aproximace četností, $k-1$ podle Navarrové. | Bez cvičení. |
 | [Nezávislost a homogenita](../../quarto/kapitola_09.qmd#sec-nezavislost) | Očekávané četnosti ze součinového pravidla (kap. 5); značení $f_{jl}$, $e_{jl}$, $f_{j+}$, $f_{+l}$, tabulka $R\times S$ (R69); dvojitá sumace; $(R-1)(S-1)$; tabulka stresu $\mathrm{χ}^2=2{,}198=z^2$; test nezávislosti vs. homogenity podle uspořádání; souvislost není příčina. | 7, 8. |
 | [Řádkové podíly a rezidua](../../quarto/kapitola_09.qmd#sec-rezidua) | Věk × strategie zvládání (190; $\mathrm{χ}^2=11{,}78$, 4 st. v., *p* 0,019, V 0,18); řádkové podíly a obrázek; Pearsonova a standardizovaná rezidua s tabulkou obou a upozorněním na rozdílné názvy v programech; standardizovaná rezidua jen popisně, generační výklad průřezu; list `Tabulka` s ŘÁDKY a SLOUPCE. | 7. |
@@ -78,7 +80,7 @@ výpočtových listů (`Interval_podilu`, `Dva_podily`, `Dobra_shoda`, `Tabulka`
 `Mira_souvislosti`, `McNemar`, `Znamenkovy`, nepovinně `Fisher`) a sedmnáct vstupních listů
 tabulek četností (devět k výkladu, osm ke cvičením; `Spanek_rozdily` a `U13_uzkost` obsahují jednotlivé dvojice). Žluté vstupy výpočtových listů
 mají výchozí hodnoty výkladu; studenti do nich dosazují data cvičení. Simulace
-k obrázkům (chí-kvadrát rozdělení, $z^2$, přeskupení pilotní tabulky) ani přesný výpočet pokrytí nejsou v sešitu. [Pokrytí cvičení](../DATA.md#kapitola-9).
+k obrázkům (chí-kvadrát rozdělení, přeskupení pilotní tabulky) ani přesný výpočet pokrytí nejsou v sešitu. List `Interval_podilu` od 2026-11-27 počítá také přesný binomický test (B21:B24, pravděpodobnosti počtů 0–400 ve sloupcích F:G) a test chí-kvadrát dvou kategorií (B26:B27). [Pokrytí cvičení](../DATA.md#kapitola-9).
 
 Autorské modelové příklady: tabulka stresu (z kap. 5), volba čaje, věk × strategie
 zvládání (podle autorovy přednášky P12), pilotní studie, poradna, učení ve
@@ -99,7 +101,7 @@ zdroje: Daniels (podle Fielda, s. 638), aspirinová studie, Prozac a anorexie
 | [Daniels](../../quarto/kapitola_09.qmd#fig-daniels) | Dva podíly s Wilsonovými intervaly a rozdíl s Newcombovým intervalem. |
 | [Pokrytí Waldova a Wilsonova intervalu](../../quarto/kapitola_09.qmd#fig-pokryti) | Přesné pokrytí obou intervalů a podíl Waldových intervalů mimo 0–1 pro čtyři velikosti výběru; důvod volby Wilsonova intervalu. |
 | [Konstrukce Newcombova intervalu](../../quarto/kapitola_09.qmd#fig-newcombe) | Které poloviny Wilsonových intervalů vstupují do které meze; čtverce vzdáleností a jejich součet. |
-| [Od *z* k chí-kvadrát](../../quarto/kapitola_09.qmd#fig-z2-chi2) | Oba chvosty *z* se umocněním překlopí do pravého chvostu; shoda *z*² s chí-kvadrát rozdělením s jedním stupněm volnosti. |
+| [Jeden podíl třemi rozděleními](../../quarto/kapitola_09.qmd#fig-tri-rozdeleni) | Čtyři části pro 10 z 20 proti 0,25: binomické rozdělení s normální křivkou nad osou počtu, podílu a *z*; oba chvosty se zvětšenou svislou osou (sloupce proti ploše pod křivkou); pravý chvost hodnot *z*² se sloupci počtů 0 a 10 na sobě; pravý chvost chí-kvadrát rozdělení s jedním stupněm volnosti a kritickou hodnotou 3,84. Od 2026-11-27 nahrazuje obrázek „Od *z* k chí-kvadrát“ (`fig-z2-chi2`, simulace 10 000 hodnot *z*). |
 | [Tabulky Fisherova testu](../../quarto/kapitola_09.qmd#fig-fisher) | Deset možných tabulek pilotní studie, jejich pravděpodobnosti a význam „stejně nebo méně pravděpodobné“. |
 | [Simulovaná *p*-hodnota](../../quarto/kapitola_09.qmd#fig-monte-carlo) | Rozdělení χ² z 10 000 přeskupení proti hladké aproximaci. |
 | [Shody dvou posuzovatelů](../../quarto/kapitola_09.qmd#fig-kappa) | Nepovinně: shody a neshody v tabulce 3 × 3 s očekávanými četnostmi. |
@@ -151,10 +153,10 @@ podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd)
 
 - **Vstupy:** název proměnné, názvy a četnosti dvou kategorií (0–100 000, součet alespoň 1), kategorie počítaná jako úspěch, π₀ (desetinné číslo nebo zlomek), alternativní hypotéza (≠, >, <) a α (0 až 0,5); u jednostranné alternativy volba oboustranného intervalu 1 − 2α (výchozí) nebo jednostranného intervalu 1 − α. Stránka se otevírá s daty 7 z 8 (kap. 6, cvičení 8) při π₀ = 0,50 a oboustranné alternativě. Předvolby: tipující student (kap. 6), rozpoznávání číslic (kap. 6, cvičení 8), studie o telepatii (rozšíření kap. 9), každá se svou π₀ a alternativou.
 - **Výsledky:** tabulka s dosazením (data, rozdíl *p* − π₀ v procentních bodech, skórový test se směrodatnou chybou z π₀, u oboustranné alternativy χ² = *z*², přesný binomický test, Wilsonův interval a rozdíl od π₀ s intervalem), slovní interpretace, očekávané četnosti s pravidlem alespoň 5 a upozorněním, grafy pozorovaných a očekávaných četností, rozdělení Bin(*n*; π₀) se sloupci *p*-hodnoty, pozorovaným *k* a normální aproximací a osa podílu s intervalem a π₀. Tabulka výsledků má tmavé záhlaví a šedé řádky skupin; výpočet v Excelu aplikace neuvádí ([upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-25)).
-- **Vztah k výkladu:** opakuje pododdíly Wilsonův interval, Výpočet v Excelu, Interval a test jednoho podílu, Dvě kategorie: chí-kvadrát a *z*-test a Malé očekávané četnosti a binomický test kapitoly 6. Oboustrannou přesnou *p*-hodnotu počítá pravidlem Fisherova testu z této kapitoly (součet pravděpodobností výsledků stejně nebo méně pravděpodobných než pozorovaný, jako `binom.test` v R) a porovnává ji se zdvojením z McNemarova a znaménkového testu; to a jednostranný Wilsonův interval podle R75 jdou nad rámec výkladu jednoho podílu a schválil je R87. Nové termíny nezavádí.
+- **Vztah k výkladu:** opakuje pododdíly Wilsonův interval, Výpočet v Excelu, Interval a test jednoho podílu, Dvě kategorie: chí-kvadrát a *z*-test a Malé očekávané četnosti a binomický test kapitoly 6. Oboustrannou přesnou *p*-hodnotu počítá pravidlem Fisherova testu z této kapitoly (součet pravděpodobností výsledků stejně nebo méně pravděpodobných než pozorovaný, jako `binom.test` v R) a porovnává ji se zdvojením z McNemarova a znaménkového testu. Od 2026-11-27 toto pravidlo pro jeden podíl vykládá kapitola v pododdílu [Jeden podíl třemi způsoby](../../quarto/kapitola_09.qmd#sec-tri-rozdeleni) a stránka aplikace na něj odkazuje; nad rámec výkladu jednoho podílu zůstává jednostranný Wilsonův interval podle R75, který schválil R87. Nové termíny nezavádí.
 - **Rozsah:** jen dvě kategorie; nepočítá jiné intervaly pro podíl, Cohenovo *h* ani sílu testu. Není samostatným cvičením.
 
-Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-25.
+Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-25; 2026-11-27 jen pro pravidlo oboustranné přesné *p*-hodnoty a odkaz na nový pododdíl.
 
 <a id="aplikace-09-dva-podily"></a>
 
@@ -175,7 +177,7 @@ Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-26.
 ### Cvičení a očekávané dovednosti
 
 [Patnáct úloh](../../quarto/kapitola_09.qmd#sec-cviceni-09) má úplná sbalená řešení;
-úlohy 14 a 15 jsou nepovinné. Kalkulačka: 1, 5, 8–12; Excel: 2, 3, 4, 6, 7, 13.
+úlohy 14 a 15 jsou nepovinné. Kalkulačka: 1, 8–12; Excel: 2, 3, 4, 5, 6, 7, 13.
 Tolerance 0,002 u podílů a mezí, 0,02 u statistik, 0,001 u *p*-hodnot.
 
 | Úloha | Co student samostatně dělá |
@@ -184,7 +186,7 @@ Tolerance 0,002 u podílů a mezí, 0,02 u statistik, 0,001 u *p*-hodnot.
 | 2. Interval pro podíl a velikost výběru | Wilson pro 18/60 a 72/240, vliv čtyřnásobku *n*, interpretace a oprava výroku o 95 %. |
 | 3. Když jev nenastal | Wald a Wilson pro 0/25 a 1/25; nulová šířka a záporná mez; „0 z 25 neznamená bezpečnost“. |
 | 4. Antidepresivum po léčbě anorexie | Newcombe a test (*p* 0,575), interpretace nezamítnutí s randomizací, χ² = z² a podmínky. |
-| 5. Kámen, nůžky, papír | Dobrá shoda (1,68; 0,432), nezávislost tahů, nesměrovost. |
+| 5. Kámen, nůžky, papír | Dobrá shoda (1,68; 0,432), nezávislost tahů, nesměrovost; e) od 2026-11-27 oboustranný test podílu kamene 30 ze 75 proti 1/3 na listu `Interval_podilu` skórově, přes χ² dvou kategorií (1,50; 0,221) a přesně (0,222), vysvětlení, proč je shoda lepší než u 10 z 20, a proč se počet 20 do přesné *p*-hodnoty nepočítá. |
 | 6. Klienti poradny | Nerovnoměrné π₀ (1,92; 0,589), kdy je evidence „známá“ a kdy test homogenity. |
 | 7. Strategie učení podle ročníku | Homogenita 3 × 3 (13,17; 0,010; V 0,19), řádkové podíly, standardizovaná rezidua, proč ne devět testů, průřez vs. změna u lidí. |
 | 8. Který postup? | Sedm situací včetně McNemara, Fishera, dobré shody, kappa a znaménkového testu. |
@@ -204,15 +206,15 @@ Nově vysvětleno 34 pojmů [registru](../SLOVNIK.md#kapitola-09) včetně nepov
 rozdělení; „referenční skupina“ má od kapitoly 9 druhý schválený význam (doplnění R70, 2026-11-09). Revize 2026-11-16 (R81) přejmenovala upravené reziduum na standardizované a tabulku přechodů na tabulku párových dat a doplnila znaménkový test a simulaci Monte Carlo. Značení podle R69 a R81:
 $f_j$, $e_j$, $\mathrm{π}_{0j}$, $f_{jl}$, $e_{jl}$, $f_{j+}$, $f_{+l}$, $R\times S$,
 $\mathrm{χ}^2$, $\mathrm{φ}$, $V$, $s_{p_1-p_2}$, nepovinně $\mathrm{κ}$; RR a OR jen ve zprávách a v přehledu.
-Nové funkce Excelu: CHISQ.DIST.RT, CHISQ.INV.RT, CHISQ.TEST, ŘÁDKY, SLOUPCE, nepovinně
-HYPGEOM.DIST, SUMIF, SMALL, LN, EXP.
+Nové funkce Excelu: CHISQ.DIST.RT, CHISQ.INV.RT, CHISQ.TEST, SUMIF (od 2026-11-27 v povinném
+pododdílu o jednom podílu, dříve jen nepovinně), ŘÁDKY, SLOUPCE, nepovinně HYPGEOM.DIST, SMALL, LN, EXP.
 
 **Nepovinné:** souhrn studií o telepatii, proč chí-kvadrát, Holmova korekce, výpočet Fisherova
 testu, intervaly pro poměry, Simpsonův paradox, Cohenovo kappa. Další kapitola je nesmí předpokládat.
 
 **Vysvětleno omezeně:** interval pro párový rozdíl podílů jen zmínkou; Fisherův test jen pro 2 × 2;
 Yatesova korekce jen jednou větou jako výchozí nastavení softwaru (1,78 místo 2,20); zobecnění
-Fisherova testu jen zmínkou; simulovaná *p*-hodnota jen jako princip na tabulce 2 × 2, bez výpočtu v Excelu a bez vzorce (k + 1)/(B + 1), který zavádí kapitola 10; znaménkový test bez aproximace a bez intervalu pro medián. **Nevyloženo:** věrohodnostní
+Fisherova testu jen zmínkou; simulovaná *p*-hodnota jen jako princip na tabulce 2 × 2, bez výpočtu v Excelu a bez vzorce (k + 1)/(B + 1), který zavádí kapitola 10; znaménkový test bez aproximace a bez intervalu pro medián; oboustranný přesný binomický test jen pravidlem stejně nebo méně pravděpodobných počtů, dvojnásobek menšího chvostu jen zmínkou. **Nevyloženo:** Blakerovo pravidlo oboustranné *p*-hodnoty, korekce na spojitost u testu jednoho podílu, přesné intervaly pro podíl, věrohodnostní
 poměr, Mantelův–Haenszelův test, loglineární modely, logistická regrese, analýza síly pro χ²,
 Cohenovo w a slovní pásma, testy trendu, pořadové testy (Wilcoxonův test).
 
@@ -232,6 +234,7 @@ ke snímkům 1–30 s [průvodním dokumentem](../../presentations/kapitola_09/k
 a [manifestem](../../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_manifest.json); nahrávka nevznikla.
 Rozsah kapitoly se nemění; postup a kontroly jsou v [autorské historii](../../quarto/README.md#prezentace-kapitoly-9).
 Soulad tohoto doplnění s prezentací zkontrolován 2026-11-24; datum kontroly výkladu kapitoly výše se tím nemění.
+Pododdíl „Jeden podíl třemi způsoby“ z 2026-11-27 prezentace, její sešity ani scénář neobsahují.
 
 ## Vazby na podklady
 

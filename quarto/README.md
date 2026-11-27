@@ -9,6 +9,79 @@ a předchozí měsíc; starší uzavřené měsíce jsou beze změny přesunuté
 
 Původní adresy přesunutých záznamů zachovává [rejstřík na konci souboru](#rejstrik-archivovanych-zaznamu).
 
+<a id="jeden-podil-tri-rozdeleni"></a>
+
+## Kapitola 9: jeden podíl třemi rozděleními (2026-11-27, doplnění R68)
+
+Na autorův podnět, že u jednoho podílu chybí ve výkladu příklad ukazující,
+proč lze test řešit přesně binomickým rozdělením a přibližně normálním
+a chí-kvadrát rozdělením s jedním stupněm volnosti. Rozsah a volby dokládá
+[doplnění R68](../docs/rozhodnuti/kapitola-09.md#r68-doplneni-2026-11-27);
+skutečný obsah je v [kartě kapitoly](../docs/kapitoly/09-podily-kategorialni-data.md#skutecny-obsah-09).
+
+**Provedeno:**
+
+- Nový poslední pododdíl oddílu o chí-kvadrát rozdělení,
+  [Jeden podíl třemi způsoby](kapitola_09.qmd#sec-tri-rozdeleni): 10 z 20 proti
+  0,25 oboustranně, přesný binomický test pravidlem „stejně nebo méně
+  pravděpodobné počty“ (0,017), skórový test (0,0098), χ² = *z*² = 6,667,
+  důvod rozdílu a kontrast 30 z 80 (přesně 0,0136). Dosavadní odstavec o jediném chvostu
+  v pododdílu o *p*-hodnotě je zkrácen na odkaz. Podle hrubého počítání
+  slov má pododdíl asi 1 100 slov včetně popisku a čísel (plán počítal
+  s 500–600); povinná část kapitoly vzrostla z přibližně 10 600 na 11 700 slov
+  a blíží se orientační hranici 12 000.
+- Obrázek `fig-tri-rozdeleni` (`podil-tri-rozdeleni.svg`) nahradil
+  `fig-z2-chi2`; simulace 10 000 hodnot *z* (seed 20261116) ze
+  `scripts/kapitola_09.R` zanikla. Proti plánu má obrázek čtyři části místo
+  tří: mezi přehled a *z*² přibyl pohled na oba chvosty se zvětšenou svislou
+  osou, protože v přehledu jsou sloupce i plochy chvostů příliš malé; části
+  o *z*² a chí-kvadrát rozdělení ukazují jen pravý chvost od hodnoty 3.
+- Navazující odkazy v pododdílech o intervalu a testu, dvou kategoriích,
+  Fisherově a McNemarově testu, nová dovednost v úvodním bloku a dovětek
+  čtvrté myšlenky Shrnutí. Cvičení 5 má část e) s úplným řešením
+  (30 ze 75 proti 1/3: 0,221 a přesně 0,222).
+- List `Interval_podilu`: přesný binomický test B21:B24 nad pravděpodobnostmi
+  počtů 0–400 ve sloupcích F:G, test chí-kvadrát dvou kategorií B26:B27.
+  Funkce SUMIF je tím v povinném textu; přehled Excelu upraven.
+- Stránka aplikace Test jednoho podílu odkazuje na nový pododdíl jako na
+  výklad pravidla; její výpočty se nezměnily. Slovníček ani přehled značení
+  se nemění. Prezentace, scénář a balíček AI tutora upravovány nebyly.
+
+**Kontroly:** `check-chapter-09.R` prošel: přesný oboustranný binomický test
+proti `binom.test` (osm sad dat včetně příkladu, kontrastu a cvičení 5e),
+všechna čísla pododdílu, popisku a alternativního textu obrázku, tabulky
+vzorců a řešení 5e. Sešit sestaven `build-workbooks.ps1 -Chapter 9 -Verify`
+v českém Excelu 16; `check-chapter-09-excel.ps1` porovnal 195 uložených
+hodnot, 435 výsledků po dosazení jiných vstupů (včetně 30 ze 75 proti 1/3,
+30 z 80 a textu „n nad 400“ pro 480 pokusů) a 15 českých vzorců; referenční
+hodnoty nových buněk počítá `check-chapter-09-excel-expected.py` nezávisle
+na Excelu i R. List `Interval_podilu` prohlédnut v exportu do PDF. Celá kniha
+vykreslena (Quarto 1.9.38, R 4.5.1); `check-html.cjs` rozšířen o
+`fig-tri-rozdeleni`, `sec-tri-rozdeleni` a `tbl-k09-15` a prošel bez chyb,
+stejně jako `check-doc-maps.cjs` a `scripts/tutor/check-figure-data.cjs`
+pro kapitolu 9. Pododdíl prohlédnut v Chromiu při šířce 1440 px a 375 px:
+obrázek má číslo 9.7 a na mobilu se posouvá uvnitř svého rámce bez
+přetékání stránky, tabulka vzorců je čitelná.
+
+**Didaktická revize:** nový pododdíl a část e) cvičení 5 přečetl samostatný
+agent v roli začínajícího studenta. Podle jeho nálezů text nově upozorňuje,
+že podmínka na *z*² vybere tytéž počty jako pravidlo o pravděpodobnostech jen
+v tomto příkladu, důvod rozdílu opírá o výklad kapitoly 5 (polovina sloupce,
+zešikmení), u kontrastu uvádí 0,0136 místo zaokrouhlených 0,014 (záměna
+s jednostrannou *p*-hodnotou 0,014 z kapitoly 6), řešení 5e uvádí chvosty
+na čtyři místa a nepřeceňuje shodu jednotlivých chvostů; odstraněna vazba
+„výpočet dal“. Vzorec horního chvostu v B22 byl po prohlídce tabulky
+zjednodušen na `=1-BINOM.DIST(B2;B3;B5;PRAVDA)+B21`, aby se v tabulce nelámal
+uprostřed a nepotřeboval podmínku pro nulový počet.
+
+**Omezení:** nejde o ověření porozumění na studentech. Tabulka vzorců je
+v pořadí šestou tabulkou kapitoly, takže se čísla následujících tabulek
+posunula o jednu (odkazy se číslují automaticky; pevně zapsané číslo bylo
+jen v komentářích kontroly a je nahrazeno ID). Lightbox nového obrázku,
+Firefox, Safari a čtečka obrazovky zvlášť zkoušeny nebyly. Pracovní PDF
+kapitoly ani PDF celé knihy nebylo sestaveno a balíček AI tutora nebyl
+znovu exportován; prezentace kapitoly 9 nový pododdíl neobsahuje.
+
 <a id="lightbox-matematika-v-popiscich"></a>
 
 ## Lightbox: vykreslená matematika v popiscích obrázků (2026-11-27)

@@ -235,12 +235,17 @@ skrytém Excelu uložené výsledky všech osmi výpočtových listů včetně H
 rozhodnutí, prázdné buňky nemožných hodnot listu `Fisher`, české vzorce z textu
 a řešení, chybové hodnoty u nepřípustných argumentů, přepočet při dosazení dat
 ze cvičení (včetně případu bez neshodných dvojic s textovým výsledkem „nelze“)
-a zápis jedenácti vzorců listů v češtině. Změny neukládá. Od revize 2026-11-16
+a zápis patnácti vzorců listů v češtině. Změny neukládá. Od revize 2026-11-16
 `check-chapter-09.R` ověřuje také přesné pokrytí Waldova a Wilsonova intervalu
 (nezávislým výpočtem s `prop.test`), tabulku Holmovy korekce proti `p.adjust`,
 znaménkový test proti `binom.test`, φ se znaménkem proti korelaci kódů 0/1
 a simulovanou *p*-hodnotu proti `chisq.test(simulate.p.value = TRUE)`
-a `fisher.test`; simulace mají pevné seedy 20261116 a 20261117. Od 2026-11-17
+a `fisher.test`; simulace má pevný seed 20261117 (simulace druhých mocnin *z*
+se seedem 20261116 zanikla 2026-11-27). Od 2026-11-27 ověřuje také přesný
+oboustranný binomický test proti `binom.test` a všechna čísla pododdílu
+o testu jednoho podílu ze tří rozdělení, jeho obrázku a části e) cvičení 5;
+kontrola Excelu zahrnuje řádky B21:B27 a sloupce F:G listu `Interval_podilu`
+včetně textového výsledku „n nad 400“. Od 2026-11-17
 ověřuje také nepovinné odvození Wilsonova intervalu: kořeny kvadratické rovnice
 proti uzavřenému vzorci, `prop.test` a `polyroot`, zjednodušený výraz pod
 odmocninou a čísla citovaná v rozšíření. Nezávislé reference

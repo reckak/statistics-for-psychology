@@ -11,6 +11,7 @@ Navazujeme na [kontingenční tabulku a nezávislé jevy](kapitola_05.qmd#sec-ko
 - Spočítáte Wilsonův interval spolehlivosti pro podíl, vysvětlíte, proč známý postup „odhad ± kvantil × směrodatná chyba“ u podílů selhává, a vztáhnete interval k testu.
 - Porovnáte podíly ve dvou nezávislých skupinách Newcombovým intervalem pro rozdíl a testem se společným podílem.
 - Provedete test dobré shody a test nezávislosti v kontingenční tabulce, ručně i v Excelu, a vysvětlíte stupně volnosti a *p*-hodnotu rozdělení chí-kvadrát.
+- U testu jednoho podílu porovnáte přesný výpočet z binomického rozdělení s přibližným výpočtem z normálního a chí-kvadrát rozdělení.
 - Pomocí řádkových podílů a reziduí popíšete, kde se tabulka od nezávislosti odchyluje, a nebudete jednotlivé buňky vykládat jako samostatné průkazné výsledky.
 - Posoudíte předpoklady testu chí-kvadrát a naučíte se, kdy a jak číst výsledek Fisherova exaktního testu a simulované *p*-hodnoty.
 - Vyjádříte velikost souvislosti rozdílem podílů, poměrem rizik, poměrem šancí, koeficientem φ a Cramérovým V a vysvětlíte, čím se liší.
@@ -200,7 +201,7 @@ $$z=\frac{p-\mathrm{π}_0}{\sqrt{\mathrm{π}_0(1-\mathrm{π}_0)/n}}=\frac{0{,}50
 
 Oboustranná *p*-hodnota je přibližně 0,0098. Test nulovou hypotézu $\mathrm{π}=0{,}25$ zamítá a hodnota 0,25 opravdu leží mimo Wilsonův interval.
 
-V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a vyšla v něm *p*-hodnota 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí.
+V kapitole 6 jsme stejná data posoudili [binomickým testem](kapitola_06.qmd#sec-binomicky-test). Ten počítal přesné pravděpodobnosti binomického rozdělení, byl jednostranný a vyšla v něm *p*-hodnota 0,014. Nejde o chybu ani o rozpor: jde o jiný postup s jinou alternativní hypotézou. **Interval a test poskytují související informace; přesná shoda rozhodnutí závisí na použitých postupech.** Wilsonův interval přesně odpovídá oboustrannému skórovému testu. S přesným binomickým testem se shoduje většinou, ale ne vždy, zvlášť u malých výběrů a hodnot blízko hranice rozhodnutí. Oba testy se stejnou, oboustrannou alternativou porovnáme v [závěru oddílu o chí-kvadrát rozdělení](#sec-tri-rozdeleni).
 
 ::: {.callout-tip title="Spočítejte si: test jednoho podílu"}
 V [aplikaci Test jednoho podílu](app_jeden_podil.qmd) zadáte četnosti dvou kategorií, testovanou hodnotu, alternativní hypotézu a hladinu významnosti. Aplikace spočítá skórový i přesný binomický test a Wilsonův interval s dosazením a ukáže očekávané četnosti. Uvidíte také, kdy se oba testy rozcházejí.
@@ -355,7 +356,7 @@ Se dvěma kategoriemi jsme se už setkali. Student odpověděl správně na 10 z
 
 $$\mathrm{χ}^2=\frac{(10-5)^2}{5}+\frac{(10-15)^2}{15}=5+1{,}667=6{,}667.$$
 
-To je přesně druhá mocnina skórové statistiky z [oddílu o intervalu](#sec-interval-a-test-podilu): $2{,}582^2=6{,}667$. Platí to obecně: **u dvou kategorií je statistika chí-kvadrát rovna $z^2$ skórového testu jednoho podílu** a oba postupy vedou ke stejné oboustranné *p*-hodnotě; proč, ukáže obrázek [-@fig-z2-chi2] v [příštím oddílu](#sec-p-chi). Stejně tak je u tabulky 2 × 2, ke které se dostaneme v [oddílu o nezávislosti](#sec-nezavislost), statistika chí-kvadrát rovna $z^2$ testu dvou podílů se společným podílem. Na listu `Dva_podily` to ukazují buňky B23 ($z^2=2{,}198$) a B24 (táž *p*-hodnota 0,138 spočítaná přes chí-kvadrát). Testy chí-kvadrát tedy nejsou nová logika, ale rozšíření testů pro podíly na více kategorií.
+To je přesně druhá mocnina skórové statistiky z [oddílu o intervalu](#sec-interval-a-test-podilu): $2{,}582^2=6{,}667$. Platí to obecně: **u dvou kategorií je statistika chí-kvadrát rovna $z^2$ skórového testu jednoho podílu** a oba postupy vedou ke stejné oboustranné *p*-hodnotě; proč, ukáže obrázek [-@fig-tri-rozdeleni] v [příštím oddílu](#sec-tri-rozdeleni). Stejně tak je u tabulky 2 × 2, ke které se dostaneme v [oddílu o nezávislosti](#sec-nezavislost), statistika chí-kvadrát rovna $z^2$ testu dvou podílů se společným podílem. Na listu `Dva_podily` to ukazují buňky B23 ($z^2=2{,}198$) a B24 (táž *p*-hodnota 0,138 spočítaná přes chí-kvadrát). Testy chí-kvadrát tedy nejsou nová logika, ale rozšíření testů pro podíly na více kategorií.
 
 ## Kdy je hodnota chí-kvadrát neobvykle velká? {#sec-chi-rozdeleni}
 
@@ -395,13 +396,7 @@ V simulaci vyšla hodnota alespoň 10,10 v 1,6 % výběrů, což se dobře shodu
 
 Pozor na směr testu. V kapitole 6 jsme [rozlišovali](kapitola_06.qmd#sec-smer-testu) oboustranné a jednostranné testy podle alternativní hypotézy. Test chí-kvadrát počítá *p*-hodnotu z pravého chvostu, ale přitom je **nesměrový**: k velké hodnotě vede jakákoli odchylka od očekávání v kterékoli kategorii. Kdyby psycholožka předem předpokládala, že lidé preferují pravou stranu, test by tuto předpověď nijak nevyužil. Stejná hodnota 10,10 by vyšla i při četnostech 31, 21, 16 a 12 zleva doprava, tedy při preferenci levé strany [@howell, s. 156]. Test chí-kvadrát nebere ohled na pořadí kategorií.
 
-Proč stačí jediný chvost a test přitom zachytí odchylky všemi směry, je nejlépe vidět u dvou kategorií, kde $\mathrm{χ}^2=z^2$ ([předchozí oddíl](#sec-chi-a-z)). Statistika $z$ může být kladná i záporná a proti nulové hypotéze svědčí oba chvosty normovaného normálního rozdělení. Umocněním na druhou se znaménko ztratí: $z=-1{,}96$ i $z=1{,}96$ vedou k $z^2=3{,}84$. Oba chvosty se tak „překlopí“ do jediného pravého chvostu. Z 2,5 % hodnot pod −1,96 a 2,5 % hodnot nad 1,96 se stane 5 % hodnot nad 3,84. To je právě kritická hodnota chí-kvadrát rozdělení s jedním stupněm volnosti (obrázek [-@fig-z2-chi2]). Druhé mocniny hodnot s normovaným normálním rozdělením mají totiž chí-kvadrát rozdělení s jedním stupněm volnosti.
-
-::: {.teaching-figure role="region" aria-label="Od statistiky z k chí-kvadrát rozdělení s jedním stupněm volnosti" tabindex="0"}
-
-![Proti nulové hypotéze svědčí oba chvosty statistiky *z* (vlevo). Po umocnění na druhou se oba ocitnou v pravém chvostu (uprostřed) a rozdělení druhých mocnin odpovídá chí-kvadrát rozdělení s jedním stupněm volnosti (vpravo): 5 % hodnot leží nad 3,84 = 1,96². Proto se *p*-hodnota testu chí-kvadrát počítá z pravého chvostu, a přesto zachycuje odchylky oběma směry.](../assets/chapter-09/plots/z2-chi2.svg){#fig-z2-chi2 fig-alt="Tři grafy vedle sebe. Vlevo křivka normovaného normálního rozdělení na ose od −4 do 4 s oranžově vybarvenými chvosty pod −1,96 a nad 1,96, každý s popiskem 2,5 %. Uprostřed histogram druhých mocnin 10 000 simulovaných hodnot z na ose od 0 do 8: nejvyšší sloupce jsou u nuly a rychle klesají; sloupce nad hodnotou 3,84 jsou oranžové s popiskem, že se sem překlopí oba chvosty, v simulaci 5,4 % hodnot. Vpravo týž histogram šedě a přes něj modrá křivka chí-kvadrát rozdělení s jedním stupněm volnosti, která histogramu odpovídá; oranžově je vybarven pravý chvost nad kritickou hodnotou 3,84 s popiskem 5 %."}
-
-:::
+Proč stačí jediný chvost a test přitom zachytí odchylky všemi směry? Statistika sčítá druhé mocniny odchylek, a ty jsou kladné, ať je četnost vyšší, nebo nižší, než jsme čekali. Jak se tím oba chvosty statistiky $z$ stanou jediným pravým chvostem, ukazuje u dvou kategorií, kde $\mathrm{χ}^2=z^2$, [závěr tohoto oddílu](#sec-tri-rozdeleni).
 
 A co levý chvost, tedy hodnoty $\mathrm{χ}^2$ blízké nule? Ty znamenají, že pozorované četnosti souhlasí s očekávanými velmi těsně. Kdybychom počítali plochu v levém chvostu, testovali bychom, zda je shoda těsnější, než by odpovídalo výběrové variabilitě, tedy zda data nejsou „až příliš dobrá“. To je jiná otázka, než jakou si zde klademe. O odchylce od nulové hypotézy malé hodnoty nesvědčí, a proto se *p*-hodnota počítá jen z pravého chvostu.
 
@@ -444,6 +439,50 @@ List `Dobra_shoda` výpočet sestavuje krok za krokem:
 Zamítnutí nulové hypotézy říká, že rozdělení jako celek se od očekávaného liší. Neříká, **které** kategorie se liší ani o kolik. K tomu se vracíme k podílům jednotlivých kategorií a jejich [Wilsonovým intervalům](#sec-wilson) [@wilcox2017, s. 612]. Podíl voleb pravé pozice je 0,39 s intervalem (0,29; 0,50), podíl levé 0,15 s intervalem (0,09; 0,24); oba intervaly hodnotu 0,25 neobsahují. U prostředních pozic interval 0,25 obsahuje. Takové intervaly popisují, kde se rozdělení od očekávání odchyluje; čtyři intervaly ale zároveň znamenají čtyři srovnání, a čím více jich děláme, tím snáze některé vyjde mimo hodnotu nulové hypotézy jen náhodou ([více testů najednou](kapitola_06.qmd#sec-vice-testu)).
 
 Nezamítnutí zase neznamená, že rozdělení je rovnoměrné. Jen jsme neprokázali odchylku; při malém počtu lidí by test mohl přehlédnout i podstatnou preferenci.
+
+### Jeden podíl třemi způsoby: binomické, normální a chí-kvadrát rozdělení {#sec-tri-rozdeleni}
+
+S testem jednoho podílu jsme se zatím setkali ve třech podobách: jako s [binomickým testem](kapitola_06.qmd#sec-binomicky-test), se [skórovým *z*-testem](#sec-interval-a-test-podilu) a s [testem chí-kvadrát pro dvě kategorie](#sec-chi-a-z). Tento pododdíl je na jedněch datech postaví vedle sebe a ukáže, že odpovídají na tutéž otázku: první přesně, zbylé dva přibližně.
+
+Vraťme se ke studentovi, který odpověděl správně na 10 z 20 otázek se čtyřmi možnostmi. Abychom mohli postupy porovnat, zvolíme tentokrát oboustrannou alternativu: liší se jeho dlouhodobá úspěšnost od 0,25 kterýmkoli směrem? Hypotézy jsou $H_0{:}\ \mathrm{π}=0{,}25$ a $H_1{:}\ \mathrm{π}\neq0{,}25$. Všechny tři postupy hledají totéž: pravděpodobnost, že by při platnosti nulové hypotézy vyšel výsledek [stejně extrémní nebo extrémnější](kapitola_06.qmd#sec-smer-testu) než ten náš. Liší se rozdělením, ze kterého ji počítají (obrázek [-@fig-tri-rozdeleni]).
+
+::: {.teaching-figure role="region" aria-label="Test jednoho podílu z binomického, normálního a chí-kvadrát rozdělení" tabindex="0"}
+
+![Tatáž otázka třemi rozděleními pro 10 správných odpovědí z 20 při $\mathrm{π}_0=0{,}25$. Přesná *p*-hodnota je součet oranžových sloupců binomického rozdělení, 0,017. Normální křivka je souměrná a plocha obou jejích chvostů je jen 0,0098 (části 1 a 2). Po umocnění *z* se oba chvosty překlopí do pravého chvostu: stejná plocha, 0,0098, leží pod křivkou chí-kvadrát rozdělení s jedním stupněm volnosti napravo od 6,67 (části 3 a 4).](../assets/chapter-09/plots/podil-tri-rozdeleni.svg){#fig-tri-rozdeleni fig-alt="Čtyři grafy. První, přes celou šířku: sloupce binomického rozdělení počtu správných odpovědí od 0 do 15 pro 20 otázek a pravděpodobnost úspěchu 0,25; nejvyšší sloupec je u 5 správných odpovědí s pravděpodobností 0,20, rozdělení je mírně zešikmené doprava. Pod grafem jsou tři vodorovné osy pod sebou: počet správných odpovědí 0, 5, 10 a 15, tomu odpovídající podíl 0; 0,25; 0,50 a 0,75 a statistika z −2,58; 0; 2,58 a 5,16. Sloupec pro 10 správných odpovědí je sytě oranžový, sloupce pro 0 a pro 11 a více správných odpovědí světle oranžové, ostatní šedé. Přes sloupce vede modrá normální křivka se střední hodnotou 5 a směrodatnou odchylkou 1,94, která sloupce přibližně sleduje; modře jsou vybarveny její chvosty vlevo od 0 a vpravo od 10. Popisky: součet oranžových sloupců 0,017 je přesná p-hodnota, plocha obou modrých chvostů 0,0098 přibližná p-hodnota. Druhý graf ukazuje tytéž sloupce a křivku se svislou osou zvětšenou na rozsah od 0 do 0,034, takže sloupce pro 2 až 8 správných odpovědí přesahují okraj. V levém chvostu má sloupec pro 0 správných odpovědí pravděpodobnost 0,0032 a plocha pod křivkou vlevo od 0 je 0,0049. V pravém chvostu mají sloupce pro 10 až 20 správných odpovědí dohromady 0,0139 a plocha pod křivkou vpravo od 10 je 0,0049. Třetí graf, vlevo dole: pravděpodobnosti nad hodnotami z na druhou od 3 výše. Nad hodnotou 4,27 stojí na sobě sloupce pro počty 1 a 9, dohromady 0,0482, šedě. Nad hodnotou 6,67 stojí na sobě sloupce pro počty 0 a 10, dohromady 0,0131, oranžově; dále oranžové sloupce pro počet 11 nad hodnotou 9,60 s pravděpodobností 0,0030 a pro počet 12 nad hodnotou 13,07 s pravděpodobností 0,0008. Popisek: z na druhou alespoň 6,67, oba chvosty dohromady 0,017 přesně. Čtvrtý graf, vpravo dole: klesající modrá křivka hustoty chí-kvadrát rozdělení s jedním stupněm volnosti na ose od 3 do 14,6. Svislá tečkovaná čára označuje kritickou hodnotu 3,84, tedy 1,96 na druhou; plocha napravo od ní je světle oranžová a má velikost 5 %. Šipka označuje naši hodnotu 6,67; plocha napravo od ní je sytě oranžová a má velikost 0,0098."}
+
+:::
+
+**Přesně: binomické rozdělení.** Při platnosti nulové hypotézy má počet správných odpovědí [binomické rozdělení](kapitola_05.qmd#sec-binomicky-vzorec) s $n=20$ a $\mathrm{π}=0{,}25$; ukazují ho sloupce v části 1 obrázku. Proti nulové hypotéze svědčí počty daleko od očekávaných 5 správných odpovědí, nad nimi i pod nimi. Rozdělení ale není souměrné: počty stejně vzdálené od 5 nemají stejnou pravděpodobnost, takže sama vzdálenost neurčí, které výsledky jsou stejně extrémní. Použijeme proto pravidlo, které souměrnost nepotřebuje: **sečteme pravděpodobnosti všech počtů, které jsou při platnosti nulové hypotézy stejně nebo méně pravděpodobné než pozorovaný počet.** Deset správných odpovědí má pravděpodobnost 0,0099. Stejně nebo méně pravděpodobné jsou počty 10 až 20, dohromady 0,0139, a na opačné straně jediný počet: žádná správná odpověď s pravděpodobností 0,0032. Už jedna správná odpověď je pravděpodobnější než deset: má pravděpodobnost 0,0211. Oboustranná *p*-hodnota je $0{,}0139+0{,}0032\approx0{,}017$. Výpočet nepoužívá žádnou aproximaci, proto mluvíme o přesném binomickém testu. Podle jiného užívaného pravidla, dvojnásobku menší jednostranné *p*-hodnoty ($2\times0{,}0139$), by vyšlo 0,028. U souměrného rozdělení, tedy při $\mathrm{π}_0=0{,}5$, vedou obě pravidla ke stejnému výsledku; sešit i aplikace k této knize používají první z nich.
+
+**Přibližně: normální rozdělení.** V [kapitole 5](kapitola_05.qmd#sec-normalni-aproximace) jsme binomické rozdělení nahrazovali normální křivkou se stejnou střední hodnotou a směrodatnou odchylkou, zde $20\times0{,}25=5$ a $\sqrt{20\times0{,}25\times0{,}75}\approx1{,}94$. Vodorovnou osu části 1 proto můžeme číst ve třech měřítkách: jako počet správných odpovědí, jako podíl (počet dělený 20) a jako statistiku $z$, tedy vzdálenost od střední hodnoty 5 vyjádřenou ve směrodatných odchylkách. Deseti správným odpovědím odpovídá podíl 0,50 a $z=(10-5)/1{,}94\approx2{,}58$. Je to táž skórová statistika, kterou jsme [dříve](#sec-interval-a-test-podilu) spočítali z podílů; čitatel i jmenovatel jsou jen dvacetkrát větší. Stejně daleko na opačné straně, u $z=-2{,}58$, leží nula správných odpovědí. *p*-hodnota skórového testu je plocha pod křivkou v obou chvostech za těmito hodnotami, $2\times0{,}0049\approx0{,}0098$; zvětšeně ji ukazuje část 2.
+
+**Přibližně: chí-kvadrát rozdělení.** Statistika chí-kvadrát pro dvě kategorie je druhou mocninou téhož $z$: $\mathrm{χ}^2=2{,}582^2=6{,}667$, jak jsme [spočítali z četností](#sec-chi-a-z). Umocněním na druhou se znaménko ztratí, takže se oba chvosty „překlopí“ do jediného pravého chvostu. Část 3 obrázku to ukazuje na binomických pravděpodobnostech: 0 a 10 správných odpovědí jsou od očekávaných 5 stejně daleko, mají stejné $z^2=6{,}67$ a jejich sloupce stojí na sobě. V našem příkladu vybere podmínka „$z^2$ alespoň 6,67“ tytéž počty jako pravidlo o pravděpodobnostech; obecně to tak být nemusí, jak ukáže cvičení 5. Stejně se překlopí i oba chvosty normální křivky. Umocníme-li totiž na druhou hodnoty s normovaným normálním rozdělením, mají výsledky chí-kvadrát rozdělení s jedním stupněm volnosti. Plocha napravo od 6,667 v části 4 je proto stejná jako plocha obou chvostů normální křivky, 0,0098. Platí to pro každou hodnotu: z 2,5 % hodnot pod −1,96 a 2,5 % hodnot nad 1,96 se stane 5 % hodnot nad $1{,}96^2=3{,}84$. To je kritická hodnota chí-kvadrát rozdělení s jedním stupněm volnosti. Proto se *p*-hodnota testu chí-kvadrát počítá z jediného chvostu, a test přesto zachytí odchylky oběma směry. Skórový test a test chí-kvadrát pro dvě kategorie jsou jeden a týž přibližný test zapsaný dvěma způsoby.
+
+**Proč se přesná a přibližná hodnota liší.** Přesným výpočtem vyšlo 0,017, oběma přibližnými 0,0098. Důvody známe z [kapitoly 5](kapitola_05.qmd#sec-aproximace-presnost) a ukazuje je část 2 obrázku. Binomické rozdělení je nespojité: sloupec pro 10 správných odpovědí zabírá na ose úsek od 9,5 do 10,5, kdežto plochu pod křivkou počítáme až od 10, a polovinu sloupce tak vynecháme. Binomické rozdělení je navíc zešikmené doprava a má delší pravý chvost než souměrná normální křivka. V pravém chvostu proto mají sloupce dohromady pravděpodobnost 0,0139, ale plocha pod křivkou je jen 0,0049; v levém chvostu je tomu naopak, 0,0032 proti 0,0049. Rozhodnutí je zde stejné: všechny tři *p*-hodnoty jsou menší než 0,05 a nulovou hypotézu zamítáme. Shoda je ale jen hrubá, protože očekáváme pouhých 5 správných odpovědí; k tomu, jak velké mají být očekávané četnosti, se dostaneme v [oddílu o předpokladech](#sec-male-cetnosti). S větším výběrem se aproximace zpřesňuje. Kdyby student odpověděl správně na 30 z 80 otázek, vyšla by stejná statistika $z=2{,}58$ a stejná přibližná *p*-hodnota 0,0098. Přesná *p*-hodnota by ale klesla z 0,0170 na 0,0136, tedy blíže k přibližné hodnotě.
+
+**K čemu jsou tři postupy.** U jednoho podílu spočítá software *p*-hodnotu přesně a aproximaci k testu nepotřebujeme. Skórový test přesto zůstává užitečný, protože mu přesně odpovídá Wilsonův interval. Normální a chí-kvadrát rozdělení jsou navíc důležitá z obecnějšího důvodu: stejnou úvahu lze rozšířit tam, kde by byl přesný výpočet pracný. Tak jsme postupovali u čtyř kategorií při volbě čaje a stejně budeme postupovat u tabulek dvou proměnných v následujících oddílech.
+
+List `Interval_podilu` počítá všechny tři testy vedle sebe. Sloupce F a G obsahují každý možný počet úspěchů a jeho pravděpodobnost při platnosti nulové hypotézy; z nich se sčítá přesná *p*-hodnota. Funkce **SUMIF** (anglicky také SUMIF) sečte jen ty hodnoty oblasti, které splňují podmínku. Podmínka se zapisuje v uvozovkách a číslo z buňky se k ní připojuje znakem &.
+
+::: {.table-scroll .chapter-09-wide role="region" aria-label="Excel: přesný binomický test a test chí-kvadrát na listu Interval_podilu" tabindex="0"}
+
+| Buňka | Význam | Český vzorec | Výsledek |
+|---|---|---|---:|
+| G2 | Pravděpodobnost počtu úspěchů z F2 (zde 0) | `=KDYŽ(F2<=$B$3;BINOM.DIST(F2;$B$3;$B$5;NEPRAVDA);"")` | 0,0032 |
+| B21 | Pravděpodobnost pozorovaného počtu | `=BINOM.DIST(B2;B3;B5;NEPRAVDA)` | 0,0099 |
+| B22 | Pravděpodobnost pozorovaného nebo vyššího počtu | `=1-BINOM.DIST(B2;B3;B5;PRAVDA)+B21` | 0,0139 |
+| B23 | Pravděpodobnost pozorovaného nebo nižšího počtu | `=BINOM.DIST(B2;B3;B5;PRAVDA)` | 0,9961 |
+| B24 | Přesný binomický test: oboustranná *p*-hodnota | `=KDYŽ(B3>400;"n nad 400";SUMIF(G2:G402;"<="&B21*(1+0,0000001)))` | 0,0170 |
+| B26 | Statistika $\mathrm{χ}^2$ pro dvě kategorie | `=B18^2` | 6,667 |
+| B27 | Test chí-kvadrát: *p*-hodnota | `=CHISQ.DIST.RT(B26;1)` | 0,0098 |
+
+: Přesný binomický test a test chí-kvadrát jednoho podílu v Excelu {#tbl-k09-15}
+
+:::
+
+::: {.table-note}
+*Poznámka.* Vzorec v G2 se kopíruje do řádků 3–402 pro počty 1 až 400 ve sloupci F; přesný test proto list počítá nejvýše pro 400 pokusů. Nepatrné navýšení hranice v B24 zajistí, že se započítají i počty, které mají stejnou pravděpodobnost jako pozorovaný počet a liší se od ní jen nepatrnou nepřesností výpočtu. Buňky B22 a B23 jsou jednostranné *p*-hodnoty pro alternativu „větší“ a „menší“; B22 je binomický test z [kapitoly 6](kapitola_06.qmd#sec-binomicky-test). Vzorec v B22 odečte od jedné pravděpodobnost pozorovaného nebo nižšího počtu a přičte zpět pravděpodobnost pozorovaného počtu, který patří do obou chvostů. Hodnota v B27 je stejná jako *p*-hodnota skórového testu v B19.
+:::
 
 ## Souvisejí spolu dvě kategoriální proměnné? {#sec-nezavislost}
 
@@ -648,7 +687,7 @@ Pilotní studie porovnala krátkou intervenci s kontrolní podmínkou. Zlepšen�
 
 - **Podmíní okrajovými součty.** Bere řádkové a sloupcové součty jako dané: 10 lidí s intervencí, 10 kontrolních, 11 se zlepšením a 9 bez něj. Ptá se: pokud zlepšení se skupinou nesouvisí, jak pravděpodobné je, že z 11 zlepšených lidí bude ve skupině s intervencí právě 8, 7, 6 … lidí?
 - **Spočítá přesné pravděpodobnosti** všech tabulek se stejnými okrajovými součty. Při pevných součtech stačí znát četnost v jedné buňce; ta může být 1 až 10.
-- **Sečte pravděpodobnosti tabulek**, které jsou při platnosti nulové hypotézy stejně nebo méně pravděpodobné než pozorovaná tabulka. Součet je oboustranná *p*-hodnota.
+- **Sečte pravděpodobnosti tabulek**, které jsou při platnosti nulové hypotézy stejně nebo méně pravděpodobné než pozorovaná tabulka. Součet je oboustranná *p*-hodnota. Stejným pravidlem jsme počítali [přesný binomický test](#sec-tri-rozdeleni).
 
 Obrázek [-@fig-fisher] ukazuje všech deset možných tabulek a jejich pravděpodobnosti. Nejpravděpodobnější jsou tabulky, v nichž se zlepšení rozdělí mezi skupiny téměř rovnoměrně (5 a 6, nebo 6 a 5 lidí). Pozorovaná tabulka s osmi zlepšenými ve skupině s intervencí má pravděpodobnost jen 0,032. „Stejně nebo méně pravděpodobné“ jsou tabulky, jejichž sloupec nepřesahuje přerušovanou čáru. Patří k nim tabulky s ještě větší převahou zlepšení ve skupině s intervencí (9 a 10 zlepšených) a tabulky se stejně velkou nebo větší převahou v opačném směru (3, 2 a 1 zlepšený). Součet jejich pravděpodobností, $2\times(0{,}0322+0{,}0027+0{,}0001)\approx0{,}070$, je oboustranná *p*-hodnota.
 
@@ -667,7 +706,7 @@ Pravděpodobnost, že při daných okrajových součtech bude v levé horní bu�
 
 `=HYPGEOM.DIST(8;10;11;20;NEPRAVDA)` ≈ 0,0322.
 
-List `Fisher` spočítá pravděpodobnosti všech možných hodnot $a$ od 1 do 10 (sloupec E). Tabulky s pravděpodobností nejvýše 0,0322 jsou $a=1, 2, 3$ a $a=8, 9, 10$; jejich součet je *p*-hodnota 0,070. Funkce **SUMIF** (anglicky také SUMIF) sečte jen hodnoty, které splňují podmínku: `=SUMIF(E2:E22;"<="&B10*(1+0,0000001))`, kde B10 je pravděpodobnost pozorované tabulky. Nepatrné navýšení hranice zajistí, že se započítají i tabulky se stejnou pravděpodobností, které se od pozorované liší jen zaokrouhlením.
+List `Fisher` spočítá pravděpodobnosti všech možných hodnot $a$ od 1 do 10 (sloupec E). Tabulky s pravděpodobností nejvýše 0,0322 jsou $a=1, 2, 3$ a $a=8, 9, 10$; jejich součet je *p*-hodnota 0,070. Funkce [SUMIF](#sec-tri-rozdeleni), kterou známe z přesného binomického testu, sečte jen hodnoty, které splňují podmínku: `=SUMIF(E2:E22;"<="&B10*(1+0,0000001))`, kde B10 je pravděpodobnost pozorované tabulky. Nepatrné navýšení hranice zajistí, že se započítají i tabulky se stejnou pravděpodobností, které se od pozorované liší jen zaokrouhlením.
 :::
 
 ### Simulovaná *p*-hodnota {#sec-monte-carlo}
@@ -842,7 +881,7 @@ $$p\text{-hodnota}=2\times P(X\le4)\approx0{,}077,$$
 
 v Excelu `=2*BINOM.DIST(4;16;0,5;PRAVDA)`.
 
-Násobíme dvěma, protože test je oboustranný: i opačná změna by svědčila proti nulové hypotéze. Přibližnou verzi testu dostaneme statistikou chí-kvadrát s jedním stupněm volnosti, $(12-4)^2/(12+4)=4{,}0$, *p*-hodnota `=CHISQ.DIST.RT(4;1)` ≈ 0,046. Šestnáct neshodných dvojic je málo, očekávaná četnost každého směru je jen 8, a aproximace tu vede k jinému rozhodnutí než přesný výpočet. **Při malém počtu neshodných dvojic proto používáme přesný binomický výpočet.** List `McNemar` počítá obě verze.
+Násobíme dvěma, protože test je oboustranný: i opačná změna by svědčila proti nulové hypotéze. Binomické rozdělení s $\mathrm{π}=0{,}5$ je souměrné, takže dvojnásobek menšího chvostu je totéž co součet [stejně nebo méně pravděpodobných počtů](#sec-tri-rozdeleni). Přibližnou verzi testu dostaneme statistikou chí-kvadrát s jedním stupněm volnosti, $(12-4)^2/(12+4)=4{,}0$, *p*-hodnota `=CHISQ.DIST.RT(4;1)` ≈ 0,046. Šestnáct neshodných dvojic je málo, očekávaná četnost každého směru je jen 8, a aproximace tu vede k jinému rozhodnutí než přesný výpočet. **Při malém počtu neshodných dvojic proto používáme přesný binomický výpočet.** List `McNemar` počítá obě verze.
 
 Dvě věci si zapamatujme. **Neshodné dvojice určují testovou statistiku, ale rozdíl podílů se vztahuje ke všem úplným dvojicím:** jmenovatel 72 nesmíme nahradit šestnácti. A jako u [párových dat](kapitola_08.qmd#sec-neuplne-dvojice) v kapitole 8 vstupují do analýzy jen děti s oběma měřeními; dítě, které na jaře chybělo, vyřadíme celé. Kdyby žádné dítě odpověď nezměnilo, test nelze spočítat: neshodných dvojic by bylo nula a změna podílu by byla přesně nulová.
 
@@ -941,7 +980,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 - Kategoriální data shrnujeme absolutními četnostmi a podíly. Průměr libovolných kódů kategorií obvykle nemá význam, ale průměr proměnné kódované 0/1 je podíl jedniček ([Od tabulky ve výběru k otázce o populaci](#sec-od-tabulky-k-populaci)).
 - Podíl v populaci odhadujeme Wilsonovým intervalem; známý postup „odhad ± kvantil × směrodatná chyba“ u malých výběrů a krajních podílů selhává. Interval a test poskytují související informace, přesná shoda rozhodnutí závisí na použitých postupech ([Jak přesně odhadneme podíl v populaci?](#sec-interval-podilu)).
 - Rozdíl podílů dvou nezávislých skupin odhadujeme Newcombovým intervalem a testujeme se společným podílem; nezamítnutí neznamená, že se podíly neliší ([Jak porovnat podíly ve dvou nezávislých skupinách?](#sec-dva-podily)).
-- Statistika chí-kvadrát sčítá čtverce rozdílů pozorovaných a očekávaných četností dělené očekávanými četnostmi. Má přibližně chí-kvadrát rozdělení s $k-1$ stupni volnosti v testu dobré shody a $(R-1)(S-1)$ v tabulce; *p*-hodnotě odpovídá plocha v pravém chvostu, test je přesto nesměrový. U dvou kategorií a tabulky 2 × 2 je $\mathrm{χ}^2=z^2$ ([Kdy je hodnota chí-kvadrát neobvykle velká?](#sec-chi-rozdeleni); [Souvisejí spolu dvě kategoriální proměnné?](#sec-nezavislost)).
+- Statistika chí-kvadrát sčítá čtverce rozdílů pozorovaných a očekávaných četností dělené očekávanými četnostmi. Má přibližně chí-kvadrát rozdělení s $k-1$ stupni volnosti v testu dobré shody a $(R-1)(S-1)$ v tabulce; *p*-hodnotě odpovídá plocha v pravém chvostu, test je přesto nesměrový. U dvou kategorií a tabulky 2 × 2 je $\mathrm{χ}^2=z^2$; test jednoho podílu proto lze počítat přesně z binomického rozdělení i přibližně z normálního nebo chí-kvadrát rozdělení ([Kdy je hodnota chí-kvadrát neobvykle velká?](#sec-chi-rozdeleni); [Souvisejí spolu dvě kategoriální proměnné?](#sec-nezavislost)).
 - Kde se tabulka od nezávislosti odchyluje, popisujeme řádkovými podíly a rezidui. Standardizovaná rezidua mají přibližně normované normální rozdělení, ale označit odchylky pozorovaných četností od očekávaných v jednotlivých buňkách za průkazné lze jen s korekcí pro více testů ([Kde se tabulka od nezávislosti odchyluje?](#sec-rezidua)).
 - Test chí-kvadrát předpokládá nezávislá pozorování, absolutní četnosti včetně nevýskytů a dost velké očekávané četnosti; jinak použijeme Fisherův exaktní test (u tabulky 2 × 2) nebo simulovanou *p*-hodnotu ([Kdy se na test chí-kvadrát nelze spolehnout?](#sec-predpoklady-09)).
 - Velikost souvislosti vyjadřuje rozdíl podílů v procentních bodech, poměr rizik a poměr šancí vzhledem k referenční skupině a souhrnně φ nebo Cramérovo V. Poměr šancí není poměr rizik a ve zprávě uvádíme vždy oba podíly ([Jak velká je souvislost?](#sec-velikost-souvislosti)).
@@ -949,7 +988,7 @@ Hlavní myšlenky kapitoly s odkazy na jejich výklad:
 
 ## Cvičení {#sec-cviceni-09}
 
-V úlohách 1, 5, 8, 9, 10, 11 a 12 stačí kalkulačka a hodnoty ze zadání; úlohy 2, 3, 4, 6, 7 a 13 vyžadují Excel (listy s hotovými výpočty můžete použít se změněnými vstupy). Podíly a meze intervalů uvádějte na tři desetinná místa, statistiku chí-kvadrát na dvě, *p*-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,002 u podílů a mezí, 0,02 u statistik a 0,001 u *p*-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 14 a 15 jsou nepovinné a navazují na nepovinná rozšíření.
+V úlohách 1, 8, 9, 10, 11 a 12 stačí kalkulačka a hodnoty ze zadání; úlohy 2, 3, 4, 5, 6, 7 a 13 vyžadují Excel (listy s hotovými výpočty můžete použít se změněnými vstupy). Podíly a meze intervalů uvádějte na tři desetinná místa, statistiku chí-kvadrát na dvě, *p*-hodnoty na tři; mezivýpočty nezaokrouhlujte. Při kontrole je přijatelná odchylka 0,002 u podílů a mezí, 0,02 u statistik a 0,001 u *p*-hodnot. U každého testu uveďte zvlášť rozhodnutí testu a věcnou interpretaci. Všechny číselné situace jsou autorské modelové příklady, pokud není uveden zdroj. Úlohy 14 a 15 jsou nepovinné a navazují na nepovinná rozšíření.
 
 ### 1. Kategoriální data, kódy a podíl
 
@@ -1034,7 +1073,7 @@ d)  Očekávané četnosti: $49\times27/93=14{,}23$, $49\times66/93=34{,}77$, $4
 
 ### 5. Kámen, nůžky, papír
 
-Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U05_knp` B2:B4.
+Vstupy v [sešitu ke kapitole](../data/kapitola_09.xlsx): `U05_knp` B2:B4; část e) používá list `Interval_podilu` se změněnými vstupy.
 
 Howell [-@howell, s. 142–143] uvádí smyšlený příklad: na hřišti zaznamenali u 75 dětí jeden tah ve hře kámen–nůžky–papír. Kámen zvolilo 30 dětí, papír 21 a nůžky 24.
 
@@ -1042,6 +1081,7 @@ a)  Formulujte nulovou hypotézu a spočítejte očekávané četnosti.
 b)  Spočítejte statistiku chí-kvadrát, stupně volnosti a *p*-hodnotu (`=CHISQ.DIST.RT(x;v)`). Zformulujte rozhodnutí testu a věcnou interpretaci.
 c)  Proč zaznamenali u každého dítěte jen jeden tah? Co by se změnilo, kdyby každé dítě přispělo deseti tahy?
 d)  Kdyby výzkumník předem předpokládal, že děti nejčastěji volí kámen, využil by test tuto předpověď? Proč?
+e)  Předpokládejme, že výzkumník předpověď z části d) stanovil předem. Protože chce zachytit i odchylku opačným směrem, volí oboustranný test: liší se populační podíl kamene od 1/3? Na listu `Interval_podilu` zadejte 30 úspěchů ze 75 pokusů a testovanou hodnotu `=1/3`. Spočítejte skórový test, statistiku chí-kvadrát pro dvě kategorie a přesný binomický test. Porovnejte *p*-hodnoty a vysvětlete, proč jsou si bližší než u příkladu 10 z 20 ve výkladu.
 
 ::: {.callout-note collapse="true" title="Ukázat řešení"}
 a)  $H_0{:}$ každý tah se v populaci dětí volí s pravděpodobností 1/3. Očekávaná četnost je $75/3=25$ pro každý tah.
@@ -1051,6 +1091,16 @@ b)  $\mathrm{χ}^2=\dfrac{5^2}{25}+\dfrac{(-4)^2}{25}+\dfrac{(-1)^2}{25}=1{,}00+
 c)  Kvůli nezávislosti pozorování. Tahy téhož dítěte spolu souvisejí (dítě může mít oblíbený tah nebo střídat tahy podle vlastního plánu). Při deseti tazích od dítěte by tabulka obsahovala 750 tahů, ale ne 750 nezávislých pozorování; test by počítal s přílišnou přesností a *p*-hodnota by neodpovídala skutečné nejistotě.
 
 d)  Nevyužil. Test chí-kvadrát je nesměrový a nebere ohled na to, ve které kategorii je odchylka: stejná hodnota 1,68 by vyšla i při 21 kamenech a 30 papírech. Konkrétní předpověď by šlo testovat jinak, například binomickým testem podílu kamene proti 1/3, stanoveným předem.
+
+e)  Hypotézy: $H_0{:}\ \mathrm{π}=1/3$, $H_1{:}\ \mathrm{π}\neq1/3$, kde $\mathrm{π}$ je populační podíl tahů „kámen“. Podíl ve výběru je $p=30/75=0{,}400$; při platnosti nulové hypotézy bychom čekali 25 kamenů a 50 jiných tahů.
+
+    - Skórový test (B18, B19): $z=(0{,}400-0{,}333)/\sqrt{(1/3)\times(2/3)/75}=0{,}0667/0{,}0544\approx1{,}22$, oboustranná *p*-hodnota 0,221.
+    - Test chí-kvadrát pro dvě kategorie (B26, B27): $\mathrm{χ}^2=\dfrac{(30-25)^2}{25}+\dfrac{(45-50)^2}{50}=1{,}00+0{,}50=1{,}50=1{,}225^2$, jeden stupeň volnosti, *p*-hodnota opět 0,221.
+    - Přesný binomický test (B21, B24): 30 kamenů má pravděpodobnost 0,0452. Stejně nebo méně pravděpodobné jsou počty 30 až 75 (dohromady 0,1357) a počty 0 až 19 (dohromady 0,0868); oboustranná *p*-hodnota je jejich součet, po zaokrouhlení 0,222.
+
+    Rozhodnutí: žádný z testů nulovou hypotézu na hladině 0,05 nezamítá. Věcná interpretace: kámen zvolilo 40 % dětí místo očekávané třetiny, ale takový rozdíl by při 75 dětech běžně vznikl i při rovnoměrné volbě. Od části b) se výsledek liší, protože jde o jinou hypotézu: netestujeme rozdělení všech tří tahů, jen podíl kamene.
+
+    Přesná a přibližná *p*-hodnota se liší až na třetím desetinném místě (0,222 a 0,221), kdežto u příkladu ve výkladu vyšlo 0,017 proti 0,0098. Očekávané četnosti jsou tu 25 a 50, ne 5 a 15. Binomické rozdělení má při 75 pokusech mnoho sloupců a je zešikmené jen mírně, takže mu je normální křivka mnohem blíž. Jednotlivé chvosty se přitom liší víc než jejich součet: sloupce mají 0,136 vpravo a 0,087 vlevo, kdežto plocha pod křivkou je v každém chvostu 0,110. Odchylky mají opačný směr a v součtu se téměř vyrovnají. Na mírné zešikmení ukazuje i počet 20: je od očekávaných 25 stejně daleko jako 30, má však pravděpodobnost 0,0476, tedy vyšší než 30 kamenů, a do přesné *p*-hodnoty se proto nepočítá.
 :::
 
 ### 6. Klienti poradny proti dlouhodobé evidenci

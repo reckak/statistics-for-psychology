@@ -324,7 +324,7 @@ const server = http.createServer((req, res) => {
           assert(await img.evaluate(async el=>{ if(!el.complete) await el.decode().catch(()=>{}); return el.complete && el.naturalWidth>0; }));
           assert((await img.getAttribute('alt')).length>30);
         }
-        for(const id of ['fig-wilson-odvozeni','fig-pokryti','fig-newcombe','fig-z2-chi2','fig-fisher','fig-monte-carlo','fig-kappa','sec-monte-carlo','sec-znamenkovy-test','tbl-k09-13','tbl-k09-14']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 9 revision element: ${id}`);
+        for(const id of ['fig-wilson-odvozeni','fig-pokryti','fig-newcombe','fig-tri-rozdeleni','sec-tri-rozdeleni','tbl-k09-15','fig-fisher','fig-monte-carlo','fig-kappa','sec-monte-carlo','sec-znamenkovy-test','tbl-k09-13','tbl-k09-14']) assert.equal(await page.locator('#'+id).count(),1,`Chapter 9 revision element: ${id}`);
         const greek9=await page.locator('main math mi').evaluateAll(items=>items.filter(e=>/[πχφκα]/.test(e.textContent)).map(e=>({text:e.textContent,variant:e.getAttribute('mathvariant')})));
         assert(greek9.filter(e=>e.text.includes('χ')).length>10,'Chi-square rendered with chi');
         assert(greek9.every(e=>e.variant==='normal'),'Greek symbols of chapter 9 must be upright');
