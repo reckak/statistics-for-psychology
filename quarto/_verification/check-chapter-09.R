@@ -107,14 +107,29 @@ for (n in c(10,20,50,100)) { l1 <- prop.test(1,n,correct=FALSE)$conf.int[1]; v <
 rq(prop.test(1,10,correct=FALSE)$conf.int[1],.018,3)
 rq(ch9_cover_at(10,.5)['mimo'],.11,2)
 stopifnot(all(sapply(ch9_cover_res,function(m) abs(mean(m[,'wilson'])-.95)<.005)), all(sapply(ch9_cover_res,function(m) mean(m[,'wald'])<.94)))
-# Holm table (text table 9.13): order, residuals, p-values, thresholds, decisions; p.adjust agrees.
+# Holm table (tbl-k09-13): order, residuals, p-values, thresholds, decisions; p.adjust agrees.
 h <- ch9_zvl_holm_tab; rq(h$reziduum,c(-2.97,-2.30,2.09,2.09,-1.03,.91,.82,.22,.20),2)
 rq(h$p,c(.0030,.0216,.0370,.0370,.3023,.3651,.4150,.8279,.8449),4); rq(h$hranice,c(.0056,.0063,.0071,.0083,.0100,.0125,.0167,.0250,.0500),4)
 stopifnot(identical(h$zamitame,c(TRUE,rep(FALSE,8))), sum(p.adjust(ch9_zvl_padj,'holm')<.05)==1, sum(abs(h$reziduum)>1.96)==4)
 stopifnot(h$radek[1]=='senioři (60+)', h$sloupec[1]=='řešení problému', h$radek[2]=='mladí (18–30)', h$sloupec[2]=='sociální opora')
-# z squared and chi-square with one degree of freedom.
-rq(qchisq(.95,1),3.84,2); eq(qchisq(.95,1),qnorm(.975)^2,1e-12); rq(100*mean(ch9_z2_sim>qchisq(.95,1)),5.4,1)
-stopifnot(ks.test(ch9_z2_sim,'pchisq',1)$p.value>.01)
+# One proportion three ways (2026-11-27): exact binomial test against binom.test, the normal tails and chi-square with one
+# degree of freedom; every number quoted in the subsection, in the figure, in the Excel table tbl-k09-15 and in the solution of exercise 5e.
+rq(qchisq(.95,1),3.84,2); eq(qchisq(.95,1),qnorm(.975)^2,1e-12); eq(pchisq(qnorm(.975)^2,1,lower.tail=FALSE),.05,1e-12)
+for (a in list(c(10,20,.25),c(30,80,.25),c(30,75,1/3),c(1,20,.25),c(0,25,.25),c(7,8,.5),c(21,60,.2),c(106,329,.25)))
+  eq(ch9_binom2(a[1],a[2],a[3])$p,binom.test(a[1],a[2],a[3])$p.value,1e-9)
+e <- ch9_t20_ex; rq(c(e$pobs,e$horni,e$pr[1],e$pr[2],e$dolni),c(.0099,.0139,.0032,.0211,.9961),4); rq(e$p,.017,3); rq(e$p,.0170,4); rq(.0139+.0032,.017,3); rq(e$dvojnasobek,.028,3)
+stopifnot(identical(e$x[e$less],c(0L,10:20)), e$pr[2]>e$pobs); rq(e$pr[6],.20,2); rq(sum(e$pr[17:21]),0,5)
+rq(sqrt(20*.25*.75),1.94,2); rq((10-5)/1.94,2.58,2); eq((10-5)/sqrt(3.75),ch9_t20_score[['z']],1e-12); eq((0-5)/sqrt(3.75),-ch9_t20_score[['z']],1e-12)
+rq((c(0,5,10,15)-5)/sqrt(3.75),c(-2.58,0,2.58,5.16),2); rq(ch9_t20_chvost,.0049,4); rq(2*.0049,.0098,4); eq(2*ch9_t20_chvost,ch9_t20_score[['p']],1e-12)
+eq(pchisq(ch9_t20_score[['z']]^2,1,lower.tail=FALSE),ch9_t20_score[['p']],1e-12); rq(pchisq(6.667,1,lower.tail=FALSE),.0098,4); rq(2.582^2,6.667,3)
+rq(((0:12)-5)^2/3.75,c(6.67,4.27,2.40,1.07,.27,0,.27,1.07,2.40,4.27,6.67,9.60,13.07),2)
+rq(c(e$pr[2]+e$pr[10],e$pr[1]+e$pr[11],e$pr[12],e$pr[13]),c(.0482,.0131,.0030,.0008),4); rq(e$pr[1]+sum(e$pr[11:21]),.017,3)
+eq(ch9_t80_score[['z']],ch9_t20_score[['z']],1e-12); rq(ch9_t80_score,c(2.58,.0098),c(2,4)); rq(ch9_t80_ex$p,.0136,4); rq(2*.0139,.028,3); eq(e$dvojnasobek,2*e$horni,1e-12)
+stopifnot(abs(ch9_t80_ex$p-ch9_t80_score[['p']])<abs(e$p-ch9_t20_score[['p']]))
+u5 <- ch9_u05_ex; rq(30/75,.400,3); rq(sqrt((1/3)*(2/3)/75),.0544,4); rq(.400-1/3,.0667,4); rq(ch9_u05_score,c(1.22,.221),c(2,3)); rq(ch9_u05_score[['z']],1.225,3)
+eq(ch9_u05_gof2$e,c(25,50)); eq(ch9_u05_gof2$prispevky,c(1,.5)); eq(ch9_u05_gof2$chi2,1.5); eq(ch9_u05_gof2$chi2,ch9_u05_score[['z']]^2,1e-12); rq(ch9_u05_gof2$p,.221,3)
+rq(c(u5$pobs,u5$horni,sum(u5$pr[1:20]),u5$p,u5$pr[21]),c(.0452,.1357,.0868,.222,.0476),c(4,4,4,3,4)); rq(c(u5$horni,sum(u5$pr[1:20]),ch9_u05_score[['p']]/2),c(.136,.087,.110),3)
+stopifnot(identical(u5$x[u5$less],c(0:19,30:75)), u5$pr[21]>u5$pobs, abs(u5$p-ch9_u05_score[['p']])<.002)
 # Fisher figure: ten tables, probabilities and the tables at most as probable as the observed one.
 f <- ch9_pilot_fisher; stopifnot(identical(f$a,1:10)); rq(f$pr,c(.0001,.0027,.0322,.1500,.3151,.3151,.1500,.0322,.0027,.0001),4)
 stopifnot(identical(which(f$pr<=f$pobs*(1+1e-7)),c(1L,2L,3L,8L,9L,10L))); rq(2*(.0322+.0027+.0001),.070,3)
@@ -130,7 +145,7 @@ eq(56*97-84*20,3752); rq(sqrt(140*117*76*181),15011,0); rq(c(56/76,84/181,ch9_da
 rq(.229*.273,.0625,4); eq(ch9_dan_eff['rozdil']*ch9_dan_coldiff,ch9_dan_phi_s^2,1e-12); rq(ch9_phi_signed(ch9_u10[2:1,]),-.13,2)
 stopifnot(abs(chisq.test(diag(c(30,40)),correct=FALSE)$statistic-70)<1e-9) # the maximum of chi-square in a 2 x 2 table is n
 rq(100*c(56,84)/140,c(40.0,60.0),1); rq(100*c(20,97)/117,c(17.1,82.9),1); rq(100*c(76,181)/257,c(29.6,70.4),1)
-# APA table (text table 9.14): row percentages.
+# APA table (tbl-k09-14): row percentages.
 rq(100*ch9_zvl_tab$radkove,matrix(c(45.5,37.5,18.2,32.7,27.5,36.4,21.8,35.0,45.5),3),1); rq(100*colSums(ch9_zvl)/190,c(34.2,31.6,34.2),1)
 # Sign test: chapter 8 differences and exercise 13, against binom.test.
 stopifnot(all(ch9_spanek_sign[c('kladne','zaporne','n')]==c(11,1,12))); eq(ch9_spanek_sign['p'],binom.test(11,12,.5)$p.value,1e-12); rq(ch9_spanek_sign['p'],.006,3)
@@ -153,5 +168,5 @@ rq(qnorm(.975)^2,3.8415,4); rq(ch9_t20_kor[c('A','B','C')],c(1.192,-1.192,.25),3
 rq(ch9_t20_kor[c('dolni','horni')],c(.299,.701),3); rq(15+qnorm(.975)^2,18.8415,4)
 eq(ch9_n15_kor[c('C','dolni')],c(0,0)); eq(ch9_n15_kor['horni'],qnorm(.975)^2/(15+qnorm(.975)^2),1e-12); rq(ch9_n15_kor['horni'],.204,3)
 stopifnot(abs(max(qnorm(.975)^2*seq(0,1,.001)*(1-seq(0,1,.001))/20)-.048)<5e-4) # peak of the bound quoted in the alt text
-stopifnot(all(file.exists(file.path('assets/chapter-09/plots',paste0(c('wilson-odvozeni','pokryti-wald-wilson','newcombe-konstrukce','z2-chi2','fisher-tabulky','monte-carlo','kappa-shody'),'.svg')))))
+stopifnot(all(file.exists(file.path('assets/chapter-09/plots',paste0(c('wilson-odvozeni','pokryti-wald-wilson','newcombe-konstrukce','podil-tri-rozdeleni','fisher-tabulky','monte-carlo','kappa-shody'),'.svg')))))
 cat('Chapter 9 checks passed.\n')

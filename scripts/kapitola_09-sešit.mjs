@@ -48,8 +48,14 @@ for(let i=0;i<20;i++){
  const R=2+i,row=spanek[i];
  signRows.push(I(`D${R}`,row?row[0]:null,'0'),I(`E${R}`,row?row[1]:null,'0'),C(`F${R}`,`=KDYŽ(POČET(D${R}:E${R})=2;D${R}-E${R};"")`,'0'));
 }
+// Exact binomial test on Interval_podilu: probabilities of all counts 0..400 under the tested value in F:G.
+const binomRows=[];
+for(let k=0;k<=400;k++){
+ const R=2+k;
+ binomRows.push(L(`F${R}`,k),C(`G${R}`,`=KDYŽ(F${R}<=$B$3;BINOM.DIST(F${R};$B$3;$B$5;NEPRAVDA);"")`,'0.000000'));
+}
 const sheets=[
- {name:'Interval_podilu',widths:{A:50,B:14,C:3,D:58},cells:[
+ {name:'Interval_podilu',widths:{A:54,B:14,C:3,D:58,E:3,F:16,G:24},cells:[
   H('A1','Interval pro podíl a skórový test'),H('B1','Hodnota'),
   L('A2','Počet úspěchů'),I('B2',10,'0'),L('A3','Počet pokusů n'),I('B3',20,'0'),
   L('A4','Hladina spolehlivosti'),I('B4',.95,'0.00'),L('A5','Testovaná hodnota π₀'),I('B5',.25,'0.00'),
@@ -64,7 +70,17 @@ const sheets=[
   L('A19','Skórový test: oboustranná p-hodnota'),C('B19','=2*(1-NORM.S.DIST(ABS(B18);PRAVDA))','0.0000'),
   N('D2','Výchozí vstupy: test s 20 otázkami (list Test_20).'),N('D4','Žlutě: vstupy. Modře: výpočty.'),
   N('D9','Waldův interval jen pro srovnání; u malých výběrů a krajních podílů selhává.'),
-  N('D15','Pro výsledek používejte Wilsonův interval.'),N('D18','Směrodatná chyba se počítá z testované hodnoty π₀.')]},
+  N('D15','Pro výsledek používejte Wilsonův interval.'),N('D18','Směrodatná chyba se počítá z testované hodnoty π₀.'),
+  L('A21','Přesný binomický test: pravděpodobnost pozorovaného počtu'),C('B21','=BINOM.DIST(B2;B3;B5;NEPRAVDA)','0.0000'),
+  L('A22','Přesný binomický test: pozorovaný nebo vyšší počet'),C('B22','=1-BINOM.DIST(B2;B3;B5;PRAVDA)+B21','0.0000'),
+  L('A23','Přesný binomický test: pozorovaný nebo nižší počet'),C('B23','=BINOM.DIST(B2;B3;B5;PRAVDA)','0.0000'),
+  L('A24','Přesný binomický test: oboustranná p-hodnota'),C('B24','=KDYŽ(B3>400;"n nad 400";SUMIF(G2:G402;"<="&B21*(1+0,0000001)))','0.0000'),
+  L('A26','Test chí-kvadrát pro dvě kategorie: statistika χ² = z²'),C('B26','=B18^2','0.000'),
+  L('A27','Test chí-kvadrát pro dvě kategorie: p-hodnota'),C('B27','=CHISQ.DIST.RT(B26;1)','0.0000'),
+  N('D21','Sloupce F a G: pravděpodobnost každého počtu úspěchů při π₀ (nejvýše 400 pokusů).'),
+  N('D24','Součet pravděpodobností počtů stejně nebo méně pravděpodobných než pozorovaný počet.'),
+  N('D27','Stejná p-hodnota jako u skórového testu v B19.'),
+  H('F1','Počet úspěchů'),H('G1','Pravděpodobnost při π₀'),...binomRows]},
  {name:'Dva_podily',widths:{A:56,B:14,C:3,D:60},cells:[
   H('A1','Rozdíl dvou nezávislých podílů'),H('B1','Hodnota'),
   L('A2','Počet úspěchů v první skupině'),I('B2',40,'0'),L('A3','Velikost první skupiny n₁'),I('B3',100,'0'),
@@ -199,7 +215,7 @@ for(const spec of sheets){
 }
 await populateStudentInputs(wb,9,out,specs);
 const overview=wb.worksheets.getItem('Prehled');
-overview.getRange('A5').values=[['Slovní úlohy 1, 8, 9 a 12 nevyžadují vlastní datový list; úloha 3 používá list Interval_podilu se změněnými vstupy.']];
+overview.getRange('A5').values=[['Slovní úlohy 1, 8, 9 a 12 nevyžadují vlastní datový list; úloha 3 a část e) úlohy 5 používají list Interval_podilu se změněnými vstupy.']];
 overview.getRange('A6').values=[['Tabulky četností: řádek je kategorie nebo skupina, ne jeden člověk. Do výpočtů patří absolutní četnosti.']];
 overview.getRange('C1').format.columnWidth=78;
 await wb.build(9,out);

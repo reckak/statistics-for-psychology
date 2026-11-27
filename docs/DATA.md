@@ -318,7 +318,7 @@ cvičení 1, 4, 8, 11 a 12 jsou slovní; jde o souhrny, nikoli o jednotlivá poz
 
 ## Kapitola 9
 
-[Sešit](../data/kapitola_09.xlsx). Kontrola proti výkladu a zadáním: 2026-11-16 (revize R81; předchozí 2026-11-09).
+[Sešit](../data/kapitola_09.xlsx). Kontrola proti výkladu a zadáním: 2026-11-16 (revize R81; předchozí 2026-11-09); 2026-11-27 jen list `Interval_podilu` a část e) cvičení 5.
 
 Výklad: `Stres` A2:C3 (200 studentů z kapitoly 5, nyní jako náhodný výběr),
 `Test_20` A2:B6 (10 z 20 a kontrast 0 z 15), `Pozice` A2:B5 (volba čaje,
@@ -331,7 +331,9 @@ Výklad: `Stres` A2:C3 (200 studentů z kapitoly 5, nyní jako náhodný výběr
 pozorování se ze souhrnů nesestavují.
 
 Hotové výpočty jsou na listech `Interval_podilu` (Wald pro srovnání, Wilson,
-skórový test), `Dva_podily` (Wilsonovy intervaly obou skupin, Newcombův
+skórový test; od 2026-11-27 přesný binomický test B21:B24 nad pravděpodobnostmi
+počtů 0–400 ve sloupcích F:G se SUMIF a test chí-kvadrát dvou kategorií B26:B27;
+nad 400 pokusů textový výsledek „n nad 400“), `Dva_podily` (Wilsonovy intervaly obou skupin, Newcombův
 interval, test se společným podílem a jeho χ² = z²), `Dobra_shoda` (vstupy
 B2:C5, CHISQ.DIST.RT, CHISQ.INV.RT a kontrola CHISQ.TEST), `Tabulka` (vstupy
 B3:D5; očekávané četnosti, příspěvky, test, V, řádkové podíly, Pearsonova
@@ -343,8 +345,9 @@ záporných a nulových rozdílů přes COUNTIFS a přesná binomická *p*-hodno
 rozdílu textový výsledek „nelze“) a nepovinně `Fisher` (HYPGEOM.DIST jen pro přípustné hodnoty, SUMIF).
 Žluté vstupy mají výchozí hodnoty výkladu; data cvičení se do nich dosazují.
 Simulace 10 000 výběrů k obrázku chí-kvadrát rozdělení je jen v `scripts/kapitola_09.R`
-(seed 20261109) a do sešitu nepatří; totéž platí pro simulaci druhých mocnin *z* (seed 20261116),
-přeskupení pilotní tabulky (seed 20261117) a přesný výpočet pokrytí intervalů.
+(seed 20261109) a do sešitu nepatří; totéž platí pro přeskupení pilotní tabulky (seed 20261117)
+a přesný výpočet pokrytí intervalů. Simulace druhých mocnin *z* (seed 20261116) zanikla
+2026-11-27 s obrázkem, který nahradil příklad jednoho podílu.
 
 | Cvičení | List a oblast / povaha zadání |
 |---|---|
@@ -352,7 +355,7 @@ přeskupení pilotní tabulky (seed 20261117) a přesný výpočet pokrytí inte
 | 2 | `U02_podil` A2:B5; výpočet na listu `Interval_podilu` |
 | 3 | Slovní zadání s počty v textu; výpočet na listu `Interval_podilu` |
 | 4 | `U04_prozac` A2:C3; skutečné údaje Walshe a kol. podle Howella (s. 146); výpočet na listu `Dva_podily` |
-| 5 | `U05_knp` A2:B4; Howellova smyšlená data |
+| 5 | `U05_knp` A2:B4; Howellova smyšlená data; část e) na listu `Interval_podilu` se vstupy 30, 75 a `=1/3` |
 | 6 | `U06_poradna` A2:C5; výpočet na listu `Dobra_shoda` |
 | 7 | `U07_uceni` A2:D4; výpočet na listu `Tabulka` |
 | 8, 9 | Slovní zadání. |

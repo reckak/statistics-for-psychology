@@ -76,8 +76,13 @@ Z95 = norm_quant(0.975)
 def interval_cells(x, n, level=0.95, p0=0.25):
     z = norm_quant(1 - (1 - level) / 2); p = x / n; se = math.sqrt(p * (1 - p) / n); c, h, lo, hi = wilson(x, n, z)
     zs = (p - p0) / math.sqrt(p0 * (1 - p0) / n)
-    return {'B7': p, 'B8': z, 'B9': se, 'B10': p - z * se, 'B11': p + z * se, 'B13': c, 'B14': h, 'B15': lo, 'B16': hi,
-            'B18': zs, 'B19': 2 * (1 - norm_cdf(abs(zs)))}
+    d = {'B7': p, 'B8': z, 'B9': se, 'B10': p - z * se, 'B11': p + z * se, 'B13': c, 'B14': h, 'B15': lo, 'B16': hi,
+         'B18': zs, 'B19': 2 * (1 - norm_cdf(abs(zs)))}
+    # Exact binomial test: counts at most as probable under the tested value as the observed one (helper columns F:G, n <= 400).
+    pm = [math.comb(n, i) * p0 ** i * (1 - p0) ** (n - i) for i in range(n + 1)]
+    d.update({'B21': pm[x], 'B22': sum(pm[x:]), 'B23': sum(pm[:x + 1]), 'G2': pm[0], 'B26': zs * zs, 'B27': chi_rt(zs * zs, 1)})
+    if n <= 400: d['B24'] = sum(v for v in pm if v <= pm[x] * (1 + 1e-7))
+    return d
 
 
 def two_cells(x1, n1, x2, n2, level=0.95):
@@ -180,6 +185,10 @@ F('=2*(1-NORM.S.DIST(ABS(Tabulka!B34);PRAVDA))', tab['B39'])
 changes = []
 for x, n in ((18, 60), (72, 240), (0, 25), (1, 25), (0, 15), (40, 80)):
     changes.append({'sheet': 'Interval_podilu', 'set': {'B2': x, 'B3': n}, 'expect': interval_cells(x, n)})
+# Exercise 5e (rock: 30 of 75 against 1/3), the contrast 30 of 80 and the limit of the helper columns (more than 400 trials).
+changes.append({'sheet': 'Interval_podilu', 'set': {'B2': 30, 'B3': 75, 'B5': 1 / 3}, 'expect': interval_cells(30, 75, p0=1 / 3)})
+changes.append({'sheet': 'Interval_podilu', 'set': {'B2': 30, 'B3': 80}, 'expect': interval_cells(30, 80)})
+changes.append({'sheet': 'Interval_podilu', 'set': {'B2': 120, 'B3': 480}, 'expect': interval_cells(120, 480), 'labels': {'B24': 'n nad 400'}})
 for args in ((13, 49, 14, 44), (56, 140, 20, 117), (80, 200, 60, 200), (6, 8, 2, 9)):
     changes.append({'sheet': 'Dva_podily', 'set': dict(zip(('B2', 'B3', 'B4', 'B5'), args)), 'expect': two_cells(*args)})
 changes.append({'sheet': 'Dobra_shoda', 'set': {'B2': 52, 'B3': 50, 'B4': 31, 'B5': 17, 'C2': 0.4, 'C3': 0.3, 'C4': 0.2, 'C5': 0.1},
@@ -209,8 +218,12 @@ out = {
     'formulas': f,
     'errors': ['=CHISQ.TEST(Pozice!B2:B5;Pozice!B2:B4)', '=CHISQ.DIST.RT(-1;3)', '=CHISQ.INV.RT(1,5;3)'],
     'texts': [{'sheet': 'Tabulka', 'cell': c, 'expected': v} for c, v in tab_labels.items()],
-    'blanks': [{'sheet': 'Fisher', 'cell': 'E2'}, {'sheet': 'Fisher', 'cell': 'E13'}],
+    'blanks': [{'sheet': 'Fisher', 'cell': 'E2'}, {'sheet': 'Fisher', 'cell': 'E13'}, {'sheet': 'Interval_podilu', 'cell': 'G23'}, {'sheet': 'Interval_podilu', 'cell': 'G402'}],
     'locals': [{'sheet': 'Interval_podilu', 'cell': 'B14', 'formula': '=B8/(1+B8^2/B3)*ODMOCNINA(B7*(1-B7)/B3+B8^2/(4*B3^2))'},
+               {'sheet': 'Interval_podilu', 'cell': 'G2', 'formula': '=KDYŽ(F2<=$B$3;BINOM.DIST(F2;$B$3;$B$5;NEPRAVDA);"")'},
+               {'sheet': 'Interval_podilu', 'cell': 'B22', 'formula': '=1-BINOM.DIST(B2;B3;B5;PRAVDA)+B21'},
+               {'sheet': 'Interval_podilu', 'cell': 'B24', 'formula': '=KDYŽ(B3>400;"n nad 400";SUMIF(G2:G402;"<="&B21*(1+0,0000001)))'},
+               {'sheet': 'Interval_podilu', 'cell': 'B27', 'formula': '=CHISQ.DIST.RT(B26;1)'},
                {'sheet': 'Dva_podily', 'cell': 'B12', 'formula': '=(B8+B11^2/(2*B3))/(1+B11^2/B3)-B11/(1+B11^2/B3)*ODMOCNINA(B8*(1-B8)/B3+B11^2/(4*B3^2))'},
                {'sheet': 'Dva_podily', 'cell': 'B16', 'formula': '=B10-ODMOCNINA((B8-B12)^2+(B15-B9)^2)'},
                {'sheet': 'Dva_podily', 'cell': 'B17', 'formula': '=B10+ODMOCNINA((B13-B8)^2+(B9-B14)^2)'},
