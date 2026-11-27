@@ -9,6 +9,32 @@ a předchozí měsíc; starší uzavřené měsíce jsou beze změny přesunuté
 
 Původní adresy přesunutých záznamů zachovává [rejstřík na konci souboru](#rejstrik-archivovanych-zaznamu).
 
+<a id="lightbox-matematika-v-popiscich"></a>
+
+## Lightbox: vykreslená matematika v popiscích obrázků (2026-11-27)
+
+Na autorův dotaz, proč se popisek obrázku 10.11 v lightboxu zobrazuje
+nesprávně, a jeho pokyn „Ano, oprav to“. Quarto předává popisek do GLightboxu
+jen jako prostý text v atributu `title` odkazu, takže inline matematika
+zůstala jako TeX (`\mathrm{τ}_b`) v lightboxu i v bublině po najetí myší;
+týkalo se všech obrázků s matematikou v popisku. Nový skript
+`assets/lightbox-captions.js` (připojený v `assets/after-body.html`) po
+otevření snímku nahradí titulek lightboxu obsahem `figcaption` obrázku
+s vykresleným MathML a u obrázků s matematikou přepíše `title` na čitelný
+text bez TeXové anotace. Obrázky bez matematiky se nemění. Navazuje na
+[zapnutí lightboxu](#lightbox-20261101);
+nové rozhodnutí v registru nezaloženo (technická oprava webu).
+
+**Kontroly:** celá kniha vykreslena (Quarto 1.9.38, R 4.5.1); skript je
+připojen na všech stránkách. `check-html.cjs` rozšířen o obrázek 10.11
+(bublina bez `\mathrm` a s „τb“, titulek lightboxu obsahuje MathML a ne TeX)
+a prošel celý bez chyb; prošel také `scripts/check-doc-maps.cjs`. Snímek
+lightboxu obrázku 10.11 na desktopu (1360 px) vizuálně prohlédnut:
+τ<sub>b</sub> i kurzivní *p* vykresleny.
+
+**Omezení:** ověřeno jen v Chromiu na desktopu; mobilní zobrazení lightboxu
+s matematikou, Firefox, Safari a čtečka obrazovky nebyly vyzkoušeny.
+
 <a id="reorganizace-dokumentace-2026-11-27"></a>
 
 ## Rozdělení rozsáhlých autorských dokumentů (2026-11-27, doplnění R32, R88)
@@ -3353,6 +3379,8 @@ zpřesněny), nikoli samostatným agentem v roli studenta ani na studentech.
 ověřen jen obsah buněk. Pracovní PDF kapitoly 6 nebylo znovu exportováno.
 Primární literatura citovaná Lakensem a Klinem (Lindley, Haller a Krauss,
 Morey et al.) nebyla čtena.
+
+<a id="lightbox-20261101"></a>
 
 ## 2026-11-01 — Zvětšení obrázků kliknutím (lightbox) na webu
 
