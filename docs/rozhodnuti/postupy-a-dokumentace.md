@@ -1623,3 +1623,18 @@ replikovat simlutánní confidence bands, které produkuje qqplotr? a dát jako 
 uživatel chce tradiční Q-Q graf, nebo detrendovaný?“ Plán s těmito volbami a s novými hesly
 schválil téhož dne. Realizaci eviduje
 [autorská historie](../../quarto/README.md#aplikace-jeden-prumer).
+
+<a id="r87-doplneni-2026-11-27-pas"></a>
+
+#### Doplnění 2026-11-27: výpočet pásu tail-sensitive
+
+**Stav:** schváleno 2026-11-27 po realizaci. Schválený plán počítal pás tail-sensitive jako
+qqplotr se zadanými parametry (`mu = m`, `sigma = s`). Při parametrech odhadnutých z týchž dat
+by takový pás zachytil normální data s pravděpodobností téměř 1, ne 0,95. Pás se proto počítá
+simulací standardizovaných normálních výběrů jako ve výchozím nastavení qqplotr, ale s průměrem
+a směrodatnou odchylkou místo robustních odhadů Qn, aby ležel kolem přímky $m+s z$
+z kapitoly 4; simultánní pokrytí je 0,944–0,955. Pás KS zůstává přesně podle qqplotr.
+
+**Doklad:** autor na otázku „Ponechat pás tail-sensitive se simulací zohledňující odhad m a s?“
+odpověděl „Ano, ponechat“. Realizaci eviduje
+[autorská historie](../../quarto/README.md#aplikace-jeden-prumer).
