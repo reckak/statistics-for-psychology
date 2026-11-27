@@ -1,10 +1,10 @@
 {
   "date": "2026-11-24",
   "script": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar.txt",
-  "script_sha256": "b33e39d9505f39fa8480ec12665c2e55e382ad15edcfe30fafc3a48376b9488a",
+  "script_sha256": "63345e7677bb6d9244c4c8e0e622c64aa8d3e845dbac579255075cd3bc8b2b60",
   "encoding": "UTF-8",
-  "word_count": 4860,
-  "character_count": 32397,
+  "word_count": 5002,
+  "character_count": 33532,
   "offset_convention": "Zero-based Unicode BMP character offsets, end exclusive; offsets include separating whitespace.",
   "scope": {
     "included_slides": [
@@ -18,17 +18,17 @@
     "exclusions": "Závěrečné procvičování, jeho řešení, otázky k zamyšlení, organizační a bibliografické pokyny."
   },
   "estimated_duration_minutes_at_105_to_125_wpm": [
-    39,
-    46
+    40,
+    48
   ],
   "sources": [
     {
       "path": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data.pptx",
-      "sha256": "57a97eacf1ae3ba3ca58e32c850916d137c880ac51a0a4a16dab782cf4386afb"
+      "sha256": "5d0557cc7e6a52f511d0d697adb049e6ef613d558ee9ff2e971dec1c52b25763"
     },
     {
       "path": "presentations/kapitola_09/kapitola_09_poznamky.docx",
-      "sha256": "e52fc46b62f4ca9cd8c309e673f68977d1bfc15a905cbd02b6b19d82a80ddc73"
+      "sha256": "53a68c6e6c4d2ae463bdc17a9debec41e9a4638097f37798cba1dab6c7c97790"
     },
     {
       "path": "quarto/kapitola_09.qmd",
@@ -44,7 +44,7 @@
     },
     {
       "path": "docs/PREZENTACE.md",
-      "sha256": "97a92ec85526c33e97008f464730decaf5cbf0e0ff098331c9a07bed3b297812"
+      "sha256": "36af7075c027730dd1fe22717965ebb3a6d4b035e6288af7cacac5858fc5dc1b"
     },
     {
       "path": "docs/SLOVNIK.md",
@@ -109,197 +109,204 @@
       "title": "Známý postup u podílů selhává",
       "announcement": "Snímek sedm.",
       "start_character": 3997,
-      "end_character": 5567,
-      "word_count": 240
+      "end_character": 5691,
+      "word_count": 258
     },
     {
       "number": 8,
       "title": "Wilsonův interval",
       "announcement": "Snímek osm.",
-      "start_character": 5567,
-      "end_character": 7201,
+      "start_character": 5691,
+      "end_character": 7335,
       "word_count": 242
     },
     {
       "number": 9,
       "title": "Interval a test jednoho podílu",
       "announcement": "Snímek devět.",
-      "start_character": 7201,
-      "end_character": 8438,
+      "start_character": 7335,
+      "end_character": 8572,
       "word_count": 181
     },
     {
       "number": 10,
       "title": "Rozdíl dvou podílů a jeho interval",
       "announcement": "Snímek deset.",
-      "start_character": 8438,
-      "end_character": 10134,
-      "word_count": 262
+      "start_character": 8572,
+      "end_character": 10433,
+      "word_count": 281
     },
     {
       "number": 11,
       "title": "Test se společným podílem",
       "announcement": "Snímek jedenáct.",
-      "start_character": 10134,
-      "end_character": 11451,
-      "word_count": 194
+      "start_character": 10433,
+      "end_character": 11811,
+      "word_count": 201
     },
     {
       "number": 12,
       "title": "Testy chí-kvadrát",
       "announcement": "Snímek dvanáct.",
-      "start_character": 11451,
-      "end_character": 11686,
+      "start_character": 11811,
+      "end_character": 12046,
       "word_count": 34
     },
     {
       "number": 13,
       "title": "Pozorované a očekávané četnosti",
       "announcement": "Snímek třináct.",
-      "start_character": 11686,
-      "end_character": 12808,
+      "start_character": 12046,
+      "end_character": 13168,
       "word_count": 163
     },
     {
       "number": 14,
       "title": "Statistika chí-kvadrát",
       "announcement": "Snímek čtrnáct.",
-      "start_character": 12808,
-      "end_character": 13827,
+      "start_character": 13168,
+      "end_character": 14187,
       "word_count": 146
     },
     {
       "number": 15,
       "title": "Kdy je hodnota chí-kvadrát neobvykle velká?",
       "announcement": "Snímek patnáct.",
-      "start_character": 13827,
-      "end_character": 15276,
+      "start_character": 14187,
+      "end_character": 15636,
       "word_count": 209
     },
     {
       "number": 16,
       "title": "Pravý chvost, a přesto nesměrový test",
       "announcement": "Snímek šestnáct.",
-      "start_character": 15276,
-      "end_character": 16495,
+      "start_character": 15636,
+      "end_character": 16855,
       "word_count": 183
     },
     {
       "number": 17,
       "title": "Souvisejí spolu dvě kategoriální proměnné?",
       "announcement": "Snímek sedmnáct.",
-      "start_character": 16495,
-      "end_character": 17867,
-      "word_count": 218
+      "start_character": 16855,
+      "end_character": 18278,
+      "word_count": 226
     },
     {
       "number": 18,
       "title": "Kde se tabulka od nezávislosti odchyluje?",
       "announcement": "Snímek osmnáct.",
-      "start_character": 17867,
-      "end_character": 19242,
-      "word_count": 197
+      "start_character": 18278,
+      "end_character": 19672,
+      "word_count": 198
     },
     {
       "number": 19,
       "title": "Standardizovaná rezidua popisují vzorec odchylek",
       "announcement": "Snímek devatenáct.",
-      "start_character": 19242,
-      "end_character": 20585,
+      "start_character": 19672,
+      "end_character": 21015,
       "word_count": 199
     },
     {
       "number": 20,
       "title": "Předpoklady a velikost souvislosti",
       "announcement": "Snímek dvacet.",
-      "start_character": 20585,
-      "end_character": 20748,
+      "start_character": 21015,
+      "end_character": 21178,
       "word_count": 25
     },
     {
       "number": 21,
       "title": "Na čem test chí-kvadrát stojí",
       "announcement": "Snímek dvacet jedna.",
-      "start_character": 20748,
-      "end_character": 21936,
-      "word_count": 171
+      "start_character": 21178,
+      "end_character": 22548,
+      "word_count": 197
     },
     {
       "number": 22,
       "title": "Malé očekávané četnosti: Fisherův exaktní test",
       "announcement": "Snímek dvacet dva.",
-      "start_character": 21936,
-      "end_character": 23634,
-      "word_count": 248
+      "start_character": 22548,
+      "end_character": 24434,
+      "word_count": 270
     },
     {
       "number": 23,
       "title": "Jak velká je souvislost? Rozdíl podílů",
       "announcement": "Snímek dvacet tři.",
-      "start_character": 23634,
-      "end_character": 25025,
-      "word_count": 208
+      "start_character": 24434,
+      "end_character": 25871,
+      "word_count": 214
     },
     {
       "number": 24,
       "title": "Poměr rizik a poměr šancí",
       "announcement": "Snímek dvacet čtyři.",
-      "start_character": 25025,
-      "end_character": 26444,
-      "word_count": 225
+      "start_character": 25871,
+      "end_character": 27363,
+      "word_count": 234
     },
     {
       "number": 25,
       "title": "Koeficient φ a Cramérovo V",
       "announcement": "Snímek dvacet pět.",
-      "start_character": 26444,
-      "end_character": 27564,
-      "word_count": 174
+      "start_character": 27363,
+      "end_character": 28525,
+      "word_count": 178
     },
     {
       "number": 26,
       "title": "Párová data, volba postupu a sdělení výsledků",
       "announcement": "Snímek dvacet šest.",
-      "start_character": 27564,
-      "end_character": 27722,
+      "start_character": 28525,
+      "end_character": 28683,
       "word_count": 26
     },
     {
       "number": 27,
       "title": "Tíž lidé dvakrát: McNemarův test",
       "announcement": "Snímek dvacet sedm.",
-      "start_character": 27722,
-      "end_character": 29341,
+      "start_character": 28683,
+      "end_character": 30302,
       "word_count": 243
     },
     {
       "number": 28,
       "title": "Znaménkový test: stejná úvaha pro párové rozdíly",
       "announcement": "Snímek dvacet osm.",
-      "start_character": 29341,
-      "end_character": 30357,
-      "word_count": 154
+      "start_character": 30302,
+      "end_character": 31492,
+      "word_count": 176
     },
     {
       "number": 29,
       "title": "Který postup?",
       "announcement": "Snímek dvacet devět.",
-      "start_character": 30357,
-      "end_character": 31342,
+      "start_character": 31492,
+      "end_character": 32477,
       "word_count": 147
     },
     {
       "number": 30,
       "title": "Ukázka sdělení výsledků",
       "announcement": "Snímek třicet.",
-      "start_character": 31342,
-      "end_character": 32397,
+      "start_character": 32477,
+      "end_character": 33532,
       "word_count": 162
     }
   ],
   "intended_synthesis": {
-    "status": "not_requested",
-    "note": "Scénář byl připraven bez syntézy; nahrávka vznikne jen na výslovnou žádost. Projektová volba pro pokračování nahrávek je v docs/TEXT2SPEECH.md; dostupnost služby nebyla ověřována."
+    "status": "completed",
+    "service": "Creative Claw",
+    "model": "speech/elevenlabs-v4",
+    "voice": "Adam – Velvety and Conversational",
+    "voice_id": "uYFJyGaibp4N2VwYQshk",
+    "language_code": "cs",
+    "input_audio_format": "mp3_44100_128",
+    "apply_saved_pronunciations": false,
+    "pronunciation_source": "Schválené přepisy jsou součástí scénáře."
   },
   "pronunciation_dictionary": [
     {
@@ -336,12 +343,6 @@
       "term": "kritická",
       "spoken": "kritycká a tvary",
       "origin": "Tvrdé ti.",
-      "text_check": "applied"
-    },
-    {
-      "term": "dramatičtěji",
-      "spoken": "dramatyčtěji",
-      "origin": "Tvrdé ti; jazykové posouzení.",
       "text_check": "applied"
     },
     {
@@ -473,6 +474,7 @@
     "hodí",
     "hodnocení",
     "horní",
+    "hranicí",
     "jediného",
     "jediný",
     "jedniček",
@@ -495,7 +497,6 @@
     "mladí",
     "mocnina",
     "mocniny",
-    "nehodí",
     "není",
     "neprozradí",
     "nepříznivý",
@@ -512,16 +513,18 @@
     "nízký",
     "nižší",
     "normální",
+    "normálního",
     "obrácením",
     "obtížné",
     "odečítání",
-    "odmocnina",
+    "odmocníme",
     "odmocninou",
     "odmocninu",
     "odpovědi",
     "odpovědí",
     "omezení",
     "osmdesáti",
+    "ostatní",
     "padesáti",
     "patnácti",
     "pětině",
@@ -536,6 +539,7 @@
     "podílů",
     "podílům",
     "podíly",
+    "podívejme",
     "podívejte",
     "pokrytí",
     "poloviční",
@@ -551,7 +555,6 @@
     "pravděpodobností",
     "procentní",
     "procentních",
-    "procentními",
     "procvičování",
     "prostřední",
     "proti",
@@ -559,11 +562,16 @@
     "prvním",
     "přehrávání",
     "přeskupení",
+    "přeskupování",
     "přiřadit",
     "přiřazení",
+    "původní",
+    "původních",
     "referenční",
+    "relativně",
     "rozdělení",
     "rozdíl",
+    "rozdílem",
     "rozdílu",
     "rozdílů",
     "rozdíly",
@@ -571,7 +579,6 @@
     "rozhodování",
     "rozšířením",
     "řešení",
-    "sčítání",
     "sedmdesáti",
     "sedmnácti",
     "setin",
@@ -583,11 +590,13 @@
     "sociální",
     "souvislosti",
     "spolehlivosti",
+    "sportovní",
     "sportovním",
     "srovnání",
     "stupni",
     "šesti",
     "šestnácti",
+    "teoretickou",
     "tím",
     "tisíc",
     "tisíce",
@@ -625,7 +634,6 @@
     "vrátíme",
     "vyhýbání",
     "vyjádření",
-    "vynásobení",
     "výzkumnice",
     "vzdálenosti",
     "vznikaly",
@@ -637,7 +645,6 @@
     "zjistit",
     "zlepšení",
     "změnil",
-    "zní",
     "ztratí",
     "zvládání"
   ],
@@ -645,7 +652,7 @@
   "numeric_verification": {
     "engine": "Base R 4.5.1",
     "script": "tmp/chapter09-presentation/check.R (ignorovaná pracovní složka)",
-    "result": "Všechny hodnoty prezentace a poznámek, ze kterých scénář vychází, souhlasí s nezávislým přepočtem v uvedeném zaokrouhlení (43 skupin kontrol, 0 rozdílů)."
+    "result": "Přepočet výkladových hodnot a cvičení v R: 48 skupin kontrol, 0 zjištěných rozdílů."
   },
   "checks": {
     "announcements_present_once_in_order": true,
@@ -657,8 +664,506 @@
     "line_endings": "LF"
   },
   "limitations": [
-    "Zvuk nebyl vytvořen; skutečná výslovnost přepisů ani délka nahrávky nejsou ověřeny.",
-    "Odhad délky vychází jen z počtu slov.",
-    "Poslechová kontrola neproběhla."
-  ]
+    "Časování slov sleduje scénář. Ověření nepoužilo nezávislý přepis zvuku.",
+    "Poslechová kontrola a ověření skutečné výslovnosti neproběhly.",
+    "Zobrazení značek závisí na přehrávači."
+  ],
+  "audio": {
+    "path": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_Adam.mp3",
+    "sha256": "50d049174fce435c65b92eb26a85cececbf2bfef3ba04ca42a7d04aae96f3c4e",
+    "duration_seconds": 2583.0661224489795,
+    "sum_parts_seconds": 2583.04,
+    "sample_rate": 44100,
+    "channels": 1,
+    "bitrate": 192000,
+    "parts": [
+      {
+        "slides": [
+          1,
+          8
+        ],
+        "duration_seconds": 567.92,
+        "sha256": "335d38ceaef30bec81629cc2595eef621f731fa4cecc1812ddac7acf23847f7c",
+        "credits": 147,
+        "timing_text_matches_script": true,
+        "timing_word_count": 1114,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          9,
+          16
+        ],
+        "duration_seconds": 736.48,
+        "sha256": "0809239b0b9bd0bc0e2ac718ba34a09ea6d670834ac788dada71a474bec821e0",
+        "credits": 191,
+        "timing_text_matches_script": true,
+        "timing_word_count": 1415,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          17,
+          23
+        ],
+        "duration_seconds": 699.36,
+        "sha256": "4ffa2b0d219064a61f034da24140b94f918115baaa6b7e03a6ec90f0309ec09a",
+        "credits": 181,
+        "timing_text_matches_script": true,
+        "timing_word_count": 1348,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          24,
+          30
+        ],
+        "duration_seconds": 579.28,
+        "sha256": "30542f518bab1be866d01ffdce75ee20f8fedfaa89c1f876f6a9a6cda1d9ce33",
+        "credits": 154,
+        "timing_text_matches_script": true,
+        "timing_word_count": 1182,
+        "timing_within_audio": true
+      }
+    ],
+    "embedded_chapters": 30,
+    "chapter_starts": [
+      {
+        "slide": 1,
+        "title": "Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost souvislosti",
+        "start_seconds": 0
+      },
+      {
+        "slide": 2,
+        "title": "Obsah přednášky",
+        "start_seconds": 74.64
+      },
+      {
+        "slide": 3,
+        "title": "Od tabulky k otázce o populaci",
+        "start_seconds": 129.12
+      },
+      {
+        "slide": 4,
+        "title": "Kategoriální data shrnujeme četnostmi a podíly",
+        "start_seconds": 143.52
+      },
+      {
+        "slide": 5,
+        "title": "Tři typy otázek o kategoriálních datech",
+        "start_seconds": 240.72
+      },
+      {
+        "slide": 6,
+        "title": "Odhad a porovnání podílů",
+        "start_seconds": 299.52
+      },
+      {
+        "slide": 7,
+        "title": "Známý postup u podílů selhává",
+        "start_seconds": 312.56
+      },
+      {
+        "slide": 8,
+        "title": "Wilsonův interval",
+        "start_seconds": 441.44
+      },
+      {
+        "slide": 9,
+        "title": "Interval a test jednoho podílu",
+        "start_seconds": 567.92
+      },
+      {
+        "slide": 10,
+        "title": "Rozdíl dvou podílů a jeho interval",
+        "start_seconds": 666.9599999999999
+      },
+      {
+        "slide": 11,
+        "title": "Test se společným podílem",
+        "start_seconds": 810.48
+      },
+      {
+        "slide": 12,
+        "title": "Testy chí-kvadrát",
+        "start_seconds": 914.24
+      },
+      {
+        "slide": 13,
+        "title": "Pozorované a očekávané četnosti",
+        "start_seconds": 931.52
+      },
+      {
+        "slide": 14,
+        "title": "Statistika chí-kvadrát",
+        "start_seconds": 1020.64
+      },
+      {
+        "slide": 15,
+        "title": "Kdy je hodnota chí-kvadrát neobvykle velká?",
+        "start_seconds": 1101.1999999999998
+      },
+      {
+        "slide": 16,
+        "title": "Pravý chvost, a přesto nesměrový test",
+        "start_seconds": 1213.76
+      },
+      {
+        "slide": 17,
+        "title": "Souvisejí spolu dvě kategoriální proměnné?",
+        "start_seconds": 1304.4
+      },
+      {
+        "slide": 18,
+        "title": "Kde se tabulka od nezávislosti odchyluje?",
+        "start_seconds": 1422.4
+      },
+      {
+        "slide": 19,
+        "title": "Standardizovaná rezidua popisují vzorec odchylek",
+        "start_seconds": 1533.3600000000001
+      },
+      {
+        "slide": 20,
+        "title": "Předpoklady a velikost souvislosti",
+        "start_seconds": 1633.44
+      },
+      {
+        "slide": 21,
+        "title": "Na čem test chí-kvadrát stojí",
+        "start_seconds": 1646.96
+      },
+      {
+        "slide": 22,
+        "title": "Malé očekávané četnosti: Fisherův exaktní test",
+        "start_seconds": 1753.44
+      },
+      {
+        "slide": 23,
+        "title": "Jak velká je souvislost? Rozdíl podílů",
+        "start_seconds": 1896.96
+      },
+      {
+        "slide": 24,
+        "title": "Poměr rizik a poměr šancí",
+        "start_seconds": 2003.7600000000002
+      },
+      {
+        "slide": 25,
+        "title": "Koeficient φ a Cramérovo V",
+        "start_seconds": 2118.96
+      },
+      {
+        "slide": 26,
+        "title": "Párová data, volba postupu a sdělení výsledků",
+        "start_seconds": 2208.2400000000002
+      },
+      {
+        "slide": 27,
+        "title": "Tíž lidé dvakrát: McNemarův test",
+        "start_seconds": 2220.8
+      },
+      {
+        "slide": 28,
+        "title": "Znaménkový test: stejná úvaha pro párové rozdíly",
+        "start_seconds": 2340.8
+      },
+      {
+        "slide": 29,
+        "title": "Který postup?",
+        "start_seconds": 2428.96
+      },
+      {
+        "slide": 30,
+        "title": "Ukázka sdělení výsledků",
+        "start_seconds": 2503.2000000000003
+      }
+    ],
+    "mean_volume": "-26.9 dB",
+    "peak_volume": "-4.7 dB",
+    "pauses_at_least_3_seconds": [],
+    "decode_errors": false,
+    "listening_performed": false,
+    "independent_transcription_performed": false,
+    "assembly": "Dekódované úseky spojeny v pořadí bez prolínání, poté zakódovány do finálního MP3.",
+    "timing_source": "Značky snímků z časování slov služby a naměřených délek úseků.",
+    "total_credits": 673
+  },
+  "alternate_audio": {
+    "service": "Creative Claw",
+    "model": "speech/heygen-voice-1",
+    "voice": "Judita",
+    "voice_id": "d224666687bd45d894e3cf7abf8e60e6",
+    "language": "cs",
+    "speed": 1,
+    "apply_saved_pronunciations": false,
+    "script_sha256": "63345e7677bb6d9244c4c8e0e622c64aa8d3e845dbac579255075cd3bc8b2b60",
+    "timings_source": "Časování slov z HeyGen a součet naměřených délek jednotlivých úseků.",
+    "assembly": "Dekódované úseky spojeny v pořadí bez prolínání, poté zakódovány do finálního MP3.",
+    "total_credits": 673,
+    "path": "presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_Judita.mp3",
+    "sha256": "d87278f7f9cc12e0ee9783580ea7b9ae3199d45c947aaa9036dd29528f1e6bf1",
+    "duration_seconds": 2180.597551020408,
+    "sum_parts_seconds": 2180.571428571429,
+    "sample_rate": 44100,
+    "channels": 1,
+    "bitrate": 192000,
+    "parts": [
+      {
+        "slides": [
+          1,
+          5
+        ],
+        "duration_seconds": 253.49224489795918,
+        "sha256": "4b2706c5249f1baab1fcc0f6000e8ad8f7d4690634cd07bde1aa48c3598b89d4",
+        "credits": 77,
+        "timing_text_matches_script": true,
+        "timing_word_count": 582,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          6,
+          8
+        ],
+        "duration_seconds": 226.82122448979592,
+        "sha256": "652279ad6f8431c86e12d1593a89b1cf7728e21f2f13e9de1fa4edade3dcddf3",
+        "credits": 70,
+        "timing_text_matches_script": true,
+        "timing_word_count": 527,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          9,
+          11
+        ],
+        "duration_seconds": 291.03020408163263,
+        "sha256": "f87e190825ba3a59cd8a1010b2c2cd666dadf14d4457d234dff3cea4a943fcf9",
+        "credits": 90,
+        "timing_text_matches_script": true,
+        "timing_word_count": 663,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          12,
+          15
+        ],
+        "duration_seconds": 249.05142857142857,
+        "sha256": "15750d2f38cfc2eb972acd62e8dcef9b041e5974a2187988f3a16c8c30fee744",
+        "credits": 77,
+        "timing_text_matches_script": true,
+        "timing_word_count": 552,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          16,
+          18
+        ],
+        "duration_seconds": 263.6538775510204,
+        "sha256": "3205292b825eb3bdd045785a4968db23ff19e4535643a01bcc21422d45b6db33",
+        "credits": 81,
+        "timing_text_matches_script": true,
+        "timing_word_count": 607,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          19,
+          22
+        ],
+        "duration_seconds": 304.6922448979592,
+        "sha256": "ce77611d34ff31f2020c86f9b07e0f8d2bd8e18aa7521f9688a8cbb904e1949c",
+        "credits": 96,
+        "timing_text_matches_script": true,
+        "timing_word_count": 691,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          23,
+          26
+        ],
+        "duration_seconds": 278.93551020408165,
+        "sha256": "0b31dcf434b7459f9375a9aea2e2316c7daa641dc562a46e75e0ab73e39ef047",
+        "credits": 85,
+        "timing_text_matches_script": true,
+        "timing_word_count": 652,
+        "timing_within_audio": true
+      },
+      {
+        "slides": [
+          27,
+          30
+        ],
+        "duration_seconds": 312.894693877551,
+        "sha256": "128074589a8be8a1720d0f6506f3ab944c4a2600e4ba9ee6989ad64de4284a7a",
+        "credits": 97,
+        "timing_text_matches_script": true,
+        "timing_word_count": 728,
+        "timing_within_audio": true
+      }
+    ],
+    "embedded_chapters": 30,
+    "chapter_starts": [
+      {
+        "slide": 1,
+        "title": "Podíly a kategoriální data: odhad, testy chí-kvadrát a velikost souvislosti",
+        "start_seconds": 0.299
+      },
+      {
+        "slide": 2,
+        "title": "Obsah přednášky",
+        "start_seconds": 62.552
+      },
+      {
+        "slide": 3,
+        "title": "Od tabulky k otázce o populaci",
+        "start_seconds": 108.395
+      },
+      {
+        "slide": 4,
+        "title": "Kategoriální data shrnujeme četnostmi a podíly",
+        "start_seconds": 119.3
+      },
+      {
+        "slide": 5,
+        "title": "Tři typy otázek o kategoriálních datech",
+        "start_seconds": 201.816
+      },
+      {
+        "slide": 6,
+        "title": "Odhad a porovnání podílů",
+        "start_seconds": 253.7912448979592
+      },
+      {
+        "slide": 7,
+        "title": "Známý postup u podílů selhává",
+        "start_seconds": 264.20124489795916
+      },
+      {
+        "slide": 8,
+        "title": "Wilsonův interval",
+        "start_seconds": 372.1042448979592
+      },
+      {
+        "slide": 9,
+        "title": "Interval a test jednoho podílu",
+        "start_seconds": 480.6124693877551
+      },
+      {
+        "slide": 10,
+        "title": "Rozdíl dvou podílů a jeho interval",
+        "start_seconds": 561.2424693877551
+      },
+      {
+        "slide": 11,
+        "title": "Test se společným podílem",
+        "start_seconds": 679.5994693877551
+      },
+      {
+        "slide": 12,
+        "title": "Testy chí-kvadrát",
+        "start_seconds": 771.5996734693878
+      },
+      {
+        "slide": 13,
+        "title": "Pozorované a očekávané četnosti",
+        "start_seconds": 786.3636734693878
+      },
+      {
+        "slide": 14,
+        "title": "Statistika chí-kvadrát",
+        "start_seconds": 859.1156734693878
+      },
+      {
+        "slide": 15,
+        "title": "Kdy je hodnota chí-kvadrát neobvykle velká?",
+        "start_seconds": 924.3036734693878
+      },
+      {
+        "slide": 16,
+        "title": "Pravý chvost, a přesto nesměrový test",
+        "start_seconds": 1020.6941020408163
+      },
+      {
+        "slide": 17,
+        "title": "Souvisejí spolu dvě kategoriální proměnné?",
+        "start_seconds": 1099.6291020408164
+      },
+      {
+        "slide": 18,
+        "title": "Kde se tabulka od nezávislosti odchyluje?",
+        "start_seconds": 1193.3941020408163
+      },
+      {
+        "slide": 19,
+        "title": "Standardizovaná rezidua popisují vzorec odchylek",
+        "start_seconds": 1284.3479795918367
+      },
+      {
+        "slide": 20,
+        "title": "Předpoklady a velikost souvislosti",
+        "start_seconds": 1371.9929795918367
+      },
+      {
+        "slide": 21,
+        "title": "Na čem test chí-kvadrát stojí",
+        "start_seconds": 1382.5119795918367
+      },
+      {
+        "slide": 22,
+        "title": "Malé očekávané četnosti: Fisherův exaktní test",
+        "start_seconds": 1469.5609795918367
+      },
+      {
+        "slide": 23,
+        "title": "Jak velká je souvislost? Rozdíl podílů",
+        "start_seconds": 1589.040224489796
+      },
+      {
+        "slide": 24,
+        "title": "Poměr rizik a poměr šancí",
+        "start_seconds": 1679.021224489796
+      },
+      {
+        "slide": 25,
+        "title": "Koeficient φ a Cramérovo V",
+        "start_seconds": 1780.724224489796
+      },
+      {
+        "slide": 26,
+        "title": "Párová data, volba postupu a sdělení výsledků",
+        "start_seconds": 1856.739224489796
+      },
+      {
+        "slide": 27,
+        "title": "Tíž lidé dvakrát: McNemarův test",
+        "start_seconds": 1867.9757346938777
+      },
+      {
+        "slide": 28,
+        "title": "Znaménkový test: stejná úvaha pro párové rozdíly",
+        "start_seconds": 1971.0237346938777
+      },
+      {
+        "slide": 29,
+        "title": "Který postup?",
+        "start_seconds": 2048.1407346938777
+      },
+      {
+        "slide": 30,
+        "title": "Ukázka sdělení výsledků",
+        "start_seconds": 2111.728734693878
+      }
+    ],
+    "mean_volume": "-16.5 dB",
+    "peak_volume": "-0.2 dB",
+    "pauses_at_least_3_seconds": [],
+    "decode_errors": false,
+    "listening_performed": false,
+    "independent_transcription_performed": false
+  }
 }

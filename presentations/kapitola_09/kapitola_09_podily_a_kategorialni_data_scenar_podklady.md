@@ -13,11 +13,39 @@ procvičování na snímcích 31–38, otázky k zamyšlení a jejich odpovědi,
 organizační pokyny a bibliografické zápisy. Nezařazuje nepovinná
 rozšíření kapitoly.
 
-Text má **4 860 slov**. Při tempu 105–125 slov za minutu odpovídá
-přibližně **39–46 minutám** bez dalších pauz. Jde o odhad z počtu slov,
-nikoli o změřenou délku zvuku. **Nahrávka nevznikla** a placená syntéza
-nebyla spuštěna; vytvoří se jen na výslovnou žádost autora podle
-[projektových pravidel](../../docs/TEXT2SPEECH.md).
+Revidovaný text má **5 002 slov**. Při tempu 105–125 slov za minutu
+odpovídá přibližně **40–48 minutám** bez dalších pauz. Na výslovný pokyn
+autora byl pro tuto nahrávku zvolen Creative Claw, ElevenLabs v4 a český
+hlas Adam – Velvety and Conversational. Kvůli limitu 10 000 znaků na
+požadavek je syntéza rozdělena na snímky 1–8, 9–16, 17–23 a 24–30.
+
+## Výsledná nahrávka hlasem Adam
+
+Místní soubor `kapitola_09_podily_a_kategorialni_data_Adam.mp3` trvá
+**43:03**. Čtyři úseky byly spojeny v pořadí bez prolínání a zakódovány
+do jednoho mono MP3 (44,1 kHz, 192 kb/s). Obsahuje 30 značek snímků
+odvozených z časování slov a naměřených délek úseků. Soubor je
+ignorovaný Gitem.
+
+Dekódování proběhlo bez chyb. Délka odpovídá součtu úseků, časovaná slova
+služby odpovídají scénáři a přehrávací soubor obsahuje všech 30 značek.
+Technická kontrola nezjistila pauzy dlouhé alespoň tři sekundy pod
+hranicí −50 dB. Podrobnosti a otisk výsledného souboru jsou v manifestu.
+Nahrávka spotřebovala 673 kreditů Creative Claw.
+
+## Nahrávka hlasem Judita
+
+Stejný scénář snímků 1–30 byl na pokyn autora převeden také hlasem
+Judita v Creative Claw, modelem `speech/heygen-voice-1`, v češtině
+s rychlostí 1. Limit 5 000 znaků vyžadoval osm úseků na hranicích snímků.
+Po spojení bez prolínání vznikl soubor
+`kapitola_09_podily_a_kategorialni_data_Judita.mp3` o délce **36:21**
+s 30 značkami snímků. Syntéza spotřebovala 673 kreditů.
+
+Dekódování proběhlo bez chyb. Délka odpovídá součtu úseků a slova
+v časování služby pokrývají celý scénář. Nastavení, otisk souboru
+a výsledky kontrol jsou v manifestu. Zvuk se samostatně neposlouchal
+ani nepřepisoval.
 
 ## Podklady a obsahová kontrola
 
@@ -36,7 +64,10 @@ R74, R76, R81 a R82. Respektuje užší rozsah prezentace: vzorec Wilsonova
 intervalu, ruční výpočet Fisherova testu, Holmovu korekci, intervaly pro
 poměry, Simpsonův paradox ani Cohenovo kappa nevyučuje.
 
-Mluvené znění se od slidů liší jen zjednodušením zápisu pro poslech.
+Revize zpřesnila mluvený postup výpočtu intervalů a stupňů volnosti,
+interpretaci nezávislosti a srovnání skupin, vysvětlení Fisherova testu
+a simulace i zacházení s nulovými rozdíly ve znaménkovém testu.
+Otisky v manifestu odpovídají aktuálním souborům prezentace a poznámek.
 Názvy funkcí Excelu neuvádí a odkazuje na list sešitu kapitoly. U studie
 Danielsové říká „hodnocení vlastního vzhledu“ místo termínu
 sebeobjektivizace. Nejde o změnu prezentace ani o novou terminologickou konvenci.
@@ -45,8 +76,8 @@ sebeobjektivizace. Nejde o změnu prezentace ani o novou terminologickou konvenc
 
 Všechny hodnoty prezentace a poznámek, ze kterých scénář vychází, byly
 nezávisle přepočítány v základním R 4.5.1 (pracovní skript `check.R`
-v ignorované složce `tmp/chapter09-presentation/`): 43 skupin kontrol,
-žádný rozdíl v uvedeném zaokrouhlení. Hodnoty ve scénáři zachovávají
+v ignorované složce `tmp/chapter09-presentation/`): 48 skupin kontrol
+včetně cvičení, žádný zjištěný rozdíl. Hodnoty ve scénáři zachovávají
 přesnost slidů. Desktopový Excel se pro scénář nespouštěl.
 
 ## Slovník výslovnosti
@@ -59,7 +90,6 @@ přesnost slidů. Desktopový Excel se pro scénář nespouštěl.
 | standardizované | standardyzované | Tvrdé di; textově ověřeno. |
 | alternativní | alternatyvní | Tvrdé ti; návaznost na předchozí scénáře. |
 | kritická | kritycká a tvary | Tvrdé ti. |
-| dramatičtěji | dramatyčtěji | Tvrdé ti; jazykové posouzení. |
 | homogenita | homogenyta a tvary | Tvrdé ni; jazykové posouzení. |
 | senioři | senyjoři, senyjorů | Tvrdé ni a přechod mezi samohláskami; jazykové posouzení. |
 | Waldův, Wilsonův | Valdův, Vilsonův a tvary | Český výslovnostní přepis příjmení; bez poslechového ověření. |
@@ -91,8 +121,7 @@ snímkům a slovník.
 
 ## Omezení
 
-Textová kontrola dokládá použití přepisů, nikoli skutečnou výslovnost.
-Zvuk nebyl vytvořen, poslech neproběhl a dostupnost služby ani hlasu se
-neověřovala. Přepisy příjmení Newcombe a Danielsová doporučuji před
-syntézou potvrdit nebo opravit. Při změně prezentace nebo poznámek je třeba
-scénář i manifest aktualizovat.
+Textová kontrola ověřila znění předané syntéze i text časovaných slov
+vrácený službou. Poslech a nezávislý přepis audia neproběhly.
+Výslovnost včetně přepisů příjmení Newcombe a Danielsová zůstává
+neověřená.
