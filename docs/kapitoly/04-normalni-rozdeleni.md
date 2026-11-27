@@ -15,7 +15,7 @@
 **Podklad a stav:** existující [kapitola 4](../../quarto/kapitola_04.qmd#sec-kapitola-04),
 karta zkontrolována 2026-10-11. Původní schválený plán byl nahrazen mapou
 skutečného textu; dohody z 2026-10-10 a úpravy z 2026-10-11 zůstávají doloženy
-v [historii přípravy](../../quarto/README.md#priprava-kapitoly-4) a rozhodnutích
+v [historii přípravy](../historie/2026-10.md#priprava-kapitoly-4) a rozhodnutích
 [R07](../rozhodnuti/kapitola-04.md#r07-normovane-normalni), [R08](../rozhodnuti/kapitola-04.md#r08-terminologie-kapitoly-4),
 [R09](../rozhodnuti/kapitola-04.md#r09-kapitola-4-model-qq) a [R15](../rozhodnuti/kapitola-04.md#r15-zapis-normalniho-modelu).
 
@@ -101,7 +101,7 @@ je od 2026-10-20 ukázán už v oddílu o principu, před
 
 <a id="interaktivni-vizualizace-04"></a>
 
-**Interaktivní vizualizace (2026-11-06, [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):**
+**Interaktivní vizualizace (2026-11-06, [R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-interaktivni-vizualizace)):**
 na konci oddílu [hodnot k zapamatování](../../quarto/kapitola_04.qmd#sec-hodnoty-zpameti)
 odkazuje blok „Vyzkoušejte si: plochy pod normální křivkou“ na stránku
 [Plochy pod normální křivkou](../../quarto/viz_normalni_rozdeleni.qmd); jiný

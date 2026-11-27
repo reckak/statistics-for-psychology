@@ -106,7 +106,7 @@ zdroje: Daniels (podle Fielda, s. 638), aspirinová studie, Prozac a anorexie
 
 <a id="interaktivni-vizualizace-09"></a>
 
-**Interaktivní vizualizace (2026-11-25, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-25-interval-podilu)):**
+**Interaktivní vizualizace (2026-11-25, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-25-interval-podilu)):**
 na konci pododdílu [Wilsonův interval](../../quarto/kapitola_09.qmd#sec-wilson),
 za věcnou interpretací a před rozšířením o odvození, odkazuje blok „Vyzkoušejte si:
 Waldův a Wilsonův interval“ na stránku
@@ -117,7 +117,7 @@ Waldův a Wilsonův interval“ na stránku
 - **Vztah k výkladu:** nové pojmy nezavádí; *k* a *P*(*X* = *k*) jsou značení kapitoly 5. Výchozí stav navazuje na čísla kapitoly (64 % Waldových intervalů při *n* = 20 a π = 0,05). „Čeho si všimnout“ doplňuje oproti kapitole tato zjištění z modelu: pokrytí nezávisí na pozorovaném *k*; při *n* = 20 a π = 0,05 je pokrytí Wilsonova intervalu 92,5 % a výsledek *k* = 0 má pravděpodobnost 0,358; průměrné pokrytí Wilsonova intervalu při *n* = 20 je 95,3 %, při *n* = 200 je 95,1 % a Waldova 93,5 %; těsně pod dolní mezí intervalu pro *k* = 1 (a souměrně u 1) klesá pokrytí Wilsonova intervalu v úzkém pásmu na 83 až 84 % (pro *n* od 10 do 200), při *n* = 20 u π ≈ 0,0089 s vysvětlením, které sloupce chybějí. Kapitola v oddílu `sec-wilson` od 2026-11-25 uvádí totéž obecně (83 až 84 %, při *n* = 10 u π = 0,018, u větších výběrů mimo rozsah obrázku `fig-pokryti`); dříve uváděla „u *n* = 10 nejníže na 85 %“, což platilo jen pro mřížku π od 0,01 do 0,99 obrázku.
 - **Rozsah:** opakuje pododdíly Známá konstrukce a kde selhává, Wilsonův interval (včetně nepovinného odvození) a Výpočet v Excelu. Nepočítá skórový ani binomický test, Newcombův interval ani jiné intervaly pro podíl. Není samostatným cvičením; doplňuje úlohy 2 a 3.
 
-**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi)):**
+**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-20-chi)):**
 v pododdílu [Pearsonova a standardizovaná rezidua](../../quarto/kapitola_09.qmd#sec-pearson-upravena),
 za rozšířením o Holmově korekci, odkazuje blok „Vyzkoušejte si: od tabulky
 četností k testu chí-kvadrát“ na stránku
@@ -128,7 +128,7 @@ za rozšířením o Holmově korekci, odkazuje blok „Vyzkoušejte si: od tabul
 - **Vztah k výkladu:** nové pojmy nezavádí; oddíl „Odkud se čísla berou“ opakuje vzorce řádkového podílu, očekávané četnosti, příspěvku, χ², stupňů volnosti, obou reziduí a Cramérova V s dosazením pro buňku mladí × řešení problému. „Čeho si všimnout“ doplňuje oproti kapitole čtyři zjištění z modelu: po zdvojnásobení četností χ² 23,56 a *p* pod 0,001 při stejném V 0,18 a rezidua větší asi 1,4krát; téměř nezávislá tabulka má χ² 0,05; změna jedné četnosti (senioři × řešení problému na 20) změní všechny očekávané četnosti i reziduum nezměněné buňky (−2,30 na −1,99; χ² 4,82); pětkrát menší tabulka má V 0,20, ale *p* 0,567 a nejmenší očekávanou četnost 3,47.
 - **Rozsah:** opakuje oddíly o očekávaných četnostech, řádkových podílech, reziduích, *p*-hodnotě z chí-kvadrát rozdělení, malých očekávaných četnostech a Cramérově V. Tabulka je pevně 3 × 3; test dobré shody, Fisherův test, simulovanou *p*-hodnotu ani Holmovu korekci nepočítá. Není samostatným cvičením; doplňuje úlohu 7.
 
-**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry)):**
+**Interaktivní vizualizace (2026-11-20, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-20-miry)):**
 na konci pododdílu [Koeficient φ a Cramérovo V](../../quarto/kapitola_09.qmd#sec-phi-v),
 před rozšířením o intervalech poměrů, odkazuje blok „Vyzkoušejte si: rozdíl podílů,
 poměr rizik a poměr šancí“ na stránku
@@ -143,14 +143,14 @@ Kontrola souladu vizualizací chí-kvadrát a měr souvislosti s textem uvedený
 
 <a id="aplikace-09"></a>
 
-**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):**
+**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-statisticke-aplikace)):**
 na konci pododdílu [Interval a test jednoho podílu](../../quarto/kapitola_09.qmd#sec-interval-a-test-podilu),
 před rozšířením o studiích telepatie, odkazuje blok „Spočítejte si: test jednoho
 podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd)
 (odkaz má i [kapitola 6](06-vyberove-rozdeleni-testovani.md#aplikace-06)).
 
 - **Vstupy:** název proměnné, názvy a četnosti dvou kategorií (0–100 000, součet alespoň 1), kategorie počítaná jako úspěch, π₀ (desetinné číslo nebo zlomek), alternativní hypotéza (≠, >, <) a α (0 až 0,5); u jednostranné alternativy volba oboustranného intervalu 1 − 2α (výchozí) nebo jednostranného intervalu 1 − α. Stránka se otevírá s daty 7 z 8 (kap. 6, cvičení 8) při π₀ = 0,50 a oboustranné alternativě. Předvolby: tipující student (kap. 6), rozpoznávání číslic (kap. 6, cvičení 8), studie o telepatii (rozšíření kap. 9), každá se svou π₀ a alternativou.
-- **Výsledky:** tabulka s dosazením (data, rozdíl *p* − π₀ v procentních bodech, skórový test se směrodatnou chybou z π₀, u oboustranné alternativy χ² = *z*², přesný binomický test, Wilsonův interval a rozdíl od π₀ s intervalem), slovní interpretace, očekávané četnosti s pravidlem alespoň 5 a upozorněním, grafy pozorovaných a očekávaných četností, rozdělení Bin(*n*; π₀) se sloupci *p*-hodnoty, pozorovaným *k* a normální aproximací a osa podílu s intervalem a π₀. Tabulka výsledků má tmavé záhlaví a šedé řádky skupin; výpočet v Excelu aplikace neuvádí ([upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-25)).
+- **Výsledky:** tabulka s dosazením (data, rozdíl *p* − π₀ v procentních bodech, skórový test se směrodatnou chybou z π₀, u oboustranné alternativy χ² = *z*², přesný binomický test, Wilsonův interval a rozdíl od π₀ s intervalem), slovní interpretace, očekávané četnosti s pravidlem alespoň 5 a upozorněním, grafy pozorovaných a očekávaných četností, rozdělení Bin(*n*; π₀) se sloupci *p*-hodnoty, pozorovaným *k* a normální aproximací a osa podílu s intervalem a π₀. Tabulka výsledků má tmavé záhlaví a šedé řádky skupin; výpočet v Excelu aplikace neuvádí ([upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-25)).
 - **Vztah k výkladu:** opakuje pododdíly Wilsonův interval, Výpočet v Excelu, Interval a test jednoho podílu, Dvě kategorie: chí-kvadrát a *z*-test a Malé očekávané četnosti a binomický test kapitoly 6. Oboustrannou přesnou *p*-hodnotu počítá pravidlem Fisherova testu z této kapitoly (součet pravděpodobností výsledků stejně nebo méně pravděpodobných než pozorovaný, jako `binom.test` v R) a porovnává ji se zdvojením z McNemarova a znaménkového testu; to a jednostranný Wilsonův interval podle R75 jdou nad rámec výkladu jednoho podílu a schválil je R87. Nové termíny nezavádí.
 - **Rozsah:** jen dvě kategorie; nepočítá jiné intervaly pro podíl, Cohenovo *h* ani sílu testu. Není samostatným cvičením.
 
@@ -158,7 +158,7 @@ Kontrola souladu aplikace s textem uvedených pododdílů: 2026-11-25.
 
 <a id="aplikace-09-dva-podily"></a>
 
-**Statistická aplikace Test dvou podílů (2026-11-26, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)):**
+**Statistická aplikace Test dvou podílů (2026-11-26, [upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-26)):**
 na konci pododdílu [Test se společným podílem](../../quarto/kapitola_09.qmd#sec-test-dvou-podilu),
 před výpočtem v Excelu, odkazuje blok „Spočítejte si: test dvou podílů“ na
 stránku [Test dvou podílů](../../quarto/app_dva_podily.qmd).

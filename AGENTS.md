@@ -56,7 +56,7 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 | Typ informace | Hlavní místo údržby |
 |---|---|
 | Postup přípravy, psaní, revizí, ověřování a práce s Gitem | Tento `AGENTS.md`; zvláštní pravidla prezentací v [PREZENTACE.md](docs/PREZENTACE.md), scénářů a audia v [TEXT2SPEECH.md](docs/TEXT2SPEECH.md), AI tutorů v [AITUTORS.md](docs/AITUTORS.md). |
-| Příkazy, závislosti a provozní návody | [PROVOZ.md](docs/PROVOZ.md); kořenové README obsahuje jen rychlé spuštění a rozcestník. |
+| Příkazy, závislosti a provozní návody | [PROVOZ.md](docs/PROVOZ.md) s podrobnými návody v `docs/provoz/`; kořenové README obsahuje jen rychlé spuštění a rozcestník. |
 | Preferovaný termín, alternativy, významové hranice a výjimky | [SLOVNIK.md](docs/SLOVNIK.md); jeho doklad odkazuje na rozhodnutí. |
 | Studentský výklad, definice, značky a vzorce | Příslušná kapitola a její studentské referenční přehledy; autorská evidence je plně nekopíruje. |
 | Mapa skutečného obsahu, procvičení, návazností a otevřeného plánu | [OSNOVA.md](docs/OSNOVA.md) a odkazované kapitolové karty. |
@@ -64,7 +64,7 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
 | Obsah zdroje, lokátory, nálezy, rozsah čtení a nezávislého ověření | [ZDROJE.md](docs/ZDROJE.md), odkazované zdrojové karty a společná historie kontrol podkladů. |
 | Stručný přehled schválených voleb a jejich aktuální platnost | [ROZHODNUTI.md](docs/ROZHODNUTI.md); řádek odkazuje na hlavní místo pravidla a podrobný doklad. |
 | Důvod, rozsah a doklad schválení včetně původního schváleného plánu | Tematický soubor v `docs/rozhodnuti/`, přístupný přes ID v registru. |
-| Provedené úpravy, výsledky kontrol a jejich omezení | [quarto/README.md](quarto/README.md); podrobné nálezy ke zdroji nebo datům odkazuje na příslušnou evidenci. |
+| Provedené úpravy, výsledky kontrol a jejich omezení | [quarto/README.md](quarto/README.md) s aktuálním a předchozím měsícem; starší uzavřené měsíce v `docs/historie/` (archivace podle [R32](docs/rozhodnuti/postupy-a-dokumentace.md#r32-doplneni-2026-11-27)); podrobné nálezy ke zdroji nebo datům odkazuje na příslušnou evidenci. |
 
 - Nové rozhodnutí eviduj při autorem schválené volbě, která omezuje budoucí
   obsah, terminologii, značení nebo pracovní postup. Běžné opravy, realizace
@@ -86,6 +86,11 @@ ve výkladu a referenční přehled pro studenty mají odlišnou didaktickou fun
   či opravit evidenci, nesmí předstírat jiné původní schválení.
 - Schválený plán je dokladem dohody. Skutečný obsah a odchylky zachycuje
   kapitolová karta; změna kapitoly nepřepisuje zpětně schválený plán.
+- U nové vizualizace či statistické aplikace doklad zachycuje schválený rozsah
+  a důvody podstatných voleb. Historie odkazuje na doklad a uvádí provedení,
+  odchylky a výsledky skutečně provedených kontrol. Provozní návod uvádí
+  společný postup a příkazy. Automatizované scénáře jsou v příslušných
+  kontrolních skriptech ([R88](docs/rozhodnuti/postupy-a-dokumentace.md#r88-bez-opakovani)).
 - Při dokončení dokumentační změny ověř hlavní místo každé nové informace,
   funkčnost odkazů a ID a jednoznačnost aktuální platnosti. Obsahově posuď,
   zda nevznikly dvě souběžně udržované kopie téhož pravidla. Automatická
@@ -520,7 +525,7 @@ s každou kapitolou, ne až při dokončení knihy.
 
 Část „Interaktivní vizualizace“ stojí mezi výkladovými kapitolami
 a přehledy; uspořádání, důvod a doklad eviduje
-[R65](docs/rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace).
+[R65](docs/rozhodnuti/vizualizace-a-aplikace.md#r65-interaktivni-vizualizace).
 Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
 
 - Člení se podle vizualizací, ne podle kapitol: jedna nečíslovaná stránka
@@ -546,7 +551,7 @@ Každou novou vizualizaci předem dohodni stejně jako obsah kapitoly.
 
 Část „Statistické aplikace“ stojí za interaktivními vizualizacemi a před
 přehledy; v postranní nabídce je ve výchozím stavu sbalená. Uspořádání, pilot
-a doklad eviduje [R87](docs/rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace).
+a doklad eviduje [R87](docs/rozhodnuti/vizualizace-a-aplikace.md#r87-statisticke-aplikace).
 Každou novou aplikaci předem dohodni stejně jako obsah kapitoly.
 
 - Aplikace počítá probrané postupy pro data zadaná studentem: jedna

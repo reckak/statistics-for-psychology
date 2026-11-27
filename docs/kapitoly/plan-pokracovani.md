@@ -80,14 +80,14 @@ mezi tématy bez schváleného umístění.
 
 **Statistické aplikace — schválená část, pilot, test dvou podílů a test jednoho průměru; další aplikace neschváleny.**
 Část „Statistické aplikace“ a pilotní [test jednoho podílu](../../quarto/app_jeden_podil.qmd)
-zavádí [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)
+zavádí [R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-statisticke-aplikace)
 (2026-11-25; skutečný obsah v [kartě kapitoly 9](09-podily-kategorialni-data.md#aplikace-09)).
 Druhou aplikaci, [test dvou podílů](../../quarto/app_dva_podily.qmd), schválilo
-[upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)
+[upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-26)
 (2026-11-26; [karta kapitoly 9](09-podily-kategorialni-data.md#aplikace-09-dva-podily)).
 Třetí aplikaci, [test jednoho průměru](../../quarto/app_jeden_prumer.qmd) s testem
 ekvivalence, párovými daty, Cohenovým *d* s intervaly a diagnostikou normality, schválilo
-[upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)
+[upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-27)
 (2026-11-27; [karta kapitoly 7](07-interval-t-test-ekvivalence.md#aplikace-07)).
 Autor 2026-11-18 zmínil jako směr základní testy se vstupem z hrubých dat nebo
 z deskriptivních statistik a s výstupy včetně velikosti účinku s intervalem
@@ -97,83 +97,83 @@ každou další aplikaci je třeba schválit zvlášť, po vyhodnocení pilotu.
 <a id="plan-vizualizace"></a>
 
 **Interaktivní vizualizace — otevřený návrh, neschváleno.** Část a pilot
-zavádí [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace);
+zavádí [R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-interaktivni-vizualizace);
 každou další vizualizaci je třeba schválit zvlášť, až po vyhodnocení pilotu.
 Námět ke kapitole 4 (z-skór a plocha pod normální křivkou oběma směry) autor
 2026-11-06 schválil a je realizován jako stránka
 [Plochy pod normální křivkou](../../quarto/viz_normalni_rozdeleni.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06),
 [karta kapitoly 4](04-normalni-rozdeleni.md#interaktivni-vizualizace-04)).
 Námět ke kapitole 6 „chyby rozhodnutí se silou testu“ autor téhož dne
 schválil v upravené podobě a je realizován jako stránka
 [Na čem závisí statistická síla](../../quarto/viz_statisticka_sila.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-sila),
 [karta kapitoly 6](06-vyberove-rozdeleni-testovani.md#interaktivni-vizualizace-06)).
 Námět ke kapitole 5 „binomické rozdělení a jeho normální aproximace“ autor
 téhož dne schválil v upravené podobě a je realizován jako stránka
 [Pravděpodobnost počtu úspěchů](../../quarto/viz_binomicke_rozdeleni.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-binom),
 [karta kapitoly 5](05-pravdepodobnost.md#interaktivni-vizualizace-05)).
 Námět ke kapitole 5 „Bayesova věta na mřížce“ autor téhož dne schválil
 s doplňky a je realizován jako stránka
 [Co znamená pozitivní výsledek testu](../../quarto/viz_bayesova_veta.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-bayes),
 [karta kapitoly 5](05-pravdepodobnost.md#interaktivni-vizualizace-05)).
 Vizualizaci posunu a změny jednotek ke kapitole 3, která v návrhu z 2026-11-05
 nebyla, autor schválil 2026-11-07 jako stránku
 [Co s rozdělením udělá posun a změna jednotek](../../quarto/viz_posun_a_jednotky.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-07-posun),
 [karta kapitoly 3](03-poloha-variabilita.md#interaktivni-vizualizace-03)).
 Námět ke kapitole 7 „t a normální rozdělení podle stupňů volnosti“ autor
 2026-11-12 schválil s doplňky a je realizován jako stránka
 [Jak se *t*-rozdělení liší od normovaného normálního](../../quarto/viz_t_rozdeleni.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-12-t),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Spojení obrázků funkce *p*-hodnoty a zrcadla intervalu ke kapitole 7, které
 v návrhu z 2026-11-05 nebylo, autor zadal 2026-11-12 a schválil 2026-11-13
 jako stránku [Jak spolu souvisí interval spolehlivosti a *p*-hodnota](../../quarto/viz_interval_a_test.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-12-interval),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Námět ke kapitole 7 „pokrytí intervalů spolehlivosti“ autor zadal 2026-11-13
 v rozšířené podobě a téhož dne schválil jako stránku
 [Jak často interval spolehlivosti zachytí populační průměr](../../quarto/viz_pokryti_intervalu.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-13-pokryti),
 [karta kapitoly 7](07-interval-t-test-ekvivalence.md#interaktivni-vizualizace-07)).
 Vizualizaci Cohenova d ke kapitole 8, která v návrhu z 2026-11-05 nebyla,
 autor zadal a schválil 2026-11-13 jako stránku
 [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz_cohenovo_d.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-13-cohen),
 [karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Námět ke kapitole 8 „přínos párování“ z návrhu 2026-11-05 autor 2026-11-19
 vybral a schválil s volbami ovládání a doplňků jako stránku
 [Kdy párování zpřesní odhad průměrného rozdílu](../../quarto/viz_prinos_parovani.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-parovani),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-19-parovani),
 [karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Námět ke kapitole 8 „interval rozdílu vedle dvou intervalů“ z téhož návrhu
 autor zadal a schválil 2026-11-19 jako stránku
 [Co prozradí dva intervaly vedle sebe o rozdílu průměrů](../../quarto/viz_dva_intervaly.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-intervaly),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-19-intervaly),
 [karta kapitoly 8](08-porovnani-dvou-prumeru.md#interaktivni-vizualizace-08)).
 Z návrhu čtyř vizualizací ke kapitole 9 z 2026-11-20 autor téhož dne vybral
 a schválil první, „od tabulky četností k testu chí-kvadrát“, jako stránku
 [Jak daleko je tabulka četností od nezávislosti](../../quarto/viz_chi_kvadrat.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-chi),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-20-chi),
 [karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Třetí námět téhož návrhu, „rozdíl podílů, poměr rizik a poměr šancí“, autor zadal
 a schválil téhož dne s inspirací Magnussonovým článkem jako stránku
 [Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce](../../quarto/viz_miry_souvislosti.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-20-miry),
 [karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Druhý námět téhož návrhu, „Waldův a Wilsonův interval pro podíl s přesným pokrytím
 podle π“, autor zadal a schválil 2026-11-25 s interaktivní obdobou obrázku odvození
 jako stránku [Proč odhadujeme podíl Wilsonovým intervalem](../../quarto/viz_interval_podilu.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-25-interval-podilu),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-25-interval-podilu),
 [karta kapitoly 9](09-podily-kategorialni-data.md#interaktivni-vizualizace-09)).
 Vizualizaci korelace ke kapitole 10, která v žádném návrhu nebyla (R71 další
 vizualizaci vylučoval), autor zadal 2026-11-23 podle aplikace R Psychologist a téhož dne
 schválil jako stránku
 [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd)
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace),
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-23-korelace),
 [karta kapitoly 10](10-korelace.md#interaktivni-vizualizace-10)); regresní přímka a *r*²
 jsou jen v ní a o kapitole o regresi se tím nerozhoduje.
 Zbývající náměty z návrhu 2026-11-05 podle navazující kapitoly: kap. 3 vliv odlehlé

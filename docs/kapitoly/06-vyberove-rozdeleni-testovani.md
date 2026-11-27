@@ -17,16 +17,16 @@ dne byl nahrazen touto mapou skutečného textu; dohodu dokládají
 [R28](../rozhodnuti/kapitola-06.md#r28-rozsah-kapitoly-6),
 [R29](../rozhodnuti/kapitola-06.md#r29-znaceni-kapitoly-6),
 [R30](../rozhodnuti/kapitola-06.md#r30-terminologie-kapitoly-6) a
-[historie](../../quarto/README.md#dohoda-kapitola-06). Vznik textu, odchylky
+[historie](../historie/2026-10.md#dohoda-kapitola-06). Vznik textu, odchylky
 od plánu a rozsah ověření eviduje
-[záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-6).
+[záznam o vytvoření](../historie/2026-10.md#vytvoreni-kapitoly-6).
 Dne 2026-10-17 byly tři zmínky o „další kapitole“ (odhad směrodatné chyby,
 rozmezí průměrů versus interval spolehlivosti, z-test) převedeny na křížové
 odkazy do [kapitoly 7](07-interval-t-test-ekvivalence.md#mapa-kapitola-07);
 jiný obsah kapitoly 6 se nezměnil.
 
 **Revize 2026-10-31:** zapracovány autorovy připomínky a jeho stylistické
-úpravy (záznam v [historii](../../quarto/README.md#revize-kapitola-06-2026-10-31)).
+úpravy (záznam v [historii](../historie/2026-10.md#revize-kapitola-06-2026-10-31)).
 Nově vysvětleno: proč stačí 10 000 opakování simulace, platnost čísel jen pro
 výukový model, odhad (ne znalost) směrodatné chyby, proč má medián větší
 směrodatnou chybu a proč je rozdělení výběrové směrodatné odchylky zešikmené,
@@ -160,7 +160,7 @@ a kontroly mincí (Wainer) a příklad branců (Uttsová).
 
 <a id="interaktivni-vizualizace-06"></a>
 
-**Interaktivní vizualizace (2026-11-05, [R65](../rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):**
+**Interaktivní vizualizace (2026-11-05, [R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-interaktivni-vizualizace)):**
 na konci oddílu [simulace průměrů](../../quarto/kapitola_06.qmd#sec-simulace-prumeru)
 odkazuje blok „Vyzkoušejte si: výběrové rozdělení průměru“ na stránku
 [Výběrové rozdělení průměru](../../quarto/viz_vyberove_rozdeleni_prumeru.qmd).
@@ -171,7 +171,7 @@ losuje výběry s *n* 1–1000 po 1–10 000 výběrech najednou (nejvýše 100 
 opakování). Sleduje střed, šířku (simulovaná SD průměrů vedle σ/√*n*)
 a tvar s volitelným normálním modelem, také v histogramu standardizovaných
 průměrů *z* = (*m* − μ)/σ_m s podíly nad 2 a pod −2 jako v tabulce
-krajních průměrů (rozšíření [2026-11-06](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-vrp)).
+krajních průměrů (rozšíření [2026-11-06](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-vrp)).
 Pomáhají mu odhad hustoty z posledního výběru (popisně jako
 vyhlazený histogram, bez zavedení pojmu) a normální Q–Q grafy posledního
 výběru a průměrů v konvenci kapitoly 4. Pět úkolů „Vyzkoušejte si“ míří
@@ -182,7 +182,7 @@ standardizace průměrů, centrální limitní věta) a Q–Q grafů z kapitoly 
 nezavádí pojmy a není samostatným cvičením. Kontrola souladu s textem
 oddílů 6.3–6.5: 2026-11-06; ostatní části karty se nemění.
 
-**Druhá vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-sila)):**
+**Druhá vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-sila)):**
 na konci oddílu [Statistická síla pro konkrétní alternativy](../../quarto/kapitola_06.qmd#sec-statisticka-sila)
 (za výčtem pěti okolností) odkazuje blok „Vyzkoušejte si: statistická síla“
 na stránku [Na čem závisí statistická síla](../../quarto/viz_statisticka_sila.qmd).
@@ -206,7 +206,7 @@ kritickém oboru, dvou chybách, síle a nezamítnutí: 2026-11-06; ostatní
 
 <a id="aplikace-06"></a>
 
-**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):**
+**Statistická aplikace (2026-11-25, [R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-statisticke-aplikace)):**
 na konci pododdílu [binomický test](../../quarto/kapitola_06.qmd#sec-binomicky-test),
 za komentářem k listu `Binom_test`, odkazuje blok „Spočítejte si: test jednoho
 podílu“ na stránku [Test jednoho podílu](../../quarto/app_jeden_podil.qmd).
@@ -222,7 +222,7 @@ karty se nemění.
 
 <a id="aplikace-06-prumer"></a>
 
-**Statistická aplikace Test jednoho průměru (2026-11-27, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)):**
+**Statistická aplikace Test jednoho průměru (2026-11-27, [upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-27)):**
 na konci pododdílu [*z*-test: průměr proti známé normě](../../quarto/kapitola_06.qmd#sec-z-test),
 před srovnáním tří testů, odkazuje blok „Spočítejte si: test jednoho průměru“ na stránku
 [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd). Předvolba „Pozornost, *z*-test“ nastaví příklad oddílu (*m* = 46, σ = 10, *n* = 25,

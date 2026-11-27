@@ -29,7 +29,7 @@ pole osob s pohledem na riziko a na šance, vliv rizika v referenční skupině 
 a retrospektivní výběr. Nepřevzat žádný text, kód, obrázek ani příklad; příklady jsou z kapitoly 9
 (Danielsová podle Fielda, aspirinová studie podle Howella). Záměrně nepřevzato: stupnice logaritmu
 šancí, počet léčených (NNT), adjustace a nekolapsibilita, protože by zaváděly pojmy mimo učebnici
-([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-20-miry)).
+([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-20-miry)).
 
 **Nezávislé ověření:** odborná tvrzení stránky nebyla samostatně ověřována; všechny hodnoty vizualizace
 ověřuje vlastní výpočet v R (`scripts/viz-miry-souvislosti.R`).

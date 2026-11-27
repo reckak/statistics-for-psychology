@@ -12,7 +12,7 @@ dokládá [R64](rozhodnuti/ai-tutor.md#r64-pravidla-ai-tutoru).
 |---|---|
 | Pedagogické chování tutora: zahájení, režimy, tempo výkladu, cvičení, obrázky a vizualizace, značení | [Instrukce tutora](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/SKILL.md) a jejich reference; dohody [R62](rozhodnuti/ai-tutor.md#r62-ai-tutor), [R63](rozhodnuti/ai-tutor.md#r63-plany-a-konvence-tutora) a [R85](rozhodnuti/ai-tutor.md#r85-tutor-kapitoly-obrazky-tempo). |
 | Rady k interaktivním stránkám učebnice a pravidla kreslení grafů | [VIZUALIZACE.md](../plugins/statistika-pro-psychology-ai-tutor/skills/statistika-tutor/references/VIZUALIZACE.md); kontrola exportu vyžaduje záznam každé stránky `viz_*` z `_quarto.yml`. |
-| Data a popis obrázku pro překreslení tutorem | Skript kapitoly `scripts/kapitola_NN.R` (volání `tf_figure()`); rejstřík v balíčku je odvozený. Postup v [provozním návodu](PROVOZ.md#data-ke-grafum-tutora). |
+| Data a popis obrázku pro překreslení tutorem | Skript kapitoly `scripts/kapitola_NN.R` (volání `tf_figure()`); rejstřík v balíčku je odvozený. Postup v [provozním návodu](provoz/ai-tutor.md#data-ke-grafum-tutora). |
 | Pravidla tvorby, vydání a ověřování pro všechny platformy | Tento dokument. |
 | Příkazy exportu, kontroly, cesty výstupů a postupy nahrání | [Provozní návod](PROVOZ.md#export-ai-tutora). |
 | Studentský návod ke stažení a instalaci na všech třech platformách | Stránka učebnice [AI tutor: stažení a instalace](../quarto/ai_tutor.qmd) (od 2026-11-14, [R79](rozhodnuti/ai-tutor.md#r79-vydani-tutora-na-githubu); nahradila `ai-tutor/navod.docx`). Aktualizuj ji při změně postupu nahrání, názvů souborů ve vydání nebo rozsahu tutora; na verzi nezávisí. |
