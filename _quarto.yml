@@ -66,6 +66,7 @@ book:
       chapters:
         - quarto/app_jeden_podil.qmd
         - quarto/app_dva_podily.qmd
+        - quarto/app_jeden_prumer.qmd
     - part: "Literatura a přehledy"
       chapters:
         - quarto/literatura.qmd

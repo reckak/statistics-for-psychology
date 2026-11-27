@@ -4,9 +4,13 @@
 //   Rscript --vanilla scripts/app-jeden-podil.R; update it from there.
 // - quarto/app_dva_podily.qmd (module assets/stat/dva-podily.js): scripts/reference/app-dva-podily.json is written
 //   by Rscript --vanilla scripts/app-dva-podily.R.
+// - quarto/app_jeden_prumer.qmd (modules assets/stat/prumer.js and normalita.js): scripts/reference/app-jeden-prumer.json
+//   is written by Rscript --vanilla scripts/app-jeden-prumer.R (after scripts/qq-ts-gamma.R).
 import { readFileSync } from 'node:fs';
 import { scoreTest, binomTest, wilson, intervalFor, proportionTest, pmfAll } from '../assets/stat/podil.js';
 import * as D from '../assets/stat/dva-podily.js';
+import * as P from '../assets/stat/prumer.js';
+import * as N from '../assets/stat/normalita.js';
 
 // R (scripts/app-jeden-podil.R): [k, n, pi0, alt] -> [z, score p-value, exact p-value,
 //   Wilson 95 % lo, hi, Wilson 90 % lo, hi, one-sided 95 % lower limit, one-sided 95 % upper limit]
@@ -218,6 +222,80 @@ for (const [x1, x2] of [[6, 1], [8, 3], [60, 45], [66, 70], [0, 4], [10, 10]]) f
   eq(e.ciRejects, e.reject, `exact ${x1}, ${x2}, ${alt}, δ₀ = ${delta0}: one-sided interval agrees with the exact test`);
 }
 eq(D.exactProcedure({x1: 189, n1: 11034, x2: 104, n2: 11037, delta0: 0, alt: "two", alpha: 0.05}), null, "exact procedure only up to EXACT_MAX");
+
+// ---------- Test of one mean: quarto/app_jeden_prumer.qmd (assets/stat/prumer.js, assets/stat/normalita.js) ----------
+// scripts/reference/app-jeden-prumer.json is written by Rscript --vanilla scripts/app-jeden-prumer.R.
+const REF3 = JSON.parse(readFileSync(new URL("./reference/app-jeden-prumer.json", import.meta.url), "utf8"));
+const inf = v => v === "Inf" ? Infinity : v === "-Inf" ? -Infinity : v;
+const nearInf = (got, want, msg, tol = 1e-9) => { want = inf(want); if (!Number.isFinite(want)) eq(got, want, msg); else near(got, want, msg, tol); };
+for (const c of REF3.means) {
+  const i = c.input, tag = `${c.case} ${i.test} ${i.alt} ${i.kind} α = ${i.alpha}`;
+  const r = P.meanTest({test: i.test, m: i.m, s: i.sd, sigma: i.sd, n: i.n, mu0: i.mu0, alt: i.alt, alpha: i.alpha, intervalKind: i.kind});
+  near(r.se, c.se, `${tag}: SE`); near(r.stat, c.stat, `${tag}: statistic`); near(r.pValue, c.p, `${tag}: p-value`);
+  near(r.ci.q, c.q, `${tag}: quantile`, 1e-10);
+  nearInf(r.ci.lo, c.lo, `${tag}: CI lo`); nearInf(r.ci.hi, c.hi, `${tag}: CI hi`);
+  near(r.d.value, c.d, `${tag}: d`);
+  // The exact interval for d: both sides solve P(T ≤ t | δ) = target to 1e-12; tolerance for the quadrature.
+  nearInf(r.d.lo, c.dlo, `${tag}: d lo`, 1e-7); nearInf(r.d.hi, c.dhi, `${tag}: d hi`, 1e-7);
+  if (c.J !== null) near(r.d.J, c.J, `${tag}: Hedges J`); else eq(r.d.J ?? null, null, `${tag}: no Hedges J`);
+  eq(r.ciRejects, r.reject, `${tag}: interval agrees with the test`);
+}
+for (const [name, e] of Object.entries(REF3.tost)) {
+  const x = e.data === "uzkost" ? P.describe(REF3.diag.uzkost.x) : {m: e.m, s: e.s, n: e.n};
+  const r = P.equivalence({test: "t", m: x.m, se: x.s / Math.sqrt(x.n), df: x.n - 1, lower: e.lower, upper: e.upper, alpha: e.alpha});
+  near(r.tL, e.tL, `TOST ${name}: tL`); near(r.tU, e.tU, `TOST ${name}: tU`); near(r.pL, e.pL, `TOST ${name}: pL`); near(r.pU, e.pU, `TOST ${name}: pU`);
+  near(r.ci.lo, e.lo, `TOST ${name}: 90 % lo`); near(r.ci.hi, e.hi, `TOST ${name}: 90 % hi`);
+  eq(r.equivalent, r.ci.lo >= e.lower && r.ci.hi <= e.upper, `TOST ${name}: decision equals the interval rule`);
+}
+eq(P.equivalence({test: "t", m: 48.5, se: 10 / 20, df: 399, lower: 47, upper: 53, alpha: 0.05}).equivalent, true, "chapter 7: online version equivalent");
+for (const c of REF3.paired) {
+  const tag = `paired ${c.case} ${c.side}`, pd = P.pairedDescribe(c.x1, c.x2);
+  near(pd.mD, c.mD, `${tag}: m_D`); near(pd.sD, c.sD, `${tag}: s_D`); near(pd.s1, c.s1, `${tag}: s1`); near(pd.r, c.r, `${tag}: r`);
+  const pe = P.pairedEffects({n: pd.n, mD: pd.mD, sD: pd.sD, sRef: pd.s1, sOther: pd.s2, r: pd.r, conf: c.conf, side: c.side});
+  const chk = (got, want, what, tol = 1e-9) => { near(got.value, want[0], `${tag}: ${what}`); nearInf(got.lo, want[1], `${tag}: ${what} lo`, tol); nearInf(got.hi, want[2], `${tag}: ${what} hi`, tol); };
+  chk(pe.ref, c.ref, "d (reference SD)"); near(pe.ref.adj, c.ref[3], `${tag}: adjusted d (reference SD)`);
+  chk(pe.avg, c.avg, "d (average variance)"); near(pe.avg.adj, c.avg[3], `${tag}: adjusted d (average variance)`);
+  chk(pe.dz, c.dz, "dz", 1e-7);
+}
+// Chapter 8 numbers (variant A and anorexia).
+const A = REF3.paired.find(c => c.case === "spanek" && c.side === "two");
+const pdA = P.pairedDescribe(A.x1, A.x2), mA = P.meanTest({m: pdA.mD, s: pdA.sD, n: pdA.n, mu0: 0});
+eq([Number(mA.stat.toFixed(2)), Number(mA.ci.lo.toFixed(2)), Number(mA.ci.hi.toFixed(2))], [5.07, 1.98, 5.02], "chapter 8: variant A paired t-test");
+const an = P.pairedEffects({n: 17, mD: 3.295, sD: 3.247, sRef: 2.276});
+eq([Number(an.ref.value.toFixed(2)), Number(an.dz.value.toFixed(2))], [1.45, 1.01], "chapter 8: anorexia d 1,45 and 1,01");
+// Chapter 7, exercise 7.
+const u7 = P.describe(REF3.diag.uzkost.x), r7 = P.meanTest({m: u7.m, s: u7.s, n: u7.n, mu0: 20});
+eq([Number(r7.stat.toFixed(2)), Number(r7.pValue.toFixed(3)), Number(r7.ci.lo.toFixed(2)), Number(r7.ci.hi.toFixed(2))], [3.15, 0.005, 20.74, 23.66], "chapter 7: exercise 7");
+// Normality diagnostics.
+for (const [name, d] of Object.entries(REF3.diag)) {
+  const x = d.x, sorted = [...x].sort((a, b) => a - b), b = N.boxStats(sorted), sh = N.shape(x), sw = N.shapiroWilk(x);
+  near(b.q1, d.q[0], `${name}: Q1`); near(b.med, d.q[1], `${name}: median`); near(b.q3, d.q[2], `${name}: Q3`);
+  near(b.whiskerLo, d.whiskerLo, `${name}: lower whisker`); near(b.whiskerHi, d.whiskerHi, `${name}: upper whisker`); eq(b.outliers.length, d.nOut, `${name}: outliers`);
+  if (d.skew !== null) near(sh.skew, d.skew, `${name}: SKEW`); else eq(sh.skew, null, `${name}: no SKEW`);
+  if (d.kurt !== null) near(sh.kurt, d.kurt, `${name}: KURT`); else eq(sh.kurt, null, `${name}: no KURT`);
+  near(sw.w, d.W, `${name}: Shapiro–Wilk W`); near(sw.p, d.pW, `${name}: Shapiro–Wilk p`, 1e-7);
+  near(N.bwNrd0(x), d.bw, `${name}: bandwidth`);
+  N.kde(x, d.grid).forEach((v, k) => near(v, d.dens[k], `${name}: density ${k}`, 1e-10));
+  N.kde(x, d.grid.slice(1, 6)).forEach((v, k) => { checks++; if (Math.abs(v - d.densR[k]) > 0.02 * Math.max(...d.dens)) { failures++; console.error(`FAIL ${name}: density vs density() ${v} ${d.densR[k]}`); } });
+  if (x.length > 10 && x.length <= N.BAND_MAX) {
+    const m = d.m, s = d.s, ks = N.qqBand(x.length, "ks");
+    ks.lo.forEach((z, k) => { const w = inf(d.ksLo[k]); if (Number.isFinite(w)) near(m + s * z, w, `${name}: KS band lo ${k}`); else eq(z, -Infinity, `${name}: KS band lo ${k} infinite`); });
+    ks.hi.forEach((z, k) => { const w = inf(d.ksHi[k]); if (Number.isFinite(w)) near(m + s * z, w, `${name}: KS band hi ${k}`); else eq(z, Infinity, `${name}: KS band hi ${k} infinite`); });
+  }
+}
+for (const c of REF3.sw) { const r = N.shapiroWilk(c.x); near(r.w, c.W, `Shapiro–Wilk n = ${c.x.length}: W`); near(r.p, c.p, `Shapiro–Wilk n = ${c.x.length}: p`, 1e-7); }
+// Tail-sensitive band from the table: the same qbeta limits as in R for the same γ.
+for (const [n, bnd] of Object.entries(REF3.bands)) {
+  const ts = N.qqBand(Number(n), "ts");
+  near(ts.gamma, bnd.gamma, `ts band n = ${n}: γ`, 1e-12);
+  ts.lo.forEach((z, k) => near(z, bnd.lo[k], `ts band n = ${n}: lo ${k}`, 1e-8));
+  ts.hi.forEach((z, k) => near(z, bnd.hi[k], `ts band n = ${n}: hi ${k}`, 1e-8));
+}
+for (const c of Object.values(REF3.coverage)) {
+  checks++;
+  if (!(Math.abs(c.ts - 0.95) <= 0.012)) { failures++; console.error(`FAIL ts band coverage n = ${c.n}: ${c.ts}`); }
+  console.log(`n = ${c.n}: simultaneous coverage of the tail-sensitive band ${c.ts}, KS band ${c.ks} (m and s estimated)`);
+}
 
 console.log(`${checks} checks, ${failures} failures`);
 if (failures) process.exit(1);

@@ -220,6 +220,16 @@ skórový test a Wilsonův interval z kapitoly 9. Podrobnosti jsou v
 souladu s textem pododdílu o binomickém testu: 2026-11-25; ostatní části
 karty se nemění.
 
+<a id="aplikace-06-prumer"></a>
+
+**Statistická aplikace Test jednoho průměru (2026-11-27, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)):**
+na konci pododdílu [*z*-test: průměr proti známé normě](../../quarto/kapitola_06.qmd#sec-z-test),
+před srovnáním tří testů, odkazuje blok „Spočítejte si: test jednoho průměru“ na stránku
+[Test jednoho průměru](../../quarto/app_jeden_prumer.qmd). Předvolba „Pozornost, *z*-test“ nastaví příklad oddílu (*m* = 46, σ = 10, *n* = 25,
+alternativa „menší“; *z* = −2, *p*-hodnota 0,023). Podrobnosti jsou v
+[kartě kapitoly 7](07-interval-t-test-ekvivalence.md#aplikace-07). Kontrola souladu s textem
+pododdílu o *z*-testu: 2026-11-27; ostatní části karty se nemění.
+
 <a id="cvičení-a-očekávané-dovednosti-5"></a>
 
 ### Cvičení a očekávané dovednosti
