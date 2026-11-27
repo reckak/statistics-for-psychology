@@ -110,15 +110,18 @@ Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapit
 jedna stránka na aplikaci, která počítá probraný postup pro data zadaná
 studentem a shrnuje jeho princip, předpoklady a vzorce s odkazy do kapitol.
 Aplikace nezavádějí nové pojmy (s výjimkou schválených postupů: pravidla oboustranné
-přesné *p*-hodnoty, skórového testu nenulového rozdílu δ₀ a přesného nepodmíněného
-testu s intervalem) a nejsou samostatným procvičením ve smyslu této mapy.
+přesné *p*-hodnoty, skórového testu nenulového rozdílu δ₀, přesného nepodmíněného
+testu s intervalem a pojmů diagnostiky normality a intervalu pro *d* v testu jednoho průměru) a nejsou samostatným procvičením ve smyslu této mapy.
 V postranní nabídce je část ve výchozím stavu sbalená. Existují pilotní
 [test jednoho podílu](../quarto/app_jeden_podil.qmd) ke kapitolám 6 a 9
 ([karta 6](kapitoly/06-vyberove-rozdeleni-testovani.md#aplikace-06),
 [karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09)) a
 [test dvou podílů](../quarto/app_dva_podily.qmd) ke kapitole 9 s testovaným rozdílem δ₀
 a doplňkovým přesným intervalem podle Agrestiho a Mina
-([karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09-dva-podily)); další aplikace
+([karta 9](kapitoly/09-podily-kategorialni-data.md#aplikace-09-dva-podily)) a
+[test jednoho průměru](../quarto/app_jeden_prumer.qmd) ke kapitolám 6–8 s testem ekvivalence,
+párovými daty, Cohenovým *d* s intervaly a diagnostikou normality
+([karta 7](kapitoly/07-interval-t-test-ekvivalence.md#aplikace-07)); další aplikace
 se schvalují samostatně ([plán](kapitoly/plan-pokracovani.md#plan-aplikace)).
 Čísla v této mapě
 jsou autorské orientační údaje; studentské křížové odkazy nadále používají

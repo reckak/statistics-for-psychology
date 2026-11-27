@@ -400,6 +400,10 @@ $$104{,}125\pm2{,}004\times1{,}682=(100{,}75;\ 107{,}50).$$
 
 **Věcná interpretace:** Rozdíl má nečekaný směr: děti v této studii dosahovaly v průměru *vyššího* skóre než normy, přibližně o 4 body. Interval ukazuje, že s daty jsou slučitelné rozdíly od necelého jednoho bodu po 7,5 bodu. Právě zde se vyplatil oboustranný test: jednostranný test s alternativou „nižší“ by takový výsledek nezachytil. Howell doporučuje ověřit, zda nebyly skóry systematicky nadhodnoceny, a dodává, že podobně vysoké průměry PDI uvádějí i jiné studie [@howell, s. 188]. Samotný test o příčině rozdílu nevypovídá. Data navíc nepocházejí z prostého náhodného výběru všech takových dětí, ale ze studie jedné intervence, což omezuje, na jakou populaci lze závěr vztáhnout.
 
+::: {.callout-tip title="Spočítejte si: test jednoho průměru"}
+V [aplikaci Test jednoho průměru](app_jeden_prumer.qmd) spočítáte jednovýběrový *t*-test a interval spolehlivosti pro vlastní data, zadaná jednotlivými hodnotami, nebo souhrny $m$, $s$ a $n$. U jednotlivých hodnot aplikace ukáže také histogram, krabicový a Q–Q graf, podle kterých posoudíte předpoklad normality. Umí i test ekvivalence z konce této kapitoly.
+:::
+
 ## Jak spolu souvisí interval a *p*-hodnota {#sec-interval-a-p}
 
 Co nám řekne interval o výsledku testu a co řekne navíc? Tento oddíl ukazuje, že 95% interval a oboustranný test na hladině 0,05 jsou dvě strany téhož výpočtu, a odvozuje z toho, jaký interval patří k jednostrannému testu.

@@ -159,6 +159,34 @@ odkazuje blok „Vyzkoušejte si: pokrytí intervalu spolehlivosti“ na stránk
 
 Kontrola souladu s textem oddílů o pokrytí a odolnosti po třetí vizualizaci: 2026-11-13.
 
+<a id="aplikace-07"></a>
+
+### Statistická aplikace Test jednoho průměru
+
+Stránka [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd) ([upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27); skutečný obsah k 2026-11-27):
+
+- **Odkaz z kapitoly:** blok „Spočítejte si: test jednoho průměru“ na konci oddílu
+  [Jednovýběrový *t*-test](../../quarto/kapitola_07.qmd#sec-t-test), za příkladem PDI;
+  další odkazy z kapitol 6 ([karta](06-vyberove-rozdeleni-testovani.md#aplikace-06-prumer))
+  a 8 ([karta](08-porovnani-dvou-prumeru.md#aplikace-08)).
+- **Počítá:** *z*-test, jednovýběrový a párový *t*-test, interval pro μ (oboustranný,
+  u jednostranné alternativy 1 − 2α nebo jednostranný 1 − α podle R75), rozdíl v původních
+  jednotkách, test ekvivalence se dvěma hranicemi a intervalem 1 − 2α; jednovýběrové
+  $d=(m-\mathrm{μ}_0)/s$ s přesným intervalem z necentrálního *t*-rozdělení a Hedgesovo *g*
+  (pojmy nad rámec kapitoly, vysvětlené na stránce).
+- **Diagnostika normality** z jednotlivých hodnot: ukazatele tvaru (SKEW, KURT), meze
+  krabicového grafu, Shapirův–Wilkův test, histogram s přepínači normální křivky a jádrového
+  odhadu hustoty, raincloud graf, Q–Q graf podle kapitoly 4 (tradiční nebo detrendovaný)
+  se simultánním 95% pásem tail-sensitive nebo KS. Odkazuje na tabulku odolnosti
+  `tbl-k07-odolnost`.
+- **Výchozí stav a předvolby:** cvičení 7 (zkoušková úzkost, μ₀ = 20, oboustranně;
+  *t* ≈ 3,15, *p* ≈ 0,005, (20,74; 23,66)); pozornost *t*-test (*s* = 11, alternativa „menší“),
+  PDI (souhrny), online verze testu s pásmem 47–53 bodů; smyšlená zešikmená data 80 dob řešení
+  úlohy pro diagnostiku (jen v aplikaci, ne v sešitu).
+- **Rozsah:** není samostatným cvičením; kapitola se kromě odkazu nemění.
+
+Kontrola souladu s textem oddílu Jednovýběrový *t*-test po doplnění odkazu: 2026-11-27.
+
 ### Cvičení a očekávané dovednosti
 
 [Čtrnáct úloh](../../quarto/kapitola_07.qmd#sec-cviceni-07) má úplná sbalená řešení.

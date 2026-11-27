@@ -62,7 +62,8 @@ o jejich samostatné kapitole ani o pořadí dalších kapitol se nerozhodlo.
 pořadové testy porovnání skupin, robustní alternativy porovnání průměrů, funkce Z.TEST,
 korekce pro více testů (mimo nepovinnou Holmovu korekci reziduí v kapitole 9),
 ANOVA, jednoduchá regrese, logistická regrese a loglineární modely, bayesovské
-testování, plánování velikosti výběru, interval pro Cohenovo d a test
+testování, plánování velikosti výběru, interval pro Cohenovo d (ve výkladu kapitol;
+od 2026-11-27 jej počítá aplikace Test jednoho průměru) a test
 minimálního účinku. Bootstrap a permutační test zavádí kapitola 10 jen pro
 korelace; jejich použití pro jiné statistiky schváleno není. Podklady
 eviduje [mapa zdrojů](../ZDROJE.md); zmínka zde není schválením tématu ani pořadí.
@@ -77,13 +78,17 @@ mezi tématy bez schváleného umístění.
 
 <a id="plan-aplikace"></a>
 
-**Statistické aplikace — schválená část, pilot a test dvou podílů; další aplikace neschváleny.**
+**Statistické aplikace — schválená část, pilot, test dvou podílů a test jednoho průměru; další aplikace neschváleny.**
 Část „Statistické aplikace“ a pilotní [test jednoho podílu](../../quarto/app_jeden_podil.qmd)
 zavádí [R87](../rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)
 (2026-11-25; skutečný obsah v [kartě kapitoly 9](09-podily-kategorialni-data.md#aplikace-09)).
 Druhou aplikaci, [test dvou podílů](../../quarto/app_dva_podily.qmd), schválilo
 [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-26)
 (2026-11-26; [karta kapitoly 9](09-podily-kategorialni-data.md#aplikace-09-dva-podily)).
+Třetí aplikaci, [test jednoho průměru](../../quarto/app_jeden_prumer.qmd) s testem
+ekvivalence, párovými daty, Cohenovým *d* s intervaly a diagnostikou normality, schválilo
+[upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)
+(2026-11-27; [karta kapitoly 7](07-interval-t-test-ekvivalence.md#aplikace-07)).
 Autor 2026-11-18 zmínil jako směr základní testy se vstupem z hrubých dat nebo
 z deskriptivních statistik a s výstupy včetně velikosti účinku s intervalem
 a diagnostických grafů. Které testy a v jakém pořadí, není rozhodnuto;

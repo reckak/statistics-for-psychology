@@ -1100,6 +1100,10 @@ Ke *z*-testu dvě upozornění.
 
 **Známá směrodatná odchylka je předpoklad.** Dosadili jsme $\mathrm{σ}=10$ z norem a tím jsme předpokládali, že se studenti po krátkém spánku liší mezi sebou stejně jako populace, pro kterou normy vznikly. Kdybychom směrodatnou odchylku neznali a nahradili ji výběrovou směrodatnou odchylkou $s$, pracovali bychom s [odhadem směrodatné chyby](#sec-odhad-chyby). Testová statistika by pak neměla normované normální rozdělení a *p*-hodnota 0,023 by neplatila. Jde o jiný test, [jednovýběrový *t*-test](kapitola_07.qmd#sec-t-test), kterému se věnuje kapitola 7.
 
+::: {.callout-tip title="Spočítejte si: test jednoho průměru"}
+V [aplikaci Test jednoho průměru](app_jeden_prumer.qmd) zadáte jednotlivé hodnoty nebo průměr, velikost výběru a známou směrodatnou odchylku populace. Aplikace provede *z*-test pro zvolenou alternativu, ukáže plochu rozdělení, která tvoří *p*-hodnotu, a doplní interval spolehlivosti z kapitoly 7. Když σ neznáte, přepnete na *t*-test z příští kapitoly.
+:::
+
 ### Co mají testy společného a čím se liší {#sec-kroky-testu}
 
 ::: {.table-scroll .chapter-06-wide role="region" aria-label="Srovnání tří testů v kapitole" tabindex="0"}

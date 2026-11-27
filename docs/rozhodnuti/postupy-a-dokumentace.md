@@ -1567,3 +1567,74 @@ který ukazuje asi nejpřesnější CI pro rozdíl mezi dvěma podíly při mal�
 výběrech.“ a na otázku po roli intervalu zvolil „Doplněk pro malé výběry“.
 Upravený plán schválil téhož dne. Realizaci eviduje
 [autorská historie](../../quarto/README.md#aplikace-dva-podily).
+
+<a id="r87-upresneni-2026-11-27"></a>
+
+### Upřesnění 2026-11-27: aplikace Test jednoho průměru
+
+**Stav:** schváleno 2026-11-27 (plán aplikace). **Rozsah:** stránka
+`quarto/app_jeden_prumer.qmd`, moduly `assets/stat/prumer.js`, `assets/stat/normalita.js`
+a `assets/stat/qq-ts-gamma.js`, odkazy „Spočítejte si“ z kapitol 6, 7 a 8, hesla a značky
+uvedené níže. Obecná pravidla R87 a jeho upřesnění z 2026-11-25 platí beze změny; kapitoly
+se kromě odkazů nemění.
+
+- **Uspořádání a vstup:** jeden výběr nebo párová data; jednotlivé hodnoty (textové pole,
+  u párových dat dvojice na řádku, neúplné dvojice se vyřadí) nebo souhrny ($m$, $s$ nebo σ, $n$;
+  u párových dat $m_D$, $s_D$, $n$ a nepovinně $s_1$, $s_2$). Popisky proměnné, jednotky a měření
+  se propisují do výstupů. U párových dat volba výchozího měření a prohození pořadí měření.
+- **Testy a intervaly:** *z*-test (σ známá, jen jeden výběr) a jednovýběrový či párový *t*-test,
+  μ₀, alternativa ≠ / > / <, α; u jednostranné alternativy volba intervalu jako u pilotu.
+  Volitelný test ekvivalence (TOST) se dvěma samostatně zadanými hranicemi a intervalem 1 − 2α.
+- **Velikost účinku:** rozdíl v původních jednotkách s intervalem; jednovýběrové Cohenovo
+  $d=(m-\mathrm{μ}_0)/s$ (u *z*-testu $/\mathrm{σ}$) s **přesným** intervalem z necentrálního
+  *t*-rozdělení (u *z*-testu přepočtený interval průměru) a Hedgesovo *g* podle kapitoly 8.
+  U párových dat tři varianty: *d* se směrodatnou odchylkou výchozího měření a *d*
+  s $\sqrt{(s_1^2+s_2^2)/2}$, obě s přibližným intervalem a korekcí zkreslení podle Bonetta
+  (2015, rovnice 9, 11, 13 a 15), a $d_z$ s přesným intervalem. Kapitola 8 se kvůli Bonettovi
+  nemění; stránka uvede rozdíl proti intervalu podle Algina a Keselmana.
+- **Diagnostika normality** (jen z jednotlivých hodnot, u párových dat z rozdílů): histogram
+  s přepínači křivky normálního rozdělení a jádrového odhadu hustoty; raincloud graf
+  s odhadem hustoty, krabicovým grafem, body a průměrem s intervalem (do 50 hodnot vystředěný
+  bodový graf, nad 50 jitter s průhledností bodů); normální Q–Q graf podle kapitoly 4
+  s volbou tradiční / detrendovaný a se simultánním 95% pásem podle qqplotr (tail-sensitive,
+  výchozí, nebo KS; parametry $m$ a $s$); korigovaná šikmost a exces jako SKEW a KURT;
+  Shapirův–Wilkův test jako `shapiro.test` v R.
+- **Výchozí stav:** data zkouškové úzkosti ze cvičení 7 kapitoly 7, μ₀ = 20, oboustranně,
+  α = 0,05, bez stisknuté předvolby.
+- **Nová hesla jen pro aplikaci:** necentrální *t*-rozdělení, parametr necentrality, jádrový
+  odhad hustoty, raincloud graf, detrendovaný Q–Q graf, simultánní pás spolehlivosti,
+  Shapirův–Wilkův test ([registr](../SLOVNIK.md#aplikace-jeden-prumer)). **Značky:** jednovýběrové
+  *d* v řádku [*d*](../../quarto/znaceni.qmd), $d_z$ a *W*; populační standardizovaný rozdíl
+  bez nové značky (δ zůstává pro δ₀).
+
+**Doklad:** autor 2026-11-27 zadal: „Jako další test bych do učebnice zařadil test jednoho
+průměru (jednovýběrový t-test a z-test) společně s výpočtem intervalu spolehlivosti
+a Cohenovým d + CI.“ Na otázky zvolil vstup „Hodnoty i souhrny“, interval pro *d* „Jen
+přesný“, rozsah „Test ekvivalence (TOST), Párová data, Hedgesova korekce g“, hranice „Dvě
+hranice“ a výchozí data „Úzkost (kap. 7, cv. 7)“. K párovému *d* se zeptal: „A co zdroj
+"bonett-2015.pdf"?“ a po shrnutí zdroje zvolil „Tři varianty“ a kapitolu 8 „Ne, jen
+aplikace“. Doplnil: „Taky bych přidal diagnostiku normality“ a k jejímu obsahu: „Všechno:
+grafy, míry tvaru i Shapiro-Wilkův test. Myslím, že v histogramu by měl být přepínač pro
+zapnutí křivky normálního rozdělení i křivky empirické hustoty. Pro znázornění rozdělení
+bych přidal i raincloud plot s body a bodovým odhadem průměru + CI a také s boxplotem
+a křivkou hustoty. U malých souborů by body mohly být obyčejný dotplot vycentrovaný na
+střed a větších souborů jitter.“, dále „jitter s transparencí bodů“ a „Je možné u Q-Q grafů
+replikovat simlutánní confidence bands, které produkuje qqplotr? a dát jako volbu, jestli
+uživatel chce tradiční Q-Q graf, nebo detrendovaný?“ Plán s těmito volbami a s novými hesly
+schválil téhož dne. Realizaci eviduje
+[autorská historie](../../quarto/README.md#aplikace-jeden-prumer).
+
+<a id="r87-doplneni-2026-11-27-pas"></a>
+
+#### Doplnění 2026-11-27: výpočet pásu tail-sensitive
+
+**Stav:** schváleno 2026-11-27 po realizaci. Schválený plán počítal pás tail-sensitive jako
+qqplotr se zadanými parametry (`mu = m`, `sigma = s`). Při parametrech odhadnutých z týchž dat
+by takový pás zachytil normální data s pravděpodobností téměř 1, ne 0,95. Pás se proto počítá
+simulací standardizovaných normálních výběrů jako ve výchozím nastavení qqplotr, ale s průměrem
+a směrodatnou odchylkou místo robustních odhadů Qn, aby ležel kolem přímky $m+s z$
+z kapitoly 4; simultánní pokrytí je 0,944–0,955. Pás KS zůstává přesně podle qqplotr.
+
+**Doklad:** autor na otázku „Ponechat pás tail-sensitive se simulací zohledňující odhad m a s?“
+odpověděl „Ano, ponechat“. Realizaci eviduje
+[autorská historie](../../quarto/README.md#aplikace-jeden-prumer).

@@ -1,0 +1,985 @@
+---
+code-copy: false
+---
+
+# Test jednoho průměru {#sec-app-jeden-prumer .unnumbered}
+
+Liší se populační průměr od dané hodnoty, například od normy testu? Jak přesně ho data odhadují a jak velký je rozdíl ve srovnání s tím, jak se lidé navzájem liší? Aplikace pro vaše data provede [*z*-test](kapitola_06.qmd#sec-z-test) se známou σ, nebo [jednovýběrový *t*-test](kapitola_07.qmd#sec-t-test), a spočítá [interval spolehlivosti pro populační průměr](kapitola_07.qmd#sec-interval-t). Umí také [test ekvivalence](kapitola_07.qmd#sec-test-ekvivalence) a pro [párová data](kapitola_08.qmd#sec-parovy-t-test) párový *t*-test. Velikost rozdílu vyjádří v původních jednotkách i [Cohenovým *d*](kapitola_08.qmd#sec-cohenovo-d) s intervalem spolehlivosti. U jednotlivých hodnot navíc nabídne grafy a ukazatele, podle kterých posoudíte, zda je normální model populace přiměřený. Postupy vysvětlují kapitoly 6–8; tato stránka je shrnuje a počítá je pro vaše data.
+
+## Jak aplikaci použít {#sec-app-prumer-ovladani .unnumbered}
+
+Nejprve zvolte **uspořádání**. Jeden výběr porovnává průměr jedné proměnné s testovanou hodnotou. Párová data jsou dvě měření u týchž lidí nebo dvojic a aplikace je stejně jako [kapitola 8](kapitola_08.qmd#sec-parovy-t-test) převede na rozdíly. Potom zvolte, zda zadáte **jednotlivé hodnoty**, nebo jen **souhrny** (průměr, směrodatnou odchylku a velikost výběru). Diagnostika normality potřebuje jednotlivé hodnoty.
+
+Jednotlivé hodnoty vložte do textového pole, například zkopírované ze sloupce v Excelu. Každá hodnota je na samostatném řádku, nebo jsou hodnoty oddělené mezerou či středníkem; desetinná čárka i tečka jsou v pořádku. U párových dat patří na každý řádek jedna dvojice: dvě hodnoty oddělené tabulátorem (tak je vloží Excel ze dvou sousedních sloupců) nebo středníkem. Chybí-li u dvojice jedna hodnota, nechte ji prázdnou nebo napište NA. Aplikace pak celou dvojici vyřadí, jak doporučuje [kapitola 8](kapitola_08.qmd#sec-neuplne-dvojice), a vypíše, kolik dvojic vyřadila. První řádek s textem, například záhlaví zkopírované s daty, přeskočí.
+
+U párových dat zadejte názvy obou měření a zvolte, které z nich je **referenční**, obvykle měření před intervencí nebo v kontrolní podmínce: jeho směrodatnou odchylkou aplikace standardizuje jednu z variant Cohenova *d*. Rozdíl se počítá jako první měření minus druhé; tlačítko „Prohodit pořadí měření“ směr obrátí. Aby hypotézy vyjadřovaly stále totéž, změní zároveň znaménko testované hodnoty a hranic ekvivalence a směr jednostranné alternativy.
+
+Zvolte test. *t*-test odhaduje směrodatnou odchylku populace z dat. *z*-test se hodí jen tehdy, když směrodatnou odchylku populace σ skutečně známe, například z norem testu; zadejte ji pak do pole σ. **Testovaná hodnota** $\mathrm{μ}_0$ je hodnota populačního průměru (u párových dat populačního průměru rozdílů), kterou předpokládá nulová hypotéza. Zvolte alternativní hypotézu; nulová hypotéza zahrnuje všechny ostatní možnosti, jak vysvětluje [kapitola 6](kapitola_06.qmd#sec-smer-testu), a aplikace ji vypíše. Hladinu významnosti α zadejte jako číslo větší než 0 a menší než 0,5. U jednostranné alternativy si vyberete oboustranný interval se spolehlivostí $1-2\mathrm{α}$ (výchozí volba), nebo [jednostranný interval](kapitola_07.qmd#sec-jednostranny-a-interval) se spolehlivostí $1-\mathrm{α}$.
+
+Zaškrtnutím „Test ekvivalence“ přibudou pole pro dolní a horní hranici pásma ekvivalence. Hranice zvolte předem z věcných důvodů, jak ukazuje [kapitola 7](kapitola_07.qmd#sec-hranice-ekvivalence); nemusejí ležet souměrně kolem $\mathrm{μ}_0$.
+
+Po načtení stránky jsou nastavena data o zkouškové úzkosti ze [cvičení 7 kapitoly 7](kapitola_07.qmd#sec-cviceni-07) s oboustrannou alternativou. Tlačítka nastaví další příklady z kapitol 6–8 a smyšlený příklad zešikmených dob řešení úlohy. Název proměnné, jednotka a názvy měření se objeví v tabulkách, grafech i ve slovní interpretaci. Při neplatné hodnotě se zobrazí upozornění a aplikace dál používá poslední platnou hodnotu. Výpočty běží jen ve vašem prohlížeči, zadaná data se nikam neodesílají.
+
+Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odchylky, nejméně na dvě desetinná místa. Statistiky *t* a *z* mají tři desetinná místa, Cohenovo *d* také tři, směrodatné chyby a kvantily čtyři; v ukázce zápisu podle APA jsou *t*, *z* a *d* zaokrouhleny na dvě desetinná místa. *p*-hodnoty mají tři desetinná místa, hodnoty pod 0,001 dvě platné číslice. Počítáme s plnou přesností.
+
+```{ojs}
+//| echo: false
+{
+  // Calculations live in shared modules checked against R (scripts/check-stat-lib.mjs, scripts/app-jeden-prumer.R).
+  const L = await import(new URL("../assets/stat/prumer.js", document.baseURI).href);
+  const N = await import(new URL("../assets/stat/normalita.js", document.baseURI).href);
+  const red = "#A3262A", blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", green = "#3B7D3A", sky = "#9CC3D5";
+
+  // Czech number formatting with a true minus sign; user text is always escaped before it enters HTML.
+  const minus = t => t.replace(/^-/, "−");
+  const fixed = (v, d) => { if (v === Infinity) return "∞"; if (v === -Infinity) return "−∞"; let t = v.toFixed(d); if (Number(t) === 0) t = Math.abs(0).toFixed(d); return minus(t.replace(".", ",")); };
+  const trim = (v, d) => { const t = fixed(v, d); return t.includes(",") ? t.replace(/0+$/, "").replace(/,$/, "") : t; };
+  const int = v => v.toLocaleString("cs-CZ");
+  const sigDigits = v => v === 0 ? 0 : Math.min(14, Math.max(0, 1 - Math.floor(Math.log10(Math.abs(v)))));
+  const pfmt = p => p >= 0.001 || p === 0 ? fixed(p, 3) : fixed(p, sigDigits(p));
+  const apaP = p => p < 0.001 ? "<i>p</i> &lt; 0,001" : `<i>p</i> = ${fixed(p, 3)}`;
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"})[c]);
+  const q = t => `„${t}“`;
+  const short = (t, m) => t.length > m ? t.slice(0, m - 1) + "…" : t;
+  const levelText = c => `${trim(100 * c, 4)} %`;
+  const levelAdj = c => `${trim(100 * c, 4)}%`;
+  const d3f = v => fixed(v, 3);
+
+  function parseDecimal(raw) {
+    const t = String(raw).trim().replace(/\s+/g, "").replace(/^−/, "-").replace(",", ".");
+    if (!/^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/.test(t)) return null;
+    const v = Number(t); return Number.isFinite(v) ? v : null;
+  }
+  // Text of a typed number with a decimal comma and a true minus sign (used for μ₀, α and the bounds).
+  const typedLabel = raw => { const t = String(raw).trim().replace(/\s+/g, "").replace(/^\+/, "").replace(/^[-−]/, "−").replace(".", ","); return t === "−0" || /^−0(,0*)?$/.test(t) ? t.slice(1) : t; };
+  const negLabel = l => /^0(,0*)?$/.test(l) ? l : l.startsWith("−") ? l.slice(1) : `−${l}`;
+
+  // Seeded generator for the jitter of the points (the same picture after every redraw).
+  const rng = seed => () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+  const UZKOST = "18\n22\n25\n19\n24\n21\n27\n17\n23\n20\n26\n22\n19\n28\n21\n24\n18\n25\n23\n22";
+  const SPANEK = "Po běžném spánku\tPo krátkém spánku\n58\t53\n44\t42\n51\t45\n39\t38\n62\t55\n47\t44\n55\t51\n42\t43\n53\t\n49\t44\n60\t58\n45\t39\n52\t50";
+  const DOBY = [64, 56, 81, 22, 27, 63, 46, 70, 52, 29, 25, 65, 50, 35, 49, 50, 38, 39, 74, 35, 32, 38, 39, 89, 77, 33, 33, 42, 30, 38, 46, 36, 53, 31, 38, 32, 44, 56, 48, 86, 44, 51, 37, 72, 68, 96, 80, 58, 41, 33, 33, 81, 69, 38, 55, 181, 39, 48, 64, 41, 58, 58, 56, 27, 51, 56, 72, 29, 33, 35, 41, 45, 49, 33, 29, 30, 41, 38, 49, 30].join("\n");
+  const base0 = {design: "one", source: "raw", test: "t", varName: "", unit: "", raw: "", names: ["", ""], ref: 0, order: 0,
+    m: "", s: "", n: "", sigma: "", mD: "", sD: "", s1: "", s2: "", mu0: "0", alt: "two", alpha: "0,05", kind: "two", eq: false, eqLo: "", eqHi: ""};
+  const PRESETS = [
+    {id: "uzkost", label: "Zkoušková úzkost (kap. 7)", ...base0, varName: "Skór zkouškové úzkosti", unit: "bodu", raw: UZKOST, mu0: "20"},
+    {id: "poz-z", label: "Pozornost, z-test (kap. 6)", ...base0, source: "summary", test: "z", varName: "Skór pozornosti po krátkém spánku", unit: "bodu", m: "46", sigma: "10", n: "25", mu0: "50", alt: "less"},
+    {id: "poz-t", label: "Pozornost, t-test (kap. 7)", ...base0, source: "summary", varName: "Skór pozornosti po krátkém spánku", unit: "bodu", m: "46", s: "11", n: "25", mu0: "50", alt: "less"},
+    {id: "pdi", label: "Psychomotorický vývoj (kap. 7)", ...base0, source: "summary", varName: "PDI dětí s nízkou porodní hmotností", unit: "bodu", m: "104,125", s: "12,584", n: "56", mu0: "100"},
+    {id: "online", label: "Online verze testu, ekvivalence (kap. 7)", ...base0, source: "summary", varName: "Skór v online verzi testu pozornosti", unit: "bodu", m: "48,5", s: "10", n: "400", mu0: "50", eq: true, eqLo: "47", eqHi: "53"},
+    {id: "spanek", label: "Spánek, párová data (kap. 8)", ...base0, design: "paired", varName: "Skór pozornosti", unit: "bodu", raw: SPANEK, names: ["po běžném spánku", "po krátkém spánku"]},
+    {id: "anorexie", label: "Anorexie, souhrny (kap. 8)", ...base0, design: "paired", source: "summary", varName: "Hmotnost dívek s anorexií", unit: "kg", names: ["po terapii", "před terapií"], ref: 1, mD: "3,295", sD: "3,247", n: "17", s1: "", s2: "2,276"},
+    {id: "doby", label: "Doba řešení úlohy, zešikmená data", ...base0, varName: "Doba řešení úlohy", unit: "s", raw: DOBY, mu0: "45"}
+  ];
+
+  const s = {};
+  const varName = () => s.varName.trim() || (s.design === "paired" ? "Proměnná" : "Proměnná");
+  const mName = j => s.names[j].trim() || `${j + 1}. měření`;
+  const unitTxt = () => s.unit.trim();
+
+  const textField = (id, label, max, cls = "") => html`<div class="viz-field viz-app-text ${cls}">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" maxlength="${max}" autocomplete="off" aria-describedby="viz-app-${id}-hint">
+    <span id="viz-app-${id}-hint" class="viz-hint">nejvýše ${max} znaků</span>
+  </div>`;
+  const decimalField = (id, label, hint) => html`<div class="viz-field" data-field="${id}">
+    <label for="viz-app-${id}">${label}</label>
+    <input id="viz-app-${id}" type="text" inputmode="decimal" autocomplete="off" aria-describedby="viz-app-${id}-hint viz-app-${id}-error">
+    <span id="viz-app-${id}-hint" class="viz-hint">${hint}</span>
+    <span id="viz-app-${id}-error" class="viz-error" hidden></span>
+  </div>`;
+  const radio = (name, value, label) => html`<label><input type="radio" name="viz-app-${name}" value="${value}"><span>${label}</span></label>`;
+
+  const root = html`<div class="viz viz-app" id="app-jeden-prumer">
+    <fieldset class="viz-model">
+      <legend>Data</legend>
+      <fieldset class="viz-choice viz-app-design"><legend>Uspořádání</legend>${radio("design", "one", "jeden výběr")}${radio("design", "paired", "párová data (dvě měření týchž lidí)")}</fieldset>
+      <fieldset class="viz-choice viz-app-source"><legend>Zadání</legend>${radio("source", "raw", "jednotlivé hodnoty")}${radio("source", "summary", "souhrny")}</fieldset>
+      <div class="viz-controls">${textField("var", "Proměnná", 60, "viz-app-wide")}${textField("unit", "Jednotka (nepovinně)", 20)}</div>
+      <div class="viz-controls" data-paired-only>${textField("name0", "Název 1. měření", 40)}${textField("name1", "Název 2. měření", 40)}</div>
+      <div data-paired-only>
+        <fieldset class="viz-choice viz-app-ref"><legend>Referenční měření pro Cohenovo <i>d</i></legend>${radio("ref", "0", html`<span data-name-label="0"></span>`)}${radio("ref", "1", html`<span data-name-label="1"></span>`)}</fieldset>
+        <p class="viz-app-hyp" data-direction aria-live="polite"></p>
+        <div class="viz-buttons viz-app-swap"><button type="button" data-swap>Prohodit pořadí měření</button></div>
+      </div>
+      <div class="viz-field viz-app-rawfield" data-raw-only>
+        <label for="viz-app-raw" data-raw-label>Hodnoty</label>
+        <textarea id="viz-app-raw" rows="8" spellcheck="false" autocomplete="off" aria-describedby="viz-app-raw-hint viz-app-raw-error viz-app-raw-status"></textarea>
+        <span id="viz-app-raw-hint" class="viz-hint" data-raw-hint></span>
+        <span id="viz-app-raw-error" class="viz-error" role="alert" hidden></span>
+        <span id="viz-app-raw-status" class="viz-hint" data-raw-status aria-live="polite"></span>
+      </div>
+      <div class="viz-controls" data-summary-one>
+        ${decimalField("m", html`Průměr <i>m</i>`, "výběrový průměr")}
+        ${decimalField("s", html`Směrodatná odchylka <i>s</i>`, "výběrová, větší než 0")}
+        ${decimalField("n", html`Velikost výběru <i>n</i>`, "celé číslo, alespoň 2")}
+      </div>
+      <div class="viz-controls" data-summary-paired>
+        ${decimalField("mD", html`Průměr rozdílů <i>m</i><sub><i>D</i></sub>`, "1. měření minus 2.")}
+        ${decimalField("sD", html`Sm. odchylka rozdílů <i>s</i><sub><i>D</i></sub>`, "větší než 0")}
+        ${decimalField("nP", html`Počet dvojic <i>n</i>`, "celé číslo, alespoň 2")}
+        ${decimalField("s1", html`<i>s</i> 1. měření`, "nepovinně")}
+        ${decimalField("s2", html`<i>s</i> 2. měření`, "nepovinně")}
+      </div>
+    </fieldset>
+    <fieldset class="viz-model">
+      <legend>Test a hypotézy</legend>
+      <fieldset class="viz-choice viz-app-test" data-one-only><legend>Test</legend>${radio("test", "t", html`<i>t</i>-test (σ neznáme)`)}${radio("test", "z", html`<i>z</i>-test (σ známe)`)}</fieldset>
+      <div class="viz-controls">
+        ${decimalField("sigma", "Směrodatná odchylka populace σ", "známá, větší než 0")}
+        ${decimalField("mu0", html`Testovaná hodnota μ<sub>0</sub>`, "číslo, např. 20")}
+        ${decimalField("alpha", "Hladina významnosti α", "větší než 0 a menší než 0,5, obvykle 0,05")}
+      </div>
+      <fieldset class="viz-choice viz-app-alt">
+        <legend>Alternativní hypotéza</legend>
+        <label><input type="radio" name="viz-app-alt" value="two"><span data-alt-label="two"></span></label>
+        <label><input type="radio" name="viz-app-alt" value="greater"><span data-alt-label="greater"></span></label>
+        <label><input type="radio" name="viz-app-alt" value="less"><span data-alt-label="less"></span></label>
+      </fieldset>
+      <p class="viz-app-hyp" data-hyp aria-live="polite"></p>
+      <fieldset class="viz-choice viz-app-kind" hidden>
+        <legend>Interval spolehlivosti u jednostranné alternativy</legend>
+        <label><input type="radio" name="viz-app-kind" value="two"><span data-kind-label="two"></span></label>
+        <label><input type="radio" name="viz-app-kind" value="one"><span data-kind-label="one"></span></label>
+      </fieldset>
+      <label class="viz-check viz-app-eqcheck"><input type="checkbox" id="viz-app-eq"><span>Test ekvivalence</span></label>
+      <div class="viz-controls" data-eq-fields>
+        ${decimalField("eqLo", "Dolní hranice ekvivalence", "například μ₀ − Δ")}
+        ${decimalField("eqHi", "Horní hranice ekvivalence", "například μ₀ + Δ")}
+      </div>
+      <div class="viz-pj-presets" role="group" aria-label="Příklady">
+        ${PRESETS.map(p => html`<button type="button" data-preset="${p.id}" aria-pressed="false">${p.label}</button>`)}
+      </div>
+    </fieldset>
+    <section class="viz-part" aria-labelledby="viz-app-res-title">
+      <h3 id="viz-app-res-title" class="viz-part-title">Výsledky</h3>
+      <p class="viz-app-summary" data-summary aria-live="polite"></p>
+      <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Tabulka výsledků: posuvná oblast" data-results></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-int-title">
+      <h3 id="viz-app-int-title" class="viz-part-title">Slovní interpretace</h3>
+      <div class="viz-app-report" data-report></div>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-null-title">
+      <h3 id="viz-app-null-title" class="viz-part-title"></h3>
+      <div data-legend="null"></div>
+      <div class="viz-plots" data-chart="null"></div>
+      <p class="viz-note" data-null-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-ci-title">
+      <h3 id="viz-app-ci-title" class="viz-part-title"></h3>
+      <div data-legend="ci"></div>
+      <div class="viz-plots" data-chart="ci"></div>
+      <p class="viz-note" data-ci-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-d-title">
+      <h3 id="viz-app-d-title" class="viz-part-title">Cohenovo <i>d</i> s intervalem spolehlivosti</h3>
+      <div data-legend="d"></div>
+      <div class="viz-plots" data-chart="d"></div>
+      <p class="viz-note" data-d-note></p>
+    </section>
+    <section class="viz-part" aria-labelledby="viz-app-diag-title">
+      <h3 id="viz-app-diag-title" class="viz-part-title"></h3>
+      <p data-diag-intro></p>
+      <div data-diag-body>
+        <div class="viz-bay-table-wrap" tabindex="0" role="region" aria-label="Ukazatele tvaru a Shapirův–Wilkův test: posuvná oblast" data-diag-table></div>
+        <p class="viz-note" data-diag-note></p>
+        <h4 class="viz-app-subtitle">Histogram</h4>
+        <div class="viz-controls viz-app-toggles">
+          <label class="viz-check"><input type="checkbox" id="viz-app-hist-normal"><span>Křivka normálního rozdělení</span></label>
+          <label class="viz-check"><input type="checkbox" id="viz-app-hist-kde"><span>Jádrový odhad hustoty</span></label>
+        </div>
+        <div data-legend="hist"></div>
+        <div class="viz-plots" data-chart="hist"></div>
+        <h4 class="viz-app-subtitle">Raincloud graf</h4>
+        <div data-legend="rain"></div>
+        <div class="viz-plots" data-chart="rain"></div>
+        <p class="viz-note" data-rain-note></p>
+        <h4 class="viz-app-subtitle">Normální Q–Q graf</h4>
+        <div class="viz-controls viz-app-toggles">
+          <fieldset class="viz-choice"><legend>Podoba</legend>${radio("qq", "classic", "tradiční")}${radio("qq", "detrended", "detrendovaný")}</fieldset>
+          <fieldset class="viz-choice"><legend>Simultánní 95% pás</legend>${radio("band", "ts", "tail-sensitive")}${radio("band", "ks", "KS")}${radio("band", "none", "bez pásu")}</fieldset>
+        </div>
+        <div data-legend="qq"></div>
+        <div class="viz-plots" data-chart="qq"></div>
+        <p class="viz-note" data-qq-note></p>
+      </div>
+    </section>
+  </div>`;
+
+  const $ = sel => root.querySelector(sel);
+  const $$ = sel => [...root.querySelectorAll(sel)];
+  const DEC = ["m", "s", "n", "mD", "sD", "nP", "s1", "s2", "sigma", "mu0", "alpha", "eqLo", "eqHi"];
+  const inputs = Object.fromEntries([...DEC, "var", "unit", "name0", "name1", "raw"].map(k => [k, $(`#viz-app-${k}`)]));
+
+  // Validated numeric state: an invalid entry shows a message and the last valid value stays in use.
+  const val = {};
+  function setError(id, msg) {
+    const input = $(`#viz-app-${id}`), error = $(`#viz-app-${id}-error`);
+    error.hidden = !msg; error.textContent = msg || ""; input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+  const RULES = {
+    m: [v => v !== null && Math.abs(v) < 1e12, "Zadejte číslo, například 46 nebo 104,125."],
+    mD: [v => v !== null && Math.abs(v) < 1e12, "Zadejte číslo, například 3,5 nebo −2."],
+    s: [v => v !== null && v > 0 && v < 1e12, "Zadejte kladné číslo, například 11."],
+    sD: [v => v !== null && v > 0 && v < 1e12, "Zadejte kladné číslo, například 2,4."],
+    sigma: [v => v !== null && v > 0 && v < 1e12, "Zadejte kladné číslo, například 10."],
+    n: [v => v !== null && Number.isInteger(v) && v >= 2 && v <= L.N_SUMMARY_MAX, `Zadejte celé číslo od 2 do ${int(L.N_SUMMARY_MAX)}.`],
+    nP: [v => v !== null && Number.isInteger(v) && v >= 2 && v <= L.N_SUMMARY_MAX, `Zadejte celé číslo od 2 do ${int(L.N_SUMMARY_MAX)}.`],
+    s1: [v => v === "" || (v !== null && v > 0 && v < 1e12), "Zadejte kladné číslo, nebo pole nechte prázdné."],
+    s2: [v => v === "" || (v !== null && v > 0 && v < 1e12), "Zadejte kladné číslo, nebo pole nechte prázdné."],
+    mu0: [v => v !== null && Math.abs(v) < 1e12, "Zadejte číslo, například 20 nebo −1,5."],
+    alpha: [v => v !== null && v > 0 && v < 0.5, "Zadejte číslo větší než 0 a menší než 0,5, například 0,05."],
+    eqLo: [v => v !== null && Math.abs(v) < 1e12, "Zadejte číslo, například 47."],
+    eqHi: [v => v !== null && Math.abs(v) < 1e12, "Zadejte číslo, například 53."]
+  };
+  function readNumber(id) {
+    const raw = inputs[id].value, opt = id === "s1" || id === "s2";
+    const v = opt && raw.trim() === "" ? "" : parseDecimal(raw);
+    const ok = RULES[id][0](v);
+    setError(id, ok ? "" : `${RULES[id][1]} Používá se dál poslední platná hodnota.`);
+    if (ok) { val[id] = v === "" ? null : v; s[id] = raw; }
+    return ok;
+  }
+
+  // Raw values: one-sample values separated by line breaks, spaces or semicolons; paired data one pair per line
+  // (tab or semicolon between the two values, empty or NA for a missing value). A first line with text is a header.
+  const num = t => { const v = parseDecimal(t); return v !== null && Math.abs(v) < 1e12 ? v : null; };
+  const isMissing = t => t === "" || /^(na|n\/a|nan|\.)$/i.test(t);
+  function parseRaw(text, design) {
+    let lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l !== "");
+    let header = false;
+    if (lines.length && /[a-zá-žA-ZÁ-Ž]/.test(lines[0]) && !/^\s*(na|n\/a)\s*$/i.test(lines[0])) {
+      const toks = lines[0].split(/\t|;/);
+      if (toks.every(t => isMissing(t.trim()) || num(t.trim()) === null)) { header = true; lines = lines.slice(1); }
+    }
+    if (design === "one") {
+      const toks = lines.flatMap(l => l.split(/[\s;]+/)).filter(t => t !== "");
+      const vals = [];
+      let missing = 0;
+      for (const t of toks) {
+        if (isMissing(t)) { missing++; continue; }
+        const v = num(t);
+        if (v === null) return {error: `Hodnotu ${q(short(t, 20))} nelze přečíst jako číslo.`};
+        vals.push(v);
+      }
+      if (vals.length > L.N_MAX) return {error: `Aplikace přijme nejvýše ${int(L.N_MAX)} hodnot.`};
+      if (vals.length < 2) return {error: "Zadejte alespoň dvě hodnoty."};
+      return {values: vals, missing, header};
+    }
+    const a = [], b = [];
+    let dropped = 0;
+    for (const l of lines) {
+      let parts = l.split(/\t|;/);
+      if (parts.length === 1) parts = l.split(/\s+/);
+      if (parts.length === 1) parts.push("");
+      if (parts.length > 2) return {error: `Řádek ${q(short(l, 30))} má víc než dvě hodnoty.`};
+      const [p, r] = parts.map(t => t.trim());
+      if (isMissing(p) || isMissing(r)) { dropped++; continue; }
+      const x = num(p), y = num(r);
+      if (x === null || y === null) return {error: `Řádek ${q(short(l, 30))} nelze přečíst jako dvojici čísel.`};
+      a.push(x); b.push(y);
+    }
+    if (a.length > L.N_MAX) return {error: `Aplikace přijme nejvýše ${int(L.N_MAX)} dvojic.`};
+    if (a.length < 2) return {error: "Zadejte alespoň dvě úplné dvojice."};
+    return {a, b, dropped, header};
+  }
+  // The last valid data are kept separately for each design, so that switching the design never mixes them;
+  // before any valid entry they are the examples of chapters 7 and 8.
+  const rawStore = {one: {...parseRaw(UZKOST, "one"), text: UZKOST}, paired: {...parseRaw(SPANEK, "paired"), text: SPANEK}};
+  function readRaw() {
+    const r = parseRaw(inputs.raw.value, s.design), err = $("#viz-app-raw-error");
+    let msg = r.error || "";
+    if (!msg) {
+      const vals = s.design === "one" ? r.values : r.a.map((v, i) => v - r.b[i]);
+      if (!(L.describe(vals).s > 0)) msg = s.design === "one" ? "Všechny hodnoty jsou stejné; směrodatná odchylka je 0." : "Všechny rozdíly jsou stejné; směrodatná odchylka rozdílů je 0.";
+    }
+    err.hidden = !msg; err.textContent = msg ? `${msg} Používají se dál poslední platná data.` : "";
+    inputs.raw.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (!msg) { rawStore[s.design] = {...r, text: inputs.raw.value}; s.raw = inputs.raw.value; }
+    return !msg;
+  }
+
+  // Events.
+  const unpress = () => $$("[data-preset]").forEach(b => b.setAttribute("aria-pressed", "false"));
+  for (const id of DEC) inputs[id].addEventListener("input", () => { if (readNumber(id)) render(); });
+  inputs.raw.addEventListener("input", () => { if (readRaw()) render(); });
+  inputs.var.addEventListener("input", () => { s.varName = inputs.var.value; render(); });
+  inputs.unit.addEventListener("input", () => { s.unit = inputs.unit.value; render(); });
+  [0, 1].forEach(j => inputs[`name${j}`].addEventListener("input", () => { s.names[j] = inputs[`name${j}`].value; render(); }));
+  const onRadio = (name, f) => $$(`input[name="viz-app-${name}"]`).forEach(r => r.addEventListener("change", () => { f(r.value); render(); }));
+  onRadio("design", v => {
+    s.design = v; if (v === "paired") s.test = "t"; ensureFields(); syncVisibility();
+    // Text that cannot be read in the new design is replaced by the last valid data of that design.
+    if (s.source === "raw" && parseRaw(inputs.raw.value, v).error) { inputs.raw.value = rawStore[v].text; s.raw = rawStore[v].text; }
+    if (s.source === "raw") readRaw();
+  });
+  onRadio("source", v => { s.source = v; ensureFields(); syncVisibility(); if (v === "raw") readRaw(); });
+  onRadio("test", v => { s.test = v; ensureFields(); syncVisibility(); });
+  // After switching the design, the input or the test, empty or invalid fields that are now needed get the values
+  // of a chapter example (attention, chapter 7; anorexia, chapter 8), so that the results never use missing values.
+  function ensureFields() {
+    const fill = (id, label) => { if (val[id] === null || val[id] === undefined) { inputs[id].value = label; s[id] = label; val[id] = parseDecimal(label); setError(id, ""); } };
+    if (s.source === "summary" && s.design === "one") { fill("m", "46"); fill("n", "25"); if (s.test === "z") fill("sigma", "10"); else fill("s", "11"); }
+    if (s.source === "summary" && s.design === "paired") { fill("mD", "3,295"); fill("sD", "3,247"); fill("nP", "17"); }
+    if (s.source === "raw" && s.design === "one" && s.test === "z") fill("sigma", trim(L.describe(rawStore.one.values).s, 2));
+  }
+  onRadio("alt", v => { s.alt = v; });
+  onRadio("kind", v => { s.kind = v; });
+  onRadio("ref", v => { s.ref = Number(v); });
+  onRadio("qq", v => { s.qq = v; });
+  onRadio("band", v => { s.band = v; });
+  $("#viz-app-eq").addEventListener("change", e => { s.eq = e.target.checked; syncVisibility(); render(); });
+  $("#viz-app-hist-normal").addEventListener("change", e => { s.histNormal = e.target.checked; render(); });
+  $("#viz-app-hist-kde").addEventListener("change", e => { s.histKde = e.target.checked; render(); });
+  $$(".viz-model input, .viz-model textarea").forEach(i => { i.addEventListener("input", unpress); i.addEventListener("change", unpress); });
+  // Swapping the measurements keeps the meaning of the hypotheses: μ₀ and the bounds change sign, a one-sided
+  // alternative its direction; with summaries the entered mean difference changes sign.
+  $("[data-swap]").addEventListener("click", () => {
+    s.order = 1 - s.order;
+    const flipField = id => { if (s[id] === "" || s[id] === undefined) return; s[id] = negLabel(typedLabel(s[id])); };
+    flipField("mu0");
+    if (s.source === "summary") flipField("mD");
+    const lo = s.eqLo, hi = s.eqHi;
+    if (lo !== "" && hi !== "") { s.eqLo = negLabel(typedLabel(hi)); s.eqHi = negLabel(typedLabel(lo)); }
+    s.alt = {two: "two", greater: "less", less: "greater"}[s.alt];
+    syncInputs(); unpress(); render();
+  });
+
+  function syncVisibility() {
+    const paired = s.design === "paired", raw = s.source === "raw";
+    $$("[data-paired-only]").forEach(e => { e.hidden = !paired; });
+    $$("[data-one-only]").forEach(e => { e.hidden = paired; });
+    $("[data-raw-only]").hidden = !raw;
+    $("[data-summary-one]").hidden = raw || paired;
+    $("[data-summary-paired]").hidden = raw || !paired;
+    $('[data-field="s"]').hidden = s.test === "z";
+    $('[data-field="sigma"]').hidden = paired || s.test !== "z";
+    $("[data-eq-fields]").hidden = !s.eq;
+    $("[data-raw-label]").textContent = paired ? "Dvojice hodnot (každý řádek: 1. a 2. měření)" : "Hodnoty";
+    $("[data-raw-hint]").textContent = paired
+      ? `jedna dvojice na řádek, hodnoty oddělené tabulátorem nebo středníkem; nejvýše ${int(L.N_MAX)} dvojic`
+      : `hodnoty na řádcích nebo oddělené mezerou či středníkem; nejvýše ${int(L.N_MAX)} hodnot`;
+  }
+  function syncInputs() {
+    inputs.var.value = s.varName; inputs.unit.value = s.unit; inputs.raw.value = s.raw;
+    inputs.name0.value = s.names[0]; inputs.name1.value = s.names[1];
+    for (const id of DEC) inputs[id].value = id === "nP" ? s.n : s[id];
+    for (const id of DEC) setError(id, "");
+    $("#viz-app-raw-error").hidden = true; inputs.raw.setAttribute("aria-invalid", "false");
+    const check = (name, v) => { const el = $(`input[name="viz-app-${name}"][value="${v}"]`); if (el) el.checked = true; };
+    check("design", s.design); check("source", s.source); check("test", s.test); check("alt", s.alt); check("kind", s.kind);
+    check("ref", s.ref); check("qq", s.qq); check("band", s.band);
+    $("#viz-app-eq").checked = s.eq; $("#viz-app-hist-normal").checked = s.histNormal; $("#viz-app-hist-kde").checked = s.histKde;
+    syncVisibility();
+  }
+  function applyPreset(p, press = true) {
+    Object.assign(s, JSON.parse(JSON.stringify(p)), {nP: p.n});
+    s.order = 0;
+    if (s.qq === undefined) Object.assign(s, {qq: "classic", band: "ts", histNormal: true, histKde: false});
+    syncInputs();
+    for (const id of DEC) { inputs[id].value = id === "nP" ? p.n : (p[id] ?? ""); s[id] = inputs[id].value; }
+    for (const id of DEC) {
+      const raw = inputs[id].value, opt = id === "s1" || id === "s2";
+      const v = opt && raw.trim() === "" ? null : parseDecimal(raw);
+      val[id] = v;
+    }
+    if (s.source === "raw") readRaw();
+    $$("[data-preset]").forEach(b => b.setAttribute("aria-pressed", String(press && b.dataset.preset === p.id)));
+    render();
+  }
+  $$("[data-preset]").forEach(b => b.addEventListener("click", () => applyPreset(PRESETS.find(p => p.id === b.dataset.preset))));
+
+  // ---------- Calculation for the current state ----------
+  function compute() {
+    const paired = s.design === "paired", raw = s.source === "raw", mu0 = val.mu0, alpha = val.alpha;
+    const R = {paired, raw, mu0, alpha, alt: s.alt, kind: s.kind, test: paired ? "t" : s.test};
+    const rawData = rawStore[s.design];
+    if (raw) {
+      if (paired) {
+        const A = rawData.a, B = rawData.b, first = s.order === 0 ? A : B, second = s.order === 0 ? B : A;
+        const pd = L.pairedDescribe(first, second), dA = L.describe(A), dB = L.describe(B);
+        R.pd = {...pd, sA: dA.s, sB: dB.s, mA: dA.m, mB: dB.m, dropped: rawData.dropped};
+        R.values = pd.diffs; R.n = pd.n; R.m = pd.mD; R.sd = pd.sD;
+      } else {
+        const dd = L.describe(rawData.values);
+        R.values = rawData.values; R.n = dd.n; R.m = dd.m; R.sd = dd.s; R.missing = rawData.missing;
+      }
+      R.header = rawData.header;
+    } else if (paired) {
+      R.n = val.nP; R.m = val.mD; R.sd = val.sD;
+      const sA = val.s1, sB = val.s2;
+      let r = null;
+      if (sA !== null && sB !== null) { r = (sA * sA + sB * sB - R.sd * R.sd) / (2 * sA * sB); if (r < -1 - 1e-9 || r > 1 + 1e-9) r = NaN; else r = Math.max(-1, Math.min(1, r)); }
+      R.pd = {n: R.n, mD: R.m, sD: R.sd, sA, sB, r, mA: null, mB: null};
+    } else { R.n = val.n; R.m = val.m; R.sd = val.s; }
+    R.sigma = val.sigma;
+    R.mt = L.meanTest({test: R.test, m: R.m, s: R.sd, sigma: R.sigma, n: R.n, mu0, alt: s.alt, alpha, intervalKind: s.kind});
+    if (paired) {
+      const sRef = s.ref === 0 ? R.pd.sA : R.pd.sB, sOther = s.ref === 0 ? R.pd.sB : R.pd.sA;
+      const r = Number.isFinite(R.pd.r) ? R.pd.r : null;
+      R.pe = L.pairedEffects({n: R.n, mD: R.m, sD: R.sd, mu0, sRef: sRef ?? null, sOther: r === null ? null : (sOther ?? null), r, conf: R.mt.ci.conf, side: R.mt.ci.side});
+      R.rInvalid = Number.isNaN(R.pd.r);
+    }
+    if (s.eq && val.eqLo !== null && val.eqHi !== null && val.eqLo < val.eqHi)
+      R.eq = L.equivalence({test: R.test, m: R.m, se: R.mt.se, df: R.mt.df, lower: val.eqLo, upper: val.eqHi, alpha});
+    R.eqInvalid = s.eq && !(val.eqLo < val.eqHi);
+    if (R.values) {
+      const sorted = [...R.values].sort((a, b) => a - b);
+      R.diag = {sorted, box: N.boxStats(sorted), shape: N.shape(R.values), sw: N.shapiroWilk(R.values)};
+    }
+    return R;
+  }
+
+  // ---------- Text helpers ----------
+  const MU = () => s.design === "paired" ? "μ<sub><i>D</i></sub>" : "μ";
+  const MUt = () => s.design === "paired" ? "μ_D" : "μ";
+  const altSign = {two: "≠", greater: "&gt;", less: "&lt;"}, nullSign = {two: "=", greater: "≤", less: "≥"};
+  const decision = rej => rej ? "zamítáme nulovou hypotézu" : "nulovou hypotézu nezamítáme";
+  let ud = 2;
+  const u = v => fixed(v, ud);
+  const uu = v => `${u(v)}${unitTxt() ? `&nbsp;${esc(unitTxt())}` : ""}`;
+  const ivText = (lo, hi, side, f = u) => side === "two" ? `(${f(lo)}; ${f(hi)})` : side === "lower" ? `[${f(lo)}; ∞)` : `(−∞; ${f(hi)}]`;
+  const apaIv = (lo, hi, side, f) => side === "two" ? `[${f(lo)}; ${f(hi)}]` : side === "lower" ? `[${f(lo)}; ∞)` : `(−∞; ${f(hi)}]`;
+  const ivName = ci => ci.side === "two" ? `${levelAdj(ci.conf)} oboustranný interval` : `${levelAdj(ci.conf)} jednostranný interval s ${ci.side === "lower" ? "dolní" : "horní"} mezí`;
+  const ivNameFull = ci => ci.side === "two" ? `${levelAdj(ci.conf)} oboustranný interval spolehlivosti` : `${levelAdj(ci.conf)} jednostranný interval spolehlivosti s ${ci.side === "lower" ? "dolní" : "horní"} mezí`;
+  const sub = (a, b) => `${a} − ${b.startsWith("−") ? `(${b})` : b}`;
+  const mu0L = () => typedLabel(s.mu0);
+  const mSym = () => s.design === "paired" ? "<i>m</i><sub><i>D</i></sub>" : "<i>m</i>";
+  const sSym = () => s.design === "paired" ? "<i>s</i><sub><i>D</i></sub>" : "<i>s</i>";
+  const tSym = () => s.design === "paired" || s.test === "t" ? "<i>t</i>" : "<i>z</i>";
+  const firstName = () => mName(s.order === 0 ? 0 : 1), secondName = () => mName(s.order === 0 ? 1 : 0);
+  const whatMean = () => s.design === "paired" ? `průměrný rozdíl ${q(esc(firstName()))} minus ${q(esc(secondName()))}` : `průměr proměnné ${q(esc(varName()))}`;
+
+  // ---------- Results table ----------
+  function resultsTable(R) {
+    const mt = R.mt, ci = mt.ci, z = R.test === "z", paired = R.paired, pd = R.pd;
+    const group = t => `<tr class="viz-app-group"><th scope="rowgroup" colspan="3">${t}</th></tr>`;
+    const row = (m, v, f = "") => `<tr><th scope="row">${m}</th><td${/[a-zá-ž]{4}/i.test(v.replace(/<[^>]+>/g, "").replace(/&nbsp;\S+/g, "")) ? "" : ' class="viz-app-num"'}>${v}</td><td>${f}</td></tr>`;
+    const seSym = z ? "σ<sub><i>m</i></sub>" : "<i>s</i><sub><i>m</i></sub>";
+    const v = mt.df;
+    const qSym = z ? `<i>z</i><sub>${trim(ci.prob, 6)}</sub>` : `<i>t</i><sub>${trim(ci.prob, 6)}&nbsp;(<i>v</i>&nbsp;=&nbsp;${int(v)})</sub>`;
+    const dist = z ? "<i>Z</i> má normované normální rozdělení" : `<i>T</i> má <i>t</i>-rozdělení s ${int(v)} stupni volnosti`;
+    const S = z ? "<i>Z</i>" : "<i>T</i>";
+    const pTxt = s.alt === "two" ? `2 · <i>P</i>(${S} ≥ |${d3f(mt.stat)}|)` : s.alt === "greater" ? `<i>P</i>(${S} ≥ ${d3f(mt.stat)})` : `<i>P</i>(${S} ≤ ${d3f(mt.stat)})`;
+    const rows = [group("Data")];
+    if (paired) {
+      if (R.raw) {
+        rows.push(row("Úplné dvojice <i>n</i>", int(R.n), pd.dropped ? `vyřazeno ${int(pd.dropped)} ${pd.dropped === 1 ? "neúplná dvojice" : pd.dropped < 5 ? "neúplné dvojice" : "neúplných dvojic"}` : "žádná dvojice nechyběla"));
+        rows.push(row(`Průměry měření ${q(esc(mName(0)))} a ${q(esc(mName(1)))}`, `${u(pd.mA)} a ${u(pd.mB)}`, "z úplných dvojic"));
+      } else rows.push(row("Počet dvojic <i>n</i>", int(R.n), "zadáno"));
+      if (pd.sA !== null || pd.sB !== null) rows.push(row(`Směrodatné odchylky měření ${q(esc(mName(0)))} a ${q(esc(mName(1)))}`, `${pd.sA === null ? "—" : u(pd.sA)} a ${pd.sB === null ? "—" : u(pd.sB)}`, R.raw ? "výběrové, z úplných dvojic" : "zadáno"));
+      if (Number.isFinite(pd.r)) rows.push(row("Korelace obou měření <i>r</i>", d3f(pd.r), R.raw ? "Pearsonův korelační koeficient; podrobně jej vykládá kapitola 10" : `(<i>s</i><sub>1</sub><sup>2</sup> + <i>s</i><sub>2</sub><sup>2</sup> − <i>s</i><sub><i>D</i></sub><sup>2</sup>)/(2<i>s</i><sub>1</sub><i>s</i><sub>2</sub>)`));
+      rows.push(row(`Průměr rozdílů ${mSym()}`, uu(R.m), R.raw ? `rozdíl ${q(esc(firstName()))} − ${q(esc(secondName()))} u každé dvojice, průměr rozdílů` : `zadáno, ${q(esc(firstName()))} − ${q(esc(secondName()))}`));
+      rows.push(row(`Směrodatná odchylka rozdílů ${sSym()}`, uu(R.sd), R.raw ? "výběrová (<i>n</i> − 1 ve jmenovateli)" : "zadáno"));
+    } else {
+      rows.push(row("Velikost výběru <i>n</i>", int(R.n), R.raw ? (R.missing ? `počet hodnot; vynecháno chybějících: ${int(R.missing)}` : "počet hodnot") : "zadáno"));
+      rows.push(row("Průměr <i>m</i>", uu(R.m), R.raw ? "součet hodnot / <i>n</i>" : "zadáno"));
+      if (!z || R.raw) rows.push(row("Výběrová směrodatná odchylka <i>s</i>", uu(R.sd), R.raw ? "<i>n</i> − 1 ve jmenovateli" : "zadáno"));
+      if (z) rows.push(row("Směrodatná odchylka populace σ", uu(R.sigma), "zadáno jako známá"));
+    }
+    rows.push(row(z ? "Směrodatná chyba průměru σ<sub><i>m</i></sub>" : `Odhad směrodatné chyby ${paired ? "průměru rozdílů" : "průměru"} ${seSym}`, fixed(mt.se, 4), `${z ? "σ" : sSym()}/√<i>n</i> = ${u(mt.sd)}/√${int(R.n)}`));
+    rows.push(group(z ? "<i>z</i>-test" : paired ? "Párový <i>t</i>-test" : "Jednovýběrový <i>t</i>-test"));
+    rows.push(row(`Testová statistika ${tSym()}`, d3f(mt.stat), `(${mSym()} − μ<sub>0</sub>)/${seSym.replace("<i>s</i><sub><i>m</i></sub>", "<i>s</i><sub><i>m</i></sub>")} = (${sub(u(R.m), mu0L())})/${fixed(mt.se, 4)}`));
+    if (!z) rows.push(row("Stupně volnosti", int(v), "<i>n</i> − 1"));
+    rows.push(row("<i>p</i>-hodnota", `<strong>${pfmt(mt.pValue)}</strong>`, `${pTxt}, ${dist}`));
+    rows.push(row(`Rozhodnutí při α = ${typedLabel(s.alpha)}`, decision(mt.reject), `<i>p</i>-hodnota ${mt.reject ? "≤" : "&gt;"} α`));
+    rows.push(group(`Interval spolehlivosti pro ${paired ? "populační průměr rozdílů" : "populační průměr"} ${MU()}`));
+    rows.push(row("Hladina spolehlivosti", levelText(ci.conf), s.alt === "two" ? `1 − α = 1 − ${typedLabel(s.alpha)}` : ci.side === "two" ? `1 − 2α = 1 − 2 · ${typedLabel(s.alpha)}` : `1 − α = 1 − ${typedLabel(s.alpha)}`));
+    rows.push(row(`Kvantil ${qSym}`, fixed(ci.q, 4), ci.side === "two" ? `oboustranný interval: do každého chvostu připadá (1 − spolehlivost)/2 = ${trim((1 - ci.conf) / 2, 6)}` : `jednostranný interval: do jednoho chvostu připadá 1 − spolehlivost = ${trim(1 - ci.conf, 6)}`));
+    rows.push(row("Mezní chyba odhadu", uu(ci.margin), `${fixed(ci.q, 4)} · ${fixed(mt.se, 4)}`));
+    rows.push(row(ivName(ci).replace(/^./, c => c.toUpperCase()), `<strong>${ivText(ci.lo, ci.hi, ci.side)}</strong>`, ci.side === "two" ? `${u(R.m)} ± ${u(ci.margin)}` : ci.side === "lower" ? `dolní mez ${u(R.m)} − ${u(ci.margin)}; horní mez neomezená` : `horní mez ${u(R.m)} + ${u(ci.margin)}; dolní mez neomezená`));
+    rows.push(row(s.alt === "two" ? `Leží μ<sub>0</sub> = ${mu0L()} mimo interval?` : s.alt === "greater" ? `Leží μ<sub>0</sub> = ${mu0L()} pod dolní mezí?` : `Leží μ<sub>0</sub> = ${mu0L()} nad horní mezí?`,
+      s.alt === "two" ? (mt.ciRejects ? "ano: leží mimo interval" : "ne: leží v intervalu") : mt.ciRejects ? "ano" : "ne",
+      `interval a test se zde shodují${ci.side === "two" && s.alt !== "two" ? "; rozhoduje jen mez na straně alternativy" : ""}`));
+    rows.push(group("Velikost rozdílu v původních jednotkách"));
+    rows.push(row(`Rozdíl ${mSym()} − μ<sub>0</sub>`, uu(mt.diff), sub(u(R.m), mu0L())));
+    rows.push(row(`${levelAdj(ci.conf)} interval pro rozdíl`, ivText(mt.diffLo, mt.diffHi, ci.side), "meze intervalu pro průměr minus μ<sub>0</sub>"));
+    rows.push(group("Cohenovo <i>d</i>"));
+    const dIv = (lo, hi) => `<strong>${ivText(lo, hi, ci.side, d3f)}</strong>`;
+    if (!paired) {
+      const d = mt.d;
+      rows.push(row(`Cohenovo <i>d</i>`, d3f(d.value), `(${mSym()} − μ<sub>0</sub>)/${z ? "σ" : "<i>s</i>"} = ${u(mt.diff)}/${u(mt.sd)}`));
+      if (z) rows.push(row(`${levelAdj(ci.conf)} interval pro <i>d</i>`, dIv(d.lo, d.hi), "meze intervalu pro rozdíl dělené σ; σ je známá, interval je proto přesný"));
+      else {
+        rows.push(row(`${levelAdj(ci.conf)} přesný interval pro <i>d</i>`, dIv(d.lo, d.hi), `meze parametru necentrality ${ivText(d.ncpLo, d.ncpHi, ci.side, d3f)} dělené √${int(R.n)}; necentrální <i>t</i>-rozdělení s ${int(v)} stupni volnosti`));
+        if (d.J !== null) rows.push(row("Hedgesovo <i>g</i> (korigovaný odhad)", `${d3f(d.g)}; ${ivText(d.gLo, d.gHi, ci.side, d3f)}`, `<i>d</i> · (1 − 3/(4<i>v</i> − 1)) = ${d3f(d.value)} · ${fixed(d.J, 4)}; meze násobené týmž číslem`));
+      }
+    } else {
+      const pe = R.pe, dz = pe.dz, J = dz.J;
+      const zq = ci.side === "two" ? `<i>z</i><sub>${trim(1 - (1 - ci.conf) / 2, 6)}</sub>` : `<i>z</i><sub>${trim(ci.conf, 6)}</sub>`;
+      const refName = esc(mName(s.ref));
+      if (pe.ref) {
+        rows.push(row(`<i>d</i> se směrodatnou odchylkou referenčního měření ${q(refName)}`, d3f(pe.ref.value), `(${mSym()} − μ<sub>0</sub>)/<i>s</i><sub>ref</sub> = ${u(mt.diff)}/${u(s.ref === 0 ? R.pd.sA : R.pd.sB)}`));
+        rows.push(row(`${levelAdj(ci.conf)} přibližný interval (Bonett)`, dIv(pe.ref.lo, pe.ref.hi), `<i>d</i> ± ${zq} · ${fixed(pe.ref.se, 4)}, kde ${fixed(pe.ref.se, 4)} = √(<i>d</i><sup>2</sup>/(2(<i>n</i> − 1)) + <i>s</i><sub><i>D</i></sub><sup>2</sup>/(<i>s</i><sub>ref</sub><sup>2</sup>(<i>n</i> − 1)))`));
+        if (pe.ref.adj !== null) rows.push(row("Korigovaný odhad (Hedgesova korekce)", d3f(pe.ref.adj), `<i>d</i> · (1 − 3/(4(<i>n</i> − 1) − 1)) = ${d3f(pe.ref.value)} · ${fixed(pe.ref.adjFactor, 4)}`));
+      } else rows.push(row(`<i>d</i> se směrodatnou odchylkou měření ${q(refName)}`, "nelze spočítat", "zadejte směrodatnou odchylku tohoto měření"));
+      if (pe.avg) {
+        rows.push(row("<i>d</i> s odmocninou průměru rozptylů obou měření", d3f(pe.avg.value), `(${mSym()} − μ<sub>0</sub>)/√((<i>s</i><sub>1</sub><sup>2</sup> + <i>s</i><sub>2</sub><sup>2</sup>)/2) = ${u(mt.diff)}/${u(pe.avg.standardizer)}`));
+        rows.push(row(`${levelAdj(ci.conf)} přibližný interval (Bonett)`, dIv(pe.avg.lo, pe.avg.hi), `<i>d</i> ± ${zq} · ${fixed(pe.avg.se, 4)}; směrodatná chyba podle Bonetta (2015, rovnice 9) závisí i na <i>r</i>`));
+        if (pe.avg.adj !== null) rows.push(row("Korigovaný odhad (korekce podle Bonetta)", d3f(pe.avg.adj), `<i>d</i> · √((<i>n</i> − 2)/(<i>n</i> − 1)) = ${d3f(pe.avg.value)} · ${fixed(pe.avg.adjFactor, 4)}`));
+      } else rows.push(row("<i>d</i> s odmocninou průměru rozptylů obou měření", "nelze spočítat", R.rInvalid ? "zadané směrodatné odchylky neodpovídají <i>s</i><sub><i>D</i></sub>: korelace by ležela mimo −1 až 1" : "zadejte směrodatné odchylky obou měření"));
+      rows.push(row("<i>d</i><sub><i>z</i></sub> se směrodatnou odchylkou rozdílů", d3f(dz.value), `(${mSym()} − μ<sub>0</sub>)/<i>s</i><sub><i>D</i></sub> = ${u(mt.diff)}/${u(R.sd)}; nesrovnávat s Cohenovými pásmy (nepovinné rozšíření kapitoly 8)`));
+      rows.push(row(`${levelAdj(ci.conf)} přesný interval pro <i>d</i><sub><i>z</i></sub>`, dIv(dz.lo, dz.hi), `meze parametru necentrality dělené √${int(R.n)}; necentrální <i>t</i>-rozdělení s ${int(v)} stupni volnosti`));
+      if (J !== null) rows.push(row("Korigovaný odhad <i>d</i><sub><i>z</i></sub> (Hedgesova korekce)", d3f(dz.adj), `<i>d</i><sub><i>z</i></sub> · (1 − 3/(4<i>v</i> − 1)) = ${d3f(dz.value)} · ${fixed(J, 4)}`));
+    }
+    if (R.eq) {
+      const e = R.eq, lo = typedLabel(s.eqLo), hi = typedLabel(s.eqHi), seS = z ? "σ<sub><i>m</i></sub>" : "<i>s</i><sub><i>m</i></sub>";
+      rows.push(group(`Test ekvivalence (dva jednostranné testy) pro pásmo ${lo} až ${hi}`));
+      rows.push(row(`Test vůči dolní hranici: ${tSym()}<sub>D</sub>`, d3f(e.tL), `(${sub(u(R.m), lo)})/${fixed(mt.se, 4)}; <i>H</i><sub>1</sub>: ${MU()} &gt; ${lo}`));
+      rows.push(row("<i>p</i>-hodnota vůči dolní hranici", pfmt(e.pL), `<i>P</i>(${S} ≥ ${d3f(e.tL)}); ${e.rejectL ? "zamítá" : "nezamítá"}`));
+      rows.push(row(`Test vůči horní hranici: ${tSym()}<sub>H</sub>`, d3f(e.tU), `(${sub(u(R.m), hi)})/${fixed(mt.se, 4)}; <i>H</i><sub>1</sub>: ${MU()} &lt; ${hi}`));
+      rows.push(row("<i>p</i>-hodnota vůči horní hranici", pfmt(e.pU), `<i>P</i>(${S} ≤ ${d3f(e.tU)}); ${e.rejectU ? "zamítá" : "nezamítá"}`));
+      rows.push(row(`${levelAdj(e.ci.conf)} interval (1 − 2α)`, `<strong>${ivText(e.ci.lo, e.ci.hi, "two")}</strong>`, `${u(R.m)} ± ${fixed(e.ci.q, 4)} · ${fixed(mt.se, 4)}`));
+      rows.push(row(`Rozhodnutí při α = ${typedLabel(s.alpha)}`, e.equivalent ? "ekvivalence doložena" : "ekvivalence nedoložena", e.equivalent ? "oba jednostranné testy zamítají; interval leží celý v pásmu" : "aspoň jeden jednostranný test nezamítá; interval přesahuje hranici"));
+    }
+    $("[data-results]").innerHTML = `<table class="viz-bay-table viz-app-table" aria-label="Výsledky testu jednoho průměru"><thead><tr><th scope="col">Ukazatel</th><th scope="col">Výsledek</th><th scope="col">Výpočet s dosazením</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
+  }
+
+  // ---------- Verbal interpretation ----------
+  function report(R) {
+    const mt = R.mt, ci = mt.ci, z = R.test === "z", paired = R.paired, mu0 = mu0L(), unit = unitTxt() ? ` ${esc(unitTxt())}` : "";
+    const subject = paired ? `populační průměr rozdílů ${q(esc(firstName()))} minus ${q(esc(secondName()))}` : `populační průměr proměnné ${q(esc(varName()))}`;
+    const nullText = {two: `že ${subject} je ${mu0}`, greater: `že ${subject} je nejvýše ${mu0}`, less: `že ${subject} je nejméně ${mu0}`}[s.alt];
+    const testName = z ? "<i>z</i>-test" : paired ? "párový <i>t</i>-test" : "jednovýběrový <i>t</i>-test";
+    const stat = z ? `<i>z</i> = ${d3f(mt.stat)}` : `<i>t</i>(${int(mt.df)}) = ${d3f(mt.stat)}`;
+    const dir = Math.abs(mt.diff) < 0.5 * Math.pow(10, -ud) ? `je prakticky rovný hodnotě ${mu0}` : `je o ${u(Math.abs(mt.diff))}${unit} ${mt.diff > 0 ? "vyšší" : "nižší"} než ${mu0}`;
+    const desc = paired
+      ? `Průměrný rozdíl ${q(esc(firstName()))} minus ${q(esc(secondName()))} činí ${R.raw ? `u ${int(R.n)} úplných dvojic` : `u ${int(R.n)} dvojic`} ${uu(R.m)} a směrodatná odchylka rozdílů ${uu(R.sd)}. ${R.m > 0 ? `Hodnoty ${q(esc(firstName()))} jsou tedy v průměru vyšší.` : R.m < 0 ? `Hodnoty ${q(esc(firstName()))} jsou tedy v průměru nižší.` : "Průměrný rozdíl je nulový."}`
+      : `Ve výběru ${int(R.n)} hodnot má proměnná ${q(esc(varName()))} průměr ${uu(R.m)}${z ? `; směrodatná odchylka populace je známá, σ = ${uu(R.sigma)}` : ` a směrodatnou odchylku ${uu(R.sd)}`}.`;
+    const dec = `<strong>Rozhodnutí testu:</strong> ${testName} (${stat}, <i>p</i>-hodnota ${pfmt(mt.pValue)}) na hladině významnosti ${typedLabel(s.alpha)} ${mt.reject ? "zamítá" : "nezamítá"} nulovou hypotézu, ${nullText}.${mt.reject ? " Výsledek je statisticky významný." : ""}`;
+    const est = ci.side === "two"
+      ? `S daty jsou slučitelné hodnoty ${paired ? "populačního průměru rozdílů" : "populačního průměru"} od ${uu(ci.lo)} do ${uu(ci.hi)} (${ivNameFull(ci)}).`
+      : ci.side === "lower" ? `S daty jsou slučitelné hodnoty ${paired ? "populačního průměru rozdílů" : "populačního průměru"} nejméně ${uu(ci.lo)}; ${ivNameFull(ci)} je ${ivText(ci.lo, ci.hi, ci.side)}.`
+      : `S daty jsou slučitelné hodnoty ${paired ? "populačního průměru rozdílů" : "populačního průměru"} nejvýše ${uu(ci.hi)}; ${ivNameFull(ci)} je ${ivText(ci.lo, ci.hi, ci.side)}.`;
+    const kept = mt.reject ? "" : s.alt === "two" ? ` Nezamítnutí neznamená, že ${paired ? "populační průměr rozdílů" : "populační průměr"} je přesně ${mu0}: s daty jsou slučitelné všechny hodnoty v intervalu.` : " Nezamítnutí neznamená, že nulová hypotéza platí; data jen neposkytla dostatečný doklad pro alternativu.";
+    let dText;
+    if (!paired) {
+      const d = mt.d;
+      dText = `Výběrový ${paired ? "průměrný rozdíl" : "průměr"} ${dir}, tedy o ${d3f(Math.abs(d.value))} ${z ? "směrodatné odchylky populace" : "výběrové směrodatné odchylky"} (Cohenovo <i>d</i> = ${d3f(d.value)}, ${levelAdj(ci.conf)} ${z ? "" : "přesný "}interval ${ivText(d.lo, d.hi, ci.side, d3f)}${d.J !== null && !z ? `; Hedgesovo <i>g</i> = ${d3f(d.g)}` : ""}).`;
+    } else {
+      const pe = R.pe, parts = [];
+      if (pe.ref) parts.push(`vzhledem ke směrodatné odchylce měření ${q(esc(mName(s.ref)))} <i>d</i> = ${d3f(pe.ref.value)} s přibližným intervalem ${ivText(pe.ref.lo, pe.ref.hi, ci.side, d3f)}`);
+      if (pe.avg) parts.push(`vzhledem k odmocnině průměru obou rozptylů <i>d</i> = ${d3f(pe.avg.value)} ${ivText(pe.avg.lo, pe.avg.hi, ci.side, d3f)}`);
+      parts.push(`vzhledem ke směrodatné odchylce rozdílů <i>d</i><sub><i>z</i></sub> = ${d3f(pe.dz.value)} ${ivText(pe.dz.lo, pe.dz.hi, ci.side, d3f)}`);
+      dText = `Průměrný rozdíl ${dir}. Ve standardizované podobě: ${parts.join("; ")}. Ve zprávě uveďte, kterou směrodatnou odchylku jste použili; s Cohenovými orientačními pásmy z nepovinného rozšíření kapitoly 8 lze srovnávat nanejvýš <i>d</i> vztažené ke směrodatné odchylce jednotlivých hodnot, ne <i>d</i><sub><i>z</i></sub>.`;
+    }
+    let eqText = "";
+    if (R.eq) {
+      const e = R.eq, lo = typedLabel(s.eqLo), hi = typedLabel(s.eqHi);
+      eqText = `<p><strong>Test ekvivalence:</strong> ${e.equivalent ? `oba jednostranné testy zamítají (<i>p</i>-hodnoty ${pfmt(e.pL)} a ${pfmt(e.pU)}), ${levelAdj(e.ci.conf)} interval ${ivText(e.ci.lo, e.ci.hi, "two")} leží celý v pásmu ${lo} až ${hi}. Data dokládají, že ${subject} leží v pásmu ekvivalence.` : `${e.rejectL || e.rejectU ? "jen jeden z jednostranných testů zamítá" : "žádný z jednostranných testů nezamítá"} (<i>p</i>-hodnoty ${pfmt(e.pL)} a ${pfmt(e.pU)}); ${levelAdj(e.ci.conf)} interval ${ivText(e.ci.lo, e.ci.hi, "two")} přesahuje pásmo ${lo} až ${hi}. Ekvivalenci data nedoložila; to ale neznamená, že rozdíl je důležitý.`} Hranice musí být zvoleny předem z věcných důvodů.</p>`;
+    } else if (R.eqInvalid) eqText = `<p>Test ekvivalence se nepočítá: dolní hranice musí být menší než horní.</p>`;
+    const sdName = paired ? "<i>SD</i>" : z ? "σ" : "<i>SD</i>";
+    const dApa = paired ? (R.pe.ref ? `<i>d</i> = ${fixed(R.pe.ref.value, 2)}, ${levelAdj(ci.conf)} CI ${apaIv(R.pe.ref.lo, R.pe.ref.hi, ci.side, v => fixed(v, 2))} (standardizováno směrodatnou odchylkou měření ${q(esc(mName(s.ref)))})` : `<i>d</i><sub><i>z</i></sub> = ${fixed(R.pe.dz.value, 2)}, ${levelAdj(ci.conf)} CI ${apaIv(R.pe.dz.lo, R.pe.dz.hi, ci.side, v => fixed(v, 2))} (standardizováno směrodatnou odchylkou rozdílů)`)
+      : `<i>d</i> = ${fixed(mt.d.value, 2)}, ${levelAdj(ci.conf)} CI ${apaIv(mt.d.lo, mt.d.hi, ci.side, v => fixed(v, 2))}`;
+    const apa = `(<i>${R.raw || !paired ? "n" : "n"}</i> = ${int(R.n)}; <i>M</i>${paired ? "<sub>rozdíl</sub>" : ""} = ${u(R.m)}; ${sdName}${paired ? "<sub>rozdíl</sub>" : ""} = ${u(z ? R.sigma : R.sd)}; ${z ? `<i>z</i> = ${fixed(mt.stat, 2)}` : `<i>t</i>(${int(mt.df)}) = ${fixed(mt.stat, 2)}`}; ${apaP(mt.pValue)}; ${levelAdj(ci.conf)} CI ${apaIv(ci.lo, ci.hi, ci.side, u)}; ${dApa})`;
+    const assum = R.raw
+      ? `Výpočet předpokládá nezávislé ${paired ? "dvojice" : "hodnoty"} a ${z ? "normální rozdělení průměru" : "přibližně normální rozdělení " + (paired ? "rozdílů" : "hodnot") + " v populaci"}; zkontrolujte grafy v oddílu Diagnostika normality níže. ${z ? "" : "Při větším výběru a bez výrazné šikmosti je <i>t</i>-test vůči odchylkám od normality poměrně odolný; intervaly pro Cohenovo <i>d</i> odolné nejsou."}`
+      : `Výpočet předpokládá nezávislé ${paired ? "dvojice" : "hodnoty"} a ${z ? "normální rozdělení průměru" : "přibližně normální rozdělení " + (paired ? "rozdílů" : "hodnot") + " v populaci"}. Ze souhrnů nelze tvar rozdělení posoudit; pro diagnostiku zadejte jednotlivé hodnoty.`;
+    $("[data-report]").innerHTML = `<p>${desc}</p><p>${dec}</p><p><strong>Věcná interpretace:</strong> ${est}${kept} ${dText}</p>${eqText}
+      <p>Statistiky ve stylu APA: ${apa}.</p>
+      <p>${assum} ${paired ? "O příčině rozdílu mezi měřeními rozhoduje uspořádání studie, ne test." : ""} Zda je rozdíl prakticky důležitý, posuďte podle jeho velikosti v původních jednotkách a šířky intervalu v kontextu otázky, nikoli jen podle <i>p</i>-hodnoty.</p>`;
+  }
+
+  // ---------- Charts ----------
+  const legend = items => { const d = html`<div class="viz-legend"></div>`; d.innerHTML = items.map(([svg, label]) => `<span>${svg}<span>${label}</span></span>`).join(""); return d; };
+  const swLine = (stroke, width, dash) => `<svg width="28" height="12" aria-hidden="true"><line x1="2" y1="6" x2="26" y2="6" stroke="${stroke}" stroke-width="${width}"${dash ? ` stroke-dasharray="${dash}"` : ""}/></svg>`;
+  const swBox = (fill, stroke, op = 1) => `<svg width="20" height="14" aria-hidden="true"><rect x="1" y="1" width="18" height="12" fill="${fill}" fill-opacity="${op}"${stroke ? ` stroke="${stroke}" stroke-width="1.5"` : ""}/></svg>`;
+  const swDot = (fill, op = 1) => `<svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="${fill}" fill-opacity="${op}"/></svg>`;
+  const chartWidth = () => Math.max(260, Math.min($('[data-chart="ci"]').clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780));
+  const base = (width, small) => ({width, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 18, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}});
+  const axis = (label, extra = {}) => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: 32, ...extra});
+  const tickFmt = v => trim(v, 6);
+  const unitLabel = () => `${short(varName(), 40)}${unitTxt() ? ` (${short(unitTxt(), 12)})` : ""}`;
+  const paired = () => s.design === "paired";
+  const diffLabel = () => paired() ? `rozdíl ${short(firstName(), 18)} − ${short(secondName(), 18)}${unitTxt() ? ` (${short(unitTxt(), 12)})` : ""}` : unitLabel();
+
+  // Estimate labels under interval lines (as in the other app pages).
+  const measureCtx = document.createElement("canvas").getContext("2d");
+  const estimateLabels = (items, small) => (index, scales, values, dims) => {
+    const ns = "http://www.w3.org/2000/svg", fs = small ? 12 : 13, lh = fs + 3, g = document.createElementNS(ns, "g");
+    measureCtx.font = `600 ${fs}px ${getComputedStyle(root).fontFamily}`;
+    for (const it of items) {
+      const w = Math.max(...it.lines.map(t => measureCtx.measureText(t).width)) + 10, h = it.lines.length * lh + 4;
+      const cx = Math.max(dims.marginLeft + w / 2, Math.min(dims.width - dims.marginRight - w / 2, scales.x(it.x))), y0 = scales.y(it.y) + 7;
+      const box = document.createElementNS(ns, "rect");
+      Object.entries({x: cx - w / 2, y: y0, width: w, height: h, rx: 3, fill: "white", "fill-opacity": 0.8}).forEach(([k, v]) => box.setAttribute(k, v));
+      g.append(box);
+      it.lines.forEach((t, i) => {
+        const tx = document.createElementNS(ns, "text");
+        Object.entries({x: cx, y: y0 + 2 + (i + 1) * lh - 4, "text-anchor": "middle", fill: it.color, "font-weight": 600, "font-size": fs}).forEach(([k, v]) => tx.setAttribute(k, v));
+        tx.textContent = t; g.append(tx);
+      });
+    }
+    return g;
+  };
+  const plain = t => t.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+
+  // Chart 1: distribution of the test statistic under H₀ with the p-value region.
+  function nullChart(width, R) {
+    const small = width < 520, mt = R.mt, z = R.test === "z", st = mt.stat, df = mt.df;
+    const dens = z ? x => Math.exp(-x * x / 2) / Math.sqrt(2 * Math.PI) : x => L.dt(x, df);
+    // Critical values at level α for the chosen alternative (chapter 6, critical region).
+    const qa = p => z ? L.qnorm(p) : L.qt(p, df);
+    const crit = s.alt === "two" ? [-qa(1 - R.alpha / 2), qa(1 - R.alpha / 2)] : s.alt === "greater" ? [qa(1 - R.alpha)] : [-qa(1 - R.alpha)];
+    const lim = Math.max(4, Math.min(Math.max(Math.abs(st), ...crit.map(Math.abs)) + 1, 12)), dom = [-lim, lim];
+    const xs = d3.range(dom[0], dom[1] + 1e-9, (dom[1] - dom[0]) / 400);
+    const inP = x => s.alt === "two" ? Math.abs(x) >= Math.abs(st) : s.alt === "greater" ? x >= st : x <= st;
+    const pts = xs.map(x => ({x, y: dens(x), p: inP(x)}));
+    const out = Math.abs(st) > lim;
+    const top = 1.15 * dens(0);
+    const shade = s.alt === "two" ? [pts.filter(p => p.x <= -Math.abs(st)), pts.filter(p => p.x >= Math.abs(st))] : [pts.filter(p => p.p)];
+    const regions = s.alt === "two" ? [[dom[0], crit[0]], [crit[1], dom[1]]] : s.alt === "greater" ? [[crit[0], dom[1]]] : [[dom[0], crit[0]]];
+    const clipX = v => Math.max(dom[0], Math.min(dom[1], v));
+    const marks = [
+      Plot.areaY(pts, {x: "x", y: "y", fill: pale, fillOpacity: 0.6}),
+      // Critical region: a red strip under the axis and dashed lines at the critical values.
+      Plot.rect(regions, {x1: r => clipX(r[0]), x2: r => clipX(r[1]), y1: -0.075 * top, y2: -0.025 * top, fill: red}),
+      Plot.ruleX(crit.filter(c => Math.abs(c) <= lim), {y1: -0.075 * top, y2: 0.62 * top, stroke: red, strokeWidth: 1.5, strokeDasharray: "4,3"}),
+      ...crit.filter(c => Math.abs(c) <= lim).map(c => Plot.text([c], {x: d => d, y: 0.55 * top, text: d => trim(d, 3), fill: red, fontWeight: 600, stroke: "white", strokeWidth: 4, paintOrder: "stroke", textAnchor: st < c ? "start" : "end", dx: st < c ? 4 : -4})),
+      ...shade.filter(a => a.length > 1).map(a => Plot.areaY(a, {x: "x", y: "y", fill: orange, fillOpacity: 0.75})),
+      Plot.line(pts, {x: "x", y: "y", stroke: ink, strokeWidth: 1.6}),
+      Plot.ruleY([0], {stroke: ink})
+    ];
+    if (!out) {
+      marks.push(Plot.ruleX([st], {stroke: blue, strokeWidth: 2.2}));
+      if (s.alt === "two" && Math.abs(st) > 1e-9) marks.push(Plot.ruleX([-st], {stroke: blue, strokeWidth: 1.6, strokeDasharray: "5,4"}));
+      marks.push(Plot.text([st], {x: d => d, y: top, text: () => `${z ? "z" : "t"} = ${d3f(st)}`, fill: blue, fontWeight: 600, lineAnchor: "top", textAnchor: st > 0 ? "end" : "start", dx: st > 0 ? -5 : 5}));
+    }
+    return Plot.plot({
+      ...base(width, small), height: small ? 220 : 250, marginBottom: 46,
+      x: {domain: dom, ...axis(z ? "z" : "t"), ticks: small ? 7 : 13, tickFormat: v => trim(v, 1)},
+      y: {domain: [-0.09 * top, top], axis: null},
+      ariaLabel: `Rozdělení testové statistiky ${z ? "z (normované normální)" : `t s ${df} stupni volnosti`} při platnosti nulové hypotézy`,
+      ariaDescription: `Pozorovaná statistika ${d3f(st)}${out ? " leží mimo zobrazený výřez" : ""}. Zvýrazněná plocha je p-hodnota ${pfmt(mt.pValue)}. Kritick${crit.length > 1 ? "é hodnoty" : "á hodnota"} při α = ${typedLabel(s.alpha)}: ${crit.map(c => trim(c, 3)).join(" a ")}; statistika ${mt.reject ? "leží" : "neleží"} v kritickém oboru.`,
+      marks
+    });
+  }
+
+  // Chart 2: interval for μ (μ_D) with μ₀ and, for the equivalence test, its bounds and the 1 − 2α interval.
+  function ciChart(width, R) {
+    const small = width < 520, mt = R.mt, ci = mt.ci, e = R.eq;
+    const fin = v => Number.isFinite(v);
+    const vals = [R.m, val.mu0, ci.lo, ci.hi, ...(e ? [e.lower, e.upper, e.ci.lo, e.ci.hi] : [])].filter(fin);
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    const span = Math.max(hi - lo, mt.se * 4, 1e-9), pad = 0.15 * span;
+    const dom = [lo - pad, hi + pad], clip = v => Math.max(dom[0], Math.min(dom[1], v));
+    const ivs = [{lo: ci.lo, hi: ci.hi, y: e ? 2.6 : 1.4, color: blue, w: 6, lines: [u(R.m), ivText(ci.lo, ci.hi, ci.side)]}];
+    if (e) ivs.push({lo: e.ci.lo, hi: e.ci.hi, y: 1.0, color: green, w: 5, lines: [u(R.m), ivText(e.ci.lo, e.ci.hi, "two")]});
+    const top = e ? 3.9 : 2.6;
+    const marks = [];
+    if (e) marks.push(Plot.rect([0], {x1: clip(e.lower), x2: clip(e.upper), y1: 0, y2: top, fill: green, fillOpacity: 0.08}),
+      Plot.ruleX([e.lower, e.upper], {stroke: green, strokeWidth: 1.5, strokeDasharray: "3,3"}));
+    marks.push(Plot.ruleX([val.mu0], {stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
+      Plot.text([val.mu0], {x: d => d, y: top - 0.1, text: () => `μ₀ = ${mu0L()}`, fill: orange, fontWeight: 600, lineAnchor: "top", textAnchor: val.mu0 > (dom[0] + dom[1]) / 2 ? "end" : "start", dx: val.mu0 > (dom[0] + dom[1]) / 2 ? -5 : 5}),
+      ...ivs.map(v => Plot.link([v], {x1: () => clip(v.lo), x2: () => clip(v.hi), y1: v.y, y2: v.y, stroke: v.color, strokeWidth: v.w})),
+      Plot.dot(ivs, {x: () => R.m, y: "y", r: 5, fill: ink}),
+      estimateLabels(ivs.map(v => ({x: R.m, y: v.y, lines: v.lines, color: v.color})), small),
+      Plot.ruleY([0], {stroke: ink}));
+    return Plot.plot({
+      ...base(width, small), height: e ? 250 : 170, marginBottom: 46,
+      x: {domain: dom, ...axis(paired() ? `průměr rozdílů ${unitTxt() ? `(${short(unitTxt(), 12)})` : ""}` : `průměr ${unitTxt() ? `(${short(unitTxt(), 12)})` : ""}`), ticks: small ? 5 : 9, tickFormat: tickFmt},
+      y: {domain: [0, top], axis: null},
+      ariaLabel: `${ivName(ci)} pro ${paired() ? "populační průměr rozdílů" : "populační průměr"}${e ? " a 1 − 2α interval s pásmem ekvivalence" : ""}`,
+      ariaDescription: `Výběrový průměr ${plain(u(R.m))}, interval ${plain(ivText(ci.lo, ci.hi, ci.side))}, testovaná hodnota ${mu0L()} ${mt.ciRejects ? "leží mimo interval na straně alternativy" : "interval ji nevylučuje"}.${e ? ` Pásmo ekvivalence ${typedLabel(s.eqLo)} až ${typedLabel(s.eqHi)}, interval ${plain(ivText(e.ci.lo, e.ci.hi, "two"))}.` : ""}`,
+      marks
+    });
+  }
+
+  // Chart 3: Cohen's d variants with their intervals on an axis with zero.
+  function dChart(width, R) {
+    const small = width < 520, ci = R.mt.ci;
+    const items = [];
+    if (!R.paired) items.push({name: R.test === "z" ? "d (σ)" : "d", v: R.mt.d.value, lo: R.mt.d.lo, hi: R.mt.d.hi, color: blue});
+    else {
+      if (R.pe.ref) items.push({name: "d – ref. měření", full: `d se směrodatnou odchylkou referenčního měření ${mName(s.ref)}`, v: R.pe.ref.value, lo: R.pe.ref.lo, hi: R.pe.ref.hi, color: blue});
+      if (R.pe.avg) items.push({name: "d – oba rozptyly", v: R.pe.avg.value, lo: R.pe.avg.lo, hi: R.pe.avg.hi, color: sky});
+      items.push({name: "dz – rozdíly", v: R.pe.dz.value, lo: R.pe.dz.lo, hi: R.pe.dz.hi, color: green});
+    }
+    const fin = v => Number.isFinite(v);
+    const all = [0, ...items.flatMap(i => [i.v, i.lo, i.hi])].filter(fin);
+    let lo = Math.min(...all), hi = Math.max(...all);
+    const pad = Math.max(0.1, 0.12 * (hi - lo)), dom = [lo - pad, hi + pad], clip = v => Math.max(dom[0], Math.min(dom[1], v));
+    const k = items.length;
+    items.forEach((it, i) => { it.y = k - i; });
+    return Plot.plot({
+      ...base(width, small), height: 70 + 80 * k, marginBottom: 46, marginLeft: small ? 92 : 130,
+      x: {domain: dom, ...axis("Cohenovo d"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 2)},
+      y: {domain: [0.25, k + 0.6], label: null, ticks: items.map(i => i.y), tickSize: 0, tickFormat: y => items.find(i => i.y === y)?.name ?? ""},
+      ariaLabel: "Cohenovo d s intervaly spolehlivosti",
+      ariaDescription: items.map(i => `${i.full ?? i.name}: ${d3f(i.v)}, interval ${plain(ivText(i.lo, i.hi, ci.side, d3f))}`).join(". "),
+      marks: [
+        Plot.ruleX([0], {stroke: gray, strokeDasharray: "2,3"}),
+        ...items.map(it => Plot.link([it], {x1: () => clip(it.lo), x2: () => clip(it.hi), y1: it.y, y2: it.y, stroke: it.color, strokeWidth: 5})),
+        Plot.dot(items, {x: "v", y: "y", r: 5, fill: ink}),
+        estimateLabels(items.map(it => ({x: it.v, y: it.y, lines: [d3f(it.v), ivText(it.lo, it.hi, ci.side, d3f)], color: it.color === sky ? blue : it.color})), small)
+      ]
+    });
+  }
+
+  // Histogram with optional normal curve N(m, s) and kernel density estimate; y = density.
+  function histChart(width, R) {
+    const small = width < 520, x = R.values, n = x.length, m = R.m, sd = R.sd;
+    const bins = d3.bin().thresholds(d3.thresholdSturges)(x);
+    const bw = N.bwNrd0(x);
+    const lo = Math.min(bins[0].x0, m - 3.2 * sd, s.histKde ? d3.min(x) - 3 * bw : Infinity), hi = Math.max(bins[bins.length - 1].x1, m + 3.2 * sd, s.histKde ? d3.max(x) + 3 * bw : -Infinity);
+    const bars = bins.map(b => ({x0: b.x0, x1: b.x1, count: b.length, dens: b.length / (n * (b.x1 - b.x0 || 1))}));
+    const grid = d3.range(lo, hi + 1e-12, (hi - lo) / 240);
+    const normal = grid.map(g => ({x: g, y: Math.exp(-0.5 * ((g - m) / sd) ** 2) / (sd * Math.sqrt(2 * Math.PI))}));
+    const kd = s.histKde ? N.kde(x, grid, bw).map((y, i) => ({x: grid[i], y})) : [];
+    const top = 1.1 * Math.max(d3.max(bars, b => b.dens), s.histNormal ? d3.max(normal, p => p.y) : 0, s.histKde ? d3.max(kd, p => p.y) : 0);
+    return Plot.plot({
+      ...base(width, small), height: small ? 230 : 270, marginBottom: 46,
+      x: {domain: [lo, hi], ...axis(diffLabel()), ticks: small ? 5 : 9, tickFormat: tickFmt},
+      y: {domain: [0, top], ...axis("hustota", {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 4)},
+      ariaLabel: `Histogram ${paired() ? "rozdílů" : "hodnot"} proměnné ${varName()}${s.histNormal ? " s křivkou normálního rozdělení" : ""}${s.histKde ? " a jádrovým odhadem hustoty" : ""}`,
+      ariaDescription: `${bars.length} intervalů od ${trim(bars[0].x0, 4)} do ${trim(bars[bars.length - 1].x1, 4)}; nejvíc hodnot (${d3.max(bars, b => b.count)}) je v intervalu ${(() => { const b = bars.reduce((a, c) => c.count > a.count ? c : a); return `${trim(b.x0, 4)} až ${trim(b.x1, 4)}`; })()}.`,
+      marks: [
+        Plot.rectY(bars, {x1: "x0", x2: "x1", y: "dens", fill: pale, stroke: "white", insetLeft: 0.5, insetRight: 0.5, title: b => `${trim(b.x0, 4)} až ${trim(b.x1, 4)}: ${b.count} ${b.count === 1 ? "hodnota" : b.count < 5 ? "hodnoty" : "hodnot"}`}),
+        ...(s.histNormal ? [Plot.line(normal, {x: "x", y: "y", stroke: orange, strokeWidth: 2})] : []),
+        ...(s.histKde ? [Plot.line(kd, {x: "x", y: "y", stroke: blue, strokeWidth: 2})] : []),
+        Plot.ruleY([0], {stroke: ink})
+      ]
+    });
+  }
+
+  // Raincloud plot: half density (cloud), boxplot, mean with its interval and the individual values (rain):
+  // a centred dotplot up to 50 values, jitter with transparent points above.
+  function rainChart(width, R) {
+    const small = width < 520, x = R.values, n = x.length, sorted = R.diag.sorted, b = R.diag.box, ci = R.mt.ci;
+    const bw = N.bwNrd0(x), lo0 = Math.min(sorted[0], Number.isFinite(ci.lo) ? ci.lo : Infinity), hi0 = Math.max(sorted[n - 1], Number.isFinite(ci.hi) ? ci.hi : -Infinity);
+    const lo = lo0 - 0.06 * (hi0 - lo0 || 1), hi = hi0 + 0.06 * (hi0 - lo0 || 1);
+    const grid = d3.range(sorted[0] - 2 * bw, sorted[n - 1] + 2 * bw + 1e-12, (sorted[n - 1] - sorted[0] + 4 * bw) / 200);
+    const kd = N.kde(x, grid, bw), kmax = d3.max(kd);
+    const cloud = grid.map((g, i) => ({x: g, y1: 0.75, y2: 0.75 + 1.1 * kd[i] / kmax}));
+    const dot = n <= 50;
+    let rain;
+    if (dot) {
+      // Dotplot: values grouped into bins of 1/40 of the range, stacked symmetrically around y = −0,6.
+      const w = (sorted[n - 1] - sorted[0]) / 40 || 1, groups = d3.groups(sorted, v => Math.round((v - sorted[0]) / w));
+      const maxc = d3.max(groups, g => g[1].length), step = Math.min(0.16, 0.9 / Math.max(1, maxc - 1));
+      rain = groups.flatMap(([k, vs]) => vs.map((v, j) => ({x: v, y: -0.6 + (j - (vs.length - 1) / 2) * step})));
+    } else {
+      const r = rng(n * 7919 + Math.round(sorted[0] * 1000));
+      rain = x.map(v => ({x: v, y: -0.6 + (r() - 0.5) * 0.8}));
+    }
+    const box = [{x1: b.q1, x2: b.q3}];
+    const dom = [Math.min(lo, grid[0]), Math.max(hi, grid[grid.length - 1])], clip = v => Math.max(dom[0], Math.min(dom[1], v));
+    return Plot.plot({
+      ...base(width, small), height: small ? 250 : 290, marginBottom: 46, marginLeft: 16,
+      x: {domain: dom, ...axis(diffLabel()), ticks: small ? 5 : 9, tickFormat: tickFmt},
+      y: {domain: [-1.15, 1.95], axis: null},
+      ariaLabel: `Raincloud graf ${paired() ? "rozdílů" : "hodnot"}: odhad hustoty, krabicový graf, průměr s intervalem spolehlivosti a jednotlivé hodnoty`,
+      ariaDescription: `Medián ${trim(b.med, 4)}, kvartily ${trim(b.q1, 4)} a ${trim(b.q3, 4)}, vousy ${trim(b.whiskerLo, 4)} až ${trim(b.whiskerHi, 4)}, ${b.outliers.length} ${b.outliers.length === 1 ? "hodnota" : "hodnot"} za mezemi. Průměr ${trim(R.m, 4)}, interval ${plain(ivText(ci.lo, ci.hi, ci.side))}. ${dot ? "Hodnoty jsou vyneseny jako bodový graf." : "Hodnoty jsou rozptýleny svisle (jitter) a průhledné."}`,
+      marks: [
+        Plot.areaY(cloud, {x: "x", y1: "y1", y2: "y2", fill: sky, fillOpacity: 0.55, stroke: blue, strokeWidth: 1.2}),
+        // Boxplot at y = 0,4: whiskers, box and median.
+        Plot.link([{a: b.whiskerLo, c: b.q1}, {a: b.q3, c: b.whiskerHi}], {x1: "a", x2: "c", y1: 0.4, y2: 0.4, stroke: ink, strokeWidth: 1.5}),
+        Plot.rect(box, {x1: "x1", x2: "x2", y1: 0.28, y2: 0.52, fill: "white", stroke: ink, strokeWidth: 1.5}),
+        Plot.ruleX([b.med], {y1: 0.28, y2: 0.52, stroke: ink, strokeWidth: 2.5}),
+        Plot.dot(b.outliers, {x: d => d, y: 0.4, r: 3.5, stroke: orange, strokeWidth: 1.5, fill: "white"}),
+        // Mean with its interval at y = 0,1.
+        Plot.link([0], {x1: () => clip(ci.lo), x2: () => clip(ci.hi), y1: 0.1, y2: 0.1, stroke: orange, strokeWidth: 4}),
+        Plot.dot([R.m], {x: d => d, y: 0.1, r: 5, fill: orange, stroke: "white"}),
+        Plot.dot(rain, {x: "x", y: "y", r: dot ? 4 : 3, fill: ink, fillOpacity: dot ? 0.85 : 0.35})
+      ]
+    });
+  }
+
+  // Normal Q–Q plot of chapter 4 with a simultaneous band; detrended: deviation from the line m + s·z.
+  function qqChart(width, R) {
+    const small = width < 520, pts = N.qqPoints(R.values), n = pts.length, m = R.m, sd = R.sd, det = s.qq === "detrended";
+    const band = s.band !== "none" && n <= N.BAND_MAX ? N.qqBand(n, s.band) : null;
+    const zs = pts.map(p => p.z), zlo = zs[0] - 0.3, zhi = zs[n - 1] + 0.3;
+    const yOf = p => det ? p.resid : p.x;
+    const bandPts = band ? pts.map((p, k) => ({z: p.z, lo: m + sd * band.lo[k] - (det ? p.line : 0), hi: m + sd * band.hi[k] - (det ? p.line : 0)})) : [];
+    pts.forEach((p, k) => { p.out = band ? (p.x < m + sd * band.lo[k] - 1e-12 || p.x > m + sd * band.hi[k] + 1e-12) : false; });
+    const ys = pts.map(yOf), fy = bandPts.flatMap(b => [b.lo, b.hi]).filter(Number.isFinite);
+    let ylo = Math.min(...ys, ...(det ? [0] : [m + sd * zlo])), yhi = Math.max(...ys, ...(det ? [0] : [m + sd * zhi]));
+    // The band is usually wider than the spread of the points (above all in the detrended plot), so the axis shows
+    // it whole; only its far ends (infinite for KS at the extreme ranks) are cut 1,2 s beyond the points.
+    ylo = Math.max(Math.min(ylo, ...fy), ylo - 1.2 * sd); yhi = Math.min(Math.max(yhi, ...fy), yhi + 1.2 * sd);
+    const span = yhi - ylo || 1;
+    const clipY = v => Math.max(ylo, Math.min(yhi, v));
+    const outN = pts.filter(p => p.out).length;
+    return {outN, chart: Plot.plot({
+      ...base(width, small), height: small ? 260 : 320, marginBottom: 46, marginLeft: small ? 58 : 68,
+      x: {domain: [zlo, zhi], ...axis("kvantil normovaného normálního rozdělení z"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 1)},
+      y: {domain: [ylo - 0.04 * span, yhi + 0.04 * span], ...axis(det ? `odchylka od přímky ${paired() ? "(rozdíly)" : ""}` : paired() ? "seřazené rozdíly" : "seřazené hodnoty", {labelOffset: small ? 46 : 54}), ticks: 6, tickFormat: tickFmt},
+      ariaLabel: `${det ? "Detrendovaný" : "Tradiční"} normální Q–Q graf ${paired() ? "rozdílů" : "hodnot"}${band ? ` se simultánním 95% pásem ${band.type === "ts" ? "tail-sensitive" : "KS"}` : ""}`,
+      ariaDescription: `${n} bodů; ${det ? "nula odpovídá přímce m + s·z" : `přímka ${trim(m, 4)} + ${trim(sd, 4)}·z`}. ${band ? `Mimo pás leží ${outN} ${outN === 1 ? "bod" : outN < 5 && outN > 0 ? "body" : "bodů"}.` : ""}`,
+      marks: [
+        ...(band ? [Plot.areaY(bandPts, {x: "z", y1: b => clipY(b.lo), y2: b => clipY(b.hi), fill: sky, fillOpacity: 0.35})] : []),
+        det ? Plot.ruleY([0], {stroke: orange, strokeWidth: 2}) : Plot.line([zlo, zhi], {x: d => d, y: d => m + sd * d, stroke: orange, strokeWidth: 2}),
+        Plot.dot(pts, {x: "z", y: yOf, r: n > 300 ? 2 : 3.5, fill: p => p.out ? orange : ink, fillOpacity: n > 300 ? 0.6 : 0.9, title: p => `${p.i}. nejmenší: ${trim(p.x, 6)}; z = ${trim(p.z, 3)}`})
+      ]
+    })};
+  }
+
+  // Diagnostics table and texts.
+  function diagnostics(R, width) {
+    const sec = $('[aria-labelledby="viz-app-diag-title"]');
+    $("#viz-app-diag-title").innerHTML = `Diagnostika normality${R.paired ? " rozdílů" : ""}`;
+    if (!R.values) {
+      $("[data-diag-intro]").innerHTML = "Diagnostika potřebuje jednotlivé hodnoty. Ze souhrnů tvar rozdělení posoudit nelze; přepněte zadání na jednotlivé hodnoty.";
+      $("[data-diag-body]").hidden = true; sec.dataset.diag = "off"; return;
+    }
+    $("[data-diag-body]").hidden = false; sec.dataset.diag = "on";
+    const D = R.diag, sh = D.shape, sw = D.sw, b = D.box, n = R.n;
+    $("[data-diag-intro]").innerHTML = `${R.test === "z" ? "<i>z</i>-test potřebuje normální rozdělení průměru." : "<i>t</i>-test a interval vycházejí z modelu normální populace."} Tento oddíl ukazuje, jak ${R.paired ? "rozdíly" : "hodnoty"} vypadají ve srovnání s normálním modelem se stejným průměrem a směrodatnou odchylkou. Žádný graf ani test normalitu nedokáže; pomohou rozpoznat výraznou šikmost, odlehlé hodnoty nebo těžké chvosty, kvůli kterým by výsledek mohl být zavádějící (<a href="kapitola_07.html#sec-t-predpoklady">kapitola 7</a>).`;
+    const rows = [
+      ["Počet hodnot <i>n</i>", int(n), ""],
+      ["Šikmost (jako SKEW)", sh.skew === null ? "—" : d3f(sh.skew), "kladná: delší pravý chvost; záporná: delší levý chvost; 0 u souměrného rozdělení"],
+      ["Exces (jako KURT)", sh.kurt === null ? "—" : d3f(sh.kurt), "kladný: častější velmi vzdálené hodnoty než v normálním modelu; počítá se od 4 hodnot"],
+      ["Hodnoty za mezemi krabicového grafu", `${int(b.outliers.length)}`, `meze ${trim(b.lowerFence, 4)} a ${trim(b.upperFence, 4)} (1,5 IQR od kvartilů)${b.outliers.length ? `; ${b.outliers.slice(0, 6).map(v => trim(v, 4)).join("; ")}${b.outliers.length > 6 ? "; …" : ""}` : ""}`],
+      ["Shapirův–Wilkův test: <i>W</i>", sw ? fixed(sw.w, 4) : "—", sw ? "1 znamená dokonalou shodu seřazených hodnot s hodnotami, které by na stejných místech pořadí očekával normální model" : `počítá se pro 3 až ${int(N.SW_MAX)} hodnot`],
+      ["Shapirův–Wilkův test: <i>p</i>-hodnota", sw ? `<strong>${pfmt(sw.p)}</strong>` : "—", sw ? `<i>H</i><sub>0</sub>: populace má normální rozdělení; ${sw.p <= val.alpha ? `zamítá při α = ${typedLabel(s.alpha)}` : `nezamítá při α = ${typedLabel(s.alpha)}`}` : ""]
+    ];
+    $("[data-diag-table]").innerHTML = `<table class="viz-bay-table viz-app-table viz-app-diag" aria-label="Ukazatele tvaru a Shapirův–Wilkův test"><thead><tr><th scope="col">Ukazatel</th><th scope="col">Výsledek</th><th scope="col">Význam</th></tr></thead><tbody>${rows.map(([a, v, f]) => `<tr><th scope="row">${a}</th><td class="viz-app-num">${v}</td><td>${f}</td></tr>`).join("")}</tbody></table>`;
+    const big = n >= 200, small = n < 20;
+    $("[data-diag-note]").innerHTML = sw ? `${sw.p <= val.alpha ? "Test zamítá nulovou hypotézu o normálním rozdělení populace." : "Test nulovou hypotézu o normálním rozdělení populace nezamítá."} ${big ? "U takto velkého výběru test zamítá i odchylky, které pro <i>t</i>-test nemusejí být podstatné; řiďte se hlavně grafy a velikostí šikmosti." : small ? "U malého výběru má test malou sílu: i výrazná odchylka od normality často projde bez zamítnutí. Nezamítnutí proto normalitu nedokládá." : "Výsledek testu posuďte spolu s grafy: rozhoduje, jaká a jak velká odchylka je, ne jen <i>p</i>-hodnota."}` : "";
+    $("[data-legend=hist]").replaceChildren(legend([[swBox(pale), "histogram (hustota)"], ...(s.histNormal ? [[swLine(orange, 2), `normální model (průměr ${trim(R.m, 3)}, směrodatná odchylka ${trim(R.sd, 3)})`]] : []), ...(s.histKde ? [[swLine(blue, 2), `jádrový odhad hustoty (šířka okna ${trim(N.bwNrd0(R.values), 4)})`]] : [])]));
+    $("[data-chart=hist]").replaceChildren(histChart(width, R));
+    $("[data-legend=rain]").replaceChildren(legend([[swBox(sky, blue, 0.55), "odhad hustoty"], [swBox("white", ink), "krabicový graf"], [swLine(orange, 4), `průměr s ${levelAdj(R.mt.ci.conf)} intervalem`], [swDot(ink, n <= 50 ? 0.85 : 0.35), n <= 50 ? "hodnoty (bodový graf)" : "hodnoty (jitter, průhledné)"]]));
+    $("[data-chart=rain]").replaceChildren(rainChart(width, R));
+    $("[data-chart=rain]").dataset.mode = n <= 50 ? "dot" : "jitter";
+    $("[data-chart=hist]").dataset.curves = `${s.histNormal ? "normal" : ""}${s.histKde ? " kde" : ""}`.trim();
+    $("[data-chart=qq]").dataset.mode = `${s.qq} ${n <= N.BAND_MAX ? s.band : "none"}`;
+    $("[data-rain-note]").innerHTML = n <= 50 ? "Body hodnot, které leží blízko sebe, jsou naskládány nad sebe a pod sebe; svislá poloha nemá jiný význam." : "Body jsou náhodně posunuty svisle (jitter) a průhledné, aby se při velkém počtu nepřekrývaly; svislá poloha nemá žádný význam.";
+    const Q = qqChart(width, R);
+    $("[data-legend=qq]").replaceChildren(legend([[swDot(ink), "seřazené hodnoty"], [swLine(orange, 2), s.qq === "detrended" ? "přímka m + s·z (nula)" : "přímka m + s·z"], ...(s.band !== "none" && n <= N.BAND_MAX ? [[swBox(sky, null, 0.35), `simultánní 95% pás (${s.band === "ts" ? "tail-sensitive" : "KS"})`], [swDot(orange), "bod mimo pás"]] : [])]));
+    $("[data-chart=qq]").replaceChildren(Q.chart);
+    $("[data-qq-note]").innerHTML = `${s.qq === "detrended" ? "Detrendovaný graf ukazuje svisle odchylku každé seřazené hodnoty od přímky <i>m</i> + <i>s</i>·<i>z</i>; drobné odchylky jsou v něm lépe vidět. " : ""}${s.band === "none" ? "" : n > N.BAND_MAX ? `Pás se kreslí pro nejvýše ${int(N.BAND_MAX)} hodnot.` : `${s.band === "ts" ? "Kdyby data pocházela z normální populace, ležely by všechny body v pásu současně s pravděpodobností 95 %." : "Pás KS nebere v úvahu, že průměr a směrodatná odchylka jsou odhadnuté z týchž dat; u normálních dat v něm leží všechny body s pravděpodobností vyšší než 95 % a odchylky odhalí méně často."} ${Q.outN ? `Mimo pás ${Q.outN === 1 ? "leží 1 bod" : `leží ${Q.outN} ${Q.outN < 5 ? "body" : "bodů"}`}: to je signál odchylky od normálního modelu, ne důkaz; i u normálních dat se to stává zhruba v 5 % výběrů.` : "Všechny body leží v pásu; to normalitu nedokládá, jen data s normálním modelem nejsou v rozporu."}`}`;
+  }
+
+  let last = {};
+  function render() {
+    const R = compute(), width = chartWidth(), mt = R.mt, ci = mt.ci, z = R.test === "z";
+    ud = Math.min(6, Math.max(2, 2 - Math.floor(Math.log10(z ? R.sigma : R.sd))));
+    [0, 1].forEach(j => { root.querySelectorAll(`[data-name-label="${j}"]`).forEach(e => { e.textContent = mName(j); }); });
+    $("[data-direction]").innerHTML = `Rozdíl = ${q(esc(firstName()))} − ${q(esc(secondName()))}`;
+    const M = MU(), m0 = "μ<sub>0</sub>";
+    $('[data-alt-label="two"]').innerHTML = `oboustranná, <i>H</i><sub>1</sub>: ${M} ≠ ${m0}`;
+    $('[data-alt-label="greater"]').innerHTML = `jednostranná, <i>H</i><sub>1</sub>: ${M} &gt; ${m0}`;
+    $('[data-alt-label="less"]').innerHTML = `jednostranná, <i>H</i><sub>1</sub>: ${M} &lt; ${m0}`;
+    const what = R.paired ? `${M} je populační průměr rozdílů ${q(esc(firstName()))} − ${q(esc(secondName()))} proměnné ${q(esc(varName()))}` : `${M} je populační průměr proměnné ${q(esc(varName()))}`;
+    $("[data-hyp]").innerHTML = `<i>H</i><sub>0</sub>: ${M} ${nullSign[s.alt]} ${mu0L()}, <i>H</i><sub>1</sub>: ${M} ${altSign[s.alt]} ${mu0L()}, kde ${what}.${s.eq ? ` Test ekvivalence: <i>H</i><sub>0</sub>: ${M} ≤ ${typedLabel(s.eqLo)} nebo ${M} ≥ ${typedLabel(s.eqHi)}, <i>H</i><sub>1</sub>: ${typedLabel(s.eqLo)} &lt; ${M} &lt; ${typedLabel(s.eqHi)}.` : ""}`;
+    $(".viz-app-kind").hidden = s.alt === "two";
+    $('[data-kind-label="two"]').textContent = `oboustranný, spolehlivost 1 − 2α = ${levelText(1 - 2 * val.alpha)}`;
+    $('[data-kind-label="one"]').textContent = `jednostranný s ${s.alt === "less" ? "horní" : "dolní"} mezí, spolehlivost 1 − α = ${levelText(1 - val.alpha)}`;
+    const st = $("[data-raw-status]");
+    st.textContent = R.raw ? (R.paired ? `Načteno ${int(R.n)} úplných dvojic${R.pd.dropped ? `, vyřazeno ${int(R.pd.dropped)} neúplných` : ""}${R.header ? "; první řádek přeskočen jako záhlaví" : ""}.` : `Načteno ${int(R.n)} hodnot${R.missing ? `, vynecháno ${int(R.missing)} chybějících` : ""}${R.header ? "; první řádek přeskočen jako záhlaví" : ""}.`) : "";
+
+    $("[data-summary]").innerHTML = `${mSym()} = ${uu(R.m)}, ${tSym()}${z ? "" : `(${int(mt.df)})`} = ${d3f(mt.stat)}, <i>p</i>-hodnota ${pfmt(mt.pValue)}; ${ivName(ci)} ${ivText(ci.lo, ci.hi, ci.side)}; ${R.paired ? `<i>d</i><sub><i>z</i></sub> = ${d3f(R.pe.dz.value)}` : `<i>d</i> = ${d3f(mt.d.value)}`}${R.eq ? `; ekvivalence ${R.eq.equivalent ? "doložena" : "nedoložena"}` : ""}.`;
+    resultsTable(R);
+    report(R);
+    $("#viz-app-null-title").innerHTML = `Rozdělení statistiky ${tSym()} při platnosti nulové hypotézy`;
+    $("[data-legend=null]").replaceChildren(legend([[swBox(pale, null, 0.6), z ? "normované normální rozdělení" : `<i>t</i>-rozdělení s ${int(mt.df)} stupni volnosti`], [swBox(orange, null, 0.75), "plocha tvořící <i>p</i>-hodnotu"], [swLine(blue, 2.2), "pozorovaná statistika"], [swBox(red), `kritický obor při α = ${typedLabel(s.alpha)}`], [swLine(red, 1.5, "4,3"), "kritická hodnota"]]));
+    $("[data-chart=null]").replaceChildren(nullChart(width, R));
+    const qa = p => z ? L.qnorm(p) : L.qt(p, mt.df), cv = s.alt === "two" ? qa(1 - R.alpha / 2) : qa(1 - R.alpha);
+    const lim = Math.max(4, Math.min(Math.max(Math.abs(mt.stat), cv) + 1, 12)), S = z ? "<i>z</i>" : "<i>t</i>";
+    const critTxt = s.alt === "two" ? `nejvýše −${trim(cv, 3)} nebo alespoň ${trim(cv, 3)}` : s.alt === "greater" ? `alespoň ${trim(cv, 3)}` : `nejvýše −${trim(cv, 3)}`;
+    $("[data-null-note]").innerHTML = `${Math.abs(mt.stat) > lim ? `Statistika ${d3f(mt.stat)} leží daleko mimo zobrazený výřez; plocha za ní je téměř nulová. ` : ""}${s.alt === "two" ? "U oboustranné alternativy se sčítají plochy v obou chvostech." : s.alt === "greater" ? "U alternativy „větší“ je <i>p</i>-hodnota plocha napravo od statistiky." : "U alternativy „menší“ je <i>p</i>-hodnota plocha nalevo od statistiky."} Celá plocha pod křivkou je 1; oranžová plocha je ${pfmt(mt.pValue)}. Kritický obor tvoří hodnoty ${S} ${critTxt}; jeho plocha je α = ${typedLabel(s.alpha)}. Statistika ${d3f(mt.stat)} v něm ${mt.reject ? "leží, a test proto zamítá" : "neleží, a test proto nezamítá"} nulovou hypotézu, stejně jako podle <i>p</i>-hodnoty (<a href="kapitola_06.html#sec-hladina-kriticky-obor">kapitola 6</a>).`;
+    $("#viz-app-ci-title").innerHTML = `Interval spolehlivosti pro ${R.paired ? "populační průměr rozdílů" : "populační průměr"}${R.eq ? " a pásmo ekvivalence" : ""}`;
+    $("[data-legend=ci]").replaceChildren(legend([[swDot(ink), R.paired ? "průměr rozdílů" : "výběrový průměr"], [swLine(blue, 6), ivName(ci)], ...(R.eq ? [[swLine(green, 5), `${levelAdj(R.eq.ci.conf)} interval pro test ekvivalence`], [swBox(green, null, 0.15), "pásmo ekvivalence"]] : []), [swLine(orange, 2, "6,4"), "testovaná hodnota μ<sub>0</sub>"]]));
+    $("[data-chart=ci]").replaceChildren(ciChart(width, R));
+    $("[data-ci-note]").innerHTML = ci.side === "two" ? "" : `Jednostranný interval sahá na druhé straně do ${ci.side === "lower" ? "+∞" : "−∞"}; graf ukazuje jen výřez osy.`;
+    $("[data-legend=d]").replaceChildren(legend([[swDot(ink), "odhad"], [swLine(blue, 5), R.paired ? "přibližný interval (Bonett)" : z ? "interval (σ známá)" : "přesný interval (necentrální t)"], ...(R.paired ? [[swLine(green, 5), "přesný interval pro <i>d</i><sub><i>z</i></sub>"]] : [])]));
+    $("[data-chart=d]").replaceChildren(dChart(width, R));
+    $("[data-d-note]").innerHTML = R.paired ? "Tři varianty mají různé jmenovatele, a proto různé hodnoty i význam: první dvě vyjadřují průměrný rozdíl vzhledem k tomu, jak se liší jednotliví lidé, <i>d</i><sub><i>z</i></sub> vzhledem k tomu, jak se liší jejich rozdíly." : `<i>d</i> vyjadřuje vzdálenost průměru od μ<sub>0</sub> v ${z ? "jednotkách směrodatné odchylky populace" : "jednotkách výběrové směrodatné odchylky"}; nula znamená žádný rozdíl.`;
+    diagnostics(R, width);
+
+    last = {design: s.design, source: s.source, test: R.test, n: R.n, m: R.m, sd: R.sd, mu0: R.mu0, alt: s.alt, alpha: R.alpha,
+      stat: mt.stat, df: mt.df, p: mt.pValue, reject: mt.reject, ci: {lo: ci.lo, hi: ci.hi, side: ci.side, conf: ci.conf},
+      d: R.paired ? null : {value: mt.d.value, lo: mt.d.lo, hi: mt.d.hi, g: mt.d.g ?? null},
+      pe: R.paired ? {ref: R.pe.ref ?? null, avg: R.pe.avg ?? null, dz: R.pe.dz} : null,
+      eq: R.eq ? {pL: R.eq.pL, pU: R.eq.pU, equivalent: R.eq.equivalent, lo: R.eq.ci.lo, hi: R.eq.ci.hi} : null,
+      dropped: R.pd?.dropped ?? null, header: R.header ?? null,
+      diag: R.diag ? {skew: R.diag.shape.skew, kurt: R.diag.shape.kurt, w: R.diag.sw?.w ?? null, pw: R.diag.sw?.p ?? null, outliers: R.diag.box.outliers.length} : null,
+      names: [mName(0), mName(1)], varName: varName(), order: s.order, ref: s.ref};
+  }
+
+  let lastWidth = 0, frame = 0;
+  const observer = new ResizeObserver(() => {
+    const w = $('[data-chart="ci"]').clientWidth;
+    if (Math.abs(w - lastWidth) < 4) return;
+    lastWidth = w; cancelAnimationFrame(frame); frame = requestAnimationFrame(render);
+  });
+  observer.observe($('[data-chart="ci"]'));
+  invalidation.then(() => observer.disconnect());
+
+  // Hooks for the automated page check (quarto/_verification/check-html.cjs).
+  root.vizCheck = {meanTest: L.meanTest, pairedEffects: L.pairedEffects, parseRaw, state: () => JSON.parse(JSON.stringify(last, (k, v) => v === Infinity ? "Inf" : v === -Infinity ? "-Inf" : v))};
+
+  Object.assign(s, {qq: "classic", band: "ts", histNormal: true, histKde: false});
+  applyPreset(PRESETS[0], false);
+  return root;
+}
+```
+
+<noscript><p>Aplikace potřebuje JavaScript. Postupy s řešenými příklady najdete v kapitole 6 v oddílu <a href="kapitola_06.html#sec-z-test"><i>z</i>-test: průměr proti známé normě</a>, v kapitole 7 v oddílech <a href="kapitola_07.html#sec-interval-t">Interval spolehlivosti s <i>t</i>-kvantilem</a>, <a href="kapitola_07.html#sec-t-test">Jednovýběrový <i>t</i>-test</a> a <a href="kapitola_07.html#sec-test-ekvivalence">Test ekvivalence</a> a v kapitole 8 v oddílech <a href="kapitola_08.html#sec-parovy-t-test">Rozdílové skóre a párový <i>t</i>-test</a> a <a href="kapitola_08.html#sec-cohenovo-d">Jak velký je rozdíl</a>.</p></noscript>
+
+## Co aplikace počítá {#sec-app-prumer-princip .unnumbered}
+
+**Test a interval.** Ve výběru $n$ hodnot má proměnná průměr $m$ a výběrovou směrodatnou odchylku $s$. Nulová hypotéza tvrdí, že populační průměr je $\mathrm{μ}_0$; u alternativy „větší“ tvrdí, že je nejvýše $\mathrm{μ}_0$, u alternativy „menší“, že je nejméně $\mathrm{μ}_0$. Počítáme pak s hraniční hodnotou $\mathrm{μ}_0$, jak vysvětluje oddíl [o směru testu](kapitola_06.qmd#sec-smer-testu). Testová statistika vyjadřuje vzdálenost průměru od $\mathrm{μ}_0$ v jednotkách směrodatné chyby. Je-li směrodatná odchylka populace σ známá, je to [*z*-test](kapitola_06.qmd#sec-z-test) se statistikou $z=(m-\mathrm{μ}_0)/\mathrm{σ}_m$, kde $\mathrm{σ}_m=\mathrm{σ}/\sqrt{n}$, a *p*-hodnota se určí z normovaného normálního rozdělení. Jinak σ nahradíme výběrovou $s$ a použijeme [jednovýběrový *t*-test](kapitola_07.qmd#sec-t-test):
+
+$$t=\frac{m-\mathrm{μ}_0}{s_m},\qquad s_m=\frac{s}{\sqrt{n}},$$
+
+jehož statistika má za platnosti nulové hypotézy [*t*-rozdělení](kapitola_07.qmd#sec-studentovo-t) s $n-1$ stupni volnosti. Interval spolehlivosti je $m\pm t_{1-\mathrm{α}/2\,(v=n-1)}\times s_m$ ([kapitola 7](kapitola_07.qmd#sec-interval-t)), při známé σ s kvantilem $z_{1-\mathrm{α}/2}$ a s $\mathrm{σ}_m$. Jednostranný interval se spolehlivostí $1-\mathrm{α}$ používá kvantil $z_{1-\mathrm{α}}$, resp. $t_{1-\mathrm{α}\,(v)}$ a má jen jednu mez; stejnou mez má oboustranný interval se spolehlivostí $1-2\mathrm{α}$ ([kapitola 7](kapitola_07.qmd#sec-jednostranny-a-interval)). Oboustranný interval se spolehlivostí $1-\mathrm{α}$ obsahuje právě ty hodnoty $\mathrm{μ}_0$, které by oboustranný test na hladině α nezamítl ([kapitola 7](kapitola_07.qmd#sec-mnozina-nezamitnutych)); jednostranný interval obdobně odpovídá jednostrannému testu. U jednostranné alternativy a oboustranného intervalu se spolehlivostí $1-2\mathrm{α}$ rozhoduje jen mez na straně alternativy. Test i interval proto vedou ke stejnému rozhodnutí.
+
+**Párová data** aplikace převede na rozdíly „první měření minus druhé“ u každé úplné dvojice a na ně použije jednovýběrový *t*-test, jak ukazuje [kapitola 8](kapitola_08.qmd#sec-parovy-t-test). $m_D$ a $s_D$ jsou průměr a výběrová směrodatná odchylka rozdílů, $n$ je počet úplných dvojic a $\mathrm{μ}_D$ populační průměr rozdílů.
+
+**Test ekvivalence** se ptá, zda populační průměr leží v pásmu mezi dolní a horní hranicí, které jsme předem zvolili tak, aby rozdíly uvnitř pásma byly věcně zanedbatelné ([kapitola 7](kapitola_07.qmd#sec-test-ekvivalence)). Tvoří ho dva jednostranné testy: vůči dolní hranici s alternativou „větší“ a vůči horní hranici s alternativou „menší“, každý na hladině α. Ekvivalence je doložena, jen pokud zamítnou oba, tedy právě když celý interval se spolehlivostí $1-2\mathrm{α}$ leží mezi hranicemi.
+
+**Velikost rozdílu v původních jednotkách** je rozdíl $m-\mathrm{μ}_0$ s intervalem, který vznikne odečtením $\mathrm{μ}_0$ od mezí intervalu pro průměr ([kapitola 6](kapitola_06.qmd#sec-velikost-ucinku-jednotky)).
+
+**Cohenovo *d*** vyjadřuje tentýž rozdíl v jednotkách směrodatné odchylky jednotlivých hodnot. Pro dvě skupiny ho zavádí [kapitola 8](kapitola_08.qmd#sec-cohenovo-d); pro jeden výběr je to vzdálenost průměru od testované hodnoty,
+
+$$d=\frac{m-\mathrm{μ}_0}{s}.$$
+
+Rozdíl od testové statistiky je ve jmenovateli: $t$ dělí směrodatnou chybou, *d* směrodatnou odchylkou jednotlivých hodnot. Proto $t=d\sqrt{n}$ s rostoucím výběrem roste, zatímco *d* zůstává přibližně stejné. Při známé σ dělíme σ a interval pro *d* vznikne vydělením mezí intervalu pro rozdíl $m-\mathrm{μ}_0$ číslem σ.
+
+Odhadnutá $s$ ve jmenovateli ale také kolísá, a proto je interval pro *d* složitější. Kdyby nulová hypotéza platila, měla by statistika $t$ obvyklé *t*-rozdělení. Pokud se populační průměr od $\mathrm{μ}_0$ liší o určitý počet populačních směrodatných odchylek, má $t$ takzvané **necentrální *t*-rozdělení** (*noncentral t distribution*). Je posunuté a mírně nesouměrné. O kolik je posunuté, udává **parametr necentrality** (*noncentrality parameter*): populační standardizovaný rozdíl vynásobený $\sqrt{n}$.
+
+Přesný interval hledá ty hodnoty parametru necentrality, při kterých by pozorované $t$ nebylo neobvyklé. Jde o stejnou úvahu jako u [intervalu jako množiny nezamítnutých hodnot](kapitola_07.qmd#sec-mnozina-nezamitnutych), jen místo průměru hledáme standardizovaný rozdíl. U oboustranného intervalu se spolehlivostí 95 % je dolní mezí ta hodnota parametru, při níž by statistika aspoň tak velká jako pozorovaná měla pravděpodobnost 0,025. Horní mez je hodnota, při níž by statistika nejvýše tak velká jako pozorovaná měla také pravděpodobnost 0,025. Obě meze nakonec vydělíme $\sqrt{n}$, a dostaneme tak meze intervalu pro *d*. Interval je přesný, pokud platí model normální populace; na rozdíl od *t*-testu však vůči odchylkám od normality odolný není [@bonett2015, s. 372]. Aplikace jej počítá numericky; obvyklý přibližný vzorec z [nepovinného rozšíření kapitoly 8](kapitola_08.qmd#rozsireni-interval-d) nepoužívá.
+
+Výběrové *d* u malých výběrů v průměru mírně přeceňuje populační hodnotu. **Hedgesovo *g*** je *d* vynásobené číslem $1-3/(4v-1)$, kde $v=n-1$, jak popisuje [nepovinné rozšíření kapitoly 8](kapitola_08.qmd#rozsireni-standardizace-08); stejným číslem aplikace násobí i meze intervalu. Při 20 hodnotách je to násobek 0,96, takže *d* zmenší o 4 %.
+
+**Cohenovo *d* u párových dat** závisí na tom, kterou směrodatnou odchylkou průměrný rozdíl vydělíme ([kapitola 8](kapitola_08.qmd#sec-d-parova)). Aplikace počítá tři varianty a ve zprávě je třeba uvést, která byla použita.
+
+- ***d* se směrodatnou odchylkou referenčního měření**, $d=(m_D-\mathrm{μ}_0)/s_1$, kde $s_1$ je směrodatná odchylka měření, které zvolíte jako referenční (obvykle měření před intervencí nebo v kontrolní podmínce). Vyjadřuje průměrnou změnu v jednotkách toho, jak se lidé lišili při tomto měření, a je srovnatelné s *d* dvou nezávislých skupin. Interval je přibližný podle Bonetta [-@bonett2015, s. 368–369, rovnice 11 a 15], $d\pm z\sqrt{d^2/(2(n-1))+s_D^2/(s_1^2(n-1))}$, kde $z$ je kvantil $z_{1-\mathrm{α}/2}$ (u jednostranného intervalu $z_{1-\mathrm{α}}$). Korigovaný odhad je $d\,(1-3/(4(n-1)-1))$, tedy stejná Hedgesova korekce jako u jednoho výběru.
+- ***d* s odmocninou průměru rozptylů obou měření**, $d=(m_D-\mathrm{μ}_0)/\sqrt{(s_1^2+s_2^2)/2}$, nevyžaduje volbu referenčního měření. Interval je přibližný podle Bonetta [-@bonett2015, s. 368–369, rovnice 9 a 13]; směrodatná chyba v něm závisí i na korelaci obou měření. Korigovaný odhad je $d\sqrt{(n-2)/(n-1)}$; jmenovatel tu tvoří dvě odhadnuté směrodatné odchylky, a proto Bonett pro něj odvodil jinou korekci než Hedgesovu. Pro variantu A z kapitoly 8 vychází interval (0,22; 0,80); kapitola 8 uvádí pro totéž *d* interval (0,22; 0,79) podle postupu Algina a Keselmana [-@algina2003]. Bonett [-@bonett2015, s. 371–373] v simulacích ukázal, že jeho intervaly zachycují populační hodnotu s deklarovanou spolehlivostí i při velkých *d* a rozdílných rozptylech obou měření. Intervaly podle Algina a Keselmana mohou při velkých populačních hodnotách (zhruba od 1,2) zachycovat populační hodnotu méně často; pro *d* kolem 0,5 jako ve variantě A vedou oba postupy prakticky ke stejnému výsledku.
+- ***d*<sub>*z*</sub> se směrodatnou odchylkou rozdílů**, $d_z=(m_D-\mathrm{μ}_0)/s_D$, je jednovýběrové *d* spočítané z rozdílů; má přesný interval z necentrálního *t*-rozdělení. Závisí na korelaci obou měření a s Cohenovými orientačními pásmy z [nepovinného rozšíření kapitoly 8](kapitola_08.qmd#rozsireni-standardizace-08) se srovnávat nedá.
+
+Bonettovy intervaly jsou přibližné a podle simulací autora jsou blízko deklarované spolehlivosti zhruba od deseti dvojic, pokud jsou obě měření přibližně normální.
+
+**Diagnostika normality** pracuje s jednotlivými hodnotami, u párových dat s rozdíly. Ukazatele tvaru jsou [korigovaná šikmost a exces](kapitola_03.qmd#sec-ukazatele-tvaru), jaké vrací Excel funkcemi SKEW a KURT. Krabicový graf a jeho meze 1,5 IQR odpovídají [kapitole 3](kapitola_03.qmd#sec-boxplot).
+
+- **Histogram** ukazuje na svislé ose hustotu, tedy podíl hodnot v intervalu dělený jeho šířkou; plocha všech sloupců je 1. Lze tak přes něj nakreslit křivku normálního rozdělení se stejným průměrem a směrodatnou odchylkou jako data. **Jádrový odhad hustoty** (*kernel density estimate*) je hladká křivka, která na místo každé hodnoty položí malou zvonovitou křivku, všechny sečte a součet vydělí počtem hodnot, aby plocha pod křivkou byla 1 jako u histogramu. Na rozdíl od histogramu nezávisí na volbě hranic intervalů, ale závisí na šířce těchto křivek (šířce okna); aplikace ji volí obvyklým pravidlem podle směrodatné odchylky, mezikvartilového rozpětí a počtu hodnot [@rDocumentation, [bw.nrd0](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/bandwidth.html)].
+- **Raincloud graf** (*raincloud plot*) spojuje v jednom obrázku odhad hustoty („mrak“), krabicový graf a jednotlivé hodnoty („déšť“) [@allen2021]. Aplikace do něj přidává průměr s intervalem spolehlivosti. Do 50 hodnot jsou body naskládány jako bodový graf, při větším počtu jsou náhodně posunuty svisle (jitter) a průhledné; tyto způsoby zobrazení podrobněji vysvětluje [kapitola 10](kapitola_10.qmd#sec-prekryvani-bodu).
+- **Normální Q–Q graf** je sestrojen jako v [kapitole 4](kapitola_04.qmd#sec-qq-graf): vodorovně kvantily $z$ pro podíly $(i-0{,}5)/n$, svisle seřazené hodnoty a přímka $m+s z$. **Detrendovaný Q–Q graf** (*detrended Q–Q plot*) ukazuje místo hodnot jejich odchylky od této přímky, takže přímka se stane vodorovnou osou v nule a drobné systematické odchylky jsou lépe vidět. **Simultánní pás spolehlivosti** (*simultaneous confidence band*) je oblast kolem přímky, do které by u dat z normální populace padly *všechny* body současně s pravděpodobností 95 %. Bod mimo pás je proto signálem odchylky od normálního modelu, ne však důkazem: zhruba v 5 % výběrů z normální populace nějaký bod vybočí. Pás je vlastně grafickou podobou testu normality a má podobná omezení jako Shapirův–Wilkův test níže. U pásu sestrojeného pro každý bod zvlášť by naproti tomu při mnoha bodech některé vybočily i u normálních dat zcela běžně.
+
+  Aplikace nabízí dva pásy, které počítá postupem balíčku qqplotr pro R [@almeida2018] kolem přímky $m+s z$. Pás *tail-sensitive* [@aldornoiman2013] vychází ze simulace výběrů z normální populace, která bere v úvahu, že $m$ a $s$ jsou odhadnuté z týchž dat; normální data proto zachytí celá s pravděpodobností 95 %. Pás KS vychází z Kolmogorovova–Smirnovova testu, který porovnává podíl hodnot menších než daná hodnota s podílem předpovězeným modelem; odhad $m$ a $s$ z týchž dat nezohledňuje, a je proto širší, než by musel být, a odchylky odhalí méně často.
+- **Shapirův–Wilkův test** (*Shapiro–Wilk test*) testuje nulovou hypotézu, že populace má normální rozdělení. Jeho statistika *W* měří, jak těsně seřazené hodnoty odpovídají hodnotám, které by na týchž místech pořadí očekával normální model; 1 znamená dokonalou shodu. Aplikace jej počítá algoritmem, který používá běžný statistický software [@royston1995]. Test má známá omezení: u velkých výběrů zamítá normalitu i kvůli odchylkám, na kterých pro *t*-test nezáleží, a u malých výběrů často nezamítne ani výraznou odchylku. Nezamítnutí normalitu nedokládá. Rozhodujte proto hlavně podle grafů a podle toho, jak velká a jakého druhu je odchylka ([kapitola 7](kapitola_07.qmd#sec-t-predpoklady)).
+
+Všechny postupy předpokládají nezávislé hodnoty (u párových dat nezávislé dvojice). Tento předpoklad žádný graf ani test v aplikaci neověří; vyplývá ze způsobu, jakým data vznikla.
+
+## Vyzkoušejte si {#sec-app-prumer-vyzkousejte .unnumbered}
+
+1. Na výchozím příkladu zkouškové úzkosti porovnejte výsledky se zadáním a řešením cvičení 7 v kapitole 7. Potom přepněte alternativu na „větší“. Proč je *p*-hodnota přibližně poloviční? Přepínejte druh intervalu mezi oboustranným 90% a jednostranným 95% intervalem. Která mez je u obou stejná a proč?
+2. Zvolte příklad pozornosti se *z*-testem a potom s *t*-testem. Proč je *p*-hodnota *t*-testu větší, i když je průměr stejný? Všimněte si i rozdílu mezi σ = 10 a *s* = 11 a porovnejte s kapitolou 7. Potom u *t*-testu zvětšete *n* z 25 na 100 a sledujte, co se stane s *t*, s intervalem a s Cohenovým *d*.
+3. Zvolte příklad online verze testu. Proč test ekvivalence ekvivalenci doloží, i když běžný test rozdíl od 50 bodů zamítá? Potom změňte *n* na 40. Který z jednostranných testů přestane zamítat, co se stane s 90% intervalem a jak dopadne běžný test rozdílu od 50 bodů?
+4. Zvolte příklad zešikmených dob řešení úlohy. Co ukazují histogram, raincloud graf a Q–Q graf? Přepněte na detrendovaný graf a porovnejte oba pásy. Najděte odlehlou hodnotu 181 s, smažte ji z dat a sledujte, jak se změní šikmost, Shapirův–Wilkův test, průměr a *p*-hodnota *t*-testu.
+
+## Čeho si všimnout {#sec-app-prumer-vsimnete .unnumbered}
+
+Test i interval vycházejí ze stejné statistiky, a proto se jejich rozhodnutí shodují: u zkouškové úzkosti test na hladině 0,05 zamítá a 95% interval (20,74; 23,66) hodnotu 20 neobsahuje. Interval přitom říká víc: s daty je slučitelné, že populační průměr převyšuje normu jen o necelý bod, ale také o více než 3,5 bodu.
+
+Velikost výběru mění testovou statistiku, ne Cohenovo *d*. Při čtyřnásobném výběru se stejným průměrem a směrodatnou odchylkou vzroste $t$ dvakrát a interval pro průměr se zúží přibližně na polovinu, *d* ale zůstane stejné; zúží se jen jeho interval. Statisticky významný výsledek proto ještě neznamená velký rozdíl a malý výběr s nevýznamným výsledkem nedokládá, že rozdíl je malý.
+
+Ekvivalence a statisticky významný rozdíl se nevylučují. V příkladu online verze je průměr o 1,5 bodu nižší než norma; při 400 lidech je to rozdíl statisticky významný, a přesto celý 90% interval leží v pásmu 47 až 53 bodů, které vydavatel předem označil za prakticky zanedbatelné. Při 40 lidech je interval tak široký, že ekvivalenci data nedoloží.
+
+U zešikmených dat se grafy a Shapirův–Wilkův test shodují na výrazné odchylce od normality. Pro rozhodnutí o *t*-testu je ale podstatné, jaká a jak velká odchylka to je a jak velký je výběr, ne jen *p*-hodnota testu normality. Výběrová šikmost 2,8 a exces 13,6 tu z velké části pocházejí z jediné hodnoty 181 s: bez ní klesne šikmost na 0,84 a směrodatná odchylka z 22,5 na 17,0 s. Populace s dlouhým pravým chvostem a občasnými extrémními hodnotami je podle simulací v [nepovinném rozšíření kapitoly 7](kapitola_07.qmd#rozsireni-odolnost-t) pro *t*-test nepříznivá: interval zachycuje populační průměr méně často, než slibuje, a jednostranné testy mají skutečnou pravděpodobnost chyby I. druhu odlišnou od zvolené hladiny.
+
+Po vynechání hodnoty 181 s test normality stále zamítá a *p*-hodnota *t*-testu vzroste z 0,063 na 0,110, protože průměr klesne z 49,75 na 48,09 s. Jediná hodnota tak výrazně ovlivňuje šikmost, směrodatnou odchylku i výsledek testu. Z dat ji ale bez věcného důvodu neodstraňujeme; její vynechání slouží jen k pochopení, jak moc výsledek ovlivňuje.

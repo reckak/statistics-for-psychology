@@ -883,6 +883,32 @@ rozsahu; shody statistiky *t*₀ = 0 se přeskakují) a přesné intervaly s tab
 článku. Přesný výpočet běží v prohlížeči jen pro skupiny do 200 případů
 (`EXACT_MAX`; 200 a 200 trvá v Node asi 0,35 s) se zpožděním 0,3 s po poslední změně.
 
+Test jednoho průměru má moduly `assets/stat/prumer.js` (testy, intervaly, necentrální
+*t*-rozdělení, Bonettovy intervaly) a `assets/stat/normalita.js` (ukazatele tvaru, krabicový
+graf, Shapirův–Wilkův test, jádrový odhad hustoty, Q–Q pásy). Úrovně γ(*n*) pásu
+tail-sensitive jsou předem spočítané v `assets/stat/qq-ts-gamma.js`; generuje je simulace
+(asi 8 minut, pevný seed) a teprve potom referenční skript, který tabulku čte. Referenční
+skript potřebuje balíčky `jsonlite`, `effectsize`, `MBESS`, `ggplot2` a `qqplotr`
+(nepovinně `e1071`); běží asi 25 s:
+
+```sh
+Rscript --vanilla scripts/qq-ts-gamma.R
+Rscript --vanilla scripts/app-jeden-prumer.R
+node scripts/check-stat-lib.mjs
+```
+
+Kontrola modulu porovnává testy, intervaly, test ekvivalence a přesné intervaly pro *d*
+(necentrální *t* integrací, protože `pt(…, ncp)` v R pro ncp > 37,62 jen aproximuje)
+s R, Bonettovy intervaly s přepisem rovnic článku, Shapirův–Wilkův test se `shapiro.test`,
+pás KS s `qqplotr::stat_qq_band` a pás tail-sensitive s výpočtem v R pro tutéž tabulku γ;
+vypíše také simultánní pokrytí obou pásů z 4 000 normálních výběrů.
+
+U testu jednoho průměru kontrola webu ověřuje odkazy z kapitol 6–8, výchozí stav
+(úzkost, μ₀ = 20, oboustranně) proti R, oboustranný test ekvivalence, párová data
+s neúplnou dvojicí a prohozením měření, souhrny bez diagnostiky, přepínače histogramu
+a Q–Q grafu, bodový graf do 50 hodnot a jitter nad 50, escapování popisků, odmítnutí
+neplatných vstupů, ovládání předvoleb klávesnicí a zobrazení na telefonu.
+
 
 ## Kontroly a GitHub
 

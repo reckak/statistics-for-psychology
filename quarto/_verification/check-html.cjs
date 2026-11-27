@@ -679,7 +679,7 @@ const server = http.createServer((req, res) => {
     assert.match(await groups.nth(3).innerText(),/Literatura a přehledy/);
     assert.equal(await groups.nth(0).locator('a.sidebar-item-text[href]').count(),10);
     assert.deepEqual((await groups.nth(1).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Co s rozdělením udělá posun a změna jednotek','Plochy pod normální křivkou','Co znamená pozitivní výsledek testu','Pravděpodobnost počtu úspěchů','Výběrové rozdělení průměru','Na čem závisí statistická síla','Jak se t-rozdělení liší od normovaného normálního','Jak často interval spolehlivosti zachytí populační průměr','Jak spolu souvisí interval spolehlivosti a p-hodnota','Kdy párování zpřesní odhad průměrného rozdílu','Co znamená rozdíl o d směrodatných odchylek','Co prozradí dva intervaly vedle sebe o rozdílu průměrů','Proč odhadujeme podíl Wilsonovým intervalem','Jak daleko je tabulka četností od nezávislosti','Co říkají rozdíl podílů, poměr rizik a poměr šancí o téže tabulce','Jak tvar mraku bodů souvisí s korelačním koeficientem']);
-    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Test jednoho podílu','Test dvou podílů']);
+    assert.deepEqual((await groups.nth(2).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Test jednoho podílu','Test dvou podílů','Test jednoho průměru']);
     assert.equal(await groups.nth(3).locator('a.sidebar-item-text[href]').count(),4);
     assert.equal(await sidebar.locator('.sidebar-menu-container > ul > li').first().innerText(),'O učebnici');
     assert.deepEqual((await groups.nth(3).locator('a.sidebar-item-text[href]').allTextContents()).map(s=>s.trim()),['Literatura','Slovníček pojmů','Matematické a statistické značení a vzorce','Užitečné funkce Excelu']);
@@ -2858,6 +2858,107 @@ const server = http.createServer((req, res) => {
     await app2Plots.nth(2).waitFor();
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Two-proportion app fits a phone');
     await app2.screenshot({path: 'tmp/verification/app-dva-podily-mobile.png'});
+    await page.setViewportSize({width: 1360, height: 1000});
+
+    // Statistical app: test of one mean (R87 amendment 2026-11-27). Calculations against R
+    // (scripts/reference/app-jeden-prumer.json from scripts/app-jeden-prumer.R; the full grid is checked by
+    // node scripts/check-stat-lib.mjs), links from chapters 6–8, default state, presets (z-test, equivalence, paired data
+    // with an incomplete pair, summaries), diagnostics toggles, labels and escaping, swapping, rejected inputs and phone.
+    for (const [ch, sec] of [['06', 'sec-z-test'], ['07', 'sec-t-test'], ['08', 'sec-parova-data']]) {
+      await page.goto(base + `quarto/kapitola_${ch}.html`, { waitUntil: 'networkidle' });
+      assert.equal(await page.locator(`#${sec} .callout-tip a[href$="app_jeden_prumer.html"]`).count(), 1, `Chapter ${ch} links to the one-mean app`);
+    }
+    await page.goto(base + 'quarto/app_jeden_prumer.html', { waitUntil: 'networkidle' });
+    assert.equal(await page.locator('#quarto-sidebar .sidebar-item-section').nth(2).locator('a.sidebar-link.active').count(), 1, 'One-mean app marked in the sidebar');
+    const app3 = page.locator('#app-jeden-prumer');
+    const app3Plots = app3.locator('.viz-plots svg[aria-label]');
+    await app3Plots.nth(5).waitFor();
+    assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'One-mean app: no code, copy button or OJS error');
+    assert.equal(await app3.locator('.viz-fullscreen').count(), 1, 'One-mean app has the full-screen button');
+    assert.equal(await page.locator('text=Výpočet v českém Excelu').count(), 0, 'One-mean app has no Excel section');
+    const s3 = () => app3.evaluate(el => el.vizCheck.state());
+    const t3 = sel => app3.locator(sel).innerText();
+    const REF3 = JSON.parse(fs.readFileSync('scripts/reference/app-jeden-prumer.json', 'utf8'));
+    const close = (a, b, tol = 1e-9) => Math.abs(a - b) <= tol * Math.max(1, Math.abs(b));
+    let c3 = await s3();
+    const u0 = REF3.means.find(c => c.case === 'uzkost' && c.input.alt === 'two' && c.input.alpha === 0.05);
+    assert(close(c3.stat, u0.stat) && close(c3.p, u0.p) && close(c3.ci.lo, u0.lo) && close(c3.ci.hi, u0.hi) && close(c3.d.lo, u0.dlo, 1e-7), 'Default anxiety data against R');
+    assert.deepEqual([c3.design, c3.source, c3.alt, c3.mu0, c3.n], ['one', 'raw', 'two', 20, 20], 'Default state: anxiety data, μ0 = 20, two-sided');
+    assert.equal(await app3.locator('[data-preset][aria-pressed="true"]').count(), 0, 'No preset pressed at load');
+    assert(close(c3.diag.w, REF3.diag.uzkost.W) && close(c3.diag.pw, REF3.diag.uzkost.pW, 1e-7), 'Shapiro–Wilk of the default data against R');
+    assert((await t3('[data-results]')).includes('(20,74; 23,66)'), 'Chapter 7 interval in the results table');
+    assert.equal(await app3.locator('.viz-app-table thead th').first().evaluate(el => getComputedStyle(el).color), 'rgb(255, 255, 255)', 'Results table header in white');
+    assert.equal(await app3.locator('[data-chart=rain]').getAttribute('data-mode'), 'dot', 'Up to 50 values: dot plot');
+    // Diagnostics toggles.
+    await app3.locator('#viz-app-hist-kde').check();
+    assert.equal(await app3.locator('[data-chart=hist]').getAttribute('data-curves'), 'normal kde', 'Histogram with both curves');
+    await app3.locator('#viz-app-hist-normal').uncheck();
+    assert.equal(await app3.locator('[data-chart=hist]').getAttribute('data-curves'), 'kde', 'Histogram with the density estimate only');
+    await app3.locator('input[name="viz-app-qq"][value="detrended"]').check();
+    await app3.locator('input[name="viz-app-band"][value="ks"]').check();
+    assert.equal(await app3.locator('[data-chart=qq]').getAttribute('data-mode'), 'detrended ks', 'Detrended Q–Q plot with the KS band');
+    assert((await app3.locator('[data-chart=qq] svg').getAttribute('aria-label')).startsWith('Detrendovaný'), 'Q–Q plot label follows the choice');
+    // One-sided alternative and the interval kind.
+    await app3.locator('input[name="viz-app-alt"][value="greater"]').check();
+    assert(await app3.locator('.viz-app-kind').isVisible(), 'Interval choice shown for a one-sided alternative');
+    c3 = await s3();
+    const u1 = REF3.means.find(c => c.case === 'uzkost' && c.input.alt === 'greater' && c.input.kind === 'two' && c.input.alpha === 0.05);
+    assert(close(c3.p, u1.p) && close(c3.ci.lo, u1.lo) && c3.ci.conf.toFixed(2) === '0.90', 'One-sided p-value and 90 % interval');
+    await app3.locator('input[name="viz-app-kind"][value="one"]').check();
+    c3 = await s3();
+    assert(c3.ci.hi === 'Inf' && c3.ci.side === 'lower', 'One-sided 95 % interval with a lower limit');
+    // Presets: z-test, equivalence, PDI, paired data, summaries, skewed data.
+    await app3.locator('[data-preset="poz-z"]').click();
+    c3 = await s3();
+    assert.deepEqual([c3.test, Number(c3.stat.toFixed(3)), Number(c3.p.toFixed(3))], ['z', -2, 0.023], 'Attention z-test of chapter 6');
+    await app3.locator('[data-preset="online"]').click();
+    c3 = await s3();
+    const on = REF3.tost.online;
+    assert(c3.eq && c3.eq.equivalent && close(c3.eq.pL, on.pL) && close(c3.eq.lo, on.lo), 'Online version: equivalence shown');
+    await app3.locator('#viz-app-n').fill('40');
+    c3 = await s3();
+    assert(c3.eq && !c3.eq.equivalent, 'n = 40: equivalence not shown');
+    await app3.locator('[data-preset="spanek"]').click();
+    c3 = await s3();
+    const sp = REF3.paired.find(c => c.case === 'spanek' && c.side === 'two');
+    assert.deepEqual([c3.design, c3.n, c3.dropped, c3.header], ['paired', 12, 1, true], 'Paired preset: 12 complete pairs, one dropped, header skipped');
+    assert(close(c3.m, sp.mD) && close(c3.pe.avg.lo, sp.avg[1]) && close(c3.pe.ref.hi, sp.ref[2]) && close(c3.pe.dz.lo, sp.dz[1], 1e-7), 'Paired effect sizes against R');
+    assert.equal(await app3.locator('input[name="viz-app-test"][value="z"]').isVisible(), false, 'No z-test for paired data');
+    const p3Before = c3.p;
+    await app3.locator('[data-swap]').click();
+    c3 = await s3();
+    assert(close(c3.m, -sp.mD) && c3.order === 1 && close(c3.p, p3Before), 'Swapping the measurements changes the sign of the mean difference, not the p-value');
+    assert((await t3('[data-direction]')).includes('„po krátkém spánku“ − „po běžném spánku“'), 'Direction of the difference shown');
+    await app3.locator('[data-preset="anorexie"]').click();
+    c3 = await s3();
+    assert.deepEqual([c3.source, Number(c3.pe.ref.value.toFixed(2)), Number(c3.pe.dz.value.toFixed(2)), c3.pe.avg, c3.diag], ['summary', 1.45, 1.01, null, null], 'Anorexia summaries: d 1,45 and dz 1,01, no diagnostics');
+    assert(await app3.locator('[data-diag-body]').isHidden(), 'Diagnostics hidden for summaries');
+    await app3.locator('[data-preset="doby"]').click();
+    c3 = await s3();
+    assert.equal(await app3.locator('[data-chart=rain]').getAttribute('data-mode'), 'jitter', 'More than 50 values: jitter');
+    assert(c3.diag.pw < 1e-8 && c3.diag.outliers === 2, 'Skewed data: Shapiro–Wilk rejects, two values beyond the fences');
+    // Labels, escaping and rejected inputs.
+    await app3.locator('#viz-app-var').fill('<b>X</b>');
+    assert.equal(await app3.locator('[data-report] b, [data-results] b, [data-hyp] b').count(), 0, 'User text is escaped');
+    assert((await t3('[data-report]')).includes('„<b>X</b>“'), 'Label shown as text in the report');
+    await app3.locator('#viz-app-alpha').fill('0,7');
+    assert(await app3.locator('#viz-app-alpha-error').isVisible(), 'α = 0,7 rejected');
+    assert.equal((await s3()).alpha, 0.05, 'Rejected α keeps the last valid value');
+    await app3.locator('#viz-app-raw').fill('12\nabc\n14');
+    assert(await app3.locator('#viz-app-raw-error').isVisible(), 'Unreadable value rejected');
+    assert.equal((await s3()).n, 80, 'Rejected data keep the last valid values');
+    await app3.locator('#viz-app-raw').fill('5\n5\n5');
+    assert(await app3.locator('#viz-app-raw-error').isVisible(), 'Zero SD rejected');
+    // Keyboard: the preset buttons and radio buttons are reachable and operable.
+    await app3.locator('[data-preset="uzkost"]').focus();
+    await page.keyboard.press('Enter');
+    assert.equal((await s3()).n, 20, 'Preset operable by keyboard');
+    // Phone.
+    await page.setViewportSize({width: 375, height: 812});
+    await page.reload({ waitUntil: 'networkidle' });
+    await app3Plots.nth(5).waitFor();
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'One-mean app fits a phone');
+    await app3.screenshot({path: 'tmp/verification/app-jeden-prumer-mobile.png'});
     await page.setViewportSize({width: 1360, height: 1000});
 
     await page.goto(base + 'quarto/slovnicek.html', { waitUntil: 'networkidle' });

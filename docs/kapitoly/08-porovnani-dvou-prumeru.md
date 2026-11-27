@@ -133,6 +133,20 @@ odkazuje blok „Vyzkoušejte si: dva intervaly a interval rozdílu“ na strán
 
 Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 2026-11-14; oddíly „Stejná data, chybná analýza“ a „Proč rozdíly kolísají méně“ s vizualizací přínosu párování 2026-11-19; oddíl „Dva intervaly vedle sebe“ s vizualizací dvou intervalů 2026-11-19. Oddíly „Rozdíl dvou průměrů“ a „Welchovy stupně volnosti“ po přechodu obrázků na 90 lidí ([záznam](../../quarto/README.md#kapitola-08-obrazky-pomer-2026-11-14)) znovu 2026-11-14.
 
+<a id="aplikace-08"></a>
+
+**Statistická aplikace (2026-11-27, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)):** na konci oddílu o párových datech, za
+pododdílem [Výpočet v Excelu](../../quarto/kapitola_08.qmd#sec-parovy-excel), odkazuje blok
+„Spočítejte si: párový *t*-test“ na stránku [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd). Pro párová data počítá párový *t*-test,
+interval pro $\mathrm{μ}_D$ a tři varianty *d*: se směrodatnou odchylkou výchozího měření
+a s $\sqrt{(s_1^2+s_2^2)/2}$ (přibližné intervaly a korekce zkreslení podle Bonetta, 2015,
+[D16](../zdroje/D16-bonett.md#d16)) a $d_z$ s přesným intervalem. Předvolby: varianta A
+(list `Spanek_par`, neúplná dvojice studenta 9 se vyřadí; *t* ≈ 5,07, (1,98; 5,02); interval
+pro *d* s $\sqrt{(s_1^2+s_2^2)/2}$ (0,22; 0,80), kapitola podle Alginy a Keselmana (0,22; 0,79))
+a anorexie ze souhrnů (*d* ≈ 1,45 se směrodatnou odchylkou před terapií, $d_z$ ≈ 1,01).
+Kapitola se kromě odkazu nemění; podrobnosti v [kartě kapitoly 7](07-interval-t-test-ekvivalence.md#aplikace-07).
+Kontrola souladu s textem oddílů o párovém *t*-testu a Cohenově *d*: 2026-11-27.
+
 ### Cvičení a očekávané dovednosti
 
 [Čtrnáct úloh](../../quarto/kapitola_08.qmd#sec-cviceni-08) má úplná sbalená řešení.

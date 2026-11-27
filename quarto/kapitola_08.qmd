@@ -182,6 +182,10 @@ List `Parovy_test` nejdřív v oblasti F2:I14 převezme data a ponechá jen úpl
 
 Funkce **T.TEST** (anglicky také T.TEST) vrací *p*-hodnotu přímo z dvou oblastí dat. Jejími argumenty jsou obě oblasti, počet chvostů (2 pro oboustranný test) a typ testu: 1 pro párová data, 2 pro dvě nezávislé skupiny se společným odhadem rozptylu, 3 pro Welchův test, se kterým se seznámíme později. Neuvádí testovou statistiku ani interval, proto ji používáme spíš ke kontrole. U typu 1 Excel sám vynechá dvojice, kde jedna hodnota chybí. Na tuto vlastnost se ale nespoléhejte místo vlastní kontroly: počet úplných dvojic a jejich složení musíte znát kvůli stupňům volnosti, intervalu i interpretaci.
 
+::: {.callout-tip title="Spočítejte si: párový t-test"}
+[Aplikace Test jednoho průměru](app_jeden_prumer.qmd) počítá pro párová data párový *t*-test a interval pro průměrný rozdíl. Neúplné dvojice vyřadí a vypíše, kolik jich bylo. Velikost rozdílu vyjádří Cohenovým *d* se směrodatnou odchylkou zvoleného referenčního měření (například měření před intervencí), s odmocninou průměru rozptylů obou měření i se směrodatnou odchylkou rozdílů, vždy s intervalem spolehlivosti.
+:::
+
 ## Kdy párování zpřesňuje odhad — a co neřeší {#sec-kdy-parovani}
 
 Proč nestačí porovnat průměry obou sloupců obvyklým způsobem? Tento oddíl na téže dvanáctce studentů ukazuje, co analýza rozdílů získává, za jakých okolností a co ani párové uspořádání nevyřeší.
