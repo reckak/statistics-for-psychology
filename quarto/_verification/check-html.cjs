@@ -287,6 +287,18 @@ const server = http.createServer((req, res) => {
         for(const id of ['rozsireni-meze-r','rozsireni-bca','rozsireni-korekce-reliabilita','rozsireni-d-r']) {
           assert.equal(await page.locator(`#${id} [data-bs-toggle="collapse"]`).getAttribute('aria-expanded'),'false',`Optional extension starts collapsed: ${id}`);
         }
+        // Lightbox caption with inline math (assets/lightbox-captions.js): rendered MathML, no TeX source.
+        const lb10=page.locator('#fig-permutace-presna a.lightbox');
+        assert(!/\\mathrm/.test(await lb10.getAttribute('title')) && (await lb10.getAttribute('title')).includes('τb'),'Lightbox tooltip shows readable math, not TeX');
+        await lb10.scrollIntoViewIfNeeded();
+        await lb10.click();
+        const lb10Title=page.locator('.glightbox-container .gslide.current .gslide-title');
+        await lb10Title.locator('math').first().waitFor();
+        assert(!/\\mathrm/.test(await lb10Title.innerText()) && (await lb10Title.innerText()).includes('720 přiřazení'),'Lightbox caption renders math instead of TeX source');
+        await page.waitForTimeout(600);
+        await page.screenshot({path:'tmp/verification/ch10-lightbox-math-desktop.png'});
+        await page.keyboard.press('Escape');
+        await page.locator('.glightbox-container').waitFor({state:'detached'});
         const main10=await page.locator('main').innerText();
         assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main10.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance');
         assert(/dynamickými poli/.test(main10),'The Excel version requirement is stated');
