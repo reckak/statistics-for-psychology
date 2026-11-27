@@ -52,7 +52,7 @@ Snímek sedm.
 
 Vrátíme se k příkladu ze šesté kapitoly. Student odpověděl správně na deset z dvaceti otázek se čtyřmi možnostmi. Při pouhém hádání by měl pravděpodobnost úspěchu nula celých dvacet pět setin. Jeho podíl správných odpovědí je nula celých padesát setin. Jakou dlouhodobou úspěšnost data připouštějí?
 
-V sedmé kapitole jsme interval sestavili podle vzoru odhad plus minus kvantyl krát směrodatná chyba. Vzorec na snímku dělá totéž pro podíl. Pod odmocninou je podíl krát jedna minus podíl, děleno počtem otázek. Směrodatná chyba vychází nula celých sto dvanáct tisícin. Po vynásobení kvantylem jedna celá devadesát šest setin dostaneme interval od nula celých dvacet osm setin do nula celých sedmdesát dva setin. Tomuto postupu se říká Valdův interval.
+V sedmé kapitole jsme interval sestavili podle vzoru odhad plus minus kvantyl krát směrodatná chyba. Vzorec na snímku dělá totéž pro podíl. Od jedné odečteme podíl. Výsledek vynásobíme podílem a vydělíme počtem otázek. Z toho spočítáme odmocninu. Směrodatná chyba vychází nula celých sto dvanáct tisícin. Vynásobíme ji kvantylem jedna celá devadesát šest setin. Tuto vzdálenost od výběrového podílu odečteme pro dolní mez a přičteme pro horní mez. Dostaneme interval od nula celých dvacet osm setin do nula celých sedmdesát dva setin. Tomuto postupu se říká Valdův interval.
 
 Valdův interval má dvě slabiny. První: směrodatnou chybu počítá ze samotného výběrového podílu. Představte si, že u patnácti účastníků nenastal nežádoucí jev ani jednou. Podíl je nula, směrodatná chyba vyjde také nula a interval má nulovou šířku. Tvrdil by, že populační podíl je přesně nula, ačkoli jsme pozorovali jen patnáct lidí.
 
@@ -62,7 +62,7 @@ Obrázek pod vzorcem porovnává oba příklady. Vodorovná osa ukazuje podíl. 
 
 Snímek osm.
 
-Obě slabiny odstraňuje Vilsonův interval. Ptá se opačně. Pro které hodnoty populačního podílu by byl náš výsledek vzdálen nejvýše jedna celá devadesát šest setin směrodatné chyby, když tuto chybu spočítáme z uvažovaného populačního podílu, ne z výběrového? Takové hodnoty tvoří interval.
+Obě slabiny odstraňuje Vilsonův interval. Pro každou uvažovanou hodnotu populačního podílu z ní nejprve spočítáme směrodatnou chybu. Vynásobíme ji kvantylem jedna celá devadesát šest setin. Pokud je výběrový podíl od uvažované hodnoty vzdálen nejvýše o tuto vzdálenost, hodnota do intervalu patří.
 
 Vzorec je složitější a nemusíte si ho pamatovat. Počítá ho připravený list v sešitu kapitoly. Důležité jsou tři vlastnosti. Střed intervalu je mírně posunut k hodnotě jedna polovina. Interval nemá nikdy nulovou šířku. A vždy leží mezi nulou a jedničkou.
 
@@ -90,13 +90,13 @@ Snímek deset.
 
 Přecházíme ke druhému typu otázek. Liší se podíl studentů se zvýšeným stresem mezi ženami a muži i v populaci? Ve výběru je podíl žen nula celých čtyřicet setin a podíl mužů nula celých třicet setin. Rozdíl je nula celých deset setin, tedy deset procentních bodů.
 
-Potřebujeme směrodatnou chybu tohoto rozdílu. Ženy a muži tvoří dvě nezávislé skupiny. Platí proto totéž co u rozdílu dvou průměrů: při odečítání nezávislých odhadů se sčítají jejich rozptyly. Vzorec na snímku sčítá pod odmocninou dva zlomky. Každý je podíl krát jedna minus podíl, děleno velikostí skupiny. Vyjde přibližně nula celých šedesát sedm tisícin. Rozdíl podílů by tedy mezi opakovanými výběry kolísal se směrodatnou odchylkou necelých sedmi procentních bodů.
+Potřebujeme směrodatnou chybu tohoto rozdílu. Ženy a muži tvoří dvě nezávislé skupiny. Platí proto totéž co u rozdílu dvou průměrů. Při odečítání nezávislých odhadů se sčítají jejich rozptyly. V každé skupině nejprve odečteme podíl od jedné. Výsledek vynásobíme podílem a vydělíme velikostí skupiny. Obě získané hodnoty sečteme a ze součtu spočítáme odmocninu. Vyjde přibližně nula celých šedesát sedm tisícin. Odhadujeme tedy, že rozdíl podílů by mezi opakovanými výběry kolísal se směrodatnou odchylkou necelých sedmi procentních bodů.
 
 Interval sestavený z této chyby by měl stejné slabiny jako Valdův interval. Používáme proto Ňúkomův interval, který vychází z Vilsonových intervalů obou skupin.
 
 Obrázek vpravo ukazuje jeho konstrukci ve třech krocích. Nahoře jsou Vilsonovy intervaly žen a mužů. Z každého se použije jedna polovina. Pro dolní mez rozdílu bereme oranžové části: vzdálenost podílu žen od jeho dolní meze a vzdálenost podílu mužů od jeho horní meze. Dolní mez totiž nastane, když je první podíl ve skutečnosti nižší a druhý vyšší.
 
-Uprostřed vidíte, že vzdálenosti nesčítáme přímo. Každou umocníme na druhou, čtverce sečteme a ze součtu spočítáme odmocninu. Je to Pythagorova věta a zároveň totéž sčítání rozptylů. Dole je výsledek. Devadesátipětiprocentní interval pro rozdíl sahá od minus nula celých tří setin do nula celých dvacet tři setin.
+Uprostřed vidíte, jak obě vzdálenosti spojíme. Každou umocníme na druhou, čtverce sečteme a ze součtu spočítáme odmocninu. Podle Pythagorovy věty je to délka přepony. Výsledek odečteme od výběrového rozdílu. Pro horní mez stejným způsobem spojíme zbývající dvě vzdálenosti a výsledek přičteme. Devadesátipětiprocentní interval pro rozdíl sahá od minus tří procentních bodů do plus dvaceti tří procentních bodů.
 
 S daty jsou tedy slučitelné rozdíly od tří procentních bodů ve prospěch mužů až po dvacet tři bodů ve prospěch žen.
 
@@ -106,7 +106,7 @@ K intervalu patří test. Nulová hypotéza tvrdí, že se populační podíly �
 
 Test počítá směrodatnou chybu v modelu nulové hypotézy. Jsou-li oba populační podíly stejné, nejlépe je odhadneme z obou skupin dohromady. Tomuto odhadu říkáme společný podíl. Sedmdesát studentů se zvýšeným stresem dělíme dvěma sty a dostaneme nula celých třicet pět setin.
 
-Vzorec na snímku má v čitateli rozdíl obou podílů. Ve jmenovateli je odmocnina ze společného podílu krát jedna minus společný podíl, krát součet převrácených hodnot velikostí skupin. Směrodatná chyba vychází nula celých šest set sedmdesát pět desetitisícin. Statystyka zed je přibližně jedna celá čtyřicet osm setin a oboustranná pé-hodnota přibližně nula celých sto třicet osm tisícin.
+Vzorec na snímku má v čitateli rozdíl obou podílů. Pro jmenovatel od jedné odečteme společný podíl a výsledek vynásobíme společným podílem. Pak tento součin vynásobíme součtem převrácených hodnot velikostí obou skupin. Odmocníme celý výsledek. Směrodatná chyba vychází nula celých šest set sedmdesát pět desetitisícin. Statystyka zed je přibližně jedna celá čtyřicet osm setin a oboustranná pé-hodnota přibližně nula celých sto třicet osm tisícin.
 
 Rozhodnutí testu: nulovou hypotézu nezamítáme. Věcná interpretace: ve výběru uvádí zvýšený stres o deset procentních bodů více žen. Data ale připouštějí nulový rozdíl i rozdíl kolem dvaceti bodů. Nezamítnutí tedy neznamená, že se podíly neliší. Studyje má pro rozdíl této velikosti malou přesnost.
 
@@ -170,13 +170,13 @@ Vzorec na snímku z toho odvozuje očekávanou četnost buňky. Součet řádku 
 
 V tabulce stresu jsou očekávané četnosti třicet pět a šedesát pět v obou řádcích. Statystyka chí-kvadrát sečte příspěvky všech čtyř buněk a vyjde přibližně dvě celé sto devadesát osm tisícin. Je to přesně druhá mocnina statystyky zed z testu dvou podílů a pé-hodnota je opět nula celých sto třicet osm tisícin. U tabulky dva krát dva dávají oba testy stejný výsledek.
 
-Počet stupňů volnosti tabulky je počet řádků minus jedna krát počet sloupců minus jedna. Tabulka dva krát dva má jeden stupeň volnosti, tabulka tři krát tři čtyři.
+Počet stupňů volnosti získáme ve dvou krocích. Od počtu řádků i od počtu sloupců nejprve odečteme jedničku. Oba výsledky pak vynásobíme. Tabulka dva krát dva má jeden stupeň volnosti. Tabulka tři krát tři má čtyři.
 
 Tentýž výpočet odpovídá na dvě příbuzné otázky. O testu nezávislosti mluvíme, když máme jeden výběr a u každého člověka zjišťujeme obě proměnné. O testu homogenyty mluvíme, když předem vybereme stanovený počet lidí z každé skupiny. Výpočet je stejný, liší se formulace hypotéz a závěru. Ani jeden test neříká nic o příčině.
 
 Snímek osmnáct.
 
-U větší tabulky říká významný test jen to, že nějaká souvislost existuje. Jak ji popsat? Výzkumnice se zeptala sto devadesáti dospělých, kterou ze tří strategií zvládání stresu nejčastěji používají: řešení problému, vyhýbání, nebo hledání sociální opory. Účastníky rozdělila do tří věkových skupin.
+U větší tabulky může výsledek testu svědčit proti nezávislosti. Kde se skupiny liší, ukážou řádkové podíly. Výzkumnice se zeptala sto devadesáti dospělých, kterou ze tří strategií zvládání stresu nejčastěji používají: řešení problému, vyhýbání, nebo hledání sociální opory. Účastníky rozdělila do tří věkových skupin.
 
 Statystyka chí-kvadrát je jedenáct celých sedmdesát osm setin se čtyřmi stupni volnosti. Pé-hodnota je nula celých devatenáct tisícin. Nulovou hypotézu nezávislosti zamítáme.
 
@@ -204,7 +204,7 @@ Snímek dvacet.
 
 Snímek dvacet jedna.
 
-Test chí-kvadrát stojí na třech předpokladech. Prvním jsou nezávislá pozorování. Každý člověk je v tabulce právě jednou a součet buněk se rovná počtu lidí.
+Test chí-kvadrát stojí na třech předpokladech. Prvním jsou nezávislá pozorování. Každý člověk je v tabulce právě jednou a součet buněk se rovná počtu lidí. Nezávislost navíc vyžaduje, aby výsledky jednotlivých lidí nebyly vzájemně závislé. Například odpovědi žáků ze stejné třídy si mohou být podobnější než odpovědi žáků z různých tříd.
 
 Druhým předpokladem jsou absolutní četnosti včetně nevýskytů. Procenta do výpočtu nepatří. A do tabulky musíme zapsat i případy, kdy sledovaný jev nenastal.
 
@@ -220,11 +220,11 @@ Co dělat, když jsou očekávané četnosti malé? Pilotní studyje porovnala k
 
 Fišerův exaktní test odpovídá u tabulky dva krát dva na stejnou otázku bez přibližného rozdělení. Součty řádků a sloupců bere jako dané. Spočítá přesné pravděpodobnosti všech tabulek, které při těchto součtech mohou nastat.
 
-Graf na snímku ukazuje všech deset možných tabulek. Výška sloupce je pravděpodobnost tabulky a pod každým sloupcem je tabulka nakreslena. Nejvyšší sloupce uprostřed patří tabulkám, kde se zlepšení rozdělí mezi skupiny téměř rovnoměrně. Pozorovaná tabulka je zvýrazněná a má pravděpodobnost nula celých třicet dva tisícin. Světle oranžové sloupce na obou krajích jsou tabulky stejně nebo méně pravděpodobné. Jejich součet je pé-hodnota, nula celých sedmdesát tisícin.
+Graf na snímku ukazuje všech deset možných tabulek. Výška sloupce je pravděpodobnost tabulky a pod každým sloupcem je tabulka nakreslená. Nejvyšší sloupce uprostřed patří tabulkám, kde se zlepšení rozdělí mezi skupiny téměř rovnoměrně. Pozorovaná tabulka je zvýrazněná sytě oranžově a má pravděpodobnost nula celých třicet dva tisícin. Světle oranžové sloupce označují ostatní tabulky, které jsou stejně nebo méně pravděpodobné. Sečteme pravděpodobnosti všech oranžových sloupců včetně pozorované tabulky. Oboustranná pé-hodnota je nula celých sedmdesát tisícin.
 
 Rozhodnutí testu: nulovou hypotézu nezamítáme. Věcná interpretace: ve výběru se zlepšilo osmdesát procent lidí s intervencí a třicet procent kontrolních. Tak malá studyje ale k průkaznému závěru nestačí.
 
-Stejnou odpověď dává simulovaná pé-hodnota. Představte si dvacet lístků, jedenáct s nápisem zlepšení a devět bez zlepšení. Lístky zamícháme a deset přidělíme každé skupině. To zopakujeme desettisíckrát. Statystyka alespoň tak velká jako v datech vyšla v šesti celých osmi desetinách procenta přeskupení. Simulace odhaduje pravděpodobnosti, které Fišerův test počítá přesně, a hodí se i pro větší tabulky.
+Podívejme se ještě na simulovanou pé-hodnotu. Představte si dvacet lístků, jedenáct s nápisem zlepšení a devět bez zlepšení. Lístky zamícháme, deset přidělíme každé skupině a spočítáme statystyku chí-kvadrát. To zopakujeme desettisíckrát. Hodnota alespoň tak velká jako v datech vyšla v šesti celých osmi desetinách procenta přeskupení. V tomto příkladu je simulovaná pé-hodnota blízko přesné hodnotě z Fišerova testu a vede ke stejnému rozhodnutí. Přeskupování můžeme použít i u větších tabulek.
 
 Snímek dvacet tři.
 
@@ -232,19 +232,19 @@ Významná souvislost může být velká i zanedbatelná. Potřebujeme proto mí
 
 Denjelsová zkoumala, jak obrázky sportovkyň působí na mladé ženy. Jedna skupina si prohlédla fotografie sportovkyň pózujících v plavkách, druhá fotografie sportovkyň při sportovním výkonu. Potom ženy napsaly krátký text. Autorka zaznamenala, zda se v něm objevilo hodnocení vlastního vzhledu.
 
-Toto téma se objevilo u padesáti šesti ze sto čtyřiceti žen v první skupině, tedy u čtyřiceti procent. Ve druhé skupině u dvaceti ze sto sedmnácti žen, tedy u sedmnácti procent. Test chí-kvadrát dává pé-hodnotu menší než jedna tisícina.
+Toto téma se objevilo u padesáti šesti ze sto čtyřiceti žen v první skupině, tedy u čtyřiceti procent. Ve druhé skupině u dvaceti ze sto sedmnácti žen, tedy přibližně u sedmnácti procent. Test chí-kvadrát dává pé-hodnotu menší než jedna tisícina.
 
 Nejsrozumitelnější mírou je rozdíl podílů v procentních bodech. Činí dvacet dva celých devět desetin bodu. Devadesátipětiprocentní interval sahá přibližně od dvanácti do třiceti tří bodů.
 
 Graf má dvě části. Vlevo jsou oba podíly s Vilsonovými intervaly. Vpravo je jejich rozdíl s Ňúkomovým intervalem. Přerušovaná čára označuje nulu a celý interval leží nad ní.
 
-Pozor na rozdíl mezi procentními body a procenty. Změna ze sedmnácti na čtyřicet procent je nárůst o dvacet tři procentních bodů. Je to ale také nárůst o sto třicet čtyři procent, bereme-li za základ sedmnáct procent. Obě čísla jsou správná, druhé však zní mnohem dramatyčtěji. Proto vždy uvádějte oba podíly.
+Rozdíl je přibližně dvacet tři procentních bodů. Můžeme ho vyjádřit i relativně. Vezmeme-li za základ podíl ve skupině, která viděla sportovní výkon, je podíl v první skupině přibližně o sto třicet čtyři procent vyšší. Oba údaje vycházejí z původních četností. Ve zprávě proto uveďte také oba podíly, aby bylo jasné, k čemu se srovnání vztahuje.
 
 Snímek dvacet čtyři.
 
 Další dvě míry porovnávají skupiny poměrem. Tabulka na snímku má dva řádky.
 
-První řádek pracuje s rizikem. Tak se nazývá podíl lidí, u nichž sledovaný jev nastal, i když jev není nepříznivý. Rizika obou skupin jsou nula celých čtyři sta tisícin a nula celých sto sedmdesát jedna tisícin. Jejich podíl je poměr rizik, dvě celé třicet čtyři setin. Riziko je tedy v první skupině více než dvakrát vyšší.
+První řádek pracuje s rizikem. Tak se nazývá podíl lidí, u nichž sledovaný jev nastal, i když jev není nepříznivý. V první skupině je riziko čtyřicet procent. Ve druhé je to přibližně sedmnáct procent. Když vydělíme první riziko druhým a použijeme původní četnosti, vyjde poměr rizik dvě celé třicet čtyři setin. Podíl žen píšících o vlastním vzhledu byl tedy v první skupině více než dvojnásobný.
 
 Skupina ve jmenovateli se nazývá referenční. Kdybychom zvolili opačnou, vyšla by převrácená hodnota. Ve zprávě proto vždy uvedeme, která skupina je referenční.
 
@@ -258,7 +258,7 @@ Snímek dvacet pět.
 
 Poslední dvě míry vyjadřují těsnost vztahu pro celou tabulku jedním číslem. Obě vycházejí ze statystyky chí-kvadrát.
 
-Samotná statystyka se k tomu nehodí, protože roste s počtem pozorování. Proto ji vydělíme největší hodnotou, které může dosáhnout, a z výsledku spočítáme odmocninu. Dostaneme číslo mezi nulou a jedničkou.
+Při stejných podílech a větším počtu pozorování vyjde větší statystyka chí-kvadrát. Pro srovnání ji vydělíme teoretickou horní hranicí pro daný počet pozorování a rozměry tabulky. Potom spočítáme odmocninu. Dostaneme číslo mezi nulou a jedničkou.
 
 Levý vzorec na snímku je koeficient fí pro tabulku dva krát dva. Pod odmocninou je chí-kvadrát děleno počtem pozorování. Pro studyji Denjelsové vychází nula celých dvacet pět setin.
 
@@ -288,13 +288,13 @@ Snímek dvacet osm.
 
 Úvaha Meknemarova testu se neomezuje na odpovědi ano a ne. V minulé přednášce jsme u dvanácti studentů porovnávali pozornost po běžném a po krátkém spánku. První řádek snímku připomíná jejich rozdíly. Jedenáct je kladných a jeden záporný.
 
-Znaménkový test si z každé dvojice ponechá jen znaménko rozdílu. Nulová hypotéza tvrdí, že kladný a záporný rozdíl jsou stejně pravděpodobné. Jde opět o binomický test s pravděpodobností jedné poloviny. Pé-hodnota vychází přibližně nula celých šest tisícin, nulovou hypotézu tedy zamítáme.
+Znaménkový test si z každé dvojice ponechá jen znaménko rozdílu. Dvojice s nulovým rozdílem do testu nevstupují. Nulová hypotéza tvrdí, že mezi nenulovými rozdíly jsou kladné a záporné stejně pravděpodobné. Jde opět o binomický test s pravděpodobností jedné poloviny. Pé-hodnota vychází přibližně nula celých šest tisícin, nulovou hypotézu tedy zamítáme.
 
 Věcně: jedenáct z dvanácti studentů mělo po krátkém spánku nižší skór. O kolik bodů, znaménkový test neříká.
 
-Test nevyužívá velikost rozdílů. Má proto menší sílu než párový té-test, který dal pro stejná data mnohem menší pé-hodnotu. Na druhou stranu nepředpokládá normální rozdělení rozdílů. Hodí se i tam, kde umíme říci jen, zda se člověk zlepšil, nebo zhoršil.
+Znaménkový test využívá jen směr rozdílů. Když jsou splněny předpoklady párového té-testu, může té-test díky velikosti rozdílů odhalit odchylku častěji. Pro tato data měl té-test menší pé-hodnotu. Výhodou znaménkového testu je, že funguje bez předpokladu normálního rozdělení rozdílů. Hodí se i tam, kde umíme říci jen, zda se člověk zlepšil, nebo zhoršil.
 
-Poslední věta snímku obě části spojuje. Meknemarův test je znaménkový test pro odpovědi ano a ne.
+Poslední věta snímku obě části spojuje. Přesný Meknemarův test je znaménkový test pro odpovědi ano a ne.
 
 Snímek dvacet devět.
 

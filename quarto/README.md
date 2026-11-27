@@ -255,6 +255,43 @@ Nezávislá kontrola:
 
 **Omezení:** ověřeno v Chromiu; Firefox, Safari, skutečný telefon a čtečka obrazovky nebyly vyzkoušeny. Didaktická revize je interní, ne ověření na studentech.
 
+<a id="audio-kapitoly-9-judita-20261124"></a>
+
+## 2026-11-24 — Druhá nahrávka kapitoly 9 hlasem Judita
+
+Na výslovnou žádost autora převeden celý scénář snímků 1–30 ve stejném
+znění jako u nahrávky hlasem Adam. Creative Claw použil
+`speech/heygen-voice-1`, hlas Judita, `extras.language: cs` a rychlost 1.
+Osm úseků bylo spojeno bez prolínání do jednoho místního MP3
+`presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_Judita.mp3`
+o délce 36:21 s 30 značkami snímků.
+
+Ověřen shodný otisk scénáře, časovaný text všech úseků, dekódování
+a délka odpovídající součtu úseků. Zvuk nebyl nezávisle přepsán ani
+poslechnut. Nastavení a výsledek kontrol jsou v
+[manifestu](../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_manifest.json).
+
+<a id="audio-kapitoly-9-20261124"></a>
+
+## 2026-11-24 — Revize scénáře a nahrávka k prezentaci kapitoly 9
+
+Na pokyn autora upraven [scénář pro syntézu](../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar.txt).
+Revize zpřesnila mluvený zápis vzorců, předpoklad nezávislosti,
+výklad Fisherova testu a simulace, srovnání skupin a znaménkový test.
+Číselný přepočet v R prošel 48 skupinami kontrol. Projektový přepis
+„kvantyl“ zůstal použitý ve všech tvarech.
+
+Creative Claw převedl výklad snímků 1–30 do češtiny modelem
+`speech/elevenlabs-v4` a hlasem Adam – Velvety and Conversational
+s `extras.language_code: cs`. Čtyři úseky byly lokálně spojeny bez prolínání.
+Místní nahrávka `presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_Adam.mp3`
+trvá 43:03 a obsahuje 30 značek snímků. Je ignorovaná Gitem.
+
+Ověřeno dekódování, délka proti součtu úseků, pokrytí scénáře časovanými
+slovy služby a značky všech snímků. Poslech ani nezávislá transkripce
+neproběhly. Nastavení, otisky aktuálních podkladů a výsledky kontrol
+uchovává [manifest](../presentations/kapitola_09/kapitola_09_podily_a_kategorialni_data_scenar_manifest.json).
+
 <a id="sesit-kapitoly-9-vyklad"></a>
 
 ## 2026-11-24 — Sešit s daty a výpočty z výkladu prezentace kapitoly 9
