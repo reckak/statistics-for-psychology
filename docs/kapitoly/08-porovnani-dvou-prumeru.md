@@ -100,7 +100,7 @@ jsou autorská.
 
 <a id="interaktivni-vizualizace-08"></a>
 
-**Interaktivní vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-cohen)):**
+**Interaktivní vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-13-cohen)):**
 na konci oddílu [Cohenovo d pro nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-d-nezavisle)
 odkazuje blok „Vyzkoušejte si: co znamená rozdíl o d směrodatných odchylek“
 na stránku [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz_cohenovo_d.qmd).
@@ -111,7 +111,7 @@ na stránku [Co znamená rozdíl o *d* směrodatných odchylek](../../quarto/viz
 - **Vztah k výkladu:** ukazatele nejsou zavedeny jako pojmy učebnice a nemají hesla. Úkoly „Vyzkoušejte si“ míří na *d* = 0,5, parkovací *d* ≈ 0,47 a σ = 14,6 s, hledání *d* pro pravděpodobnost 75 % (asi 0,95) a „malý“ účinek *d* = 0,2 při σ = 15.
 - **Rozsah:** opakuje učivo oddílu [Cohenovo d pro nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-d-nezavisle), ploch pod normální křivkou z kapitoly 4 a sčítání rozptylů z oddílu [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych). Není samostatným cvičením.
 
-**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-parovani)):**
+**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-19-parovani)):**
 na konci oddílu [Proč rozdíly kolísají méně](../../quarto/kapitola_08.qmd#sec-proc-rozdily),
 před nepovinným rozšířením o korelaci, odkazuje blok „Vyzkoušejte si: kdy
 párování zpřesní odhad“ na stránku [Kdy párování zpřesní odhad průměrného rozdílu](../../quarto/viz_prinos_parovani.qmd).
@@ -121,7 +121,7 @@ párování zpřesní odhad“ na stránku [Kdy párování zpřesní odhad prů
 - **Vztah k výkladu:** nové pojmy nezavádí; výběrové *r* a korelace v populaci jen ve druhém způsobu zadání s odkazem na nepovinné rozšíření. „Čeho si všimnout“ doplňuje oproti kapitole tři zjištění modelu: chybná analýza při kladné souvislosti téměř nezamítá platnou H₀ a při záporné zamítá častěji než 5 %; při malém podílu stabilních rozdílů může být párový interval kvůli $n-1$ st. v. o něco širší; čára chybné analýzy odpovídá studii s nezávislými skupinami po *n* lidech.
 - **Rozsah:** opakuje oddíly [Stejná data, chybná analýza](../../quarto/kapitola_08.qmd#sec-chybna-analyza), [Proč rozdíly kolísají méně](../../quarto/kapitola_08.qmd#sec-proc-rozdily), sčítání rozptylů z [Dvě nezávislé skupiny](../../quarto/kapitola_08.qmd#sec-rozdil-nezavislych) a chyby I. druhu z kap. 6. Není samostatným cvičením.
 
-**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-19-intervaly)):**
+**Interaktivní vizualizace (2026-11-19, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-19-intervaly)):**
 na konci oddílu [Dva intervaly vedle sebe](../../quarto/kapitola_08.qmd#sec-dva-intervaly)
 odkazuje blok „Vyzkoušejte si: dva intervaly a interval rozdílu“ na stránku
 [Co prozradí dva intervaly vedle sebe o rozdílu průměrů](../../quarto/viz_dva_intervaly.qmd).
@@ -135,7 +135,7 @@ Kontrola souladu s textem uvedených oddílů: 2026-11-13; celá karta znovu 202
 
 <a id="aplikace-08"></a>
 
-**Statistická aplikace (2026-11-27, [upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27)):** na konci oddílu o párových datech, za
+**Statistická aplikace (2026-11-27, [upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-27)):** na konci oddílu o párových datech, za
 pododdílem [Výpočet v Excelu](../../quarto/kapitola_08.qmd#sec-parovy-excel), odkazuje blok
 „Spočítejte si: párový *t*-test“ na stránku [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd). Pro párová data počítá párový *t*-test,
 interval pro $\mathrm{μ}_D$ a tři varianty *d*: se směrodatnou odchylkou výchozího měření

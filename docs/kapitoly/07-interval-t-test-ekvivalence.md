@@ -14,9 +14,9 @@ sestavena podle výkladu, zadání a řešení 2026-10-17. Dohodu dokládají
 [R44](../rozhodnuti/kapitola-07.md#r44-rozsah-kapitoly-7),
 [R45](../rozhodnuti/kapitola-07.md#r45-znaceni-kapitoly-7) a
 [R46](../rozhodnuti/kapitola-07.md#r46-terminologie-kapitoly-7) s
-[historií dohody](../../quarto/README.md#dohoda-kapitola-07). Vznik textu
-a rozsah ověření eviduje [záznam o vytvoření](../../quarto/README.md#vytvoreni-kapitoly-7).
-Soulad karty s textem zkontrolován 2026-10-18 po [cílené revizi](../../quarto/README.md#revize-kapitoly-7-20261018); schválený rozsah R44–R46 se nemění.
+[historií dohody](../historie/2026-10.md#dohoda-kapitola-07). Vznik textu
+a rozsah ověření eviduje [záznam o vytvoření](../historie/2026-10.md#vytvoreni-kapitoly-7).
+Soulad karty s textem zkontrolován 2026-10-18 po [cílené revizi](../historie/2026-10.md#revize-kapitoly-7-20261018); schválený rozsah R44–R46 se nemění.
 
 **Kontrola 2026-11-01:** po odborné a technické revizi zpřesněna závislost
 kritického průměru na výběrové s, plynulost slučitelnosti u mezí intervalu,
@@ -119,7 +119,7 @@ používá čísla úlohy 9 kapitoly 6.
 
 <a id="interaktivni-vizualizace-07"></a>
 
-**Interaktivní vizualizace (2026-11-12, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-t)):**
+**Interaktivní vizualizace (2026-11-12, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-12-t)):**
 v oddílu [Studentovo *t*-rozdělení](../../quarto/kapitola_07.qmd#sec-studentovo-t)
 za výkladem obrázku t-rozdělení odkazuje blok „Vyzkoušejte si: *t*-rozdělení
 a normované normální rozdělení“ na stránku
@@ -133,7 +133,7 @@ a normované normální rozdělení“ na stránku
 
 Kontrola souladu s textem uvedených oddílů: 2026-11-12; ostatní části karty se nemění.
 
-**Druhá vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-12-interval)):**
+**Druhá vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-12-interval)):**
 na konci oddílu [Jednostranný test a jednostranný interval](../../quarto/kapitola_07.qmd#sec-jednostranny-a-interval)
 odkazuje blok „Vyzkoušejte si: interval spolehlivosti a *p*-hodnota“ na stránku
 [Jak spolu souvisí interval spolehlivosti a *p*-hodnota](../../quarto/viz_interval_a_test.qmd).
@@ -146,7 +146,7 @@ odkazuje blok „Vyzkoušejte si: interval spolehlivosti a *p*-hodnota“ na str
 
 Kontrola souladu s textem oddílu Interval a *p*-hodnota po zavedení R75 a druhé vizualizace: 2026-11-13.
 
-**Třetí vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-13-pokryti)):**
+**Třetí vizualizace (2026-11-13, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-13-pokryti)):**
 na konci oddílu [Opakované intervaly s výběrovou *s*](../../quarto/kapitola_07.qmd#sec-interval-t-simulace)
 odkazuje blok „Vyzkoušejte si: pokrytí intervalu spolehlivosti“ na stránku
 [Jak často interval spolehlivosti zachytí populační průměr](../../quarto/viz_pokryti_intervalu.qmd).
@@ -163,7 +163,7 @@ Kontrola souladu s textem oddílů o pokrytí a odolnosti po třetí vizualizaci
 
 ### Statistická aplikace Test jednoho průměru
 
-Stránka [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd) ([upřesnění R87](../rozhodnuti/postupy-a-dokumentace.md#r87-upresneni-2026-11-27); skutečný obsah k 2026-11-27):
+Stránka [Test jednoho průměru](../../quarto/app_jeden_prumer.qmd) ([upřesnění R87](../rozhodnuti/vizualizace-a-aplikace.md#r87-upresneni-2026-11-27); skutečný obsah k 2026-11-27):
 
 - **Odkaz z kapitoly:** blok „Spočítejte si: test jednoho průměru“ na konci oddílu
   [Jednovýběrový *t*-test](../../quarto/kapitola_07.qmd#sec-t-test), za příkladem PDI;

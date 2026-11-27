@@ -74,7 +74,7 @@ a „Statistické aplikace“, potom [literatura](../quarto/literatura.qmd) a t�
 v pořadí slovníček → značení a vzorce → Excel. Nové výkladové kapitoly
 patří před vizualizace, aplikace, literaturu a přehledy.
 
-**Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/postupy-a-dokumentace.md#r65-interaktivni-vizualizace)):
+**Interaktivní vizualizace od 2026-11-05** ([R65](rozhodnuti/vizualizace-a-aplikace.md#r65-interaktivni-vizualizace)):
 jedna stránka na vizualizaci, nikoli na kapitolu. Vizualizace doplňují
 výklad, nezavádějí nové pojmy a nejsou samostatným procvičením ve smyslu
 této mapy. V postranní nabídce webu je jejich část ve výchozím stavu sbalená.
@@ -106,7 +106,7 @@ a [jak tvar mraku bodů souvisí s korelačním koeficientem](../quarto/viz_kore
 ke kapitole 10 ([karta](kapitoly/10-korelace.md#interaktivni-vizualizace-10); regrese a *r*² jen ve vizualizaci).
 Náměty dalších jsou jen otevřeným návrhem v [plánu pokračování](kapitoly/plan-pokracovani.md#plan-vizualizace).
 
-**Statistické aplikace od 2026-11-25** ([R87](rozhodnuti/postupy-a-dokumentace.md#r87-statisticke-aplikace)):
+**Statistické aplikace od 2026-11-25** ([R87](rozhodnuti/vizualizace-a-aplikace.md#r87-statisticke-aplikace)):
 jedna stránka na aplikaci, která počítá probraný postup pro data zadaná
 studentem a shrnuje jeho princip, předpoklady a vzorce s odkazy do kapitol.
 Aplikace nezavádějí nové pojmy (s výjimkou schválených postupů: pravidla oboustranné

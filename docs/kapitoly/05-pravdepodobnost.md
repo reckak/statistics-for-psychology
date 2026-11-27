@@ -10,7 +10,7 @@ Schválený plán z 2026-10-11 byl nahrazen touto mapou skutečného textu;
 dohodu dokládají [R21](../rozhodnuti/kapitola-05.md#r21-rozsah-kapitoly-5),
 [R22](../rozhodnuti/kapitola-05.md#r22-znaceni-pravdepodobnosti),
 [R23](../rozhodnuti/kapitola-05.md#r23-terminologie-kapitoly-5) a
-[historie](../../quarto/README.md#dohoda-kapitola-05).
+[historie](../historie/2026-10.md#dohoda-kapitola-05).
 
 **Vstup:** relativní a kumulativní četnosti, určení celku, doplněk a sumace
 (kap. 2); průměr, směrodatná odchylka, vážený průměr, kumulativní kvantil
@@ -106,7 +106,7 @@ ve cvičení 7 (Howell, s. 122–123).
 
 <a id="interaktivni-vizualizace-05"></a>
 
-**Interaktivní vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-binom)):**
+**Interaktivní vizualizace (2026-11-06, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-binom)):**
 na konci oddílu [Právě, nejvýše, alespoň](../../quarto/kapitola_05.qmd#sec-binom-kumulace),
 před oddílem o normální aproximaci, odkazuje blok „Vyzkoušejte si: binomické
 rozdělení“ na stránku [Pravděpodobnost počtu úspěchů](../../quarto/viz_binomicke_rozdeleni.qmd);
@@ -132,7 +132,7 @@ a „více než 10“, obě aproximace příkladu s 200 pokusy proti nesplněné
 podmínce pro n = 20 a π = 0,05 a zužování rozdělení podílu s rostoucím n.
 Soulad karty s textem zkontrolován 2026-11-06.
 
-**Vizualizace Bayesovy věty (2026-11-06, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-06-bayes)):**
+**Vizualizace Bayesovy věty (2026-11-06, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-06-bayes)):**
 na konci oddílu [Obrácení podmínky a Bayesova věta](../../quarto/kapitola_05.qmd#sec-bayes),
 za nepovinným rozšířením o šancích a před oddílem o náhodné proměnné,
 odkazuje blok „Vyzkoušejte si: Bayesova věta“ na stránku

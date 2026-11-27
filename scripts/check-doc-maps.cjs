@@ -12,7 +12,11 @@ const requireSources = args.includes('--require-sources');
 const mapRoots = ['docs/OSNOVA.md', 'docs/ZDROJE.md', 'docs/ROZHODNUTI.md'];
 const mapDirs = ['docs/kapitoly/', 'docs/zdroje/', 'docs/rozhodnuti/'];
 const isMap = file => mapRoots.includes(file) || mapDirs.some(dir => file.startsWith(dir));
-const entryDocs = ['README.md', 'docs/PROVOZ.md'];
+// Entry documents: links from and into them are checked in full. Detailed
+// operating guides and the monthly archive of the author history are included.
+const entryDocs = ['README.md', 'docs/PROVOZ.md', 'quarto/README.md',
+ ...['docs/provoz', 'docs/historie'].filter(dir => fs.existsSync(path.join(root, dir)))
+  .flatMap(dir => walk(dir)).filter(f => f.endsWith('.md'))];
 const isLinkTarget = file => isMap(file) || entryDocs.includes(file);
 const fullCheck = file => isMap(file) || entryDocs.includes(file) || ['AGENTS.md','docs/ROZHODNUTI.md','docs/SLOVNIK.md'].includes(file);
 function walk(dir) {

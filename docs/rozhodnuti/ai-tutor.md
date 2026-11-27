@@ -155,7 +155,7 @@ autorem a později nepřepisované. Studentský návod je nečíslovaná stránk
 není součástí PDF ani balíčku tutora. Upřesňuje [R64](#r64-pravidla-ai-tutoru)
 (umístění výstupů a verze zůstávají). Hlavní místo pravidel je
 [AITUTORS.md](../AITUTORS.md#verze-a-vydání), postup v
-[provozním návodu](../PROVOZ.md#vydani-ai-tutora-na-githubu).
+[provozním návodu](../provoz/ai-tutor.md#vydani-ai-tutora-na-githubu).
 
 <a id="r85-tutor-kapitoly-obrazky-tempo"></a>
 

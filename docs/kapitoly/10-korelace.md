@@ -104,7 +104,7 @@ Interaktivní vizualizace ke kapitole 10 původně nebyly (R71); od 2026-11-23 j
 
 <a id="interaktivni-vizualizace-10"></a>
 
-**Interaktivní vizualizace (2026-11-23, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace), [doplnění R71](../rozhodnuti/kapitola-10.md#r71-doplneni-2026-11-23)):**
+**Interaktivní vizualizace (2026-11-23, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-23-korelace), [doplnění R71](../rozhodnuti/kapitola-10.md#r71-doplneni-2026-11-23)):**
 na stránku [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd)
 odkazují dva bloky „Vyzkoušejte si“: na konci pododdílu
 [Vydělíme směrodatnými odchylkami](../../quarto/kapitola_10.qmd#sec-vydelime) (před rozšířením o mezích *r*)

@@ -57,7 +57,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Nahrazuje:** stav „žádný schválený plán“ v osnově ve znění z 2026-10-11. Výčet témat mimo kapitolu 5 v [R21](kapitola-05.md#r21-rozsah-kapitoly-5) zůstává historickým záznamem.
 
-**Doklad:** autorovy volby při projednání 2026-10-12: „Jedna kapitola, dva bloky“, „Parkování jako páteř“, „Binomický test i z-test“, intervaly spolehlivosti „Odložit do další kapitoly“ a všechna čtyři nabídnutá rozšíření. Návrh potom čtyřikrát vrátil s pokyny, mimo jiné: „Původních 23 položek spoj přibližně do 10–12 větších výkladových oddílů. Každý oddíl má rozvíjet jednu otázku od konkrétního příkladu přes vysvětlení k interpretaci.“; „Nejdříve využij známý binomický příklad z kapitoly 5.“; „Před velkou simulaci vlož krátký přesný příklad: všechny uspořádané dvojice ze tří stejně pravděpodobných hodnot při výběru s vracením.“; „Důsledně rozliš skutečnou parkovací studii, výukový model a simulovaná data.“; „Povinně krátce vysvětli odhad směrodatné chyby pomocí s/√n.“; „Zákon velkých čísel krátce pojmenuj a vysvětli v hlavním textu.“; „Hypotézy a směr testu stanov před první p-hodnotou.“; „Sílu vysvětluj pro konkrétní alternativní hodnoty.“; „Standardizovaný rozdíl přesuň do krátkého nepovinného bloku.“; „Rozlišuj rozhodnutí statistického testu a interpretaci vzhledem k výzkumné hypotéze.“ Po zapracování návrh schválil. Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../../quarto/README.md#dohoda-kapitola-06).
+**Doklad:** autorovy volby při projednání 2026-10-12: „Jedna kapitola, dva bloky“, „Parkování jako páteř“, „Binomický test i z-test“, intervaly spolehlivosti „Odložit do další kapitoly“ a všechna čtyři nabídnutá rozšíření. Návrh potom čtyřikrát vrátil s pokyny, mimo jiné: „Původních 23 položek spoj přibližně do 10–12 větších výkladových oddílů. Každý oddíl má rozvíjet jednu otázku od konkrétního příkladu přes vysvětlení k interpretaci.“; „Nejdříve využij známý binomický příklad z kapitoly 5.“; „Před velkou simulaci vlož krátký přesný příklad: všechny uspořádané dvojice ze tří stejně pravděpodobných hodnot při výběru s vracením.“; „Důsledně rozliš skutečnou parkovací studii, výukový model a simulovaná data.“; „Povinně krátce vysvětli odhad směrodatné chyby pomocí s/√n.“; „Zákon velkých čísel krátce pojmenuj a vysvětli v hlavním textu.“; „Hypotézy a směr testu stanov před první p-hodnotou.“; „Sílu vysvětluj pro konkrétní alternativní hodnoty.“; „Standardizovaný rozdíl přesuň do krátkého nepovinného bloku.“; „Rozlišuj rozhodnutí statistického testu a interpretaci vzhledem k výzkumné hypotéze.“ Po zapracování návrh schválil. Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../historie/2026-10.md#dohoda-kapitola-06).
 
 <a id="r29-znaceni-kapitoly-6"></a>
 
@@ -76,7 +76,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Důvod:** dodržet pravidlo o řeckých značkách pro parametry a latince pro výběrové charakteristiky a zabránit záměně p-hodnoty s podílem, kterou předjímalo už R22.
 
-**Doklad:** značení bylo součástí návrhu, který autor po čtyřech úpravách schválil; ke značení samotnému připomínku neměl. Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../../quarto/README.md#dohoda-kapitola-06).
+**Doklad:** značení bylo součástí návrhu, který autor po čtyřech úpravách schválil; ke značení samotnému připomínku neměl. Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../historie/2026-10.md#dohoda-kapitola-06).
 
 <a id="r30-terminologie-kapitoly-6"></a>
 
@@ -100,7 +100,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Nahrazuje:** pracovní označení „standardní chyba“ v osnově a ve výčtu R21; R21 zůstává historickým záznamem. Zpřesňuje pravidlo hesla výběrová variabilita v registru.
 
-**Doklad:** autorova volba „Směrodatná chyba“ a pokyny z 2026-10-12: „Sampling distribution → výběrové rozdělení. Při zavedení používej úplnější označení ‚výběrové rozdělení statistiky‘“; „Rozlišuj výběrovou variabilitu, výběrovou chybu a směrodatnou chybu.“; „Statistical power → statistická síla jako hlavní termín; síla testu jako alternativa.“; „Critical region / rejection region → kritický obor jako hlavní termín. Uveď také oblast zamítnutí“; „Effect size → velikost účinku jako hlavní termín; velikost efektu uveď jako synonymum.“; „Zachovej srozumitelné rozhodovací formulace ‚zamítáme nulovou hypotézu‘ a ‚nulovou hypotézu nezamítáme‘.“; „Substantive significance → věcná významnost a practical significance → praktická významnost v učebnici rozlišuj.“ Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../../quarto/README.md#dohoda-kapitola-06).
+**Doklad:** autorova volba „Směrodatná chyba“ a pokyny z 2026-10-12: „Sampling distribution → výběrové rozdělení. Při zavedení používej úplnější označení ‚výběrové rozdělení statistiky‘“; „Rozlišuj výběrovou variabilitu, výběrovou chybu a směrodatnou chybu.“; „Statistical power → statistická síla jako hlavní termín; síla testu jako alternativa.“; „Critical region / rejection region → kritický obor jako hlavní termín. Uveď také oblast zamítnutí“; „Effect size → velikost účinku jako hlavní termín; velikost efektu uveď jako synonymum.“; „Zachovej srozumitelné rozhodovací formulace ‚zamítáme nulovou hypotézu‘ a ‚nulovou hypotézu nezamítáme‘.“; „Substantive significance → věcná významnost a practical significance → praktická významnost v učebnici rozlišuj.“ Záznam „Kapitola 6: dohoda o obsahu“ v [historii](../historie/2026-10.md#dohoda-kapitola-06).
 
 <a id="r56-p-hodnota-cohen"></a>
 
@@ -115,7 +115,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 **Důvod:** zápis odpovídá běžné odborné praxi a APA; záměnu s podílem řeší kontext a delší tvar. Cohenova pásma studenti v literatuře potkají a mají znát jejich omezení.
 
-**Doklad:** autorovy připomínky ke kapitole 6 z 2026-10-31: „p-hodnotu bych psal s malým kurzivním p. Taky bych se nebál použít ji zapsat někdy jenom kurzivním p, i když tak označujeme i podíly; prostě bych uvedl, že kdyby mohlo dojít k záměně, použijeme delší označení ‚p-hodnota‘, nejen ‚p‘.“ a „Já bych Cohenova přibližná pravidla uvedl, ale s upozorněním, že sám Cohen je doporučoval používat spíš v případě nouze, pokud nemáme jiná vodítka.“ Při upřesnění autor zvolil platnost „Celá kniha“ a zápis „Vždy malé *p*“. Záznam „Kapitola 6: revize podle autorových připomínek“ v [historii](../../quarto/README.md#revize-kapitola-06-2026-10-31).
+**Doklad:** autorovy připomínky ke kapitole 6 z 2026-10-31: „p-hodnotu bych psal s malým kurzivním p. Taky bych se nebál použít ji zapsat někdy jenom kurzivním p, i když tak označujeme i podíly; prostě bych uvedl, že kdyby mohlo dojít k záměně, použijeme delší označení ‚p-hodnota‘, nejen ‚p‘.“ a „Já bych Cohenova přibližná pravidla uvedl, ale s upozorněním, že sám Cohen je doporučoval používat spíš v případě nouze, pokud nemáme jiná vodítka.“ Při upřesnění autor zvolil platnost „Celá kniha“ a zápis „Vždy malé *p*“. Záznam „Kapitola 6: revize podle autorových připomínek“ v [historii](../historie/2026-10.md#revize-kapitola-06-2026-10-31).
 
 <a id="r57-rozdeleni-p-omyly"></a>
 

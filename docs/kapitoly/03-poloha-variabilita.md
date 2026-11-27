@@ -97,7 +97,7 @@ modelů od náhodných výběrů. Tuto odlišnost je nutné zachovat i v pokrač
 
 <a id="interaktivni-vizualizace-03"></a>
 
-**Interaktivní vizualizace (2026-11-07, [upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-07-posun)):**
+**Interaktivní vizualizace (2026-11-07, [upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-07-posun)):**
 na konci oddílu [Co od ukazatelů polohy a variability očekáváme](../../quarto/kapitola_03.qmd#sec-vlastnosti-ukazatelu)
 odkazuje blok „Vyzkoušejte si: posun a změna jednotek“ na stránku
 [Co s rozdělením udělá posun a změna jednotek](../../quarto/viz_posun_a_jednotky.qmd);

@@ -193,7 +193,7 @@ nebo nesprávnému čtení výsledků po změně vstupů sešitu.
 **Doklad:** autor po předložení dvanácti nálezů a tří doporučení zadal:
 „Zapracuj všechny uvedené opravy i didaktická doporučení do kapitoly 5
 a souvisejících souborů. Na listu Binom ponech n = 5 a umožni měnit jen B3.“
-Rozsah ověření zaznamenává [autorská historie](../../quarto/README.md#revize-kapitoly-5-2026-10-12).
+Rozsah ověření zaznamenává [autorská historie](../historie/2026-10.md#revize-kapitoly-5-2026-10-12).
 
 <a id="r52-terminologie-revize-kapitoly-5"></a>
 
@@ -231,4 +231,4 @@ pozitivního/negativního testu‘ … Takže bych pojmy … používal jako pri
 překlad“; „Asi by bylo lepší tyto úrovně konzistentně nazývat jako ‚nízký
 stres‘ a ‚zvýšený stres‘.“ Na doplňující dotazy autor zvolil „Číslo:
 ‚doplněk do 1‘“ a ve vzorcích „Celé názvy“. Rozsah ověření zaznamenává
-[autorská historie](../../quarto/README.md#revize-kapitoly-5-2026-10-27).
+[autorská historie](../historie/2026-10.md#revize-kapitoly-5-2026-10-27).

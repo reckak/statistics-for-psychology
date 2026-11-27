@@ -56,7 +56,7 @@ Níže jsou zachovány původní záznamy schválených voleb, jejich důvody a 
 
 <a id="r71-doplneni-2026-11-23"></a>
 
-**Doplnění 2026-11-23 (vizualizace korelace):** bod „Mimo kapitolu“ vylučoval mimo jiné regresi a *r*² a další samostatnou interaktivní vizualizaci. Autor 2026-11-23 zadal a schválil vizualizaci [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd), která na ni navazuje; tím je R71 v bodě o vizualizaci částečně nahrazeno. Regresní přímka, rezidua, koeficient determinace a pravděpodobnostní elipsy jsou jen součástí vizualizace s krátkým vysvětlením na její stránce; výklad kapitoly 10 regresi a *r*² dál nezahrnuje. Rozsah a doklad eviduje [upřesnění R65](postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace).
+**Doplnění 2026-11-23 (vizualizace korelace):** bod „Mimo kapitolu“ vylučoval mimo jiné regresi a *r*² a další samostatnou interaktivní vizualizaci. Autor 2026-11-23 zadal a schválil vizualizaci [Jak tvar mraku bodů souvisí s korelačním koeficientem](../../quarto/viz_korelace.qmd), která na ni navazuje; tím je R71 v bodě o vizualizaci částečně nahrazeno. Regresní přímka, rezidua, koeficient determinace a pravděpodobnostní elipsy jsou jen součástí vizualizace s krátkým vysvětlením na její stránce; výklad kapitoly 10 regresi a *r*² dál nezahrnuje. Rozsah a doklad eviduje [upřesnění R65](vizualizace-a-aplikace.md#r65-upresneni-2026-11-23-korelace).
 
 <a id="r72-znaceni-kapitoly-10"></a>
 

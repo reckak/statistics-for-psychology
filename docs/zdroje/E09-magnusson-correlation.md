@@ -33,7 +33,7 @@ pravděpodobnostní elipsy, Vennův diagram a graf spojnic. Nepřevzat žádný 
 příklady jsou z kapitol 8 a 10 a Anscombův kvartet podle [E07](E07-anscombe-1973.md#e07-anscombe-1973).
 Vlastní doplňky: kvadranty se součiny odchylek, Spearmanův korelační koeficient, test a Fisherův
 interval, bodový graf pořadí a počty bodů uvnitř elips. Nepřevzato: načtení CSV, uložení stavu
-a předvolba „Anscombosaurus“ ([upřesnění R65](../rozhodnuti/postupy-a-dokumentace.md#r65-upresneni-2026-11-23-korelace)).
+a předvolba „Anscombosaurus“ ([upřesnění R65](../rozhodnuti/vizualizace-a-aplikace.md#r65-upresneni-2026-11-23-korelace)).
 
 **Nezávislé ověření:** odborná tvrzení stránky nebyla samostatně ověřována; všechny hodnoty vizualizace
 ověřuje vlastní výpočet v R (`scripts/viz-korelace.R`).
