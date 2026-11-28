@@ -65,6 +65,7 @@ ch3_dots <- function(x,col='#267888',...) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_03/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch3_fig <- function(...) tf_figure('kapitola_03',...)
 # Numbers inside texts for the tutor: decimal comma and a true minus sign.
 ch3_num <- function(x,digits=2) sub('^-','−',formatC(x,format='f',digits=digits,decimal.mark=','))
@@ -379,7 +380,7 @@ ch3_draw('korekce-rozptylu',{
   z<-ch3_simulation_summary;cols<-c('#B16A26','#267888');xc<-c(1,4,7);off<-c(-.45,.45)
   plot(NA,xlim=c(-.4,8.4),ylim=c(0,23),xaxt='n',bty='l',xaxs='i',
     ylab='Rozptyl jednoho výběru (min²)',xlab='Velikost výběru')
-  axis(1,at=xc,labels=paste0('n = ',z$n),tick=FALSE)
+  fl_axis(1,at=xc,labels=paste0('*n* = ',z$n),tick=FALSE)
   abline(h=8,lty=2,lwd=2)
   set.seed(20261016)
   for(k in seq_along(ch3_simulations)) for(j in 1:2) {
@@ -396,7 +397,7 @@ ch3_draw('korekce-rozptylu',{
     rect(l0-.05,means[j,]-.8*h,l0+w+.05,means[j,]+.8*h,col='white',border=NA)
     text(l0,means[j,],lab,adj=0,cex=.85,font=2,col=cols[j])
   }
-  legend('topright',legend=c('Dělení n','Dělení n − 1','Průměr','Populační rozptyl 8'),
+  fl_legend('topright',legend=c('Dělení *n*','Dělení *n* − 1','Průměr','Populační rozptyl 8'),
     col=c(cols,'#223744','#223744'),pch=c(16,16,4,NA),pt.cex=c(1,1,1.3,NA),
     lty=c(NA,NA,NA,2),lwd=c(NA,NA,2.5,2),bty='n',cex=.85,ncol=2)
 },height=5.2)
@@ -455,8 +456,8 @@ ch3_draw('rozklad-souctu-ctvercu',{
   for(j in seq_along(b)) for(i in 1:2) if(h[i,j]>0)
     text(b[j],(if(i==1) 0 else h[1,j])+h[i,j]/2,h[i,j],font=2,col=c('white','#223744')[i])
   abline(v=mean(b[4:5]),lty=3,col='#667078')
-  legend('top',inset=c(0,-.14),xpd=NA,horiz=TRUE,bty='n',fill=rev(cols),border='white',cex=.9,
-    legend=c('Úbytek n (m − μ)²','Součet čtverců kolem výběrového průměru m'))
+  fl_legend('top',inset=c(0,-.14),xpd=NA,horiz=TRUE,bty='n',fill=rev(cols),border='white',cex=.9,
+    legend=c('Úbytek *n* (*m* − μ)²','Součet čtverců kolem výběrového průměru *m*'))
 },width=7.5,height=4.8)
 ch3_fig('rozklad-souctu-ctvercu','sloupce',note='Pět skládaných sloupců: čtyři stejně pravděpodobné výběry dvou hodnot z populace 4 a 8 minut a vpravo, za mezerou a tečkovanou svislou čarou, jejich průměr. Dolní modrozelená část je součet čtverců kolem výběrového průměru m, horní světle oranžová úbytek n (m − μ)²; v každé nenulové části je napsána její hodnota. Legenda je nad grafem.',panels=list(local({
   z <- ch3_decomposition; lab <- c(z$label,'Průměr')
@@ -583,8 +584,8 @@ ch3_draw('transformace',{
   par(mfrow=c(2,1),mar=c(4,4.5,3,.8))
   for(i in 1:2) {
     z<-seq(0,10,length.out=201);f<-if(i==1) function(x) 2+3*x else function(x) x^2
-    plot(z,f(z),type='l',lwd=2,col='#267888',xlab='Původní skór x',ylab='Nový skór y',
-      main=if(i==1) 'Lineární: y = 2 + 3x' else 'Nelineární: y = x²',bty='l')
+    plot(z,f(z),type='l',lwd=2,col='#267888',xlab='',ylab='',main='',bty='l')
+    fl_title(main=if(i==1) 'Lineární: *y* = 2 + 3*x*' else 'Nelineární: *y* = *x*²',xlab='Původní skór *x*',ylab='Nový skór *y*')
     points(c(2,3,8,9),f(c(2,3,8,9)),pch=19,col='#B16A26')
     segments(c(2,8),f(c(2,8)),c(3,9),f(c(2,8)),lty=3)
     arrows(c(3,9),f(c(2,8)),c(3,9),f(c(3,9)),code=3,angle=90,length=.08)

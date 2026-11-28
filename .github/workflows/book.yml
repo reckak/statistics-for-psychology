@@ -25,6 +25,13 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '22'
+      # Symbols in the chapter figures are drawn in STIX Two Math (R89); R finds it only when installed.
+      - name: Písmo STIX Two Math pro symboly v grafech
+        run: |
+          mkdir -p ~/.local/share/fonts
+          cp scripts/fonts/STIXTwoMath-Regular.otf ~/.local/share/fonts/
+          fc-cache -f
+          fc-list | grep -q "STIX Two Math"
       - run: quarto render
       - run: Rscript --vanilla quarto/_verification/check-chapter-02.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-03.R
@@ -32,6 +39,7 @@ jobs:
       - run: Rscript --vanilla quarto/_verification/check-chapter-05.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-06.R
       - run: Rscript --vanilla quarto/_verification/check-chapter-07.R
+      - run: Rscript --vanilla scripts/check-figure-labels.R
       - run: npm install --no-save --package-lock=false playwright@1.55.0
       - run: npx playwright install --with-deps chromium
         timeout-minutes: 10

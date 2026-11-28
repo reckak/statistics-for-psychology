@@ -12,6 +12,7 @@ ch6_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_06/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch6_fig <- function(...) tf_figure('kapitola_06',...)
 # Histogram bins with the breaks of ch6_hist(), limited to the plotted range of the x axis (xlim plus the 4 % margin).
 ch6_fig_bins <- function(v,by,xlim,scale='podil') {
@@ -73,7 +74,8 @@ ch6_group_extreme <- rank(abs(ch6_group_m-50))>130
 ch6_hist <- function(v,by,xlim,main,ylim=NULL,col=ch6_blue,xlab='',ylab='Podíl výběrů',density=FALSE,...) {
   br <- seq(floor(min(v,xlim[1])/by)*by,ceiling(max(v,xlim[2])/by)*by,by=by)
   h <- hist(v,breaks=br,plot=FALSE); y <- h$counts/length(v)/if(density) by else 1
-  plot(NA,xlim=xlim,ylim=if(is.null(ylim)) c(0,max(y)*1.16) else ylim,xlab=xlab,ylab=ylab,main=main,bty='l',yaxs='i',...)
+  plot(NA,xlim=xlim,ylim=if(is.null(ylim)) c(0,max(y)*1.16) else ylim,xlab='',ylab='',main='',bty='l',yaxs='i',...)
+  fl_title(main=main,xlab=xlab,ylab=ylab)
   rect(br[-length(br)],0,br[-1],y,col=col,border='white',lwd=.4)
   invisible(h)
 }
@@ -84,7 +86,8 @@ ch6_area <- function(from,to,mean,sd,col) {
 }
 ch6_curve <- function(mean,sd,xlim,main,xlab,ylim=NULL,ylab='Hustota',...) {
   x <- seq(xlim[1],xlim[2],length.out=500); y <- dnorm(x,mean,sd)
-  plot(NA,xlim=xlim,ylim=if(is.null(ylim)) c(0,max(y)*1.2) else ylim,xlab=xlab,ylab=ylab,main=main,bty='l',yaxs='i',...)
+  plot(NA,xlim=xlim,ylim=if(is.null(ylim)) c(0,max(y)*1.2) else ylim,xlab='',ylab='',main='',bty='l',yaxs='i',...)
+  fl_title(main=main,xlab=xlab,ylab=ylab)
   invisible(list(x=x,y=y))
 }
 # Figures -------------------------------------------------------------------------
@@ -110,7 +113,7 @@ ch6_draw('podil-rozdeleni', {
     plot(k/n,p,type='h',lwd=if(n==20) 8 else 3.2,lend=1,col=ch6_blue,xlim=c(0,.6),ylim=c(0,.22),xlab='Podíl správných odpovědí ve výběru',ylab='Pravděpodobnost',main=paste0('Test s ',n,' otázkami'),bty='l',yaxs='i')
     abline(v=.25,lty=2,lwd=1.6,col=ch6_orange)
     text(.59,.2,paste0('směrodatná chyba\npodílu ',ch6_num(sqrt(.25*.75/n))),adj=1,cex=.84)
-    text(.262,.212,'π = 0,25',adj=0,cex=.8,col=ch6_orange)
+    fl_text(.262,.212,'π = 0,25',adj=0,cex=.8,col=ch6_orange)
   }
 },width=10,height=4.3)
 ch6_fig('podil-rozdeleni','sloupce',note='Dva panely vedle sebe se stejnými osami. Úzké modré svislé sloupce, oranžová přerušovaná čára v π = 0,25; vpravo nahoře je v každém panelu popisek se směrodatnou chybou podílu. Sloupce za pravým okrajem osy (podíly nad 0,6, pravděpodobnost prakticky nulová) nejsou uvedeny.',panels=lapply(c(20,80),function(n) { k <- 0:n; k <- k[k/n<=.624]
@@ -187,10 +190,11 @@ ch6_draw('smerodatna-chyba', {
   text(88,.045,'jednotliví řidiči:\nsměrodatná odchylka 15 s',adj=1,cex=.82,col=ch6_gray)
   text(40,.2,'průměry sta řidičů:\nsměrodatná chyba 1,5 s',adj=0,cex=.82,col=ch6_blue)
   n <- 1:400
-  plot(n,ch6_se(n),type='l',lwd=2.2,col=ch6_blue,ylim=c(0,15.5),xlab='Velikost výběru n',ylab='Směrodatná chyba průměru (s)',main='Čtyřnásobný výběr, poloviční chyba',bty='l',yaxs='i')
+  plot(n,ch6_se(n),type='l',lwd=2.2,col=ch6_blue,ylim=c(0,15.5),xlab='',ylab='Směrodatná chyba průměru (s)',main='Čtyřnásobný výběr, poloviční chyba',bty='l',yaxs='i')
+  fl_title(xlab='Velikost výběru *n*')
   k <- c(25,100,400); points(k,ch6_se(k),pch=21,bg=ch6_orange,col=ch6_ink,cex=1.4)
-  text(k[1:2]+12,ch6_se(k[1:2])+1.1,paste0('n = ',k[1:2],': ',c('3,0','1,5'),' s'),adj=0,cex=.84)
-  text(k[3],ch6_se(k[3])+1.5,'n = 400: 0,75 s',adj=1,cex=.84)
+  fl_text(k[1:2]+12,ch6_se(k[1:2])+1.1,paste0('*n* = ',k[1:2],': ',c('3,0','1,5'),' s'),adj=0,cex=.84)
+  fl_text(k[3],ch6_se(k[3])+1.5,'*n* = 400: 0,75 s',adj=1,cex=.84)
 },width=10,height=4.4)
 ch6_fig('smerodatna-chyba','krivka',note='Dva panely vedle sebe. Vlevo šedá křivka se světle šedou plochou pod ní (doby jednotlivých řidičů) a modrá úzká křivka (průměry sta řidičů) s popisky „jednotliví řidiči: směrodatná odchylka 15 s“ a „průměry sta řidičů: směrodatná chyba 1,5 s“. Vpravo modrá klesající křivka se třemi oranžovými body a jejich popisky.',panels=list(
   tf_panel('Řidiči a průměry sta řidičů','čárový graf','Doba (s)','Hustota',xlim=c(0,90),ylim=c(0,.29),
@@ -219,12 +223,12 @@ ch6_draw('zvc-clv', {
   ch6_strip <- function(label) { par(mar=c(0,0,0,0)); plot.new(); text(.5,.45,label,font=2,cex=1.25) }
   ch6_strip('Průměry v sekundách: rozptýlenost klesá')
   par(mar=c(4.3,4.2,2.2,.5),mgp=c(2.5,.6,0),cex=.74)
-  for(j in 1:4) ch6_hist(ch6_means[,j],1,c(0,90),paste0('n = ',ch6_sizes[j]),xlab='Průměr výběru (s)',ylim=c(0,.29))
+  for(j in 1:4) ch6_hist(ch6_means[,j],1,c(0,90),paste0('*n* = ',ch6_sizes[j]),xlab='Průměr výběru (s)',ylim=c(0,.29))
   ch6_strip('Tytéž průměry po standardizaci: tvar se blíží normální křivce (přerušovaně)')
   par(mar=c(4.3,4.2,2.2,.5),mgp=c(2.5,.6,0),cex=.74)
   for(j in 1:4) {
     z <- (ch6_means[,j]-ch6_mu)/ch6_se(ch6_sizes[j])
-    ch6_hist(z,.25,c(-4,5),paste0('n = ',ch6_sizes[j]),xlab='Standardizovaný průměr',ylab='Hustota',ylim=c(0,.52),density=TRUE)
+    ch6_hist(z,.25,c(-4,5),paste0('*n* = ',ch6_sizes[j]),xlab='Standardizovaný průměr',ylab='Hustota',ylim=c(0,.52),density=TRUE)
     curve(dnorm(x),from=-4,to=5,add=TRUE,lwd=1.8,lty=2,col=ch6_orange,n=300)
   }
 },width=10.4,height=6.6)
@@ -239,7 +243,8 @@ ch6_draw('clv-qq', {
   p <- (1:199)/200
   for(j in 1:4) {
     z <- (ch6_means[,j]-ch6_mu)/ch6_se(ch6_sizes[j])
-    plot(qnorm(p),quantile(z,p,names=FALSE),pch=16,cex=.55,col=ch6_blue,xlim=c(-3,3),ylim=c(-3,4.6),xlab='Teoretický normální kvantil',ylab='Kvantil standardizovaných průměrů',main=paste0('n = ',ch6_sizes[j]),bty='l')
+    plot(qnorm(p),quantile(z,p,names=FALSE),pch=16,cex=.55,col=ch6_blue,xlim=c(-3,3),ylim=c(-3,4.6),xlab='Teoretický normální kvantil',ylab='Kvantil standardizovaných průměrů',main='',bty='l')
+    fl_title(main=paste0('*n* = ',ch6_sizes[j]))
     abline(0,1,lty=2,lwd=1.5,col=ch6_orange)
   }
 },width=10.4,height=3.6)
@@ -322,7 +327,7 @@ ch6_draw('p-hodnota', {
   arrows(c(-ch6_diff,ch6_diff),.03,c(-ch6_diff,ch6_diff),.004,length=.07,lwd=1.6,col=ch6_orange)
   text(ch6_diff+.3,.045,'pozorovaný\nrozdíl 6,88 s',adj=c(0,.5),cex=.82,col=ch6_orange)
   text(-ch6_diff-.3,.045,'stejně velký rozdíl\nopačným směrem',adj=c(1,.5),cex=.82,col=ch6_orange)
-  text(0,.222,expression(italic(p)*'-hodnota = plocha za oběma šipkami dohromady, přibližně 0,001'),cex=.86,col=ch6_orange)
+  fl_text(0,.222,'*p*-hodnota = plocha za oběma šipkami dohromady, přibližně 0,001',cex=.86,col=ch6_orange)
 },width=8.6,height=4.6)
 ch6_fig('p-hodnota','krivka',note='Modrá normální křivka se středem v nule. Světle oranžově jsou vybarveny chvosty za kritickými hodnotami (šedé přerušované úsečky) s popisky „kritický obor: vlevo 2,5 %“ a „kritický obor: vpravo 2,5 %“. Dvě oranžové šipky míří shora na vodorovnou osu v pozorovaném rozdílu a ve stejně velkém rozdílu opačným směrem; sytě oranžová plocha za nimi je sotva viditelná.',panels=list(local({
   f <- function(x) dnorm(x,0,ch6_se_diff)
@@ -342,7 +347,7 @@ ch6_draw('sila', {
     lines(cv$x,cv$y,lwd=2,col=ch6_blue); abline(v=c(-ch6_crit,ch6_crit),lty=2,lwd=1.4,col=ch6_ink)
     text(14.8,.228,paste0('pravděpodobnost\nzamítnutí ',ch6_num(ch6_power(d),2)),adj=1,cex=.9,col=ch6_orange)
   }
-  mtext('Oboustranný test, α = 0,05; kritické hodnoty −4,16 s a 4,16 s (přerušovaně) jsou ve všech panelech stejné',1,line=.4,outer=TRUE,cex=.78)
+  fl_mtext('Oboustranný test, α = 0,05; kritické hodnoty −4,16 s a 4,16 s (přerušovaně) jsou ve všech panelech stejné',1,line=.4,outer=TRUE,cex=.78)
 },width=10,height=6.9)
 ch6_fig('sila','krivka',note=paste0('Čtyři panely ve dvou řadách po dvou se stejnými osami. Modrá křivka je normální rozdělení se středem ve skutečném rozdílu a se směrodatnou chybou ',ch6_num(ch6_se_diff,2),' s. Oranžově je vybarvena plocha za kritickými hodnotami (černé svislé přerušované čáry); její velikost uvádí popisek vpravo nahoře. Pod panely je text „Oboustranný test, α = 0,05; kritické hodnoty −',ch6_num(ch6_crit,2),' s a ',ch6_num(ch6_crit,2),' s (přerušovaně) jsou ve všech panelech stejné“.'),panels=lapply(c(0,3,5,8),function(d) {
   f <- function(x) dnorm(x,d,ch6_se_diff)
@@ -355,11 +360,12 @@ ch6_draw('rozdeleni-p', {
   cuts <- seq(0,1,.05)
   for(d in c(0,3,5,8)) {
     pr <- diff(vapply(cuts,function(c) ch6_p_le(c,d),numeric(1)))
-    plot(NA,xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i',bty='l',xlab=expression(italic(p)*'-hodnota jedné studie'),ylab='Pravděpodobnost',
+    plot(NA,xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i',bty='l',xlab='',ylab='Pravděpodobnost',
       main=if(d==0) 'Skutečný rozdíl 0 s: platí nulová hypotéza' else paste0('Skutečný rozdíl ',d,' s'),font.main=1,cex.main=1)
     rect(head(cuts,-1),0,cuts[-1],pr,col=c(ch6_orange,rep(ch6_fill,19)),border=c(ch6_orange,rep(ch6_blue,19)),lwd=.6)
     abline(h=.05,lty=2,lwd=1.3,col=ch6_ink)
-    text(.07,min(pr[1]+.06,.93),bquote(italic(p)*.(paste0(' ≤ 0,05: ',ch6_num(pr[1],3),if(d==0) ' (α)' else ' (síla)'))),adj=0,cex=.9,col=ch6_orange)
+    fl_title(xlab='*p*-hodnota jedné studie')
+    fl_text(.07,min(pr[1]+.06,.93),paste0('*p* ≤ 0,05: ',ch6_num(pr[1],3),if(d==0) ' (α)' else ' (síla)'),adj=0,cex=.9,col=ch6_orange)
   }
   mtext('Sto řidičů v každé skupině, oboustranný test. Sloupce po 0,05; přerušovaná čára 0,05 = rovnoměrné rozdělení za platnosti nulové hypotézy',1,line=.4,outer=TRUE,cex=.78)
 },width=10,height=6.9)
@@ -377,7 +383,7 @@ ch6_draw('stejny-rozdil', {
     lines(cv$x,cv$y,lwd=2.2,col=ch6_blue); segments(51,0,51,max(cv$y)*1.04,lty=2,lwd=1.5,col=ch6_ink)
     text(51.15,max(cv$y)*1.06,'pozorováno 51',adj=c(0,0),cex=.82)
     text(44.2,max(cv$y)*1.145,paste0('směrodatná chyba ',format(se),' bodu'),adj=0,cex=.84)
-    text(44.2,max(cv$y)*1.075,bquote(italic(p)*.(paste0('-hodnota ',if(n==25) ch6_num(2*pnorm(-1/se),2) else 'menší než 0,001'))),adj=0,cex=.84)
+    fl_text(44.2,max(cv$y)*1.075,paste0('*p*-hodnota ',if(n==25) ch6_num(2*pnorm(-1/se),2) else 'menší než 0,001'),adj=0,cex=.84)
   }
 },width=10,height=4.3)
 ch6_fig('stejny-rozdil','krivka',note='Dva panely vedle sebe se stejnou vodorovnou osou; svislé osy mají různý rozsah. Modrá křivka je normální rozdělení s průměrem 50 bodů a směrodatnou chybou 10/√n. Oranžově jsou vybarveny chvosty pod 49 a nad 51 bodů; černá přerušovaná úsečka s popiskem „pozorováno 51“ leží v 51 bodech. Vlevo nahoře jsou popisky se směrodatnou chybou a p-hodnotou.',panels=lapply(c(25,2500),function(n) {
@@ -390,12 +396,12 @@ ch6_draw('dva-testy', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.9,.8))
   k <- 0:20; p <- dbinom(k,20,.25)
   plot(k,p,type='h',lwd=8,lend=1,col=ifelse(k>=10,ch6_orange,ifelse(k==9,'#E3A77E',ch6_mute)),xlim=c(0,20),ylim=c(0,.23),xlab='Počet správných odpovědí z 20',ylab='Pravděpodobnost při tipování',main='Binomický test',bty='l',yaxs='i')
-  legend('topright',c(expression('10 a více: '*italic(p)*'-hodnota 0,014'),'9: patří do kritického oboru','8 a méně'),fill=c(ch6_orange,'#E3A77E',ch6_mute),bty='n',cex=.82)
-  cv <- ch6_curve(50,2,c(42,58),expression(bolditalic(z)*bold('-test průměru')),'Průměr 25 studentů (body)',ylim=c(0,.24))
+  fl_legend('topright',c('10 a více: *p*-hodnota 0,014','9: patří do kritického oboru','8 a méně'),fill=c(ch6_orange,'#E3A77E',ch6_mute),bty='n',cex=.82)
+  cv <- ch6_curve(50,2,c(42,58),'*z*-test průměru','Průměr 25 studentů (body)',ylim=c(0,.24))
   ch6_area(42,46,50,2,ch6_orange); lines(cv$x,cv$y,lwd=2.2,col=ch6_blue)
   abline(v=qnorm(.05,50,2),lty=2,lwd=1.5,col=ch6_ink)
   text(42.2,.091,'46 a méně:',adj=0,cex=.82,col=ch6_orange)
-  text(42.2,.077,expression(italic(p)*'-hodnota'),adj=0,cex=.82,col=ch6_orange)
+  fl_text(42.2,.077,'*p*-hodnota',adj=0,cex=.82,col=ch6_orange)
   text(42.2,.063,'0,023',adj=0,cex=.82,col=ch6_orange)
   text(qnorm(.05,50,2)+.25,.225,'kritická hodnota 46,7',adj=0,cex=.82)
 },width=10,height=4.3)

@@ -299,6 +299,15 @@ const server = http.createServer((req, res) => {
         await page.screenshot({path:'tmp/verification/ch10-lightbox-math-desktop.png'});
         await page.keyboard.press('Escape');
         await page.locator('.glightbox-container').waitFor({state:'detached'});
+        // R89: a caption with an italic symbol but no math (figure 10.x, Pearsonovo *r*) keeps the italic in the lightbox.
+        const lbR=page.locator('#fig-vyberove-r a.lightbox');
+        await lbR.scrollIntoViewIfNeeded();
+        await lbR.click();
+        const lbRTitle=page.locator('.glightbox-container .gslide.current .gslide-title');
+        await lbRTitle.locator('em').first().waitFor();
+        assert.equal(await lbRTitle.locator('em').first().innerText(),'r','Lightbox caption keeps the italic symbol r');
+        await page.keyboard.press('Escape');
+        await page.locator('.glightbox-container').waitFor({state:'detached'});
         const main10=await page.locator('main').innerText();
         assert(!/přijímáme nulovou hypotézu|nulová hypotéza byla přijata/i.test(main10.replace(/„[^“]*“/g,'')),'Non-rejection is never worded as acceptance');
         assert(/dynamickými poli/.test(main10),'The Excel version requirement is stated');
@@ -1290,6 +1299,11 @@ const server = http.createServer((req, res) => {
     const tdPlots = td.locator('.viz-plots svg[aria-label]');
     await tdPlots.nth(3).waitFor();
     assert.equal(await tdPlots.count(), 4, 'Densities, Q–Q plot and two error charts');
+    // R89: symbols in chart labels are math-italic letters in the browser's math font (assets/viz-labels.js).
+    const tdSym = await td.evaluate(el => [...el.querySelectorAll('.viz-plots svg text tspan.viz-math')].map(t => ({t: t.textContent, f: getComputedStyle(t).fontFamily, s: getComputedStyle(t).fontStyle})));
+    const mathZ = String.fromCodePoint(0x1D467), mathT = String.fromCodePoint(0x1D461);
+    assert(tdSym.some(x => x.t === mathZ && /math/.test(x.f) && x.s === 'normal'), 'Math-italic z in the Q–Q axis label');
+    assert(tdSym.some(x => x.t === mathT), 'Math-italic t in "Kvantil t-rozdělení"');
     assert.equal(await page.locator('pre.sourceCode:visible, .code-copy-button:visible, .observablehq--error').count(), 0, 'Visualization code, copy button or OJS error visible');
     const tdState = () => td.evaluate(el => el.vizCheck.state());
     const tdNear = (a, b, msg) => assert(Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b)), `${msg}: ${a} vs ${b}`);
@@ -3100,6 +3114,17 @@ const server = http.createServer((req, res) => {
       await page.locator('.ref-controls input').fill('nenalezitelnypojem');
       await page.evaluate(id=>location.hash=id,id);
       await page.locator('#'+id).waitFor({state:'visible'});
+    }
+    // R89: the private-use marks of assets/viz-labels.js never reach the text or aria attributes of a page.
+    const markRe = '[' + String.fromCharCode(0xE000) + '-' + String.fromCharCode(0xE003) + ']';
+    for (const file of fs.readdirSync(path.join(root, 'quarto')).filter(f => /^(viz|app)_.*[.]html$/.test(f))) {
+      await page.goto(base + 'quarto/' + file, { waitUntil: 'networkidle' });
+      await page.locator('.viz').first().waitFor();
+      await page.waitForTimeout(300);
+      const left = await page.evaluate(re => { const r = new RegExp(re); return r.test(document.body.innerText) || [...document.querySelectorAll('svg text, [aria-label], title')].some(e => r.test(e.textContent) || r.test(e.getAttribute('aria-label') || '')); }, markRe);
+      assert(!left, `Symbol marks left on ${file}`);
+      const symbols = await page.locator('.viz svg tspan.viz-math').count();
+      if (/^viz_(t_rozdeleni|binomicke_rozdeleni|normalni_rozdeleni|chi_kvadrat)/.test(file)) assert(symbols > 0, `Chart symbols in the math font on ${file}`);
     }
     assert(!fs.existsSync(path.join(root, 'sources')), 'Private sources copied to web');
     assert(!fs.existsSync(path.join(root, 'quarto/README.md')), 'Author documentation copied to web');

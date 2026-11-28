@@ -21,6 +21,7 @@ ch4_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_04/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch4_fig <- function(...) tf_figure('kapitola_04',...)
 ch4_num <- function(x,digits=2) sub('^-','−',formatC(x,format='f',digits=digits,decimal.mark=','))
 # Series of the model N(50, 10) shared by the figure records: the density curve and a shaded area under it.
@@ -40,7 +41,8 @@ ch4_draw('standardizace', {
   v <- c(4,5,5,6,10); z <- (v-mean(v))/sd(v); h <- c(1,1,1.25,1,1)
   for(k in 1:2) {
     a <- if(k==1) v else z
-    plot(a,h,pch=19,cex=1.35,col=ch4_blue,yaxt='n',ylab='',ylim=c(.6,1.6),xlim=range(a)+c(-.15,.15)*diff(range(a)),bty='n',xlab=if(k==1)'Doba dokončení úlohy (minuty)' else expression(italic(z)*'-skór'),main=if(k==1)'Původní hodnoty' else 'Po standardizaci')
+    plot(a,h,pch=19,cex=1.35,col=ch4_blue,yaxt='n',ylab='',ylim=c(.6,1.6),xlim=range(a)+c(-.15,.15)*diff(range(a)),bty='n',xlab='',main=if(k==1)'Původní hodnoty' else 'Po standardizaci')
+    fl_title(xlab=if(k==1)'Doba dokončení úlohy (minuty)' else '*z*-skór')
     abline(v=if(k==1)mean(v) else 0,lty=2,col=ch4_orange)
   }
 },height=5)
@@ -55,10 +57,10 @@ ch4_draw('parametry', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.6,.6))
   ch4_curve(main='Mění se průměr',xlim=c(10,110))
   curve(dnorm(x,65,10),add=TRUE,col=ch4_orange,lwd=2.3,lty=2)
-  legend('topright',c('N(50, 10)','N(65, 10)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
+  fl_legend('topright',c('*N*(50, 10)','*N*(65, 10)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
   ch4_curve(main='Mění se směrodatná odchylka',xlim=c(0,100))
   curve(dnorm(x,50,15),add=TRUE,col=ch4_orange,lwd=2.3,lty=2)
-  legend('topright',c('N(50, 10)','N(50, 15)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
+  fl_legend('topright',c('*N*(50, 10)','*N*(50, 15)'),col=c(ch4_blue,ch4_orange),lty=1:2,lwd=2,bty='n',cex=.74)
 },width=10)
 ch4_fig('parametry','krivka',note='Dva panely vedle sebe. V každém je modrá plná křivka hustoty modelu N(50, 10) a oranžová přerušovaná křivka druhého modelu; legenda vpravo nahoře uvádí oba modely zápisem N(průměr, směrodatná odchylka).',panels=local({
   p <- function(title,xlim,mu,sigma) tf_panel(title,'čárový graf','Skór pozornosti (body)','Hustota (na bod)',xlim=xlim,ylim=c(0,.044),
@@ -231,13 +233,13 @@ ch4_draw('skaly', {
     y<-5-k;segments(-3,y,3,y,col=ch4_blue,lwd=1.5)
     points(zz,rep(y,7),pch=19,col=ch4_blue)
     text(zz,y+.23,list(zz,50+10*zz,100+15*zz,10+3*zz)[[k]])
-    mtext(list(expression(italic(z)*'-skór'),'T-skór','IQ-skór (100/15)','Subtestový skór (10/3)')[[k]],side=2,at=y,line=.5,las=1,cex=.85)
+    fl_mtext(c('*z*-skór','T-skór','IQ-skór (100/15)','Subtestový skór (10/3)')[k],side=2,at=y,line=.5,las=1,cex=.85)
   }
   segments(-3,0,3,0,col=ch4_orange,lwd=1.5)
   points(zz,rep(0,7),pch=19,col=ch4_orange)
   text(zz,.23,format(round(100*pnorm(zz),1),decimal.mark=',',trim=TRUE),col=ch4_orange)
   mtext('Percentilové pořadí\nJEN normální model',side=2,at=0,line=.5,las=1,cex=.8,col=ch4_orange)
-  text(0,-.85,'Krok z = 0 → 1: +34,1     Krok z = 1 → 2: +13,6\nRozdíly na stupnici percentilového pořadí',cex=.82)
+  fl_text(0,-.85,'Krok *z* = 0 → 1: +34,1     Krok *z* = 1 → 2: +13,6\nRozdíly na stupnici percentilového pořadí',cex=.82)
 },height=5.8)
 ch4_fig('skaly','schema',note=paste0('Pět vodorovných stupnic pod sebou se sedmi svisle zarovnanými body pro z = −3 až 3: z-skór, T-skór (50 + 10z: 20 až 80), IQ-skór (100 + 15z: 55 až 145) a subtestový skór (10 + 3z: 1 až 19) modře, pod nimi oranžově percentilové pořadí s nadpisem „JEN normální model“ (',
   paste(ch4_num(100*pnorm(-3:3),1),collapse='; '),'). Pod stupnicemi je text o nestejných krocích percentilového pořadí: krok z = 0 → 1 je +34,1, krok z = 1 → 2 je +13,6.'))
@@ -254,7 +256,7 @@ ch4_draw('z-jako-jednotka', {
       text(mean(xx[j:(j+1)]),y+.8,if(k==1)'10 bodů' else '6 bodů',cex=.85)
     }
     points(xx[k+1],y,pch=21,cex=2.7,col=ch4_orange,bg='white',lwd=2)
-    text(8.5,y,paste0('z = ',k),font=2,cex=1.25)
+    fl_text(8.5,y,paste0('*z* = ',k),font=2,cex=1.25)
     text(2,y-.95,'průměr',cex=.85)
   }
   text(.5,.25,'Porovnáváme počet kroků od průměru, nikoli počty hrubých bodů.',adj=0,cex=.85)
@@ -265,9 +267,9 @@ ch4_draw('pasma-skoru', {
   pct<-function(v) paste0(format(round(100*v,1),nsmall=1,decimal.mark=',',trim=TRUE),' %')
   # Text on a white box so that it stays legible over the band boundaries.
   boxed<-function(x,y,label,adj=0,cex=.8,col='#223744') {
-    w<-strwidth(label,cex=cex);h<-strheight(label,cex=cex)
+    w<-fl_strwidth(label,cex=cex);h<-strheight(label,cex=cex)
     x0<-x-adj*w;rect(x0-.05,y-h/2-.012,x0+w+.05,y+h/2+.012,col='white',border=NA)
-    text(x0,y,label,adj=c(0,.5),cex=cex,col=col)
+    fl_text(x0,y,label,adj=c(0,.5),cex=cex,col=col)
   }
   for(k in 1:2) {
     breaks<-if(k==1) ch4_sten_breaks else ch4_stanine_breaks
@@ -286,7 +288,7 @@ ch4_draw('pasma-skoru', {
     mids<-(head(finite_breaks,-1)+tail(finite_breaks,-1))/2
     axis(1,at=inner,cex.axis=.78)
     # Axis title right under the z values; band numbers form a separate row below.
-    mtext(expression(italic(z)*'-skór'),side=1,line=1.75,cex=.95)
+    fl_mtext('*z*-skór',side=1,line=1.75,cex=.95)
     mtext(if(k==1)'Sten:' else 'Stanin:',side=1,line=4.4,at=-3.3,cex=.8)
     mtext(seq_along(mids),side=1,line=4.4,at=mids,cex=.85)
     # Model share of every band just above the axis; cumulative share above each boundary.
@@ -295,12 +297,12 @@ ch4_draw('pasma-skoru', {
     mtext('Kumulativně:',side=3,line=.25,at=-3.5,adj=0,cex=.62,col=ch4_hi_text)
     points(1.2,dnorm(1.2),pch=19,col=ch4_orange)
     arrows(1.2,.36,1.2,dnorm(1.2)+.02,length=.08,col=ch4_orange)
-    boxed(1.25,.39,paste0('z = 1,2 → ',if(k==1)'sten ' else 'stanin ',target),cex=.85)
+    boxed(1.25,.39,paste0('*z* = 1,2 → ',if(k==1)'sten ' else 'stanin ',target),cex=.85)
     arrows(c(-2.8,2.8),c(.07,.07),c(-3.4,3.4),c(.07,.07),length=.08)
     text(c(-2.8,2.8),c(.1,.1),'pokračuje',cex=.7)
     if(k==1) {
       points(c(1.1,1.4),c(.07,.07),pch=21,bg='white',col=ch4_orange,cex=.9)
-      boxed(-3.35,.41,'Malé kroužky: z = 1,1 a 1,4',cex=.75)
+      boxed(-3.35,.41,'Malé kroužky: *z* = 1,1 a 1,4',cex=.75)
       boxed(-3.35,.36,'Oba výsledky patří do stenu 8.',cex=.75)
     }
   }
@@ -337,7 +339,7 @@ ch4_draw('normalizace', {
   points(xr,uz(z),pch=21,bg=ch4_hi_text,col='white',cex=1.25)
   axis(2,at=ux(seq(10,50,10)),labels=seq(10,50,10))
   axis(4,at=uz(-2:2),labels=c('−2','−1','0','1','2'))
-  mtext('Doba řešení (s)',side=2,line=2.8,las=0); mtext(expression(italic(z)*'-skór po normalizaci'),side=4,line=2.8,las=0)
+  mtext('Doba řešení (s)',side=2,line=2.8,las=0); fl_mtext('*z*-skór po normalizaci',side=4,line=2.8,las=0)
   cnt <- 0:7
   axis(1,at=c(-g-cnt,g+cnt),labels=c(cnt,cnt))
   mtext('Četnost',side=1,line=2.5)
@@ -357,14 +359,14 @@ ch4_draw('qq-konstrukce', {
   par(mar=c(0,0,0,0));plot.new();plot.window(xlim=c(0,10),ylim=c(0,9),xaxs='i',yaxs='i')
   box_label<-function(x,y,w,h,label,fill=ch4_fill) {
     rect(x-w/2,y-h/2,x+w/2,y+h/2,col=fill,border=ch4_blue)
-    text(x,y,label,cex=.93)
+    fl_text(x,y,label,cex=.93)
   }
-  box_label(5,8.1,7,1,'První pořadí z 12 seřazených skórů: i = 1')
+  box_label(5,8.1,7,1,'První pořadí z 12 seřazených skórů: *i* = 1')
   arrows(c(4,6),7.5,c(2.5,7.5),6.8,length=.1)
   box_label(2.5,6,4,1.4,'DATA\nPrvní pozorovaný skór: 35 bodů')
-  box_label(7.5,6,4,1.4,'MODEL\nPodíl p = (1 − 0,5) / 12\n≈ 0,041667')
+  box_label(7.5,6,4,1.4,'MODEL\nPodíl *p* = (1 − 0,5) / 12\n≈ 0,041667')
   arrows(7.5,5.2,7.5,4.7,length=.1)
-  box_label(7.5,3.9,4,1.4,'Normální kvantil pro tento podíl\nz ≈ −1,731664')
+  box_label(7.5,3.9,4,1.4,'Normální kvantil pro tento podíl\n*z* ≈ −1,731664')
   arrows(2.5,5.2,3.6,2,length=.1)
   arrows(7.5,3.1,6.4,2,length=.1)
   text(1.65,3.65,'Svislá osa\npozorovaný skór',cex=.85)
@@ -374,9 +376,10 @@ ch4_draw('qq-konstrukce', {
 },width=8,height=6.7)
 ch4_fig('qq-konstrukce','schema',note='Vývojový diagram se šipkami. Nahoře „První pořadí z 12 seřazených skórů: i = 1“; odtud vlevo větev DATA („První pozorovaný skór: 35 bodů“, svislá osa) a vpravo větev MODEL („Podíl p = (1 − 0,5) / 12 ≈ 0,041667“, potom „Normální kvantil pro tento podíl z ≈ −1,731664“, vodorovná osa). Obě větve se sbíhají v poli „Bod Q–Q grafu: (−1,73; 35)“; dole věta „Pořadí propojí data s modelem; nejde o dvě měření jednoho člověka.“')
 ch4_draw('qq-priklad', {
-  plot(ch4_z,ch4_x,pch=19,col=ch4_blue,cex=1.15,xlab='Teoretický normální kvantil (z)',ylab='Pozorovaný skór pozornosti (body)',bty='l',xlim=c(-2,2),ylim=c(30,70))
+  plot(ch4_z,ch4_x,pch=19,col=ch4_blue,cex=1.15,xlab='',ylab='Pozorovaný skór pozornosti (body)',bty='l',xlim=c(-2,2),ylim=c(30,70))
+  fl_title(xlab='Teoretický normální kvantil (*z*)')
   abline(a=mean(ch4_x),b=sd(ch4_x),col=ch4_orange,lwd=2,lty=2)
-  legend('topleft',c('Pozorované skóry','Referenční přímka m + s z'),col=c(ch4_blue,ch4_orange),pch=c(19,NA),lty=c(NA,2),bty='n',cex=.85)
+  fl_legend('topleft',c('Pozorované skóry','Referenční přímka *m* + *s* *z*'),col=c(ch4_blue,ch4_orange),pch=c(19,NA),lty=c(NA,2),bty='n',cex=.85)
 },width=7)
 ch4_fig('qq-priklad','data',note='Modré body jsou pozorované skóry, oranžová přerušovaná čára je referenční přímka; legenda vlevo nahoře: „Pozorované skóry“ a „Referenční přímka m + s z“. Obrázek nemá titulek.',panels=list(
   tf_panel('Normální Q–Q graf dvanácti skórů pozornosti','bodový graf','Teoretický normální kvantil (z)','Pozorovaný skór pozornosti (body)',xlim=c(-2,2),ylim=c(30,70),
@@ -403,7 +406,8 @@ for(nm in names(ch4_simulations)) ch4_draw(paste0('diagnostika-',nm), {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.6))
   h<-hist(v,breaks='FD',plot=FALSE);xx<-seq(min(h$breaks),max(h$breaks),length.out=500)
   plot(h,freq=FALSE,col=ch4_fill,border='white',main=ch4_titles[nm],xlab='Simulovaný skór',ylab='Hustota',ylim=c(0,1.12*max(h$density,dnorm(xx,mean(v),sd(v)))));lines(xx,dnorm(xx,mean(v),sd(v)),col=ch4_orange,lwd=2)
-  plot(z,vs,pch=19,cex=.55,col='#8FB3C6',xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
+  plot(z,vs,pch=19,cex=.55,col='#8FB3C6',xlab='',ylab='Seřazený simulovaný skór',main='Normální Q–Q graf',bty='l')
+  fl_title(xlab='Teoretický normální kvantil (*z*)')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
   for(g in ch4_qq_groups) { r<-unlist(lapply(g$p,ch4_qq_ranks,n=n)); points(z[r],vs[r],pch=21,cex=1.25,bg=g$col,col='#1F2A30',lwd=.9) }
   legend(if(nm=='sikme_vlevo') 'bottomright' else 'topleft',vapply(ch4_qq_groups,`[[`,'',"lab"),pt.bg=vapply(ch4_qq_groups,`[[`,'',"col"),
@@ -425,9 +429,11 @@ for(nm in names(ch4_simulations)) local({
 ch4_draw('pp-qq', {
   v<-sort(ch4_simulations$sikme); n<-length(v); p<-(seq_len(n)-.5)/n; z<-qnorm(p)
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.8))
-  plot(z,v,pch=19,cex=.55,col=ch4_blue,xlab='Teoretický normální kvantil (z)',ylab='Seřazený simulovaný skór',main='Q–Q graf: porovnává hodnoty',bty='l')
+  plot(z,v,pch=19,cex=.55,col=ch4_blue,xlab='',ylab='Seřazený simulovaný skór',main='Q–Q graf: porovnává hodnoty',bty='l')
+  fl_title(xlab='Teoretický normální kvantil (*z*)')
   abline(a=mean(v),b=sd(v),lty=2,col=ch4_orange,lwd=2)
-  plot(p,pnorm((v-mean(v))/sd(v)),pch=19,cex=.55,col=ch4_blue,xlab='Empirický podíl (i − 0,5)/n',ylab='Modelový podíl podle normálního modelu',main='P–P graf: porovnává podíly',bty='l',xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i')
+  plot(p,pnorm((v-mean(v))/sd(v)),pch=19,cex=.55,col=ch4_blue,xlab='',ylab='Modelový podíl podle normálního modelu',main='P–P graf: porovnává podíly',bty='l',xlim=c(0,1),ylim=c(0,1),xaxs='i',yaxs='i')
+  fl_title(xlab='Empirický podíl (*i* − 0,5)/*n*')
   abline(0,1,lty=2,col=ch4_orange,lwd=2)
 },width=9,height=4.4)
 ch4_fig('pp-qq','simulace',note='Dva panely vedle sebe z týchž 200 simulovaných hodnot zešikmených doprava (stejné hodnoty jako v obrázku „Rozdělení zešikmené doprava“): modré body a oranžová přerušovaná referenční přímka.',panels=local({

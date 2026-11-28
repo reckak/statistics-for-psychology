@@ -14,6 +14,7 @@ souborech složky `docs/provoz/`.
 ## Obsah
 
 - [Sestavení a náhled webu](#práce-s-projektem)
+- [Symboly v grafech a písmo STIX Two Math](#symboly-v-grafech)
 - [Pracovní PDF kapitoly](#ruční-pdf-vybrané-kapitoly)
 - [PDF celé učebnice a jeho vydání](#pdf-cele-ucebnice)
 - [Export podkladů AI tutora](#export-ai-tutora)
@@ -28,6 +29,14 @@ souborech složky `docs/provoz/`.
 Pro sestavení webu potřebujete Quarto; projekt je ověřován s verzí **1.9.38**. V RStudiu otevřete kořenovou složku projektu. R slouží k interním kontrolám výpočtů, jeho kód se studentům nezobrazuje. Render nyní vyžaduje také **R** (ověřeno 4.5.1), dostupné jako `Rscript`. Před sestavením vytváří grafy z pevných dat; nejsou potřeba žádné další balíčky R. Spouštěcí skript zajišťuje načtení českých popisků v UTF-8 i ve Windows. Matematiku Quarto převádí do nativního MathML, takže její zobrazení nevyžaduje přístup k externímu serveru.
 
 Desetinná čísla v matematice zapisujte s čárkou ve složených závorkách, například `$0{,}841$`. Filtr `filters/desetinna-carka.lua` (zapnutý jen pro HTML v `_quarto.yml`) z takového zápisu vytvoří jediný číselný prvek `<mn>0,841</mn>`; bez něj by MathML čárku zobrazil jako oddělovač s mezerou („0, 841“). Obyčejná čárka bez závorek, například v `N(50,10)`, zůstává oddělovačem. Výraz, který už obsahuje desetinnou tečku, filtr ponechá beze změny a vypíše varování. Ruční PDF kapitol tento HTML filtr nepoužívá; samostatný filtr `scripts/pdf/typography.lua` převádí desetinné literály na atomická čísla v Typstu a váže česká jednopísmenná slova nezlomitelnou mezerou. Zdrojový zápis matematiky se nemění. `check-html.cjs` ověřuje, že počet čárek `{,}` v TeXu každého vzorce odpovídá počtu čárek uvnitř `<mn>`.
+
+<a id="symboly-v-grafech"></a>
+
+**Symboly v grafech ([R89](rozhodnuti/spolecne-konvence.md#r89-matematicke-pismo-grafu)).** Statistické symboly v grafech kapitol se sázejí písmem STIX Two Math. Grafy R kreslí popisky se symboly pomocnými funkcemi ze `scripts/figure-labels.R` (`fl_text()`, `fl_mtext()`, `fl_title()`, `fl_legend()`, `fl_axis()`, `fl_strwidth()`), které nahrazují stejnojmenné základní funkce. Symbol se v obyčejném řetězci označí hvězdičkami, index a exponent složenými závorkami: `'40 studentů: *r* = 0,52'`, `'*r*_{*s*}'`, `'*H*_{0}'`, `'τ_{*b*}'`, `'*z*^{2}'`; řecká písmena, `√` a `²` za symbolem se rozpoznají samy. Popisek bez symbolů jde beze změny do základní funkce. Plotmath (`expression()`, `bquote()`, `italic()`) v grafech kapitol nepoužívejte: neumí střídat rodiny písma. Funkce kreslí popisek po úsecích a umisťují ho podle pravidel R; shodu s `text()`, `mtext()`, `title()`, `axis()` a `legend()` (do 0,01 px) ověřil při zavedení kalibrační test popsaný v [historii](../quarto/README.md#matematicke-pismo-grafu-2026-11-28). V `tf_*()` pro AI tutora zůstává prostý text (`r_s`); sdílený řetězec se značkami převede `fl_plain()`.
+
+Písmo musí být nainstalované v systému, ze kterého R kreslí; soubor `scripts/fonts/STIXTwoMath-Regular.otf` (verze 2.13, licence `scripts/fonts/OFL.txt`) není součástí webu. Ve Windows ho otevřete a zvolte **Instalovat** (stačí pro aktuálního uživatele); GitHub Actions ho instaluje krokem ve `.github/workflows/book.yml`. Když písmo chybí, `fl_check_font()` vykreslování zastaví s návodem; R by jinak místo symbolů tiše nakreslilo prázdné obdélníky.
+
+Vizualizace a aplikace sázejí symboly v SVG grafech matematickým písmem prohlížeče (viz [návod k vizualizacím](provoz/vizualizace-a-aplikace.md#interaktivni-vizualizace)).
 
 Z kořene projektu vykreslete celou učebnici:
 

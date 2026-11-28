@@ -32,6 +32,8 @@ Pohled testu předpokládá, že ve výběru se stejnou $s$ vyšel jiný průmě
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the chapter 7 figures (scripts/kapitola_07.R).
   const blue = "#245D78", orange = "#B54E24", fill = "#B8DDE8", sand = "#FAECDD", ink = "#223744", gray = "#4D5A63", mute = "#A9BAC3", hiText = "#9A3F17";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -399,7 +401,7 @@ Pohled testu předpokládá, že ve výběru se stejnou $s$ vyšel jiný průmě
       marks.push(Plot.arrow([0], {x1: mid, x2: c.m, y1: yDist, y2: yDist, stroke: ink, strokeWidth: 1.3, headLength: 7, clip: true}));
       marks.push(Plot.arrow([0], {x1: mid, x2: c.mu0, y1: yDist, y2: yDist, stroke: ink, strokeWidth: 1.3, headLength: 7, clip: true}));
     }
-    marks.push(Plot.text([`|m − μ₀| = ${sc(dist)}; mezní chyba ${sc(c.me)}`], {x: a, y: yDist, dy: -9, dx: 2, textAnchor: "start", lineAnchor: "bottom", fill: gray, fontSize: small ? 10.5 : 12, text: d => d, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}));
+    marks.push(Plot.text([`|${sym("m")} − μ₀| = ${sc(dist)}; mezní chyba ${sc(c.me)}`], {x: a, y: yDist, dy: -9, dx: 2, textAnchor: "start", lineAnchor: "bottom", fill: gray, fontSize: small ? 10.5 : 12, text: d => d, stroke: "white", strokeWidth: 3, paintOrder: "stroke"}));
     // The point whose p-value is read in this view: μ₀ on the upper curve, m on the lower one.
     const pAt = c.p, inside = moving >= a && moving <= b;
     if (inside) {
@@ -408,10 +410,10 @@ Pohled testu předpokládá, že ve výběru se stejnou $s$ vyšel jiný průmě
         ? Plot.dot([moving], {x: d => d, y: pAt, r: 6, symbol: "diamond", fill: orange, stroke: ink, strokeWidth: 1})
         : Plot.dot([moving], {x: d => d, y: pAt, r: 5.5, fill: "white", stroke: ink, strokeWidth: 1.6}));
       marks.push(Plot.text([moving], {x: d => d, y: pAt, dx: right ? -10 : 10, dy: pAt < c.alpha + 0.12 ? -12 : -7, lineAnchor: "bottom", textAnchor: right ? "end" : "start", fill: hiText, fontWeight: 600, fontSize: small ? 11.5 : 13, stroke: "white", strokeWidth: 3, paintOrder: "stroke",
-        text: d => small ? `p = ${pfmt(pAt)}` : `${kind === "ci" ? "μ₀" : "m"} = ${typed(Number(d.toFixed(6)))}: p = ${pfmt(pAt)}`}));
+        text: d => small ? `${sym("p")} = ${pfmt(pAt)}` : `${kind === "ci" ? "μ₀" : sym("m")} = ${typed(Number(d.toFixed(6)))}: ${sym("p")} = ${pfmt(pAt)}`}));
     }
 
-    const axisLabel = kind === "ci" ? "Testovaná hodnota μ₀ (body)" : "Výběrový průměr m (body)";
+    const axisLabel = kind === "ci" ? "Testovaná hodnota μ₀ (body)" : `Výběrový průměr ${sym("m")} (body)`;
     const digits = Math.max(0, -Math.floor(Math.log10(niceStep((b - a) / (small ? 5 : 8)))));
     const what = kind === "ci"
       ? `p-hodnota ${sideGen[c.side]} testu pro testované hodnoty od ${typed(a)} do ${typed(b)} při výběrovém průměru ${typed(c.m)}`
@@ -420,7 +422,7 @@ Pohled testu předpokládá, že ve výběru se stejnou $s$ vyšel jiný průmě
       width, height: (small ? 330 : 330) + rows.length * (small ? 44 : 26), marginLeft: small ? 48 : 58, marginRight: 14, marginTop: 14, marginBottom: 44,
       style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"},
       x: {domain: state.dom, label: axisLabel, labelAnchor: "center", labelArrow: "none", ticks: small ? 5 : 8, tickFormat: t => fixed(t, digits)},
-      y: {domain: [yMin, 1.04], label: "p-hodnota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 46, ticks: [0, 0.2, 0.4, 0.6, 0.8, 1], tickFormat: t => fixed(t, 1)},
+      y: {domain: [yMin, 1.04], label: `${sym("p")}-hodnota`, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 46, ticks: [0, 0.2, 0.4, 0.6, 0.8, 1], tickFormat: t => fixed(t, 1)},
       ariaLabel: what,
       ariaDescription: kind === "ci"
         ? `Křivka má vrchol 1 u výběrového průměru ${sc(c.m)}. ${rows.map(r => r.label).join(". ")}. V testované hodnotě ${typed(c.mu0)} je p-hodnota ${pfmt(c.p)}.`

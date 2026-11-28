@@ -23,6 +23,8 @@ Pokrytí počítáme přesně, bez simulace. Pro dané $\mathrm{π}$ známe z bi
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the chapter 9 figures (scripts/kapitola_09.R): Wald orange, Wilson blue.
   const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", sand = "#FAECDD", lightBlue = "#B8DDE8", lightOrange = "#F0B08C";
   const N_MAX = 200, SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -434,8 +436,8 @@ Pokrytí počítáme přesně, bez simulace. Pro dané $\mathrm{π}$ známe z bi
       const runs = runsOf(flags), total = d3.sum(d3.range(n + 1).filter(k => flags[k]), k => pmf[k]);
       const chart = Plot.plot({
         ...base(width, small), height: small ? 170 : 190, marginBottom: 40,
-        x: {domain: [lo - 0.6, hi + 0.6], label: "počet úspěchů k", labelAnchor: "center", labelArrow: "none", labelOffset: 30, ticks: ks.filter(k => k % step === 0), tickFormat: v => int(v)},
-        y: {domain: [0, top], label: "P(X = k)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 44, ticks: 3, tickFormat: v => trim(v, 3)},
+        x: {domain: [lo - 0.6, hi + 0.6], label: `počet úspěchů ${sym("k")}`, labelAnchor: "center", labelArrow: "none", labelOffset: 30, ticks: ks.filter(k => k % step === 0), tickFormat: v => int(v)},
+        y: {domain: [0, top], label: `${sym("P")}(${sym("X")} = ${sym("k")})`, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 38 : 44, ticks: 3, tickFormat: v => trim(v, 3)},
         ariaLabel: `${name}: pravděpodobnosti počtů úspěchů pro n = ${n} a π = ${pi3(pi)}`,
         ariaDescription: `Zvýrazněné jsou sloupce počtů, jejichž ${name.toLowerCase()} obsahuje π: ${runWords(runs).replace(/<[^>]+>/g, "")}. Jejich součet, pokrytí, je ${prob3(total)}.`,
         marks: [

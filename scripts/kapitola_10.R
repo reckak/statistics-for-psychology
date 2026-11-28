@@ -20,6 +20,7 @@ ch10_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_10/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch10_fig <- function(...) tf_figure('kapitola_10',...)
 # Procedures --------------------------------------------------------------------------------
 ch10_cov <- function(x,y) sum((x-mean(x))*(y-mean(y)))/(length(x)-1)
@@ -254,9 +255,6 @@ ch10_mat_inf <- local({ v <- colnames(ch10_mat_data); out <- NULL
   out })
 ch10_stars <- function(p) ifelse(p<.001,'***',ifelse(p<.01,'**',ifelse(p<.05,'*','')))
 # Figures -------------------------------------------------------------------------------------------
-# Plotmath labels keep the subscripts of r_s and tau_b (no Unicode subscript b exists).
-ch10_lab_rs <- function(v) bquote(r[s] == .(ch10_num(v)))
-ch10_lab_tb <- function(v) bquote(tau[b] == .(ch10_num(v)))
 ch10_quadrants <- function(x,y,lab=TRUE) {
   abline(v=mean(x),h=mean(y),lty=2,col=ch10_gray)
   u <- par('usr'); if (lab) {
@@ -281,20 +279,21 @@ ch10_uz_jit <- local({ set.seed(1); x <- jitter(ch10_uz$uzkost,.4); list(x=x,y=j
 ch10_draw('uzkost-vykon', {
   par(mar=c(4.6,4.7,2.8,.8)); d <- ch10_uz
   plot(ch10_uz_jit$x,ch10_uz_jit$y,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.3,xlab='Úzkost před testem (body, 10–40)',ylab='Výkon v testu (body, 0–30)',
-       main=paste0('40 studentů: r = ',ch10_num(ch10_uz_r,2)),bty='l')
+       main='',bty='l')
+  fl_title(main=paste0('40 studentů: *r* = ',ch10_num(ch10_uz_r,2)))
   ch10_quadrants(d$uzkost,d$vykon,lab=FALSE)
 },width=7.2,height=4.8)
 ch10_fig('uzkost-vykon','data',note='Body jsou v obrázku nepatrně náhodně posunuty, aby se shodné dvojice nepřekrývaly; původní hodnoty jsou celé body. Přerušované čáry leží v průměrech obou proměnných.',panels=list(
   tf_panel(paste0('40 studentů: r = ',ch10_num(ch10_uz_r,2)),'bodový graf','Úzkost před testem (body, 10–40)','Výkon v testu (body, 0–30)',
     guides=list(tf_guide('x',mean(ch10_uz$uzkost),'průměr úzkosti'),tf_guide('y',mean(ch10_uz$vykon),'průměr výkonu')),
     series=list(tf_series('Studenti (vykreslené polohy)',data.frame(x=ch10_uz_jit$x,y=ch10_uz_jit$y),note='Původní celé hodnoty dostaneš zaokrouhlením.')))))
-ch10_ov_titles <- c(puvodni=paste0('A: bez úpravy, r = ',ch10_num(ch10_ov_r),'\n500 studentů, ale jen ',ch10_ov_cells,' viditelných bodů'),
+ch10_ov_titles <- c(puvodni=paste0('A: bez úpravy, *r* = ',ch10_num(ch10_ov_r),'\n500 studentů, ale jen ',ch10_ov_cells,' viditelných bodů'),
   jitter='B: jitter ±0,2\nhusté buňky splývají v plné skvrny',pruhlednost='C: jitter ±0,2 a průhlednost\nsytější barva = víc studentů',
   velky='D: jitter ±0,45 a průhlednost\nsousední hodnoty splývají')
 ch10_draw('prekryvani', {
   par(mfrow=c(2,2),mar=c(4.2,4.4,3.6,.8),mgp=c(2.4,.6,0))
   pan <- function(x,y,k,...) { plot(x,y,xlim=c(.4,7.6),ylim=c(.4,7.6),xaxt='n',yaxt='n',bty='l',xlab='Kvalita spánku (1–7)',ylab='Únava během dne (1–7)',
-    main=ch10_ov_titles[[k]],cex.main=.92,font.main=1,...); axis(1,at=1:7); axis(2,at=1:7) }
+    main='',...); fl_title(main=ch10_ov_titles[[k]],cex.main=.92,font.main=1); axis(1,at=1:7); axis(2,at=1:7) }
   u <- unique(ch10_ov)   # opaque identical points look the same once drawn; keeps the SVG smaller
   pan(u$spanek,u$unava,'puvodni',pch=21,bg=ch10_fill,col=ch10_blue,cex=1.1)
   pan(ch10_ov_jit$maly$x,ch10_ov_jit$maly$y,'jitter',pch=21,bg=ch10_fill,col=ch10_blue,cex=1.1)
@@ -304,7 +303,7 @@ ch10_draw('prekryvani', {
 ch10_fig('prekryvani','simulace',note=paste0('Mřížka 2 × 2 se stejnými osami: A vlevo nahoře, B vpravo nahoře, C vlevo dole, D vpravo dole. V A jsou původní celé hodnoty (',ch10_ov_cells,' různých dvojic z 49 možných), v B až D tytéž hodnoty náhodně posunuté; C a D mají poloprůhledné body.'),panels=local({
   tab <- as.data.frame(table(ch10_ov$spanek,ch10_ov$unava)); tab <- tab[tab$Freq>0,]
   list(
-    tf_panel(sub('\n',', ',ch10_ov_titles[['puvodni']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
+    tf_panel(sub('\n',', ',fl_plain(ch10_ov_titles[['puvodni']]),fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
       series=list(tf_series('Dvojice hodnot',data.frame(x=as.numeric(as.character(tab$Var1)),y=as.numeric(as.character(tab$Var2)),pocet_studentu=tab$Freq),
         note='V grafu je každá dvojice jedním bodem; počet studentů v grafu vidět není.'))),
     tf_panel(sub('\n',', ',ch10_ov_titles[['jitter']],fixed=TRUE),'bodový graf','Kvalita spánku (1–7)','Únava během dne (1–7)',xlim=c(.4,7.6),ylim=c(.4,7.6),
@@ -322,7 +321,7 @@ ch10_draw('tvary', {
   for (k in names(ch10_forms)) { d <- ch10_forms[[k]]
     plot(d$x,d$y,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.05,xlab='X',ylab='Y',xaxt='n',yaxt='n',bty='l',main='')
     title(main=ch10_form_titles[[k]],line=2.2,cex.main=.98,font.main=2)
-    title(main=bquote(list(r == .(ch10_num(ch10_forms_r['r',k])), r[s] == .(ch10_num(ch10_forms_r['rs',k])))),line=.8,cex.main=.92,font.main=1) }
+    fl_title(main=paste0('*r* = ',ch10_num(ch10_forms_r['r',k]),', *r*_{*s*} = ',ch10_num(ch10_forms_r['rs',k])),line=.8,cex.main=.92,font.main=1) }
 },width=9,height=6.2)
 ch10_fig('tvary','simulace',note='Šest panelů ve dvou řadách po třech; osy X a Y jsou bez číselných popisků.',panels=lapply(names(ch10_forms),function(k)
   tf_panel(paste0(ch10_form_titles[[k]],' (r = ',ch10_num(ch10_forms_r['r',k]),', r_s = ',ch10_num(ch10_forms_r['rs',k]),')'),'bodový graf','X','Y',
@@ -332,7 +331,8 @@ ch10_draw('stejne-r', {
   tt <- c(linearni='I: přibližně lineární',zakriveny='II: zakřivený',odlehly_y='III: jeden bod mimo přímku',odlehly_x='IV: jeden vzdálený bod')
   for (k in names(ch10_same)) { d <- ch10_same[[k]]
     plot(d$x,d$y,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.3,xlab='X',ylab='Y',xlim=c(3,20),ylim=c(3,13),bty='l',
-         main=paste0(tt[[k]],'\nr = ',ch10_num(ch10_same_r[[k]])),cex.main=.95,font.main=1) }
+         main='')
+    fl_title(main=paste0(tt[[k]],'\n*r* = ',ch10_num(ch10_same_r[[k]])),cex.main=.95,font.main=1) }
 },width=10,height=3.5)
 ch10_fig('stejne-r','data',note='Anscombův kvartet: čtyři panely vedle sebe se stejnými osami.',panels=lapply(names(ch10_same),function(k)
   tf_panel(paste0(c(linearni='I: přibližně lineární',zakriveny='II: zakřivený',odlehly_y='III: jeden bod mimo přímku',odlehly_x='IV: jeden vzdálený bod')[[k]],' (r = ',ch10_num(ch10_same_r[[k]]),')'),
@@ -341,7 +341,7 @@ ch10_draw('stres-spanek', {
   par(mar=c(4.6,4.7,3,.8)); tab <- as.data.frame(table(ch10_ss$stres,ch10_ss$spanek)); tab <- tab[tab$Freq>0,]
   x <- as.numeric(as.character(tab$Var1)); y <- as.numeric(as.character(tab$Var2))
   plot(x,y,cex=1.2+1.1*(tab$Freq-1),pch=21,bg=ch10_fill,col=ch10_blue,xlim=c(0,16),ylim=c(.6,7.4),xlab='Vnímaný stres (body, 0–16)',ylab='Kvalita spánku (1–7)',main='',bty='l',yaxt='n')
-  title(main=bquote('30 studentů: ' ~ list(r[s] == .(ch10_num(ch10_ss_rs)), tau[b] == .(ch10_num(ch10_ss_tau[['tau_b']])))),font.main=1)
+  fl_title(main=paste0('30 studentů: *r*_{*s*} = ',ch10_num(ch10_ss_rs),', τ_{*b*} = ',ch10_num(ch10_ss_tau[['tau_b']])),font.main=1)
   axis(2,at=1:7); text(x[tab$Freq>1],y[tab$Freq>1],tab$Freq[tab$Freq>1],cex=.72,col=ch10_ink)
   legend('topright',legend=c('1 student','2 studenti'),pt.cex=1.2+1.1*(0:1),pch=21,pt.bg=ch10_fill,col=ch10_blue,bty='n',cex=.8,y.intersp=1.6,x.intersp=1.6,inset=c(.01,.02))
 },width=7.6,height=5)
@@ -351,9 +351,10 @@ ch10_fig('stres-spanek','data',note='Velikost bodu vyjadřuje počet studentů s
     series=list(tf_series('Dvojice hodnot',data.frame(x=as.numeric(as.character(tab$Var1)),y=as.numeric(as.character(tab$Var2)),pocet_studentu=tab$Freq)))) })))
 ch10_draw('poradi', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,3.2,.8)); d <- ch10_rt
-  plot(d$hodiny,d$ms,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.2,xlab='Trénink (hodiny)',ylab='Reakční doba (ms)',main=paste0('Původní hodnoty: r = ',ch10_num(ch10_rt_r)),bty='l',font.main=1)
+  plot(d$hodiny,d$ms,pch=21,bg=ch10_fill,col=ch10_blue,cex=1.2,xlab='Trénink (hodiny)',ylab='Reakční doba (ms)',main='',bty='l')
+  fl_title(main=paste0('Původní hodnoty: *r* = ',ch10_num(ch10_rt_r)),font.main=1)
   plot(rank(d$hodiny),rank(d$ms),pch=21,bg=ch10_fill,col=ch10_blue,cex=1.2,xlab='Pořadí tréninku',ylab='Pořadí reakční doby',main='',bty='l')
-  title(main=bquote('Pořadí: ' * r[s] == .(ch10_num(ch10_rt_rs))),font.main=1)
+  fl_title(main=paste0('Pořadí: *r*_{*s*} = ',ch10_num(ch10_rt_rs)),font.main=1)
 },width=9,height=4.3)
 ch10_fig('poradi','data',note='Dva panely vedle sebe: tytéž osoby v původních hodnotách a v pořadích.',panels=list(
   tf_panel(paste0('Původní hodnoty: r = ',ch10_num(ch10_rt_r)),'bodový graf','Trénink (hodiny)','Reakční doba (ms)',series=list(tf_series('Osoby',data.frame(x=ch10_rt$hodiny,y=ch10_rt$ms)))),
@@ -361,9 +362,11 @@ ch10_fig('poradi','data',note='Dva panely vedle sebe: tytéž osoby v původníc
 ch10_bvn <- local({ set.seed(9010); x <- rnorm(400); y <- .6*x+.8*rnorm(400); x2 <- rnorm(400); y2 <- .6*x2+.2*(x2+3.3)*rnorm(400); list(x=x,y=y,x2=x2,y2=y2) })
 ch10_draw('dvourozmerne', {
   par(mfrow=c(1,2),mar=c(4.4,4.4,3.4,.8)); x <- ch10_bvn$x; y <- ch10_bvn$y
-  plot(x,y,pch=16,col=adjustcolor(ch10_blue,.45),cex=.7,xlab='X (z-skór)',ylab='Y (z-skór)',main='Dvourozměrné normální rozdělení:\nstejná rozptýlenost v celém rozsahu X',bty='l',xlim=c(-3.2,3.2),ylim=c(-5,5),cex.main=.92,font.main=1)
+  plot(x,y,pch=16,col=adjustcolor(ch10_blue,.45),cex=.7,xlab='',ylab='',main='Dvourozměrné normální rozdělení:\nstejná rozptýlenost v celém rozsahu X',bty='l',xlim=c(-3.2,3.2),ylim=c(-5,5),cex.main=.92,font.main=1)
+  fl_title(xlab='X (*z*-skór)',ylab='Y (*z*-skór)')
   x2 <- ch10_bvn$x2; y2 <- ch10_bvn$y2
-  plot(x2,y2,pch=16,col=adjustcolor(ch10_orange,.45),cex=.7,xlab='X (z-skór)',ylab='Y',main='Heteroskedasticita:\nrozptýlenost Y roste s X',bty='l',xlim=c(-3.2,3.2),ylim=c(-5,5),cex.main=.92,font.main=1)
+  plot(x2,y2,pch=16,col=adjustcolor(ch10_orange,.45),cex=.7,xlab='',ylab='Y',main='Heteroskedasticita:\nrozptýlenost Y roste s X',bty='l',xlim=c(-3.2,3.2),ylim=c(-5,5),cex.main=.92,font.main=1)
+  fl_title(xlab='X (*z*-skór)')
 },width=9,height=4.4)
 ch10_fig('dvourozmerne','simulace',note='Dva panely se stejnými osami, v každém 400 poloprůhledných bodů.',panels=list(
   tf_panel('Dvourozměrné normální rozdělení: stejná rozptýlenost v celém rozsahu X','bodový graf','X (z-skór)','Y (z-skór)',xlim=c(-3.2,3.2),ylim=c(-5,5),series=list(tf_series('Body',data.frame(x=ch10_bvn$x,y=ch10_bvn$y)))),
@@ -371,7 +374,8 @@ ch10_fig('dvourozmerne','simulace',note='Dva panely se stejnými osami, v každ�
 ch10_draw('vyberove-r', {
   par(mfrow=c(1,2),mar=c(4.4,4.4,3.2,.8)); br <- seq(-1,1,.025)
   for (j in 1:2) { v <- ch10_sim_r[,j]; rho <- c(0,.8)[j]
-    hist(v,breaks=br,col=ch10_fill,border='white',main=paste0('ρ = ',ch10_num(rho,1),', n = 20'),xlab='Výběrové r',ylab='Počet výběrů z 10 000',xlim=c(-1,1),font.main=1)
+    hist(v,breaks=br,col=ch10_fill,border='white',main='',xlab='',ylab='Počet výběrů z 10 000',xlim=c(-1,1))
+    fl_title(main=paste0('ρ = ',ch10_num(rho,1),', *n* = 20'),xlab='Výběrové *r*',font.main=1)
     abline(v=rho,col=ch10_orange,lwd=2); abline(v=ch10_sim_sum[c('q025','q975'),j],lty=2,col=ch10_gray) }
 },width=9,height=4.2)
 ch10_fig('vyberove-r','simulace',note='Histogramy výběrových korelací z 10 000 výběrů; oranžová čára je populační korelace, přerušované čáry 2,5. a 97,5. percentil simulovaných hodnot.',panels=lapply(1:2,function(j)
@@ -380,8 +384,8 @@ ch10_fig('vyberove-r','simulace',note='Histogramy výběrových korelací z 10 0
     series=list(tf_series('Četnosti',tf_bins(ch10_sim_r[,j],seq(-1,1,.025)),'histogram',digits=3)))))
 ch10_draw('permutace', {
   par(mar=c(4.6,4.7,2.8,.8)); v <- ch10_ss_1999$pm[,2]; o <- ch10_ss_tau[['tau_b']]
-  hist(v,breaks=seq(-.6,.6,.025),col=ch10_fill,border='white',xlab=expression(tau[b] ~ 'po náhodném přeskupení hodnot kvality spánku'),ylab='Počet permutací z 1 999',main='',font.main=1)
-  title(main=expression('Permutační rozdělení ' * tau[b] * ' za nezávislosti'),font.main=1)
+  hist(v,breaks=seq(-.6,.6,.025),col=ch10_fill,border='white',xlab='',ylab='Počet permutací z 1 999',main='')
+  fl_title(main='Permutační rozdělení τ_{*b*} za nezávislosti',xlab='τ_{*b*} po náhodném přeskupení hodnot kvality spánku',font.main=1)
   abline(v=c(o,-o),col=ch10_orange,lwd=2,lty=c(1,2)); text(o,par('usr')[4]*.9,paste0('pozorováno ',ch10_num(o)),pos=4,cex=.8,col=ch10_orange)
   text(-o,par('usr')[4]*.9,paste0('zrcadlově ',ch10_num(-o)),pos=2,cex=.8,col=ch10_orange)
 },width=8,height=4.3)
@@ -391,8 +395,8 @@ ch10_fig('permutace','simulace',panels=list(
     series=list(tf_series('Četnosti',tf_bins(ch10_ss_1999$pm[,2],seq(-.6,.6,.025)),'histogram',digits=3)))))
 ch10_draw('bootstrap', {
   par(mar=c(4.6,4.7,2.8,.8)); v <- ch10_ss_1999$bt[,2]; ci <- ch10_ss_1999$tb_ci
-  hist(v,breaks=seq(-.9,.2,.025),col=ch10_fill,border='white',xlab=expression(tau[b] ~ 'v bootstrapovém výběru'),ylab='Počet výběrů z 1 999',main='',font.main=1)
-  title(main=expression('Bootstrapové rozdělení ' * tau[b] * ' a percentilový interval'),font.main=1)
+  hist(v,breaks=seq(-.9,.2,.025),col=ch10_fill,border='white',xlab='',ylab='Počet výběrů z 1 999',main='')
+  fl_title(main='Bootstrapové rozdělení τ_{*b*} a percentilový interval',xlab='τ_{*b*} v bootstrapovém výběru',font.main=1)
   abline(v=ci,col=ch10_blue,lwd=2,lty=2); abline(v=ch10_ss_tau[['tau_b']],col=ch10_orange,lwd=2)
   text(ci,par('usr')[4]*.92,c(paste0('2,5. percentil\n',ch10_num(ci[1])),paste0('97,5. percentil\n',ch10_num(ci[2]))),pos=c(2,4),cex=.76,col=ch10_blue)
 },width=8,height=4.3)
@@ -406,14 +410,17 @@ ch10_draw('faktory', {
   layout(matrix(c(1,1,2,2,0,3,3,0),2,byrow=TRUE)); par(mar=c(4.4,4.2,3.6,.8),mgp=c(2.4,.6,0),cex=.75)
   d <- ch10_rr; adm <- d$test>=ch10_rr_cut
   plot(d$test,d$prospech,pch=16,col=ifelse(adm,ch10_blue,adjustcolor(ch10_mute,.8)),cex=.8,xlab='Přijímací test (body)',ylab='Výsledky v 1. ročníku (body)',bty='l',
-       main=paste0('Omezení rozsahu\nvšichni r = ',ch10_num(ch10_rr_r[['vse']]),', přijatí r = ',ch10_num(ch10_rr_r[['prijati']])),cex.main=.92,font.main=1)
+       main='')
+  fl_title(main=paste0('Omezení rozsahu\nvšichni *r* = ',ch10_num(ch10_rr_r[['vse']]),', přijatí *r* = ',ch10_num(ch10_rr_r[['prijati']])),cex.main=.92,font.main=1)
   abline(v=ch10_rr_cut,lty=2,col=ch10_gray)
   ext <- d$test<=quantile(d$test,.15)|d$test>=quantile(d$test,.85)
   plot(d$test,d$prospech,pch=16,col=ifelse(ext,ch10_orange,adjustcolor(ch10_mute,.8)),cex=.8,xlab='Přijímací test (body)',ylab='Výsledky v 1. ročníku (body)',bty='l',
-       main=paste0('Jen krajní skupiny\nr = ',ch10_num(ch10_rr_r[['extremy']])),cex.main=.92,font.main=1)
+       main='')
+  fl_title(main=paste0('Jen krajní skupiny\n*r* = ',ch10_num(ch10_rr_r[['extremy']])),cex.main=.92,font.main=1)
   g <- ch10_cg; m <- g$trida=='mladší'
   plot(g$slova,g$rychlost,pch=ifelse(m,21,24),bg=ifelse(m,ch10_fill,ch10_sand),col=ifelse(m,ch10_blue,ch10_orange),cex=1.05,xlab='Slovní zásoba (body)',ylab='Rychlost čtení (slov za minutu)',bty='l',
-       main=paste0('Dvě sloučené třídy\ncelkem r = ',ch10_num(ch10_cg_r[['vse']]),'; uvnitř ',ch10_num(ch10_cg_r[['mladsi']]),' a ',ch10_num(ch10_cg_r[['starsi']])),cex.main=.92,font.main=1)
+       main='')
+  fl_title(main=paste0('Dvě sloučené třídy\ncelkem *r* = ',ch10_num(ch10_cg_r[['vse']]),'; uvnitř ',ch10_num(ch10_cg_r[['mladsi']]),' a ',ch10_num(ch10_cg_r[['starsi']])),cex.main=.92,font.main=1)
   legend('bottomright',legend=c('mladší třída','starší třída'),pch=c(21,24),pt.bg=c(ch10_fill,ch10_sand),col=c(ch10_blue,ch10_orange),bty='n',cex=.85)
 },width=9,height=8)
 ch10_fig('faktory','simulace',note='Dva řádky: nahoře dva panely s týmiž uchazeči a různým zvýrazněním (vlevo omezení rozsahu, vpravo krajní skupiny), dole uprostřed třetí panel s jinými daty (dvě sloučené třídy).',panels=local({
@@ -429,7 +436,8 @@ ch10_fig('faktory','simulace',note='Dva řádky: nahoře dva panely s týmiž uc
       series=list(tf_series('Mladší třída (kolečka)',xy(g$slova,g$rychlost,m)),tf_series('Starší třída (trojúhelníky)',xy(g$slova,g$rychlost,!m))))) }))
 ch10_draw('shoda-hodnot', {
   par(mar=c(4.6,4.7,2.8,.8)); d <- ch10_rat
-  plot(d$A,d$B,xlim=c(8,24),ylim=c(8,24),pch=21,bg=ch10_fill,col=ch10_blue,cex=1.4,xlab='Hodnotitelka A (body)',ylab='Hodnotitel B (body)',main=paste0('Vysoká korelace, ale ne shoda: r = ',ch10_num(ch10_rat_r)),bty='l',asp=1,font.main=1)
+  plot(d$A,d$B,xlim=c(8,24),ylim=c(8,24),pch=21,bg=ch10_fill,col=ch10_blue,cex=1.4,xlab='Hodnotitelka A (body)',ylab='Hodnotitel B (body)',main='',bty='l',asp=1)
+  fl_title(main=paste0('Vysoká korelace, ale ne shoda: *r* = ',ch10_num(ch10_rat_r)),font.main=1)
   abline(0,1,lty=2,col=ch10_gray); text(20.5,19.6,'shodné hodnoty',srt=45,cex=.78,col=ch10_gray)
 },width=6.2,height=5)
 ch10_fig('shoda-hodnot','data',note='Obě osy mají stejné měřítko; přerušovaná přímka y = x označuje shodné hodnoty.',panels=list(
@@ -441,19 +449,22 @@ ch10_draw('fisher', {
   # Two rows (R86): the transformation curve centred on top, both histograms below.
   layout(matrix(c(0,1,1,0,2,2,3,3),2,byrow=TRUE)); par(mar=c(4.4,4.4,3.4,.8),cex=.75)   # layout() would shrink text to 0.66
   r <- seq(-.995,.995,length.out=400)
-  plot(r,atanh(r),type='l',lwd=2,col=ch10_blue,xlab='Korelace r',ylab=expression('Převedená hodnota ' * z[r]),bty='l',ylim=c(-3,3),
+  plot(r,atanh(r),type='l',lwd=2,col=ch10_blue,xlab='',ylab='',bty='l',ylim=c(-3,3),
        main='Fisherova transformace\nnatahuje okraje stupnice',cex.main=.95,font.main=1)
+  fl_title(xlab='Korelace *r*',ylab='Převedená hodnota *z*_{*r*}')
   abline(0,1,lty=3,col=ch10_gray); abline(h=0,v=0,col=ch10_pale)
   points(c(ch10_uz_r,.8),atanh(c(ch10_uz_r,.8)),pch=21,bg=ch10_orange,col=ch10_ink,cex=1.3)
   # The label of r = -0.523 sits below-right of the curve and the dotted line, joined by a short segment.
   segments(ch10_uz_r+.03,atanh(ch10_uz_r)-.08,-.36,-.92,col=ch10_gray)
-  text(-.35,-1.08,paste0('r = ',ch10_num(ch10_uz_r,3),'\nz = ',ch10_num(atanh(ch10_uz_r),3)),adj=c(0,.5),cex=.85)
-  text(.8,atanh(.8),paste0('r = 0,8\nz = ',ch10_num(atanh(.8),3)),pos=2,offset=.8,cex=.85)
+  fl_text(-.35,-1.08,paste0('*r* = ',ch10_num(ch10_uz_r,3),'\n*z* = ',ch10_num(atanh(ch10_uz_r),3)),adj=c(0,.5),cex=.85)
+  fl_text(.8,atanh(.8),paste0('*r* = 0,8\n*z* = ',ch10_num(atanh(.8),3)),pos=2,offset=.8,cex=.85)
   v <- ch10_sim_r[,'rho08']
-  hist(v,breaks=seq(-.2,1,.02),col=ch10_fill,border='white',xlab='Výběrové r',ylab='Počet výběrů z 10 000',main='ρ = 0,8, n = 20: hodnoty r\nšikmé rozdělení',cex.main=.95,font.main=1)
+  hist(v,breaks=seq(-.2,1,.02),col=ch10_fill,border='white',xlab='',ylab='Počet výběrů z 10 000',main='')
+  fl_title(main='ρ = 0,8, *n* = 20: hodnoty *r*\nšikmé rozdělení',xlab='Výběrové *r*',cex.main=.95,font.main=1)
   abline(v=.8,col=ch10_orange,lwd=2)
   zv <- atanh(v); h <- hist(zv,breaks=seq(-.4,2.8,.05),plot=FALSE)
-  plot(h,col=ch10_fill,border='white',xlab=expression('Převedené ' * z[r]),ylab='Počet výběrů z 10 000',main='Tytéž výběry po transformaci\npřibližně normální rozdělení',cex.main=.95,font.main=1)
+  plot(h,col=ch10_fill,border='white',xlab='',ylab='Počet výběrů z 10 000',main='Tytéž výběry po transformaci\npřibližně normální rozdělení',cex.main=.95,font.main=1)
+  fl_title(xlab='Převedené *z*_{*r*}')
   zz <- seq(-.4,2.8,length.out=300); lines(zz,10000*.05*dnorm(zz,atanh(.8),1/sqrt(17)),col=ch10_ink,lwd=1.6)
   abline(v=atanh(.8),col=ch10_orange,lwd=2)
 },width=9,height=7.6)
@@ -474,9 +485,10 @@ ch10_draw('permutace-presna', {
   par(mar=c(4.8,4.7,2.8,.8)); tb <- as.numeric(sub(',','.',names(ch10_t6_dist),fixed=TRUE)); f <- as.vector(ch10_t6_dist)
   ext <- abs(tb)>=round(abs(ch10_t6_tau[['tau_b']]),3)-1e-9
   plot(tb,f,type='h',lwd=9,lend=1,col=ifelse(ext,ch10_orange,ch10_mute),xlim=c(-1,1),ylim=c(0,max(f)*1.25),bty='l',xaxt='n',
-       xlab=expression(tau[b] ~ 'pro jedno ze 720 přiřazení hodnot kvality spánku'),ylab='Počet přiřazení',main='')
+       xlab='',ylab='Počet přiřazení',main='')
+  fl_title(xlab='τ_{*b*} pro jedno ze 720 přiřazení hodnot kvality spánku')
   axis(1,at=seq(-1,1,.25),labels=ch10_num(seq(-1,1,.25)))
-  title(main=expression('Přesné permutační rozdělení ' * tau[b] * ' pro šest studentů'),font.main=1)
+  fl_title(main='Přesné permutační rozdělení τ_{*b*} pro šest studentů',font.main=1)
   text(tb[ext],f[ext],f[ext],pos=3,cex=.78,col=ch10_orange)
   legend('topright',legend=c('stejně nebo více vzdálené od nuly než pozorované −0,741: 48 ze 720','ostatní přiřazení'),
          col=c(ch10_orange,ch10_mute),lwd=8,bty='n',cex=.78)
@@ -493,7 +505,7 @@ ch10_draw('odlehle-typy', {
     plot(d$x,d$y,xlim=c(25,105),ylim=c(15,85),pch=21,bg=ifelse(new,ch10_orange,ch10_fill),col=ifelse(new,ch10_ink,ch10_blue),cex=ifelse(new,1.7,1.15),
          xlab='X',ylab='Y',bty='l',main='')
     title(main=tt[[k]],line=2.3,cex.main=.9,font.main=2)
-    title(main=bquote(list(r == .(ch10_num(s[['r']])), r[s] == .(ch10_num(s[['rs']])), tau[b] == .(ch10_num(s[['tb']])))),line=.6,cex.main=.86,font.main=1) }
+    fl_title(main=paste0('*r* = ',ch10_num(s[['r']]),', *r*_{*s*} = ',ch10_num(s[['rs']]),', τ_{*b*} = ',ch10_num(s[['tb']])),line=.6,cex.main=.86,font.main=1) }
 },width=8.6,height=7.6)
 ch10_fig('odlehle-typy','simulace',note='Mřížka 2 × 2 se stejnými osami: vlevo nahoře bez odlehlého pozorování, vpravo nahoře bod A, vlevo dole bod B, vpravo dole bod C; přidaný bod je větší a oranžový.',panels=lapply(names(ch10_otypes),function(k) {
   d <- ch10_otypes[[k]]; n <- nrow(d); s <- ch10_otypes_stat[,k]; base <- if (k=='zaklad') seq_len(n) else seq_len(n-1)
@@ -503,9 +515,11 @@ ch10_fig('odlehle-typy','simulace',note='Mřížka 2 × 2 se stejnými osami: vl
 ch10_draw('reliabilita', {
   par(mfrow=c(1,2),mar=c(4.4,4.4,3.4,.8)); d <- ch10_rel_sim; lim <- c(-4.2,4.2)
   plot(d$tx,d$ty,pch=16,col=adjustcolor(ch10_blue,.5),cex=.75,xlim=lim,ylim=lim,xlab='Pravý skór X',ylab='Pravý skór Y',bty='l',
-       main=paste0('Hodnoty bez chyby měření\nr = ',ch10_num(ch10_rel_sim_r[['prave']])),cex.main=.95,font.main=1)
+       main='')
+  fl_title(main=paste0('Hodnoty bez chyby měření\n*r* = ',ch10_num(ch10_rel_sim_r[['prave']])),cex.main=.95,font.main=1)
   plot(d$x,d$y,pch=16,col=adjustcolor(ch10_orange,.5),cex=.75,xlim=lim,ylim=lim,xlab='Naměřený skór X',ylab='Naměřený skór Y',bty='l',
-       main=paste0('Naměřené hodnoty, reliabilita obou měření 0,6\nr = ',ch10_num(ch10_rel_sim_r[['namerene']])),cex.main=.95,font.main=1)
+       main='')
+  fl_title(main=paste0('Naměřené hodnoty, reliabilita obou měření 0,6\n*r* = ',ch10_num(ch10_rel_sim_r[['namerene']])),cex.main=.95,font.main=1)
 },width=9,height=4.5)
 ch10_fig('reliabilita','simulace',note='Dva panely se stejnými osami: titíž lidé bez chyby měření a s chybou měření.',panels=list(
   tf_panel(paste0('Hodnoty bez chyby měření: r = ',ch10_num(ch10_rel_sim_r[['prave']])),'bodový graf','Pravý skór X','Pravý skór Y',xlim=c(-4.2,4.2),ylim=c(-4.2,4.2),series=list(tf_series('Osoby',data.frame(x=ch10_rel_sim$tx,y=ch10_rel_sim$ty)))),
@@ -513,13 +527,14 @@ ch10_fig('reliabilita','simulace',note='Dva panely se stejnými osami: titíž l
 ch10_draw('rpb-d', {
   par(mar=c(4.6,4.7,2.8,.8)); d <- seq(0,3,.01)
   sp <- list(c(21,21),c(30,12),c(38,4)); cl <- c(ch10_blue,ch10_orange,ch10_green); lt <- c(1,2,4)
-  plot(NA,xlim=c(0,3),ylim=c(0,1),xlab='Cohenovo d',ylab=expression('|' * r[pb] * '|'),bty='l',xaxt='n',yaxt='n',main='')
+  plot(NA,xlim=c(0,3),ylim=c(0,1),xlab='',ylab='',bty='l',xaxt='n',yaxt='n',main='')
   axis(1,at=0:6/2,labels=ch10_num(0:6/2,1)); axis(2,at=0:5/5,labels=ch10_num(0:5/5,1))
-  title(main=expression('Bodově biseriální korelace podle ' * italic(d) * ' a rozdělení 42 lidí do skupin'),font.main=1)
+  fl_title(xlab='Cohenovo *d*',ylab='|*r*_{*pb*}|')
+  fl_title(main='Bodově biseriální korelace podle *d* a rozdělení 42 lidí do skupin',font.main=1)
   for (k in 1:3) lines(d,ch10_rpb_d(d,sp[[k]][1],sp[[k]][2]),col=cl[k],lwd=2,lty=lt[k])
   points(.8,ch10_rpb_d(.8,30,12),pch=21,bg=ch10_orange,col=ch10_ink,cex=1.4)
   segments(.45,.6,.78,ch10_rpb_d(.8,30,12)+.02,col=ch10_gray)
-  text(.45,.6,'příklad z kapitoly 8:\nd = 0,80, |r| = 0,35',pos=3,cex=.78)
+  fl_text(.45,.6,'příklad z kapitoly 8:\n*d* = 0,80, |*r*| = 0,35',pos=3,cex=.78)
   legend('bottomright',legend=c('21 a 21','30 a 12','38 a 4'),title='Velikosti skupin',col=cl,lty=lt,lwd=2,bty='n',cex=.82)
 },width=8,height=4.6)
 ch10_fig('rpb-d','krivka',note='Tři křivky pro různé rozdělení 42 lidí do dvou skupin (plná 21 a 21, čárkovaná 30 a 12, čerchovaná 38 a 4) a zvýrazněný příklad z kapitoly 8.',panels=list(local({

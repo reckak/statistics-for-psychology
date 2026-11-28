@@ -51,6 +51,8 @@ $$V=\sqrt{\frac{\mathrm{χ}^2}{n(q-1)}}=\sqrt{\frac{11{,}78}{190\times2}}=0{,}18
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours follow the chapter figure: blue, muted blue-gray and orange for the three strategies.
   const blue = "#245D78", mute = "#A9BAC3", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17";
   const ROWS = ["mladí", "dospělí", "senioři"], COLS = ["řešení problému", "vyhýbání", "sociální opora"], COLORS = [blue, mute, orange];
@@ -250,7 +252,7 @@ $$V=\sqrt{\frac{\mathrm{χ}^2}{n(q-1)}}=\sqrt{\frac{11{,}78}{190\times2}}=0{,}18
     const yMax = Math.max(0.6, Math.min(1.1, Math.ceil((top + 0.06) * 10) / 10));
     const propPlot = Plot.plot({
       width, height: small ? 300 : 340, marginLeft: small ? 52 : 60, marginRight: 8, marginTop: 20, marginBottom: small ? 48 : 34, style,
-      x: {domain: [-0.9, 10.9], ticks: [1, 5, 9], tickSize: 0, label: null, tickFormat: t => { const j = (t - 1) / 4; return `${ROWS[j]}${small ? "\n" : " "}(n = ${whole(C.rowTot[j])})`; }},
+      x: {domain: [-0.9, 10.9], ticks: [1, 5, 9], tickSize: 0, label: null, tickFormat: t => { const j = (t - 1) / 4; return `${ROWS[j]}${small ? "\n" : " "}(${sym("n")} = ${whole(C.rowTot[j])})`; }},
       y: {domain: [0, yMax], label: small ? "Řádkový podíl" : "Podíl v rámci věkové skupiny (řádkový podíl)", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 46, tickFormat: t => fixed(t, 1)},
       ariaLabel: "Řádkové podíly strategií zvládání podle věkové skupiny",
       ariaDescription: `${ROWS.map((r, j) => `${r} (n = ${C.rowTot[j]}): ${COLS.map((c, l) => `${c} ${fixed(C.rowProp[j][l], 2)}`).join(", ")}`).join(". ")}. Podíly v celém výběru ${whole(C.n)} osob: ${COLS.map((c, l) => `${c} ${fixed(C.overall[l], 2)}`).join(", ")}.`,
@@ -281,7 +283,7 @@ $$V=\sqrt{\frac{\mathrm{χ}^2}{n(q-1)}}=\sqrt{\frac{11{,}78}{190\times2}}=0{,}18
         Plot.ruleX([C.crit], {stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4"}),
         Plot.ruleX([C.chi2], {stroke: hiText, strokeWidth: 2.2}),
         Plot.text([C.crit], {x: d => d, y: yTop, dy: 8, dx: critLeft ? -6 : 6, textAnchor: critLeft ? "end" : "start", text: () => `kritická hodnota ${fixed(C.crit, 2)}`, fill: ink, ...halo}),
-        Plot.text([C.chi2], {x: d => d, y: yTop, dy: 36, dx: chiLeft ? -6 : 6, textAnchor: chiLeft ? "end" : "start", lineAnchor: "top", text: () => `χ² = ${fixed(C.chi2, 2)}\n${pEq(C.p)}`, fill: hiText, fontWeight: 600, ...halo}),
+        Plot.text([C.chi2], {x: d => d, y: yTop, dy: 36, dx: chiLeft ? -6 : 6, textAnchor: chiLeft ? "end" : "start", lineAnchor: "top", text: () => `χ² = ${fixed(C.chi2, 2)}\n${sym("p")}${pEq(C.p).slice(1)}`, fill: hiText, fontWeight: 600, ...halo}),
         Plot.ruleY([0], {stroke: ink})
       ]
     });

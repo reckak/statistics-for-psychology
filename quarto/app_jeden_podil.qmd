@@ -19,6 +19,8 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Calculations live in a shared module checked against R (scripts/check-stat-lib.mjs, scripts/app-jeden-podil.R).
   const L = await import(new URL("../assets/stat/podil.js", document.baseURI).href);
   const blue = "#245D78", orange = "#B54E24", ink = "#223744", gray = "#4D5A63", pale = "#D5DDE1", lightBlue = "#B8DDE8";
@@ -352,14 +354,14 @@ Výsledky obsahují tabulku s výpočty a dosazením, slovní interpretaci, kont
     const c = catName(s.success);
     return {W, chart: Plot.plot({
       ...base(width, small), height: small ? 230 : 270, marginBottom: 46,
-      x: {domain: [W.lo - 0.6, W.hi + 0.6], ...axis(`počet případů v kategorii ${q(short(c, 30))} (X)`), ticks: ks.filter(i => i % step === 0), tickFormat: v => int(v)},
-      y: {domain: [0, top], ...axis("pravděpodobnost při H₀", {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 3)},
+      x: {domain: [W.lo - 0.6, W.hi + 0.6], ...axis(`počet případů v kategorii ${q(short(c, 30))} (${sym("X")})`), ticks: ks.filter(i => i % step === 0), tickFormat: v => int(v)},
+      y: {domain: [0, top], ...axis(`pravděpodobnost při ${sym("H")}₀`, {labelOffset: small ? 42 : 48}), ticks: 4, tickFormat: v => trim(v, 3)},
       ariaLabel: `Rozdělení počtu případů v kategorii ${q(c)} při nulové hypotéze: binomické, n = ${n}, π = ${s.pi0Label}`,
       ariaDescription: `Očekávaný počet je ${trim(mu, 2)}. Pozorovaný počet ${int(R.k)}${W.kOut ? " leží mimo zobrazený výřez" : ""}. Zvýrazněné sloupce tvoří p-hodnotu přesného testu ${pfmt(R.exact.p)}.`,
       marks: [
         Plot.rect(ks, {x1: i => i - w / 2, x2: i => i + w / 2, y1: 0, y2: i => pmf[i], fill: i => inP(i) ? orange : pale, title: i => `P(X = ${int(i)}) = ${pfmt(pmf[i])}${inP(i) ? "; patří do p-hodnoty přesného testu" : ""}`}),
         Plot.line(dens, {x: "x", y: "y", stroke: ink, strokeWidth: 1.4, strokeDasharray: "5,4", clip: true}),
-        ...(W.kOut ? [] : [Plot.ruleX([R.k], {stroke: blue, strokeWidth: 2.2}), Plot.text([R.k], {x: d => d, y: top, dy: 2, text: d => `k = ${int(d)}`, fill: blue, fontWeight: 600, textAnchor: R.k > mu ? "end" : "start", dx: R.k > mu ? -5 : 5, lineAnchor: "top"})]),
+        ...(W.kOut ? [] : [Plot.ruleX([R.k], {stroke: blue, strokeWidth: 2.2}), Plot.text([R.k], {x: d => d, y: top, dy: 2, text: d => `${sym("k")} = ${int(d)}`, fill: blue, fontWeight: 600, textAnchor: R.k > mu ? "end" : "start", dx: R.k > mu ? -5 : 5, lineAnchor: "top"})]),
         Plot.ruleY([0], {stroke: ink})
       ]
     })};

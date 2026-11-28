@@ -89,7 +89,7 @@ jsou autorská.
 |---|---|
 | [Dvě uspořádání](../../quarto/kapitola_08.qmd#fig-dve-usporadani) | Schéma dvojic a dvou skupin. |
 | [Párová data](../../quarto/kapitola_08.qmd#fig-parova-data) | Spojnice jednotlivců; rozdíly kolísají méně; interval rozdílu; chybějící student 9. |
-| [Korelace a SD rozdílů](../../quarto/kapitola_08.qmd#fig-korelace-rozdily) | Nepovinně: matice 2 × 2, tři simulované soubory (nahoře a vlevo dole) a vpravo dole křivka SD rozdílů podle *r*; soubory (seed 20261114 + i, přesné výběrové r a SD varianty A). |
+| [Korelace a SD rozdílů](../../quarto/kapitola_08.qmd#fig-korelace-rozdily) | Nepovinně: matice 2 × 2, tři simulované soubory (nahoře a vlevo dole) a vpravo dole křivka směrodatné odchylky rozdílů $s_D$ podle *r*; nadpisy panelů uvádějí *r* a $s_D$ (do 2026-11-28 „SD rozdílů“, [R89](../rozhodnuti/spolecne-konvence.md#r89-matematicke-pismo-grafu)); soubory (seed 20261114 + i, přesné výběrové r a SD varianty A). |
 | [Poměr velikostí skupin](../../quarto/kapitola_08.qmd#fig-pomer-skupin) | Směrodatná chyba rozdílu podle poměru skupin a shody σ; skutečná vs. společný odhad. |
 | [Dvě skupiny](../../quarto/kapitola_08.qmd#fig-dve-skupiny) | Různá velikost a variabilita; klasický vs. Welchův interval. |
 | [Welchovy stupně volnosti](../../quarto/kapitola_08.qmd#fig-welch-stupne) | Nepovinně: stupně volnosti podle poměru skupin a σ mezi stupni volnosti menší skupiny a 58. |

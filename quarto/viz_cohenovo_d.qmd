@@ -41,6 +41,8 @@ Ukážeme to na *d* = 0,5. Nad průměrem skupiny 2 leží $\mathrm{Φ}(0{,}5)\a
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the t-distribution visualization: blue for group 1, orange for group 2.
   const blue = "#245D78", orange = "#B54E24", fill1 = "#B8DDE8", fillShared = "#C9BFD6", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", hiText = "#9A3F17";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -194,7 +196,7 @@ Ukážeme to na *d* = 0,5. Nad průměrem skupiny 2 leží $\mathrm{Φ}(0{,}5)\a
         Plot.ruleX([0], {y1: 0, y2: dnorm(0), stroke: orange, strokeWidth: 1.3}),
         Plot.ruleX([d], {y1: 0, y2: dnorm(0), stroke: blue, strokeWidth: 1.3}),
         d > 0 ? Plot.link([0], {x1: 0, x2: d, y1: 0.425, y2: 0.425, stroke: ink, strokeWidth: 1.3, markerStart: "arrow", markerEnd: "arrow"}) : null,
-        Plot.text([d], {x: d / 2, y: 0.425, dy: -9, fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: () => `d = ${d2(d)}`}),
+        Plot.text([d], {x: d / 2, y: 0.425, dy: -9, fill: hiText, fontWeight: 600, stroke: "white", strokeWidth: 3, paintOrder: "stroke", text: () => `${sym("d")} = ${d2(d)}`}),
         Plot.ruleY([0], {stroke: ink})
       ]
     });

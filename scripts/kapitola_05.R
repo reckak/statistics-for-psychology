@@ -12,6 +12,7 @@ ch5_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_05/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch5_fig <- function(...) tf_figure('kapitola_05',...)
 # Fixed teaching inputs -------------------------------------------------------
 ch5_cards <- c(podstatna=40,slovesa=35,pridavna=25)
@@ -103,9 +104,9 @@ ch5_fig('prunik-sjednoceni','data',note=ch5_mosaic_note,panels=list(
 ch5_draw('podmineni', {
   par(mfrow=c(1,2),mar=c(2.6,.6,2.6,.6))
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Celek: všech 200 studentů')
-  mtext('P(zvýšený stres) = 70/200 = 0,35',1,line=.6,cex=.9)
+  fl_mtext('*P*(zvýšený stres) = 70/200 = 0,35',1,line=.6,cex=.9)
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,FALSE,FALSE),2,byrow=TRUE),'Podmínka: jen 100 žen',dim_row=2)
-  mtext('P(zvýšený stres | žena) = 40/100 = 0,40',1,line=.6,cex=.9)
+  fl_mtext('*P*(zvýšený stres | žena) = 40/100 = 0,40',1,line=.6,cex=.9)
 },width=10,height=4.2)
 ch5_fig('podmineni','data',note=paste(ch5_mosaic_note,'V pravém panelu jsou pole řádku „Muž“ (v datech „potlačeno“) vybledlá: bílá, s tečkovaným obrysem a šedým písmem.'),panels=list(
   ch5_mosaic_panel(ch5_dependent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Celek: všech 200 studentů','P(zvýšený stres) = 70/200 = 0,35'),
@@ -113,9 +114,9 @@ ch5_fig('podmineni','data',note=paste(ch5_mosaic_note,'V pravém panelu jsou pol
 ch5_draw('nezavislost', {
   par(mfrow=c(1,2),mar=c(3.6,.6,2.6,.6))
   ch5_mosaic(ch5_independent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Nezávislost: v obou řádcích 30 %')
-  mtext('P(zvýšený stres | žena) = P(zvýšený stres | muž)',1,line=.6,cex=.9); mtext('= P(zvýšený stres) = 0,30',1,line=1.8,cex=.9)
+  fl_mtext('*P*(zvýšený stres | žena) = *P*(zvýšený stres | muž)',1,line=.6,cex=.9); fl_mtext('= *P*(zvýšený stres) = 0,30',1,line=1.8,cex=.9)
   ch5_mosaic(ch5_dependent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Závislost: 40 % a 30 %')
-  mtext('P(zvýšený stres | žena) = 0,40',1,line=.6,cex=.9); mtext('P(zvýšený stres | muž) = 0,30',1,line=1.8,cex=.9)
+  fl_mtext('*P*(zvýšený stres | žena) = 0,40',1,line=.6,cex=.9); fl_mtext('*P*(zvýšený stres | muž) = 0,30',1,line=1.8,cex=.9)
 },width=10,height=4.2)
 ch5_fig('nezavislost','data',note=paste(ch5_mosaic_note,'Levý panel ukazuje jinou tabulku (nezávislost) než pravý (závislost); hranice mezi poli je vlevo v obou řádcích na stejném místě, vpravo je posunutá.'),panels=list(
   ch5_mosaic_panel(ch5_independent,matrix(c(TRUE,FALSE,TRUE,FALSE),2,byrow=TRUE),'Nezávislost: v obou řádcích 30 %','P(zvýšený stres | žena) = P(zvýšený stres | muž) = P(zvýšený stres) = 0,30'),
@@ -187,7 +188,7 @@ ch5_draw('od-pokusu-k-rozdeleni', {
   ink <- '#223744'
   # Random experiment
   rect(1.5,9.27,8.5,9.85,col=ch5_pale,border=ink)
-  text(5,9.56,'Náhodný pokus: tip na dvě otázky se čtyřmi možnostmi (π = 0,25)',cex=.9,font=2)
+  fl_text(5,9.56,'Náhodný pokus: tip na dvě otázky se čtyřmi možnostmi (π = 0,25)',cex=.9,font=2)
   arrows(5,9.27,5,8.98,length=.07,col=ink)
   # Sample space
   rect(.15,5.55,9.85,8.95,border=ink,lwd=1.3)
@@ -196,9 +197,9 @@ ch5_draw('od-pokusu-k-rozdeleni', {
   text(9.65,8.45,'0,5625 + 0,1875 + 0,1875 + 0,0625 = 1',adj=1,cex=.74,col=ch5_gray)
   # Event A = {X = 1}
   rect(2.85,5.72,7.15,8.25,col='#EEF6F9',border=ch5_blue,lty=2,lwd=1.5)
-  text(5,6.72,'Jev A = {X = 1}: právě jedna správná odpověď',cex=.8,font=2,col=ch5_blue)
-  text(5,6.33,'P(A) = 0,1875 + 0,1875 = 0,375',cex=.8,col=ch5_blue)
-  text(5,5.97,'Tentýž jev jako X = 1, proto P(A) = P(X = 1).',cex=.76,col=ch5_blue)
+  fl_text(5,6.72,'Jev *A* = {*X* = 1}: právě jedna správná odpověď',cex=.8,font=2,col=ch5_blue)
+  fl_text(5,6.33,'*P*(*A*) = 0,1875 + 0,1875 = 0,375',cex=.8,col=ch5_blue)
+  fl_text(5,5.97,'Tentýž jev jako *X* = 1, proto *P*(*A*) = *P*(*X* = 1).',cex=.76,col=ch5_blue)
   # Outcomes
   xs <- c(NN=1.4,NS=4,SN=6,SS=8.6)
   calc <- c(NN='0,75 × 0,75 = 0,5625',NS='0,75 × 0,25 = 0,1875',SN='0,25 × 0,75 = 0,1875',SS='0,25 × 0,25 = 0,0625')
@@ -213,21 +214,21 @@ ch5_draw('od-pokusu-k-rozdeleni', {
   # Random variable: rule and values
   vx <- c(1.4,5,8.6); tgt <- c(NN=1,NS=2,SN=2,SS=3)
   for(o in names(xs)) arrows(xs[o],5.55,vx[tgt[o]],4.3,length=.08,col=ink,lwd=1.2)
-  text(2.95,5.08,'náhodná proměnná X (pravidlo):',cex=.78,font=2)
+  fl_text(2.95,5.08,'náhodná proměnná *X* (pravidlo):',cex=.78,font=2)
   text(2.95,4.78,'počet správných odpovědí',cex=.78)
   for(i in 1:3) { rect(vx[i]-.42,3.73,vx[i]+.42,4.28,col=ch5_sand,border=ink); text(vx[i],4.0,i-1,cex=1.05,font=2) }
   text(3.2,4.0,'hodnoty náhodné proměnné',cex=.74,font=3,col=ch5_gray)
   text(6.8,4.0,'hodnoty náhodné proměnné',cex=.74,font=3,col=ch5_gray)
   # Distribution
-  text(.35,3.3,'Rozdělení pravděpodobnosti X',adj=0,cex=.88,font=2)
+  fl_text(.35,3.3,'Rozdělení pravděpodobnosti *X*',adj=0,cex=.88,font=2)
   text(9.65,3.3,'součet: 0,5625 + 0,375 + 0,0625 = 1',adj=1,cex=.74,col=ch5_gray)
   segments(.3,.55,9.7,.55,col=ink)
   h <- ch5_two_dist*3.6
-  lab <- c('P(X = 0) = 0,5625','P(X = 1) = 0,1875 + 0,1875 = 0,375','P(X = 2) = 0,0625')
+  lab <- c('*P*(*X* = 0) = 0,5625','*P*(*X* = 1) = 0,1875 + 0,1875 = 0,375','*P*(*X* = 2) = 0,0625')
   for(i in 1:3) {
     rect(vx[i]-.45,.55,vx[i]+.45,.55+h[i],col=if(i==2) ch5_fill else ch5_pale,border=ink,lwd=if(i==2) 2 else 1)
-    text(vx[i],.55+h[i]+.22,lab[i],cex=.78,font=if(i==2) 2 else 1)
-    text(vx[i],.3,paste0('X = ',i-1),cex=.78)
+    fl_text(vx[i],.55+h[i]+.22,lab[i],cex=.78,font=if(i==2) 2 else 1)
+    fl_text(vx[i],.3,paste0('*X* = ',i-1),cex=.78)
   }
 },width=9,height=8)
 ch5_fig('od-pokusu-k-rozdeleni','data',note='Schéma shora dolů. Rámeček náhodného pokusu: tip na dvě otázky se čtyřmi možnostmi (π = 0,25). Pod ním rámeček výběrového prostoru se čtyřmi výsledky NN, NS, SN, SS (S = správně, N = nesprávně) a výpočtem jejich pravděpodobností; výsledek NN je oranžově orámován s popiskem „jeden výsledek“, výsledky NS a SN obklopuje modrý přerušovaný rámeček jevu A = {X = 1}. Od výsledků vedou šipky k hodnotám 0, 1, 2 náhodné proměnné X (pravidlo: počet správných odpovědí). Dole je sloupcový graf rozdělení pravděpodobnosti X bez svislé osy.',panels=list(
@@ -262,7 +263,8 @@ ch5_bars <- function(n,p,main,highlight=NULL,xlim=NULL,ylim=NULL,lwd=7) {
   if(is.null(xlim)) xlim <- c(0,n)
   if(is.null(ylim)) ylim <- c(0,max(pr)*1.18)
   col <- rep(ch5_blue,length(k)); if(!is.null(highlight)) col <- ifelse(k %in% highlight,ch5_orange,'#A9BAC3')
-  plot(k,pr,type='h',lwd=lwd,lend=1,col=col,xlim=xlim,ylim=ylim,xlab='Počet úspěchů k',ylab='Pravděpodobnost',main=main,bty='l')
+  plot(k,pr,type='h',lwd=lwd,lend=1,col=col,xlim=xlim,ylim=ylim,xlab='',ylab='Pravděpodobnost',main='',bty='l')
+  fl_title(main=main,xlab='Počet úspěchů *k*')
 }
 # The bars of ch5_bars() as a tutor panel; `k` limits the listed bars to the plotted x range, `extra` adds further series.
 ch5_bars_panel <- function(n,p,main,highlight=NULL,xlim=c(0,n),ylim,k=0:n,extra=NULL,...) {
@@ -272,10 +274,10 @@ ch5_bars_panel <- function(n,p,main,highlight=NULL,xlim=c(0,n),ylim,k=0:n,extra=
 ch5_normal_series <- function(n,p,from,to,points) tf_curve(paste0('Normální křivka, μ = nπ = ',ch5_num(n*p,0),', σ = √(nπ(1 − π)) = ',ch5_num(sqrt(n*p*(1-p)),2)),function(x) dnorm(x,n*p,sqrt(n*p*(1-p))),from,to,points)
 ch5_draw('binomicke-tvar', {
   par(mfrow=c(2,2),mar=c(4.3,4.6,2.5,.6))
-  ch5_bars(5,.25,'n = 5, π = 0,25',ylim=c(0,.45),lwd=10)
-  ch5_bars(20,.25,'n = 20, π = 0,25',ylim=c(0,.45))
-  ch5_bars(20,.5,'n = 20, π = 0,50',ylim=c(0,.45))
-  ch5_bars(20,.9,'n = 20, π = 0,90',ylim=c(0,.45))
+  ch5_bars(5,.25,'*n* = 5, π = 0,25',ylim=c(0,.45),lwd=10)
+  ch5_bars(20,.25,'*n* = 20, π = 0,25',ylim=c(0,.45))
+  ch5_bars(20,.5,'*n* = 20, π = 0,50',ylim=c(0,.45))
+  ch5_bars(20,.9,'*n* = 20, π = 0,90',ylim=c(0,.45))
 },width=9.4,height=6.6)
 ch5_fig('binomicke-tvar','sloupce',note='Čtyři panely ve dvou řadách po dvou se stejným rozsahem svislé osy; binomické pravděpodobnosti jsou nakresleny jako modré úzké svislé sloupce.',panels=list(
   ch5_bars_panel(5,.25,'n = 5, π = 0,25',ylim=c(0,.45)),ch5_bars_panel(20,.25,'n = 20, π = 0,25',ylim=c(0,.45)),
@@ -292,11 +294,11 @@ ch5_fig('binom-oblasti','sloupce',note='Tři panely vedle sebe s týmž binomick
   ch5_bars_panel(20,.25,'Alespoň 10',highlight=10:20,ylim=c(0,.24),note=paste0('Součet zvýrazněných sloupců: ',ch5_num(1-pbinom(9,20,.25)),'.'))))
 ch5_draw('aproximace', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,2.7,.7))
-  ch5_bars(20,.05,'n = 20, π = 0,05: podmínka nesplněna',xlim=c(-3,8),ylim=c(0,.45),lwd=9)
+  ch5_bars(20,.05,'*n* = 20, π = 0,05: podmínka nesplněna',xlim=c(-3,8),ylim=c(0,.45),lwd=9)
   curve(dnorm(x,20*.05,sqrt(20*.05*.95)),from=-3,to=8,add=TRUE,col=ch5_blue,lwd=2,lty=2,n=400)
   abline(v=0,lty=3,col=ch5_gray); text(-1.6,.3,'záporný počet
 není možný',cex=.78,col=ch5_gray)
-  ch5_bars(200,.6,'n = 200, π = 0,60: podmínka splněna',highlight=135:200,xlim=c(95,145),ylim=c(0,.066),lwd=3)
+  ch5_bars(200,.6,'*n* = 200, π = 0,60: podmínka splněna',highlight=135:200,xlim=c(95,145),ylim=c(0,.066),lwd=3)
   curve(dnorm(x,200*.6,sqrt(200*.6*.4)),from=95,to=145,add=TRUE,col=ch5_blue,lwd=2,lty=2,n=400)
   text(139,.03,'135\na více',cex=.82,col=ch5_orange)
   legend('topleft',c('binomické pravděpodobnosti','normální křivka'),lty=c(1,2),lwd=c(4,2),col=c('#A9BAC3',ch5_blue),bty='n',cex=.74)

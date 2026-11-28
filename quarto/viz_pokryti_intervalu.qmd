@@ -33,6 +33,8 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the chapter 7 figures (scripts/kapitola_07.R).
   const blue = "#245D78", orange = "#B54E24", fill = "#B8DDE8", sand = "#FAECDD", ink = "#223744", gray = "#4D5A63", mute = "#A9BAC3";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -587,11 +589,11 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
     // Known σ: the interval misses μ exactly when the mean is farther from μ than the margin of error.
     const bounds = S.proc !== "z" ? [] : S.side === "two" ? [S.mu - me, S.mu + me] : S.side === "upper" ? [S.mu - me] : [S.mu + me];
     const [mLo, mHi] = range(i => M[i], [S.mu - 4 * se, S.mu + 4 * se, ...bounds], 4 * se);
-    $("[data-hist-m]").replaceChildren(histogram(i => M[i], {lo: mLo, hi: mHi, small, xLabel: "Výběrový průměr m (body)", curve: x => normalPdf(x, S.mu, se),
+    $("[data-hist-m]").replaceChildren(histogram(i => M[i], {lo: mLo, hi: mHi, small, xLabel: `Výběrový průměr ${sym("m")} (body)`, curve: x => normalPdf(x, S.mu, se),
       refs: [{x: S.mu, label: "μ"}, ...bounds.map((x, i) => ({x, color: orange, dash: "4,3"}))],
       aria: `Histogram výběrových průměrů ${int(K)} výběrů`}));
     const [sLo, sHi] = range(i => SD[i], [S.sigma], 0.5 * S.sigma);
-    $("[data-hist-s]").replaceChildren(histogram(i => SD[i], {lo: Math.max(0, sLo), hi: sHi, small, xLabel: "Výběrová směrodatná odchylka s (body)",
+    $("[data-hist-s]").replaceChildren(histogram(i => SD[i], {lo: Math.max(0, sLo), hi: sHi, small, xLabel: `Výběrová směrodatná odchylka ${sym("s")} (body)`,
       refs: [{x: S.sigma, label: "σ"}], aria: `Histogram výběrových směrodatných odchylek ${int(K)} výběrů`}));
     const wKnown = D.wFactor * D.q * se;
     if (S.proc === "z") {
@@ -599,7 +601,7 @@ Pod grafy je tabulka pokrytí v simulaci a podle očekávání, souhrny všech t
     } else {
       const [wLo, wHi] = range(D.width, [wKnown], 0.5 * wKnown);
       $("[data-hist-w]").replaceChildren(histogram(D.width, {lo: Math.max(0, wLo), hi: wHi, small, xLabel: `${widthName()} (body)`,
-        refs: [{x: wKnown, label: "při s = σ"}], aria: `Histogram: ${widthName().toLowerCase()} ${int(K)} intervalů`}));
+        refs: [{x: wKnown, label: `při ${sym("s")} = σ`}], aria: `Histogram: ${widthName().toLowerCase()} ${int(K)} intervalů`}));
     }
     $("[data-legend-hist]").innerHTML = [
       `<span>${boxSwatch(fill, blue)}<span>interval zachytil μ</span></span>`,

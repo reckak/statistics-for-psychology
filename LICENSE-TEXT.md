@@ -34,6 +34,9 @@ v knize nebo v souboru uvedeného jiného autora a vlastní licenci:
 - `assets/chapter-03/plots/mode-median-mean.svg` — obrázek od CMG Lee
   (Cmglee) z Wikimedia Commons, licence
   [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.cs);
+- `scripts/fonts/STIXTwoMath-Regular.otf` — písmo STIX Two Math 2.13
+  (The STIX Fonts Project Authors), kterým se kreslí symboly v grafech,
+  licence SIL Open Font License 1.1 (`scripts/fonts/OFL.txt`);
 - citované práce a upravené příklady z literatury, jejichž práva zůstávají
   jejich autorům a vydavatelům; licence CC BY 4.0 se týká pouze vlastního
   zpracování.

@@ -9,6 +9,113 @@ a předchozí měsíc; starší uzavřené měsíce jsou beze změny přesunuté
 
 Původní adresy přesunutých záznamů zachovává [rejstřík na konci souboru](#rejstrik-archivovanych-zaznamu).
 
+<a id="matematicke-pismo-grafu-2026-11-28"></a>
+
+## Matematické písmo symbolů v grafech (2026-11-28, R89)
+
+Na autorův dotaz, proč popisky grafů většinou nesázejí statistické symboly
+kurzivou, a jeho požadavek, aby symboly v grafech vypadaly jako v rovnicích.
+Volby a jejich schválení dokládá
+[R89](../docs/rozhodnuti/spolecne-konvence.md#r89-matematicke-pismo-grafu).
+Práce je ve větvi `codex/cross-chapter`; sloučená větev `codex/chapter-09`
+(PR #241, bez neodeslaných commitů a bez rozdílu proti `main`) byla smazána
+lokálně i na GitHubu.
+
+**Provedeno:**
+
+- Písmo STIX Two Math 2.13 (`scripts/fonts/STIXTwoMath-Regular.otf` a `OFL.txt`)
+  staženo z oficiálního repozitáře `stipub/stixfonts`, značka v2.13, poslední
+  verze s hotovými soubory písma. Otisk souboru (`git hash-object`) se shoduje
+  s originálem. Se souhlasem autora je písmo nainstalované pro jeho uživatelský
+  účet ve Windows. R zde kreslí přes cairo bez fontconfig, takže soubor
+  v repozitáři nestačí. Workflow `book.yml` písmo instaluje před `quarto render`
+  a ověřuje ho přes `fc-list`.
+- Nový pomocník `scripts/figure-labels.R`: funkce `fl_text()`, `fl_mtext()`,
+  `fl_title()`, `fl_legend()`, `fl_axis()` a `fl_strwidth()` kreslí popisek se
+  značkami `*r*`, `_{…}` a `^{…}` po úsecích; symboly sází písmem STIX Two Math.
+  - Polohy počítají podle pravidel R změřených na zařízení `svg()`:
+    - účaří `text()` při `adj`, `pos` a `offset` (posun podle `par('cex')`);
+    - přesné svislé centrování podle výšky a hloubky znaků (z `grid`, které je
+      součástí R);
+    - linky okrajů včetně `ylbias` a vnějších okrajů;
+    - umístění `title()` s parametrem `line` i bez něj;
+    - šířky sloupců legendy.
+  - Popisek bez značek a řeckých písmen jde beze změny do základní funkce.
+  - `fl_check_font()` zastaví vykreslování, když písmo chybí: R by jinak tiše
+    nakreslilo prázdné obdélníky, ověřeno.
+  - V tučném popisku dostávají latinská písmena tučnou matematickou kurzivu
+    a řecká písmena tučný stojatý řez.
+  - Kontrolní skript `scripts/check-figure-labels.R` (zařazený i do CI)
+    porovnává 35 případů v jednom grafu a v mřížce s `cex` 0,75, tedy 70
+    srovnání. Polohy znaků se shodují se základními funkcemi do 0,01 px.
+- Grafy kapitol 3–10: asi 110 míst ve skriptech `scripts/kapitola_03.R` až
+  `kapitola_10.R` převedeno na pomocníka, včetně sdílených funkcí `ch5_bars`,
+  `ch6_hist`, `ch6_curve` a pomocníků `boxed` a `box_label` v kapitole 4.
+  - Veškerý plotmath (`expression()`, `bquote()`, `italic()`) zanikl, takže
+    `symbolfamily` zařízení měnit nebylo třeba (odchylka od plánu). Nepoužívané
+    `ch10_lab_rs` a `ch10_lab_tb` jsou odstraněné.
+  - Kapitoly 1 a 2 symboly v grafech nemají. Změnilo se 74 obrázků.
+  - Obrázek 8.3 (`korelace-rozdily`) má místo „SD rozdílů“ $s_D$ v grafu
+    i v záznamu pro tutora.
+  - Hodnota *p* v obrázku `zmeny-skupin` je kurzivou jen u písmene, ne celá.
+  - Popisky *H*₀/*H*₁ v obrázku hypotéz ekvivalence (kap. 7) jsou nově tučně,
+    jak je zdroj zadával (`font = 2`); plotmath tučný řez ignoroval.
+  - Záznamy pro tutora zůstávají prostým textem; sdílené tituly v kapitole 10
+    převádí `fl_plain()`.
+- Popisky pod obrázky (kap. 7, 9 a 10, sedm míst): *m*, *s*, *p*-hodnota
+  a *r* kurzivou, hodnoty jako `$r=0{,}54$` podle převažujícího zápisu
+  v kapitole 10. Řecká písmena zůstávají prostými znaky jako v souvislém textu.
+  `fig-alt` je beze změny. `assets/lightbox-captions.js` přebírá do titulku
+  lightboxu vykreslený popisek i tehdy, když obsahuje jen kurzívu (`em`),
+  nejen matematiku.
+- Vizualizace a aplikace: nový skript `assets/viz-labels.js` (v
+  `assets/after-body.html`) sází symboly v SVG grafech matematickým písmem
+  prohlížeče, tedy jako rovnice MathML na daném zařízení.
+  - Latinské symboly se značí `window.vizSym`: 40 míst na 14 stránkách.
+    Řecká písmena a číselné indexy za symbolem převádí skript sám.
+  - Značky jsou znaky ze soukromé oblasti Unicode, takže popisky ze vstupů
+    aplikací se nikdy neformátují.
+  - V nadpisu panelu binomické vizualizace bylo doplněno chybějící `<i>k</i>`.
+  - HTML texty vizualizací (legendy, poznámky, tabulky, ovládání) dál sázejí
+    symboly kurzivou `<i>`, jako souvislý text (přes 700 výskytů). Plán
+    počítal s inline MathML. Tato odchylka čeká na rozhodnutí autora.
+- Dokumentace: řádek a doklad R89, provozní návod
+  ([Symboly v grafech](../docs/PROVOZ.md#symboly-v-grafech) a návod
+  k vizualizacím), pravidlo v AGENTS.md, písmo v `LICENSE-TEXT.md`.
+
+**Kontroly:**
+
+- `Rscript --vanilla scripts/render-figures.R` proběhl bez chyb. Kontroly
+  kapitol 2–7 (`quarto/_verification/check-chapter-0N.R`) prošly.
+- Záznamy pro tutora prošly `scripts/tutor/check-figure-data.cjs` u kapitol
+  3–10 a nezůstaly v nich žádné značky.
+- Načtení `kapitola_10.R` bez obrázků (`CH10_NOFIG`) i
+  `scripts/viz-korelace.R` prošlo. Sestavení sešitů v Excelu spuštěno nebylo;
+  změnou v něm je jen jedno `source()` s definicemi funkcí.
+- Všech 74 změněných obrázků bylo porovnáno po pixelech s dosavadní podobou
+  a výřezy rozdílných oblastí (dosud/nově) vizuálně prošel samostatný agent.
+  - Nenašel zbytky značek, prázdné znaky, chybějící text, překryvy ani oříznutí.
+  - Jedinou vadu, slabé ² v tučných popiscích, opravuje tučná horní číslice.
+  - ² za závorkou výrazu se symboly je nově také ve STIX.
+- Kalibrační test viz výše.
+- Celá kniha vykreslena (Quarto 1.9.38, R 4.5.1).
+- `check-html.cjs` dostal tři nové kontroly:
+  - kurzivní *r* v titulku lightboxu obrázku 10.x;
+  - matematické *z* a *t* v grafech vizualizace *t*-rozdělení;
+  - žádné značky na stránkách vizualizací a aplikací a matematické písmo
+    v grafech čtyř vizualizací.
+- Snímky grafů vizualizace *t*-rozdělení (desktop a 375 px), binomického
+  rozdělení a statistické síly byly vizuálně prohlédnuty.
+
+**Omezení:**
+
+- Grafy kapitol jsou ověřeny jen na lokálním vykreslení ve Windows. Vykreslení
+  na Ubuntu v CI (písmo přes fontconfig a Pango, kalibrační test) se ověří až
+  během PR.
+- Matematické písmo vizualizací závisí na prohlížeči. Ověřeno v Chromiu na
+  Windows (Cambria Math), jiné prohlížeče a zařízení ne.
+- Prezentace, PDF a balíčky tutora zůstávají beze změny.
+
 <a id="jeden-podil-tri-rozdeleni"></a>
 
 ## Kapitola 9: jeden podíl třemi rozděleními (2026-11-27, doplnění R68)

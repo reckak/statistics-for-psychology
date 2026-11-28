@@ -402,6 +402,9 @@ konkrétního místa.
   s běžnými alternativami a jasným označením používané varianty.
 - Řecký znak sám nezaručuje stojatý řez: typografii ověř ve vykreslených
   rovnicích. Matematiku zapisuj přístupným textovým zápisem, ne obrázky.
+- Statistické symboly uvnitř grafů kapitol, vizualizací a aplikací sázej
+  matematickým písmem podle [R89](docs/rozhodnuti/spolecne-konvence.md#r89-matematicke-pismo-grafu)
+  (techniku a písmo popisuje [provozní návod](docs/PROVOZ.md#symboly-v-grafech)).
 
 ## Výpočty, kalkulačka, Excel a interní R
 

@@ -44,6 +44,8 @@ Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Vý
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the t-distribution figure of chapter 7 (scripts/kapitola_07.R).
   const blue = "#245D78", orange = "#B54E24", fillT = "#B8DDE8", fillN = "#F0B08C", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", hiText = "#9A3F17";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -299,7 +301,7 @@ Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Vý
     const small = width < 520;
     const base = {width, marginLeft: small ? 56 : 66, marginRight: 16, marginTop: 16, style: {fontSize: small ? "12px" : "13px", color: ink, background: "transparent", overflow: "visible"}};
     const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 44 : 52});
-    const xAxis = {domain: [-XMAX, XMAX], label: "x", labelAnchor: "center", labelArrow: "none", ticks: d3.range(-XMAX, XMAX + 1, small ? 2 : 1).concat(small ? [XMAX] : []), tickFormat: t => minus(String(t))};
+    const xAxis = {domain: [-XMAX, XMAX], label: sym("x"), labelAnchor: "center", labelArrow: "none", ticks: d3.range(-XMAX, XMAX + 1, small ? 2 : 1).concat(small ? [XMAX] : []), tickFormat: t => minus(String(t))};
     const grid = d3.range(0, 501).map(i => -XMAX + 2 * XMAX * i / 500);
     const inside = Math.abs(x) <= XMAX;
 
@@ -318,7 +320,7 @@ Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Vý
         Plot.lineY(grid, {x: d => d, y: dnorm, stroke: orange, strokeWidth: 2, strokeDasharray: "6,4"}),
         Plot.lineY(grid, {x: d => d, y: d => dt(d, v), stroke: blue, strokeWidth: 2.2}),
         inside ? Plot.ruleX([x], {stroke: ink, strokeWidth: 1.3, strokeDasharray: "5,4"}) : null,
-        inside ? Plot.text([x], {x: d => d, frameAnchor: "top", dx: T.right ? 6 : -6, textAnchor: T.right ? "start" : "end", lineAnchor: "top", fill: hiText, fontWeight: 600, text: d => `x = ${typed(d)}`}) : null,
+        inside ? Plot.text([x], {x: d => d, frameAnchor: "top", dx: T.right ? 6 : -6, textAnchor: T.right ? "start" : "end", lineAnchor: "top", fill: hiText, fontWeight: 600, text: d => `${sym("x")} = ${typed(d)}`}) : null,
         Plot.ruleY([0], {stroke: ink})
       ]
     });
@@ -330,8 +332,8 @@ Při volbě výšky hustoty grafy ukazují, kde se liší tvar obou křivek. Vý
     const zr = zEdge + 0.1;
     const qqPlot = Plot.plot({
       ...base, height: small ? 300 : 340, marginBottom: 46,
-      x: {domain: [-zr, zr], label: "Kvantil normovaného normálního rozdělení (z)", labelAnchor: "center", labelArrow: "none", ticks: [-3, -2, -1, 0, 1, 2, 3], tickFormat: t => minus(String(t))},
-      y: {...yLabel("Kvantil t-rozdělení"), domain: [-QQ_Y, QQ_Y], ticks: d3.range(-QQ_Y, QQ_Y + 1, 2), tickFormat: t => minus(String(t))},
+      x: {domain: [-zr, zr], label: `Kvantil normovaného normálního rozdělení (${sym("z")})`, labelAnchor: "center", labelArrow: "none", ticks: [-3, -2, -1, 0, 1, 2, 3], tickFormat: t => minus(String(t))},
+      y: {...yLabel(`Kvantil ${sym("t")}-rozdělení`), domain: [-QQ_Y, QQ_Y], ticks: d3.range(-QQ_Y, QQ_Y + 1, 2), tickFormat: t => minus(String(t))},
       ariaLabel: `Normální Q–Q graf: kvantily t-rozdělení s ${v} ${dfWord(v)} volnosti proti kvantilům normovaného normálního rozdělení`,
       ariaDescription: `Vpravo leží křivka nad přímkou shody a vlevo pod ní. Například úrovni 0,975 odpovídá z = 1,960 a t = ${q3(qt(0.975, v))}.`,
       marks: [
