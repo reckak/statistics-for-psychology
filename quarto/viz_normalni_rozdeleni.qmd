@@ -26,6 +26,8 @@ Pod volbami se zobrazuje převod hranic na *z*-skóry, výpočet podílu z ploch
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the figures of chapter 4 (scripts/kapitola_04.R).
   const blue = "#245D78", hi = "#F0B08C", hiText = "#9A3F17", lo = "#B8DDE8", ink = "#223744", pale = "#E1E8EB", gray = "#4D5A63", orange = "#B54E24";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -301,7 +303,7 @@ Pod volbami se zobrazuje převod hranic na *z*-skóry, výpočet podílu z ploch
     const labels = visible.map((x, i) => {
       const lower = visible.length === 2 && i === 0, upper = visible.length === 2 && i === 1;
       let anchor = lower ? (frac(x) < 0.2 ? "start" : "end") : upper ? (frac(x) > 0.8 ? "end" : "start") : (frac(x) > 0.6 ? "end" : "start");
-      return {x, anchor, dy: 0, text: `x = ${fmtX(x)}\nz = ${zText(toZ(x))}`};
+      return {x, anchor, dy: 0, text: `${sym("x")} = ${fmtX(x)}\n${sym("z")} = ${zText(toZ(x))}`};
     });
     // Two labels on the same side of their lines would overlap: the second one moves down.
     if (labels.length === 2 && (labels[0].anchor === "start" || labels[1].anchor === "end")) labels[1].dy = 34;
@@ -320,7 +322,7 @@ Pod volbami se zobrazuje převod hranic na *z*-skóry, výpočet podílu z ploch
         Plot.ruleY([0], {stroke: ink}),
         Plot.axisX(tickX, {tickFormat: v => trim(v, 3), label: null}),
         Plot.text(tickX, {x: d => d, frameAnchor: "bottom", dy: 28, lineAnchor: "top", fill: gray, text: (d, i) => minus(String(ks[i]))}),
-        rowLabel("x", 9), rowLabel("z", 28)
+        rowLabel(sym("x"), 9), rowLabel(sym("z"), 28)
       ]
     });
 
@@ -355,7 +357,7 @@ Pod volbami se zobrazuje převod hranic na *z*-skóry, výpočet podílu z ploch
         ...heightMarks,
         Plot.ruleY([0], {stroke: ink}),
         Plot.axisX(tickX, {tickFormat: v => trim(v, 3), label: null}),
-        rowLabel("x", 9)
+        rowLabel(sym("x"), 9)
       ]
     });
 

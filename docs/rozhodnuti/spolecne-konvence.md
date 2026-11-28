@@ -379,3 +379,21 @@ Pravidla psaní jsou v [AGENTS.md](../../AGENTS.md#didaktika-a-jazyk), termíny 
 Postup je v [provozním návodu](../PROVOZ.md), pravidlo v [AGENTS.md](../../AGENTS.md#výpočty-kalkulačka-excel-a-interní-r).
 
 **Doklad:** autor 2026-11-14 po sloučení PR #198: „výraz: =KDYŽ(A(JE.ČISLO(Spanek_par!B2);JE.ČISLO(Spanek_par!C2));Spanek_par!B2;"") Je moc rozsáhlý, a kvůli němu je tabulka Tabulka 8.3 příliš široká. Myslím, že by bylo vhodné takové výrazy zalamovat“ (s ukázkou zalomení za středníkem a odsazením). V upřesňující otázce na rozsah zvolil „Celá kniha“ a schválil plán úprav. Záznam v [historii](../../quarto/README.md#zalamovani-vzorcu-2026-11-14).
+
+<a id="r89-matematicke-pismo-grafu"></a>
+
+## R89 — Statistické symboly v grafech matematickým písmem
+
+**Stav:** schváleno 2026-11-28. **Rozsah:** text uvnitř grafů kapitol (popisky os, nadpisy, legendy, vpisky), popisky pod obrázky, grafy interaktivních vizualizací a statistických aplikací. Mimo rozsah zůstávají prezentace (sjednotí se při své příští úpravě), alternativní texty obrázků, popisy grafů pro čtečky a záznamy grafů pro AI tutora (zůstávají bez formátování jako podle [R66](#r66-kurziva-a-et-al)) a písmo rovnic na webu i v PDF.
+
+**Volba a důvod:**
+
+- Statistické symboly v grafech se sázejí matematickým písmem, aby vypadaly jako v rovnicích učebnice, nikoli jen kurzivou bezpatkového písma grafu. Latinská písmena jsou matematickou kurzivou (*m*, *s*, *n*, *r*, *t*, *z*, *p*, *d*, *k*, *x*, *P*, *X*, *H*₀ …, i ve složeninách *t*-test, *z*-skór, *p*-hodnota), řecká písmena stojatě; indexy a exponenty patří k symbolu. Které znaky jsou symboly, určuje sazba v textu dané kapitoly; X a Y jako názvy proměnných v kapitole 10, T-skór, IQR, Q–Q a česká předložka „z“ zůstávají písmem grafu.
+- Matematickým písmem se sázejí jen symboly; čísla, rovnítko a ostatní text zůstávají písmem grafu, shodně s čísly na osách.
+- Grafy kapitol (R) používají volné písmo STIX Two Math (licence OFL 1.1), uložené v repozitáři, protože publikované grafy vznikají na serveru bez písma Cambria Math; SVG ukládají znaky jako křivky, takže vypadají všude stejně. Vizualizace a aplikace používají matematické písmo prohlížeče, tedy totéž jako rovnice MathML na daném zařízení. Písmo rovnic na webu se nemění (autor zvolil variantu „Jen grafy“, nikoli jednotné písmo celého webu).
+- Popisky pod obrázky jsou součástí souvislého textu a řídí se jeho zápisem (*r*, `$r=0{,}54$`).
+- V obrázku 8.3 se směrodatná odchylka rozdílů značí $s_D$ jako v textu kapitoly 8, ne „SD“ (zkratka *SD* patří jen do ukázek reportování podle [R01](#r01-znaceni-a-reportovani)).
+
+Technika (pomocné funkce `fl_*()` ve `scripts/figure-labels.R`, `window.vizSym()` v `assets/viz-labels.js`, instalace písma) je v [provozním návodu](../PROVOZ.md#symboly-v-grafech), pravidlo v [AGENTS.md](../../AGENTS.md#terminologie-a-značení).
+
+**Doklad:** autor 2026-11-28: „V popiscích grafů učebnice většinou není použita kurziva pro statistické zkratky a symboly, např. *s* pro směrodatnou odchylku, *n* pro velikost výběru, *r* pro korelaci, *t* nebo *z* apod. Je snadné to napravit?“; k rozsahu zvolil grafy kapitol, popisky pod obrázky a vizualizace s aplikacemi a doplnil „Obrázek 8.3 navíc používá SD pro směrodatnou odchylku, i když konvence je *s*“; dále „Je možné i zaručit to, ať jsou samostatné symboly jako m, s, n, r atd. nejen kurzivou, ale ať používají odlišný čili matematický styl písma, jako se objevuje běžně u rovnic učebnice?“. V navazujících otázkách zvolil variantu písma „Jen grafy“ a sazbu „Jen symboly“, schválil plán, stažení a instalaci písma STIX Two Math a po ukázce dvou obrázků jejich vzhled („Ano, převést“). Záznam v [historii](../../quarto/README.md#matematicke-pismo-grafu-2026-11-28).

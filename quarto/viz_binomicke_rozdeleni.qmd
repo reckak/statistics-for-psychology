@@ -29,6 +29,8 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the figures of chapters 4 and 5.
   const blue = "#245D78", hi = "#F0B08C", hiText = "#9A3F17", lo = "#B8DDE8", ink = "#223744", pale = "#E1E8EB", gray = "#4D5A63", orange = "#B54E24";
   const N_MAX = 1000, SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -371,7 +373,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
     };
     const yLabel = label => ({label, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 46 : 54});
     const rowLabel = (text, dy) => Plot.text([text], {frameAnchor: "bottom-left", dx: -24, dy, lineAnchor: "top", textAnchor: "end", fontStyle: "italic", fill: gray, text: d => d});
-    const kAxis = [Plot.axisX(kTicks, {tickFormat: v => int(v), label: null}), rowLabel("k", 9)];
+    const kAxis = [Plot.axisX(kTicks, {tickFormat: v => int(v), label: null}), rowLabel(sym("k"), 9)];
     const w = ks.length > 120 ? 1 : 0.8;
     const bars = ks.map(k => ({k, p: pmf[k], fill: member[k] ? hi : lo}));
     const grid = ap ? d3.range(0, 601).map(i => domain[0] + (domain[1] - domain[0]) * i / 600) : [];
@@ -387,7 +389,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
     const probChart = Plot.plot({
       ...base, height: small ? 280 : 320, marginBottom: 60,
       x: {domain, axis: null}, color: {type: "identity"},
-      y: {...yLabel("P(X = k)"), domain: [0, top], ticks: 4, tickFormat: v => trim(v, 4)},
+      y: {...yLabel(`${sym("P")}(${sym("X")} = ${sym("k")})`), domain: [0, top], ticks: 4, tickFormat: v => trim(v, 4)},
       ariaLabel: `Pravděpodobnosti počtu úspěchů pro n = ${n} a π = ${typed(pi)}`,
       ariaDescription: `${q.key === "range" ? "Počty v rozpětí" : "Sloupce hledaného jevu"} jsou oranžové, ostatní modré. ${q.name.replace(/<[^>]+>/g, "")}: pravděpodobnost ${share(q.value)}. Střední hodnota ${trim(mu, 3)}, směrodatná odchylka ${fixed(sd, 3)}.${ap ? ` Normální křivka se stejnou střední hodnotou a směrodatnou odchylkou; plocha s hranicemi na okraji sloupců ${prob4(ap.edgeArea)}.` : ""}`,
       marks: [
@@ -399,7 +401,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
         Plot.ruleY([0], {stroke: ink}),
         ...kAxis,
         Plot.text(pTicks, {x: p => p * n, frameAnchor: "bottom", dy: 36, lineAnchor: "top", fill: gray, text: p => trim(p, 4)}),
-        rowLabel("p", 36)
+        rowLabel(sym("p"), 36)
       ]
     });
     // Tick marks of the second row (proportions) are added below the frame.
@@ -428,12 +430,12 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
     const close = shown.length === 2 && Math.abs(shown[1][1] - shown[0][1]) < 0.09;
     const heightMarks = shown.map(([, h, at], i) => {
       const below = close && i === 0;
-      return Plot.text([h], {x: () => domain[0], y: d => d, dx: 4, dy: below ? 4 : -4, lineAnchor: below ? "top" : "bottom", textAnchor: "start", fill: hiText, fontWeight: 600, text: d => `P(X ≤ ${int(at)}) = ${share(d)}`});
+      return Plot.text([h], {x: () => domain[0], y: d => d, dx: 4, dy: below ? 4 : -4, lineAnchor: below ? "top" : "bottom", textAnchor: "start", fill: hiText, fontWeight: 600, text: d => `${sym("P")}(${sym("X")} ≤ ${int(at)}) = ${share(d)}`});
     });
     const cdfChart = Plot.plot({
       ...base, height: small ? 250 : 280, marginBottom: 40,
       x: {domain, axis: null}, color: {type: "identity"},
-      y: {...yLabel("P(X ≤ k)"), domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2)},
+      y: {...yLabel(`${sym("P")}(${sym("X")} ≤ ${sym("k")})`), domain: [0, 1], ticks: [0, 0.25, 0.5, 0.75, 1], tickFormat: v => trim(v, 2)},
       ariaLabel: `Kumulativní pravděpodobnost pro n = ${n} a π = ${typed(pi)}`,
       ariaDescription: `Kumulativní pravděpodobnost roste po schodech od 0 do 1. ${shown.map(([, h, at]) => `P(X ≤ ${int(at)}) = ${share(h)}`).join(", ")}.${ap ? " Čárkovaně distribuční funkce normálního modelu." : ""}`,
       marks: [
@@ -462,7 +464,7 @@ Pravděpodobnost zaokrouhlujeme na tři desetinná místa a procento na jedno; u
       nodes.push(html`<p class="viz-note">Graf ukazuje počty od ${int(kLo)} do ${int(kHi)}. Všechny ostatní počty od 0 do ${int(n)} mají dohromady pravděpodobnost ${hiddenProb === 0 ? "0" : share(hiddenProb)}.</p>`);
     }
     if (far.length) nodes.push(html`<p class="viz-note">${far.length === 1 ? "Hranice" : "Meze"} ${far.map(int).join(" a ")} leží daleko od střední hodnoty, a proto ${far.length === 1 ? "není zakreslena" : "nejsou zakresleny"}. Pravděpodobnost počtů za ${far.length === 1 ? "ní" : "nimi"} je prakticky nulová.</p>`);
-    nodes.push(panel("Kumulativní pravděpodobnost: součet sloupců až po k", cdfChart, cdfLegend));
+    nodes.push(panel(html`Kumulativní pravděpodobnost: součet sloupců až po <i>k</i>`, cdfChart, cdfLegend));
     container.replaceChildren(...nodes);
     return {lo: kLo, hi: kHi};
   }

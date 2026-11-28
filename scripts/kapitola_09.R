@@ -15,6 +15,7 @@ ch9_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_09/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch9_fig <- function(...) tf_figure('kapitola_09',...)
 ch9_z <- qnorm(.975)
 # Procedures -------------------------------------------------------------------------------
@@ -196,8 +197,9 @@ ch9_draw('wald-wilson', {
   rows <- rbind(ch9_t20_wald[c('p','dolni','horni')],ch9_t20_wil[c('p','dolni','horni')],
                 ch9_n15_wald[c('p','dolni','horni')],ch9_n15_wil[c('p','dolni','horni')])
   y <- c(4.2,3.4,1.8,1); cols <- c(ch9_mute,ch9_blue,ch9_mute,ch9_blue)
-  plot(NA,xlim=c(-.02,1),ylim=c(.4,4.9),yaxt='n',xlab='Podíl správných odpovědí, populační hodnota π',ylab='',main='95% intervaly pro podíl: Waldův a Wilsonův',bty='l')
-  abline(v=.25,lty=2,col=ch9_gray); text(.25,4.85,'π = 0,25 (hádání)',cex=.75,col=ch9_gray,adj=c(-.05,.5))
+  plot(NA,xlim=c(-.02,1),ylim=c(.4,4.9),yaxt='n',xlab='',ylab='',main='95% intervaly pro podíl: Waldův a Wilsonův',bty='l')
+  fl_title(xlab='Podíl správných odpovědí, populační hodnota π')
+  abline(v=.25,lty=2,col=ch9_gray); fl_text(.25,4.85,'π = 0,25 (hádání)',cex=.75,col=ch9_gray,adj=c(-.05,.5))
   axis(2,at=y,labels=c('10 z 20: Wald','10 z 20: Wilson','0 z 15: Wald','0 z 15: Wilson'),tick=FALSE,cex.axis=.88)
   segments(pmax(rows[,2],0),y,rows[,3],y,lwd=4,col=cols,lend=1); points(rows[,1],y,pch=21,bg='white',col=ch9_ink,cex=1.3)
   lab <- paste0('(',ch9_num(pmax(rows[,2],0)),'; ',ch9_num(rows[,3]),')')
@@ -213,7 +215,8 @@ ch9_draw('wilson-odvozeni', {
   par(mar=c(4.6,4.8,2.8,.8))
   x <- seq(0,1,length.out=501); lo <- ch9_t20_kor['dolni']; hi <- ch9_t20_kor['horni']
   left <- (.5-x)^2; right <- ch9_z^2*x*(1-x)/20; inside <- x>=lo & x<=hi
-  plot(NA,xlim=c(0,1),ylim=c(0,.105),xaxs='i',yaxs='i',xlab='Populační podíl π',ylab='Hodnota obou stran nerovnice',main='10 z 20: pro která π platí nerovnice?',bty='l')
+  plot(NA,xlim=c(0,1),ylim=c(0,.105),xaxs='i',yaxs='i',xlab='',ylab='Hodnota obou stran nerovnice',main='',bty='l')
+  fl_title(main='10 z 20: pro která π platí nerovnice?',xlab='Populační podíl π')
   polygon(c(x[inside],rev(x[inside])),c(left[inside],rev(right[inside])),col=ch9_fill,border=NA)
   lines(x[left<=.105],left[left<=.105],col=ch9_orange,lwd=2); lines(x,right,col=ch9_blue,lwd=2)
   segments(c(lo,hi),0,c(lo,hi),(.5-lo)^2,lty=2,col=ch9_gray)
@@ -221,8 +224,8 @@ ch9_draw('wilson-odvozeni', {
   segments(lo,.003,hi,.003,lwd=5,col=ch9_blue,lend=1)
   text(c(lo,hi),rep(.011,2),ch9_num(c(lo,hi)),adj=c(1.25,.5),cex=.8); text(.5,.011,'Wilsonův interval',cex=.8,col=ch9_blue)
   text(.5,.03,'nerovnice platí',cex=.8,col=ch9_ink)
-  text(.2,.098,'čtverec vzdálenosti (p − π)²',adj=0,cex=.82,col=ch9_orange)
-  text(.5,.054,'mez z²π(1 − π)/n',cex=.82,col=ch9_blue)
+  fl_text(.2,.098,'čtverec vzdálenosti (*p* − π)²',adj=0,cex=.82,col=ch9_orange)
+  fl_text(.5,.054,'mez *z*²π(1 − π)/*n*',cex=.82,col=ch9_blue)
 },width=8,height=4.4)
 ch9_fig('wilson-odvozeni','krivka',note='Oranžová parabola je čtverec vzdálenosti (p − π)² pro p = 0,5, modrá křivka mez z²π(1 − π)/n pro n = 20 a z = 1,96. Světle modře je vybarvena oblast mezi křivkami, kde nerovnice platí; její krajní body jsou meze Wilsonova intervalu, který je vyznačen tlustou modrou úsečkou u vodorovné osy.',panels=list(local({
   lo <- ch9_t20_kor[['dolni']]; hi <- ch9_t20_kor[['horni']]; x <- seq(lo,hi,length.out=31); xl <- seq(.5-sqrt(.105),.5+sqrt(.105),length.out=41)
@@ -246,16 +249,18 @@ ch9_fig('pozice','sloupce',note='Nad každým sloupcem je jeho četnost.',panels
 ch9_draw('chi-kvadrat', {
   par(mfrow=c(1,2),mar=c(4.6,4.5,3,.8))
   x <- seq(.01,20,length.out=600); dfs <- c(1,2,4,8); cols <- c(ch9_orange,ch9_green,ch9_blue,ch9_ink)
-  plot(NA,xlim=c(0,20),ylim=c(0,.5),xlab='Hodnota χ²',ylab='Hustota',main='Chí-kvadrát rozdělení',bty='l')
+  plot(NA,xlim=c(0,20),ylim=c(0,.5),xlab='',ylab='Hustota',main='Chí-kvadrát rozdělení',bty='l')
+  fl_title(xlab='Hodnota χ²')
   for(i in seq_along(dfs)) { lines(x,dchisq(x,dfs[i]),lwd=2,col=cols[i]); q <- qchisq(.95,dfs[i]); segments(q,0,q,dchisq(q,dfs[i])+.03,lty=3,col=cols[i]) }
   legend('topright',paste0(dfs,' st. volnosti: 5 % nad ',ch9_num(qchisq(.95,dfs))),col=cols,lwd=2,bty='n',cex=.78)
   h <- hist(ch9_sim,breaks=seq(0,max(ch9_sim)+1,by=1),plot=FALSE)
-  plot(h,freq=FALSE,col=ch9_pale,border='white',xlim=c(0,20),ylim=c(0,.27),xlab='Hodnota χ² ve výběru 80 lidí',ylab='Hustota',main=expression(paste('Rozdělení statistiky při platnosti ',H[0])),bty='l')
+  plot(h,freq=FALSE,col=ch9_pale,border='white',xlim=c(0,20),ylim=c(0,.27),xlab='',ylab='Hustota',main='',bty='l')
+  fl_title(main='Rozdělení statistiky při platnosti *H*_{0}',xlab='Hodnota χ² ve výběru 80 lidí')
   xx <- seq(ch9_poz$chi2,20,length.out=200); polygon(c(xx,rev(xx)),c(dchisq(xx,3),rep(0,200)),col=adjustcolor(ch9_orange,.45),border=NA)
   lines(x,dchisq(x,3),lwd=2,col=ch9_blue); abline(v=qchisq(.95,3),lty=2,col=ch9_ink)
-  arrows(ch9_poz$chi2,.12,ch9_poz$chi2,.03,length=.08,col=ch9_orange,lwd=1.6); text(ch9_poz$chi2,.135,paste0('naše χ² = ',ch9_num(ch9_poz$chi2,1)),cex=.78,col=ch9_orange)
+  arrows(ch9_poz$chi2,.12,ch9_poz$chi2,.03,length=.08,col=ch9_orange,lwd=1.6); fl_text(ch9_poz$chi2,.135,paste0('naše χ² = ',ch9_num(ch9_poz$chi2,1)),cex=.78,col=ch9_orange)
   text(qchisq(.95,3),.2,paste0('kritická hodnota ',ch9_num(qchisq(.95,3))),adj=-.05,cex=.75)
-  legend('topright',c('10 000 simulovaných výběrů','χ² se 3 st. volnosti'),fill=c(ch9_pale,NA),border=c('white',NA),lwd=c(NA,2),col=c(NA,ch9_blue),bty='n',cex=.75)
+  fl_legend('topright',c('10 000 simulovaných výběrů','χ² se 3 st. volnosti'),fill=c(ch9_pale,NA),border=c('white',NA),lwd=c(NA,2),col=c(NA,ch9_blue),bty='n',cex=.75)
 },width=10,height=4.4)
 ch9_fig('chi-kvadrat','simulace',note='Vlevo čtyři křivky hustoty chí-kvadrát rozdělení; u každé tečkovaná svislá čára v kritické hodnotě, nad níž leží 5 % plochy. Vpravo histogram 10 000 simulovaných hodnot statistiky pro 80 voleb ze čtyř vzorků při platnosti nulové hypotézy, proložený křivkou se 3 stupni volnosti; oranžově je vybarvena plocha napravo od pozorované hodnoty.',panels=list(
   tf_panel('Chí-kvadrát rozdělení','čárový graf','Hodnota χ²','Hustota',xlim=c(0,20),ylim=c(0,.5),
@@ -270,7 +275,8 @@ ch9_draw('zvladani', {
   par(mar=c(4.6,4.7,2.8,.8))
   m <- t(ch9_zvl_tab$radkove); celkem <- colSums(ch9_zvl)/sum(ch9_zvl)
   b <- barplot(m,beside=TRUE,ylim=c(0,.6),col=c(ch9_blue,ch9_mute,ch9_orange),border=ch9_ink,ylab='Podíl v rámci věkové skupiny (řádkový podíl)',
-    names.arg=c('mladí (n = 55)','dospělí (n = 80)','senioři (n = 55)'),main='Preferovaná strategie zvládání stresu podle věku')
+    names.arg=rep('',3),main='Preferovaná strategie zvládání stresu podle věku')
+  fl_axis(1,at=colMeans(b),labels=c('mladí (*n* = 55)','dospělí (*n* = 80)','senioři (*n* = 55)'),tick=FALSE)
   for(j in 1:3) segments(b[j,]-.45,celkem[j],b[j,]+.45,celkem[j],lty=2,lwd=1.6,col=ch9_ink)
   text(b,m+.025,ch9_num(m,2),cex=.72)
   legend('topright',c(colnames(ch9_zvl),'podíl z celého výběru 190 osob'),fill=c(ch9_blue,ch9_mute,ch9_orange,NA),border=c(ch9_ink,ch9_ink,ch9_ink,NA),lty=c(NA,NA,NA,2),lwd=c(NA,NA,NA,1.6),bty='n',cex=.75)
@@ -284,7 +290,7 @@ ch9_draw('daniels', {
   layout(matrix(1:2,1),widths=c(1.35,1)); par(mar=c(4.6,4.7,3,.8))
   w <- ch9_dan_w
   plot(NA,xlim=c(.5,2.5),ylim=c(0,.55),xaxt='n',xlab='',ylab='Podíl žen s tématem sebeobjektivizace',main='Dva podíly (95% Wilsonovy intervaly)',bty='l')
-  axis(1,at=1:2,labels=c('sexualizované fotografie (n = 140)','sportovní fotografie (n = 117)'),cex.axis=.8)
+  fl_axis(1,at=1:2,labels=c('sexualizované fotografie (*n* = 140)','sportovní fotografie (*n* = 117)'),cex.axis=.8)
   segments(1:2,w[,'dolni'],1:2,w[,'horni'],lwd=3,col=c(ch9_orange,ch9_blue)); points(1:2,w[,'p'],pch=21,bg='white',col=ch9_ink,cex=1.4)
   text(1:2+.2,w[,'p'],paste0(ch9_num(w[,'p'],3)),adj=0,cex=.8)
   r <- ch9_dan_two
@@ -300,11 +306,13 @@ ch9_fig('daniels','data',note='Skutečná data: Daniels (2012). Svislé interval
 ch9_draw('pokryti-wald-wilson', {
   par(mfrow=c(2,4),mar=c(4.2,5.4,2.6,.6))
   for(n in ch9_cover_n) { m <- ch9_cover_res[[as.character(n)]]
-    plot(NA,xlim=c(0,1),ylim=c(.4,1),xlab='Populační podíl π',ylab=if(n==10) 'Skutečné pokrytí 95% intervalu' else '',main=paste0('n = ',n),bty='l')
+    plot(NA,xlim=c(0,1),ylim=c(.4,1),xlab='',ylab=if(n==10) 'Skutečné pokrytí 95% intervalu' else '',main='',bty='l')
+    fl_title(main=paste0('*n* = ',n),xlab='Populační podíl π')
     lines(ch9_cover_pi,m[,'wald'],col=ch9_orange,lwd=1.2); lines(ch9_cover_pi,m[,'wilson'],col=ch9_blue,lwd=1.2); abline(h=.95,lty=2,col=ch9_ink)
     if(n==10) legend('bottom',c('Waldův interval','Wilsonův interval','slibovaných 95 %'),col=c(ch9_orange,ch9_blue,ch9_ink),lty=c(1,1,2),lwd=c(1.8,1.8,1),bty='n',cex=.82) }
   for(n in ch9_cover_n) { m <- ch9_cover_res[[as.character(n)]]
-    plot(NA,xlim=c(0,1),ylim=c(0,1),xlab='Populační podíl π',ylab=if(n==10) 'Pravděpodobnost intervalu mimo 0–1\nnebo s nulovou šířkou' else '',bty='l')
+    plot(NA,xlim=c(0,1),ylim=c(0,1),xlab='',ylab=if(n==10) 'Pravděpodobnost intervalu mimo 0–1\nnebo s nulovou šířkou' else '',bty='l')
+    fl_title(xlab='Populační podíl π')
     lines(ch9_cover_pi,m[,'mimo'],col=ch9_orange,lwd=1.8); segments(0,0,1,0,col=ch9_blue,lwd=1.8)
     if(n==10) legend('top',c('Waldův interval','Wilsonův interval (vždy 0)'),col=c(ch9_orange,ch9_blue),lwd=1.8,bty='n',cex=.82) }
 },width=11,height=6)
@@ -322,7 +330,7 @@ ch9_draw('newcombe-konstrukce', {
   layout(matrix(c(1,1,2,3,4,4),3,byrow=TRUE),heights=c(1.1,1.7,.95))
   par(mar=c(4,9,2.8,.8))
   plot(NA,xlim=c(.18,.56),ylim=c(.45,2.8),yaxt='n',xlab='Podíl studentů se zvýšeným stresem',ylab='',bty='l',main='1. Wilsonovy intervaly obou skupin: z každého se použije jedna polovina')
-  axis(2,at=2:1,labels=c('ženy (n = 100)','muži (n = 100)'),tick=FALSE)
+  fl_axis(2,at=2:1,labels=c('ženy (*n* = 100)','muži (*n* = 100)'),tick=FALSE)
   segments(w[['zeny','dolni']],2,p1,2,lwd=8,col=ch9_orange,lend=1); segments(p1,2,w[['zeny','horni']],2,lwd=8,col=ch9_blue,lend=1)
   segments(w[['muzi','dolni']],1,p2,1,lwd=8,col=ch9_blue,lend=1); segments(p2,1,w[['muzi','horni']],1,lwd=8,col=ch9_orange,lend=1)
   points(c(p1,p2),2:1,pch=21,bg='white',col=ch9_ink,cex=1.7)
@@ -339,7 +347,7 @@ ch9_draw('newcombe-konstrukce', {
     polygon(c(0,a,0),c(0,0,b),col='white',border=ch9_ink,lwd=1.6)
     text(a/2,-a/2,paste0(la,'\n',ch9_num(a,4),'² = ',ch9_num(a^2,4)),cex=.9)
     text(-b/2,b/2,paste0(lb,'\n',ch9_num(b,4),'² = ',ch9_num(b^2,4)),cex=.9)
-    text((a+b)/2,(a+b)/2,paste0('součet čtverců\n',ch9_num(a^2,4),' + ',ch9_num(b^2,4),'\n= ',ch9_num(a^2+b^2,4),'\nstrana: √',ch9_num(a^2+b^2,4),' = ',ch9_num(cc,3)),cex=.9,font=2) }
+    fl_text((a+b)/2,(a+b)/2,paste0('součet čtverců\n',ch9_num(a^2,4),' + ',ch9_num(b^2,4),'\n= ',ch9_num(a^2+b^2,4),'\nstrana: √',ch9_num(a^2+b^2,4),' = ',ch9_num(cc,3)),cex=.9,font=2) }
   pyth(dl[1],dl[2],ch9_orange,'2a. Dolní mez: čtverce oranžových vzdáleností','ženy','muži')
   pyth(du[1],du[2],ch9_blue,'2b. Horní mez: čtverce modrých vzdáleností','ženy','muži')
   par(mar=c(4.2,9,2.8,.8))
@@ -371,13 +379,13 @@ ch9_draw('podil-tri-rozdeleni', {
   plot(NA,xlim=xl,ylim=c(0,.238),xaxs='i',xaxt='n',xlab='',ylab='',main='1. Přesně binomické rozdělení (sloupce), přibližně normální křivka',bty='l')
   sloupce(); at <- c(0,5,10,15); title(ylab='Pravděpodobnost',line=3.9)
   axis(1,at=0:15,labels=FALSE,tcl=-.25); axis(1,at=at); mtext('Počet správných odpovědí',side=1,line=1.8,cex=.8)
-  axis(1,at=at,labels=ch9_num(at/n),line=3.1); mtext('Podíl správných odpovědí p',side=1,line=4.9,cex=.8)
-  axis(1,at=at,labels=ch9_num((at-mu)/sdv),line=6.2); mtext('Statistika z',side=1,line=8,cex=.8)
-  legend('topright',c('pozorovaný výsledek: 10 správných odpovědí z 20','stejně nebo méně pravděpodobné výsledky','pravděpodobnější výsledky',
-      'normální křivka (střední hodnota 5, směrodatná odchylka 1,94)','chvosty normální křivky za z = −2,58 a z = 2,58'),
+  axis(1,at=at,labels=ch9_num(at/n),line=3.1); fl_mtext('Podíl správných odpovědí *p*',side=1,line=4.9,cex=.8)
+  axis(1,at=at,labels=ch9_num((at-mu)/sdv),line=6.2); fl_mtext('Statistika *z*',side=1,line=8,cex=.8)
+  fl_legend('topright',c('pozorovaný výsledek: 10 správných odpovědí z 20','stejně nebo méně pravděpodobné výsledky','pravděpodobnější výsledky',
+      'normální křivka (střední hodnota 5, směrodatná odchylka 1,94)','chvosty normální křivky za *z* = −2,58 a *z* = 2,58'),
     fill=c(ch9_orange,adjustcolor(ch9_orange,.4),ch9_pale,NA,adjustcolor(ch9_blue,.5)),border=c(ch9_ink,ch9_ink,ch9_ink,NA,NA),lwd=c(NA,NA,NA,2,NA),col=c(NA,NA,NA,ch9_blue,NA),bty='n',cex=.9)
-  text(xl[2]-.15,.118,paste0('součet oranžových sloupců = ',ch9_num(ex$p,3),' (přesná p-hodnota)'),adj=1,cex=.92,font=2,col=ch9_orange)
-  text(xl[2]-.15,.1,paste0('plocha obou modrých chvostů = ',ch9_num(ch9_t20_score[['p']],4),' (přibližná p-hodnota)'),adj=1,cex=.92,font=2,col=ch9_blue)
+  fl_text(xl[2]-.15,.118,paste0('součet oranžových sloupců = ',ch9_num(ex$p,3),' (přesná *p*-hodnota)'),adj=1,cex=.92,font=2,col=ch9_orange)
+  fl_text(xl[2]-.15,.1,paste0('plocha obou modrých chvostů = ',ch9_num(ch9_t20_score[['p']],4),' (přibližná *p*-hodnota)'),adj=1,cex=.92,font=2,col=ch9_blue)
   # 2. The same bars and curve with a magnified vertical axis: the two tails.
   par(mar=c(3.6,5.4,2.6,.8))
   plot(NA,xlim=xl,ylim=c(0,.034),xaxs='i',yaxs='i',xaxt='n',xlab='',ylab='',main='2. Oba chvosty zvětšeně (sloupce pro 2 až 8 správných odpovědí přesahují okraj grafu)',bty='l')
@@ -388,19 +396,19 @@ ch9_draw('podil-tri-rozdeleni', {
   par(mar=c(4.4,5.4,2.6,.8)); xr <- c(3,14.6); yr <- c(0,.058)
   z2 <- (ex$x-mu)^2/sdv^2; v <- sort(unique(round(z2[z2>xr[1] & z2<xr[2]],6))); lo <- sapply(v,function(u) sum(ex$pr[ex$x<mu & abs(z2-u)<1e-6])); hi <- sapply(v,function(u) sum(ex$pr[ex$x>mu & abs(z2-u)<1e-6]))
   lab <- sapply(v,function(u) paste(ex$x[abs(z2-u)<1e-6],collapse=' a ')); ext <- v>=q-1e-6; tot <- lo+hi
-  plot(NA,xlim=xr,ylim=yr,xaxs='i',yaxs='i',xlab='Hodnota z²',ylab='',main='3. Po umocnění: pravý chvost hodnot z²',bty='l'); title(ylab='Pravděpodobnost',line=3.9)
+  plot(NA,xlim=xr,ylim=yr,xaxs='i',yaxs='i',xlab='',ylab='',main='',bty='l'); fl_title(main='3. Po umocnění: pravý chvost hodnot *z*²',xlab='Hodnota *z*²'); title(ylab='Pravděpodobnost',line=3.9)
   rect(v-.3,0,v+.3,lo,col=ifelse(ext,adjustcolor(ch9_orange,.4),ch9_pale),border=ch9_ink); rect(v-.3,lo,v+.3,tot,col=ifelse(ext,ch9_orange,ch9_mute),border=ch9_ink)
   text(v,tot+.0056,paste0('počet ',lab,'\n',ch9_num(tot,4)),cex=.86)
-  text(11,.036,paste0('z² alespoň ',ch9_num(q),':\noba chvosty dohromady\n',ch9_num(ex$p,3),' (přesně)'),col=ch9_orange,font=2,cex=.92)
+  fl_text(11,.036,paste0('*z*² alespoň ',ch9_num(q),':\noba chvosty dohromady\n',ch9_num(ex$p,3),' (přesně)'),col=ch9_orange,font=2,cex=.92)
   legend('topright',c('počet menší než 5','počet větší než 5'),fill=c(ch9_pale,ch9_mute),border=ch9_ink,bty='n',cex=.88)
   # 4. Right tail of the chi-square distribution with one degree of freedom as the approximation.
   xc <- seq(xr[1],xr[2],length.out=500)
-  plot(NA,xlim=xr,ylim=yr,xaxs='i',yaxs='i',xlab='Hodnota χ²',ylab='',main='4. Přibližně: pravý chvost chí-kvadrát rozdělení',bty='l'); title(ylab='Hustota',line=3.9)
+  plot(NA,xlim=xr,ylim=yr,xaxs='i',yaxs='i',xlab='',ylab='',main='4. Přibližně: pravý chvost chí-kvadrát rozdělení',bty='l'); fl_title(xlab='Hodnota χ²'); title(ylab='Hustota',line=3.9)
   s <- seq(crit,xr[2],length.out=200); polygon(c(s,rev(s)),c(dchisq(s,1),rep(0,200)),col=adjustcolor(ch9_orange,.3),border=NA)
   s <- seq(q,xr[2],length.out=200); polygon(c(s,rev(s)),c(dchisq(s,1),rep(0,200)),col=ch9_orange,border=NA)
   lines(xc,dchisq(xc,1),lwd=2,col=ch9_blue)
   segments(crit,0,crit,.044,lty=3,col=ch9_ink); text(crit+.12,.0465,'kritická hodnota 1,96² = 3,84',cex=.86,adj=c(0,.5))
-  arrows(q,.02,q,.0075,length=.08,col=ch9_orange,lwd=1.6); text(q,.0235,paste0('naše χ² = ',ch9_num(q)),cex=.86,col=ch9_orange)
+  arrows(q,.02,q,.0075,length=.08,col=ch9_orange,lwd=1.6); fl_text(q,.0235,paste0('naše χ² = ',ch9_num(q)),cex=.86,col=ch9_orange)
   text(11.2,.021,paste0('plocha napravo od ',ch9_num(q),':\n',ch9_num(ch9_t20_score[['p']],4),' (přibližně)'),col=ch9_orange,font=2,cex=.92)
   legend(x=8.4,y=.041,c('5 % napravo od 3,84','křivka pro 1 stupeň volnosti'),fill=c(adjustcolor(ch9_orange,.3),NA),border=NA,lwd=c(NA,2),col=c(NA,ch9_blue),bty='n',cex=.88)
 },width=9.6,height=9.6)
@@ -435,7 +443,7 @@ ch9_draw('fisher-tabulky', {
   text(a,-.172,'zlepšení | bez',cex=.6,col=ch9_gray)
   text(8,.115,'pozorovaná\ntabulka',cex=.8,col=ch9_orange,font=2)
   legend(x=.5,y=.4,c('pozorovaná tabulka','stejně nebo méně pravděpodobná než pozorovaná','pravděpodobnější než pozorovaná'),fill=c(ch9_orange,adjustcolor(ch9_orange,.4),ch9_pale),border=ch9_ink,bty='n',cex=.8)
-  text(10.45,.36,paste0('p-hodnota = součet oranžových sloupců = ',ch9_num(fi$p,3)),adj=1,cex=.85,font=2)
+  fl_text(10.45,.36,paste0('*p*-hodnota = součet oranžových sloupců = ',ch9_num(fi$p,3)),adj=1,cex=.85,font=2)
 },width=10,height=5.2)
 ch9_fig('fisher-tabulky','sloupce',note='Deset sloupců, pod každým malá tabulka 2 × 2 s četnostmi (řádky intervence a kontrola, sloupce zlepšení a bez zlepšení). Pozorovaná tabulka je sytě oranžová, tabulky stejně nebo méně pravděpodobné světle oranžové, pravděpodobnější šedé. Nad sloupci jsou pravděpodobnosti. p-hodnota je součet oranžových sloupců.',panels=list(local({
   fi <- ch9_pilot_fisher; a <- fi$a; less <- fi$pr<=fi$pobs*(1+1e-7)
@@ -446,14 +454,16 @@ ch9_fig('fisher-tabulky','sloupce',note='Deset sloupců, pod každým malá tabu
 ch9_draw('monte-carlo', {
   par(mfrow=c(1,2),mar=c(4.6,4.6,3,.8)); obs <- ch9_pilot_tab$chi2
   tb <- table(round(ch9_pilot_mc,2))/length(ch9_pilot_mc); v <- as.numeric(sub(',','.',names(tb)))
-  plot(NA,xlim=c(0,18),ylim=c(0,.78),xlab='Hodnota χ² po přeskupení',ylab='Podíl z 10 000 přeskupení',main='Simulace: 10 000 přeskupení tabulky',bty='l')
+  plot(NA,xlim=c(0,18),ylim=c(0,.78),xlab='',ylab='Podíl z 10 000 přeskupení',main='Simulace: 10 000 přeskupení tabulky',bty='l')
+  fl_title(xlab='Hodnota χ² po přeskupení')
   segments(v,0,v,tb,lwd=10,lend=1,col=ifelse(v>=obs-.01,ch9_orange,ch9_mute)); text(v,as.numeric(tb)+.035,ifelse(tb<.0005,'< 0,001',ch9_num(as.numeric(tb),3)),cex=.78)
-  arrows(obs,.3,obs,.12,length=.08,col=ch9_orange,lwd=1.6); text(obs,.34,paste0('naše χ² = ',ch9_num(obs)),cex=.8,col=ch9_orange)
-  text(12,.56,paste0('podíl hodnot alespoň ',ch9_num(obs),':\n',ch9_num(ch9_pilot_mc_p,3),' (simulovaná p-hodnota)'),col=ch9_orange,font=2,cex=.82)
+  arrows(obs,.3,obs,.12,length=.08,col=ch9_orange,lwd=1.6); fl_text(obs,.34,paste0('naše χ² = ',ch9_num(obs)),cex=.8,col=ch9_orange)
+  fl_text(12,.56,paste0('podíl hodnot alespoň ',ch9_num(obs),':\n',ch9_num(ch9_pilot_mc_p,3),' (simulovaná *p*-hodnota)'),col=ch9_orange,font=2,cex=.82)
   x <- seq(.04,18,length.out=600)
-  plot(x,dchisq(x,1),type='n',ylim=c(0,.78),xlab='Hodnota χ²',ylab='Hustota',main='Aproximace: chí-kvadrát rozdělení (1 st. volnosti)',bty='l')
+  plot(x,dchisq(x,1),type='n',ylim=c(0,.78),xlab='',ylab='Hustota',main='Aproximace: chí-kvadrát rozdělení (1 st. volnosti)',bty='l')
+  fl_title(xlab='Hodnota χ²')
   xx <- seq(obs,18,length.out=200); polygon(c(xx,rev(xx)),c(dchisq(xx,1),rep(0,200)),col=adjustcolor(ch9_orange,.6),border=NA)
-  lines(x,dchisq(x,1),lwd=2,col=ch9_blue); arrows(obs,.3,obs,.06,length=.08,col=ch9_orange,lwd=1.6); text(obs,.34,paste0('naše χ² = ',ch9_num(obs)),cex=.8,col=ch9_orange)
+  lines(x,dchisq(x,1),lwd=2,col=ch9_blue); arrows(obs,.3,obs,.06,length=.08,col=ch9_orange,lwd=1.6); fl_text(obs,.34,paste0('naše χ² = ',ch9_num(obs)),cex=.8,col=ch9_orange)
   text(12,.56,paste0('plocha napravo od ',ch9_num(obs),':\n',ch9_num(ch9_pilot_tab$p,3)),col=ch9_orange,font=2,cex=.82)
 },width=10.4,height=4.4)
 ch9_fig('monte-carlo','simulace',note='Vlevo podíly hodnot statistiky χ² z 10 000 náhodných přeskupení tabulky; sloupce s hodnotou alespoň rovnou pozorované jsou oranžové a nad sloupci jsou podíly. Vpravo křivka chí-kvadrát rozdělení s 1 stupněm volnosti s oranžovou plochou napravo od pozorované hodnoty.',panels=local({

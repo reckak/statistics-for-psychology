@@ -13,6 +13,7 @@ ch8_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_08/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch8_fig <- function(...) tf_figure('kapitola_08',...)
 # Two conditions on the x axis (positions 1 and 2): points of both measurements and the segments joining each pair.
 ch8_fig_cond <- c('po běžném spánku','po krátkém spánku')
@@ -204,7 +205,7 @@ ch8_fig('parova-data','data',note='Dva panely vedle sebe. Vlevo skóry dvanácti
 ch8_draw('dve-skupiny', {
   par(mfrow=c(1,2),mar=c(4.6,4.7,3,.8))
   plot(NA,xlim=c(.5,2.5),ylim=c(18,72),xaxt='n',xlab='',ylab='Skór pozornosti (body)',main='Dvě skupiny různé velikosti a variability',bty='l')
-  axis(1,at=1:2,labels=c('běžný spánek (n = 30)','krátký spánek (n = 12)'))
+  fl_axis(1,at=1:2,labels=c('běžný spánek (*n* = 30)','krátký spánek (*n* = 12)'))
   boxplot(list(ch8_sk_bezny,ch8_sk_kratky),at=1:2,add=TRUE,axes=FALSE,boxwex=.42,col=c(adjustcolor(ch8_fill,.6),adjustcolor(ch8_sand,.9)),border=ch8_gray,outline=FALSE)
   set.seed(9); points(1+runif(30,-.17,.17),ch8_sk_bezny,pch=21,bg=ch8_blue,col=ch8_ink,cex=.9); points(2+runif(12,-.17,.17),ch8_sk_kratky,pch=21,bg=ch8_orange,col=ch8_ink,cex=.9)
   plot(NA,xlim=c(-4,20),ylim=c(.4,2.6),yaxt='n',xlab='Rozdíl průměrů běžný − krátký spánek (body)',ylab='',main='95% interval pro rozdíl dvěma postupy',bty='l')
@@ -265,7 +266,7 @@ ch8_draw('zmeny-skupin', {
   plot(NA,xlim=c(-4,10),ylim=c(.5,3.5),yaxt='n',xlab='Body',ylab='',main='Změna pozornosti za čtyři týdny: 95% intervaly',bty='l')
   abline(v=0,lty=2,col=ch8_gray); axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
   segments(rows[,2],y,rows[,3],y,lwd=3.2,col=cols); points(rows[,1],y,pch=21,bg='white',col=ch8_ink,cex=1.4)
-  text(9.9,y,paste0('p = ',ch8_num(rows[,4],3)),adj=1,cex=.8,font=3,col=ch8_gray)
+  fl_text(9.9,y,paste0('*p* = ',ch8_num(rows[,4],3)),adj=1,cex=.8,col=ch8_gray)
 },width=8.8,height=3.8)
 ch8_fig('zmeny-skupin','data',note='Tři vodorovné 95% intervaly spolehlivosti pod sebou v uvedeném pořadí shora dolů, bodový odhad jako bílý bod: změna v trénované skupině modře, změna v kontrolní skupině šedě, rozdíl změn černě. U pravého okraje je u každého intervalu jeho p-hodnota.',panels=list(local({
   rows <- rbind(ch8_tr_i[c('m','dolni','horni','p')],ch8_tr_k[c('m','dolni','horni','p')],ch8_tr_rozdil[c('rozdil','dolni','horni','p')])
@@ -293,23 +294,25 @@ ch8_draw('korelace-rozdily', {
   for(i in seq_along(ch8_sim)) {
     u <- ch8_sim[[i]]; dd <- u$bezny-u$kratky
     plot(NA,xlim=c(.7,2.3),ylim=c(28,68),xaxt='n',xlab='',ylab='Skór pozornosti (body)',
-         main=paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; SD rozdílů ',ch8_num(sd(dd),1)),bty='l')
+         main='',bty='l')
+    fl_title(main=paste0('*r* = ',ch8_num(cor(u$bezny,u$kratky),1),'; *s*_{*D*} = ',ch8_num(sd(dd),1)))
     axis(1,at=1:2,labels=c('po běžném spánku','po krátkém spánku'))
     segments(1,u$bezny,2,u$kratky,col=adjustcolor(ch8_blue,.75),lwd=1.6)
     points(rep(1,12),u$bezny,pch=21,bg=ch8_fill,col=ch8_ink,cex=1.05); points(rep(2,12),u$kratky,pch=21,bg=ch8_sand,col=ch8_ink,cex=1.05)
   }
   rr <- seq(-1,1,by=.01)
-  plot(rr,ch8_sd_rozdilu(rr),type='l',lwd=2.4,col=ch8_blue,xlab='Korelace obou měření r',ylab='Směrodatná odchylka rozdílů (body)',
-       main='SD rozdílů podle korelace',bty='l',ylim=c(0,14.5))
+  plot(rr,ch8_sd_rozdilu(rr),type='l',lwd=2.4,col=ch8_blue,xlab='',ylab='Směrodatná odchylka rozdílů (body)',
+       main='',bty='l',ylim=c(0,14.5))
+  fl_title(main='*s*_{*D*} podle korelace',xlab='Korelace obou měření *r*')
   pts <- c(0,ch8_par_r); points(pts,ch8_sd_rozdilu(pts),pch=21,bg=c('white',ch8_orange),col=ch8_ink,cex=1.4)
-  text(-.06,ch8_sd_rozdilu(0)-1.3,paste0('r = 0: ',ch8_num(ch8_sd_rozdilu(0))),adj=1,cex=.85)  # below left of the point, clear of the curve
-  text(ch8_par_r-.08,ch8_sd_rozdilu(ch8_par_r)-1.1,paste0('varianta A\nr = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r))),adj=1,cex=.85,col=ch8_orange)
+  fl_text(-.06,ch8_sd_rozdilu(0)-1.3,paste0('*r* = 0: ',ch8_num(ch8_sd_rozdilu(0))),adj=1,cex=.85)  # below left of the point, clear of the curve
+  fl_text(ch8_par_r-.08,ch8_sd_rozdilu(ch8_par_r)-1.1,paste0('varianta A\n*r* = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r))),adj=1,cex=.85,col=ch8_orange)
 },width=9.4,height=8.4)
 ch8_fig('korelace-rozdily','simulace',note='Čtyři panely ve dvou řadách po dvou. První tři ukazují simulované soubory dvanácti studentů se stejnými průměry a směrodatnými odchylkami obou měření jako ve variantě A a s různou korelací; hodnoty téhož studenta spojuje modrá čára. Vpravo dole je křivka směrodatné odchylky rozdílů podle korelace s bílým bodem při r = 0 a oranžovým bodem varianty A, oba s popiskem.',panels=c(
-  lapply(ch8_sim,function(u) tf_panel(paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; SD rozdílů ',ch8_num(sd(u$bezny-u$kratky),1)),'bodový graf','Podmínka','Skór pozornosti (body)',ylim=c(28,68),
+  lapply(ch8_sim,function(u) tf_panel(paste0('r = ',ch8_num(cor(u$bezny,u$kratky),1),'; s_D = ',ch8_num(sd(u$bezny-u$kratky),1)),'bodový graf','Podmínka','Skór pozornosti (body)',ylim=c(28,68),
     series=ch8_fig_pary(u$bezny,u$kratky))),
   list(local({ pts <- c(0,ch8_par_r)
-    tf_panel('SD rozdílů podle korelace','čárový graf','Korelace obou měření r','Směrodatná odchylka rozdílů (body)',xlim=c(-1,1),ylim=c(0,14.5),
+    tf_panel('s_D podle korelace','čárový graf','Korelace obou měření r','Směrodatná odchylka rozdílů (body)',xlim=c(-1,1),ylim=c(0,14.5),
       series=list(tf_curve(paste0('Směrodatná odchylka rozdílů = √(s1² + s2² − 2·r·s1·s2) pro s1 = ',ch8_num(ch8_par_b[['s']]),' a s2 = ',ch8_num(ch8_par_k[['s']])),ch8_sd_rozdilu,-1,1,81,digits=3),
         tf_series('Vyznačené body',data.frame(x=pts,y=ch8_sd_rozdilu(pts),popisek=c(paste0('r = 0: ',ch8_num(ch8_sd_rozdilu(0))),paste0('varianta A, r = ',ch8_num(ch8_par_r,2),': ',ch8_num(ch8_sd_rozdilu(ch8_par_r)))),zvyrazneno=c('ne','ano')),digits=3,
           note='Bod při r = 0 je bílý, bod varianty A oranžový.'))) }))))
@@ -320,7 +323,8 @@ ch8_draw('pomer-skupin', {
   layout(matrix(c(0,1,1,0,2,2,3,3),2,byrow=TRUE)); par(mar=c(5.6,5,3.4,1),cex=1)
   x <- seq_len(nrow(ch8_pomer)); pm <- ch8_pomer
   panel <- function(main,se,se_pool=NULL) {
-    plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,7.2),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main=main,bty='l',cex.main=1.05)
+    plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,7.2),xaxt='n',xlab='',ylab='Směrodatná chyba rozdílu průměrů (body)',main='',bty='l')
+    fl_title(main=main,cex.main=1.05)
     axis(1,at=x,labels=ch8_pomer_lab,padj=.5,cex.axis=.9,gap.axis=-1); mtext('Poměr velikostí skupin (celkem 90 lidí)',1,4.1,cex=.9)
     up <- if(is.null(se_pool)) rep(TRUE,length(x)) else se>=se_pool-1e-9  # label the higher point above, the lower below
     # Labels above a point sit closer than labels below it, which would otherwise touch the descending lines.
@@ -350,11 +354,11 @@ ch8_draw('welch-stupne', {
   cols <- c(ch8_green,ch8_orange,'#3A8FB7'); pchs <- c(21,22,24)
   plot(NA,xlim=c(.6,max(x)+.4),ylim=c(0,dfmax+6),xaxt='n',xlab='',ylab='Stupně volnosti',main='Welchovy stupně volnosti (celkem 90 lidí)',bty='l')
   axis(1,at=x,labels=ch8_pomer_lab,padj=.5,cex.axis=.9,gap.axis=-1); mtext('Poměr velikostí skupin',1,4.1,cex=.9)
-  abline(h=dfmax,lty=2,col=ch8_gray); text(max(x)+.4,dfmax+3,bquote(n[1]+n[2]-2==.(dfmax)),adj=1,cex=.85,col=ch8_gray)
+  abline(h=dfmax,lty=2,col=ch8_gray); fl_text(max(x)+.4,dfmax+3,paste0('*n*_{1} + *n*_{2} − 2 = ',dfmax),adj=1,cex=.85,col=ch8_gray)
   lines(x,pmin(pm$n1,pm$n2)-1,lty=3,lwd=2,col=ch8_gray,type='b',pch=20)
   ys <- list(pm$df_shodne,pm$df_mala_var,pm$df_velka_var)
   for(k in 1:3) lines(x,ys[[k]],lwd=2.6,col=cols[k],type='b',pch=pchs[k],bg='white',cex=1.3)
-  legend('bottomleft',c('stejné σ','menší skupina dvakrát variabilnější','větší skupina dvakrát variabilnější','stupně volnosti menší skupiny'),
+  fl_legend('bottomleft',c('stejné σ','menší skupina dvakrát variabilnější','větší skupina dvakrát variabilnější','stupně volnosti menší skupiny'),
          col=c(cols,ch8_gray),lty=c(1,1,1,3),pch=c(pchs,20),pt.bg='white',lwd=c(2.6,2.6,2.6,2),bty='n',cex=.85,inset=c(.01,.01))
 },width=8.4,height=5)
 ch8_fig('welch-stupne','krivka',note='Čtyři lomené čáry s body nad čtyřmi poměry velikostí skupin (počty lidí v závorce). Welchovy stupně volnosti: stejné σ zeleně s kolečky, menší skupina dvakrát variabilnější oranžově se čtverci, větší skupina dvakrát variabilnější modře s trojúhelníky; šedá tečkovaná čára jsou stupně volnosti menší skupiny. Přerušovaná vodorovná čára leží u n1 + n2 − 2 = 88.',panels=list(local({
@@ -368,7 +372,7 @@ ch8_draw('qq-rozdily', {
   plot(ch8_qq_z,ch8_qq_y,xlab='Teoretický kvantil normovaného normálního rozdělení',ylab='Seřazený rozdíl (ms)',
        main='Q–Q graf rozdílů reakčních dob',pch=21,bg=ch8_blue,col=ch8_ink,bty='l',cex=1.1)
   abline(a=mean(ch8_u03_d),b=sd(ch8_u03_d),col=ch8_orange,lwd=1.8)
-  legend('topleft','Referenční přímka: m + s × z',col=ch8_orange,lwd=1.8,bty='n',cex=.85)
+  fl_legend('topleft','Referenční přímka: *m* + *s* × *z*',col=ch8_orange,lwd=1.8,bty='n',cex=.85)
 },width=8.6,height=4.6)
 ch8_fig('qq-rozdily','data',note='Modré body jsou seřazené rozdíly reakčních dob třinácti osob proti teoretickým kvantilům. Oranžová referenční přímka má průsečík v průměru rozdílů m a směrnici rovnou jejich směrodatné odchylce s.',panels=list(
   tf_panel('Q–Q graf rozdílů reakčních dob','bodový graf','Teoretický kvantil normovaného normálního rozdělení','Seřazený rozdíl (ms)',

@@ -12,6 +12,7 @@ ch7_draw <- function(name,code,width=8,height=4.5) {
 }
 # Data and descriptions of the figures for the AI tutor (tmp/tutor-figures/kapitola_07/); see scripts/tutor/figure-data.R.
 source('scripts/tutor/figure-data.R',encoding='UTF-8')
+source('scripts/figure-labels.R',encoding='UTF-8')   # statistical symbols in the math font (R89)
 ch7_fig <- function(...) tf_figure('kapitola_07',...)
 # Interval and tests for one mean from summaries ------------------------------------
 # Known sigma uses the normal quantile; unknown sigma the t quantile with n - 1 degrees of freedom.
@@ -72,12 +73,12 @@ ch7_draw('opakovane-intervaly', {
   par(mfrow=c(1,2),mar=c(4.5,3.2,3.4,.6))
   for(k in 1:2) {
     ci <- if(k==1) ch7_sim_z else ch7_sim_t; hit <- if(k==1) ch7_hit_z else ch7_hit_t
-    plot(NA,xlim=c(36,58),ylim=c(.5,ch7_reps+.5),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',bty='l',
-      main=if(k==1) 'Známá σ = 10: stejná šířka' else 'Výběrová s: šířka kolísá')
+    plot(NA,xlim=c(36,58),ylim=c(.5,ch7_reps+.5),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',bty='l',main='')
+    fl_title(main=if(k==1) 'Známá σ = 10: stejná šířka' else 'Výběrová *s*: šířka kolísá')
     abline(v=ch7_mu_sim,lty=2,lwd=1.6,col=ch7_ink)
     segments(ci[,1],1:ch7_reps,ci[,2],1:ch7_reps,col=ifelse(hit,ch7_blue,ch7_orange),lwd=ifelse(hit,1.5,2.6))
     points(ch7_sim_m,1:ch7_reps,pch=16,cex=.35,col=ifelse(hit,ch7_blue,ch7_orange))
-    mtext(paste0('μ zachytilo ',sum(hit),' ze 100 intervalů'),side=3,line=.2,cex=.82,col=ch7_gray)
+    fl_mtext(paste0('μ zachytilo ',sum(hit),' ze 100 intervalů'),side=3,line=.2,cex=.82,col=ch7_gray)
     mtext('výběr 1 až 100',side=2,line=.8,las=0,cex=.8,col=ch7_gray)
   }
 },width=10,height=6.4)
@@ -90,10 +91,11 @@ ch7_fig('opakovane-intervaly','simulace',note='Dva panely vedle sebe pro týchž
 ch7_draw('sirka-intervalu', {
   par(mar=c(4.6,4.7,2.7,.8))
   n <- 4:200; lev <- c(.90,.95,.99); cols <- c(ch7_mute,ch7_blue,ch7_orange)
-  plot(NA,xlim=c(0,200),ylim=c(0,26),xlab='Velikost výběru n',ylab='Šířka intervalu (body)',main='Šířka intervalu při známé σ = 10',bty='l',yaxs='i')
+  plot(NA,xlim=c(0,200),ylim=c(0,26),xlab='',ylab='Šířka intervalu (body)',main='',bty='l',yaxs='i')
+  fl_title(main='Šířka intervalu při známé σ = 10',xlab='Velikost výběru *n*')
   for(j in 1:3) lines(n,2*qnorm(1-(1-lev[j])/2)*10/sqrt(n),lwd=2.2,col=cols[j])
   k <- c(25,100); points(k,2*qnorm(.975)*10/sqrt(k),pch=21,bg=ch7_blue,col=ch7_ink,cex=1.3)
-  text(k,2*qnorm(.975)*10/sqrt(k),paste0('n = ',k,': ',ch7_num(2*qnorm(.975)*10/sqrt(k)),' bodu'),pos=c(1,3),offset=2.1,cex=.84,col=ch7_blue)
+  fl_text(k,2*qnorm(.975)*10/sqrt(k),paste0('*n* = ',k,': ',ch7_num(2*qnorm(.975)*10/sqrt(k)),' bodu'),pos=c(1,3),offset=2.1,cex=.84,col=ch7_blue)
   legend('topright',c('99% interval','95% interval','90% interval'),lwd=2.2,col=rev(cols),bty='n',cex=.86)
 },width=8.6,height=4.4)
 ch7_fig('sirka-intervalu','krivka',note='Tři klesající křivky šířky intervalu 2 · z · σ/√n pro σ = 10: 99% interval oranžově (nejvýše), 95% modře, 90% šedě (nejníže). Na křivce 95% intervalu jsou dva modré body s popisky. Křivky jsou nakresleny pro n od 4 do 200; v datech je výběr hodnot n, hustší u malých výběrů.',panels=list(local({
@@ -105,11 +107,12 @@ ch7_draw('t-rozdeleni', {
   par(mfrow=c(1,2),mar=c(4.6,4.5,3,.6))
   br <- seq(-12,12,by=.25)
   h <- hist(pmax(pmin(ch7_tstat5,11.99),-11.99),breaks=br,plot=FALSE)
-  plot(NA,xlim=c(-5,5),ylim=c(0,.56),xlab='Standardizovaný průměr výběru pěti lidí',ylab='Hustota',main='Dosazení s místo σ: těžší chvosty',bty='l',yaxs='i')
+  plot(NA,xlim=c(-5,5),ylim=c(0,.56),xlab='Standardizovaný průměr výběru pěti lidí',ylab='Hustota',main='',bty='l',yaxs='i')
+  fl_title(main='Dosazení *s* místo σ: těžší chvosty')
   rect(br[-length(br)],0,br[-1],h$density,col=ch7_fill,border='white',lwd=.4)
   curve(dnorm(x),-5,5,add=TRUE,lwd=2,lty=2,col=ch7_orange,n=400)
   curve(dt(x,4),-5,5,add=TRUE,lwd=2,col=ch7_blue,n=400)
-  legend('topleft',c(expression('10 000 hodnot '*(italic(m)-mu)/(italic(s)/sqrt(5))),expression('normované normální'),expression(italic(t)*'-rozdělení, 4 stupně volnosti')),fill=c(ch7_fill,NA,NA),border=c('white',NA,NA),lty=c(NA,2,1),lwd=c(NA,2,2),col=c(NA,ch7_orange,ch7_blue),bty='n',cex=.74,ncol=1)
+  fl_legend('topleft',c('10 000 hodnot (*m* − μ)/(*s*/√5)','normované normální','*t*-rozdělení, 4 stupně volnosti'),fill=c(ch7_fill,NA,NA),border=c('white',NA,NA),lty=c(NA,2,1),lwd=c(NA,2,2),col=c(NA,ch7_orange,ch7_blue),bty='n',cex=.74,ncol=1)
   plot(NA,xlim=c(-4,4),ylim=c(0,.56),xlab='Hodnota statistiky',ylab='Hustota',main='Více stupňů volnosti: blíže normálnímu',bty='l',yaxs='i')
   df <- c(2,5,24); cols <- c(ch7_orange,ch7_mute,ch7_blue)
   for(j in 1:3) curve(dt(x,df[j]),-4,4,add=TRUE,lwd=2,col=cols[j],n=400)
@@ -127,15 +130,16 @@ ch7_fig('t-rozdeleni','simulace',note='Dva panely vedle sebe. Vlevo světle modr
 ch7_draw('p-funkce', {
   par(mar=c(4.6,4.7,2.7,.8))
   mu <- seq(38,54,by=.02); p <- ch7_p2(46,11,25,mu)
-  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab=expression('Testovaná hodnota '*mu[0]*' (body)'),ylab=expression('Oboustranná '*italic(p)*'-hodnota'),main=expression(bolditalic(p)*bold('-hodnota ')*bolditalic(t)*bold('-testu pro různé testované hodnoty')),bty='l',yaxs='i')
+  plot(mu,p,type='l',lwd=2.4,col=ch7_blue,ylim=c(0,1.04),xlab='',ylab='',main='',bty='l',yaxs='i')
+  fl_title(main='*p*-hodnota *t*-testu pro různé testované hodnoty',xlab='Testovaná hodnota μ_{0} (body)',ylab='Oboustranná *p*-hodnota')
   abline(h=.05,lty=2,col=ch7_gray)
   rect(ch7_ci_att_t[1],-.1,ch7_ci_att_t[2],.05,col=adjustcolor(ch7_fill,.8),border=NA)
   lines(mu,p,lwd=2.4,col=ch7_blue)
   segments(ch7_ci_att_t,0,ch7_ci_att_t,.05,lwd=1.6,col=ch7_ink)
   text(46,.025,'Vnitřek 95% intervalu: nezamítnuté hodnoty',cex=.8,col=ch7_ink)
   points(c(50,48),ch7_p2(46,11,25,c(50,48)),pch=21,bg=ch7_orange,col=ch7_ink,cex=1.3)
-  text(50.8,ch7_p2(46,11,25,50)+.06,bquote(mu[0]*' = 50: '*.(ch7_num(ch7_p2(46,11,25,50),3))),adj=0,cex=.82)
-  text(48.3,ch7_p2(46,11,25,48)+.05,bquote(mu[0]*' = 48: '*.(ch7_num(ch7_p2(46,11,25,48),2))),adj=0,cex=.82)
+  fl_text(50.8,ch7_p2(46,11,25,50)+.06,paste0('μ_{0} = 50: ',ch7_num(ch7_p2(46,11,25,50),3)),adj=0,cex=.82)
+  fl_text(48.3,ch7_p2(46,11,25,48)+.05,paste0('μ_{0} = 48: ',ch7_num(ch7_p2(46,11,25,48),2)),adj=0,cex=.82)
   text(53.8,.08,'hladina 0,05',adj=1,cex=.8,col=ch7_gray)
 },width=8.6,height=4.6)
 ch7_fig('p-funkce','krivka',note='Modrá křivka je oboustranná p-hodnota t-testu pro m = 46, s = 11 a n = 25 podle testované hodnoty μ0; vrchol 1 má v μ0 = 46. Pod přerušovanou čarou hladiny 0,05 leží mezi mezemi 95% intervalu světle modrý pruh s popiskem „Vnitřek 95% intervalu: nezamítnuté hodnoty“. Dva oranžové body s popisky vyznačují testované hodnoty 50 a 48.',panels=list(local({
@@ -163,24 +167,25 @@ ch7_fig('pasmo-pouziti','krivka',note='Tři normální křivky hustoty se směro
       list(tf_curve(paste0('Plocha pod křivkou s průměrem 47 nalevo od 40 (',ch7_num(100*ch7_share[1],1),' %)'),function(x) dnorm(x,47,10),15,ch7_cut,26,mark='plocha',note='plocha pokračuje i vlevo od okraje grafu')))) })))
 ch7_draw('hypotezy-ekvivalence', {
   par(mar=c(3.2,.8,2.6,.8))
-  plot(NA,xlim=c(40,60),ylim=c(0,3),axes=FALSE,xlab='',ylab='',main='Hypotézy testu ekvivalence pro populační průměr μ')
-  axis(1,at=seq(40,60,by=2),labels=seq(40,60,by=2)); mtext('μ (body)',side=1,line=2.1,cex=.86)
+  plot(NA,xlim=c(40,60),ylim=c(0,3),axes=FALSE,xlab='',ylab='',main='')
+  fl_title(main='Hypotézy testu ekvivalence pro populační průměr μ')
+  axis(1,at=seq(40,60,by=2),labels=seq(40,60,by=2)); fl_mtext('μ (body)',side=1,line=2.1,cex=.86)
   rect(40,.4,47,1.6,col=ch7_sand,border=NA); rect(53,.4,60,1.6,col=ch7_sand,border=NA); rect(47,.4,53,1.6,col=ch7_fill,border=NA)
   segments(c(47,53),.2,c(47,53),2.2,lwd=1.8,col=ch7_ink); segments(50,.4,50,.58,lty=2,col=ch7_gray)
-  text(43.5,1,expression(H[0]*': '*mu<=47),cex=1,col=ch7_orange,font=2); text(56.5,1,expression(H[0]*': '*mu>=53),cex=1,col=ch7_orange,font=2)
-  text(50,1.15,expression(H[1]*': 47 < '*mu*' < 53'),cex=1,col=ch7_blue,font=2); text(50,.72,'norma 50',cex=.8,col=ch7_gray)
-  text(47,2.5,expression(mu[0]-Delta*' = 47'),cex=.9); text(53,2.5,expression(mu[0]+Delta*' = 53'),cex=.9)
+  fl_text(43.5,1,'*H*_{0}: μ ≤ 47',cex=1,col=ch7_orange,font=2); fl_text(56.5,1,'*H*_{0}: μ ≥ 53',cex=1,col=ch7_orange,font=2)
+  fl_text(50,1.15,'*H*_{1}: 47 < μ < 53',cex=1,col=ch7_blue,font=2); text(50,.72,'norma 50',cex=.8,col=ch7_gray)
+  fl_text(47,2.5,'μ_{0} − Δ = 47',cex=.9); fl_text(53,2.5,'μ_{0} + Δ = 53',cex=.9)
   text(c(43.5,56.5),2.0,c('první jednostranný test','druhý jednostranný test'),cex=.8,col=ch7_gray)
 },width=8.6,height=3.4)
 ch7_fig('hypotezy-ekvivalence','schema',note='Číselná osa populačního průměru μ od 40 do 60 bodů. Obě části nulové hypotézy (μ ≤ 47 a μ ≥ 53) jsou podbarveny pískově a popsány oranžově, pásmo alternativní hypotézy 47 < μ < 53 je světle modré s modrým popiskem. Hranice 47 a 53 jsou svislé čáry, norma 50 je vyznačena krátkou přerušovanou čárkou.')
 ch7_draw('ctyri-kombinace', {
   par(mar=c(4.6,10.5,2.7,.8))
   e <- ch7_eq; k <- nrow(e); y <- k:1
-  lab <- paste0('Studie ',e$studie,' (n = ',e$n,')')
+  lab <- paste0('Studie ',e$studie,' (*n* = ',e$n,')')
   plot(NA,xlim=c(40,60),ylim=c(.4,k+1.7),yaxt='n',xlab='Skór v testu pozornosti, online verze (body)',ylab='',main='Intervaly devíti studií vůči pásmu ekvivalence 47–53',bty='l')
   rect(47,0,53,k+.6,col=adjustcolor(ch7_fill,.55),border=NA)
   segments(c(47,53),0,c(47,53),k+.6,lty=2,lwd=1.5,col=ch7_ink); segments(50,0,50,k+.6,lty=3,lwd=1.5,col=ch7_gray)
-  axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
+  fl_axis(2,at=y,labels=lab,tick=FALSE,cex.axis=.9)
   segments(e$ci95_d,y,e$ci95_h,y,lwd=1.4,col=ch7_ink)
   segments(e$ci95_d,y-.1,e$ci95_d,y+.1,lwd=1.4,col=ch7_ink); segments(e$ci95_h,y-.1,e$ci95_h,y+.1,lwd=1.4,col=ch7_ink)
   segments(e$ci90_d,y,e$ci90_h,y,lwd=6,col=ch7_blue,lend=1)
@@ -223,15 +228,15 @@ ch7_draw('zrcadlo-intervalu', {
   par(mar=c(4.6,15,2.7,.8))
   me <- ch7_q24*11/5
   plot(NA,xlim=c(38,60),ylim=c(.4,2.9),yaxt='n',xlab='Skór v testu pozornosti (body)',ylab='',main='Stejná vzdálenost, dva pohledy',bty='l')
-  axis(2,at=2,labels=expression('Oblast nezamítnutí kolem '*mu[0]*' = 50'),tick=FALSE,cex.axis=.9)
-  axis(2,at=1,labels=expression('95% interval kolem '*italic(m)*' = 46'),tick=FALSE,cex.axis=.9)
+  fl_axis(2,at=2,labels='Oblast nezamítnutí kolem μ_{0} = 50',tick=FALSE,cex.axis=.9)
+  fl_axis(2,at=1,labels='95% interval kolem *m* = 46',tick=FALSE,cex.axis=.9)
   rect(ch7_accept[1],1.85,ch7_accept[2],2.15,col=ch7_sand,border=ch7_orange,lwd=1.4)
   segments(ch7_ci_att_t[1],1,ch7_ci_att_t[2],1,lwd=6,col=ch7_blue,lend=1)
   points(c(50,50),c(2,1),pch=23,bg=ch7_orange,col=ch7_ink,cex=1.25); points(c(46,46),c(2,1),pch=21,bg='white',col=ch7_ink,cex=1.25)
   text(ch7_accept,2.3,ch7_num(ch7_accept),cex=.8,col=ch7_orange); text(ch7_ci_att_t,1.22,ch7_num(ch7_ci_att_t),cex=.8,col=ch7_blue)
-  arrows(46,1.55,50,1.55,code=3,length=.07,col=ch7_ink); text(48,1.7,expression('|'*italic(m)-mu[0]*'| = 4'),cex=.82)
+  arrows(46,1.55,50,1.55,code=3,length=.07,col=ch7_ink); fl_text(48,1.7,'|*m* − μ_{0}| = 4',cex=.82)
   text(55.6,1.5,paste0('mezní chyba ',ch7_num(me),'\nna každou stranu'),adj=0,cex=.78,col=ch7_gray)
-  legend('topleft',legend=c(expression('výběrový průměr '*italic(m)),expression('testovaná hodnota '*mu[0])),pch=c(21,23),pt.bg=c('white',ch7_orange),col=ch7_ink,bty='n',cex=.8,horiz=TRUE)
+  fl_legend('topleft',legend=c('výběrový průměr *m*','testovaná hodnota μ_{0}'),pch=c(21,23),pt.bg=c('white',ch7_orange),col=ch7_ink,bty='n',cex=.8,horiz=TRUE)
 },width=9,height=3.4)
 ch7_fig('zrcadlo-intervalu','data',note='Dva řádky nad společnou osou. Nahoře (poloha 2) je oblast nezamítnutí kolem μ0 = 50 jako pískový obdélník s oranžovým okrajem, dole (poloha 1) 95% interval kolem m = 46 jako tlustá modrá úsečka; u mezí jsou popisky jejich hodnot. V obou řádcích je výběrový průměr 46 bílým kolečkem a testovaná hodnota 50 oranžovým kosočtvercem. Mezi řádky vede oboustranná šipka od 46 k 50 s popiskem „|m − μ0| = 4“; vpravo je popisek mezní chyby.',panels=list(local({
   me <- ch7_q24*11/5
@@ -250,7 +255,7 @@ ch7_draw('qq-uzkost', {
        ylab='Seřazený skór úzkosti (body)',main='Q–Q graf skórů zkouškové úzkosti',
        pch=21,bg=ch7_blue,col=ch7_ink,bty='l',cex=1.1)
   abline(a=mean(ch7_u07),b=sd(ch7_u07),col=ch7_orange,lwd=1.8)
-  legend('topleft','Referenční přímka: m + s × z',col=ch7_orange,lwd=1.8,bty='n',cex=.85)
+  fl_legend('topleft','Referenční přímka: *m* + *s* × *z*',col=ch7_orange,lwd=1.8,bty='n',cex=.85)
 },width=8.6,height=4.6)
 ch7_fig('qq-uzkost','data',note='Modré body jsou seřazené skóry 20 studentů proti teoretickým kvantilům pro podíly (i − 0,5)/20. Oranžová referenční přímka má úsek rovný výběrovému průměru m a směrnici rovnou výběrové směrodatné odchylce s.',panels=list(
   tf_panel('Q–Q graf skórů zkouškové úzkosti','bodový graf','Teoretický kvantil normovaného normálního rozdělení','Seřazený skór úzkosti (body)',

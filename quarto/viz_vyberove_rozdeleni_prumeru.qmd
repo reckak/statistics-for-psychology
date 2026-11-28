@@ -31,6 +31,8 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // All populations have mean 35 s and SD 15 s; the mildly skewed one is the gamma model of chapter 6 (scripts/kapitola_06.R).
   const MU = 35, SIGMA = 15, X_MAX = 100, MAX_REPS = 100000;
   const blue = "#245D78", orange = "#B54E24", fill = "#B8DDE8", ink = "#223744", pale = "#E1E8EB", gray = "#4D5A63";
@@ -305,7 +307,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
         Plot.ruleY([0], {stroke: ink}),
         Plot.dot(points, {x: "x", y: "y", r: n > 200 ? 1.8 : n > 50 ? 2.6 : 3.6, fill: blue, fillOpacity: n > 200 ? 0.55 : 0.75, clip: true}),
         Plot.dot([m], {x: d => d, y: () => -0.78 * band, symbol: "triangle", r: 6.5, fill: orange}),
-        Plot.text([m], {x: d => d, y: () => -0.78 * band, dx: labelRight ? -11 : 11, textAnchor: labelRight ? "end" : "start", fill: orange, text: d => `m = ${num(d, 1)} s`})
+        Plot.text([m], {x: d => d, y: () => -0.78 * band, dx: labelRight ? -11 : 11, textAnchor: labelRight ? "end" : "start", fill: orange, text: d => `${sym("m")} = ${num(d, 1)} s`})
       ]
     });
 
@@ -340,7 +342,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
     const zLast = (m - MU) / se;
     const standardized = Plot.plot({
       ...base, height: small ? 230 : 250,
-      x: {domain: [Z_MIN, Z_MAX], ticks: d3.range(Z_MIN, Z_MAX + 1), tickFormat: tick, label: "Standardizovaný průměr (z)", labelAnchor: "center", labelArrow: "none", labelOffset: 40},
+      x: {domain: [Z_MIN, Z_MAX], ticks: d3.range(Z_MIN, Z_MAX + 1), tickFormat: tick, label: `Standardizovaný průměr (${sym("z")})`, labelAnchor: "center", labelArrow: "none", labelOffset: 40},
       y: {...yLabel("Hustota"), ticks: 4, tickFormat: tick, domain: [0, zTop]},
       ariaLabel: `Histogram standardizovaných průměrů, počet opakování ${K}`,
       ariaDescription: K > 1 ? `Nad 2 leží ${pct(zAbove)} a pod −2 ${pct(zBelow)} standardizovaných průměrů; normální model udává v obou případech 2,3 %.` : "Zatím jen jeden průměr.",
@@ -361,7 +363,7 @@ Nad grafy se průběžně zobrazuje počet opakování (vylosovaných výběrů)
       const zr = d3.extent(pts, p => p.z);
       return Plot.plot({
         ...base, width: qqWidth, height: small ? 240 : 260, marginLeft: small ? 54 : 60,
-        x: {label: "Teoretický normální kvantil (z)", labelAnchor: "center", labelArrow: "none", labelOffset: 40, tickFormat: tick, ticks: 5, inset: 8},
+        x: {label: `Teoretický normální kvantil (${sym("z")})`, labelAnchor: "center", labelArrow: "none", labelOffset: 40, tickFormat: tick, ticks: 5, inset: 8},
         y: {...yLabel(yName), tickFormat: tick, ticks: 5, nice: true, inset: 8},
         ariaLabel: aria,
         marks: [

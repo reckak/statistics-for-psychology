@@ -32,6 +32,22 @@ vizualizace má proto strop šířky grafů zapsat jako
 `Math.min(<kontejner>.clientWidth || 640, root.classList.contains("viz-is-fullscreen") ? 1200 : 780)`
 a překreslovat se vlastním `ResizeObserver` jako stávající stránky.
 
+Statistické symboly v SVG grafech sází sdílený skript `assets/viz-labels.js`
+(připojený v `assets/after-body.html` bez `defer`) matematickým písmem
+prohlížeče, tedy stejně jako rovnice MathML na daném zařízení
+([R89](../rozhodnuti/spolecne-konvence.md#r89-matematicke-pismo-grafu)).
+Latinský symbol v popisku osy, vpisku nebo nadpisu grafu označte v kódu OJS
+funkcí `sym` (na začátku buňky `const sym = window.vizSym || (s => s);`),
+například `` label: `Výběrový průměr ${sym("m")} (body)` `` nebo
+`` `${sym("H")}₀` ``; písmenný index značí `window.vizSub`. Řecká písmena, `√`
+a dolní či horní číselné indexy za symbolem převede skript v SVG sám. Značky
+jsou znaky ze soukromé oblasti Unicode, které uživatel nenapíše, takže popisky
+převzaté ze vstupů aplikací se nikdy neformátují. Skript je zpracuje
+`MutationObserver`em i po každém překreslení a odstraní je z `<title>`
+a atributů `aria-*`, které zůstávají prostým textem. HTML texty vizualizací
+(legendy, poznámky, tabulky, ovládací prvky) sázejí symboly kurzivou `<i>`
+jako souvislý text.
+
 Stránka se vykreslí s celou knihou (`quarto render`) i samostatně
 (`quarto render quarto/viz_<tema>.qmd`). Pro náhled ji otevřete přes
 místní server, ne jako `file://`. Ruční PDF ani export tutora vizualizace

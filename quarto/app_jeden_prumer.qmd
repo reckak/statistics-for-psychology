@@ -25,6 +25,8 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Calculations live in shared modules checked against R (scripts/check-stat-lib.mjs, scripts/app-jeden-prumer.R).
   const L = await import(new URL("../assets/stat/prumer.js", document.baseURI).href);
   const N = await import(new URL("../assets/stat/normalita.js", document.baseURI).href);
@@ -645,7 +647,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
     if (!out) {
       marks.push(Plot.ruleX([st], {stroke: blue, strokeWidth: 2.2}));
       if (s.alt === "two" && Math.abs(st) > 1e-9) marks.push(Plot.ruleX([-st], {stroke: blue, strokeWidth: 1.6, strokeDasharray: "5,4"}));
-      marks.push(Plot.text([st], {x: d => d, y: top, text: () => `${z ? "z" : "t"} = ${d3f(st)}`, fill: blue, fontWeight: 600, lineAnchor: "top", textAnchor: st > 0 ? "end" : "start", dx: st > 0 ? -5 : 5}));
+      marks.push(Plot.text([st], {x: d => d, y: top, text: () => `${sym(z ? "z" : "t")} = ${d3f(st)}`, fill: blue, fontWeight: 600, lineAnchor: "top", textAnchor: st > 0 ? "end" : "start", dx: st > 0 ? -5 : 5}));
     }
     return Plot.plot({
       ...base(width, small), height: small ? 220 : 250, marginBottom: 46,
@@ -691,7 +693,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
   function dChart(width, R) {
     const small = width < 520, ci = R.mt.ci;
     const items = [];
-    if (!R.paired) items.push({name: R.test === "z" ? "d (σ)" : "d", v: R.mt.d.value, lo: R.mt.d.lo, hi: R.mt.d.hi, color: blue});
+    if (!R.paired) items.push({name: R.test === "z" ? `${sym("d")} (σ)` : "d", v: R.mt.d.value, lo: R.mt.d.lo, hi: R.mt.d.hi, color: blue});
     else {
       if (R.pe.ref) items.push({name: "d – ref. měření", full: `d se směrodatnou odchylkou referenčního měření ${mName(s.ref)}`, v: R.pe.ref.value, lo: R.pe.ref.lo, hi: R.pe.ref.hi, color: blue});
       if (R.pe.avg) items.push({name: "d – oba rozptyly", v: R.pe.avg.value, lo: R.pe.avg.lo, hi: R.pe.avg.hi, color: sky});
@@ -705,7 +707,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
     items.forEach((it, i) => { it.y = k - i; });
     return Plot.plot({
       ...base(width, small), height: 70 + 80 * k, marginBottom: 46, marginLeft: small ? 92 : 130,
-      x: {domain: dom, ...axis("Cohenovo d"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 2)},
+      x: {domain: dom, ...axis(`Cohenovo ${sym("d")}`), ticks: small ? 5 : 9, tickFormat: v => trim(v, 2)},
       y: {domain: [0.25, k + 0.6], label: null, ticks: items.map(i => i.y), tickSize: 0, tickFormat: y => items.find(i => i.y === y)?.name ?? ""},
       ariaLabel: "Cohenovo d s intervaly spolehlivosti",
       ariaDescription: items.map(i => `${i.full ?? i.name}: ${d3f(i.v)}, interval ${plain(ivText(i.lo, i.hi, ci.side, d3f))}`).join(". "),
@@ -805,7 +807,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
     const outN = pts.filter(p => p.out).length;
     return {outN, chart: Plot.plot({
       ...base(width, small), height: small ? 260 : 320, marginBottom: 46, marginLeft: small ? 58 : 68,
-      x: {domain: [zlo, zhi], ...axis("kvantil normovaného normálního rozdělení z"), ticks: small ? 5 : 9, tickFormat: v => trim(v, 1)},
+      x: {domain: [zlo, zhi], ...axis(`kvantil normovaného normálního rozdělení ${sym("z")}`), ticks: small ? 5 : 9, tickFormat: v => trim(v, 1)},
       y: {domain: [ylo - 0.04 * span, yhi + 0.04 * span], ...axis(det ? `odchylka od přímky ${paired() ? "(rozdíly)" : ""}` : paired() ? "seřazené rozdíly" : "seřazené hodnoty", {labelOffset: small ? 46 : 54}), ticks: 6, tickFormat: tickFmt},
       ariaLabel: `${det ? "Detrendovaný" : "Tradiční"} normální Q–Q graf ${paired() ? "rozdílů" : "hodnot"}${band ? ` se simultánním 95% pásem ${band.type === "ts" ? "tail-sensitive" : "KS"}` : ""}`,
       ariaDescription: `${n} bodů; ${det ? "nula odpovídá přímce m + s·z" : `přímka ${trim(m, 4)} + ${trim(sd, 4)}·z`}. ${band ? `Mimo pás leží ${outN} ${outN === 1 ? "bod" : outN < 5 && outN > 0 ? "body" : "bodů"}.` : ""}`,
@@ -848,7 +850,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
     $("[data-chart=qq]").dataset.mode = `${s.qq} ${n <= N.BAND_MAX ? s.band : "none"}`;
     $("[data-rain-note]").innerHTML = n <= 50 ? "Body hodnot, které leží blízko sebe, jsou naskládány nad sebe a pod sebe; svislá poloha nemá jiný význam." : "Body jsou náhodně posunuty svisle (jitter) a průhledné, aby se při velkém počtu nepřekrývaly; svislá poloha nemá žádný význam.";
     const Q = qqChart(width, R);
-    $("[data-legend=qq]").replaceChildren(legend([[swDot(ink), "seřazené hodnoty"], [swLine(orange, 2), s.qq === "detrended" ? "přímka m + s·z (nula)" : "přímka m + s·z"], ...(s.band !== "none" && n <= N.BAND_MAX ? [[swBox(sky, null, 0.35), `simultánní 95% pás (${s.band === "ts" ? "tail-sensitive" : "KS"})`], [swDot(orange), "bod mimo pás"]] : [])]));
+    $("[data-legend=qq]").replaceChildren(legend([[swDot(ink), "seřazené hodnoty"], [swLine(orange, 2), s.qq === "detrended" ? `přímka ${sym("m")} + ${sym("s")}·${sym("z")} (nula)` : `přímka ${sym("m")} + ${sym("s")}·${sym("z")}`], ...(s.band !== "none" && n <= N.BAND_MAX ? [[swBox(sky, null, 0.35), `simultánní 95% pás (${s.band === "ts" ? "tail-sensitive" : "KS"})`], [swDot(orange), "bod mimo pás"]] : [])]));
     $("[data-chart=qq]").replaceChildren(Q.chart);
     $("[data-qq-note]").innerHTML = `${s.qq === "detrended" ? "Detrendovaný graf ukazuje svisle odchylku každé seřazené hodnoty od přímky <i>m</i> + <i>s</i>·<i>z</i>; drobné odchylky jsou v něm lépe vidět. " : ""}${s.band === "none" ? "" : n > N.BAND_MAX ? `Pás se kreslí pro nejvýše ${int(N.BAND_MAX)} hodnot.` : `${s.band === "ts" ? "Kdyby data pocházela z normální populace, ležely by všechny body v pásu současně s pravděpodobností 95 %." : "Pás KS nebere v úvahu, že průměr a směrodatná odchylka jsou odhadnuté z týchž dat; u normálních dat v něm leží všechny body s pravděpodobností vyšší než 95 % a odchylky odhalí méně často."} ${Q.outN ? `Mimo pás ${Q.outN === 1 ? "leží 1 bod" : `leží ${Q.outN} ${Q.outN < 5 ? "body" : "bodů"}`}: to je signál odchylky od normálního modelu, ne důkaz; i u normálních dat se to stává zhruba v 5 % výběrů.` : "Všechny body leží v pásu; to normalitu nedokládá, jen data s normálním modelem nejsou v rozporu."}`}`;
   }
@@ -885,7 +887,7 @@ Hodnoty v jednotkách měření zaokrouhlujeme podle velikosti směrodatné odch
     $("[data-legend=ci]").replaceChildren(legend([[swDot(ink), R.paired ? "průměr rozdílů" : "výběrový průměr"], [swLine(blue, 6), ivName(ci)], ...(R.eq ? [[swLine(green, 5), `${levelAdj(R.eq.ci.conf)} interval pro test ekvivalence`], [swBox(green, null, 0.15), "pásmo ekvivalence"]] : []), [swLine(orange, 2, "6,4"), "testovaná hodnota μ<sub>0</sub>"]]));
     $("[data-chart=ci]").replaceChildren(ciChart(width, R));
     $("[data-ci-note]").innerHTML = ci.side === "two" ? "" : `Jednostranný interval sahá na druhé straně do ${ci.side === "lower" ? "+∞" : "−∞"}; graf ukazuje jen výřez osy.`;
-    $("[data-legend=d]").replaceChildren(legend([[swDot(ink), "odhad"], [swLine(blue, 5), R.paired ? "přibližný interval (Bonett)" : z ? "interval (σ známá)" : "přesný interval (necentrální t)"], ...(R.paired ? [[swLine(green, 5), "přesný interval pro <i>d</i><sub><i>z</i></sub>"]] : [])]));
+    $("[data-legend=d]").replaceChildren(legend([[swDot(ink), "odhad"], [swLine(blue, 5), R.paired ? "přibližný interval (Bonett)" : z ? "interval (σ známá)" : `přesný interval (necentrální ${sym("t")})`], ...(R.paired ? [[swLine(green, 5), "přesný interval pro <i>d</i><sub><i>z</i></sub>"]] : [])]));
     $("[data-chart=d]").replaceChildren(dChart(width, R));
     $("[data-d-note]").innerHTML = R.paired ? "Tři varianty mají různé jmenovatele, a proto různé hodnoty i význam: první dvě vyjadřují průměrný rozdíl vzhledem k tomu, jak se liší jednotliví lidé, <i>d</i><sub><i>z</i></sub> vzhledem k tomu, jak se liší jejich rozdíly." : `<i>d</i> vyjadřuje vzdálenost průměru od μ<sub>0</sub> v ${z ? "jednotkách směrodatné odchylky populace" : "jednotkách výběrové směrodatné odchylky"}; nula znamená žádný rozdíl.`;
     diagnostics(R, width);

@@ -65,6 +65,8 @@ Regresní přímka má směrnici $b_1=-0{,}523\cdot4{,}84/5{,}62=-0{,}450$ a ús
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours of the book: blue points, orange for negative products and residuals, ink for lines.
   const blue = "#245D78", orange = "#B54E24", green = "#3E7B4F", ink = "#223744", gray = "#4D5A63", pale = "#8A9AA3";
   const MAX_N = 1000, MIN_N = 3, Z975 = 1.959963984540054, LEVELS = [0.5, 0.8, 0.95, 0.99];
@@ -525,7 +527,7 @@ Regresní přímka má směrnici $b_1=-0{,}523\cdot4{,}84/5{,}62=-0{,}450$ a ús
     v.append("circle").attr("cx", cx + d / 2).attr("cy", R + 4).attr("r", R).attr("fill", green).attr("fill-opacity", 0.4).attr("stroke", green);
     v.append("text").attr("x", cx - d / 2 - R / 2).attr("y", R + 8).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text("X");
     v.append("text").attr("x", cx + d / 2 + R / 2).attr("y", R + 8).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text("Y");
-    v.append("text").attr("x", cx).attr("y", 2 * R + 28).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text(`překryv r² = ${pct(s.r2)}`);
+    v.append("text").attr("x", cx).attr("y", 2 * R + 28).attr("text-anchor", "middle").attr("font-size", 13).attr("fill", ink).text(`překryv ${sym("r")}² = ${pct(s.r2)}`);
     box.replaceChildren(v.node(), html`<p class="viz-note">Překryv kruhů je podíl rozptylu Y, který lze lineárně předpovědět z X (a naopak). Znaménko korelace diagram neukazuje.</p>`);
   }
 

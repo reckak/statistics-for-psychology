@@ -38,6 +38,8 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours: blue for the condition after normal sleep and the difference, orange for short sleep.
   const blue = "#245D78", orange = "#B54E24", green = "#3B7D3A", ink = "#223744", gray = "#4D5A63", hiText = "#9A3F17", band = "#F6DCCB", bandSig = "#B8DDE8", overlapFill = "#D5DADD";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -421,7 +423,7 @@ V příkladu kapitoly (46 a 52 bodů, $s=10$, $n=25$ v obou skupinách, 95 %) m�
     const bandPlot = Plot.plot({
       width, height: small ? 250 : 280, marginLeft: small ? 52 : 60, marginRight: 16, marginTop: 20, marginBottom: 44, style,
       x: {domain: [0, xMax], label: "Rozdíl průměrů v absolutní hodnotě (body)", labelAnchor: "center", labelArrow: "none", tickFormat: tick},
-      y: {domain: [0, 1], label: "p-hodnota", labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, tickFormat: t => fixed(t, 1)},
+      y: {domain: [0, 1], label: `${sym("p")}-hodnota`, labelAnchor: "center", labelArrow: "none", labelOffset: small ? 40 : 48, tickFormat: t => fixed(t, 1)},
       ariaLabel: "p-hodnota testu podle rozdílu průměrů a tři pásma podle překryvu intervalů a významnosti",
       ariaDescription: `Rozdíl je významný od ${fixed(C.sigFrom, 2)} bodu, intervaly se přestanou překrývat od ${fixed(C.apartFrom, 2)} bodu. Aktuální rozdíl ${fixed(Math.abs(diff.d), 2)} bodu, p = ${pText(diff.p)}.`,
       marks: [

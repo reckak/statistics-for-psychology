@@ -2,7 +2,8 @@
 // Quarto passes the figure caption to GLightbox only through the link's plain-text
 // `title` attribute, so inline math appears there as TeX source (e.g. \mathrm{τ}_b).
 // This script (1) replaces the caption shown in the lightbox with the figure's own
-// rendered <figcaption> (MathML) and (2) turns the hover tooltip into readable text.
+// rendered <figcaption> (MathML, and italic symbols such as *r*, R89) and (2) turns the
+// hover tooltip into readable text.
 (function () {
   'use strict';
 
@@ -31,7 +32,7 @@
     lightbox.on('slide_after_load', function (data) {
       var caption = figcaptionOf(data && data.trigger);
       var title = data && data.slideNode && data.slideNode.querySelector('.gslide-title');
-      if (caption && title && caption.querySelector('math')) title.innerHTML = caption.innerHTML.trim();
+      if (caption && title && caption.querySelector('math, em')) title.innerHTML = caption.innerHTML.trim();
     });
   }
 

@@ -30,6 +30,8 @@ Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrod
 ```{ojs}
 //| echo: false
 {
+  // Latin symbols in chart labels: sym("n") sets them in the math font (assets/viz-labels.js, R89).
+  const sym = window.vizSym || (s => s);
   // Colours as in the power graphs of chapter 6 (scripts/kapitola_06-prezentace-sila.R).
   const blue = "#245D78", h0c = "#7B868E", orange = "#B54E24", fillB = "#B8DDE8", ink = "#223744", gray = "#4D5A63", pale = "#E1E8EB", darkOrange = "#9A3F17";
   const SQRT2PI = Math.sqrt(2 * Math.PI);
@@ -278,8 +280,8 @@ Sílu a $\mathrm{β}$ zaokrouhlujeme na tři desetinná místa, plochy a směrod
     const w = domain[1] - domain[0], close = Math.abs(s.d) < 0.12 * w;
     const h0Anchor = close ? (s.d >= 0 ? "end" : "start") : "middle", h1Anchor = close ? (s.d >= 0 ? "start" : "end") : "middle";
     const curveLabels = [
-      {x: 0, text: "H₀", fill: h0c, anchor: h0Anchor, dx: close ? (s.d >= 0 ? -4 : 4) : 0},
-      {x: s.d, text: "H₁", fill: blue, anchor: h1Anchor, dx: close ? (s.d >= 0 ? 4 : -4) : 0}
+      {x: 0, text: `${sym("H")}₀`, fill: h0c, anchor: h0Anchor, dx: close ? (s.d >= 0 ? -4 : 4) : 0},
+      {x: s.d, text: `${sym("H")}₁`, fill: blue, anchor: h1Anchor, dx: close ? (s.d >= 0 ? 4 : -4) : 0}
     ];
     // Critical values: value and direction of the critical region next to the top of each dashed line.
     const critLabels = s.crit.map(c => {
